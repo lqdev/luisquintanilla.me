@@ -8,8 +8,9 @@
   <ItemGroup>
     <Compile Include="Domain.fs" />
     <Compile Include="Services\Markdown.fs" />
-    <Compile Include="Views\Shared.fs" />
-    <Compile Include="Views\Home.fs" />
+    <Compile Include="Views\Layouts.fs" />
+    <Compile Include="Views\Partials.fs" />
+    <Compile Include="Views\Generator.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

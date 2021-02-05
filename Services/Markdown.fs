@@ -9,7 +9,13 @@ module MarkdownService
     open YamlDotNet.Serialization
     open Domain
 
-    let convertToHtml (filePath:string) = 
+    let convertFileToHtml (filePath:string) =
+        filePath |> File.ReadAllText |> Markdown.ToHtml
+
+    let ConvertMdToHtml (content:string) = 
+        Markdown.ToHtml content
+
+    let parseMarkdown (filePath:string) = 
 
         let yamlSerializer = 
             DeserializerBuilder()

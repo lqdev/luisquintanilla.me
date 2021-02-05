@@ -3,28 +3,39 @@
 open System
 open System.IO
 open MarkdownService
-open HomePage
+open PartialViews
+open ViewGenerator
 
 [<EntryPoint>]
 let main argv =
 
     let filePaths = 
-        Directory.GetFiles("_src")
-        |> Array.filter(fun path -> Path.GetExtension(path) = ".md")
+        Directory.GetFiles("_src/posts")
     
-    let docs = 
-        filePaths
-        |> Array.map(convertToHtml)
-
     let outputDir = "_public"
     
-    // docs
-    // |> Array.iter(fun doc -> 
-    //     let htmlFileName = sprintf "%s.html" doc.FileName
-    //     let savePath = Path.Join(outputDir,htmlFileName)
-    //     File.WriteAllText(savePath,doc.Content)
-    // ) 
+    let posts = 
+        filePaths
+        |> Array.map(parseMarkdown) 
 
-    File.WriteAllText(Path.Join("_public","index.html"),HomePage.generate)  
+    let aboutContent = convertFileToHtml @"_src\about.md" |> aboutView
+
+    let homePage = generate homeView "default" "Luis Quintanilla"
+    let aboutPage = generate aboutContent "default" "Luis Quintanilla - About"
+    let postPages = 
+        posts
+        |> Array.map(fun post -> 
+            let postView = post.Content |> ConvertMdToHtml |> postView
+            post.FileName,generate postView "default" post.Metadata.Title)
+
+    // Generate Home / About
+    File.WriteAllText(Path.Join("_public","about.html"),aboutPage)
+    File.WriteAllText(Path.Join("_public","index.html"),homePage)  
+    postPages
+    |> Array.iter(fun (fileName,html) ->
+        let saveDir = Path.Join(outputDir,"posts")
+        let saveFileName = sprintf "%s.html" fileName
+        let savePath = Path.Join(saveDir,saveFileName)
+        File.WriteAllText(savePath,html))
 
     0
