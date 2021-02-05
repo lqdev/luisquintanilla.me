@@ -15,7 +15,16 @@ let main argv =
     let docs = 
         filePaths
         |> Array.map(convertToHtml)
-        |> Array.iter(printfn "%A")
 
-    printfn "%s" HomePage.getView
+    let outputDir = "_public"
+    
+    // docs
+    // |> Array.iter(fun doc -> 
+    //     let htmlFileName = sprintf "%s.html" doc.FileName
+    //     let savePath = Path.Join(outputDir,htmlFileName)
+    //     File.WriteAllText(savePath,doc.Content)
+    // ) 
+
+    File.WriteAllText(Path.Join("_public","index.html"),HomePage.generate)  
+
     0

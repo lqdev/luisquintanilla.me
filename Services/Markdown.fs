@@ -39,5 +39,5 @@ module MarkdownService
                 .Substring(yamlBlock.Span.Length)
                 .Trim()
 
-        { Metadata = postDetails; Content = mdBlock }
+        { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = postDetails; Content = mdBlock}
         

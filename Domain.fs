@@ -10,6 +10,7 @@ module Domain
     }
 
     type Post = {
+        FileName: string
         Metadata: PostDetails
         Content: string
     }
