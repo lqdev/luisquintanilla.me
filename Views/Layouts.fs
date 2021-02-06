@@ -24,7 +24,7 @@ module Layouts
                         a [_class "nav-link"; _href "/about.html"] [ Text "About" ]
                     ]
                     li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "#"] [ Text "Writing" ]
+                        a [_class "nav-link"; _href "/posts/1/1.html"] [ Text "Writing" ]
                     ]
                     li [_class "nav-item"] [
                         a [_class "nav-link"; _href "#"] [ Text "Events" ]
