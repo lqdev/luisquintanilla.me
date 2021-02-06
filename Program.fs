@@ -58,9 +58,9 @@ let main argv =
         |> Array.chunkBySize postsPerPage
         |> Array.iteri(fun i x -> 
             let len = posts |> Array.chunkBySize postsPerPage |> Array.length
-            let nextPage = i + 2
-            let idx = string (i + 1)
-            let page = generate (postPaginationView nextPage len x) "default" idx
+            let currentPage = i + 1
+            let idx = string currentPage
+            let page = generate (postPaginationView currentPage len x) "default" idx
             let dir = Directory.CreateDirectory(Path.Join("_public","posts", idx))
             let fileName = sprintf "%s.html" idx
             File.WriteAllText(Path.Join(dir.FullName,fileName), page))

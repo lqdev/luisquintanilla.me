@@ -32,7 +32,6 @@ module PartialViews
                     ]
             ]
 
-            // TODO: Fix pagination logic
             if(lastPage > 1) then
                 if(currentPage = 1) then
                     a [_href "/posts/1/1.html"] [Text "First"]
@@ -46,10 +45,5 @@ module PartialViews
                     a [_href "/posts/1/1.html"] [Text "First"]
                     a [_href (sprintf "/posts/%i/%i.html" previousPage previousPage)] [Text "Back"]
                     a [_href (sprintf "/posts/%i/%i.html" nextPage nextPage)] [Text "Next"]
-                    a [_href (sprintf "/posts/%i/%i.html" lastPage lastPage)] [Text "Last"]
-                
-
-
-
-
+                    a [_href (sprintf "/posts/%i/%i.html" lastPage lastPage)] [Text "Last"]        
         ]
