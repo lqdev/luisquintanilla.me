@@ -4,10 +4,19 @@ module MarkdownService
     open System.IO
     open System.Linq
     open Markdig
+    open Markdig.Parsers
     open Markdig.Syntax
     open Markdig.Extensions.Yaml
     open YamlDotNet.Serialization
     open Domain
+
+    let summarizePost (content:string) = 
+        let doc = Markdown.Parse(content)
+        
+        let startP,endP = doc.Descendants<ParagraphBlock>().FirstOrDefault() |> fun x -> x.Span.Start,x.Span.End
+
+        content.Substring(startP,endP)
+        
 
     let convertFileToHtml (filePath:string) =
         filePath |> File.ReadAllText |> Markdown.ToHtml
