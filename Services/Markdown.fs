@@ -12,12 +12,9 @@ module MarkdownService
 
     let summarizePost (content:string) = 
         let doc = Markdown.Parse(content)
-        
         let startP,endP = doc.Descendants<ParagraphBlock>().FirstOrDefault() |> fun x -> x.Span.Start,x.Span.End
-
-        content.Substring(startP,endP)
+        content.Substring(startP,endP).Trim()
         
-
     let convertFileToHtml (filePath:string) =
         filePath |> File.ReadAllText |> Markdown.ToHtml
 

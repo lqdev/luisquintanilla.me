@@ -12,6 +12,7 @@
     <Compile Include="Views\Layouts.fs" />
     <Compile Include="Views\Partials.fs" />
     <Compile Include="Views\Generator.fs" />
+    <Compile Include="Orchestrator.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

@@ -15,23 +15,55 @@ I'm passionate about:
 - Jami - lqdev
 - Mastodon - [@lqdev@toot.lqdev.tech](https://toot.lqdev.tech/@lqdev)
 - GitHub - [lqdev](https://github.com/lqdev)
-- Twitter - [@ljquintanilla](https://twitter.com/ljquintanilla)
+- Twitter - [ljquintanilla](https://twitter.com/ljquintanilla)
 - LinkedIn - [lquintanilla01](https://www.linkedin.com/in/lquintanilla01/)
 
 ## Technologies
 
+List of technologies I use often
+
+### Languages
+
 - .NET (C#/F#)
-- Linux
-- PyTorch
-- ML.NET
+- Python
+- JavaScript
+- Racket
+
+### Data
+
+- Apache Spark
 - .NET for Apache Spark
-- Azure Machine Learning
+- Pandas
+
+### Development
+
+- GitHub
+- Azure DevOps
 - Docker
 
-## Tools
+### Editors & IDEs
+
+- Visual Studio, Visual Studio Code
+- DrRacket
+- Jupyter Notebooks, Jupyter Lab
+- .NET Interactive
+
+### Machine Learning
+
+- ML.NET
+- Azure Machine Learning
+- PyTorch
+- TensorFlow, Keras
+- Scikit Learn
+- ONNX
+
+### Tools & Extensions
 
 - Insomina
-- VS Code
-- Visual Studio
-- DrRacket
 - Ionide
+- Netron
+
+### Web
+
+- ASP.NET, ASP.NET Core
+- Azure Functions
