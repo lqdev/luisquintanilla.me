@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en"><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/dark.min.css"><link rel="stylesheet" href="/main.css"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>Create an HTTP Trigger Azure Function using FSharp</title></head><body><nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"><a class="navbar-brand" href="#">Luis Quintanilla</a><button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav mr-auto"><li class="nav-item active"><a class="nav-link" href="/">Home</a></li><li class="nav-item"><a class="nav-link" href="/about.html">About</a></li><li class="nav-item"><a class="nav-link" href="/posts/1/1.html">Writing</a></li><li class="nav-item"><a class="nav-link" href="/events.html">Events</a></li></ul></div></nav><main role="main" class="container"><div class="mr-auto"><h2>Introduction</h2>
+<p>Since the upgrade to the 2.0 version of the Azure Functions runtime, .NET Core has been natively supported by the platform. As a result some changes took effect. Most notably, in version 1.0, a template for an F# HttpTrigger function was available. The template was removed in 2.0. However, that does not mean Azure Functions does not support F#. Azure Functions can be built in F# using a .NET Standard Class Library. This writeup provides a detailed walk-through of how to build an Azure Function that processes HTTP requests using F#. The complete code sample can be found on <a href="https://github.com/lqdev/FsHttpTriggerSample">GitHub</a>.</p>
+<h2>Prerequisites</h2>
+<p>This solution was built using a Windows PC but should work on Mac and Linux.</p>
+<ul>
+<li><a href="https://dotnet.microsoft.com/download/dotnet-core">.NET SDK (2.x or 3.x)</a></li>
+<li><a href="https://nodejs.org/en/download/">Node.js</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#windows-npm">Azure Functions Core Tools</a></li>
+</ul>
+<h2>Create Solution</h2>
+<p>Open the command prompt and create a new directory for your solution called &quot;FsHttpTriggerSample&quot;.</p>
+<pre><code class="language-bash">mkdir FsHttpTriggerSample
+</code></pre>
+<p>Navigate into the new directory and create a solution using the .NET CLI.</p>
+<pre><code class="language-bash">cd FsHttpTriggerSample
+dotnet new sln
+</code></pre>
+<h2>Create Azure Functions Project</h2>
+<p>Inside the <em>FsHttpTriggerSample</em> solution directory, use the .NET CLI to create a new F# .NET Standard Class Library project.</p>
+<pre><code class="language-bash">dotnet new classlib -o FsHttpTriggerSample -lang f#
+</code></pre>
+<p>Add the project to the solution</p>
+<pre><code class="language-bash">dotnet sln add FsHttpTriggerSample
+</code></pre>
+<h2>Install NuGet Packages</h2>
+<p>To use Azure Functions, install the <a href="https://www.nuget.org/packages/Microsoft.NET.Sdk.Functions"><strong>Microsoft.Net.Sdk.Functions</strong> NuGet package</a>.</p>
+<p>Inside the <em>FsHttpTriggerSample</em> project directory, enter the following command.</p>
+<pre><code class="language-bash">dotnet add package Microsoft.Net.Sdk.Functions
+</code></pre>
+<h2>Create the Azure Function</h2>
+<h3>Prepare Files</h3>
+<p>Delete the default <em>Library.fs</em> file inside the <em>FsHttpTriggerSample</em> project directory.</p>
+<pre><code class="language-bash">del Library.fs
+</code></pre>
+<p>Create a new file called <em>GreetFunction.fs</em>.</p>
+<pre><code class="language-bash">type nul &gt; GreetFunction.fs
+</code></pre>
+<h3>Configure Files</h3>
+<p>Open the <em>FsHttpTriggerSample.fsproj</em> file and find the following snippet.</p>
+<pre><code class="language-xml">&lt;Compile Include=&quot;Library.fs&quot; /&gt;
+</code></pre>
+<p>Replace the snippet with the content below.</p>
+<pre><code class="language-xml">&lt;Compile Include=&quot;GreetFunction.fs&quot; /&gt;
+</code></pre>
+<h3>Configure Host</h3>
+<p>At a minimum, Azure Functions requires the runtime version to run. This information is provided by a file called <em>host.json</em>.</p>
+<p>Create a new file called <em>host.json</em> inside the <em>FsHttpTriggerSample</em> project directory.</p>
+<pre><code class="language-bash">type nul &gt; host.json
+</code></pre>
+<p>Open the <em>host.json</em> file and add the following content</p>
+<pre><code class="language-json">{
+    &quot;version&quot;: &quot;2.0&quot;
+}
+</code></pre>
+<h3>Implement Azure Function</h3>
+<p>Open the <em>GreetFunction.fs</em> file and add the namespace and module for it.</p>
+<pre><code class="language-fsharp">namespace FsHttpTriggerSample
+
+module GreetFunction = 
+</code></pre>
+<p>Below the module definition, add the following <code>open</code> statements:</p>
+<pre><code class="language-fsharp">open Microsoft.AspNetCore.Mvc
+open Microsoft.Azure.WebJobs
+open Microsoft.AspNetCore.Http
+open Newtonsoft.Json
+open System.IO
+open Microsoft.Extensions.Logging
+</code></pre>
+<p>Define a <code>User</code> type containing a single property called <code>Name</code>.</p>
+<pre><code class="language-fsharp">type User = {
+    Name: string
+}
+</code></pre>
+<p>The entrypoint of an Azure Function is the <code>Run</code> function. Create a function called <code>Run</code>.</p>
+<pre><code class="language-fsharp">[&lt;FunctionName(&quot;Greet&quot;)&gt;]
+let Run ([&lt;HttpTrigger(Methods=[|&quot;POST&quot;|])&gt;] req:HttpRequest) (log:ILogger) = 
+</code></pre>
+<p>To register an Azure Function, use the <code>FunctionName</code> attribute. In this case, the name of the function is <code>Greet</code>. The <code>Run</code> function takes two parameters, an <code>HttpRequest</code> and an <code>ILogger</code>. Since the binding used by HTTP Trigger functions is <code>HttpTrigger</code>, the request object is annotated with the <code>HttpTrigger</code> attribute. Options such as the accepted methods can be provided through the <code>HttpTrigger</code> attribute. In this case, only <code>POST</code> requests are accepted.</p>
+<p>Create an <code>async</code> computation expression inside the <code>Run</code> function.</p>
+<pre><code class="language-fsharp">async {
+
+}
+</code></pre>
+<p>Inside the <code>async</code> expression, add logging to indicate that the function has initialized.</p>
+<pre><code class="language-fsharp">&quot;Running function&quot;
+|&gt; log.LogInformation
+</code></pre>
+<p>Below that, get the body of the request.</p>
+<pre><code class="language-fsharp">let! body = 
+    new StreamReader(req.Body) 
+    |&gt; (fun stream -&gt; stream.ReadToEndAsync()) 
+    |&gt; Async.AwaitTask
+</code></pre>
+<p>Then, deserialized the body into an instance of <code>User</code>.</p>
+<pre><code class="language-fsharp">let user = JsonConvert.DeserializeObject&lt;User&gt;(body)
+</code></pre>
+<p>Return a personalized greeting with the user's name.</p>
+<pre><code class="language-fsharp">return OkObjectResult(sprintf &quot;Hello %s&quot; user.Name)
+</code></pre>
+<p>Finally, use the <code>StartAsTask</code> function to start the <code>async</code> expression as a <code>Task</code>.</p>
+<pre><code class="language-fsharp">|&gt; Async.StartAsTask
+</code></pre>
+<p>Once finished, the contents of the <em>GreetFunction.fs</em> should look similar to the following.</p>
+<pre><code class="language-fsharp">namespace FsHttpTriggerSample
+
+module GreetFunction = 
+
+    open Microsoft.AspNetCore.Mvc
+    open Microsoft.Azure.WebJobs
+    open Microsoft.AspNetCore.Http
+    open Newtonsoft.Json
+    open System.IO
+    open Microsoft.Extensions.Logging
+
+    type User = {
+        Name: string
+    }
+
+    [&lt;FunctionName(&quot;Greet&quot;)&gt;]
+    let Run ([&lt;HttpTrigger(Methods=[|&quot;POST&quot;|])&gt;] req:HttpRequest) (log:ILogger) = 
+        async {
+            &quot;Runnning Function&quot;
+            |&gt; log.LogInformation
+
+            let! body = 
+                new StreamReader(req.Body) 
+                |&gt; (fun stream -&gt; stream.ReadToEndAsync()) 
+                |&gt; Async.AwaitTask
+
+            let user = JsonConvert.DeserializeObject&lt;User&gt;(body)
+
+            return OkObjectResult(sprintf &quot;Hello %s&quot; user.Name)
+        } |&gt; Async.StartAsTask
+</code></pre>
+<h2>Run the Function Locally</h2>
+<p>Build the project by using the <code>build</code> command inside the <em>FsHttpTriggerSample</em> project directory.</p>
+<pre><code class="language-bash">dotnet build
+</code></pre>
+<p>Then, navigate to the output directory</p>
+<pre><code class="language-bash">cd bin\Debug\netstandard2.0
+</code></pre>
+<p>Use the Azure Functions Core Tools to start the Azure Functions host locally.</p>
+<pre><code class="language-bash">func host start
+</code></pre>
+<p>Once the host is initialized, the function is available at the following endpoint <code>http://localhost:7071/api/Greet</code>.</p>
+<h2>Test the function</h2>
+<p>Using a REST client like Postman or Insomnia, make a POST request to <code>http://localhost:7071/api/Greet</code> with the following body. Feel free to replace the name with your own.</p>
+<pre><code class="language-json">{
+    &quot;Name&quot;: &quot;Luis&quot;
+}
+</code></pre>
+<p>If successful, the response should look similar to the following output.</p>
+<pre><code class="language-text">Hello Luis
+</code></pre>
+<h2>Conclusion</h2>
+<p>This writeup showed how to create an HTTP Trigger Azure Function using F#. Creating additional functions inside the same project is relatively trivial since the structure of the <em>GreetFunction.fs</em> file can be copied and the logic inside the <code>Run</code> function can be adapted to meet your requirements.</p>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-fsharp">Azure Functions F# Developer Reference</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json">Azure Functions Host 2.x Reference</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/azure-functions/deployment-zip-push">Azure Functions Zip Deployment</a></li>
+</ul>
+</div></main><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/fsharp.min.js"></script><script type="application/javascript">hljs.initHighlightingOnLoad();</script></body></html>

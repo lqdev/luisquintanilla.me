@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/dark.min.css"><link rel="stylesheet" href="/main.css"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>Organizing F# Modules Into Separate Files</title></head><body><nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"><a class="navbar-brand" href="#">Luis Quintanilla</a><button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav mr-auto"><li class="nav-item active"><a class="nav-link" href="/">Home</a></li><li class="nav-item"><a class="nav-link" href="/about.html">About</a></li><li class="nav-item"><a class="nav-link" href="/posts/1/1.html">Writing</a></li><li class="nav-item"><a class="nav-link" href="/events.html">Events</a></li></ul></div></nav><main role="main" class="container"><div class="mr-auto"><h1>Introduction</h1>
+<p>After watching <a href="https://twitter.com/csharpfritz">Jeff Fritz's</a> F# Friday <a href="https://www.twitch.tv/videos/268107540">Stream</a>, I was inspired to do some tinkering of my own. I have looked at F# in the past, but often times have not done much with it. After the stream, I decided to keep plugging away at it and one of the first things I thought about doing was organizing my code into separate files. As simple as it may seem, it was no easy task and while there are many different ways of doing it, the method described in this writeup is one of the easiest I found. Keep in mind though that this may not be the appropriate way of doing it although it seems to work nicely for our purposes. In this solution I will create a set of mathematical operations that will be organized into a single module that will then be imported and used inside of my console application. Source code for this sample solution can be found at this <a href="https://github.com/lqdev/fsharpmoduledemo">link</a>.</p>
+<h2>Prerequisites</h2>
+<p>This solution was built on a Mac, but should work on both Windows and Linux environments.</p>
+<ul>
+<li><a href="https://www.microsoft.com/net/download/macos">.NET Core SDK</a></li>
+<li><a href="https://fsharp.org/use/mac/">Ionide Extension - Option 1</a></li>
+</ul>
+<h2>Create Project</h2>
+<p>Once you have everything installed, you can create a new F# project by entering the following command into the console.</p>
+<pre><code class="language-bash">dotnet new console -lang f#
+</code></pre>
+<h2>Create Module</h2>
+<p>The goal of this solution will be to create functions that add, subtract, multiply and divide two numbers. Since all of these functions are mathematical operations, we can organize them inside a single module. Therefore, we can create a new file inside of our project called <code>Math.fs</code> which will contain all of our functions.</p>
+<pre><code class="language-fsharp">module Math
+    let add x y = x + y
+    let subtract x y = x - y
+    let multiply x y = x * y
+    let divide x y = x / y
+</code></pre>
+<h2>Compile File</h2>
+<p>Now that our file has been created, we need to add it to our list of files to be compiled by our project. To do so, we can add an entry for our <code>Math.fs</code> file to the <code>ItemGroup</code> property inside our <code>fsproj</code> file. The contents of the file should look as follows after the addition:</p>
+<pre><code class="language-xml">&lt;Project Sdk=&quot;Microsoft.NET.Sdk&quot;&gt;
+
+  &lt;PropertyGroup&gt;
+    &lt;OutputType&gt;Exe&lt;/OutputType&gt;
+    &lt;TargetFramework&gt;netcoreapp2.0&lt;/TargetFramework&gt;
+  &lt;/PropertyGroup&gt;
+
+  &lt;ItemGroup&gt;
+    &lt;Compile Include=&quot;Math.fs&quot; /&gt;
+    &lt;Compile Include=&quot;Program.fs&quot; /&gt;
+  &lt;/ItemGroup&gt;
+
+&lt;/Project&gt;
+</code></pre>
+<h2>Import Module Into Console Application</h2>
+<p>Once we have our module created and our <code>fsproj</code> file configured, we can call the module from our console application. To do so, we need to first import it into our <code>Program.fs</code> file.</p>
+<pre><code class="language-fsharp">open Math
+</code></pre>
+<p>Once imported, we can call the <code>Math</code> module functions from our <code>main</code> function in the <code>Program.fs</code> file.</p>
+<pre><code class="language-fsharp">    printfn &quot;Add: %i&quot; (add 1 2)
+    printfn &quot;Subtract: %i&quot; (subtract 1 2)
+    printfn &quot;Multiply: %i&quot; (multiply 1 2)
+    printfn &quot;Divide: %i&quot; (divide 4 2)
+</code></pre>
+<h2>Run Application</h2>
+<p>Now that everything is set up, we can build and run our console application with the following commands:</p>
+<pre><code class="language-bash">dotnet build
+dotnet run
+</code></pre>
+<p>The output should be the following:</p>
+<pre><code class="language-bash">Add: 3
+Subtract: -1
+Multiply: 2
+Divide: 2
+</code></pre>
+<h2>Conclusion</h2>
+<p>In this writeup, I went over how to create an F# console application that organizes a set of mathematical functions into a module whose contents are stored in a separate file. This is good for organization and to reduce clutter. Happy coding!</p>
+</div></main><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/fsharp.min.js"></script><script type="application/javascript">hljs.initHighlightingOnLoad();</script></body></html>

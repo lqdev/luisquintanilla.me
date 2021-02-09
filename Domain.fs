@@ -1,12 +1,13 @@
 module Domain
 
     open System
+    open YamlDotNet.Serialization
 
     [<CLIMutable>]
     type PostDetails = {
-        Title: string
-        Date: string
-        Tags: string array
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="date")>] Date: string
+        [<YamlMember(Alias="tags")>] Tags: string
     }
 
     type Post = {
@@ -20,4 +21,3 @@ module Domain
         Date: string
         Url: string
     }
-    

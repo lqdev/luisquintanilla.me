@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en"><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/dark.min.css"><link rel="stylesheet" href="/main.css"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>Testing and Deploying Python Projects with Travis CI</title></head><body><nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"><a class="navbar-brand" href="#">Luis Quintanilla</a><button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav mr-auto"><li class="nav-item active"><a class="nav-link" href="/">Home</a></li><li class="nav-item"><a class="nav-link" href="/about.html">About</a></li><li class="nav-item"><a class="nav-link" href="/posts/1/1.html">Writing</a></li><li class="nav-item"><a class="nav-link" href="/events.html">Events</a></li></ul></div></nav><main role="main" class="container"><div class="mr-auto"><h1>Introduction</h1>
+<p>When working on projects, especially those that others or yourself may depend upon, it is important to test to make sure that everything is working as expected. Furthermore, being able to deploy your code/packages to a central repository with a package manager makes distribution easier. Although this can all be done manually, it can also be automated. Both testing and deployment can be automated using Travis CI which makes the entire process as easy as pushing your most recent changes to GitHub. In this writeup, I will go over how to create a Python project with unit tests and deploy to PyPI. A sample project can be found at this <a href="https://github.com/lqdev/TravisTest">link</a></p>
+<h2>Prerequisites</h2>
+<ul>
+<li><a href="https://github.com/">GitHub Login</a></li>
+<li><a href="https://pypi.python.org/pypi">PyPI Login</a></li>
+<li><a href="https://virtualenv.pypa.io/en/stable/">virtualenv</a></li>
+</ul>
+<h3>Install virtualenv</h3>
+<pre><code class="language-bash">sudo pip install virtualenv
+</code></pre>
+<h1>Create The Project</h1>
+<p>For the test project, I will create a module that performs adding, subtracting, increment and decrement operations.</p>
+<h2>Define Folder Structure</h2>
+<p>We start out by creating a directory for our project.</p>
+<pre><code class="language-bash">mkdir travistest
+</code></pre>
+<p>Inside that directory, we want to have have a directory for our module as well as for our tests. Therefore, we need to create a directory for both of them.</p>
+<pre><code class="language-bash">mkdir travistest
+mkdir test
+</code></pre>
+<p>Finally, we want to initialize the virtual environment for our project. To do so, we can use the <code>virtualenv</code> package. For the project <code>python 3.5</code> is the version that will be used.</p>
+<pre><code class="language-bash">virtualenv -p python3.5 ENV
+</code></pre>
+<p>After installation, a folder with the name <code>ENV</code> should appear in the root directory of the project. The final directory structure should look like so:</p>
+<pre><code class="language-text">travistest
+|_ENV
+|_travistest
+|_test
+</code></pre>
+<h2>Install Modules</h2>
+<p>For this project, I'll be using <code>pytest</code> for unit testing. Before installing anything however, I'll need to activate the virtual environment.</p>
+<pre><code class="language-bash">source ENV/bin/activate
+</code></pre>
+<p>Once our virtual environment is activated, we can install <code>pytest</code>.</p>
+<pre><code class="language-bash">pip install pytest
+</code></pre>
+<p>After installation, we can persist installed packages inside a <code>requirements.txt</code> file with the <code>freeze</code> command.</p>
+<pre><code class="language-bash">pip freeze &gt; requirements.txt
+</code></pre>
+<h2>Create The Module</h2>
+<p>Inside the <code>travistest</code> module directory, the easiest way to create a module is to include an <code>__init__.py</code> file inside the directory. It's okay if it's empty.</p>
+<p>Therefore, we can start by creating the <code>__init__</code> file in that directory.</p>
+<pre><code class="language-bash">touch __init__.py
+</code></pre>
+<p>Once that's created, we can begin writing the main functionality of our module. Inside a file called <code>Operations.py</code>, we can put the following code in.</p>
+<pre><code class="language-python">class Operations:
+    def __init__(self):
+        pass
+    
+    def add(self,x,y):
+        return x + y
+
+    def subtract(self,x,y):
+        return x - y
+
+    def increment(self,x):
+        return x + 1
+
+    def decrement(self,x):
+    	return x - 1
+</code></pre>
+<h2>Unit Test</h2>
+<p>Once we have our code, we need to write tests for it. Navigating to the <code>test</code> directory, we can add the following code to the <code>test_operations.py</code> file.</p>
+<pre><code class="language-python">from pytest import fixture
+
+@fixture
+def op():
+    from travistest.Operations import Operations
+    return Operations()
+
+def test_add(op):
+    assert op.add(1,2) == 3
+
+def test_subtract(op):
+    assert op.subtract(2,1) == 1
+
+def test_increment(op):
+    assert op.increment(1) == 2
+
+def test_decrement(op):
+assert op.decrement(2) == 1
+</code></pre>
+<p>To make sure everything is working correctly, from the project's root directory, we can run the <code>pytest</code> command. If all goes well, an output similar to the one below should appear.</p>
+<pre><code class="language-bash">============================= test session starts ==============================
+platform linux -- Python 3.5.2, pytest-3.4.0, py-1.5.2, pluggy-0.6.0
+
+collected 4 items                                                              
+
+test/test_operations.py ....                                             [100%]
+
+=========================== 4 passed in 0.04 seconds ===========================
+</code></pre>
+<h1>Prepare For Deployment</h1>
+<p>To prepare for deployment and uploading to PyPI, we need to add a <code>setup.py</code> file to the root directory of our project. The contents of this file for our purposes are mostly metadata that will populate information in PyPI.</p>
+<pre><code class="language-python">from distutils.core import setup
+
+setup(
+    name='travistest',
+    packages=['travistest'],
+    version='0.0.7',
+    description='Test project to get acquainted with TravisCI',
+    url='https://github.com/lqdev/TravisTest',    
+)
+</code></pre>
+<h2>Setup Travis</h2>
+<h3>Enable Repository</h3>
+<p>Assuming that you have a <code>GitHub</code> login and a repository has been created for your project:</p>
+<ol>
+<li>Log into <a href="https://travis-ci.org/">travis-ci.org</a> with your GitHub credentials.</li>
+<li>Once all of your repositores are synced, toggle the switch next to the repository containing your project.</li>
+</ol>
+<h3>Configure .travis.yml</h3>
+<p>Once the project has been enabled, we need fo configure Travis. This is all done using the <code>.travis.yml</code> file.</p>
+<p>In this file we'll tell Travis that the language of our project is Python version 3.5 and that we'll be using a virtual environment. Additionally we'll require sudo priviliges and target the Ubuntu Xenial 16.04 distribution. All of these configurations can be done as follows.</p>
+<pre><code class="language-yaml">sudo: required
+dist: xenial
+language: python
+virtualenv:
+  system_site_packages: true
+python:
+- '3.5'
+</code></pre>
+<p>Once that is set up, we can tell it to install all of the dependencies stored in our <code>requirements.txt</code> file.</p>
+<pre><code class="language-yaml">install:
+- pip install -r requirements.txt
+</code></pre>
+<p>After this, we need to tell Travis to run our tests just like we would on our local machine.</p>
+<pre><code class="language-yaml">script: pytest
+</code></pre>
+<p>Once our tests have run, we need to make sure we are back in the root directory of our project for deployment.</p>
+<pre><code class="language-yaml">after_script: cd ~
+</code></pre>
+<p>We're done with the automated testing script portion of our project. Now we need to setup deployment options. This section will mainly contain the credentials of your PyPI account.</p>
+<pre><code class="language-yaml">deploy:
+  provider: pypi
+  user: &quot;YOURUSERNAME&quot;
+</code></pre>
+<p>After setting the provider and user, we need to set the password. Because this will be a public repository DO NOT enter your password on this file. Instead, we can set an encrypted version that only Travis can decrypt. To do so, while in the root directory of our project, we can enter the following command into the terminal.</p>
+<pre><code class="language-bash">travis encrypt --add deployment.password
+</code></pre>
+<p>Type your password into the terminal and press <code>Ctrl + D</code>.</p>
+<p>If you take a look at your <code>.travis.yml</code> file you should see something like the following in your <code>deploy</code> options</p>
+<pre><code class="language-bash">deploy:
+  provider: pypi
+  user: &quot;YOURUSERNAME&quot;
+  password:
+    secure: &quot;YOURPASSWORD&quot;
+</code></pre>
+<p>The final <code>.travis.yml</code> file should like like so</p>
+<pre><code class="language-yaml">sudo: required
+dist: xenial
+language: python
+virtualenv:
+  system_site_packages: true
+python:
+- '3.5'
+install:
+- pip install -r requirements.txt
+script: pytest
+after_script: cd ~
+deploy:
+  provider: pypi
+  user: &quot;YOURUSERNAME&quot;
+  password:
+    secure: &quot;YOURPASSWORD&quot;
+</code></pre>
+<h1>Deploy</h1>
+<p>Now that we have everything set up, deployment should be relatively easy. A build is triggered when changes are pushed to the repository on GitHub. Therefore, pushing your local changes to the remote GitHub repository should initialize the build. To track progress, visit the project's page on Travis CI.</p>
+<p><strong>NOTE: WHEN PUSHING NEW CHANGES, INCREMENT VERSION NUMBER IN THE <code>SETUP.PY</code> FILE SO THAT EXISTING FILE ERRORS DO NOT CRASH BUILDS</strong></p>
+<h1>Conclusion</h1>
+<p>In this writeup, we created a Python package that performs basic operations and set up automated testing and deployment with Travis CI. Configurations can be further customized and refined to adapt more complex build processes.</p>
+</div></main><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/fsharp.min.js"></script><script type="application/javascript">hljs.initHighlightingOnLoad();</script></body></html>

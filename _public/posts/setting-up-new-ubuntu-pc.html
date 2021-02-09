@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/dark.min.css"><link rel="stylesheet" href="/main.css"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><title>Setting Up A New Ubuntu PC</title></head><body><nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"><a class="navbar-brand" href="#">Luis Quintanilla</a><button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav mr-auto"><li class="nav-item active"><a class="nav-link" href="/">Home</a></li><li class="nav-item"><a class="nav-link" href="/about.html">About</a></li><li class="nav-item"><a class="nav-link" href="/posts/1/1.html">Writing</a></li><li class="nav-item"><a class="nav-link" href="/events.html">Events</a></li></ul></div></nav><main role="main" class="container"><div class="mr-auto"><h1>Users</h1>
+<p>This assumes that you are currently the root user.</p>
+<p>Enter the adduser to command to create a new user.</p>
+<pre><code class="language-bash">adduser &lt;username&gt;
+</code></pre>
+<p>Immediately, you will be prompted for a password. Enter the password and continue the process.</p>
+<h2>Adding Root Privileges</h2>
+<p>This is only applicable when granting root priviliges to the newly created user.</p>
+<p>Enter the usermod command to add the new user to the sudo (root) group</p>
+<pre><code class="language-bash">usermod -aG sudo &lt;username&gt;
+</code></pre>
+<p>The user should now have root priviliges.</p>
+<p>To test that it worked log in as that user and try to run a command with sudo</p>
+<pre><code class="language-bash">su - &lt;username&gt;
+sudo ls -la /root
+</code></pre>
+<h1>Emacs</h1>
+<p>By default, Ubuntu usually comes preloaded or has the default 24.x version of Emacs. I often like to use Emacs along with org-mode and to take full advantage, especially as it pertains to working with source code I have found version 25.x is much better suited for the task. While there are many ways to go about it, installing it via package manager appears to be the easiest.</p>
+<h2>Add repository to PPA</h2>
+<pre><code class="language-bash">sudo add-apt-repository ppa:kelleyk/emacs
+</code></pre>
+<h2>Update the packages</h2>
+<pre><code class="language-bash">sudo apt update
+</code></pre>
+<h2>Install Emacs.</h2>
+<h3>Text-Only Interface</h3>
+<pre><code class="language-bash">sudo apt-get install emacs25-nox
+</code></pre>
+<h3>GUI Interface</h3>
+<pre><code class="language-bash">sudo apt-get install emacs25
+</code></pre>
+<h2>Backup files</h2>
+<p>Sometimes Emacs keeps a backup file by default. This can cause a lot of clutter in the current directory where work is being performed. There is a way to disable this.</p>
+<p>Navigate to <code>~/.emacs.d/</code> and edit the <code>init.el</code> file and add the following line.</p>
+<pre><code class="language-lisp">(setq make-backup-files nil)
+</code></pre>
+<h1>Java</h1>
+<p>Make sure that your packages and repositories are up to date</p>
+<pre><code class="language-bash">sudo apt-get update
+</code></pre>
+<h2>OpenJDK</h2>
+<pre><code class="language-bash">sudo apt-get install default-jdk
+</code></pre>
+<h2>Oracle JDK</h2>
+<h3>Add PPA Repository</h3>
+<pre><code class="language-bash">sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+</code></pre>
+<h3>Install the installer</h3>
+<pre><code class="language-bash">sudo apt-get install oracle-java8-installer
+</code></pre>
+<h4>Sources</h4>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-ubuntu-quickstart">Users</a><br />
+<a href="http://ubuntuhandbook.org/index.php/2017/04/install-emacs-25-ppa-ubuntu-16-04-14-04/">Emacs</a><br />
+<a href="https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04">Java</a></p>
+</div></main><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/fsharp.min.js"></script><script type="application/javascript">hljs.initHighlightingOnLoad();</script></body></html>
