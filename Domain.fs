@@ -14,3 +14,10 @@ module Domain
         Metadata: PostDetails
         Content: string
     }
+
+    type Event = {
+        Name: string
+        Date: string
+        Url: string
+    }
+    

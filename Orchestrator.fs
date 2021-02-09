@@ -2,6 +2,7 @@ module Orchestrator
 
     open System
     open System.IO
+    open System.Text.Json
     open Domain
     open MarkdownService
     open RssService
@@ -29,8 +30,14 @@ module Orchestrator
 
         files |> Array.iter(fun x -> File.Copy(Path.GetFullPath(x),Path.Join(dest,Path.GetFileName(x)),true))
 
-    let buildHomePage () = 
-        let homePage = generate homeView "default" "Luis Quintanilla"
+    let buildHomePage (posts:Post array) = 
+        let recentPosts = 
+            posts 
+            |> Array.sortByDescending(fun x-> DateTime.Parse(x.Metadata.Date))
+            |> Array.take 5 
+
+        let recentPostsContent = generatePartial (recentPostsView recentPosts)
+        let homePage = generate (homeView recentPostsContent) "default" "Luis Quintanilla - Home"
         File.WriteAllText(Path.Join(outputDir,"index.html"),homePage)
 
     let buildAboutPage () = 
@@ -84,3 +91,14 @@ module Orchestrator
             let dir = Directory.CreateDirectory(Path.Join(outputDir,"posts", idx))
             let fileName = sprintf "%s.html" idx
             File.WriteAllText(Path.Join(dir.FullName,fileName), page))
+    
+    let buildEventPage () = 
+        let events =  
+            File.ReadAllText(Path.Join("Data","events.json"))
+            |> JsonSerializer.Deserialize<Event array>
+            |> Array.sortByDescending(fun x -> DateTime.Parse(x.Date))
+
+        let eventPage = generate (eventView events) "default" "Luis Quintanilla - Events"
+        File.WriteAllText(Path.Join(outputDir,"events.html"),eventPage)
+        
+        

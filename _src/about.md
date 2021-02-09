@@ -1,6 +1,6 @@
 # About Luis Quintanilla
 
-Luis Quintanilla is a Content Developer at Microsoft working with technologies like Azure Machine Learning, ML.NET and .NET for Apache Spark.
+Luis Quintanilla is a developer and content creator based out of the NYC area. Currently at Microsoft working on Azure Machine Learning, ML .NET and .NET for Apache Spark.
 
 I'm passionate about:
 
@@ -17,6 +17,7 @@ I'm passionate about:
 - GitHub - [lqdev](https://github.com/lqdev)
 - Twitter - [ljquintanilla](https://twitter.com/ljquintanilla)
 - LinkedIn - [lquintanilla01](https://www.linkedin.com/in/lquintanilla01/)
+- Twitch - [lqdev1](https://www.twitch.tv/lqdev1)
 
 ## Technologies
 

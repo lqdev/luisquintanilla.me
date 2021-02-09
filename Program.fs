@@ -22,12 +22,14 @@ let main argv =
     let posts = loadPosts() 
 
     // Write Home / About / RSS Pages    
-    buildHomePage()
+    buildHomePage posts
     buildAboutPage()
     buildRssFeed posts
     
     // Write Post / Archive Pages
     buildPostPages posts
     buildPostArchive posts
+
+    buildEventPage ()
 
     0

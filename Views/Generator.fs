@@ -14,3 +14,10 @@ module ViewGenerator
         |> RenderView.AsString.xmlNode 
         |> viewLayout title 
         |> RenderView.AsString.htmlDocument 
+    
+    
+    let generatePartial (partialView:XmlNode) =
+        partialView
+        |> RenderView.AsString.xmlNode
+            
+            
