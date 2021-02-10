@@ -23,12 +23,35 @@ module Orchestrator
             cleanOutputDirectory x.FullName
             x.Delete())
 
-    let copyStaticFiles (src:string) (dest:string) = 
-        let files = 
-            Directory.GetFiles(src)
-            |> Array.filter(fun x-> Path.GetExtension(x) = ".css")
+    // let copyStaticFiles (src:string) (dest:string) = 
+    let copyStaticFiles () =
+        let directories = [   
+            "css"
+            "js"
+            "images" 
+        ]
 
-        files |> Array.iter(fun x -> File.Copy(Path.GetFullPath(x),Path.Join(dest,Path.GetFileName(x)),true))
+        directories
+        |> List.map(fun dir -> Path.Join(srcDir,dir),Path.Join(outputDir,dir))
+        |> List.iter(fun (s,d) -> 
+            let saveDir = Directory.CreateDirectory(d)
+            
+            Directory.GetFiles(s)
+            |> Array.iter(fun file -> File.Copy(Path.GetFullPath(file),Path.Join(saveDir.FullName,Path.GetFileName(file)),true)))
+        
+        // let files = 
+        //     Directory.GetFiles(src)
+        //     |> Array.filter(fun x-> Path.GetExtension(x) = ".css")
+
+        // files |> Array.iter(fun x -> File.Copy(Path.GetFullPath(x),Path.Join(dest,Path.GetFileName(x)),true))
+
+    // let copyImages (src:string) (dest:string) = 
+    //     let sourcePath = Path.Join(srcDir,src)
+    //     let savePath = Directory.CreateDirectory(Path.Join(outputDir,dest))
+        
+    //     Directory.GetFiles(sourcePath)
+    //     |> Array.iter(fun file -> 
+    //         File.Copy(Path.GetFullPath(file),Path.Join(savePath.FullName,Path.GetFileName(file)),true))
 
     let buildHomePage (posts:Post array) = 
         let recentPosts = 
@@ -57,6 +80,7 @@ module Orchestrator
     let buildRssFeed (posts: Post array) = 
         let rssPage = 
             posts
+            |> Array.sortByDescending(fun x -> x.Metadata.Date)
             |> generateRss
             |> string
 
@@ -89,7 +113,7 @@ module Orchestrator
             let idx = string currentPage
             let page = generate (postPaginationView currentPage len x) "default" (sprintf "Luis Quintanilla - Posts %s" idx)
             let dir = Directory.CreateDirectory(Path.Join(outputDir,"posts", idx))
-            let fileName = sprintf "%s.html" idx
+            let fileName = "index.html"
             File.WriteAllText(Path.Join(dir.FullName,fileName), page))
     
     let buildEventPage () = 
@@ -98,7 +122,8 @@ module Orchestrator
             |> JsonSerializer.Deserialize<Event array>
             |> Array.sortByDescending(fun x -> DateTime.Parse(x.Date))
 
-        let eventPage = generate (eventView events) "default" "Luis Quintanilla - Events"
+        // let eventPage = generate (eventView events) "default" "Luis Quintanilla - Events"
+        let eventPage = generate (underConstructionView ()) "default" "Luis Quintanilla - Events"
         File.WriteAllText(Path.Join(outputDir,"events.html"),eventPage)
         
         

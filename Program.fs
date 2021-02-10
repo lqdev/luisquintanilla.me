@@ -1,11 +1,5 @@
 // Learn more about F# at http://docs.microsoft.com/dotnet/fsharp
 
-open System
-open System.IO
-open MarkdownService
-open PartialViews
-open ViewGenerator
-open RssService
 open Orchestrator
 
 [<EntryPoint>]
@@ -16,7 +10,9 @@ let main argv =
 
     // Prep work
     cleanOutputDirectory outputDir
-    copyStaticFiles srcDir outputDir
+    copyStaticFiles ()
+    // copyStaticFiles srcDir outputDir
+    // copyImages "images" "images"
 
     // Data
     let posts = loadPosts() 

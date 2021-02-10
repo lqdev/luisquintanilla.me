@@ -4,8 +4,13 @@ module PartialViews
     open Domain
     open MarkdownService
 
+    let underConstructionView () = 
+        div [] [
+            img [_src "images/under-construction.png"]
+        ]
+
     let recentPostsView (posts:Post array) = 
-        div [_class "mr-auto"] [
+        div [] [
             h2 [] [Text "Recent Posts"]
             ul [_class "list-group"] [
                 for post in posts do
@@ -13,7 +18,6 @@ module PartialViews
                         a [_href (sprintf "/posts/%s.html" post.FileName)] [
                             h3 [] [Text post.Metadata.Title]
                         ]
-                        rawText (post.Content |> summarizePost  |> ConvertMdToHtml)
                     ]                    
             ]
         ]
@@ -44,7 +48,6 @@ module PartialViews
                             a [_href (sprintf "/posts/%s.html" post.FileName)] [
                                 h3 [] [Text post.Metadata.Title]
                             ]
-                            rawText (post.Content |> summarizePost  |> ConvertMdToHtml)
                         ]
                 ]
             ]
@@ -52,22 +55,22 @@ module PartialViews
             if(lastPage > 1) then
                 if(currentPage = 1) then
                     div [_class "btn-group justify-content-end mr-auto"] [
-                        a [_href "/posts/1/1.html"; _class "btn btn-secondary"] [Text "First"]
-                        a [_href (sprintf "/posts/%i/%i.html" nextPage nextPage); _class "btn btn-secondary"] [Text "Next"]
-                        a [_href (sprintf "/posts/%i/%i.html" lastPage lastPage); _class "btn btn-secondary"] [Text "Last"]
+                        a [_href "/posts/1"; _class "btn btn-secondary"] [Text "First"]
+                        a [_href (sprintf "/posts/%i" nextPage); _class "btn btn-secondary"] [Text "Next"]
+                        a [_href (sprintf "/posts/%i" lastPage); _class "btn btn-secondary"] [Text "Last"]
                     ]
                 else if(currentPage = lastPage) then
                     div [_class "btn-group justify-content-end mr-auto"] [
-                        a [_href "/posts/1/1.html"; _class "btn btn-secondary"] [Text "First"]
-                        a [_href (sprintf "/posts/%i/%i.html" previousPage previousPage); _class "btn btn-secondary"] [Text "Back"]
-                        a [_href (sprintf "/posts/%i/%i.html" lastPage lastPage); _class "btn btn-secondary"] [Text "Last"]
+                        a [_href "/posts/1"; _class "btn btn-secondary"] [Text "First"]
+                        a [_href (sprintf "/posts/%i" previousPage ); _class "btn btn-secondary"] [Text "Back"]
+                        a [_href (sprintf "/posts/%i" lastPage); _class "btn btn-secondary"] [Text "Last"]
                     ]
                 else if(currentPage > 1) then
                     div [_class "btn-group justify-content-end mr-auto"] [
-                        a [_href "/posts/1/1.html"; _class "btn btn-secondary"] [Text "First"]
-                        a [_href (sprintf "/posts/%i/%i.html" previousPage previousPage); _class "btn btn-secondary"] [Text "Back"]
-                        a [_href (sprintf "/posts/%i/%i.html" nextPage nextPage); _class "btn btn-secondary"] [Text "Next"]
-                        a [_href (sprintf "/posts/%i/%i.html" lastPage lastPage); _class "btn btn-secondary"] [Text "Last"] 
+                        a [_href "/posts/1"; _class "btn btn-secondary"] [Text "First"]
+                        a [_href (sprintf "/posts/%i" previousPage); _class "btn btn-secondary"] [Text "Back"]
+                        a [_href (sprintf "/posts/%i" nextPage); _class "btn btn-secondary"] [Text "Next"]
+                        a [_href (sprintf "/posts/%i" lastPage); _class "btn btn-secondary"] [Text "Last"] 
                     ]
         ]
 

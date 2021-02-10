@@ -1,0 +1,13 @@
+body {
+  min-height: 75rem;
+  padding-top: 4.5rem;
+}
+
+img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  height: auto;
+  border-width: medium;
+  border-color: gray;
+}
