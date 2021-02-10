@@ -1,242 +1,242 @@
 <rss version="2.0">
   <channel>
     <title>Luis Quintanilla</title>
-    <link>https://luisquintanilla.me</link>
+    <link>https://www.luisquintanilla.me</link>
     <description>Luis Quintanilla's personal website</description>
-    <lastPubDate>02/05/2021</lastPubDate>
+    <lastPubDate>02/09/2021</lastPubDate>
     <language>en</language>
     <item>
       <title>Alternatives to WhatsApp</title>
-      <link>https://luisquintanilla/posts/alternatives-to-whatsapp.html</link>
-      <guid>https://luisquintanilla/posts/alternatives-to-whatsapp.html</guid>
+      <link>https://www.luisquintanilla.me/posts/alternatives-to-whatsapp.html</link>
+      <guid>https://www.luisquintanilla.me/posts/alternatives-to-whatsapp.html</guid>
       <pubDate>2021-01-09 13:44:27</pubDate>
     </item>
     <item>
       <title>How to watch Twitch streams using VLC</title>
-      <link>https://luisquintanilla/posts/how-to-watch-twitch-using-vlc.html</link>
-      <guid>https://luisquintanilla/posts/how-to-watch-twitch-using-vlc.html</guid>
+      <link>https://www.luisquintanilla.me/posts/how-to-watch-twitch-using-vlc.html</link>
+      <guid>https://www.luisquintanilla.me/posts/how-to-watch-twitch-using-vlc.html</guid>
       <pubDate>2021-01-05 21:14:39</pubDate>
     </item>
     <item>
       <title>Train an image classifier using F# and ML .NET</title>
-      <link>https://luisquintanilla/posts/image-classification-mlnet-fsadvent2020.html</link>
-      <guid>https://luisquintanilla/posts/image-classification-mlnet-fsadvent2020.html</guid>
+      <link>https://www.luisquintanilla.me/posts/image-classification-mlnet-fsadvent2020.html</link>
+      <guid>https://www.luisquintanilla.me/posts/image-classification-mlnet-fsadvent2020.html</guid>
       <pubDate>2020-12-14 20:03:18</pubDate>
     </item>
     <item>
       <title>Use .NET Interactive to run .NET code in Jupyter Notebooks on an Azure Machine Learning compute instance</title>
-      <link>https://luisquintanilla/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance.html</link>
-      <guid>https://luisquintanilla/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance.html</guid>
+      <link>https://www.luisquintanilla.me/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance.html</link>
+      <guid>https://www.luisquintanilla.me/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance.html</guid>
       <pubDate>2020-08-29 20:23:09</pubDate>
     </item>
     <item>
       <title>Serverless Racket Applications Using Azure Functions Custom Handlers</title>
-      <link>https://luisquintanilla/posts/serverless-racket-azure-functions-custom-handlers.html</link>
-      <guid>https://luisquintanilla/posts/serverless-racket-azure-functions-custom-handlers.html</guid>
+      <link>https://www.luisquintanilla.me/posts/serverless-racket-azure-functions-custom-handlers.html</link>
+      <guid>https://www.luisquintanilla.me/posts/serverless-racket-azure-functions-custom-handlers.html</guid>
       <pubDate>2020-03-21 13:45:43</pubDate>
     </item>
     <item>
       <title>Deploy ML.NET Machine Learning Model in Blazor WebAssembly Static Website</title>
-      <link>https://luisquintanilla/posts/deploy-machine-learning-mlnet-models-blazor-webassembly.html</link>
-      <guid>https://luisquintanilla/posts/deploy-machine-learning-mlnet-models-blazor-webassembly.html</guid>
+      <link>https://www.luisquintanilla.me/posts/deploy-machine-learning-mlnet-models-blazor-webassembly.html</link>
+      <guid>https://www.luisquintanilla.me/posts/deploy-machine-learning-mlnet-models-blazor-webassembly.html</guid>
       <pubDate>2020-03-01 19:21:04</pubDate>
     </item>
     <item>
       <title>Use machine learning to categorize web links with F# and ML.NET</title>
-      <link>https://luisquintanilla/posts/categorize-web-links-ml-net-fsharp-fsadvent2019.html</link>
-      <guid>https://luisquintanilla/posts/categorize-web-links-ml-net-fsharp-fsadvent2019.html</guid>
+      <link>https://www.luisquintanilla.me/posts/categorize-web-links-ml-net-fsharp-fsadvent2019.html</link>
+      <guid>https://www.luisquintanilla.me/posts/categorize-web-links-ml-net-fsharp-fsadvent2019.html</guid>
       <pubDate>2019-12-17 19:59:06</pubDate>
     </item>
     <item>
       <title>Create an HTTP Trigger Azure Function using FSharp</title>
-      <link>https://luisquintanilla/posts/http-trigger-azure-functions-fsharp.html</link>
-      <guid>https://luisquintanilla/posts/http-trigger-azure-functions-fsharp.html</guid>
+      <link>https://www.luisquintanilla.me/posts/http-trigger-azure-functions-fsharp.html</link>
+      <guid>https://www.luisquintanilla.me/posts/http-trigger-azure-functions-fsharp.html</guid>
       <pubDate>2019-11-16 17:33:59</pubDate>
     </item>
     <item>
       <title>Restaurant Inspections ETL &amp; Data Enrichment with Spark.NET and ML.NET Automated (Auto) ML</title>
-      <link>https://luisquintanilla/posts/restaurant-inspections-etl-data-enrichment-spark-auto-ml-net.html</link>
-      <guid>https://luisquintanilla/posts/restaurant-inspections-etl-data-enrichment-spark-auto-ml-net.html</guid>
+      <link>https://www.luisquintanilla.me/posts/restaurant-inspections-etl-data-enrichment-spark-auto-ml-net.html</link>
+      <guid>https://www.luisquintanilla.me/posts/restaurant-inspections-etl-data-enrichment-spark-auto-ml-net.html</guid>
       <pubDate>2019-09-15 15:12:01</pubDate>
     </item>
     <item>
       <title>Machine Learning Lifecycle Management with ML.NET, Automated ML and MLFlow</title>
-      <link>https://luisquintanilla/posts/ml-lifecycle-management-mlflow-automated-ml-net.html</link>
-      <guid>https://luisquintanilla/posts/ml-lifecycle-management-mlflow-automated-ml-net.html</guid>
+      <link>https://www.luisquintanilla.me/posts/ml-lifecycle-management-mlflow-automated-ml-net.html</link>
+      <guid>https://www.luisquintanilla.me/posts/ml-lifecycle-management-mlflow-automated-ml-net.html</guid>
       <pubDate>2019-05-09 19:19:20</pubDate>
     </item>
     <item>
       <title>Automating Resource Provisioning for Machine Learning in Azure with Cognitive Services and Terraform</title>
-      <link>https://luisquintanilla/posts/automate-machine-learning-service-provisioning-azure-terraform.html</link>
-      <guid>https://luisquintanilla/posts/automate-machine-learning-service-provisioning-azure-terraform.html</guid>
+      <link>https://www.luisquintanilla.me/posts/automate-machine-learning-service-provisioning-azure-terraform.html</link>
+      <guid>https://www.luisquintanilla.me/posts/automate-machine-learning-service-provisioning-azure-terraform.html</guid>
       <pubDate>2019-01-05 22:58:39</pubDate>
     </item>
     <item>
       <title>The Case for Doing Machine Learning with F#</title>
-      <link>https://luisquintanilla/posts/case-fsharp-machine-learning.html</link>
-      <guid>https://luisquintanilla/posts/case-fsharp-machine-learning.html</guid>
+      <link>https://www.luisquintanilla.me/posts/case-fsharp-machine-learning.html</link>
+      <guid>https://www.luisquintanilla.me/posts/case-fsharp-machine-learning.html</guid>
       <pubDate>2018-12-14 23:34:50</pubDate>
     </item>
     <item>
       <title>Operationalizing Machine Learning with ML.NET, Azure DevOps and Azure Container Instances</title>
-      <link>https://luisquintanilla/posts/azdevops-mlnet-aci.html</link>
-      <guid>https://luisquintanilla/posts/azdevops-mlnet-aci.html</guid>
+      <link>https://www.luisquintanilla.me/posts/azdevops-mlnet-aci.html</link>
+      <guid>https://www.luisquintanilla.me/posts/azdevops-mlnet-aci.html</guid>
       <pubDate>2018-11-26 23:50:23</pubDate>
     </item>
     <item>
       <title>Blogging Tools</title>
-      <link>https://luisquintanilla/posts/blog-tools.html</link>
-      <guid>https://luisquintanilla/posts/blog-tools.html</guid>
+      <link>https://www.luisquintanilla.me/posts/blog-tools.html</link>
+      <guid>https://www.luisquintanilla.me/posts/blog-tools.html</guid>
       <pubDate>2018-11-18 00:07:36</pubDate>
     </item>
     <item>
       <title>Serverless Machine Learning with ML.NET and Azure Functions</title>
-      <link>https://luisquintanilla/posts/serverless-machine-learning-mlnet-azure-functions.html</link>
-      <guid>https://luisquintanilla/posts/serverless-machine-learning-mlnet-azure-functions.html</guid>
+      <link>https://www.luisquintanilla.me/posts/serverless-machine-learning-mlnet-azure-functions.html</link>
+      <guid>https://www.luisquintanilla.me/posts/serverless-machine-learning-mlnet-azure-functions.html</guid>
       <pubDate>2018-08-21 19:13:47</pubDate>
     </item>
     <item>
       <title>Hacker News Vue Top Stories Client</title>
-      <link>https://luisquintanilla/posts/hn-vue-topstories-client.html</link>
-      <guid>https://luisquintanilla/posts/hn-vue-topstories-client.html</guid>
+      <link>https://www.luisquintanilla.me/posts/hn-vue-topstories-client.html</link>
+      <guid>https://www.luisquintanilla.me/posts/hn-vue-topstories-client.html</guid>
       <pubDate>2018-06-21 18:30:38</pubDate>
     </item>
     <item>
       <title>Classification with F# ML.NET Models</title>
-      <link>https://luisquintanilla/posts/mlnet-classification-fsharp.html</link>
-      <guid>https://luisquintanilla/posts/mlnet-classification-fsharp.html</guid>
+      <link>https://www.luisquintanilla.me/posts/mlnet-classification-fsharp.html</link>
+      <guid>https://www.luisquintanilla.me/posts/mlnet-classification-fsharp.html</guid>
       <pubDate>2018-06-13 18:19:05</pubDate>
     </item>
     <item>
       <title>Organizing F# Modules Into Separate Files</title>
-      <link>https://luisquintanilla/posts/fsharpmodulesample.html</link>
-      <guid>https://luisquintanilla/posts/fsharpmodulesample.html</guid>
+      <link>https://www.luisquintanilla.me/posts/fsharpmodulesample.html</link>
+      <guid>https://www.luisquintanilla.me/posts/fsharpmodulesample.html</guid>
       <pubDate>2018-06-05 20:56:52</pubDate>
     </item>
     <item>
       <title>Deploy .NET Machine Learning Models with ML.NET, ASP.NET Core, Docker and Azure Container Instances</title>
-      <link>https://luisquintanilla/posts/deploy-netml-docker-aci.html</link>
-      <guid>https://luisquintanilla/posts/deploy-netml-docker-aci.html</guid>
+      <link>https://www.luisquintanilla.me/posts/deploy-netml-docker-aci.html</link>
+      <guid>https://www.luisquintanilla.me/posts/deploy-netml-docker-aci.html</guid>
       <pubDate>2018-05-11 21:17:00</pubDate>
     </item>
     <item>
       <title>E2E Dockerizing a MEAN Stack Application</title>
-      <link>https://luisquintanilla/posts/e2e-mean-docker-build.html</link>
-      <guid>https://luisquintanilla/posts/e2e-mean-docker-build.html</guid>
+      <link>https://www.luisquintanilla.me/posts/e2e-mean-docker-build.html</link>
+      <guid>https://www.luisquintanilla.me/posts/e2e-mean-docker-build.html</guid>
       <pubDate>2018-04-29 20:10:09</pubDate>
     </item>
     <item>
       <title>Type Driven Development - Scaling Safely with Python</title>
-      <link>https://luisquintanilla/posts/type-driven-development-scaling-safely-with-python.html</link>
-      <guid>https://luisquintanilla/posts/type-driven-development-scaling-safely-with-python.html</guid>
+      <link>https://www.luisquintanilla.me/posts/type-driven-development-scaling-safely-with-python.html</link>
+      <guid>https://www.luisquintanilla.me/posts/type-driven-development-scaling-safely-with-python.html</guid>
       <pubDate>2018-03-24 18:16:31</pubDate>
     </item>
     <item>
       <title>Scaffolding A Web Page In One Line</title>
-      <link>https://luisquintanilla/posts/scaffold-a-webpage-in-one-line.html</link>
-      <guid>https://luisquintanilla/posts/scaffold-a-webpage-in-one-line.html</guid>
+      <link>https://www.luisquintanilla.me/posts/scaffold-a-webpage-in-one-line.html</link>
+      <guid>https://www.luisquintanilla.me/posts/scaffold-a-webpage-in-one-line.html</guid>
       <pubDate>2018-03-10 16:07:00</pubDate>
     </item>
     <item>
       <title>Testing and Deploying Python Projects with Travis CI</title>
-      <link>https://luisquintanilla/posts/testing-deploying-python-projects-travisci.html</link>
-      <guid>https://luisquintanilla/posts/testing-deploying-python-projects-travisci.html</guid>
+      <link>https://www.luisquintanilla.me/posts/testing-deploying-python-projects-travisci.html</link>
+      <guid>https://www.luisquintanilla.me/posts/testing-deploying-python-projects-travisci.html</guid>
       <pubDate>2018-02-18 20:51:32</pubDate>
     </item>
     <item>
       <title>Transcribing Podcasts with Microsoft Speech API</title>
-      <link>https://luisquintanilla/posts/transcribing-podcasts-microsoft-speech-api.html</link>
-      <guid>https://luisquintanilla/posts/transcribing-podcasts-microsoft-speech-api.html</guid>
+      <link>https://www.luisquintanilla.me/posts/transcribing-podcasts-microsoft-speech-api.html</link>
+      <guid>https://www.luisquintanilla.me/posts/transcribing-podcasts-microsoft-speech-api.html</guid>
       <pubDate>2018-02-11 20:34:37</pubDate>
     </item>
     <item>
       <title>Real-Time Sentiment Analysis with C#</title>
-      <link>https://luisquintanilla/posts/real-time-sentiment-analysis-csharp.html</link>
-      <guid>https://luisquintanilla/posts/real-time-sentiment-analysis-csharp.html</guid>
+      <link>https://www.luisquintanilla.me/posts/real-time-sentiment-analysis-csharp.html</link>
+      <guid>https://www.luisquintanilla.me/posts/real-time-sentiment-analysis-csharp.html</guid>
       <pubDate>2018-01-18 03:41:47</pubDate>
     </item>
     <item>
       <title>Authorization Code Authentication Flow in Python</title>
-      <link>https://luisquintanilla/posts/authorization-code-flow-python.html</link>
-      <guid>https://luisquintanilla/posts/authorization-code-flow-python.html</guid>
+      <link>https://www.luisquintanilla.me/posts/authorization-code-flow-python.html</link>
+      <guid>https://www.luisquintanilla.me/posts/authorization-code-flow-python.html</guid>
       <pubDate>2017-12-29 18:45:19</pubDate>
     </item>
     <item>
       <title>Client Credentials Authorization in C#</title>
-      <link>https://luisquintanilla/posts/client-credentials-authentication-csharp.html</link>
-      <guid>https://luisquintanilla/posts/client-credentials-authentication-csharp.html</guid>
+      <link>https://www.luisquintanilla.me/posts/client-credentials-authentication-csharp.html</link>
+      <guid>https://www.luisquintanilla.me/posts/client-credentials-authentication-csharp.html</guid>
       <pubDate>2017-12-25 19:28:48</pubDate>
     </item>
     <item>
       <title>Read A Text File From a URL in .NET Core</title>
-      <link>https://luisquintanilla/posts/read-file-from-url-dotnet-core.html</link>
-      <guid>https://luisquintanilla/posts/read-file-from-url-dotnet-core.html</guid>
+      <link>https://www.luisquintanilla.me/posts/read-file-from-url-dotnet-core.html</link>
+      <guid>https://www.luisquintanilla.me/posts/read-file-from-url-dotnet-core.html</guid>
       <pubDate>2017-12-18 21:09:15</pubDate>
     </item>
     <item>
       <title>Design and Build Your Next Home in Minecraft</title>
-      <link>https://luisquintanilla/posts/build-your-house-minecraft.html</link>
-      <guid>https://luisquintanilla/posts/build-your-house-minecraft.html</guid>
+      <link>https://www.luisquintanilla.me/posts/build-your-house-minecraft.html</link>
+      <guid>https://www.luisquintanilla.me/posts/build-your-house-minecraft.html</guid>
       <pubDate>2017-12-15 22:34:12</pubDate>
     </item>
     <item>
       <title>The Case for .NET in the Classroom</title>
-      <link>https://luisquintanilla/posts/dotnet-in-the-classroom.html</link>
-      <guid>https://luisquintanilla/posts/dotnet-in-the-classroom.html</guid>
+      <link>https://www.luisquintanilla.me/posts/dotnet-in-the-classroom.html</link>
+      <guid>https://www.luisquintanilla.me/posts/dotnet-in-the-classroom.html</guid>
       <pubDate>2017-12-14 16:57:39</pubDate>
     </item>
     <item>
       <title>Working with URLs in Racket</title>
-      <link>https://luisquintanilla/posts/working-with-urls-racket.html</link>
-      <guid>https://luisquintanilla/posts/working-with-urls-racket.html</guid>
+      <link>https://www.luisquintanilla.me/posts/working-with-urls-racket.html</link>
+      <guid>https://www.luisquintanilla.me/posts/working-with-urls-racket.html</guid>
       <pubDate>2017-12-13 16:01:57</pubDate>
     </item>
     <item>
       <title>Reading Local JSON Files in R</title>
-      <link>https://luisquintanilla/posts/reading-json-in-r.html</link>
-      <guid>https://luisquintanilla/posts/reading-json-in-r.html</guid>
+      <link>https://www.luisquintanilla.me/posts/reading-json-in-r.html</link>
+      <guid>https://www.luisquintanilla.me/posts/reading-json-in-r.html</guid>
       <pubDate>2017-12-11 14:21:21</pubDate>
     </item>
     <item>
       <title>Windows 10 Intel Display Driver Blank Screen Fix</title>
-      <link>https://luisquintanilla/posts/windows-10-intel-display-driver-blank-screen.html</link>
-      <guid>https://luisquintanilla/posts/windows-10-intel-display-driver-blank-screen.html</guid>
+      <link>https://www.luisquintanilla.me/posts/windows-10-intel-display-driver-blank-screen.html</link>
+      <guid>https://www.luisquintanilla.me/posts/windows-10-intel-display-driver-blank-screen.html</guid>
       <pubDate>2017-12-09 14:27:31</pubDate>
     </item>
     <item>
       <title>Creating A Login Screen With React Native</title>
-      <link>https://luisquintanilla/posts/create-login-screen-react-native.html</link>
-      <guid>https://luisquintanilla/posts/create-login-screen-react-native.html</guid>
+      <link>https://www.luisquintanilla.me/posts/create-login-screen-react-native.html</link>
+      <guid>https://www.luisquintanilla.me/posts/create-login-screen-react-native.html</guid>
       <pubDate>2017-12-09 13:15:57</pubDate>
     </item>
     <item>
       <title>Back To School: Emacs Edition</title>
-      <link>https://luisquintanilla/posts/back-to-school-emacs-edition.html</link>
-      <guid>https://luisquintanilla/posts/back-to-school-emacs-edition.html</guid>
+      <link>https://www.luisquintanilla.me/posts/back-to-school-emacs-edition.html</link>
+      <guid>https://www.luisquintanilla.me/posts/back-to-school-emacs-edition.html</guid>
       <pubDate>2017-12-09 13:01:19</pubDate>
     </item>
     <item>
       <title>HP ProBook 430 G1 Ubuntu BIOS Upgrade</title>
-      <link>https://luisquintanilla/posts/hp-probook-430g1-ubuntu-bios-upgrade.html</link>
-      <guid>https://luisquintanilla/posts/hp-probook-430g1-ubuntu-bios-upgrade.html</guid>
+      <link>https://www.luisquintanilla.me/posts/hp-probook-430g1-ubuntu-bios-upgrade.html</link>
+      <guid>https://www.luisquintanilla.me/posts/hp-probook-430g1-ubuntu-bios-upgrade.html</guid>
       <pubDate>2017-12-09 12:57:12</pubDate>
     </item>
     <item>
       <title>Setting Up A New Ubuntu PC</title>
-      <link>https://luisquintanilla/posts/setting-up-new-ubuntu-pc.html</link>
-      <guid>https://luisquintanilla/posts/setting-up-new-ubuntu-pc.html</guid>
+      <link>https://www.luisquintanilla.me/posts/setting-up-new-ubuntu-pc.html</link>
+      <guid>https://www.luisquintanilla.me/posts/setting-up-new-ubuntu-pc.html</guid>
       <pubDate>2017-12-09 12:49:19</pubDate>
     </item>
     <item>
       <title>Octave Development in the Terminal</title>
-      <link>https://luisquintanilla/posts/octave-development-in-the-terminal.html</link>
-      <guid>https://luisquintanilla/posts/octave-development-in-the-terminal.html</guid>
+      <link>https://www.luisquintanilla.me/posts/octave-development-in-the-terminal.html</link>
+      <guid>https://www.luisquintanilla.me/posts/octave-development-in-the-terminal.html</guid>
       <pubDate>2017-12-09 12:46:54</pubDate>
     </item>
     <item>
       <title>Hello World</title>
-      <link>https://luisquintanilla/posts/hello-world.html</link>
-      <guid>https://luisquintanilla/posts/hello-world.html</guid>
+      <link>https://www.luisquintanilla.me/posts/hello-world.html</link>
+      <guid>https://www.luisquintanilla.me/posts/hello-world.html</guid>
       <pubDate>2017-12-09 12:00:00</pubDate>
     </item>
   </channel>

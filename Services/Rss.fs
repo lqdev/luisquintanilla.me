@@ -7,15 +7,15 @@ module RssService
     open Domain
 
     let title = "Luis Quintanilla"
-    let link = "https://luisquintanilla.me"
+    let link = "https://www.luisquintanilla.me"
     let description = "Luis Quintanilla's personal website"
-    let lastPubDate = "02/05/2021"
+    let lastPubDate = "02/09/2021"
     let language = "en"
 
     let entryXml (entry:Post) =
         
         let filePath = sprintf "%s.html" entry.FileName
-        let url = sprintf "https://luisquintanilla/posts/%s" filePath
+        let url = sprintf "https://www.luisquintanilla.me/posts/%s" filePath
         
         XElement(XName.Get "item",
             XElement(XName.Get "title", entry.Metadata.Title),
