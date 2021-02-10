@@ -9,7 +9,7 @@ module RssService
     let title = "Luis Quintanilla"
     let link = "https://www.luisquintanilla.me"
     let description = "Luis Quintanilla's personal website"
-    let lastPubDate = "02/09/2021"
+    // let lastPubDate = "02/09/2021"
     let language = "en"
 
     let entryXml (entry:Post) =
@@ -23,7 +23,7 @@ module RssService
             XElement(XName.Get "guid", url),
             XElement(XName.Get "pubDate", entry.Metadata.Date))    
 
-    let channelXml = 
+    let channelXml (lastPubDate:string) = 
         XElement(XName.Get "rss",
             XAttribute(XName.Get "version","2.0"),
             XElement(XName.Get "channel",
@@ -34,6 +34,9 @@ module RssService
                 XElement(XName.Get "language", language)))
                 
     let generateRss (posts:Post array) = 
+        let latestPost = posts |> Array.sortByDescending(fun post -> post.Metadata.Date) |> Array.head 
         let entries = posts |> Array.map(entryXml)
-        channelXml.Descendants(XName.Get "channel").First().Add(entries)
-        channelXml
+        let channel = channelXml (DateTime.Parse(latestPost.Metadata.Date).ToShortDateString())
+        
+        channel.Descendants(XName.Get "channel").First().Add(entries)
+        channel
