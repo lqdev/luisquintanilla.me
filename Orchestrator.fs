@@ -23,7 +23,6 @@ module Orchestrator
             cleanOutputDirectory x.FullName
             x.Delete())
 
-    // let copyStaticFiles (src:string) (dest:string) = 
     let copyStaticFiles () =
         let directories = [   
             "css"
@@ -39,19 +38,8 @@ module Orchestrator
             Directory.GetFiles(s)
             |> Array.iter(fun file -> File.Copy(Path.GetFullPath(file),Path.Join(saveDir.FullName,Path.GetFileName(file)),true)))
         
-        // let files = 
-        //     Directory.GetFiles(src)
-        //     |> Array.filter(fun x-> Path.GetExtension(x) = ".css")
-
-        // files |> Array.iter(fun x -> File.Copy(Path.GetFullPath(x),Path.Join(dest,Path.GetFileName(x)),true))
-
-    // let copyImages (src:string) (dest:string) = 
-    //     let sourcePath = Path.Join(srcDir,src)
-    //     let savePath = Directory.CreateDirectory(Path.Join(outputDir,dest))
-        
-    //     Directory.GetFiles(sourcePath)
-    //     |> Array.iter(fun file -> 
-    //         File.Copy(Path.GetFullPath(file),Path.Join(savePath.FullName,Path.GetFileName(file)),true))
+        // Copy favicon
+        File.Copy(Path.Join(srcDir,"favicon.ico"),Path.Join(outputDir,"favicon.ico"),true)
 
     let buildHomePage (posts:Post array) = 
         let recentPosts = 
@@ -122,8 +110,7 @@ module Orchestrator
             |> JsonSerializer.Deserialize<Event array>
             |> Array.sortByDescending(fun x -> DateTime.Parse(x.Date))
 
-        // let eventPage = generate (eventView events) "default" "Luis Quintanilla - Events"
-        let eventPage = generate (underConstructionView ()) "default" "Luis Quintanilla - Events"
+        let eventPage = generate (eventView events) "default" "Luis Quintanilla - Events"
         File.WriteAllText(Path.Join(outputDir,"events.html"),eventPage)
         
         

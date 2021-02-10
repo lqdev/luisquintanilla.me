@@ -8,12 +8,10 @@ I'm passionate about:
 - Decentralized Web
 - Open Source Software
 - Internet of Things
+- Community Building
 
 ## Contact
 
-- Matrix - [@lqdev:lqdev.tech](https://matrix.to/#/@lqdev:lqdev.tech)
-- Jami - lqdev
-- Mastodon - [@lqdev@toot.lqdev.tech](https://toot.lqdev.tech/@lqdev)
 - GitHub - [lqdev](https://github.com/lqdev)
 - Twitter - [ljquintanilla](https://twitter.com/ljquintanilla)
 - LinkedIn - [lquintanilla01](https://www.linkedin.com/in/lquintanilla01/)
@@ -68,3 +66,6 @@ List of technologies I use often
 
 - ASP.NET, ASP.NET Core
 - Azure Functions
+- Jami
+- Matrix
+- Mastodon

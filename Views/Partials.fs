@@ -1,6 +1,7 @@
 module PartialViews
 
     open Giraffe.ViewEngine
+    open System
     open Domain
     open MarkdownService
 
@@ -11,14 +12,17 @@ module PartialViews
 
     let recentPostsView (posts:Post array) = 
         div [] [
-            ul [_class "list-group"] [
-                for post in posts do
-                    li [_class "list-group-item"] [
-                        a [_href (sprintf "/posts/%s.html" post.FileName)] [
-                            h3 [] [Text post.Metadata.Title]
+            for post in posts do
+                let date = DateTime.Parse(post.Metadata.Date).ToShortDateString()
+                let url = sprintf "/posts/%s.html" post.FileName
+                a [_href url] [
+                    div [_class "card my-2"] [
+                        div [_class "card-body"] [
+                            h5 [_class "card-title"] [ Text post.Metadata.Title ]
+                            h6 [_class "card-subtitle"] [ Text date ]
                         ]
-                    ]                    
-            ]
+                    ]
+                ]
         ]
 
     let homeView content = 
@@ -73,10 +77,11 @@ module PartialViews
     let eventView (events:Event array) = 
         div [_class "mr-auto"] [
             h2 [] [Text "Upcoming events"]
+            p [] [Text "All times are in EST (UTC -5:00) unless otherwise stated"]
             table [_class "table"] [
                 thead [] [
                     tr [] [
-                        th [] [Text "Date"]
+                        th [] [Text "Date/Time"]
                         th [] [Text "Name"]
                         th [] [Text "Url"]
                     ]
@@ -84,7 +89,7 @@ module PartialViews
                 tbody [] [
                     for event in events do
                         tr [] [
-                            td [] [Text event.Date]
+                            td [] [Text (DateTime.Parse(event.Date).ToString("f"))]
                             td [] [Text event.Name]
                             td [] [ a[ _href event.Url] [Text "Url"]]
                         ]

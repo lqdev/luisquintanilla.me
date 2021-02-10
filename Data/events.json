@@ -1,17 +1,12 @@
 [
     {
-        "Name": "Event 3",
-        "Date": "02/21/2020 10:00 AM -5:00",
-        "Url": "https://luisquintanilla.me"
-    },    
-    {
-        "Name": "Event 1",
-        "Date": "02/21/2020 09:00 AM -5:00",
-        "Url": "https://luisquintanilla.me"
+        "Name": "Building Web Services with Racket",
+        "Date": "02/17/2021 7:00 PM",
+        "Url": "https://www.meetup.com/Microsoft-Reactor-New-York/events/275591979/"
     },
     {
-        "Name": "Event 2",
-        "Date": "03/01/2020",
-        "Url": "https://luisquintanilla.me"
+        "Name": "ML.NET 101: Machine Learning for .NET Developers",
+        "Date": "02/16/2021 8:00 PM",
+        "Url": "https://www.meetup.com/Birmingham-NET-Meetup/events/275082157/"
     }
 ]
