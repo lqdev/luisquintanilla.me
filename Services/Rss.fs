@@ -21,7 +21,7 @@ module RssService
             XElement(XName.Get "title", entry.Metadata.Title),
             XElement(XName.Get "link", url),
             XElement(XName.Get "guid", url),
-            XElement(XName.Get "pubDate", entry.Metadata.Date))    
+            XElement(XName.Get "pubDate", (DateTime.Parse(entry.Metadata.Date).ToShortDateString())))    
 
     let channelXml (lastPubDate:string) = 
         XElement(XName.Get "rss",
