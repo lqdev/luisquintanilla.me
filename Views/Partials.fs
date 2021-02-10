@@ -77,7 +77,7 @@ module PartialViews
     let eventView (events:Event array) = 
         div [_class "mr-auto"] [
             h2 [] [Text "Upcoming events"]
-            p [] [Text "All times are in EST (UTC -5:00) unless otherwise stated"]
+            p [] [Text "All times are in EST (UTC -5) unless otherwise stated"]
             table [_class "table"] [
                 thead [] [
                     tr [] [
