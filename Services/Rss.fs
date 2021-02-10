@@ -34,7 +34,7 @@ module RssService
                 XElement(XName.Get "language", language)))
                 
     let generateRss (posts:Post array) = 
-        let latestPost = posts |> Array.sortByDescending(fun post -> post.Metadata.Date) |> Array.head 
+        let latestPost = posts |> Array.sortByDescending(fun post -> DateTime.Parse(post.Metadata.Date)) |> Array.head 
         let entries = posts |> Array.map(entryXml)
         let channel = channelXml (DateTime.Parse(latestPost.Metadata.Date).ToShortDateString())
         
