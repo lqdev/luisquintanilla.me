@@ -74,7 +74,7 @@ module PartialViews
             ]
         ]
 
-    let eventView (events:Event array) = 
+    let eventsView (events:Event array) = 
         div [_class "mr-auto"] [
             h2 [] [Text "Upcoming events"]
             p [] [Text "All times are in EST (UTC -5) unless otherwise stated"]
@@ -95,4 +95,10 @@ module PartialViews
                         ]
                 ]
             ]
+        ]
+
+    let eventView (title:string) (pdfPath: string)= 
+        div [_class "mr-auto"] [
+            h2 [] [Text title]
+            embed [ _type "application/pdf"; _src pdfPath; _class "text-center"; _height "375px"; _width "600px"]
         ]

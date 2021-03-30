@@ -28,6 +28,7 @@ module Builder
             "css"
             "js"
             "images" 
+            "presentations"
         ]
 
         directories
@@ -104,13 +105,24 @@ module Builder
             let fileName = "index.html"
             File.WriteAllText(Path.Join(dir.FullName,fileName), page))
     
-    let buildEventPage () = 
+    let buildEventsPage () = 
         let events =  
             File.ReadAllText(Path.Join("Data","events.json"))
             |> JsonSerializer.Deserialize<Event array>
             |> Array.sortByDescending(fun x -> DateTime.Parse(x.Date))
 
-        let eventPage = generate (eventView events) "default" "Luis Quintanilla - Events"
-        File.WriteAllText(Path.Join(outputDir,"events.html"),eventPage)
-        
-        
+        let eventsPage = generate (eventsView events) "default" "Luis Quintanilla - Events"
+        File.WriteAllText(Path.Join(outputDir,"events.html"),eventsPage)
+
+    let buildEventPage () = 
+        let presentationPaths = 
+            Directory.GetFiles(Path.Join(outputDir,"presentations"))
+
+        printfn "%A" presentationPaths
+
+        presentationPaths
+        |> Array.iter(fun presentation -> 
+            let fileName = Path.GetFileNameWithoutExtension presentation
+            let saveFileName = sprintf "%s.html" fileName
+            let eventPage = generate (eventView fileName (sprintf "%s.pdf" fileName)) "default" fileName
+            File.WriteAllText(Path.Join(outputDir,"presentations", saveFileName),eventPage))

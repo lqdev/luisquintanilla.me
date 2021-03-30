@@ -26,6 +26,7 @@ let main argv =
     buildPostPages posts
     buildPostArchive posts
 
-    buildEventPage ()
+    buildEventsPage ()
+    buildEventPage()
 
     0
