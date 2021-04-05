@@ -3,8 +3,14 @@
     <title>Luis Quintanilla</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Luis Quintanilla's personal website</description>
-    <lastPubDate>1/9/2021</lastPubDate>
+    <lastPubDate>4/5/2021</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Rediscovering the RSS protocol</title>
+      <link>https://www.luisquintanilla.me/posts/rediscovering-rss-user-freedom.html</link>
+      <guid>https://www.luisquintanilla.me/posts/rediscovering-rss-user-freedom.html</guid>
+      <pubDate>4/5/2021</pubDate>
+    </item>
     <item>
       <title>Alternatives to WhatsApp</title>
       <link>https://www.luisquintanilla.me/posts/alternatives-to-whatsapp.html</link>
