@@ -124,5 +124,7 @@ module Builder
         |> Array.iter(fun presentation -> 
             let fileName = Path.GetFileNameWithoutExtension presentation
             let saveFileName = sprintf "%s.html" fileName
+            // let pdfPath = "https://github.com/lqdev/Presentations/raw/master/GlobalAzure0420-AzFnCustomHandler/slides/AzureFunctionsCustomHandlers.pdf"
             let eventPage = generate (eventView fileName (sprintf "%s.pdf" fileName)) "default" fileName
+            // let eventPage = generate (eventView fileName pdfPath) "default" fileName
             File.WriteAllText(Path.Join(outputDir,"presentations", saveFileName),eventPage))
