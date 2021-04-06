@@ -6,6 +6,8 @@ tags: protocols, web, rss
 
 ## Introduction
 
+![Distributed Network- jjying - Unsplash](https://user-images.githubusercontent.com/11130940/113645423-dcc13180-9654-11eb-8d41-b70efad1be90.jpg)
+
 RSS provides a standardized way of aggregating content giving content creators the freedom to choose how they publish content while giving consumers the freedom to choose how they consume that content. I've used RSS for a long time. One of my favorite RSS readers was Google Reader while it was still around and I believe [I'm not the only fan](https://www.ripgooglereader.com/). Since then, I've bounced around between different RSS feed readers not settling one until recently when I started using [NewsBlur](https://newsblur.com). As a result of finding an RSS feed reader I liked, I've also started to expand the content I follow via RSS feeds to social media, videos, podcasts, and software projects. In part, this has gotten me thinking about some of the benefits of protocols. The essay [Protocols, Not Platforms: A Technological Approach To Free Speech](https://knightcolumbia.org/content/protocols-not-platforms-a-technological-approach-to-free-speech) makes good points on some of these benefits. Though the focus of that article is on free speech, I prefer to think about the benefits in terms of user freedom.
 
 ## Creator freedom using RSS
