@@ -6,6 +6,9 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
+      - uses: azure/login@v1
+        with: 
+          creds: ${{ secrets.AZCRED }}
       - name: Setup .NET SDK 5.x
         uses: actions/setup-dotnet@v1.7.2
         with: 
