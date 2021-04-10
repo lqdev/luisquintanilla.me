@@ -21,5 +21,22 @@ jobs:
         run: dotnet restore
       - name: Build website
         run: dotnet build --no-restore
+      - name: Upload to blob storage
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.0.72
+          inlineScript: |
+              az storage blob upload-batch --account-name ${{secrets.STORAGE_ACC_NAME}} -d '$web' -s ./_public
+      - name: Purge CDN endpoint
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.0.72
+          inlineScript: |
+            az cdn endpoint purge --content-paths  "/*" --profile-name ${{secrets.CDN_PROFILE_NAME}} --name ${{secrets.CDN_ENDPOINT_NAME}} --resource-group ${{secrets.RG}}
+
+    # Azure logout 
+      - name: logout
+        run: |
+              az logout        
 
 
