@@ -1,9 +1,5 @@
 name: Publish Website
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [master]
+on: [push, pull_request]
 jobs:
   Build-Website:
     runs-on: ubuntu-latest
