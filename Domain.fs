@@ -6,6 +6,7 @@ module Domain
     [<CLIMutable>]
     type PostDetails = {
         [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="description")>] Description: string
         [<YamlMember(Alias="date")>] Date: string
         [<YamlMember(Alias="tags")>] Tags: string
     }

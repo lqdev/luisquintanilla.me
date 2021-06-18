@@ -19,6 +19,7 @@ module RssService
         
         XElement(XName.Get "item",
             XElement(XName.Get "title", entry.Metadata.Title),
+            XElement(XName.Get "description", entry.Metadata.Description),
             XElement(XName.Get "link", url),
             XElement(XName.Get "guid", url),
             XElement(XName.Get "pubDate", (DateTime.Parse(entry.Metadata.Date).ToShortDateString())))    
