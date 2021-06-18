@@ -42,7 +42,7 @@ module Layouts
                
                 meta [_name "viewport"; _content "width=device-width, initial-scale=1, shrink-to-fit=no"]
                 meta [_property "og:title"; _content pageTitle]
-                meta [_property "og:type"' _content "website"]
+                meta [_property "og:type"; _content "website"]
                 meta [_property "og:site_name"; _content "Luis Quintanilla Site"]
                 meta [_property "og:locale"; _content "en_US"]
                 title [] [Text pageTitle]
