@@ -1,13 +1,9 @@
 name: Publish Website
-<<<<<<< HEAD
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-=======
-on: [push, pull_request]
->>>>>>> 815a02f0cd314bc82115297a594e4adffcef04eb
 jobs:
   Build-Website:
     runs-on: ubuntu-latest
