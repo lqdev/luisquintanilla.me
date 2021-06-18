@@ -19,8 +19,10 @@ jobs:
           dotnet-version: '5.0.x'
       - name: Install Dependencies
         run: dotnet restore
-      - name: Build website
+      - name: Build project
         run: dotnet build --no-restore
+      - name: Generate website
+        run: dotnet run
       - name: Upload to blob storage
         uses: azure/CLI@v1
         with:
