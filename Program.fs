@@ -20,6 +20,7 @@ let main argv =
     // Write Home / About / RSS Pages    
     buildHomePage posts
     buildAboutPage()
+    buildContactPage()
     buildRssFeed posts
     
     // Write Post / Archive Pages

@@ -57,6 +57,12 @@ module Builder
         let aboutPage = generate aboutContent "default" "Luis Quintanilla - About"
         File.WriteAllText(Path.Join(outputDir,"about.html"), aboutPage)
 
+    let buildContactPage () = 
+
+        let contactContent = convertFileToHtml (Path.Join(srcDir,"contact.md")) |> contactView
+        let contactPage = generate contactContent "default" "Luis Quintanilla - Contact"
+        File.WriteAllText(Path.Join(outputDir,"contact.html"), contactPage)
+
     let loadPosts () = 
         let postPaths = 
             Directory.GetFiles(Path.Join(srcDir,"posts"))
