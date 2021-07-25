@@ -36,6 +36,11 @@ module PartialViews
             rawText content
         ]
 
+    let contactView content =  
+        div [_class "mr-auto"] [
+            rawText content
+        ]
+
     let postView content =     
         div [_class "mr-auto"] [
             rawText content
