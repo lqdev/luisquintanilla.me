@@ -10,37 +10,49 @@ I'm passionate about:
 - Internet of Things
 - Community Building
 
-## Technologies
+## Gear
 
-List of technologies I use often
+### Hardware
 
-### Languages
+- **PC** - Surface Go / Laptop
+- **Music & Podcasts** - Fiio M6
+- **E-Reader** - Pocketbook Touch Lux 5
+- **Camera** - Canon PowerShot SX740
+- **Fitness Tracker & GPS** - Garmin Fenix 6 Pro
+- **Homelab server** - Raspberry Pi
+
+### Software
+
+#### OS
+
+- Windows 10
+- Manjaro
+- Ubunty
+
+#### Languages
 
 - .NET (C#/F#)
 - Python
 - JavaScript
 - Racket
 
-### Data
+#### Data Procesing
 
 - Apache Spark
 - .NET for Apache Spark
 - Pandas
 
-### Development
+#### Developer tools
 
 - GitHub
 - Azure DevOps
-- Docker
-
-### Editors & IDEs
-
 - Visual Studio, Visual Studio Code
 - DrRacket
 - Jupyter Notebooks, Jupyter Lab
 - .NET Interactive
+- Docker
 
-### Machine Learning
+#### Machine Learning
 
 - ML.NET
 - Azure Machine Learning
@@ -49,16 +61,21 @@ List of technologies I use often
 - Scikit Learn
 - ONNX
 
-### Tools & Extensions
+#### Tools & Extensions
 
 - Insomina
 - Ionide
 - Netron
 
-### Web
+#### Web
 
 - ASP.NET, ASP.NET Core
 - Azure Functions
+
+#### Communication
+
+- Jitsi
 - Jami
 - Matrix
 - Mastodon
+- Scuttlebutt
