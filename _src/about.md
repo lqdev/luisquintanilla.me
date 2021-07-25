@@ -10,7 +10,11 @@ I'm passionate about:
 - Internet of Things
 - Community Building
 
+[Get in touch](/contact.html)
+
 ## What I Use
+
+A list of the things I use in my day-to-day.
 
 ### Hardware
 
