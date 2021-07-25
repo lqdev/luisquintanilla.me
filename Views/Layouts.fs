@@ -49,6 +49,7 @@ module Layouts
                 meta [_property "og:image"; _content "/favicon.ico"]
                 meta [_property "og:site_name"; _content "Luis Quintanilla Personal Website"]
                 meta [_property "og:locale"; _content "en_US"]
+                meta [_name "robots"; _content "noindex,nofollow,nosnippet"]
                 title [] [Text pageTitle]
             ]
             body [] [
