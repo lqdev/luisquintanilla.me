@@ -38,8 +38,10 @@ module Builder
             Directory.GetFiles(s)
             |> Array.iter(fun file -> File.Copy(Path.GetFullPath(file),Path.Join(saveDir.FullName,Path.GetFileName(file)),true)))
         
-        // Copy favicon
+        // Copy favicon & avatar
         File.Copy(Path.Join(srcDir,"favicon.ico"),Path.Join(outputDir,"favicon.ico"),true)
+        File.Copy(Path.Join(srcDir,"avatar.png"),Path.Join(outputDir,"avatar.png"),true)
+
 
     let buildHomePage (posts:Post array) = 
         let recentPosts = 

@@ -4,7 +4,9 @@ module Layouts
   
     let defaultNavBar = 
         nav [_class "navbar navbar-expand-md navbar-dark fixed-top bg-dark"] [
-            a [_class "navbar-brand"; _href "#"] [ Text "Luis Quintanilla" ]
+            a [_class "navbar-brand"; _href "#"] [ 
+                img [_src "/avatar.png"; _height "30"; _width "30"; _class "d-inline-block align-top rounded-circle"; _style "margin-right:5px"]
+                Text "Luis Quintanilla" ]
             button [
                 _type "button"
                 _class "navbar-toggler collapsed"
