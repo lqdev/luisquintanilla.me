@@ -26,6 +26,7 @@ module Builder
     let copyStaticFiles () =
         let directories = [   
             "css"
+            "css/bootstrap-icons-1.5.0"
             "js"
             "images" 
         ]

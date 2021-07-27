@@ -33,6 +33,9 @@ module Layouts
                         a [_class "nav-link"; _href "/events.html"] [ Text "Events" ]
                     ]                                        
                 ]
+                a [_href "/feed.rss"] [
+                    img [_src "/css/bootstrap-icons-1.5.0/rss.svg"; _width "32";_height "32"; _color "secondary"]
+                ]
             ]
         ]
 
@@ -40,9 +43,11 @@ module Layouts
         html [_lang "en"] [
             head [] [
                 link [_rel "stylesheet";_href "/css/bootstrap.min.css"] //4.6.0
+                link [_rel "stylesheet";_href "/css/bootstrap-icons-1.5.0/bootstrap-icons.css"]
                 link [_rel "stylesheet";_href "/css/highlight-dark.min.css"] //10.5.0
                 link [_rel "stylesheet";_href "/css/main.css"]
-               
+                
+
                 meta [_name "viewport"; _content "width=device-width, initial-scale=1, shrink-to-fit=no"]
                 meta [_property "og:title"; _content pageTitle]
                 meta [_property "og:type"; _content "website"]
