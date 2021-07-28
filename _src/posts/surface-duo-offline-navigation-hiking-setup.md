@@ -7,7 +7,7 @@ tags: hiking, openstreetmaps, open-source, surface, lifestyle, apps, fdroid
 
 ## Introduction
 
-Over the past few months, I've been going on a hike almost every weekend. Not only does hiking provide an opportunity to discover the natural wonders all around you, it's also good exercise and free (if you don't count entry fees for some state and national parks). Throughout these trips, the [Surface Duo](https://www.microsoft.com/surface/devices/surface-duo), Microsoft's dual-screen Android phone has been a reliable companion. Although it's not the smallest or most rugged device, it's large screen(s) paired with OSMAnd~ and AllTrails make it easy to navigate while on the trail. In this post, I'll detail my navigation setup.
+Over the past few months, I've been going on a hike almost every weekend. Not only does hiking provide an opportunity to discover the natural wonders all around you, it's also good exercise and free (if you don't count entry fees for some state and national parks). Throughout these trips, the [Surface Duo](https://www.microsoft.com/surface/devices/surface-duo), Microsoft's dual-screen Android phone has been a reliable companion. Although it's not the smallest or most rugged device, its large screen(s) paired with OSMAnd~ and AllTrails make it easy to navigate while on the trail. In this post, I'll detail my navigation setup.
 
 ![Picture of half-dome taken from Four Mile Trail](https://user-images.githubusercontent.com/11130940/127246913-58472929-f067-41f0-9011-17193f863f71.JPG)
 
@@ -27,7 +27,7 @@ AllTrails has a mobile app. However, for offline navigation, I use the [OSMAnd~]
 
 OSMAnd~ is a free map and navigation app supported by [OpenStreetMaps](https://www.openstreetmap.org/). OpenStreetMaps, like AllTrails is free and entirely community driven. OSMAnd~ lets you download **detailed** maps for offline use. Detailed is the key here. Although you can save maps for offline use with applications like Here Maps and Google Maps, they often limit the size of the area you can save for offline use and don't provide much detail. With OSMAnd~ you can:
 
-- Download entire states and country maps for offline use.
+- Download entire state and country maps for offline use.
 - View details like contour-lines, hill shading, and other trail details.
 - Turn-by-turn navigation.
 - View and edit GPX files
@@ -42,5 +42,5 @@ By leveraging the power of crowd-sourcing and open-source, access to quality inf
 
 If you've been looking for an offline navigation solutions, hopefully this post helps provide some guidance. If you do any outdoor activities especially in remote areas, even if you don't have a Duo, I'd suggest giving AllTrails and OSMAnd~ a try. See you on the trail!
 
-P.S. Over the past month, I've transitioned to the Garmin Fenix Pro 6 for navigation. It's a smaller device that supports loading GPX files and provides offline maps with turn-by-turn navigation. I'm also not worried about dropping or scratching it because it's designed for the outdoors. This in no way takes away with how amazing the OSMAnd~ and Surface Duo pairing are for offline navigation. In fact, I still use the Duo for backup navigation when it's difficult to see the map on the Fenix.
+P.S. Over the past month, I've transitioned to the Garmin Fenix 6X Pro for navigation. It's a smaller device that supports loading GPX files and provides offline maps with turn-by-turn navigation. I'm also not worried about dropping or scratching it because it's designed for the outdoors. This in no way takes away with how amazing the OSMAnd~ and Surface Duo pairing are for offline navigation. In fact, I still use the Duo for backup navigation when it's difficult to see the map on the Fenix.
 
