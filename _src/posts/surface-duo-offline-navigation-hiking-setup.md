@@ -1,6 +1,6 @@
 ---
-title: Surface Duo hiking setup
-description: Set up your Surface Duo and take it out on the trail with AllTrails & OpenStreetMaps
+title: Surface Duo offline navigation hiking setup
+description: Set up your Surface Duo for offline navigation and take it out on the trail with AllTrails & OSMAnd~
 date: 2021-07-27 19:00:00
 tags: hiking, openstreetmaps, open-source, surface, lifestyle, apps, fdroid
 ---
