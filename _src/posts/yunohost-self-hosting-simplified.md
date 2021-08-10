@@ -21,7 +21,7 @@ First off, why even go through the trouble of self-hosting? Service providers no
 
 ### Explore "new" technologies
 
-The saying goes "there's nothing new under the sun". However as with all things, people have found alternative uses and solutions to existing technologies. For example, in simple terms, the [Fediverse](https://en.wikipedia.org/wiki/Fediverse) can be summarized as E-mail + RSS. It consists of a common decentralized protocol to handle communication between individuals who may not use the same server while providing "follow" capabilities for services like micro-blogging, photos, and video sharing. Though the Fediverse has been around for some time, it's still relatively new. Self-hosting can help you learn more about newer technologies like the Fediverse.
+The saying goes "there's nothing new under the sun". However as with all things, people have found alternative uses and solutions to existing technologies. For example, in simple terms, the [Fediverse](https://en.wikipedia.org/wiki/Fediverse) can be summarized as E-mail + RSS. It consists of a common decentralized protocol to handle communication between individuals who may not use the same server while providing "follow" capabilities for services like micro-blogging, photos, and video sharing. Though the Fediverse has been around for some time, it's still relatively new. Whether it's a new technology or new to you, self-hosting can help you learn more about technologies like the Fediverse.
 
 ### Own your data
 
