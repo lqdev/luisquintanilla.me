@@ -81,4 +81,7 @@ module Layouts
                     rawText "hljs.initHighlightingOnLoad();"
                 ]
             ]
+            footer [] [
+                a [_rel "me"; _href "https://toot.lqdev.tech/@lqdev"] []
+            ]
         ]
