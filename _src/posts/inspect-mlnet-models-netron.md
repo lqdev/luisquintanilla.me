@@ -44,13 +44,13 @@ public class ModelInput
 {
     public string SentimentText {get;set;}
     public bool Label {get;set;}
-    public float SentimentText {get;set;} 
+    public float SamplingKeyColumn {get;set;} 
 }
 ```
 
 ![ML.NET Netron Binary Predictor](https://user-images.githubusercontent.com/11130940/130705880-0baea2f7-7b45-408a-b60c-16acceb54079.png)
 
-Looking at the last node `BinaryPredXfer`, we see that the algorithm used is for binary classification or predictions. Looking at the [ML.NET tasks documentation](https://docs.microsoft.com/dotnet/machine-learning/resources/tasks#binary-classification-inputs-and-outputs), we expect to get at least three columns in the prediction output:
+Looking at the last node `BinaryPredXfer`, we see that the algorithm used is for binary classification or predictions. Looking at the [ML.NET tasks documentation](https://docs.microsoft.com/dotnet/machine-learning/resources/tasks#binary-classification-inputs-and-outputs), we expect to get at least two columns in the prediction output:
 
 - Score: Single
 - PredictedLabel: boolean
@@ -61,7 +61,7 @@ Like the input, we can also represent model outputs or predictions as follows:
 public class ModelOutput
 {
     public float Score {get;set;}
-    public boolean PredictedLabel {get;set;}
+    public bool PredictedLabel {get;set;}
 }
 ```
 
