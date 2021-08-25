@@ -63,6 +63,7 @@ module Layouts
                 meta [_property "og:title"; _content pageTitle]
                 meta [_property "og:type"; _content "website"]
                 meta [_property "og:image"; _content "https://www.luisquintanilla.me/avatar.png"]
+                meta [_property "og:image:secure_url"; _content "https://www.luisquintanilla.me/avatar.png"]
                 meta [_property "og:image:type"; _content "image/png"]
                 meta [_property "og:image:width"; _content "250"]
                 meta [_property "og:image:height"; _content "250"] 
