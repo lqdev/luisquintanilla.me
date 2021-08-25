@@ -31,41 +31,41 @@ To inspect the ML.NET model using Netron:
 
     ![Sentiment Classification ML.NET model in netron](https://user-images.githubusercontent.com/11130940/130704589-61ebb612-d65f-4364-b275-bd0d4991d3cf.png)
 
-For this model, we see that there are 3 input properties or columns:
+    For this model, we see that there are 3 input properties or columns:
 
-- SentimentText (string)
-- Label (boolean)
-- SamplingKeyColumn (float32)
+    - SentimentText (string)
+    - Label (boolean)
+    - SamplingKeyColumn (float32)
 
-Using this information, we can represent the model inputs as a Plain-Old-CLR-Object (POCO) in our end-user application.
+    Using this information, we can represent the model inputs as a Plain-Old-CLR-Object (POCO) in our end-user application.
 
-```csharp
-public class ModelInput
-{
-    public string SentimentText {get;set;}
-    public bool Label {get;set;}
-    public float SamplingKeyColumn {get;set;} 
-}
-```
+    ```csharp
+    public class ModelInput
+    {
+        public string SentimentText {get;set;}
+        public bool Label {get;set;}
+        public float SamplingKeyColumn {get;set;} 
+    }
+    ```
 
-![ML.NET Netron Binary Predictor](https://user-images.githubusercontent.com/11130940/130705880-0baea2f7-7b45-408a-b60c-16acceb54079.png)
+    ![ML.NET Netron Binary Predictor](https://user-images.githubusercontent.com/11130940/130705880-0baea2f7-7b45-408a-b60c-16acceb54079.png)
 
-Looking at the last node `BinaryPredXfer`, we see that the algorithm used is for binary classification or predictions. Looking at the [ML.NET tasks documentation](https://docs.microsoft.com/dotnet/machine-learning/resources/tasks#binary-classification-inputs-and-outputs), we expect to get at least two columns in the prediction output:
+    Looking at the last node `BinaryPredXfer`, we see that the algorithm used is for binary classification or predictions. Looking at the [ML.NET tasks documentation](https://docs.microsoft.com/dotnet/machine-learning/resources/tasks#binary-classification-inputs-and-outputs), we expect to get at least two columns in the prediction output:
 
-- Score: Single
-- PredictedLabel: boolean
+    - Score: Single
+    - PredictedLabel: boolean
 
-Like the input, we can also represent model outputs or predictions as follows:
+    Like the input, we can also represent model outputs or predictions as follows:
 
-```csharp
-public class ModelOutput
-{
-    public float Score {get;set;}
-    public bool PredictedLabel {get;set;}
-}
-```
+    ```csharp
+    public class ModelOutput
+    {
+        public float Score {get;set;}
+        public bool PredictedLabel {get;set;}
+    }
+    ```
 
-Keep in mind that the name of the class can be anything so long as the properties or column names and types match with those expected by the model.
+    Keep in mind that the name of the class can be anything so long as the properties or column names and types match with those expected by the model.
 
 Once you have your model inputs and outputs defined in your end-user application, you can follow the standard process of [loading your model and using it to make predictions](https://docs.microsoft.com/machine-learning/how-to-guides/machine-learning-model-predictions-ml-net).
 
