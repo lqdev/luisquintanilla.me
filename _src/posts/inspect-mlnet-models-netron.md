@@ -11,7 +11,7 @@ Once you've trained a machine learning model, you typically serialize it and sav
 
 How the model is serialized depends on the framework you use to train your model. To standardize model serialization and interoperability, you can use something like Open Neural Network Exchange (ONNX) to represent your models if supported by the framework you're using. That's beyond the scope of this post though.
 
-Regardless of which framework or serialization format is used, if you were to open up the model file, the contents of the model file are often not human readable or difficult to interpret. When the person who trains the model is also putting it into production, they know the format input data needs to be in to make predictions. That's not often the case though. As a result, the people putting models need the ability to inspect a model to get a sense of how they need to collect and preprocess input data before making predictions. That's where Netron comes in. [Netron](https://github.com/lutzroeder/Netron) is a "visualizer for neural network, deep learning, and machine learning models". In this post, I'll show how you can use Netron to inspect ML.NET models and use that information to define the model input and output schemas.
+Regardless of which framework or serialization format is used, if you were to open up the model file, the contents of the model file are often not human readable or difficult to interpret. When the person who trains the model is also putting it into production, they know the format input data needs to be in to make predictions. That's not often the case though. As a result, the people putting models into production need the ability to inspect a model to get a sense of how they need to collect and preprocess input data before making predictions. That's where Netron comes in. [Netron](https://github.com/lutzroeder/Netron) is a "visualizer for neural network, deep learning, and machine learning models". In this post, I'll show how you can use Netron to inspect ML.NET models and use that information to define the model input and output schemas.
 
 ## Inspecting an ML.NET model
 
@@ -52,8 +52,8 @@ To inspect the ML.NET model using Netron:
 
     Looking at the last node `BinaryPredXfer`, we see that the algorithm used is for binary classification or predictions. Looking at the [ML.NET tasks documentation](https://docs.microsoft.com/dotnet/machine-learning/resources/tasks#binary-classification-inputs-and-outputs), we expect to get at least two columns in the prediction output:
 
-    - Score: Single
-    - PredictedLabel: boolean
+    - Score (Single)
+    - PredictedLabel (boolean)
 
     Like the input, we can also represent model outputs or predictions as follows:
 
