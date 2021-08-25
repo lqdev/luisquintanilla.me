@@ -69,6 +69,7 @@ module Layouts
                 meta [_property "og:image:height"; _content "200"] 
                 meta [_property "og:site_name"; _content "Luis Quintanilla Personal Website"]
                 meta [_property "og:locale"; _content "en_US"]
+                meta [_property "twitter:image"; _content "https://www.luisquintanilla.me/avatar.png"]
                 meta [_name "robots"; _content "noindex,nofollow,nosnippet"]
                 title [] [Text pageTitle]
             ]
