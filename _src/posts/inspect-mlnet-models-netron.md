@@ -67,7 +67,7 @@ To inspect the ML.NET model using Netron:
 
     Keep in mind that the name of the class can be anything so long as the properties or column names and types match with those expected by the model.
 
-Once you have your model inputs and outputs defined in your end-user application, you can follow the standard process of [loading your model and using it to make predictions](https://docs.microsoft.com/machine-learning/how-to-guides/machine-learning-model-predictions-ml-net).
+Once you have your model inputs and outputs defined in your end-user application, you can follow the standard process of [loading your model and using it to make predictions](https://docs.microsoft.com/dotnet/machine-learning/how-to-guides/machine-learning-model-predictions-ml-net).
 
 ## Conclusion
 
