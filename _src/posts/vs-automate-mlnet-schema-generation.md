@@ -94,4 +94,4 @@ At this point, you can go through the process of [using the model to make predic
 
 ## Conclusion
 
-Although the model used in this post does not have many columns, when you have many columns "Paste JSON As Classes" can significantly simplify the process of creating your input and output schema classes. Happy coding!
+Although the model used in this post does not have many columns, when you have many columns "Paste JSON As Classes" can significantly simplify the process of creating your input and output schema classes for ML.NET models. Happy coding!
