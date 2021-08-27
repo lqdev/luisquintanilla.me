@@ -7,13 +7,13 @@ tags: dotnet, machine learning, mlnet, artificial intelligence, tooling, visual 
 
 ## Introduction
 
-When using ML.NET models to make predictions, you often have to define classes for the model's input and output schema. In a previous post, I showed how you can [use Netron to inspect ML.NET models](/posts/inspect-mlnet-models-netron.html) and manually define classes to represent the input and output schema for your model. That works for models that don't have a lot of features. However, as the number of features grows, it can become cumbersome to define these classes. Visual Studio has a feature that can help automate that process. Assuming you have a sample of your input and output data in JSON format, you can leverage a built-in feature "Paste JSON As Classes" to take the sample and convert it to a class. In this post, I'll show how to do that.
+When using ML.NET models to make predictions, you often have to define classes for the model's input and output schema. In a previous post, I showed how you can [use Netron to inspect ML.NET models](/posts/inspect-mlnet-models-netron.html) and manually define classes to represent the input and output schema for your model. That works for models that don't have a lot of features / columns. However, as the number of columns grows, it can become cumbersome to define these classes. Visual Studio has a feature that can help automate that process. Assuming you have a sample of your input and output data in JSON format, you can leverage a built-in feature "Paste JSON As Classes" to take the sample and convert it to a class. In this post, I'll show how to do that.
 
 ## Prerequisites
 
-- Visual Studio 2019. Though I haven't tested with VS2022, I assume the "Past JSON as class" feature is also available there.
+- Visual Studio 2019. Though I haven't tested with VS2022, I assume "Paste JSON As Classes" is also available there.
 
-## Convert sample JSON data to classes
+## Convert sample JSON data to C# classes
 
 In this post, I'll work with the *sentiment_model.zip* model to classify sentiment, which you can find in the [dotnet/samples](https://github.com/dotnet/samples/blob/main/machine-learning/models/sentimentanalysis/sentiment_model.zip) repo.
 
@@ -49,44 +49,44 @@ Inside a C# project in Visual Studio:
 4. In the Visual Studio toolbar, select **Edit > Paste Special > Paste JSON as Classes**.
 5. The result should look similar to the following:
 
-```csharp
- public class Rootobject
- {
-     public string SentimentText { get; set; }
-     public bool Label { get; set; }
-     public float SamplingKeyColumn { get; set; }
- }
-```
+    ```csharp
+    public class Rootobject
+    {
+        public string SentimentText { get; set; }
+        public bool Label { get; set; }
+        public float SamplingKeyColumn { get; set; }
+    }
+    ```
 
 6. Rename the class to something more descriptive like `ModelInput`. The class should look similar to the following:
 
-```csharp
- public class ModelInput
- {
-     public string SentimentText { get; set; }
-     public bool Label { get; set; }
-     public float SamplingKeyColumn { get; set; }
- }
-```
+    ```csharp
+    public class ModelInput
+    {
+        public string SentimentText { get; set; }
+        public bool Label { get; set; }
+        public float SamplingKeyColumn { get; set; }
+    }
+    ```
 
 7. Create a JSON data sample for your output. In this case it'd look something like:
 
-```json
-{
-    "Score": 1.0,
-    "PredictedLabel": false
-}
-```
+    ```json
+    {
+        "Score": 1.0,
+        "PredictedLabel": false
+    }
+    ```
 
-1. Repeat steps 1-6 for your output JSON data sample. The resulting class should look similar to the following:
+8. Repeat steps 1-6 for your output JSON data sample. The resulting class should look similar to the following:
 
-```csharp
- public class ModelOutput
- {
-     public float Score { get; set; }
-     public bool PredictedLabel { get; set; }
- }
-```
+    ```csharp
+    public class ModelOutput
+    {
+        public float Score { get; set; }
+        public bool PredictedLabel { get; set; }
+    }
+    ```
 
 It's important to note that the name of the class does not matter so long as the column names and types are the same the ones the model expects.
 
