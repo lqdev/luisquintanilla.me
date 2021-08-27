@@ -88,7 +88,7 @@ Inside a C# project in Visual Studio:
     }
     ```
 
-It's important to note that the name of the class does not matter so long as the column names and types are the same the ones the model expects.
+It's important to note that the name of the class does not matter as long as the column names and types are the same the ones the model expects.
 
 At this point, you can go through the process of [using the model to make predictions on new data](https://docs.microsoft.com/dotnet/machine-learning/how-to-guides/machine-learning-model-predictions-ml-net).
 
