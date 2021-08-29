@@ -11,15 +11,15 @@ module PartialViews
         ]
 
     let recentPostsView (posts:Post array) = 
-        div [] [
+        div [_class "d-grip gap-3"] [
             for post in posts do
-                let date = DateTime.Parse(post.Metadata.Date).ToShortDateString()
+                let date = DateTime.Parse(post.Metadata.Date).ToLongDateString()
                 let url = sprintf "/posts/%s.html" post.FileName
-                a [_href url] [
-                    div [_class "card my-2"] [
-                        div [_class "card-body"] [
-                            h5 [_class "card-title"] [ Text post.Metadata.Title ]
-                            h6 [_class "card-subtitle"] [ Text date ]
+                div [_class "card rounded m-2 w-100 mx-auto"] [
+                    p [_class "card-header"] [Text date]
+                    div [_class "card-body"] [
+                        a [_href url] [
+                            h5 [_class "card-text"] [ Text post.Metadata.Title]
                         ]
                     ]
                 ]

@@ -3,8 +3,22 @@
     <title>Luis Quintanilla</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Luis Quintanilla's personal website</description>
-    <lastPubDate>8/10/2021</lastPubDate>
+    <lastPubDate>8/26/2021</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Automate ML.NET model schema generation from sample JSON data with Visual Studio</title>
+      <description>Use "Paste JSON As Classes" in Visual Studio to automatically generate model input and output schema classes for your ML.NET models using JSON data samples.</description>
+      <link>https://www.luisquintanilla.me/posts/vs-automate-mlnet-schema-generation.html</link>
+      <guid>https://www.luisquintanilla.me/posts/vs-automate-mlnet-schema-generation.html</guid>
+      <pubDate>8/26/2021</pubDate>
+    </item>
+    <item>
+      <title>Inspect ML.NET models with Netron</title>
+      <description>Use Netron to inspect the inputs, outputs, and operations that make up an ML.NET machine learning model.</description>
+      <link>https://www.luisquintanilla.me/posts/inspect-mlnet-models-netron.html</link>
+      <guid>https://www.luisquintanilla.me/posts/inspect-mlnet-models-netron.html</guid>
+      <pubDate>8/25/2021</pubDate>
+    </item>
     <item>
       <title>Self-hosting made easy with YunoHost</title>
       <description>YunoHost can help you self-host applications and services by simplifying your deployment process.</description>
