@@ -22,3 +22,10 @@ module Domain
         Date: string
         Url: string
     }
+
+    type FeedPost = {
+        PostType: string
+        PublishedDate: string
+        Source: string
+        Content: string
+    }

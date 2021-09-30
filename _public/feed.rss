@@ -3,8 +3,22 @@
     <title>Luis Quintanilla</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Luis Quintanilla's personal website</description>
-    <lastPubDate>8/26/2021</lastPubDate>
+    <lastPubDate>9/22/2021</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Proofread articles using Microsoft Edge's Immersive Reader and read aloud</title>
+      <description>Improve your proofreading process by reading articles aloud using Immersive Reader in Microsoft Edge</description>
+      <link>https://www.luisquintanilla.me/posts/proofread-read-aloud.html</link>
+      <guid>https://www.luisquintanilla.me/posts/proofread-read-aloud.html</guid>
+      <pubDate>9/22/2021</pubDate>
+    </item>
+    <item>
+      <title>Make predictions with ML.NET models without defining schema classes</title>
+      <description>Use the .NET DataFrame API to make predictions with ML.NET models without defining model input and output schema classes.</description>
+      <link>https://www.luisquintanilla.me/posts/mlnet-predictions-no-schema.html</link>
+      <guid>https://www.luisquintanilla.me/posts/mlnet-predictions-no-schema.html</guid>
+      <pubDate>9/16/2021</pubDate>
+    </item>
     <item>
       <title>Automate ML.NET model schema generation from sample JSON data with Visual Studio</title>
       <description>Use "Paste JSON As Classes" in Visual Studio to automatically generate model input and output schema classes for your ML.NET models using JSON data samples.</description>

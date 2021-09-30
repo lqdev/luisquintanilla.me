@@ -28,5 +28,6 @@ let main argv =
     buildPostArchive posts
 
     buildEventPage ()
+    buildFeed ()
 
     0
