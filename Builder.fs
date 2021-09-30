@@ -127,7 +127,7 @@ module Builder
             File.ReadAllText(Path.Join("Data","feed.json"))
             |> JsonSerializer.Deserialize<FeedPost array>
             |> Array.map(fun post -> 
-                let filePath = Path.Join(srcDir,"feed",post.Source) 
+                let filePath = Path.Join(srcDir,"feed",$"{post.Source}.md") 
                 let content = 
                     filePath
                     |> convertFileToHtml       
@@ -135,7 +135,18 @@ module Builder
             |> Array.sortByDescending(fun x -> DateTime.Parse(x.PublishedDate))
 
         let feedPage = generate (feedView posts) "default" "Luis Quintanilla - Feed"
-        File.WriteAllText(Path.Join(outputDir,"feed.html"),feedPage)
+        let saveDir = Path.Join(outputDir,"feed")
+        Directory.CreateDirectory(saveDir) |> ignore
+        
+        // Individual Post Views
+        posts 
+        |> Array.iter(fun post -> 
+            let postContentView = post.Content |> postView
+            let generatedContent = generate postContentView "default" $"Luis Quintanilla - {post.Title}"
+            let savePath = Path.Join(saveDir,$"{post.Source}.html")
+            File.WriteAllText(savePath,generatedContent))
+
+        File.WriteAllText(Path.Join(outputDir,"index.html"),feedPage)
 
         
         

@@ -24,6 +24,7 @@ module Domain
     }
 
     type FeedPost = {
+        Title: string
         PostType: string
         PublishedDate: string
         Source: string

@@ -179,5 +179,10 @@ let feedView (posts: FeedPost array) =
                 div [ _class "card-body" ] [
                     rawText post.Content
                 ]
+                div [_class "card-footer"] [
+                    let permalink = $"/feed/{post.Source}.html" 
+                    Text "Permalink: " 
+                    a [_href permalink] [Text $"https://luisquintanilla.me{permalink}"]
+                ]
             ]
     ]
