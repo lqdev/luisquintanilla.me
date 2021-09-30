@@ -1,7 +1,7 @@
 ---
 title: Testing and Deploying Python Projects with Travis CI
 tags: devops, travisci, python, ci/cd, programming, development,
-date: 2018-02-18 20:51:32
+published_date: 2018-02-18 20:51:32
 ---
 
 # Introduction

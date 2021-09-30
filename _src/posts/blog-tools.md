@@ -1,6 +1,6 @@
 ---
 title: Blogging Tools
-date: 2018-11-18 00:07:36
+published_date: 2018-11-18 00:07:36
 tags: markdown,vscode,tools,development,blogging
 ---
 

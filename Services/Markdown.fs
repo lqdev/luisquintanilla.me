@@ -52,4 +52,3 @@ module MarkdownService
                 .Trim()
 
         { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = postDetails; Content = mdBlock}
-        

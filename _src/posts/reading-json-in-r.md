@@ -1,6 +1,6 @@
 ---
 title: Reading Local JSON Files in R
-date: 2017-12-11 14:21:21
+published_date: 2017-12-11 14:21:21
 tags: R,programming
 ---
 

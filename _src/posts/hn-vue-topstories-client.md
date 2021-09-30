@@ -1,6 +1,6 @@
 ---
 title: Hacker News Vue Top Stories Client
-date: 2018-06-21 18:30:38
+published_date: 2018-06-21 18:30:38
 tags: vue,web development,programming,api,development,frontend,js
 ---
 

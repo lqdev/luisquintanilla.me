@@ -16,6 +16,7 @@ let main argv =
 
     // Data
     let posts = loadPosts() 
+    let feedPosts = loadFeed ()
 
     // Write Home / About / RSS Pages    
     buildHomePage posts
@@ -28,6 +29,6 @@ let main argv =
     buildPostArchive posts
 
     buildEventPage ()
-    buildFeed ()
+    buildFeedPages feedPosts
 
     0
