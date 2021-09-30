@@ -146,7 +146,7 @@ module Builder
             let savePath = Path.Join(saveDir,$"{post.Source}.html")
             File.WriteAllText(savePath,generatedContent))
 
-        File.WriteAllText(Path.Join(outputDir,"index.html"),feedPage)
+        File.WriteAllText(Path.Join(saveDir, "index.html"),feedPage)
 
         
         

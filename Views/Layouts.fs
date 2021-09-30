@@ -35,7 +35,7 @@ module Layouts
                         a [_class "nav-link"; _href "/events.html"] [ Text "Events" ]
                     ]
                     li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/feed.html"] [ Text "Feed" ]
+                        a [_class "nav-link"; _href "/feed/index.html"] [ Text "Feed" ]
                     ]                                        
                 ]
                 a [_href "/feed.rss"] [
