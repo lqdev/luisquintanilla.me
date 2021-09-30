@@ -1,7 +1,7 @@
 ---
 title: Transcribing Podcasts with Microsoft Speech API
 tags: azure, csharp, apis, nlp, machine-learning, artificial-intelligence, microsoft
-date: 2018-02-11 20:34:37
+published_date: 2018-02-11 20:34:37
 ---
 
 

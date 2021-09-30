@@ -1,6 +1,6 @@
 ---
 title: Rediscovering the RSS protocol
-date: 2021-04-05 19:30:00
+published_date: 2021-04-05 19:30:00
 tags: protocols, web, rss
 ---
 

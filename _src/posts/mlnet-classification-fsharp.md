@@ -1,6 +1,6 @@
 ---
 title: Classification with F# ML.NET Models 
-date: 2018-06-13 18:19:05
+published_date: 2018-06-13 18:19:05
 tags: fsharp,dotnet,dotnetcore,programming,development,mlnet,machinelearning,artificialintelligence,functionalprogramming
 ---
 

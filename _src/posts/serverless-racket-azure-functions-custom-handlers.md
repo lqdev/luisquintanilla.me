@@ -1,6 +1,6 @@
 ---
 title: Serverless Racket Applications Using Azure Functions Custom Handlers
-date: 2020-03-21 13:45:43
+published_date: 2020-03-21 13:45:43
 tags: serverless,racket,lisp,azure-functions,azure,programming,web
 ---
 

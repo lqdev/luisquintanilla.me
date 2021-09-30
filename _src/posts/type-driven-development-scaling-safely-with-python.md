@@ -1,6 +1,6 @@
 ---
 title: Type Driven Development - Scaling Safely with Python
-date: 2018-03-24 18:16:31
+published_date: 2018-03-24 18:16:31
 tags: python,static typing,productivity,programming,development
 ---
 

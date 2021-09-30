@@ -1,6 +1,6 @@
 ---
 title: Creating A Login Screen With React Native
-date: 2017-12-09 13:15:57
+published_date: 2017-12-09 13:15:57
 tags: react,react native, javascript
 ---
 

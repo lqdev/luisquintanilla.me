@@ -1,6 +1,6 @@
 ---
 title: Real-Time Sentiment Analysis with C#
-date: 2018-01-18 03:41:47
+published_date: 2018-01-18 03:41:47
 tags: data analysis, sentiment analysis, nlp, machine learning, csharp, c#, twitter, api, .net, dotnet
 ---
 

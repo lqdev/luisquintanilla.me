@@ -150,12 +150,12 @@ let eventView (events: Event array) =
         ]
     ]
 
-let feedView (posts: FeedPost array) =
+let feedView (posts: Post array) =
     div [ _class "d-grip gap-3" ] [
         for post in posts do
             let date =
                 DateTime
-                    .Parse(post.PublishedDate)
+                    .Parse(post.Metadata.Date)
                     .ToShortDateString()
 
             div [ _class "card rounded m-2 w-75 mx-auto" ] [
@@ -180,7 +180,7 @@ let feedView (posts: FeedPost array) =
                     rawText post.Content
                 ]
                 div [_class "card-footer"] [
-                    let permalink = $"/feed/{post.Source}.html" 
+                    let permalink = $"/feed/{post.FileName}.html" 
                     Text "Permalink: " 
                     a [_href permalink] [Text $"https://luisquintanilla.me{permalink}"]
                 ]

@@ -1,7 +1,7 @@
 ---
 title: Make predictions with ML.NET models without defining schema classes
 description: Use the .NET DataFrame API to make predictions with ML.NET models without defining model input and output schema classes. 
-date: 2021-09-16 18:00:00
+published_date: 2021-09-16 18:00:00
 tags: dotnet, machine learning, mlnet, artificial intelligence
 ---
 

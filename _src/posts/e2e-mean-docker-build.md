@@ -1,7 +1,7 @@
 ---
 title: E2E Dockerizing a MEAN Stack Application
 tags: devops,MEAN,mongodb,docker,angular,angularjs,nodejs,javascript,programming,development,docker-compose
-date: 2018-04-29 20:10:09
+published_date: 2018-04-29 20:10:09
 ---
 
 

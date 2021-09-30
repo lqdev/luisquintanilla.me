@@ -1,7 +1,7 @@
 ---
 title: Deploy .NET Machine Learning Models with ML.NET, ASP.NET Core, Docker and Azure Container Instances
 tags: azure, devops, dotnet, ml, ai, microsoft, programming, development, csharp, aci, docker, mlnet, webapi, aspnetcore, aspnet, machinelearning, artificialintelligence
-date: 2018-05-11 21:17:00
+published_date: 2018-05-11 21:17:00
 ---
 
 

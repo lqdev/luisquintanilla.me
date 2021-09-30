@@ -1,6 +1,6 @@
 ---
 title: Use machine learning to categorize web links with F# and ML.NET
-date: 2019-12-17 19:59:06
+published_date: 2019-12-17 19:59:06
 tags: dotnet,dotnet-core,machine-learning,ai,artificial-intelligence,ml,fsharp,functional-programming
 ---
 
