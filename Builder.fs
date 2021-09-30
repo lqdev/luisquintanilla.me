@@ -121,5 +121,21 @@ module Builder
 
         let eventPage = generate (eventView events) "default" "Luis Quintanilla - Events"
         File.WriteAllText(Path.Join(outputDir,"events.html"),eventPage)
+
+    let buildFeed () =
+        let posts = 
+            File.ReadAllText(Path.Join("Data","feed.json"))
+            |> JsonSerializer.Deserialize<FeedPost array>
+            |> Array.map(fun post -> 
+                let filePath = Path.Join(srcDir,"feed",post.Source) 
+                let content = 
+                    filePath
+                    |> convertFileToHtml       
+                { post with Content = content } )
+            |> Array.sortByDescending(fun x -> DateTime.Parse(x.PublishedDate))
+
+        let feedPage = generate (feedView posts) "default" "Luis Quintanilla - Feed"
+        File.WriteAllText(Path.Join(outputDir,"feed.html"),feedPage)
+
         
         
