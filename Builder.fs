@@ -82,14 +82,26 @@ module Builder
         
         posts
 
-    let buildRssFeed (posts: Post array) = 
+    let buildBlogRssFeed (posts: Post array) = 
         let rssPage = 
             posts
             |> Array.sortByDescending(fun x -> x.Metadata.Date)
-            |> generateRss
+            |> generateBlogRss
             |> string
 
-        File.WriteAllText(Path.Join(outputDir,"feed.rss"), rssPage)  
+        let saveDir = Path.Join(outputDir,"posts")
+        File.WriteAllText(Path.Join(saveDir,"index.xml"), rssPage)  
+
+    let buildMainFeedRssPage (posts: Post array) = 
+        let rssPage = 
+            posts
+            |> Array.sortByDescending(fun x -> x.Metadata.Date)
+            |> generateMainFeedRss
+            |> string
+
+        let saveDir = Path.Join(outputDir,"feed")            
+        File.WriteAllText(Path.Join(saveDir,"index.xml"), rssPage)  
+    
 
     let buildPostPages (posts:Post array) = 
         let postPages = 

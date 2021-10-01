@@ -22,13 +22,19 @@ let main argv =
     buildHomePage posts
     buildAboutPage()
     buildContactPage()
-    buildRssFeed posts
-    
+
     // Write Post / Archive Pages
     buildPostPages posts
     buildPostArchive posts
 
-    buildEventPage ()
+    // Build Feed
     buildFeedPages feedPosts
+
+    // Build RSS pages
+    buildBlogRssFeed posts
+    buildMainFeedRssPage feedPosts
+
+    // Build event page
+    buildEventPage ()
 
     0
