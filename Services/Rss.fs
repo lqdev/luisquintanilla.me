@@ -6,7 +6,7 @@ module RssService
     open System.Xml.Linq
     open Domain
 
-    let title = "Luis Quintanilla"
+    let title = "Luis Quintanilla Blog"
     let link = "https://www.luisquintanilla.me"
     let description = "Luis Quintanilla's blog"
     // let lastPubDate = "02/09/2021"
@@ -31,6 +31,7 @@ module RssService
         
         XElement(XName.Get "item",
             XElement(XName.Get "title", entry.Metadata.Title),
+            XElement(XName.Get "description", $"See the post at {url}"),            
             XElement(XName.Get "link", url),
             XElement(XName.Get "guid", url),
             XElement(XName.Get "pubDate", (DateTime.Parse(entry.Metadata.Date).ToShortDateString())))
@@ -66,7 +67,7 @@ module RssService
     let generateMainFeedRss (posts:Post array) =
         let latestPost = posts |> Array.sortByDescending(fun post -> DateTime.Parse(post.Metadata.Date)) |> Array.head 
         let entries = posts |> Array.map(feedEntryXml)
-        let channel = feedChannelXml "Luis Quintanilla" "Main Feed" (DateTime.Parse(latestPost.Metadata.Date).ToShortDateString())
+        let channel = feedChannelXml "Luis Quintanilla Feed" "Main Feed" (DateTime.Parse(latestPost.Metadata.Date).ToShortDateString())
         
         channel.Descendants(XName.Get "channel").First().Add(entries)
         channel 

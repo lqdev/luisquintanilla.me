@@ -1,18 +1,20 @@
 <rss version="2.0">
   <channel>
-    <title>Luis Quintanilla</title>
+    <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
     <lastPubDate>9/29/2021</lastPubDate>
     <language>en</language>
     <item>
       <title>When Planets Mate</title>
+      <description>See the post at https://www.luisquintanilla.me/feed/when-planets-mate.html</description>
       <link>https://www.luisquintanilla.me/feed/when-planets-mate.html</link>
       <guid>https://www.luisquintanilla.me/feed/when-planets-mate.html</guid>
       <pubDate>9/29/2021</pubDate>
     </item>
     <item>
       <title>Hello World</title>
+      <description>See the post at https://www.luisquintanilla.me/feed/hello-world.html</description>
       <link>https://www.luisquintanilla.me/feed/hello-world.html</link>
       <guid>https://www.luisquintanilla.me/feed/hello-world.html</guid>
       <pubDate>9/29/2021</pubDate>
