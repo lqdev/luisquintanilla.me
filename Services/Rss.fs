@@ -59,7 +59,7 @@ module RssService
     let generateBlogRss (posts:Post array) = 
         let latestPost = posts |> Array.sortByDescending(fun post -> DateTime.Parse(post.Metadata.Date)) |> Array.head 
         let entries = posts |> Array.map(blogEntryXml)
-        let channel = blogChannelXml latestPost.Metadata.Date)
+        let channel = blogChannelXml latestPost.Metadata.Date
         
         channel.Descendants(XName.Get "channel").First().Add(entries)
         channel
