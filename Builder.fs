@@ -154,7 +154,7 @@ module Builder
         let postViews = 
             parsedPosts
             |> Array.map(fun post -> 
-                let postView = post.Content |> postView
+                let postView = feedPostView post
                 post.FileName,generate postView "default" post.Metadata.Title)
         
         let saveDir = Path.Join(outputDir,"feed")
