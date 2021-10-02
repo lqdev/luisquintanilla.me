@@ -34,7 +34,7 @@ module RssService
             XElement(XName.Get "description", $"See the post at {url}"),            
             XElement(XName.Get "link", url),
             XElement(XName.Get "guid", url),
-            XElement(XName.Get "pubDate", DateTime.Parse(entry.Metadata.Date))
+            XElement(XName.Get "pubDate", entry.Metadata.Date))
 
     let blogChannelXml (lastPubDate:string) = 
         XElement(XName.Get "rss",
