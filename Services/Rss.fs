@@ -22,7 +22,7 @@ module RssService
             XElement(XName.Get "description", entry.Metadata.Description),
             XElement(XName.Get "link", url),
             XElement(XName.Get "guid", url),
-            XElement(XName.Get "pubDate", (DateTime.Parse(entry.Metadata.Date).ToString("D"))))    
+            XElement(XName.Get "pubDate", entry.Metadata.Date))    
 
     let feedEntryXml (entry:Post) =
 
@@ -34,7 +34,7 @@ module RssService
             XElement(XName.Get "description", $"See the post at {url}"),            
             XElement(XName.Get "link", url),
             XElement(XName.Get "guid", url),
-            XElement(XName.Get "pubDate", (DateTime.Parse(entry.Metadata.Date).ToString("D"))))
+            XElement(XName.Get "pubDate", DateTime.Parse(entry.Metadata.Date))
 
     let blogChannelXml (lastPubDate:string) = 
         XElement(XName.Get "rss",
@@ -59,7 +59,7 @@ module RssService
     let generateBlogRss (posts:Post array) = 
         let latestPost = posts |> Array.sortByDescending(fun post -> DateTime.Parse(post.Metadata.Date)) |> Array.head 
         let entries = posts |> Array.map(blogEntryXml)
-        let channel = blogChannelXml (DateTime.Parse(latestPost.Metadata.Date).ToString("D"))
+        let channel = blogChannelXml latestPost.Metadata.Date)
         
         channel.Descendants(XName.Get "channel").First().Add(entries)
         channel
@@ -67,7 +67,7 @@ module RssService
     let generateMainFeedRss (posts:Post array) =
         let latestPost = posts |> Array.sortByDescending(fun post -> DateTime.Parse(post.Metadata.Date)) |> Array.head 
         let entries = posts |> Array.map(feedEntryXml)
-        let channel = feedChannelXml "Luis Quintanilla Feed" "Main Feed" (DateTime.Parse(latestPost.Metadata.Date).ToString("D"))
+        let channel = feedChannelXml "Luis Quintanilla Feed" "Main Feed" latestPost.Metadata.Date)
         
         channel.Descendants(XName.Get "channel").First().Add(entries)
         channel 
