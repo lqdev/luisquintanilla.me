@@ -18,6 +18,10 @@ let main argv =
     let posts = loadPosts() 
     let feedPosts = loadFeed ()
 
+    let notePosts = filterFeedByPostType feedPosts "note"
+    let photoPosts = filterFeedByPostType feedPosts "photo"
+    let videoPosts = filterFeedByPostType feedPosts "video"
+
     // Write Home / About / RSS Pages    
     buildHomePage posts
     buildAboutPage()
@@ -28,12 +32,16 @@ let main argv =
     buildPostArchive posts
 
     // Build Feed
-    buildFeedPages feedPosts
+    buildFeedPage feedPosts "Luis Quintanilla - Everything Feed" "index"
+    buildFeedPage notePosts "Luis Quintanilla - Note Feed" "notes"
+    buildFeedPage videoPosts "Luis Quintanilla - Videos Feed" "videos"
 
     // Build RSS pages
     buildBlogRssFeed posts
-    buildMainFeedRssPage feedPosts
-
+    buildFeedRssPage feedPosts "index"
+    buildFeedRssPage notePosts "notes"
+    buildFeedRssPage videoPosts "videos"
+    
     // Build event page
     buildEventPage ()
 

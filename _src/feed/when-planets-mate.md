@@ -1,5 +1,5 @@
 ---
-post_type: "note" 
+post_type: "video" 
 title: "When Planets Mate"
 published_date: "09/29/2021 07:56 PM"
 ---
