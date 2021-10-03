@@ -31,7 +31,7 @@ module RssService
         
         XElement(XName.Get "item",
             XElement(XName.Get "title", entry.Metadata.Title),
-            XElement(XName.Get "description", $"See the post at {url}"),            
+            XElement(XName.Get "description", $"See the post at <a href=\"{url}\">{url}</a>"),            
             XElement(XName.Get "link", url),
             XElement(XName.Get "guid", url),
             XElement(XName.Get "pubDate", entry.Metadata.Date))
