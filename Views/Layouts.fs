@@ -34,8 +34,29 @@ module Layouts
                     li [_class "nav-item"] [
                         a [_class "nav-link"; _href "/events.html"] [ Text "Events" ]
                     ]
-                    li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/feed/index.html"] [ Text "Feed" ]
+                    li [_class "nav-item dropdown"] [
+                        a [
+                            _class "nav-link dropdown-toggle"
+                            _href "#"
+                            _id "navbarDropdown"
+                            attr "role" "button"
+                            attr "data-toggle" "dropdown"
+                            attr "aria-haspopup" "true"
+                            attr "aria-expanded" "false"
+                        ] [
+                            Text "Feeds"
+                        ]
+                        div [
+                            _class "dropdown-menu"
+                            attr "aria-labelledby" "navbarDropdown"
+                            ] [
+                                a [_class "dropdown-item"; _href "/feed/index.html"] [Text "Main"]
+                                a [_class "dropdown-item"; _href "/feed/notes.html"] [Text "Notes"]
+                                a [_class "dropdown-item"; _href "/feed/videos.html"] [Text "Videos"]
+                                div [_class "dropdown-divider"] []
+                                a [_class "dropdown-item"; _href "/feed/blogroll.html"] [Text "Blogroll"]
+                        ]
+                        // a [_class "nav-link"; _href "/feed/index.html"] [ Text "Feeds" ]
                     ]                                        
                 ]
                 a [_href "/feed.rss"] [

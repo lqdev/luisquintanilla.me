@@ -51,19 +51,24 @@ module Builder
             |> Array.take 5 
 
         let recentPostsContent = generatePartial (recentPostsView recentPosts)
-        let homePage = generate (homeView recentPostsContent) "default" "Luis Quintanilla - Home"
+        let homePage = generate (homeView recentPostsContent) "default" "Home - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"index.html"),homePage)
 
     let buildAboutPage () = 
 
         let aboutContent = convertFileToHtml (Path.Join(srcDir,"about.md")) |> aboutView
-        let aboutPage = generate aboutContent "default" "Luis Quintanilla - About"
+        let aboutPage = generate aboutContent "default" "About - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"about.html"), aboutPage)
 
+    let buildBlogrollPage () = 
+        let blogRollContent = Path.Join(srcDir,"blogroll.md") |> convertFileToHtml |> blogRollView
+        let blogRollPage = generate blogRollContent "default" "Blogroll - Luis Quintanilla"
+        File.WriteAllText(Path.Join(outputDir,"feed","blogroll.html"), blogRollPage)
+        
     let buildContactPage () = 
 
         let contactContent = convertFileToHtml (Path.Join(srcDir,"contact.md")) |> contactView
-        let contactPage = generate contactContent "default" "Luis Quintanilla - Contact"
+        let contactPage = generate contactContent "default" "Contact - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"contact.html"), contactPage)
 
     let loadPosts () = 
@@ -92,7 +97,7 @@ module Builder
         let saveDir = Path.Join(outputDir,"posts")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), rssPage)  
 
-    let buildMainFeedRssPage (posts: Post array) = 
+    let buildFeedRssPage (posts: Post array) (saveFileName:string)= 
         let rssPage = 
             posts
             |> Array.sortByDescending(fun x -> x.Metadata.Date)
@@ -100,18 +105,17 @@ module Builder
             |> string
 
         let saveDir = Path.Join(outputDir,"feed")            
-        File.WriteAllText(Path.Join(saveDir,"index.xml"), rssPage)  
+        File.WriteAllText(Path.Join(saveDir,$"{saveFileName}.xml"), rssPage)  
     
-
     let buildPostPages (posts:Post array) = 
         let postPages = 
             posts
             |> Array.map(fun post -> 
                 let postView = post.Content |> ConvertMdToHtml |> postView
-                post.FileName,generate postView "default" post.Metadata.Title)
+                post.FileName,generate postView "default" $"{post.Metadata.Title} - Luis Quintanilla")
         
         let saveDir = Path.Join(outputDir,"posts")
-        Directory.CreateDirectory(saveDir) |> ignore
+        // Directory.CreateDirectory(saveDir) |> ignore
         postPages
         |> Array.iter(fun (fileName,html) ->
             let saveFileName = sprintf "%s.html" fileName
@@ -128,7 +132,7 @@ module Builder
             let len = posts |> Array.chunkBySize postsPerPage |> Array.length
             let currentPage = i + 1
             let idx = string currentPage
-            let page = generate (postPaginationView currentPage len x) "default" (sprintf "Luis Quintanilla - Posts %s" idx)
+            let page = generate (postPaginationView currentPage len x) "default" $"Posts {idx} - Luis Quintanilla"
             let dir = Directory.CreateDirectory(Path.Join(outputDir,"posts", idx))
             let fileName = "index.html"
             File.WriteAllText(Path.Join(dir.FullName,fileName), page))
@@ -139,31 +143,36 @@ module Builder
             |> JsonSerializer.Deserialize<Event array>
             |> Array.sortByDescending(fun x -> DateTime.Parse(x.Date))
 
-        let eventPage = generate (eventView events) "default" "Luis Quintanilla - Events"
+        let eventPage = generate (eventView events) "default" "Events - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"events.html"),eventPage)
 
-    let buildFeedPages (posts:Post array) =
+    let filterFeedByPostType (posts: Post array) (postType: string) = 
+        posts |> Array.filter(fun post -> post.Metadata.PostType = postType)
+
+    let buildFeedPage (posts:Post array) (feedTitle:string) (saveFileName:string) =
         
+        // Convert post markdown to HTML
         let parsedPosts = 
             posts 
             |> Array.map(fun post -> {post with Content = post.Content |> ConvertMdToHtml})
             |> Array.sortByDescending(fun post -> DateTime.Parse(post.Metadata.Date))
 
-        let feedPage = generate (feedView parsedPosts) "default" "Luis Quintanilla - Feed"
-
-        let postViews = 
-            parsedPosts
-            |> Array.map(fun post -> 
-                let postView = feedPostView post
-                post.FileName,generate postView "default" post.Metadata.Title)
+        // Generate aggregate feed
+        let feedPage = generate (feedView parsedPosts) "default" feedTitle
         
+        // Create directories
         let saveDir = Path.Join(outputDir,"feed")
-        Directory.CreateDirectory(saveDir) |> ignore
-        
-        postViews
+        // Directory.CreateDirectory(saveDir) |> ignore
+
+        // Generate individual feed posts        
+        parsedPosts
+        |> Array.map(fun post -> 
+            let postView = feedPostView post
+            post.FileName,generate postView "default" post.Metadata.Title)
         |> Array.iter(fun (fileName,html) ->
             let saveFileName = sprintf "%s.html" fileName
             let savePath = Path.Join(saveDir,saveFileName)
             File.WriteAllText(savePath,html))        
-
-        File.WriteAllText(Path.Join(saveDir, "index.html"),feedPage)
+    
+        // Save feed
+        File.WriteAllText(Path.Join(saveDir, $"{saveFileName}.html"), feedPage)
