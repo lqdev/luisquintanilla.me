@@ -1,6 +1,7 @@
 // Learn more about F# at http://docs.microsoft.com/dotnet/fsharp
 
 open Builder
+open System.IO
 
 [<EntryPoint>]
 let main argv =
@@ -11,6 +12,10 @@ let main argv =
     // Prep work
     cleanOutputDirectory outputDir
     copyStaticFiles ()
+
+    //Create directories
+    Path.Join(outputDir,"feed") |> Directory.CreateDirectory |> ignore
+    Path.Join(outputDir,"posts") |> Directory.CreateDirectory |> ignore
     // copyStaticFiles srcDir outputDir
     // copyImages "images" "images"
 
@@ -24,17 +29,18 @@ let main argv =
 
     // Write Home / About / RSS Pages    
     buildHomePage posts
-    buildAboutPage()
-    buildContactPage()
+    buildAboutPage ()
+    buildContactPage ()
+    buildBlogrollPage ()
 
     // Write Post / Archive Pages
     buildPostPages posts
     buildPostArchive posts
 
     // Build Feed
-    buildFeedPage feedPosts "Luis Quintanilla - Everything Feed" "index"
-    buildFeedPage notePosts "Luis Quintanilla - Note Feed" "notes"
-    buildFeedPage videoPosts "Luis Quintanilla - Videos Feed" "videos"
+    buildFeedPage feedPosts "Main Feed - Luis Quintanilla" "index"
+    buildFeedPage notePosts "Notes Feed - Luis Quintanilla" "notes"
+    buildFeedPage videoPosts "Videos Feed - Luis Quintanilla" "videos"
 
     // Build RSS pages
     buildBlogRssFeed posts

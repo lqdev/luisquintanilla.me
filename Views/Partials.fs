@@ -54,6 +54,11 @@ let contactView content =
         rawText content
     ]
 
+let blogRollView content = 
+    div [ _class "mr-auto" ] [
+        rawText content
+    ]
+
 let postView content =
     div [ _class "mr-auto" ] [
         rawText content
