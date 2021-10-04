@@ -15,7 +15,7 @@ I'm passionate about:
 
 ## About this site
 
-This site is my digital presence in the interwebs.
+This site is my digital presence and digital garden in the interwebs.
 
 The [blog](/posts/1/index.html) section contains mainly long-form articles. As I tinker with different technologies, I write down the steps and process I went through to get something working. Therefore they mostly serve the purpose of helping me remember how I did something in case I want to do it again in the future. I also post these in hopes that they may be of help to others trying to solve similar problems.
 
