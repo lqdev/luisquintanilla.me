@@ -83,7 +83,7 @@ For more information on creating snippets, see [Create your own snippets](https:
 
 1. A tooltip with your snippet's description appears. Press **Enter**. 
 
-At this point, your 
+At this point, your snippet's prefix is replaced with the content defined in the snippet's body.
 
 ## Conclusion
 
