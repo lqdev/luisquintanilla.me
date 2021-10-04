@@ -71,7 +71,7 @@ module Builder
         File.WriteAllText(Path.Join(outputDir,"irl-stack.html"), irlStackPage)        
 
     let buildColophonPage () = 
-        let colophonContent = Path.Join(srcDir,"irl-stack.md") |> convertFileToHtml |> irlStackView
+        let colophonContent = Path.Join(srcDir,"colophon.md") |> convertFileToHtml |> irlStackView
         let colophonPage = generate colophonContent "default" "Colophon - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"colophon.html"), colophonPage)        
             
