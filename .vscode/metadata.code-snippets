@@ -11,6 +11,19 @@
 		],
 		"description": "Generic feed post metadata"
 	},
+	"Article Post metadata": {
+		"scope": "markdown",
+		"prefix": "article",
+		"body": [
+			"---",
+			"post_type: \"article\" ",
+			"title: \"\"",
+			"published_date: \"$CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE\"",
+			"tags: ",
+			"---"
+		],
+		"description": "Blog post article metadata"
+	},	
 	"Note Feed metadata": {
 		"scope": "markdown",
 		"prefix": "note",
