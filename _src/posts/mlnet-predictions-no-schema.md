@@ -87,9 +87,9 @@ let prediction = predictionDV.ToDataFrame(1L, outputColumnNames)
 
 The resulting DataFrame should look something like the following:
 
-| index | PredictedLabel | Score |
-|---|---|---|
-|0 |False | -2.1337974 |
+index | PredictedLabel | Score 
+-|-|-
+0 |False | -2.1337974 
 
 ## Conclusion
 
