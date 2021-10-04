@@ -23,6 +23,8 @@ The feed is like a microblog with content ordered in chronological order. It col
 
 The [main feed](/feed/index.html) aggregates content of all types. [Note](/feed/notes.html) and [video](/feed/videos.html) feeds as their name suggest contain text content and videos I find interesting.
 
+For more details on how this site is built, check out the [colophon](/colophon.html)
+
 ## Subscribe & follow <span id="subscribe"></span>
 
 Subscribe to all content on this site through the respective RSS feeds.
