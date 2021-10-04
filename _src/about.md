@@ -1,6 +1,6 @@
 # About Luis Quintanilla
 
-Luis Quintanilla is a developer and content creator based out of the NYC area. Currently at Microsoft working on Azure Machine Learning, ML .NET and .NET for Apache Spark.
+Luis Quintanilla is a technologist, developer, and content creator based out of the NYC area. Currently at Microsoft working on Azure Machine Learning, ML .NET and .NET for Apache Spark.
 
 I'm passionate about:
 
@@ -13,9 +13,30 @@ I'm passionate about:
 
 <a href="/contact.html"><button type="button" class="btn btn-dark">Get in touch!</button></a>
 
-## Tech
+## About this site
 
-A list of technologies I have experience with. For a list of products, apps, and services I use in my day-to-day, check out my [IRL stack](/irl-stack.html).
+This site is my digital presence in the interwebs.
+
+The [blog](/posts/1/index.html) section contains mainly long-form articles. As I tinker with different technologies, I write down the steps and process I went through to get something working. Therefore they mostly serve the purpose of helping me remember how I did something in case I want to do it again in the future. I also post these in hopes that they may be of help to others trying to solve similar problems.
+
+The feed is like a microblog with content ordered in chronological order. It collects in a single place snippets containing notes, photos, videos, and other types of content. The feed takes inspiration from [IndieWeb posts](https://indieweb.org/posts).
+
+The [main feed](/feed/index.html) aggregates content of all types. [Note](/feed/notes.html) and [video](/feed/video.html) feeds as their name suggest contain text content and videos I find interesting.
+
+## Subscribe & Follow
+
+Subscribe to all my content through the respective RSS feeds.
+
+<a href="/posts/index.xml"><button type="button" class="btn btn-dark">Blog</button></a>
+<a href="/feed/index.xml"><button type="button" class="btn btn-dark">Main Feed</button></a>
+<a href="/feed/notes.xml"><button type="button" class="btn btn-dark">Note Feed</button></a>
+<a href="/feed/videos.xml"><button type="button" class="btn btn-dark">Video Feed</button></a>
+
+## Tech experience
+
+A list of technologies I have experience with. It's not an exhaustive list but some of the ones I commonly use.
+
+For a list of products, apps, and services I use in my day-to-day, check out my [IRL stack](/irl-stack.html).
 
 ### Cloud
 
