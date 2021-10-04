@@ -1,65 +1,63 @@
 # About Luis Quintanilla
 
-Luis Quintanilla is a developer and content creator based out of the NYC area. Currently at Microsoft working on Azure Machine Learning, ML .NET and .NET for Apache Spark.
+Luis Quintanilla is a technologist, developer, and content creator based out of the NYC area. Currently at Microsoft working on Azure Machine Learning, ML .NET and .NET for Apache Spark.
 
 I'm passionate about:
 
 - AI & Machine Learning
+- Open Web
 - Decentralized Web
 - Open Source Software
 - Internet of Things
 - Community Building
 
-[Get in touch](/contact.html)
+<a href="/contact.html"><button type="button" class="btn btn-dark">Get in touch!</button></a>
 
-## What I Use
+## About this site
 
-A list of the things I use in my day-to-day.
+This site is my digital presence in the interwebs.
 
-### Hardware
+The [blog](/posts/1/index.html) section contains mainly long-form articles. As I tinker with different technologies, I write down the steps and process I went through to get something working. Therefore they mostly serve the purpose of helping me remember how I did something in case I want to do it again in the future. I also post these in hopes that they may be of help to others trying to solve similar problems.
 
-- **PC** - Surface Go / Laptop
-- **Phone** - [Schok Classic](https://schokgear.com/)
-- **Music & Podcasts** - [FiiO M6](https://www.fiio.com/m6)
-- **E-Reader** - [Pocketbook Touch Lux 5](https://www.pocketbook-int.com/int)
-- **Camera** - [Canon PowerShot SX740](https://www.usa.canon.com/internet/portal/us/home/products/details/cameras/point-and-shoot-digital-cameras/long-zoom-cameras/powershot-sx740-hs)
-- **Fitness Tracker & GPS** - [Garmin Fenix 6 Pro](https://buy.garmin.com/en-US/US/p/641435/pn/010-02157-10)
-- **Homelab server** - [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
+The feed is like a microblog with content ordered in chronological order. It collects in a single place snippets containing notes, photos, videos, and other types of content. The feed takes inspiration from [IndieWeb posts](https://indieweb.org/posts).
 
-### Software
+The [main feed](/feed/index.html) aggregates content of all types. [Note](/feed/notes.html) and [video](/feed/video.html) feeds as their name suggest contain text content and videos I find interesting.
 
-#### OS
+## Subscribe & Follow
 
-- [Manjaro](https://manjaro.org/)
-- [Windows 10](https://www.microsoft.com/software-download/windows10)
-- [Ubuntu](https://ubuntu.com/)
+Subscribe to all my content through the respective RSS feeds.
 
-#### Languages
+<a href="/posts/index.xml"><button type="button" class="btn btn-dark">Blog</button></a>
+<a href="/feed/index.xml"><button type="button" class="btn btn-dark">Main Feed</button></a>
+<a href="/feed/notes.xml"><button type="button" class="btn btn-dark">Note Feed</button></a>
+<a href="/feed/videos.xml"><button type="button" class="btn btn-dark">Video Feed</button></a>
+
+## Tech experience
+
+A list of technologies I have experience with. It's not an exhaustive list but some of the ones I commonly use.
+
+For a list of products, apps, and services I use in my day-to-day, check out my [IRL stack](/irl-stack.html).
+
+### Cloud
+
+- [Azure](https://azure.microsoft.com/)
+- [Linode](https://www.linode.com/)
+
+### Languages
 
 - [.NET (C#/F#)](https://dotnet.microsoft.com/)
 - [Python](https://www.python.org/)
 - JavaScript
+- [R](https://www.r-project.org/)
 - [Racket](https://racket-lang.org/)
 
-#### Data Processing
+### Data Processing
 
 - [Apache Spark](https://spark.apache.org/)
 - [.NET for Apache Spark](https://dotnet.microsoft.com/apps/data/spark)
 - [Pandas](https://pandas.pydata.org/)
 
-#### Developer tools
-
-- GitHub
-- Azure DevOps
-- [Visual Studio](https://visualstudio.microsoft.com/), [Visual Studio Code](https://code.visualstudio.com/)
-- [Ionide](https://ionide.io/)
-- DrRacket
-- [.NET Interactive](https://github.com/dotnet/interactive)
-- Jupyter Notebooks, Jupyter Lab
-- [Insomina](https://insomnia.rest/)
-- [Netron](https://github.com/lutzroeder/netron)
-
-#### Machine Learning
+### Machine Learning
 
 - [ML.NET](https://dotnet.microsoft.com/apps/machinelearning-ai/ml-dotnet)
 - [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/)
@@ -68,17 +66,11 @@ A list of the things I use in my day-to-day.
 - [Scikit Learn](https://scikit-learn.org/stable/index.html)
 - [ONNX](https://onnx.ai/)
 
-#### Web
+### Web
 
-- ASP.NET, ASP.NET Core
-- Azure Functions
+- [ASP.NET Core](https://dotnet.microsoft.com/apps/aspnet)
+- [Express](http://expressjs.com/)
+- [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+- [Azure Functions](https://azure.microsoft.com/services/functions/)
 - [Docker](https://www.docker.com/)
 - [Kubernetes](https://kubernetes.io/)
-
-#### Communication
-
-- [Jitsi](https://jitsi.org/)
-- [Jami](https://jami.net/)
-- [Matrix](https://matrix.org/)
-- [Mastodon](https://joinmastodon.org/)
-- [Scuttlebutt](https://scuttlebutt.nz/)

@@ -64,6 +64,11 @@ module Builder
         let blogRollContent = Path.Join(srcDir,"blogroll.md") |> convertFileToHtml |> blogRollView
         let blogRollPage = generate blogRollContent "default" "Blogroll - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"feed","blogroll.html"), blogRollPage)
+
+    let buildIRLStackPage () = 
+        let irlStackContent = Path.Join(srcDir,"irl-stack.md") |> convertFileToHtml |> irlStackView
+        let irlStackPage = generate irlStackContent "default" "In Real Life Stack - Luis Quintanilla"
+        File.WriteAllText(Path.Join(outputDir,"irl-stack.html"), irlStackPage)        
         
     let buildContactPage () = 
 
