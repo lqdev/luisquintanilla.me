@@ -32,6 +32,7 @@ let main argv =
     buildAboutPage ()
     buildContactPage ()
     buildBlogrollPage ()
+    buildIRLStackPage ()
 
     // Write Post / Archive Pages
     buildPostPages posts

@@ -59,6 +59,11 @@ let blogRollView content =
         rawText content
     ]
 
+let irlStackView content = 
+    div [ _class "mr-auto" ] [
+        rawText content
+    ]    
+
 let postView content =
     div [ _class "mr-auto" ] [
         rawText content
