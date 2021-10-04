@@ -84,6 +84,7 @@ module Layouts
                 
 
                 meta [_name "viewport"; _content "width=device-width, initial-scale=1, shrink-to-fit=no"]
+                meta [_charset "UTF-8"]
                 meta [_property "og:title"; _content pageTitle]
                 meta [_property "og:type"; _content "website"]
                 meta [_property "og:image"; _content "https://www.luisquintanilla.me/avatar.png"]
