@@ -27,18 +27,19 @@ let main argv =
     let photoPosts = filterFeedByPostType feedPosts "photo"
     let videoPosts = filterFeedByPostType feedPosts "video"
 
-    // Write Home / About / RSS Pages    
+    // Build static pages
     buildHomePage posts
     buildAboutPage ()
     buildContactPage ()
     buildBlogrollPage ()
     buildIRLStackPage ()
+    buildColophonPage ()
 
     // Write Post / Archive Pages
     buildPostPages posts
     buildPostArchive posts
 
-    // Build Feed
+    // Build Feeds
     buildFeedPage feedPosts "Main Feed - Luis Quintanilla" "index"
     buildFeedPage notePosts "Notes Feed - Luis Quintanilla" "notes"
     buildFeedPage videoPosts "Videos Feed - Luis Quintanilla" "videos"

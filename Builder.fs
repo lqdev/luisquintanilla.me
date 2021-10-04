@@ -69,7 +69,12 @@ module Builder
         let irlStackContent = Path.Join(srcDir,"irl-stack.md") |> convertFileToHtml |> irlStackView
         let irlStackPage = generate irlStackContent "default" "In Real Life Stack - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"irl-stack.html"), irlStackPage)        
-        
+
+    let buildColophonPage () = 
+        let colophonContent = Path.Join(srcDir,"irl-stack.md") |> convertFileToHtml |> irlStackView
+        let colophonPage = generate colophonContent "default" "Colophon - Luis Quintanilla"
+        File.WriteAllText(Path.Join(outputDir,"colophon.html"), colophonPage)        
+            
     let buildContactPage () = 
 
         let contactContent = convertFileToHtml (Path.Join(srcDir,"contact.md")) |> contactView
