@@ -59,7 +59,7 @@ module Layouts
                         // a [_class "nav-link"; _href "/feed/index.html"] [ Text "Feeds" ]
                     ]                                        
                 ]
-                a [_href "/feed.rss"] [
+                a [_href "/about.html#subscribe"] [
                     tag "svg" [
                         _class "bi bi-rss text-secondary" 
                         attr "fill" "currentColor"

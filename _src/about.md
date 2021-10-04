@@ -23,9 +23,9 @@ The feed is like a microblog with content ordered in chronological order. It col
 
 The [main feed](/feed/index.html) aggregates content of all types. [Note](/feed/notes.html) and [video](/feed/videos.html) feeds as their name suggest contain text content and videos I find interesting.
 
-## Subscribe & Follow
+## Subscribe & follow <span id="subscribe"></span>
 
-Subscribe to all my content through the respective RSS feeds.
+Subscribe to all content on this site through the respective RSS feeds.
 
 <a href="/posts/index.xml"><button type="button" class="btn btn-dark">Blog</button></a>
 <a href="/feed/index.xml"><button type="button" class="btn btn-dark">Main Feed</button></a>
