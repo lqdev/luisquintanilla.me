@@ -21,7 +21,7 @@ The [blog](/posts/1/index.html) section contains mainly long-form articles. As I
 
 The feed is like a microblog with content ordered in chronological order. It collects in a single place snippets containing notes, photos, videos, and other types of content. The feed takes inspiration from [IndieWeb posts](https://indieweb.org/posts).
 
-The [main feed](/feed/index.html) aggregates content of all types. [Note](/feed/notes.html) and [video](/feed/video.html) feeds as their name suggest contain text content and videos I find interesting.
+The [main feed](/feed/index.html) aggregates content of all types. [Note](/feed/notes.html) and [video](/feed/videos.html) feeds as their name suggest contain text content and videos I find interesting.
 
 ## Subscribe & Follow
 
