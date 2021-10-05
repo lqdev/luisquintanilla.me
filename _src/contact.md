@@ -2,7 +2,7 @@
 
 Say hi on any of these platforms.
 
-- **Matrix** <- @lqdev at lqdev dot tech |> [QR Code](/images/qr-matrix.png)
+- **Matrix** <- @lqdev : lqdev dot tech |> [QR Code](/images/qr-matrix.png)
 - **Mastodon** <-  @lqdev at toot dot lqdev dot tech |> [QR Code](/images/qr-mastodon.png)
 - **Pixelfed** <- @lqdev at pixel dot lqdev dot tech |> [QR Code](/images/qr-pixelfed.png)
 - **GitHub** <- lqdev |> [QR Code](/images/qr-github.png)
