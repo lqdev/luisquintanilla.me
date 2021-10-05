@@ -100,7 +100,7 @@ module Builder
     let buildBlogRssFeed (posts: Post array) = 
         let rssPage = 
             posts
-            |> Array.sortByDescending(fun x -> x.Metadata.Date)
+            |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
             |> generateBlogRss
             |> string
 
@@ -110,7 +110,7 @@ module Builder
     let buildFeedRssPage (posts: Post array) (saveFileName:string)= 
         let rssPage = 
             posts
-            |> Array.sortByDescending(fun x -> x.Metadata.Date)
+            |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
             |> generateMainFeedRss
             |> string
 
