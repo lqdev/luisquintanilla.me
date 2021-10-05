@@ -11,3 +11,5 @@ No Windows 11 upgrade for me. 😥
 Just because I can't doesn't mean you can't though. Go and check if you're eligible at Windows Update
 
 **Start > Settings > Update & Security > Windows Update**.
+
+See [Manage updates in Windows](https://support.microsoft.com/windows/manage-updates-in-windows-643e9ea7-3cf6-7da6-a25c-95d4f7f099fe#WindowsVersion=Windows_10) for more details.
