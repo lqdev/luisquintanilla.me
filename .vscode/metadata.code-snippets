@@ -18,6 +18,7 @@
 			"---",
 			"post_type: \"article\" ",
 			"title: \"\"",
+			"description: \"\"",
 			"published_date: \"$CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE\"",
 			"tags: ",
 			"---"
