@@ -60,5 +60,17 @@
 			"---"
 		],
 		"description": "Generic feed post metadata"
-	}		
+	},
+	"Event entry": {
+		"scope": "json",
+		"prefix": "event",
+		"body": [
+			"{",
+			"\"Name\": \"\",",
+			"\"Date\": \"$CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE\",",
+			"\"Url\": \"\"",
+			"},"
+		],
+		"description": "Event entry"
+	}			
 }

@@ -1,5 +1,20 @@
 [
     {
+    "Name": "DEVintersection",
+    "Date": "12/08/2021 12:00 AM",
+    "Url": "https://www.devintersection.com/"
+    },
+    {
+    "Name": ".NET Conf 2021",
+    "Date": "11/10/2021 1:00 PM",
+    "Url": "https://www.dotnetconf.net/"
+    },
+    {
+    "Name": "Let's Learn .NET - Machine Learning",
+    "Date": "10/28/2021 10:30 AM",
+    "Url": "https://docs.microsoft.com/events/learntv/lets-learn-dotnet-machine-learning-october-2021/"
+    },
+    {
         "Name": "Let's Learn .NET - F#",
         "Date": "07/30/2021 11:30 AM",
         "Url": "https://yewtu.be/watch?v=u92dj5h4nrA"
