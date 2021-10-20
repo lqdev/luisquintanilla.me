@@ -16,12 +16,14 @@ let main argv =
     //Create directories
     Path.Join(outputDir,"feed") |> Directory.CreateDirectory |> ignore
     Path.Join(outputDir,"posts") |> Directory.CreateDirectory |> ignore
+    Path.Join(outputDir,"presentations") |> Directory.CreateDirectory |> ignore
     // copyStaticFiles srcDir outputDir
     // copyImages "images" "images"
 
     // Data
     let posts = loadPosts() 
     let feedPosts = loadFeed ()
+    let presentations = loadPresentations ()
 
     let notePosts = filterFeedByPostType feedPosts "note"
     let photoPosts = filterFeedByPostType feedPosts "photo"
@@ -49,8 +51,11 @@ let main argv =
     buildFeedRssPage feedPosts "index"
     buildFeedRssPage notePosts "notes"
     buildFeedRssPage videoPosts "videos"
-    
+   
     // Build event page
     buildEventPage ()
+
+    // Build presentaitons page
+    buildPresentationsPage presentations
 
     0

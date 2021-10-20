@@ -205,3 +205,16 @@ let feedView (posts: Post array) =
         for post in posts do
             feedPostView post
     ]
+
+let presentationView (content:string) = 
+    div [_class "presentation-container"] [
+        div [ _class "reveal"] [
+            div [ _class "slides"] [
+                section [ flag "data-markdown"] [
+                    textarea [ flag "data-template" ] [
+                        rawText content
+                    ]
+                ]
+            ]
+        ]  
+    ]
