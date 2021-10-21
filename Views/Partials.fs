@@ -206,15 +206,22 @@ let feedView (posts: Post array) =
             feedPostView post
     ]
 
-let presentationView (content:string) = 
+let presentationView (presentation:Presentation) = 
     div [_class "presentation-container"] [
+        h2 [] [Text presentation.Metadata.Title]
         div [ _class "reveal"] [
             div [ _class "slides"] [
                 section [ flag "data-markdown"] [
                     textarea [ flag "data-template" ] [
-                        rawText content
+                        rawText presentation.Content
                     ]
                 ]
             ]
+        ]
+        hr []
+        h3 [] [Text "Resources"]
+        ul [] [
+            for resource in presentation.Metadata.Resources do
+                li [] [a [_href $"{resource.Url}"] [Text resource.Text]]
         ]  
     ]
