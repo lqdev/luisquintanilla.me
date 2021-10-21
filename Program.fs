@@ -55,7 +55,7 @@ let main argv =
     // Build event page
     buildEventPage ()
 
-    // Build presentaitons page
-    buildPresentationsPage presentations
+    // Build presentation pages
+    buildPresentationPages presentations
 
     0

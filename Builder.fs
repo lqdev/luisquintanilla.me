@@ -207,7 +207,7 @@ module Builder
         // Save feed
         File.WriteAllText(Path.Join(saveDir, $"{saveFileName}.html"), feedPage)
 
-    let buildPresentationsPage  (presentations:Presentation array) = 
+    let buildPresentationPages (presentations:Presentation array) = 
         presentations
         |> Array.iter(fun presentation ->
             let saveDir = Path.Join(outputDir,"presentations")
