@@ -72,5 +72,27 @@
 			"},"
 		],
 		"description": "Event entry"
+	},
+	"Presentation resource link": {
+		"scope": "markdown",
+		"prefix": "resource-link",
+		"body": [
+			"  - name: ",
+			"    url: "
+		],
+		"description": "Presentation resource link (name and url)"
+	},	
+	"Presentation metadata": {
+		"scope": "markdown",
+		"prefix": "presentation",
+		"body": [
+			"---",
+			"title: \"\" ",
+			"resources:",
+			"  - name: ",
+			"    url: ",						
+			"---"
+		],
+		"description": "Presentation metadata"
 	}			
 }
