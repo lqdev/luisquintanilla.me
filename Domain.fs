@@ -3,6 +3,11 @@ module Domain
     open System
     open YamlDotNet.Serialization
 
+    type YamlResult<'a> = {
+        Yaml: 'a
+        Content: string
+    }
+
     [<CLIMutable>]
     type PostDetails = {
         [<YamlMember(Alias="post_type")>] PostType: string
@@ -29,5 +34,16 @@ module Domain
         PostType: string
         PublishedDate: string
         Source: string
+        Content: string
+    }
+
+    [<CLIMutable>]
+    type PresentationDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+    }
+
+    type Presentation = {
+        FileName: string
+        Metadata: PresentationDetails
         Content: string
     }

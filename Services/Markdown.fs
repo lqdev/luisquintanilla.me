@@ -21,8 +21,7 @@ module MarkdownService
     let ConvertMdToHtml (content:string) = 
         Markdown.ToHtml content
 
-    let parseMarkdown (filePath:string) = 
-
+    let getContentAndMetadata<'a> (filePath:string) : YamlResult<'a> = 
         let yamlSerializer = 
             DeserializerBuilder()
                 .IgnoreUnmatchedProperties()
@@ -45,10 +44,22 @@ module MarkdownService
                 .Replace("---","")
                 .Trim()
 
-        let postDetails = yamlSerializer.Deserialize<PostDetails>(sanitizedYamlBlock)
+        let yaml = yamlSerializer.Deserialize<'a>(sanitizedYamlBlock)
         let mdBlock = 
             fileContents
                 .Substring(yamlBlock.Span.Length)
                 .Trim()
+        
+        { Yaml=yaml ; Content=mdBlock }
 
-        { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = postDetails; Content = mdBlock}
+    let parsePost (filePath:string) : Post = 
+
+        let postDetails = getContentAndMetadata<PostDetails>(filePath)
+
+        { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = postDetails.Yaml; Content = postDetails.Content}
+
+    let parsePresentation (filePath:string) : Presentation = 
+        
+        let presentationDetails = getContentAndMetadata<PresentationDetails>(filePath)
+
+        { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = presentationDetails.Yaml; Content = presentationDetails.Content }

@@ -3,8 +3,15 @@
     <title>Luis Quintanilla Blog</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Luis Quintanilla's blog</description>
-    <lastPubDate>2021-09-22 18:00:00</lastPubDate>
+    <lastPubDate>10/04/2021 19:58</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Automate YAML front-matter generation with custom Visual Studio Code snippets</title>
+      <description />
+      <link>https://www.luisquintanilla.me/posts/automate-yaml-front-matter-vs-code-snippets.html</link>
+      <guid>https://www.luisquintanilla.me/posts/automate-yaml-front-matter-vs-code-snippets.html</guid>
+      <pubDate>10/04/2021 19:58</pubDate>
+    </item>
     <item>
       <title>Proofread articles using Microsoft Edge's Immersive Reader and read aloud</title>
       <description>Improve your proofreading process by reading articles aloud using Immersive Reader in Microsoft Edge</description>

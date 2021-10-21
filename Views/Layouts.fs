@@ -77,14 +77,16 @@ module Layouts
     let defaultLayout (pageTitle:string) (content:string) =
         html [_lang "en"] [
             head [] [
+                meta [_charset "UTF-8"]    
+                meta [_name "viewport"; _content "width=device-width, initial-scale=1, shrink-to-fit=no"]
+                                
                 link [_rel "stylesheet";_href "/css/bootstrap.min.css"] //4.6.0
                 link [_rel "stylesheet";_href "/css/bootstrap-icons-1.5.0/bootstrap-icons.css"]
                 link [_rel "stylesheet";_href "/css/highlight-dark.min.css"] //10.5.0
+                link [_rel "stylesheet"; _href "/lib/revealjs/dist/reveal.css"]
+                link [_rel "stylesheet"; _href "/lib/revealjs/dist/theme/black.css"]
                 link [_rel "stylesheet";_href "/css/main.css"]
-                
 
-                meta [_name "viewport"; _content "width=device-width, initial-scale=1, shrink-to-fit=no"]
-                meta [_charset "UTF-8"]
                 meta [_property "og:title"; _content pageTitle]
                 meta [_property "og:type"; _content "website"]
                 meta [_property "og:image"; _content "https://www.luisquintanilla.me/avatar.png"]
@@ -103,13 +105,26 @@ module Layouts
                 main [attr "role" "main"; _class "container"] [
                     rawText content
                 ]
-                script [_src "/js/jquery.slim.min.js"] [] // 3.5.1
-                script [_src "/js/bootstrap.min.js"] [] // 4.6.0
-                script [_src "/js/highlight.min.js"] [] // 10.5.0
-                script [_src "/js/highlight.fsharp.min.js"] []  // 10.5.0
+                script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
+                script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
+                script [_src "/lib/highlight/highlight.min.js"] [] // 10.5.0
+                script [_src "/lib/highlight/highlight.fsharp.min.js"] [] // 10.5.0
+                
                 script [_type "application/javascript"] [
                     rawText "hljs.initHighlightingOnLoad();"
                 ]
+
+                // Revealjs (As of 10/20/2021)
+                script [_src "/lib/revealjs/dist/reveal.js"] []
+                script [_src "/lib/revealjs/plugin/markdown/markdown.js"] []
+                script [_type "application/javascript"] [
+                    rawText """
+                    Reveal.initialize({
+                        plugins: [ RevealMarkdown ],
+                        embedded: true
+                    });
+                    """
+                ]   
             ]
             footer [] [
                 a [_rel "me"; _href "https://toot.lqdev.tech/@lqdev"] []

@@ -32,3 +32,8 @@ blockquote:before {
 blockquote p {
   display: inline;
 }
+
+.presentation-container {
+  height: 50vh;
+  width: 75vw
+}

@@ -27,8 +27,20 @@ module Builder
         let directories = [   
             "css"
             "css/bootstrap-icons-1.5.0"
-            "js"
-            "images" 
+            // "js"
+            "images"
+            "lib"
+            "lib/boostrap"
+            "lib/highlight"
+            "lib/jquery"
+            "lib/revealjs"
+            "lib/revealjs/dist"
+            "lib/revealjs/dist/theme"
+            "lib/revealjs/dist/theme/fonts"
+            "lib/revealjs/dist/theme/fonts/league-gothic"
+            "lib/revealjs/dist/theme/fonts/source-sans-pro"
+            "lib/revealjs/plugin"
+            "lib/revealjs/plugin/markdown"
         ]
 
         directories
@@ -85,7 +97,7 @@ module Builder
         let postPaths = 
             Directory.GetFiles(Path.Join(srcDir,"posts"))
         
-        let posts = postPaths |> Array.map(parseMarkdown)
+        let posts = postPaths |> Array.map(parsePost)
         
         posts
 
@@ -93,9 +105,17 @@ module Builder
         let postPaths = 
             Directory.GetFiles(Path.Join(srcDir,"feed"))
         
-        let posts = postPaths |> Array.map(parseMarkdown)
+        let posts = postPaths |> Array.map(parsePost)
         
         posts
+
+    let loadPresentations () =
+        let presentationPaths = 
+            Directory.GetFiles(Path.Join(srcDir,"presentations"))
+        
+        let presentations = presentationPaths |> Array.map(parsePresentation)
+        
+        presentations
 
     let buildBlogRssFeed (posts: Post array) = 
         let rssPage = 
@@ -186,3 +206,16 @@ module Builder
     
         // Save feed
         File.WriteAllText(Path.Join(saveDir, $"{saveFileName}.html"), feedPage)
+
+    let buildPresentationPages (presentations:Presentation array) = 
+        presentations
+        |> Array.iter(fun presentation ->
+            let saveDir = Path.Join(outputDir,"presentations")
+            let html = presentationView presentation.Content 
+            let presentationView = generate  html "default" $"{presentation.Metadata.Title} - Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir,$"{presentation.FileName}.html")
+            File.WriteAllText(saveFileName,presentationView))
+
+
+
+        
