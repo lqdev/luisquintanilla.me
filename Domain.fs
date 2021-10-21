@@ -38,8 +38,15 @@ module Domain
     }
 
     [<CLIMutable>]
+    type PresentationResource = {
+        [<YamlMember(Alias="text")>] Text: string
+        [<YamlMember(Alias="url")>] Url: string
+    }
+
+    [<CLIMutable>]
     type PresentationDetails = {
         [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="resources")>] Resources: PresentationResource array
     }
 
     type Presentation = {

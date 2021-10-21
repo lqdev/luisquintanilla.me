@@ -1,5 +1,10 @@
 ---
 title: "Hello World!"
+resources: 
+  - text: "Personal Site"
+    url: "https://www.luisquintanilla.me"
+  - text: "Contact"
+    url: "https://www.luisquintanilla.me/contact.html"
 ---
 
 ## Slide 1

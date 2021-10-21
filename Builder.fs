@@ -211,8 +211,8 @@ module Builder
         presentations
         |> Array.iter(fun presentation ->
             let saveDir = Path.Join(outputDir,"presentations")
-            let html = presentationView presentation.Content 
-            let presentationView = generate  html "default" $"{presentation.Metadata.Title} - Luis Quintanilla"
+            let html = presentationView presentation
+            let presentationView = generate  html "presentation" $"{presentation.Metadata.Title} - Luis Quintanilla"
             let saveFileName = Path.Join(saveDir,$"{presentation.FileName}.html")
             File.WriteAllText(saveFileName,presentationView))
 

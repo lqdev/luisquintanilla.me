@@ -22,8 +22,29 @@ module Layouts
                     li [_class "nav-item active"] [
                         a [_class "nav-link"; _href "/"] [ Text "Home" ]
                     ]
-                    li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/about.html"] [ Text "About" ]
+                    // li [_class "nav-item"] [
+                    //     a [_class "nav-link"; _href "/about.html"] [ Text "About" ]
+                    // ]
+                    li [_class "nav-item dropdown"] [
+                        a [
+                            _class "nav-link dropdown-toggle"
+                            _href "#"
+                            _id "aboutDropdown"
+                            attr "role" "button"
+                            attr "data-toggle" "dropdown"
+                            attr "aria-haspopup" "true"
+                            attr "aria-expanded" "false"
+                        ] [
+                            Text "About"
+                        ]
+                        div [
+                            _class "dropdown-menu"
+                            attr "aria-labelledby" "aboutDropdown"
+                            ] [
+                                a [_class "dropdown-item"; _href "/about.html"] [Text "About Me"]
+                                a [_class "dropdown-item"; _href "/irl-stack.html"] [Text "IRL Stack"]
+                                a [_class "dropdown-item"; _href "/colophon.html"] [Text "Colophon"]
+                        ]
                     ]
                     li [_class "nav-item"] [
                         a [_class "nav-link"; _href "/contact.html"] [ Text "Contact" ]
@@ -38,7 +59,7 @@ module Layouts
                         a [
                             _class "nav-link dropdown-toggle"
                             _href "#"
-                            _id "navbarDropdown"
+                            _id "feedDropdown"
                             attr "role" "button"
                             attr "data-toggle" "dropdown"
                             attr "aria-haspopup" "true"
@@ -48,7 +69,7 @@ module Layouts
                         ]
                         div [
                             _class "dropdown-menu"
-                            attr "aria-labelledby" "navbarDropdown"
+                            attr "aria-labelledby" "feedDropdown"
                             ] [
                                 a [_class "dropdown-item"; _href "/feed/index.html"] [Text "Main"]
                                 a [_class "dropdown-item"; _href "/feed/notes.html"] [Text "Notes"]
@@ -56,7 +77,6 @@ module Layouts
                                 div [_class "dropdown-divider"] []
                                 a [_class "dropdown-item"; _href "/feed/blogroll.html"] [Text "Blogroll"]
                         ]
-                        // a [_class "nav-link"; _href "/feed/index.html"] [ Text "Feeds" ]
                     ]                                        
                 ]
                 a [_href "/about.html#subscribe"] [
@@ -75,6 +95,49 @@ module Layouts
         ]
 
     let defaultLayout (pageTitle:string) (content:string) =
+        html [_lang "en"] [
+            head [] [
+                meta [_charset "UTF-8"]    
+                meta [_name "viewport"; _content "width=device-width, initial-scale=1, shrink-to-fit=no"]
+                                
+                link [_rel "stylesheet";_href "/css/bootstrap.min.css"] //4.6.0
+                link [_rel "stylesheet";_href "/css/bootstrap-icons-1.5.0/bootstrap-icons.css"]
+                link [_rel "stylesheet";_href "/css/highlight-dark.min.css"] //10.5.0
+                link [_rel "stylesheet";_href "/css/main.css"]
+
+                meta [_property "og:title"; _content pageTitle]
+                meta [_property "og:type"; _content "website"]
+                meta [_property "og:image"; _content "https://www.luisquintanilla.me/avatar.png"]
+                meta [_property "og:image:secure_url"; _content "https://www.luisquintanilla.me/avatar.png"]
+                meta [_property "og:image:type"; _content "image/png"]
+                meta [_property "og:image:width"; _content "200"]
+                meta [_property "og:image:height"; _content "200"] 
+                meta [_property "og:site_name"; _content "Luis Quintanilla Personal Website"]
+                meta [_property "og:locale"; _content "en_US"]
+                meta [_property "twitter:image"; _content "https://www.luisquintanilla.me/avatar.png"]
+                meta [_name "robots"; _content "noindex,nofollow,nosnippet"]
+                title [] [Text pageTitle]
+            ]
+            body [] [
+                defaultNavBar
+                main [attr "role" "main"; _class "container"] [
+                    rawText content
+                ]
+                script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
+                script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
+                script [_src "/lib/highlight/highlight.min.js"] [] // 10.5.0
+                script [_src "/lib/highlight/highlight.fsharp.min.js"] [] // 10.5.0
+                
+                script [_type "application/javascript"] [
+                    rawText "hljs.initHighlightingOnLoad();"
+                ]   
+            ]
+            footer [] [
+                a [_rel "me"; _href "https://toot.lqdev.tech/@lqdev"] []
+            ]
+        ]
+
+    let presentationLayout (pageTitle:string) (content:string) =
         html [_lang "en"] [
             head [] [
                 meta [_charset "UTF-8"]    

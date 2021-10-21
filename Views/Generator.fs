@@ -8,6 +8,7 @@ module ViewGenerator
         let viewLayout = 
             match layout with 
             | "default" -> defaultLayout
+            | "presentation" -> presentationLayout
             | _ -> defaultLayout
         
         partialView 
