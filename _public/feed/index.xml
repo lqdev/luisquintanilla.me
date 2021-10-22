@@ -3,8 +3,15 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>10/19/2021 10:51 PM</lastPubDate>
+    <lastPubDate>10/21/2021 21:31</lastPubDate>
     <language>en</language>
+    <item>
+      <title>TIL: Canonical HTML tags</title>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/rel-canonical-tags.html"&gt;https://www.luisquintanilla.me/feed/rel-canonical-tags.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/rel-canonical-tags.html</link>
+      <guid>https://www.luisquintanilla.me/feed/rel-canonical-tags.html</guid>
+      <pubDate>10/21/2021 21:31</pubDate>
+    </item>
     <item>
       <title>Next gen stick figures using AI and NVIDIA Canvas</title>
       <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/nvidia-canvas-next-gen-stick-figures-ai.html"&gt;https://www.luisquintanilla.me/feed/nvidia-canvas-next-gen-stick-figures-ai.html&lt;/a&gt;</description>

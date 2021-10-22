@@ -94,17 +94,31 @@ module Layouts
             ]
         ]
 
+    let styleSheets = [
+        link [_rel "stylesheet";_href "/css/bootstrap.min.css"] //4.6.0
+        link [_rel "stylesheet";_href "/css/bootstrap-icons-1.5.0/bootstrap-icons.css"]
+        link [_rel "stylesheet";_href "/css/highlight-dark.min.css"] //10.5.0
+        link [_rel "stylesheet";_href "/css/main.css"]        
+    ]
+
+    let rssFeeds = [
+        link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Blog RSS Feed"; _href "https://www.luisquintanilla.me/posts/index.xml"]
+        link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Main Feed (Microblog) RSS"; _href "https://www.luisquintanilla.me/feed/index.xml"]
+        link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Notes Feed RSS"; _href "https://www.luisquintanilla.me/feed/notes.xml"]
+        link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Videos Feed RSS"; _href "https://www.luisquintanilla.me/feed/videos.xml"]
+    ]
+
     let defaultLayout (pageTitle:string) (content:string) =
         html [_lang "en"] [
             head [] [
                 meta [_charset "UTF-8"]    
                 meta [_name "viewport"; _content "width=device-width, initial-scale=1, shrink-to-fit=no"]
-                                
-                link [_rel "stylesheet";_href "/css/bootstrap.min.css"] //4.6.0
-                link [_rel "stylesheet";_href "/css/bootstrap-icons-1.5.0/bootstrap-icons.css"]
-                link [_rel "stylesheet";_href "/css/highlight-dark.min.css"] //10.5.0
-                link [_rel "stylesheet";_href "/css/main.css"]
 
+                // Stylesheets
+                for sheet in styleSheets do
+                    sheet
+
+                // Opengraph
                 meta [_property "og:title"; _content pageTitle]
                 meta [_property "og:type"; _content "website"]
                 meta [_property "og:image"; _content "https://www.luisquintanilla.me/avatar.png"]
@@ -115,6 +129,12 @@ module Layouts
                 meta [_property "og:site_name"; _content "Luis Quintanilla Personal Website"]
                 meta [_property "og:locale"; _content "en_US"]
                 meta [_property "twitter:image"; _content "https://www.luisquintanilla.me/avatar.png"]
+
+                // RSS Feeds
+                for feed in rssFeeds do
+                    feed
+
+                // Robots
                 meta [_name "robots"; _content "noindex,nofollow,nosnippet"]
                 title [] [Text pageTitle]
             ]
@@ -143,13 +163,14 @@ module Layouts
                 meta [_charset "UTF-8"]    
                 meta [_name "viewport"; _content "width=device-width, initial-scale=1, shrink-to-fit=no"]
                                 
-                link [_rel "stylesheet";_href "/css/bootstrap.min.css"] //4.6.0
-                link [_rel "stylesheet";_href "/css/bootstrap-icons-1.5.0/bootstrap-icons.css"]
-                link [_rel "stylesheet";_href "/css/highlight-dark.min.css"] //10.5.0
+                // Stylesheets
+                for sheet in styleSheets do
+                    sheet
+
                 link [_rel "stylesheet"; _href "/lib/revealjs/dist/reveal.css"]
                 link [_rel "stylesheet"; _href "/lib/revealjs/dist/theme/black.css"]
-                link [_rel "stylesheet";_href "/css/main.css"]
 
+                // Opengraph
                 meta [_property "og:title"; _content pageTitle]
                 meta [_property "og:type"; _content "website"]
                 meta [_property "og:image"; _content "https://www.luisquintanilla.me/avatar.png"]
@@ -160,7 +181,14 @@ module Layouts
                 meta [_property "og:site_name"; _content "Luis Quintanilla Personal Website"]
                 meta [_property "og:locale"; _content "en_US"]
                 meta [_property "twitter:image"; _content "https://www.luisquintanilla.me/avatar.png"]
+                
+                // RSS Feeds
+                for feed in rssFeeds do
+                    feed
+                
+                // Robots                
                 meta [_name "robots"; _content "noindex,nofollow,nosnippet"]
+                
                 title [] [Text pageTitle]
             ]
             body [] [
