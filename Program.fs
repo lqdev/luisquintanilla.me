@@ -36,6 +36,7 @@ let main argv =
     buildBlogrollPage ()
     buildIRLStackPage ()
     buildColophonPage ()
+    buildSubscribePage ()
 
     // Write Post / Archive Pages
     buildPostPages posts

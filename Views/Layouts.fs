@@ -49,12 +49,6 @@ module Layouts
                     li [_class "nav-item"] [
                         a [_class "nav-link"; _href "/contact.html"] [ Text "Contact" ]
                     ]
-                    li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/posts/1"] [ Text "Blog" ]
-                    ]
-                    li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/events.html"] [ Text "Events" ]
-                    ]
                     li [_class "nav-item dropdown"] [
                         a [
                             _class "nav-link dropdown-toggle"
@@ -77,9 +71,21 @@ module Layouts
                                 div [_class "dropdown-divider"] []
                                 a [_class "dropdown-item"; _href "/feed/blogroll.html"] [Text "Blogroll"]
                         ]
-                    ]                                        
+                    ]        
+                    li [_class "nav-item"] [
+                        a [_class "nav-link"; _href "/posts/1"] [ Text "Blog" ]
+                    ]
+                    li [_class "nav-item"] [
+                        a [_class "nav-link"; _href "/subscribe.html"] [ Text "Subscribe" ]
+                    ]
+                    li [_class "nav-item"] [
+                        a [_class "nav-link"; _href "/events.html"] [ Text "Events" ]
+                    ]                    
+                    // li [_class "nav-item"] [
+                    //     a [_class "nav-link"; _href "/presentations.html"] [ Text "Presentations" ]
+                    // ]                                
                 ]
-                a [_href "/about.html#subscribe"] [
+                a [_href "/subscribe.html"] [
                     tag "svg" [
                         _class "bi bi-rss text-secondary" 
                         attr "fill" "currentColor"
@@ -140,6 +146,7 @@ module Layouts
             ]
             body [] [
                 defaultNavBar
+
                 main [attr "role" "main"; _class "container"] [
                     rawText content
                 ]
@@ -193,6 +200,7 @@ module Layouts
             ]
             body [] [
                 defaultNavBar
+
                 main [attr "role" "main"; _class "container"] [
                     rawText content
                 ]

@@ -67,7 +67,12 @@ let irlStackView content =
 let colophonView content = 
     div [ _class "mr-auto" ] [
         rawText content
-    ]        
+    ]
+
+let subscribeView content = 
+    div [ _class "mr-auto" ] [
+        rawText content
+    ]            
 
 let postView content =
     div [ _class "mr-auto" ] [

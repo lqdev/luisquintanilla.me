@@ -12,6 +12,7 @@ I'm passionate about:
 - Community Building
 
 <a href="/contact.html"><button type="button" class="btn btn-dark">Get in touch!</button></a>
+<a href="/subscribe.html"><button type="button" class="btn btn-dark">Subscribe</button></a>
 
 ## About this site
 
@@ -24,15 +25,6 @@ The feed is like a microblog with content ordered in chronological order. It col
 The [main feed](/feed/index.html) aggregates content of all types. [Note](/feed/notes.html) and [video](/feed/videos.html) feeds as their name suggest contain text content and videos I find interesting.
 
 For more details on how this site is built, check out the [colophon](/colophon.html)
-
-## Subscribe & follow <span id="subscribe"></span>
-
-Subscribe to all content on this site through the respective RSS feeds.
-
-<a href="/posts/index.xml"><button type="button" class="btn btn-dark">Blog</button></a>
-<a href="/feed/index.xml"><button type="button" class="btn btn-dark">Main Feed</button></a>
-<a href="/feed/notes.xml"><button type="button" class="btn btn-dark">Note Feed</button></a>
-<a href="/feed/videos.xml"><button type="button" class="btn btn-dark">Video Feed</button></a>
 
 ## Tech experience
 

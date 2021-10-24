@@ -3,8 +3,15 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>10/21/2021 21:31</lastPubDate>
+    <lastPubDate>10/22/2021 13:57</lastPubDate>
     <language>en</language>
+    <item>
+      <title>lqdev.me redirect</title>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/lqdevme-redirect.html"&gt;https://www.luisquintanilla.me/feed/lqdevme-redirect.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/lqdevme-redirect.html</link>
+      <guid>https://www.luisquintanilla.me/feed/lqdevme-redirect.html</guid>
+      <pubDate>10/22/2021 13:57</pubDate>
+    </item>
     <item>
       <title>TIL: Canonical HTML tags</title>
       <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/rel-canonical-tags.html"&gt;https://www.luisquintanilla.me/feed/rel-canonical-tags.html&lt;/a&gt;</description>
