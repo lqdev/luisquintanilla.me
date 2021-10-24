@@ -38,6 +38,6 @@ blockquote p {
   width: 75vw
 }
 
-.post > img { 
+p > img { 
   border: 1px solid grey;
 }
