@@ -75,7 +75,7 @@ let subscribeView content =
     ]            
 
 let postView content =
-    div [ _class "mr-auto" ] [
+    div [ _class "mr-auto post" ] [
         rawText content
     ]
 

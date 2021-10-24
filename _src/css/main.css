@@ -37,3 +37,7 @@ blockquote p {
   height: 50vh;
   width: 75vw
 }
+
+.post > img { 
+  border: 1px solid grey;
+}
