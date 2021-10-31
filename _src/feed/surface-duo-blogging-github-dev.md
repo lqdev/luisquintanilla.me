@@ -1,4 +1,3 @@
-
 ---
 post_type: "note" 
 title: "Blogging on the Surface Duo with github.dev"
