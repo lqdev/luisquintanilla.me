@@ -100,10 +100,7 @@ module Layouts
             ]
         ]
 
-    let stats = script [
-        attr "data-goatcounter" "https://stats.luisquintanilla.me/count"
-        _src "//stats.luisquintanilla.me/count.js"
-        _async] []
+    let stats = script [ _async; attr "data-goatcounter" "https://stats.luisquintanilla.me/count"; _src "//stats.luisquintanilla.me/count.js" ] []
     
     let styleSheets = [
         link [_rel "stylesheet";_href "/css/bootstrap.min.css"] //4.6.0
