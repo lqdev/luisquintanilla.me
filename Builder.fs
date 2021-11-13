@@ -55,10 +55,6 @@ module Builder
         File.Copy(Path.Join(srcDir,"favicon.ico"),Path.Join(outputDir,"favicon.ico"),true)
         File.Copy(Path.Join(srcDir,"avatar.png"),Path.Join(outputDir,"avatar.png"),true)
 
-        // Copy redirects
-        File.Copy(Path.Join(srcDir,"staticwebapp.config.json"),Path.Join(outputDir,"staticwebapp.config.json"),true)
-
-
     let buildHomePage (posts:Post array) = 
         let recentPosts = 
             posts 

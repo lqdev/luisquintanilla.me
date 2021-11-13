@@ -1,9 +1,0 @@
-{
-    "routes": [
-        {
-            "route": "/2017/12/25/client-credentials-authentication-csharp/",
-            "redirect": "/posts/client-credentials-authentication-csharp.html",
-            "statusCode": 301
-        }
-    ]
-}
