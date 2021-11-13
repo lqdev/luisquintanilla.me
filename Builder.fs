@@ -24,7 +24,7 @@ module Builder
             x.Delete())
 
     let copyStaticFiles () =
-        let directories = [   
+        let directories = [
             "css"
             "css/bootstrap-icons-1.5.0"
             // "js"
@@ -54,6 +54,9 @@ module Builder
         // Copy favicon & avatar
         File.Copy(Path.Join(srcDir,"favicon.ico"),Path.Join(outputDir,"favicon.ico"),true)
         File.Copy(Path.Join(srcDir,"avatar.png"),Path.Join(outputDir,"avatar.png"),true)
+
+        // Copy redirects
+        File.Copy(Path.Join(srcDir,"staticwebapp.config.json"),Path.Join(outputDir,"staticwebapp.config.json"),true)
 
 
     let buildHomePage (posts:Post array) = 
