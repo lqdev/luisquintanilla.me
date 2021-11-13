@@ -19,8 +19,8 @@ Watching Twitch streams on the desktop via the browser can take a toll on comput
 ## Watch Twitch Stream
 
 > **Update 11/12/2021**  
-> It's been a while since I've gotten the steps below to work. However, you can still use VLC to watch Twitch streams using Streamlink. To use StreamLink:
-> 1. Download and install [StreamLink](https://streamlink.github.io/install.html)
+> It's been a while since I've gotten the steps below to work. However, you can still use VLC to watch Twitch streams using Streamlink. To use Streamlink:
+> 1. Download and install [Streamlink](https://streamlink.github.io/install.html)
 > 1. Open the terminal and run:
 >    
 >    ```
