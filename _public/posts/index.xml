@@ -3,8 +3,15 @@
     <title>Luis Quintanilla Blog</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Luis Quintanilla's blog</description>
-    <lastPubDate>10/04/2021 19:58</lastPubDate>
+    <lastPubDate>10/24/2021 13:00</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Super simple captcha</title>
+      <description>Implement a simple captcha challenge without dependencies</description>
+      <link>https://www.luisquintanilla.me/posts/super-simple-captcha.html</link>
+      <guid>https://www.luisquintanilla.me/posts/super-simple-captcha.html</guid>
+      <pubDate>10/24/2021 13:00</pubDate>
+    </item>
     <item>
       <title>Automate YAML front-matter generation with custom Visual Studio Code snippets</title>
       <description />

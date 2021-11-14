@@ -3,8 +3,57 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>10/22/2021 13:57</lastPubDate>
+    <lastPubDate>11/13/2021 21:00</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Reminiscing about Windows Phone</title>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing.html"&gt;https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing.html</link>
+      <guid>https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing.html</guid>
+      <pubDate>11/13/2021 21:00</pubDate>
+    </item>
+    <item>
+      <title>Podcast management with RSS and VLC</title>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/rss-vlc-podcast-management.html"&gt;https://www.luisquintanilla.me/feed/rss-vlc-podcast-management.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/rss-vlc-podcast-management.html</link>
+      <guid>https://www.luisquintanilla.me/feed/rss-vlc-podcast-management.html</guid>
+      <pubDate>11/05/2021 10:27</pubDate>
+    </item>
+    <item>
+      <title>Blogging on the Surface Duo with github.dev</title>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev.html"&gt;https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev.html</link>
+      <guid>https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev.html</guid>
+      <pubDate>10/31/2021 13:51</pubDate>
+    </item>
+    <item>
+      <title>Personal Site Stats - GoatCounter</title>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/personal-site-stats-goatcounter.html"&gt;https://www.luisquintanilla.me/feed/personal-site-stats-goatcounter.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/personal-site-stats-goatcounter.html</link>
+      <guid>https://www.luisquintanilla.me/feed/personal-site-stats-goatcounter.html</guid>
+      <pubDate>10/31/2021 11:57</pubDate>
+    </item>
+    <item>
+      <title>Early Radio History (U.S)</title>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/early-radio-history-us.html"&gt;https://www.luisquintanilla.me/feed/early-radio-history-us.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/early-radio-history-us.html</link>
+      <guid>https://www.luisquintanilla.me/feed/early-radio-history-us.html</guid>
+      <pubDate>10/29/2021 02:05</pubDate>
+    </item>
+    <item>
+      <title>Web Neural Network API - Working Draft</title>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/web-neural-network-api-working-draft.html"&gt;https://www.luisquintanilla.me/feed/web-neural-network-api-working-draft.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/web-neural-network-api-working-draft.html</link>
+      <guid>https://www.luisquintanilla.me/feed/web-neural-network-api-working-draft.html</guid>
+      <pubDate>10/24/2021 20:36</pubDate>
+    </item>
+    <item>
+      <title>Top 10 listicles</title>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/top-10-listicles.html"&gt;https://www.luisquintanilla.me/feed/top-10-listicles.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/top-10-listicles.html</link>
+      <guid>https://www.luisquintanilla.me/feed/top-10-listicles.html</guid>
+      <pubDate>10/24/2021 19:33</pubDate>
+    </item>
     <item>
       <title>lqdev.me redirect</title>
       <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/lqdevme-redirect.html"&gt;https://www.luisquintanilla.me/feed/lqdevme-redirect.html&lt;/a&gt;</description>

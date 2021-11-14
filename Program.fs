@@ -45,12 +45,14 @@ let main argv =
     // Build Feeds
     buildFeedPage feedPosts "Main Feed - Luis Quintanilla" "index"
     buildFeedPage notePosts "Notes Feed - Luis Quintanilla" "notes"
+    buildFeedPage photoPosts "Photos Feed - Luis Quintanilla" "photos"
     buildFeedPage videoPosts "Videos Feed - Luis Quintanilla" "videos"
 
     // Build RSS pages
     buildBlogRssFeed posts
     buildFeedRssPage feedPosts "index"
     buildFeedRssPage notePosts "notes"
+    buildFeedRssPage notePosts "photos"
     buildFeedRssPage videoPosts "videos"
    
     // Build event page
