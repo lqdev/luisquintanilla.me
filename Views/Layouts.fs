@@ -67,6 +67,7 @@ module Layouts
                             ] [
                                 a [_class "dropdown-item"; _href "/feed/index.html"] [Text "Main"]
                                 a [_class "dropdown-item"; _href "/feed/notes.html"] [Text "Notes"]
+                                a [_class "dropdown-item"; _href "/feed/photos.html"] [Text "Photos"]                                
                                 a [_class "dropdown-item"; _href "/feed/videos.html"] [Text "Videos"]
                                 div [_class "dropdown-divider"] []
                                 a [_class "dropdown-item"; _href "/feed/blogroll.html"] [Text "Blogroll"]
@@ -113,6 +114,7 @@ module Layouts
         link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Blog RSS Feed"; _href "https://www.luisquintanilla.me/posts/index.xml"]
         link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Main Feed (Microblog) RSS"; _href "https://www.luisquintanilla.me/feed/index.xml"]
         link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Notes Feed RSS"; _href "https://www.luisquintanilla.me/feed/notes.xml"]
+        link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Photos Feed RSS"; _href "https://www.luisquintanilla.me/feed/photos.xml"]        
         link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Videos Feed RSS"; _href "https://www.luisquintanilla.me/feed/videos.xml"]
     ]
 
