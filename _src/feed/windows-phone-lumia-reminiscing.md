@@ -6,4 +6,4 @@ published_date: "11/13/2021 21:00"
 
 Found these while cleaning out some drawers 😢. Good times.
 
-![Two Nokia Lumia Windows Phones](/images/windows-phone-lumia.png)
+![Two Nokia Lumia Windows Phones](/images/windows-phone-lumias.png)
