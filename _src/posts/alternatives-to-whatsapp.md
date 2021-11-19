@@ -53,4 +53,4 @@ To get started with Jami, [download the app](https://jami.net/download/) and cre
 
 ## Conclusion
 
-In this post, I've mentioned some communication platforms that I consider great alternatives to WhatsApp. Regardless of the platform you choose, some things that I believe should be top of mind are security and privacy. It's important that you own your data and you have control over who has access to it and what they do with it. Feel free say hi on Matrix [@lqdev:lqdev.tech](https://matrix.to/#/@lqdev:lqdev.tech) or Jami where you can find me as lqdev.
+In this post, I've mentioned some communication platforms that I consider great alternatives to WhatsApp. Regardless of the platform you choose, some things that I believe should be top of mind are security and privacy. It's important that you own your data and you have control over who has access to it and what they do with it. Feel free say hi on Matrix [@lqdev:lqdev.tech](https://matrix.to/#/@lqdev:lqdev.tech) or Jami where you can find me as lqdev1.
