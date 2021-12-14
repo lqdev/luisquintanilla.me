@@ -320,7 +320,7 @@ runWebmentionWorkflow ()
 
 If your post is successful, you should see it on the target URL.
 
-![Display of Webmention post on webmention.rocks](https://user-images.githubusercontent.com/11130940/145916987-31d9cd76-50e3-4963-85f4-5e5edd73e4a5.png)
+![Display of Webmention post on webmention.rocks](https://user-images.githubusercontent.com/11130940/145919398-2576bfef-3a5d-44f4-9813-9cf933539ede.png)
 
 ## Conclusion
 
