@@ -15,24 +15,28 @@ module RssService
     let blogEntryXml (entry:Post) =
         
         let filePath = sprintf "%s.html" entry.FileName
-        let url = sprintf "https://www.luisquintanilla.me/posts/%s" filePath
+        let url = $"https://www.luisquintanilla.me/posts/{filePath}"
+        let urlWithUtm = $"{url}?utm_medium=feed"
         
+        let description = $"{entry.Metadata.Description}. See the full post at <a href=\"{urlWithUtm}\">{url}</a>"
+
         XElement(XName.Get "item",
             XElement(XName.Get "title", entry.Metadata.Title),
-            XElement(XName.Get "description", entry.Metadata.Description),
-            XElement(XName.Get "link", url),
+            XElement(XName.Get "description", description),
+            XElement(XName.Get "link", urlWithUtm),
             XElement(XName.Get "guid", url),
             XElement(XName.Get "pubDate", entry.Metadata.Date))    
 
     let feedEntryXml (entry:Post) =
 
         let filePath = sprintf "%s.html" entry.FileName
-        let url = sprintf "https://www.luisquintanilla.me/feed/%s" filePath
+        let url = $"https://www.luisquintanilla.me/posts/{filePath}"
+        let urlWithUtm = $"{url}?utm_medium=feed"
         
         XElement(XName.Get "item",
             XElement(XName.Get "title", entry.Metadata.Title),
-            XElement(XName.Get "description", $"See the post at <a href=\"{url}\">{url}</a>"),            
-            XElement(XName.Get "link", url),
+            XElement(XName.Get "description", $"See the post at <a href=\"{urlWithUtm}\">{url}</a>"),            
+            XElement(XName.Get "link", urlWithUtm),
             XElement(XName.Get "guid", url),
             XElement(XName.Get "pubDate", entry.Metadata.Date))
 

@@ -3,139 +3,167 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>11/13/2021 21:00</lastPubDate>
+    <lastPubDate>12/28/2021 15:23</lastPubDate>
     <language>en</language>
     <item>
+      <title>Vertigo AI</title>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/vertigo-ai.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/vertigo-ai.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/vertigo-ai.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/vertigo-ai.html</guid>
+      <pubDate>12/28/2021 15:23</pubDate>
+    </item>
+    <item>
+      <title>Site updated to .NET 6</title>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/net6-website-update.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/net6-website-update.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/net6-website-update.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/net6-website-update.html</guid>
+      <pubDate>12/22/2021 20:27</pubDate>
+    </item>
+    <item>
+      <title>New Jami username</title>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/new-jami-username.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/new-jami-username.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/new-jami-username.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/new-jami-username.html</guid>
+      <pubDate>11/19/2021 10:37</pubDate>
+    </item>
+    <item>
+      <title>TOSDR: Terms of Service CliffNotes</title>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/terms-of-service-cliffnotes-tosdr.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/terms-of-service-cliffnotes-tosdr.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/terms-of-service-cliffnotes-tosdr.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/terms-of-service-cliffnotes-tosdr.html</guid>
+      <pubDate>11/16/2021 13:10</pubDate>
+    </item>
+    <item>
       <title>Reminiscing about Windows Phone</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing.html"&gt;https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing.html</link>
-      <guid>https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/windows-phone-lumia-reminiscing.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/windows-phone-lumia-reminiscing.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/windows-phone-lumia-reminiscing.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/windows-phone-lumia-reminiscing.html</guid>
       <pubDate>11/13/2021 21:00</pubDate>
     </item>
     <item>
       <title>Podcast management with RSS and VLC</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/rss-vlc-podcast-management.html"&gt;https://www.luisquintanilla.me/feed/rss-vlc-podcast-management.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/rss-vlc-podcast-management.html</link>
-      <guid>https://www.luisquintanilla.me/feed/rss-vlc-podcast-management.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/rss-vlc-podcast-management.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/rss-vlc-podcast-management.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/rss-vlc-podcast-management.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/rss-vlc-podcast-management.html</guid>
       <pubDate>11/05/2021 10:27</pubDate>
     </item>
     <item>
       <title>Blogging on the Surface Duo with github.dev</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev.html"&gt;https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev.html</link>
-      <guid>https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/surface-duo-blogging-github-dev.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/surface-duo-blogging-github-dev.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/surface-duo-blogging-github-dev.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/surface-duo-blogging-github-dev.html</guid>
       <pubDate>10/31/2021 13:51</pubDate>
     </item>
     <item>
       <title>Personal Site Stats - GoatCounter</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/personal-site-stats-goatcounter.html"&gt;https://www.luisquintanilla.me/feed/personal-site-stats-goatcounter.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/personal-site-stats-goatcounter.html</link>
-      <guid>https://www.luisquintanilla.me/feed/personal-site-stats-goatcounter.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/personal-site-stats-goatcounter.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/personal-site-stats-goatcounter.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/personal-site-stats-goatcounter.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/personal-site-stats-goatcounter.html</guid>
       <pubDate>10/31/2021 11:57</pubDate>
     </item>
     <item>
       <title>Early Radio History (U.S)</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/early-radio-history-us.html"&gt;https://www.luisquintanilla.me/feed/early-radio-history-us.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/early-radio-history-us.html</link>
-      <guid>https://www.luisquintanilla.me/feed/early-radio-history-us.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/early-radio-history-us.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/early-radio-history-us.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/early-radio-history-us.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/early-radio-history-us.html</guid>
       <pubDate>10/29/2021 02:05</pubDate>
     </item>
     <item>
       <title>Web Neural Network API - Working Draft</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/web-neural-network-api-working-draft.html"&gt;https://www.luisquintanilla.me/feed/web-neural-network-api-working-draft.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/web-neural-network-api-working-draft.html</link>
-      <guid>https://www.luisquintanilla.me/feed/web-neural-network-api-working-draft.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/web-neural-network-api-working-draft.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/web-neural-network-api-working-draft.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/web-neural-network-api-working-draft.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/web-neural-network-api-working-draft.html</guid>
       <pubDate>10/24/2021 20:36</pubDate>
     </item>
     <item>
       <title>Top 10 listicles</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/top-10-listicles.html"&gt;https://www.luisquintanilla.me/feed/top-10-listicles.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/top-10-listicles.html</link>
-      <guid>https://www.luisquintanilla.me/feed/top-10-listicles.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/top-10-listicles.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/top-10-listicles.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/top-10-listicles.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/top-10-listicles.html</guid>
       <pubDate>10/24/2021 19:33</pubDate>
     </item>
     <item>
       <title>lqdev.me redirect</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/lqdevme-redirect.html"&gt;https://www.luisquintanilla.me/feed/lqdevme-redirect.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/lqdevme-redirect.html</link>
-      <guid>https://www.luisquintanilla.me/feed/lqdevme-redirect.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/lqdevme-redirect.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/lqdevme-redirect.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/lqdevme-redirect.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/lqdevme-redirect.html</guid>
       <pubDate>10/22/2021 13:57</pubDate>
     </item>
     <item>
       <title>TIL: Canonical HTML tags</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/rel-canonical-tags.html"&gt;https://www.luisquintanilla.me/feed/rel-canonical-tags.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/rel-canonical-tags.html</link>
-      <guid>https://www.luisquintanilla.me/feed/rel-canonical-tags.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/rel-canonical-tags.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/rel-canonical-tags.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/rel-canonical-tags.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/rel-canonical-tags.html</guid>
       <pubDate>10/21/2021 21:31</pubDate>
     </item>
     <item>
       <title>Next gen stick figures using AI and NVIDIA Canvas</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/nvidia-canvas-next-gen-stick-figures-ai.html"&gt;https://www.luisquintanilla.me/feed/nvidia-canvas-next-gen-stick-figures-ai.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/nvidia-canvas-next-gen-stick-figures-ai.html</link>
-      <guid>https://www.luisquintanilla.me/feed/nvidia-canvas-next-gen-stick-figures-ai.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/nvidia-canvas-next-gen-stick-figures-ai.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/nvidia-canvas-next-gen-stick-figures-ai.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/nvidia-canvas-next-gen-stick-figures-ai.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/nvidia-canvas-next-gen-stick-figures-ai.html</guid>
       <pubDate>10/19/2021 10:51 PM</pubDate>
     </item>
     <item>
       <title>Coffee with a Codex</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/coffee-with-codex.html"&gt;https://www.luisquintanilla.me/feed/coffee-with-codex.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/coffee-with-codex.html</link>
-      <guid>https://www.luisquintanilla.me/feed/coffee-with-codex.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/coffee-with-codex.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/coffee-with-codex.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/coffee-with-codex.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/coffee-with-codex.html</guid>
       <pubDate>10/19/2021 10:21 AM</pubDate>
     </item>
     <item>
       <title>Success! Matrix migration complete</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/matrix-migration-complete.html"&gt;https://www.luisquintanilla.me/feed/matrix-migration-complete.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/matrix-migration-complete.html</link>
-      <guid>https://www.luisquintanilla.me/feed/matrix-migration-complete.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/matrix-migration-complete.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/matrix-migration-complete.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/matrix-migration-complete.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/matrix-migration-complete.html</guid>
       <pubDate>10/09/2021 12:23 AM</pubDate>
     </item>
     <item>
       <title>Windows 11 upgrade</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/windows-11-upgrade.html"&gt;https://www.luisquintanilla.me/feed/windows-11-upgrade.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/windows-11-upgrade.html</link>
-      <guid>https://www.luisquintanilla.me/feed/windows-11-upgrade.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/windows-11-upgrade.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/windows-11-upgrade.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/windows-11-upgrade.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/windows-11-upgrade.html</guid>
       <pubDate>10/05/2021 08:55 AM</pubDate>
     </item>
     <item>
       <title>PSA: Personal site not down</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/fb-ig-personal-feed-up.html"&gt;https://www.luisquintanilla.me/feed/fb-ig-personal-feed-up.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/fb-ig-personal-feed-up.html</link>
-      <guid>https://www.luisquintanilla.me/feed/fb-ig-personal-feed-up.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/fb-ig-personal-feed-up.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/fb-ig-personal-feed-up.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/fb-ig-personal-feed-up.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/fb-ig-personal-feed-up.html</guid>
       <pubDate>10/04/2021 12:55 PM</pubDate>
     </item>
     <item>
       <title>Cultivating digital gardens</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/digital-gardens-technology-review-article.html"&gt;https://www.luisquintanilla.me/feed/digital-gardens-technology-review-article.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/digital-gardens-technology-review-article.html</link>
-      <guid>https://www.luisquintanilla.me/feed/digital-gardens-technology-review-article.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/digital-gardens-technology-review-article.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/digital-gardens-technology-review-article.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/digital-gardens-technology-review-article.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/digital-gardens-technology-review-article.html</guid>
       <pubDate>10/03/2021 09:57 PM</pubDate>
     </item>
     <item>
       <title>The Many Saints of Newark</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/many-saints-of-newark.html"&gt;https://www.luisquintanilla.me/feed/many-saints-of-newark.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/many-saints-of-newark.html</link>
-      <guid>https://www.luisquintanilla.me/feed/many-saints-of-newark.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/many-saints-of-newark.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/many-saints-of-newark.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/many-saints-of-newark.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/many-saints-of-newark.html</guid>
       <pubDate>10/02/2021 08:19 PM</pubDate>
     </item>
     <item>
       <title>The future of Skype</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/skype-future-annoucement-09-2021.html"&gt;https://www.luisquintanilla.me/feed/skype-future-annoucement-09-2021.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/skype-future-annoucement-09-2021.html</link>
-      <guid>https://www.luisquintanilla.me/feed/skype-future-annoucement-09-2021.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/skype-future-annoucement-09-2021.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/skype-future-annoucement-09-2021.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/skype-future-annoucement-09-2021.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/skype-future-annoucement-09-2021.html</guid>
       <pubDate>10/01/2021 4:20 PM</pubDate>
     </item>
     <item>
       <title>When Planets Mate</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/when-planets-mate.html"&gt;https://www.luisquintanilla.me/feed/when-planets-mate.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/when-planets-mate.html</link>
-      <guid>https://www.luisquintanilla.me/feed/when-planets-mate.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/when-planets-mate.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/when-planets-mate.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/when-planets-mate.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/when-planets-mate.html</guid>
       <pubDate>09/29/2021 07:56 PM</pubDate>
     </item>
     <item>
       <title>Hello World</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/hello-world.html"&gt;https://www.luisquintanilla.me/feed/hello-world.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/hello-world.html</link>
-      <guid>https://www.luisquintanilla.me/feed/hello-world.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/hello-world.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/hello-world.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/hello-world.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/hello-world.html</guid>
       <pubDate>09/29/2021 07:16 PM</pubDate>
     </item>
   </channel>
