@@ -3,13 +3,20 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>09/29/2021 07:56 PM</lastPubDate>
+    <lastPubDate>12/28/2021 15:23</lastPubDate>
     <language>en</language>
     <item>
+      <title>Vertigo AI</title>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/vertigo-ai.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/vertigo-ai.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/vertigo-ai.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/vertigo-ai.html</guid>
+      <pubDate>12/28/2021 15:23</pubDate>
+    </item>
+    <item>
       <title>When Planets Mate</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/when-planets-mate.html"&gt;https://www.luisquintanilla.me/feed/when-planets-mate.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/when-planets-mate.html</link>
-      <guid>https://www.luisquintanilla.me/feed/when-planets-mate.html</guid>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/posts/when-planets-mate.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/when-planets-mate.html&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/when-planets-mate.html?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/when-planets-mate.html</guid>
       <pubDate>09/29/2021 07:56 PM</pubDate>
     </item>
   </channel>
