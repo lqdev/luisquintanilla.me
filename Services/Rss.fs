@@ -30,7 +30,7 @@ module RssService
     let feedEntryXml (entry:Post) =
 
         let filePath = sprintf "%s.html" entry.FileName
-        let url = $"https://www.luisquintanilla.me/posts/{filePath}"
+        let url = $"https://www.luisquintanilla.me/feed/{filePath}"
         let urlWithUtm = $"{url}?utm_medium=feed"
         
         XElement(XName.Get "item",
