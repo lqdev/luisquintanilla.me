@@ -5,7 +5,7 @@ Say hi on any of these platforms.
 - **Email** <- lqdev **(AT)** outlook **(DOT)** com
 - **Matrix** <- @lqdev **:** lqdev **(DOT)** tech |> [QR Code](/images/qr-matrix.png)
 - **Mastodon** <-  @lqdev **(AT)** toot **(DOT)** lqdev **(DOT)** tech |> [QR Code](/images/qr-mastodon.png)
-- **Jami** <- lqdev1
+- **Jami** <- lqdev
 - **GitHub** <- lqdev |> [QR Code](/images/qr-github.png)
 - **Twitter** <- ljquintanilla |> [QR Code](/images/qr-twitter.png)
 - **Pixelfed** <- @lqdev **(AT)** pixel **(DOT)** lqdev **(DOT)** tech |> [QR Code](/images/qr-pixelfed.png)
