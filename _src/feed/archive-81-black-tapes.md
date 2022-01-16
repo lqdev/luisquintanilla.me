@@ -1,6 +1,6 @@
 ---
 post_type: "note" 
-title: "Archive 81 - So far so good!"
+title: "Archive 81 - so far so good!"
 published_date: "01/15/2022 21:01"
 ---
 
