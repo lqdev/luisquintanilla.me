@@ -211,7 +211,19 @@ let feedView (posts: Post array) =
             feedPostView post
     ]
 
-let presentationView (presentation:Presentation) = 
+let presentationsView (presentations: Presentation array) = 
+    div [ _class "d-grip gap-3" ] [
+        h2[] [Text "Presentations"]
+        p [] [Text "List of presentations and associated resources"]
+        ul [] [
+            for presentation in presentations do
+                li [] [
+                    a [ _href $"/presentations/{presentation.FileName}.html"] [ Text presentation.Metadata.Title ]
+                ]
+        ]
+    ]
+
+let presentationPageView (presentation:Presentation) = 
     div [_class "presentation-container"] [
         h2 [] [Text presentation.Metadata.Title]
         div [ _class "reveal"] [

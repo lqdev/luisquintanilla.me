@@ -211,11 +211,16 @@ module Builder
         // Save feed
         File.WriteAllText(Path.Join(saveDir, $"{saveFileName}.html"), feedPage)
 
+    let buildPresentationsPage (presentations: Presentation array) = 
+        let presentationPage = generate (presentationsView presentations) "default" "Presentations - Luis Quintanilla"
+        File.WriteAllText(Path.Join(outputDir,"presentations.html"),presentationPage)
+
+
     let buildPresentationPages (presentations:Presentation array) = 
         presentations
         |> Array.iter(fun presentation ->
             let saveDir = Path.Join(outputDir,"presentations")
-            let html = presentationView presentation
+            let html = presentationPageView presentation
             let presentationView = generate  html "presentation" $"{presentation.Metadata.Title} - Luis Quintanilla"
             let saveFileName = Path.Join(saveDir,$"{presentation.FileName}.html")
             File.WriteAllText(saveFileName,presentationView))
