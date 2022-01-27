@@ -81,7 +81,10 @@ module Layouts
                     ]
                     li [_class "nav-item"] [
                         a [_class "nav-link"; _href "/events.html"] [ Text "Events" ]
-                    ]                    
+                    ]
+                    li [_class "nav-item"] [
+                        a [_class "nav-link"; _href "/presentations.html"] [ Text "Presentations" ]
+                    ]                                        
                     // li [_class "nav-item"] [
                     //     a [_class "nav-link"; _href "/presentations.html"] [ Text "Presentations" ]
                     // ]                                
