@@ -76,6 +76,11 @@ module Builder
         let blogRollPage = generate blogRollContent "default" "Blogroll - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"feed","blogroll.html"), blogRollPage)
 
+    let buildPodrollPage () = 
+        let podRollContent = Path.Join(srcDir,"podroll.md") |> convertFileToHtml |> podRollView
+        let podRollPage = generate podRollContent "default" "Podroll - Luis Quintanilla"
+        File.WriteAllText(Path.Join(outputDir,"feed","podroll.html"), podRollPage)
+
     let buildIRLStackPage () = 
         let irlStackContent = Path.Join(srcDir,"irl-stack.md") |> convertFileToHtml |> irlStackView
         let irlStackPage = generate irlStackContent "default" "In Real Life Stack - Luis Quintanilla"

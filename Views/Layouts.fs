@@ -71,6 +71,7 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/feed/videos.html"] [Text "Videos"]
                                 div [_class "dropdown-divider"] []
                                 a [_class "dropdown-item"; _href "/feed/blogroll.html"] [Text "Blogroll"]
+                                a [_class "dropdown-item"; _href "/feed/podroll.html"] [Text "Podroll"]
                         ]
                     ]        
                     li [_class "nav-item"] [
