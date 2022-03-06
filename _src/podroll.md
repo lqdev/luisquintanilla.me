@@ -1,6 +1,6 @@
 # Podroll
 
-I took the podroll concept from blogrolls. A list of podcasts I find interesting. If you're interested in the blogroll, you can find it [here](/blogroll.html).
+I took the podroll concept from blogrolls. A list of podcasts I find interesting. If you're interested in the blogroll, you can find it [here](/feed/blogroll.html).
 
 Here's a list of podcasts I find interesting:
 
