@@ -1,6 +1,6 @@
 ## Subscribe & follow
 
-Subscribe to all content on this site through the respective RSS feeds.
+I'm a big fan of RSS and have written about it in posts like [Rediscovering the RSS Protocol](/posts/rediscovering-rss-user-freedom.html). Therefore, I've made it easy to subscribe to all content on this site through various RSS feeds.
 
 - **Blog**: Long-form posts. Mainly around tech topics.
 - **Main feed**: Microblog-link short posts containing different types of content.
