@@ -12,7 +12,7 @@ For my personal computing needs, Manjaro has been my default Linux distro. Howev
 
 ## Self-hosting Bitwarden on DigitalOcean
 
-When it comes to password managers, other than KeePass, my favorite it [Bitwarden](https://www.bing.com/search?q=bitwarden&cvid=70d22175af314ebfb87313de17be7c77&aqs=edge..69i57.1575j0j9&FORM=ANAB01&PC=BSJO). It's open-source, built on .NET, has excellent features that get even better with the low-cost paid version, but most importantly provides you the option of self-hosting. If you're looking to self-host Bitwarden on DigitalOcean, make sure to check out the [guide](https://bitwarden.com/blog/digitalocean-marketplace/) they just published. 
+When it comes to password managers, other than KeePass, my favorite it [Bitwarden](https://bitwarden.com/). It's open-source, built on .NET, has excellent features that get even better with the low-cost paid version, but most importantly provides you the option of self-hosting. If you're looking to self-host Bitwarden on DigitalOcean, make sure to check out the [guide](https://bitwarden.com/blog/digitalocean-marketplace/) they just published. 
 
 ## How DALLE-2 Actually Works
 
