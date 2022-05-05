@@ -6,8 +6,10 @@ I'm a big fan of RSS and have written about it in posts like [Rediscovering the 
 - **Main feed**: Microblog-link short posts containing different types of content.
   - **Notes feed**: Subset of the main feed containing notes and short posts.
   - **Video feed**: Subset of the main feed containing posts containing videos.
+- **YouTube**: YouTube channel 
 
 <a href="/posts/index.xml"><button type="button" class="btn btn-dark">Blog</button></a>
 <a href="/feed/index.xml"><button type="button" class="btn btn-dark">Main Feed</button></a>
 <a href="/feed/notes.xml"><button type="button" class="btn btn-dark">Note Feed</button></a>
 <a href="/feed/videos.xml"><button type="button" class="btn btn-dark">Video Feed</button></a>
+<a href="https://yewtu.be/feed/channel/UCkA5fHdQ4cf3D1J19UNgV7A"><button type="button" class="btn btn-dark">YouTube</button></a>
