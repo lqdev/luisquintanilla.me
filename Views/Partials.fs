@@ -81,7 +81,7 @@ let subscribeView content =
 
 let postView title content =
     div [ _class "mr-auto" ] [
-        rawText Title
+        rawText title
         rawText content
     ]
 
