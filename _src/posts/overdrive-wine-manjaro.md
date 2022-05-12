@@ -3,11 +3,7 @@ post_type: "article"
 title: "Install OverDrive Media Console on Manjaro"
 description: "Learn how to use Wine to install OverDrive Media Console on Manjaro and manage books and audiobooks from your local library."
 published_date: "05/11/2022 19:22"
-tags:
-  - linux
-  - books
-  - audiobooks
-  - manjaro
+tags: linux, books, audiobooks, manjaro
 ---
 
 ## Introduction
