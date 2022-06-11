@@ -10,11 +10,11 @@ Devices, apps, and services I use day-to-day.
 - [Nokia 6300 4G](https://www.nokia.com/phones/en_us/nokia-6300-4g) - **Daily driver**
 - [Surface Duo](https://www.microsoft.com/surface/devices/surface-duo?activetab=overview) - **Secondary device**
 - [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
-- [~~HP Probook 430 G1~~](https://en.wikipedia.org/wiki/HP_ProBook#G1) - 
-- [~~Schok Classic~~](https://schokgear.com/) - It has all the basics and a little extra since it's Android Open Source Project (AOSP) based.
-- [~~Surface Go~~](https://www.microsoft.com/surface/devices/surface-go/tech-specs)
-- [~~Surface Laptop~~](https://support.microsoft.com/surface/surface-laptop-1st-gen-features-30b1b484-4587-928f-ea9a-351d411569af)
-- [~~Pinebook Pro~~](https://www.pine64.org/pinebook-pro/)
+- ~~[HP Probook 430 G1](https://en.wikipedia.org/wiki/HP_ProBook#G1)~~
+- ~~[Schok Classic](https://schokgear.com/)~~ - It has all the basics and a little extra since it's Android Open Source Project (AOSP) based.
+- ~~[Surface Go](https://www.microsoft.com/surface/devices/surface-go/tech-specs)~~
+- ~~[Surface Laptop](https://support.microsoft.com/surface/surface-laptop-1st-gen-features-30b1b484-4587-928f-ea9a-351d411569af)~~
+- ~~[Pinebook Pro](https://www.pine64.org/pinebook-pro/)~~
 
 
 ### Bags
@@ -22,9 +22,9 @@ Devices, apps, and services I use day-to-day.
 - [SOC Bugout Bag](https://sandpiperca.com/collections/bugout-bags/products/bugout-bag-coyote-brown) - **Main pack** - Great for one-bag travels. You can fit a week's worth of clothing and electronics. MOLLE straps let you expand the pack with your own accessories.
 - [Jansport Way Out Waistpack](https://www.jansport.com/shop/en/jansport-us/way-out-waistpack-js0a47l6?variationId=7M2) - **EDC pack**
 - [5.11 Moab 6](https://www.511tactical.com/rush-moab-6.html) - **Larger EDC pack**
-- [~~SOG Barrage~~](https://www.amazon.com/SOG-Tactical-Internal-Backpack-64-3-Liter/dp/B01343V490)
-- [~~Patagonia Atom Sling 8L~~](https://www.patagonia.com/product/atom-sling-bag-8-liters/48261.html)
-- [~~Osprey Farpoint Travel Pack 55~~](https://www.osprey.com/us/en/product/farpoint-travel-pack-55-FARPNT55.html)
+- ~~[SOG Barrage](https://www.amazon.com/SOG-Tactical-Internal-Backpack-64-3-Liter/dp/B01343V490)~~
+- ~~[Patagonia Atom Sling 8L](https://www.patagonia.com/product/atom-sling-bag-8-liters/48261.html)~~
+- ~~[Osprey Farpoint Travel Pack 55](https://www.osprey.com/us/en/product/farpoint-travel-pack-55-FARPNT55.html)~~
 
 ### Photography & Video
 
