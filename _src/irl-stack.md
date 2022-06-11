@@ -37,7 +37,7 @@ Devices, apps, and services I use day-to-day.
 
 - [FiiO M6](https://www.fiio.com/m6) - MP3 player
 - [JLAB JBuds Air ANC](https://www.jlab.com/products/jbuds-air-anc-true-wireless-earbuds) - **Daily driver**
-- [~~Surface Earbuds~~](https://www.microsoft.com/en-us/d/surface-earbuds/8r9cpq146064)
+- <a style="text-decoration:line-through" href="https://www.microsoft.com/en-us/d/surface-earbuds/8r9cpq146064">Surface Earbuds</a>
 
 ### Routers
 
