@@ -10,7 +10,7 @@ Devices, apps, and services I use day-to-day.
 - [Nokia 6300 4G](https://www.nokia.com/phones/en_us/nokia-6300-4g) - **Daily driver**
 - [Surface Duo](https://www.microsoft.com/surface/devices/surface-duo?activetab=overview) - **Secondary device**
 - [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
-- ~~[HP Probook 430 G1](https://en.wikipedia.org/wiki/HP_ProBook#G1)~~
+- ~~[HP Probook 430 G1]~~(https://en.wikipedia.org/wiki/HP_ProBook#G1)
 - ~~[Schok Classic](https://schokgear.com/)~~ - It has all the basics and a little extra since it's Android Open Source Project (AOSP) based.
 - ~~[Surface Go](https://www.microsoft.com/surface/devices/surface-go/tech-specs)~~
 - ~~[Surface Laptop](https://support.microsoft.com/surface/surface-laptop-1st-gen-features-30b1b484-4587-928f-ea9a-351d411569af)~~
