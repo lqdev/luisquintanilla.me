@@ -6,32 +6,38 @@ Devices, apps, and services I use day-to-day.
 
 ### Computing
 
-- [HP Probook 430 G1](https://en.wikipedia.org/wiki/HP_ProBook#G1) - **Daily driver**
+- [ASUS L210MA](https://www.asus.com/us/laptops/for-home/everyday-use/asus-l210/) **Daily driver**
 - [Nokia 6300 4G](https://www.nokia.com/phones/en_us/nokia-6300-4g) - **Daily driver**
-- [Schok Classic](https://schokgear.com/) - It has all the basics and a little extra since it's Android Open Source Project (AOSP) based.
-- [Surface Go](https://www.microsoft.com/surface/devices/surface-go/tech-specs) - **Secondary device**
 - [Surface Duo](https://www.microsoft.com/surface/devices/surface-duo?activetab=overview) - **Secondary device**
-- [Surface Laptop](https://support.microsoft.com/surface/surface-laptop-1st-gen-features-30b1b484-4587-928f-ea9a-351d411569af)
-- [Pinebook Pro](https://www.pine64.org/pinebook-pro/)
 - [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
+- [~~HP Probook 430 G1~~](https://en.wikipedia.org/wiki/HP_ProBook#G1) - 
+- [~~Schok Classic~~](https://schokgear.com/) - It has all the basics and a little extra since it's Android Open Source Project (AOSP) based.
+- [~~Surface Go~~](https://www.microsoft.com/surface/devices/surface-go/tech-specs)
+- [~~Surface Laptop~~](https://support.microsoft.com/surface/surface-laptop-1st-gen-features-30b1b484-4587-928f-ea9a-351d411569af)
+- [~~Pinebook Pro~~](https://www.pine64.org/pinebook-pro/)
+
 
 ### Bags
 
-- [SOG Barrage](https://www.amazon.com/SOG-Tactical-Internal-Backpack-64-3-Liter/dp/B01343V490) - **Main pack** - Great for one-bag travels. You can fit a week's worth of clothing and electronics. MOLLE straps let you expand the pack with your own accessories.
-- [Patagonia Atom Sling 8L](https://www.patagonia.com/product/atom-sling-bag-8-liters/48261.html) - Every Day Carry (EDC) bag
-- [Osprey Farpoint Travel Pack 55](https://www.osprey.com/us/en/product/farpoint-travel-pack-55-FARPNT55.html) - I use the large backpack for larger trips and the daypack is the main backpack I use for day hikes.
+- [SOC Bugout Bag](https://sandpiperca.com/collections/bugout-bags/products/bugout-bag-coyote-brown) - **Main pack** - Great for one-bag travels. You can fit a week's worth of clothing and electronics. MOLLE straps let you expand the pack with your own accessories.
+- [Jansport Way Out Waistpack](https://www.jansport.com/shop/en/jansport-us/way-out-waistpack-js0a47l6?variationId=7M2) - **EDC pack**
+- [5.11 Moab 6](https://www.511tactical.com/rush-moab-6.html) - **Larger EDC pack**
+- [~~SOG Barrage~~](https://www.amazon.com/SOG-Tactical-Internal-Backpack-64-3-Liter/dp/B01343V490)
+- [~~Patagonia Atom Sling 8L~~](https://www.patagonia.com/product/atom-sling-bag-8-liters/48261.html)
+- [~~Osprey Farpoint Travel Pack 55~~](https://www.osprey.com/us/en/product/farpoint-travel-pack-55-FARPNT55.html)
 
 ### Photography & Video
 
-- [Canon PowerShot SX740](https://www.usa.canon.com/internet/portal/us/home/products/details/cameras/point-and-shoot-digital-cameras/long-zoom-cameras/powershot-sx740-hs) - Mainly for photos
-- [Akaso Brave 7](https://www.akasotech.com/brave-7) - Action cam. I usually use it to record outdoor trips. It's also compact enough for every day carry to supplement my phone's camera.
+- [Sony Cybershot DSC-W530](https://www.sony.com/electronics/support/compact-cameras-dsc-w-series/dsc-w530) - **Daily driver** - It's compact enough for every day carry to supplement my phone's camera.
+- [Canon PowerShot SX740](https://www.usa.canon.com/internet/portal/us/home/products/details/cameras/point-and-shoot-digital-cameras/long-zoom-cameras/powershot-sx740-hs) - Mainly for trips where I want better quality photos than the Sony DSC-W530.
+- [Akaso Brave 7](https://www.akasotech.com/brave-7) - Action cam. I usually use it to record outdoor trips.
 - [Logitech C920S Pro HD Webcam](https://www.logitech.com/products/webcams/c920s-pro-hd-webcam.960-001257.html) - Webcam for video calls & streaming
 
 ### Audio
 
-- [FiiO M6](https://www.fiio.com/m6) - MP3 player. Mainly used for podcasts
+- [FiiO M6](https://www.fiio.com/m6) - MP3 player
 - [JLAB JBuds Air ANC](https://www.jlab.com/products/jbuds-air-anc-true-wireless-earbuds) - **Daily driver**
-- [Surface Earbuds](https://www.microsoft.com/en-us/d/surface-earbuds/8r9cpq146064)
+- [~~Surface Earbuds~~](https://www.microsoft.com/en-us/d/surface-earbuds/8r9cpq146064)
 
 ### Routers
 
@@ -79,7 +85,7 @@ Devices, apps, and services I use day-to-day.
 
 - [OpenStreetMap](https://www.openstreetmap.org/)
 - [OSMAnd~](https://osmand.net/) - Android app for OpenStreetMap
-- [Here Maps](https://wego.here.com/)
+- [Here Maps](https://wego.here.com/) - Secondary map app. OpenStreetMap reverse geo-coding capabilities leave something to be desired, so Here Maps is handy then.
 
 ### Notetaking
 
