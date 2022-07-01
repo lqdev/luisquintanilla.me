@@ -106,8 +106,9 @@ module Builder
 
         let onlineRadioContent = convertFileToHtml (Path.Join(srcDir,"radio.md")) |> onlineRadioView
         let onlineRadioPage = generate onlineRadioContent "default" "Online Radio - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"radio","index.html"), onlineRadioPage)        
-
+        let saveDir = Path.Join(outputDir, "radio")
+        Directory.CreateDirectory(saveDir)
+        File.WriteAllText(Path.Join(saveDir,"index.html"), onlineRadioPage)        
 
     let loadPosts () = 
         let postPaths = 
