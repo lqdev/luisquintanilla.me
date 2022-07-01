@@ -104,7 +104,7 @@ module Builder
 
     let buildOnlineRadioPage () = 
 
-        let onlineRadioContent = convertFileToHtml (Path.Join(srcDir,"radio.md")) |> onlineradioView
+        let onlineRadioContent = convertFileToHtml (Path.Join(srcDir,"radio.md")) |> onlineRadioView
         let onlineRadioPage = generate onlineRadioContent "default" "Online Radio - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"radio","index.html"), onlineRadioPage)        
 
