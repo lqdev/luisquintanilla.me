@@ -77,6 +77,11 @@ let colophonView content =
 let subscribeView content = 
     div [ _class "mr-auto" ] [
         rawText content
+    ]     
+
+let onlineRadioView content = 
+    div [ _class "mr-auto" ] [
+        rawText content
     ]            
 
 let postView title content =

@@ -102,6 +102,13 @@ module Builder
         let contactPage = generate contactContent "default" "Contact - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"contact.html"), contactPage)
 
+    let buildOnlineRadioPage () = 
+
+        let onlineRadioContent = convertFileToHtml (Path.Join(srcDir,"radio.md")) |> onlineradioView
+        let onlineRadioPage = generate onlineRadioContent "default" "Online Radio - Luis Quintanilla"
+        File.WriteAllText(Path.Join(outputDir,"radio","index.html"), onlineRadioPage)        
+
+
     let loadPosts () = 
         let postPaths = 
             Directory.GetFiles(Path.Join(srcDir,"posts"))
