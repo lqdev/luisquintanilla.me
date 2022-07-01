@@ -38,6 +38,7 @@ let main argv =
     buildIRLStackPage ()
     buildColophonPage ()
     buildSubscribePage ()
+    buildOnlineRadioPage ()
 
     // Write Post / Archive Pages
     buildPostPages posts
