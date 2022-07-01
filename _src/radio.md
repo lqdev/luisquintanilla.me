@@ -14,7 +14,7 @@ Check out other stations at [Soma FM](https://somafm.com).
 
 ### Browser
 
-Click on the AAC link next to the radio station to start listening.
+Click on the station link to navigate to the station website and start listening.
 
 ### Desktop / Mobile
 
