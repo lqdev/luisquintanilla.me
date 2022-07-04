@@ -15,3 +15,5 @@ Here's a list of podcasts I find interesting:
 - [The Privacy, Security, & OSINT Show](https://soundcloud.com/user-98066669) | [RSS](https://feeds.soundcloud.com/users/soundcloud:users:261098918/sounds.rss)
 - [Software Engineering Daily](https://softwareengineeringdaily.com/archives/) | [RSS](https://softwareengineeringdaily.com/feed/podcast/)
 - [The Generation Why](https://wondery.com/shows/generation-why/) | [RSS](https://rss.art19.com/generation-why-podcast)
+- [Radio Rental](https://radiorentalusa.com/) | [RSS](https://feeds.megaphone.fm/radio-rental)
+- [Dark Air](https://audioboom.com/channels/5046661) | [RSS](https://audioboom.com/channels/5046661.rss)
