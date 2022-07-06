@@ -22,6 +22,7 @@ Devices, apps, and services I use day-to-day.
 - [SOC Bugout Bag](https://sandpiperca.com/collections/bugout-bags/products/bugout-bag-coyote-brown) - **Main pack** - Great for one-bag travels. You can fit a week's worth of clothing and electronics. MOLLE straps let you expand the pack with your own accessories.
 - [Jansport Way Out Waistpack](https://www.jansport.com/shop/en/jansport-us/way-out-waistpack-js0a47l6?variationId=7M2) - **EDC pack**
 - [5.11 Moab 6](https://www.511tactical.com/rush-moab-6.html) - **Larger EDC pack**
+- [Eddie Bauer 20L Stowable Packable](https://www.eddiebauer.com/p/82300168/stowaway-packable-l-daypack)
 - <a style="text-decoration:line-through" href="https://www.amazon.com/SOG-Tactical-Internal-Backpack-64-3-Liter/dp/B01343V490">SOG Barrage</a>
 - <a style="text-decoration:line-through" href="https://www.patagonia.com/product/atom-sling-bag-8-liters/48261.html">Patagonia Atom Sling 8L</a>
 - <a style="text-decoration:line-through" href="https://www.osprey.com/us/en/product/farpoint-travel-pack-55-FARPNT55.html">Osprey Farpoint Travel Pack 55</a>
@@ -84,7 +85,7 @@ Devices, apps, and services I use day-to-day.
 ### Maps & Navigation
 
 - [OpenStreetMap](https://www.openstreetmap.org/)
-- [OSMAnd~](https://osmand.net/) - Android app for OpenStreetMap
+  - [OSMAnd~](https://osmand.net/) - Android app for OpenStreetMap
 - [Here Maps](https://wego.here.com/) - Secondary map app. OpenStreetMap reverse geo-coding capabilities leave something to be desired, so Here Maps is handy then.
 
 ### Notetaking
@@ -95,10 +96,10 @@ Devices, apps, and services I use day-to-day.
 ### Social
 
 - [Mastodon](https://joinmastodon.org/) - Fediverse microblogging.
-- [Tusky](https://tusky.app/) - Mastodon Android app
+  - [Tusky](https://tusky.app/) - Mastodon Android app
 - [Pixelfed](https://pixelfed.org/) - Fediverse image sharing
 - [Scuttlebutt](https://scuttlebutt.nz/)
-- [Manyverse](https://www.manyver.se/) - Scuttlebutt client 
+  - [Manyverse](https://www.manyver.se/) - Scuttlebutt client 
 
 ### Software Development
 
