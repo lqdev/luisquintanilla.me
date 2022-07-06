@@ -22,7 +22,7 @@ Devices, apps, and services I use day-to-day.
 - [SOC Bugout Bag](https://sandpiperca.com/collections/bugout-bags/products/bugout-bag-coyote-brown) - **Main pack** - Great for one-bag travels. You can fit a week's worth of clothing and electronics. MOLLE straps let you expand the pack with your own accessories.
 - [Jansport Way Out Waistpack](https://www.jansport.com/shop/en/jansport-us/way-out-waistpack-js0a47l6?variationId=7M2) - **EDC pack**
 - [5.11 Moab 6](https://www.511tactical.com/rush-moab-6.html) - **Larger EDC pack**
-- [Eddie Bauer 20L Stowable Packable](https://www.eddiebauer.com/p/82300168/stowaway-packable-l-daypack)
+- Eddie Bauer 20L Stowable Packable
 - <a style="text-decoration:line-through" href="https://www.amazon.com/SOG-Tactical-Internal-Backpack-64-3-Liter/dp/B01343V490">SOG Barrage</a>
 - <a style="text-decoration:line-through" href="https://www.patagonia.com/product/atom-sling-bag-8-liters/48261.html">Patagonia Atom Sling 8L</a>
 - <a style="text-decoration:line-through" href="https://www.osprey.com/us/en/product/farpoint-travel-pack-55-FARPNT55.html">Osprey Farpoint Travel Pack 55</a>
