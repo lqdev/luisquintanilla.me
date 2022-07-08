@@ -57,24 +57,26 @@ To configure a custom network protocol
             <th>Value</th>
         </tr>
         <tr>
-            <td><i>network.protocol-handler.warn-external.lqvlc</i></td>
+            <td><i>network.protocol-handler.expose.lqvlc</i></td>
             <td>Boolean</td>
-            <td>true</td>
-        </tr>
+            <td>false</td>
+        </tr>                            
         <tr>
             <td><i>network.protocol-handler.external.lqvlc</i></td>
             <td>Boolean</td>
             <td>true</td>
         </tr>
         <tr>
-            <td><i>network.protocol-handler.expose.lqvlc</i></td>
+            <td><i>network.protocol-handler.warn-external.lqvlc</i></td>
             <td>Boolean</td>
-            <td>false</td>
-        </tr>                    
+            <td>true</td>
+        </tr>
     </table>
 
+    ![Firefox lqvlc network protocol handler configuration preferences](https://user-images.githubusercontent.com/11130940/177898847-79cce773-9275-4e4d-8e7c-a6b5fbfe8f48.png)
 
-    The first two tell Firefox to let an external application handle files with the protocol you've defined. In this case, that's `lqvlc`. If you're configuring your own protocol, you'd replace the lqvlc in the configuration preference with your own.
+
+    The last two tell Firefox to let an external application handle files with the protocol you've defined. In this case, that's `lqvlc`. If you're configuring your own protocol, you'd replace the lqvlc in the configuration preference with your own.
 
 ## Create a handler
 
