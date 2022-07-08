@@ -8,7 +8,7 @@ tags: firefox, vlc, web, open source, linux
 
 ## Introduction
 
-Whether it's videos, online radio, podcasts, or my personal music collection, VLC is my default player. I especially enjoy the ability to take the URL of an online video or audio stream playing it in VLC. What I don't like about that process is that I usually have to copy the link and use either the terminal or graphical user interface to play the stream. While not a large number of additional steps, it's still not ideal. The experience I would like is to automatically launch VLC whenever I click a link to an audio or video stream. That's possible using custom network protocols in Firefox. In this guide, I'll show how I defined and configured my own protocol (lqvlc) in Firefox to automatically launch VLC. 
+Whether it's videos, online radio, podcasts, or my personal music collection, VLC is my default player. I especially enjoy the ability of playing an online audio or video stream using the URL. What I don't like about that process is that I usually have to manually copy the link and use either the terminal or graphical user interface to play the stream. While not a large number of additional steps, it's still not ideal. The experience I would like is to automatically launch VLC whenever I click a link to an audio or video stream. That's possible using custom network protocols in Firefox. In this guide, I'll show how I defined and configured my own protocol (lqvlc) in Firefox to automatically launch VLC. 
 
 ## Prerequisites
 
