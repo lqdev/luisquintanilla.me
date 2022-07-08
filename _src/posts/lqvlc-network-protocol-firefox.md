@@ -23,7 +23,7 @@ A network protocol defines how data is exchanged and transferred over a network.
 
 Firefox has a set of standard protocols like HTTP that are configured out of the box. However, you have the option of configuring a custom protocol. 
 
-## The lqvlc protocl
+## What is the lqvlc protocol
 
 Now that you have a general idea of what network protocols are and how browsers handle them, it's time to introduce the lqvlc protocol. The intent of the lqvlc protocol is to automatically take a URL from an online audio or video stream and launch it in VLC. lqvlc protocol URLs use lqvlc as the scheme instead of http. 
 
