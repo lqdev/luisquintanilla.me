@@ -2,7 +2,7 @@
 
 Quick links to some of my favorite online radio stations:
 
-<table>
+<table class="table">
     <tr>
         <td>Radio</td>
         <td>Stream Link</td>

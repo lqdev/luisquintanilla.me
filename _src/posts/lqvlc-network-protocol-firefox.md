@@ -29,7 +29,7 @@ Now that you have a general idea of what network protocols are and how browsers 
 
 For example:
 
-<table>
+<table class="table">
     <tr>
         <th>Original Audio Stream Link</th>
         <th>lqvlc Link</th>
@@ -50,7 +50,7 @@ To configure a custom network protocol
 1. In the address bar, navigate to `about:config` and select **Accept the Risk and continue**. As the warning mentions, these are advanced configurations so proceed with caution.
 1. Add the following configuration preferences:
 
-    <table>
+    <table class="table">
         <tr>
             <th>Configuration Preference</th>
             <th>Type</th>
@@ -72,6 +72,7 @@ To configure a custom network protocol
             <td>false</td>
         </tr>                    
     </table>
+
 
     The first two tell Firefox to let an external application handle files with the protocol you've defined. In this case, that's `lqvlc`. If you're configuring your own protocol, you'd replace the lqvlc in the configuration preference with your own.
 
