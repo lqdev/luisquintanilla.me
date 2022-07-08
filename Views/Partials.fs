@@ -195,7 +195,7 @@ let feedPostView (post:Post) =
             tag "svg" [
                 _style "margin-right:5px;margin-left:5px"
                 _class "bi bi-shield-fill-check" 
-                attr "fill" "currentColor"
+                attr "fill" "green"
                 attr "viewBox" "0 0 16 16"
                 _height "16"
                 _width "16"
