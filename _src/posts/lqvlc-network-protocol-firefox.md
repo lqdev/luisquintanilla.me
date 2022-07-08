@@ -29,9 +29,16 @@ Now that you have a general idea of what network protocols are and how browsers 
 
 For example:
 
-| Original audio link | lqvlc link | 
-| --- | --- |
-| [https://somafm.com/u80s64.pls](https://somafm.com/u80s64.pls) | [lqvlc://somafm.com/u80s64.pls](lqvlc://somafm.com/u80s64.pls) |
+<table>
+    <tr>
+        <th>Original Audio Stream Link</th>
+        <th>lqvlc Link</th>
+    </tr>
+    <tr>
+        <td><a href="https://somafm.com/u80s64.pls">https://somafm.com/u80s64.pls</a></td>
+        <td><a href="lqvlc://somafm.com/u80s64.pls">lqvlc://somafm.com/u80s64.pls</a></td>
+    </tr>    
+</table>
 
 You'll notice the only difference is the scheme. That's enough information for the browser to know, lqvlc is a protocol I need to handle in some way. In the next sections, I'll describe what you need to do to get Firefox to recognize and handle the lqvlc protocol. 
 
@@ -43,11 +50,28 @@ To configure a custom network protocol
 1. In the address bar, navigate to `about:config` and select **Accept the Risk and continue**. As the warning mentions, these are advanced configurations so proceed with caution.
 1. Add the following configuration preferences:
 
-    | Configuration Preference | Type | Value | 
-    | --- | --- | --- |
-    | *network.protocol-handler.warn-external.lqvlc* | Boolean | true |
-    | *network.protocol-handler.external.lqvlc* | Boolean | true |
-    | *network.protocol-handler.expose.lqvlc* | Boolean | false | 
+    <table>
+        <tr>
+            <th>Configuration Preference</th>
+            <th>Type</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td><i>network.protocol-handler.warn-external.lqvlc</i></td>
+            <td>Boolean</td>
+            <td>true</td>
+        </tr>
+        <tr>
+            <td><i>network.protocol-handler.external.lqvlc</i></td>
+            <td>Boolean</td>
+            <td>true</td>
+        </tr>
+        <tr>
+            <td><i>network.protocol-handler.expose.lqvlc</i></td>
+            <td>Boolean</td>
+            <td>false</td>
+        </tr>                    
+    </table>
 
     The first two tell Firefox to let an external application handle files with the protocol you've defined. In this case, that's `lqvlc`. If you're configuring your own protocol, you'd replace the lqvlc in the configuration preference with your own.
 
