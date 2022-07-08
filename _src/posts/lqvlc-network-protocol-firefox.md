@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: "The lqvlc network protocol"
-description: "Create and configure custom handlers in Firefox"
+description: "Create and configure the lqvlc protocol, a custom network protocol to automatically launch audio and video streams in VLC from Firefox"
 published_date: "07/07/2022 18:47"
 tags: firefox, vlc, web, open source, linux
 ---
@@ -31,7 +31,7 @@ For example:
 
 | Original audio link | lqvlc link | 
 | --- | --- |
-| https://somafm.com/u80s64.pls | lqvlc://somafm.com/u80s64.pls |
+| [https://somafm.com/u80s64.pls](https://somafm.com/u80s64.pls) | [lqvlc://somafm.com/u80s64.pls](lqvlc://somafm.com/u80s64.pls) |
 
 You'll notice the only difference is the scheme. That's enough information for the browser to know, lqvlc is a protocol I need to handle in some way. In the next sections, I'll describe what you need to do to get Firefox to recognize and handle the lqvlc protocol. 
 
@@ -77,8 +77,8 @@ That's it! Now you just need to test it out.
 
 ## Test it out
 
-To use it for your own purposes, you'd have to create or update an HTML page and set the `href` in your anchor tags to use `lqvlc` instead of `http`. However, I've already configured lqvlc links in my own website. If you go to the [radio page](/radio) on my website, you can click on any of the lqvlc links. A prompt will pop up asking you to choose which app you want to use to handle the link. Select the lqvlc-handler.sh script you created. If everything is configured correctly, VLC should launch and the radio stations should start playing. 
+To use it for your own purposes, you'd have to create or update an HTML page and set the `href` in your anchor tags to use `lqvlc` instead of `http`. However, I've already configured lqvlc links in my own website. If you go to the [radio page](/radio) on my website, you can click on any of the lqvlc links. Alternatively, You can also click on the link to the [SOMA FM Underground 80's station lqvlc link](lqvlc://somafm.com/u80s64.pls). A prompt will pop up asking you to choose which app you want to use to handle the link. Select the lqvlc-handler.sh script you created. If everything is configured correctly, VLC should launch and the radio stations should start playing. 
 
 ## Next Steps
 
-Although I've gotten this working for my personal site, I'd like to be able to use the lqvlc protocol in any website I visit that has links to audio and video streams. The next step I think to make that happen would be to create an Add-On that automatically rewrites stream links to use the lqvlc protocol. 
+Although I've gotten this working for my personal site, I'd like to be able to use the lqvlc protocol in any website I visit that has links to audio and video streams. Arguably, I can also launch lqvlc links from other websites. However, that would require website owners to configure them. The next step I think to make that happen would be to create an Add-On that automatically rewrites stream links to use the lqvlc protocol. 
