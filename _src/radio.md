@@ -43,6 +43,11 @@ Quick links to some of my favorite online radio stations:
         <td><a href="https://wbgo.streamguys1.com/wbgo128">Stream link</a></td>
         <td><a href="lqvlc://wbgo.streamguys1.com/wbgo128">lqvlc link</a></td>
     </tr>
+    <tr>
+        <td><a href="https://www.wbgo.org">KHOL 89.1 Jackson Hole</a></td>
+        <td><a href="http://peridot.streamguys.com:6010/live.m3u?_ga=2.245952768.525453867.1658096358-1871105295.1658096351">Stream link</a></td>
+        <td><a href="lqvlc://peridot.streamguys.com:6010/live.m3u?_ga=2.245952768.525453867.1658096358-1871105295.1658096351">lqvlc link</a></td>
+    </tr>
 </table>
 
 <!-- | Radio | Stream Link | lqvlc Link |
