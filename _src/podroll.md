@@ -17,5 +17,5 @@ Here's a list of podcasts I find interesting:
 - [The Generation Why](https://wondery.com/shows/generation-why/) | [RSS](https://rss.art19.com/generation-why-podcast)
 - [Radio Rental](https://radiorentalusa.com/) | [RSS](https://feeds.megaphone.fm/radio-rental)
 - [Dark Air](https://audioboom.com/channels/5046661) | [RSS](https://audioboom.com/channels/5046661.rss)
-- [Practical AI](https://changelog.com/practicalai) | [RSS] (https://changelog.com/practicalai/feed)
+- [Practical AI](https://changelog.com/practicalai) | [RSS](https://changelog.com/practicalai/feed)
 - [The TWIML AI Podcast](https://twimlai.com/) | [RSS](https://feeds.megaphone.fm/MLN2155636147)
