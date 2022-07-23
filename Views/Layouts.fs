@@ -22,9 +22,9 @@ module Layouts
                     li [_class "nav-item active"] [
                         a [_class "nav-link"; _href "/"] [ Text "Home" ]
                     ]
-                    // li [_class "nav-item"] [
-                    //     a [_class "nav-link"; _href "/about.html"] [ Text "About" ]
-                    // ]
+
+
+                    // About dropdown
                     li [_class "nav-item dropdown"] [
                         a [
                             _class "nav-link dropdown-toggle"
@@ -46,9 +46,12 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/colophon.html"] [Text "Colophon"]
                         ]
                     ]
+
                     li [_class "nav-item"] [
                         a [_class "nav-link"; _href "/contact.html"] [ Text "Contact" ]
                     ]
+
+                    // Feeds dropdown
                     li [_class "nav-item dropdown"] [
                         a [
                             _class "nav-link dropdown-toggle"
@@ -73,23 +76,43 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/feed/blogroll.html"] [Text "Blogroll"]
                                 a [_class "dropdown-item"; _href "/feed/podroll.html"] [Text "Podroll"]
                         ]
-                    ]        
+                    ]
+
                     li [_class "nav-item"] [
                         a [_class "nav-link"; _href "/posts/1"] [ Text "Blog" ]
                     ]
+                    
                     li [_class "nav-item"] [
                         a [_class "nav-link"; _href "/subscribe.html"] [ Text "Subscribe" ]
                     ]
+
                     li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/events.html"] [ Text "Events" ]
+                        a [_class "nav-link"; _href "/radio.html"] [ Text "Radio" ]
                     ]
-                    li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/presentations.html"] [ Text "Presentations" ]
-                    ]                                        
-                    // li [_class "nav-item"] [
-                    //     a [_class "nav-link"; _href "/presentations.html"] [ Text "Presentations" ]
-                    // ]                                
+
+                    //Events dropdown
+                    li [_class "nav-item dropdown"] [
+                        a [
+                            _class "nav-link dropdown-toggle"
+                            _href "#"
+                            _id "eventsDropdown"
+                            attr "role" "button"
+                            attr "data-toggle" "dropdown"
+                            attr "aria-haspopup" "true"
+                            attr "aria-expanded" "false"
+                        ] [
+                            Text "Events"
+                        ]
+                        div [
+                            _class "dropdown-menu"
+                            attr "aria-labelledby" "eventsDropdown"
+                            ] [
+                                a [_class "nav-link"; _href "/events.html"] [ Text "Event List" ]
+                                a [_class "nav-link"; _href "/presentations.html"] [ Text "Presentations" ]
+                        ]
+                    ]
                 ]
+
                 a [_href "/subscribe.html"] [
                     tag "svg" [
                         _class "bi bi-rss text-secondary" 
