@@ -107,8 +107,8 @@ module Layouts
                             _class "dropdown-menu"
                             attr "aria-labelledby" "eventsDropdown"
                             ] [
-                                a [_class "nav-link"; _href "/events.html"] [ Text "Event List" ]
-                                a [_class "nav-link"; _href "/presentations.html"] [ Text "Presentations" ]
+                                a [_class "dropdown-item"; _href "/events.html"] [ Text "Event List" ]
+                                a [_class "dropdown-item"; _href "/presentations.html"] [ Text "Presentations" ]
                         ]
                     ]
                 ]
