@@ -134,6 +134,12 @@ module Builder
         
         presentations
 
+    let loadLinks () = 
+        let links =  
+            File.ReadAllText(Path.Join("Data","links.json"))
+            |> JsonSerializer.Deserialize<Link array>
+            |> Array.sortByDescending(fun x -> DateTime.Parse(x.Date))    
+
     let buildBlogRssFeed (posts: Post array) = 
         let rssPage = 
             posts
@@ -240,6 +246,10 @@ module Builder
             let saveFileName = Path.Join(saveDir,$"{presentation.FileName}.html")
             File.WriteAllText(saveFileName,presentationView))
 
+    let buildLinklogPage (links: Link array) = 
+
+        let lingLogPage = generate (linkView events) "default" "Linklog - Luis Quintanilla"
+        File.WriteAllText(Path.Join(outputDir,"linklog.html"),lingLogPage)
 
 
         

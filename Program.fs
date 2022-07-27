@@ -24,6 +24,7 @@ let main argv =
     let posts = loadPosts() 
     let feedPosts = loadFeed ()
     let presentations = loadPresentations ()
+    let links = loadLinks ()
 
     let notePosts = filterFeedByPostType feedPosts "note"
     let photoPosts = filterFeedByPostType feedPosts "photo"
@@ -59,6 +60,9 @@ let main argv =
    
     // Build event page
     buildEventPage ()
+
+    // Build linklog page
+    buildLinklogPage links
 
     // Build presentation pages
     buildPresentationsPage presentations
