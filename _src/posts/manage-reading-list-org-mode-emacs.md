@@ -1,6 +1,6 @@
 ---
 post_type: "article" 
-title: "Manage your reading listin Emacs using Org mode"
+title: "Manage your reading list in Emacs using Org mode"
 description: "Learn how to use TODO items in Emacs Org mode to manage your reading list"
 published_date: "07/26/2022 19:15"
 tags: linux, emacs, organization
