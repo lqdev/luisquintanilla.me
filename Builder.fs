@@ -250,8 +250,5 @@ module Builder
 
     let buildLinklogPage (links: Link array) = 
 
-        let lingLogPage = generate (linkView events) "default" "Linklog - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"linklog.html"),lingLogPage)
-
-
-        
+        let lingLogPage = generate (linkView links) "default" "Linklog - Luis Quintanilla"
+        File.WriteAllText(Path.Join(outputDir,"linklog.html"), lingLogPage)
