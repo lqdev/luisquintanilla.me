@@ -89,7 +89,7 @@ module Layouts
                     ]
 
                     li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/radio.html"] [ Text "Radio" ]
+                        a [_class "nav-link"; _href "/radio"] [ Text "Radio" ]
                     ]
 
                     //Events dropdown
