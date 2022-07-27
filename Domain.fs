@@ -29,6 +29,13 @@ module Domain
         Url: string
     }
 
+    type Link = {
+        Title: string
+        Url: string
+        Tags: string array
+        DateAdded: string array
+    }
+
     type FeedPost = {
         Title: string
         PostType: string

@@ -181,6 +181,18 @@ let eventView (events: Event array) =
         ]
     ]
 
+let linkView (links Link array) = 
+    div [ _class "mr-auto" ] [
+        h2 [] [ Text "Linklog" ]
+        p [] [Text "Link aggregator"]
+        ul [] [
+            for link in links do 
+                li [] [
+                    a [_href link.Url] [Text link.Title]
+                ]
+        ]
+     ]
+
 let feedPostView (post:Post) = 
 
     let date =
