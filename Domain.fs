@@ -33,7 +33,7 @@ module Domain
         Title: string
         Url: string
         Tags: string array
-        DateAdded: string array
+        DateAdded: string
     }
 
     type FeedPost = {
