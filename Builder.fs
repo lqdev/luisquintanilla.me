@@ -138,7 +138,7 @@ module Builder
         let links =  
             File.ReadAllText(Path.Join("Data","links.json"))
             |> JsonSerializer.Deserialize<Link array>
-            |> Array.sortByDescending(fun x -> DateTime.Parse(x.Date))
+            |> Array.sortByDescending(fun x -> DateTime.Parse(x.DateAdded))
     
         links
 

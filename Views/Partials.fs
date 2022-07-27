@@ -181,7 +181,7 @@ let eventView (events: Event array) =
         ]
     ]
 
-let linkView (links Link array) = 
+let linkView (links: Link array) = 
     div [ _class "mr-auto" ] [
         h2 [] [ Text "Linklog" ]
         p [] [Text "Link aggregator"]
