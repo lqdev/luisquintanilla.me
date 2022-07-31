@@ -142,6 +142,15 @@ module Builder
     
         links
 
+    let loadRedirects () = 
+        let (redirects:RedirectDetails array) = 
+            [|
+                ("https://twitter.com/ljquintanilla","Twitter")
+                ("https://github.com/lqdev","GitHub")
+            |]
+
+        redirects
+
     let buildBlogRssFeed (posts: Post array) = 
         let rssPage = 
             posts
@@ -253,9 +262,20 @@ module Builder
         let lingLogPage = generate (linkView links) "default" "Linklog - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"linklog.html"), lingLogPage)
 
-    let buildTwitterRedirectPage () = 
-        let redirectPage = generateRedirect "https://twitter.com/ljquintanilla" "Twitter"
-        let saveDir = Path.Join(outputDir, "twitter")
-        Directory.CreateDirectory(saveDir)
-        File.WriteAllText(Path.Join(saveDir,"index.html"), redirectPage)
+
+    let buildRedirectPages (redirectDetails: RedirectDetails array) =
+        redirectDetails
+        |> Array.iter((url:string,title:string) -> 
+            let dir = title.ToLower()
+            let redirectPage = generateRedirect url title
+            let saveDir = Path.Join(outputDir,dir)
+            Directory.CreateDirectory(saveDir)
+            File.WriteAllText(Path.Join(saveDir,"index.html"), redirectPage)
+        )
+
+    // let buildTwitterRedirectPage () = 
+    //     let redirectPage = generateRedirect "https://twitter.com/ljquintanilla" "Twitter"
+    //     let saveDir = Path.Join(outputDir, "twitter")
+    //     Directory.CreateDirectory(saveDir)
+    //     File.WriteAllText(Path.Join(saveDir,"index.html"), redirectPage)
         
