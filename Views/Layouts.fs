@@ -165,6 +165,7 @@ module Layouts
                 meta [_name "robots"; _content "noindex,nofollow,nosnippet"]
                 title [] [Text pageTitle]]
             body [] []
+            footerContent
         ]
 
     let defaultLayout (pageTitle:string) (content:string) =
