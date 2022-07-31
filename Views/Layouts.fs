@@ -147,6 +147,13 @@ module Layouts
         link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Videos Feed RSS"; _href "https://www.luisquintanilla.me/feed/videos.xml"]
     ]
 
+    let footerContent = 
+        footer [] [
+            a [_rel "me"; _href "https://toot.lqdev.tech/@lqdev"] []
+            a [_rel "me"; _href "https://github.com/lqdev"] []
+            a [_rel "me"; _href "https://twitter.com/ljquintanilla"] []             
+        ]
+
     let redirectLayout (pageUrl:string) (pageTitle:string) = 
         html [_lang "en"] [
             head [] [
@@ -207,9 +214,7 @@ module Layouts
                     rawText "hljs.initHighlightingOnLoad();"
                 ]   
             ]
-            footer [] [
-                a [_rel "me"; _href "https://toot.lqdev.tech/@lqdev"] []
-            ]
+            footerContent
         ]
 
     let presentationLayout (pageTitle:string) (content:string) =
@@ -275,7 +280,5 @@ module Layouts
                     """
                 ]   
             ]
-            footer [] [
-                a [_rel "me"; _href "https://toot.lqdev.tech/@lqdev"] []
-            ]
+            footerContent
         ]
