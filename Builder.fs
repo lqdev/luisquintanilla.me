@@ -147,6 +147,10 @@ module Builder
             [|
                 ("https://twitter.com/ljquintanilla","Twitter")
                 ("https://github.com/lqdev","GitHub")
+                ("https://www.linkedin.com/in/lquintanilla01/", "LinkedIn")
+                ("https://matrix.to/#/@lqdev:matrix.lqdev.tech", "Matrix")
+                ("https://toot.lqdev.tech/@lqdev", "Mastodon")
+                ("https://www.twitch.tv/lqdev1", "Twitch")
             |]
 
         redirects
@@ -272,10 +276,3 @@ module Builder
             Directory.CreateDirectory(saveDir)
             File.WriteAllText(Path.Join(saveDir,"index.html"), redirectPage)
         )
-
-    // let buildTwitterRedirectPage () = 
-    //     let redirectPage = generateRedirect "https://twitter.com/ljquintanilla" "Twitter"
-    //     let saveDir = Path.Join(outputDir, "twitter")
-    //     Directory.CreateDirectory(saveDir)
-    //     File.WriteAllText(Path.Join(saveDir,"index.html"), redirectPage)
-        
