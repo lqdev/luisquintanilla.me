@@ -151,7 +151,8 @@ module Layouts
         footer [] [
             a [_rel "me"; _href "https://toot.lqdev.tech/@lqdev"] []
             a [_rel "me"; _href "https://github.com/lqdev"] []
-            a [_rel "me"; _href "https://twitter.com/ljquintanilla"] []             
+            a [_rel "me"; _href "https://twitter.com/ljquintanilla"] []      
+            a [_rel "me"; _href "https://www.linkedin.com/in/lquintanilla01/"] []
         ]
 
     let redirectLayout (pageUrl:string) (pageTitle:string) = 
