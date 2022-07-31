@@ -205,7 +205,7 @@ let feedPostView (post:Post) =
 
     div [ _class "card rounded m-2 w-75 mx-auto" ] [
         div [_class "card-header"] [
-            img [_src "/avatar.png"; _height "32"; _width "32"; _class "d-inline-block align-top rounded-circle"; _style "margin-right:5px"]
+            img [_src "/avatar.png"; _height "32"; _width "32"; _class "d-inline-block align-top rounded-circle"; _style "margin-right:5px"; attr "loading" "lazy"]
             Text $"Luis Quintanilla"
             tag "svg" [
                 _style "margin-right:5px;margin-left:5px"
