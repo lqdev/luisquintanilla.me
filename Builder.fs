@@ -265,7 +265,7 @@ module Builder
 
     let buildRedirectPages (redirectDetails: RedirectDetails array) =
         redirectDetails
-        |> Array.iter((url:string,title:string) -> 
+        |> Array.iter(fun (url:string,title:string) -> 
             let dir = title.ToLower()
             let redirectPage = generateRedirect url title
             let saveDir = Path.Join(outputDir,dir)
