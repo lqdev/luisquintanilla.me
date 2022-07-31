@@ -152,7 +152,7 @@ module Layouts
             head [] [
                 meta [
                     attr "http-equiv" "refresh"
-                    _content $"0; url={pageUrl}" />
+                    _content $"0; url={pageUrl}"
                 ]
                                 // Robots
                 meta [_name "robots"; _content "noindex,nofollow,nosnippet"]
