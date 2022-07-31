@@ -162,7 +162,7 @@ module Layouts
                     _content $"0; url={pageUrl}"
                 ]
                                 // Robots
-                meta [_name "robots"; _content "noindex,nofollow,nosnippet"]
+                meta [_name "robots"; _content "nosnippet"]
                 title [] [Text pageTitle]]
             body [] []
             footerContent
