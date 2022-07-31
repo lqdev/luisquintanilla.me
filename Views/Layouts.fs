@@ -147,6 +147,19 @@ module Layouts
         link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Videos Feed RSS"; _href "https://www.luisquintanilla.me/feed/videos.xml"]
     ]
 
+    let redirectLayout (pageUrl:string) (pageTitle:string) = 
+        html [_lang "en"] [
+            head [] [
+                meta [
+                    attr "http-equiv" "refresh"
+                    _content $"0; url={pageUrl}" />
+                ]
+                                // Robots
+                meta [_name "robots"; _content "noindex,nofollow,nosnippet"]
+                title [] [Text pageTitle]]
+            body [] []
+        ]
+
     let defaultLayout (pageTitle:string) (content:string) =
         html [_lang "en"] [
             head [] [

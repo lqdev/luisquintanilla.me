@@ -252,3 +252,10 @@ module Builder
 
         let lingLogPage = generate (linkView links) "default" "Linklog - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"linklog.html"), lingLogPage)
+
+    let buildTwitterRedirectPage () = 
+        let redirectPage = generateRedirect "https://twitter.com/ljquintanilla" "Twitter"
+        let saveDir = Path.Join(outputDir, "twitter")
+        Directory.CreateDirectory(saveDir)
+        File.WriteAllText(Path.Join(saveDir,"index.html"), redirectPage)
+        

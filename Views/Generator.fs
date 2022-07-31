@@ -17,6 +17,11 @@ module ViewGenerator
         |> RenderView.AsString.htmlDocument 
     
     
+    let generateRedirect (pageUrl:string) (pageTitle:string) = 
+        pageTitle
+        |> redirectLayout pageUrl 
+        |> RenderView.AsString.htmlDocument
+
     let generatePartial (partialView:XmlNode) =
         partialView
         |> RenderView.AsString.xmlNode

@@ -5,6 +5,9 @@ open System
 open Domain
 open MarkdownService
 
+let emptyView () = 
+    div [] []
+
 let underConstructionView () =
     div [] [
         img [ _src "images/under-construction.png" ]

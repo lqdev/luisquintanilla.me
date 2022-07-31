@@ -68,4 +68,7 @@ let main argv =
     buildPresentationsPage presentations
     buildPresentationPages presentations
 
+    // Redirects
+    buildTwitterRedirectPage ()
+
     0
