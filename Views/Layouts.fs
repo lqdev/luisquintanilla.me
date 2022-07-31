@@ -218,6 +218,58 @@ module Layouts
             footerContent
         ]
 
+    // Similar to default layout but allows indexing by search engines
+    let defaultIndexedLayout (pageTitle:string) (content:string) =
+        html [_lang "en"] [
+            head [] [
+                meta [_charset "UTF-8"]    
+                meta [_name "viewport"; _content "width=device-width, initial-scale=1, shrink-to-fit=no"]
+
+                stats
+
+                // Stylesheets
+                for sheet in styleSheets do
+                    sheet
+
+                // Opengraph
+                meta [_property "og:title"; _content pageTitle]
+                meta [_property "og:type"; _content "website"]
+                meta [_property "og:image"; _content "https://www.luisquintanilla.me/avatar.png"]
+                meta [_property "og:image:secure_url"; _content "https://www.luisquintanilla.me/avatar.png"]
+                meta [_property "og:image:type"; _content "image/png"]
+                meta [_property "og:image:width"; _content "200"]
+                meta [_property "og:image:height"; _content "200"] 
+                meta [_property "og:site_name"; _content "Luis Quintanilla Personal Website"]
+                meta [_property "og:locale"; _content "en_US"]
+                meta [_property "twitter:image"; _content "https://www.luisquintanilla.me/avatar.png"]
+
+                // RSS Feeds
+                for feed in rssFeeds do
+                    feed
+
+                // Robots
+                meta [_name "robots"; _content "nofollow,nosnippet"]
+                title [] [Text pageTitle]
+            ]
+            body [] [
+                defaultNavBar
+
+                main [attr "role" "main"; _class "container"] [
+                    rawText content
+                ]
+                script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
+                script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
+                script [_src "/lib/highlight/highlight.min.js"] [] // 10.5.0
+                script [_src "/lib/highlight/highlight.fsharp.min.js"] [] // 10.5.0
+                
+                script [_type "application/javascript"] [
+                    rawText "hljs.initHighlightingOnLoad();"
+                ]   
+            ]
+            footerContent
+        ]
+
+
     let presentationLayout (pageTitle:string) (content:string) =
         html [_lang "en"] [
             head [] [
