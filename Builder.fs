@@ -151,6 +151,7 @@ module Builder
                 ("https://matrix.to/#/@lqdev:matrix.lqdev.tech", "Matrix")
                 ("https://toot.lqdev.tech/@lqdev", "Mastodon")
                 ("https://www.twitch.tv/lqdev1", "Twitch")
+                ("https://www.youtube.com/channel/UCkA5fHdQ4cf3D1J19UNgV7A", "YouTube")
             |]
 
         redirects

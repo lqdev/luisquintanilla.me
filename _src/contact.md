@@ -10,3 +10,4 @@ Say hi on any of these platforms.
 - **Twitter** <- [ljquintanilla](/twitter) |> [QR Code](/images/qr-twitter.png)
 - **LinkedIn** <- [lquintanilla01](/linkedin) |> [QR Code](/images/qr-linkedin.png)
 - **Twitch** <- [lqdev1](/twitch) |> [QR Code](/images/qr-twitch.png)
+- **YouTube** <- [channel link](/youtube)
