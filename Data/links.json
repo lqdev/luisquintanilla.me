@@ -2,13 +2,19 @@
     {
         "Url": "https://www.fast.ai/2022/07/21/dl-coders-22/",
         "Title": "Practical Deep Learning for Coders 2022", 
-        "Tags": ["machinelearning, python, course"],
+        "Tags": ["machinelearning", "python", "course"],
         "DateAdded": "07/26/2022 09:11 PM"
     },
     {
        "Url": "https://klemet.github.io/Workshop-Organization-EN/index.html",
        "Title": "Open Source and Organization workshop",
-       "Tags": ["opensource,knowledgemanagement,productivity","workshop"],
+       "Tags": ["opensource","knowledgemanagement","productivity","workshop"],
        "DateAdded": "07/27/2022 22:01"
-    }
+    },
+    {
+       "Url": "https://betterhumans.pub/how-to-set-up-your-iphone-for-productivity-focus-and-your-own-longevity-bb27a68cc3d8",
+       "Title": "The Optimal iPhone Settings and Best Apps for Productivity, Focus, and Health",
+       "Tags": ["lifestyle", "technology","productivity","apple", "ios", "smartphones"],
+       "DateAdded": "08/01/2022 17:50"
+    },
 ]
