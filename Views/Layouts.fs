@@ -153,6 +153,7 @@ module Layouts
             a [_rel "me"; _href "https://github.com/lqdev"] []
             a [_rel "me"; _href "https://twitter.com/ljquintanilla"] []      
             a [_rel "me"; _href "https://www.linkedin.com/in/lquintanilla01/"] []
+            a [_rel "me"; _href "mailto:lqdev@outlook.com"] []            
         ]
 
     let redirectLayout (pageUrl:string) (pageTitle:string) = 
