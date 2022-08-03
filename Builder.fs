@@ -185,12 +185,14 @@ module Builder
                 let postView = postView postTitle postContent
                 post.FileName,generate postView "defaultindex" $"{post.Metadata.Title} - Luis Quintanilla")
         
-        let saveDir = Path.Join(outputDir,"posts")
+        let rootSaveDir = Path.Join(outputDir,"posts")
         // Directory.CreateDirectory(saveDir) |> ignore
         postPages
         |> Array.iter(fun (fileName,html) ->
-            let saveFileName = sprintf "%s.html" fileName
-            let savePath = Path.Join(saveDir,saveFileName)
+            let saveDir = Path.Join(rootSaveDir,fileName)
+            Directory.CreateDirectory(saveDir)
+            // let saveFileName = sprintf "%s.html" fileName
+            let savePath = Path.Join(saveDir,"index.html")
             File.WriteAllText(savePath,html))
 
     let buildPostArchive (posts:Post array) = 
