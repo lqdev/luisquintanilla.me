@@ -267,7 +267,7 @@ module Builder
 
         let lingLogPage = generate (linkView links) "default" "Linklog - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"feed","linklog")
-        Directory.Create(saveDir)
+        Directory.CreateDirectory(saveDir)
         File.WriteAllText(Path.Join(saveDir,"index.html"), lingLogPage)
 
 
