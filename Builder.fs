@@ -234,7 +234,7 @@ module Builder
         let feedPage = generate (feedView parsedPosts) "default" feedTitle
         
         // Create directories
-        let saveDir = Path.Join(outputDir,"feed")
+        let rootSaveDir = Path.Join(outputDir,"feed")
         // Directory.CreateDirectory(saveDir) |> ignore
 
         // Generate individual feed posts        
@@ -243,12 +243,12 @@ module Builder
             let postView = feedPostView post
             post.FileName,generate postView "default" post.Metadata.Title)
         |> Array.iter(fun (fileName,html) ->
-            let saveFileName = sprintf "%s.html" fileName
-            let savePath = Path.Join(saveDir,saveFileName)
+            let saveDir = Path.Join(rootSaveDir,fileName)
+            let savePath = Path.Join(saveDir,"index.html")
             File.WriteAllText(savePath,html))        
     
         // Save feed
-        File.WriteAllText(Path.Join(saveDir, $"{saveFileName}.html"), feedPage)
+        File.WriteAllText(Path.Join(rootSaveDir, $"index.html"), feedPage)
 
     let buildPresentationsPage (presentations: Presentation array) = 
         let presentationPage = generate (presentationsView presentations) "default" "Presentations - Luis Quintanilla"
