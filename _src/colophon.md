@@ -43,6 +43,6 @@ The code is hosted on Azure. Specifically I use [Azure Static Web Apps](https://
 
 ## Syndication
 
-The main form of syndication for content on this site is RSS. I have [several feeds](/subscribe.html) that are generally organized based on the type of content. The RSS files are generated as part of the build process by the static site generator.
+The main form of syndication for content on this site is RSS. I have [several feeds](/subscribe) that are generally organized based on the type of content. The RSS files are generated as part of the build process by the static site generator.
 
 An additional syndication practice I follow for this site is [Publish (on your) Own Site, Syndicate Everywhere (POSSE)](https://indieweb.org/POSSE). I try to have my site be the single source of truth and home for my content. From there, I can share with other applications and services. I use [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/) for my main feed to automate syndication to Twitter and Mastodon. The Azure Logic App constantly polls the main feed's RSS for new changes. Then, it posts them on Twitter and Mastodon.

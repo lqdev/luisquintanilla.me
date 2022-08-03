@@ -26,9 +26,9 @@ The [main feed](/feed/index.html) aggregates content of all types. [Note](/feed/
 
 For more details on how this site is built, check out the [colophon](/colophon)
 
-## Tech experience
+## Tech stack
 
-A list of technologies I have experience with. It's not an exhaustive list but some of the ones I commonly use.
+A list of technologies I work with. It's not an exhaustive list but some of the ones I commonly use.
 
 For a list of products, apps, and services I use in my day-to-day, check out my [IRL stack](/irl-stack).
 
