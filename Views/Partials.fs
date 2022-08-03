@@ -225,7 +225,7 @@ let feedPostView (post:Post) =
             rawText post.Content
         ]
         div [_class "card-footer"] [
-            let permalink = $"/feed/{post.FileName}.html" 
+            let permalink = $"/feed/{post.FileName}/" 
             Text "Permalink: " 
             a [_href permalink] [Text $"https://luisquintanilla.me{permalink}"]
         ]
