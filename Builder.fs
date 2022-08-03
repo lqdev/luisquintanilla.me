@@ -244,6 +244,7 @@ module Builder
             post.FileName,generate postView "default" post.Metadata.Title)
         |> Array.iter(fun (fileName,html) ->
             let saveDir = Path.Join(rootSaveDir,fileName)
+            Directory.CreateDirectory(saveDir)
             let savePath = Path.Join(saveDir,"index.html")
             File.WriteAllText(savePath,html))        
     
