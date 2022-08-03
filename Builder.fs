@@ -215,7 +215,7 @@ module Builder
 
         let eventPage = generate (eventView events) "default" "Events - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"events")
-        Directoty.CreateDirectory(saveDir)
+        Directory.CreateDirectory(saveDir)
         File.WriteAllText(Path.Join(saveDir,"index.html"),eventPage)
 
     let filterFeedByPostType (posts: Post array) (postType: string) = 
