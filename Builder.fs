@@ -69,43 +69,58 @@ module Builder
 
         let aboutContent = convertFileToHtml (Path.Join(srcDir,"about.md")) |> aboutView
         let aboutPage = generate aboutContent "default" "About - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"about","index.html"), aboutPage)
+        let saveDir = Path.Join(outputDir,"about")
+        Directory.CreateDirectory(saveDir)
+        File.WriteAllText(Path.Join(saveDir,"index.html"), aboutPage)
 
     let buildBlogrollPage () = 
         let blogRollContent = Path.Join(srcDir,"blogroll.md") |> convertFileToHtml |> blogRollView
         let blogRollPage = generate blogRollContent "default" "Blogroll - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"feed","blogroll","index.html"), blogRollPage)
+        let saveDir = Path.Join(outputDir,"feed","blogroll")
+        Directory.CreateDirectory(saveDir)        
+        File.WriteAllText(Path.Join(saveDir,"index.html"), blogRollPage)
 
     let buildPodrollPage () = 
         let podRollContent = Path.Join(srcDir,"podroll.md") |> convertFileToHtml |> podRollView
         let podRollPage = generate podRollContent "default" "Podroll - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"feed","podroll","index.html"), podRollPage)
+        let saveDir = Path.Join(outputDir,"feed","podroll")
+        Directory.CreateDirectory(saveDir)         
+        File.WriteAllText(Path.Join(saveDir,"index.html"), podRollPage)
 
     let buildIRLStackPage () = 
         let irlStackContent = Path.Join(srcDir,"irl-stack.md") |> convertFileToHtml |> irlStackView
         let irlStackPage = generate irlStackContent "default" "In Real Life Stack - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"irl-stack","index.html"), irlStackPage)
+        let saveDir = Path.Join(outputDir,"feed","irl-stack")
+        Directory.CreateDirectory(saveDir)                
+        File.WriteAllText(Path.Join(saveDir,"index.html"), irlStackPage)
 
     let buildColophonPage () = 
         let colophonContent = Path.Join(srcDir,"colophon.md") |> convertFileToHtml |> irlStackView
         let colophonPage = generate colophonContent "default" "Colophon - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"colophon","index.html"), colophonPage)        
+        let saveDir = Path.Join(outputDir,"feed","colophon")
+        Directory.CreateDirectory(saveDir)                
+        File.WriteAllText(Path.Join(saveDir,"index.html"), colophonPage)        
 
     let buildSubscribePage () = 
         let subscribeContent = Path.Join(srcDir,"subscribe.md") |> convertFileToHtml |> subscribeView
         let subscribePage = generate subscribeContent "default" "Subscribe - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"subscribe","index.html"), subscribePage)        
+        let saveDir = Path.Join(outputDir,"feed","subscribe")
+        Directory.CreateDirectory(saveDir)                
+        File.WriteAllText(Path.Join(saveDir,"index.html"), subscribePage)        
     
     let buildContactPage () = 
         let contactContent = convertFileToHtml (Path.Join(srcDir,"contact.md")) |> contactView
         let contactPage = generate contactContent "default" "Contact - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"contact","index.html"), contactPage)
+        let saveDir = Path.Join(outputDir,"feed","contact")
+        Directory.CreateDirectory(saveDir) 
+        File.WriteAllText(Path.Join(saveDir, "index.html"), contactPage)
 
     let buildOnlineRadioPage () = 
-
         let onlineRadioContent = convertFileToHtml (Path.Join(srcDir,"radio.md")) |> onlineRadioView
         let onlineRadioPage = generate onlineRadioContent "default" "Online Radio - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"radio","index.html"), onlineRadioPage)        
+        let saveDir = Path.Join(outputDir,"feed","radio")
+        Directory.CreateDirectory(saveDir)
+        File.WriteAllText(Path.Join(saveDir,"index.html"), onlineRadioPage)        
 
     let loadPosts () = 
         let postPaths = 
