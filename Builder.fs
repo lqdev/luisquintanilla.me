@@ -94,7 +94,7 @@ module Builder
     let buildSubscribePage () = 
         let subscribeContent = Path.Join(srcDir,"subscribe.md") |> convertFileToHtml |> subscribeView
         let subscribePage = generate subscribeContent "default" "Subscribe - Luis Quintanilla"
-        File.WriteAllText(Path.Join(saveDir,subscribe,"index.html"), subscribePage)        
+        File.WriteAllText(Path.Join(outputDir,subscribe,"index.html"), subscribePage)        
     
     let buildContactPage () = 
         let contactContent = convertFileToHtml (Path.Join(srcDir,"contact.md")) |> contactView
@@ -105,7 +105,7 @@ module Builder
 
         let onlineRadioContent = convertFileToHtml (Path.Join(srcDir,"radio.md")) |> onlineRadioView
         let onlineRadioPage = generate onlineRadioContent "default" "Online Radio - Luis Quintanilla"
-        File.WriteAllText(Path.Join(saveDir,"radio","index.html"), onlineRadioPage)        
+        File.WriteAllText(Path.Join(outputDir,"radio","index.html"), onlineRadioPage)        
 
     let loadPosts () = 
         let postPaths = 
