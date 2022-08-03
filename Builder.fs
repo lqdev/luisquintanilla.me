@@ -263,7 +263,7 @@ module Builder
             File.WriteAllText(savePath,html))        
     
         // Save feed
-        File.WriteAllText(Path.Join(rootSaveDir, $"index.html"), feedPage)
+        File.WriteAllText(Path.Join(rootSaveDir, $"{saveFileName}.html"), feedPage)
 
     let buildPresentationsPage (presentations: Presentation array) = 
         let presentationPage = generate (presentationsView presentations) "default" "Presentations - Luis Quintanilla"
