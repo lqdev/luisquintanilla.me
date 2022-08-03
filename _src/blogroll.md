@@ -13,5 +13,5 @@ Below are the links to the sites and their corresponding feeds.
 - **Hundred Rabbits** - [Website](https://100r.co/site/home.html) / [RSS Feed](https://100r.co/links/rss.xml)
 - **Julia Evans** - [Website](https://jvns.ca/) / [RSS Feed](https://jvns.ca/atom.xml)
 - **Blogget** - [Website](https://blogget.substack.com/) / [RSS Feed](https://blogget.substack.com/feed)
-- Adventure Taco - [Website](https://adventuretaco.com/) | [RSS Feed](https://adventuretaco.com/feed/)
-- Indieseek.xyz - [Website](https://indieseek.xyz/) | [RSS Feed](https://indieseek.xyz/feed/)
+- **Adventure Taco** - [Website](https://adventuretaco.com/) | [RSS Feed](https://adventuretaco.com/feed/)
+- **Indieseek.xyz** - [Website](https://indieseek.xyz/) | [RSS Feed](https://indieseek.xyz/feed/)
