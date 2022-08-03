@@ -21,7 +21,7 @@ let recentPostsView (posts: Post array) =
                     .Parse(post.Metadata.Date)
                     .ToLongDateString()
 
-            let url = sprintf "/posts/%s.html" post.FileName
+            let url = sprintf "/posts/%s/" post.FileName
 
             div [ _class "card rounded m-2 w-75 mx-auto" ] [
                 p [ _class "card-header" ] [ Text date ]
