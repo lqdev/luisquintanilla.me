@@ -69,46 +69,43 @@ module Builder
 
         let aboutContent = convertFileToHtml (Path.Join(srcDir,"about.md")) |> aboutView
         let aboutPage = generate aboutContent "default" "About - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"about.html"), aboutPage)
+        File.WriteAllText(Path.Join(outputDir,"about","index.html"), aboutPage)
 
     let buildBlogrollPage () = 
         let blogRollContent = Path.Join(srcDir,"blogroll.md") |> convertFileToHtml |> blogRollView
         let blogRollPage = generate blogRollContent "default" "Blogroll - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"feed","blogroll.html"), blogRollPage)
+        File.WriteAllText(Path.Join(outputDir,"feed","blogroll","index.html"), blogRollPage)
 
     let buildPodrollPage () = 
         let podRollContent = Path.Join(srcDir,"podroll.md") |> convertFileToHtml |> podRollView
         let podRollPage = generate podRollContent "default" "Podroll - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"feed","podroll.html"), podRollPage)
+        File.WriteAllText(Path.Join(outputDir,"feed","podroll","index.html"), podRollPage)
 
     let buildIRLStackPage () = 
         let irlStackContent = Path.Join(srcDir,"irl-stack.md") |> convertFileToHtml |> irlStackView
         let irlStackPage = generate irlStackContent "default" "In Real Life Stack - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"irl-stack.html"), irlStackPage)        
+        File.WriteAllText(Path.Join(outputDir,"irl-stack","index.html"), irlStackPage)
 
     let buildColophonPage () = 
         let colophonContent = Path.Join(srcDir,"colophon.md") |> convertFileToHtml |> irlStackView
         let colophonPage = generate colophonContent "default" "Colophon - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"colophon.html"), colophonPage)        
+        File.WriteAllText(Path.Join(outputDir,"colophon","index.html"), colophonPage)        
 
     let buildSubscribePage () = 
         let subscribeContent = Path.Join(srcDir,"subscribe.md") |> convertFileToHtml |> subscribeView
         let subscribePage = generate subscribeContent "default" "Subscribe - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"subscribe.html"), subscribePage)        
+        File.WriteAllText(Path.Join(saveDir,subscribe,"index.html"), subscribePage)        
     
     let buildContactPage () = 
-
         let contactContent = convertFileToHtml (Path.Join(srcDir,"contact.md")) |> contactView
         let contactPage = generate contactContent "default" "Contact - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"contact.html"), contactPage)
+        File.WriteAllText(Path.Join(outputDir,"contact","index.html"), contactPage)
 
     let buildOnlineRadioPage () = 
 
         let onlineRadioContent = convertFileToHtml (Path.Join(srcDir,"radio.md")) |> onlineRadioView
         let onlineRadioPage = generate onlineRadioContent "default" "Online Radio - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir, "radio")
-        Directory.CreateDirectory(saveDir)
-        File.WriteAllText(Path.Join(saveDir,"index.html"), onlineRadioPage)        
+        File.WriteAllText(Path.Join(saveDir,"radio","index.html"), onlineRadioPage)        
 
     let loadPosts () = 
         let postPaths = 
@@ -217,7 +214,9 @@ module Builder
             |> Array.sortByDescending(fun x -> DateTime.Parse(x.Date))
 
         let eventPage = generate (eventView events) "default" "Events - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"events.html"),eventPage)
+        let saveDir = Path.Join(outputDir,"events")
+        Directoty.CreateDirectory(saveDir)
+        File.WriteAllText(Path.Join(saveDir,"index.html"),eventPage)
 
     let filterFeedByPostType (posts: Post array) (postType: string) = 
         posts |> Array.filter(fun post -> post.Metadata.PostType = postType)
@@ -255,7 +254,6 @@ module Builder
         let presentationPage = generate (presentationsView presentations) "default" "Presentations - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"presentations.html"),presentationPage)
 
-
     let buildPresentationPages (presentations:Presentation array) = 
         presentations
         |> Array.iter(fun presentation ->
@@ -268,7 +266,9 @@ module Builder
     let buildLinklogPage (links: Link array) = 
 
         let lingLogPage = generate (linkView links) "default" "Linklog - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"linklog.html"), lingLogPage)
+        let saveDir = Path.Join(outputDir,"feed","linklog")
+        Directory.Create(saveDir)
+        File.WriteAllText(Path.Join(saveDir,"index.html"), lingLogPage)
 
 
     let buildRedirectPages (redirectDetails: RedirectDetails array) =
