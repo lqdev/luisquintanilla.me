@@ -160,7 +160,7 @@ module Builder
         
         let wikis = wikiPaths |> Array.map(parseWiki)
         
-        snippets        
+        wikis        
 
     let loadLinks () = 
         let links =  

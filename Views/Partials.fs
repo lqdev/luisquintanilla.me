@@ -118,7 +118,7 @@ let wikisView (wikis: Wiki array) =
         ul [] [
             for wiki in wikis do
                 li [] [
-                    a [ _href $"/wiki/{snippet.FileName}"] [ Text snippet.Metadata.Title ]
+                    a [ _href $"/wiki/{snippet.FileName}"] [ Text wiki.Metadata.Title ]
                 ]
         ]
     ]
