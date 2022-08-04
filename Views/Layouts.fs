@@ -193,7 +193,7 @@ module Layouts
             
             script [_src "/js/main.js"] []
 
-            let redirectScript = sprintf "redirect(%s)" pageUrl
+            let redirectScript = sprintf "redirect(\"%s\")" pageUrl
 
             printfn "%s" redirectScript
 
