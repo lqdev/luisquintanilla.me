@@ -282,11 +282,12 @@ module Builder
     let buildPresentationPages (presentations:Presentation array) = 
         presentations
         |> Array.iter(fun presentation ->
-            let saveDir = Path.Join(outputDir,"presentations")
+            let rootSaveDir = Path.Join(outputDir,"presentations")
             let html = presentationPageView presentation
             let presentationView = generate  html "presentation" $"{presentation.Metadata.Title} - Luis Quintanilla"
-            let saveFileName = Path.Join(saveDir,$"{presentation.FileName}.html")
-            File.WriteAllText(saveFileName,presentationView))
+            let saveDir = Path.Join(rootSaveDir,$"{presentation.FileName}")
+            Directory.CreateDirectory(saveDir)
+            File.WriteAllText(Path.Join(saveDir,"index.html"),presentationView))
 
     let buildLinklogPage (links: Link array) = 
 

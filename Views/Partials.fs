@@ -100,7 +100,7 @@ let snippetsView (snippets: Snippet array) =
         ul [] [
             for snippet in snippets do
                 li [] [
-                    a [ _href $"/snippets/{snippet.FileName}.html"] [ Text snippet.Metadata.Title ]
+                    a [ _href $"/snippets/{snippet.FileName}"] [ Text snippet.Metadata.Title ]
                 ]
         ]
     ]
@@ -262,7 +262,7 @@ let presentationsView (presentations: Presentation array) =
         ul [] [
             for presentation in presentations do
                 li [] [
-                    a [ _href $"/presentations/{presentation.FileName}.html"] [ Text presentation.Metadata.Title ]
+                    a [ _href $"/presentations/{presentation.FileName}"] [ Text presentation.Metadata.Title ]
                 ]
         ]
     ]
