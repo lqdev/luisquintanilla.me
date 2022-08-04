@@ -195,6 +195,8 @@ module Layouts
 
             let redirectScript = sprintf "redirect(%s)" pageUrl
 
+            printfn "%s" redirectScript
+
             script [_type "application/javascript"] [
                 rawText redirectScript
             ]               
