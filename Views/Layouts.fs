@@ -190,10 +190,10 @@ module Layouts
                 meta [_name "robots"; _content "nosnippet"]
                 title [] [Text pageTitle]]
             body [] []
+            
+            script [_src "/js/main.js"] []
             script [_type "application/javascript"] [
-                rawText $"""
-                window.location = {pageUrl}{window.location.pathname}
-                """
+                rawText $"redirect({pageUrl})"
             ]               
             footerContent
         ]
