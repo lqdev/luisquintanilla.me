@@ -22,5 +22,11 @@
        "Title": "MasterWiki",
        "Tags": ["learning","education"],
        "DateAdded": "08/03/2022 18:48"
+    },
+    {
+       "Url": "https://knightcolumbia.org/events/reimagine-the-internet",
+       "Title": "Reimagine the internet",
+       "Tags": ["internet","conference","policy","social media", "technology"],
+       "DateAdded": "08/03/2022 21:21"
     }
 ]
