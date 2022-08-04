@@ -14,8 +14,7 @@ module RssService
 
     let blogEntryXml (entry:Post) =
         
-        let filePath = sprintf "%s.html" entry.FileName
-        let url = $"https://www.luisquintanilla.me/posts/{filePath}"
+        let url = $"https://www.luisquintanilla.me/posts/{entry.FileName}"
         let urlWithUtm = $"{url}?utm_medium=feed"
         
         let description = $"{entry.Metadata.Description}. See the full post at <a href=\"{urlWithUtm}\">{url}</a>"
@@ -29,8 +28,7 @@ module RssService
 
     let feedEntryXml (entry:Post) =
 
-        let filePath = sprintf "%s.html" entry.FileName
-        let url = $"https://www.luisquintanilla.me/feed/{filePath}"
+        let url = $"https://www.luisquintanilla.me/feed/{entry.FileName}"
         let urlWithUtm = $"{url}?utm_medium=feed"
         
         XElement(XName.Get "item",
