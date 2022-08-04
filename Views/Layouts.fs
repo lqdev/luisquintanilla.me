@@ -98,7 +98,7 @@ module Layouts
                         a [
                             _class "nav-link dropdown-toggle"
                             _href "#"
-                            _id "wikiDropdown"
+                            _id "kbDropdown"
                             attr "role" "button"
                             attr "data-toggle" "dropdown"
                             attr "aria-haspopup" "true"
@@ -108,7 +108,7 @@ module Layouts
                         ]
                         div [
                             _class "dropdown-menu"
-                            attr "aria-labelledby" "wikiDropdown"
+                            attr "aria-labelledby" "kbDropdown"
                             ] [
                                 a [_class "dropdown-item"; _href "/snippets"] [ Text "Snippets" ]
                                 a [_class "dropdown-item"; _href "/wiki"] [ Text "Wiki" ]
