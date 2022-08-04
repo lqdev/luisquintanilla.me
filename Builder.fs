@@ -301,7 +301,9 @@ module Builder
         |> Array.iter(fun snippet ->    
             let saveDir = Path.Join(rootSaveDir,snippet.FileName)
             Directory.CreateDirectory(saveDir)
-            let html = snippetView snippet
+            let html = 
+                { snippet with Content=(snippet.Content |> ConvertMdToHtml) }
+                |> snippetView
             let snippetView = generate  html "defaultindex" $"Snippet | {snippet.Metadata.Title} - Luis Quintanilla"
             let saveFileName = Path.Join(saveDir,"index.html")
             File.WriteAllText(saveFileName,snippetView))
