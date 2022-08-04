@@ -93,6 +93,12 @@ let postView title content =
         rawText content
     ]
 
+let snippetView title content =
+    div [ _class "mr-auto" ] [
+        h1 [] [Text title]
+        rawText content
+    ]
+
 let postPaginationView (currentPage: int) (lastPage: int) (posts: Post array) =
     let nextPage = currentPage + 1
     let previousPage = currentPage - 1

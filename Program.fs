@@ -26,11 +26,11 @@ let main argv =
     let presentations = loadPresentations ()
     let links = loadLinks ()
     let redirects = loadRedirects ()
+    let snippets = loadSnippets ()
 
     let notePosts = filterFeedByPostType feedPosts "note"
     let photoPosts = filterFeedByPostType feedPosts "photo"
     let videoPosts = filterFeedByPostType feedPosts "video"
-
 
     // Build static pages
     buildHomePage posts
@@ -72,5 +72,8 @@ let main argv =
 
     // Redirects
     buildRedirectPages redirects
+
+    // Build Snippet Pages
+    buildSnippetPage snippets
 
     0

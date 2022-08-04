@@ -63,3 +63,16 @@ module Domain
         Metadata: PresentationDetails
         Content: string
     }
+
+    [<CLIMutable>]
+    type SnippetDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="language")>] Language: string        
+        [<YamlMember(Alias="tags")>] Tags: string array
+    }
+
+    type Snippet = {
+        FileName: string
+        Metadata: SnippetDetails
+        Content: string
+    }

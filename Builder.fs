@@ -146,6 +146,14 @@ module Builder
         
         presentations
 
+    let loadSnippets () = 
+        let snippetPaths = 
+            Directory.GetFiles(Path.Join(srcDir,"snippets"))
+        
+        let snippets = snippetPaths |> Array.map(parseSnippet)
+        
+        snippets
+
     let loadLinks () = 
         let links =  
             File.ReadAllText(Path.Join("Data","links.json"))
@@ -285,6 +293,14 @@ module Builder
         Directory.CreateDirectory(saveDir)
         File.WriteAllText(Path.Join(saveDir,"index.html"), lingLogPage)
 
+    let buildSnippetPage (snippets:Snippet array) = 
+        snippets
+        |> Array.iter(fun snippet ->
+            let saveDir = Path.Join(outputDir,"snippets")
+            let html = snippetView snippet
+            let snippetView = generate  html "defaultindex" $"{snippet.Metadata.Title} - Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir,$"{snippet.FileName}.html")
+            File.WriteAllText(saveFileName,snippetView))
 
     let buildRedirectPages (redirectDetails: RedirectDetails array) =
         redirectDetails

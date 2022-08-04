@@ -63,3 +63,8 @@ module MarkdownService
         let presentationDetails = getContentAndMetadata<PresentationDetails>(filePath)
 
         { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = presentationDetails.Yaml; Content = presentationDetails.Content }
+
+    let parseSnippet (filePath:string) : Snippet = 
+        let snippetDetails = getContentAndMetadata<SnippetDetails>(filePath);
+
+        { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = snippetDetails.Yaml; Content = presentationDetails.Content }
