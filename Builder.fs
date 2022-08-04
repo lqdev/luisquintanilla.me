@@ -297,7 +297,7 @@ module Builder
         snippets
         |> Array.iter(fun snippet ->
             let saveDir = Path.Join(outputDir,"snippets")
-            let html = snippetView snippet.Metadata.Title snippet.Metadata.Content
+            let html = snippetView snippet
             let snippetView = generate  html "defaultindex" $"{snippet.Metadata.Title} - Luis Quintanilla"
             let saveFileName = Path.Join(saveDir,$"{snippet.FileName}.html")
             File.WriteAllText(saveFileName,snippetView))
