@@ -192,8 +192,7 @@ module Layouts
             body [] []
             script [_type "application/javascript"] [
                 rawText $"""
-                let path = window.location.pathname;
-                window.location = {pageUrl}{path}
+                window.location = {pageUrl}{window.location.pathname}
                 """
             ]               
             footerContent
