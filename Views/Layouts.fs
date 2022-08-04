@@ -41,14 +41,14 @@ module Layouts
                             _class "dropdown-menu"
                             attr "aria-labelledby" "aboutDropdown"
                             ] [
-                                a [_class "dropdown-item"; _href "/about.html"] [Text "About Me"]
-                                a [_class "dropdown-item"; _href "/irl-stack.html"] [Text "IRL Stack"]
-                                a [_class "dropdown-item"; _href "/colophon.html"] [Text "Colophon"]
+                                a [_class "dropdown-item"; _href "/about"] [Text "About Me"]
+                                a [_class "dropdown-item"; _href "/irl-stack"] [Text "IRL Stack"]
+                                a [_class "dropdown-item"; _href "/colophon"] [Text "Colophon"]
                         ]
                     ]
 
                     li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/contact.html"] [ Text "Contact" ]
+                        a [_class "nav-link"; _href "/contact"] [ Text "Contact" ]
                     ]
 
                     // Feeds dropdown
@@ -73,10 +73,10 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/feed/photos.html"] [Text "Photos"]                                
                                 a [_class "dropdown-item"; _href "/feed/videos.html"] [Text "Videos"]
                                 div [_class "dropdown-divider"] []
-                                a [_class "dropdown-item"; _href "/linklog.html"] [Text "Linklog"]
+                                a [_class "dropdown-item"; _href "/feed/linklog"] [Text "Linklog"]
                                 div [_class "dropdown-divider"] []
-                                a [_class "dropdown-item"; _href "/feed/blogroll.html"] [Text "Blogroll"]
-                                a [_class "dropdown-item"; _href "/feed/podroll.html"] [Text "Podroll"]
+                                a [_class "dropdown-item"; _href "/feed/blogroll"] [Text "Blogroll"]
+                                a [_class "dropdown-item"; _href "/feed/podroll"] [Text "Podroll"]
                         ]
                     ]
 
@@ -85,7 +85,7 @@ module Layouts
                     ]
                     
                     li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/subscribe.html"] [ Text "Subscribe" ]
+                        a [_class "nav-link"; _href "/subscribe"] [ Text "Subscribe" ]
                     ]
 
                     li [_class "nav-item"] [
@@ -109,13 +109,13 @@ module Layouts
                             _class "dropdown-menu"
                             attr "aria-labelledby" "eventsDropdown"
                             ] [
-                                a [_class "dropdown-item"; _href "/events.html"] [ Text "Event List" ]
-                                a [_class "dropdown-item"; _href "/presentations.html"] [ Text "Presentations" ]
+                                a [_class "dropdown-item"; _href "/events"] [ Text "Event List" ]
+                                a [_class "dropdown-item"; _href "/presentations"] [ Text "Presentations" ]
                         ]
                     ]
                 ]
 
-                a [_href "/subscribe.html"] [
+                a [_href "/subscribe"] [
                     tag "svg" [
                         _class "bi bi-rss text-secondary" 
                         attr "fill" "currentColor"
