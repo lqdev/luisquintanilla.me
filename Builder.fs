@@ -275,7 +275,9 @@ module Builder
 
     let buildPresentationsPage (presentations: Presentation array) = 
         let presentationPage = generate (presentationsView presentations) "default" "Presentations - Luis Quintanilla"
-        File.WriteAllText(Path.Join(outputDir,"presentations.html"),presentationPage)
+        let saveDir = Path.Join(outputDir,"presentations")
+        Directory.CreateDirectory(saveDir)
+        File.WriteAllText(Path.Join(saveDir,"index.html"),presentationPage)
 
     let buildPresentationPages (presentations:Presentation array) = 
         presentations

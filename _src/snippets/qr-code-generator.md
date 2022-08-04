@@ -7,8 +7,6 @@ tags:
   - script
 ---
 
-## qr-code-generator.fsx
-
 ## Description
 
 Script to generate a QR Code and save as PNG image from a URL
@@ -20,6 +18,8 @@ dotnet fsi qr-code-generator.fsx "my-qr-code.png" "https://twitter.com/user-prof
 ```
 
 ## Snippet 
+
+### qr-code-generator.fsx
 
 ```fsharp
 open System.Threading
