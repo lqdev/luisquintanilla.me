@@ -182,24 +182,16 @@ module Layouts
     let redirectLayout (pageUrl:string) (pageTitle:string) = 
         html [_lang "en"] [
             head [] [
-                // meta [
-                //     attr "http-equiv" "refresh"
-                //     _content $"0; url={pageUrl}"
-                // ]
-                                // Robots
+                meta [
+                    attr "http-equiv" "refresh"
+                    _content $"0; url={pageUrl}"
+                ]
+                
+                // Robots
                 meta [_name "robots"; _content "nosnippet"]
                 title [] [Text pageTitle]]
             body [] []
             
-            script [_src "/js/main.js"] []
-
-            let redirectScript = sprintf "redirect(\"%s\")" pageUrl
-
-            printfn "%s" redirectScript
-
-            script [_type "application/javascript"] [
-                rawText redirectScript
-            ]               
             footerContent
         ]
 
