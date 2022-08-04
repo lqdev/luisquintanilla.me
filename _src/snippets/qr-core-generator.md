@@ -7,7 +7,7 @@ tags:
   - script
 ---
 
-# qr-code-generator.fsx
+## qr-code-generator.fsx
 
 ## Description
 
@@ -20,6 +20,7 @@ dotnet fsi qr-code-generator.fsx "my-qr-code.png" "https://twitter.com/user-prof
 ```
 
 ## Snippet 
+
 ```fsharp
 open System.Threading
 

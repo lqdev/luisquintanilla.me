@@ -93,10 +93,10 @@ let postView title content =
         rawText content
     ]
 
-let snippetView title content =
+let snippetView (snippet:Snippet) =
     div [ _class "mr-auto" ] [
-        h1 [] [Text title]
-        rawText content
+        h1 [] [Text snippet.Metadata.Title]
+        rawText snippet.Content
     ]
 
 let postPaginationView (currentPage: int) (lastPage: int) (posts: Post array) =
