@@ -15,7 +15,9 @@ Machine learning is a subset of artificial intelligence.
 - Scikit-Learn
 - TensorFlow
 - PyTorch
+- Fast.AI
 - ONNX
+- HuggingFace
 
 ## References
 

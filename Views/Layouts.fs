@@ -92,10 +92,29 @@ module Layouts
                         a [_class "nav-link"; _href "/radio"] [ Text "Radio" ]
                     ]
 
-                    li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/snippets"] [ Text "Snippets" ]
-                    ]
 
+                    //Knowledgebase dropdown
+                    li [_class "nav-item dropdown"] [
+                        a [
+                            _class "nav-link dropdown-toggle"
+                            _href "#"
+                            _id "wikiDropdown"
+                            attr "role" "button"
+                            attr "data-toggle" "dropdown"
+                            attr "aria-haspopup" "true"
+                            attr "aria-expanded" "false"
+                        ] [
+                            Text "KB"
+                        ]
+                        div [
+                            _class "dropdown-menu"
+                            attr "aria-labelledby" "wikiDropdown"
+                            ] [
+                                a [_class "dropdown-item"; _href "/snippets"] [ Text "Snippets" ]
+                                a [_class "dropdown-item"; _href "/wiki"] [ Text "Wiki" ]
+                        ]
+                    ]
+                    
                     //Events dropdown
                     li [_class "nav-item dropdown"] [
                         a [
