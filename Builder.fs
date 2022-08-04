@@ -175,7 +175,7 @@ module Builder
             [|
                 ("https://twitter.com/ljquintanilla","Twitter")
                 ("https://github.com/lqdev","GitHub")
-                ("https://www.linkedin.com/in/lquintanilla01/", "LinkedIn")
+                ("https://www.linkedin.com/in/lquintanilla01", "LinkedIn")
                 ("https://matrix.to/#/@lqdev:matrix.lqdev.tech", "Matrix")
                 ("https://toot.lqdev.tech/@lqdev", "Mastodon")
                 ("https://www.twitch.tv/lqdev1", "Twitch")

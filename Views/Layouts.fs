@@ -182,14 +182,20 @@ module Layouts
     let redirectLayout (pageUrl:string) (pageTitle:string) = 
         html [_lang "en"] [
             head [] [
-                meta [
-                    attr "http-equiv" "refresh"
-                    _content $"0; url={pageUrl}"
-                ]
+                // meta [
+                //     attr "http-equiv" "refresh"
+                //     _content $"0; url={pageUrl}"
+                // ]
                                 // Robots
                 meta [_name "robots"; _content "nosnippet"]
                 title [] [Text pageTitle]]
             body [] []
+            script [_type "application/javascript"] [
+                rawText """
+                let path = window.location.pathname;
+                window.location = ${pageUrl}{path}
+                """
+            ]               
             footerContent
         ]
 
