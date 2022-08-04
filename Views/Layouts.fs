@@ -92,6 +92,10 @@ module Layouts
                         a [_class "nav-link"; _href "/radio"] [ Text "Radio" ]
                     ]
 
+                    li [_class "nav-item"] [
+                        a [_class "nav-link"; _href "/snippets"] [ Text "Snippets" ]
+                    ]
+
                     //Events dropdown
                     li [_class "nav-item dropdown"] [
                         a [
