@@ -90,35 +90,35 @@ module Builder
     let buildIRLStackPage () = 
         let irlStackContent = Path.Join(srcDir,"irl-stack.md") |> convertFileToHtml |> irlStackView
         let irlStackPage = generate irlStackContent "default" "In Real Life Stack - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","irl-stack")
+        let saveDir = Path.Join(outputDir,"irl-stack")
         Directory.CreateDirectory(saveDir)                
         File.WriteAllText(Path.Join(saveDir,"index.html"), irlStackPage)
 
     let buildColophonPage () = 
         let colophonContent = Path.Join(srcDir,"colophon.md") |> convertFileToHtml |> irlStackView
         let colophonPage = generate colophonContent "default" "Colophon - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","colophon")
+        let saveDir = Path.Join(outputDir,"colophon")
         Directory.CreateDirectory(saveDir)                
         File.WriteAllText(Path.Join(saveDir,"index.html"), colophonPage)        
 
     let buildSubscribePage () = 
         let subscribeContent = Path.Join(srcDir,"subscribe.md") |> convertFileToHtml |> subscribeView
         let subscribePage = generate subscribeContent "default" "Subscribe - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","subscribe")
+        let saveDir = Path.Join(outputDir,"subscribe")
         Directory.CreateDirectory(saveDir)                
         File.WriteAllText(Path.Join(saveDir,"index.html"), subscribePage)        
     
     let buildContactPage () = 
         let contactContent = convertFileToHtml (Path.Join(srcDir,"contact.md")) |> contactView
         let contactPage = generate contactContent "default" "Contact - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","contact")
+        let saveDir = Path.Join(outputDir,"contact")
         Directory.CreateDirectory(saveDir) 
         File.WriteAllText(Path.Join(saveDir, "index.html"), contactPage)
 
     let buildOnlineRadioPage () = 
         let onlineRadioContent = convertFileToHtml (Path.Join(srcDir,"radio.md")) |> onlineRadioView
         let onlineRadioPage = generate onlineRadioContent "default" "Online Radio - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","radio")
+        let saveDir = Path.Join(outputDir,"radio")
         Directory.CreateDirectory(saveDir)
         File.WriteAllText(Path.Join(saveDir,"index.html"), onlineRadioPage)        
 
