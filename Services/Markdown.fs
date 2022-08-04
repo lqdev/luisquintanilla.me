@@ -68,3 +68,8 @@ module MarkdownService
         let snippetDetails = getContentAndMetadata<SnippetDetails>(filePath);
 
         { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = snippetDetails.Yaml; Content = snippetDetails.Content }
+
+    let parseWiki (filePath:string) : Wiki = 
+        let wikiDetails = getContentAndMetadata<WikiDetails>(filePath);
+
+        { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = wikiDetails.Yaml; Content = wikiDetails.Content }

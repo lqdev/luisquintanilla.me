@@ -17,6 +17,8 @@ let main argv =
     Path.Join(outputDir,"feed") |> Directory.CreateDirectory |> ignore
     Path.Join(outputDir,"posts") |> Directory.CreateDirectory |> ignore
     Path.Join(outputDir,"presentations") |> Directory.CreateDirectory |> ignore
+    Path.Join(outputDir,"snippets") |> Directory.CreateDirectory |> ignore
+    Path.Join(outputDir,"wiki") |> Directory.CreateDirectory |> ignore    
     // copyStaticFiles srcDir outputDir
     // copyImages "images" "images"
 
@@ -27,6 +29,7 @@ let main argv =
     let links = loadLinks ()
     let redirects = loadRedirects ()
     let snippets = loadSnippets ()
+    let wikis = loadWikis ()
 
     let notePosts = filterFeedByPostType feedPosts "note"
     let photoPosts = filterFeedByPostType feedPosts "photo"
@@ -75,5 +78,10 @@ let main argv =
 
     // Build Snippet Pages
     buildSnippetPage snippets
+    buildSnippetPages snippets
+
+    // Build Wiki
+    buildWikiPage wikis
+    buildWikiPages wikis
 
     0

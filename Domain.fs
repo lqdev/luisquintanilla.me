@@ -76,3 +76,16 @@ module Domain
         Metadata: SnippetDetails
         Content: string
     }
+
+    [<CLIMutable>]
+    type WikiDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="last_updated_date")>] LastUpdatedDate: string
+        [<YamlMember(Alias="tags")>] Tags: string array        
+    }
+
+    type Wiki = {
+        FileName: string
+        Metadata: WikiDetails
+        Content: string
+    }

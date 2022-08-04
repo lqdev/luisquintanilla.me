@@ -94,5 +94,18 @@
 			"---"
 		],
 		"description": "Presentation metadata"
+	},
+	"Wiki article metadata": {
+		"scope": "markdown",
+		"prefix": "wiki",
+		"body": [
+			"---",
+			"post_type: \"wiki\" ",
+			"title: \"\"",
+			"last_updated_date: \"$CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE\"",
+			"tags: []",
+			"---"
+		],
+		"description": "Wiki article post"
 	}			
 }

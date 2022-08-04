@@ -111,6 +111,24 @@ let snippetView (snippet:Snippet) =
         rawText snippet.Content
     ]
 
+let wikisView (wikis: Wiki array) = 
+    div [ _class "d-grip gap-3" ] [
+        h2[] [Text "Wikis"]
+        p [] [Text "Personal wiki articles"]
+        ul [] [
+            for wiki in wikis do
+                li [] [
+                    a [ _href $"/wiki/{snippet.FileName}"] [ Text snippet.Metadata.Title ]
+                ]
+        ]
+    ]
+
+let wikiView (wiki:Wiki) =
+    div [ _class "mr-auto" ] [
+        h1 [] [Text wiki.Metadata.Title]
+        rawText wiki.Content
+    ]
+
 let postPaginationView (currentPage: int) (lastPage: int) (posts: Post array) =
     let nextPage = currentPage + 1
     let previousPage = currentPage - 1

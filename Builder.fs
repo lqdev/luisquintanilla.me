@@ -154,6 +154,14 @@ module Builder
         
         snippets
 
+    let loadWikis () = 
+        let wikiPaths = 
+            Directory.GetFiles(Path.Join(srcDir,"wiki"))
+        
+        let wikis = wikiPaths |> Array.map(parseWiki)
+        
+        snippets        
+
     let loadLinks () = 
         let links =  
             File.ReadAllText(Path.Join("Data","links.json"))
@@ -284,20 +292,20 @@ module Builder
         |> Array.iter(fun presentation ->
             let rootSaveDir = Path.Join(outputDir,"presentations")
             let html = presentationPageView presentation
-            let presentationView = generate  html "presentation" $"{presentation.Metadata.Title} - Luis Quintanilla"
+            let presentationView = generate  html "presentation" $"Presentation | {presentation.Metadata.Title} | Luis Quintanilla"
             let saveDir = Path.Join(rootSaveDir,$"{presentation.FileName}")
             Directory.CreateDirectory(saveDir)
             File.WriteAllText(Path.Join(saveDir,"index.html"),presentationView))
 
     let buildLinklogPage (links: Link array) = 
 
-        let lingLogPage = generate (linkView links) "defaultindex" "Linklog - Luis Quintanilla"
+        let lingLogPage = generate (linkView links) "defaultindex" "Linklog | Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"feed","linklog")
         Directory.CreateDirectory(saveDir)
         File.WriteAllText(Path.Join(saveDir,"index.html"), lingLogPage)
 
     let buildSnippetPage(snippets:Snippet array) = 
-        let snippetsPage = generate (snippetsView snippets) "defaultindex" "Presentations - Luis Quintanilla"
+        let snippetsPage = generate (snippetsView snippets) "defaultindex" "Snippets | Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"snippets")
         Directory.CreateDirectory(saveDir)
         File.WriteAllText(Path.Join(saveDir,"index.html"),snippetsPage)
@@ -312,9 +320,30 @@ module Builder
             let html = 
                 { snippet with Content=(snippet.Content |> ConvertMdToHtml) }
                 |> snippetView
-            let snippetView = generate  html "defaultindex" $"Snippet | {snippet.Metadata.Title} - Luis Quintanilla"
+            let snippetView = generate  html "defaultindex" $"Snippet | {snippet.Metadata.Title} | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir,"index.html")
             File.WriteAllText(saveFileName,snippetView))
+
+    let buildWikiPage(snippets:Wiki array) = 
+        let wikisPage = generate (wikisView snippets) "defaultindex" "Wiki - Luis Quintanilla"
+        let saveDir = Path.Join(outputDir,"wiki")
+        Directory.CreateDirectory(saveDir)
+        File.WriteAllText(Path.Join(saveDir,"index.html"),wikisPage)
+
+    let buildWikiPages (wikis:Wiki array) = 
+        let rootSaveDir = Path.Join(outputDir,"wiki") 
+        
+        wikis
+        |> Array.iter(fun wiki ->    
+            let saveDir = Path.Join(rootSaveDir,wiki.FileName)
+            Directory.CreateDirectory(saveDir)
+            let html = 
+                { wiki with Content=(wiki.Content |> ConvertMdToHtml) }
+                |> wikiView
+            let wikiView = generate  html "defaultindex" $"Wiki | {wiki.Metadata.Title} | Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir,"index.html")
+            File.WriteAllText(saveFileName,wikiView))
+
 
     let buildRedirectPages (redirectDetails: RedirectDetails array) =
         redirectDetails
