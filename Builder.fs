@@ -225,7 +225,7 @@ module Builder
             let len = posts |> Array.chunkBySize postsPerPage |> Array.length
             let currentPage = i + 1
             let idx = string currentPage
-            let page = generate (postPaginationView currentPage len x) "default" $"Posts {idx} - Luis Quintanilla"
+            let page = generate (postPaginationView currentPage len x) "defaultindex" $"Posts {idx} - Luis Quintanilla"
             let dir = Directory.CreateDirectory(Path.Join(outputDir,"posts", idx))
             let fileName = "index.html"
             File.WriteAllText(Path.Join(dir.FullName,fileName), page))
@@ -253,7 +253,7 @@ module Builder
             |> Array.sortByDescending(fun post -> DateTime.Parse(post.Metadata.Date))
 
         // Generate aggregate feed
-        let feedPage = generate (feedView parsedPosts) "default" feedTitle
+        let feedPage = generate (feedView parsedPosts) "defaultindex" feedTitle
         
         // Create directories
         let rootSaveDir = Path.Join(outputDir,"feed")
@@ -263,7 +263,7 @@ module Builder
         parsedPosts
         |> Array.map(fun post -> 
             let postView = feedPostView post
-            post.FileName,generate postView "default" post.Metadata.Title)
+            post.FileName,generate postView "defaultindex" post.Metadata.Title)
         |> Array.iter(fun (fileName,html) ->
             let saveDir = Path.Join(rootSaveDir,fileName)
             Directory.CreateDirectory(saveDir)
@@ -274,7 +274,7 @@ module Builder
         File.WriteAllText(Path.Join(rootSaveDir, $"{saveFileName}.html"), feedPage)
 
     let buildPresentationsPage (presentations: Presentation array) = 
-        let presentationPage = generate (presentationsView presentations) "default" "Presentations - Luis Quintanilla"
+        let presentationPage = generate (presentationsView presentations) "defaultindex" "Presentations - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"presentations")
         Directory.CreateDirectory(saveDir)
         File.WriteAllText(Path.Join(saveDir,"index.html"),presentationPage)
@@ -290,14 +290,19 @@ module Builder
 
     let buildLinklogPage (links: Link array) = 
 
-        let lingLogPage = generate (linkView links) "default" "Linklog - Luis Quintanilla"
+        let lingLogPage = generate (linkView links) "defaultindex" "Linklog - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"feed","linklog")
         Directory.CreateDirectory(saveDir)
         File.WriteAllText(Path.Join(saveDir,"index.html"), lingLogPage)
 
-    let buildSnippetPage (snippets:Snippet array) = 
-        let rootSaveDir = Path.Join(outputDir,"snippets")
-        Directory.CreateDirectory(rootSaveDir)        
+    let buildSnippetPage(snippets:Snippet array) = 
+        let snippetsPage = generate (snippetsView snippets) "defaultindex" "Presentations - Luis Quintanilla"
+        let saveDir = Path.Join(outputDir,"snippets")
+        Directory.CreateDirectory(saveDir)
+        File.WriteAllText(Path.Join(saveDir,"index.html"),snippetsPage)
+
+    let buildSnippetPages (snippets:Snippet array) = 
+        let rootSaveDir = Path.Join(outputDir,"snippets") 
         
         snippets
         |> Array.iter(fun snippet ->    

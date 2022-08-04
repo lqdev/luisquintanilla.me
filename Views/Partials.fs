@@ -93,6 +93,18 @@ let postView title content =
         rawText content
     ]
 
+let snippetsView (snippets: Snippet array) = 
+    div [ _class "d-grip gap-3" ] [
+        h2[] [Text "Snippets"]
+        p [] [Text "List of code snippets"]
+        ul [] [
+            for snippet in snippets do
+                li [] [
+                    a [ _href $"/snippets/{presentation.FileName}.html"] [ Text presentation.Metadata.Title ]
+                ]
+        ]
+    ]
+
 let snippetView (snippet:Snippet) =
     div [ _class "mr-auto" ] [
         h1 [] [Text snippet.Metadata.Title]
