@@ -192,8 +192,11 @@ module Layouts
             body [] []
             
             script [_src "/js/main.js"] []
+
+            let redirectScript = $"redirect({pageUrl})"
+
             script [_type "application/javascript"] [
-                rawText $"redirect({pageUrl})"
+                rawText redirectScript
             ]               
             footerContent
         ]
