@@ -68,7 +68,7 @@ module Domain
     type SnippetDetails = {
         [<YamlMember(Alias="title")>] Title: string
         [<YamlMember(Alias="language")>] Language: string        
-        [<YamlMember(Alias="tags")>] Tags: string array
+        [<YamlMember(Alias="tags")>] Tags: string
     }
 
     type Snippet = {
@@ -81,7 +81,7 @@ module Domain
     type WikiDetails = {
         [<YamlMember(Alias="title")>] Title: string
         [<YamlMember(Alias="last_updated_date")>] LastUpdatedDate: string
-        [<YamlMember(Alias="tags")>] Tags: string array        
+        [<YamlMember(Alias="tags")>] Tags: string        
     }
 
     type Wiki = {
