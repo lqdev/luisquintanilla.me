@@ -294,12 +294,16 @@ module Builder
         File.WriteAllText(Path.Join(saveDir,"index.html"), lingLogPage)
 
     let buildSnippetPage (snippets:Snippet array) = 
+        let rootSaveDir = Path.Join(outputDir,"snippets")
+        Directory.CreateDirectory(rootSaveDir)        
+        
         snippets
-        |> Array.iter(fun snippet ->
-            let saveDir = Path.Join(outputDir,"snippets")
+        |> Array.iter(fun snippet ->    
+            let saveDir = Path.Join(rootSaveDir,snippet.FileName)
+            Directory.CreateDirectory(saveDir)
             let html = snippetView snippet
-            let snippetView = generate  html "defaultindex" $"{snippet.Metadata.Title} - Luis Quintanilla"
-            let saveFileName = Path.Join(saveDir,$"{snippet.FileName}.html")
+            let snippetView = generate  html "defaultindex" $"Snippet | {snippet.Metadata.Title} - Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir,"index.html")
             File.WriteAllText(saveFileName,snippetView))
 
     let buildRedirectPages (redirectDetails: RedirectDetails array) =
