@@ -159,7 +159,8 @@ module Layouts
         link [_rel "stylesheet";_href "/css/bootstrap.min.css"] //4.6.0
         link [_rel "stylesheet";_href "/css/bootstrap-icons-1.5.0/bootstrap-icons.css"]
         link [_rel "stylesheet";_href "/css/highlight-dark.min.css"] //10.5.0
-        link [_rel "stylesheet";_href "/css/main.css"]        
+        link [_rel "stylesheet";_href "/css/main.css"]
+        link [_rel "stylesheet";_href "/css/customthemes.css"]
     ]
 
     let rssFeeds = [
@@ -233,6 +234,9 @@ module Layouts
                 main [attr "role" "main"; _class "container"] [
                     rawText content
                 ]
+
+                script [_src "/js/main.js"] []        
+
                 script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
                 script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
                 script [_src "/lib/highlight/highlight.min.js"] [] // 10.5.0
@@ -284,6 +288,9 @@ module Layouts
                 main [attr "role" "main"; _class "container"] [
                     rawText content
                 ]
+
+                script [_src "/js/main.js"] []
+
                 script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
                 script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
                 script [_src "/lib/highlight/highlight.min.js"] [] // 10.5.0
@@ -339,6 +346,10 @@ module Layouts
                 main [attr "role" "main"; _class "container"] [
                     rawText content
                 ]
+
+                script [_src "/js/main.js"] []
+
+
                 script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
                 script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
                 script [_src "/lib/highlight/highlight.min.js"] [] // 10.5.0
