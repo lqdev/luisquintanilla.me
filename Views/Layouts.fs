@@ -235,13 +235,13 @@ module Layouts
                     rawText content
                 ]
 
-                script [_src "/js/main.js"] []        
-
                 script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
                 script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
                 script [_src "/lib/highlight/highlight.min.js"] [] // 10.5.0
                 script [_src "/lib/highlight/highlight.fsharp.min.js"] [] // 10.5.0
-                
+
+                script [_src "/js/main.js"] []    
+
                 script [_type "application/javascript"] [
                     rawText "hljs.initHighlightingOnLoad();"
                 ]   
@@ -289,13 +289,13 @@ module Layouts
                     rawText content
                 ]
 
-                script [_src "/js/main.js"] []
-
                 script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
                 script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
                 script [_src "/lib/highlight/highlight.min.js"] [] // 10.5.0
                 script [_src "/lib/highlight/highlight.fsharp.min.js"] [] // 10.5.0
                 
+                script [_src "/js/main.js"] []
+
                 script [_type "application/javascript"] [
                     rawText "hljs.initHighlightingOnLoad();"
                 ]   
@@ -347,14 +347,13 @@ module Layouts
                     rawText content
                 ]
 
-                script [_src "/js/main.js"] []
-
-
                 script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
                 script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
                 script [_src "/lib/highlight/highlight.min.js"] [] // 10.5.0
                 script [_src "/lib/highlight/highlight.fsharp.min.js"] [] // 10.5.0
-                
+
+                script [_src "/js/main.js"] []
+
                 script [_type "application/javascript"] [
                     rawText "hljs.initHighlightingOnLoad();"
                 ]
