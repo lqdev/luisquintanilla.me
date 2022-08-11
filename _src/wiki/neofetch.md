@@ -22,6 +22,8 @@ pacman -S neofetch
 
 The configuration file for neofetch is located at *$HOME/.config/neofetch/config.conf*
 
+For more information on configuration options, see the [Customizing info article](https://github.com/dylanaraps/neofetch/wiki/Customizing-Info).
+
 ## Run
 
 1. Open the terminal and enter the following command:
