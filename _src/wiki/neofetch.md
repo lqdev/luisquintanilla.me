@@ -14,9 +14,9 @@ Neofetch is a command-line system information tool. Neofetch displays informatio
 1. Open the terminal
 1. Run the following command
 
-```bash
-pacman -S neofetch
-```
+    ```bash
+    pacman -S neofetch
+    ```
 
 ## Configure
 
@@ -28,9 +28,9 @@ For more information on configuration options, see the [Customizing info article
 
 1. Open the terminal and enter the following command:
 
-```bash
-neofetch
-```
+    ```bash
+    neofetch
+    ```
 
 ## Run when terminal launches 
 
