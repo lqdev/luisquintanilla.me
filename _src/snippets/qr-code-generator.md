@@ -11,7 +11,7 @@ Script to generate a QR Code and save as PNG image from a URL
 ## Usage
 
 ```bash
-dotnet fsi qr-code-generator.fsx "my-qr-code.png" "https://twitter.com/user-profile"
+dotnet fsi qr-code-generator.fsx "my-qr-code.svg" "https://twitter.com/user-profile"
 ```
 
 ## Snippet 
@@ -29,19 +29,15 @@ Thread.Sleep(5000)
 
 printfn "Loaded QrCodeGenerator"
 
-#r "nuget:System.Drawing.Common"
-
-Thread.Sleep(5000)
-printfn "Loaded System Drawing"
-
 open Net.Codecrete.QrCodeGenerator
-open System.Drawing.Imaging
+open System.IO
+open System.Text
 
 let createQrCode (savePath:string) (target:string) = 
     let qr = QrCode.EncodeText(target,QrCode.Ecc.High)
-    use bitmap = qr.ToBitmap(4,5)
-    bitmap.Save(savePath,ImageFormat.Png)
-
+    let svgString = qr.ToSvgString(4)
+    File.WriteAllText(savePath,svgString, Encoding.UTF8)
+    
 let args = fsi.CommandLineArgs
 let savePath = args.[1]
 let target = args.[2]
