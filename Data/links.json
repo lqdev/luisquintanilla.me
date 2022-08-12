@@ -34,5 +34,11 @@
        "Title": "The Yesterweb",
        "Tags": ["internet", "history", "retro", "technology"],
        "DateAdded": "08/03/2022 22:24"
+    },
+    {
+       "Url": "https://github.com/osmlab/awesome-openstreetmap",
+       "Title": "osmlab/awesome-openstreetmap | GitHub",
+       "Tags": ["opensource","maps","technology"],
+       "DateAdded": "08/12/2022 08:12"
     }
 ]
