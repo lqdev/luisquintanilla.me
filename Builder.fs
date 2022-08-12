@@ -55,6 +55,10 @@ module Builder
         File.Copy(Path.Join(srcDir,"favicon.ico"),Path.Join(outputDir,"favicon.ico"),true)
         File.Copy(Path.Join(srcDir,"avatar.png"),Path.Join(outputDir,"avatar.png"),true)
 
+        // Copy vcard
+        File.Copy(Path.Join(srcDir,"vcard.vcf"),Path.Join(outputDir,"vcard.vcf"),true)
+        
+
     let buildHomePage (posts:Post array) = 
         let recentPosts = 
             posts 
