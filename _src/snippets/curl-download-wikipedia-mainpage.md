@@ -18,7 +18,6 @@ curl -o Main_Page.pdf https://en.wikipedia.org/api/rest_v1/page/pdf/Main_Page
 
 ### script.sh
 
-
 ```bash
 curl -o Main_Page.pdf https://en.wikipedia.org/api/rest_v1/page/pdf/Main_Page
 ```
