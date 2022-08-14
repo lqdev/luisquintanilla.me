@@ -11,6 +11,10 @@ Script to take information stored in a JSON file and converts it into OPML forma
 ## Usage
 
 ```bash
+dotnet fsi opml-generator.fsx "<feed-title>" "<author-url>" "<data-file-path>"
+```
+
+```bash
 dotnet fsi opml-generator.fsx "My Blogroll" "http://lqdev.me" "blogroll.json"
 ```
 
