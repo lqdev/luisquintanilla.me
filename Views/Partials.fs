@@ -62,7 +62,10 @@ let blogRollView (links:Outline array) =
         h2 [] [ Text "Blogroll" ]
         p [] [ Text "What is a blogroll you ask? At a high level, it's a list of links to blogs I find interesting."]
         p [] [
-            Text "Check out the article [What are blogrolls?](https://blogroll.org/what-are-blogrolls/) for more details."
+            str "Check out the article "
+            a [_href "https://blogroll.org/what-are-blogrolls/"] [Text "What are blogrolls?"]
+            str " for more details."
+
         ]
         ul [] [
             for link in links do
