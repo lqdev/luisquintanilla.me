@@ -59,12 +59,15 @@ let contactView content =
 
 let blogRollView (links:Outline array) = 
     div [ _class "mr-auto" ] [
-        h2 [] [ Text "Podroll" ]
-        p [] [ Text "I took the podroll concept from blogrolls. A list of podcasts I find interesting. If you're interested in the blogroll, you can find it here."]
+        h2 [] [ Text "Blogroll" ]
+        p [] [ Text "What is a blogroll you ask? At a high level, it's a list of links to blogs I find interesting."]
+        p [] [
+            Text "Check out the article [What are blogrolls?](https://blogroll.org/what-are-blogrolls/) for more details."
+        ]
         ul [] [
             for link in links do
                 li [] [
-                    p [] [ Text link.Title ]
+                    Text link.Title
                     a [ _href link.HtmlUrl ] [ Text "Website"]
                     a [ _href link.XmlUrl ] [ Text "RSS Feed"]                    
                 ]
