@@ -80,9 +80,25 @@ let blogRollView (links:Outline array) =
         ]
     ]
 
-let podRollView content = 
+let podRollView (links:Outline array) = 
     div [ _class "mr-auto" ] [
-        rawText content
+        h2 [] [ Text "Podroll" ]
+        p [] [ 
+            str "I took the podroll concept from blogrolls. In short, this list of podcasts I find interesting. If you're interested in the blogroll, you can find it "
+            a [_href "/feed/blogroll"] [Text "here"]            
+            str "."
+        ]
+        ul [] [
+            for link in links do
+                li [] [
+                    strong [] [
+                        str $"{link.Title} - "
+                    ]
+                    a [ _href link.HtmlUrl ] [ Text "Website"]
+                    str " / "
+                    a [ _href link.XmlUrl ] [ Text "RSS Feed"]                    
+                ]
+        ]
     ]
 
 let irlStackView content = 

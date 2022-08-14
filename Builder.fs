@@ -88,12 +88,15 @@ module Builder
         Directory.CreateDirectory(saveDir)        
         File.WriteAllText(Path.Join(saveDir,"index.html"), blogRollPage)
 
-    let buildPodrollPage () = 
-        let podRollContent = Path.Join(srcDir,"podroll.md") |> convertFileToHtml |> podRollView
-        let podRollPage = generate podRollContent "default" "Podroll - Luis Quintanilla"
+    let buildPodrollPage (links:Outline array) = 
+        let podrollContent = 
+            links
+            |> podRollView
+
+        let podrollPage = generate podrollContent "default" "Podroll - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"feed","podroll")
-        Directory.CreateDirectory(saveDir)         
-        File.WriteAllText(Path.Join(saveDir,"index.html"), podRollPage)
+        Directory.CreateDirectory(saveDir)        
+        File.WriteAllText(Path.Join(saveDir,"index.html"), podrollPage)
 
     let buildIRLStackPage () = 
         let irlStackContent = Path.Join(srcDir,"irl-stack.md") |> convertFileToHtml |> irlStackView

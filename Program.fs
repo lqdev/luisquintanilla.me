@@ -42,7 +42,7 @@ let main argv =
     buildAboutPage ()
     buildContactPage ()
     // buildBlogrollPage ()
-    buildPodrollPage ()
+    // buildPodrollPage ()
     buildIRLStackPage ()
     buildColophonPage ()
     buildSubscribePage ()
@@ -68,6 +68,7 @@ let main argv =
     // Build roll pages
     buildBlogrollPage blogrollLinks
     buildBlogrollOpml blogrollLinks
+    buildPodrollPage podrollLinks
     buildPodrollOpml podrollLinks
 
     // Build event page
