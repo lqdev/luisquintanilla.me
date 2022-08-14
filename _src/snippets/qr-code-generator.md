@@ -1,7 +1,7 @@
 ---
 title: "QR Code Generator"
 language: "F#"
-tags: .net,f#,script
+tags: dotnet,f#,script
 ---
 
 ## Description
