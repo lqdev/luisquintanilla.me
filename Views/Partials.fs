@@ -67,8 +67,11 @@ let blogRollView (links:Outline array) =
         ul [] [
             for link in links do
                 li [] [
-                    str $"{link.Title}"
+                    strong [] [
+                        str $"{link.Title} - "
+                    ]
                     a [ _href link.HtmlUrl ] [ Text "Website"]
+                    str " / "
                     a [ _href link.XmlUrl ] [ Text "RSS Feed"]                    
                 ]
         ]
