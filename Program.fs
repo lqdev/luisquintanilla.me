@@ -66,6 +66,7 @@ let main argv =
     buildFeedRssPage videoPosts "videos"
    
     // Build roll pages
+    buildBlogrollPage blogrollLinks
     buildBlogrollOpml blogrollLinks
     buildPodrollOpml podrollLinks
 

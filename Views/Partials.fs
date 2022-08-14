@@ -57,9 +57,18 @@ let contactView content =
         rawText content
     ]
 
-let blogRollView content = 
+let blogRollView (links:Outline array) = 
     div [ _class "mr-auto" ] [
-        rawText content
+        h2 [] [ Text "Podroll" ]
+        p [] [ Text "I took the podroll concept from blogrolls. A list of podcasts I find interesting. If you're interested in the blogroll, you can find it here."]
+        ul [] [
+            for link in links do
+                li [] [
+                    p [] [ link.Title ]
+                    a [ _href link.HtmlUrl ] [ Text "Website"]
+                    a [ _href link.XmlUrl ] [ Text "RSS Feed"]                    
+                ]
+        ]
     ]
 
 let podRollView content = 

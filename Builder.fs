@@ -78,8 +78,12 @@ module Builder
         Directory.CreateDirectory(saveDir)
         File.WriteAllText(Path.Join(saveDir,"index.html"), aboutPage)
 
-    let buildBlogrollPage () = 
-        let blogRollContent = Path.Join(srcDir,"blogroll.md") |> convertFileToHtml |> blogRollView
+    let buildBlogrollPage (links:Outline array) = 
+        let blogRollContent = 
+            links
+            |> blogRollView
+            |> generatePartial
+
         let blogRollPage = generate blogRollContent "default" "Blogroll - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"feed","blogroll")
         Directory.CreateDirectory(saveDir)        
