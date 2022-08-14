@@ -89,3 +89,17 @@ module Domain
         Metadata: WikiDetails
         Content: string
     }
+
+    type OpmlMetadata = 
+        {
+            Title: string
+            OwnerId: string
+        }
+
+    type Outline = 
+        {
+            Title: string
+            Type: string
+            HtmlUrl: string
+            XmlUrl: string
+        }    

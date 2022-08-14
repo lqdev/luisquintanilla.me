@@ -174,6 +174,20 @@ module Builder
     
         links
 
+    let loadBlogrollLinks () = 
+        let links =  
+            File.ReadAllText(Path.Join("Data","blogroll.json"))
+            |> JsonSerializer.Deserialize<Outline array>
+    
+        links
+
+    let loadPodrollLinks () = 
+        let links =  
+            File.ReadAllText(Path.Join("Data","podroll.json"))
+            |> JsonSerializer.Deserialize<Outline array>
+    
+        links
+
     let loadRedirects () = 
         let (redirects:RedirectDetails array) = 
             [|
@@ -207,7 +221,7 @@ module Builder
 
         let saveDir = Path.Join(outputDir,"feed")            
         File.WriteAllText(Path.Join(saveDir,$"{saveFileName}.xml"), rssPage)  
-    
+
     let buildPostPages (posts:Post array) = 
         let postPages = 
             posts

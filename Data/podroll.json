@@ -1,0 +1,98 @@
+[
+    {
+        "Title": "Practical AI",
+        "Type": "rss",
+        "HtmlUrl": "https://changelog.com/practicalai",
+        "XmlUrl": "https://changelog.com/practicalai/feed"
+    },
+    {
+        "Title": "The TWIML AI Podcast",
+        "Type": "rss",
+        "HtmlUrl": "https://twimlai.com/",
+        "XmlUrl": "https://feeds.megaphone.fm/MLN2155636147"
+    },
+    {
+        "Title": "Darknet Diaries",
+        "Type": "rss",
+        "HtmlUrl": "https://darknetdiaries.com/",
+        "XmlUrl": "https://feeds.megaphone.fm/darknetdiaries"
+    },
+    {
+        "Title": "We're In!",
+        "Type": "rss",
+        "HtmlUrl": "https://were-in.simplecast.com/",
+        "XmlUrl": "https://feeds.simplecast.com/_SsyS46z"
+    },
+    {
+        "Title": "The Privacy, Security, & OSINT Show",
+        "Type": "rss",
+        "HtmlUrl": "https://soundcloud.com/user-98066669",
+        "XmlUrl": "https://feeds.soundcloud.com/users/soundcloud:users:261098918/sounds.rss"
+    },
+    {
+        "Title": "Surveillance Report",
+        "Type": "rss",
+        "HtmlUrl": "https://surveillancereport.tech/",
+        "XmlUrl": "https://surveillance-report.castos.com/feed"
+    },
+    {
+        "Title": "Cyber",
+        "Type": "rss",
+        "HtmlUrl": "https://www.vice.com/en_us/topic/cyber",
+        "XmlUrl": "https://rss.acast.com/cyber"
+    },
+    {
+        "Title": "Deep Questions",
+        "Type": "rss",
+        "HtmlUrl": "https://www.calnewport.com/podcast/",
+        "XmlUrl": "https://feeds.buzzsprout.com/1121972.rss"
+    },                            
+    {
+        "Title": ".NET Rocks",
+        "Type": "rss",
+        "HtmlUrl": "https://www.dotnetrocks.com/",
+        "XmlUrl": "http://feeds.feedburner.com/netRocksFullMp3Downloads"
+    },
+    {
+        "Title": "FLOSS Weekly",
+        "Type": "rss",
+        "HtmlUrl": "https://twit.tv/shows/floss-weekly",
+        "XmlUrl": "https://feeds.twit.tv/floss.xml"
+    },
+    {
+        "Title": "Windows Weekly",
+        "Type": "rss",
+        "HtmlUrl": "https://twit.tv/shows/windows-weekly",
+        "XmlUrl": "https://feeds.twit.tv/ww.xml"
+    },
+    {
+        "Title": "Software Engineering Daily",
+        "Type": "rss",
+        "HtmlUrl": "https://softwareengineeringdaily.com/archives/",
+        "XmlUrl": "https://softwareengineeringdaily.com/feed/podcast/"
+    },
+    {
+        "Title": "National Park After Dark",
+        "Type": "rss",
+        "HtmlUrl": "https://www.npadpodcast.com/",
+        "XmlUrl": "https://anchor.fm/s/466eb6e4/podcast/rss"
+    },    
+    {
+        "Title": "The Generation Why",
+        "Type": "rss",
+        "HtmlUrl": "https://wondery.com/shows/generation-why/",
+        "XmlUrl": "https://rss.art19.com/generation-why-podcast"
+    },
+    {
+        "Title": "Radio Rental",
+        "Type": "rss",
+        "HtmlUrl": "https://radiorentalusa.com/",
+        "XmlUrl": "https://feeds.megaphone.fm/radio-rental"
+    },
+    {
+        "Title": "Dark Air",
+        "Type": "rss",
+        "HtmlUrl": "https://audioboom.com/channels/5046661",
+        "XmlUrl": "https://audioboom.com/channels/5046661.rss"
+    }        
+]

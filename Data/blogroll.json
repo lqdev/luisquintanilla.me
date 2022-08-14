@@ -1,0 +1,56 @@
+[
+    {
+        "Title": "Blogroll.org",
+        "Type": "rss",
+        "HtmlUrl": "https://blogroll.org/",
+        "XmlUrl": "https://blogroll.org/feed/"
+    },
+    {
+        "Title": "Cheapskate's Guide",
+        "Type": "rss",
+        "HtmlUrl": "https://cheapskatesguide.org/",
+        "XmlUrl": "https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml"
+    },
+    {
+        "Title": "JWZ",
+        "Type": "rss",
+        "HtmlUrl": "https://www.jwz.org/blog/",
+        "XmlUrl": "https://cdn.jwz.org/blog/feed/"
+    },
+    {
+        "Title": "Pluralistic: Daily links from Cory Doctorow",
+        "Type": "rss",
+        "HtmlUrl": "https://pluralistic.net/",
+        "XmlUrl": "https://pluralistic.net/feed/"
+    },
+    {
+        "Title": "Hundred Rabbits",
+        "Type": "rss",
+        "HtmlUrl": "https://100r.co/site/home.html",
+        "XmlUrl": "https://100r.co/links/rss.xml"
+    },
+    {
+        "Title": "Julia Evans",
+        "Type": "rss",
+        "HtmlUrl": "https://jvns.ca/",
+        "XmlUrl": "https://jvns.ca/atom.xml"
+    },
+    {
+        "Title": "Blogget",
+        "Type": "rss",
+        "HtmlUrl": "https://blogget.substack.com/",
+        "XmlUrl": "https://blogget.substack.com/feed"
+    },
+    {
+        "Title": "Adventure Taco",
+        "Type": "rss",
+        "HtmlUrl": "https://adventuretaco.com/",
+        "XmlUrl": "https://adventuretaco.com/feed/"
+    },
+    {
+        "Title": "Indieseek.xyz",
+        "Type": "rss",
+        "HtmlUrl": "https://indieseek.xyz/",
+        "XmlUrl": "https://indieseek.xyz/feed/"
+    }        
+]

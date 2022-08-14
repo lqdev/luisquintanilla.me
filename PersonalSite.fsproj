@@ -9,6 +9,7 @@
     <Compile Include="Domain.fs" />
     <Compile Include="Services\Markdown.fs" />
     <Compile Include="Services\Rss.fs" />    
+    <Compile Include="Services\Opml.fs" />        
     <Compile Include="Views\Layouts.fs" />
     <Compile Include="Views\Partials.fs" />
     <Compile Include="Views\Generator.fs" />
