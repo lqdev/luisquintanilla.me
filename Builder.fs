@@ -6,6 +6,7 @@ module Builder
     open Domain
     open MarkdownService
     open RssService
+    open OpmlService
     open ViewGenerator
     open PartialViews
     
@@ -221,6 +222,16 @@ module Builder
 
         let saveDir = Path.Join(outputDir,"feed")            
         File.WriteAllText(Path.Join(saveDir,$"{saveFileName}.xml"), rssPage)  
+
+    let buildBlogrollOpml (links:Outline array) = 
+        let feed = buildOpmlFeed "Luis Quintanilla Blogroll" "https://www.luisquintanilla.me" links
+        let saveDir = Path.Join(outputDir,"feed","blogroll")
+        File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
+
+    let buildPodrollOpml (links:Outline array) = 
+        let feed = buildOpmlFeed "Luis Quintanilla Podroll" "https://www.luisquintanilla.me" links
+        let saveDir = Path.Join(outputDir,"feed","podroll")
+        File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
     let buildPostPages (posts:Post array) = 
         let postPages = 

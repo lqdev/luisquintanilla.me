@@ -1,4 +1,4 @@
-module Opml
+module OpmlService
 
     open System.IO
     open System.Linq

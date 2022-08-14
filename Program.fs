@@ -27,6 +27,8 @@ let main argv =
     let feedPosts = loadFeed ()
     let presentations = loadPresentations ()
     let links = loadLinks ()
+    let blogrollLinks = loadBlogrollLinks ()
+    let podrollLinks = loadPodrollLinks ()
     let redirects = loadRedirects ()
     let snippets = loadSnippets ()
     let wikis = loadWikis ()
@@ -63,6 +65,10 @@ let main argv =
     buildFeedRssPage notePosts "photos"
     buildFeedRssPage videoPosts "videos"
    
+    // Build roll pages
+    buildBlogrollOpml blogrollLinks
+    buildPodrollOpml podrollLinks
+
     // Build event page
     buildEventPage ()
 
