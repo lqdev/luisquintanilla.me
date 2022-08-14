@@ -82,7 +82,6 @@ module Builder
         let blogRollContent = 
             links
             |> blogRollView
-            |> generatePartial
 
         let blogRollPage = generate blogRollContent "default" "Blogroll - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"feed","blogroll")
