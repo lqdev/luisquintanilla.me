@@ -41,8 +41,6 @@ let main argv =
     buildHomePage posts
     buildAboutPage ()
     buildContactPage ()
-    // buildBlogrollPage ()
-    // buildPodrollPage ()
     buildIRLStackPage ()
     buildColophonPage ()
     buildSubscribePage ()

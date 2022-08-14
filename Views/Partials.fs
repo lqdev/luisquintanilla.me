@@ -67,6 +67,11 @@ let blogRollView (links:Outline array) =
             str " for more details."
 
         ]
+        p [] [
+            str "You can subscribe to any of the individual feeds in your preferred RSS reader using the RSS feed links below. Want to subscribe to all of them? Use the "
+            a [ _href "/feed/blogroll/index.opml"] [Text "OPML file"]
+            str " if your RSS reader client supports OPML".
+        ]        
         ul [] [
             for link in links do
                 li [] [
@@ -87,6 +92,11 @@ let podRollView (links:Outline array) =
             str "I took the podroll concept from blogrolls. In short, this list of podcasts I find interesting. If you're interested in the blogroll, you can find it "
             a [_href "/feed/blogroll"] [Text "here"]            
             str "."
+        ]
+        p [] [
+            str "You can subscribe to any of the individual feeds in your preferred RSS reader or podcast client using the RSS feed links below. Want to subscribe to all of them? Use the "
+            a [ _href "/feed/pordoll/index.opml"] [Text "OPML file"]
+            str " if your RSS reader or podcast client supports OPML".
         ]
         ul [] [
             for link in links do
