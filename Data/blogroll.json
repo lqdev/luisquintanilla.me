@@ -58,6 +58,11 @@
         "Type": "rss",
         "HtmlUrl": "https://noted.lol/",
         "XmlUrl": "https://noted.lol/rss/"
-    }            
-    
+    },
+    {
+        "Title": "Along The Ray",
+        "Type": "rss",
+        "HtmlUrl": "https://alongtheray.com/",
+        "XmlUrl": "https://alongtheray.com/feed.rss"
+    }                
 ]
