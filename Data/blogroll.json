@@ -52,5 +52,12 @@
         "Type": "rss",
         "HtmlUrl": "https://indieseek.xyz/",
         "XmlUrl": "https://indieseek.xyz/feed/"
-    }        
+    },
+    {
+        "Title": "Noted",
+        "Type": "rss",
+        "HtmlUrl": "https://noted.lol/",
+        "XmlUrl": "https://noted.lol/rss/"
+    }            
+    
 ]
