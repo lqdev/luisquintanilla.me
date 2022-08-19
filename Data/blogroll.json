@@ -64,5 +64,11 @@
         "Type": "rss",
         "HtmlUrl": "https://alongtheray.com/",
         "XmlUrl": "https://alongtheray.com/feed.rss"
-    }                
+    },
+    {
+        "Title": "The New Oil",
+        "Type": "rss",
+        "HtmlUrl": "https://blog.thenewoil.org",
+        "XmlUrl": "https://blog.thenewoil.org/feed/"
+    }
 ]
