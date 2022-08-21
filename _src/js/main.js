@@ -1,6 +1,6 @@
 //Custom themes https://www.codeply.com/p/bV4XYd7H9h
 
-function switchTheme {
+function switchTheme () {
     $([".light [class*='-light']", ".dark [class*='-dark']"]).each((i,ele)=>{
         $(ele).toggleClass('bg-light bg-dark')
         $(ele).toggleClass('text-light text-dark')
