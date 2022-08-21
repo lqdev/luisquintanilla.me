@@ -138,7 +138,10 @@ module Layouts
                     ]
                 ]
 
-                a [_href "#"] [
+                span [
+                    _href "#"
+                    _onclick "switchTheme()"
+                    ] [
                     tag "svg" [
                         _class "bi bi-brightness-high-fill" 
                         attr "fill" "currentColor"

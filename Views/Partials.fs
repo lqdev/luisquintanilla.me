@@ -37,7 +37,7 @@ let recentPostsView (posts: Post array) =
 
 let homeView content =
     div [ _class "mr-auto" ] [
-        h2 [] [ Text "Recent Posts" ]
+        h2 [ _class "text-dark" ] [ Text "Recent Posts" ]
         rawText content
         div [ _class "mt-2 text-center" ] [
             a [ _href "/posts/2"
