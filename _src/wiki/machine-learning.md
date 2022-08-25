@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Machine Learning"
-last_updated_date: "08/03/2022 22:47"
+last_updated_date: "08/25/2022 15:00"
 tags: technology, machinelearning, artificialintelligence, index
 ---
 
@@ -11,13 +11,14 @@ Machine learning is a subset of artificial intelligence.
 
 ## Frameworks
 
-- ML.NET
-- Scikit-Learn
-- TensorFlow
-- PyTorch
-- Fast.AI
-- ONNX
-- HuggingFace
+- [ML.NET](dot.net/ml)
+- [Scikit-Learn](https://scikit-learn.org/stable/index.html)
+- [TensorFlow](https://www.tensorflow.org/)
+- [Keras](https://keras.io/)
+- [PyTorch](https://pytorch.org/)
+- [Fast.AI](https://www.fast.ai/)
+- [ONNX](https://onnx.ai/)
+- [HuggingFace](https://huggingface.co/)
 
 ## References
 
