@@ -1,13 +1,13 @@
 ---
 post_type: "wiki" 
 title: "Machine Learning"
-last_updated_date: "08/25/2022 15:00"
+last_updated_date: "08/25/2022 15:14"
 tags: technology, machinelearning, artificialintelligence, index
 ---
 
-## What is Machine Learning?
+## Overview
 
-Machine learning is a subset of artificial intelligence. 
+Machine learning is a subset of artificial intelligence.
 
 ## Frameworks
 

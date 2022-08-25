@@ -1,11 +1,11 @@
 ---
 post_type: "wiki" 
 title: "Neofetch"
-last_updated_date: "08/10/2022 21:38"
+last_updated_date: "08/25/2022 15:19"
 tags: technology, linux, tools, terminal
 ---
 
-## What is NeoFetch?
+## Overview
 
 Neofetch is a command-line system information tool. Neofetch displays information about your operating system, software and hardware.
 

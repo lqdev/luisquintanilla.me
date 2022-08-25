@@ -1,9 +1,13 @@
 ---
 post_type: "wiki" 
 title: "Privacy"
-last_updated_date: "08/25/2022 14:53"
-tags: technology, privacy 
+last_updated_date: "08/25/2022 15:18"
+tags: technology, privacy, index
 ---
+
+## Overview
+
+Privacy is the right of individuals to selectively disclose and share information about themselves.
 
 ## Resources
 

@@ -5,6 +5,10 @@ last_updated_date: "08/25/2022 14:51"
 tags: technology, privacy
 ---
 
+## Overview
+
+Privacy guides contain tips, information, and recommendations on physical and digital privacy.  
+
 ## Resources
 
 - [Techlore](https://www.techlore.tech/)
