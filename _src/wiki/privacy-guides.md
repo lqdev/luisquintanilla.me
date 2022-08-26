@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Privacy Guides"
-last_updated_date: "08/25/2022 14:51"
+last_updated_date: "08/25/2022 21:30"
 tags: technology, privacy
 ---
 
@@ -15,3 +15,4 @@ Privacy guides contain tips, information, and recommendations on physical and di
 - [Privacy Guides](https://www.privacyguides.org/)
 - [Go Incognito](https://www.techlore.tech/goincognito)
 - [Privacy.do](https://privacy.do/)
+- [PRISM Break](https://prism-break.org/)
