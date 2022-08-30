@@ -1,7 +1,7 @@
 ---
 title: "OPML File Generator"
 language: "F#"
-tags: dotnet,f#,script
+tags: dotnet,fsharp,script
 ---
 
 ## Description
