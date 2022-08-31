@@ -268,7 +268,7 @@ let eventView (events: Event array) =
 
 let linkView (links: Link array) = 
     div [ _class "mr-auto" ] [
-        h2 [] [ Text "Linklog" ]
+        h2 [] [ Text "Linkblog" ]
         p [] [Text "Link aggregator"]
         ul [] [
             for link in links do 

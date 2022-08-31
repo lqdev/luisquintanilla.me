@@ -73,7 +73,7 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/feed/photos.html"] [Text "Photos"]                                
                                 a [_class "dropdown-item"; _href "/feed/videos.html"] [Text "Videos"]
                                 div [_class "dropdown-divider"] []
-                                a [_class "dropdown-item"; _href "/feed/linklog"] [Text "Linklog"]
+                                a [_class "dropdown-item"; _href "/feed/linkblog"] [Text "Linkblog"]
                                 div [_class "dropdown-divider"] []
                                 a [_class "dropdown-item"; _href "/feed/blogroll"] [Text "Blogroll"]
                                 a [_class "dropdown-item"; _href "/feed/podroll"] [Text "Podroll"]
