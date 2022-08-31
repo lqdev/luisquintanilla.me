@@ -16,3 +16,4 @@ Privacy guides contain tips, information, and recommendations on physical and di
 - [Go Incognito](https://www.techlore.tech/goincognito)
 - [Privacy.do](https://privacy.do/)
 - [PRISM Break](https://prism-break.org/)
+- [Decentralize Today - Privacy Cookbook](https://dt.gl/tag/privacy-cookbook/)
