@@ -52,5 +52,11 @@
        "Title": "Blot.im - Blogging Platform",
        "Tags": ["blogging","web","technology","internet"],
        "DateAdded": "08/30/2022 22:20"
+    },
+    {
+       "Url": "https://blog.jim-nielsen.com/2022/other-peoples-websites/",
+       "Title": "The OG Social Network: Other People's Websites",
+       "Tags": ["blogging", "web", "technology", "internet", "retro", "socialnetwork"],
+       "DateAdded": "08/31/2022 16:34"
     }
 ]
