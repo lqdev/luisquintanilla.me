@@ -14,7 +14,7 @@
     {
        "Url": "https://betterhumans.pub/how-to-set-up-your-iphone-for-productivity-focus-and-your-own-longevity-bb27a68cc3d8",
        "Title": "The Optimal iPhone Settings and Best Apps for Productivity, Focus, and Health",
-       "Tags": ["lifestyle", "technology","productivity","apple", "ios", "smartphones"],
+       "Tags": ["lifestyle", "technology","productivity","apple", "ios", "smartphones", "guide", "article"],
        "DateAdded": "08/01/2022 17:50"
     },
     {
@@ -26,19 +26,19 @@
     {
        "Url": "https://knightcolumbia.org/events/reimagine-the-internet",
        "Title": "Reimagine the internet",
-       "Tags": ["internet","conference","policy","social media", "technology"],
+       "Tags": ["internet","conference","policy","social media", "technology","education","university"],
        "DateAdded": "08/03/2022 21:21"
     },
     {
        "Url": "https://yesterweb.org/",
        "Title": "The Yesterweb",
-       "Tags": ["internet", "history", "retro", "technology"],
+       "Tags": ["internet", "history", "retro", "technology","website", "community"],
        "DateAdded": "08/03/2022 22:24"
     },
     {
        "Url": "https://github.com/osmlab/awesome-openstreetmap",
        "Title": "osmlab/awesome-openstreetmap | GitHub",
-       "Tags": ["opensource","maps","technology"],
+       "Tags": ["opensource","maps","technology","internet","guide"],
        "DateAdded": "08/12/2022 08:12"
     },
     {
@@ -50,13 +50,13 @@
     {
        "Url": "https://blot.im/",
        "Title": "Blot.im - Blogging Platform",
-       "Tags": ["blogging","web","technology","internet"],
+       "Tags": ["blogging","web","technology","internet","website"],
        "DateAdded": "08/30/2022 22:20"
     },
     {
        "Url": "https://blog.jim-nielsen.com/2022/other-peoples-websites/",
        "Title": "The OG Social Network: Other People's Websites",
-       "Tags": ["blogging", "web", "technology", "internet", "retro", "socialnetwork"],
+       "Tags": ["blogging", "web", "technology", "internet", "retro", "socialnetwork", "article"],
        "DateAdded": "08/31/2022 16:34"
     }
 ]
