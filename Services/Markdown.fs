@@ -26,16 +26,14 @@ module MarkdownService
         let doc = Markdown.Parse(content)
         let startP,endP = doc.Descendants<ParagraphBlock>().FirstOrDefault() |> fun x -> x.Span.Start,x.Span.End
         content.Substring(startP,endP).Trim()
-        
+
+    let convertMdToHtml (content:string) =
+        Markdown.ToHtml(content,mdToHtmlPipeline)
+
     let convertFileToHtml (filePath:string) =
-
-        let content = filePath |> File.ReadAllText 
-        
-        Markdown.ToHtml(content,mdToHtmlPipeline)
-
-    let ConvertMdToHtml (content:string) =
-
-        Markdown.ToHtml(content,mdToHtmlPipeline)
+        filePath 
+        |> File.ReadAllText 
+        |> convertMdToHtml
 
     let getContentAndMetadata<'a> (filePath:string) : YamlResult<'a> = 
         let yamlSerializer = 

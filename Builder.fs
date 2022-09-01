@@ -1,4 +1,4 @@
-module Builder
+convertMdToHtmlmodule Builder
 
     open System
     open System.IO
