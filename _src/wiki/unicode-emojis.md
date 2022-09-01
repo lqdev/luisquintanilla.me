@@ -32,7 +32,7 @@ I am :slightly_smiling_face:
 | Emoji | Unicode | CLDR Name |
 | - | - | - |
 | :slightly_smiling_face: | U+1F642 | `:slightly_smiling_face:` |
-| :face_with_tears_of_joy: | U+1F602 | `:face_with_tears_of_joy:` | 
+| :joy: | U+1F602 | `:joy:` | 
 
 ## Resources
 
