@@ -244,7 +244,7 @@ module Builder
             posts
             |> Array.map(fun post -> 
                 let postTitle = post.Metadata.Title
-                let postContent = post.Content |> ConvertMdToHtml 
+                let postContent = post.Content |> convertMdToHtml 
                 let postView = postView postTitle postContent
                 post.FileName,generate postView "defaultindex" $"{post.Metadata.Title} - Luis Quintanilla")
         
@@ -292,7 +292,7 @@ module Builder
         // Convert post markdown to HTML
         let parsedPosts = 
             posts 
-            |> Array.map(fun post -> {post with Content = post.Content |> ConvertMdToHtml})
+            |> Array.map(fun post -> {post with Content = post.Content |> convertMdToHtml})
             |> Array.sortByDescending(fun post -> DateTime.Parse(post.Metadata.Date))
 
         // Generate aggregate feed
@@ -353,7 +353,7 @@ module Builder
             let saveDir = Path.Join(rootSaveDir,snippet.FileName)
             Directory.CreateDirectory(saveDir)
             let html = 
-                { snippet with Content=(snippet.Content |> ConvertMdToHtml) }
+                { snippet with Content=(snippet.Content |> convertMdToHtml) }
                 |> snippetView
             let snippetView = generate  html "defaultindex" $"Snippet | {snippet.Metadata.Title} | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir,"index.html")
@@ -373,7 +373,7 @@ module Builder
             let saveDir = Path.Join(rootSaveDir,wiki.FileName)
             Directory.CreateDirectory(saveDir)
             let html = 
-                { wiki with Content=(wiki.Content |> ConvertMdToHtml) }
+                { wiki with Content=(wiki.Content |> convertMdToHtml) }
                 |> wikiView
             let wikiView = generate  html "defaultindex" $"Wiki | {wiki.Metadata.Title} | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir,"index.html")
