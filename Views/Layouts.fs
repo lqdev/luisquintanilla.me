@@ -180,7 +180,7 @@ module Layouts
         link [_rel "stylesheet";_href "/css/customthemes.css"]
     ]
 
-    let getOpenGraphElements (pageTitle:string)= 
+    let buildOpenGraphElements (pageTitle:string)= 
         let ogElements = [
                 meta [_property "og:title"; _content pageTitle]
                 meta [_property "og:type"; _content "website"]
@@ -195,8 +195,7 @@ module Layouts
             
         ]
 
-        for el in ogElements do
-            el
+        ogElements
 
     let rssFeeds = [
         link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Blog RSS Feed"; _href "https://www.luisquintanilla.me/posts/index.xml"]
@@ -244,7 +243,10 @@ module Layouts
                     sheet
 
                 // Opengraph
-                getOpenGraphElements pageTitle
+                let ogElements = buildOpenGraphElements pageTitle
+
+                for el in ogElements do
+                    el
 
                 // RSS Feeds
                 for feed in rssFeeds do
@@ -295,7 +297,10 @@ module Layouts
                     sheet
 
                 // Opengraph
-                getOpenGraphElements pageTitle
+                let ogElements = buildOpenGraphElements pageTitle
+
+                for el in ogElements do
+                    el
 
                 // RSS Feeds
                 for feed in rssFeeds do
@@ -349,7 +354,10 @@ module Layouts
                 link [_rel "stylesheet"; _href "/lib/revealjs/dist/theme/black.css"]
 
                 // Opengraph
-                getOpenGraphElements pageTitle
+                let ogElements = buildOpenGraphElements pageTitle
+
+                for el in ogElements do
+                    el
                                 
                 // RSS Feeds
                 for feed in rssFeeds do
