@@ -123,7 +123,9 @@
 			"title: \"\"",
 			"last_updated_date: \"$CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE\"",
 			"tags: ",
-			"---"
+			"---",
+			"",
+			"## Overview"
 		],
 		"description": "Wiki article post"
 	}			
