@@ -6,7 +6,7 @@ tags: matrix,synapse,homeserver,selfhost,python,internet,network
 
 ## Description
 
-Upgrade a Matrix synapse homeserver using pip. For more information, see the official article on [upgrading between Synapse versions](https://matrix-org.github.io/synapse/develop/upgrade).
+Upgrade a [Matrix](https://matrix.org/) [Synapse homeserver](https://github.com/matrix-org/synapse/) using pip. For more information, see the official article on [upgrading between Synapse versions](https://matrix-org.github.io/synapse/develop/upgrade).
 
 ## Usage
 

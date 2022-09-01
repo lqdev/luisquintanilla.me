@@ -6,7 +6,7 @@ tags: bash,linux,matrix,synapse,communication
 
 ## Description
 
-Create a new user in your [Matrix]() homeserver using [register_new_matrix_user](https://manpages.debian.org/buster/matrix-synapse/register_new_matrix_user.1.en.html) CLI utility. This is helpful when creating accounts on a homeserver where registrations are closeds.
+Create a new user in your [Matrix](https://matrix.org/) [Synapse homeserver](https://github.com/matrix-org/synapse/) using [register_new_matrix_user](https://manpages.debian.org/buster/matrix-synapse/register_new_matrix_user.1.en.html) CLI utility. This is helpful when creating accounts on a homeserver where registrations are closeds.
 
 ## Usage
 
