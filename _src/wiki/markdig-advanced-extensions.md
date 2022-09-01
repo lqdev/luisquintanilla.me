@@ -78,3 +78,7 @@ We all need :), it makes us :muscle:. (and :ok_hand:).
 ### Output
 
 We all need :), it makes us :muscle:. (and :ok_hand:).
+
+## Resources
+
+- [Markdig Specs](https://github.com/xoofx/markdig/tree/master/src/Markdig.Tests/Specs)
