@@ -29,6 +29,7 @@ module MarkdownService
 
         let mdPipeline = 
             MarkdownPipelineBuilder()
+                .UseAdvancedExtensions()
                 .UseYamlFrontMatter()
                 .Build()     
        
