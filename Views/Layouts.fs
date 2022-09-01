@@ -180,6 +180,24 @@ module Layouts
         link [_rel "stylesheet";_href "/css/customthemes.css"]
     ]
 
+    let getOpenGraphElements (pageTitle:string)= 
+        let ogElements = [
+                meta [_property "og:title"; _content pageTitle]
+                meta [_property "og:type"; _content "website"]
+                meta [_property "og:image"; _content "https://www.luisquintanilla.me/avatar.png"]
+                meta [_property "og:image:secure_url"; _content "https://www.luisquintanilla.me/avatar.png"]
+                meta [_property "og:image:type"; _content "image/png"]
+                meta [_property "og:image:width"; _content "200"]
+                meta [_property "og:image:height"; _content "200"] 
+                meta [_property "og:site_name"; _content "Luis Quintanilla Personal Website"]
+                meta [_property "og:locale"; _content "en_US"]
+                meta [_property "twitter:image"; _content "https://www.luisquintanilla.me/avatar.png"]
+            
+        ]
+
+        for el in ogElements do
+            el
+
     let rssFeeds = [
         link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Blog RSS Feed"; _href "https://www.luisquintanilla.me/posts/index.xml"]
         link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Main Feed (Microblog) RSS"; _href "https://www.luisquintanilla.me/feed/index.xml"]
@@ -226,16 +244,7 @@ module Layouts
                     sheet
 
                 // Opengraph
-                meta [_property "og:title"; _content pageTitle]
-                meta [_property "og:type"; _content "website"]
-                meta [_property "og:image"; _content "https://www.luisquintanilla.me/avatar.png"]
-                meta [_property "og:image:secure_url"; _content "https://www.luisquintanilla.me/avatar.png"]
-                meta [_property "og:image:type"; _content "image/png"]
-                meta [_property "og:image:width"; _content "200"]
-                meta [_property "og:image:height"; _content "200"] 
-                meta [_property "og:site_name"; _content "Luis Quintanilla Personal Website"]
-                meta [_property "og:locale"; _content "en_US"]
-                meta [_property "twitter:image"; _content "https://www.luisquintanilla.me/avatar.png"]
+                getOpenGraphElements pageTitle
 
                 // RSS Feeds
                 for feed in rssFeeds do
@@ -286,16 +295,7 @@ module Layouts
                     sheet
 
                 // Opengraph
-                meta [_property "og:title"; _content pageTitle]
-                meta [_property "og:type"; _content "website"]
-                meta [_property "og:image"; _content "https://www.luisquintanilla.me/avatar.png"]
-                meta [_property "og:image:secure_url"; _content "https://www.luisquintanilla.me/avatar.png"]
-                meta [_property "og:image:type"; _content "image/png"]
-                meta [_property "og:image:width"; _content "200"]
-                meta [_property "og:image:height"; _content "200"] 
-                meta [_property "og:site_name"; _content "Luis Quintanilla Personal Website"]
-                meta [_property "og:locale"; _content "en_US"]
-                meta [_property "twitter:image"; _content "https://www.luisquintanilla.me/avatar.png"]
+                getOpenGraphElements pageTitle
 
                 // RSS Feeds
                 for feed in rssFeeds do
@@ -349,17 +349,8 @@ module Layouts
                 link [_rel "stylesheet"; _href "/lib/revealjs/dist/theme/black.css"]
 
                 // Opengraph
-                meta [_property "og:title"; _content pageTitle]
-                meta [_property "og:type"; _content "website"]
-                meta [_property "og:image"; _content "https://www.luisquintanilla.me/avatar.png"]
-                meta [_property "og:image:secure_url"; _content "https://www.luisquintanilla.me/avatar.png"]
-                meta [_property "og:image:type"; _content "image/png"]
-                meta [_property "og:image:width"; _content "200"]
-                meta [_property "og:image:height"; _content "200"] 
-                meta [_property "og:site_name"; _content "Luis Quintanilla Personal Website"]
-                meta [_property "og:locale"; _content "en_US"]
-                meta [_property "twitter:image"; _content "https://www.luisquintanilla.me/avatar.png"]
-                
+                getOpenGraphElements pageTitle
+                                
                 // RSS Feeds
                 for feed in rssFeeds do
                     feed
