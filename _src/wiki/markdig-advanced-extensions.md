@@ -61,6 +61,6 @@ flowchart LR
 ### Output
 
 ```mermaid
-flowchart LR
-    Start --> Stop
+flowchart LR;
+    Start --> Stop;
 ```
