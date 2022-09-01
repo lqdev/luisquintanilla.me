@@ -64,3 +64,17 @@ flowchart LR
 flowchart LR;
     Start --> Stop;
 ```
+
+## Emojis
+
+Support for emojis.
+
+### Syntax
+
+```markdown
+We all need :), it makes us :muscle:. (and :ok_hand:).
+```
+
+### Output
+
+We all need :), it makes us :muscle:. (and :ok_hand:).

@@ -10,36 +10,32 @@ module MarkdownService
     open YamlDotNet.Serialization
     open Domain
 
+    let mdToHtmlPipeline = 
+            MarkdownPipelineBuilder()
+                .UsePipeTables()
+                .UseTaskLists()
+                .UseDiagrams()
+                .UseMediaLinks()
+                .UseMathematics()
+                .UseMediaLinks()
+                .UseEmojiAndSmiley()
+                .UseCustomContainers()
+                .Build()        
+
     let summarizePost (content:string) = 
         let doc = Markdown.Parse(content)
         let startP,endP = doc.Descendants<ParagraphBlock>().FirstOrDefault() |> fun x -> x.Span.Start,x.Span.End
         content.Substring(startP,endP).Trim()
         
     let convertFileToHtml (filePath:string) =
-        let mdPipeline = 
-            MarkdownPipelineBuilder()
-                .UsePipeTables()
-                .UseTaskLists()
-                .UseDiagrams()
-                .UseMediaLinks()
-                .UseYamlFrontMatter()
-                .Build()     
 
         let content = filePath |> File.ReadAllText 
         
-        Markdown.ToHtml(content,mdPipeline)
+        Markdown.ToHtml(content,mdToHtmlPipeline)
 
     let ConvertMdToHtml (content:string) =
-        let mdPipeline = 
-            MarkdownPipelineBuilder()
-                .UsePipeTables()
-                .UseTaskLists()
-                .UseDiagrams()
-                .UseMediaLinks()
-                .UseYamlFrontMatter()
-                .Build()     
 
-        Markdown.ToHtml(content,mdPipeline)
+        Markdown.ToHtml(content,mdToHtmlPipeline)
 
     let getContentAndMetadata<'a> (filePath:string) : YamlResult<'a> = 
         let yamlSerializer = 
@@ -49,10 +45,6 @@ module MarkdownService
 
         let mdPipeline = 
             MarkdownPipelineBuilder()
-                .UsePipeTables()
-                .UseTaskLists()
-                .UseDiagrams()
-                .UseMediaLinks()
                 .UseYamlFrontMatter()
                 .Build()     
        
