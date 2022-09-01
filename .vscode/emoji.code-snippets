@@ -7,12 +7,20 @@
 		],
 		"description": "slightly smiling face emoji"        
     },
-    "ROFL": {
+    "joy": {
 		"scope": "markdown",
 		"prefix": "rofl",
 		"body": [
 			":joy:",
 		],
 		"description": "face with tears of joy emoji"        
-    }    
+    },
+    "upside-down face": {
+		"scope": "markdown",
+		"prefix": "/s",
+		"body": [
+			":upside_down_face:",
+		],
+		"description": "upside-down face emoji"        
+    }     
 }
