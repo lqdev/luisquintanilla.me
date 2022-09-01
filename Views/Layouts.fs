@@ -259,7 +259,7 @@ module Layouts
 
                 script [_src "/js/main.js"] []    
 
-                script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] 
+                script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] []
 
                 script [_type "application/javascript"] [
                     rawText "mermaid.initialize({startOnLoad:true});"
@@ -319,7 +319,7 @@ module Layouts
                 
                 script [_src "/js/main.js"] []
 
-                script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] 
+                script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] []
 
                 script [_type "application/javascript"] [
                     rawText "mermaid.initialize({startOnLoad:true});"
@@ -383,7 +383,7 @@ module Layouts
 
                 script [_src "/js/main.js"] []
 
-                script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] 
+                script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] []
 
                 script [_type "application/javascript"] [
                     rawText "mermaid.initialize({startOnLoad:true});"
