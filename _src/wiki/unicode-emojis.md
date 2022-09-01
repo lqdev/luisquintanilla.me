@@ -27,7 +27,7 @@ I am :slightly_smiling_face:
 
 I am :slightly_smiling_face:
 
-## List
+## Emoji List
 
 | Emoji | Unicode | CLDR Name |
 | - | - | - |

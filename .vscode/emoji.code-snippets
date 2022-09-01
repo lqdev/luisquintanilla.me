@@ -1,0 +1,18 @@
+{
+    "slightly smiling face": {
+		"scope": "markdown",
+		"prefix": "smile",
+		"body": [
+			":slightly_smiling_face:",
+		],
+		"description": "slightly smiling face emoji"        
+    },
+    "ROFL": {
+		"scope": "markdown",
+		"prefix": "rofl",
+		"body": [
+			":joy:",
+		],
+		"description": "face with tears of joy emoji"        
+    }    
+}
