@@ -20,7 +20,7 @@
   <ItemGroup>
     <PackageReference Include="Giraffe.ViewEngine" Version="1.4.0" />
     <PackageReference Include="Markdig" Version="0.30.3" />
-    <PackageReference Include="YamlDotNet" Version="9.1.4" />
+    <PackageReference Include="YamlDotNet" Version="12.0.0" />
   </ItemGroup>
 
 </Project>
