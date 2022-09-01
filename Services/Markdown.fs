@@ -16,10 +16,30 @@ module MarkdownService
         content.Substring(startP,endP).Trim()
         
     let convertFileToHtml (filePath:string) =
-        filePath |> File.ReadAllText |> Markdown.ToHtml
+        let mdPipeline = 
+            MarkdownPipelineBuilder()
+                .UsePipeTables()
+                .UseTaskLists()
+                .UseDiagrams()
+                .UseMediaLinks()
+                .UseYamlFrontMatter()
+                .Build()     
 
-    let ConvertMdToHtml (content:string) = 
-        Markdown.ToHtml content
+        let content = filePath |> File.ReadAllText 
+        
+        Markdown.ToHtml(content,mdPipeline)
+
+    let ConvertMdToHtml (content:string) =
+        let mdPipeline = 
+            MarkdownPipelineBuilder()
+                .UsePipeTables()
+                .UseTaskLists()
+                .UseDiagrams()
+                .UseMediaLinks()
+                .UseYamlFrontMatter()
+                .Build()     
+
+        Markdown.ToHtml(content,mdPipeline)
 
     let getContentAndMetadata<'a> (filePath:string) : YamlResult<'a> = 
         let yamlSerializer = 
