@@ -332,12 +332,12 @@ module Builder
             Directory.CreateDirectory(saveDir)
             File.WriteAllText(Path.Join(saveDir,"index.html"),presentationView))
 
-    let buildLinklogPage (links: Link array) = 
+    let buildLinkblogPage (links: Link array) = 
 
-        let lingLogPage = generate (linkView links) "defaultindex" "Linklog | Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","linklog")
+        let linkBlogPage = generate (linkView links) "defaultindex" "Linkblog | Luis Quintanilla"
+        let saveDir = Path.Join(outputDir,"feed","linkblog")
         Directory.CreateDirectory(saveDir)
-        File.WriteAllText(Path.Join(saveDir,"index.html"), lingLogPage)
+        File.WriteAllText(Path.Join(saveDir,"index.html"), linkBlogPage)
 
     let buildSnippetPage(snippets:Snippet array) = 
         let snippetsPage = generate (snippetsView snippets) "defaultindex" "Snippets | Luis Quintanilla"

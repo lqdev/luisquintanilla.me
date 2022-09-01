@@ -73,7 +73,7 @@ let main argv =
     buildEventPage ()
 
     // Build linklog page
-    buildLinklogPage links
+    buildLinkblogPage links
 
     // Build presentation pages
     buildPresentationsPage presentations
