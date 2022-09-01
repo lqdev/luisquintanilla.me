@@ -23,6 +23,8 @@ jobs:
         run: dotnet build --no-restore
       - name: Generate website
         run: dotnet run
+      - name: Check total webpage size
+        run: du -sh ./public
       - name: Upload to blob storage
         uses: azure/CLI@v1
         with:
