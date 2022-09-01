@@ -1,6 +1,6 @@
 ---
 title: "Download Main Wikipedia Page as PDF"
-language: "Bash"
+language: "bash"
 tags: bash,linux
 ---
 

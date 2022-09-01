@@ -95,7 +95,26 @@
 		],
 		"description": "Presentation metadata"
 	},
-	"Wiki article metadata": {
+	"Snippet metadata": {
+		"scope": "markdown",
+		"prefix": "snippet",
+		"body": [
+			"---",
+			"title: \"\"",
+			"language: \"\"",
+			"tags: ",
+			"---",
+			"",
+			"## Description",
+			"",
+			"## Usage",
+			"",
+			"## Snippet",
+			""		
+		],
+		"description": "Snippet file"
+	},	
+	"Wiki entry metadata": {
 		"scope": "markdown",
 		"prefix": "wiki",
 		"body": [
@@ -103,7 +122,7 @@
 			"post_type: \"wiki\" ",
 			"title: \"\"",
 			"last_updated_date: \"$CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE\"",
-			"tags: []",
+			"tags: ",
 			"---"
 		],
 		"description": "Wiki article post"
