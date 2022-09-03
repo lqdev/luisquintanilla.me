@@ -87,7 +87,7 @@ let main argv =
     buildSnippetPages snippets
 
     // Build Wiki
-    buildWikiPage (wikis |> Array.sortBy(fun x -> x.Metadata.Title)
+    buildWikiPage (wikis |> Array.sortBy(fun x -> x.Metadata.Title))
     buildWikiPages wikis
 
     0
