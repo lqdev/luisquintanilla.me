@@ -359,8 +359,8 @@ module Builder
             let saveFileName = Path.Join(saveDir,"index.html")
             File.WriteAllText(saveFileName,snippetView))
 
-    let buildWikiPage(snippets:Wiki array) = 
-        let wikisPage = generate (wikisView snippets) "defaultindex" "Wiki | Luis Quintanilla"
+    let buildWikiPage(wikis:Wiki array) = 
+        let wikisPage = generate (wikisView wikis) "defaultindex" "Wiki | Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"wiki")
         Directory.CreateDirectory(saveDir)
         File.WriteAllText(Path.Join(saveDir,"index.html"),wikisPage)
