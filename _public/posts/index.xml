@@ -3,363 +3,398 @@
     <title>Luis Quintanilla Blog</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Luis Quintanilla's blog</description>
-    <lastPubDate>12/28/2021 16:24</lastPubDate>
+    <lastPubDate>07/31/2022 14:52</lastPubDate>
     <language>en</language>
     <item>
+      <title>Site redirects in static websites</title>
+      <description>Learn how to create redirects in your static website without a server and JavaScript. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/static-website-redirects?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/static-website-redirects&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/static-website-redirects?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/static-website-redirects</guid>
+      <pubDate>07/31/2022 14:52</pubDate>
+    </item>
+    <item>
+      <title>Manage your reading list in Emacs using Org mode</title>
+      <description>Learn how to use TODO items in Emacs Org mode to manage your reading list. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/manage-reading-list-org-mode-emacs?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/manage-reading-list-org-mode-emacs&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/manage-reading-list-org-mode-emacs?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/manage-reading-list-org-mode-emacs</guid>
+      <pubDate>07/26/2022 19:15</pubDate>
+    </item>
+    <item>
+      <title>The lqvlc network protocol</title>
+      <description>Create and configure the lqvlc protocol, a custom network protocol to automatically launch audio and video streams in VLC from Firefox. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/lqvlc-network-protocol-firefox?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/lqvlc-network-protocol-firefox&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/lqvlc-network-protocol-firefox?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/lqvlc-network-protocol-firefox</guid>
+      <pubDate>07/07/2022 18:47</pubDate>
+    </item>
+    <item>
+      <title>Install Manjaro RTL8821CE WiFi drivers</title>
+      <description>Install RTL8821CE WiFi drivers on a fresh Manjaro XCFE install using AUR. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/install-rtl8821ce-manjaro?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/install-rtl8821ce-manjaro&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/install-rtl8821ce-manjaro?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/install-rtl8821ce-manjaro</guid>
+      <pubDate>06/11/2022 15:48</pubDate>
+    </item>
+    <item>
+      <title>Install OverDrive Media Console on Manjaro</title>
+      <description>Learn how to use Wine to install OverDrive Media Console on Manjaro and manage books and audiobooks from your local library.. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/overdrive-wine-manjaro?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/overdrive-wine-manjaro&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/overdrive-wine-manjaro?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/overdrive-wine-manjaro</guid>
+      <pubDate>05/11/2022 19:22</pubDate>
+    </item>
+    <item>
       <title>How to listen to internet radio using VLC</title>
-      <description>Use VLC to listen to internet radio streams. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/how-to-listen-internet-radio-using-vlc.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/how-to-listen-internet-radio-using-vlc.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/how-to-listen-internet-radio-using-vlc.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/how-to-listen-internet-radio-using-vlc.html</guid>
+      <description>Use VLC to listen to internet radio streams. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/how-to-listen-internet-radio-using-vlc?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/how-to-listen-internet-radio-using-vlc&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/how-to-listen-internet-radio-using-vlc?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/how-to-listen-internet-radio-using-vlc</guid>
       <pubDate>12/28/2021 16:24</pubDate>
     </item>
     <item>
       <title>Sending Webmentions with F#</title>
-      <description>Discover Webmention endpoint URLs and send Webmentions using F#. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/sending-webmentions-fsharp-fsadvent.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/sending-webmentions-fsharp-fsadvent.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/sending-webmentions-fsharp-fsadvent.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/sending-webmentions-fsharp-fsadvent.html</guid>
+      <description>Discover Webmention endpoint URLs and send Webmentions using F#. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/sending-webmentions-fsharp-fsadvent?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/sending-webmentions-fsharp-fsadvent&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/sending-webmentions-fsharp-fsadvent?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/sending-webmentions-fsharp-fsadvent</guid>
       <pubDate>12/13/2021 20:53</pubDate>
     </item>
     <item>
       <title>Super simple captcha</title>
-      <description>Implement a simple captcha challenge without dependencies. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/super-simple-captcha.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/super-simple-captcha.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/super-simple-captcha.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/super-simple-captcha.html</guid>
+      <description>Implement a simple captcha challenge without dependencies. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/super-simple-captcha?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/super-simple-captcha&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/super-simple-captcha?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/super-simple-captcha</guid>
       <pubDate>10/24/2021 13:00</pubDate>
     </item>
     <item>
       <title>Automate YAML front-matter generation with custom Visual Studio Code snippets</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/automate-yaml-front-matter-vs-code-snippets.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/automate-yaml-front-matter-vs-code-snippets.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/automate-yaml-front-matter-vs-code-snippets.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/automate-yaml-front-matter-vs-code-snippets.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/automate-yaml-front-matter-vs-code-snippets?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/automate-yaml-front-matter-vs-code-snippets&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/automate-yaml-front-matter-vs-code-snippets?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/automate-yaml-front-matter-vs-code-snippets</guid>
       <pubDate>10/04/2021 19:58</pubDate>
     </item>
     <item>
       <title>Proofread articles using Microsoft Edge's Immersive Reader and read aloud</title>
-      <description>Improve your proofreading process by reading articles aloud using Immersive Reader in Microsoft Edge. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/proofread-read-aloud.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/proofread-read-aloud.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/proofread-read-aloud.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/proofread-read-aloud.html</guid>
+      <description>Improve your proofreading process by reading articles aloud using Immersive Reader in Microsoft Edge. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/proofread-read-aloud?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/proofread-read-aloud&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/proofread-read-aloud?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/proofread-read-aloud</guid>
       <pubDate>2021-09-22 18:00:00</pubDate>
     </item>
     <item>
       <title>Make predictions with ML.NET models without defining schema classes</title>
-      <description>Use the .NET DataFrame API to make predictions with ML.NET models without defining model input and output schema classes.. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/mlnet-predictions-no-schema.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/mlnet-predictions-no-schema.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/mlnet-predictions-no-schema.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/mlnet-predictions-no-schema.html</guid>
+      <description>Use the .NET DataFrame API to make predictions with ML.NET models without defining model input and output schema classes.. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/mlnet-predictions-no-schema?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/mlnet-predictions-no-schema&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/mlnet-predictions-no-schema?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/mlnet-predictions-no-schema</guid>
       <pubDate>2021-09-16 18:00:00</pubDate>
     </item>
     <item>
       <title>Automate ML.NET model schema generation from sample JSON data with Visual Studio</title>
-      <description>Use "Paste JSON As Classes" in Visual Studio to automatically generate model input and output schema classes for your ML.NET models using JSON data samples.. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/vs-automate-mlnet-schema-generation.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/vs-automate-mlnet-schema-generation.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/vs-automate-mlnet-schema-generation.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/vs-automate-mlnet-schema-generation.html</guid>
+      <description>Use "Paste JSON As Classes" in Visual Studio to automatically generate model input and output schema classes for your ML.NET models using JSON data samples.. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/vs-automate-mlnet-schema-generation?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/vs-automate-mlnet-schema-generation&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/vs-automate-mlnet-schema-generation?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/vs-automate-mlnet-schema-generation</guid>
       <pubDate>2021-08-26 18:00:00</pubDate>
     </item>
     <item>
       <title>Inspect ML.NET models with Netron</title>
-      <description>Use Netron to inspect the inputs, outputs, and operations that make up an ML.NET machine learning model.. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/inspect-mlnet-models-netron.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/inspect-mlnet-models-netron.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/inspect-mlnet-models-netron.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/inspect-mlnet-models-netron.html</guid>
+      <description>Use Netron to inspect the inputs, outputs, and operations that make up an ML.NET machine learning model.. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/inspect-mlnet-models-netron?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/inspect-mlnet-models-netron&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/inspect-mlnet-models-netron?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/inspect-mlnet-models-netron</guid>
       <pubDate>2021-08-25 18:00:00</pubDate>
     </item>
     <item>
       <title>Self-hosting made easy with YunoHost</title>
-      <description>YunoHost can help you self-host applications and services by simplifying your deployment process.. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/yunohost-self-hosting-simplified.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/yunohost-self-hosting-simplified.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/yunohost-self-hosting-simplified.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/yunohost-self-hosting-simplified.html</guid>
+      <description>YunoHost can help you self-host applications and services by simplifying your deployment process.. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/yunohost-self-hosting-simplified?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/yunohost-self-hosting-simplified&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/yunohost-self-hosting-simplified?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/yunohost-self-hosting-simplified</guid>
       <pubDate>2021-08-10 18:00:00</pubDate>
     </item>
     <item>
       <title>Surface Duo offline navigation hiking setup</title>
-      <description>Set up your Surface Duo for offline navigation and take it out on the trail with AllTrails &amp; OSMAnd~. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/surface-duo-offline-navigation-hiking-setup.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/surface-duo-offline-navigation-hiking-setup.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/surface-duo-offline-navigation-hiking-setup.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/surface-duo-offline-navigation-hiking-setup.html</guid>
+      <description>Set up your Surface Duo for offline navigation and take it out on the trail with AllTrails &amp; OSMAnd~. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/surface-duo-offline-navigation-hiking-setup?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/surface-duo-offline-navigation-hiking-setup&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/surface-duo-offline-navigation-hiking-setup?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/surface-duo-offline-navigation-hiking-setup</guid>
       <pubDate>2021-07-27 19:00:00</pubDate>
     </item>
     <item>
       <title>Never change targeted ads</title>
-      <description>A random observation on how fascinating and disturbing targeted ads can be. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/fenix-social-media-targeted-ads.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/fenix-social-media-targeted-ads.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/fenix-social-media-targeted-ads.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/fenix-social-media-targeted-ads.html</guid>
+      <description>A random observation on how fascinating and disturbing targeted ads can be. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/fenix-social-media-targeted-ads?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/fenix-social-media-targeted-ads&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/fenix-social-media-targeted-ads?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/fenix-social-media-targeted-ads</guid>
       <pubDate>2021-06-22 17:40:00</pubDate>
     </item>
     <item>
       <title>Rediscovering the RSS protocol</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/rediscovering-rss-user-freedom.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/rediscovering-rss-user-freedom.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/rediscovering-rss-user-freedom.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/rediscovering-rss-user-freedom.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/rediscovering-rss-user-freedom?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/rediscovering-rss-user-freedom&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/rediscovering-rss-user-freedom?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/rediscovering-rss-user-freedom</guid>
       <pubDate>2021-04-05 19:30:00</pubDate>
     </item>
     <item>
       <title>Alternatives to WhatsApp</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/alternatives-to-whatsapp.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/alternatives-to-whatsapp.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/alternatives-to-whatsapp.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/alternatives-to-whatsapp.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/alternatives-to-whatsapp?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/alternatives-to-whatsapp&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/alternatives-to-whatsapp?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/alternatives-to-whatsapp</guid>
       <pubDate>2021-01-09 13:44:27</pubDate>
     </item>
     <item>
       <title>How to watch Twitch streams using VLC</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/how-to-watch-twitch-using-vlc.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/how-to-watch-twitch-using-vlc.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/how-to-watch-twitch-using-vlc.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/how-to-watch-twitch-using-vlc.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/how-to-watch-twitch-using-vlc?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/how-to-watch-twitch-using-vlc&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/how-to-watch-twitch-using-vlc?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/how-to-watch-twitch-using-vlc</guid>
       <pubDate>2021-01-05 21:14:39</pubDate>
     </item>
     <item>
       <title>Train an image classifier using F# and ML .NET</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/image-classification-mlnet-fsadvent2020.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/image-classification-mlnet-fsadvent2020.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/image-classification-mlnet-fsadvent2020.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/image-classification-mlnet-fsadvent2020.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/image-classification-mlnet-fsadvent2020?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/image-classification-mlnet-fsadvent2020&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/image-classification-mlnet-fsadvent2020?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/image-classification-mlnet-fsadvent2020</guid>
       <pubDate>2020-12-14 20:03:18</pubDate>
     </item>
     <item>
       <title>Use .NET Interactive to run .NET code in Jupyter Notebooks on an Azure Machine Learning compute instance</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance</guid>
       <pubDate>2020-08-29 20:23:09</pubDate>
     </item>
     <item>
       <title>Serverless Racket Applications Using Azure Functions Custom Handlers</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/serverless-racket-azure-functions-custom-handlers.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/serverless-racket-azure-functions-custom-handlers.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/serverless-racket-azure-functions-custom-handlers.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/serverless-racket-azure-functions-custom-handlers.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/serverless-racket-azure-functions-custom-handlers?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/serverless-racket-azure-functions-custom-handlers&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/serverless-racket-azure-functions-custom-handlers?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/serverless-racket-azure-functions-custom-handlers</guid>
       <pubDate>2020-03-21 13:45:43</pubDate>
     </item>
     <item>
       <title>Deploy ML.NET Machine Learning Model in Blazor WebAssembly Static Website</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/deploy-machine-learning-mlnet-models-blazor-webassembly.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/deploy-machine-learning-mlnet-models-blazor-webassembly.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/deploy-machine-learning-mlnet-models-blazor-webassembly.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/deploy-machine-learning-mlnet-models-blazor-webassembly.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/deploy-machine-learning-mlnet-models-blazor-webassembly?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/deploy-machine-learning-mlnet-models-blazor-webassembly&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/deploy-machine-learning-mlnet-models-blazor-webassembly?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/deploy-machine-learning-mlnet-models-blazor-webassembly</guid>
       <pubDate>2020-03-01 19:21:04</pubDate>
     </item>
     <item>
       <title>Use machine learning to categorize web links with F# and ML.NET</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/categorize-web-links-ml-net-fsharp-fsadvent2019.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/categorize-web-links-ml-net-fsharp-fsadvent2019.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/categorize-web-links-ml-net-fsharp-fsadvent2019.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/categorize-web-links-ml-net-fsharp-fsadvent2019.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/categorize-web-links-ml-net-fsharp-fsadvent2019?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/categorize-web-links-ml-net-fsharp-fsadvent2019&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/categorize-web-links-ml-net-fsharp-fsadvent2019?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/categorize-web-links-ml-net-fsharp-fsadvent2019</guid>
       <pubDate>2019-12-17 19:59:06</pubDate>
     </item>
     <item>
       <title>Create an HTTP Trigger Azure Function using FSharp</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/http-trigger-azure-functions-fsharp.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/http-trigger-azure-functions-fsharp.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/http-trigger-azure-functions-fsharp.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/http-trigger-azure-functions-fsharp.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/http-trigger-azure-functions-fsharp?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/http-trigger-azure-functions-fsharp&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/http-trigger-azure-functions-fsharp?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/http-trigger-azure-functions-fsharp</guid>
       <pubDate>2019-11-16 17:33:59</pubDate>
     </item>
     <item>
       <title>Restaurant Inspections ETL &amp; Data Enrichment with Spark.NET and ML.NET Automated (Auto) ML</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/restaurant-inspections-etl-data-enrichment-spark-auto-ml-net.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/restaurant-inspections-etl-data-enrichment-spark-auto-ml-net.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/restaurant-inspections-etl-data-enrichment-spark-auto-ml-net.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/restaurant-inspections-etl-data-enrichment-spark-auto-ml-net.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/restaurant-inspections-etl-data-enrichment-spark-auto-ml-net?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/restaurant-inspections-etl-data-enrichment-spark-auto-ml-net&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/restaurant-inspections-etl-data-enrichment-spark-auto-ml-net?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/restaurant-inspections-etl-data-enrichment-spark-auto-ml-net</guid>
       <pubDate>2019-09-15 15:12:01</pubDate>
     </item>
     <item>
       <title>Machine Learning Lifecycle Management with ML.NET, Automated ML and MLFlow</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/ml-lifecycle-management-mlflow-automated-ml-net.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/ml-lifecycle-management-mlflow-automated-ml-net.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/ml-lifecycle-management-mlflow-automated-ml-net.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/ml-lifecycle-management-mlflow-automated-ml-net.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/ml-lifecycle-management-mlflow-automated-ml-net?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/ml-lifecycle-management-mlflow-automated-ml-net&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/ml-lifecycle-management-mlflow-automated-ml-net?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/ml-lifecycle-management-mlflow-automated-ml-net</guid>
       <pubDate>2019-05-09 19:19:20</pubDate>
     </item>
     <item>
       <title>Automating Resource Provisioning for Machine Learning in Azure with Cognitive Services and Terraform</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/automate-machine-learning-service-provisioning-azure-terraform.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/automate-machine-learning-service-provisioning-azure-terraform.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/automate-machine-learning-service-provisioning-azure-terraform.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/automate-machine-learning-service-provisioning-azure-terraform.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/automate-machine-learning-service-provisioning-azure-terraform?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/automate-machine-learning-service-provisioning-azure-terraform&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/automate-machine-learning-service-provisioning-azure-terraform?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/automate-machine-learning-service-provisioning-azure-terraform</guid>
       <pubDate>2019-01-05 22:58:39</pubDate>
     </item>
     <item>
       <title>The Case for Doing Machine Learning with F#</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/case-fsharp-machine-learning.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/case-fsharp-machine-learning.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/case-fsharp-machine-learning.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/case-fsharp-machine-learning.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/case-fsharp-machine-learning?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/case-fsharp-machine-learning&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/case-fsharp-machine-learning?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/case-fsharp-machine-learning</guid>
       <pubDate>2018-12-14 23:34:50</pubDate>
     </item>
     <item>
       <title>Operationalizing Machine Learning with ML.NET, Azure DevOps and Azure Container Instances</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/azdevops-mlnet-aci.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/azdevops-mlnet-aci.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/azdevops-mlnet-aci.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/azdevops-mlnet-aci.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/azdevops-mlnet-aci?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/azdevops-mlnet-aci&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/azdevops-mlnet-aci?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/azdevops-mlnet-aci</guid>
       <pubDate>2018-11-26 23:50:23</pubDate>
     </item>
     <item>
       <title>Blogging Tools</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/blog-tools.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/blog-tools.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/blog-tools.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/blog-tools.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/blog-tools?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/blog-tools&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/blog-tools?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/blog-tools</guid>
       <pubDate>2018-11-18 00:07:36</pubDate>
     </item>
     <item>
       <title>Serverless Machine Learning with ML.NET and Azure Functions</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/serverless-machine-learning-mlnet-azure-functions.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/serverless-machine-learning-mlnet-azure-functions.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/serverless-machine-learning-mlnet-azure-functions.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/serverless-machine-learning-mlnet-azure-functions.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/serverless-machine-learning-mlnet-azure-functions?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/serverless-machine-learning-mlnet-azure-functions&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/serverless-machine-learning-mlnet-azure-functions?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/serverless-machine-learning-mlnet-azure-functions</guid>
       <pubDate>2018-08-21 19:13:47</pubDate>
     </item>
     <item>
       <title>Hacker News Vue Top Stories Client</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/hn-vue-topstories-client.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/hn-vue-topstories-client.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/hn-vue-topstories-client.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/hn-vue-topstories-client.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/hn-vue-topstories-client?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/hn-vue-topstories-client&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/hn-vue-topstories-client?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/hn-vue-topstories-client</guid>
       <pubDate>2018-06-21 18:30:38</pubDate>
     </item>
     <item>
       <title>Classification with F# ML.NET Models</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/mlnet-classification-fsharp.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/mlnet-classification-fsharp.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/mlnet-classification-fsharp.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/mlnet-classification-fsharp.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/mlnet-classification-fsharp?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/mlnet-classification-fsharp&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/mlnet-classification-fsharp?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/mlnet-classification-fsharp</guid>
       <pubDate>2018-06-13 18:19:05</pubDate>
     </item>
     <item>
       <title>Organizing F# Modules Into Separate Files</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/fsharpmodulesample.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/fsharpmodulesample.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/fsharpmodulesample.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/fsharpmodulesample.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/fsharpmodulesample?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/fsharpmodulesample&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/fsharpmodulesample?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/fsharpmodulesample</guid>
       <pubDate>2018-06-05 20:56:52</pubDate>
     </item>
     <item>
       <title>Deploy .NET Machine Learning Models with ML.NET, ASP.NET Core, Docker and Azure Container Instances</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/deploy-netml-docker-aci.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/deploy-netml-docker-aci.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/deploy-netml-docker-aci.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/deploy-netml-docker-aci.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/deploy-netml-docker-aci?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/deploy-netml-docker-aci&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/deploy-netml-docker-aci?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/deploy-netml-docker-aci</guid>
       <pubDate>2018-05-11 21:17:00</pubDate>
     </item>
     <item>
       <title>E2E Dockerizing a MEAN Stack Application</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/e2e-mean-docker-build.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/e2e-mean-docker-build.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/e2e-mean-docker-build.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/e2e-mean-docker-build.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/e2e-mean-docker-build?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/e2e-mean-docker-build&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/e2e-mean-docker-build?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/e2e-mean-docker-build</guid>
       <pubDate>2018-04-29 20:10:09</pubDate>
     </item>
     <item>
       <title>Type Driven Development - Scaling Safely with Python</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/type-driven-development-scaling-safely-with-python.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/type-driven-development-scaling-safely-with-python.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/type-driven-development-scaling-safely-with-python.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/type-driven-development-scaling-safely-with-python.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/type-driven-development-scaling-safely-with-python?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/type-driven-development-scaling-safely-with-python&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/type-driven-development-scaling-safely-with-python?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/type-driven-development-scaling-safely-with-python</guid>
       <pubDate>2018-03-24 18:16:31</pubDate>
     </item>
     <item>
       <title>Scaffolding A Web Page In One Line</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/scaffold-a-webpage-in-one-line.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/scaffold-a-webpage-in-one-line.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/scaffold-a-webpage-in-one-line.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/scaffold-a-webpage-in-one-line.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/scaffold-a-webpage-in-one-line?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/scaffold-a-webpage-in-one-line&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/scaffold-a-webpage-in-one-line?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/scaffold-a-webpage-in-one-line</guid>
       <pubDate>2018-03-10 16:07:00</pubDate>
     </item>
     <item>
       <title>Testing and Deploying Python Projects with Travis CI</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/testing-deploying-python-projects-travisci.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/testing-deploying-python-projects-travisci.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/testing-deploying-python-projects-travisci.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/testing-deploying-python-projects-travisci.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/testing-deploying-python-projects-travisci?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/testing-deploying-python-projects-travisci&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/testing-deploying-python-projects-travisci?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/testing-deploying-python-projects-travisci</guid>
       <pubDate>2018-02-18 20:51:32</pubDate>
     </item>
     <item>
       <title>Transcribing Podcasts with Microsoft Speech API</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/transcribing-podcasts-microsoft-speech-api.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/transcribing-podcasts-microsoft-speech-api.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/transcribing-podcasts-microsoft-speech-api.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/transcribing-podcasts-microsoft-speech-api.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/transcribing-podcasts-microsoft-speech-api?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/transcribing-podcasts-microsoft-speech-api&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/transcribing-podcasts-microsoft-speech-api?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/transcribing-podcasts-microsoft-speech-api</guid>
       <pubDate>2018-02-11 20:34:37</pubDate>
     </item>
     <item>
       <title>Real-Time Sentiment Analysis with C#</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/real-time-sentiment-analysis-csharp.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/real-time-sentiment-analysis-csharp.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/real-time-sentiment-analysis-csharp.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/real-time-sentiment-analysis-csharp.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/real-time-sentiment-analysis-csharp?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/real-time-sentiment-analysis-csharp&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/real-time-sentiment-analysis-csharp?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/real-time-sentiment-analysis-csharp</guid>
       <pubDate>2018-01-18 03:41:47</pubDate>
     </item>
     <item>
       <title>Authorization Code Authentication Flow in Python</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/authorization-code-flow-python.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/authorization-code-flow-python.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/authorization-code-flow-python.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/authorization-code-flow-python.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/authorization-code-flow-python?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/authorization-code-flow-python&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/authorization-code-flow-python?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/authorization-code-flow-python</guid>
       <pubDate>2017-12-29 18:45:19</pubDate>
     </item>
     <item>
       <title>Client Credentials Authorization in C#</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/client-credentials-authentication-csharp.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/client-credentials-authentication-csharp.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/client-credentials-authentication-csharp.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/client-credentials-authentication-csharp.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/client-credentials-authentication-csharp?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/client-credentials-authentication-csharp&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/client-credentials-authentication-csharp?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/client-credentials-authentication-csharp</guid>
       <pubDate>2017-12-25 19:28:48</pubDate>
     </item>
     <item>
       <title>Read A Text File From a URL in .NET Core</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/read-file-from-url-dotnet-core.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/read-file-from-url-dotnet-core.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/read-file-from-url-dotnet-core.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/read-file-from-url-dotnet-core.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/read-file-from-url-dotnet-core?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/read-file-from-url-dotnet-core&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/read-file-from-url-dotnet-core?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/read-file-from-url-dotnet-core</guid>
       <pubDate>2017-12-18 21:09:15</pubDate>
     </item>
     <item>
       <title>Design and Build Your Next Home in Minecraft</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/build-your-house-minecraft.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/build-your-house-minecraft.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/build-your-house-minecraft.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/build-your-house-minecraft.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/build-your-house-minecraft?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/build-your-house-minecraft&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/build-your-house-minecraft?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/build-your-house-minecraft</guid>
       <pubDate>2017-12-15 22:34:12</pubDate>
     </item>
     <item>
       <title>The Case for .NET in the Classroom</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/dotnet-in-the-classroom.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/dotnet-in-the-classroom.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/dotnet-in-the-classroom.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/dotnet-in-the-classroom.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/dotnet-in-the-classroom?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/dotnet-in-the-classroom&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/dotnet-in-the-classroom?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/dotnet-in-the-classroom</guid>
       <pubDate>2017-12-14 16:57:39</pubDate>
     </item>
     <item>
       <title>Working with URLs in Racket</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/working-with-urls-racket.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/working-with-urls-racket.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/working-with-urls-racket.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/working-with-urls-racket.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/working-with-urls-racket?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/working-with-urls-racket&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/working-with-urls-racket?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/working-with-urls-racket</guid>
       <pubDate>2017-12-13 16:01:57</pubDate>
     </item>
     <item>
       <title>Reading Local JSON Files in R</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/reading-json-in-r.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/reading-json-in-r.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/reading-json-in-r.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/reading-json-in-r.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/reading-json-in-r?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/reading-json-in-r&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/reading-json-in-r?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/reading-json-in-r</guid>
       <pubDate>2017-12-11 14:21:21</pubDate>
     </item>
     <item>
       <title>Windows 10 Intel Display Driver Blank Screen Fix</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/windows-10-intel-display-driver-blank-screen.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/windows-10-intel-display-driver-blank-screen.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/windows-10-intel-display-driver-blank-screen.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/windows-10-intel-display-driver-blank-screen.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/windows-10-intel-display-driver-blank-screen?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/windows-10-intel-display-driver-blank-screen&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/windows-10-intel-display-driver-blank-screen?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/windows-10-intel-display-driver-blank-screen</guid>
       <pubDate>2017-12-09 14:27:31</pubDate>
     </item>
     <item>
       <title>Creating A Login Screen With React Native</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/create-login-screen-react-native.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/create-login-screen-react-native.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/create-login-screen-react-native.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/create-login-screen-react-native.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/create-login-screen-react-native?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/create-login-screen-react-native&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/create-login-screen-react-native?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/create-login-screen-react-native</guid>
       <pubDate>2017-12-09 13:15:57</pubDate>
     </item>
     <item>
       <title>Back To School: Emacs Edition</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/back-to-school-emacs-edition.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/back-to-school-emacs-edition.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/back-to-school-emacs-edition.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/back-to-school-emacs-edition.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/back-to-school-emacs-edition?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/back-to-school-emacs-edition&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/back-to-school-emacs-edition?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/back-to-school-emacs-edition</guid>
       <pubDate>2017-12-09 13:01:19</pubDate>
     </item>
     <item>
       <title>HP ProBook 430 G1 Ubuntu BIOS Upgrade</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/hp-probook-430g1-ubuntu-bios-upgrade.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/hp-probook-430g1-ubuntu-bios-upgrade.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/hp-probook-430g1-ubuntu-bios-upgrade.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/hp-probook-430g1-ubuntu-bios-upgrade.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/hp-probook-430g1-ubuntu-bios-upgrade?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/hp-probook-430g1-ubuntu-bios-upgrade&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/hp-probook-430g1-ubuntu-bios-upgrade?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/hp-probook-430g1-ubuntu-bios-upgrade</guid>
       <pubDate>2017-12-09 12:57:12</pubDate>
     </item>
     <item>
       <title>Setting Up A New Ubuntu PC</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/setting-up-new-ubuntu-pc.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/setting-up-new-ubuntu-pc.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/setting-up-new-ubuntu-pc.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/setting-up-new-ubuntu-pc.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/setting-up-new-ubuntu-pc?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/setting-up-new-ubuntu-pc&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/setting-up-new-ubuntu-pc?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/setting-up-new-ubuntu-pc</guid>
       <pubDate>2017-12-09 12:49:19</pubDate>
     </item>
     <item>
       <title>Octave Development in the Terminal</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/octave-development-in-the-terminal.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/octave-development-in-the-terminal.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/octave-development-in-the-terminal.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/octave-development-in-the-terminal.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/octave-development-in-the-terminal?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/octave-development-in-the-terminal&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/octave-development-in-the-terminal?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/octave-development-in-the-terminal</guid>
       <pubDate>2017-12-09 12:46:54</pubDate>
     </item>
     <item>
       <title>Hello World</title>
-      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/hello-world.html?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/hello-world.html&lt;/a&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/hello-world.html?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/posts/hello-world.html</guid>
+      <description>. See the full post at &lt;a href="https://www.luisquintanilla.me/posts/hello-world?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/hello-world&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/hello-world?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/hello-world</guid>
       <pubDate>2017-12-09 12:00:00</pubDate>
     </item>
   </channel>
