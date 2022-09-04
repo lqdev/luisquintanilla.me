@@ -20,6 +20,8 @@ module MarkdownService
                 .UseMediaLinks()
                 .UseEmojiAndSmiley()
                 .UseCustomContainers()
+                .UseEmphasisExtras()
+                .UseBootstrap()
                 .Build()        
 
     let summarizePost (content:string) = 
