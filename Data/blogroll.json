@@ -70,5 +70,11 @@
         "Type": "rss",
         "HtmlUrl": "https://blog.thenewoil.org",
         "XmlUrl": "https://blog.thenewoil.org/feed/"
+    },
+    {
+       "Title": "Indieseek - Indie Web Directory",
+       "Type": "rss",
+       "HtmlUrl": "https://indieseek.xyz",
+       "XmlUrl": "https://indieseek.xyz/feed/"
     }
 ]

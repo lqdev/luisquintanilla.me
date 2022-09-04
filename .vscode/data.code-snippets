@@ -12,6 +12,19 @@
 			"}"            
         ]
     },
+    "BlogrollEntry": {
+        "scope": "json",
+        "prefix": "blogroll",
+        "description": "Adds an empty blogroll entry",
+        "body": [
+			"{",
+			"   \"Title\": \"\",",
+			"   \"Type\": \"\",",
+            "   \"HtmlUrl\": \"\",",
+            "   \"XmlUrl\": \"\"",
+			"}"            
+        ]
+    },
 	"Event entry": {
 		"scope": "json",
 		"prefix": "event",

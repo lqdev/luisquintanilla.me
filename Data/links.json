@@ -64,5 +64,11 @@
        "Title":"Small Web",
        "Tags": ["blogging", "article"],
        "DateAdded": "09/02/2022 00:03"
+    },
+    {
+       "Url": "https://buckrogers.neocities.org/",
+       "Title": "Buck Rogers in the 25th Century A.D.",
+       "Tags": ["fiction","space","books","website","retro","yesterweb"],
+       "DateAdded": "09/04/2022 18:01"
     }
 ]
