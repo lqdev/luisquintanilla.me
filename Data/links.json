@@ -70,5 +70,11 @@
        "Title": "Buck Rogers in the 25th Century A.D.",
        "Tags": ["fiction","space","books","website","retro","yesterweb"],
        "DateAdded": "09/04/2022 18:01"
+    },
+    {
+       "Url": "https://www.linuxjournal.com/content/every-user-neo",
+       "Title": "Every User a Neo",
+       "Tags": ["internet", "technology", "article", "future", "matrix", "movie"],
+       "DateAdded": "09/04/2022 18:12"
     }
 ]
