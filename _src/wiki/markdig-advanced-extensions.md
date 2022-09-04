@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
-title: "Markdig advanced extensions"
-last_updated_date: "08/31/2022 19:42"
+title: "Markdig Advanced Extensions"
+last_updated_date: "09/03/2022 19:26"
 tags: markdown,markdig,dotnet,fsharp,csharp,website
 ---
 
