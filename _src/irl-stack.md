@@ -38,9 +38,9 @@ Devices, apps, and services I use day-to-day.
 ### Audio
 
 - [FiiO M6](https://www.fiio.com/m6) - MP3 player
-- [JLAB Studio On-Ear Headphones](https://www.jlab.com/collections/headphones/products/studio-on-ear-headphones) **Daily driver**
+- [JLAB Studio On-Ear Headphones](https://www.jlab.com/collections/headphones/products/studio-on-ear-headphones) - **Daily driver**
 - [Ludos Ultra Wired Earbuds](https://www.ludostechs.com/product/ultra/)
-- [JLAB JBuds Air ANC](https://www.jlab.com/products/jbuds-air-anc-true-wireless-earbuds) - 
+- [JLAB JBuds Air ANC](https://www.jlab.com/products/jbuds-air-anc-true-wireless-earbuds)
 - ~~[Surface Earbuds](https://www.microsoft.com/en-us/d/surface-earbuds/8r9cpq146064)~~
 
 
