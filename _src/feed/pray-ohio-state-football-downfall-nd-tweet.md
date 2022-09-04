@@ -4,7 +4,7 @@ title: "Praying for OSU downfall"
 published_date: "09/03/2022 20:09"
 ---
 
-Same.
+Same... :pray:
 
 > Praying on Ohio State&#39;s downfall</p>&mdash; Barstool Penn State ([@PSUBarstool](https://twitter.com/PSUBarstool)) September 4, 2022
 
