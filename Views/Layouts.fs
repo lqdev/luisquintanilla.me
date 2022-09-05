@@ -112,6 +112,7 @@ module Layouts
                             ] [
                                 a [_class "dropdown-item"; _href "/snippets"] [ Text "Snippets" ]
                                 a [_class "dropdown-item"; _href "/wiki"] [ Text "Wiki" ]
+                                a [_class "dropdown-item"; _href "/library"] [ Text "Library" ]
                         ]
                     ]
                     
