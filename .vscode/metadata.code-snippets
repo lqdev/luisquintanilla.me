@@ -116,5 +116,23 @@
 			"## Overview"
 		],
 		"description": "Wiki article post"
-	}			
+	},
+	"Book Entry Article": {
+		"scope": "markdown",
+		"prefix": "book",
+		"body": [
+			"---",
+			"title: \"\"",
+			"author: \"\"",
+			"isbn: \"\"",
+			"cover: \"\"",
+			"status: \"\"",
+			"rating: \"\"",
+			"source: \"\"",
+			"---",
+			"",
+			"## Notes"
+		],
+		"description": "Book article post"
+	}				
 }
