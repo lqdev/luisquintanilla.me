@@ -88,5 +88,11 @@
        "Title": "The Feed Directory - Pine.blog",
        "Tags": ["blogging","search","rss","reading","internet","technology"],
        "DateAdded": "09/04/2022 22:27"
+    },
+    {
+       "Url": "https://pyimagesearch.com/2022/09/05/a-deep-dive-into-transformers-with-tensorflow-and-keras-part-1/",
+       "Title": "A Deep Dive into Transformers with TensorFlow and Keras: Part 1",
+       "Tags": ["deeplearning","artififialintelligence","nlp","transformers","machinelearning","tensorflow","keras"],
+       "DateAdded": "09/05/2022 12:05"
     }
 ]
