@@ -32,6 +32,7 @@ let main argv =
     let redirects = loadRedirects ()
     let snippets = loadSnippets ()
     let wikis = loadWikis ()
+    let books = loadBooks ()
 
     let notePosts = filterFeedByPostType feedPosts "note"
     let photoPosts = filterFeedByPostType feedPosts "photo"
@@ -89,5 +90,9 @@ let main argv =
     // Build Wiki
     buildWikiPage (wikis |> Array.sortBy(fun x -> x.Metadata.Title))
     buildWikiPages wikis
+
+    // Build books
+    buildLibraryPage books
+    buildBookPages books
 
     0

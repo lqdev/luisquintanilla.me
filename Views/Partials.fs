@@ -175,6 +175,12 @@ let wikiView (wiki:Wiki) =
         rawText wiki.Content
     ]
 
+let bookView (book:Book) =
+    div [ _class "mr-auto" ] [
+        h1 [] [Text book.Metadata.Title]
+        rawText book.Content
+    ]
+
 let postPaginationView (currentPage: int) (lastPage: int) (posts: Post array) =
     let nextPage = currentPage + 1
     let previousPage = currentPage - 1
@@ -317,6 +323,30 @@ let feedView (posts: Post array) =
     div [ _class "d-grip gap-3" ] [
         for post in posts do
             feedPostView post
+    ]
+
+let bookPostView (book: Book) = 
+    div [_class "card mb-4 mx-auto"] [
+        div [_class "row"] [
+            div [_class "col-md-4"] [
+                img [_src book.Metadata.Cover]
+            ]
+            div [_class "col-md-8"] [
+                div [_class "card-body"] [
+                    a [_href $"/library/{book.FileName}"] [
+                        h5 [_class "card-title"] [Text book.Metadata.Title]
+                    ]
+                    p [_class "card-text"] [Text book.Metadata.Author]
+                    p [_class "card-text"] [Text $"{book.Metadata.Rating}/5"]
+                ]                
+            ]
+        ]
+    ]
+
+let libraryView (books:Book array) = 
+    div [ _class "d-grip gap-3" ] [
+        for book in books do
+            bookPostView book
     ]
 
 let presentationsView (presentations: Presentation array) = 
