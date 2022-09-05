@@ -75,7 +75,7 @@ module Builder
         let aboutContent = convertFileToHtml (Path.Join(srcDir,"about.md")) |> aboutView
         let aboutPage = generate aboutContent "default" "About - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"about")
-        Directory.CreateDirectory(saveDir)
+        Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), aboutPage)
 
     let buildBlogrollPage (links:Outline array) = 
@@ -85,7 +85,7 @@ module Builder
 
         let blogRollPage = generate blogRollContent "default" "Blogroll - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"feed","blogroll")
-        Directory.CreateDirectory(saveDir)        
+        Directory.CreateDirectory(saveDir) |> ignore    
         File.WriteAllText(Path.Join(saveDir,"index.html"), blogRollPage)
 
     let buildPodrollPage (links:Outline array) = 
@@ -95,42 +95,42 @@ module Builder
 
         let podrollPage = generate podrollContent "default" "Podroll - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"feed","podroll")
-        Directory.CreateDirectory(saveDir)        
+        Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), podrollPage)
 
     let buildIRLStackPage () = 
         let irlStackContent = Path.Join(srcDir,"irl-stack.md") |> convertFileToHtml |> irlStackView
         let irlStackPage = generate irlStackContent "default" "In Real Life Stack - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"irl-stack")
-        Directory.CreateDirectory(saveDir)                
+        Directory.CreateDirectory(saveDir) |> ignore   
         File.WriteAllText(Path.Join(saveDir,"index.html"), irlStackPage)
 
     let buildColophonPage () = 
         let colophonContent = Path.Join(srcDir,"colophon.md") |> convertFileToHtml |> irlStackView
         let colophonPage = generate colophonContent "default" "Colophon - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"colophon")
-        Directory.CreateDirectory(saveDir)                
+        Directory.CreateDirectory(saveDir) |> ignore               
         File.WriteAllText(Path.Join(saveDir,"index.html"), colophonPage)        
 
     let buildSubscribePage () = 
         let subscribeContent = Path.Join(srcDir,"subscribe.md") |> convertFileToHtml |> subscribeView
         let subscribePage = generate subscribeContent "default" "Subscribe - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"subscribe")
-        Directory.CreateDirectory(saveDir)                
+        Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), subscribePage)        
     
     let buildContactPage () = 
         let contactContent = convertFileToHtml (Path.Join(srcDir,"contact.md")) |> contactView
         let contactPage = generate contactContent "default" "Contact - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"contact")
-        Directory.CreateDirectory(saveDir) 
+        Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir, "index.html"), contactPage)
 
     let buildOnlineRadioPage () = 
         let onlineRadioContent = convertFileToHtml (Path.Join(srcDir,"radio.md")) |> onlineRadioView
         let onlineRadioPage = generate onlineRadioContent "default" "Online Radio - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"radio")
-        Directory.CreateDirectory(saveDir)
+        Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), onlineRadioPage)        
 
     let loadPosts () = 
@@ -209,6 +209,14 @@ module Builder
 
         redirects
 
+    let loadBooks () = 
+        let bookPaths = 
+            Directory.GetFiles(Path.Join(srcDir,"library"))
+
+        let books = bookPaths |> Array.map(parseBook)
+
+        books
+
     let buildBlogRssFeed (posts: Post array) = 
         let rssPage = 
             posts
@@ -253,7 +261,7 @@ module Builder
         postPages
         |> Array.iter(fun (fileName,html) ->
             let saveDir = Path.Join(rootSaveDir,fileName)
-            Directory.CreateDirectory(saveDir)
+            Directory.CreateDirectory(saveDir) |> ignore
             // let saveFileName = sprintf "%s.html" fileName
             let savePath = Path.Join(saveDir,"index.html")
             File.WriteAllText(savePath,html))
@@ -281,7 +289,7 @@ module Builder
 
         let eventPage = generate (eventView events) "default" "Events - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"events")
-        Directory.CreateDirectory(saveDir)
+        Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"),eventPage)
 
     let filterFeedByPostType (posts: Post array) (postType: string) = 
@@ -309,7 +317,7 @@ module Builder
             post.FileName,generate postView "defaultindex" post.Metadata.Title)
         |> Array.iter(fun (fileName,html) ->
             let saveDir = Path.Join(rootSaveDir,fileName)
-            Directory.CreateDirectory(saveDir)
+            Directory.CreateDirectory(saveDir) |> ignore
             let savePath = Path.Join(saveDir,"index.html")
             File.WriteAllText(savePath,html))        
     
@@ -319,7 +327,7 @@ module Builder
     let buildPresentationsPage (presentations: Presentation array) = 
         let presentationPage = generate (presentationsView presentations) "defaultindex" "Presentations - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"presentations")
-        Directory.CreateDirectory(saveDir)
+        Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"),presentationPage)
 
     let buildPresentationPages (presentations:Presentation array) = 
@@ -329,20 +337,20 @@ module Builder
             let html = presentationPageView presentation
             let presentationView = generate  html "presentation" $"Presentation | {presentation.Metadata.Title} | Luis Quintanilla"
             let saveDir = Path.Join(rootSaveDir,$"{presentation.FileName}")
-            Directory.CreateDirectory(saveDir)
+            Directory.CreateDirectory(saveDir) |> ignore
             File.WriteAllText(Path.Join(saveDir,"index.html"),presentationView))
 
     let buildLinkblogPage (links: Link array) = 
 
         let linkBlogPage = generate (linkView links) "defaultindex" "Linkblog | Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"feed","linkblog")
-        Directory.CreateDirectory(saveDir)
+        Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), linkBlogPage)
 
     let buildSnippetPage(snippets:Snippet array) = 
         let snippetsPage = generate (snippetsView snippets) "defaultindex" "Snippets | Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"snippets")
-        Directory.CreateDirectory(saveDir)
+        Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"),snippetsPage)
 
     let buildSnippetPages (snippets:Snippet array) = 
@@ -351,7 +359,7 @@ module Builder
         snippets
         |> Array.iter(fun snippet ->    
             let saveDir = Path.Join(rootSaveDir,snippet.FileName)
-            Directory.CreateDirectory(saveDir)
+            Directory.CreateDirectory(saveDir) |> ignore
             let html = 
                 { snippet with Content=(snippet.Content |> convertMdToHtml) }
                 |> snippetView
@@ -362,7 +370,7 @@ module Builder
     let buildWikiPage(wikis:Wiki array) = 
         let wikisPage = generate (wikisView wikis) "defaultindex" "Wiki | Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"wiki")
-        Directory.CreateDirectory(saveDir)
+        Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"),wikisPage)
 
     let buildWikiPages (wikis:Wiki array) = 
@@ -371,7 +379,7 @@ module Builder
         wikis
         |> Array.iter(fun wiki ->    
             let saveDir = Path.Join(rootSaveDir,wiki.FileName)
-            Directory.CreateDirectory(saveDir)
+            Directory.CreateDirectory(saveDir) |> ignore
             let html = 
                 { wiki with Content=(wiki.Content |> convertMdToHtml) }
                 |> wikiView
@@ -386,6 +394,30 @@ module Builder
             let dir = title.ToLower()
             let redirectPage = generateRedirect url title
             let saveDir = Path.Join(outputDir,dir)
-            Directory.CreateDirectory(saveDir)
+            Directory.CreateDirectory(saveDir) |> ignore
             File.WriteAllText(Path.Join(saveDir,"index.html"), redirectPage)
+        )
+
+    let buildLibraryPage (books:Book array) = 
+        let saveDir = Path.Join(outputDir,"library")
+
+        Directory.CreateDirectory(saveDir) |> ignore
+
+        let html = books |> libraryView
+        
+        let libraryPage = generate html "defaultindex" $"Library | Luis Quintanilla"
+
+        File.WriteAllText(Path.Join(saveDir,"index.html"),libraryPage)
+
+
+    let buildBookPages (books:Book array) = 
+        let rootSaveDir = Path.Join(outputDir,"library")
+        
+        books
+        |> Array.iter(fun book -> 
+            let saveDir = Path.Join(rootSaveDir,book.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            let html = {book with Content=(book.Content |> convertMdToHtml) }|> bookView
+            let bookPage = generate  html "defaultindex" $"Book | {book.Metadata.Title} | Luis Quintanilla"
+            File.WriteAllText(Path.Join(saveDir,"index.html"),bookPage)
         )

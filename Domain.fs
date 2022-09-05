@@ -103,3 +103,20 @@ module Domain
             HtmlUrl: string
             XmlUrl: string
         }    
+
+    [<CLIMutable>]
+    type BookDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="author")>] Author: string        
+        [<YamlMember(Alias="isbn")>] Isbn: string
+        [<YamlMember(Alias="cover")>] Cover: string
+        [<YamlMember(Alias="status")>] Status: string
+        [<YamlMember(Alias="rating")>] Rating: int
+        [<YamlMember(Alias="source")>] Source: string
+    }
+
+    type Book = {
+        FileName: string
+        Metadata: BookDetails
+        Content: string
+    }
