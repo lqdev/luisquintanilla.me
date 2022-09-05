@@ -76,5 +76,11 @@
        "Type": "rss",
        "HtmlUrl": "https://indieseek.xyz",
        "XmlUrl": "https://indieseek.xyz/feed/"
+    },
+    {
+       "Title": "Marco Arment",
+       "Type": "rss",
+       "HtmlUrl": "https://marco.org/",
+       "XmlUrl": "https://marco.org/rss/"
     }
 ]
