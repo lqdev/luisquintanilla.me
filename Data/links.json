@@ -94,5 +94,11 @@
        "Title": "A Deep Dive into Transformers with TensorFlow and Keras: Part 1",
        "Tags": ["deeplearning","artififialintelligence","nlp","transformers","machinelearning","tensorflow","keras"],
        "DateAdded": "09/05/2022 12:05"
+    },
+    {
+       "Url": "https://openlibrary.org/",
+       "Title": "Open Library",
+       "Tags": ["archive","creativecommons","books","website","reading"],
+       "DateAdded": "09/05/2022 18:29"
     }
 ]
