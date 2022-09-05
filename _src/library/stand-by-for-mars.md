@@ -1,7 +1,7 @@
 ---
 title: Stand by for Mars!
 author: Carey Rockwell
-isbn: ""
+isbn: 
 cover: https://covers.openlibrary.org/b/id/12622152-M.jpg
 status: Read
 rating: 4
