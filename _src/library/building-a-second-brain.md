@@ -1,5 +1,5 @@
 ---
-title: "Building a Second Brain: A Proven Method to Organize Your Digital Life and Unlock Your Creative Potential "
+title: "Building a Second Brain: A Proven Method to Organize Your Digital Life and Unlock Your Creative Potential"
 author: "Tiago Forte"
 isbn: "9781982167387"
 cover: "https://covers.openlibrary.org/b/id/12372866-M.jpg"
