@@ -10,4 +10,4 @@ source: https://openlibrary.org/works/OL7477297W/Stand_by_for_Mars%21?edition=st
 
 ## Notes
 
-N/A
+Fun read and interesting insight into space-related sci-fi before space travel. 
