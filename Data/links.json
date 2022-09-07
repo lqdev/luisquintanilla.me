@@ -106,5 +106,11 @@
        "Title": "Open Source Alternative To",
        "Tags": ["opensource","technology","website","software"],
        "DateAdded": "09/06/2022 18:51"
+    },
+    {
+       "Url": "https://github.com/google/haskell-trainings",
+       "Title": "Haskell Trainings",
+       "Tags": ["haskell","programminglanguages","repository","github","functionalprogramming"],
+       "DateAdded": "09/06/2022 20:16"
     }
 ]
