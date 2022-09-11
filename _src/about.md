@@ -20,6 +20,8 @@ This site is my digital presence and digital garden in the interwebs.
 
 The [blog](/posts/1/) section contains mainly long-form articles. As I tinker with different technologies, I write down the steps and process I went through to get something working. Therefore they mostly serve the purpose of helping me remember how I did something in case I want to do it again in the future. I also post these in hopes that they may be of help to others trying to solve similar problems.
 
+The knowledge-base contains a collection of wiki articles, snippets, and library. [Wiki](/wiki) articles are documents on certain topics. They intend to connect information and knowledge I encounter as part of personal investigations or randomly stumble upon. [Snippets](/snippets) are random scripts and code snippets. The [library](/library) is a list of books I'm currently reading or have read. 
+
 The feed is like a microblog with content ordered in chronological order. It collects in a single place snippets containing notes, photos, videos, and other types of content. The feed takes inspiration from [IndieWeb posts](https://indieweb.org/posts).
 
 The [main feed](/feed/index.html) aggregates content of all types. [Note](/feed/notes.html) and [video](/feed/videos.html) feeds as their name suggest contain text content and videos I find interesting.
