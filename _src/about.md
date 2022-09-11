@@ -26,7 +26,9 @@ The feed is like a microblog with content ordered in chronological order. It col
 
 The [main feed](/feed/index.html) aggregates content of all types. [Note](/feed/notes.html) and [video](/feed/videos.html) feeds as their name suggest contain text content and videos I find interesting.
 
-For more details on how this site is built, check out the [colophon](/colophon)
+In addition to the feeds, there's also the [linkblog](/linkblog) which acts as my bookmark / read-it-later service as I find interesting websites. The [blogroll](/blogroll) contains a collection of blogs I follow and the [podroll](/podroll) is a collection of podcasts I listen to. 
+
+For details on how this site is built, check out the [colophon](/colophon)
 
 ## Tech stack
 
