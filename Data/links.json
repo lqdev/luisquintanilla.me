@@ -124,5 +124,11 @@
        "Title": "Metablogging",
        "Tags": ["article","technology","communication","business","writing","blogging","notetaking"],
        "DateAdded": "09/09/2022 09:49"
+    },
+    {
+       "Url": "https://www.openbuildinginstitute.org/",
+       "Title": "Open Building Institute",
+       "Tags": ["opensource","sustainability","building","construction","community"],
+       "DateAdded": "09/11/2022 11:58"
     }
 ]
