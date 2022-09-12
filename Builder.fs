@@ -217,6 +217,14 @@ module Builder
 
         books
 
+    let loadAlbums () = 
+        let albumPaths = 
+            Directory.GetFiles(Path.Join(srcDir,"albums"))
+
+        let albums = albumPaths |> Array.map(parseAlbum)
+
+        albums
+
     let buildBlogRssFeed (posts: Post array) = 
         let rssPage = 
             posts
@@ -419,5 +427,33 @@ module Builder
             Directory.CreateDirectory(saveDir) |> ignore
             let html = {book with Content=(book.Content |> convertMdToHtml) }|> bookView
             let bookPage = generate  html "defaultindex" $"Book | {book.Metadata.Title} | Luis Quintanilla"
-            File.WriteAllText(Path.Join(saveDir,"index.html"),bookPage)
-        )
+            File.WriteAllText(Path.Join(saveDir,"index.html"),bookPage))
+
+    let buildAlbumPage (albums: Album array) = 
+        let saveDir = Path.Join(outputDir,"albums")
+
+        Directory.CreateDirectory(saveDir) |> ignore
+
+        let html = albums |> albumsPageView
+        
+        let albumPage = generate html "defaultindex" $"Albums | Luis Quintanilla"
+
+        File.WriteAllText(Path.Join(saveDir,"index.html"),albumPage)
+
+
+    let buildAlbumPages (albums: Album array) = 
+
+        let rootSaveDir = Path.Join(outputDir,"albums")
+
+        albums
+        |> Array.iter(fun album -> 
+            let saveDir = Path.Join(rootSaveDir,album.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+                        
+            let albumPage = generate (albumPageView album.Metadata.Images) "default" $"Album | {album.Metadata.Title} | Luis Quintanilla"
+            
+            File.WriteAllText(Path.Join(saveDir,"index.html"),albumPage))
+
+
+
+

@@ -2,6 +2,7 @@ module PartialViews
 
 open Giraffe.ViewEngine
 open System
+open System.IO
 open Domain
 open MarkdownService
 
@@ -379,4 +380,38 @@ let presentationPageView (presentation:Presentation) =
             for resource in presentation.Metadata.Resources do
                 li [] [a [_href $"{resource.Url}"] [Text resource.Text]]
         ]  
+    ]
+
+let albumsPageView (images:Album array) = 
+    let albumGroups = images |> Array.chunkBySize 3
+    div [_class "mr-auto"] [
+        for group in albumGroups do
+            div [_class "row"] [
+                for album in group do
+                    div [_class "col-md-4"] [
+                        div [_class "img-thumbnail"] [
+                            a [_href $"/albums/{album.FileName}"; _target "blank"] [    
+                                img [_src album.Metadata.MainImage]
+                                p [] [Text album.Metadata.Title]
+                            ]                                
+                        ]
+                    ]
+            ]
+    ]
+
+let albumPageView (images:AlbumImage array) = 
+    let imgGroups = images |> Array.chunkBySize 3
+    div [_class "mr-auto"] [
+        for group in imgGroups do
+            div [_class "row"] [
+                for image in group do
+                    div [_class "col-md-4"] [
+                        div [_class "img-thumbnail"] [
+                            a [_href image.ImagePath; _target "blank"] [    
+                                img [_src $"{image.ImagePath}"; _alt $"{image.AltText}" ]
+                                p [] [Text image.Description]
+                            ]                                
+                        ]
+                    ]
+            ]
     ]
