@@ -33,6 +33,7 @@ let main argv =
     let snippets = loadSnippets ()
     let wikis = loadWikis ()
     let books = loadBooks ()
+    let albums = loadAlbums ()
 
     let notePosts = filterFeedByPostType feedPosts "note"
     let photoPosts = filterFeedByPostType feedPosts "photo"
@@ -94,5 +95,9 @@ let main argv =
     // Build books
     buildLibraryPage books
     buildBookPages books
+
+    // Build gallery pages
+    buildAlbumPage albums
+    buildAlbumPages albums
 
     0

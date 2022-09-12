@@ -120,3 +120,22 @@ module Domain
         Metadata: BookDetails
         Content: string
     }
+
+    [<CLIMutable>]
+    type AlbumImage = {
+        [<YamlMember(Alias="imagepath")>] ImagePath: string
+        [<YamlMember(Alias="description")>] Description: string
+        [<YamlMember(Alias="alttext")>] AltText: string
+    }
+
+    [<CLIMutable>]
+    type AlbumDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="mainimage")>] MainImage: string
+        [<YamlMember(Alias="images")>] Images: AlbumImage array                
+    }
+
+    type Album = {
+        FileName: string
+        Metadata: AlbumDetails
+    }
