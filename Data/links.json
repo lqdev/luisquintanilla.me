@@ -140,7 +140,13 @@
     {
        "Url": "http://www.paulgraham.com/chameleon.html",
        "Title": "Lisp is a chameleon",
-       "Tags": ["essay","lisp","functionalprogramming","programminglanguages","technology"],
+       "Tags": ["essay","lisp","functionalprogramming","programminglanguages","technology","article"],
        "DateAdded": "09/14/2022 09:17"
+    },
+    {
+       "Url": "https://ryanholiday.net/the-notecard-system-the-key-for-remembering-organizing-and-using-everything-you-read/",
+       "Title": "The Notecard System",
+       "Tags": ["productivity","process","learning","books","systems","article"],
+       "DateAdded": "09/14/2022 09:29"
     }
 ]
