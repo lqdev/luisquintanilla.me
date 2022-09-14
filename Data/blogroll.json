@@ -48,12 +48,6 @@
         "XmlUrl": "https://adventuretaco.com/feed/"
     },
     {
-        "Title": "Indieseek.xyz",
-        "Type": "rss",
-        "HtmlUrl": "https://indieseek.xyz/",
-        "XmlUrl": "https://indieseek.xyz/feed/"
-    },
-    {
         "Title": "Noted",
         "Type": "rss",
         "HtmlUrl": "https://noted.lol/",
