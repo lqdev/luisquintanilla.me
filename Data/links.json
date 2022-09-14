@@ -130,5 +130,17 @@
        "Title": "Open Building Institute",
        "Tags": ["opensource","sustainability","building","construction","community"],
        "DateAdded": "09/11/2022 11:58"
+    },
+    {
+       "Url": "https://www.freecodecamp.org/news/new-online-courses/",
+       "Title": "850+ Online Courses",
+       "Tags": ["mooc","technology","course","learning"],
+       "DateAdded": "09/14/2022 09:14"
+    },
+    {
+       "Url": "http://www.paulgraham.com/chameleon.html",
+       "Title": "Lisp is a chameleon",
+       "Tags": ["essay","lisp","functionalprogramming","programminglanguages","technology"],
+       "DateAdded": "09/14/2022 09:17"
     }
 ]
