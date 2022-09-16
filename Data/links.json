@@ -148,5 +148,11 @@
        "Title": "The Notecard System",
        "Tags": ["productivity","process","learning","books","systems","article"],
        "DateAdded": "09/14/2022 09:29"
+    },
+    {
+       "Url": "https://www.zylstra.org/blog/2022/09/wordpressindieweb-as-the-os-of-the-open-social-web/",
+       "Title": "WordPress+IndieWeb as the OS of the Open Social Web",
+       "Tags": ["blogging","article","presentation","communication","community","socialmedia","internet","technology","opensource"],
+       "DateAdded": "09/16/2022 11:44"
     }
 ]
