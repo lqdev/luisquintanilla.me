@@ -139,3 +139,27 @@ module Domain
         FileName: string
         Metadata: AlbumDetails
     }
+
+    type ResponseType = 
+        | Reply
+        | Star // Like / Favorite
+        | Share // Repost / Retweet
+        | Bookmark
+
+    [<CLIMutable>]
+    type ResponseDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="response_type")>] ResponseType: ResponseType        
+        [<YamlMember(Alias="dt_published")>] DatePublished: string        
+        [<YamlMember(Alias="dt_updated")>] DateUpdated: string
+    }
+
+    type Response = {
+        FileName: string
+        Metadata: ResponseDetails
+    }
+
+    type Webmention = {
+        SourceUrl: Uri
+        TargetUrl: Uri
+    }
