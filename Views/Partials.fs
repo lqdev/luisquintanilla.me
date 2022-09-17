@@ -449,6 +449,7 @@ let responsePostView (post: Response) =
             div [_class "e-content"] [
                 rawText post.Content
             ]
+            time [_class "dt-published"; _datetime %"{post.Metadata.DatePublished}"; _style "visibility: hidden;"] []
         ]
         div [_class "card-footer"] [
             let permalink = $"/feed/{post.FileName}/" 
