@@ -114,7 +114,8 @@ let main argv =
         |> Array.filter(fun x ->  DateTime.Now < DateTime.Parse(x.Metadata.DateUpdated).AddMinutes(60))
         |> Array.map(fun x -> { SourceUrl=new Uri($"http://lqdev.me/feed/{x.FileName}"); TargetUrl=new Uri(x.Metadata.TargetUrl) })
 
-    printfn "%A" mentions
+    printfn "Current Date/Time: %A" DateTime.Now.ToString()
+    printfn "Webmentions: %A" mentions
 
     mentions
     |> runWebmentionWorkflow
