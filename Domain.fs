@@ -149,7 +149,8 @@ module Domain
     [<CLIMutable>]
     type ResponseDetails = {
         [<YamlMember(Alias="title")>] Title: string
-        [<YamlMember(Alias="response_type")>] ResponseType: ResponseType        
+        [<YamlMember(Alias="targeturl")>] TargetUrl: string
+        [<YamlMember(Alias="response_type")>] ResponseType: string        
         [<YamlMember(Alias="dt_published")>] DatePublished: string        
         [<YamlMember(Alias="dt_updated")>] DateUpdated: string
     }
@@ -157,6 +158,7 @@ module Domain
     type Response = {
         FileName: string
         Metadata: ResponseDetails
+        Content: string
     }
 
     type Webmention = {

@@ -1,7 +1,10 @@
 // Learn more about F# at http://docs.microsoft.com/dotnet/fsharp
 
-open Builder
+open System
 open System.IO
+open Builder
+open WebmentionService
+open Domain
 
 [<EntryPoint>]
 let main argv =
@@ -34,10 +37,12 @@ let main argv =
     let wikis = loadWikis ()
     let books = loadBooks ()
     let albums = loadAlbums ()
+    let responses = loadReponses ()
 
     let notePosts = filterFeedByPostType feedPosts "note"
     let photoPosts = filterFeedByPostType feedPosts "photo"
     let videoPosts = filterFeedByPostType feedPosts "video"
+
 
     // Build static pages
     buildHomePage posts
@@ -99,5 +104,21 @@ let main argv =
     // Build gallery pages
     buildAlbumPage albums
     buildAlbumPages albums
+
+    // Build reponses
+    buildResponsePage responses "Responses" "responses"
+
+    // Send webmentions
+    let mentions = 
+        responses
+        |> Array.filter(fun x -> DateTime.Parse(x.Metadata.DateUpdated) < DateTime.Now.AddMinutes(60))
+        |> Array.map(fun x -> { SourceUrl=new Uri($"http://lqdev.me/feed/{x.FileName}"); TargetUrl=new Uri(x.Metadata.TargetUrl) })
+
+    printfn "%A" mentions
+
+    mentions
+    |> runWebmentionWorkflow
+    |> Async.Parallel
+    |> Async.RunSynchronously
 
     0

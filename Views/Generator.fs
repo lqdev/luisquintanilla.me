@@ -26,5 +26,3 @@ module ViewGenerator
     let generatePartial (partialView:XmlNode) =
         partialView
         |> RenderView.AsString.xmlNode
-            
-            

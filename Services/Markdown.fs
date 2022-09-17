@@ -99,3 +99,9 @@ module MarkdownService
         let albumDetails = getContentAndMetadata<AlbumDetails>(filePath);
 
         { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = albumDetails.Yaml }
+
+    let parseResponse (filePath:string) : Response = 
+        let reponseDetails = getContentAndMetadata<ResponseDetails>(filePath);
+
+        { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = reponseDetails.Yaml ; Content = reponseDetails.Content }
+
