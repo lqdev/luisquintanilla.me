@@ -426,7 +426,7 @@ let responsePostView (post: Response) =
     div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
         div [_class "card-header u-author h-card"] [
             img [_src "/avatar.png"; _height "32"; _width "32"; _class "d-inline-block align-top rounded-circle"; _style "margin-right:5px"; attr "loading" "lazy"]
-            a [ _href "http://lqdev.me"; _class "u-url p-name"] [Text "lqdev"]
+            a [ _href "http://lqdev.me"; _class "p-name"] [Text "lqdev"]
             tag "svg" [
                 _style "margin-right:5px;margin-left:5px"
                 _class "bi bi-shield-fill-check" 
@@ -454,6 +454,6 @@ let responsePostView (post: Response) =
         div [_class "card-footer"] [
             let permalink = $"/feed/{post.FileName}/" 
             Text "Permalink: " 
-            a [_href permalink] [Text $"https://luisquintanilla.me{permalink}"]
+            a [_href permalink; _class "u-url"] [Text $"http://lqdev.me{permalink}"]
         ]
     ]
