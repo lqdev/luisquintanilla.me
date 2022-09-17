@@ -111,7 +111,7 @@ let main argv =
     // Send webmentions
     let mentions = 
         responses
-        |> Array.filter(fun x ->  DateTimeOffset(DateTime.Now,TimeSpan(-4,0,0)) < DateTimeOffset(DateTime.Parse(x.Metadata.DateUpdated).AddMinutes(60)))
+        |> Array.filter(fun x -> DateTimeOffset(DateTime.Now,TimeSpan(-4,0,0)) < DateTimeOffset(DateTime.Parse(x.Metadata.DateUpdated).AddMinutes(60)))
         |> Array.map(fun x -> { SourceUrl=new Uri($"http://lqdev.me/feed/{x.FileName}"); TargetUrl=new Uri(x.Metadata.TargetUrl) })
 
     printfn $"Current Date/Time: {DateTime.Now.ToString()}" 
