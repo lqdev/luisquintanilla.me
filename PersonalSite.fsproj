@@ -9,7 +9,8 @@
     <Compile Include="Domain.fs" />
     <Compile Include="Services\Markdown.fs" />
     <Compile Include="Services\Rss.fs" />    
-    <Compile Include="Services\Opml.fs" />        
+    <Compile Include="Services\Opml.fs" />    
+    <Compile Include="Services\Webmention.fs" />        
     <Compile Include="Views\Layouts.fs" />
     <Compile Include="Views\Partials.fs" />
     <Compile Include="Views\Generator.fs" />
@@ -18,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FSharp.Data" Version="5.0.2" />
     <PackageReference Include="Giraffe.ViewEngine" Version="1.4.0" />
     <PackageReference Include="Markdig" Version="0.30.3" />
     <PackageReference Include="YamlDotNet" Version="12.0.0" />

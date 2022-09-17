@@ -7,6 +7,7 @@ module Builder
     open MarkdownService
     open RssService
     open OpmlService
+    open WebmentionService
     open ViewGenerator
     open PartialViews
     
@@ -224,6 +225,14 @@ module Builder
         let albums = albumPaths |> Array.map(parseAlbum)
 
         albums
+
+    let loadReponses () = 
+        let responsePaths = 
+            Directory.GetFiles(Path.Join(srcDir,"responses"))
+
+        let responses = responsePaths |> Array.map(parseResponse)
+
+        responses
 
     let buildBlogRssFeed (posts: Post array) = 
         let rssPage = 
@@ -454,6 +463,31 @@ module Builder
             
             File.WriteAllText(Path.Join(saveDir,"index.html"),albumPage))
 
+    let buildResponsePage (posts:Response array) (feedTitle:string) (saveFileName:string) =
+        
+        // Convert post markdown to HTML
+        let parsedPosts = 
+            posts 
+            |> Array.map(fun post -> {post with Content = post.Content |> convertMdToHtml})
+            |> Array.sortByDescending(fun post -> DateTime.Parse(post.Metadata.DatePublished))
 
+        // Generate aggregate feed
+        // let feedPage = generate (responsePostView parsedPosts) "defaultindex" feedTitle
+        
+        // Create directories
+        let rootSaveDir = Path.Join(outputDir,"feed")
+        // Directory.CreateDirectory(saveDir) |> ignore
 
+        // Generate individual feed posts                 
+        parsedPosts
+        |> Array.map(fun post -> 
+            let postView = responsePostView post
+            post.FileName,generate postView "defaultindex" post.Metadata.Title)
+        |> Array.map(fun (fileName,html) ->
+            let saveDir = Path.Join(rootSaveDir,fileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            let savePath = Path.Join(saveDir,"index.html")
+            File.WriteAllText(savePath,html))
 
+        // Save feed
+        // File.WriteAllText(Path.Join(rootSaveDir, $"{saveFileName}.html"), feedPage)
