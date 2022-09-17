@@ -472,7 +472,7 @@ module Builder
             |> Array.sortByDescending(fun post -> DateTime.Parse(post.Metadata.DatePublished))
 
         // Generate aggregate feed
-        // let feedPage = generate (responsePostView parsedPosts) "defaultindex" feedTitle
+        let responsePage = generate (responseView parsedPosts) "defaultindex" feedTitle
         
         // Create directories
         let rootSaveDir = Path.Join(outputDir,"feed")
@@ -490,4 +490,4 @@ module Builder
             File.WriteAllText(savePath,html))
 
         // Save feed
-        // File.WriteAllText(Path.Join(rootSaveDir, $"{saveFileName}.html"), feedPage)
+        File.WriteAllText(Path.Join(rootSaveDir, $"{saveFileName}.html"), responsePage)

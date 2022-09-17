@@ -443,7 +443,7 @@ let responsePostView (post: Response) =
         ]
         div [ _class "card-body" ] [
             p [] [
-                Text "In Reply To:"
+                Text "In Reply To: "
                 a [_class "u-in-reply-to"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
             ]
             div [_class "e-content"] [
@@ -457,3 +457,9 @@ let responsePostView (post: Response) =
             a [_href permalink; _class "u-url"] [Text $"http://lqdev.me{permalink}"]
         ]
     ]
+
+let responseView (posts: Response array) =
+    div [ _class "d-grip gap-3" ] [
+        for post in posts do
+            responsePostView post
+    ]    
