@@ -108,6 +108,9 @@ let blogRollView (links:Outline array) =
     ]
 
 let podRollView (links:Outline array) = 
+
+    let linkContent = rollLinkView links
+
     div [ _class "mr-auto" ] [
         h2 [] [ Text "Podroll" ]
         p [] [ 
