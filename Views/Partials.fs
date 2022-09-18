@@ -11,7 +11,7 @@ let emptyView () =
 
 let underConstructionView () =
     div [] [
-        img [ _src "images/under-construction.png" ]
+        img [ _src "images/assets/under-construction.png" ]
     ]
 
 let recentPostsView (posts: Post array) =
