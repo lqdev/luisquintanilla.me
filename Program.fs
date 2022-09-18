@@ -112,9 +112,8 @@ let main argv =
     let mentions = 
         responses
         |> Array.filter(fun x -> 
-        
             let currentDateTime = DateTimeOffset(DateTime.Now).ToOffset(TimeSpan(-4,0,0))
-            let updatedDateTime = DateTimeOffset(DateTime.Parse(x.Metadata.DateUpdated).AddMinutes(60))
+            let updatedDateTime = DateTimeOffset(DateTime.Parse(x.Metadata.DateUpdated).AddMinutes(60).ToOffset(-4,0,0))
             printfn $"Current: {currentDateTime}"
             printfn $"Updated: {updatedDateTime}"
             currentDateTime < updatedDateTime)
