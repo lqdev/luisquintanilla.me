@@ -48,15 +48,22 @@ let homeView content =
         ]
     ]
 
-let aboutView content =
+let contentView (content:string) = 
     div [ _class "mr-auto" ] [
         rawText content
     ]
 
-let contactView content =
-    div [ _class "mr-auto" ] [
-        rawText content
-    ]
+let aboutView content = contentView content
+
+let contactView content = contentView content
+    
+let irlStackView content = contentView content 
+        
+let colophonView content = contentView content 
+
+let subscribeView content = contentView content 
+    
+let onlineRadioView content = contentView content 
 
 let blogRollView (links:Outline array) = 
     div [ _class "mr-auto" ] [
@@ -113,23 +120,6 @@ let podRollView (links:Outline array) =
                 ]
         ]
     ]
-
-let contentView (content:string) = 
-    div [ _class "mr-auto" ] [
-        rawText content
-    ]    
-
-let irlStackView content = 
-    contentView content    
-
-let colophonView content = 
-    contentView content
-
-let subscribeView content = 
-    contentView content
-
-let onlineRadioView content = 
-    contentView content
 
 let postView title content =
     div [ _class "mr-auto" ] [
