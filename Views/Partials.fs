@@ -425,7 +425,7 @@ let responsePostView (post: Response) =
 
     div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
         div [_class "card-header u-author h-card"] [
-            img [_src "/avatar.png"; _height "32"; _width "32"; _class "d-inline-block align-top rounded-circle"; _style "margin-right:5px"; attr "loading" "lazy"]
+            img [_src "/avatar.png"; _height "32"; _width "32"; _class "d-inline-block align-top rounded-circle u-photo"; _style "margin-right:5px"; attr "loading" "lazy"]
             a [ _href "http://lqdev.me"; _class "p-name"] [Text "lqdev"]
             tag "svg" [
                 _style "margin-right:5px;margin-left:5px"
