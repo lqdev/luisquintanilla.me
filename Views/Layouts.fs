@@ -116,7 +116,7 @@ module Layouts
                     ]
                     
                     li [_class "nav-item"] [
-                        a [_class "dropdown-item"; _href "/events"] [ Text "Events" ]
+                        a [_class "nav-link"; _href "/events"] [ Text "Events" ]
                     ]                    
                 ]
 
