@@ -131,7 +131,7 @@ nav {
 
 After linking our `css` with the webpage as well as adding some content to the page, the result will look as follows. 
 
-![](/images/scaffoldawebpageoneline1.png)
+![](/images/scaffold-a-webpage-in-one-line/scaffoldawebpageoneline1.png)
 
 
 ```html

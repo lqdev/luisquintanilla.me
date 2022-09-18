@@ -8,10 +8,10 @@ images:
     - imagepath: "https://user-images.githubusercontent.com/11130940/166848883-8d6cfe2c-5ff3-468c-b95f-b0ecab69595a.png"
       alttext: Image 2
       description: 
-    - imagepath: "/images/azdevops-mlnet-1.png"
+    - imagepath: "/images/azdevops-mlnet-aci/azdevops-mlnet-1.png"
       alttext: Image 3
       description: Image Number 3
-    - imagepath: "/images/azfnmlnetdemo1.png"
+    - imagepath: "/images/serverless-machine-learning-mlnet-azure-functions/azfnmlnetdemo1.png"
       alttext: Image 4
       description:    
 ---

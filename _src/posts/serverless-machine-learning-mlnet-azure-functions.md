@@ -580,15 +580,15 @@ For the last part of the deployment step, we'll need to head over to the Azure P
 
 Once logged in, type the name of your application into the search bar at the top of the page and select your Azure Function application of type `App Service`
 
-![](/images/azfnmlnetdemo1.png)
+![](/images/serverless-machine-learning-mlnet-azure-functions/azfnmlnetdemo1.png)
 
 Then, from the accordion element on the left, select the top-most item with your appplication name on it. Then, select the `Platform features` tab and open the `Application settings` option.
 
-![](/images/azfnmlnetdemo2.png)
+![](/images/serverless-machine-learning-mlnet-azure-functions/azfnmlnetdemo2.png)
 
 When the `Application settings` page loads, change the `Platform` setting to `64-bit`. The reason for this is `ML.NET` has to be built and run on a 64-bit environment due to some of its native dependencies. 
 
-![](/images/azfnmlnetdemo3.png)
+![](/images/serverless-machine-learning-mlnet-azure-functions/azfnmlnetdemo3.png)
 
 That's all there is to it.
 
@@ -607,7 +607,7 @@ Now it's time to test our deployed function. We can do so from the portal by goi
 
 Once the form is filled in, click `Run` at the top of the page and if successful `Iris-virginica` should show up in the `Output` area.
 
-![](/images/azfnmlnetdemo4.png)
+![](/images/serverless-machine-learning-mlnet-azure-functions/azfnmlnetdemo4.png)
 
 To test the function outside the portal, you can click on the `Get function URL` link next to the `Run` button and make an HTTP POST request using that link.
 

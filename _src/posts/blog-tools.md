@@ -24,7 +24,7 @@ I have gotten a few questions regarding what I use to write this blog so I thoug
 
 For writing, I use Visual Studio Code. Visual Studio Code is an open source, cross-platform text editor. One of the nice features it includes is Markdown Preview. Markdown Preview allows you to see how the content would look when rendered as a web page. Additionally, Visual Studio Code allows you to split panes. What that provides is the ability to write and preview the content side-by-side. 
 
-![](/images/blog-tools-1.PNG)
+![](/images/blog-tools/blog-tools-1.PNG)
 
 ### Markup 
 
