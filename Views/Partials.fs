@@ -65,7 +65,23 @@ let subscribeView content = contentView content
     
 let onlineRadioView content = contentView content 
 
+let rollLinkView (links:Outline array) = 
+    ul [] [
+        for link in links do
+            li [] [
+                strong [] [
+                    str $"{link.Title} - "
+                ]
+                a [ _href link.HtmlUrl ] [ Text "Website"]
+                str " / "
+                a [ _href link.XmlUrl ] [ Text "RSS Feed"]                    
+            ]
+    ]
+
 let blogRollView (links:Outline array) = 
+    
+    let linkContent = rollLinkView links 
+
     div [ _class "mr-auto" ] [
         h2 [] [ Text "Blogroll" ]
         p [] [ Text "What is a blogroll you ask? At a high level, it's a list of links to blogs I find interesting."]
@@ -81,17 +97,8 @@ let blogRollView (links:Outline array) =
             str " if your RSS reader client supports "
             a [_href "http://opml.org/"] [Text "OPML."]
         ]        
-        ul [] [
-            for link in links do
-                li [] [
-                    strong [] [
-                        str $"{link.Title} - "
-                    ]
-                    a [ _href link.HtmlUrl ] [ Text "Website"]
-                    str " / "
-                    a [ _href link.XmlUrl ] [ Text "RSS Feed"]                    
-                ]
-        ]
+
+        linkContent
     ]
 
 let podRollView (links:Outline array) = 
@@ -108,17 +115,8 @@ let podRollView (links:Outline array) =
             str " if your RSS reader or podcast client supports "
             a [_href "http://opml.org/"] [Text "OPML."]
         ]
-        ul [] [
-            for link in links do
-                li [] [
-                    strong [] [
-                        str $"{link.Title} - "
-                    ]
-                    a [ _href link.HtmlUrl ] [ Text "Website"]
-                    str " / "
-                    a [ _href link.XmlUrl ] [ Text "RSS Feed"]                    
-                ]
-        ]
+        
+        linkContent
     ]
 
 let postView title content =
