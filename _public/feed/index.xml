@@ -3,8 +3,15 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>09/06/2022 19:37</lastPubDate>
+    <lastPubDate>09/17/2022 19:59</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Webmentions (partially) implemented</title>
+      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/webmentions-partially-implemented?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/webmentions-partially-implemented&lt;/a&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/webmentions-partially-implemented?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/webmentions-partially-implemented</guid>
+      <pubDate>09/17/2022 19:59</pubDate>
+    </item>
     <item>
       <title>New (LTE) Rotary Phone</title>
       <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/lte-rotary-phone?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/lte-rotary-phone&lt;/a&gt;</description>
