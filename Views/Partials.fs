@@ -114,25 +114,22 @@ let podRollView (links:Outline array) =
         ]
     ]
 
-let irlStackView content = 
+let contentView (content:string) = 
     div [ _class "mr-auto" ] [
         rawText content
     ]    
 
+let irlStackView content = 
+    contentView content    
+
 let colophonView content = 
-    div [ _class "mr-auto" ] [
-        rawText content
-    ]
+    contentView content
 
 let subscribeView content = 
-    div [ _class "mr-auto" ] [
-        rawText content
-    ]     
+    contentView content
 
 let onlineRadioView content = 
-    div [ _class "mr-auto" ] [
-        rawText content
-    ]            
+    contentView content
 
 let postView title content =
     div [ _class "mr-auto" ] [
