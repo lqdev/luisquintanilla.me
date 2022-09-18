@@ -134,5 +134,20 @@
 			"## Notes"
 		],
 		"description": "Book article post"
-	}				
+	},
+	"Reply metadata": {
+		"scope": "markdown",
+		"prefix": "reply",
+		"body": [
+			"---",
+			"title: \"\"",
+			"targeturl: ",
+			"response_type: reply",
+			"dt_published: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE\"",
+			"dt_updated: \"$CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE\" -05:00",
+			"---",
+			"",
+		],
+		"description": "Reply post"
+	}					
 }
