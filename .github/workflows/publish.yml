@@ -30,7 +30,7 @@ jobs:
         with:
           azcliversion: 2.30.0
           inlineScript: |
-              az storage blob upload-batch --account-name ${{secrets.STORAGE_ACC_NAME}} -d '$web' -s ./_public
+              az storage blob sync --account-name ${{secrets.STORAGE_ACC_NAME}} -c '$web' -s ./_public
       - name: Purge CDN endpoint
         uses: azure/CLI@v1
         with:
