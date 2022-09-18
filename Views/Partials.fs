@@ -53,6 +53,12 @@ let contentView (content:string) =
         rawText content
     ]
 
+let contentViewWithTitle (title:string) (content:string) = 
+    div [ _class "mr-auto" ] [
+        h1 [] [Text title]
+        rawText content
+    ]    
+
 let aboutView content = contentView content
 
 let contactView content = contentView content
@@ -120,10 +126,7 @@ let podRollView (links:Outline array) =
     ]
 
 let postView title content =
-    div [ _class "mr-auto" ] [
-        h1 [] [Text title]
-        rawText content
-    ]
+    contentViewWithTitle title content
 
 let snippetsView (snippets: Snippet array) = 
     div [ _class "d-grip gap-3" ] [
@@ -138,10 +141,7 @@ let snippetsView (snippets: Snippet array) =
     ]
 
 let snippetView (snippet:Snippet) =
-    div [ _class "mr-auto" ] [
-        h1 [] [Text snippet.Metadata.Title]
-        rawText snippet.Content
-    ]
+    contentViewWithTitle snippet.Metadata.Title snippet.Content
 
 let wikisView (wikis: Wiki array) = 
     div [ _class "d-grip gap-3" ] [
@@ -156,16 +156,10 @@ let wikisView (wikis: Wiki array) =
     ]
 
 let wikiView (wiki:Wiki) =
-    div [ _class "mr-auto" ] [
-        h1 [] [Text wiki.Metadata.Title]
-        rawText wiki.Content
-    ]
+    contentViewWithTitle wiki.Metadata.Title wiki.Content
 
 let bookView (book:Book) =
-    div [ _class "mr-auto" ] [
-        h1 [] [Text book.Metadata.Title]
-        rawText book.Content
-    ]
+    contentViewWithTitle book.Metadata.Title book.Content
 
 let postPaginationView (currentPage: int) (lastPage: int) (posts: Post array) =
     let nextPage = currentPage + 1
