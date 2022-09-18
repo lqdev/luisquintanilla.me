@@ -270,7 +270,7 @@ module Builder
             |> Array.map(fun post -> 
                 let postTitle = post.Metadata.Title
                 let postContent = post.Content |> convertMdToHtml 
-                let postView = postView postTitle postContent
+                let postView = contentViewWithTitle postTitle postContent
                 post.FileName,generate postView "defaultindex" $"{post.Metadata.Title} - Luis Quintanilla")
         
         let rootSaveDir = Path.Join(outputDir,"posts")
@@ -378,8 +378,7 @@ module Builder
             let saveDir = Path.Join(rootSaveDir,snippet.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             let html = 
-                { snippet with Content=(snippet.Content |> convertMdToHtml) }
-                |> snippetView
+                contentViewWithTitle snippet.Metadata.Title (snippet.Content |> convertMdToHtml) 
             let snippetView = generate  html "defaultindex" $"Snippet | {snippet.Metadata.Title} | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir,"index.html")
             File.WriteAllText(saveFileName,snippetView))
@@ -398,8 +397,7 @@ module Builder
             let saveDir = Path.Join(rootSaveDir,wiki.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             let html = 
-                { wiki with Content=(wiki.Content |> convertMdToHtml) }
-                |> wikiView
+                contentViewWithTitle wiki.Metadata.Title (wiki.Content |> convertMdToHtml)
             let wikiView = generate  html "defaultindex" $"Wiki | {wiki.Metadata.Title} | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir,"index.html")
             File.WriteAllText(saveFileName,wikiView))
@@ -434,7 +432,8 @@ module Builder
         |> Array.iter(fun book -> 
             let saveDir = Path.Join(rootSaveDir,book.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
-            let html = {book with Content=(book.Content |> convertMdToHtml) }|> bookView
+            let html = 
+                contentViewWithTitle book.Metadata.Title (book.Content |> convertMdToHtml)
             let bookPage = generate  html "defaultindex" $"Book | {book.Metadata.Title} | Luis Quintanilla"
             File.WriteAllText(Path.Join(saveDir,"index.html"),bookPage))
 

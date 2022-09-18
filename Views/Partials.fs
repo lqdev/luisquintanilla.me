@@ -116,9 +116,6 @@ let podRollView (links:Outline array) =
         linkContent
     ]
 
-let postView title content =
-    contentViewWithTitle title content
-
 let snippetsView (snippets: Snippet array) = 
     div [ _class "d-grip gap-3" ] [
         h2[] [Text "Snippets"]
@@ -131,9 +128,6 @@ let snippetsView (snippets: Snippet array) =
         ]
     ]
 
-let snippetView (snippet:Snippet) =
-    contentViewWithTitle snippet.Metadata.Title snippet.Content
-
 let wikisView (wikis: Wiki array) = 
     div [ _class "d-grip gap-3" ] [
         h2[] [Text "Wikis"]
@@ -145,12 +139,6 @@ let wikisView (wikis: Wiki array) =
                 ]
         ]
     ]
-
-let wikiView (wiki:Wiki) =
-    contentViewWithTitle wiki.Metadata.Title wiki.Content
-
-let bookView (book:Book) =
-    contentViewWithTitle book.Metadata.Title book.Content
 
 let postPaginationView (currentPage: int) (lastPage: int) (posts: Post array) =
     let nextPage = currentPage + 1
