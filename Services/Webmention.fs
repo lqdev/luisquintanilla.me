@@ -110,7 +110,7 @@ module WebmentionService
             return webmentionUrl
         }   
 
-    let sendWebMentionAsync (url:string) (req:IDictionary<string,string>) = 
+    let postWebMentionAsync (url:string) (req:IDictionary<string,string>) = 
         async {
             use client = new HttpClient()
             let content = new FormUrlEncodedContent(req)
@@ -148,6 +148,20 @@ module WebmentionService
                         ]
 
                     // Send web mentions
-                    return! sendWebMentionAsync constructedUrl reqData
+                    return! postWebMentionAsync constructedUrl reqData
                 }                 
         }
+
+        let sendWebmentions (responses: Response array) = 
+            responses
+            |> Array.filter(fun x -> 
+                let currentDateTime = DateTimeOffset(DateTime.Now)
+                let updatedDateTime = DateTimeOffset(DateTime.Parse(x.Metadata.DateUpdated).AddMinutes(60))
+                printfn $"Current: {currentDateTime}"
+                printfn $"Updated: {updatedDateTime}"
+                currentDateTime < updatedDateTime)
+            |> Array.map(fun x -> { SourceUrl=new Uri($"http://lqdev.me/feed/{x.FileName}"); TargetUrl=new Uri(x.Metadata.TargetUrl) })
+            |> runWebmentionWorkflow
+            |> Async.Parallel
+            |> Async.RunSynchronously
+            |> ignore
