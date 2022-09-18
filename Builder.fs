@@ -73,7 +73,7 @@ module Builder
 
     let buildAboutPage () = 
 
-        let aboutContent = convertFileToHtml (Path.Join(srcDir,"about.md")) |> aboutView
+        let aboutContent = convertFileToHtml (Path.Join(srcDir,"about.md")) |> contentView
         let aboutPage = generate aboutContent "default" "About - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"about")
         Directory.CreateDirectory(saveDir) |> ignore
@@ -100,35 +100,35 @@ module Builder
         File.WriteAllText(Path.Join(saveDir,"index.html"), podrollPage)
 
     let buildIRLStackPage () = 
-        let irlStackContent = Path.Join(srcDir,"irl-stack.md") |> convertFileToHtml |> irlStackView
+        let irlStackContent = Path.Join(srcDir,"irl-stack.md") |> convertFileToHtml |> contentView
         let irlStackPage = generate irlStackContent "default" "In Real Life Stack - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"irl-stack")
         Directory.CreateDirectory(saveDir) |> ignore   
         File.WriteAllText(Path.Join(saveDir,"index.html"), irlStackPage)
 
     let buildColophonPage () = 
-        let colophonContent = Path.Join(srcDir,"colophon.md") |> convertFileToHtml |> irlStackView
+        let colophonContent = Path.Join(srcDir,"colophon.md") |> convertFileToHtml |> contentView
         let colophonPage = generate colophonContent "default" "Colophon - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"colophon")
         Directory.CreateDirectory(saveDir) |> ignore               
         File.WriteAllText(Path.Join(saveDir,"index.html"), colophonPage)        
 
     let buildSubscribePage () = 
-        let subscribeContent = Path.Join(srcDir,"subscribe.md") |> convertFileToHtml |> subscribeView
+        let subscribeContent = Path.Join(srcDir,"subscribe.md") |> convertFileToHtml |> contentView
         let subscribePage = generate subscribeContent "default" "Subscribe - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"subscribe")
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), subscribePage)        
     
     let buildContactPage () = 
-        let contactContent = convertFileToHtml (Path.Join(srcDir,"contact.md")) |> contactView
+        let contactContent = convertFileToHtml (Path.Join(srcDir,"contact.md")) |> contentView
         let contactPage = generate contactContent "default" "Contact - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"contact")
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir, "index.html"), contactPage)
 
     let buildOnlineRadioPage () = 
-        let onlineRadioContent = convertFileToHtml (Path.Join(srcDir,"radio.md")) |> onlineRadioView
+        let onlineRadioContent = convertFileToHtml (Path.Join(srcDir,"radio.md")) |> contentView
         let onlineRadioPage = generate onlineRadioContent "default" "Online Radio - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"radio")
         Directory.CreateDirectory(saveDir) |> ignore

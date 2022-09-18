@@ -59,18 +59,6 @@ let contentViewWithTitle (title:string) (content:string) =
         rawText content
     ]    
 
-let aboutView content = contentView content
-
-let contactView content = contentView content
-    
-let irlStackView content = contentView content 
-        
-let colophonView content = contentView content 
-
-let subscribeView content = contentView content 
-    
-let onlineRadioView content = contentView content 
-
 let rollLinkView (links:Outline array) = 
     ul [] [
         for link in links do
