@@ -112,7 +112,7 @@ let main argv =
     let mentions = 
         responses
         |> Array.filter(fun x -> 
-            let currentDateTime = DateTimeOffset(DateTime.Now).ToOffset(TimeSpan(-4,0,0))
+            let currentDateTime = DateTimeOffset(DateTime.Now))
             let updatedDateTime = DateTimeOffset(DateTime.SpecifyKind(DateTime.Parse(x.Metadata.DateUpdated).AddMinutes(60),DateTimeKind.Local))
             printfn $"Current: {currentDateTime}"
             printfn $"Updated: {updatedDateTime}"
