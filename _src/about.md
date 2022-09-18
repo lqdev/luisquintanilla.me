@@ -22,9 +22,7 @@ The [blog](/posts/1/) section contains mainly long-form articles. As I tinker wi
 
 The knowledge-base contains a collection of wiki articles, snippets, and library. [Wiki](/wiki) articles are documents on certain topics. They intend to connect information and knowledge I encounter as part of personal investigations or randomly stumble upon. [Snippets](/snippets) are random scripts and code snippets. The [library](/library) is a list of books I'm currently reading or have read. 
 
-The feed is like a microblog with content ordered in chronological order. It collects in a single place snippets containing notes, photos, videos, and other types of content. The feed takes inspiration from [IndieWeb posts](https://indieweb.org/posts).
-
-The [main feed](/feed/index.html) aggregates content of all types. [Note](/feed/notes.html) and [video](/feed/videos.html) feeds as their name suggest contain text content and videos I find interesting.
+The [main feed](/feed/index.html) is like a microblog with content ordered in reverse chronological order. It collects in a single place snippets containing notes, photos, videos, and other types of content. The [replies feed](/feed/responses.html) contains replies and interactions with other pages and supports [Webmentions](https://www.w3.org/TR/webmention/). The feeds take inspiration from [IndieWeb posts](https://indieweb.org/posts).
 
 In addition to the feeds, there's also the [linkblog](/feed/linkblog) which acts as my bookmark / read-it-later service as I find interesting websites. The [blogroll](/blogroll) contains a collection of blogs I follow and the [podroll](/podroll) is a collection of podcasts I listen to. 
 
