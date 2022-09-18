@@ -311,9 +311,18 @@ let cardHeader (date:string) =
         ] 
     ]    
 
+let cardFooter (fileName:string) = 
+
+    div [_class "card-footer"] [
+        let permalink = $"/feed/{fileName}/" 
+        Text "Permalink: " 
+        a [_href permalink] [Text $"https://luisquintanilla.me{permalink}"]
+    ]
+
 let feedPostView (post:Post) = 
 
     let header = cardHeader post.Metadata.Date
+    let footer = cardFooter post.FileName
 
     div [ _class "card rounded m-2 w-75 mx-auto" ] [
 
@@ -322,11 +331,8 @@ let feedPostView (post:Post) =
         div [ _class "card-body" ] [
             rawText post.Content
         ]
-        div [_class "card-footer"] [
-            let permalink = $"/feed/{post.FileName}/" 
-            Text "Permalink: " 
-            a [_href permalink] [Text $"https://luisquintanilla.me{permalink}"]
-        ]
+
+        footer
     ]
 
 let feedView (posts: Post array) =
@@ -334,6 +340,33 @@ let feedView (posts: Post array) =
         for post in posts do
             feedPostView post
     ]
+
+let responsePostView (post: Response) = 
+
+    let header = cardHeader post.Metadata.DatePublished
+    let footer = cardFooter post.FileName
+        
+    div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
+        header
+        
+        div [ _class "card-body" ] [
+            p [] [
+                Text "In Reply To: "
+                a [_class "u-in-reply-to"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
+            ]
+            div [_class "e-content"] [
+                rawText post.Content
+            ]
+        ]
+        
+        footer
+    ]
+
+let responseView (posts: Response array) =
+    div [ _class "d-grip gap-3" ] [
+        for post in posts do
+            responsePostView post
+    ]    
 
 let bookPostView (book: Book) = 
     div [_class "card mb-4 mx-auto"] [
@@ -424,31 +457,3 @@ let albumPageView (images:AlbumImage array) =
                     ]
             ]
     ]
-
-let responsePostView (post: Response) = 
-
-    let header = cardHeader post.Metadata.DatePublished
-        
-    div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
-        header
-        div [ _class "card-body" ] [
-            p [] [
-                Text "In Reply To: "
-                a [_class "u-in-reply-to"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
-            ]
-            div [_class "e-content"] [
-                rawText post.Content
-            ]
-        ]
-        div [_class "card-footer"] [
-            let permalink = $"/feed/{post.FileName}/" 
-            Text "Permalink: " 
-            a [_href permalink; _class "u-url"] [Text $"http://lqdev.me{permalink}"]
-        ]
-    ]
-
-let responseView (posts: Response array) =
-    div [ _class "d-grip gap-3" ] [
-        for post in posts do
-            responsePostView post
-    ]    
