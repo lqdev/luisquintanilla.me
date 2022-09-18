@@ -111,30 +111,13 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/snippets"] [ Text "Snippets" ]
                                 a [_class "dropdown-item"; _href "/wiki"] [ Text "Wiki" ]
                                 a [_class "dropdown-item"; _href "/library"] [ Text "Library" ]
-                        ]
-                    ]
-                    
-                    //Events dropdown
-                    li [_class "nav-item dropdown"] [
-                        a [
-                            _class "nav-link dropdown-toggle"
-                            _href "#"
-                            _id "eventsDropdown"
-                            attr "role" "button"
-                            attr "data-toggle" "dropdown"
-                            attr "aria-haspopup" "true"
-                            attr "aria-expanded" "false"
-                        ] [
-                            Text "Events"
-                        ]
-                        div [
-                            _class "dropdown-menu"
-                            attr "aria-labelledby" "eventsDropdown"
-                            ] [
-                                a [_class "dropdown-item"; _href "/events"] [ Text "Event List" ]
                                 a [_class "dropdown-item"; _href "/presentations"] [ Text "Presentations" ]
                         ]
                     ]
+                    
+                    li [_class "nav-item"] [
+                        a [_class "dropdown-item"; _href "/events"] [ Text "Events" ]
+                    ]                    
                 ]
 
                 span [
