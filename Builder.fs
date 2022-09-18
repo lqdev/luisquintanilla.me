@@ -28,25 +28,20 @@ module Builder
     let copyStaticFiles () =
         let directories = [
             "css"
-            "css/bootstrap-icons-1.5.0"
             "js"
             "images"
             "lib"
-            "lib/boostrap"
-            "lib/highlight"
-            "lib/jquery"
-            "lib/revealjs"
-            "lib/revealjs/dist"
-            "lib/revealjs/dist/theme"
-            "lib/revealjs/dist/theme/fonts"
-            "lib/revealjs/dist/theme/fonts/league-gothic"
-            "lib/revealjs/dist/theme/fonts/source-sans-pro"
-            "lib/revealjs/plugin"
-            "lib/revealjs/plugin/markdown"
         ]
 
         directories
-        |> List.map(fun dir -> Path.Join(srcDir,dir),Path.Join(outputDir,dir))
+        |> List.map(fun x -> 
+            Directory.GetDirectories(Path.Join(srcDir,x),"*",SearchOption.AllDirectories)
+            |> List.ofArray
+            |> fun a -> a @ [x])
+        |> List.collect(fun x -> 
+                x
+                |> List.map(fun y -> y.Replace("_src/","")))
+        |> List.map(fun (dir:string) -> Path.Join(srcDir,dir),Path.Join(outputDir,dir))
         |> List.iter(fun (s,d) -> 
             let saveDir = Directory.CreateDirectory(d)
             
@@ -487,6 +482,7 @@ module Builder
             Directory.CreateDirectory(saveDir) |> ignore
             let savePath = Path.Join(saveDir,"index.html")
             File.WriteAllText(savePath,html))
+        |> ignore
 
         // Save feed
         File.WriteAllText(Path.Join(rootSaveDir, $"{saveFileName}.html"), responsePage)
