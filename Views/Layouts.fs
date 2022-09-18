@@ -207,6 +207,25 @@ module Layouts
         link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Videos Feed RSS"; _href "https://www.luisquintanilla.me/feed/videos.xml"]
     ]
 
+    let scripts = [
+        script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
+        script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
+        script [_src "/lib/highlight/highlight.min.js"] [] // 10.5.0
+        script [_src "/lib/highlight/highlight.fsharp.min.js"] [] // 10.5.0
+
+        script [_src "/js/main.js"] []    
+
+        script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] []
+
+        script [_type "application/javascript"] [
+            rawText "mermaid.initialize({startOnLoad:true});"
+        ]
+
+        script [_type "application/javascript"] [
+            rawText "hljs.initHighlightingOnLoad();"
+        ]
+    ]
+
     let footerContent = 
         footer [] [
             a [_rel "me"; _href "https://toot.lqdev.tech/@lqdev"] []
@@ -265,22 +284,9 @@ module Layouts
                     rawText content
                 ]
 
-                script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
-                script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
-                script [_src "/lib/highlight/highlight.min.js"] [] // 10.5.0
-                script [_src "/lib/highlight/highlight.fsharp.min.js"] [] // 10.5.0
+                for scr in scripts do
+                    scr
 
-                script [_src "/js/main.js"] []    
-
-                script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] []
-
-                script [_type "application/javascript"] [
-                    rawText "mermaid.initialize({startOnLoad:true});"
-                ]
-
-                script [_type "application/javascript"] [
-                    rawText "hljs.initHighlightingOnLoad();"
-                ]   
             ]
             footerContent
         ]
@@ -319,22 +325,9 @@ module Layouts
                     rawText content
                 ]
 
-                script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
-                script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
-                script [_src "/lib/highlight/highlight.min.js"] [] // 10.5.0
-                script [_src "/lib/highlight/highlight.fsharp.min.js"] [] // 10.5.0
-                
-                script [_src "/js/main.js"] []
+                for scr in scripts do
+                    scr
 
-                script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] []
-
-                script [_type "application/javascript"] [
-                    rawText "mermaid.initialize({startOnLoad:true});"
-                ]
-
-                script [_type "application/javascript"] [
-                    rawText "hljs.initHighlightingOnLoad();"
-                ]   
             ]
             footerContent
         ]
@@ -377,22 +370,8 @@ module Layouts
                     rawText content
                 ]
 
-                script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
-                script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
-                script [_src "/lib/highlight/highlight.min.js"] [] // 10.5.0
-                script [_src "/lib/highlight/highlight.fsharp.min.js"] [] // 10.5.0
-
-                script [_src "/js/main.js"] []
-
-                script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] []
-
-                script [_type "application/javascript"] [
-                    rawText "mermaid.initialize({startOnLoad:true});"
-                ]
-
-                script [_type "application/javascript"] [
-                    rawText "hljs.initHighlightingOnLoad();"
-                ]
+                for scr in scripts do
+                    scr
 
                 // Revealjs (As of 10/20/2021)
                 script [_src "/lib/revealjs/dist/reveal.js"] []
