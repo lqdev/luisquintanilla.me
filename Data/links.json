@@ -26,7 +26,7 @@
     {
        "Url": "https://knightcolumbia.org/events/reimagine-the-internet",
        "Title": "Reimagine the internet",
-       "Tags": ["internet","conference","policy","social media", "technology","education","university"],
+       "Tags": ["internet","conference","policy","socialmedia", "technology","education","university"],
        "DateAdded": "08/03/2022 21:21"
     },
     {
@@ -160,5 +160,11 @@
        "Title": "Firefox Profile Maker",
        "Tags": ["firefox","mozilla","internet","desktop","web","technology","communication","tool"],
        "DateAdded": "09/20/2022 20:27"
+    },
+    {
+       "Url": "https://www.eff.org/deeplinks/2022/09/how-ditch-facebook-without-losing-your-friends-or-family-customers-or-communities",
+       "Title": "How to Ditch Facebook Without Losing Your Friends",
+       "Tags": ["privacy","article","facebook","socialmedia","internet","technology","society","socialnetwork"],
+       "DateAdded": "09/20/2022 20:30"
     }
 ]
