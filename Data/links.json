@@ -154,5 +154,11 @@
        "Title": "WordPress+IndieWeb as the OS of the Open Social Web",
        "Tags": ["blogging","article","presentation","communication","community","socialmedia","internet","technology","opensource"],
        "DateAdded": "09/16/2022 11:44"
+    },
+    {
+       "Url": "https://ffprofile.com/",
+       "Title": "Firefox Profile Maker",
+       "Tags": ["firefox","mozilla","internet","desktop","web","technology","communication","tool"],
+       "DateAdded": "09/20/2022 20:27"
     }
 ]
