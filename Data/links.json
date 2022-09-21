@@ -166,5 +166,11 @@
        "Title": "How to Ditch Facebook Without Losing Your Friends",
        "Tags": ["privacy","article","facebook","socialmedia","internet","technology","society","socialnetwork"],
        "DateAdded": "09/20/2022 20:30"
+    },
+    {
+       "Url": "http://paulgraham.com/users.html",
+       "Title": "What I've Learned From Users",
+       "Tags": ["article","productdevelopment","productmanagement","venturecapital","technology","founders"],
+       "DateAdded": "09/20/2022 21:21"
     }
 ]
