@@ -178,5 +178,11 @@
        "Title": "1% Rule",
        "Tags": ["article","community","technology","web","content","internet"],
        "DateAdded": "09/21/2022 12:39"
+    },
+    {
+       "Url": "https://weaviate.io/blog/2022/09/Distance-Metrics-in-Vector-Search.html",
+       "Title": "Distance Metrics in Vector Search",
+       "Tags": ["machinelearning","article","education","learning","deeplearning","math"],
+       "DateAdded": "09/21/2022 12:44"
     }
 ]
