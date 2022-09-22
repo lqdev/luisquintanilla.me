@@ -99,13 +99,17 @@ module WebmentionService
             let! anchorUrl = discoverUrlInAnchorTagAsync url
 
             // Aggregate results
-            let discoveryResults = [headerUrl; linkUrl; anchorUrl]
+            let discoveryResults = 
+                [headerUrl; linkUrl; anchorUrl]
+                |> List.choose(fun url -> url)
 
             // Unwrap and take the first entry containing a value
-            let webmentionUrl = 
-                discoveryResults
-                |> List.choose(fun url -> url)
-                |> List.head
+            let webmentionUrl =
+                match discoveryResults.IsEmpty with
+                | true -> ""
+                | false ->  
+                    discoveryResults 
+                    |> List.head
 
             return webmentionUrl
         }   

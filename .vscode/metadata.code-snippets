@@ -149,5 +149,35 @@
 			"",
 		],
 		"description": "Reply post"
-	}					
+	},
+	"Reshare metadata": {
+		"scope": "markdown",
+		"prefix": "reshare",
+		"body": [
+			"---",
+			"title: \"\"",
+			"targeturl: ",
+			"response_type: reshare",
+			"dt_published: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE\"",
+			"dt_updated: \"$CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE\" -05:00",
+			"---",
+			"",
+		],
+		"description": "Reshare post"
+	},
+	"Favorite metadata": {
+		"scope": "markdown",
+		"prefix": "favorite",
+		"body": [
+			"---",
+			"title: \"\"",
+			"targeturl: ",
+			"response_type: favorite",
+			"dt_published: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE\"",
+			"dt_updated: \"$CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE\" -05:00",
+			"---",
+			"",
+		],
+		"description": "Favorite post"
+	}							
 }

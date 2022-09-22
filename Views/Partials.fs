@@ -299,24 +299,58 @@ let feedView (posts: Post array) =
             feedPostView post
     ]
 
+let replyBodyView (post:Response) = 
+    div [ _class "card-body" ] [
+        p [] [
+            Text "In Reply To: "
+            a [_class "u-in-reply-to"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
+        ]
+        div [_class "e-content"] [
+            rawText post.Content
+        ]
+    ]        
+
+// Repost
+let reshareBodyView (post:Response) = 
+    div [ _class "card-body" ] [
+        p [] [
+            Text "Repost of: "
+            a [_class "u-repost-of"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
+        ]
+        div [_class "e-content"] [
+            rawText post.Content
+        ]
+    ]
+
+// Like / Favorite
+let starBodyView (post:Response) = 
+    div [ _class "card-body" ] [
+        p [] [
+            Text "Star of: "
+            a [_class "u-like-of"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
+        ]
+        div [_class "e-content"] [
+            rawText post.Content
+        ]
+    ]
+
+
 let responsePostView (post: Response) = 
 
     let header = cardHeader post.Metadata.DatePublished
     let footer = cardFooter post.FileName
+    let body = 
+        match post.Metadata.ResponseType with
+        | "reply" -> replyBodyView post
+        | "reshare" -> reshareBodyView post
+        | "star" -> starBodyView post
+        | _ -> div [_class "card-body"] [p [] [Text "No content"]]
         
     div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
         header
-        
-        div [ _class "card-body" ] [
-            p [] [
-                Text "In Reply To: "
-                a [_class "u-in-reply-to"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
-            ]
-            div [_class "e-content"] [
-                rawText post.Content
-            ]
-        ]
-        
+
+        body    
+
         footer
     ]
 
