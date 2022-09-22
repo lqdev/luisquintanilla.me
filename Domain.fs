@@ -150,7 +150,7 @@ module Domain
     type ResponseDetails = {
         [<YamlMember(Alias="title")>] Title: string
         [<YamlMember(Alias="targeturl")>] TargetUrl: string
-        [<YamlMember(Alias="response_type")>] ResponseType: string        
+        [<YamlMember(Alias="response_type")>] ResponseType: string
         [<YamlMember(Alias="dt_published")>] DatePublished: string        
         [<YamlMember(Alias="dt_updated")>] DateUpdated: string
     }

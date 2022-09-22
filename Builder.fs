@@ -249,6 +249,16 @@ module Builder
         let saveDir = Path.Join(outputDir,"feed")            
         File.WriteAllText(Path.Join(saveDir,$"{saveFileName}.xml"), rssPage)  
 
+    let buildResponseFeedRssPage (posts: Response array) (saveFileName:string)= 
+        let rssPage = 
+            posts
+            |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.DatePublished))
+            |> generateReponseFeedRss
+            |> string
+
+        let saveDir = Path.Join(outputDir,"feed")            
+        File.WriteAllText(Path.Join(saveDir,$"{saveFileName}.xml"), rssPage)
+
     let buildBlogrollOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Blogroll" "https://www.luisquintanilla.me" links
         let saveDir = Path.Join(outputDir,"feed","blogroll")

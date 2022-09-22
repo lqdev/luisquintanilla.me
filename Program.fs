@@ -58,6 +58,10 @@ let main argv =
     // Build RSS pages
     buildBlogRssFeed posts
     buildFeedRssPage feedPosts "index"
+    
+    responses 
+    |> Array.filter(fun x -> x.Metadata.ResponseType = "reshare")
+    |> fun x -> buildResponseFeedRssPage x "reshare"
    
     // Build roll pages
     buildBlogrollPage blogrollLinks

@@ -38,6 +38,18 @@ module RssService
             XElement(XName.Get "guid", url),
             XElement(XName.Get "pubDate", entry.Metadata.Date))
 
+    let reponseFeedEntryXml (entry:Response) =
+
+        let url = $"https://www.luisquintanilla.me/feed/{entry.FileName}"
+        let urlWithUtm = $"{url}?utm_medium=feed"
+        
+        XElement(XName.Get "item",
+            XElement(XName.Get "title", entry.Metadata.Title),
+            XElement(XName.Get "description", $"See the post at <a href=\"{urlWithUtm}\">{url}</a>"),            
+            XElement(XName.Get "link", urlWithUtm),
+            XElement(XName.Get "guid", url),
+            XElement(XName.Get "pubDate", entry.Metadata.DatePublished))
+
     let blogChannelXml (lastPubDate:string) = 
         XElement(XName.Get "rss",
             XAttribute(XName.Get "version","2.0"),
@@ -73,3 +85,11 @@ module RssService
         
         channel.Descendants(XName.Get "channel").First().Add(entries)
         channel 
+
+    let generateReponseFeedRss (posts:Response array) =
+        let latestPost = posts |> Array.sortByDescending(fun post -> DateTime.Parse(post.Metadata.DatePublished)) |> Array.head 
+        let entries = posts |> Array.map(reponseFeedEntryXml)
+        let channel = feedChannelXml "Luis Quintanilla Feed" "Response Feed" latestPost.Metadata.DatePublished
+        
+        channel.Descendants(XName.Get "channel").First().Add(entries)
+        channel         
