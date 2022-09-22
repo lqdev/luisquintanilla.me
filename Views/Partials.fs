@@ -291,7 +291,7 @@ let feedView (posts: Post array) =
 let replyBodyView (post:Response) = 
     div [ _class "card-body" ] [
         p [] [
-            Text "In Reply To: "
+            span [_class "bi bi-reply-fill"; _style "margin-right:5px;margin-left:5px;"] []
             a [_class "u-in-reply-to"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
         ]
         div [_class "e-content"] [
@@ -303,7 +303,7 @@ let replyBodyView (post:Response) =
 let reshareBodyView (post:Response) = 
     div [ _class "card-body" ] [
         p [] [
-            Text "Repost of: "
+            span [_class "bi bi-share-fill"; _style "margin-right:5px;margin-left:5px;"] []
             a [_class "u-repost-of"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
         ]
         div [_class "e-content"] [
@@ -315,7 +315,7 @@ let reshareBodyView (post:Response) =
 let starBodyView (post:Response) = 
     div [ _class "card-body" ] [
         p [] [
-            Text "Star of: "
+            span [_class "bi bi-star-fill"; _style "margin-right:5px;margin-left:5px;color:yellow"] []
             a [_class "u-like-of"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
         ]
         div [_class "e-content"] [
