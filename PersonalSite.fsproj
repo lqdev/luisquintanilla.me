@@ -10,7 +10,8 @@
     <Compile Include="Services\Markdown.fs" />
     <Compile Include="Services\Rss.fs" />    
     <Compile Include="Services\Opml.fs" />    
-    <Compile Include="Services\Webmention.fs" />        
+    <Compile Include="Services\Webmention.fs" />
+    <Compile Include="Views\Icons.fs" />        
     <Compile Include="Views\Layouts.fs" />
     <Compile Include="Views\Partials.fs" />
     <Compile Include="Views\Generator.fs" />
