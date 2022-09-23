@@ -409,12 +409,12 @@ let albumsPageView (images:Album array) =
     let albumGroups = images |> Array.chunkBySize 3
     div [_class "mr-auto"] [
         for group in albumGroups do
-            div [_class "row"] [
+            div [_class "row"; _style "margin-bottom:5px;"] [
                 for album in group do
                     div [_class "col-md-4"] [
-                        div [_class "img-thumbnail"] [
+                        div [_class "img-thumbnail"; _style "object-fit:cover;height:100%;"] [
                             a [_href $"/albums/{album.FileName}"; _target "blank"] [    
-                                img [_src album.Metadata.MainImage]
+                                img [_src album.Metadata.MainImage; _style "object-fit:cover;object-position:50% 50%;"] 
                                 p [] [Text album.Metadata.Title]
                             ]                                
                         ]
@@ -426,12 +426,12 @@ let albumPageView (images:AlbumImage array) =
     let imgGroups = images |> Array.chunkBySize 3
     div [_class "mr-auto"] [
         for group in imgGroups do
-            div [_class "row"] [
+            div [_class "row"; _style "margin-bottom:5px;"] [
                 for image in group do
                     div [_class "col-md-4"] [
-                        div [_class "img-thumbnail"] [
+                        div [_class "img-thumbnail"; _style "object-fit:cover;height:100%;" ] [
                             a [_href image.ImagePath; _target "blank"] [    
-                                img [_src $"{image.ImagePath}"; _alt $"{image.AltText}" ]
+                                img [_src $"{image.ImagePath}"; _alt $"{image.AltText}"; _style "object-fit:cover;object-position:50% 50%;"]
                                 p [] [Text image.Description]
                             ]                                
                         ]
