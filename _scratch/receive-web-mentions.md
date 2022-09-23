@@ -1,6 +1,8 @@
 ## Receiving Webmentions implementation plan
 
 1. Create Azure Function to receive webmentions and store source and target urls in an Azure Storage Table. 
+    1. [Request verification](https://www.luisquintanilla.me/snippets/webmentions-request-verification)
+    1. Webmention verification
 1. Create Webmentions Page to display Webmentions. 
 1. Create Webmentions Rss feed to get notifications. 
 1. Create Azure Function to periodically query approved mentions. 
