@@ -315,7 +315,7 @@ let reshareBodyView (post:Response) =
 let starBodyView (post:Response) = 
     div [ _class "card-body" ] [
         p [] [
-            span [_class "bi bi-star-fill"; _style "margin-right:5px;margin-left:5px;color:pumpkin"] []
+            span [_class "bi bi-star-fill"; _style "margin-right:5px;margin-left:5px;color:#ff7518"] []
             a [_class "u-like-of"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
         ]
         div [_class "e-content"] [
