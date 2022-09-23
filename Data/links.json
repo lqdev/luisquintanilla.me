@@ -196,5 +196,11 @@
        "Title": "An app can be a home-cooked meal",
        "Tags": ["article"],
        "DateAdded": "09/21/2022 22:22"
+    },
+    {
+       "Url": "https://opensource.com/article/22/9/git-configuration-linux",
+       "Title": "5 Git Configurations I Make on Linux",
+       "Tags": ["article","git","versioncontrol","technology","linux"],
+       "DateAdded": "09/22/2022 19:44"
     }
 ]
