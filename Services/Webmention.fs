@@ -161,8 +161,6 @@ module WebmentionService
         |> Array.filter(fun x -> 
             let currentDateTime = DateTimeOffset(DateTime.Now)
             let updatedDateTime = DateTimeOffset(DateTime.Parse(x.Metadata.DateUpdated).AddMinutes(60))
-            printfn $"Current: {currentDateTime}"
-            printfn $"Updated: {updatedDateTime}"
             currentDateTime < updatedDateTime)
         |> Array.map(fun x -> { SourceUrl=new Uri($"http://lqdev.me/feed/{x.FileName}"); TargetUrl=new Uri(x.Metadata.TargetUrl) })
         |> runWebmentionWorkflow
