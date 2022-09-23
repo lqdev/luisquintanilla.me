@@ -165,14 +165,14 @@
 		],
 		"description": "Reshare post"
 	},
-	"Favorite metadata": {
+	"Star metadata": {
 		"scope": "markdown",
 		"prefix": "favorite",
 		"body": [
 			"---",
 			"title: \"\"",
 			"targeturl: ",
-			"response_type: favorite",
+			"response_type: star",
 			"dt_published: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE\"",
 			"dt_updated: \"$CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
 			"---",
