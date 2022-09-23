@@ -202,5 +202,11 @@
        "Title": "5 Git Configurations I Make on Linux",
        "Tags": ["article","git","versioncontrol","technology","linux"],
        "DateAdded": "09/22/2022 19:44"
+    },
+    {
+       "Url": "https://web.dev/testing-web-design-color-contrast/",
+       "Title": "Testing Web Design Color Contrast",
+       "Tags": ["article","web","internet","technology","design","accessibility"],
+       "DateAdded": "09/22/2022 20:06"
     }
 ]
