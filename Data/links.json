@@ -208,5 +208,17 @@
        "Title": "Testing Web Design Color Contrast",
        "Tags": ["article","web","internet","technology","design","accessibility"],
        "DateAdded": "09/22/2022 20:06"
+    },
+    {
+       "Url": "https://mutant.tech/",
+       "Title": "Mutant Standard Emojis",
+       "Tags": ["web","emojis","icons","website","internet","technology","opensource"],
+       "DateAdded": "09/22/2022 20:33"
+    },
+    {
+       "Url": "https://dzuk.zone/",
+       "Title": "Dzuk - Icon Designer",
+       "Tags": ["web","emojis","icons","internet","technology","website"],
+       "DateAdded": "09/22/2022 20:33"
     }
 ]
