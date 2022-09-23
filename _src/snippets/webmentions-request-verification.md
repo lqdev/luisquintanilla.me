@@ -146,3 +146,29 @@ sampleContent
 |> List.map(buildSampleRequestMessages)
 |> List.map(validate)
 ```
+
+## Expected Output
+
+```text
+[  
+  Error "Urls are the same"; 
+  Error "Target invalid protocol";
+  Error "Target is not a valid resource";
+  Ok
+    Method: GET, RequestUri: '<null>', Version: 1.1, Content: System.Net.Http.FormUrlEncodedContent, Headers:
+    {
+        Content-Type: application/x-www-form-urlencoded
+        Content-Length: 67
+    }
+    {
+        Content = System.Net.Http.FormUrlEncodedContent;
+        Headers = seq [];
+        Method = GET;
+        Options = seq [];
+        Properties = seq [];
+        RequestUri = null;
+        Version = 1.1;
+        VersionPolicy = RequestVersionOrLower;
+    }
+]
+```
