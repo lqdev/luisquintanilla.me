@@ -33,8 +33,8 @@ open Microsoft.AspNetCore.WebUtilities
 open FSharp.Data
 
 type WebmentionVerificationResult = 
-    | Interactions of {|Replies: string list; Likes: string list; Shares: string list|}
-    | Mention of {| Mentions: string list|}
+    | Interactions of {|Replies: bool; Likes: bool; Shares: bool|}
+    | Mention
     | Error of string
 
 let getFormContent (request:HttpRequestMessage) =
@@ -46,7 +46,6 @@ let getFormContent (request:HttpRequestMessage) =
 
         return source,target
     }
-
 
 let cont =  
     dict [
@@ -126,9 +125,21 @@ let verifyWebmentions (source:string) (target:string)=
                 // Choose tagged mentions before untagged mentions
                 match knownInteractions.IsEmpty,mentions.IsEmpty with 
                 | true,true -> Error "Target not mentioned"
-                | true,false -> Interactions {|Replies=replies;Likes=likes;Shares=shares|}
-                | false,true -> Mention {|Mentions=mentions|}
-                | false, false -> Interactions {|Replies=replies;Likes=likes;Shares=shares|}
+                | true,false -> 
+                    Interactions 
+                        {|
+                            Replies = replies |> List.isEmpty |> not
+                            Likes = likes |> List.isEmpty |> not
+                            Shares = shares |> List.isEmpty |> not
+                        |}
+                | false,true -> Mention 
+                | false, false -> 
+                    Interactions 
+                        {|
+                            Replies = replies |> List.isEmpty |> not
+                            Likes = likes |> List.isEmpty |> not
+                            Shares = shares |> List.isEmpty |> not
+                        |}
 
             | false -> 
                 Error "Unable to get source"
@@ -142,7 +153,8 @@ verifyWebmentions source target
 ## Sample Output
 
 ```text
-Interactions { Likes = []
-                 Replies = ["https://webmention.rocks/test/1"]
-                 Shares = [] }
+Interactions { 
+    Likes = false
+    Replies = true
+    Shares = false }
 ```
