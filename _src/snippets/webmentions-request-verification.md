@@ -6,7 +6,7 @@ tags: f#,indieweb,webmentions,internet,web,social,interactive,script
 
 ## Description
 
-Sample script that shows how to perform request verification per [Webmentions specification](https://www.w3.org/TR/webmention/#request-verification). 
+Sample script that shows how to perform Webmention request verification per [Webmentions specification](https://www.w3.org/TR/webmention/#request-verification). 
 
 ## Usage
 
@@ -34,7 +34,7 @@ open System.Net.Http
 open System.Collections.Generic
 open Microsoft.AspNetCore.WebUtilities
 
-type ValidationResponse =
+type RequestVerificationResponse =
     | Ok of HttpRequestMessage
     | Error of string
 
@@ -50,7 +50,7 @@ let getFormContent (request:HttpRequestMessage) =
     }
 
 // Check protocol is HTTP or HTTPS
-let checkProtocol (request: ValidationResponse) =
+let checkProtocol (request: RequestVerificationResponse) =
     match request with 
     | Ok m -> 
         let source,target = 
@@ -69,7 +69,7 @@ let checkProtocol (request: ValidationResponse) =
     | Error s -> Error $"{s}"
 
 // Check the URLs are not the same
-let checkUrlsSame (request:ValidationResponse) = 
+let checkUrlsSame (request:RequestVerificationResponse) = 
     match request with 
     | Ok m -> 
         let source,target = 
@@ -94,7 +94,7 @@ let isValid (url:string) (msg:HttpResponseMessage) =
 
 // Check URL is a valid resource
 // Valid means, the URL is one of my domains and returns a non-400 or 500 HTML status code
-let checkUrlValidResource (request:ValidationResponse) = 
+let checkUrlValidResource (request:RequestVerificationResponse) = 
     match request with 
     | Ok m -> 
         let res = 
@@ -147,7 +147,7 @@ sampleContent
 |> List.map(validate)
 ```
 
-## Expected Output
+## Sample Output
 
 ```text
 [  
