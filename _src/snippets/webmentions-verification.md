@@ -33,8 +33,8 @@ open Microsoft.AspNetCore.WebUtilities
 open FSharp.Data
 
 type WebmentionVerificationResult = 
-    | Interactions of {| Replies: bool; Likes: bool; Reposts: bool|}
-    | Mention
+    | TaggedMention of {| Replies: bool; Likes: bool; Reposts: bool|}
+    | UntaggedMention
     | Error of string
 
 let getFormContent (request:HttpRequestMessage) =
@@ -118,28 +118,22 @@ let verifyWebmentions (source:string) (target:string)=
                 let mentions = 
                     getMentionUsingCssSelector doc "a" target
 
-                // Collect all tagged interactions
+                // Collect all tagged mentions
                 let knownInteractions = 
-                    [replies;likes;shares] |> List.collect(id)
+                    [replies;likes;shares] 
+                    |> List.collect(id)
 
                 // Choose tagged mentions before untagged mentions
                 match knownInteractions.IsEmpty,mentions.IsEmpty with 
                 | true,true -> Error "Target not mentioned"
-                | true,false -> 
-                    Interactions 
+                | true,false | false,false -> 
+                    TaggedMention 
                         {|
                             Replies = hasMention replies 
                             Likes = hasMention likes
                             Reposts = hasMention shares
                         |}
-                | false,true -> Mention 
-                | false, false -> 
-                    Interactions 
-                        {|
-                            Replies = hasMention replies
-                            Likes = hasMention likes
-                            Reposts = hasMention shares
-                        |}
+                | false,true -> UntaggedMention 
 
             | false -> 
                 Error "Unable to get source"
