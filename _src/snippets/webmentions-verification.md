@@ -33,7 +33,7 @@ open Microsoft.AspNetCore.WebUtilities
 open FSharp.Data
 
 type WebmentionVerificationResult = 
-    | Interactions of {|Replies: bool; Likes: bool; Shares: bool|}
+    | Interactions of {| Replies: bool; Likes: bool; Reposts: bool|}
     | Mention
     | Error of string
 
@@ -69,6 +69,14 @@ let source,target =
     |> getFormContent
     |> Async.RunSynchronously
 
+let getMentionUsingCssSelector (doc:HtmlDocument) (selector:string) (target:string) = 
+    doc.CssSelect(selector)
+    |> List.map(fun x -> x.AttributeValue("href"))
+    |> List.filter(fun x -> x = target)    
+
+let hasMention (mentions:string list) = 
+    mentions |> List.isEmpty |> not
+
 let verifyWebmentions (source:string) (target:string)= 
     async {
         use client = new HttpClient()
@@ -96,27 +104,19 @@ let verifyWebmentions (source:string) (target:string)=
 
                 // Get links tagged as replies using microformats
                 let replies = 
-                    doc.CssSelect(".u-in-reply-to")
-                    |> List.map(fun x -> x.AttributeValue("href"))
-                    |> List.filter(fun x -> x = target)
+                    getMentionUsingCssSelector doc ".u-in-reply-to" target
 
                 // Get links tagged as likes using microformats
                 let likes = 
-                    doc.CssSelect(".u-in-like-of")
-                    |> List.map(fun x -> x.AttributeValue("href"))
-                    |> List.filter(fun x -> x = target)
+                    getMentionUsingCssSelector doc ".u-in-like-of" target
 
                 // Get links tagged as repost using microformats
                 let shares = 
-                    doc.CssSelect(".u-in-repost-of")
-                    |> List.map(fun x -> x.AttributeValue("href"))
-                    |> List.filter(fun x -> x = target)
+                    getMentionUsingCssSelector doc ".u-in-repost-of" target
 
                 // Get untagged mentions
                 let mentions = 
-                    doc.CssSelect($"a")
-                    |> List.map(fun x -> x.AttributeValue("href"))
-                    |> List.filter(fun x -> x = target)
+                    getMentionUsingCssSelector doc "a" target
 
                 // Collect all tagged interactions
                 let knownInteractions = 
@@ -128,17 +128,17 @@ let verifyWebmentions (source:string) (target:string)=
                 | true,false -> 
                     Interactions 
                         {|
-                            Replies = replies |> List.isEmpty |> not
-                            Likes = likes |> List.isEmpty |> not
-                            Shares = shares |> List.isEmpty |> not
+                            Replies = hasMention replies 
+                            Likes = hasMention likes
+                            Reposts = hasMention shares
                         |}
                 | false,true -> Mention 
                 | false, false -> 
                     Interactions 
                         {|
-                            Replies = replies |> List.isEmpty |> not
-                            Likes = likes |> List.isEmpty |> not
-                            Shares = shares |> List.isEmpty |> not
+                            Replies = hasMention replies
+                            Likes = hasMention likes
+                            Reposts = hasMention shares
                         |}
 
             | false -> 
