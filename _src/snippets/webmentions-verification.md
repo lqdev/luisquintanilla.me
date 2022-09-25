@@ -70,7 +70,7 @@ let source,target =
     |> getFormContent
     |> Async.RunSynchronously
 
-let getWebMentions (source:string) (target:string)= 
+let verifyWebmentions (source:string) (target:string)= 
     async {
         use client = new HttpClient()
         let reqMessage = new HttpRequestMessage(new HttpMethod("Get"), source)
@@ -135,7 +135,7 @@ let getWebMentions (source:string) (target:string)=
         return webmentions            
     }
 
-getWebMentions source target
+verifyWebmentions source target
 |> Async.RunSynchronously
 ```
 
