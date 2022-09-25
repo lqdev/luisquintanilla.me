@@ -123,12 +123,15 @@ let getWebMentions (source:string) (target:string)=
                 let knownInteractions = 
                     [replies;likes;shares] |> List.collect(id)
 
-                match knownInteractions.IsEmpty with 
-                | true -> Mention {|Mentions=mentions|}
-                | false -> Interactions {|Replies=replies;Likes=likes;Shares=shares|}
+                // Choose tagged mentions before untagged mentions
+                match knownInteractions.IsEmpty,mentions.IsEmpty with 
+                | true,true -> Error "Target not mentioned"
+                | true,false -> Interactions {|Replies=replies;Likes=likes;Shares=shares|}
+                | false,true -> Mention {|Mentions=mentions|}
+                | false, false -> Interactions {|Replies=replies;Likes=likes;Shares=shares|}
 
             | false -> 
-                Error "Target not mentioned"
+                Error "Unable to get source"
         return webmentions            
     }
 
