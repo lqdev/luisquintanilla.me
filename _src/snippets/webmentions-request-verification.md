@@ -34,7 +34,7 @@ open System.Net.Http
 open System.Collections.Generic
 open Microsoft.AspNetCore.WebUtilities
 
-type RequestVerificationResponse =
+type RequestVerificationResult =
     | Ok of HttpRequestMessage
     | Error of string
 
@@ -50,7 +50,7 @@ let getFormContent (request:HttpRequestMessage) =
     }
 
 // Check protocol is HTTP or HTTPS
-let checkProtocol (request: RequestVerificationResponse) =
+let checkProtocol (request: RequestVerificationResult) =
     match request with 
     | Ok m -> 
         let source,target = 
@@ -69,7 +69,7 @@ let checkProtocol (request: RequestVerificationResponse) =
     | Error s -> Error $"{s}"
 
 // Check the URLs are not the same
-let checkUrlsSame (request:RequestVerificationResponse) = 
+let checkUrlsSame (request:RequestVerificationResult) = 
     match request with 
     | Ok m -> 
         let source,target = 
@@ -94,7 +94,7 @@ let isValid (url:string) (msg:HttpResponseMessage) =
 
 // Check URL is a valid resource
 // Valid means, the URL is one of my domains and returns a non-400 or 500 HTML status code
-let checkUrlValidResource (request:RequestVerificationResponse) = 
+let checkUrlValidResource (request:RequestVerificationResult) = 
     match request with 
     | Ok m -> 
         let res = 
