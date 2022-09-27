@@ -291,7 +291,7 @@ let feedView (posts: Post array) =
 let replyBodyView (post:Response) = 
     div [ _class "card-body" ] [
         p [] [
-            span [_class "bi bi-reply-fill"; _style "margin-right:5px;margin-left:5px;color:##3F5576;"] []
+            span [_class "bi bi-reply-fill"; _style "margin-right:5px;margin-left:5px;color:#3F5576;"] []
             a [_class "u-in-reply-to"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
         ]
         div [_class "e-content"] [
@@ -303,7 +303,7 @@ let replyBodyView (post:Response) =
 let reshareBodyView (post:Response) = 
     div [ _class "card-body" ] [
         p [] [
-            span [_class "bi bi-share-fill"; _style "margin-right:5px;margin-left:5px;color:##C0587E;"] []
+            span [_class "bi bi-share-fill"; _style "margin-right:5px;margin-left:5px;color:#C0587E;"] []
             a [_class "u-repost-of"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
         ]
         div [_class "e-content"] [
