@@ -194,13 +194,14 @@ module Builder
     let loadRedirects () = 
         let (redirects:RedirectDetails array) = 
             [|
-                ("https://twitter.com/ljquintanilla","Twitter")
-                ("https://github.com/lqdev","GitHub")
-                ("https://www.linkedin.com/in/lquintanilla01", "LinkedIn")
-                ("https://matrix.to/#/@lqdev:matrix.lqdev.tech", "Matrix")
-                ("https://toot.lqdev.tech/@lqdev", "Mastodon")
-                ("https://www.twitch.tv/lqdev1", "Twitch")
-                ("https://www.youtube.com/channel/UCkA5fHdQ4cf3D1J19UNgV7A", "YouTube")
+                ("https://twitter.com/ljquintanilla","twitter","Twitter")
+                ("https://github.com/lqdev","github","GitHub")
+                ("https://www.linkedin.com/in/lquintanilla01","linkedin","LinkedIn")
+                ("https://matrix.to/#/@lqdev:matrix.lqdev.tech", "matrix","Matrix")
+                ("https://toot.lqdev.tech/@lqdev", "mastodon","Mastodon")
+                ("https://www.twitch.tv/lqdev1", "twitch","Twitch")
+                ("https://www.youtube.com/channel/UCkA5fHdQ4cf3D1J19UNgV7A", "youtube","YouTube")
+                ("/posts/client-credentials-authentication-csharp/","/2017/12/25/client-credentials-authentication-csharp","Client Credentials Auth")
             |]
 
         redirects
@@ -410,10 +411,9 @@ module Builder
 
     let buildRedirectPages (redirectDetails: RedirectDetails array) =
         redirectDetails
-        |> Array.iter(fun (url:string,title:string) -> 
-            let dir = title.ToLower()
-            let redirectPage = generateRedirect url title
-            let saveDir = Path.Join(outputDir,dir)
+        |> Array.iter(fun (target:string,source:string,title:string) -> 
+            let redirectPage = generateRedirect target title
+            let saveDir = Path.Join(outputDir,source)
             Directory.CreateDirectory(saveDir) |> ignore
             File.WriteAllText(Path.Join(saveDir,"index.html"), redirectPage)
         )

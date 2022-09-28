@@ -3,7 +3,7 @@ module Domain
     open System
     open YamlDotNet.Serialization
 
-    type RedirectDetails = (string * string)
+    type RedirectDetails = (string * string * string)
 
     type YamlResult<'a> = {
         Yaml: 'a
