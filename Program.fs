@@ -59,9 +59,8 @@ let main argv =
     buildBlogRssFeed posts
     buildFeedRssPage feedPosts "index"
     
-    responses 
-    |> Array.filter(fun x -> x.Metadata.ResponseType = "reshare")
-    |> fun x -> buildResponseFeedRssPage x "reshare"
+    // Build responses (favorite,repost,reply)
+    buildResponseFeedRssPage responses "responses"
    
     // Build roll pages
     buildBlogrollPage blogrollLinks
