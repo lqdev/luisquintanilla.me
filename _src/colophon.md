@@ -16,7 +16,7 @@ I built the generator for this website myself. It's a .NET 6 console application
 
 The main tool for developing the static site generator as well as to author posts is [Visual Studio Code](https://code.visualstudio.com/). It gives me the flexibility of a lightweight text editor for authoring with rich features like built-in [markdown preview](https://code.visualstudio.com/Docs/languages/markdown). At the same time, I can use the debugger and the [Ionide extension](https://ionide.io/Editors/Code/overview.html) for writing and debugging F# code.
 
-In cases when I want to quickly make updates, mainly to articles, I use [github.dev](https://github.com/github/dev). I get the same Visual Studio Code editing environment in the browser. Therefore I can author and update content from anywhere.
+In cases when I want to quickly make updates, mainly to articles, I use [github.dev](https://github.com/github/dev). I get the same Visual Studio Code editing environment in the browser. Therefore I can [author and update content from anywhere](/feed/surface-duo-blogging-github-dev/).
 
 ## Publishing
 
