@@ -488,7 +488,7 @@ module Builder
         |> Array.map(fun post -> 
             let postView = responsePostView post
 
-            let postType = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(post.Metadata.PostType)
+            let postType = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(post.Metadata.ResponseType)
 
             post.FileName,generate postView "defaultindex" $"{postType}: {post.Metadata.Title}")
         |> Array.map(fun (fileName,html) ->
