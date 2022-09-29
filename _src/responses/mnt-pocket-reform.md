@@ -6,4 +6,4 @@ dt_published: "2022-09-28 21:38"
 dt_updated: "09/28/2022 21:38 -05:00"
 ---
 
-![Take My Money GIF](https://tenor.com/o4Zy.gif)
+![Take My Money GIF](https://c.tenor.com/R0d3sZ4fq6EAAAAC/money-dollars.gif)
