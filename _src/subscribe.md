@@ -19,7 +19,7 @@ Follow on NewsBlur
 
 ## Main Feed
 
-Microblog-link short posts containing different types of content such as notes, photos, and videos.
+Microblog-like short posts containing different types of content such as notes, photos, and videos.
 
 Feed URL: [https://www.luisquintanilla.me/feed/index.xml](/feed/index.xml)
 
@@ -34,7 +34,7 @@ Follow on NewsBlur
 
 ## Response Feed
 
-Microblog-link short posts containing replies, reshares (repost), and favorites (likes).
+Microblog-like short posts containing replies, reshares (repost), and favorites (likes).
 
 Feed URL: [https://www.luisquintanilla.me/feed/responses.xml](/feed/responses.xml)
 
