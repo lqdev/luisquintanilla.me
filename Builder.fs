@@ -1,6 +1,7 @@
 module Builder
 
     open System
+    open System.Globalization
     open System.IO
     open System.Text.Json
     open Domain
@@ -486,7 +487,10 @@ module Builder
         parsedPosts
         |> Array.map(fun post -> 
             let postView = responsePostView post
-            post.FileName,generate postView "defaultindex" post.Metadata.Title)
+
+            let postType = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(post.Metadata.PostType)
+
+            post.FileName,generate postView "defaultindex" $"{postType}: {post.Metadata.Title}")
         |> Array.map(fun (fileName,html) ->
             let saveDir = Path.Join(rootSaveDir,fileName)
             Directory.CreateDirectory(saveDir) |> ignore

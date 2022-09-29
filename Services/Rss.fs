@@ -89,7 +89,7 @@ module RssService
     let generateReponseFeedRss (posts:Response array) =
         let latestPost = posts |> Array.sortByDescending(fun post -> DateTime.Parse(post.Metadata.DatePublished)) |> Array.head 
         let entries = posts |> Array.map(reponseFeedEntryXml)
-        let channel = feedChannelXml "Luis Quintanilla Feed" "Response Feed" latestPost.Metadata.DatePublished
+        let channel = feedChannelXml "Luis Quintanilla Response Feed" "Response Feed" latestPost.Metadata.DatePublished
         
         channel.Descendants(XName.Get "channel").First().Add(entries)
         channel         
