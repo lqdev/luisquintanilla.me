@@ -5,6 +5,7 @@ module RssService
     open System.Linq
     open System.Xml.Linq
     open Domain
+    open MarkdownService
 
     let title = "Luis Quintanilla Blog"
     let link = "https://www.luisquintanilla.me"
@@ -43,9 +44,12 @@ module RssService
         let url = $"https://www.luisquintanilla.me/feed/{entry.FileName}"
         let urlWithUtm = $"{url}?utm_medium=feed"
         
+        let content = entry.Content |> convertMdToHtml
+        let cdata = $"<![CDATA[{content}]]>"
+
         XElement(XName.Get "item",
             XElement(XName.Get "title", entry.Metadata.Title),
-            XElement(XName.Get "description", $"See the post at <a href=\"{urlWithUtm}\">{url}</a>"),            
+            XElement(XName.Get "description", $"See the post at <a href=\"{urlWithUtm}\">{url}</a>\n\n{cdata}"),            
             XElement(XName.Get "link", urlWithUtm),
             XElement(XName.Get "guid", url),
             XElement(XName.Get "pubDate", entry.Metadata.DatePublished))
