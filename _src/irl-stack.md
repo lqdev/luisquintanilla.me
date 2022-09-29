@@ -85,7 +85,9 @@ Devices, apps, and services I use day-to-day.
 
 ### Feed Reader & News
 
-- [Newsblur](https://newsblur.com/) - If it has an RSS feed, it's here. Blogs, news sites, YouTube channels, podcasts, etc. I use NewsBlur as the one place to manage my RSS feeds. I also have these RSS feeds in apps like AntennaPod & MusicBee for podcasts but NewsBlur is the source of truth in case I decide to switch podcast apps in the future. Also, NewsBlur provides you with an e-mail address so you can subscribe to e-mail newsletters.
+
+- [NewsBlur](https://newsblur.com/) - If it has an RSS feed, it's here. Blogs, news sites, YouTube channels, podcasts, etc. I use NewsBlur as the one place to manage my RSS feeds. I also have these RSS feeds in apps like AntennaPod & MusicBee for podcasts but NewsBlur is the source of truth in case I decide to switch podcast apps in the future. Also, NewsBlur provides you with an e-mail address so you can subscribe to e-mail newsletters.
+- [Elfeed](https://github.com/skeeto/elfeed) - Emacs feed reader. I use elfeed to read a slimmed down version of all the feeds I follow on NewsBlur. The feeds I follow on here are mainly the ones listed in my [blogroll](/feed/blogroll) and [podroll](/feed/podroll). 
 
 ### Maps & Navigation
 
