@@ -64,9 +64,9 @@ Follow on NewsBlur
 
 ## Mastodon
 
-Feed URL: [http://toot.lqdev.tech/@lqdev.rss](http://toot.lqdev.tech/@lqdev.rss)
-
 RSS Feed for Mastodon posts.
+
+Feed URL: [http://toot.lqdev.tech/@lqdev.rss](http://toot.lqdev.tech/@lqdev.rss)
 
 <a href="https://feedly.com/i/subscription/feed%2Fhttp%3A%2F%2Ftoot.lqdev.tech%2F%40lqdev.rss"><button type="button" class="btn" style="background-color:green;margin:5px;">
 <span class="bi bi-rss"></span>
