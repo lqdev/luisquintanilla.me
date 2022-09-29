@@ -47,6 +47,36 @@ Follow on Feedly
 Follow on NewsBlur
 </button></a>
 
+## Twitter
+
+RSS feed for Twitter posts. Served by [Nitter](https://nitter.net/about).
+
+Feed URL: [https://nitter.net/ljquintanilla/rss](https://nitter.net/ljquintanilla/rss)
+
+<a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fnitter.net%2Fljquintanilla%2Frss"><button type="button" class="btn" style="background-color:green;margin:5px;">
+<span class="bi bi-rss"></span>
+Follow on Feedly
+</button></a>
+<a href="http://www.newsblur.com/?url=https%3A%2F%2Fnitter.net%2Fljquintanilla%2Frss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
+<span class="bi bi-rss"></span>
+Follow on NewsBlur
+</button></a>
+
+## Mastodon
+
+http://toot.lqdev.tech/@lqdev.rss
+
+RSS Feed for Mastodon posts.
+
+<a href="https://feedly.com/i/subscription/feed%2Fhttp%3A%2F%2Ftoot.lqdev.tech%2F%40lqdev.rss"><button type="button" class="btn" style="background-color:green;margin:5px;">
+<span class="bi bi-rss"></span>
+Follow on Feedly
+</button></a>
+<a href="http://www.newsblur.com/?url=http%3A%2F%2Ftoot.lqdev.tech%2F%40lqdev.rss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
+<span class="bi bi-rss"></span>
+Follow on NewsBlur
+</button></a>
+
 ## YouTube Channel
 
 Video posts on YouTube
