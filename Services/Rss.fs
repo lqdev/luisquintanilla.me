@@ -32,9 +32,15 @@ module RssService
         let url = $"https://www.luisquintanilla.me/feed/{entry.FileName}"
         let urlWithUtm = $"{url}?utm_medium=feed"
         
+        let content = entry.Content |> convertMdToHtml
+        let cdata = $"<![CDATA[{content}]]>"
+
+        let description = $"See the post at <a href=\"{urlWithUtm}\">{url}</a>\n\n{cdata}"
+
+
         XElement(XName.Get "item",
             XElement(XName.Get "title", entry.Metadata.Title),
-            XElement(XName.Get "description", $"See the post at <a href=\"{urlWithUtm}\">{url}</a>"),            
+            XElement(XName.Get "description", description),            
             XElement(XName.Get "link", urlWithUtm),
             XElement(XName.Get "guid", url),
             XElement(XName.Get "pubDate", entry.Metadata.Date))
@@ -47,9 +53,11 @@ module RssService
         let content = entry.Content |> convertMdToHtml
         let cdata = $"<![CDATA[{content}]]>"
 
+        let description = $"See the post at <a href=\"{urlWithUtm}\">{url}</a>\n\n{cdata}"
+
         XElement(XName.Get "item",
             XElement(XName.Get "title", entry.Metadata.Title),
-            XElement(XName.Get "description", $"See the post at <a href=\"{urlWithUtm}\">{url}</a>\n\n{cdata}"),            
+            XElement(XName.Get "description", description),            
             XElement(XName.Get "link", urlWithUtm),
             XElement(XName.Get "guid", url),
             XElement(XName.Get "pubDate", entry.Metadata.DatePublished))
