@@ -10,7 +10,7 @@ source: https://openlibrary.org/works/OL26417584W/Building_a_Second_Brain
 
 ## Highlights
 
-> ...the value of physical capital in the US-land,machinery, and buildings for example-is about $10 trillion, but that value is dwarfed by the total value of *human* capital, whic is estimated to be five to ten times larger. Human capital includes "the knowledge and the knowhow embodied in humans-their education, their experience, their wisdom, their skills, their relationships, their common sense, their intuition (p. 15/202)
+> ...the value of physical capital in the US-land,machinery, and buildings for example-is about $10 trillion, but that value is dwarfed by the total value of *human* capital, which is estimated to be five to ten times larger. Human capital includes "the knowledge and the knowhow embodied in humans-their education, their experience, their wisdom, their skills, their relationships, their common sense, their intuition (p. 15/202)
 
 > Instantaneous access to the world's knowledge through the Internet was supposed to educate and inform us, but instead it has created a society-wide poverty of attention (p. 18/202)
 
