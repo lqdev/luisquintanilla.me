@@ -43,21 +43,21 @@ source: https://openlibrary.org/works/OL26417584W/Building_a_Second_Brain
 - (p. 29/202) Memex (Scholar workstation) - A device in which an individual stores all his books, records, and communications, and which is mechanized so that it may be consulted with exceeding speed and flexibility. It is an enlarged intimate supplement to his memory (Vannevar Bush) 
 
 - (p. 30/202) Four essential capabilities of Second Brain:
- - Making our ideas concrete.
- - Revealing new associations between ideas.
- - Incubating ideas over time
- - Sharpgning unique perspectives 
+   - Making our ideas concrete.
+   - Revealing new associations between ideas.
+   - Incubating ideas over time
+   - Sharpgning unique perspectives 
 
 - (p. 36/202) Three stages of progress:
-  - Remembering
-  - Connecting
-  - Creating
+    - Remembering
+    - Connecting
+    - Creating
 
 - (p. 37/202) CODE Method:
-  - Capture: Keep what resonates
-  - Organize: Save for actionability
-  - Distill: Find the essence
-  - Express: Show your work
+    - Capture: Keep what resonates
+    - Organize: Save for actionability
+    - Distill: Find the essence
+    - Express: Show your work
 
 ## Bookmarks
 
