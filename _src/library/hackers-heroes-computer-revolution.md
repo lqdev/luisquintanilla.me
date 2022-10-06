@@ -8,7 +8,7 @@ rating:
 source: https://openlibrary.org/works/OL21177324W/Hackers
 ---
 
-## Highlights
+## Quotes
 
 N/A
 

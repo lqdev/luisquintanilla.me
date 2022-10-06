@@ -8,7 +8,7 @@ rating: 4
 source: "https://openlibrary.org/works/OL7477297W/Stand_by_for_Mars%21?edition=standard_ebooks%3Acarey-rockwell/stand-by-for-mars"
 ---
 
-## Highlights
+## Quotes
 
 N/A
 

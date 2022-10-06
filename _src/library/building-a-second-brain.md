@@ -8,7 +8,7 @@ rating:
 source: https://openlibrary.org/works/OL26417584W/Building_a_Second_Brain
 ---
 
-## Highlights
+## Quotes
 
 > ...the value of physical capital in the US-land,machinery, and buildings for example-is about $10 trillion, but that value is dwarfed by the total value of *human* capital, which is estimated to be five to ten times larger. Human capital includes "the knowledge and the knowhow embodied in humans-their education, their experience, their wisdom, their skills, their relationships, their common sense, their intuition (p. 15/202)
 
@@ -36,6 +36,24 @@ source: https://openlibrary.org/works/OL26417584W/Building_a_Second_Brain
 
 > ...personal knowledge management exists to support taking action-anything else is a distraction. (p. 41/202)
 
+> A Second Brain gives us a way to filter the information stream and curate only the best iedas we encouter in a private, trusted place. Think of it as plantnig your own "knowledge garden" where you are free to cultivate your ideas and develop your own thinking away from the deafening noise of other people's opinions. (p. 45/202)
+
+> Feynman revealed his strategy...: *You have to keep a dozen of your favorite problems constantly present in your mind, although by and large they will lay in a dormant state. Every time you hear or read a new trick or a new result, test it against each of your twelve problems to see whether it helps. Every once in a while there will be a hit, and people will say, "How did he do it? He must be a genius!"* (p. 51/202)
+
+> Thinking doesn't just produce writing; writing also enriches thinking (p. 62/202)
+
+> Capture isn't about doing more. It's about taking notes on the experiences you're already having (p. 63/202)
+
+> Your Second Brain isn't just a tool-it's an environment. It is a garden of knowledge full of familiar, winding pathways, but also secret and secluded corners. Every pathway is a jumping-off point to new ideas and perspectives. Gardens are natural, but they won't happen by accident. They require a caretaker to seed the plants, trim the weeds, and shape the paths winding through them. (p. 68/202)
+
+> Knowledge is best applied through execution, which means whatever doesn't help you make progress on your projects is probably detracting from them (p. 78/202)
+
+> Instead of organizing ideas according to *where the come from*...[organize] them according to *where they are going*-specifically, the outcomes that they can help you realize. (p. 79/202)
+
+> "move quickly and touch lightly"...look for the path of least resistance and make progress in short steps. (p. 83/202)
+
+> "What is the smallest, easiest step I can take that moves me in the right direction?" (p. 83/202)
+
 ## Notes
 
 - (p. 17/202) Quantified Self community - A network of local meetup groups in which people share their stories about how they track their helth, productivity, mood, or behavior to learn more about themselves. 
@@ -59,8 +77,76 @@ source: https://openlibrary.org/works/OL26417584W/Building_a_Second_Brain
   - Distill: Find the essence
   - Express: Show your work
 
+- (p. 49/202) Knowledge capture is about mining the richness of the reading you're already doing and the life you're already living. 
+
+- (p. 49/202) A knowledge aset is anything that can be used in the future to solve a problem, save time, illuminate a concept, or learn from past experience. Examples include:
+  - Highlights: Passages from books / articles your read.
+  - Quotes: Memorable passages from podcasts / audiobooks you listen to.
+  - Bookmarks / Favorites: Links to content you find on the web or social media.
+  - Voice Memos: Clips of recorded "notes to self"
+  - Meeting Notes: Notes taken during meetings / calls.
+  - Images: Photos or images you find interesting / inspiring.
+  - Takeaways: Lessons from courses, conferences, presentations you attended.
+
+- (p. 55/202) Curator's Perspective - We are the judges, editors, and interpreters of the information we choose to let into our lives. This means taking charge of your own information stream. The more economical you can be with the material you capture in the first place, the less time and effort your future self spends organizing, distilling, and experessing.
+
+- (p. 55/202) Capture criteria
+  - Does it inspire me?
+  - Is it useful?
+  - Is it personal?
+  - Is it surprising? By saving ideas that may contradict each other and don't necessarily support what we already believe, we can train ourselves to take in information from different sources instead of immediately jumping to conclusions. By playing with ideas-bending, stretching, and remixing them-we become less attached to the way they were originally presented and we can borrow certain aspects or elements to use in our own work. 
+
+- (p. 57/202) Metadata capture. It's a good idea to capture key information about the source of a note, such as the original web page address, the title of the piece, the author or publisher, and the date it was published. Also, it's helpful to capture chapter titles, headings, and bullet-point lists, since they add structure to your notes and represent distillation already performed by the author on your behalf.  
+
+- (p. 62/202) Generation Effect - According to research, when people actively generate a series of words, such as by speaking or writing, more parts of their brain are activated when compared to simply reading the same words. 
+
+- (p. 68/202) Cathedral Effect - According to studies, the environment we find ourselves in shapes our thinking. In a space with high ceilings (like a cathedral), we tend to think in more abstract ways. When we're in a room with low ceiling (like a small workshop), we're more likely to think concretely. 
+
+- (p. 70/202) Projects, Areas, Resources, Archives (PARA)
+  - Organizes information based on how actionable it is, not what kind of information it is.
+
+- (p. 77/202) ...separate capture and organize into two distinct steps. "Keeping what resonates" in the moment is a separate decision from deciding to save something for the long term. Most notes app have an "inbox" or "daily notes" section where new notes you've captured are saved until you can revisit them and decide whether they belong. 
+
+- (p. 77/202) PARA's four main categories are ordered by actionability to make the decision of where to put your notes as easy as possible:
+  - Projects are most actionable because you're working on them right now and with a concrete deadline in mind.
+    - Complete webpage design
+    - Create slide deck for conference
+    - Plan vacation
+    - Find new volunteer opportunity
+    - Publish blog post
+    - Complete online course
+  - Areas have a longer time horizon and are less immediately actionable.
+    - Activities or places you are responsible for: Home, Travel
+    - People you are responsible for or accountable to: Friends, Spouse
+    - Standards of performance you are responsible for: Health, Finances
+    - Departments of functions you are responsible for: Marketing, Product Development
+    - People or teams you are responsinble for or accountable to: Direct Reports, Manager
+    - Standards of performance you are responsible for: Professional development, Relationshipts and networking
+  - Resources may become actionable depending on the situation
+    - Topics of interest: Beer brewing, architecture
+    - Research subjects: Notetaking, Project management, Nutrition
+    - Useful reference information: Vacation itineraries, Stock photos, product testimonials
+    - Hobbies or passions: Coffee, Classic movies
+  - Archives remain inactive unless they are needed.
+    - Projects that are completed or cancelled
+    - Areas of responsibility you're no longer commited to maintaining
+    - Resources that are no longer relevant 
+
+- (p. 78/202) PARA Checklist:
+  - In which project will this be most useful?
+  - If none: In which area will this be most useful?
+  - If none: Which resource does this belong to?
+  - If none: Place in archives.
+
 ## Bookmarks
 
 - Page 22 - Details on what a note is. 
 - Page 30 - Four essential capabilties of a Second Brain.
 - Page 37 - The CODE Method
+- Page 55 - Capture criteria
+- Page 72 - How PARA works
+
+## Actions
+
+- [ ] Write down some of your own favorite problems (p. 54/202)
+- [ ] Check out *The Creative Habit* by Twyla Harp (p. 65/202)
