@@ -1,6 +1,6 @@
-# About Luis Quintanilla
+# Hi!
 
-Luis Quintanilla is a technologist, developer, and content creator based out of the NYC area. Currently at Microsoft working on Machine Learning for .NET. 
+I'm Luis Quintanilla. I'm a technologist, developer, and content creator based out of the NYC area. Currently at Microsoft working on Machine Learning for .NET. 
 
 I'm passionate about:
 
@@ -13,7 +13,6 @@ I'm passionate about:
 
 <a href="/contact"><button type="button" class="btn btn-dark">Get in touch!</button></a>
 <a href="/subscribe"><button type="button" class="btn btn-dark">Subscribe</button></a>
-
 
 For details on how this site is built, check out the [colophon](/colophon)
 
