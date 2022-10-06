@@ -177,7 +177,7 @@
 	},
 	"Star metadata": {
 		"scope": "markdown",
-		"prefix": "favorite",
+		"prefix": "star",
 		"body": [
 			"---",
 			"title: \"\"",
