@@ -76,5 +76,11 @@
        "Type": "rss",
        "HtmlUrl": "https://marco.org/",
        "XmlUrl": "https://marco.org/rss/"
+    },
+    {
+       "Title": "Two Bit History",
+       "Type": "rss",
+       "HtmlUrl": "https://twobithistory.org/",
+       "XmlUrl": "https://twobithistory.org/feed.xml"
     }
 ]
