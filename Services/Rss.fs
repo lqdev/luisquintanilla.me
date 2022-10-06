@@ -17,8 +17,10 @@ module RssService
         
         let url = $"https://www.luisquintanilla.me/posts/{entry.FileName}"
         let urlWithUtm = $"{url}?utm_medium=feed"
+
+        let content = entry.Content |> convertMdToHtml    
         
-        let description = $"{entry.Metadata.Description}. See the full post at <a href=\"{urlWithUtm}\">{url}</a>"
+        let description = $"<![CDATA[<p>See the original post at <a href=\"{urlWithUtm}\">{url}</a></p><br>{content}]]>"
 
         XElement(XName.Get "item",
             XElement(XName.Get "title", entry.Metadata.Title),
