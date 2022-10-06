@@ -41,7 +41,7 @@ module Layouts
                             _class "dropdown-menu"
                             attr "aria-labelledby" "aboutDropdown"
                             ] [
-                                a [_class "dropdown-item"; _href "/about"] [Text "About Me"]
+                                a [_class "dropdown-item"; _href "/about"] [Text "Profile"]
                                 a [_class "dropdown-item"; _href "/irl-stack"] [Text "IRL Stack"]
                                 a [_class "dropdown-item"; _href "/colophon"] [Text "Colophon"]
                         ]
