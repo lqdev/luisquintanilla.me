@@ -250,7 +250,7 @@ let cardHeader (date:string) =
         DateTime.Parse(date)
 
     div [_class "card-header u-author h-card"] [
-        img [_src "/avatar.png"; _height "32"; _width "32"; _class "d-inline-block align-top rounded-circle u-photo"; _style "margin-right:5px"; attr "loading" "lazy"]
+        img [_src "/art-profile.png"; _height "32"; _width "32"; _class "d-inline-block align-top rounded-circle u-photo"; _style "margin-right:5px"; attr "loading" "lazy"]
         a [ _href "http://lqdev.me/about"; _class "p-name"] [Text "lqdev"]
         span [_class "bi bi-shield-fill-check"; _style "margin-right:5px;margin-left:5px;color:green"] []
         span [_class "float-right"] [
