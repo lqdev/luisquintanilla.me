@@ -1,10 +1,10 @@
 ---
 title: "On Writing"
-author: "Stephen King"
+author: Stephen King
 isbn: "9780606231862"
 cover: "https://covers.openlibrary.org/b/id/11942411-M.jpg"
-status: "InProgress"
-rating: ""
+status: InProgress
+rating: 
 source: "https://openlibrary.org/works/OL25000790W/On_Writing"
 ---
 
