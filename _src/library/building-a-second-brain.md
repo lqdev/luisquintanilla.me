@@ -54,6 +54,14 @@ source: https://openlibrary.org/works/OL26417584W/Building_a_Second_Brain
 
 > "What is the smallest, easiest step I can take that moves me in the right direction?" (p. 83/202)
 
+> If there is a secret to creativity, it is that it *emerges* from everyday efforts to gather and organize our influences. (p. 107/202)
+
+> ...Express, is about refusing to wait until you have everything perfectly ready before you share what you know. It is about expressing your ideas earlier, more frequently, and in smaller chunks to test what works and gather feedback from others. That feedback in turn gets drawn in to your Second Brain, where it becomes the starting point for the next iteration of your work. (p. 108/202) 
+
+> Instead of thinking of your job in terms of *tasks*, which always require you to be there, personally, doing everything yourself, you will start to think in terms of *assets* and *building blocks* that you can assemble. (p. 122/202)
+
+> To truly "know" something, it's not enough to read about it in a book. Ideas are merely thoughts until you put them into action. Thoughts are fleeting, quickly fading as time passes. To tryly make an idea stick, you have to engage with it. (p. 123/202)
+
 ## Notes
 
 - (p. 17/202) Quantified Self community - A network of local meetup groups in which people share their stories about how they track their helth, productivity, mood, or behavior to learn more about themselves. 
@@ -138,6 +146,32 @@ source: https://openlibrary.org/works/OL26417584W/Building_a_Second_Brain
   - If none: Which resource does this belong to?
   - If none: Place in archives.
 
+- (p. 109/202) Intermediate Packets - Concrete individual building blocks that make up your work:
+  - Set of notes from a team meeting
+  - List of relevant research findings
+  - Brainstorm with collaborators
+  - Slide deck analyzing the market
+  - List of action items from a conference call.
+
+- (p. 110/202) Kinds of Intermediate Packets:
+  - Distilled Notes - Books / articles you've read and distilled to their essence.
+  - Outtakes - Material / ideas that didn't make it into a past project but could be used in future ones. 
+  - Work-in-process - Documents, graphics, agendas, plans you produced during a past project
+  - Final deliverables - Concrete pieces of work you've delivered as part of past projects. 
+  - Documents created by others - knowledge assets created by people on your team, contractors or consultants, or even clients or customers, that you can reference and incorporate into your work. 
+
+- (p. 111/202) Benefits of Intermediate Packets:
+  - Become interruption proof because you're focusing only on one small packet at a time.
+  - Make progress in any time-span. No need for long uninterrupted time. 
+  - Increase quality of your work by collecting feedback more often. 
+  - Eventually you'll have so many intermediate packets at your disposal you can execute entire projects by just assembling previously created intermediate packets.
+
+- (p. 104/202) Four retrieval methods:
+  - Search: Most useful when you more or less know what you're looking for. 
+  - Browsing
+  - Tags: Labels that make it easier to see cross-disciplinaery themes and patterns beyond simple categorization.
+  - Serendipity
+
 ## Bookmarks
 
 - Page 22 - Details on what a note is. 
@@ -145,6 +179,8 @@ source: https://openlibrary.org/works/OL26417584W/Building_a_Second_Brain
 - Page 37 - The CODE Method
 - Page 55 - Capture criteria
 - Page 72 - How PARA works
+- Page 109 - Intermediate Packets
+- Page 114 - Retrieval methods
 
 ## Actions
 
