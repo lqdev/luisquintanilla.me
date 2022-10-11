@@ -311,12 +311,23 @@ let reshareBodyView (post:Response) =
         ]
     ]
 
-// Like / Favorite
+// Star / Like / Favorite
 let starBodyView (post:Response) = 
     div [ _class "card-body" ] [
         p [] [
             span [_class "bi bi-star-fill"; _style "margin-right:5px;margin-left:5px;color:#ff7518;"] []
             a [_class "u-like-of"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
+        ]
+        div [_class "e-content"] [
+            rawText post.Content
+        ]
+    ]
+
+let bookmarkBodyView (post:Response) = 
+    div [ _class "card-body" ] [
+        p [] [
+            span [_class "bi bi-journal-bookmark-fill"; _style "margin-right:5px;margin-left:5px;color:#4a60b6;"] []
+            a [_class "u-bookmark-of"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
         ]
         div [_class "e-content"] [
             rawText post.Content
@@ -333,6 +344,7 @@ let responsePostView (post: Response) =
         | "reply" -> replyBodyView post
         | "reshare" -> reshareBodyView post
         | "star" -> starBodyView post
+        | "bookmark" -> bookmarkBodyView post
         | _ -> div [_class "card-body"] [p [] [Text "No content"]]
         
     div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [

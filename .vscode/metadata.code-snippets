@@ -189,5 +189,20 @@
 			"",
 		],
 		"description": "Favorite post"
-	}							
+	},
+	"Bookmark metadata": {
+		"scope": "markdown",
+		"prefix": "bookmark",
+		"body": [
+			"---",
+			"title: \"\"",
+			"targeturl: ",
+			"response_type: bookmark",
+			"dt_published: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE\"",
+			"dt_updated: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
+			"---",
+			"",
+		],
+		"description": "Favorite post"
+	}	
 }
