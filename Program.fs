@@ -59,7 +59,7 @@ let main argv =
     buildBlogRssFeed posts
     buildFeedRssPage feedPosts "index"
     
-    // Build responses (favorite,repost,reply)
+    // Build responses (star,repost,reply,bookmarks)
     buildResponseFeedRssPage responses "responses"
    
     // Build roll pages
