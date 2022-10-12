@@ -279,7 +279,7 @@ module Builder
             |> Array.map(fun post -> 
                 let postTitle = post.Metadata.Title
                 let postContent = post.Content |> convertMdToHtml 
-                let postView = contentViewWithTitle postTitle postContent
+                let postView = blogPostView postTitle postContent
                 post.FileName,generate postView "defaultindex" $"{post.Metadata.Title} - Luis Quintanilla")
         
         let rootSaveDir = Path.Join(outputDir,"posts")

@@ -59,6 +59,16 @@ let contentViewWithTitle (title:string) (content:string) =
         rawText content
     ]    
 
+let blogPostView (title:string) (content:string) = 
+    div [ _class "mr-auto" ] [
+        h1 [] [Text title]
+        rawText content
+        div [_class "lead"] [
+            str "Have a comment? "
+            a [_href "/contact"] [ Text "Send me a messsage"]
+        ]
+    ]    
+
 let rollLinkView (links:Outline array) = 
     ul [] [
         for link in links do
