@@ -6,4 +6,7 @@ dt_published: "2022-10-11 20:38"
 dt_updated: "2022-10-11 20:38 -05:00"
 ---
 
-Results [link](https://nlpsurvey.net/).
+Relevant links:
+
+- [Results](https://nlpsurvey.net/).
+- [Report](https://nlpsurvey.net/nlp-metasurvey-results.pdf)
