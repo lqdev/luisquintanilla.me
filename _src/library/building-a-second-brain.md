@@ -62,6 +62,10 @@ source: https://openlibrary.org/works/OL26417584W/Building_a_Second_Brain
 
 > To truly "know" something, it's not enough to read about it in a book. Ideas are merely thoughts until you put them into action. Thoughts are fleeting, quickly fading as time passes. To tryly make an idea stick, you have to engage with it. (p. 123/202)
 
+> Postponing our goals and desires to "later" often ends up depriving us of the very experiences we need to grow. (p. 136/202)
+
+> Whatever you are building, there is a smaller, simpler version of it that would deliver much of the value in a fraction of the time. (p. 137/202)
+
 ## Notes
 
 - (p. 17/202) Quantified Self community - A network of local meetup groups in which people share their stories about how they track their helth, productivity, mood, or behavior to learn more about themselves. 
@@ -172,6 +176,32 @@ source: https://openlibrary.org/works/OL26417584W/Building_a_Second_Brain
   - Tags: Labels that make it easier to see cross-disciplinaery themes and patterns beyond simple categorization.
   - Serendipity
 
+- (p. 130/202) Divergence & Convergence:
+  - Divergence - Gathering seeds of imagination and storing them in a secure place
+    - Capture
+    - Organize
+  - Convergence - Shut the door to new ideas and begin constructing something new out of the knowledge building blocks assembled
+    - Distill
+    - Express
+
+- (p.131/202) Strategies for overcoming convergence pitfalls:
+  - Give yourself stepping stones (Archipelago of ideas) - Gather a group of ideas, sources, or points that form the backbone of your essay, presentation, or deliverable. 
+    - Reinvention of the old idea of outlining
+    - Laying out the points you want to include up front
+    - Advantages of digital outlines:
+      - More malleable and flexible
+      - Can include links to more detailed content
+      - Can be Interactive and include multimedia
+      - Searchable
+      - Accessed and edited from anywhere 
+  - Use yesterday's momentum today (Hemmingway Bridge) - End work sessions by establishing starting points for next session.
+    - Write down ideas for next steps
+    - Write down current status
+    - Write down any details you have in mind that are likely forgotten once you step away
+    - Write out your intention for the next work session 
+    - Send your draft for feedback.
+  - Ship something small and concrete (Dial down the scope) - 
+
 ## Bookmarks
 
 - Page 22 - Details on what a note is. 
@@ -181,6 +211,7 @@ source: https://openlibrary.org/works/OL26417584W/Building_a_Second_Brain
 - Page 72 - How PARA works
 - Page 109 - Intermediate Packets
 - Page 114 - Retrieval methods
+- Page 131 - Creative project strategies
 
 ## Actions
 

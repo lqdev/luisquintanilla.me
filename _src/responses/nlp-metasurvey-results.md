@@ -8,5 +8,5 @@ dt_updated: "2022-10-11 20:38 -05:00"
 
 Relevant links:
 
-- [Results](https://nlpsurvey.net/).
+- [Results](https://nlpsurvey.net/)
 - [Report](https://nlpsurvey.net/nlp-metasurvey-results.pdf)
