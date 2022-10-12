@@ -1,6 +1,5 @@
 ---
-title: "ImpNet: Imperceptible and blackbox-undetectable backdoors
-in compiled neural networks"
+title: "ImpNet: Imperceptible and blackbox-undetectable backdoors in compiled neural networks"
 targeturl: https://arxiv.org/pdf/2210.00108.pdf
 response_type: bookmark
 dt_published: "2022-10-11 20:22"
