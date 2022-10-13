@@ -1,33 +1,9 @@
 [
     {
-        "Url": "https://www.fast.ai/2022/07/21/dl-coders-22/",
-        "Title": "Practical Deep Learning for Coders 2022", 
-        "Tags": ["machinelearning", "python", "course"],
-        "DateAdded": "07/26/2022 09:11 PM"
-    },
-    {
-       "Url": "https://klemet.github.io/Workshop-Organization-EN/index.html",
-       "Title": "Open Source and Organization workshop",
-       "Tags": ["opensource","knowledgemanagement","productivity","workshop"],
-       "DateAdded": "07/27/2022 22:01"
-    },
-    {
        "Url": "https://betterhumans.pub/how-to-set-up-your-iphone-for-productivity-focus-and-your-own-longevity-bb27a68cc3d8",
        "Title": "The Optimal iPhone Settings and Best Apps for Productivity, Focus, and Health",
        "Tags": ["lifestyle", "technology","productivity","apple", "ios", "smartphones", "guide", "article"],
        "DateAdded": "08/01/2022 17:50"
-    },
-    {
-       "Url": "https://masterwiki.how/",
-       "Title": "MasterWiki",
-       "Tags": ["learning","education"],
-       "DateAdded": "08/03/2022 18:48"
-    },
-    {
-       "Url": "https://knightcolumbia.org/events/reimagine-the-internet",
-       "Title": "Reimagine the internet",
-       "Tags": ["internet","conference","policy","socialmedia", "technology","education","university"],
-       "DateAdded": "08/03/2022 21:21"
     },
     {
        "Url": "https://yesterweb.org/",
@@ -52,18 +28,6 @@
        "Title": "Blot.im - Blogging Platform",
        "Tags": ["blogging","web","technology","internet","website"],
        "DateAdded": "08/30/2022 22:20"
-    },
-    {
-       "Url": "https://blog.jim-nielsen.com/2022/other-peoples-websites/",
-       "Title": "The OG Social Network: Other People's Websites",
-       "Tags": ["blogging", "web", "technology", "internet", "retro", "socialnetwork", "article"],
-       "DateAdded": "08/31/2022 16:34"
-    },
-    {
-       "Url": "https://www.jayeless.net/wiki/small-web.html",
-       "Title":"Small Web",
-       "Tags": ["blogging", "article"],
-       "DateAdded": "09/02/2022 00:03"
     },
     {
        "Url": "https://buckrogers.neocities.org/",
@@ -94,12 +58,6 @@
        "Title": "A Deep Dive into Transformers with TensorFlow and Keras: Part 1",
        "Tags": ["deeplearning","artififialintelligence","nlp","transformers","machinelearning","tensorflow","keras"],
        "DateAdded": "09/05/2022 12:05"
-    },
-    {
-       "Url": "https://openlibrary.org/",
-       "Title": "Open Library",
-       "Tags": ["archive","creativecommons","books","website","reading"],
-       "DateAdded": "09/05/2022 18:29"
     },
     {
        "Url": "https://www.opensourcealternative.to/",
@@ -150,22 +108,10 @@
        "DateAdded": "09/14/2022 09:29"
     },
     {
-       "Url": "https://www.zylstra.org/blog/2022/09/wordpressindieweb-as-the-os-of-the-open-social-web/",
-       "Title": "WordPress+IndieWeb as the OS of the Open Social Web",
-       "Tags": ["blogging","article","presentation","communication","community","socialmedia","internet","technology","opensource"],
-       "DateAdded": "09/16/2022 11:44"
-    },
-    {
        "Url": "https://ffprofile.com/",
        "Title": "Firefox Profile Maker",
        "Tags": ["firefox","mozilla","internet","desktop","web","technology","communication","tool"],
        "DateAdded": "09/20/2022 20:27"
-    },
-    {
-       "Url": "https://www.eff.org/deeplinks/2022/09/how-ditch-facebook-without-losing-your-friends-or-family-customers-or-communities",
-       "Title": "How to Ditch Facebook Without Losing Your Friends",
-       "Tags": ["privacy","article","facebook","socialmedia","internet","technology","society","socialnetwork"],
-       "DateAdded": "09/20/2022 20:30"
     },
     {
        "Url": "http://paulgraham.com/users.html",
