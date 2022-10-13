@@ -54,18 +54,6 @@
        "DateAdded": "09/21/2022 12:39"
     },
     {
-       "Url": "https://weaviate.io/blog/2022/09/Distance-Metrics-in-Vector-Search.html",
-       "Title": "Distance Metrics in Vector Search",
-       "Tags": ["machinelearning","article","education","learning","deeplearning","math"],
-       "DateAdded": "09/21/2022 12:44"
-    },
-    {
-       "Url": "https://larahogan.me/blog/management-resource-library/",
-       "Title": "Resources for Navigating Complex Leadership Work",
-       "Tags": ["business","article","resource","management","business"],
-       "DateAdded": "09/21/2022 19:19"
-    },
-    {
        "Url": "https://web.dev/testing-web-design-color-contrast/",
        "Title": "Testing Web Design Color Contrast",
        "Tags": ["article","web","internet","technology","design","accessibility"],
@@ -75,12 +63,6 @@
        "Url": "https://mutant.tech/",
        "Title": "Mutant Standard Emojis",
        "Tags": ["web","emojis","icons","website","internet","technology","opensource"],
-       "DateAdded": "09/22/2022 20:33"
-    },
-    {
-       "Url": "https://dzuk.zone/",
-       "Title": "Dzuk - Icon Designer",
-       "Tags": ["web","emojis","icons","internet","technology","website"],
        "DateAdded": "09/22/2022 20:33"
     }
 ]
