@@ -1,11 +1,5 @@
 [
     {
-       "Url": "https://github.com/osmlab/awesome-openstreetmap",
-       "Title": "osmlab/awesome-openstreetmap | GitHub",
-       "Tags": ["opensource","maps","technology","internet","guide"],
-       "DateAdded": "08/12/2022 08:12"
-    },
-    {
        "Url": "https://www.free-css.com/",
        "Title": "Free CSS - layouts and templates",
        "Tags": ["internet","web","css","design","template","technology"],
@@ -16,12 +10,6 @@
        "Title": "Buck Rogers in the 25th Century A.D.",
        "Tags": ["fiction","space","books","website","retro","yesterweb"],
        "DateAdded": "09/04/2022 18:01"
-    },
-    {
-       "Url": "https://www.linuxjournal.com/content/every-user-neo",
-       "Title": "Every User a Neo",
-       "Tags": ["internet", "technology", "article", "future", "matrix", "movie"],
-       "DateAdded": "09/04/2022 18:12"
     },
     {
        "Url": "https://pine.blog/search",
@@ -36,24 +24,6 @@
        "DateAdded": "09/06/2022 18:51"
     },
     {
-       "Url": "https://github.com/google/haskell-trainings",
-       "Title": "Haskell Trainings",
-       "Tags": ["haskell","programminglanguages","repository","github","functionalprogramming"],
-       "DateAdded": "09/06/2022 20:16"
-    },
-    {
-       "Url": "https://aeturrell.github.io/coding-for-economists/intro.html",
-       "Title": "Coding for Economists",
-       "Tags": ["course","coding","python","technology"],
-       "DateAdded": "09/08/2022 19:22"
-    },
-    {
-       "Url": "https://ideaspace.substack.com/p/metablogging",
-       "Title": "Metablogging",
-       "Tags": ["article","technology","communication","business","writing","blogging","notetaking"],
-       "DateAdded": "09/09/2022 09:49"
-    },
-    {
        "Url": "https://www.openbuildinginstitute.org/",
        "Title": "Open Building Institute",
        "Tags": ["opensource","sustainability","building","construction","community"],
@@ -64,18 +34,6 @@
        "Title": "850+ Online Courses",
        "Tags": ["mooc","technology","course","learning"],
        "DateAdded": "09/14/2022 09:14"
-    },
-    {
-       "Url": "http://www.paulgraham.com/chameleon.html",
-       "Title": "Lisp is a chameleon",
-       "Tags": ["essay","lisp","functionalprogramming","programminglanguages","technology","article"],
-       "DateAdded": "09/14/2022 09:17"
-    },
-    {
-       "Url": "https://ryanholiday.net/the-notecard-system-the-key-for-remembering-organizing-and-using-everything-you-read/",
-       "Title": "The Notecard System",
-       "Tags": ["productivity","process","learning","books","systems","article"],
-       "DateAdded": "09/14/2022 09:29"
     },
     {
        "Url": "https://ffprofile.com/",
@@ -106,12 +64,6 @@
        "Title": "Resources for Navigating Complex Leadership Work",
        "Tags": ["business","article","resource","management","business"],
        "DateAdded": "09/21/2022 19:19"
-    },
-    {
-       "Url": "https://opensource.com/article/22/9/git-configuration-linux",
-       "Title": "5 Git Configurations I Make on Linux",
-       "Tags": ["article","git","versioncontrol","technology","linux"],
-       "DateAdded": "09/22/2022 19:44"
     },
     {
        "Url": "https://web.dev/testing-web-design-color-contrast/",
