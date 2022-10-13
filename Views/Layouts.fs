@@ -71,8 +71,6 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/feed/index.html"] [Text "Main"]
                                 a [_class "dropdown-item"; _href "/feed/responses.html"] [Text "Responses"]                                
                                 div [_class "dropdown-divider"] []
-                                a [_class "dropdown-item"; _href "/feed/linkblog"] [Text "Linkblog"]
-                                div [_class "dropdown-divider"] []
                                 a [_class "dropdown-item"; _href "/feed/blogroll"] [Text "Blogroll"]
                                 a [_class "dropdown-item"; _href "/feed/podroll"] [Text "Podroll"]
                         ]

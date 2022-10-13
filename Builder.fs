@@ -171,14 +171,6 @@ module Builder
         
         wikis        
 
-    let loadLinks () = 
-        let links =  
-            File.ReadAllText(Path.Join("Data","links.json"))
-            |> JsonSerializer.Deserialize<Link array>
-            |> Array.sortByDescending(fun x -> DateTime.Parse(x.DateAdded))
-    
-        links
-
     let loadBlogrollLinks () = 
         let links =  
             File.ReadAllText(Path.Join("Data","blogroll.json"))
@@ -365,13 +357,6 @@ module Builder
             let saveDir = Path.Join(rootSaveDir,$"{presentation.FileName}")
             Directory.CreateDirectory(saveDir) |> ignore
             File.WriteAllText(Path.Join(saveDir,"index.html"),presentationView))
-
-    let buildLinkblogPage (links: Link array) = 
-
-        let linkBlogPage = generate (linkView links) "defaultindex" "Linkblog | Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","linkblog")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"), linkBlogPage)
 
     let buildSnippetPage(snippets:Snippet array) = 
         let snippetsPage = generate (snippetsView snippets) "defaultindex" "Snippets | Luis Quintanilla"

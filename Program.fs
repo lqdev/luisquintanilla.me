@@ -29,7 +29,6 @@ let main argv =
     let posts = loadPosts() 
     let feedPosts = loadFeed ()
     let presentations = loadPresentations ()
-    let links = loadLinks ()
     let blogrollLinks = loadBlogrollLinks ()
     let podrollLinks = loadPodrollLinks ()
     let redirects = loadRedirects ()
@@ -70,9 +69,6 @@ let main argv =
 
     // Build event page
     buildEventPage ()
-
-    // Build linklog page
-    buildLinkblogPage links
 
     // Build presentation pages
     buildPresentationsPage presentations
