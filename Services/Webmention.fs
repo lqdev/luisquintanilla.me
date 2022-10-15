@@ -1,6 +1,7 @@
 module WebmentionService
 
     open System
+    open System.IO
     open System.Collections.Generic
     open System.Net.Http
     open Domain
@@ -94,9 +95,24 @@ module WebmentionService
     // 3. Check anchor tag
     let discoverWebmentionUrlAsync (url:string) = 
         async {
+            
+            let isPdf = 
+                Path.GetExtension(url).Contains("pdf")
+
             let! headerUrl = discoverUrlInHeaderAsync url
-            let! linkUrl = discoverUrlInLinkTagAsync url
-            let! anchorUrl = discoverUrlInAnchorTagAsync url
+
+            let! linkUrl =
+                match isPdf with 
+                | true -> None
+                | false -> discoverUrlInLinkTagAsync url         
+
+            let! anchorUrl =
+                match isPdf with 
+                | true -> None
+                | false -> discoverUrlInAnchorTagAsync url
+
+            // let! linkUrl = discoverUrlInLinkTagAsync url
+            // let! anchorUrl = discoverUrlInAnchorTagAsync url
 
             // Aggregate results
             let discoveryResults = 
