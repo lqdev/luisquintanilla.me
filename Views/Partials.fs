@@ -436,7 +436,7 @@ let albumsPageView (images:Album array) =
                     div [_class "col-md-4"] [
                         div [_class "img-thumbnail"; _style "object-fit:cover;height:100%;"] [
                             a [_href $"/albums/{album.FileName}"; _target "blank"] [    
-                                img [_src album.Metadata.MainImage; _style "object-fit:cover;object-position:50% 50%;"] 
+                                img [_src album.Metadata.MainImage; _style "object-fit:cover;object-position:50% 50%;"; _loading "lazy"] 
                                 p [] [Text album.Metadata.Title]
                             ]                                
                         ]
@@ -453,7 +453,7 @@ let albumPageView (images:AlbumImage array) =
                     div [_class "col-md-4"] [
                         div [_class "img-thumbnail"; _style "object-fit:cover;height:100%;" ] [
                             a [_href image.ImagePath; _target "blank"] [    
-                                img [_src $"{image.ImagePath}"; _alt $"{image.AltText}"; _style "object-fit:cover;object-position:50% 50%;"]
+                                img [_src $"{image.ImagePath}"; _alt $"{image.AltText}"; _style "object-fit:cover;object-position:50% 50%;"; _loading "lazy"]
                                 p [] [Text image.Description]
                             ]                                
                         ]
