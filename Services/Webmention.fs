@@ -103,12 +103,12 @@ module WebmentionService
 
             let! linkUrl =
                 match isPdf with 
-                | true -> None
+                | true -> async { return None }
                 | false -> discoverUrlInLinkTagAsync url         
 
             let! anchorUrl =
                 match isPdf with 
-                | true -> None
+                | true -> async { return None }
                 | false -> discoverUrlInAnchorTagAsync url
 
             // let! linkUrl = discoverUrlInLinkTagAsync url
