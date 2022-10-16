@@ -1,5 +1,5 @@
 ---
-title: "Readium LCP - Digital Rights Management Technology
+title: "Readium LCP - Digital Rights Management Technology"
 targeturl: https://blog.archive.org/2022/10/10/new-ebook-protection-software-gaining-popularity-among-publishers-and-libraries/
 response_type: reshare
 dt_published: "2022-10-16 11:14"
