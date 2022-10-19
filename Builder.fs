@@ -333,7 +333,7 @@ module Builder
             let postView = feedPostView post |> feedPostViewWithBacklink
             post.FileName,generate postView "defaultindex" post.Metadata.Title 
 
-        let writePost (filename:string, html:string) = 
+        let writePost (fileName:string, html:string) = 
             let saveDir = Path.Join(rootSaveDir,fileName)
             Directory.CreateDirectory(saveDir) |> ignore
             let savePath = Path.Join(saveDir,"index.html")
