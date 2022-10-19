@@ -276,21 +276,35 @@ let cardFooter (fileName:string) =
         a [_href permalink] [Text $"https://luisquintanilla.me{permalink}"]
     ]
 
+let feedBacklink (url:string) = 
+    div [_class "text-center"] [
+        b [] [
+            str "Back to "
+            a [_href url] [Text "feed"]
+        ]
+    ]
+
 let feedPostView (post:Post) = 
 
     let header = cardHeader post.Metadata.Date
     let footer = cardFooter post.FileName
 
-    div [ _class "card rounded m-2 w-75 mx-auto" ] [
+    let mainFeedBacklink = feedBacklink "/feed"
 
-        header
+    div [] [
+        div [ _class "card rounded m-2 w-75 mx-auto" ] [
 
-        div [ _class "card-body" ] [
-            rawText post.Content
+            header
+
+            div [ _class "card-body" ] [
+                rawText post.Content
+            ]
+
+            footer
         ]
-
-        footer
+        mainFeedBacklink
     ]
+
 
 let feedView (posts: Post array) =
     div [ _class "d-grip gap-3" ] [
@@ -356,14 +370,20 @@ let responsePostView (post: Response) =
         | "star" -> starBodyView post
         | "bookmark" -> bookmarkBodyView post
         | _ -> div [_class "card-body"] [p [] [Text "No content"]]
-        
-    div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
-        header
 
-        body    
+    let responseBacklink = feedBacklink "/feed/responses.html"
 
-        footer
-    ]
+    div [] [
+        div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
+            header
+
+            body    
+
+            footer
+        ]
+        responseBacklink
+    ]        
+
 
 let responseView (posts: Response array) =
     div [ _class "d-grip gap-3" ] [
