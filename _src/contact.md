@@ -2,7 +2,7 @@
 
 Say hi on any of these platforms.
 
-- **Email** <- lqdev **(AT)** outlook **(DOT)** com
+- **Email** <- lqdev **@** outlook.com
 - **Matrix** <- [@lqdev:matrix.lqdev.tech](/matrix) |> [QR Code](/images/contact/qr-matrix.svg)
 - **Mastodon** <-  [@lqdev@toot.lqdev.tech](/mastodon) |> [QR Code](/images/contact/qr-mastodon.svg)
 - **Jami** <- lqdev
