@@ -285,7 +285,7 @@ module Builder
             File.WriteAllText(savePath,html))
 
     let buildPostArchive (posts:Post array) = 
-        let postsPerPage = 5
+        let postsPerPage = 10
 
         posts
         |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
@@ -474,19 +474,22 @@ module Builder
         let rootSaveDir = Path.Join(outputDir,"feed")
         // Directory.CreateDirectory(saveDir) |> ignore
 
-        // Generate individual feed posts                 
-        parsedPosts
-        |> Array.map(fun post -> 
+        // Generate individual feed posts         
+
+        let generatePost (post:Response) = 
             let postView = responsePostView post |> reponsePostViewWithBacklink
-
             let postType = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(post.Metadata.ResponseType)
+            post.FileName,generate postView "defaultindex" $"{postType}: {post.Metadata.Title}"
 
-            post.FileName,generate postView "defaultindex" $"{postType}: {post.Metadata.Title}")
-        |> Array.map(fun (fileName,html) ->
+        let writePost (fileName:string,html:string) = 
             let saveDir = Path.Join(rootSaveDir,fileName)
             Directory.CreateDirectory(saveDir) |> ignore
             let savePath = Path.Join(saveDir,"index.html")
-            File.WriteAllText(savePath,html))
+            File.WriteAllText(savePath,html)            
+
+        parsedPosts
+        |> Array.map(generatePost)
+        |> Array.map(writePost)
         |> ignore
 
         // Save feed
