@@ -328,16 +328,20 @@ module Builder
         let rootSaveDir = Path.Join(outputDir,"feed")
         // Directory.CreateDirectory(saveDir) |> ignore
 
-        // Generate individual feed posts        
-        parsedPosts
-        |> Array.map(fun post -> 
+        // Generate individual feed posts
+        let generatePost (post:Post) = 
             let postView = feedPostView post |> feedPostViewWithBacklink
-            post.FileName,generate postView "defaultindex" post.Metadata.Title)
-        |> Array.iter(fun (fileName,html) ->
+            post.FileName,generate postView "defaultindex" post.Metadata.Title 
+
+        let writePost (filename:string, html:string) = 
             let saveDir = Path.Join(rootSaveDir,fileName)
             Directory.CreateDirectory(saveDir) |> ignore
             let savePath = Path.Join(saveDir,"index.html")
-            File.WriteAllText(savePath,html))        
+            File.WriteAllText(savePath,html)
+
+        parsedPosts
+        |> Array.map(generatePost)
+        |> Array.iter(writePost)        
     
         // Save feed
         File.WriteAllText(Path.Join(rootSaveDir, $"{saveFileName}.html"), feedPage)
