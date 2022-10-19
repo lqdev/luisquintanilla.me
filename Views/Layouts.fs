@@ -81,7 +81,7 @@ module Layouts
                     ]
                     
                     li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/subscribe"] [ Text "Subscribe" ]
+                        a [_class "nav-link"; _href "/subscribe"] [ Text "Follow" ]
                     ]
 
                     li [_class "nav-item"] [
