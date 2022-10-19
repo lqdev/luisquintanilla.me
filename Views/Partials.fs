@@ -289,22 +289,27 @@ let feedPostView (post:Post) =
     let header = cardHeader post.Metadata.Date
     let footer = cardFooter post.FileName
 
+
+    div [ _class "card rounded m-2 w-75 mx-auto" ] [
+
+        header
+
+        div [ _class "card-body" ] [
+            rawText post.Content
+        ]
+
+        footer
+    ]
+
+
+let feedPostViewWithBacklink (feedPostView:XmlNode) = 
+    
     let mainFeedBacklink = feedBacklink "/feed"
 
     div [] [
-        div [ _class "card rounded m-2 w-75 mx-auto" ] [
-
-            header
-
-            div [ _class "card-body" ] [
-                rawText post.Content
-            ]
-
-            footer
-        ]
+        feedPostView
         mainFeedBacklink
     ]
-
 
 let feedView (posts: Post array) =
     div [ _class "d-grip gap-3" ] [
@@ -371,19 +376,23 @@ let responsePostView (post: Response) =
         | "bookmark" -> bookmarkBodyView post
         | _ -> div [_class "card-body"] [p [] [Text "No content"]]
 
+    
+    div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
+        header
+
+        body    
+
+        footer
+    ] 
+
+let reponsePostViewWithBacklink (responsePostView:XmlNode) = 
+    
     let responseBacklink = feedBacklink "/feed/responses.html"
 
     div [] [
-        div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
-            header
-
-            body    
-
-            footer
-        ]
+        responsePostView
         responseBacklink
-    ]        
-
+    ]
 
 let responseView (posts: Response array) =
     div [ _class "d-grip gap-3" ] [

@@ -331,7 +331,7 @@ module Builder
         // Generate individual feed posts        
         parsedPosts
         |> Array.map(fun post -> 
-            let postView = feedPostView post
+            let postView = feedPostView post |> feedPostViewWithBacklink
             post.FileName,generate postView "defaultindex" post.Metadata.Title)
         |> Array.iter(fun (fileName,html) ->
             let saveDir = Path.Join(rootSaveDir,fileName)
@@ -473,7 +473,7 @@ module Builder
         // Generate individual feed posts                 
         parsedPosts
         |> Array.map(fun post -> 
-            let postView = responsePostView post
+            let postView = responsePostView post |> reponsePostViewWithBacklink
 
             let postType = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(post.Metadata.ResponseType)
 
