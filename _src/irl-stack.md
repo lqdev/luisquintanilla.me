@@ -21,7 +21,8 @@ Devices, apps, and services I use day-to-day.
 ### Bags
 
 - [SOC Bugout Bag](https://sandpiperca.com/collections/bugout-bags/products/bugout-bag-coyote-brown) - **Main pack** - Great for one-bag travels. You can fit a week's worth of clothing and electronics. MOLLE straps let you expand the pack with your own accessories.
-- [Jansport Way Out Waistpack](https://www.jansport.com/shop/en/jansport-us/way-out-waistpack-js0a47l6?variationId=7M2) - **EDC pack**
+- [Cotopaxi Coso 2L](https://www.cotopaxi.com/products/coso-2l-hip-pack-cada-dia) - **EDC pack**
+- ~~[Jansport Way Out Waistpack](https://www.jansport.com/shop/en/jansport-us/way-out-waistpack-js0a47l6?variationId=7M2)~~
 - [5.11 Moab 6](https://www.511tactical.com/rush-moab-6.html) - **Larger EDC pack**
 - Eddie Bauer 20L Stowable Packable
 - ~~[SOG Barrage](https://www.amazon.com/SOG-Tactical-Internal-Backpack-64-3-Liter/dp/B01343V490)~~
