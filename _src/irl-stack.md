@@ -10,24 +10,14 @@ Devices, apps, and services I use day-to-day.
 - [Nokia 6300 4G](https://www.nokia.com/phones/en_us/nokia-6300-4g) - **Daily driver**
 - [Surface Duo](https://www.microsoft.com/surface/devices/surface-duo?activetab=overview) - **Secondary device**
 - [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
-- ~~[HP Probook 430 G1](https://en.wikipedia.org/wiki/HP_ProBook#G1)~~
-- ~~[Schok Classic](https://schokgear.com/)~~ - Feature phone. It has all the basics and a little extra since it's Android Open Source Project (AOSP) based.
-- ~~[Surface Go](https://www.microsoft.com/surface/devices/surface-go/tech-specs)~~
-- ~~[Surface Laptop](https://support.microsoft.com/surface/surface-laptop-1st-gen-features-30b1b484-4587-928f-ea9a-351d411569af)~~
-- ~~[Pinebook Pro](https://www.pine64.org/pinebook-pro/)~~
-- ~~[Pinephone Pro](https://www.pine64.org/pinephonepro/)~~
 
 
 ### Bags
 
 - [SOC Bugout Bag](https://sandpiperca.com/collections/bugout-bags/products/bugout-bag-coyote-brown) - **Main pack** - Great for one-bag travels. You can fit a week's worth of clothing and electronics. MOLLE straps let you expand the pack with your own accessories.
 - [Cotopaxi Coso 2L](https://www.cotopaxi.com/products/coso-2l-hip-pack-cada-dia) - **EDC pack**
-- ~~[Jansport Way Out Waistpack](https://www.jansport.com/shop/en/jansport-us/way-out-waistpack-js0a47l6?variationId=7M2)~~
 - [5.11 Moab 6](https://www.511tactical.com/rush-moab-6.html) - **Larger EDC pack**
-- Eddie Bauer 20L Stowable Packable
-- ~~[SOG Barrage](https://www.amazon.com/SOG-Tactical-Internal-Backpack-64-3-Liter/dp/B01343V490)~~
-- ~~[Patagonia Atom Sling 8L](https://www.patagonia.com/product/atom-sling-bag-8-liters/48261.html)~~
-- ~~[Osprey Farpoint Travel Pack 55](https://www.osprey.com/us/en/product/farpoint-travel-pack-55-FARPNT55.html)~~
+- [Eddie Bauer 20L Stowable Packable](https://www.eddiebaueroutlet.com/p/86323296/stowaway-packable-20l-daypack?sp=1&color=Camo&size=ONE%20SIZE)
 
 ### Photography & Video
 
@@ -42,7 +32,6 @@ Devices, apps, and services I use day-to-day.
 - [JLAB Studio On-Ear Headphones](https://www.jlab.com/collections/headphones/products/studio-on-ear-headphones) - **Daily driver**
 - [Ludos Ultra Wired Earbuds](https://www.ludostechs.com/product/ultra/)
 - [JLAB JBuds Air ANC](https://www.jlab.com/products/jbuds-air-anc-true-wireless-earbuds)
-- ~~[Surface Earbuds](https://www.microsoft.com/en-us/d/surface-earbuds/8r9cpq146064)~~
 
 
 ### Routers
@@ -73,7 +62,6 @@ Devices, apps, and services I use day-to-day.
 - [RadioDroid](https://f-droid.org/en/packages/net.programmierecke.radiodroid2/) - Internet radio
 - [VLC](https://www.videolan.org/vlc/) - Listen to internet radio and podcasts on desktop.
 - [Spotify](https://www.spotify.com/) - Exclusively for music. It would probably be easier to use it for both music and podcasts but for some odd reason, I like managing music & podcasts separately.
-- ~~[MusicBee](https://getmusicbee.com/)~~ - Manage podcasts on Windows & transfer them to my MP3 player (FiiO M6).
 
 ### Communication
 
@@ -107,7 +95,6 @@ Devices, apps, and services I use day-to-day.
   - [Tusky](https://tusky.app/) - Mastodon Android app
 - [Scuttlebutt](https://scuttlebutt.nz/)
   - [Manyverse](https://www.manyver.se/) - Scuttlebutt client 
-- ~~[Pixelfed](https://pixelfed.org/)~~ - Fediverse image sharing
 
 ### Software Development
 
