@@ -196,6 +196,7 @@ module Builder
                 ("https://www.twitch.tv/lqdev1", "twitch","Twitch")
                 ("https://www.youtube.com/channel/UCkA5fHdQ4cf3D1J19UNgV7A", "youtube","YouTube")
                 ("/posts/client-credentials-authentication-csharp/","/2017/12/25/client-credentials-authentication-csharp","Client Credentials Auth")
+                ("/posts/alternatives-to-whatsapp","/2021/01/09/alternatives-to-whatsapp/","Alternatives to WhatsApp")
             |]
 
         redirects
