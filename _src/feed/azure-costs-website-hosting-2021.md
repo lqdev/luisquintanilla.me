@@ -16,4 +16,4 @@ Taking all that into account, I've only had to pay $2.06 most of it being the st
 
 ![Azure portal billing cost](https://user-images.githubusercontent.com/11130940/166848883-8d6cfe2c-5ff3-468c-b95f-b0ecab69595a.png)
 
-If you're interested in how this site is built, check out the [colophon](/colophon.html).
+If you're interested in how this site is built, check out the [colophon](/colophon).
