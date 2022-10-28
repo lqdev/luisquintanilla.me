@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "A year's worth of Azure hosting costs"
-published_date: "05/04/2022 20:36"
+published_date: "2022-05-04 20:36"
 ---
 
 It's been a little over a year since I started hosting my website on Azure. The resources I use include:
