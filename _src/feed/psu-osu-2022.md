@@ -4,7 +4,7 @@ title: "Penn State vs Ohio State"
 published_date: "2022-10-29 11:58"
 ---
 
-11:58
+**11:58**
 
 Hoping for a good game. 
 
@@ -12,24 +12,30 @@ Hoping for a good game.
 
 ---
 
-12:22
+**12:22**
 
 Defense is clutch. As always in big games, they'll have to work overtime just to keep the offense in the game.
 
 ---
 
-12:42
+**12:42**
 
 Progress...at least there was no turnover on the last series.
 
 ---
 
-12:59
+**12:59**
 
 ![Undetaker rising from dead GIF](https://media.giphy.com/media/b6iVj3IM54Abm/giphy.gif)
 
 ---
 
-13:16
+**13:16**
 
 ![Football player they had us in first half GIF](https://media.giphy.com/media/y2i2oqWgzh5ioRp4Qa/giphy.gif)
+
+---
+
+**14:53**
+
+![Sweating GIF](https://media.giphy.com/media/4bWWKmUnn5E4/giphy.gif)
