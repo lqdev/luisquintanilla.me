@@ -53,3 +53,11 @@ Going for it on 4th & 2 feels like that 4th & 5 from a few years ago.
 Defense showed up today. Can't expect to win a game with 3 turnovers.
 
 ![Spongebob head out GIF](https://media.giphy.com/media/WoQmhbWcr7LoODs8a4/giphy.gif)
+
+--- 
+
+**15:33**
+
+This is hard to watch.
+
+![DJ Khaled Another One GIF](https://media.giphy.com/media/qgri3D9sTwCUGMcT8L/giphy.gif)
