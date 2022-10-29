@@ -140,40 +140,39 @@ module WebmentionService
 
     let runWebmentionWorkflow (mentions: Webmention array) = 
         seq {
-            for mention in mentions do
-                try 
+            for mention in mentions do 
                     yield async {
-                        // Discover webmention endpoint URL of target URL
-                        let! discoveredUrl = 
-                            mention.TargetUrl.OriginalString
-                            |> discoverWebmentionUrlAsync
+                        try 
+                            // Discover webmention endpoint URL of target URL
+                            let! discoveredUrl = 
+                                mention.TargetUrl.OriginalString
+                                |> discoverWebmentionUrlAsync
 
-                        // Construct URL depending on whether it's absolute or relative
-                        let authority = mention.TargetUrl.GetLeftPart(UriPartial.Authority)
+                            // Construct URL depending on whether it's absolute or relative
+                            let authority = mention.TargetUrl.GetLeftPart(UriPartial.Authority)
 
-                        let constructedUrl = 
-                            match (discoveredUrl.Contains("http")) with
-                            | true -> discoveredUrl
-                            | false -> 
-                                let noQueryUrl = 
-                                    discoveredUrl.Split('?')
-                                    |> Array.head
-                                    
-                                $"{authority}{noQueryUrl}"
+                            let constructedUrl = 
+                                match (discoveredUrl.Contains("http")) with
+                                | true -> discoveredUrl
+                                | false -> 
+                                    let noQueryUrl = 
+                                        discoveredUrl.Split('?')
+                                        |> Array.head
+                                        
+                                    $"{authority}{noQueryUrl}"
 
-                        // Prepare webmention request data
-                        let reqData = 
-                            dict [
-                                ("source", mention.SourceUrl.OriginalString)
-                                ("target", mention.TargetUrl.OriginalString)
-                            ]
+                            // Prepare webmention request data
+                            let reqData = 
+                                dict [
+                                    ("source", mention.SourceUrl.OriginalString)
+                                    ("target", mention.TargetUrl.OriginalString)
+                                ]
 
-                        // Send web mentions
-                        return! postWebMentionAsync constructedUrl reqData
+                            // Send web mentions
+                            return! postWebMentionAsync constructedUrl reqData
+                        with
+                            | _ -> return false
                     }
-                with
-                    | ex -> yield async {} 
-
         }
 
     let sendWebmentions (responses: Response array) = 
