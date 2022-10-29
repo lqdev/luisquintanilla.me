@@ -169,6 +169,7 @@ module WebmentionService
                                 ]
 
                             // Send web mentions
+                            printfn $"Sent webmention to: {constructedUrl}"
                             return! postWebMentionAsync constructedUrl reqData
                         with
                             | ex ->
