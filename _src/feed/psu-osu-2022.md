@@ -14,7 +14,7 @@ Hoping for a good game.
 
 12:22
 
-Defense is clutch. As always in big games, they'll have to work overtime just to keep the offsense in the game.
+Defense is clutch. As always in big games, they'll have to work overtime just to keep the offense in the game.
 
 ---
 
