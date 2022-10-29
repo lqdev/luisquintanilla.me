@@ -6,5 +6,13 @@
         "body": [
             "$CURRENT_HOUR:$CURRENT_MINUTE"            
         ]
-    }
+    },
+    "Date": {
+        "scope": "markdown",
+        "prefix": "date",
+        "description": "Adds current date",
+        "body": [
+            "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE"            
+        ]
+    }    
 }
