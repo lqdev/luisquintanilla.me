@@ -1,0 +1,10 @@
+{
+    "Time": {
+        "scope": "markdown",
+        "prefix": "time",
+        "description": "Adds current time",
+        "body": [
+            "$CURRENT_HOUR:$CURRENT_MINUTE"            
+        ]
+    }
+}
