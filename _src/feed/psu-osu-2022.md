@@ -39,3 +39,9 @@ Progress...at least there was no turnover on the last series.
 **14:53**
 
 ![Sweating GIF](https://media.giphy.com/media/4bWWKmUnn5E4/giphy.gif)
+
+---
+
+**15:09**
+
+Going for it on 4th & 2 feels like that 4th & 5 from a few years ago. 
