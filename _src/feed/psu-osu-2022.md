@@ -45,3 +45,11 @@ Progress...at least there was no turnover on the last series.
 **15:09**
 
 Going for it on 4th & 2 feels like that 4th & 5 from a few years ago. 
+
+---
+
+**15:30**
+
+Defense showed up today. Can't expect to win a game with 3 turnovers.
+
+![Spongebob head out GIF](https://media.giphy.com/media/WoQmhbWcr7LoODs8a4/giphy.gif)
