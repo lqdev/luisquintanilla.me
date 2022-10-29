@@ -171,7 +171,9 @@ module WebmentionService
                             // Send web mentions
                             return! postWebMentionAsync constructedUrl reqData
                         with
-                            | _ -> return false
+                            | ex ->
+                                printfn $"Webmention Error: {ex}" 
+                                return false
                     }
         }
 
