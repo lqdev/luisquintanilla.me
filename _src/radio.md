@@ -13,6 +13,7 @@ Quick links to some of my favorite online radio stations:
 | [WBGO Jazz 88.3 Newark](https://www.wbgo.org) | [Stream Link](https://wbgo.streamguys1.com/wbgo128) | [lqvlc Link](lqvlc://wbgo.streamguys1.com/wbgo128) |
 | [KHOL 89.1 Jackson Hole](https://891khol.org/) | [Stream Link](http://peridot.streamguys.com:6010/live.m3u?_ga=2.245952768.525453867.1658096358-1871105295.1658096351) | [lqvlc Link](lqvlc://peridot.streamguys.com:6010/live.m3u?_ga=2.245952768.525453867.1658096358-1871105295.1658096351) | 
 | [Yesterweb Radio](https://yesterweb.org/radio/) | [Stream Link](https://radio.yesterweb.org/radio/8000/radio.mp3) | [lqvlc Link](lqvlc://radio.yesterweb.org/radio/8000/radio.mp3) | 
-| 98.9 Fox Oldies | [Stream Link](http://ice64.securenetsystems.net/WGNYFM2) | [lqvlc Link](lqvlc://ice64.securenetsystems.net/WGNYFM2) |
+| [98.9 Fox Oldies](https://wgnyfm.com/) | [Stream Link](http://ice64.securenetsystems.net/WGNYFM2) | [lqvlc Link](lqvlc://ice64.securenetsystems.net/WGNYFM2) |
+| [aNONRadio](https://anonradio.net/) | [Stream Link](https://anonradio.net:8443/anonradio) | [lqvlc Link](lqvlc://anonradio.net:8443/anonradio) |
 
 What's an lqvlc link? Check out the blog post on the [lqvlc network protocol](/posts/lqvlc-network-protocol-firefox.html).
