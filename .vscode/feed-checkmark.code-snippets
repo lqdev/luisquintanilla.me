@@ -1,0 +1,66 @@
+{
+	"Generic": {
+		"scope": "fsharp",
+		"prefix": "check-shield",
+		"body": [
+			"span [_class \"bi bi-shield-fill-check\"; _style \"margin-right:5px;margin-left:5px;color:green\"] []"
+		],
+		"description": "Generic feed shield with check header"
+	},
+	"January-Snowman": {
+		"scope": "fsharp",
+		"prefix": "january",
+		"body": [
+			"span [_style \"margin-right:5px;margin-left:5px;\"] [Text \"&#x26C4;\"]"
+		],
+		"description": "January snowman checkmark"
+	},
+	"April-Showers": {
+		"scope": "fsharp",
+		"prefix": "april",
+		"body": [
+			"span [_style \"margin-right:5px;margin-left:5px;\"] [Text \"&#x2614;\"]"
+		],
+		"description": "April showers checkmark"
+	},
+	"May-Flowers": {
+		"scope": "fsharp",
+		"prefix": "may",
+		"body": [
+			"span [_style \"margin-right:5px;margin-left:5px;\"] [Text \"&#x1F33C;\"]"
+		],
+		"description": "May flowers checkmark"
+	},		
+	"September-Foliage": {
+		"scope": "fsharp",
+		"prefix": "september",
+		"body": [
+			"span [_style \"margin-right:5px;margin-left:5px;\"] [Text \"&#x1F342;\"]"
+		],
+		"description": "September foliage checkmark"
+	},	
+	"October-Pumpkin": {
+		"scope": "fsharp",
+		"prefix": "october",
+		"body": [
+			"span [_style \"margin-right:5px;margin-left:5px;\"] [Text \"&#x1F383;\"]"
+		],
+		"description": "October pumpkin checkmark"
+	},		
+	"November-Turkey": {
+		"scope": "fsharp",
+		"prefix": "november",
+		"body": [
+			"span [_style \"margin-right:5px;margin-left:5px;\"] [Text \"&#x1F983;\"]"
+		],
+		"description": "November turkey checkmark"
+	},
+	"December-Tree": {
+		"scope": "fsharp",
+		"prefix": "december",
+		"body": [
+			"span [_style \"margin-right:5px;margin-left:5px;\"] [Text \"&#x1F384;\"]"
+		],
+		"description": "December christmas tree checkmark"
+	}		    
+}
