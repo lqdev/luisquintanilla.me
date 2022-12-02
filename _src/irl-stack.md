@@ -6,9 +6,10 @@ Devices, apps, and services I use day-to-day.
 
 ### Computing
 
-- [ASUS L210MA](https://www.asus.com/us/laptops/for-home/everyday-use/asus-l210/) **Daily driver**
+- [Lenovo IdeaPad Duet 3i](https://www.lenovo.com/il/en/laptops/ideapad/d-series/IdeaPad-Duet-3-10IGL5/p/88IPD301447) - **Daily driver**
 - [Nokia 6300 4G](https://www.nokia.com/phones/en_us/nokia-6300-4g) - **Daily driver**
 - [Surface Duo](https://www.microsoft.com/surface/devices/surface-duo?activetab=overview) - **Secondary device**
+- [ASUS L210MA](https://www.asus.com/us/laptops/for-home/everyday-use/asus-l210/) 
 - [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
 
 
@@ -30,9 +31,8 @@ Devices, apps, and services I use day-to-day.
 
 - [FiiO M6](https://www.fiio.com/m6) - MP3 player
 - [JLAB Studio On-Ear Headphones](https://www.jlab.com/collections/headphones/products/studio-on-ear-headphones) - **Daily driver**
+- [JLAB Go Air Pop](https://www.jlab.com/products/go-air-pop-true-wireless-earbuds?variant=39327776964680)
 - [Ludos Ultra Wired Earbuds](https://www.ludostechs.com/product/ultra/)
-- [JLAB JBuds Air ANC](https://www.jlab.com/products/jbuds-air-anc-true-wireless-earbuds)
-
 
 ### Routers
 
@@ -87,6 +87,7 @@ Devices, apps, and services I use day-to-day.
 ### Notetaking
 
 - [Joplin](https://joplinapp.org/) - **Daily driver**. I really like authoring content in Markdown. Joplin lets me do that for notes while also giving me flexibility when it comes to syncing.
+- [Emacs](https://www.gnu.org/software/emacs/)
 - [Microsoft OneNote](https://www.microsoft.com/microsoft-365/onenote/digital-note-taking-app)
 
 ### Social
@@ -108,3 +109,40 @@ Devices, apps, and services I use day-to-day.
 - [DrRacket](https://docs.racket-lang.org/drracket/) - IDE for Racket development
 - [.NET Interactive](https://github.com/dotnet/interactive) - Polyglot interactive environments with C# & F# support
 - [Jupyter Notebooks / Jupyter Lab](https://jupyter.org/) - Python notebooks
+
+### Cloud
+
+- [Azure](https://azure.microsoft.com/)
+- [Linode](https://www.linode.com/)
+
+### Languages
+
+- [.NET (C#/F#)](https://dotnet.microsoft.com/)
+- [Python](https://www.python.org/)
+- JavaScript
+- [R](https://www.r-project.org/)
+- [Racket](https://racket-lang.org/)
+
+### Data Processing
+
+- [Apache Spark](https://spark.apache.org/)
+  - [.NET for Apache Spark](https://dotnet.microsoft.com/apps/data/spark)
+- [Pandas](https://pandas.pydata.org/)
+
+### Machine Learning
+
+- [ML.NET](https://dotnet.microsoft.com/apps/machinelearning-ai/ml-dotnet)
+- [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/)
+- [PyTorch](https://pytorch.org/)
+- [TensorFlow](https://www.tensorflow.org/), [Keras](https://keras.io/)
+- [Scikit Learn](https://scikit-learn.org/stable/index.html)
+- [ONNX](https://onnx.ai/)
+
+### Web
+
+- [ASP.NET Core](https://dotnet.microsoft.com/apps/aspnet)
+- [Express](http://expressjs.com/)
+- [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+- [Azure Functions](https://azure.microsoft.com/services/functions/)
+- [Docker](https://www.docker.com/)
+- [Kubernetes](https://kubernetes.io/)
