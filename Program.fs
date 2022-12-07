@@ -18,10 +18,11 @@ let main argv =
 
     //Create directories
     Path.Join(outputDir,"feed") |> Directory.CreateDirectory |> ignore
+    Path.Join(outputDir,"feed","responses") |> Directory.CreateDirectory |> ignore
     Path.Join(outputDir,"posts") |> Directory.CreateDirectory |> ignore
     Path.Join(outputDir,"presentations") |> Directory.CreateDirectory |> ignore
     Path.Join(outputDir,"snippets") |> Directory.CreateDirectory |> ignore
-    Path.Join(outputDir,"wiki") |> Directory.CreateDirectory |> ignore    
+    Path.Join(outputDir,"wiki") |> Directory.CreateDirectory |> ignore 
     // copyStaticFiles srcDir outputDir
     // copyImages "images" "images"
 
