@@ -496,4 +496,4 @@ module Builder
         |> ignore
 
         // Save feed
-        File.WriteAllText(Path.Join(rootSaveDir, $"{saveFileName}.html"), responsePage)
+        File.WriteAllText(Path.Join(rootSaveDir, "responses", $"{saveFileName}.html"), responsePage)

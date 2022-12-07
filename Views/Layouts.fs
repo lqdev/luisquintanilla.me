@@ -68,8 +68,8 @@ module Layouts
                             _class "dropdown-menu"
                             attr "aria-labelledby" "feedDropdown"
                             ] [
-                                a [_class "dropdown-item"; _href "/feed/index.html"] [Text "Main"]
-                                a [_class "dropdown-item"; _href "/feed/responses.html"] [Text "Responses"]                                
+                                a [_class "dropdown-item"; _href "/feed"] [Text "Main"]
+                                a [_class "dropdown-item"; _href "/feed/responses"] [Text "Responses"]                                
                                 div [_class "dropdown-divider"] []
                                 a [_class "dropdown-item"; _href "/feed/blogroll"] [Text "Blogroll"]
                                 a [_class "dropdown-item"; _href "/feed/podroll"] [Text "Podroll"]

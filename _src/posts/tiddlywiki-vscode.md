@@ -8,7 +8,7 @@ tags: web,vscode,wiki,personalknowledgemanagement,git,website
 
 ## Introduction
 
-A while back, I set up a knowledge base (KB) section on my website. As part of that knowledge base, I have a [wiki](/wiki) and [snippets](/snippets) section. As opposed to the [blog posts](/posts) which tend to be more long-form and have structure or the microblog-like posts on my [main](/feed) and [response](/feed/responses.html) feeds, the wiki and snippets section are intended to have self-contained blocks of information that are linked somehow but not a linear or chronological order. 
+A while back, I set up a knowledge base (KB) section on my website. As part of that knowledge base, I have a [wiki](/wiki) and [snippets](/snippets) section. As opposed to the [blog posts](/posts) which tend to be more long-form and have structure or the microblog-like posts on my [main](/feed) and [response](/feed/responses) feeds, the wiki and snippets section are intended to have self-contained blocks of information that are linked somehow but not a linear or chronological order. 
 
 My current wiki and snippets solution was fairly basic. It was a series of documents authored in Markdown which then get converted to static HTML pages. The index pages for wiki articles and snippets contain links to each of those documents. While that's worked okay, I felt I was missing functionality when it came to linking between documents, tagging, and more importantly searching. 
 

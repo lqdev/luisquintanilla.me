@@ -1,6 +1,8 @@
 {
     "image": "mcr.microsoft.com/dotnet/sdk:7.0",
     "extensions": [
-        "Ionide.Ionide-fsharp"   
+        "Ionide.Ionide-fsharp",
+        "max-SS.cyberpunk",
+        "ms-vscode.live-server"   
     ]
 }

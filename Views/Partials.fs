@@ -387,7 +387,7 @@ let responsePostView (post: Response) =
 
 let reponsePostViewWithBacklink (responsePostView:XmlNode) = 
     
-    let responseBacklink = feedBacklink "/feed/responses.html"
+    let responseBacklink = feedBacklink "/feed/responses"
 
     div [] [
         responsePostView
