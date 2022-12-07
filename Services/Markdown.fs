@@ -22,6 +22,7 @@ module MarkdownService
                 .UseCustomContainers()
                 .UseEmphasisExtras()
                 .UseBootstrap()
+                .UseFigures()
                 .Build()        
 
     let summarizePost (content:string) = 
