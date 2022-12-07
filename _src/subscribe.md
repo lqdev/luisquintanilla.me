@@ -36,13 +36,13 @@ Follow on NewsBlur
 
 Microblog-like short posts containing replies, reshares (repost), and favorites (likes).
 
-Feed URL: [https://www.luisquintanilla.me/feed/responses.xml](/feed/responses.xml)
+Feed URL: [https://www.luisquintanilla.me/feed/responses/index.xml](/feed/responses/index.xml)
 
-<a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fwww.luisquintanilla.me%2Ffeed%2Fresponses.xml"><button type="button" class="btn" style="background-color:green;margin:5px;">
+<a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fwww.luisquintanilla.me%2Ffeed%2Fresponses%2Findex.xml"><button type="button" class="btn" style="background-color:green;margin:5px;">
 <span class="bi bi-rss"></span>
 Follow on Feedly
 </button></a>
-<a href="http://www.newsblur.com/?url=https%3A%2F%2Fwww.luisquintanilla.me%2Ffeed%2Fresponses.xml"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
+<a href="http://www.newsblur.com/?url=https%3A%2F%2Fwww.luisquintanilla.me%2Ffeed%2Fresponses%2Findex.xml"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
 <span class="bi bi-rss"></span>
 Follow on NewsBlur
 </button></a>
