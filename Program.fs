@@ -94,7 +94,7 @@ let main argv =
     buildAlbumPages albums
 
     // Build reponses
-    buildResponsePage responses "Responses" "responses"
+    buildResponsePage responses "Responses" "index"
 
     // Send webmentions
     sendWebmentions responses

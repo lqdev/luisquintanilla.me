@@ -255,7 +255,7 @@ module Builder
             |> generateReponseFeedRss
             |> string
 
-        let saveDir = Path.Join(outputDir,"feed")
+        let saveDir = Path.Join(outputDir, "feed", "responses")
         File.WriteAllText(Path.Join(saveDir,$"{saveFileName}.xml"), rssPage)
 
     let buildBlogrollOpml (links:Outline array) = 
