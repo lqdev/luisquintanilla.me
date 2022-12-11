@@ -15,7 +15,7 @@ A wiki is a publication on subjects related to a particular topic. It often serv
 - [IndieWeb Wiki](https://indieweb.org/wiki)
 - [Arch Wiki](https://wiki.archlinux.org/)
 
-## Resources
+## References
 
 - [Massive Wiki](https://massive.wiki/)
 - [IndieWeb Wikipage](https://indieweb.org/wiki-page)

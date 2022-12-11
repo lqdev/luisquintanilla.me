@@ -9,7 +9,7 @@ tags: knowledgemanagement,commonplace,notetaking,information,technology,internet
 
 A way to store notes and knowledge discovered and learned. This can include quotes from books, articles, courses, and any other sources of information.
 
-## Resources
+## References
 
 - [Commonplace Book](https://en.wikipedia.org/wiki/Commonplace_book)
 - [Taking Note: How To Create a Commonplace with Evernote](https://evernote.com/blog/how-to-create-commonplace-with-evernote/)

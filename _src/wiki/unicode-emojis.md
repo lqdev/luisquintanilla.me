@@ -74,6 +74,6 @@ I am :slightly_smiling_face:
 | :closed_lock_with_key: | U+1F510 	|`:closed_lock_with_key:` |
 | :link: | U+1F517 | `:link:` |
 
-## Resources
+## References
 
 [Full Emojis List, v14.0](https://unicode.org/emoji/charts/full-emoji-list.html)
