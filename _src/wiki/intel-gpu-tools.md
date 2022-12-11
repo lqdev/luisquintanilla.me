@@ -36,3 +36,4 @@ This will display process graphs of GPU usage.
 - [Intel Grapics - Arch Wiki](https://wiki.archlinux.org/title/Intel_graphics)
 - [Intel GPU Tools](https://archlinux.org/packages/community/x86_64/intel-gpu-tools/)
 - [Firefox hardware acceleration](https://support.mozilla.org/en-US/kb/upgrade-graphics-drivers-use-hardware-acceleration)
+- [Firefox Performance Settings](https://support.mozilla.org/en-US/kb/performance-settings)
