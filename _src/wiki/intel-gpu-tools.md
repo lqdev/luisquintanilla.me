@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Intel GPU Tools - Linux"
-last_updated_date: "12/11/2022 17:03"
+last_updated_date: "12/11/2022 18:05"
 tags: linux, intel, gpu, manjaro, performances
 ---
 
