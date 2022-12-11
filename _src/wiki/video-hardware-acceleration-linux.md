@@ -17,6 +17,19 @@ To install the Intel media driver
 sudo pacman -S intel-media-driver
 ```
 
+## Enable acceleration MPV
+
+For mpv, make sure that decoding and video acceleration is enabled. To do so:
+
+1. Create or edit the user config file in *~/.config/mpv/mpv.conf* with the following settings:
+
+    ```bash
+    vo=gpu
+    hwdec=auto
+    ```
+
+1. Reboot your PC.
+
 ## Verification
 
 Use `intel_gpu_top` and make sure that when you play video using  tools like VLC, the video bar is active. 
@@ -25,3 +38,5 @@ Use `intel_gpu_top` and make sure that when you play video using  tools like VLC
 
 - [Hardware Video Acceleration - Intel GPU](https://wiki.archlinux.org/title/Hardware_video_acceleration)
 - [Intel GPU Tools](./intel-gpu-tools)
+- [Sample MPV Conf](https://github.com/mpv-player/mpv/blob/master/etc/mpv.conf)
+- [MPV Configuration Files](https://mpv.io/manual/master/#configuration-files)
