@@ -71,7 +71,7 @@ The following shows how you can optimize your computer using Powertop to generat
 
     ```bash
     sudo systemctl enable rc-local
-    sydo systemctl start rc-local
+    sudo systemctl start rc-local
     ```
 
 1. Confirm that the service has successfully started
