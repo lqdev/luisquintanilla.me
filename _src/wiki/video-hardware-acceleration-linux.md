@@ -32,7 +32,7 @@ For mpv, make sure that decoding and video acceleration is enabled. To do so:
 
 ## Verification
 
-Use `intel_gpu_top` and make sure that when you play video using  tools like VLC, the video bar is active. 
+Use `intel_gpu_top` and make sure that when you play video using tools like VLC or MPV, the video bar is active. 
 
 ## References
 
