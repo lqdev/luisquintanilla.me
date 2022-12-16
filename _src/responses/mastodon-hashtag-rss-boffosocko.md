@@ -1,5 +1,5 @@
 ---
-title: "Mastodon RSS Tags"
+title: "Mastodon Hashtag RSS feeds"
 targeturl: https://boffosocko.com/2022/12/15/55812758/
 response_type: reply
 dt_published: "2022-12-15 22:33"
