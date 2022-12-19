@@ -185,6 +185,10 @@ module Layouts
         link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Videos Feed RSS"; _href "https://www.luisquintanilla.me/feed/videos.xml"]
     ]
 
+    let webmentionLink = 
+        link [_rel "webmention"; _title "Luis Quintanilla Webmention Endpoint"; _href "https://lqdevwebmentions.azurewebsites.net/api/inbox"]
+
+
     let scripts = [
         script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
         script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
@@ -220,7 +224,7 @@ module Layouts
                     attr "http-equiv" "refresh"
                     _content $"0; url={pageUrl}"
                 ]
-                
+
                 // Robots
                 meta [_name "robots"; _content "nosnippet"]
                 title [] [Text pageTitle]]
@@ -251,6 +255,9 @@ module Layouts
                 for feed in rssFeeds do
                     feed
 
+                // Webmentions
+                webmentionLink
+
                 // Robots
                 meta [_name "robots"; _content "noindex,nofollow,nosnippet"]
                 title [] [Text pageTitle]
@@ -277,7 +284,7 @@ module Layouts
                 meta [_name "viewport"; _content "width=device-width, initial-scale=1, shrink-to-fit=no"]
 
                 stats
-
+            
                 // Stylesheets
                 for sheet in styleSheets do
                     sheet
@@ -291,6 +298,9 @@ module Layouts
                 // RSS Feeds
                 for feed in rssFeeds do
                     feed
+
+                // Webmentions
+                webmentionLink
 
                 // Robots
                 meta [_name "robots"; _content "nofollow,nosnippet"]
@@ -335,7 +345,10 @@ module Layouts
                 // RSS Feeds
                 for feed in rssFeeds do
                     feed
-                
+
+                // Webmentions
+                webmentionLink
+
                 // Robots                
                 meta [_name "robots"; _content "noindex,nofollow,nosnippet"]
                 
