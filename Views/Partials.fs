@@ -59,14 +59,48 @@ let contentViewWithTitle (title:string) (content:string) =
         rawText content
     ]    
 
+let webmentionForm = 
+    div [ ] [
+        script [_type "application/javascript"] [
+            rawText "window.onload = function() { document.getElementById('webmention-target').value = window.location.href }"
+        ]
+        form [
+            _action "https://lqdevwebmentions.azurewebsites.net/api/inbox"
+            _method "POST"
+            _enctype "application/x-www-form-urlencoded"
+        ] [
+            h5 [_class "text-center"] [str "Send me a " ; a [_href "https://indieweb.org/webmentions"] [Text "webmention"]]
+            div [_class "form-row justify-content-center"] [
+                div [_class "w-75"] [
+                    input [
+                        _type "text"
+                        _name "source"
+                        _class "form-control"
+                        _placeholder "Your URL (source)"
+                    ]
+                ]
+                div [_class "col-auto"] [
+                    input [_type "submit"; _class "btn btn-primary"; _value "Send"] 
+                ]
+
+                input [
+                    _readonly
+                    _class "form-control-plaintext"
+                    _style "visibility:hidden"
+                    _type "text"
+                    _id "webmention-target"
+                    _name "target"
+                ]
+            ]
+        ]
+    ]
+
 let blogPostView (title:string) (content:string) = 
     div [ _class "mr-auto" ] [
         h1 [] [Text title]
         rawText content
-        div [_class "lead"] [
-            str "Have a comment? "
-            a [_href "/contact"] [ Text "Send me a messsage"]
-        ]
+        hr []
+        webmentionForm
     ]    
 
 let rollLinkView (links:Outline array) = 
@@ -296,6 +330,8 @@ let feedPostView (post:Post) =
 
         div [ _class "card-body" ] [
             rawText post.Content
+            hr []
+            webmentionForm
         ]
 
         footer
@@ -307,7 +343,7 @@ let feedPostViewWithBacklink (feedPostView:XmlNode) =
     let mainFeedBacklink = feedBacklink "/feed"
 
     div [] [
-        feedPostView
+        feedPostView        
         mainFeedBacklink
     ]
 
@@ -326,6 +362,8 @@ let replyBodyView (post:Response) =
         div [_class "e-content"] [
             rawText post.Content
         ]
+        hr []
+        webmentionForm
     ]        
 
 // Repost
@@ -338,6 +376,8 @@ let reshareBodyView (post:Response) =
         div [_class "e-content"] [
             rawText post.Content
         ]
+        hr []
+        webmentionForm
     ]
 
 // Star / Like / Favorite
@@ -350,6 +390,8 @@ let starBodyView (post:Response) =
         div [_class "e-content"] [
             rawText post.Content
         ]
+        hr []
+        webmentionForm
     ]
 
 let bookmarkBodyView (post:Response) = 
@@ -361,6 +403,8 @@ let bookmarkBodyView (post:Response) =
         div [_class "e-content"] [
             rawText post.Content
         ]
+        hr []
+        webmentionForm
     ]
 
 

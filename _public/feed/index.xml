@@ -3,298 +3,615 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>09/17/2022 19:59</lastPubDate>
+    <lastPubDate>2022-12-18 22:41</lastPubDate>
     <language>en</language>
     <item>
+      <title>Now accepting webmentions</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/now-accepting-webmentions?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/now-accepting-webmentions&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;It took me a while to get all the pieces working but I'm excited that my website now accepts &lt;a href="https://www.w3.org/TR/webmention/"&gt;webmentions&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;A few months ago I implemented &lt;a href="/feed/webmentions-partially-implemented"&gt;sending webmentions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Accepting them was a bit tricky because there were a few design decisions I was optimizing for.&lt;/p&gt;
+&lt;p&gt;In the meantime, you can check out &lt;a href="https://github.com/lqdev/WebmentionFs"&gt;WebmentionFs&lt;/a&gt;, an F# library I built for validating and receiving webmentions along with the &lt;a href="https://github.com/lqdev/WebmentionService"&gt;WebmentionService&lt;/a&gt; Azure Functions backend that I'm using to process webmentions for my website.&lt;/p&gt;
+&lt;p&gt;Also, feel free to send me a webmention. Here's my endpoint for now &lt;a href="https://lqdevwebmentions.azurewebsites.net/api/inbox"&gt;https://lqdevwebmentions.azurewebsites.net/api/inbox&lt;/a&gt;. Check out this &lt;a href="/posts/sending-webmentions-fsharp-fsadvent/"&gt;blog post&lt;/a&gt; where I show how you can send webmentions using F#. You can use any HTTP Client of your choosing to send an HTTP POST request to that endpoint with the body containing a link to one of my articles (target) and the link to your post (source).&lt;/p&gt;
+&lt;p&gt;Stay tuned for a more detailed post coming on December 21st!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/now-accepting-webmentions?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/now-accepting-webmentions</guid>
+      <pubDate>2022-12-18 22:41</pubDate>
+    </item>
+    <item>
+      <title>TIL: Firefox Task Manager</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/til-firefox-task-manager?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/til-firefox-task-manager&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Today I learned about &lt;a href="https://support.mozilla.org/en-US/kb/task-manager-tabs-or-extensions-are-slowing-firefox"&gt;Firefox Task Manager&lt;/a&gt;. Typing &lt;code&gt;about:performance&lt;/code&gt; into the address bar brings up the task manager which lets you inspect the tabs and extensions consuming the most energy and resources.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/til-firefox-task-manager/firefox-task-manager.png" class="img-fluid" alt="Firefox Task Manager" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/til-firefox-task-manager?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/til-firefox-task-manager</guid>
+      <pubDate>2022-12-01 11:24</pubDate>
+    </item>
+    <item>
+      <title>Use your domain for verification everywhere</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/own-your-links-domain-verification?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/own-your-links-domain-verification&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I've never had a blue checkmark on Twitter so I can't say what that process is like. Looking at it from the outside though it seems the process isn't simple or straightforward. My experience with verification has been with other applications such as &lt;a href="https://docs.joinmastodon.org/user/profile/#verification"&gt;Mastodon&lt;/a&gt; and &lt;a href="https://indieauth.com/"&gt;IndieAuth&lt;/a&gt;. In both of these cases, the main verification techniques use your domain and/or the &lt;a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/me"&gt;&lt;code&gt;rel=me&lt;/code&gt; link type&lt;/a&gt;. Although with Mastodon you can add multiple verified links to your profile, verification on those external domains pose challenges which include but are not limited to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You can't edit the HTML directly so you can't add a &lt;code&gt;rel=me&lt;/code&gt; link.&lt;/li&gt;
+&lt;li&gt;You can only add one link, so you're forced to choose between your website and Mastodon.&lt;/li&gt;
+&lt;li&gt;In scenarios where multiple links (i.e. e-mail, webpage, Twitter) are supported, Mastodon isn't one of the options&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So how do you overcome these challenges? By using your domain.&lt;/p&gt;
+&lt;p&gt;A few months ago I wrote about &lt;a href="/posts/static-website-redirects"&gt;owning your links&lt;/a&gt;. The general concept of owning your links is, using your domain to redirect to other properties and profiles you own. For example, instead of telling people to visit my Twitter profile at &lt;em&gt;twitter.com/ljquintanilla&lt;/em&gt;, I can instead point them to &lt;em&gt;lqdev.me/twitter&lt;/em&gt;. Not only does my domain become the source of truth, but in general it's easier to remember compared to usernames and proprietary domains. Since my site is statically generated, I own my links by using &lt;a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta#attr-http-equiv"&gt;http-equiv meta tags&lt;/a&gt;. Although the only job for these pages is to redirect to the specified site, in the end they are still HTML pages. This means, I can embed any other HTML I want, including &lt;code&gt;rel=me&lt;/code&gt; links. By including the &lt;code&gt;rel=me&lt;/code&gt; link in the redirect page, you satisfy the requirements of applications like Mastodon because that's the page they'll land on before being redirected to the target site. As a result, I can verify my GitHub, Twitter, or any other online property I want with Mastodon using my own domain without having to make any changes or overcome any of the challenges imposed by those other platforms. What you end up with is something like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/own-your-links-domain-verification/mastodon-profile-verified-links.png" class="img-fluid" alt="Screenshot of lqdev profile verified links" /&gt;&lt;/p&gt;
+&lt;p&gt;Before signing off, I'll note that this isn't a perfect solution and technically anyone could do the same thing on their own domain in an attempt to impersonate you, so just be aware of that.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/own-your-links-domain-verification?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/own-your-links-domain-verification</guid>
+      <pubDate>2022-11-22 10:19</pubDate>
+    </item>
+    <item>
+      <title>Configured GitHub Codespaces Dev Container with .NET 7</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/net7-devcontainer-gh-codespaces?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/net7-devcontainer-gh-codespaces&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Soon after .NET 7 was released, I &lt;a href="/feed/net7-website-update"&gt;upgraded&lt;/a&gt; the static site generator I use as well as the GitHub Actions that build and publish my website. Having upgraded last year from .NET 6, the process was as smooth as I had expected with no code refactoring required.&lt;/p&gt;
+&lt;p&gt;When it comes to development environments, for quick status updates like the ones on my &lt;a href="/feed"&gt;feed&lt;/a&gt; or minor edits, I've been using &lt;a href="/feed/surface-duo-blogging-github-dev"&gt;github.dev&lt;/a&gt;. However, there's been times where I've needed to run and debug code to confirm that my changes work. This is where I hit some of the limitation of github.dev which means unless I set up a Codespace, I have to save my work and move offline to my PC. Codespaces are great, but given that Codespaces are nice to haves not a requirement for my workflow at this time, it didn't make sense for me to pay for them. That's why I was excited to learn that GitHub is providing up to &lt;a href="https://github.blog/2022-11-10-whats-new-with-codespaces-from-github-universe-2022/"&gt;60 hours per month of free Codespace usage&lt;/a&gt; to all developers. That's more than enough for me.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/net7-devcontainer-gh-codespaces/net7-gh-codespaces.png" class="img-fluid" alt="Blog post authored in GitHub Codespaces with integrated terminal open" /&gt;&lt;/p&gt;
+&lt;p&gt;By default, Codespace images come preinstalled with the .NET 6 SDK which makes sense considering it's the latest LTS. However, since my static site generator targets .NET 7, I had to configure my Codespace to use .NET 7. This was just as easy as upgrading to .NET 7. All I had to do was provide the .NET 7 SDK Docker image as part of my &lt;a href="https://github.com/lqdev/luisquintanilla.me/blob/main/.devcontainer.json"&gt;devcontainer.json&lt;/a&gt; configuration file. From there, Codespaces takes care of the rest. As a result, I can now run and debug my code all in one place without interrupting my workflow.&lt;/p&gt;
+&lt;p&gt;PS: This post was authored in GitHub Codespaces 🙂&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/net7-devcontainer-gh-codespaces?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/net7-devcontainer-gh-codespaces</guid>
+      <pubDate>2022-11-21 11:28</pubDate>
+    </item>
+    <item>
+      <title>The Fediverse beyond Mastodon</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/fediverse-beyond-mastodon?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/fediverse-beyond-mastodon&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;It's been great to see many old and new friends joining Mastodon and considering alternatives to online communities over the past few weeks. Selfishly my feed had been quiet since I started using it and self-hosting back in 2018 so it's nice to see more activity. As folks have started to settle in and get a better understanding of Mastodon, I'd like to point out that Mastodon is only one of many apps and services on the &lt;a href="https://fediverse.party/en/fediverse/"&gt;Fediverse&lt;/a&gt;. Now I won't try to explain the Fediverse but in general, it's the collection of applications and services that interoperate in a federated manner, Mastodon being one of them. If in general you like Mastodon and are looking for alternatives to services like Instagram, YouTube, SoundCloud, the Fediverse has a few options:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Instagram ➡️ &lt;a href="https://pixelfed.org/"&gt;Pixelfed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;YouTube ➡️ &lt;a href="https://joinpeertube.org/"&gt;PeerTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;SoundCloud ➡️ &lt;a href="https://funkwhale.audio/"&gt;Funkwhale&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Twitch ➡️ &lt;a href="https://owncast.online/"&gt;Owncast&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can create an account for each of these services using different instances, just like Mastodon. You also have the option of self-hosting which I find amazing. However, because for the most part these services implement the ActivityPub protocol, it means federation extends beyond Mastodon. You can follow people on PixelFed, PeerTube, and many of these other services using your Mastodon account which means you don't have to create accounts for those services just to follow people. While I don't have experience with all of these services, I recommend checking them out. I especially like what Pixelfed, PeerTube and Owncast are doing but those are the main ones I have experience with.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/fediverse-beyond-mastodon?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/fediverse-beyond-mastodon</guid>
+      <pubDate>2022-11-20 19:28</pubDate>
+    </item>
+    <item>
+      <title>Upgraded website to .NET 7</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/net7-website-update?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/net7-website-update&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Last year, I posted about &lt;a href="/feed/net6-website-update"&gt;upgrading this website to .NET 6&lt;/a&gt; and how easy that process was. I just had a chance to upgrade to .NET 7 and the experience was just as smooth. All I had to do was change the version in two places:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;GitHub Actions *.yml file&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-yml"&gt;dotnet-version: '7.0.x'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;*.fsproj  file&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;TargetFramework&amp;gt;net7.0&amp;lt;/TargetFramework&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I'm happy that with such a simple change, I can get all the benefits of .NET 7 without doing a lot of work.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/net7-website-update?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/net7-website-update</guid>
+      <pubDate>2022-11-11 09:59</pubDate>
+    </item>
+    <item>
+      <title>Penn State future class looks promising</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/psu-future-allar?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/psu-future-allar&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Slow start but good bounce back by Penn State after two straight losses. This game also gave a good glimpse of the future class and it looks promising especially at the QB and RB spots. If they can stay healthy, they may be playoff contenders in a couple of years.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/psu-future-allar?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/psu-future-allar</guid>
+      <pubDate>2022-11-05 19:08</pubDate>
+    </item>
+    <item>
+      <title>Penn State vs Ohio State</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/psu-osu-2022?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/psu-osu-2022&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;&lt;strong&gt;11:58&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Hoping for a good game.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/GCSIwtwqAMBTq/giphy.gif" class="img-fluid" alt="Michael Scott ready to get hurt again GIF" /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;12:22&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Defense is clutch. As always in big games, they'll have to work overtime just to keep the offense in the game.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;12:42&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Progress...at least there was no turnover on the last series.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;12:59&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/b6iVj3IM54Abm/giphy.gif" class="img-fluid" alt="Undetaker rising from dead GIF" /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;13:16&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/y2i2oqWgzh5ioRp4Qa/giphy.gif" class="img-fluid" alt="Football player they had us in first half GIF" /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;14:53&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/4bWWKmUnn5E4/giphy.gif" class="img-fluid" alt="Sweating GIF" /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;15:09&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Going for it on 4th &amp;amp; 2 feels like that 4th &amp;amp; 5 from a few years ago.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;15:30&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Defense showed up today. Can't expect to win a game with 3 turnovers.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/WoQmhbWcr7LoODs8a4/giphy.gif" class="img-fluid" alt="Spongebob head out GIF" /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;15:33&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is hard to watch.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/qgri3D9sTwCUGMcT8L/giphy.gif" class="img-fluid" alt="DJ Khaled Another One GIF" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/psu-osu-2022?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/psu-osu-2022</guid>
+      <pubDate>2022-10-29 11:58</pubDate>
+    </item>
+    <item>
+      <title>Impressed by Azure Cloud Shell</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/impressed-az-cloud-shell?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/impressed-az-cloud-shell&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I can probably count the number of times I've used the Azure Cloud Shell inside the Azure Portal with one hand. However, I recently had a need to use it and was impressed by the experience.&lt;/p&gt;
+&lt;p&gt;I wanted to create an Azure Function app but didn't want to install all the tools required. Currently I'm running Manjaro on an ASUS L210MA. That's my daily driver and although the specs are incredibly low I like the portability. The Azure set of tools run on Linux but are easier to install on Debian distributions. The low specs plus the Arch distro didn't make me want to go through the process of installing the Azure tools locally for a throwaway app.&lt;/p&gt;
+&lt;p&gt;That's when I thought about using Azure Cloud Shell. Setup was relatively quick and easy. It was also great to see the latest version of .NET, Azure Functions Core Tools, and Azure CLI were already installed. Even Git was already there. After creating the function app, I was able to make some light edits using the built-in Monaco editor. When I was ready to test the app, I was able to open up a port, create a proxy, and test the function locally. It's not a high-end machine so I won't be training machine learning models on it anytime soon. However, for experimentation and working with my Azure account it's more than I need.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/impressed-az-cloud-shell?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/impressed-az-cloud-shell</guid>
+      <pubDate>2022-10-13 22:45</pubDate>
+    </item>
+    <item>
+      <title>TIL: Automaticc owns Tumblr</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/til-automaticc-tumblr?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/til-automaticc-tumblr&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Last I heard of Tumblr, they were owned by Verizon. While readying the book &lt;a href="https://book.micro.blog/"&gt;Indie Microblogging&lt;/a&gt; by Manton Reece, I learned (and later confirmed) they were owned by Automaticc, the company behind WordPress. Out of the the different homes it's had, I can't think of a better place for it.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/til-automaticc-tumblr?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/til-automaticc-tumblr</guid>
+      <pubDate>2022-10-09 20:49</pubDate>
+    </item>
+    <item>
+      <title>Terrifier 2 - 100/10</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/terrifier-2-100-10?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/terrifier-2-100-10&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;&lt;a href="https://www.terrifier2themovie.com/home/"&gt;Terrifier 2&lt;/a&gt; did not disappoint. 100/10. Can't wait for Terrifier 3.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.tenor.com/029LgfMnsisAAAAM/applause-leonardo-dicaprio.gif" class="img-fluid" alt="Leo DiCaprio clapping" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/terrifier-2-100-10?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/terrifier-2-100-10</guid>
+      <pubDate>10/09/2022 14:21</pubDate>
+    </item>
+    <item>
+      <title>ALMOST ready to receive Webmentions</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/almost-ready-to-receive-webmentions?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/almost-ready-to-receive-webmentions&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Finally got a working prototype. A few days ago I added the &lt;a href="/snippets/webmentions-request-verification"&gt;request&lt;/a&gt; and &lt;a href="/snippets/webmentions-verification"&gt;webmention&lt;/a&gt; verification components.&lt;/p&gt;
+&lt;p&gt;I just finished creating the web API and Azure Table Storage components. Now I just need to run some additional tests and deploy it 🙂&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.tenor.com/cWNpE2earJkAAAAd/chris-pratt-rubbing-hands.gif" class="img-fluid" alt="Chriss Pratt Rubbing Hands GIF" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/almost-ready-to-receive-webmentions?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/almost-ready-to-receive-webmentions</guid>
+      <pubDate>2022-10-06 22:29</pubDate>
+    </item>
+    <item>
+      <title>Personal Feed - One Year In</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/feed-one-year?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/feed-one-year&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;It's been a year since I created this feed and &lt;a href="/feed/hello-world/"&gt;started posting&lt;/a&gt; mainly on my website. Since then, I've:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Used a &lt;a href="/feed/lqdevme-redirect/"&gt;shorter domain&lt;/a&gt; to redirect to my website domain.&lt;/li&gt;
+&lt;li&gt;Created &lt;a href="/posts/automate-yaml-front-matter-vs-code-snippets/"&gt;VS Code snippets&lt;/a&gt; to simplify metadata tagging.&lt;/li&gt;
+&lt;li&gt;Used &lt;a href="/feed/surface-duo-blogging-github-dev/"&gt;github.dev&lt;/a&gt; as the main interface for authoring and editing posts. For longer posts, I use VS Code locally but for these smaller microblog-style posts, github.dev makes it really easy.&lt;/li&gt;
+&lt;li&gt;Syndicated posts to Twitter and &lt;a href="/feed/mastodon-posse-enabled/"&gt;Mastodon&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Created a &lt;a href="/feed/responses"&gt;response feed&lt;/a&gt; for interactions like replies, reshares (repost), and likes (favorites) with support for sending &lt;a href="/feed/webmentions-partially-implemented/"&gt;Webmentions&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Created &lt;a href="/subscribe"&gt;RSS feeds&lt;/a&gt; for each of my feeds.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It hasn't happened overnight. Instead, it's been the result of small incremental efforts over time.&lt;/p&gt;
+&lt;p&gt;Overall, I don't think I've posted any more or less than I do on other platforms.&lt;/p&gt;
+&lt;p&gt;What I have enjoyed the most though has been:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Learning.&lt;/li&gt;
+&lt;li&gt;Building the tools and processes to author and share content.&lt;/li&gt;
+&lt;li&gt;Owning my content. My website acts as the single source of truth.&lt;/li&gt;
+&lt;li&gt;Not requiring others to have or create accounts on individual platforms to access content.&lt;/li&gt;
+&lt;li&gt;Choosing how I author content. I'm sure this post is way over the 280 character limit and if there's a typo, I can just edit the post and republish the website 🙂&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Going forward, I plan to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Update RSS feeds to include post content, not just link to the post.&lt;/li&gt;
+&lt;li&gt;Accept Webmentions. I'm about halfway done with the main parts of my &lt;a href="https://github.com/lqdev/luisquintanilla.me/blob/main/_scratch/receive-web-mentions.md"&gt;implementation&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Implement tags for easier discoverability / search.&lt;/li&gt;
+&lt;li&gt;Consolidate metadata for posts (articles, microblogs, responses).&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/feed-one-year?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/feed-one-year</guid>
+      <pubDate>09/29/2022 10:55</pubDate>
+    </item>
+    <item>
       <title>Webmentions (partially) implemented</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/webmentions-partially-implemented?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/webmentions-partially-implemented&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/webmentions-partially-implemented?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/webmentions-partially-implemented&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Success! I just partially implemented &lt;a href="https://www.w3.org/TR/webmention/"&gt;Webmentions&lt;/a&gt; for my website. Although I haven't figured out a good way to receive Webmentions yet, I'm able to send them. Fortunately most of the work was done, as detailed in the post &lt;a href="/posts/sending-webmentions-fsharp-fsadvent/"&gt;Sending Webmentions with F#&lt;/a&gt;. The rest was mainly a matter of adapting it to my static site generator.&lt;/p&gt;
+&lt;p&gt;Below is an example of a &lt;a href="https://www.luisquintanilla.me/feed/webmention-test-1/"&gt;post on my website&lt;/a&gt; being displayed in the &lt;a href="https://webmention.rocks/test/1"&gt;Webmention test suite website&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Source&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/190879250-4554750f-b435-4627-bad9-ecc3d96f9ed0.png" class="img-fluid" alt="Webmention on lqdev.me" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/190879274-f6566225-2173-4213-a3d0-eeb9fdc67df9.png" class="img-fluid" alt="Webmention displayed in webmention test suite" /&gt;&lt;/p&gt;
+&lt;p&gt;What does this mean? It means I can comment on any website I want, regardless of whether they allow comments or not. As if that weren't enough, I have full ownership of my content as my website is the single source of truth. As a bonus, if the website I comment on supports receiving Webmentions, my post will be displayed on their website / articles as a comment. The next step is to handle deleted comments, but so far I'm happy with the progress.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/webmentions-partially-implemented?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/webmentions-partially-implemented</guid>
       <pubDate>09/17/2022 19:59</pubDate>
     </item>
     <item>
       <title>New (LTE) Rotary Phone</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/lte-rotary-phone?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/lte-rotary-phone&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/lte-rotary-phone?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/lte-rotary-phone&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Very cool!&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://yewtu.be/embed/uV1C-41tq64" title="New (LTE) Rotary Phone"&gt;&lt;img src="https://yewtu.be/vi/uV1C-41tq64/maxres.jpg" class="img-fluid" alt="New (LTE) Rotary Phone" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/lte-rotary-phone?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/lte-rotary-phone</guid>
       <pubDate>09/06/2022 19:37</pubDate>
     </item>
     <item>
       <title>Praying for OSU downfall</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/pray-ohio-state-football-downfall-nd-tweet?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/pray-ohio-state-football-downfall-nd-tweet&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/pray-ohio-state-football-downfall-nd-tweet?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/pray-ohio-state-football-downfall-nd-tweet&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Same... 🙏&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Praying on Ohio State's downfall&lt;/p&gt;— Barstool Penn State (&lt;a href="https://twitter.com/PSUBarstool"&gt;@PSUBarstool&lt;/a&gt;) September 3, 2022&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Source: &lt;a href="https://twitter.com/PSUBarstool/status/1566230451378950144"&gt;https://twitter.com/PSUBarstool/status/1566230451378950144&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/pray-ohio-state-football-downfall-nd-tweet?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/pray-ohio-state-football-downfall-nd-tweet</guid>
       <pubDate>09/03/2022 20:09</pubDate>
     </item>
     <item>
       <title>TIL: VS Code Live Preview Extension</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/til-vs-code-live-preview-extension?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/til-vs-code-live-preview-extension&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/til-vs-code-live-preview-extension?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/til-vs-code-live-preview-extension&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Today I Learned about the &lt;a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server"&gt;VS Code Live Preview extension&lt;/a&gt;. While reading the &lt;a href="https://code.visualstudio.com/updates/v1_71"&gt;release notes&lt;/a&gt; for the latest version of VS Code, I noticed a &lt;a href="https://code.visualstudio.com/updates/v1_71#_live-preview"&gt;note&lt;/a&gt; on the Live Preview extension. Usually to preview static content, I use Python's HTTP server with the &lt;code&gt;python -m http.server&lt;/code&gt; command. This extension simplifies the process because it's built into Visual Studio Code. If you do any kind of web development, it's definitely worth a look.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/til-vs-code-live-preview-extension?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/til-vs-code-live-preview-extension</guid>
       <pubDate>09/03/2022 18:47</pubDate>
     </item>
     <item>
       <title>1-0 Penn State survives Purdue</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/psu-survives-purdue?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/psu-survives-purdue&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/psu-survives-purdue?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/psu-survives-purdue&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;College football is definitely back. I don't miss those 4th quarter heart attacks, but a win is a win.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/psu-survives-purdue?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/psu-survives-purdue</guid>
       <pubDate>09/01/2022 23:18</pubDate>
     </item>
     <item>
       <title>QRZ New Ham Jumpstart Program</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/qrz-new-ham-jumstart-program?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/qrz-new-ham-jumstart-program&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/qrz-new-ham-jumstart-program?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/qrz-new-ham-jumstart-program&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Very cool! QRZ just announced the &lt;a href="https://forums.qrz.com/index.php?threads/announcing-the-qrz-new-ham-jumpstart-program.823607/"&gt;New Ham Jumpstart Program&lt;/a&gt;, a new program to make it easier for new ham radio operators to quickly get on the air.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/qrz-new-ham-jumstart-program?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/qrz-new-ham-jumstart-program</guid>
       <pubDate>08/31/2022 21:20</pubDate>
     </item>
     <item>
       <title>Dall-E Outpainting and generative models</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/open-ai-dall-e-outpainting-generative-models?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/open-ai-dall-e-outpainting-generative-models&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/open-ai-dall-e-outpainting-generative-models?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/open-ai-dall-e-outpainting-generative-models&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Things are heating up in the AI generative model space. OpenAI just announced &lt;a href="https://openai.com/blog/dall-e-introducing-outpainting/"&gt;Outpainting&lt;/a&gt;. A few days ago, Stability.ai released &lt;a href="https://stability.ai/blog/stable-diffusion-public-release"&gt;Stable Diffusion&lt;/a&gt; and recently a painting generated using &lt;a href="https://www.midjourney.com/home/"&gt;Midjourney&lt;/a&gt; won &lt;a href="https://arstechnica.com/information-technology/2022/08/ai-wins-state-fair-art-contest-annoys-humans/"&gt;first place&lt;/a&gt; in the digital category of the Colorado State Fair fine art competition.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/open-ai-dall-e-outpainting-generative-models?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/open-ai-dall-e-outpainting-generative-models</guid>
       <pubDate>08/31/2022 17:49</pubDate>
     </item>
     <item>
       <title>Terrifier 2</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/terrifier-2-trailer?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/terrifier-2-trailer&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/terrifier-2-trailer?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/terrifier-2-trailer&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I know what I'm doing October 6th.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://yewtu.be/embed/6KkONLf_ZKU" title="Terrifier 2 Trailer"&gt;&lt;img src="https://yewtu.be/vi/6KkONLf_ZKU/maxres.jpg" class="img-fluid" alt="Terrifier 2" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/terrifier-2-trailer?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/terrifier-2-trailer</guid>
       <pubDate>08/23/2022 19:57</pubDate>
     </item>
     <item>
       <title>World's Largest Smartphone Camera</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/worlds-largest-smartphone-camera?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/worlds-largest-smartphone-camera&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/worlds-largest-smartphone-camera?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/worlds-largest-smartphone-camera&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Cries in Lumia 1020 &lt;span&gt;😢&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://yewtu.be/vi/lYPe4MsALk4/maxres.jpg" class="img-fluid" alt="Thumbnail Marques Brownlee World's Largest Smartphone Camera" /&gt;&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href="https://yewtu.be/embed/lYPe4MsALk4"&gt;World's Largest Smartphone Camera | Marques Brownlee&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/worlds-largest-smartphone-camera?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/worlds-largest-smartphone-camera</guid>
       <pubDate>07/07/2022 21:17</pubDate>
     </item>
     <item>
       <title>Terry Carnation</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/terry-carnation?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/terry-carnation&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/terry-carnation?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/terry-carnation&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Can't believe I hadn't heard about these podcasts before:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://radiorentalusa.com/"&gt;Radio Rental&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://audioboom.com/channels/5046661"&gt;Dark Air&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Love the horror anthology vibes like Tales From The Crypt and Freakshow for Radio Rental. For Dark Air, I really like the Space Ghost Coast to Coast and actual Coast to Coast feel. Best of all, the host Terry Carnation is Rainn Wilson. Even &lt;a href="https://www.terrycarnation.com/"&gt;Terry's website&lt;/a&gt; has a great 90's web feel to it. Looks like Dark Air has been off the air for some time, but hopefully Radio Rental keeps publishing content.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/terry-carnation?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/terry-carnation</guid>
       <pubDate>07/03/2022 22:04</pubDate>
     </item>
     <item>
       <title>iPod Touch discontinued</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/ipod-touch-discontinued?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/ipod-touch-discontinued&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/ipod-touch-discontinued?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/ipod-touch-discontinued&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Apple just announced they're discontinuing the &lt;a href="https://www.apple.com/newsroom/2022/05/the-music-lives-on/"&gt;iPod Touch&lt;/a&gt;. I'm surprised it hadn't happened earlier! Still, it's sad to see the end of an era for these devices which are effectively smartphones without the phone / cellular data connectivity. I still have my iPod Touch from 2014 that I use occasionally for FaceTime which aside from poor battery life and being stuck on an older version of iOS, it still works smoothly.&lt;/p&gt;
+&lt;p&gt;For the past two years, my audio solution has been a dedicated MP3 device. Since most of the content I consume I download and listen to offline, a dedicated MP3 device doesn't drain my phone's battery or take up storage space.&lt;/p&gt;
+&lt;p&gt;I started with the &lt;a href="https://www.fiio.com/m5"&gt;FiiO M5&lt;/a&gt;, which is like an iPod Shuffle. The device was great, but all it took was one drop for the screen to crack at which point I upgraded to the &lt;a href="https://www.fiio.com/m6"&gt;FiiO M6&lt;/a&gt;. The nice thing about the M6 is that the OS is a stripped down version of Android meaning you can &lt;a href="https://www.fiio.com/newsinfo/139014.html"&gt;side-load applications&lt;/a&gt; such as Spotify. The bad thing, the hardware can't handle (even heavily optimized versions) of these applications making the user experience frustrating. The touchscreen interface is great for navigation especially when you have large collections. However, since I only use the device for podcasts and audiobooks and don't get the benefits of installing streaming music apps, I'd be better off with a more affordable device like those from &lt;a href="https://www.westerndigital.com/c/mp3-players"&gt;SanDisk&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/ipod-touch-discontinued?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/ipod-touch-discontinued</guid>
       <pubDate>05/10/2022 12:27</pubDate>
     </item>
     <item>
       <title>A year's worth of Azure hosting costs</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/azure-costs-website-hosting-2021?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/azure-costs-website-hosting-2021&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/azure-costs-website-hosting-2021?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/azure-costs-website-hosting-2021&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;It's been a little over a year since I started hosting my website on Azure. The resources I use include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Azure Storage: Where all my site assets are stored.&lt;/li&gt;
+&lt;li&gt;Azure CDN: Content delivery&lt;/li&gt;
+&lt;li&gt;Azure Logic Apps: Event-based jobs to syndicate new posts on Twitter and Mastodon.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I haven't tracked traffic for the entire year but since October of last year the site has gotten roughly 5,000 visitors.&lt;/p&gt;
+&lt;p&gt;Taking all that into account, I've only had to pay $2.06 most of it being the storage I use for the site. In comparison, I was previously hosting my website through my domain provider in a shared server where it cost about $60!&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/166848883-8d6cfe2c-5ff3-468c-b95f-b0ecab69595a.png" class="img-fluid" alt="Azure portal billing cost" /&gt;&lt;/p&gt;
+&lt;p&gt;If you're interested in how this site is built, check out the &lt;a href="/colophon"&gt;colophon&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/azure-costs-website-hosting-2021?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/azure-costs-website-hosting-2021</guid>
-      <pubDate>05/04/2022 20:36</pubDate>
+      <pubDate>2022-05-04 20:36</pubDate>
     </item>
     <item>
       <title>Chip-making Chip Shortage</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/chipmaking-chip-shortage?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/chipmaking-chip-shortage&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/chipmaking-chip-shortage?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/chipmaking-chip-shortage&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;&lt;a href="https://9to5mac.com/2022/05/03/chips-for-chipmaking-machines/"&gt;Chips for chipmaking machines are affected by chip shortage, says TSMC and Intel - via 9to5Mac&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://res-5.cloudinary.com/hdwvnfa8d/image/upload/q_auto/v1/ghost-blog-images/Spider-Man-Pointing-Meme.jpg" class="img-fluid" alt="Spiderman meme pointing at each other" /&gt;&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/chipmaking-chip-shortage?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/chipmaking-chip-shortage</guid>
       <pubDate>05/03/2022 18:50</pubDate>
     </item>
     <item>
       <title>Twitter Circles: Top 150 friends</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/twitter-circles-myspace-top-friends?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/twitter-circles-myspace-top-friends&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/twitter-circles-myspace-top-friends?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/twitter-circles-myspace-top-friends&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Twitter is testing a new feature called &lt;a href="https://www.theverge.com/2022/5/3/23055515/twitter-circle-close-friends-private-tweets-150-people"&gt;Twitter Circles&lt;/a&gt; where you can restrict the reach of your tweets to up to 150 people. I remember the days of MySpace where many relationships were made / broken as a result of being in someone's Top 8 Friends list &lt;span&gt;😆&lt;/span&gt;&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/twitter-circles-myspace-top-friends?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/twitter-circles-myspace-top-friends</guid>
       <pubDate>05/03/2022 14:31</pubDate>
     </item>
     <item>
       <title>Mastodon POSSE enabled</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/mastodon-posse-enabled?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/mastodon-posse-enabled&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/mastodon-posse-enabled?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/mastodon-posse-enabled&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Hello Mastodon from lqdev.me. Got &lt;a href="https://indieweb.org/POSSE"&gt;POSSE (Publish (on your) Own Site, Syndicate Elsewhere)&lt;/a&gt; working for Mastodon! I already had an Azure Logic App which took the latest post from my RSS feed and published to Twitter. Now it's also enabled for Mastodon. Might do a writeup later in the blog on how to do it.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/mastodon-posse-enabled?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/mastodon-posse-enabled</guid>
       <pubDate>04/27/2022 21:29</pubDate>
     </item>
     <item>
       <title>ATOM Weather Alerts</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/atom-rss-nws-weather-alerts?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/atom-rss-nws-weather-alerts&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/atom-rss-nws-weather-alerts?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/atom-rss-nws-weather-alerts&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Yesterday I ran into more feed goodness. When going to a website to get the weather forecast, weather alerts are displayed (if there are any).&lt;/p&gt;
+&lt;p&gt;I thought, wouldn't it be great to be able to subscribe to those alerts without having to go to the website?&lt;/p&gt;
+&lt;p&gt;A quick search revealed the National Weather Service provides these alerts in ATOM format for each of the states in the U.S.
+You have the option of tracking updates at the national, state, zone, and county level.&lt;/p&gt;
+&lt;p&gt;Subscribing is as easy as adding the link for the respective feed to your favorite feed reader. If you're interested, you can find the list of feeds at &lt;a href="https://alerts.weather.gov/"&gt;https://alerts.weather.gov/&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/atom-rss-nws-weather-alerts?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/atom-rss-nws-weather-alerts</guid>
       <pubDate>04/27/2022 20:19</pubDate>
     </item>
     <item>
       <title>Welcome to the Fediverse</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/welcome-to-fediverse-tips?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/welcome-to-fediverse-tips&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/welcome-to-fediverse-tips?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/welcome-to-fediverse-tips&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;In light of recent developments on Twitter, I see more people looking for alternative platforms. Personally, I don't think anything beats the level of customization and control you get from using your own website and RSS for sharing ideas and publishing content. However, it's great to see so many new friends in the Fediverse on platforms like &lt;a href="https://joinmastodon.org/"&gt;Mastodon&lt;/a&gt;. I won't go into what the Fediverse is but you can check out the &lt;a href="https://joinfediverse.wiki/What_is_the_Fediverse%3F"&gt;Fediverse wiki&lt;/a&gt; for more info. In many ways the Fediverse will feel familiar, yet foreign. Many people have shared tips on getting started, but I'll share some of the ones I've personally used to organically curate my feed.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use hashtags. Similar to Twitter, hashtags are a good way of finding people and content related to the topic of interest.&lt;/li&gt;
+&lt;li&gt;Follow &lt;a href="https://mstdn.social/@feditips"&gt;feditips&lt;/a&gt; and &lt;a href="https://mastodon.online/@FediFollows"&gt;FediFollows&lt;/a&gt;. As the names suggest, they provide good tips and suggest interesting accounts to follow in the Fediverse.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As an alternative if you're not ready to create an account, you can use RSS. I'm a big &lt;a href="https://www.luisquintanilla.me/posts/rediscovering-rss-user-freedom.html"&gt;fan of RSS&lt;/a&gt;. Appending &lt;code&gt;.rss&lt;/code&gt; to any account on platforms like Mastodon (for example &lt;a href="https://mastodon.online/@FediFollows.rss"&gt;https://mastodon.online/@FediFollows.rss&lt;/a&gt;) provides you with the RSS feed of an account's posts letting you subscribe to their content through your favorite RSS feed reader.&lt;/p&gt;
+&lt;p&gt;Feel free to say hi at &lt;a href="https://toot.lqdev.tech/@lqdev"&gt;toot.lqdev.tech/@lqdev&lt;/a&gt;. See you in the Fediverse!&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/welcome-to-fediverse-tips?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/welcome-to-fediverse-tips</guid>
       <pubDate>04/27/2022 13:04</pubDate>
     </item>
     <item>
       <title>Assorted links - Ubuntu 22.04 LTS, Bitwarden, DALLE-2, Emacs</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/2022-04-21-assorted-links?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2022-04-21-assorted-links&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2022-04-21-assorted-links?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2022-04-21-assorted-links&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Here's a few links I found in the interwebs today that I thought were worth sharing.&lt;/p&gt;
+&lt;h2&gt;Ubuntu 22.04 LTS Released&lt;/h2&gt;
+&lt;p&gt;For my personal computing needs, Manjaro has been my default Linux distro. However, for hosting and cloud VMs I go back and forth between Debian and Ubuntu depending on which better supports the software I'm running. Canonical announced the release of the latest Ubuntu LTS version 22.04. Check out their &lt;a href="https://ubuntu.com/blog/ubuntu-22-04-lts-released"&gt;blog post&lt;/a&gt; for more details on what's new.&lt;/p&gt;
+&lt;h2&gt;Self-hosting Bitwarden on DigitalOcean&lt;/h2&gt;
+&lt;p&gt;When it comes to password managers, other than KeePass, my favorite it &lt;a href="https://bitwarden.com/"&gt;Bitwarden&lt;/a&gt;. It's open-source, built on .NET, has excellent features that get even better with the low-cost paid version, but most importantly provides you the option of self-hosting. If you're looking to self-host Bitwarden on DigitalOcean, make sure to check out the &lt;a href="https://bitwarden.com/blog/digitalocean-marketplace/"&gt;guide&lt;/a&gt; they just published.&lt;/p&gt;
+&lt;h2&gt;How DALLE-2 Actually Works&lt;/h2&gt;
+&lt;p&gt;A few weeks ago, OpenAI announced the release of &lt;a href="https://openai.com/dall-e-2/"&gt;DALLE-2&lt;/a&gt;. Open AI describes DALLE-2 as, &amp;quot;...a new AI system that can create realistic images and art from a description in natural language.&amp;quot; If you want to understand the details of how it works, you could read the 27 page research paper &lt;a href="https://arxiv.org/pdf/2204.06125.pdf"&gt;Hierarchical Text-Conditional
+Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an approachable guide into the inner workings of DALLE-2. If you're interested in that, check out their &lt;a href="https://www.assemblyai.com/blog/how-dall-e-2-actually-works/"&gt;blog post&lt;/a&gt; on the topic.&lt;/p&gt;
+&lt;h2&gt;Emacs Configuration Generator&lt;/h2&gt;
+&lt;p&gt;In my early days of using Emacs, I often found it difficult to customize it to my needs. Not only did I not know what was possible, but it also caused some anxiety because I didn't feel confident enough making major tweaks. If you're getting started with Emacs and aren't sure how to configure it, this neat &lt;a href="https://emacs.amodernist.com/"&gt;utility&lt;/a&gt; helps you generate a config file for Emacs.&lt;/p&gt;
+&lt;h2&gt;PostgresML&lt;/h2&gt;
+&lt;p&gt;If you're building machine learning applications, one of the main things you'll need is data. This data can reside in databases such as MySQL, SQL Server, and Postgres. Algorithms are applied to this data downstream using libraries written in languages like Python, R, and .NET. This not only means potentially moving the data from the database to another process but also using another library to train models. According to the project description on GitHub, &amp;quot;PostgresML is an end-to-end machine learning system. It enables you to train models and make online predictions using only SQL, without your data ever leaving your favorite database.&amp;quot; If that's something you're interested in, check out the project on &lt;a href="https://github.com/postgresml/postgresml"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/2022-04-21-assorted-links?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/2022-04-21-assorted-links</guid>
       <pubDate>04/21/2022 19:44</pubDate>
     </item>
     <item>
       <title>Archive 81 - so far so good!</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/archive-81-black-tapes?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/archive-81-black-tapes&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/archive-81-black-tapes?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/archive-81-black-tapes&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;About 2 episodes into the show &lt;a href="https://www.netflix.com/title/80222802"&gt;Archive 81&lt;/a&gt; on Netflix and so far so good. I listened to a few episodes of the &lt;a href="https://www.archive81.com/"&gt;podcast&lt;/a&gt; (by the same name) it's based on a few years ago. Now it makes me want to go back and listen to it again. It also makes me think about what the &lt;a href="https://theblacktapespodcast.com/"&gt;Black Tapes&lt;/a&gt; could've been had it gotten a TV or movie adaptation. If you're into the found footage, cult horror type of stories (think Blair Witch + Midsommar + Rosemary's Baby), definitely check it out.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/archive-81-black-tapes?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/archive-81-black-tapes</guid>
       <pubDate>01/15/2022 21:01</pubDate>
     </item>
     <item>
       <title>Vertigo AI</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/vertigo-ai?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/vertigo-ai&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/vertigo-ai?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/vertigo-ai&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Vertigo_(film)"&gt;Vertigo&lt;/a&gt; is one of my all time favorite movies, so I was excited to learn about &lt;a href="http://www.chrispeters.com/vertigo-ai-experiment/"&gt;Vertigo AI&lt;/a&gt;. Vertigo AI is an experiment that trained a model on footage from the film Vertigo to produce its own original short film. There aren't many details on the AI aspects of it, but I suspect there's a Generative Adversarial Network (GAN) similar to &lt;a href="http://norman-ai.mit.edu/"&gt;Norman&lt;/a&gt; behind it. Check out the generated movie.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://yewtu.be/embed/zeCDqFCGN8Y" title="Vertigo AI"&gt;&lt;img src="https://yewtu.be/vi/zeCDqFCGN8Y/maxres.jpg" class="img-fluid" alt="Vertigo AI" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/vertigo-ai?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/vertigo-ai</guid>
       <pubDate>12/28/2021 15:23</pubDate>
     </item>
     <item>
       <title>Site updated to .NET 6</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/net6-website-update?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/net6-website-update&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/net6-website-update?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/net6-website-update&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;That was easy. Site's been updated to .NET 6 and all it took was a one-line change.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/147173815-9703691c-26cd-481a-98e6-fa23a9ce9674.png" class="img-fluid" alt="GitHub PR diff .NET 6 update" /&gt;&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/net6-website-update?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/net6-website-update</guid>
       <pubDate>12/22/2021 20:27</pubDate>
     </item>
     <item>
       <title>New Jami username</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/new-jami-username?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/new-jami-username&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/new-jami-username?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/new-jami-username&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I got a reminder on the importance of backups last night. New Jami username is lqdev1. Fortunately I wasn't as active on there so not a big deal to lose my original username.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/new-jami-username?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/new-jami-username</guid>
       <pubDate>11/19/2021 10:37</pubDate>
     </item>
     <item>
       <title>TOSDR: Terms of Service CliffNotes</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/terms-of-service-cliffnotes-tosdr?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/terms-of-service-cliffnotes-tosdr&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/terms-of-service-cliffnotes-tosdr?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/terms-of-service-cliffnotes-tosdr&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I recently came accross the &lt;a href="https://tosdr.org/"&gt;Terms of Service, Didn't Read (TOSDR)&lt;/a&gt; website. Like most people, I'm guilty of clicking &amp;quot;I have read and agree to the terms of service&amp;quot; without actually doing so. TOSDR simplifies terms of service documents by highlighting the main points for many popular services. I'm not sure how maintenance and the frequency of that maintenance work. There's a rating systems which I also am not sure how it works. However, you are provided with the documents that were used to come up with the ratings and summaries, so you can look into it yourself. Overall, I think it's an incredibly useful tool to make sense of how your data is managed across these platforms.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/142041533-e79dc8f4-4ba2-42b3-bbfd-e2becab8f357.png" class="img-fluid" alt="Duck Duck Go and YouTube TOSDR service comparisons" /&gt;&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/terms-of-service-cliffnotes-tosdr?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/terms-of-service-cliffnotes-tosdr</guid>
       <pubDate>11/16/2021 13:10</pubDate>
     </item>
     <item>
       <title>Reminiscing about Windows Phone</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Found these while cleaning out some drawers 😢. Good times.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/windows-phone-lumias.png" class="img-fluid" alt="Two Nokia Lumia Windows Phones" /&gt;&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing</guid>
       <pubDate>11/13/2021 21:00</pubDate>
     </item>
     <item>
       <title>Podcast management with RSS and VLC</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/rss-vlc-podcast-management?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/rss-vlc-podcast-management&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/rss-vlc-podcast-management?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/rss-vlc-podcast-management&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I've written before about how &lt;a href="/posts/rediscovering-rss-user-freedom.html"&gt;versatile the RSS protocol is for publishing and consuming content&lt;/a&gt;. Podcasts are one of the many media types that largely rely on RSS, making it easy to subscribe and manage using an RSS client of your choice. Like RSS, &lt;a href="https://www.videolan.org/vlc/"&gt;VLC&lt;/a&gt; is versatile in the type of media it can play. When you combine the two, you're able to stay updated on the latest episodes from your favorite podcasts using the RSS reader of your choice and use the episode's URL to stream the audio in VLC.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/140527726-6635cbf3-8082-45d1-9b51-a4e136168abf.png" class="img-fluid" alt=".NET Rocks podcast RSS feed and VLC playing" /&gt;&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/rss-vlc-podcast-management?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/rss-vlc-podcast-management</guid>
       <pubDate>11/05/2021 10:27</pubDate>
     </item>
     <item>
       <title>Blogging on the Surface Duo with github.dev</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Lately I've been using github.dev to author posts and make light edits on this site. One use case where it's come extremely handy has been authoring content, specifically these microblog-like posts from my Surface Duo. Instead of opening the laptop, I can open up my Surface Duo and visit my site's repo through github.dev. When I orient the device in landscape mode I have one screen display the VS Code-like web environment while the other screen displays the keyboard. Snippets, version control, extensions, and themes all carry over making the experience consistent. Committing changes through the version control utilities immediately kicks off the GitHub Action to build and publish the site with the latest changes. Pairing the GitHub online editor environment with the Duo's dual-screen form factor showcases the productivity and convenience both of these products provide.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/139595618-a2f905dd-e3a0-4f34-8702-2350f548d8c7.png" class="img-fluid" alt="Microblogging on Surface Duo in github.dev" /&gt;&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev</guid>
       <pubDate>10/31/2021 13:51</pubDate>
     </item>
     <item>
       <title>Personal Site Stats - GoatCounter</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/personal-site-stats-goatcounter?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/personal-site-stats-goatcounter&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/personal-site-stats-goatcounter?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/personal-site-stats-goatcounter&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I've been looking at different alternatives to Google Analytics for website stats. I don't need anything fancy, just basic page counts. Eventually I settled on &lt;a href="https://www.goatcounter.com/"&gt;GoatCounter&lt;/a&gt; because it's lightweight, open-source, and privacy-friendly. You can either use their managed service or self-host. Deployment with Docker felt a bit much so I did a standalone deployment to a VM. The Linode StackScript is probably the easiest way to do it.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/personal-site-stats-goatcounter?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/personal-site-stats-goatcounter</guid>
       <pubDate>10/31/2021 11:57</pubDate>
     </item>
     <item>
       <title>Early Radio History (U.S)</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/early-radio-history-us?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/early-radio-history-us&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/early-radio-history-us?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/early-radio-history-us&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;While browsing the interwebs, I ran into the site &lt;a href="https://earlyradiohistory.us/"&gt;United States Early Radio History&lt;/a&gt; which contains events spanning different time periods. As an operator it's fascinating to learn about the history and see how radio continues to play a large role in our day-to-day.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/early-radio-history-us?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/early-radio-history-us</guid>
       <pubDate>10/29/2021 02:05</pubDate>
     </item>
     <item>
       <title>Web Neural Network API - Working Draft</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/web-neural-network-api-working-draft?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/web-neural-network-api-working-draft&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/web-neural-network-api-working-draft?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/web-neural-network-api-working-draft&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;While browsing the interwebs I came across the &lt;a href="https://www.w3.org/TR/webnn/"&gt;Web Neural Network API&lt;/a&gt; spec from the &lt;a href="https://www.w3.org/groups/wg/webmachinelearning"&gt;W3C Web Machine Learning Working Group&lt;/a&gt;. The abstract defines it as &amp;quot;a dedicated low-level API for neural network inference hardware acceleration.&amp;quot;. Although there are already a few frameworks like ONNX &amp;amp; TensorFlow.js that allow you to inference in the browser, this spec looks interesting because it provides an abstraction that allows you to take advantage of hardware acceleration using the framework of your choice. As the &lt;a href="https://github.com/webmachinelearning/webnn/blob/main/explainer.md"&gt;explainer document&lt;/a&gt; mentions, &amp;quot;this architecture allows JavaScript frameworks to tap into cutting-edge machine learning innovations in the operating system and the hardware platform underneath it without being tied to platform-specific capabilities, bridging the gap between software and hardware through a hardware-agnostic abstraction layer.&amp;quot;. It's just a working draft for now but I'm looking forward to how this develops.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/web-neural-network-api-working-draft?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/web-neural-network-api-working-draft</guid>
       <pubDate>10/24/2021 20:36</pubDate>
     </item>
     <item>
       <title>Top 10 listicles</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/top-10-listicles?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/top-10-listicles&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/top-10-listicles?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/top-10-listicles&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;The other day I was going down a Wikipedia rabbit hole and learned those click-baity &amp;quot;Top 10 ...&amp;quot; or &amp;quot;Worst 10 ...&amp;quot; articles apparently have a name, &lt;a href="https://en.wikipedia.org/wiki/Listicle"&gt;listicles&lt;/a&gt;. The more you know...&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/top-10-listicles?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/top-10-listicles</guid>
       <pubDate>10/24/2021 19:33</pubDate>
     </item>
     <item>
       <title>lqdev.me redirect</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/lqdevme-redirect?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/lqdevme-redirect&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/lqdevme-redirect?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/lqdevme-redirect&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;That was easier than I thought. Visiting &lt;a href="http://lqdev.me"&gt;lqdev.me&lt;/a&gt; now redirects to this site. Redirect isn't limited to the main page though. You can also access any other resources as well. For example, visiting &lt;a href="http://lqdev.me/feed"&gt;lqdev.me/feed&lt;/a&gt; would redirect you to the main feed on this site.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/lqdevme-redirect?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/lqdevme-redirect</guid>
       <pubDate>10/22/2021 13:57</pubDate>
     </item>
     <item>
       <title>TIL: Canonical HTML tags</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/rel-canonical-tags?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/rel-canonical-tags&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/rel-canonical-tags?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/rel-canonical-tags&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Today I learned about canonical URLs. While looking into how I can syndicate content from this site, specifically longer form blog posts on other sites like dev.to, I came across canonical tags.&lt;/p&gt;
+&lt;p&gt;Basically they're a way of telling the internet, specifically search engines, what version of your content is the main copy or single-source of truth.&lt;/p&gt;
+&lt;p&gt;Currently I've configured my site so it's not indexed or crawled. However, for sites I don't own I don't have the same level of control. Check out the &lt;a href="https://moz.com/learn/seo/canonicalization"&gt;canonicalization&lt;/a&gt; and &lt;a href="https://moz.com/blog/rel-canonical"&gt;SEO best practices for canonical URLs&lt;/a&gt; articles from Moz if you're interested in learning more.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/rel-canonical-tags?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/rel-canonical-tags</guid>
       <pubDate>10/21/2021 21:31</pubDate>
     </item>
     <item>
       <title>Next gen stick figures using AI and NVIDIA Canvas</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/nvidia-canvas-next-gen-stick-figures-ai?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/nvidia-canvas-next-gen-stick-figures-ai&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/nvidia-canvas-next-gen-stick-figures-ai?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/nvidia-canvas-next-gen-stick-figures-ai&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I have almost zero artistic skills, so when I came across &lt;a href="https://www.nvidia.com/en-us/studio/canvas/"&gt;NVIDIA Canvas&lt;/a&gt; I was extremely excited!&lt;/p&gt;
+&lt;p&gt;Essentially it's an application that takes simple brushstrokes as input and uses a Generative Adversarial Network (GAN) to turn them into realistic landscape photos.&lt;/p&gt;
+&lt;p&gt;I had known about GANs being used to generate faces (see &lt;a href="https://thispersondoesnotexist.com/"&gt;This Person Does Not Exist&lt;/a&gt;) but it's one of the first times I've seen them used to enhance drawings.&lt;/p&gt;
+&lt;p&gt;Time to take my stick figures to the next level!&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/nvidia-canvas-next-gen-stick-figures-ai?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/nvidia-canvas-next-gen-stick-figures-ai</guid>
       <pubDate>10/19/2021 10:51 PM</pubDate>
     </item>
     <item>
       <title>Coffee with a Codex</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/coffee-with-codex?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/coffee-with-codex&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/coffee-with-codex?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/coffee-with-codex&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Came accross this event series via &lt;a href="https://boffosocko.com/type/status/"&gt;Chris Aldrich's microblog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Here's Chris' original post&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Every Monday, I sit down with a cup of coffee and learn something interesting about history through old manuscripts. Join our friends Dot Porter (&lt;a href="https://twitter.com/leoba"&gt;@leoba&lt;/a&gt;) and the Schoenberg Institute for Manuscript Studies (&lt;a href="https://twitter.com/sims_mss"&gt;@sims_mss&lt;/a&gt;) at &lt;a href="https://schoenberginstitute.org/coffee-with-a-codex/"&gt;Coffee with a Codex&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Basically it's a virtual meeting where experts go over manuscripts on a variety of topics. I'll probably check out next week's event.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/coffee-with-codex?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/coffee-with-codex</guid>
       <pubDate>10/19/2021 10:21 AM</pubDate>
     </item>
     <item>
       <title>Success! Matrix migration complete</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/matrix-migration-complete?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/matrix-migration-complete&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/matrix-migration-complete?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/matrix-migration-complete&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;It only took 6 hours but I was able to get it done with a little help.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif" class="img-fluid" alt="Bender from Futurama happy dance" /&gt;&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/matrix-migration-complete?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/matrix-migration-complete</guid>
       <pubDate>10/09/2021 12:23 AM</pubDate>
     </item>
     <item>
       <title>Windows 11 upgrade</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/windows-11-upgrade?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/windows-11-upgrade&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/windows-11-upgrade?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/windows-11-upgrade&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;No Windows 11 upgrade for me. 😥&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/135946651-d4d9acee-5618-4846-85aa-8387077a4785.png" class="img-fluid" alt="PC doesn't meet windows 11 upgrade requirements message" /&gt;&lt;/p&gt;
+&lt;p&gt;Just because I can't doesn't mean you can't though. Go and check if you're eligible at Windows Update&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Start &amp;gt; Settings &amp;gt; Update &amp;amp; Security &amp;gt; Windows Update&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;See &lt;a href="https://support.microsoft.com/windows/manage-updates-in-windows-643e9ea7-3cf6-7da6-a25c-95d4f7f099fe#WindowsVersion=Windows_10"&gt;Manage updates in Windows&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;p&gt;For alternative install options, check out the &lt;a href="https://www.microsoft.com/software-download/windows11"&gt;Download Windows 11&lt;/a&gt; page.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/windows-11-upgrade?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/windows-11-upgrade</guid>
       <pubDate>10/05/2021 08:55 AM</pubDate>
     </item>
     <item>
       <title>PSA: Personal site not down</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/fb-ig-personal-feed-up?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/fb-ig-personal-feed-up&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/fb-ig-personal-feed-up?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/fb-ig-personal-feed-up&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Just jumping on the bandwagon. A few online services are down at the moment 😬&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/135891253-c3857919-b6fa-4eca-a483-a03b22abe4de.png" class="img-fluid" alt="Web service outages on downdetector.com" /&gt;&lt;/p&gt;
+&lt;p&gt;Not to worry...the personal site is still chugging along 😌&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/fb-ig-personal-feed-up?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/fb-ig-personal-feed-up</guid>
       <pubDate>10/04/2021 12:55 PM</pubDate>
     </item>
     <item>
       <title>Cultivating digital gardens</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/digital-gardens-technology-review-article?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/digital-gardens-technology-review-article&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/digital-gardens-technology-review-article?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/digital-gardens-technology-review-article&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Just read an interesting article publised in Technology Review called &lt;a href="https://www.technologyreview.com/2020/09/03/1007716/digital-gardens-let-you-cultivate-your-own-little-bit-of-the-internet/"&gt;Digital gardens let you cultivate your own little bit of the internet&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In a sense, some of the updates to this site like the addition of the different feeds can be thought of as &amp;quot;cultivating&amp;quot; my own digital garden.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/digital-gardens-technology-review-article?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/digital-gardens-technology-review-article</guid>
       <pubDate>10/03/2021 09:57 PM</pubDate>
     </item>
     <item>
       <title>The Many Saints of Newark</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/many-saints-of-newark?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/many-saints-of-newark&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/many-saints-of-newark?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/many-saints-of-newark&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I would've been okay with &lt;a href="https://www.rottentomatoes.com/m/the_many_saints_of_newark"&gt;The Many Saints of Newark&lt;/a&gt; being a 4 hour movie. I didn't want it to end. Now I have to rewatch The Sopranos.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/many-saints-of-newark?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/many-saints-of-newark</guid>
       <pubDate>10/02/2021 08:19 PM</pubDate>
     </item>
     <item>
       <title>The future of Skype</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/skype-future-annoucement-09-2021?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/skype-future-annoucement-09-2021&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/skype-future-annoucement-09-2021?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/skype-future-annoucement-09-2021&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;For personal use, I tend to default to Skype for my video / audio call needs.&lt;/p&gt;
+&lt;p&gt;Great to see there are some long-term plans for the app and it'll be around for a while more.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.skype.com/en/blogs/2021-08-announcement-modern-skype/"&gt;The future of Skype: Fast, playful, delightful and buttery smooth​&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/skype-future-annoucement-09-2021?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/skype-future-annoucement-09-2021</guid>
       <pubDate>10/01/2021 4:20 PM</pubDate>
     </item>
     <item>
       <title>When Planets Mate</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/when-planets-mate?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/when-planets-mate&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/when-planets-mate?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/when-planets-mate&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Found this interesting video by Chackram &amp;amp; Riley Thompson. My favorite part starts around the 7:15 mark.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://vimeo.com/340043225"&gt;&lt;img src="https://i.vimeocdn.com/video/788261540-f6e1a0bb577b65081153fc4b2af03b6addffa07a0551187165bc9e71003063d7-d?mw=1500&amp;amp;mh=844&amp;amp;q=70" class="img-fluid" alt="When Planets Mate Video by Chakram &amp;amp; Riley Thompson" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/when-planets-mate?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/when-planets-mate</guid>
       <pubDate>09/29/2021 07:56 PM</pubDate>
     </item>
     <item>
       <title>Hello World</title>
-      <description>See the post at &lt;a href="https://www.luisquintanilla.me/feed/hello-world?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/hello-world&lt;/a&gt;</description>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/hello-world?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/hello-world&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Hello World! First post in the personal feed.&lt;/p&gt;
+]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/hello-world?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/hello-world</guid>
       <pubDate>09/29/2021 07:16 PM</pubDate>
