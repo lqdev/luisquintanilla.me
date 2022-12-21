@@ -60,7 +60,7 @@ sequenceDiagram
   end
 ```
 
-I use the term website here very loosely because it's not only limited to your own personal website. You can technically use Webmentions through any public website including social media platforms like Twitter, Mastodon, or GitHub.
+I use the term website here very loosely because it's not only limited to your own personal website. You can technically use Webmentions through any public website including social media platforms like Twitter, Mastodon, or even GitHub.
 
 This post will focus on the middle blocks consisting of sending and receiving Webmentions. For more information, check out the [specification](https://www.w3.org/TR/webmention/#abstract-p-1) and [Webmentions page](https://indieweb.org/Webmention) on the IndieWeb wiki. 
 
