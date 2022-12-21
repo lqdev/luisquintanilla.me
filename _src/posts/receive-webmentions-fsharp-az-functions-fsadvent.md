@@ -66,7 +66,7 @@ This post will focus on the middle blocks consisting of sending and receiving We
 
 ## My webmention solution
 
-In September of this year, I [integrated a partial implementation of Webmentions](/feed/webmentions-partially-implemented/) into my website. This implementation only allowed me to send webmentions as part of my publishing process. If you're interested in the details, it's based on the blog post I wrote for last year's F# Advent, [Sending Webmentions with F#](feed/webmentions-partially-implemented/).
+In September of this year, I [integrated a partial implementation of Webmentions](/feed/webmentions-partially-implemented/) into my website. This implementation only allowed me to send webmentions as part of my publishing process. If you're interested in the details, it's based on the blog post I wrote for last year's F# Advent, [Sending Webmentions with F#](/posts/sending-webmentions-fsharp-fsadvent/).
 
 A couple of days ago, I [successfully deployed and integrated](/feed/now-accepting-webmentions/) the other part of the implementation which allowed me to receive webmentions. While there are many great [services](https://indieweb.org/Webmention#Publisher_Services) which will do this for you, I decided to roll my own for fun and to learn something new. 
 
@@ -150,7 +150,7 @@ To send a Webmention, you need to send an HTTP POST request with an `x-www-form-
 
 ### Sending Webmentions in practice
 
-Let's use a redundant example to walk through the workflow. Pretend that you created or commented on a GitHub issue and added a link to one of my articles, [Sending Webmentions with F#](https://www.luisquintanilla.me/posts/sending-webmentions-fsharp-fsadvent/) for example. You then wanted to notify me either to get my attention on that issue or just as an FYI. Now I say this is a redundant example because GitHub already has notifications. However, what this does illustrate are the cross-site capabilities of Webmentions. 
+Let's use a redundant example to walk through the workflow. Pretend that you created or commented on a GitHub issue and added a link to one of my articles, [Sending Webmentions with F#](/posts/sending-webmentions-fsharp-fsadvent/) for example. You then wanted to notify me either to get my attention on that issue or just as an FYI. Now I say this is a redundant example because GitHub already has notifications. However, what this does illustrate are the cross-site capabilities of Webmentions. 
 
 ![Image of GitHub Issue Post](/images/receive-webmentions-fsharp-az-functions-fsadvent/send-gh-issue.png)
 
