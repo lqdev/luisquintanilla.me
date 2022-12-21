@@ -8,7 +8,7 @@ Well, that's time that I'm never going to get back.
 
 Imagine that you wanted to redirect a URL,
 
-From: `https://mydomain/github/repo-name`
+From: `https://mydomain/github/repo-name`  
 To: `https://github.com/username/repo-name`
 
 You could use regular expressions to parse out the `repo-name` part of the URL path from the source URL to the destination URL. This is what it might look like using something like NGINX.
