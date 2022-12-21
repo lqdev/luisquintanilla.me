@@ -450,7 +450,7 @@ Webmentions are a great way to enable cross-site conversations on the internet. 
 
 I'll leave you with three things:
 
-1. As you consider the next platform you choose as your next online home, in addition to considering the health of the community, take some time to also think about the protocols it's built on top of and whether they give you more or less freedom. 
+1. As you consider the next platform for your next online home, in addition to considering the health of the community, take some time to also think about the protocols it's built on top of and whether they give you more or less freedom. 
 1. Try out the WebmentionFs library on NuGet and add Webmentions to your site.
 1. If you share this post anywhere publicly on the web, send me a Webmention.
 
