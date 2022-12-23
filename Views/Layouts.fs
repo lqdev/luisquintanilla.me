@@ -186,7 +186,7 @@ module Layouts
     ]
 
     let webmentionLink = 
-        link [_rel "webmention"; _title "Luis Quintanilla Webmention Endpoint"; _href "https://lqdevwebmentions.azurewebsites.net/api/inbox"]
+        link [_rel "webmention"; _title "Luis Quintanilla Webmention Endpoint"; _href "https://webmentions.lqdev.tech/api/inbox"]
 
 
     let scripts = [
