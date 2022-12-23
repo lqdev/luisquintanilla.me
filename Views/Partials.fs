@@ -65,7 +65,7 @@ let webmentionForm =
             rawText "window.onload = function() { document.getElementById('webmention-target').value = window.location.href }"
         ]
         form [
-            _action "https://lqdevwebmentions.azurewebsites.net/api/inbox"
+            _action "https://webmentions.lqdev.tech/api/inbox"
             _method "POST"
             _enctype "application/x-www-form-urlencoded"
         ] [
