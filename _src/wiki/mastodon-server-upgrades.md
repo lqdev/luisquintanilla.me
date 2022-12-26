@@ -163,6 +163,7 @@ These instructions backup the database and environment variables file. It does n
 
 ### 4.0.2
 
+1. Stop services - `systemctl stop mastodon-*.service`
 1. Backup database and env file
 1. Fetch tags - `git fetch --tags`
 1. Checkout 4.0.2 tag - `git checkout v4.0.2`
