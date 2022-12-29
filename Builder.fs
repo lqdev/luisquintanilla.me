@@ -56,7 +56,6 @@ module Builder
 
         // Copy vcard
         File.Copy(Path.Join(srcDir,"vcard.vcf"),Path.Join(outputDir,"vcard.vcf"),true)
-        
 
     let buildHomePage (posts:Post array) = 
         let recentPosts = 
@@ -129,6 +128,11 @@ module Builder
         let onlineRadioPage = generate onlineRadioContent "default" "Online Radio - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"radio")
         Directory.CreateDirectory(saveDir) |> ignore
+
+        // Copy playlist file
+        File.Copy(Path.Join(srcDir,"OnlineRadioPlaylist.m3u"),Path.Join(saveDir,"OnlineRadioPlaylist.m3u"),true)
+        
+        // Write out page
         File.WriteAllText(Path.Join(saveDir,"index.html"), onlineRadioPage)        
 
     let loadPosts () = 
