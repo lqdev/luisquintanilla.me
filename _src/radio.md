@@ -27,7 +27,7 @@ mpv --playlist=http://lqdev.me/radio/OnlineRadioPlaylist.m3u --player-operation-
 ## VLC
 
 ```bash
-vlc --playlist=http://lqdev.me/radio/OnlineRadioPlaylist.m3u
+vlc http://lqdev.me/radio/OnlineRadioPlaylist.m3u
 ```
 
 What's an lqvlc link? Check out the blog post on the [lqvlc network protocol](/posts/lqvlc-network-protocol-firefox.html).
