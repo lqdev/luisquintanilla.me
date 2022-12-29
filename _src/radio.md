@@ -16,4 +16,18 @@ Quick links to some of my favorite online radio stations:
 | [98.9 Fox Oldies](https://wgnyfm.com/) | [Stream Link](http://ice64.securenetsystems.net/WGNYFM2) | [lqvlc Link](lqvlc://ice64.securenetsystems.net/WGNYFM2) |
 | [aNONRadio](https://anonradio.net/) | [Stream Link](https://anonradio.net:8443/anonradio) | [lqvlc Link](lqvlc://anonradio.net:8443/anonradio) |
 
+Alternatively, use the [online radio playlist](/radio/OnlineRadioPlaylist.m3u) I've created to get access to all of them on MPV or VLC. 
+
+## MPV
+
+```bash
+mpv --playlist=http://lqdev.me/radio/OnlineRadioPlaylist.m3u --player-operation-mode=pseudo-gui 
+```
+
+## VLC
+
+```bash
+vlc --playlist=http://lqdev.me/radio/OnlineRadioPlaylist.m3u
+```
+
 What's an lqvlc link? Check out the blog post on the [lqvlc network protocol](/posts/lqvlc-network-protocol-firefox.html).
