@@ -15,6 +15,22 @@
 		],
 		"description": "January snowman checkmark"
 	},
+	"February-Groundhog": {
+		"scope": "fsharp",
+		"prefix": "february",
+		"body": [
+			"span [_style \"margin-right:5px;margin-left:5px;\"] [Text \"&#x1F9AB;\"]"
+		],
+		"description": "February groundhog (beaver) checkmark"
+	},	
+	"March-Sunflower": {
+		"scope": "fsharp",
+		"prefix": "march",
+		"body": [
+			"span [_style \"margin-right:5px;margin-left:5px;\"] [Text \"&#x1F33B;\"]"
+		],
+		"description": "March sunflower checkmark"
+	},		
 	"April-Showers": {
 		"scope": "fsharp",
 		"prefix": "april",
@@ -30,7 +46,31 @@
 			"span [_style \"margin-right:5px;margin-left:5px;\"] [Text \"&#x1F33C;\"]"
 		],
 		"description": "May flowers checkmark"
-	},		
+	},
+	"June-Sun": {
+		"scope": "fsharp",
+		"prefix": "june",
+		"body": [
+			"span [_style \"margin-right:5px;margin-left:5px;\"] [Text \"&#x2600;\"]"
+		],
+		"description": "June Sun checkmark"
+	},	
+	"July-Roswell": {
+		"scope": "fsharp",
+		"prefix": "july",
+		"body": [
+			"span [_style \"margin-right:5px;margin-left:5px;\"] [Text \"&#x1F47D;\"]"
+		],
+		"description": "July Roswell Alien checkmark"
+	},
+	"August-Tux-Linux": {
+		"scope": "fsharp",
+		"prefix": "august",
+		"body": [
+			"span [_style \"margin-right:5px;margin-left:5px;\"] [Text \"&#x1F427;\"]"
+		],
+		"description": "August Tux Penguin Linux checkmark"
+	},				
 	"September-Foliage": {
 		"scope": "fsharp",
 		"prefix": "september",
