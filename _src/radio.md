@@ -15,6 +15,7 @@ Quick links to some of my favorite online radio stations:
 | [Yesterweb Radio](https://yesterweb.org/radio/) | [Stream Link](https://radio.yesterweb.org/radio/8000/radio.mp3) | [lqvlc Link](lqvlc://radio.yesterweb.org/radio/8000/radio.mp3) | 
 | [98.9 Fox Oldies](https://wgnyfm.com/) | [Stream Link](http://ice64.securenetsystems.net/WGNYFM2) | [lqvlc Link](lqvlc://ice64.securenetsystems.net/WGNYFM2) |
 | [aNONRadio](https://anonradio.net/) | [Stream Link](https://anonradio.net:8443/anonradio) | [lqvlc Link](lqvlc://anonradio.net:8443/anonradio) |
+| Radio El Salvador 96.9 | [Stream Link](https://streamingcwsradio30.com/8198/stream) | [lqvlc Link](lqvlc://streamingcwsradio30.com/8198/stream) |
 
 Alternatively, use the [online radio playlist](/radio/OnlineRadioPlaylist.m3u) I've created to get access to all of them on [MPV](https://mpv.io/) or [VLC](https://www.videolan.org/vlc/). 
 
