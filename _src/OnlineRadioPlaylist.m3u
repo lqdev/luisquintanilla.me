@@ -2,7 +2,7 @@
 
 #PLAYLIST: Luis Quintanilla's Online Radio Playlist
 
-#EXTINF:0, SOMA DEF CON
+#EXTINF:0, SOMAFM DEF CON
 https://ice2.somafm.com/defcon-64-aac
 
 #EXTINF:0, SOMAFM Deep Space One
@@ -35,3 +35,5 @@ http://ice64.securenetsystems.net/WGNYFM2
 #EXTINF: 0, aNONRadio
 https://anonradio.net:8443/anonradio
 
+#EXTINF: 0, Radio El Salvador 96.9
+https://streamingcwsradio30.com/8198/stream
