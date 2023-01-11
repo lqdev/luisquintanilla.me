@@ -7,15 +7,15 @@ dt_updated: "2023-01-11 10:43 -05:00"
 ---
 
 > Wouldn’t it be amazing if a similar phrase could enter the larger public consciousness for blogs or even people who you follow online?
-> 
-> Instead of:
->
+>  
+> Instead of:  
+>  
 >    “Follow me on Twitter.”  
 >    “I’m @realChuckieCheese on Instagram.”  
->    “Subscribe to my videos on YouTube.”
->
-> You’d hear some popular influencer saying:
->
+>    “Subscribe to my videos on YouTube.”  
+>  
+> You’d hear some popular influencer saying:  
+>  
 >    “Follow me wherever you follow people online.”  
 >    “Find me and subscribe wherever you get your content.”
 
