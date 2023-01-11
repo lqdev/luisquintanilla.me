@@ -3,8 +3,357 @@
     <title>Luis Quintanilla Blog</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Luis Quintanilla's blog</description>
-    <lastPubDate>2022-10-21 08:32</lastPubDate>
+    <lastPubDate>2022-12-21 00:33</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Accept Webmentions using F#, Azure Functions, and RSS</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/receive-webmentions-fsharp-az-functions-fsadvent?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/receive-webmentions-fsharp-az-functions-fsadvent&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This post is part of &lt;a href="https://sergeytihon.com/2022/10/28/f-advent-calendar-in-english-2022/"&gt;F# Advent 2022&lt;/a&gt;. Thanks to &lt;a href="https://sergeytihon.com"&gt;Sergey Tihon&lt;/a&gt; for organizing it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;While not planned this way, this post is timely considering recent developments in the social media space. While Twitter is in the headlines, it's not the only time people have questioned their engagement and relationship with these social media platforms. In the context of Twitter though, users have been looking for alternative platforms to best serve their communities. While Mastodon and the Fediverse appear to be one of those alternatives, they're not the only one. Blogosphere platforms like Tumblr and WordPress, both owned by Automattic, are also positioning themselves as viable alternatives to the point they've &lt;a href="https://techcrunch.com/2022/11/21/tumblr-to-add-support-for-activitypub-the-social-protocol-powering-mastodon-and-other-apps/"&gt;considered the idea of supporting ActivityPub&lt;/a&gt;. ActivityPub is the protocol that powers many of the platforms on the Fediverse. However, it's not the only open protocol that enables communication and engagement on the open web. Webmentions is another protocol for enabling conversations on the web which I'll talk about more in this post.&lt;/p&gt;
+&lt;p&gt;I'll also discuss how I used F#, Azure Functions, and RSS to implement a solution that helps me and my website engage in conversations on the open web thanks to Webmentions.&lt;/p&gt;
+&lt;h2&gt;What are Webmentions?&lt;/h2&gt;
+&lt;p&gt;First, let's start by talking a bit about Webmentions.&lt;/p&gt;
+&lt;p&gt;According to the W3C specification, Webmentions are &amp;quot;...a simple way to notify any URL when you mention it on your site. From the receiver's perspective, it's a way to request notifications when other sites mention it.&amp;quot;.&lt;/p&gt;
+&lt;p&gt;One of the goals according to the IndieWeb wiki is to enable cross-site conversations.&lt;/p&gt;
+&lt;p&gt;Here's how a potential Webmention workflow might look like:&lt;/p&gt;
+&lt;div class="mermaid"&gt;sequenceDiagram
+  autonumber
+  actor A as Alice
+  participant AS as Alice's "Website"
+  participant AW as Alice's Webmention Service
+  participant BS as Bob's "Website"
+  actor B as Bob
+  A -&gt;&gt; AS: Publishes post
+  B -&gt;&gt; AS: Reads post
+  B -&gt;&gt; BS: Publishes post with link to Alice's post
+  rect rgb(230,230,230)
+    alt Automated
+      BS -&gt;&gt; AS: Fetch Webmention endpoint
+      BS -&gt;&gt; AW: Sends Webmention
+    else Manual
+      B -&gt;&gt; AS: Fetch Webmention endpoint
+      B -&gt;&gt; AW: Sends Webmention
+    end 
+  end
+  rect rgb(230,230,230)
+      note over AW:Validates Webmention request
+      note over AW: Validates Webmention
+      note over AW: Accepts / processes Webmention
+      alt Automated
+        AW -&gt;&gt; BS: Sends back response
+      else Manual
+        AW -&gt;&gt; B: Sends back response
+      end
+  end 
+  opt Display Webmentions
+    AS -&gt;&gt; AW: Fetch Webmentions
+    note over AS: Display / publish Webmentions
+  end
+&lt;/div&gt;
+&lt;p&gt;I use the term website here very loosely because it's not only limited to your own personal website. You can technically use Webmentions through any public website including social media platforms like Twitter, Mastodon, or even GitHub.&lt;/p&gt;
+&lt;p&gt;This post will focus on the middle blocks consisting of sending and receiving Webmentions. For more information, check out the &lt;a href="https://www.w3.org/TR/webmention/#abstract-p-1"&gt;specification&lt;/a&gt; and &lt;a href="https://indieweb.org/Webmention"&gt;Webmentions page&lt;/a&gt; on the IndieWeb wiki.&lt;/p&gt;
+&lt;h2&gt;My webmention solution&lt;/h2&gt;
+&lt;p&gt;In September of this year, I &lt;a href="/feed/webmentions-partially-implemented/"&gt;integrated a partial implementation of Webmentions&lt;/a&gt; into my website. This implementation only allowed me to send webmentions as part of my publishing process. If you're interested in the details, it's based on the blog post I wrote for last year's F# Advent, &lt;a href="/posts/sending-webmentions-fsharp-fsadvent/"&gt;Sending Webmentions with F#&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A couple of days ago, I &lt;a href="/feed/now-accepting-webmentions/"&gt;successfully deployed and integrated&lt;/a&gt; the other part of the implementation which allowed me to receive webmentions. While there are many great &lt;a href="https://indieweb.org/Webmention#Publisher_Services"&gt;services&lt;/a&gt; which will do this for you, I decided to roll my own for fun and to learn something new.&lt;/p&gt;
+&lt;p&gt;To help with that, I released &lt;a href="https://www.nuget.org/packages/lqdev.WebmentionFs"&gt;WebmentionFs&lt;/a&gt;, an open-source .NET library written in F# with components for sending and receiving Webmentions.&lt;/p&gt;
+&lt;p&gt;The backend service I use to receive webmentions is built on Azure Functions.&lt;/p&gt;
+&lt;p&gt;If you're interested, here's the source code for &lt;a href="https://github.com/lqdev/WebmentionFs"&gt;WebmentionFs&lt;/a&gt; and my &lt;a href="https://github.com/lqdev/WebmentionService"&gt;Webmention service&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Before diving into the technical details of the solution, I'll first discuss some of the priorities driving my design decisions.&lt;/p&gt;
+&lt;h3&gt;Requirements&lt;/h3&gt;
+&lt;p&gt;While I don't want to trivialize it, at the end of the day, the Webmention service is just an endpoint that accepts HTTP POST requests. That means there's many ways to build it. However, here were the requirements important to me that guided my design choices:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cost:&lt;/strong&gt; The solution should be low cost&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Maintenance:&lt;/strong&gt; The solution should be easy to maintain&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Easy to consume:&lt;/strong&gt; I have multiple ways to view and access my webmentions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Notifications first:&lt;/strong&gt; Since I don't own or have responsibility over content that's not mine, prioritize Webmentions for notifications, not content.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;With that in mind, I ended up choosing a solution built on Azure Functions to receive Webmentions and publish them as an RSS feed.&lt;/p&gt;
+&lt;h3&gt;Why Azure Functions?&lt;/h3&gt;
+&lt;p&gt;I don't make money from my website. It's a labor of love in which I document my experiences. Selfishly, it's for me to remind myself how to solve a problem or share something that was important to me at that time. If my posts end up helping others solve their own problems, that's a side effect and a reward unto itself. To that effect, I want my website to be as low-cost to run as possible. One way I achieve that is by using static hosting. This dramatically reduces the cost associated with my site. If you're interested in how this site is built, you can check out the &lt;a href="/colophon"&gt;colophon&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So where do Azure Functions come in?&lt;/p&gt;
+&lt;p&gt;Azure Functions is a serverless solution which means there are no servers! (I kid 😏)&lt;/p&gt;
+&lt;h4&gt;Cost ✔️&lt;/h4&gt;
+&lt;p&gt;As a serverless solutions, it means web services are not constantly running. They only run whenever there is something to process so I only pay for what I need. That takes care of my low-cost requirement since processing Webmentions is not a long-running, resource-intensive operation that can easily run in a serverless environment.&lt;/p&gt;
+&lt;h4&gt;Maintenance ✔️&lt;/h4&gt;
+&lt;p&gt;Cost is not only monetary. There are also time costs associated with maintaining a solution. Because there is no infrastructure to maintain, that's not really a factor I need to consider. Instead I get to focus on writing the logic for accepting and processing Webmentions. Azure Functions provides a set of &lt;a href="https://learn.microsoft.com/azure/azure-functions/functions-triggers-bindings"&gt;prebuilt trigger and binding components&lt;/a&gt; to reduce the amount of code I have to write to handle things like accepting HTTP requests or storing data in a table or blob storage. Also, in the rare instance that this blog post breaks the internet, Azure Functions enables my service to automatically handle that scale. Don't believe me? Check out this post frorm &lt;a href="https://www.troyhunt.com/"&gt;Troy Hunt&lt;/a&gt; on &lt;a href="https://www.troyhunt.com/serverless-to-the-max-doing-big-things-for-small-dollars-with-cloudflare-workers-and-azure-functions/"&gt;Have I Been Pwned usage of Azure Functions&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Why RSS?&lt;/h3&gt;
+&lt;p&gt;The choice of how to display and consume Webmentions is entirely up to you. At regular intervals, my Webmention service generates an RSS feed and publishes it to a private Azure Blob Storage. Here are some of the reasons why:&lt;/p&gt;
+&lt;h4&gt;Easy to consume ✔️&lt;/h4&gt;
+&lt;p&gt;The decision to use RSS comes from the fact that like Webmentions, it's an open protocol that gives choice to creators and consumers. Check out my post, &lt;a href="/posts/rediscovering-rss-user-freedom"&gt;Rediscovering the RSS protocol&lt;/a&gt; for more of my thoughts on that. Despite the appearance of decline in use, it's a protocol that's been around for over 20 years and it's one of the many reasons why podcasts continue to be one of the more open platforms despite some attempts to lock down the ecosystem.  With that it mind, by choosing RSS as the publishing format for my Webmentions feed, I can lean on the vast number of RSS readers (&lt;a href="http://newsblur.com/"&gt;NewsBlur&lt;/a&gt; and &lt;a href="https://github.com/skeeto/elfeed"&gt;Elfeed&lt;/a&gt; being my favorites) out there instead of having to write a custom UI. Not happy with my RSS reader? I can just add my feed to whichever other reader I move to and continue consuming my Webmentions without skipping a beat.&lt;/p&gt;
+&lt;h3&gt;Notifications first ✔️&lt;/h3&gt;
+&lt;p&gt;While not technical or specific to RSS, this is a topic I wrestled with as part of my implementation. However, choosing RSS made many parts of it simpler.&lt;/p&gt;
+&lt;p&gt;Who owns your content? If you publish on your own website or a platform under your control, chances are you do. If I publish and redistribute your content on my website though, what parts do I own and which parts do you? I'm not sure. What about spam, harrassment, and lewd content? I'd have to put in place some sort of moderation instead of publishing directly on my site. I didn't want to have to deal with any of these questions so choosing to publish to a private RSS feed instead of directly on my site made it so Webmentions are for my eyes only. More importantly, I only capture the source and target links, not the content. Therefore, I don't store or redistribute your content. Now there's nothing stopping anyone from seeing your post since it's public but in cases where your site's content is not something I'm comfortable with, I'm not resharing or redistributing that content. If my RSS reader chooses to display the full contents of your post by using the &lt;code&gt;link&lt;/code&gt; element from the RSS feed, since your post is public, that's no different than me viewing the original post on your site. If at some point I feel differently about it, the changes to capture the content in the &lt;code&gt;description&lt;/code&gt; happen at the RSS file level and because the RSS is private, I'm still not redistributing your content.&lt;/p&gt;
+&lt;p&gt;In short, with my implementation I chose to prioritize Webmentions for notification purposes rather than building a commenting and interaction (like, reshare) system for my website.&lt;/p&gt;
+&lt;p&gt;Now that I've talked about the what and the why, in the next sections I'll get into the how.&lt;/p&gt;
+&lt;h2&gt;Sending Webmentions&lt;/h2&gt;
+&lt;p&gt;Once you've created a post linking to someone else's website, sending webmentions is a two-step process:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;URL discovery of webmention endpoint&lt;/li&gt;
+&lt;li&gt;Send webmention&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;These steps can be automated or performed manually.&lt;/p&gt;
+&lt;h3&gt;URL discovery of Webmention endpoint&lt;/h3&gt;
+&lt;p&gt;The first thing you'll need is the endpoint where you'll be sending your Webmention to.&lt;/p&gt;
+&lt;p&gt;According to the Webmention specification, a Webmention endpoint can be found in one of three places:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP response headers&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;link&amp;gt;&lt;/code&gt; tag with &lt;code&gt;rel=webmention&lt;/code&gt; attribute&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;a&amp;gt;&lt;/code&gt; tag with &lt;code&gt;rel=me&lt;/code&gt; attribute&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When this process is automated, the discovery is performed in order and each subsequent option works as a fallback of the other. When done manually, either the website author will publish and advertise this on their website or you can inspect the website's source code to find it.&lt;/p&gt;
+&lt;h3&gt;Send webmention&lt;/h3&gt;
+&lt;p&gt;To send a Webmention, you need to send an HTTP POST request with an &lt;code&gt;x-www-form-urlencoded&lt;/code&gt; body containing two properties: &lt;code&gt;source&lt;/code&gt; and &lt;code&gt;target&lt;/code&gt;. Source is the URL of your article and target is the URL of the original article. Again, this too can either be automated or done manually with tools like cURL, Insomnia, or any other HTTP client.&lt;/p&gt;
+&lt;h3&gt;Sending Webmentions in practice&lt;/h3&gt;
+&lt;p&gt;Let's use a redundant example to walk through the workflow. Pretend that you created or commented on a GitHub issue and added a link to one of my articles, &lt;a href="/posts/sending-webmentions-fsharp-fsadvent/"&gt;Sending Webmentions with F#&lt;/a&gt; for example. You then wanted to notify me either to get my attention on that issue or just as an FYI. Now I say this is a redundant example because GitHub already has notifications. However, what this does illustrate are the cross-site capabilities of Webmentions.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/receive-webmentions-fsharp-az-functions-fsadvent/send-gh-issue.png" class="img-fluid" alt="Image of GitHub Issue Post" /&gt;&lt;/p&gt;
+&lt;p&gt;At this point, if GitHub implemented Webmentions, it would automatically:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Fetch my webpage and look for my Webmention endpoint.&lt;/li&gt;
+&lt;li&gt;Compose and send the HTTP POST request.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Sadly, today that's not the case so we'll walk through the workflow manually.&lt;/p&gt;
+&lt;p&gt;On my website, I include a &lt;code&gt;link&lt;/code&gt; tag with the &lt;code&gt;rel=webmention&lt;/code&gt; attribute that looks like the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;link rel=&amp;quot;webmention&amp;quot; title=&amp;quot;Luis Quintanilla Webmention Endpoint&amp;quot; href=&amp;quot;https://lqdevwebmentions.azurewebsites.net/api/inbox&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;My current Webmention endpoint is &lt;em&gt;https://lqdevwebmentions.azurewebsites.net/api/inbox&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Now that you have the Webmention endpoint, you could use any tool of your choice to create and send the HTTP POST request. I have made it simpler though and included a form on my website for each of my posts for this purpose.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/receive-webmentions-fsharp-az-functions-fsadvent/send-webmention-form.png" class="img-fluid" alt="luisquintanilla.me send Webmention form" /&gt;&lt;/p&gt;
+&lt;p&gt;The source code looks like the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;div&amp;gt;
+    &amp;lt;script type=&amp;quot;application/javascript&amp;quot;&amp;gt;window.onload = function() { document.getElementById('webmention-target').value = window.location.href }&amp;lt;/script&amp;gt;
+    &amp;lt;form action=&amp;quot;https://lqdevwebmentions.azurewebsites.net/api/inbox&amp;quot; method=&amp;quot;POST&amp;quot; enctype=&amp;quot;application/x-www-form-urlencoded&amp;quot;&amp;gt;
+        &amp;lt;h5 class=&amp;quot;text-center&amp;quot;&amp;gt;Send me a &amp;lt;a href=&amp;quot;https://indieweb.org/webmentions&amp;quot;&amp;gt;webmention&amp;lt;/a&amp;gt;&amp;lt;/h5&amp;gt;
+        &amp;lt;div class=&amp;quot;form-row justify-content-center&amp;quot;&amp;gt;
+            &amp;lt;div class=&amp;quot;w-75&amp;quot;&amp;gt;
+                &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;source&amp;quot; class=&amp;quot;form-control&amp;quot; placeholder=&amp;quot;Your URL (source)&amp;quot;&amp;gt;
+            &amp;lt;/div&amp;gt;
+            &amp;lt;div class=&amp;quot;col-auto&amp;quot;&amp;gt;
+                &amp;lt;input type=&amp;quot;submit&amp;quot; class=&amp;quot;btn btn-primary&amp;quot; value=&amp;quot;Send&amp;quot;&amp;gt;
+            &amp;lt;/div&amp;gt;
+            &amp;lt;input readonly=&amp;quot;&amp;quot; class=&amp;quot;form-control-plaintext&amp;quot; style=&amp;quot;visibility:hidden&amp;quot; type=&amp;quot;text&amp;quot; id=&amp;quot;webmention-target&amp;quot; name=&amp;quot;target&amp;quot;&amp;gt;
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/form&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now to send the webmention, navigate to the post you want to send a Webmention to. In this case, it's &lt;a href="https://www.luisquintanilla.me/posts/sending-webmentions-fsharp-fsadvent/"&gt;Sending Webmentions with F#&lt;/a&gt;. Then, paste the link to the GitHub issue that contains the link to my site into the post's text box and hit &amp;quot;Send&amp;quot;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/receive-webmentions-fsharp-az-functions-fsadvent/send-webmention-form-populated.png" class="img-fluid" alt="luisquintanilla.me send Webmention form filled-in" /&gt;&lt;/p&gt;
+&lt;p&gt;At that point, the request is sent to my Webmention service which receives and processes the request and responds with a message whether the request was successful or not.&lt;/p&gt;
+&lt;p&gt;That's all there is to it! Before moving the the receiving process though, I'll briefly show how to send Webmentions using WebmentionFs.&lt;/p&gt;
+&lt;h3&gt;Sending Webmentions with WebmentionFs&lt;/h3&gt;
+&lt;p&gt;In WebmentionFs, you can use the &lt;a href="https://github.com/lqdev/WebmentionFs/blob/main/UrlDiscoveryService.fs"&gt;&lt;code&gt;UrlDiscoveryService&lt;/code&gt;&lt;/a&gt; and &lt;a href="https://github.com/lqdev/WebmentionFs/blob/main/WebmentionSenderService.fs"&gt;&lt;code&gt;WebmentionSenderService&lt;/code&gt;&lt;/a&gt; to send Webmentions. If you wanted to integrate sending Webmentions into your application or service, here's an example that shows how you'd use those components.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;open System
+open WebmentionFs
+open WebmentionFs.Services
+
+let ds = new UrlDiscoveryService()
+
+let ws = new WebmentionSenderService(ds)
+
+let data = 
+    {   
+        Source = new Uri(&amp;quot;https://twitter.com/ljquintanilla/status/1603602055435894784&amp;quot;)  
+        Target = new Uri(&amp;quot;https://www.luisquintanilla.me/feed/mastodon-hashtag-rss-boffosocko&amp;quot;)
+    }
+
+ws.SendAsync(data) |&amp;gt; Async.AwaitTask |&amp;gt; Async.RunSynchronously
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The main part to pay attention to is the &lt;code&gt;SendAsync&lt;/code&gt; function. This uses the &lt;code&gt;UrlDiscoveryService&lt;/code&gt; to perform the Webmention endpoint discovery and send the HTTP POST request with the provided data.&lt;/p&gt;
+&lt;h2&gt;Receiving webmentions&lt;/h2&gt;
+&lt;p&gt;Now that you know how to send webmentions, let's talk about what happens on the receiver end. At its core, it's about a three-step process:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Validate request&lt;/li&gt;
+&lt;li&gt;Validate Webmention&lt;/li&gt;
+&lt;li&gt;Process Webmention&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Validate request&lt;/h3&gt;
+&lt;p&gt;Before processing the Webmention, you want to make sure that the request is valid. To do so there are a few checks you perform:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Is the protocol valid? Check that the protocol for the source and target URLs in the request body are HTTP or HTTPS.&lt;/li&gt;
+&lt;li&gt;Are the URLs the same? Check that the source and target URLS in the request body are NOT the same.&lt;/li&gt;
+&lt;li&gt;Is the target URL a valid resource? This is more loosely defined and up to you. In my case I defined valid as:
+&lt;ul&gt;
+&lt;li&gt;I own the domain&lt;/li&gt;
+&lt;li&gt;The target URL doesn't return an HTTP 400 or 500 error.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If the request is not valid, nothing is done with the Webmention and an error returns. Otherwise, it moves to the next step which is Webmention validation.&lt;/p&gt;
+&lt;h3&gt;Validate Webmention&lt;/h3&gt;
+&lt;p&gt;In the base case, Webmention validation just means you parse through the source document and make sure that the target URL is included in it. However, if you wanted to get more complex and take into account specific types of interactions such as likes, replies, reposts, bookmarks, etc. you can parse through the document looking for &lt;a href="http://microformats.org/wiki/h-entry#Core_Properties"&gt;microformat&lt;/a&gt; annotations. For more information on these annotations, see the &lt;a href="https://indieweb.org/posts#Types_of_Posts"&gt;Types of Posts&lt;/a&gt; or &lt;a href="https://indieweb.org/reply#Post_a_reply"&gt;reply&lt;/a&gt; pages in the IndieWeb Wiki.&lt;/p&gt;
+&lt;p&gt;If the target link is NOT in the source document, you return an error. Otherwise, you move to the next step of processing the Webmention&lt;/p&gt;
+&lt;h3&gt;Processing Webmentions&lt;/h3&gt;
+&lt;p&gt;This step is optional and loosely defined. Once you've validated the request and Webmention, you can do with it as you please. One thing you can do is publish it (after moderation) on your website.&lt;/p&gt;
+&lt;p&gt;In my case, I'm storing it in an Azure Tables database. Then, every morning, I generate an RSS feed of all my webmentions and save it to a private container on Azure Blob Storage.&lt;/p&gt;
+&lt;h2&gt;Reciving Webmentions with WebmentionFs&lt;/h2&gt;
+&lt;p&gt;To receive Webmentions, I use the &lt;a href="https://github.com/lqdev/WebmentionFs/blob/main/RequestValidationService.fs"&gt;&lt;code&gt;RequestValidationService&lt;/code&gt;&lt;/a&gt;, &lt;a href="https://github.com/lqdev/WebmentionFs/blob/main/WebmentionValidationService.fs"&gt;&lt;code&gt;WebmentionValidationService&lt;/code&gt;&lt;/a&gt; and &lt;a href="https://github.com/lqdev/WebmentionFs/blob/main/WebmentionReceiverService.fs"&gt;&lt;code&gt;WebmentionReceiverService&lt;/code&gt;&lt;/a&gt; inside my Azure Function.&lt;/p&gt;
+&lt;p&gt;The source code for my Azure Function is available in the &lt;a href="https://github.com/lqdev/WebmentionService"&gt;WebmentionService GitHub repo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The main components are in the &lt;code&gt;Startup.fs&lt;/code&gt; and &lt;code&gt;ReceiveWebmention.fs&lt;/code&gt; files.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://github.com/lqdev/WebmentionService/blob/main/Startup.fs"&gt;&lt;code&gt;Startup.fs&lt;/code&gt;&lt;/a&gt; files registers each of the services I'll use to to receive Webmentions. By doing so, I define the initialization logic for use later in my application using dependency injection. The main thing to note here is that the &lt;code&gt;WebmentionReceiverService&lt;/code&gt; is initialized with instances of a &lt;code&gt;RequestValidationService&lt;/code&gt; and &lt;code&gt;WebmentionValidationService&lt;/code&gt;. For the &lt;code&gt;RequestValidationService&lt;/code&gt;, it's initialized with a list of host names. In this case, I'm passing it in as a comma-delimited environment variable that looks something like &amp;quot;lqdev.me,luisquintanilla.me&amp;quot;. This is what the &lt;code&gt;RequestValidationService&lt;/code&gt; uses to check whether I own a domain.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;// Add request validation service
+builder.Services.AddScoped&amp;lt;RequestValidationService&amp;gt;(fun _ -&amp;gt; 
+
+    let hostNames = Environment.GetEnvironmentVariable(&amp;quot;PERSONAL_WEBSITE_HOSTNAMES&amp;quot;)
+
+    let hostNameList = hostNames.Split(',')
+
+    new RequestValidationService(hostNameList)) |&amp;gt; ignore
+
+
+// Add webmention validation service
+builder.Services.AddScoped&amp;lt;WebmentionValidationService&amp;gt;() |&amp;gt; ignore
+
+// Add receiver service
+builder.Services.AddScoped&amp;lt;IWebmentionReceiver&amp;lt;Webmention&amp;gt;,WebmentionReceiverService&amp;gt;(fun (s:IServiceProvider) -&amp;gt;
+    let requestValidationService = s.GetRequiredService&amp;lt;RequestValidationService&amp;gt;()
+    let webmentionValidationService = s.GetRequiredService&amp;lt;WebmentionValidationService&amp;gt;()
+    new WebmentionReceiverService(requestValidationService,webmentionValidationService)) |&amp;gt; ignore
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then, in the &lt;a href="https://github.com/lqdev/WebmentionService/blob/main/ReceiveWebmention.fs"&gt;&lt;code&gt;ReceiveWebmention.fs&lt;/code&gt;&lt;/a&gt; file, I inject my &lt;code&gt;WebmentionReceiverService&lt;/code&gt; into the constructor and add all the logic for running my serverless function in the &lt;code&gt;Run&lt;/code&gt; function. In this snippet, some code is ommitted for brevity.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;type ReceiveWebmention (webmentionReceiver: IWebmentionReceiver&amp;lt;Webmention&amp;gt;) = 
+
+    ///...
+
+    [&amp;lt;FunctionName(&amp;quot;ReceiveWebmention&amp;quot;)&amp;gt;]
+    member x.Run 
+        ([&amp;lt;HttpTrigger(AuthorizationLevel.Anonymous, &amp;quot;post&amp;quot;, Route = &amp;quot;inbox&amp;quot;)&amp;gt;] req: HttpRequest) 
+        ([&amp;lt;Table(&amp;quot;webmentions&amp;quot;, Connection=&amp;quot;AzureWebJobsStorage&amp;quot;)&amp;gt;] t: TableClient)
+        (log: ILogger) =
+        task {
+            
+            log.LogInformation(&amp;quot;Processing webmention request&amp;quot;)
+
+            let! validationResult = x.WebmentionReceiver.ReceiveAsync(req)
+
+            let response = 
+                match validationResult with
+                | ValidationSuccess m -&amp;gt; 
+                    let entity = mapMentionToTableEntity m
+                    try
+                        t.AddEntity(entity) |&amp;gt; ignore
+                        OkObjectResult(&amp;quot;Webmention processed successfully&amp;quot;) :&amp;gt; IActionResult
+                    with
+                        | ex -&amp;gt; 
+                            log.LogError($&amp;quot;{ex}&amp;quot;)
+                            BadRequestObjectResult($&amp;quot;Error processing webmention. Webmention already exists&amp;quot;) :&amp;gt; IActionResult
+                | ValidationError e -&amp;gt; 
+                    log.LogError(e)
+                    BadRequestObjectResult(e) :&amp;gt; IActionResult
+
+            return response
+
+        }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;Run&lt;/code&gt; function is triggered whenever an HTTP POST request is made to my Webmention endpoint. It then calls &lt;code&gt;ReceiveAsync&lt;/code&gt; on the &lt;code&gt;WebmentionReceiverService&lt;/code&gt; which under the hood uses the &lt;code&gt;RequestValidationService&lt;/code&gt; and &lt;code&gt;WebmentionValidationService&lt;/code&gt; for validation. For reference, here's the code that does that in WebmentionFS.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;member x.ReceiveAsync (data:UrlData) = 
+    task {
+        let! requestValidationResult = 
+            x.RequestValidationService.ValidateAsync data
+
+        match requestValidationResult with
+        | RequestSuccess r -&amp;gt; 
+            let! webmentionValidationResult = 
+                x.WembentionValidationService.ValidateAsync r.Source r.Target
+
+            let (result:ValidationResult&amp;lt;Webmention&amp;gt;) = 
+                match webmentionValidationResult with
+                | AnnotatedMention m -&amp;gt; 
+                    ValidationSuccess {RequestBody = r; Mentions = m}
+                | UnannotatedMention -&amp;gt; 
+                    ValidationSuccess 
+                        {
+                            RequestBody = r
+                            Mentions = 
+                                {
+                                    IsBookmark = false
+                                    IsLike = false
+                                    IsReply = false
+                                    IsRepost = false        
+                                }
+                        }
+                | MentionError e -&amp;gt; ValidationError e
+            return result
+        | RequestError e -&amp;gt; return ValidationError e
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A quick side-note. I love how elegant function composition in F# makes the request validation pipeline look. See for yourself 🙂&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;let validateAsync = 
+   isProtocolValid &amp;gt;&amp;gt; isSameUrl &amp;gt;&amp;gt; isTargetUrlValidAsync
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Inside my &lt;code&gt;Run&lt;/code&gt; function, if the request and Webmention validation are successful, I use the Azure Table Storage table client &lt;code&gt;AddEntity&lt;/code&gt; method to save the Webmention to a table. One thing to note is that &lt;code&gt;AddEntity&lt;/code&gt; ensures that an entry is only added once. If an entry already exists in the table, it returns an error.&lt;/p&gt;
+&lt;p&gt;This is what the GitHub Webmention we sent looks like in the table.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/receive-webmentions-fsharp-az-functions-fsadvent/webmentions-azure-table.png" class="img-fluid" alt="Webmentions table on Azure Table Storage" /&gt;&lt;/p&gt;
+&lt;p&gt;In this case, the &lt;code&gt;PartitionKey&lt;/code&gt; is the target URL and &lt;code&gt;RowKey&lt;/code&gt; is the source URL. The fact all other columns are set to false indicates this is an untagged mention with no special microformats annotations. Annotating your posts appropriately would set one or more of those columns to true.&lt;/p&gt;
+&lt;p&gt;Now that we went over how I receive Webmentions, I'll show how I prepare my Webmentions for consumption.&lt;/p&gt;
+&lt;h2&gt;Viewing Webmentions&lt;/h2&gt;
+&lt;p&gt;I consume my Webmentions using RSS feeds and RSS readers. To do so, I have an Azure Function called &lt;a href="https://github.com/lqdev/WebmentionService/blob/main/WebmentionToRss.fs"&gt;&lt;code&gt;WebmentionToRss&lt;/code&gt;&lt;/a&gt; that triggers every day at 3 AM. This function queries the Azure Table Storage table containing my Webmentions and creates an RSS feed that's then stored to Azure Blob Storage. Like the other function to process my Webmentions, I:&lt;/p&gt;
+&lt;p&gt;Register the &lt;code&gt;RssService&lt;/code&gt; responsible for generating the RSS feed in &lt;code&gt;Startup.fs&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;// Add RSS service
+builder.Services.AddScoped&amp;lt;RssService&amp;gt;() |&amp;gt; ignore
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Inject the service into my &lt;code&gt;WebmentionToRss&lt;/code&gt; constructor. Then in my &lt;code&gt;Run&lt;/code&gt; function, I call the &lt;code&gt;getMentions&lt;/code&gt; helper function to query the table, call &lt;code&gt;BuildRssFeed&lt;/code&gt; to generate the feed, and write it out to Azure Blob Storage using a &lt;code&gt;Stream&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;type WebmentionToRss (rssService:RssService) =
+
+    let getMentions (t:TableClient) = 
+
+        //...
+
+        let webmentions = t.Query&amp;lt;WebmentionEntity&amp;gt;()
+
+        webmentions
+
+
+    //...
+
+    [&amp;lt;FunctionName(&amp;quot;WebmentionToRss&amp;quot;)&amp;gt;]
+    member x.Run
+        ([&amp;lt;TimerTrigger(&amp;quot;0 0 3 * * *&amp;quot;)&amp;gt;] info: TimerInfo)
+        ([&amp;lt;Table(&amp;quot;webmentions&amp;quot;,Connection=&amp;quot;AzureWebJobsStorage&amp;quot;)&amp;gt;] t: TableClient)
+        ([&amp;lt;Blob(&amp;quot;feeds/webmentions/index.xml&amp;quot;, FileAccess.Write, Connection=&amp;quot;AzureWebJobsStorage&amp;quot;)&amp;gt;] rssBlob: Stream)
+        (log: ILogger) =
+
+        task {
+            let mentions = getMentions t
+
+            let rss = x.RssService.BuildRssFeed mentions &amp;quot;lqdev's Webmentions&amp;quot; &amp;quot;http://lqdev.me&amp;quot; &amp;quot;lqdev's Webmentions&amp;quot; &amp;quot;en&amp;quot;
+
+            log.LogInformation(rss.ToString())                
+
+            use xmlWriter = XmlWriter.Create(rssBlob)
+
+            rss.WriteTo(xmlWriter) |&amp;gt; ignore
+        }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, to view my feed I add the URL to the RSS file in Azure Blob Storage to my RSS feed reader. The container and blob containing the file are private though, so how does my RSS reader get access to the file? I don't use the direct link. Instead, I use a link containing a &lt;a href="https://learn.microsoft.com/azure/storage/common/storage-sas-overview#sas-token"&gt;Shared Access Signatures (SAS) token&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The RSS feed reader then fetches my Webmentions feed at regular intervals.&lt;/p&gt;
+&lt;p&gt;This is what the GitHub post looks like in my RSS reader.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/receive-webmentions-fsharp-az-functions-fsadvent/newsblur-webmentions-rss-feed.png" class="img-fluid" alt="Webmentions table on Azure Table Storage" /&gt;&lt;/p&gt;
+&lt;p&gt;That's all there is to it!&lt;/p&gt;
+&lt;h2&gt;What's next?&lt;/h2&gt;
+&lt;p&gt;Overall I'm happy with my solution. I learned a few things along the way and got something working for myself. Publishing WebmentionFs as a library and making my Azure Function code open-source were attempts to help others looking to implement similar solutions get started. These solitions could be improved though. These are some updates I would like to make at some point:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Upgrade my website to use WebmentionFs for sending Webmentions. You can see the &lt;a href="https://github.com/lqdev/luisquintanilla.me/blob/main/Services/Webmention.fs"&gt;current implementation&lt;/a&gt; on my website repo which is basically what's in &lt;code&gt;UrlDiscoveryService&lt;/code&gt; and &lt;code&gt;WebmentionSenderService&lt;/code&gt; today.&lt;/li&gt;
+&lt;li&gt;Add interfaces for all services in WebmentionFs. Currently most services have concrete implementations. By adding interfaces, I can make the library extensible and you can implement your own URL discovery and validation services.&lt;/li&gt;
+&lt;li&gt;Implement &lt;code&gt;outbox&lt;/code&gt; enpoint in WebmentionService to handle sending Webmentions.&lt;/li&gt;
+&lt;li&gt;Create Azure ARM template for deploying WebmentionService. Currently with some small edits, you could fork and get my WebmentionService project working for your website. However, that process isn't turnkey today. Maybe using something like &lt;a href="https://compositionalit.github.io/farmer/"&gt;Farmer&lt;/a&gt; would make onboarding easier for folks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Webmentions are a great way to enable cross-site conversations on the internet. In this post, I provided a brief introduction to the general workflow for sending and receiving Webmentions. I also detailed my own implementation which I use today on my website. That implementation relies on the WebmentionFs .NET library, Azure Functions, and RSS. By using the WebmentionFs .NET library, you can more quickly implement similar solutions into your own apps and services. If you need a reference, check out my WebmentionService repository on GitHub which contains the code I use for receiving Webmentions.&lt;/p&gt;
+&lt;p&gt;I'll leave you with three things:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;As you consider the next platform for your next online home, in addition to considering the health of the community, take some time to also think about the protocols it's built on top of and whether they give you more or less freedom.&lt;/li&gt;
+&lt;li&gt;Try out the WebmentionFs library on NuGet and add Webmentions to your site.&lt;/li&gt;
+&lt;li&gt;If you share this post anywhere publicly on the web, send me a Webmention.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Catch you on the world wide web!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/receive-webmentions-fsharp-az-functions-fsadvent?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/receive-webmentions-fsharp-az-functions-fsadvent</guid>
+      <pubDate>2022-12-21 00:33</pubDate>
+    </item>
     <item>
       <title>Get started with TiddlyWiki in VS Code</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/tiddlywiki-vscode?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/tiddlywiki-vscode&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Introduction&lt;/h2&gt;
@@ -1094,7 +1443,7 @@ let inputDataFrame =
 &lt;p&gt;RSS provides a standardized way of aggregating content giving content creators the freedom to choose how they publish content while giving consumers the freedom to choose how they consume that content. I've used RSS for a long time. One of my favorite RSS readers was Google Reader while it was still around and I believe &lt;a href="https://www.ripgooglereader.com/"&gt;I'm not the only fan&lt;/a&gt;. Since then, I've bounced around between different RSS feed readers not settling one until recently when I started using &lt;a href="https://newsblur.com"&gt;NewsBlur&lt;/a&gt;. As a result of finding an RSS feed reader I liked, I've also started to expand the content I follow via RSS feeds to social media, videos, podcasts, and software projects. In part, this has gotten me thinking about some of the benefits of protocols. The essay &lt;a href="https://knightcolumbia.org/content/protocols-not-platforms-a-technological-approach-to-free-speech"&gt;Protocols, Not Platforms: A Technological Approach To Free Speech&lt;/a&gt; makes good points on some of these benefits. Though the focus of that article is on free speech, I prefer to think about the benefits in terms of user freedom.&lt;/p&gt;
 &lt;h2&gt;Creator freedom using RSS&lt;/h2&gt;
 &lt;p&gt;RSS provides content creators with the freedom to choose how and where they publish content. As a content creator, depending on the type of content you produce you use different platforms to publish. For example, when I blog, I publish on this site, when I create videos, I publish to YouTube or livestream on Twitch and to further expand the reach of my content, I publish links on social media like Reddit or Twitter. In each case, I use different platforms to publish content. This might be okay because the audiences interested in the video content may not be interested in blog posts and vice versa. However, now the content is split across all these various platforms with their own accounts, interfaces, policies, and audiences. It also means, when I tell people where they can follow me, it usually involves an entire speech like: &amp;quot;Follow me on GitHub at &lt;a href="https://github.com/lqdev/"&gt;lqdev&lt;/a&gt;, Twitter at &lt;a href="https://twitter.com/ljquintanilla"&gt;ljquintanilla&lt;/a&gt;, my blog at &lt;a href="https://www.luisquintanilla.me/posts/1"&gt;luisquintanilla.me&lt;/a&gt;...&amp;quot;. Of course, I don't always list out all the platforms I'm active on and it's highly dependent on the setting, but the more platforms I'm active on the longer that speech gets.&lt;/p&gt;
-&lt;p&gt;Fortunately, some of these platforms generate RSS feeds. On GitHub, RSS feeds are generated for releases, issues, and pull requests. For example, the ML.NET releases RSS feed can be accessed by appending &lt;em&gt;.atom&lt;/em&gt; to the releases URL &lt;a href="https://github.com/dotnet/machinelearning/releases.atom"&gt;https://github.com/dotnet/machinelearning/releases.atom&lt;/a&gt;. Note that while Atom and RSS are not the same, they both offer a way to aggregate content. Similarly, YouTube provides the option to generate feeds for channels. For example, you can find the RSS feed to my YouTube channel at the following URL &lt;a href="https://www.youtube.com/feeds/videos.xml?channel_id=UCkA5fHdQ4cf3D1J19UNgV7A"&gt;https://www.youtube.com/feeds/videos.xml?channel_id=UCkA5fHdQ4cf3D1J19UNgV7A&lt;/a&gt;. On this blog, the RSS feed can be found at &lt;a href="https://www.luisquintanilla.me/feed.rss"&gt;https://www.luisquintanilla.me/feed.rss&lt;/a&gt;. For social media, the experience is a bit more limited since platforms like Twitter, Instagram, or Facebook don't generate RSS feeds which is unfortunate since they all have feeds of their own making them the perfect use case for RSS feeds. Platforms like Reddit provide RSS feeds to public subreddits and users by appending &lt;em&gt;.rss&lt;/em&gt; at the end of the URL. For example, the RSS feed for the Zune subreddit can be found at &lt;a href="https://www.reddit.com/r/Zune.rss"&gt;https://www.reddit.com/r/Zune.rss&lt;/a&gt;. In each of these cases, though the content and platforms are different, the underlying protocol and format used is the same, RSS.&lt;/p&gt;
+&lt;p&gt;Fortunately, some of these platforms generate RSS feeds. On GitHub, RSS feeds are generated for releases, issues, and pull requests. For example, the ML.NET releases RSS feed can be accessed by appending &lt;em&gt;.atom&lt;/em&gt; to the releases URL &lt;a href="https://github.com/dotnet/machinelearning/releases.atom"&gt;https://github.com/dotnet/machinelearning/releases.atom&lt;/a&gt;. Note that while Atom and RSS are not the same, they both offer a way to aggregate content. Similarly, YouTube provides the option to generate feeds for channels. For example, you can find the RSS feed to my YouTube channel at the following URL &lt;a href="https://www.youtube.com/feeds/videos.xml?channel_id=UCkA5fHdQ4cf3D1J19UNgV7A"&gt;https://www.youtube.com/feeds/videos.xml?channel_id=UCkA5fHdQ4cf3D1J19UNgV7A&lt;/a&gt;. On this blog, the RSS feed can be found at &lt;a href="https://www.luisquintanilla.me/posts/index.xml"&gt;https://www.luisquintanilla.me/posts/index.xml&lt;/a&gt;. For social media, the experience is a bit more limited since platforms like Twitter, Instagram, or Facebook don't generate RSS feeds which is unfortunate since they all have feeds of their own making them the perfect use case for RSS feeds. Platforms like Reddit provide RSS feeds to public subreddits and users by appending &lt;em&gt;.rss&lt;/em&gt; at the end of the URL. For example, the RSS feed for the Zune subreddit can be found at &lt;a href="https://www.reddit.com/r/Zune.rss"&gt;https://www.reddit.com/r/Zune.rss&lt;/a&gt;. In each of these cases, though the content and platforms are different, the underlying protocol and format used is the same, RSS.&lt;/p&gt;
 &lt;p&gt;Therefore, a strategy to improve how I publish my content using RSS is, instead of sending users to the various platforms, I can provide links to the different RSS feeds for each of the platforms I'm active on in my personal site. Instead of having a long speech on the different platforms I'm active on, I can just say, &amp;quot;Go to my personal website at ...&amp;quot;, and that's it! That becomes the gateway to the rest of my content. I can continue publishing on the different platforms because of the features they may provide me with for content creation and discovery, but only send users to a single place. For even more control over publishing, I can self-host videos or other content and create RSS feeds for it just like I do for my blog. In either case, users don't need to have an account in order to access and follow my content lowering the barrier to access content. This brings me to my next point of user freedom.&lt;/p&gt;
 &lt;h2&gt;User freedom using RSS&lt;/h2&gt;
 &lt;p&gt;RSS provides users with the freedom to choose how they consume content. One way it does so is by being a standard protocol for aggregating content. Because there's an agreed upon set of standards, clients or RSS feed readers that consume this protocol at minimum only need to be able to read an RSS feed. Once a client can read the RSS feed, it's free to build on top of that leading to diversity and competition among the various clients. Diversity and competition is good for users because it provides choice. If I want a minimal feed reader, I can subscribe to RSS feeds using an e-mail client like &lt;a href="https://support.microsoft.com/en-us/office/subscribe-to-an-rss-feed-73c6e717-7815-4594-98e5-81fa369e951c"&gt;Outlook&lt;/a&gt; or &lt;a href="https://support.mozilla.org/en-US/kb/how-subscribe-news-feeds-and-blogs"&gt;Thunderbird&lt;/a&gt;. If I want more features, I can use something like NewsBlur. As an aside, one of the other things I like about NewsBlur is being provided with an e-mail address that I can use to subscribe to newsletters helping me both clear up my inbox and letting me access information in a single place. This shows how RSS readers don't have to stop at only reading RSS feeds and can build on top of the protocol while still performing their core functionality.&lt;/p&gt;

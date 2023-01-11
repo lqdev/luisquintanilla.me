@@ -38,12 +38,43 @@ let recentPostsView (posts: Post array) =
 
 let homeView content =
     div [ _class "mr-auto" ] [
-        h2 [ _class "text-dark" ] [ Text "Recent Posts" ]
-        rawText content
-        div [ _class "mt-2 text-center" ] [
-            a [ _href "/posts/2"
-                _class "btn btn-secondary" ] [
-                Text "Read More"
+        div [_class "row vh-100"] [
+            div [_class "col d-flex align-self-center justify-content-center"] [
+                div [_class "media"] [
+                    img [_src "/avatar.png"; _alt "Luis Quintanilla Avatar Image"; _class "rounded-circle"; _height "200"; _width "200" ]
+                    div [_class "media-body ml-5 align-self-center"] [
+                        h2 [] [
+                            str "Hi, I'm "
+                            a [_href "/about"] [Text "Luis"]
+                            span [] [Text " &#x1F44B;"]
+                        ]
+                        ul [_class "list-group list-unstyled";] [
+                            li [] [
+                                span [_class "mr-1"] [Text "&#x1F4D6;"]
+                                str "Check out my "
+                                a [_href "/posts/1"] [Text "blog"]
+                            ]
+                            li [] [
+                                span [_class "mr-1"] [Text "&#x1F4DD;"]
+                                str "Scroll through my "
+                                a [_href "/feed"] [Text "main"]
+                                str " and "
+                                a [_href "/feed/responses"] [Text "response"]
+                                str " microblog feeds"
+                            ]
+                            li [] [
+                                span [_class "mr-1"] [Text "&#x1F514;"]
+                                a [_href "/subscribe"] [Text "Subscribe"]
+                                str " to content on this site."
+                            ]
+                            li [] [
+                                span [_class "mr-1"] [Text "&#x1F4CD;"]
+                                str "Find me "
+                                a [_href "/contact"] [Text "elsewhere"]
+                            ]                                                                                    
+                        ]
+                    ]
+                ]
             ]
         ]
     ]
