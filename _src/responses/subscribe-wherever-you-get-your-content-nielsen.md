@@ -6,7 +6,7 @@ dt_published: "2023-01-11 10:43"
 dt_updated: "2023-01-11 10:43 -05:00"
 ---
 
-> Wouldn’t it be amazing if a similar phrase could enter the larger public consciousness for blogs or even people who you follow online?
+> Wouldn’t it be amazing if a similar phrase could enter the larger public consciousness for blogs or even people who you follow online?  
 >  
 > Instead of:  
 >  
