@@ -3,8 +3,57 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>2022-12-18 22:41</lastPubDate>
+    <lastPubDate>2022-12-26 17:00</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Removing avatars and headers in Mastodon</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/mastodon-prune-profiles-media-vnext?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/mastodon-prune-profiles-media-vnext&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;The next version of Mastodon can't come soon enough.&lt;/p&gt;
+&lt;p&gt;About 20GB of disk space on my instance are being taken up by media from remote users. And this is for a single user instance! I can't imagine how it must be on other instances with multiple accounts.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/mastodon-media-usage.png" class="img-fluid" alt="Command line displaying disk space used by Mastodon for media" /&gt;&lt;/p&gt;
+&lt;p&gt;A recent &lt;a href="https://github.com/mastodon/mastodon/pull/22149"&gt;PR&lt;/a&gt; should make things much better though by allowing you to remove these files.&lt;/p&gt;
+&lt;p&gt;The only thing you need to do is pass the &lt;code&gt;--prune-profiles&lt;/code&gt; flag to the &lt;code&gt;media remove&lt;/code&gt; CLI command.&lt;/p&gt;
+&lt;p&gt;The PR is already merged so hopefully that means it's coming the next release.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/mastodon-prune-profiles-media-vnext?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/mastodon-prune-profiles-media-vnext</guid>
+      <pubDate>2022-12-26 17:00</pubDate>
+    </item>
+    <item>
+      <title>Upgraded to Mastodon v4.0.2</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/upgraded-mastodon-v4-0-2?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/upgraded-mastodon-v4-0-2&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Upgrading my server to 4.0.2 wasn't bad, especially considering I was coming from a 3.x version. Also posting this to make sure that there have been no changes to the API and my website can still post to Mastodon on my behalf.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/upgraded-mastodon-v4-0-2?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/upgraded-mastodon-v4-0-2</guid>
+      <pubDate>2022-12-26 16:03</pubDate>
+    </item>
+    <item>
+      <title>Fitch: CLI system information utility built with F#</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/fitch-fsharp-cli-v0?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/fitch-fsharp-cli-v0&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I wasn't really planning on this, but here we are. I've been using &lt;a href="https://github.com/dylanaraps/neofetch"&gt;Neofetch&lt;/a&gt; on my PC to display system information whenever the terminal opens. However, in some cases, that would hang and it would take a while before I was able to use my terminal.&lt;/p&gt;
+&lt;p&gt;I then ran into &lt;a href="https://github.com/unxsh/nitch"&gt;Nitch&lt;/a&gt; which is simple and fast. However, it was missing the local and public IP information Neofetch provides out of the box. Nitch is written using the &lt;a href="https://nim-lang.org/"&gt;Nim&lt;/a&gt; programming language. Originally, I had planned on extending Nitch and I figured out the code I needed to write to support IP information. However, my program wouldn't build and I was unable to find any information online to unblock myself.&lt;/p&gt;
+&lt;p&gt;That's when I looked at the existing components in Nitch and found that it was basically just reading files from the &lt;code&gt;/proc&lt;/code&gt; and &lt;code&gt;/etc&lt;/code&gt; system directories. At that point, I decided to see if I could build my own utility using F#. A couple of hours later and the result was &lt;a href="/github/fitch"&gt;Fitch&lt;/a&gt;. This works well enough for my needs and in the future, I might publish it as a dotnet global tool to make it easy for others to use.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/fitch-display.png" class="img-fluid" alt="Screeenshot of command line running Fitch F# System Utility" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/fitch-fsharp-cli-v0?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/fitch-fsharp-cli-v0</guid>
+      <pubDate>2022-12-25 20:10</pubDate>
+    </item>
+    <item>
+      <title>Use Azure CDN from Verizon Premium for Regex URL redirects</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/azure-cdn-regex-url-redirect?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/azure-cdn-regex-url-redirect&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Well, that's time that I'm never going to get back.&lt;/p&gt;
+&lt;p&gt;Imagine that you wanted to redirect a URL,&lt;/p&gt;
+&lt;p&gt;From: &lt;code&gt;https://mydomain/github/repo-name&lt;/code&gt;&lt;br /&gt;
+To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;You could use regular expressions to parse out the &lt;code&gt;repo-name&lt;/code&gt; part of the URL path from the source URL to the destination URL. This is what it might look like using something like NGINX.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;location ~ ^/github/(.*) {
+     return 307 https://github.com/yourGHusername/$1;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Unless I wasn't looking at the right documentation, it's not obvious that the rules engine for most Azure CDN plans don't support this feature, except for the &lt;a href="https://learn.microsoft.com/azure/cdn/cdn-verizon-premium-rules-engine-reference-features"&gt;Verizon Premium&lt;/a&gt;. While the standard rules engine supports wildcards for source URLs, lack of regular expresssions support means there's no way to parameterize the values of the destination URL. If this is something  you need, make sure to use the Verizon Premium plan.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/azure-cdn-regex-url-redirect?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/azure-cdn-regex-url-redirect</guid>
+      <pubDate>2022-12-21 15:09</pubDate>
+    </item>
     <item>
       <title>Now accepting webmentions</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/now-accepting-webmentions?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/now-accepting-webmentions&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;It took me a while to get all the pieces working but I'm excited that my website now accepts &lt;a href="https://www.w3.org/TR/webmention/"&gt;webmentions&lt;/a&gt;!&lt;/p&gt;
