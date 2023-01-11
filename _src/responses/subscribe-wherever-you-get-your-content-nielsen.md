@@ -10,13 +10,13 @@ dt_updated: "2023-01-11 10:43 -05:00"
 >   
 > Instead of:  
 >   
->    “Follow me on Twitter.”  
->    “I’m @realChuckieCheese on Instagram.”  
->    “Subscribe to my videos on YouTube.”  
+>     “Follow me on Twitter.”  
+>     “I’m @realChuckieCheese on Instagram.”  
+>     “Subscribe to my videos on YouTube.”  
 >   
 > You’d hear some popular influencer saying:  
 >   
->    “Follow me wherever you follow people online.”  
->    “Find me and subscribe wherever you get your content.”
+>     “Follow me wherever you follow people online.”  
+>     “Find me and subscribe wherever you get your content.”
 
 > In a world like this, perhaps [apex domains could become the currency of online handles](https://twitter.com/jimniels/status/1597654715873267713): follow me `@jim-nielsen.com`. 
