@@ -36,13 +36,13 @@ let recentPostsView (posts: Post array) =
             ]
     ]
 
-let homeView content =
+let homeView (blog:Post) (microblog:Post) (response:Response) =
     div [ _class "mr-auto" ] [
-        div [_class "row vh-100"] [
+        div [_class "row mx-auto p-2"] [
             div [_class "col d-flex align-self-center justify-content-center"] [
-                div [_class "media"] [
+                div [_class "p-2"] [
                     img [_src "/avatar.png"; _alt "Luis Quintanilla Avatar Image"; _class "rounded-circle"; _height "200"; _width "200" ]
-                    div [_class "media-body ml-5 align-self-center"] [
+                    div [_class "mt-2 align-self-center text-center"] [
                         h2 [] [
                             str "Hi, I'm "
                             a [_href "/about"] [Text "Luis"]
@@ -75,6 +75,20 @@ let homeView content =
                         ]
                     ]
                 ]
+            ]
+        ]
+        div [_class "row mx-auto p-2 text-center"] [
+            div [_class "col align-self-center justify-content-center"] [
+                h2 [] [Text "Latest blog post"]
+                a [_href $"/posts/{Path.GetFileNameWithoutExtension(blog.FileName)}"] [Text blog.Metadata.Title]
+            ]
+        ]
+        div [_class "row mx-auto p-2 text-center"] [
+            div [_class "col align-self-center justify-content-center"] [
+                h2 [] [Text "Latest from the microblog"]
+                a [_href $"/feed/{Path.GetFileNameWithoutExtension(microblog.FileName)}"] [Text microblog.Metadata.Title]
+                br []
+                a [_href $"/feed/{Path.GetFileNameWithoutExtension(response.FileName)}"] [Text response.Metadata.Title]                
             ]
         ]
     ]

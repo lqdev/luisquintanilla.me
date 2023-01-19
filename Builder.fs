@@ -57,14 +57,25 @@ module Builder
         // Copy vcard
         File.Copy(Path.Join(srcDir,"vcard.vcf"),Path.Join(outputDir,"vcard.vcf"),true)
 
-    let buildHomePage (posts:Post array) = 
-        let recentPosts = 
-            posts 
+    let buildHomePage (blogPosts:Post array) (feedPosts:Post array) (responsePosts:Response array)= 
+        let recentBlog = 
+            blogPosts 
             |> Array.sortByDescending(fun x-> DateTime.Parse(x.Metadata.Date))
-            |> Array.take 5 
+            |> Array.head
 
-        let recentPostsContent = generatePartial (recentPostsView recentPosts)
-        let homePage = generate (homeView recentPostsContent) "default" "Home - Luis Quintanilla"
+        let recentFeedPost = 
+            feedPosts
+            |> Array.sortByDescending(fun x-> DateTime.Parse(x.Metadata.Date))
+            |> Array.head
+
+
+        let recentResponsePost = 
+            responsePosts
+            |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.DateUpdated))
+            |> Array.head
+
+        // let recentPostsContent = generatePartial (recentPostsView recentPosts)
+        let homePage = generate (homeView recentBlog recentFeedPost recentResponsePost) "default" "Home - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"index.html"),homePage)
 
     let buildAboutPage () = 

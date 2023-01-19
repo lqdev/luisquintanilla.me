@@ -40,7 +40,7 @@ let main argv =
     let responses = loadReponses ()
 
     // Build static pages
-    buildHomePage posts
+    buildHomePage posts feedPosts responses
     buildAboutPage ()
     buildContactPage ()
     buildIRLStackPage ()
