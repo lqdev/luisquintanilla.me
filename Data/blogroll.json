@@ -36,12 +36,6 @@
         "XmlUrl": "https://jvns.ca/atom.xml"
     },
     {
-        "Title": "Blogget",
-        "Type": "rss",
-        "HtmlUrl": "https://blogget.substack.com/",
-        "XmlUrl": "https://blogget.substack.com/feed"
-    },
-    {
         "Title": "Adventure Taco",
         "Type": "rss",
         "HtmlUrl": "https://adventuretaco.com/",
@@ -82,5 +76,23 @@
        "Type": "rss",
        "HtmlUrl": "https://twobithistory.org/",
        "XmlUrl": "https://twobithistory.org/feed.xml"
+    },
+    {
+       "Title": "Jim Nielsen",
+       "Type": "rss",
+       "HtmlUrl": "https://blog.jim-nielsen.com/",
+       "XmlUrl": "https://blog.jim-nielsen.com/feed.xml"
+    },
+    {
+       "Title": "Jose Briones",
+       "Type": "rss",
+       "HtmlUrl": "https://josebriones.substack.com",
+       "XmlUrl": "https://josebriones.substack.com/feed"
+    },
+    {
+       "Title": "Seth Godin",
+       "Type": "rss",
+       "HtmlUrl": "https://seths.blog",
+       "XmlUrl": "https://feeds.feedblitz.com/sethsblog"
     }
 ]

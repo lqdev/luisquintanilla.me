@@ -112,5 +112,35 @@
         "Type": "rss",
         "HtmlUrl": "http://irlpodcast.org/",
         "XmlUrl": "https://feeds.mozilla-podcasts.org/irl"
+    },
+    {
+       "Title": "Hacker Public Radio",
+       "Type": "rss",
+       "HtmlUrl": "https://www.hackerpublicradio.org/",
+       "XmlUrl": "http://hackerpublicradio.org/hpr_rss.php"
+    },
+    {
+       "Title": "Lex Friedman Podcast",
+       "Type": "rss",
+       "HtmlUrl": "https://lexfridman.com/",
+       "XmlUrl": "https://lexfridman.com/feed/podcast/"
+    },
+    {
+       "Title": "Podcasting 2.0",
+       "Type": "rss",
+       "HtmlUrl": "http://podcastindex.org",
+       "XmlUrl": "http://mp3s.nashownotes.com/pc20rss.xml"
+    },
+    {
+       "Title": "Reality 2.0",
+       "Type": "rss",
+       "HtmlUrl": "https://www.reality2cast.com",
+       "XmlUrl": "https://feeds.fireside.fm/reality2/rss"
+    },
+    {
+       "Title": "Self-Hosted",
+       "Type": "rss",
+       "HtmlUrl": "https://selfhosted.show",
+       "XmlUrl": "https://feeds.fireside.fm/selfhosted/rss"
     }                
 ]
