@@ -7,11 +7,8 @@ Devices, apps, and services I use day-to-day.
 ### Computing
 
 - [Lenovo IdeaPad Duet 3i](https://www.lenovo.com/il/en/laptops/ideapad/d-series/IdeaPad-Duet-3-10IGL5/p/88IPD301447) - **Daily driver**
-- [Nokia 6300 4G](https://www.nokia.com/phones/en_us/nokia-6300-4g) - **Daily driver**
+- [Nokia 2780 Flip](https://www.nokia.com/phones/en_us/nokia-2780-flip?sku=16WNDR11A01) - **Daily driver**
 - [Surface Duo](https://www.microsoft.com/surface/devices/surface-duo?activetab=overview) - **Secondary device**
-- [ASUS L210MA](https://www.asus.com/us/laptops/for-home/everyday-use/asus-l210/) 
-- [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
-
 
 ### Bags
 
@@ -24,7 +21,7 @@ Devices, apps, and services I use day-to-day.
 
 - [Sony Cybershot DSC-W530](https://www.sony.com/electronics/support/compact-cameras-dsc-w-series/dsc-w530) - **Daily driver** - It's compact enough for every day carry to supplement my phone's camera.
 - [Canon PowerShot SX740](https://www.usa.canon.com/internet/portal/us/home/products/details/cameras/point-and-shoot-digital-cameras/long-zoom-cameras/powershot-sx740-hs) - Mainly for trips where I want better quality photos than the Sony DSC-W530.
-- [Akaso Brave 7](https://www.akasotech.com/brave-7) - Action cam. I usually use it to record outdoor trips.
+- [Go Pro Hero 11](https://gopro.com/en/us/shop/cameras/hero11-black/CHDHX-111-master.html) - Action cam. I usually use it to record outdoor trips.
 - [Logitech C920S Pro HD Webcam](https://www.logitech.com/products/webcams/c920s-pro-hd-webcam.960-001257.html) - Webcam for video calls & streaming
 
 ### Audio
@@ -44,7 +41,7 @@ Devices, apps, and services I use day-to-day.
 
 - [Garmin Fenix 6 Pro](https://buy.garmin.com/en-US/US/p/641435/pn/010-02157-10) - Fitness tracker & GPS device
 - [Garmin Drive 52](https://www.garmin.com/en-US/p/612579/pn/010-02036-06) - Car GPS
-- [Pocketbook Touch Lux 5](https://www.pocketbook-int.com/int) - E-Reader
+- [Onyx Boox Nova Air 2](https://onyxboox.com/boox_novaair2) - E-Reader / Digital Notepad
 
 ## Software
 
