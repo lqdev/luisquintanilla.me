@@ -10,7 +10,7 @@ source: "https://openlibrary.org/books/OL37044570M/Armageddon_2419_A.D."
 
 ## Review
 
-An  introduction to the Buck Rogers universe. 
+N/A
 
 ## Quotes
 
@@ -18,7 +18,7 @@ N/A
 
 ## Notes
 
-N/A
+An  introduction to the Buck Rogers universe. 
 
 ## Notes
 
