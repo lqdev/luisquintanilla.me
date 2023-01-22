@@ -4,7 +4,7 @@ author: "Joe Biel, Faith Harper"
 isbn: 9781648410147
 cover: ""
 status: Read
-rating: 3
+rating: 3.0
 source: https://openlibrary.org/works/OL25771598W/Unfuck_Your_Writing
 ---
 

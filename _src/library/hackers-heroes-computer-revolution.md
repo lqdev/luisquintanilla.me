@@ -1,5 +1,5 @@
 ---
-title: "Hackers:Heroes of the Computer Revolution" 
+title: "Hackers: Heroes of the Computer Revolution" 
 author: Steven Levy
 isbn: 9780140232691
 cover: https://covers.openlibrary.org/b/id/10512955-M.jpg

@@ -111,7 +111,7 @@ module Domain
         [<YamlMember(Alias="isbn")>] Isbn: string
         [<YamlMember(Alias="cover")>] Cover: string
         [<YamlMember(Alias="status")>] Status: string
-        [<YamlMember(Alias="rating")>] Rating: int
+        [<YamlMember(Alias="rating")>] Rating: float
         [<YamlMember(Alias="source")>] Source: string
     }
 
