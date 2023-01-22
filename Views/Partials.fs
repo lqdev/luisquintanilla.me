@@ -197,7 +197,7 @@ let podRollView (links:Outline array) =
         ]
         p [] [
             str "You can subscribe to any of the individual feeds in your preferred RSS reader or podcast client using the RSS feed links below. Want to subscribe to all of them? Use the "
-            a [ _href "/feed/pordoll/index.opml"] [Text "OPML file"]
+            a [ _href "/feed/podroll/index.opml"] [Text "OPML file"]
             str " if your RSS reader or podcast client supports "
             a [_href "http://opml.org/"] [Text "OPML."]
         ]
