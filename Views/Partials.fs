@@ -352,7 +352,7 @@ let cardFooter (fileName:string) =
     div [_class "card-footer"] [
         let permalink = $"/feed/{fileName}/" 
         Text "Permalink: " 
-        a [_href permalink] [Text $"https://luisquintanilla.me{permalink}"]
+        a [_href permalink; _class "u-url"] [Text $"https://luisquintanilla.me{permalink}"]
     ]
 
 let feedBacklink (url:string) = 
