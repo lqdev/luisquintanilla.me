@@ -1,7 +1,7 @@
 ---
 title: Octave Development in the Terminal
 published_date: 2017-12-09 12:46:54
-tags: octave,tmux,developer tools
+tags: [octave,tmux,developer tools]
 ---
 
 MatLab is a powerful tool that is used througout various disciplines for data processing and analysis. However, in order to get access to it and all its features, there is a fee associated with it. Depending on the needs of the user, this price can at times be somewhat large. Luckily, an open source alternative known as Octave exists which works just as good in many cases at zero monetary cost. Octave's syntax is for the most part identical to MatLab making the transition a relatively simple one. 

@@ -1,7 +1,7 @@
 ---
 title: Working with URLs in Racket
 published_date: 2017-12-13 16:01:57
-tags: lisp, racket
+tags: [lisp, racket]
 ---
 
 Often times when working with web applications, parameters and values are passed in the path as well as the query string of a URL. In order to do something useful, parsing of the url is required. Noted below are examples of how this can be done in an elegant manner using Racket.

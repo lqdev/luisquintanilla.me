@@ -2,7 +2,7 @@
 title: Proofread articles using Microsoft Edge's Immersive Reader and read aloud
 description: Improve your proofreading process by reading articles aloud using Immersive Reader in Microsoft Edge
 published_date: 2021-09-22 18:00:00
-tags: writing, tools
+tags: [writing, tools]
 ---
 
 This will be a relatively short post but it's something I just discovered and thought I'd share. Before publishing a post, I try to proofread and review the article to make sure spelling, grammar, and flow all make sense. Part of that process involves reading the article aloud. I'll miss things from time to time but generally it works well. 

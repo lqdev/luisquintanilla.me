@@ -3,7 +3,7 @@ post_type: "article"
 title: "Install Manjaro RTL8821CE WiFi drivers"
 description: "Install RTL8821CE WiFi drivers on a fresh Manjaro XCFE install using AUR"
 published_date: "06/11/2022 15:48"
-tags: networking, manjaro, linux
+tags: [networking, manjaro, linux]
 ---
 
 Until recently, I was usign an HP ProBook 430 G1 with Manjaro and a Surface Go (1st Gen) for my computing needs. To cut down on the devices I used, I purchased an [ASUS L210MA](https://www.asus.com/us/laptops/for-home/everyday-use/asus-l210/) which is about the size of the Surface Go but I can run Manjaro on it. Although it doesn't have the same storage or compute power as the ProBook, I've set up a VM in Azure I can use for those instances where I need more compute power than the ASUS laptop can provide. As is sometimes the case, when you install Linux on a new PC, you have to install the right drivers to use your WiFi and other peripheral devices. In this guide I'll show how to install the RTL-8821-CE WiFi drivers.

@@ -16,7 +16,7 @@ module Domain
         [<YamlMember(Alias="title")>] Title: string
         [<YamlMember(Alias="description")>] Description: string
         [<YamlMember(Alias="published_date")>] Date: string
-        [<YamlMember(Alias="tags")>] Tags: string
+        [<YamlMember(Alias="tags")>] Tags: string array
     }
 
     type Post = {

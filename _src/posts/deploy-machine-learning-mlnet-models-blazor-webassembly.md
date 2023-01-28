@@ -1,7 +1,7 @@
 ---
 title: Deploy ML.NET Machine Learning Model in Blazor WebAssembly Static Website
 published_date: 2020-03-01 19:21:04
-tags: azure,staticwebsites,machinelearning,ai,artifificalintelligence,ml,dotnet,dotnetcore,webassembly,webdevelopment,mldotnet,mlnet,blazor
+tags: [azure,staticwebsites,machinelearning,ai,artifificalintelligence,ml,dotnet,dotnetcore,webassembly,webdevelopment,mldotnet,mlnet,blazor]
 ---
 
 ## Introduction

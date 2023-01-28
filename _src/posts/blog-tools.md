@@ -1,7 +1,7 @@
 ---
 title: Blogging Tools
 published_date: 2018-11-18 00:07:36
-tags: markdown,vscode,tools,development,blogging
+tags: [markdown,vscode,tools,development,blogging]
 ---
 
 ## TLDR

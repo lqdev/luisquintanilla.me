@@ -1,7 +1,7 @@
 ---
 title: Windows 10 Intel Display Driver Blank Screen Fix
 published_date: 2017-12-09 14:27:31
-tags: sysadmin,drivers,pc issues
+tags: [sysadmin,drivers,pc issues]
 ---
 
 Recently my Dell Inspiron P57G was experiencing issues when entering sleep mode. When trying to wake the PC, a blank screen was coming on. After some research, I concluded it was due to bugs with the most recent version of the display driver. These were the steps I took to remediate the issue. 

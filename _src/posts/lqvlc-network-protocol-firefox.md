@@ -3,7 +3,7 @@ post_type: "article"
 title: "The lqvlc network protocol"
 description: "Create and configure the lqvlc protocol, a custom network protocol to automatically launch audio and video streams in VLC from Firefox"
 published_date: "07/07/2022 18:47"
-tags: firefox, vlc, web, open source, linux
+tags: [firefox, vlc, web, open source, linux]
 ---
 
 ## Introduction

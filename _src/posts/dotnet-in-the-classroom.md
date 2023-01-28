@@ -1,7 +1,7 @@
 ---
 title: The Case for .NET in the Classroom
 published_date: 2017-12-14 16:57:39
-tags: .net, microsoft, thoughts,programming,development
+tags: [.net, microsoft, thoughts,programming,development]
 ---
 
 # Introduction
