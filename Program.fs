@@ -23,6 +23,7 @@ let main argv =
     Path.Join(outputDir,"presentations") |> Directory.CreateDirectory |> ignore
     Path.Join(outputDir,"snippets") |> Directory.CreateDirectory |> ignore
     Path.Join(outputDir,"wiki") |> Directory.CreateDirectory |> ignore 
+    Path.Join(outputDir,"tags") |> Directory.CreateDirectory |> ignore 
     // copyStaticFiles srcDir outputDir
     // copyImages "images" "images"
 
@@ -96,5 +97,8 @@ let main argv =
 
     // Build reponses
     buildResponsePage responses "Responses" "index"
+
+    // Build tags page
+    buildTagsPages posts
 
     0

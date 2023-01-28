@@ -148,6 +148,44 @@ let blogPostView (title:string) (content:string) =
         webmentionForm
     ]    
 
+let tagLinkView (tags: string array) = 
+    ul [] [
+        for tag in tags do
+            li [] [
+                a [_href $"/tags/{tag}"] [Text $"#{tag}"]
+            ]
+    ]
+
+let tagPostLinkView (posts: Post array) = 
+    ul [] [
+        for post in posts do
+            li [] [
+                a [_href $"/posts/{post.FileName}"] [Text $"{post.Metadata.Title}"]
+            ]
+    ]
+
+let allTagsView (tags: string array) = 
+    
+    let tagLinks = tagLinkView tags
+    
+    div [ _class "mr-auto" ] [ 
+        h2 [] [Text "Tags"]
+        p [] [Text "A list of tags for blog posts on this page"]
+
+        tagLinks
+    ]
+
+let  individualTagView (tagName:string) (posts:Post array) = 
+    let postLinks = tagPostLinkView posts
+
+    div [ _class "mr-auto" ] [ 
+        h2 [] [Text $"{tagName}"]
+        p [] [Text $"A list of posts tagged {tagName}"]
+
+        postLinks
+    ]
+
+
 let rollLinkView (links:Outline array) = 
     ul [] [
         for link in links do
