@@ -1,190 +1,36 @@
 module WebmentionService
 
     open System
-    open System.IO
-    open System.Collections.Generic
-    open System.Net.Http
     open Domain
-    open FSharp.Data
-    
-    let discoverUrlInHeaderAsync (url:string) =
-        async {
-            // Initialize HttpClient
-            use client = new HttpClient()
+    open WebmentionFs
+    open WebmentionFs.Services
 
-            // Prepare request message
-            let reqMessage = new HttpRequestMessage(new HttpMethod("HEAD"), url)
-            
-            // Send request
-            let! response = client.SendAsync(reqMessage) |> Async.AwaitTask
-
-            // Get request headers
-            let responseHeaders = 
-                [
-                    for header in response.Headers do
-                        header.Key.ToLower(), header.Value
-                ]
-
-            // Look for webmention header
-            try
-                // Find "link" header that contains "webmention"
-                let webmentionHeader =
-                    responseHeaders
-                    |> Seq.filter(fun (k,_) -> k = "link")
-                    |> Seq.map(fun (_,v) -> v |> Seq.filter(fun header -> header.Contains("webmention")))
-                    |> Seq.head
-                    |> List.ofSeq
-                    |> List.head
-
-                // Get first part of "link" header
-                let webmentionUrl = 
-                    webmentionHeader.Split(';')
-                    |> Array.head
-
-                // Remove angle brackets from URL
-                let sanitizedWebmentionUrl = 
-                    webmentionUrl
-                        .Replace("<","")
-                        .Replace(">","")
-                        .Trim()
-
-                return Some sanitizedWebmentionUrl                    
-
-            with
-                | _ -> return None
-            
-        }    
-
-    let discoverUrlInLinkTagAsync (url:string) = 
-        async {
-            // Load HTML document
-            let! htmlDoc = HtmlDocument.AsyncLoad(url)
-
-            // Get webmention URL from "<link>" tag
-            try
-                let webmentionUrl = 
-                    htmlDoc.CssSelect("link[rel='webmention']")
-                    |> List.map(fun link -> link.AttributeValue("href"))
-                    |> List.head
-
-                return Some webmentionUrl
-            with
-                | _ -> return None
-        }        
-
-    let discoverUrlInAnchorTagAsync (url:string) = 
-        async {
-            // Load HTML document
-            let!  htmlDoc = HtmlDocument.AsyncLoad(url)
-
-            // Get webmention URL from "<a>" tag
-            try
-                let webmentionUrl = 
-                    htmlDoc.CssSelect("a[rel='webmention'")
-                    |> List.map(fun a -> a.AttributeValue("href"))
-                    |> List.head
-
-                return Some webmentionUrl
-            with
-                | _ -> return None
-        }      
-
-    // Apply webmention URL discovery workflow
-    // 1. Check header
-    // 2. Check link tag
-    // 3. Check anchor tag
-    let discoverWebmentionUrlAsync (url:string) = 
-        async {
-            
-            let isPdf = 
-                Path.GetExtension(url).Contains("pdf")
-
-            let! headerUrl = discoverUrlInHeaderAsync url
-
-            let! linkUrl =
-                match isPdf with 
-                | true -> async { return None }
-                | false -> discoverUrlInLinkTagAsync url         
-
-            let! anchorUrl =
-                match isPdf with 
-                | true -> async { return None }
-                | false -> discoverUrlInAnchorTagAsync url
-
-            // let! linkUrl = discoverUrlInLinkTagAsync url
-            // let! anchorUrl = discoverUrlInAnchorTagAsync url
-
-            // Aggregate results
-            let discoveryResults = 
-                [headerUrl; linkUrl; anchorUrl]
-                |> List.choose(fun url -> url)
-
-            // Unwrap and take the first entry containing a value
-            let webmentionUrl =
-                match discoveryResults.IsEmpty with
-                | true -> ""
-                | false ->  
-                    discoveryResults 
-                    |> List.head
-
-            return webmentionUrl
-        }   
-
-    let postWebMentionAsync (url:string) (req:IDictionary<string,string>) = 
-        async {
-            use client = new HttpClient()
-            let content = new FormUrlEncodedContent(req)
-            let! response = client.PostAsync(url, content) |> Async.AwaitTask
-            return response.IsSuccessStatusCode
-        }
-
-    let runWebmentionWorkflow (mentions: Webmention array) = 
+    let runWebmentionWorkflow (mentions: UrlData array) = 
         seq {
             for mention in mentions do 
                     yield async {
-                        try 
-                            // Discover webmention endpoint URL of target URL
-                            let! discoveredUrl = 
-                                mention.TargetUrl.OriginalString
-                                |> discoverWebmentionUrlAsync
+                        let ds = new UrlDiscoveryService()
 
-                            // Construct URL depending on whether it's absolute or relative
-                            let authority = mention.TargetUrl.GetLeftPart(UriPartial.Authority)
+                        let ws = new WebmentionSenderService(ds)
 
-                            let constructedUrl = 
-                                match (discoveredUrl.Contains("http")) with
-                                | true -> discoveredUrl
-                                | false -> 
-                                    let noQueryUrl = 
-                                        discoveredUrl.Split('?')
-                                        |> Array.head
-                                        
-                                    $"{authority}{noQueryUrl}"
+                        printfn $"Sending: {mention}"
 
-                            // Prepare webmention request data
-                            let reqData = 
-                                dict [
-                                    ("source", mention.SourceUrl.OriginalString)
-                                    ("target", mention.TargetUrl.OriginalString)
-                                ]
+                        let! result = ws.SendAsync(mention) |> Async.AwaitTask
 
-                            // Send web mentions
-                            printfn $"Sent webmention to: {constructedUrl}"
-                            return! postWebMentionAsync constructedUrl reqData
-                        with
-                            | ex ->
-                                printfn $"Webmention Error: {ex}" 
-                                return false
+                        return 
+                            match result with 
+                            | ValidationSuccess s -> printfn $"{s.RequestBody.Target} sent successfully"
+                            | ValidationError e -> printfn $"{e}"
                     }
         }
 
-    let sendWebmentions (responses: Response array) = 
+    let sendWebmentions (responses: Response array) =     
         responses
         |> Array.filter(fun x -> 
             let currentDateTime = DateTimeOffset(DateTime.Now)
             let updatedDateTime = DateTimeOffset(DateTime.Parse(x.Metadata.DateUpdated).AddMinutes(60))
             currentDateTime < updatedDateTime)
-        |> Array.map(fun x -> { SourceUrl=new Uri($"http://lqdev.me/feed/{x.FileName}"); TargetUrl=new Uri(x.Metadata.TargetUrl) })
+        |> Array.map(fun x -> { Source=new Uri($"http://lqdev.me/feed/{x.FileName}"); Target=new Uri(x.Metadata.TargetUrl) })
         |> runWebmentionWorkflow
         |> Async.Parallel
         |> Async.RunSynchronously
