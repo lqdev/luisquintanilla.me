@@ -1,7 +1,7 @@
 ---
 title: "Train an image classifier using F# and ML .NET" 
 published_date: 2020-12-14 20:03:18
-tags: image classification,mlnet,fsharp,dotnet,deep learning, fsadvent2020, tensorflow
+tags: [image classification,mlnet,fsharp,dotnet,deep learning, fsadvent2020, tensorflow]
 ---
 
 # Introduction

@@ -1,6 +1,6 @@
 ---
 title: Operationalizing Machine Learning with ML.NET, Azure DevOps and Azure Container Instances
-tags: mlnet, machinelearning, ai, dotnet, dotnetcore, devops, azure, docker, containers, microsoft,artificialintelligence, programming, webapi, aci, development
+tags: [mlnet, machinelearning, ai, dotnet, dotnetcore, devops, azure, docker, containers, microsoft,artificialintelligence, programming, webapi, aci, development]
 published_date: 2018-11-26 23:50:23
 ---
 

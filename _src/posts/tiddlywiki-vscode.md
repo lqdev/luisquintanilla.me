@@ -3,7 +3,7 @@ post_type: "article"
 title: "Get started with TiddlyWiki in VS Code"
 description: "Downlaod and set up TiddlyWiki for use in VS Code"
 published_date: "2022-10-21 08:32"
-tags: web,vscode,wiki,personalknowledgemanagement,git,website
+tags: [web,vscode,wiki,personalknowledgemanagement,git,website]
 ---
 
 ## Introduction

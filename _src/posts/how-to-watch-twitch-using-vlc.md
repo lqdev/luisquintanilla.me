@@ -1,7 +1,7 @@
 ---
 title: How to watch Twitch streams using VLC
 published_date: 2021-01-05 21:14:39
-tags: streaming, hacks, video, IT
+tags: [streaming, hacks, video, IT]
 ---
 
 ## Introduction

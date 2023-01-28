@@ -1,7 +1,7 @@
 ---
 title: "Authorization Code Authentication Flow in Python"
 published_date: 2017-12-29 18:45:19
-tags: python,api,programming,security,authentication
+tags: [python,api,programming,security,authentication]
 ---
 
 For the longest time, authentication had been my worst enemy. I took small steps towards becoming comfortable with it. At first I learned Implicit Authorization with AngularJS, then I learned Client Credentials Authorization with Python and C# and finally, I learned Authorization Code authentication with C#. The one that always gave me trouble was Authorization Code authentication because it requires user credentials. 

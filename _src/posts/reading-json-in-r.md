@@ -1,7 +1,7 @@
 ---
 title: Reading Local JSON Files in R
 published_date: 2017-12-11 14:21:21
-tags: R,programming
+tags: [R,programming]
 ---
 
 The following example is a way of reading local JSON files into R scripts. This can be useful for config files, although it's still also acceptable for data files as well.

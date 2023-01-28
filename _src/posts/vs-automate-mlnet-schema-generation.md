@@ -2,7 +2,7 @@
 title: Automate ML.NET model schema generation from sample JSON data with Visual Studio
 description: Use "Paste JSON As Classes" in Visual Studio to automatically generate model input and output schema classes for your ML.NET models using JSON data samples.
 published_date: 2021-08-26 18:00:00
-tags: dotnet, machine learning, mlnet, artificial intelligence, tooling, visual studio
+tags: [dotnet, machine learning, mlnet, artificial intelligence, tooling, visual studio]
 ---
 
 ## Introduction

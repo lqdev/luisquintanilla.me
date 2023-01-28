@@ -1,7 +1,7 @@
 ---
 title: "Back To School: Emacs Edition"
 published_date: 2017-12-09 13:01:19
-tags: emacs,org-mode
+tags: [emacs,org-mode]
 ---
 
 As the summer comes to a close and I prepare to enter the fall semester, I am getting back into school mode. When programming in the terminal, I usually used vim. When compared to Emacs, the learning curve was relatively flat and it handled file editing just fine. I’ve read many articles that rave about Emacs and how powerful it can be. Therefore, a couple of months ago I took the plunge and decided to give it a try. Using dired mode to browse through the various directories in my system or project was a neat feature but for my purposes of basic file editing it did not offer anything that would warrant a switch. Furthermore, the default key bindings seemed a bit too much for me which caused me to  revert back to vim.

@@ -1,7 +1,7 @@
 ---
 title: Setting Up A New Ubuntu PC
 published_date: 2017-12-09 12:49:19
-tags: linux, ubuntu, java, sysadmin, emacs
+tags: [linux, ubuntu, java, sysadmin, emacs]
 ---
 
 # Users

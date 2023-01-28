@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "Automate YAML front-matter generation with custom Visual Studio Code snippets"
 published_date: "10/04/2021 19:58"
-tags: blogging,tooling,visual-studio,visual-studio-code,markdown,yaml
+tags: [blogging,tooling,visual-studio,visual-studio-code,markdown,yaml]
 ---
 
 ## Introduction

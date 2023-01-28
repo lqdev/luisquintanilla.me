@@ -1,7 +1,7 @@
 ---
 title: Real-Time Sentiment Analysis with C#
 published_date: 2018-01-18 03:41:47
-tags: data analysis, sentiment analysis, nlp, machine learning, csharp, c#, twitter, api, .net, dotnet
+tags: [data analysis, sentiment analysis, nlp, machine learning, csharp, c#, twitter, api, .net, dotnet]
 ---
 
 ###### This is strictly for use with the .NET Framework. With Mono it might be able to work on other platforms. `SimpleNetNlp` does not currently work with .NET Core/Standard

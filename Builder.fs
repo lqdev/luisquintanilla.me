@@ -8,7 +8,6 @@ module Builder
     open MarkdownService
     open RssService
     open OpmlService
-    open WebmentionService
     open ViewGenerator
     open PartialViews
     
@@ -317,6 +316,51 @@ module Builder
             let fileName = "index.html"
             File.WriteAllText(Path.Join(dir.FullName,fileName), page))
     
+    let buildTagsPages (posts: Post array) = 
+        let processTagName (tag:string) = 
+            tag
+              .Replace(".net","dotnet")
+              .Replace(".","")
+              .Replace(' ', '-')
+              .ToLower()
+
+        let taggedPosts = 
+            posts 
+            |> Array.collect(fun post -> 
+                try
+                    post.Metadata.Tags 
+                    |> Array.map(fun x -> 
+                        processTagName x, post)
+                with 
+                    | _ -> [|"untagged",post|]
+            )
+            |> Set.ofArray
+            |> Set.toArray
+            |> Array.groupBy(fst)
+            |> Array.map(fun x -> 
+                let tag = fst x
+                let post = snd x |> Array.map(snd)
+                tag,post
+            )
+
+        let tagNames = 
+            taggedPosts 
+            |> Array.map(fst)
+            |> Array.sort
+
+        let tagPage = generate (allTagsView tagNames) "default" "Tags - Luis Quintanilla"
+
+        let saveDir = Path.Join(outputDir,"tags")
+        File.WriteAllText(Path.Join(saveDir,"index.html"), tagPage)
+
+        taggedPosts
+        |> Array.iter(fun (tag,posts) -> 
+            let individualTagSaveDir = Path.Join(saveDir,tag)
+            Directory.CreateDirectory(individualTagSaveDir) |> ignore
+            let individualTagPage = generate (individualTagView tag posts) "default" $"{tag} - Tags - Luis Quintanilla"
+            File.WriteAllText(Path.Join(individualTagSaveDir,"index.html"),individualTagPage)
+        )
+
     let buildEventPage () = 
         let events =  
             File.ReadAllText(Path.Join("Data","events.json"))

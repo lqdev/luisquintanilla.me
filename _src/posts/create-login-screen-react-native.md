@@ -1,7 +1,7 @@
 ---
 title: Creating A Login Screen With React Native
 published_date: 2017-12-09 13:15:57
-tags: react,react native, javascript
+tags: [react,react native, javascript]
 ---
 
 This assumes that you have Node and NPM installed on your PC. If not, you can go to the official website and install them. Then, come back to this page.
