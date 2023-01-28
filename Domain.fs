@@ -160,8 +160,3 @@ module Domain
         Metadata: ResponseDetails
         Content: string
     }
-
-    type Webmention = {
-        SourceUrl: Uri
-        TargetUrl: Uri
-    }

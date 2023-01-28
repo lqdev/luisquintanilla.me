@@ -3,8 +3,29 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>2022-12-26 17:00</lastPubDate>
+    <lastPubDate>2023-01-26 10:46</lastPubDate>
     <language>en</language>
+    <item>
+      <title>i3-gaps Released</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/i3-gaps-released?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/i3-gaps-released&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;figure class="figure"&gt;
+&lt;p&gt;&lt;img src="https://i3wm.org/docs/gaps1920.png" class="img-fluid" alt="Screenshot of i3-gaps" /&gt;&lt;/p&gt;
+&lt;figcaption class="figure-caption"&gt;Source: &lt;em&gt;i3&lt;/em&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Nice! &lt;a href="https://i3wm.org/docs/userguide.html#gaps"&gt;i3-gaps&lt;/a&gt; was recently merged into the main i3 codebase some  time ago and with the &lt;a href="https://github.com/i3/i3/blob/next/RELEASE-NOTES-4.22"&gt;4.22 release&lt;/a&gt; a few weeks ago, you can now use it with your existing i3 configuration. I've started tinkering with it and I like the way it makes my desktop look.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/i3-gaps-released?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/i3-gaps-released</guid>
+      <pubDate>2023-01-26 10:46</pubDate>
+    </item>
+    <item>
+      <title>New IndieWeb Wiki .NET Page</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/indieweb-wiki-dotnet-page?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/indieweb-wiki-dotnet-page&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Just created a new &lt;a href="https://indieweb.org/.NET"&gt;.NET page on the IndieWeb Wiki&lt;/a&gt;. If your personal website or blog is using .NET, feel free to add it there. Also, if you're building any services or libraries for the IndieWeb, add them as well.&lt;/p&gt;
+&lt;p&gt;Looking to learn more about IndieWeb? &lt;a href="https://indiewebify.me/"&gt;https://indiewebify.me/&lt;/a&gt; or the &lt;a href="https://indieweb.org/Getting_Started"&gt;IndieWeb Wiki&lt;/a&gt; are great places to get started.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/indieweb-wiki-dotnet-page?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/indieweb-wiki-dotnet-page</guid>
+      <pubDate>2023-01-25 21:14</pubDate>
+    </item>
     <item>
       <title>Removing avatars and headers in Mastodon</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/mastodon-prune-profiles-media-vnext?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/mastodon-prune-profiles-media-vnext&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;The next version of Mastodon can't come soon enough.&lt;/p&gt;
