@@ -153,6 +153,7 @@ module Domain
         [<YamlMember(Alias="response_type")>] ResponseType: string
         [<YamlMember(Alias="dt_published")>] DatePublished: string        
         [<YamlMember(Alias="dt_updated")>] DateUpdated: string
+        [<YamlMember(Alias="tags")>] Tags: string array
     }
 
     type Response = {
