@@ -19,7 +19,7 @@ module WebmentionService
 
                         return 
                             match result with 
-                            | ValidationSuccess s -> printfn $"{s.RequestBody.Target} sent successfully"
+                            | ValidationSuccess s -> printfn $"{s.RequestBody.Target} sent successfully to ${s.Endpoint.OriginalString}"
                             | ValidationError e -> printfn $"{e}"
                     }
         }

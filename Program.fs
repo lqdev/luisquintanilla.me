@@ -97,7 +97,4 @@ let main argv =
     // Build reponses
     buildResponsePage responses "Responses" "index"
 
-    // Send webmentions
-    sendWebmentions responses
-
     0
