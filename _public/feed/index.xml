@@ -3,8 +3,26 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>2023-01-26 10:46</lastPubDate>
+    <lastPubDate>2023-01-30 17:25</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Skype Feature Request - Default Encrypted Conversations</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/skype-feature-request-default-e2ee?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/skype-feature-request-default-e2ee&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;As the feedback post suggests, Skype offers the option to have &lt;a href="https://support.skype.com/en/faq/FA34824/what-are-skype-private-conversations"&gt;encrypted conversations (chat &amp;amp; calls) using the Signal protocol&lt;/a&gt;. However, it's not the detault. If you're using Skype and this is something you'd like added, feel free to upvote the feedback request.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://feedbackportal.microsoft.com/feedback/idea/0b770e9e-bca0-ed11-a81b-002248519701"&gt;https://feedbackportal.microsoft.com/feedback/idea/0b770e9e-bca0-ed11-a81b-002248519701&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/skype-feature-request-default-e2ee?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/skype-feature-request-default-e2ee</guid>
+      <pubDate>2023-01-30 17:25</pubDate>
+    </item>
+    <item>
+      <title>Microsoft Forms Test Embedding</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/ms-forms-embed-test?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/ms-forms-embed-test&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Testing whether my site can handle embedding &lt;a href="https://forms.office.com/"&gt;Microsoft Forms&lt;/a&gt;. Useful for polls across a variety of channels.&lt;/p&gt;
+&lt;iframe width="640px" height="480px" src="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAANHhN2pUQTZMR1VCUUxDUDNGSFUwWTZLWkdDQklVSC4u&amp;embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen&gt; &lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/ms-forms-embed-test?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/ms-forms-embed-test</guid>
+      <pubDate>2023-01-30 11:46</pubDate>
+    </item>
     <item>
       <title>i3-gaps Released</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/i3-gaps-released?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/i3-gaps-released&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;figure class="figure"&gt;

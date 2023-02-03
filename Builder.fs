@@ -316,7 +316,7 @@ module Builder
             let fileName = "index.html"
             File.WriteAllText(Path.Join(dir.FullName,fileName), page))
     
-    let buildTagsPages (posts: Post array) = 
+    let buildTagsPages (posts: Post array) (notes: Post array) = 
         let processTagName (tag:string) = 
             tag
               .Replace(".net","dotnet")
@@ -324,8 +324,8 @@ module Builder
               .Replace(' ', '-')
               .ToLower()
 
-        let taggedPosts = 
-            posts 
+        let processTaggedPost (unprocessedPosts: Post array) = 
+            unprocessedPosts 
             |> Array.collect(fun post -> 
                 try
                     post.Metadata.Tags 
@@ -343,21 +343,54 @@ module Builder
                 tag,post
             )
 
+        let taggedPosts = 
+            processTaggedPost posts
+            |> Array.map(fun (t,p) -> 
+                let sortedPosts = p |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
+                t, sortedPosts)
+            |> Array.sortBy(fst)
+
+        let taggedNotes = 
+            processTaggedPost notes
+            |> Array.map(fun (t,p) -> 
+                let sortedNotes = p |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
+                t,sortedNotes)
+            |> Array.sortBy(fst)
+            
+        let postTagNames = 
+            taggedPosts |> Array.map(fst)
+
+        let noteTagNames = 
+            taggedNotes |> Array.map(fst)
+
         let tagNames = 
-            taggedPosts 
-            |> Array.map(fst)
-            |> Array.sort
+            postTagNames 
+            |> Array.append noteTagNames
+            |> Array.distinct
+            |> Array.sort  
+
+        let combinedTaggedPosts = 
+            [|
+                for (tp,p) in taggedPosts do 
+                    for (tn, n) in taggedNotes do
+                        if (tp = tn) then
+                            (tp,p,n)
+                        elif (p.Length = 0) then
+                            (tn,[||],n)
+                        else
+                            (tp,p,[||])
+            |]
 
         let tagPage = generate (allTagsView tagNames) "default" "Tags - Luis Quintanilla"
 
         let saveDir = Path.Join(outputDir,"tags")
         File.WriteAllText(Path.Join(saveDir,"index.html"), tagPage)
 
-        taggedPosts
-        |> Array.iter(fun (tag,posts) -> 
+        combinedTaggedPosts
+        |> Array.iter(fun (tag,postCollection,noteCollection)-> 
             let individualTagSaveDir = Path.Join(saveDir,tag)
             Directory.CreateDirectory(individualTagSaveDir) |> ignore
-            let individualTagPage = generate (individualTagView tag posts) "default" $"{tag} - Tags - Luis Quintanilla"
+            let individualTagPage = generate (individualTagView tag postCollection noteCollection) "default" $"{tag} - Tags - Luis Quintanilla"
             File.WriteAllText(Path.Join(individualTagSaveDir,"index.html"),individualTagPage)
         )
 
