@@ -6,6 +6,7 @@ module Builder
     open System.Text.Json
     open Domain
     open MarkdownService
+    open TagService
     open RssService
     open OpmlService
     open ViewGenerator
@@ -317,31 +318,6 @@ module Builder
             File.WriteAllText(Path.Join(dir.FullName,fileName), page))
     
     let buildTagsPages (posts: Post array) (notes: Post array) = 
-        let processTagName (tag:string) = 
-            tag
-              .Replace(".net","dotnet")
-              .Replace(".","")
-              .Replace(' ', '-')
-              .ToLower()
-
-        let processTaggedPost (unprocessedPosts: Post array) = 
-            unprocessedPosts 
-            |> Array.collect(fun post -> 
-                try
-                    post.Metadata.Tags 
-                    |> Array.map(fun x -> 
-                        processTagName x, post)
-                with 
-                    | _ -> [|"untagged",post|]
-            )
-            |> Set.ofArray
-            |> Set.toArray
-            |> Array.groupBy(fst)
-            |> Array.map(fun x -> 
-                let tag = fst x
-                let post = snd x |> Array.map(snd)
-                tag,post
-            )
 
         let taggedPosts = 
             processTaggedPost posts

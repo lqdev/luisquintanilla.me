@@ -353,6 +353,12 @@ builder.Services.AddScoped&amp;lt;RssService&amp;gt;() |&amp;gt; ignore
       <link>https://www.luisquintanilla.me/posts/receive-webmentions-fsharp-az-functions-fsadvent?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/receive-webmentions-fsharp-az-functions-fsadvent</guid>
       <pubDate>2022-12-21 00:33</pubDate>
+      <category>#fsharp</category>
+      <category>#indieweb</category>
+      <category>#protocol</category>
+      <category>#internet</category>
+      <category>#web</category>
+      <category>#dotnet</category>
     </item>
     <item>
       <title>Get started with TiddlyWiki in VS Code</title>
@@ -416,6 +422,12 @@ builder.Services.AddScoped&amp;lt;RssService&amp;gt;() |&amp;gt; ignore
       <link>https://www.luisquintanilla.me/posts/tiddlywiki-vscode?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/tiddlywiki-vscode</guid>
       <pubDate>2022-10-21 08:32</pubDate>
+      <category>#web</category>
+      <category>#vscode</category>
+      <category>#wiki</category>
+      <category>#personalknowledgemanagement</category>
+      <category>#git</category>
+      <category>#website</category>
     </item>
     <item>
       <title>Site redirects in static websites</title>
@@ -438,6 +450,11 @@ builder.Services.AddScoped&amp;lt;RssService&amp;gt;() |&amp;gt; ignore
       <link>https://www.luisquintanilla.me/posts/static-website-redirects?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/static-website-redirects</guid>
       <pubDate>07/31/2022 14:52</pubDate>
+      <category>#http</category>
+      <category>#web</category>
+      <category>#staticweb</category>
+      <category>#indieweb</category>
+      <category>#html</category>
     </item>
     <item>
       <title>Manage your reading list in Emacs using Org mode</title>
@@ -519,6 +536,9 @@ Press ‘C-u r’ to search again
       <link>https://www.luisquintanilla.me/posts/manage-reading-list-org-mode-emacs?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/manage-reading-list-org-mode-emacs</guid>
       <pubDate>07/26/2022 19:15</pubDate>
+      <category>#linux</category>
+      <category>#emacs</category>
+      <category>#organization</category>
     </item>
     <item>
       <title>The lqvlc network protocol</title>
@@ -607,6 +627,11 @@ vlc &amp;quot;${link/lqvlc/http}&amp;quot;
       <link>https://www.luisquintanilla.me/posts/lqvlc-network-protocol-firefox?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/lqvlc-network-protocol-firefox</guid>
       <pubDate>07/07/2022 18:47</pubDate>
+      <category>#firefox</category>
+      <category>#vlc</category>
+      <category>#web</category>
+      <category>#open-source</category>
+      <category>#linux</category>
     </item>
     <item>
       <title>Install Manjaro RTL8821CE WiFi drivers</title>
@@ -641,6 +666,9 @@ makepkg -si
       <link>https://www.luisquintanilla.me/posts/install-rtl8821ce-manjaro?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/install-rtl8821ce-manjaro</guid>
       <pubDate>06/11/2022 15:48</pubDate>
+      <category>#networking</category>
+      <category>#manjaro</category>
+      <category>#linux</category>
     </item>
     <item>
       <title>Install OverDrive Media Console on Manjaro</title>
@@ -678,6 +706,10 @@ makepkg -si
       <link>https://www.luisquintanilla.me/posts/overdrive-wine-manjaro?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/overdrive-wine-manjaro</guid>
       <pubDate>05/11/2022 19:22</pubDate>
+      <category>#linux</category>
+      <category>#books</category>
+      <category>#audiobooks</category>
+      <category>#manjaro</category>
     </item>
     <item>
       <title>How to listen to internet radio using VLC</title>
@@ -704,6 +736,9 @@ makepkg -si
       <link>https://www.luisquintanilla.me/posts/how-to-listen-internet-radio-using-vlc?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/how-to-listen-internet-radio-using-vlc</guid>
       <pubDate>12/28/2021 16:24</pubDate>
+      <category>#vlc</category>
+      <category>#open-source</category>
+      <category>#radio</category>
     </item>
     <item>
       <title>Sending Webmentions with F#</title>
@@ -978,6 +1013,7 @@ let targetUrl = new Uri(&amp;quot;https://webmention.rocks/test/1&amp;quot;)
       <link>https://www.luisquintanilla.me/posts/sending-webmentions-fsharp-fsadvent?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/sending-webmentions-fsharp-fsadvent</guid>
       <pubDate>12/13/2021 20:53</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Super simple captcha</title>
@@ -1044,6 +1080,10 @@ let displayResult = () =&amp;gt; {
       <link>https://www.luisquintanilla.me/posts/super-simple-captcha?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/super-simple-captcha</guid>
       <pubDate>10/24/2021 13:00</pubDate>
+      <category>#web-development</category>
+      <category>#html</category>
+      <category>#javascript</category>
+      <category>#webmentions</category>
     </item>
     <item>
       <title>Automate YAML front-matter generation with custom Visual Studio Code snippets</title>
@@ -1129,6 +1169,12 @@ tags:
       <link>https://www.luisquintanilla.me/posts/automate-yaml-front-matter-vs-code-snippets?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/automate-yaml-front-matter-vs-code-snippets</guid>
       <pubDate>10/04/2021 19:58</pubDate>
+      <category>#blogging</category>
+      <category>#tooling</category>
+      <category>#visual-studio</category>
+      <category>#visual-studio-code</category>
+      <category>#markdown</category>
+      <category>#yaml</category>
     </item>
     <item>
       <title>Proofread articles using Microsoft Edge's Immersive Reader and read aloud</title>
@@ -1141,6 +1187,8 @@ tags:
       <link>https://www.luisquintanilla.me/posts/proofread-read-aloud?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/proofread-read-aloud</guid>
       <pubDate>2021-09-22 18:00:00</pubDate>
+      <category>#writing</category>
+      <category>#tools</category>
     </item>
     <item>
       <title>Make predictions with ML.NET models without defining schema classes</title>
@@ -1216,6 +1264,10 @@ let inputDataFrame =
       <link>https://www.luisquintanilla.me/posts/mlnet-predictions-no-schema?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/mlnet-predictions-no-schema</guid>
       <pubDate>2021-09-16 18:00:00</pubDate>
+      <category>#dotnet</category>
+      <category>#machine-learning</category>
+      <category>#mlnet</category>
+      <category>#artificial-intelligence</category>
     </item>
     <item>
       <title>Automate ML.NET model schema generation from sample JSON data with Visual Studio</title>
@@ -1302,6 +1354,12 @@ let inputDataFrame =
       <link>https://www.luisquintanilla.me/posts/vs-automate-mlnet-schema-generation?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/vs-automate-mlnet-schema-generation</guid>
       <pubDate>2021-08-26 18:00:00</pubDate>
+      <category>#dotnet</category>
+      <category>#machine-learning</category>
+      <category>#mlnet</category>
+      <category>#artificial-intelligence</category>
+      <category>#tooling</category>
+      <category>#visual-studio</category>
     </item>
     <item>
       <title>Inspect ML.NET models with Netron</title>
@@ -1362,6 +1420,12 @@ let inputDataFrame =
       <link>https://www.luisquintanilla.me/posts/inspect-mlnet-models-netron?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/inspect-mlnet-models-netron</guid>
       <pubDate>2021-08-25 18:00:00</pubDate>
+      <category>#dotnet</category>
+      <category>#machine-learning</category>
+      <category>#mlnet</category>
+      <category>#netron</category>
+      <category>#artificial-intelligence</category>
+      <category>#tooling</category>
     </item>
     <item>
       <title>Self-hosting made easy with YunoHost</title>
@@ -1392,6 +1456,13 @@ let inputDataFrame =
       <link>https://www.luisquintanilla.me/posts/yunohost-self-hosting-simplified?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/yunohost-self-hosting-simplified</guid>
       <pubDate>2021-08-10 18:00:00</pubDate>
+      <category>#fediverse</category>
+      <category>#open-source</category>
+      <category>#self-hosting</category>
+      <category>#raspberry-pi</category>
+      <category>#matrix</category>
+      <category>#pixelfed</category>
+      <category>#mastodon</category>
     </item>
     <item>
       <title>Surface Duo offline navigation hiking setup</title>
@@ -1422,6 +1493,13 @@ let inputDataFrame =
       <link>https://www.luisquintanilla.me/posts/surface-duo-offline-navigation-hiking-setup?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/surface-duo-offline-navigation-hiking-setup</guid>
       <pubDate>2021-07-27 19:00:00</pubDate>
+      <category>#hiking</category>
+      <category>#openstreetmaps</category>
+      <category>#open-source</category>
+      <category>#surface</category>
+      <category>#lifestyle</category>
+      <category>#apps</category>
+      <category>#fdroid</category>
     </item>
     <item>
       <title>Never change targeted ads</title>
@@ -1436,6 +1514,10 @@ let inputDataFrame =
       <link>https://www.luisquintanilla.me/posts/fenix-social-media-targeted-ads?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/fenix-social-media-targeted-ads</guid>
       <pubDate>2021-06-22 17:40:00</pubDate>
+      <category>#random</category>
+      <category>#privacy</category>
+      <category>#social-media</category>
+      <category>#ads</category>
     </item>
     <item>
       <title>Rediscovering the RSS protocol</title>
@@ -1455,6 +1537,9 @@ let inputDataFrame =
       <link>https://www.luisquintanilla.me/posts/rediscovering-rss-user-freedom?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/rediscovering-rss-user-freedom</guid>
       <pubDate>2021-04-05 19:30:00</pubDate>
+      <category>#protocols</category>
+      <category>#web</category>
+      <category>#rss</category>
     </item>
     <item>
       <title>Alternatives to WhatsApp</title>
@@ -1494,6 +1579,11 @@ let inputDataFrame =
       <link>https://www.luisquintanilla.me/posts/alternatives-to-whatsapp?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/alternatives-to-whatsapp</guid>
       <pubDate>2021-01-09 13:44:27</pubDate>
+      <category>#privacy</category>
+      <category>#self-hosted</category>
+      <category>#security</category>
+      <category>#open-source</category>
+      <category>#apps</category>
     </item>
     <item>
       <title>How to watch Twitch streams using VLC</title>
@@ -1545,6 +1635,10 @@ It's been a while since I've gotten the original steps to work, so feel free to 
       <link>https://www.luisquintanilla.me/posts/how-to-watch-twitch-using-vlc?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/how-to-watch-twitch-using-vlc</guid>
       <pubDate>2021-01-05 21:14:39</pubDate>
+      <category>#streaming</category>
+      <category>#hacks</category>
+      <category>#video</category>
+      <category>#it</category>
     </item>
     <item>
       <title>Train an image classifier using F# and ML .NET</title>
@@ -1684,6 +1778,13 @@ jack is Naughty
       <link>https://www.luisquintanilla.me/posts/image-classification-mlnet-fsadvent2020?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/image-classification-mlnet-fsadvent2020</guid>
       <pubDate>2020-12-14 20:03:18</pubDate>
+      <category>#image-classification</category>
+      <category>#mlnet</category>
+      <category>#fsharp</category>
+      <category>#dotnet</category>
+      <category>#deep-learning</category>
+      <category>#fsadvent2020</category>
+      <category>#tensorflow</category>
     </item>
     <item>
       <title>Use .NET Interactive to run .NET code in Jupyter Notebooks on an Azure Machine Learning compute instance</title>
@@ -1796,6 +1897,13 @@ AML_CloudName=AzureCloud
       <link>https://www.luisquintanilla.me/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance</guid>
       <pubDate>2020-08-29 20:23:09</pubDate>
+      <category>#dotnet</category>
+      <category>#jupyter-notebooks</category>
+      <category>#dotnet-interactive</category>
+      <category>#azure-machine-learning</category>
+      <category>#azure</category>
+      <category>#programming</category>
+      <category>#development-tools</category>
     </item>
     <item>
       <title>Serverless Racket Applications Using Azure Functions Custom Handlers</title>
@@ -1963,6 +2071,13 @@ AML_CloudName=AzureCloud
       <link>https://www.luisquintanilla.me/posts/serverless-racket-azure-functions-custom-handlers?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/serverless-racket-azure-functions-custom-handlers</guid>
       <pubDate>2020-03-21 13:45:43</pubDate>
+      <category>#serverless</category>
+      <category>#racket</category>
+      <category>#lisp</category>
+      <category>#azure-functions</category>
+      <category>#azure</category>
+      <category>#programming</category>
+      <category>#web</category>
     </item>
     <item>
       <title>Deploy ML.NET Machine Learning Model in Blazor WebAssembly Static Website</title>
@@ -2364,6 +2479,19 @@ namespace TrainingConsole
       <link>https://www.luisquintanilla.me/posts/deploy-machine-learning-mlnet-models-blazor-webassembly?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/deploy-machine-learning-mlnet-models-blazor-webassembly</guid>
       <pubDate>2020-03-01 19:21:04</pubDate>
+      <category>#azure</category>
+      <category>#staticwebsites</category>
+      <category>#machinelearning</category>
+      <category>#ai</category>
+      <category>#artifificalintelligence</category>
+      <category>#ml</category>
+      <category>#dotnet</category>
+      <category>#dotnetcore</category>
+      <category>#webassembly</category>
+      <category>#webdevelopment</category>
+      <category>#mldotnet</category>
+      <category>#mlnet</category>
+      <category>#blazor</category>
     </item>
     <item>
       <title>Use machine learning to categorize web links with F# and ML.NET</title>
@@ -2620,6 +2748,14 @@ Predicted Value: b
       <link>https://www.luisquintanilla.me/posts/categorize-web-links-ml-net-fsharp-fsadvent2019?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/categorize-web-links-ml-net-fsharp-fsadvent2019</guid>
       <pubDate>2019-12-17 19:59:06</pubDate>
+      <category>#dotnet</category>
+      <category>#dotnet-core</category>
+      <category>#machine-learning</category>
+      <category>#ai</category>
+      <category>#artificial-intelligence</category>
+      <category>#ml</category>
+      <category>#fsharp</category>
+      <category>#functional-programming</category>
     </item>
     <item>
       <title>Create an HTTP Trigger Azure Function using FSharp</title>
@@ -2789,6 +2925,13 @@ module GreetFunction =
       <link>https://www.luisquintanilla.me/posts/http-trigger-azure-functions-fsharp?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/http-trigger-azure-functions-fsharp</guid>
       <pubDate>2019-11-16 17:33:59</pubDate>
+      <category>#fsharp</category>
+      <category>#serverless</category>
+      <category>#azure-functions</category>
+      <category>#azure</category>
+      <category>#dotnet</category>
+      <category>#dotnet-core</category>
+      <category>#functional-programming</category>
     </item>
     <item>
       <title>Restaurant Inspections ETL &amp; Data Enrichment with Spark.NET and ML.NET Automated (Auto) ML</title>
@@ -3637,6 +3780,15 @@ Cycle Inspection / Reopening Inspection,10F,0,3,C
       <link>https://www.luisquintanilla.me/posts/restaurant-inspections-etl-data-enrichment-spark-auto-ml-net?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/restaurant-inspections-etl-data-enrichment-spark-auto-ml-net</guid>
       <pubDate>2019-09-15 15:12:01</pubDate>
+      <category>#mlnet</category>
+      <category>#ml</category>
+      <category>#machine-learning</category>
+      <category>#ai</category>
+      <category>#artificial-intelligence</category>
+      <category>#big-data</category>
+      <category>#spark</category>
+      <category>#dotnet</category>
+      <category>#dotnetcore</category>
     </item>
     <item>
       <title>Machine Learning Lifecycle Management with ML.NET, Automated ML and MLFlow</title>
@@ -3963,6 +4115,12 @@ Ran SdcaMaximumEntropyMulti in 0.39 with Log Loss 0.108
       <link>https://www.luisquintanilla.me/posts/ml-lifecycle-management-mlflow-automated-ml-net?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/ml-lifecycle-management-mlflow-automated-ml-net</guid>
       <pubDate>2019-05-09 19:19:20</pubDate>
+      <category>#machine-learning</category>
+      <category>#artificial-intelligence</category>
+      <category>#mlnet</category>
+      <category>#dotnet</category>
+      <category>#dotnetcore</category>
+      <category>#automatedml</category>
     </item>
     <item>
       <title>Automating Resource Provisioning for Machine Learning in Azure with Cognitive Services and Terraform</title>
@@ -4167,6 +4325,11 @@ computer_vision_service  terraform_cognitive_sample  eastus      Microsoft.Cogni
       <link>https://www.luisquintanilla.me/posts/automate-machine-learning-service-provisioning-azure-terraform?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/automate-machine-learning-service-provisioning-azure-terraform</guid>
       <pubDate>2019-01-05 22:58:39</pubDate>
+      <category>#azure</category>
+      <category>#cognitive-services</category>
+      <category>#terraform</category>
+      <category>#machine-learning</category>
+      <category>#cloud</category>
     </item>
     <item>
       <title>The Case for Doing Machine Learning with F#</title>
@@ -4237,6 +4400,20 @@ computer_vision_service  terraform_cognitive_sample  eastus      Microsoft.Cogni
       <link>https://www.luisquintanilla.me/posts/case-fsharp-machine-learning?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/case-fsharp-machine-learning</guid>
       <pubDate>2018-12-14 23:34:50</pubDate>
+      <category>#mlnet</category>
+      <category>#machine-learning</category>
+      <category>#fsharp</category>
+      <category>#dotnet</category>
+      <category>#programming</category>
+      <category>#python</category>
+      <category>#ai</category>
+      <category>#dotnetcore</category>
+      <category>#artificial-intelligence</category>
+      <category>#fsadvent</category>
+      <category>#artificialintelligence</category>
+      <category>#machinelearning</category>
+      <category>#data-science</category>
+      <category>#functional-programming</category>
     </item>
     <item>
       <title>Operationalizing Machine Learning with ML.NET, Azure DevOps and Azure Container Instances</title>
@@ -4484,6 +4661,21 @@ cp ../ModelTrainer/model.zip .
       <link>https://www.luisquintanilla.me/posts/azdevops-mlnet-aci?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/azdevops-mlnet-aci</guid>
       <pubDate>2018-11-26 23:50:23</pubDate>
+      <category>#mlnet</category>
+      <category>#machinelearning</category>
+      <category>#ai</category>
+      <category>#dotnet</category>
+      <category>#dotnetcore</category>
+      <category>#devops</category>
+      <category>#azure</category>
+      <category>#docker</category>
+      <category>#containers</category>
+      <category>#microsoft</category>
+      <category>#artificialintelligence</category>
+      <category>#programming</category>
+      <category>#webapi</category>
+      <category>#aci</category>
+      <category>#development</category>
     </item>
     <item>
       <title>Blogging Tools</title>
@@ -4515,6 +4707,11 @@ cp ../ModelTrainer/model.zip .
       <link>https://www.luisquintanilla.me/posts/blog-tools?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/blog-tools</guid>
       <pubDate>2018-11-18 00:07:36</pubDate>
+      <category>#markdown</category>
+      <category>#vscode</category>
+      <category>#tools</category>
+      <category>#development</category>
+      <category>#blogging</category>
     </item>
     <item>
       <title>Serverless Machine Learning with ML.NET and Azure Functions</title>
@@ -4952,6 +5149,17 @@ namespace serverlessfunctionapp.Predict
       <link>https://www.luisquintanilla.me/posts/serverless-machine-learning-mlnet-azure-functions?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/serverless-machine-learning-mlnet-azure-functions</guid>
       <pubDate>2018-08-21 19:13:47</pubDate>
+      <category>#serverless</category>
+      <category>#azurefunctions</category>
+      <category>#mlnet</category>
+      <category>#machinelearning</category>
+      <category>#dotnet</category>
+      <category>#dotnetcore</category>
+      <category>#csharp</category>
+      <category>#microsoft</category>
+      <category>#devops</category>
+      <category>#artificialintelligence</category>
+      <category>#ai</category>
     </item>
     <item>
       <title>Hacker News Vue Top Stories Client</title>
@@ -5138,6 +5346,13 @@ new Vue({
       <link>https://www.luisquintanilla.me/posts/hn-vue-topstories-client?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/hn-vue-topstories-client</guid>
       <pubDate>2018-06-21 18:30:38</pubDate>
+      <category>#vue</category>
+      <category>#web-development</category>
+      <category>#programming</category>
+      <category>#api</category>
+      <category>#development</category>
+      <category>#frontend</category>
+      <category>#js</category>
     </item>
     <item>
       <title>Classification with F# ML.NET Models</title>
@@ -5336,6 +5551,15 @@ Predicted flower type is: Iris-virginica
       <link>https://www.luisquintanilla.me/posts/mlnet-classification-fsharp?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/mlnet-classification-fsharp</guid>
       <pubDate>2018-06-13 18:19:05</pubDate>
+      <category>#fsharp</category>
+      <category>#dotnet</category>
+      <category>#dotnetcore</category>
+      <category>#programming</category>
+      <category>#development</category>
+      <category>#mlnet</category>
+      <category>#machinelearning</category>
+      <category>#artificialintelligence</category>
+      <category>#functionalprogramming</category>
     </item>
     <item>
       <title>Organizing F# Modules Into Separate Files</title>
@@ -5402,6 +5626,12 @@ Divide: 2
       <link>https://www.luisquintanilla.me/posts/fsharpmodulesample?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/fsharpmodulesample</guid>
       <pubDate>2018-06-05 20:56:52</pubDate>
+      <category>#dotnet</category>
+      <category>#fsharp</category>
+      <category>#programming</category>
+      <category>#development</category>
+      <category>#functionalprogramming</category>
+      <category>#dotnetcore</category>
     </item>
     <item>
       <title>Deploy .NET Machine Learning Models with ML.NET, ASP.NET Core, Docker and Azure Container Instances</title>
@@ -5810,6 +6040,23 @@ docker push &amp;lt;DOCKERUSERNAME&amp;gt;/&amp;lt;IMAGENAME&amp;gt;:latest
       <link>https://www.luisquintanilla.me/posts/deploy-netml-docker-aci?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/deploy-netml-docker-aci</guid>
       <pubDate>2018-05-11 21:17:00</pubDate>
+      <category>#azure</category>
+      <category>#devops</category>
+      <category>#dotnet</category>
+      <category>#ml</category>
+      <category>#ai</category>
+      <category>#microsoft</category>
+      <category>#programming</category>
+      <category>#development</category>
+      <category>#csharp</category>
+      <category>#aci</category>
+      <category>#docker</category>
+      <category>#mlnet</category>
+      <category>#webapi</category>
+      <category>#aspnetcore</category>
+      <category>#aspnet</category>
+      <category>#machinelearning</category>
+      <category>#artificialintelligence</category>
     </item>
     <item>
       <title>E2E Dockerizing a MEAN Stack Application</title>
@@ -5906,6 +6153,17 @@ services:
       <link>https://www.luisquintanilla.me/posts/e2e-mean-docker-build?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/e2e-mean-docker-build</guid>
       <pubDate>2018-04-29 20:10:09</pubDate>
+      <category>#devops</category>
+      <category>#mean</category>
+      <category>#mongodb</category>
+      <category>#docker</category>
+      <category>#angular</category>
+      <category>#angularjs</category>
+      <category>#nodejs</category>
+      <category>#javascript</category>
+      <category>#programming</category>
+      <category>#development</category>
+      <category>#docker-compose</category>
     </item>
     <item>
       <title>Type Driven Development - Scaling Safely with Python</title>
@@ -6003,6 +6261,11 @@ combine('Hello','World')
       <link>https://www.luisquintanilla.me/posts/type-driven-development-scaling-safely-with-python?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/type-driven-development-scaling-safely-with-python</guid>
       <pubDate>2018-03-24 18:16:31</pubDate>
+      <category>#python</category>
+      <category>#static-typing</category>
+      <category>#productivity</category>
+      <category>#programming</category>
+      <category>#development</category>
     </item>
     <item>
       <title>Scaffolding A Web Page In One Line</title>
@@ -6160,6 +6423,11 @@ nav {
       <link>https://www.luisquintanilla.me/posts/scaffold-a-webpage-in-one-line?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/scaffold-a-webpage-in-one-line</guid>
       <pubDate>2018-03-10 16:07:00</pubDate>
+      <category>#html</category>
+      <category>#web-development</category>
+      <category>#development</category>
+      <category>#tools</category>
+      <category>#emmet</category>
     </item>
     <item>
       <title>Testing and Deploying Python Projects with Travis CI</title>
@@ -6339,6 +6607,12 @@ deploy:
       <link>https://www.luisquintanilla.me/posts/testing-deploying-python-projects-travisci?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/testing-deploying-python-projects-travisci</guid>
       <pubDate>2018-02-18 20:51:32</pubDate>
+      <category>#devops</category>
+      <category>#travisci</category>
+      <category>#python</category>
+      <category>#ci/cd</category>
+      <category>#programming</category>
+      <category>#development</category>
     </item>
     <item>
       <title>Transcribing Podcasts with Microsoft Speech API</title>
@@ -6505,6 +6779,13 @@ SaveOutput(String.Format(@&amp;quot;C:\\Users\\{0}\\Documents\\testspeechapi\\ap
       <link>https://www.luisquintanilla.me/posts/transcribing-podcasts-microsoft-speech-api?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/transcribing-podcasts-microsoft-speech-api</guid>
       <pubDate>2018-02-11 20:34:37</pubDate>
+      <category>#azure</category>
+      <category>#csharp</category>
+      <category>#apis</category>
+      <category>#nlp</category>
+      <category>#machine-learning</category>
+      <category>#artificial-intelligence</category>
+      <category>#microsoft</category>
     </item>
     <item>
       <title>Real-Time Sentiment Analysis with C#</title>
@@ -6585,6 +6866,16 @@ string sentence = new Sentence(sanitized);
       <link>https://www.luisquintanilla.me/posts/real-time-sentiment-analysis-csharp?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/real-time-sentiment-analysis-csharp</guid>
       <pubDate>2018-01-18 03:41:47</pubDate>
+      <category>#data-analysis</category>
+      <category>#sentiment-analysis</category>
+      <category>#nlp</category>
+      <category>#machine-learning</category>
+      <category>#csharp</category>
+      <category>#csharp</category>
+      <category>#twitter</category>
+      <category>#api</category>
+      <category>#dotnet</category>
+      <category>#dotnet</category>
     </item>
     <item>
       <title>Authorization Code Authentication Flow in Python</title>
@@ -6850,6 +7141,11 @@ get_request = requests.get(get_url,data=json.dumps(get_payload),headers=headers)
       <link>https://www.luisquintanilla.me/posts/authorization-code-flow-python?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/authorization-code-flow-python</guid>
       <pubDate>2017-12-29 18:45:19</pubDate>
+      <category>#python</category>
+      <category>#api</category>
+      <category>#programming</category>
+      <category>#security</category>
+      <category>#authentication</category>
     </item>
     <item>
       <title>Client Credentials Authorization in C#</title>
@@ -6926,6 +7222,12 @@ Access Token: &amp;quot;YOUR ACCESS TOKEN&amp;quot;
       <link>https://www.luisquintanilla.me/posts/client-credentials-authentication-csharp?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/client-credentials-authentication-csharp</guid>
       <pubDate>2017-12-25 19:28:48</pubDate>
+      <category>#csharp</category>
+      <category>#authentication</category>
+      <category>#web-applications</category>
+      <category>#dotnet</category>
+      <category>#api</category>
+      <category>#dotnet-core</category>
     </item>
     <item>
       <title>Read A Text File From a URL in .NET Core</title>
@@ -6980,6 +7282,10 @@ using System.Threading.Tasks;
       <link>https://www.luisquintanilla.me/posts/read-file-from-url-dotnet-core?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/read-file-from-url-dotnet-core</guid>
       <pubDate>2017-12-18 21:09:15</pubDate>
+      <category>#dotnet</category>
+      <category>#dotnet-core</category>
+      <category>#microsoft</category>
+      <category>#programming</category>
     </item>
     <item>
       <title>Design and Build Your Next Home in Minecraft</title>
@@ -7009,6 +7315,10 @@ using System.Threading.Tasks;
       <link>https://www.luisquintanilla.me/posts/build-your-house-minecraft?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/build-your-house-minecraft</guid>
       <pubDate>2017-12-15 22:34:12</pubDate>
+      <category>#microsoft</category>
+      <category>#artificial-intelligence</category>
+      <category>#thoughts</category>
+      <category>#robots</category>
     </item>
     <item>
       <title>The Case for .NET in the Classroom</title>
@@ -7045,6 +7355,11 @@ Another way in which Microsoft is providing tools for artificial intelligence is
       <link>https://www.luisquintanilla.me/posts/dotnet-in-the-classroom?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/dotnet-in-the-classroom</guid>
       <pubDate>2017-12-14 16:57:39</pubDate>
+      <category>#dotnet</category>
+      <category>#microsoft</category>
+      <category>#thoughts</category>
+      <category>#programming</category>
+      <category>#development</category>
     </item>
     <item>
       <title>Working with URLs in Racket</title>
@@ -7100,6 +7415,8 @@ Another way in which Microsoft is providing tools for artificial intelligence is
       <link>https://www.luisquintanilla.me/posts/working-with-urls-racket?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/working-with-urls-racket</guid>
       <pubDate>2017-12-13 16:01:57</pubDate>
+      <category>#lisp</category>
+      <category>#racket</category>
     </item>
     <item>
       <title>Reading Local JSON Files in R</title>
@@ -7141,6 +7458,8 @@ connectionString &amp;lt;- extractData(list.select(config$connectionStrings,defa
       <link>https://www.luisquintanilla.me/posts/reading-json-in-r?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/reading-json-in-r</guid>
       <pubDate>2017-12-11 14:21:21</pubDate>
+      <category>#r</category>
+      <category>#programming</category>
     </item>
     <item>
       <title>Windows 10 Intel Display Driver Blank Screen Fix</title>
@@ -7160,6 +7479,9 @@ connectionString &amp;lt;- extractData(list.select(config$connectionStrings,defa
       <link>https://www.luisquintanilla.me/posts/windows-10-intel-display-driver-blank-screen?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/windows-10-intel-display-driver-blank-screen</guid>
       <pubDate>2017-12-09 14:27:31</pubDate>
+      <category>#sysadmin</category>
+      <category>#drivers</category>
+      <category>#pc-issues</category>
     </item>
     <item>
       <title>Creating A Login Screen With React Native</title>
@@ -7233,6 +7555,9 @@ npm start
       <link>https://www.luisquintanilla.me/posts/create-login-screen-react-native?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/create-login-screen-react-native</guid>
       <pubDate>2017-12-09 13:15:57</pubDate>
+      <category>#react</category>
+      <category>#react-native</category>
+      <category>#javascript</category>
     </item>
     <item>
       <title>Back To School: Emacs Edition</title>
@@ -7267,6 +7592,8 @@ npm start
       <link>https://www.luisquintanilla.me/posts/back-to-school-emacs-edition?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/back-to-school-emacs-edition</guid>
       <pubDate>2017-12-09 13:01:19</pubDate>
+      <category>#emacs</category>
+      <category>#org-mode</category>
     </item>
     <item>
       <title>HP ProBook 430 G1 Ubuntu BIOS Upgrade</title>
@@ -7296,6 +7623,9 @@ npm start
       <link>https://www.luisquintanilla.me/posts/hp-probook-430g1-ubuntu-bios-upgrade?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/hp-probook-430g1-ubuntu-bios-upgrade</guid>
       <pubDate>2017-12-09 12:57:12</pubDate>
+      <category>#sysadmin</category>
+      <category>#ubuntu</category>
+      <category>#bios</category>
     </item>
     <item>
       <title>Setting Up A New Ubuntu PC</title>
@@ -7358,6 +7688,11 @@ sudo apt-get update
       <link>https://www.luisquintanilla.me/posts/setting-up-new-ubuntu-pc?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/setting-up-new-ubuntu-pc</guid>
       <pubDate>2017-12-09 12:49:19</pubDate>
+      <category>#linux</category>
+      <category>#ubuntu</category>
+      <category>#java</category>
+      <category>#sysadmin</category>
+      <category>#emacs</category>
     </item>
     <item>
       <title>Octave Development in the Terminal</title>
@@ -7440,6 +7775,9 @@ square(2);
       <link>https://www.luisquintanilla.me/posts/octave-development-in-the-terminal?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/octave-development-in-the-terminal</guid>
       <pubDate>2017-12-09 12:46:54</pubDate>
+      <category>#octave</category>
+      <category>#tmux</category>
+      <category>#developer-tools</category>
     </item>
     <item>
       <title>Hello World</title>
@@ -7448,6 +7786,7 @@ square(2);
       <link>https://www.luisquintanilla.me/posts/hello-world?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/hello-world</guid>
       <pubDate>2017-12-09 12:00:00</pubDate>
+      <category>#untagged</category>
     </item>
   </channel>
 </rss>
