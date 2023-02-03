@@ -156,11 +156,11 @@ let tagLinkView (tags: string array) =
             ]
     ]
 
-let tagPostLinkView (posts: Post array) = 
+let tagPostLinkView (posts: Post array) (prefix:string) = 
     ul [] [
         for post in posts do
             li [] [
-                a [_href $"/posts/{post.FileName}"] [Text $"{post.Metadata.Title}"]
+                a [_href $"/{prefix}/{post.FileName}"] [Text $"{post.Metadata.Title}"]
             ]
     ]
 
@@ -175,14 +175,19 @@ let allTagsView (tags: string array) =
         tagLinks
     ]
 
-let  individualTagView (tagName:string) (posts:Post array) = 
-    let postLinks = tagPostLinkView posts
+let  individualTagView (tagName:string) (posts:Post array) (notes:Post array) = 
+    let postLinks = tagPostLinkView posts "posts"
+    let noteLinks = tagPostLinkView notes "feed"
 
     div [ _class "mr-auto" ] [ 
         h2 [] [Text $"{tagName}"]
         p [] [Text $"A list of posts tagged {tagName}"]
 
+        h3 [] [Text "Blogs"]
         postLinks
+
+        h3 [] [Text "Notes"]
+        noteLinks
     ]
 
 

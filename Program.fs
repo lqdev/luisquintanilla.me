@@ -99,6 +99,6 @@ let main argv =
     buildResponsePage responses "Responses" "index"
 
     // Build tags page
-    buildTagsPages posts
+    buildTagsPages posts feedPosts
 
     0
