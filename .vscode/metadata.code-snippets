@@ -20,7 +20,7 @@
 			"title: \"\"",
 			"description: \"\"",
 			"published_date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE\"",
-			"tags: ",
+			"tags: []",
 			"---"
 		],
 		"description": "Blog post article metadata"
@@ -33,6 +33,7 @@
 			"post_type: \"note\" ",
 			"title: \"\"",
 			"published_date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE\"",
+			"tags: []",
 			"---"
 		],
 		"description": "Note feed post metadata"
