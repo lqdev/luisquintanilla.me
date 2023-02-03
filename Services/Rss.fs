@@ -6,6 +6,7 @@ module RssService
     open System.Xml.Linq
     open Domain
     open MarkdownService
+    open TagService
 
     let title = "Luis Quintanilla Blog"
     let link = "https://www.luisquintanilla.me"
@@ -22,12 +23,22 @@ module RssService
         
         let description = $"<![CDATA[<p>See the original post at <a href=\"{urlWithUtm}\">{url}</a></p><br>{content}]]>"
 
-        XElement(XName.Get "item",
-            XElement(XName.Get "title", entry.Metadata.Title),
-            XElement(XName.Get "description", description),
-            XElement(XName.Get "link", urlWithUtm),
-            XElement(XName.Get "guid", url),
-            XElement(XName.Get "pubDate", entry.Metadata.Date))    
+        let item = 
+            XElement(XName.Get "item",
+                XElement(XName.Get "title", entry.Metadata.Title),
+                XElement(XName.Get "description", description),
+                XElement(XName.Get "link", urlWithUtm),
+                XElement(XName.Get "guid", url),
+                XElement(XName.Get "pubDate", entry.Metadata.Date))    
+
+        let categories = 
+            entry
+            |> cleanTags
+            |> Array.map(fun x -> XElement(XName.Get "category", $"#{x}")) 
+
+        item.Add(categories)
+
+        item
 
     let feedEntryXml (entry:Post) =
 
@@ -37,12 +48,22 @@ module RssService
         let content = entry.Content |> convertMdToHtml
         let cdata = $"<![CDATA[<p>See the original post at <a href=\"{urlWithUtm}\">{url}</a></p><br>{content}]]>"
 
-        XElement(XName.Get "item",
-            XElement(XName.Get "title", entry.Metadata.Title),
-            XElement(XName.Get "description", cdata),            
-            XElement(XName.Get "link", urlWithUtm),
-            XElement(XName.Get "guid", url),
-            XElement(XName.Get "pubDate", entry.Metadata.Date))
+        let item = 
+            XElement(XName.Get "item",
+                XElement(XName.Get "title", entry.Metadata.Title),
+                XElement(XName.Get "description", cdata),            
+                XElement(XName.Get "link", urlWithUtm),
+                XElement(XName.Get "guid", url),
+                XElement(XName.Get "pubDate", entry.Metadata.Date))
+
+        let categories = 
+            entry
+            |> cleanTags
+            |> Array.map(fun x -> XElement(XName.Get "category", $"#{x}")) 
+
+        item.Add(categories)
+
+        item            
 
     let reponseFeedEntryXml (entry:Response) =
 

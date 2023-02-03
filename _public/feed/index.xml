@@ -3,8 +3,19 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>2023-01-30 17:25</lastPubDate>
+    <lastPubDate>2023-02-03 11:15</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Testing titled notes</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/test-titled-notes?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/test-titled-notes&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Testing whether notes appear with title&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/test-titled-notes?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/test-titled-notes</guid>
+      <pubDate>2023-02-03 11:15</pubDate>
+      <category>#microblog</category>
+      <category>#posse</category>
+      <category>#web</category>
+    </item>
     <item>
       <title>Skype Feature Request - Default Encrypted Conversations</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/skype-feature-request-default-e2ee?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/skype-feature-request-default-e2ee&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;As the feedback post suggests, Skype offers the option to have &lt;a href="https://support.skype.com/en/faq/FA34824/what-are-skype-private-conversations"&gt;encrypted conversations (chat &amp;amp; calls) using the Signal protocol&lt;/a&gt;. However, it's not the detault. If you're using Skype and this is something you'd like added, feel free to upvote the feedback request.&lt;/p&gt;
@@ -13,6 +24,10 @@
       <link>https://www.luisquintanilla.me/feed/skype-feature-request-default-e2ee?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/skype-feature-request-default-e2ee</guid>
       <pubDate>2023-01-30 17:25</pubDate>
+      <category>#communication</category>
+      <category>#messsaging</category>
+      <category>#privacy</category>
+      <category>#skype</category>
     </item>
     <item>
       <title>Microsoft Forms Test Embedding</title>
@@ -22,6 +37,7 @@
       <link>https://www.luisquintanilla.me/feed/ms-forms-embed-test?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/ms-forms-embed-test</guid>
       <pubDate>2023-01-30 11:46</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>i3-gaps Released</title>
@@ -34,6 +50,7 @@
       <link>https://www.luisquintanilla.me/feed/i3-gaps-released?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/i3-gaps-released</guid>
       <pubDate>2023-01-26 10:46</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>New IndieWeb Wiki .NET Page</title>
@@ -43,6 +60,7 @@
       <link>https://www.luisquintanilla.me/feed/indieweb-wiki-dotnet-page?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/indieweb-wiki-dotnet-page</guid>
       <pubDate>2023-01-25 21:14</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Removing avatars and headers in Mastodon</title>
@@ -56,6 +74,7 @@
       <link>https://www.luisquintanilla.me/feed/mastodon-prune-profiles-media-vnext?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/mastodon-prune-profiles-media-vnext</guid>
       <pubDate>2022-12-26 17:00</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Upgraded to Mastodon v4.0.2</title>
@@ -64,6 +83,7 @@
       <link>https://www.luisquintanilla.me/feed/upgraded-mastodon-v4-0-2?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/upgraded-mastodon-v4-0-2</guid>
       <pubDate>2022-12-26 16:03</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Fitch: CLI system information utility built with F#</title>
@@ -75,6 +95,7 @@
       <link>https://www.luisquintanilla.me/feed/fitch-fsharp-cli-v0?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/fitch-fsharp-cli-v0</guid>
       <pubDate>2022-12-25 20:10</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Use Azure CDN from Verizon Premium for Regex URL redirects</title>
@@ -92,6 +113,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/azure-cdn-regex-url-redirect?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/azure-cdn-regex-url-redirect</guid>
       <pubDate>2022-12-21 15:09</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Now accepting webmentions</title>
@@ -105,6 +127,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/now-accepting-webmentions?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/now-accepting-webmentions</guid>
       <pubDate>2022-12-18 22:41</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>TIL: Firefox Task Manager</title>
@@ -114,6 +137,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/til-firefox-task-manager?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/til-firefox-task-manager</guid>
       <pubDate>2022-12-01 11:24</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Use your domain for verification everywhere</title>
@@ -131,6 +155,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/own-your-links-domain-verification?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/own-your-links-domain-verification</guid>
       <pubDate>2022-11-22 10:19</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Configured GitHub Codespaces Dev Container with .NET 7</title>
@@ -143,6 +168,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/net7-devcontainer-gh-codespaces?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/net7-devcontainer-gh-codespaces</guid>
       <pubDate>2022-11-21 11:28</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>The Fediverse beyond Mastodon</title>
@@ -158,6 +184,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/fediverse-beyond-mastodon?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/fediverse-beyond-mastodon</guid>
       <pubDate>2022-11-20 19:28</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Upgraded website to .NET 7</title>
@@ -173,6 +200,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/net7-website-update?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/net7-website-update</guid>
       <pubDate>2022-11-11 09:59</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Penn State future class looks promising</title>
@@ -181,6 +209,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/psu-future-allar?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/psu-future-allar</guid>
       <pubDate>2022-11-05 19:08</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Penn State vs Ohio State</title>
@@ -217,6 +246,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/psu-osu-2022?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/psu-osu-2022</guid>
       <pubDate>2022-10-29 11:58</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Impressed by Azure Cloud Shell</title>
@@ -227,6 +257,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/impressed-az-cloud-shell?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/impressed-az-cloud-shell</guid>
       <pubDate>2022-10-13 22:45</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>TIL: Automaticc owns Tumblr</title>
@@ -235,6 +266,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/til-automaticc-tumblr?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/til-automaticc-tumblr</guid>
       <pubDate>2022-10-09 20:49</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Terrifier 2 - 100/10</title>
@@ -244,6 +276,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/terrifier-2-100-10?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/terrifier-2-100-10</guid>
       <pubDate>10/09/2022 14:21</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>ALMOST ready to receive Webmentions</title>
@@ -254,6 +287,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/almost-ready-to-receive-webmentions?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/almost-ready-to-receive-webmentions</guid>
       <pubDate>2022-10-06 22:29</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Personal Feed - One Year In</title>
@@ -287,6 +321,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/feed-one-year?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/feed-one-year</guid>
       <pubDate>09/29/2022 10:55</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Webmentions (partially) implemented</title>
@@ -301,6 +336,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/webmentions-partially-implemented?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/webmentions-partially-implemented</guid>
       <pubDate>09/17/2022 19:59</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>New (LTE) Rotary Phone</title>
@@ -310,6 +346,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/lte-rotary-phone?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/lte-rotary-phone</guid>
       <pubDate>09/06/2022 19:37</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Praying for OSU downfall</title>
@@ -322,6 +359,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/pray-ohio-state-football-downfall-nd-tweet?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/pray-ohio-state-football-downfall-nd-tweet</guid>
       <pubDate>09/03/2022 20:09</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>TIL: VS Code Live Preview Extension</title>
@@ -330,6 +368,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/til-vs-code-live-preview-extension?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/til-vs-code-live-preview-extension</guid>
       <pubDate>09/03/2022 18:47</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>1-0 Penn State survives Purdue</title>
@@ -338,6 +377,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/psu-survives-purdue?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/psu-survives-purdue</guid>
       <pubDate>09/01/2022 23:18</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>QRZ New Ham Jumpstart Program</title>
@@ -346,6 +386,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/qrz-new-ham-jumstart-program?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/qrz-new-ham-jumstart-program</guid>
       <pubDate>08/31/2022 21:20</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Dall-E Outpainting and generative models</title>
@@ -354,6 +395,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/open-ai-dall-e-outpainting-generative-models?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/open-ai-dall-e-outpainting-generative-models</guid>
       <pubDate>08/31/2022 17:49</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Terrifier 2</title>
@@ -363,6 +405,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/terrifier-2-trailer?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/terrifier-2-trailer</guid>
       <pubDate>08/23/2022 19:57</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>World's Largest Smartphone Camera</title>
@@ -373,6 +416,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/worlds-largest-smartphone-camera?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/worlds-largest-smartphone-camera</guid>
       <pubDate>07/07/2022 21:17</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Terry Carnation</title>
@@ -386,6 +430,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/terry-carnation?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/terry-carnation</guid>
       <pubDate>07/03/2022 22:04</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>iPod Touch discontinued</title>
@@ -396,6 +441,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/ipod-touch-discontinued?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/ipod-touch-discontinued</guid>
       <pubDate>05/10/2022 12:27</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>A year's worth of Azure hosting costs</title>
@@ -413,6 +459,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/azure-costs-website-hosting-2021?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/azure-costs-website-hosting-2021</guid>
       <pubDate>2022-05-04 20:36</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Chip-making Chip Shortage</title>
@@ -422,6 +469,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/chipmaking-chip-shortage?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/chipmaking-chip-shortage</guid>
       <pubDate>05/03/2022 18:50</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Twitter Circles: Top 150 friends</title>
@@ -430,6 +478,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/twitter-circles-myspace-top-friends?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/twitter-circles-myspace-top-friends</guid>
       <pubDate>05/03/2022 14:31</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Mastodon POSSE enabled</title>
@@ -438,6 +487,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <link>https://www.luisquintanilla.me/feed/mastodon-posse-enabled?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/mastodon-posse-enabled</guid>
       <pubDate>04/27/2022 21:29</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>ATOM Weather Alerts</title>
@@ -450,6 +500,7 @@ You have the option of tracking updates at the national, state, zone, and county
       <link>https://www.luisquintanilla.me/feed/atom-rss-nws-weather-alerts?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/atom-rss-nws-weather-alerts</guid>
       <pubDate>04/27/2022 20:19</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Welcome to the Fediverse</title>
@@ -464,6 +515,7 @@ You have the option of tracking updates at the national, state, zone, and county
       <link>https://www.luisquintanilla.me/feed/welcome-to-fediverse-tips?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/welcome-to-fediverse-tips</guid>
       <pubDate>04/27/2022 13:04</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Assorted links - Ubuntu 22.04 LTS, Bitwarden, DALLE-2, Emacs</title>
@@ -483,6 +535,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/2022-04-21-assorted-links?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/2022-04-21-assorted-links</guid>
       <pubDate>04/21/2022 19:44</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Archive 81 - so far so good!</title>
@@ -491,6 +544,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/archive-81-black-tapes?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/archive-81-black-tapes</guid>
       <pubDate>01/15/2022 21:01</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Vertigo AI</title>
@@ -500,6 +554,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/vertigo-ai?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/vertigo-ai</guid>
       <pubDate>12/28/2021 15:23</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Site updated to .NET 6</title>
@@ -509,6 +564,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/net6-website-update?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/net6-website-update</guid>
       <pubDate>12/22/2021 20:27</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>New Jami username</title>
@@ -517,6 +573,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/new-jami-username?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/new-jami-username</guid>
       <pubDate>11/19/2021 10:37</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>TOSDR: Terms of Service CliffNotes</title>
@@ -526,6 +583,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/terms-of-service-cliffnotes-tosdr?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/terms-of-service-cliffnotes-tosdr</guid>
       <pubDate>11/16/2021 13:10</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Reminiscing about Windows Phone</title>
@@ -535,6 +593,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing</guid>
       <pubDate>11/13/2021 21:00</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Podcast management with RSS and VLC</title>
@@ -544,6 +603,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/rss-vlc-podcast-management?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/rss-vlc-podcast-management</guid>
       <pubDate>11/05/2021 10:27</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Blogging on the Surface Duo with github.dev</title>
@@ -553,6 +613,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev</guid>
       <pubDate>10/31/2021 13:51</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Personal Site Stats - GoatCounter</title>
@@ -561,6 +622,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/personal-site-stats-goatcounter?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/personal-site-stats-goatcounter</guid>
       <pubDate>10/31/2021 11:57</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Early Radio History (U.S)</title>
@@ -569,6 +631,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/early-radio-history-us?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/early-radio-history-us</guid>
       <pubDate>10/29/2021 02:05</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Web Neural Network API - Working Draft</title>
@@ -577,6 +640,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/web-neural-network-api-working-draft?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/web-neural-network-api-working-draft</guid>
       <pubDate>10/24/2021 20:36</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Top 10 listicles</title>
@@ -585,6 +649,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/top-10-listicles?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/top-10-listicles</guid>
       <pubDate>10/24/2021 19:33</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>lqdev.me redirect</title>
@@ -593,6 +658,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/lqdevme-redirect?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/lqdevme-redirect</guid>
       <pubDate>10/22/2021 13:57</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>TIL: Canonical HTML tags</title>
@@ -603,6 +669,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/rel-canonical-tags?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/rel-canonical-tags</guid>
       <pubDate>10/21/2021 21:31</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Next gen stick figures using AI and NVIDIA Canvas</title>
@@ -614,6 +681,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/nvidia-canvas-next-gen-stick-figures-ai?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/nvidia-canvas-next-gen-stick-figures-ai</guid>
       <pubDate>10/19/2021 10:51 PM</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Coffee with a Codex</title>
@@ -627,6 +695,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/coffee-with-codex?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/coffee-with-codex</guid>
       <pubDate>10/19/2021 10:21 AM</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Success! Matrix migration complete</title>
@@ -636,6 +705,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/matrix-migration-complete?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/matrix-migration-complete</guid>
       <pubDate>10/09/2021 12:23 AM</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Windows 11 upgrade</title>
@@ -649,6 +719,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/windows-11-upgrade?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/windows-11-upgrade</guid>
       <pubDate>10/05/2021 08:55 AM</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>PSA: Personal site not down</title>
@@ -659,6 +730,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/fb-ig-personal-feed-up?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/fb-ig-personal-feed-up</guid>
       <pubDate>10/04/2021 12:55 PM</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Cultivating digital gardens</title>
@@ -668,6 +740,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/digital-gardens-technology-review-article?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/digital-gardens-technology-review-article</guid>
       <pubDate>10/03/2021 09:57 PM</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>The Many Saints of Newark</title>
@@ -676,6 +749,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/many-saints-of-newark?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/many-saints-of-newark</guid>
       <pubDate>10/02/2021 08:19 PM</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>The future of Skype</title>
@@ -686,6 +760,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/skype-future-annoucement-09-2021?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/skype-future-annoucement-09-2021</guid>
       <pubDate>10/01/2021 4:20 PM</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>When Planets Mate</title>
@@ -695,6 +770,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/when-planets-mate?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/when-planets-mate</guid>
       <pubDate>09/29/2021 07:56 PM</pubDate>
+      <category>#untagged</category>
     </item>
     <item>
       <title>Hello World</title>
@@ -703,6 +779,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <link>https://www.luisquintanilla.me/feed/hello-world?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/hello-world</guid>
       <pubDate>09/29/2021 07:16 PM</pubDate>
+      <category>#untagged</category>
     </item>
   </channel>
 </rss>
