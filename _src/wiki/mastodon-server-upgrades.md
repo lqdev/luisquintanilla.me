@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Mastodon Server Upgrades"
-last_updated_date: "12/26/2022 16:43"
+last_updated_date: "02/11/2023 09:30"
 tags: selfhost,socialmedia,mastodon,fediverse
 ---
 
@@ -173,6 +173,17 @@ These instructions backup the database and environment variables file. It does n
 
 NOTE: Node 18 not supported yet. If you run into issues upgrading directly from 3.5.3, checkout v4.0.0 tag and the upgrade to v4.0.2   
 
+### 4.1.0
+
+1. Stop services - `systemctl stop mastodon-*.service`
+1. Backup database and env file
+1. Fetch tags - `git fetch --tags`
+1. Checkout 4.1.0 tag - `git checkout v4.1.0`
+1. Install Ruby dependencies - `bundle install`
+1. Install JS dependencies - `yarn install`
+1. Run DB migration - `RAILS_ENV=production bundle exec rails db:migrate`
+1. Precompile assets - `RAILS_ENV=production bundle exec rails assets:precompile`
+1. Restart services - `systemctl start mastodon-sidekiq mastodon-web mastodon-streaming`
 
 ## Documentation
 
