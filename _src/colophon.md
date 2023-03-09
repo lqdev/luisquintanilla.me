@@ -60,3 +60,15 @@ The code is hosted on Azure. Specifically I use [Azure Static Web Apps](https://
 The main form of syndication for content on this site is RSS. I have [several feeds](/subscribe) that are generally organized based on the type of content. The RSS files are generated as part of the build process by the static site generator.
 
 An additional syndication practice I follow for this site is [Publish (on your) Own Site, Syndicate Everywhere (POSSE)](https://indieweb.org/POSSE). I try to have my site be the single source of truth and home for my content. From there, I can share with other applications and services. I use [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/) for my main feed to automate syndication to Twitter and Mastodon. The Azure Logic App constantly polls the main feed's RSS for new changes. Then, it posts them on Twitter and Mastodon.
+
+### Webmentions
+
+This website accepts [Webmentions](https://indieweb.org/Webmention) on all pages. It also sends Webmentions form the Responses feed (replies,reshares,stars,bookmarks). 
+
+#### Sending Webmentions
+
+Webmentions are send as part of the site build and publish process. To help with sending Webmentions, the [WebmentionFs](https://www.nuget.org/packages/lqdev.WebmentionFs) library is used. 
+
+#### Accepting Webmentions
+
+To accept Webmentions, I have an [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview) endpoint which accepts POST requests and stores them in an [Azure Tables](https://learn.microsoft.com/azure/storage/tables/table-storage-overview) database. To help with validation and accepting Webmentions, I use the [WebmentionFs](https://www.nuget.org/packages/lqdev.WebmentionFs) library. For more details, see [Accept Webmentions using F#, Azure Functions, and RSS](/posts/receive-webmentions-fsharp-az-functions-fsadvent/).
