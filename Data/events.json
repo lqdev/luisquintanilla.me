@@ -1,18 +1,23 @@
 [
     {
-    "Name": "DEVintersection",
-    "Date": "12/08/2021 12:00 AM",
-    "Url": "https://www.devintersection.com/"
+        "Name": "Azure Developers .NET Day",
+        "Date": "04/05/2023 02:30 PM",
+        "Url": "https://learn.microsoft.com/en-us/events/learn-events/azuredeveloper-dotnetday/"
     },
     {
-    "Name": ".NET Conf 2021",
-    "Date": "11/10/2021 1:00 PM",
-    "Url": "https://www.dotnetconf.net/"
+        "Name": "DEVintersection",
+        "Date": "12/08/2021 12:00 AM",
+        "Url": "https://www.devintersection.com/"
     },
     {
-    "Name": "Let's Learn .NET - Machine Learning",
-    "Date": "10/28/2021 10:30 AM",
-    "Url": "https://docs.microsoft.com/events/learntv/lets-learn-dotnet-machine-learning-october-2021/"
+        "Name": ".NET Conf 2021",
+        "Date": "11/10/2021 1:00 PM",
+        "Url": "https://www.dotnetconf.net/"
+    },
+    {
+        "Name": "Let's Learn .NET - Machine Learning",
+        "Date": "10/28/2021 10:30 AM",
+        "Url": "https://docs.microsoft.com/events/learntv/lets-learn-dotnet-machine-learning-october-2021/"
     },
     {
         "Name": "Let's Learn .NET - F#",
@@ -23,7 +28,7 @@
         "Name": ".NET Conf - Focus on F#",
         "Date": "07/29/2021 11:00 AM",
         "Url": "https://yewtu.be/watch?v=i3qEhwcG7ps"
-    },        
+    },
     {
         "Name": "Building Web Services with Racket",
         "Date": "02/17/2021 7:00 PM",
