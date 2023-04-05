@@ -161,3 +161,5 @@ module Domain
         Metadata: ResponseDetails
         Content: string
     }
+
+    type TaggedPosts = { Posts:Post array; Notes:Post array; Responses:Response array }

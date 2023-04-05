@@ -33,7 +33,7 @@ module RssService
 
         let categories = 
             entry
-            |> cleanTags
+            |> cleanPostTags
             |> Array.map(fun x -> XElement(XName.Get "category", $"#{x}")) 
 
         item.Add(categories)
@@ -58,7 +58,7 @@ module RssService
 
         let categories = 
             entry
-            |> cleanTags
+            |> cleanPostTags
             |> Array.map(fun x -> XElement(XName.Get "category", $"#{x}")) 
 
         item.Add(categories)
@@ -73,12 +73,22 @@ module RssService
         let content = entry.Content |> convertMdToHtml
         let cdata = $"<![CDATA[<p>See the original post at <a href=\"{urlWithUtm}\">{url}</a></p><br><br>{content}]]>"
 
-        XElement(XName.Get "item",
-            XElement(XName.Get "title", entry.Metadata.Title),
-            XElement(XName.Get "description", cdata),            
-            XElement(XName.Get "link", urlWithUtm),
-            XElement(XName.Get "guid", url),
-            XElement(XName.Get "pubDate", entry.Metadata.DatePublished))
+        let item = 
+            XElement(XName.Get "item",
+                XElement(XName.Get "title", entry.Metadata.Title),
+                XElement(XName.Get "description", cdata),            
+                XElement(XName.Get "link", urlWithUtm),
+                XElement(XName.Get "guid", url),
+                XElement(XName.Get "pubDate", entry.Metadata.DatePublished))
+
+        let categories = 
+            entry
+            |> cleanResponseTags
+            |> Array.map(fun x -> XElement(XName.Get "category", $"#{x}")) 
+
+        item.Add(categories)
+
+        item
 
     let blogChannelXml (lastPubDate:string) = 
         XElement(XName.Get "rss",

@@ -317,7 +317,7 @@ module Builder
             let fileName = "index.html"
             File.WriteAllText(Path.Join(dir.FullName,fileName), page))
     
-    let buildTagsPages (posts: Post array) (notes: Post array) = 
+    let buildTagsPages (posts: Post array) (notes: Post array) (responses: Response array) = 
 
         let taggedPosts = 
             processTaggedPost posts
@@ -332,30 +332,50 @@ module Builder
                 let sortedNotes = p |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
                 t,sortedNotes)
             |> Array.sortBy(fst)
-            
+
+        let taggedResponses = 
+            processTaggedResponse responses
+            |> Array.map(fun (t,p) -> 
+                let sortedResponses = p |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.DatePublished))
+                t,sortedResponses)
+            |> Array.sortBy(fst)
+
         let postTagNames = 
             taggedPosts |> Array.map(fst)
 
         let noteTagNames = 
             taggedNotes |> Array.map(fst)
 
+        let responseTagNames = 
+            taggedResponses |> Array.map(fst)
+
         let tagNames = 
             postTagNames 
             |> Array.append noteTagNames
+            |> Array.append responseTagNames
             |> Array.distinct
             |> Array.sort  
 
+        let mutable taggedPostDict = 
+            tagNames
+            |> Array.map(fun n -> (n, {Posts=[||];Notes=[||];Responses=[||]}))
+            |> Map
+
+        taggedPosts
+        |> Array.iter(fun (t,c) -> 
+            taggedPostDict <- taggedPostDict.Add(t,{taggedPostDict[t] with Posts=c}))
+
+        taggedNotes
+        |> Array.iter(fun (t,c) -> 
+            taggedPostDict <- taggedPostDict.Add(t,{taggedPostDict[t] with Notes=c}))
+
+        taggedResponses
+        |> Array.iter(fun (t,c) -> 
+            taggedPostDict <- taggedPostDict.Add(t,{taggedPostDict[t] with Responses=c}))
+
         let combinedTaggedPosts = 
-            [|
-                for (tp,p) in taggedPosts do 
-                    for (tn, n) in taggedNotes do
-                        if (tp = tn) then
-                            (tp,p,n)
-                        elif (p.Length = 0) then
-                            (tn,[||],n)
-                        else
-                            (tp,p,[||])
-            |]
+            taggedPostDict
+            |> Map.toArray
 
         let tagPage = generate (allTagsView tagNames) "default" "Tags - Luis Quintanilla"
 
@@ -363,10 +383,10 @@ module Builder
         File.WriteAllText(Path.Join(saveDir,"index.html"), tagPage)
 
         combinedTaggedPosts
-        |> Array.iter(fun (tag,postCollection,noteCollection)-> 
+        |> Array.iter(fun (tag,pc)-> 
             let individualTagSaveDir = Path.Join(saveDir,tag)
             Directory.CreateDirectory(individualTagSaveDir) |> ignore
-            let individualTagPage = generate (individualTagView tag postCollection noteCollection) "default" $"{tag} - Tags - Luis Quintanilla"
+            let individualTagPage = generate (individualTagView tag pc.Posts pc.Notes pc.Responses) "default" $"{tag} - Tags - Luis Quintanilla"
             File.WriteAllText(Path.Join(individualTagSaveDir,"index.html"),individualTagPage)
         )
 
