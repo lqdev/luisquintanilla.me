@@ -3,15 +3,47 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>2023-02-03 11:15</lastPubDate>
+    <lastPubDate>2023-02-23 21:11</lastPubDate>
     <language>en</language>
     <item>
-      <title>Testing titled notes</title>
+      <title>Downsides of untitled RSS items</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/mastodon-untitled-rss-items?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/mastodon-untitled-rss-items&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Although titles are optional for RSS feed items and it's a common practice for microblog platforms like Mastodon to exclude them, it unfortunately means some clients like Elfeed don't know how to render those posts.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/mastodon-untitled-rss-items/elfeed-mastodon-rss.png" class="img-fluid" alt="Screenshot of elfeed displaying RSS items from Mastodon" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/mastodon-untitled-rss-items?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/mastodon-untitled-rss-items</guid>
+      <pubDate>2023-02-23 21:11</pubDate>
+      <category>#mastodon</category>
+      <category>#rss</category>
+      <category>#emacs</category>
+    </item>
+    <item>
+      <title>Mastodon 4.1.0 released</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/mastodon-4-1-0-release?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/mastodon-4-1-0-release&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Mastodon &lt;a href="https://github.com/mastodon/mastodon/releases/tag/v4.1.0"&gt;v4.1.0&lt;/a&gt; was released yesterday. This was a highly anticipated release for me since it introduced the option to &lt;a href="https://github.com/mastodon/mastodon/pull/22149"&gt;remove old cached profile media&lt;/a&gt; which was taking up a significant portion of my disk space.&lt;/p&gt;
+&lt;p&gt;After upgrading, I was able to cut my used disk space in half.&lt;/p&gt;
+&lt;p&gt;If you're running your own instance or have the ability to contact your instance admin, I can't recommend upgrading to this version enough.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/mastodon-4-1-0-release?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/mastodon-4-1-0-release</guid>
+      <pubDate>2023-02-11 10:09</pubDate>
+      <category>#mastodon</category>
+      <category>#fediverse</category>
+    </item>
+    <item>
+      <title>Testing untagged notes</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/test-untagged-notes?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/test-untagged-notes&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Testing untagged notes which is the same as notes with less than three tags&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/test-untagged-notes?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/test-untagged-notes</guid>
+      <pubDate>2023-02-03 13:05</pubDate>
+    </item>
+    <item>
+      <title>Testing titled and tagged notes</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/test-titled-notes?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/test-titled-notes&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Testing whether notes appear with title&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/test-titled-notes?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/feed/test-titled-notes</guid>
-      <pubDate>2023-02-03 11:15</pubDate>
+      <pubDate>2023-02-03 12:58</pubDate>
       <category>#microblog</category>
       <category>#posse</category>
       <category>#web</category>
