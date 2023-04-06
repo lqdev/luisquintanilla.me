@@ -5,6 +5,7 @@ open System
 open System.IO
 open Domain
 open MarkdownService
+open TagService
 
 let emptyView () = 
     div [] []
@@ -403,12 +404,24 @@ let cardHeader (date:string) =
         ] 
     ]    
 
-let cardFooter (fileName:string) = 
+let cardFooter (fileName:string) (tags: string array)= 
+
+    let tagElements = 
+        tags
+        |> cleanTags
+        |> Array.map(fun tag -> a [_href $"/tags/{tag}"] [Text $"#{tag}"])
 
     div [_class "card-footer"] [
         let permalink = $"/feed/{fileName}/" 
         Text "Permalink: " 
-        a [_href permalink; _class "u-url"] [Text $"https://www.luisquintanilla.me{permalink}"]
+        a [_href permalink; _class "u-url"] [Text $"https://www.luisquintanilla.me{permalink}"] 
+        
+        div [] [
+            str "Tags: "
+            for tag in tagElements do
+                tag
+                Text " "
+        ]
     ]
 
 let feedBacklink (url:string) = 
@@ -422,8 +435,7 @@ let feedBacklink (url:string) =
 let feedPostView (post:Post) = 
 
     let header = cardHeader post.Metadata.Date
-    let footer = cardFooter post.FileName
-
+    let footer = cardFooter post.FileName post.Metadata.Tags
 
     div [ _class "card rounded m-2 w-75 mx-auto" ] [
 
@@ -512,7 +524,7 @@ let bookmarkBodyView (post:Response) =
 let responsePostView (post: Response) = 
 
     let header = cardHeader post.Metadata.DatePublished
-    let footer = cardFooter post.FileName
+    let footer = cardFooter post.FileName post.Metadata.Tags
     let body = 
         match post.Metadata.ResponseType with
         | "reply" -> replyBodyView post
