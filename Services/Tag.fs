@@ -10,6 +10,12 @@ module TagService
             .Replace("c#","csharp")
             .ToLower()
 
+    let cleanTags (tags:string array) = 
+        try
+            tags |> Array.map(processTagName)
+        with
+            | _ -> [|"untagged"|]
+
     let cleanPostTags (post:Post) = 
         try
             post.Metadata.Tags |> Array.map(processTagName)
@@ -21,7 +27,6 @@ module TagService
             post.Metadata.Tags |> Array.map(processTagName)
         with
             | _ -> [|"untagged"|]
-
 
     let getTagsFromPost (post:Post) = 
         try
