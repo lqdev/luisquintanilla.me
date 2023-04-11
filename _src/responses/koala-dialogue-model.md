@@ -4,7 +4,7 @@ targeturl: https://bair.berkeley.edu/blog/2023/04/03/koala/
 response_type: bookmark
 dt_published: "2023-04-05 23:28"
 dt_updated: "2023-04-05 23:28 -05:00"
-tags: ["ai"]
+tags: ["ai", "llm"]
 ---
 
 > ...Koala, a chatbot trained by fine-tuning Meta’s LLaMA on dialogue data gathered from the web.
