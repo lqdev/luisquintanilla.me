@@ -142,5 +142,11 @@
        "Type": "rss",
        "HtmlUrl": "https://selfhosted.show",
        "XmlUrl": "https://feeds.fireside.fm/selfhosted/rss"
-    }                
+    },
+    {
+        "Title": "Daily Stoic",
+        "Type": "rss",
+        "HtmlUrl": "https://wondery.com/shows/the-daily-stoic/",
+        "XmlUrl": "https://rss.art19.com/the-daily-stoic"
+    }                  
 ]
