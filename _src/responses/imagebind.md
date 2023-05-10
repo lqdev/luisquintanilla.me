@@ -1,5 +1,5 @@
 ---
-title: "ImageBind: Holistic AI learning across six modalities"
+title: "ImageBind: One Embedding Space To Bind Them All"
 targeturl: https://ai.facebook.com/blog/imagebind-six-modalities-binding-ai/ 
 response_type: bookmark
 dt_published: "2023-05-09 21:02"
