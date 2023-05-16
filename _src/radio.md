@@ -18,7 +18,7 @@ Quick links to some of my favorite online radio stations:
 | Radio El Salvador 96.9 | [Stream Link](https://streamingcwsradio30.com/8198/stream) | [lqvlc Link](lqvlc://streamingcwsradio30.com/8198/stream) |
 | [No Copyright Station (NCS)](https://noted.lol/listen-to-no-copyright-sounds-24-7-using-my-azuracast-broadcast/) | [Stream Link](https://l.jams.lol/listen/ncs/radio.mp3) | [lqvlc Link](lqvlc://l.jams.lol/listen/ncs/radio.mp3)
 | [93.1 The Mountain](https://931themountain.iheart.com/) | [Stream Link](https://stream.revma.ihrhls.com/zc1337) | [lqvlc Link](lqvlc://stream.revma.ihrhls.com/zc1337)
-| KEXP 90.3 FM | [lqvlc link](lqvlc://kexp.streamguys1.com/kexp64.aac) | [Stream link](https://kexp.streamguys1.com/kexp64.aac)|
+| [KEXP 90.3 FM](https://www.kexp.org/) | [lqvlc link](lqvlc://kexp.streamguys1.com/kexp64.aac) | [Stream link](https://kexp.streamguys1.com/kexp64.aac)|
 
 Alternatively, use the [online radio playlist](/radio/OnlineRadioPlaylist.m3u) I've created to get access to all of them on [MPV](https://mpv.io/) or [VLC](https://www.videolan.org/vlc/). 
 
