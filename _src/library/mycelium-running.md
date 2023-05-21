@@ -15,7 +15,7 @@ Great intro into the intelligence of mushrooms and the different techniques for 
 ## Quotes
 
 ## Notes
-ss
+
 - Mycofiltration: Using mushrooms to filter water
 - Mycoforestation: Using mushrooms for forest and land management
 - Mycoremediation: Using mushrooms to clean up toxic chemicals and heavy metals
