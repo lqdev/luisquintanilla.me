@@ -16,8 +16,6 @@ Quick read but very personal introspection into relationships with technology an
 
 ## Notes
 
-## Notes
-
 ## Bookmarks
 
 ## Actions
