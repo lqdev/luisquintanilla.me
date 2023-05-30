@@ -1,6 +1,6 @@
 ---
 post_type: "note" 
-title: "Newspapers, CDs, and MP3s - Am I in 2006?"
+title: "Newspapers, CDs, and MP3 players - Am I in 2006?"
 published_date: "2023-05-29 19:50"
 tags: ["tech","media","retro","cds","dvds"]
 ---
