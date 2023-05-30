@@ -7,7 +7,7 @@ tags: ["tech","media","retro","cds","dvds"]
 
 While flipping through a local (physical) newspaper, I came across an ad for a sale happening at a nearby record store. 
 
-![Newpaper ad for a memorial day CD and vinyl sale](/images//feed/newspaper_ad.JPG)
+![Newpaper ad for a memorial day CD and vinyl sale](/images/feed/newspaper_ad.JPG)
 
 Having nothing planned, I decided to check it out and ended up with a nice haul of about 15 CDs and 2 DVDs. 
 
