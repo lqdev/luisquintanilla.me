@@ -239,7 +239,7 @@ The following is a guide for managing [Matrix Synapse](https://github.com/matrix
 
 ## Resources
 
-- [Matrix SynapseD Docs](https://matrix-org.github.io/synapse/latest/welcome_and_overview.html)
+- [Matrix Synapse Docs](https://matrix-org.github.io/synapse/latest/welcome_and_overview.html)
 - [Upgrading Synapse](https://matrix-org.github.io/synapse/latest/upgrade.html)
 - [Admin Media API](https://matrix-org.github.io/synapse/v1.38/admin_api/media_admin_api.html)
 - [Synapse Scripts](https://github.com/xwiki-labs/synapse_scripts)
