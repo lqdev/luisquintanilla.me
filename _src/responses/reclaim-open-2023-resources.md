@@ -14,5 +14,6 @@ List of resources from the Reclaim Open 2023 Conference.
 - [KEYNOTE: We Have Never Been Social: Web 2.0 and What Went Wrong](https://www.youtube.com/watch?v=WzogFtdBVg8)
 - [Digital Media Cookbook](https://digitalmediacookbook.com/)
 - [Minimal Computing (Minicomp) Wiki](https://minicomp.github.io/wiki/)
+- [Minimal Definitions](https://go-dh.github.io/mincomp/thoughts/2016/10/03/tldr/#minimal-connectivity)
 - [Book: From Counterculture to Cyberculture](https://press.uchicago.edu/ucp/books/book/chicago/F/bo3773600.html)
 - [Article: Fragmented Future](http://darcyd.com/fragmented_future.pdf)
