@@ -1,7 +1,7 @@
 ---
 title: "WordPress Playground"
 targeturl: https://developer.wordpress.org/playground/
-response_type: bookmark
+response_type: reshare
 dt_published: "2023-07-15 00:27"
 dt_updated: "2023-07-15 00:27 -05:00"
 tags: ["indieweb","wordpress","openweb"]
