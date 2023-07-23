@@ -1,6 +1,6 @@
 ---
 post_type: "note" 
-title: "Need to automate seasonal "blue ckecks""
+title: "Need to automate seasonal 'blue ckecks'"
 published_date: "2023-07-23 16:23"
 tags: ["github","roswell","truthisoutthere","xfiles","automation"]
 ---
