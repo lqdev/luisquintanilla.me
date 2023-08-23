@@ -194,6 +194,8 @@ module Layouts
         script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
         script [_src "/lib/highlight/highlight.min.js"] [] // 10.5.0
         script [_src "/lib/highlight/highlight.fsharp.min.js"] [] // 10.5.0
+        script [_src "/lib/highlight/highlight.nix.min.js"] [] // 11.8.0
+
 
         script [_src "/js/main.js"] []    
 
