@@ -7,7 +7,7 @@ tags: dotnet,nixos,linux,sysadmin,
 
 ## Overview
 
-This guide shows how to build a .NET package from GitHub source. 
+This guide shows how to build a .NET package from GitHub source. The project used to illustrate the process can be found on [GitHub](https://github.com/lqdev/fitch).
 
 ## Create derivation
 
