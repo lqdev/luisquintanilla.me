@@ -41,3 +41,7 @@ RAILS_ENV=production /bin/tootctl media remove --prune-profiles
 ```bash
 RAILS_ENV=production /bin/tootctl preview_cards remove
 ```
+
+## Resources
+
+- [Using the Admin CLI](https://docs.joinmastodon.org/admin/tootctl/)
