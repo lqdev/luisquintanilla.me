@@ -1,6 +1,6 @@
 ---
 post_type: "wiki" 
-title: "Mastodon"
+title: "Mastodon Server Cleanup"
 last_updated_date: "08/25/2023 16:04"
 tags: mastodon,linux,socialmedia,sysadmin
 ---
