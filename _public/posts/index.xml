@@ -3,8 +3,57 @@
     <title>Luis Quintanilla Blog</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Luis Quintanilla's blog</description>
-    <lastPubDate>2022-12-21 00:33</lastPubDate>
+    <lastPubDate>2023-08-22 18:03</lastPubDate>
     <language>en</language>
+    <item>
+      <title>First Steps with NixOS</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/first-steps-nixos?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/first-steps-nixos&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;For the longest time, when using Linux distributions, I chose those that were Debian-based. I still do for servers. However, on the dekstop I switched to &lt;a href="https://manjaro.org/"&gt;Manjaro&lt;/a&gt;, which is Arch-based, about two years ago. Two years is a long time without distro-hopping, so I was long overdue. I've been following the &lt;a href="https://nixos.org/"&gt;NixOS&lt;/a&gt; project for some time but since I was happy with my setup, I didn't consider making the switch. However, a month ago, I decided to &lt;a href="/feed/maybe-switching-nixos/"&gt;dip my toes&lt;/a&gt;. I installed NixOS on a flash drive and started tinkering with it. In this post, I'll provide some of my initial impressions and things I find appealing about the OS.&lt;/p&gt;
+&lt;h2&gt;Declarative configuration&lt;/h2&gt;
+&lt;p&gt;One of the first things I did when I booted into my new NixOS installation was get familiar with the &lt;a href="https://nixos.wiki/wiki/Overview_of_the_NixOS_Linux_distribution#Declarative_Configuration"&gt;configuration file&lt;/a&gt;. The configuration file is authored using the &lt;a href="https://nix.dev/tutorials/first-steps/nix-language"&gt;Nix programming language&lt;/a&gt; and it's the place where you configure your entire system, including services, packages, and desktop environments. The best way I can describe it is a Dockerfile for your desktop. If interested, you can find my &lt;a href="/snippets/nixos-configuration/"&gt;config file&lt;/a&gt; on the scripts section of this website.&lt;/p&gt;
+&lt;p&gt;There's a few advantages to this approach:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Configurations are stored in a single place&lt;/strong&gt; - The advantage to this is, I don't have to figure out where the configuration files for each of the components of my system are. I can manage everything in one place. A perfect example where the configuration file goes beyond what I expected was being able to include my bash configuration. Typically, I'd have that configuration in my &lt;code&gt;bashrc&lt;/code&gt; file. With NixOS, I can just include that in the configuration file as follows:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-nix"&gt;programs.bash = {
+    shellAliases = {
+        emacs=&amp;quot;emacs -nw&amp;quot;;
+    };
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Enables composition&lt;/strong&gt; - Because the configuration file is effectively a script, I can modularize the difference pieces. For example, if I wanted to split out my service and package configurations into separate files, I can do so and reference those individual files from my configuration file, separating concerns while still keeping my system configuration simple.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Version control&lt;/strong&gt; - Because the configuration file is just like any other plain text file, it means I can check it into the version control system or cloud service of my choice and manage it that way. In doing so, not only can I roll back using the built-in NixOS mechanisms, but I have another layer of security in case I need to recover that file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now, because I can define everything about my system in the configuration file, this means I can seamlessly rebuild my entire system using this single file in a reproducible manner.&lt;/p&gt;
+&lt;h2&gt;Reproducible builds&lt;/h2&gt;
+&lt;p&gt;I got to experience first-hand how the configuration file can simplify out-of-box-experiences and system configurations. Initially, I did not install NixOS on my main hard drive. All of my configuration and learning took place on a flash drive. Once I got my configuration to a place I was satisfied, it was time to take the plunge and reimage my PC. In the past, when I've done something similar, I've had to document everything I did when configuring my system. That's where posts like &lt;a href="/posts/setting-up-new-ubuntu-pc/"&gt;Setting up a new Ubuntu PC&lt;/a&gt; come from. With NixOS, all I needed to do was replace my configuration file with the one I configured on the flash drive. Then, when I ran &lt;code&gt;nixos-rebuild switch&lt;/code&gt;, my system was configured exactly like the one on the flash drive.&lt;/p&gt;
+&lt;h2&gt;Risk-free software evaluations&lt;/h2&gt;
+&lt;p&gt;This is something I haven't tried yet, but I could easily see it coming in handy. Sometimes I might need a piece of software to do one thing or maybe I want to see whether it'll solve a problem I'm facing. In order to try it out and use it, I need to install it globally. This can cause changes to my system permanently that I don't want. With NixOS, you can create &lt;a href="https://nix.dev/tutorials/first-steps/ad-hoc-shell-environments#ad-hoc-shell-environments"&gt;ad-hoc shell environments&lt;/a&gt;. These environments make temporary changes to your system, so you can evaluate a piece of software or use it that one time. Then, when you exit the environment, the software is no longer installed in your system.&lt;/p&gt;
+&lt;h2&gt;Large package selection&lt;/h2&gt;
+&lt;p&gt;A &lt;a href="https://search.nixos.org/packages"&gt;large package selection&lt;/a&gt; to choose from is something I got used to with Manjaro. Being an Arch-based distribution, I had access to the &lt;a href="https://aur.archlinux.org/"&gt;Arch User Repository (AUR)&lt;/a&gt;. Moving to NixOS, it's nice to know that in this area, NixOS offers great support. Additionally, NixOS has built-in support for &lt;a href="https://nixos.wiki/wiki/Flatpak"&gt;Flatpak&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Still exploring&lt;/h2&gt;
+&lt;p&gt;There's still a few things I don't really get. For example, when installing the .NET SDK, I wanted to have side-by-side installs of the latest STS (7.0) and LTS (6.0). However, including the package names in my configuration file didn't work as expected. Instead I had to use the following convention.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-nix"&gt;(with dotnetCorePackages; combinePackages [
+    dotnet-sdk
+    dotnet-sdk_7
+])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As I learn more, this will probably make more sense but for now it's a mystery.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Overall, I'm happy with NixOS and I can see myself using it for the long-term. Hopefully longer than two years. I'm not a gamer so I can't say how well it does in that front. For web browsing and software development though, I really like what NixOS has to offer. If some of the things I mentioned above sound interesting, I'd encourage you to install it on a flash drive and start tinkering with it.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/first-steps-nixos?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/first-steps-nixos</guid>
+      <pubDate>2023-08-22 18:03</pubDate>
+      <category>#nixos</category>
+      <category>#linux</category>
+      <category>#os</category>
+      <category>#nix</category>
+      <category>#sysadmin</category>
+      <category>#floss</category>
+    </item>
     <item>
       <title>Accept Webmentions using F#, Azure Functions, and RSS</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/receive-webmentions-fsharp-az-functions-fsadvent?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/receive-webmentions-fsharp-az-functions-fsadvent&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h1&gt;Introduction&lt;/h1&gt;

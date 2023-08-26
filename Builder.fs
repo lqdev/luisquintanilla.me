@@ -202,8 +202,8 @@ module Builder
     let loadRedirects () = 
         let (redirects:RedirectDetails array) = 
             [|
-                ("https://twitter.com/ljquintanilla","twitter","Twitter")
-                ("https://github.com/lqdev","github","GitHub")
+                // ("https://twitter.com/ljquintanilla","twitter","Twitter")
+                // ("https://github.com/lqdev","github","GitHub")
                 ("https://www.linkedin.com/in/lquintanilla01","linkedin","LinkedIn")
                 ("https://matrix.to/#/@lqdev:matrix.lqdev.tech", "matrix","Matrix")
                 ("https://toot.lqdev.tech/@lqdev", "mastodon","Mastodon")

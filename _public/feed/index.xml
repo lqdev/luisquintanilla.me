@@ -3,8 +3,111 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>2023-02-23 21:11</lastPubDate>
+    <lastPubDate>2023-07-23 16:23</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Need to automate seasonal 'blue ckecks'</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/automate-website-updates?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/automate-website-updates&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;&lt;img src="/images/feed/july-checkmark.png" class="img-fluid" alt="Profile header image with alien emoji" /&gt;&lt;/p&gt;
+&lt;p&gt;I really need to automate my website updates. I had forgotten to update the &amp;quot;checkmark&amp;quot; (for lack of better words) for the month of July. Usually, I try to have an icon show up as my &amp;quot;blue check&amp;quot; (Twitter inspired) that is relevant for each month. July is &lt;a href="https://www.britannica.com/event/Roswell-incident"&gt;Roswell&lt;/a&gt; month mostly because I think I already used the sun emoji for one of the other summer months. I guess being in the US, the US flag would've made sense here, but somehow aliens seemed more fun. Anyway, I need to find a good way to automate this so it's not one of those things that happen when I remember. Since I just changed to the alien emoji, it means I probably will only have it up for a week. August is Tux month because of Linux (again, sun and aliens were already taken). Recommendations are appreciated. Though I'm excited for spooky season in September &amp;amp; October.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/automate-website-updates?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/automate-website-updates</guid>
+      <pubDate>2023-07-23 16:23</pubDate>
+      <category>#github</category>
+      <category>#roswell</category>
+      <category>#truthisoutthere</category>
+      <category>#xfiles</category>
+      <category>#automation</category>
+    </item>
+    <item>
+      <title>Thinking of switching to NixOS</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/maybe-switching-nixos?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/maybe-switching-nixos&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Time to distro hop. Maybe. For the past two years I've been happily using Manjaro as my main distribution. During that time I've also kept an eye on the immutable distributions. One of the main ones I've been paying attention to is &lt;a href="https://nixos.org/"&gt;NixOS&lt;/a&gt;. Like Arch, it's taken me some time to wrap my head around it. Now that it's gotten easier to set up through a graphical installer, I'll start out with a live install to see how I like it.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/maybe-switching-nixos?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/maybe-switching-nixos</guid>
+      <pubDate>2023-07-21 17:15</pubDate>
+      <category>#linux</category>
+      <category>#nixos</category>
+    </item>
+    <item>
+      <title>Blog instead of e-mail?</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/metablogging-life-after-email?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/metablogging-life-after-email&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I've been thinking about shifting at least some of my communications from e-mails to blogs especially in the context of business communications.&lt;/p&gt;
+&lt;p&gt;Blogs are pull rather than push, so I'm not innundating other's inboxes. People who are interested in the projects or topics I'm working on can subscribe and consume the content as they wish. Also it's a way to be more expressive since it's a medium where ideas can be connected to provide more relevant context. That doesn't mean chats and even e-mail couldn't be used for urgent communication. For async non-urgent communciation though, blogs might be a good alternative to e-mail.&lt;/p&gt;
+&lt;p&gt;These two articles provide a good introduction into how individuals and companies have implemented similar practices:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://ideaspace.ystrickler.com/p/metablogging"&gt;Metablogging&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.fastcompany.com/3017396/is-there-life-after-email-yes-and-its-amazing"&gt;Is There Life After E-mail? Yes, and It's Amazing&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/metablogging-life-after-email?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/metablogging-life-after-email</guid>
+      <pubDate>2023-06-18 21:20</pubDate>
+      <category>#blogging</category>
+      <category>#email</category>
+      <category>#communication</category>
+    </item>
+    <item>
+      <title>Matrix Synapse REALLY needs an Admin UI</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/matrix-synapse-needs-admin-ui?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/matrix-synapse-needs-admin-ui&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Spent the day playing sysadmin and removed about 50GB worth of data from my Matrix Synapse instance. Like Mastodon, most of that data wasn't even mine. Most of it comes is remote data from other users in large rooms. I really like Matrix and the ability to host my own messaging server that provides end-to-end encryption as well as federation with other instances. However, not having a straight-forward way of managing my server and cleaning up resources is painful.&lt;/p&gt;
+&lt;p&gt;Anyway, if anyone is interested, here are some resources that have helped me in this process.&lt;/p&gt;
+&lt;p&gt;&lt;a href="/wiki/matrix-synapse-admin"&gt;Matrix Synapse Server Administration&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/matrix-synapse-needs-admin-ui?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/matrix-synapse-needs-admin-ui</guid>
+      <pubDate>2023-06-11 21:32</pubDate>
+      <category>#matrix</category>
+      <category>#selfhost</category>
+      <category>#synapse</category>
+      <category>#opensource</category>
+      <category>#sysadmin</category>
+      <category>#messaging</category>
+    </item>
+    <item>
+      <title>New AI generated phone wallpaper</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/bing-ai-phone-wallpaper?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/bing-ai-phone-wallpaper&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I'm really liking my new phone wallpaper. Courtesy of DALL-E.&lt;/p&gt;
+&lt;figure class="figure"&gt;
+&lt;p&gt;&lt;img src="/images/feed/bing-ai-pug-wallpaper.jpg" class="img-fluid" alt="pug in the utah desert on mushrooms opening his third eye and being beamed up by aliens" /&gt;&lt;/p&gt;
+&lt;figcaption class="figure-caption"&gt;Source:&lt;a href="https://bing.com/create"&gt;&lt;strong&gt;Bing Image Creator (DALL-E)&lt;/strong&gt;&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;In case anyone is interested in the prompt - &amp;quot;pug in the utah desert on mushrooms opening his third eye and being beamed up by aliens&amp;quot;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/bing-ai-phone-wallpaper?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/bing-ai-phone-wallpaper</guid>
+      <pubDate>2023-06-07 23:02</pubDate>
+      <category>#ai</category>
+      <category>#dalle</category>
+      <category>#dumbphone</category>
+    </item>
+    <item>
+      <title>I'm on Bluesky</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/now-on-bluesky?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/now-on-bluesky&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I'm now on Bluesky. Follow me at &lt;a href="https://bsky.app/profile/lqdev.me"&gt;@lqdev.me&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/bsky-profile.png" class="img-fluid" alt="Bluesky web app showing lqdev.me profile" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/now-on-bluesky?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/now-on-bluesky</guid>
+      <pubDate>2023-06-02 15:50</pubDate>
+      <category>#web</category>
+      <category>#socialmedia</category>
+      <category>#bluesky</category>
+    </item>
+    <item>
+      <title>Newspapers, CDs, and MP3 players - Am I in 2006?</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/am-i-in-2006-newspapers-cds-mp3s?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/am-i-in-2006-newspapers-cds-mp3s&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;While flipping through a local (physical) newspaper, I came across an ad for a sale happening at a nearby record store.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/newspaper_ad.JPG" class="img-fluid" alt="Newpaper ad for a memorial day CD and vinyl sale" /&gt;&lt;/p&gt;
+&lt;p&gt;Having nothing planned, I decided to check it out and ended up with a nice haul of about 15 CDs and 2 DVDs.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/cds_mp3.JPG" class="img-fluid" alt="3 CDs on a wooden table with an portable MP3 player" /&gt;&lt;/p&gt;
+&lt;p&gt;I fired up my &lt;a href="https://www.bestbuy.com/site/lg-8x-external-usb-double-layer-dvdrw-cd-rw-drive-black/5852919.p?skuId=5852919"&gt;portable CD/DVD drive&lt;/a&gt; to transfer my new purchases to my &lt;a href="https://www.fiio.com/m6"&gt;portable MP3 player&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Once finished, I popped one of the DVDs into the drive, made popcorn, and settled in. If I didn't know any better, this could easily be a scene from 2006.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/am-i-in-2006-newspapers-cds-mp3s?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/am-i-in-2006-newspapers-cds-mp3s</guid>
+      <pubDate>2023-05-29 19:50</pubDate>
+      <category>#tech</category>
+      <category>#media</category>
+      <category>#retro</category>
+      <category>#cds</category>
+      <category>#dvds</category>
+    </item>
     <item>
       <title>Downsides of untitled RSS items</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/mastodon-untitled-rss-items?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/mastodon-untitled-rss-items&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Although titles are optional for RSS feed items and it's a common practice for microblog platforms like Mastodon to exclude them, it unfortunately means some clients like Elfeed don't know how to render those posts.&lt;/p&gt;
