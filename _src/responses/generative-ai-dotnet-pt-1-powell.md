@@ -1,6 +1,6 @@
 ---
 title: "Generative AI and .NET - Part 1 Intro"
-targeturl: https://www.aaron-powell.com/posts/2023-09-01-generative-ai-and-dotnet---part-1-intro/
+targeturl: "https://www.aaron-powell.com/posts/2023-09-01-generative-ai-and-dotnet---part-1-intro/"
 response_type: reshare
 dt_published: "2023-09-01 10:46"
 dt_updated: "2023-09-01 10:46 -05:00"
