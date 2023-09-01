@@ -87,6 +87,7 @@ Devices, apps, and services I use day-to-day.
 
 - [OpenStreetMap](https://www.openstreetmap.org/)
   - [OSMAnd~](https://osmand.net/) - Android app for OpenStreetMap
+  - [Organic Maps](https://organicmaps.app/) - Android app for openStreetMap
 - [Here Maps](https://wego.here.com/) - Secondary map app. OpenStreetMap reverse geo-coding capabilities leave something to be desired, so Here Maps is handy then.
 
 ### Notetaking
