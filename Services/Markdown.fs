@@ -59,7 +59,7 @@ module MarkdownService
             fileContents
                 .Substring(yamlBlock.Span.Start,yamlBlock.Span.Length)
                 // .Replace("---","")
-                .Trim([|'---'|])
+                .Trim([|'-'|])
 
         let yaml = yamlSerializer.Deserialize<'a>(sanitizedYamlBlock)
         let mdBlock = 
