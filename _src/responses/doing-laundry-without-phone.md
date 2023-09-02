@@ -4,7 +4,7 @@ targeturl: https://naveenarun.wordpress.com/2023/08/31/doing-laundry-on-campus-w
 response_type: reply
 dt_published: "2023-09-02 18:45"
 dt_updated: "2023-09-02 18:45 -05:00"
-tags: ["technology","tv","fun"]
+tags: ["technology","tv"]
 ---
 
 This article reminds me of this gem :joy:
