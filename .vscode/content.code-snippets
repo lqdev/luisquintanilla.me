@@ -14,5 +14,13 @@
         "body": [
             "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE"            
         ]
+    },
+    "YouTube": {
+        "scope": "markdown",
+        "prefix": "yt",
+        "description": "Adds a Youtube Video Link",
+        "body": [
+            "[![$1](http://img.youtube.com/vi/$2/0.jpg)](https://www.youtube.com/watch?v=$2 \"$1\")"
+        ]
     }    
 }
