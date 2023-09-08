@@ -15,4 +15,6 @@ tags: ["simulation"]
 > 
 > We hope you will continue to enjoy living in our cave. We believe you are a valued part of the Plato's Cave community. Credit, cash, or Venmo all work. 
 
+Original Source: https://www.mcsweeneys.net/articles/platos-cave-regrets-to-inform-you-it-will-be-raising-its-rent
+
 ![Boy laughing and then crying](https://media.giphy.com/media/zHd8x7Pik0Ftm/giphy.gif)
