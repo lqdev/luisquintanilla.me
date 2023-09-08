@@ -22,5 +22,13 @@
         "body": [
             "[![$1](http://img.youtube.com/vi/$2/0.jpg)](https://www.youtube.com/watch?v=$2 \"$1\")"
         ]
+    },
+    "Image": {
+        "scope": "markdown",
+        "prefix": "image",
+        "description": "Add GIF link",
+        "body": [
+            "![${1:Alt Text}](${2:URL})"
+        ]
     }    
 }
