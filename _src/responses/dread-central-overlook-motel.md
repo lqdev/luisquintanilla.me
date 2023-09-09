@@ -1,6 +1,6 @@
 ---
 title: "Dread Central - The Overlook Motel"
-targeturl: https://www.youtube.com/watch?v=erM90Tf5wIo&list=PLh5in8jMKw0Q9LbTqEothBHBnJZXWSnLI
+targeturl: https://www.dreadcentral.com/the-overlook-motel/
 response_type: bookmark
 dt_published: "2023-09-08 22:30"
 dt_updated: "2023-09-08 22:30 -05:00"
