@@ -185,6 +185,81 @@ NOTE: Node 18 not supported yet. If you run into issues upgrading directly from 
 1. Precompile assets - `RAILS_ENV=production bundle exec rails assets:precompile`
 1. Restart services - `systemctl start mastodon-sidekiq mastodon-web mastodon-streaming`
 
+### 4.1.1
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.1.1 tag - `git checkout v4.1.1`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install`
+7. Precompile assets - `RAILS_ENV=production bundle exec rails assets:precompile`
+8. Restart services - `systemctl start mastodon-sidekiq mastodon-web mastodon-streaming`
+
+### 4.1.2
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.1.3 tag - `git checkout v4.1.2`
+5. Update rbenv version - `git -C /home/mastodon/.rbenv/plugins/ruby-build pull`
+6. Install Ruby 3.0.6 - `RUBY_CONFIGURE_OPTS=--with-jemalloc rbenv install 3.0.6`
+7. Install Ruby dependencies - `bundle install`
+8. Install JS dependencies - `yarn install`
+9. Restart services - `systemctl start mastodon-sidekiq mastodon-web mastodon-streaming`
+
+### 4.1.3
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.1.3 tag - `git checkout v4.1.3`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install`
+7. (Optional) Upgrade reverse proxy `Content-Security-Policy: default-src 'none'; form-action 'none'` & `X-Content-Type-Options: nosniff`. More info can be found in *dist/nginx.conf*.
+8. Restart services - `systemctl start mastodon-sidekiq mastodon-web mastodon-streaming`
+
+### 4.1.4
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.1.4 tag - `git checkout v4.1.4`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install`
+7. (Optional) Upgrade reverse proxy `Content-Security-Policy: default-src 'none'; form-action 'none'` &`X-Content-Type-Options: nosniff`. More info can be found in *dist/nginx.conf*.
+8. Restart services - `systemctl start mastodon-sidekiq mastodon-web mastodon-streaming`
+
+### 4.1.5
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.1.5 tag - `git checkout v4.1.5`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install`
+7. Restart services - `systemctl start mastodon-sidekiq mastodon-web mastodon-streaming`
+
+### 4.1.6
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.1.6 tag - `git checkout v4.1.6`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install`
+7. Restart services - `systemctl start mastodon-sidekiq mastodon-web mastodon-streaming`
+
+### 4.1.7
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.1.7 tag - `git checkout v4.1.7`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install --frozen-lockfile`
+7. Restart services - `systemctl start mastodon-sidekiq mastodon-web mastodon-streaming`
+
 ## Documentation
 
 - https://docs.joinmastodon.org/admin/troubleshooting/index-corruption
