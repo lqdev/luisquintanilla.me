@@ -4,7 +4,7 @@ targeturl: https://huggingface.co/blog/optimize-llm
 response_type: bookmark
 dt_published: "2023-09-17 12:58"
 dt_updated: "2023-09-17 12:58 -05:00"
-tags: ["ai","llm","production","engineering","software","mlops","aiops"]
+tags: ["ai","llm","production","engineering","software","mlops","aiops","opensource"]
 ---
  
 > In this blog post, we will go over the most effective techniques at the time of writing this blog post to tackle these challenges for efficient LLM deployment:
