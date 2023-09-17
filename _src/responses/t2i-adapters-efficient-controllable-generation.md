@@ -4,7 +4,7 @@ targeturl: https://huggingface.co/blog/t2i-sdxl-adapters
 response_type: bookmark
 dt_published: "2023-09-17 12:11"
 dt_updated: "2023-09-17 12:11 -05:00"
-tags: ["ai","generativeai","imagegeneration","deeplearning","ml",""huggingface"]
+tags: ["ai","generativeai","imagegeneration","deeplearning","ml","huggingface"]
 ---
 
 
