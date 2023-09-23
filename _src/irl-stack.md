@@ -9,7 +9,7 @@ Devices, apps, and services I use day-to-day.
 - [Lenovo Thinkpad X1 Titanium Yoga](https://www.lenovo.com/us/en/p/laptops/thinkpad/thinkpadx1/x1-titanium-g1/22tp2x1x1t1) - **Daily driver**
 - [Lenovo IdeaPad Duet 3i](https://www.lenovo.com/il/en/laptops/ideapad/d-series/IdeaPad-Duet-3-10IGL5/p/88IPD301447) - **Secondary device**
 - [Nokia 2780 Flip](https://www.nokia.com/phones/en_us/nokia-2780-flip?sku=16WNDR11A01) - **Daily driver**
-- [Surface Duo](https://www.microsoft.com/surface/devices/surface-duo?activetab=overview) - **Secondary device**
+- [Moto G Play 2023](https://www.motorola.com/us/smartphones-moto-g-play-gen-2/p?skuId=856) - **Secondary device**
 
 ### Bags
 
@@ -46,7 +46,6 @@ Devices, apps, and services I use day-to-day.
 
 - [NixOS](https://nixos.org/) - **Daily driver**
 - [Manjaro](https://manjaro.org/)
-- [Windows](https://www.microsoft.com/en-us/windows/)
 - [Ubuntu](https://ubuntu.com/)
 - [Debian](https://www.debian.org/)
 - [Android](https://www.blog.google/products/android/)
@@ -67,11 +66,11 @@ Devices, apps, and services I use day-to-day.
 
 ### Communication
 
-#### Chat
+#### Messaging
 
-- [Matrix](https://matrix.org/) - Chat
-- [Discord](https://discord.com/) - Chat
-- [Slack](https://slack.com/) - Chat
+- [Matrix](https://matrix.org/)
+- [ERC](https://www.emacswiki.org/emacs/ERC)
+- [Molly](https://molly.im/)
 
 #### Audio & Video Calling
 
@@ -93,6 +92,7 @@ Devices, apps, and services I use day-to-day.
 ### Notetaking
 
 - [Emacs](https://www.gnu.org/software/emacs/)
+  - [Org Mode](https://orgmode.org/)
 
 ### Social
 
@@ -104,6 +104,7 @@ Devices, apps, and services I use day-to-day.
 - [GitHub Actions](https://github.com/features/actions) - Build & workflow automation
 - [Visual Studio](https://visualstudio.microsoft.com/), [Visual Studio Code](https://code.visualstudio.com/) - IDE / Text editor for blogging and software development
 - [Ionide](https://ionide.io/) - Visual Studio Code F# extension
+- [Docker](https://www.docker.com/) - Devcontainers and deployment
 - [Insomina](https://insomnia.rest/) - HTTP client
 - [Netron](https://github.com/lutzroeder/netron) - Machine learning model visualization
 - [Azure DevOps](https://azure.microsoft.com/services/devops/?nav=min) Build & workflow automation
@@ -144,5 +145,4 @@ Devices, apps, and services I use day-to-day.
 - [Express](http://expressjs.com/)
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/)
 - [Azure Functions](https://azure.microsoft.com/services/functions/)
-- [Docker](https://www.docker.com/)
 - [Kubernetes](https://kubernetes.io/)
