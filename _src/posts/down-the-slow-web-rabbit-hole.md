@@ -10,7 +10,7 @@ No real commentary on this post other than a web surf down the slow / quite web 
 
 ```mermaid
 flowchart TD
-  A["My 20th anniversary of blogging!"] --> B["The Quite Web"]
+  A["My 20th anniversary of blogging!"] --> B["The Quiet Web"]
   B --> C["Asyncronous Conversations"]
   C --> D["The Slow Web"]
   D --> E["The Slow Web Movement - I DONE THIS"]
