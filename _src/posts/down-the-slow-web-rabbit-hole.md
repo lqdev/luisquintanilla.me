@@ -1,6 +1,6 @@
 ---
 post_type: "article" 
-title: "Down the Slow / Quite Web Rabbit Hole"
+title: "Down the Slow / Quiet Web Rabbit Hole"
 description: "Ramblings on a web surfing journey down the alternate web"
 published_date: "2023-09-23 23:36"
 tags: ["blogs","indieweb","internet","slowweb","quietweb"]
@@ -24,6 +24,7 @@ flowchart TD
 I'm nowhere near done reading these posts but here are others on the "To Read" stack based on the generous linking from all those posts.
 
 - http://www.rebeccablood.net/archive/2010/06/a_slow_web.html?ref=jackcheng.com
+- https://minimal.gallery/?ref=thegallery.io
 - https://thecreativeindependent.com/essays/laurel-schwulst-my-website-is-a-shifting-house-next-to-a-river-of-knowledge-what-could-yours-be/
 - https://manuelmoreale.com/quiet-web
 - https://briankoberlein.com/blog/in-the-darkness-bind-them/
