@@ -21,25 +21,25 @@ General commands for cleaning up resources on Mastodon servers
 ## Check media usage
 
 ```bash
-RAILS_ENV=production /bin/tootctl media usage
+RAILS_ENV=production ./bin/tootctl media usage
 ```
 
 ## Remove media
 
 ```bash
-RAILS_ENV=production /bin/tootctl media remove
+RAILS_ENV=production ./bin/tootctl media remove
 ```
 
 ## Remove media headers
 
 ```bash
-RAILS_ENV=production /bin/tootctl media remove --prune-profiles
+RAILS_ENV=production ./bin/tootctl media remove --prune-profiles
 ```
 
 ## Remove preview cards
 
 ```bash
-RAILS_ENV=production /bin/tootctl preview_cards remove
+RAILS_ENV=production ./bin/tootctl preview_cards remove
 ```
 
 ## Resources

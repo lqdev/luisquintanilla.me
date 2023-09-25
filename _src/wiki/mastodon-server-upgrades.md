@@ -260,6 +260,44 @@ NOTE: Node 18 not supported yet. If you run into issues upgrading directly from 
 6. Install JS dependencies - `yarn install --frozen-lockfile`
 7. Restart services - `systemctl start mastodon-sidekiq mastodon-web mastodon-streaming`
 
+### 4.1.8
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.1.8 tag - `git checkout v4.1.8`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install --frozen-lockfile`
+7. Restart services - `systemctl start mastodon-sidekiq mastodon-web mastodon-streaming`
+
+### 4.1.9
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.1.9 tag - `git checkout v4.1.9`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install --frozen-lockfile`
+7. Restart services - `systemctl start mastodon-sidekiq mastodon-web mastodon-streaming`
+
+### 4.2.0
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.1.9 tag - `git checkout v4.2.0`
+5. Update Streaming Server Service
+    1. `sudo cp ~mastodon/live/dist/mastodon-streaming*.service /etc/systemd/system/`
+    1. `sudo systemctl daemon-reload`
+6. Update rbenv version - `git -C /home/mastodon/.rbenv/plugins/ruby-build pull`
+7. Install Ruby 3.2.2 - `RUBY_CONFIGURE_OPTS=--with-jemalloc rbenv install 3.2.2`
+8. Install Ruby dependencies - `bundle install`
+9. Install JS dependencies - `yarn install --frozen-lockfile`
+10. Precompile assets - `RAILS_ENV=production bundle exec rails assets:precompile`
+11. Run predeployment DB migration - `SKIP_POST_DEPLOYMENT_MIGRATIONS=true RAILS_ENV=production bundle exec rails db:migrate`
+12. Restart services - `systemctl start mastodon-sidekiq mastodon-web mastodon-streaming`
+13. Run postdeployment DB migration - `RAILS_ENV=production bundle exec rails db:migrate`
+
 ## Documentation
 
 - https://docs.joinmastodon.org/admin/troubleshooting/index-corruption
