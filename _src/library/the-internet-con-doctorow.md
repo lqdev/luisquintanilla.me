@@ -20,14 +20,15 @@ Good book on how user control has been eroding over time resulting in walled gar
     - "What Would Open Source Look Like if It Were Healthy?", Sumana Harihareswara
     - "How Markets Co-opted Free Software’s Most Powerful Weapon", Benjamin Mako Hill
   - Podcasts
-    - Trashfuture
-    - Tech Will Not Save Us
-    - This Machine Kills
-  - Articles
-    - “Amazon’s Antitrust Paradox”, Lina Khan
-    - "Silicon Values: The Future of Free Speech Under Surveillance Capitalism", Jillian C. York
-    - "Consent of the Networked: The Worldwide Struggle for Internet Freedom", Rebecca MacKinnon
-    - "Subprime Attention Crisis: Advertising and the Time Bomb at the Heart of the Internet", Tim Hwang
-    - "The Hardware Hacker: Adventures in Making and Breaking Hardware", Andrew "Bunnie" Huang
-    - "The Right to Repair: Reclaiming the Things We Own", Aaron Perzanowski
-    - "Broad Band: The Untold Story of the Women Who Made the Internet", Claire L. Evans
+    - [Trashfuture](https://www.trashfuture.co.uk/)
+    - [Tech Will Not Save Us](https://www.techwontsave.us)
+    - [This Machine Kills](https://podverse.fm/podcast/yZQWqLVMan)
+  - Books & Articles
+    - [“Amazon’s Antitrust Paradox”](https://www.yalelawjournal.org/note/amazons-antitrust-paradox), Lina Khan
+    - ["Silicon Values: The Future of Free Speech Under Surveillance Capitalism"](https://www.harvard.com/book/silicon_values/), Jillian C. York
+    - ["Consent of the Networked: The Worldwide Struggle for Internet Freedom"](https://consentofthenetworked.com/), Rebecca MacKinnon
+    - ["Subprime Attention Crisis: Advertising and the Time Bomb at the Heart of the Internet"](https://us.macmillan.com/books/9780374538651/subprimeattentioncrisis), Tim Hwang
+      - [Interview](https://archive.org/details/subprime-attention-crisis)
+    - ["The Hardware Hacker: Adventures in Making and Breaking Hardware"](https://nostarch.com/hardwarehackerpaperback), Andrew "Bunnie" Huang
+    - ["The Right to Repair: Reclaiming the Things We Own"](https://www.cambridge.org/core/books/right-to-repair/D4FBBD5AE06602029E8680BDC7FA93A6), Aaron Perzanowski
+    - ["Broad Band: The Untold Story of the Women Who Made the Internet"](https://mitpressbookstore.mit.edu/book/9780735211759), Claire L. Evans
