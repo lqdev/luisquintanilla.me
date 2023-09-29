@@ -12,10 +12,3 @@ source: "https://www.chelseapumpkins.com/ahh-thats-what-i-call-horror"
 
 A blast from the past. Overall a fun read filled with 90's references. I preferred the first half of the book. *The Grunge* and *Return to Gray Springs: Blockbuster Blues* were my favorite. *Who In The World Is The Hat Man?* was gut-wrenching. 
 
-## Quotes
-
-## Notes
-
-## Bookmarks
-
-## Actions

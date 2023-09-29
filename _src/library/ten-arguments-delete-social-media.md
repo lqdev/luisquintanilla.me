@@ -16,6 +16,3 @@ source: https://openlibrary.org/works/OL19744680W/Ten_arguments_for_deleting_you
 
 Book to look into - *Beyond Freedom and Dignity, B. F. Skinner*
 
-## Bookmarks
-
-N/A
