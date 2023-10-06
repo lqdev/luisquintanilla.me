@@ -39,7 +39,13 @@ sudo waydroid init
 1. Open the terminal and start the waydroid container
 
     ```bash
-    sudo systemctl start wayland-container
+    sudo systemctl start waydroid-container
+    ```
+
+1. Check status of container
+
+    ```bash
+    sudo journalctl -u waydroid-container
     ```
 
 1. Open terminal and start weston
@@ -66,7 +72,7 @@ sudo waydroid init
 1. Stop waydroid container
 
     ```bash
-    sudo systemctl stop wayland-container
+    sudo systemctl stop waydroid-container
     ```
 
 #### Remove user data
