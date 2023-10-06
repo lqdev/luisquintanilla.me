@@ -2,14 +2,14 @@
 post_type: "wiki" 
 title: "Running Waydroid on NixOS using X11"
 last_updated_date: "10/05/2023 22:25"
-tags: android,linux,
+tags: android,linux,nixos,x11,waydroid
 ---
 
 ## Overview
 
 ## Packages
 
-- [weston]() - Wayland compositor
+- [weston](https://search.nixos.org/packages?channel=23.05&show=weston&from=0&size=50&sort=relevance&type=packages&query=weston) - Wayland compositor
 
 ## NixOS Configuration
 
