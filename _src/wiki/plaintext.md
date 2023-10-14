@@ -11,7 +11,9 @@ This guide provides an overview of plain text and how it can be used for a varie
 
 ## What is plain text?
 
-## Benefites of plain text
+In general, plain text is text that isn't formatted and generally uses common characters. 
+
+## Benefits of plain text
 
 - Simplicity: Focus on the content rather than the formatting or medium
 - Portability: Any text editor can create and display plain text. That means you're not locked in to any particular tool or service. 
