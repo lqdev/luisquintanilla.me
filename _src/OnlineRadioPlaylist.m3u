@@ -52,3 +52,6 @@ https://prod-44-203-251-114.amperwave.net/audacy-knddfmaac-hlsc.m3u8?apv=a2&stre
 
 #EXTINF: 0, Dance UK
 https://dancestream.danceradiouk.com/stream
+
+#EXTINF: 0, Tilderadio
+https://azuracast.tilderadio.org/radio/8000/radio.ogg

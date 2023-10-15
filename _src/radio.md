@@ -21,19 +21,20 @@ Quick links to some of my favorite online radio stations:
 | [KEXP 90.3 FM](https://www.kexp.org/) | [Stream Link](https://kexp.streamguys1.com/kexp64.aac) | [lqvlc Link](lqvlc://kexp.streamguys1.com/kexp64.aac) |
 | [KNDD 107.7 The End](https://www.audacy.com/1077theend) | [Stream Link](https://prod-44-203-251-114.amperwave.net/audacy-knddfmaac-hlsc.m3u8?apv=a2&streamsource=Amperwave&dist=Audacy&source=webA2&gpp=DBABrGA%7EBVQqAAAACWA.QA%7EBUoAAAJY.QA%7EBVoAABY%7EBVoAAFg.QA%7EBVKAAAWA%7EBVoAAAFg.QA&c_user_id=f8k%3Aa61b2ebe0ee2d238b75d455d7b12ea57&t_partner_ids=eyJhY3UtdWlkIjoiNzk5OTUyMDk3OTMyIiwiZHluLXVpZCI6IjM4MzQzMjg4NDU2MzkyMzI0NDYiLCJhbi11aWQiOiIwIiwibW0tdWlkIjoiMzNjOTY0YjEtN2IyOS00ZjAwLThlNTItMjMxMDM3NjNjODM1IiwidHJpdG9uLXVpZCI6ImNvb2tpZTo2MzQ1N2MyOS01ZThmLTQ4MDgtOTVlMi01YTFhYjE4ZTRiNTAiLCJhbWItdWlkIjoiNDMzMDIxMTI4MTIyMDU4MTU1OSJ9) | [lqvlc Link](lqvlc://prod-44-203-251-114.amperwave.net/audacy-knddfmaac-hlsc.m3u8?apv=a2&streamsource=Amperwave&dist=Audacy&source=webA2&gpp=DBABrGA%7EBVQqAAAACWA.QA%7EBUoAAAJY.QA%7EBVoAABY%7EBVoAAFg.QA%7EBVKAAAWA%7EBVoAAAFg.QA&c_user_id=f8k%3Aa61b2ebe0ee2d238b75d455d7b12ea57&t_partner_ids=eyJhY3UtdWlkIjoiNzk5OTUyMDk3OTMyIiwiZHluLXVpZCI6IjM4MzQzMjg4NDU2MzkyMzI0NDYiLCJhbi11aWQiOiIwIiwibW0tdWlkIjoiMzNjOTY0YjEtN2IyOS00ZjAwLThlNTItMjMxMDM3NjNjODM1IiwidHJpdG9uLXVpZCI6ImNvb2tpZTo2MzQ1N2MyOS01ZThmLTQ4MDgtOTVlMi01YTFhYjE4ZTRiNTAiLCJhbWItdWlkIjoiNDMzMDIxMTI4MTIyMDU4MTU1OSJ9) | 
 | [Dance UK](https://danceuk.danceradiouk.com/) | [Stream Link](https://dancestream.danceradiouk.com/stream) | [lqvlc Link](lqvlc://dancestream.danceradiouk.com/stream)
+| [Tilderadio](https://tilderadio.org/) | [Stream Link](https://azuracast.tilderadio.org/radio/8000/radio.ogg) | [lqvlc Link](lqvlc://azuracast.tilderadio.org/radio/8000/radio.ogg)
 
 Alternatively, use the [online radio playlist](/radio/OnlineRadioPlaylist.m3u) I've created to get access to all of them on [MPV](https://mpv.io/) or [VLC](https://www.videolan.org/vlc/). 
 
 ## MPV
 
 ```bash
-mpv --playlist=http://lqdev.me/radio/OnlineRadioPlaylist.m3u --player-operation-mode=pseudo-gui 
+mpv --playlist=https://www.lqdev.me/radio/OnlineRadioPlaylist.m3u --player-operation-mode=pseudo-gui 
 ```
 
 ## VLC
 
 ```bash
-vlc http://lqdev.me/radio/OnlineRadioPlaylist.m3u
+vlc https://www.lqdev.me/radio/OnlineRadioPlaylist.m3u
 ```
 
 What's an lqvlc link? Check out the blog post on the [lqvlc network protocol](/posts/lqvlc-network-protocol-firefox.html).
