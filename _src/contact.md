@@ -11,4 +11,4 @@ Say hi on any of these platforms.
 
 ---
 
-**VCard** <- [Download](/vcard.vcf) |> [QR Code](/images/contact/qr-vcard.svg)
+**[MeCard](https://en.wikipedia.org/wiki/MeCard_(QR_code))** <- [Download](/mecard.txt) |> [QR Code](/images/contact/qr-mecard.svg)
