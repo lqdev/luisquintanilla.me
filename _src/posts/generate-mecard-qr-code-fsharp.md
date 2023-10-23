@@ -1,6 +1,6 @@
 ---
 post_type: "article" 
-title: "Generate QR Codes for MeCard Data"
+title: "Generate QR Codes for MeCard Data in F#"
 description: "Encode MECARD files in a QR code using F#"
 published_date: "2023-10-23 19:24"
 tags: ["dotnet","fsharp","qrcode"]
