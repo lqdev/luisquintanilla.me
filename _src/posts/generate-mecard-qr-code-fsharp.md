@@ -47,7 +47,7 @@ The QR Code generated might look as follows:
 
 ![MECARD QR CODE](/images/generate-mecard-qr-code-fsharp/mecard.svg)
 
-Scanning the QR Code with a smartphone would then immediately. 
+Scanning the QR Code with a smartphone would then immediately recognize it as a contact and prompt you to save the contact information to your device.
 
 ## Conclusion
 
