@@ -51,4 +51,4 @@ Scanning the QR Code with a smartphone would then immediately recognize it as a 
 
 ## Conclusion
 
-Since I already had the code snippet to do this available, creating a MeCard was straightforward. I've since replaced my vCard with a [MeCard](/mecard.txt). You can check out the corresponding [QR code](/images/contact/qr-mecard.svg) in my [contact](/contact) page.
+Since I already had the code snippet to do this available, creating a MeCard was straightforward. I've since added my [MeCard](/mecard.txt) alongside by vCard. You can check out the corresponding [QR code](/images/contact/qr-mecard.svg) in my [contact](/contact) page.
