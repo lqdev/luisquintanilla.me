@@ -16,7 +16,7 @@ When I saw the MeCard format, I immediately liked how simple it was so I decided
 
 ## What is MeCard?
 
-According to Wikipedia, MECARD is "MeCard is a data file similar to vCard...It is largely compatible with most QR-readers for smartphones. It is an easy way to share a contact with the most used fields. Usually, devices can recognize it and treat it like a contact ready to import."
+According to Wikipedia, MeCard is "...a data file similar to vCard...It is largely compatible with most QR-readers for smartphones. It is an easy way to share a contact with the most used fields. Usually, devices can recognize it and treat it like a contact ready to import."
 
 An example might look like: `MECARD:N:Doe,John;TEL:13035551212;EMAIL:john.doe@example.com;;`
 
