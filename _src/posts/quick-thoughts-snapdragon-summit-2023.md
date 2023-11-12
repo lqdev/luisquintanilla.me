@@ -14,6 +14,8 @@ Today was the start of Snapdragon Summit 2023 and all I can say is, **WOW**.
 
 CNET has a [14 minute clip](https://www.youtube.com/watch?v=K7Q5iYHvgwo) that summarizes all the announcements. 
 
+[![Qualcomm’s Snapdragon AI Event: Everything Revealed in 14 Minutes](http://img.youtube.com/vi/K7Q5iYHvgwo/0.jpg)](https://www.youtube.com/watch?v=K7Q5iYHvgwo "Qualcomm’s Snapdragon AI Event: Everything Revealed in 14 Minutes")
+
 I was cautiously optimistic about what would be shown today but Qualcomm delivered. 
 
 The main thing that I'm excited about are their Snapdragon X Elite Oryon-based CPUs.
