@@ -2,7 +2,7 @@
 post_type: "note" 
 title: "AI abundance after scarcity cycles"
 published_date: "2023-11-12 10:37"
-tags: ["ai","internet","history","rss"]
+tags: ["ai","internet","history","rss","openai","llm","gpt","opensource"]
 ---
 
 While writing the post [RSS for new event notifications](/feed/rss-community-calendars-new-events) I mentioned how the flow of getting new event notifications through RSS might work:
