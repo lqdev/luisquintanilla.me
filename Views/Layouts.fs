@@ -149,8 +149,6 @@ module Layouts
                 ]
             ]
         ]
-
-    let stats = script [ _async; attr "data-goatcounter" "https://stats.luisquintanilla.me/count"; _src "//stats.luisquintanilla.me/count.js" ] []
     
     let styleSheets = [
         link [_rel "stylesheet";_href "/css/bootstrap.min.css"] //4.6.0
@@ -239,8 +237,6 @@ module Layouts
                 meta [_charset "UTF-8"]    
                 meta [_name "viewport"; _content "width=device-width, initial-scale=1, shrink-to-fit=no"]
 
-                stats
-
                 // Stylesheets
                 for sheet in styleSheets do
                     sheet
@@ -283,8 +279,6 @@ module Layouts
                 meta [_charset "UTF-8"]    
                 meta [_name "viewport"; _content "width=device-width, initial-scale=1, shrink-to-fit=no"]
 
-                stats
-            
                 // Stylesheets
                 for sheet in styleSheets do
                     sheet
@@ -326,8 +320,6 @@ module Layouts
             head [] [
                 meta [_charset "UTF-8"]    
                 meta [_name "viewport"; _content "width=device-width, initial-scale=1, shrink-to-fit=no"]
-
-                stats
 
                 // Stylesheets
                 for sheet in styleSheets do
