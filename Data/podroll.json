@@ -100,12 +100,6 @@
         "Type": "rss",
         "HtmlUrl": "https://unsolved.com/",
         "XmlUrl": "https://feeds.megaphone.fm/unsolved-mysteries"
-    },    
-    {
-        "Title": "MrBallen Podcast",
-        "Type": "rss",
-        "HtmlUrl": "https://art19.com/shows/MrBallen-Podcast",
-        "XmlUrl": "https://rss.art19.com/MrBallen-Podcast"
     },
     {
         "Title": "IRL: Online Life is Real Life",
