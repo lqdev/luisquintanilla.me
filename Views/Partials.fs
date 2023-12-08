@@ -80,16 +80,16 @@ let homeView (blog:Post) (microblog:Post) (response:Response) =
         ]
         div [_class "row mx-auto p-2 text-center"] [
             div [_class "col align-self-center justify-content-center"] [
-                h2 [] [Text "Latest blog post"]
-                a [_href $"/posts/{Path.GetFileNameWithoutExtension(blog.FileName)}"] [Text blog.Metadata.Title]
-            ]
-        ]
-        div [_class "row mx-auto p-2 text-center"] [
-            div [_class "col align-self-center justify-content-center"] [
                 h2 [] [Text "Latest from the microblog"]
                 a [_href $"/feed/{Path.GetFileNameWithoutExtension(microblog.FileName)}"] [Text microblog.Metadata.Title]
                 br []
                 a [_href $"/feed/{Path.GetFileNameWithoutExtension(response.FileName)}"] [Text response.Metadata.Title]                
+            ]
+        ]
+        div [_class "row mx-auto p-2 text-center"] [
+            div [_class "col align-self-center justify-content-center"] [
+                h2 [] [Text "Latest blog post"]
+                a [_href $"/posts/{Path.GetFileNameWithoutExtension(blog.FileName)}"] [Text blog.Metadata.Title]
             ]
         ]
     ]
