@@ -82,7 +82,7 @@ let homeView (blog:Post) (microblog:Post) (response:Response) =
             div [_class "col align-self-center justify-content-center"] [
                 h2 [] [
                     str "Latest from the microblog"
-                    span [_class "mr-1"] [Text "&#x1F4AC;"]
+                    span [_class "ml-1"] [Text "&#x1F4AC;"]
                 ]
                 a [_href $"/feed/{Path.GetFileNameWithoutExtension(microblog.FileName)}"] [Text microblog.Metadata.Title]
                 br []
@@ -93,7 +93,7 @@ let homeView (blog:Post) (microblog:Post) (response:Response) =
             div [_class "col align-self-center justify-content-center"] [
                 h2 [] [
                     str "Latest blog post"
-                    span [_class "mr-1"] [Text "&#x1F4D6;"]
+                    span [_class "ml-1"] [Text "&#x1F4D6;"]
                 ]
                 a [_href $"/posts/{Path.GetFileNameWithoutExtension(blog.FileName)}"] [Text blog.Metadata.Title]
             ]
