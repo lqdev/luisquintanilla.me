@@ -56,7 +56,7 @@ let homeView (blog:Post) (microblog:Post) (response:Response) =
                                 a [_href "/posts/1"] [Text "blog"]
                             ]
                             li [] [
-                                span [_class "mr-1"] [Text "&#x1F4DD;"]
+                                span [_class "mr-1"] [Text "&#x1F4AC;"]
                                 str "Scroll through my "
                                 a [_href "/feed"] [Text "main"]
                                 str " and "
@@ -69,7 +69,7 @@ let homeView (blog:Post) (microblog:Post) (response:Response) =
                                 str " to content on this site."
                             ]
                             li [] [
-                                span [_class "mr-1"] [Text "&#x1F4CD;"]
+                                span [_class "mr-1"] [Text "&#x1F4ED;"]
                                 str "Find me "
                                 a [_href "/contact"] [Text "elsewhere"]
                             ]                                                                                    
@@ -81,6 +81,7 @@ let homeView (blog:Post) (microblog:Post) (response:Response) =
         div [_class "row mx-auto p-2 text-center"] [
             div [_class "col align-self-center justify-content-center"] [
                 h2 [] [Text "Latest from the microblog"]
+                span [_class "mr-1"] [Text "&#x1F4AC;"]
                 a [_href $"/feed/{Path.GetFileNameWithoutExtension(microblog.FileName)}"] [Text microblog.Metadata.Title]
                 br []
                 a [_href $"/feed/{Path.GetFileNameWithoutExtension(response.FileName)}"] [Text response.Metadata.Title]                
@@ -89,6 +90,7 @@ let homeView (blog:Post) (microblog:Post) (response:Response) =
         div [_class "row mx-auto p-2 text-center"] [
             div [_class "col align-self-center justify-content-center"] [
                 h2 [] [Text "Latest blog post"]
+                span [_class "mr-1"] [Text "&#x1F4D6;"]
                 a [_href $"/posts/{Path.GetFileNameWithoutExtension(blog.FileName)}"] [Text blog.Metadata.Title]
             ]
         ]
