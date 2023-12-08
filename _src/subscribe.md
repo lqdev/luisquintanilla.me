@@ -34,7 +34,7 @@ Follow on NewsBlur
 
 ## Response Feed
 
-Microblog-like short posts containing replies, reshares (repost), and favorites (likes).
+Microblog-like short posts containing replies, reshares (repost), favorites (likes), and bookmarks.
 
 Feed URL: [https://www.luisquintanilla.me/feed/responses/index.xml](/feed/responses/index.xml)
 
