@@ -177,8 +177,8 @@ module Layouts
 
     let rssFeeds = [
         link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Blog RSS Feed"; _href "https://www.luisquintanilla.me/posts/index.xml"]
-        link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Main Feed (Microblog) RSS"; _href "https://www.luisquintanilla.me/feed/index.xml"]
-        link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Response Feed RSS"; _href "https://www.luisquintanilla.me/feed/responses/index.xml"]
+        link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Main (Microblog) RSS Feed"; _href "https://www.luisquintanilla.me/feed/index.xml"]
+        link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla (Microblog) Response RSS Feed"; _href "https://www.luisquintanilla.me/feed/responses/index.xml"]
     ]
 
     let webmentionLink = 
