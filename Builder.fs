@@ -277,11 +277,13 @@ module Builder
     let buildBlogrollOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Blogroll" "https://www.luisquintanilla.me" links
         let saveDir = Path.Join(outputDir,"feed","blogroll")
+        File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
     let buildPodrollOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Podroll" "https://www.luisquintanilla.me" links
         let saveDir = Path.Join(outputDir,"feed","podroll")
+        File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
     let buildPostPages (posts:Post array) = 
