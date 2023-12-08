@@ -5,7 +5,7 @@ published_date: "2023-11-12 14:05"
 tags: ["books"]
 ---
 
-Following up on the theme of cycles and looking back at things from yesteryear explored in my post [AI abundance after scarcity cycles](./ai-abundance-scarcity-cycle-repeats-rss-enclosure-use-case.md), I came across another example.
+Following up on the theme of cycles and looking back at things from yesteryear explored in my post [AI abundance after scarcity cycles](/feed/ai-abundance-scarcity-cycle-repeats-rss-enclosure-use-case/), I came across another example.
 
 While looking through some of my old books, I came across Stephen Covey's "7 Habits of Highly Effective People". I remember reading it over ten years ago. At the time, the habits and themes explored in the book had an impact on me. However, since that time I haven't looked at the book again. Today, I cracked it open and skimmed through the foreword. In it, Stephen talks about common human challenges such as:
 
