@@ -20,7 +20,7 @@ Since I'm building a .NET package from the GitHub source, I use `buildDotnetModu
 
 To get the rev, use the `git log` command. It's the hash of the latest commit. 
 
-### Fake SHA
+## Fake SHA
 
 ```nix
 {
@@ -49,7 +49,7 @@ buildDotnetModule {
 
 At this point the sha256 will be empty because you'll get it later in the process.
 
-### Create default.nix
+## Create default.nix
 
 ```nix
 let
@@ -60,7 +60,7 @@ in
 }
 ```
 
-### Fetch dependencies
+## Fetch dependencies
 
 Create a file called `deps.nix`. This will contain the dependencies you need for your application. 
 
@@ -70,7 +70,7 @@ touch deps.nix
 
 Then, run `nix-build -A fitch.fetch-deps`. This should fail because of the empty SHA.
 
-### Updading SHA
+## Update SHA
 
 The empty SHA will fail. However, the error message will contain the actual SHA value. Copy that and paste it into the sha256 property.
 
@@ -100,14 +100,14 @@ buildDotnetModule {
 }
 ```
 
-### Get dependencies
+## Get dependencies
 
 Now that you have the correct SHA, try getting the dependencies again. These dependencies are created in a series of steps:
 
 1. Run the following command `sudo nix-build -A fitch.fetch-deps`. The result of this command is an executable script called *result*.
 1. Run the *result* script. `sudo ./result deps.nix`. This will generate the lockfile called *deps.nix* and is referenced by the `nugetDeps` property.
 
-### Build package
+## Build package
 
 Once everything is set up, run `nix-build -A fitch`. This will package and install the package onto your system.
 
@@ -125,7 +125,7 @@ environment.systemPackages = with pkgs; [
 
 Then, run `nixos-rebuild switch`. This should now install the package onto your PC.
 
-## (Optional)
+## (Optional) Initialize when shell starts
 
 In my case, since I want fitch to run when the terminal starts, I edit my bash configuration in the *configuration.nix* file.
 
