@@ -1,13 +1,14 @@
 ---
 post_type: "wiki" 
 title: "Install .NET packages on NixOS from GitHub"
-last_updated_date: "08/23/2023 20:06"
+last_updated_date: "12/17/2023 17:56"
 tags: dotnet,nixos,linux,sysadmin,
 ---
 
 ## Overview
 
 This guide shows how to build a .NET package from GitHub source. The project used to illustrate the process can be found on [GitHub](https://github.com/lqdev/fitch).
+
 
 ## Create derivation
 
@@ -40,13 +41,34 @@ buildDotnetModule {
 
   projectFile = "src/fitch.fsproj";
   executables = "fitch";
-  dotnet-sdk = dotnetCorePackages.sdk_7_0;
-  dotnet-runtime = dotnetCorePackages.runtime_7_0;
+  dotnet-sdk = dotnetCorePackages.sdk_8_0;
+  dotnet-runtime = dotnetCorePackages.runtime_8_0;
   nugetDeps = ./deps.nix;
 }
 ```
 
-Once you have this, you can run `nix-build -A fitch`
+At this point the sha256 will be empty because you'll get it later in the process.
+
+### Create default.nix
+
+```nix
+let
+  pkgs = import <nixpkgs> { };
+in
+{
+  fitch = pkgs.callPackage ./fitch.nix { };
+}
+```
+
+### Fetch dependencies
+
+Create a file called `deps.nix`. This will contain the dependencies you need for your application. 
+
+```bash
+touch deps.nix
+```
+
+Then, run `nix-build -A fitch.fetch-deps`. This should fail because of the empty SHA.
 
 ### Updading SHA
 
@@ -80,9 +102,9 @@ buildDotnetModule {
 
 ### Get dependencies
 
-The next step is to get the dependencies. These dependencies are created in a series of steps:
+Now that you have the correct SHA, try getting the dependencies again. These dependencies are created in a series of steps:
 
-1. Run the following command `sudo nix-build -A fitch.passthru.fetch-deps`. The result of this command is an executable script called *result*.
+1. Run the following command `sudo nix-build -A fitch.fetch-deps`. The result of this command is an executable script called *result*.
 1. Run the *result* script. `sudo ./result deps.nix`. This will generate the lockfile called *deps.nix* and is referenced by the `nugetDeps` property.
 
 ### Build package
