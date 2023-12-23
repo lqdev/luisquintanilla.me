@@ -3,7 +3,7 @@ post_type: "article"
 title: "Using Generative AI to produce Spotify Clips"
 description: "In this blog post, I discuss how you might use Generative AI models like VideoPoet to generate short video clips like Spotify Clips. Using DALL-E as a proxy, I show the general workflow in practice for the song A Hundred Dead and Loving Souls by Chicano Batman"
 published_date: "2023-12-23 18:30"
-tags: ["ai","video","chicanobatman","generativeai","spotify","google","microsoft","bing","copilot","dalle","image","prompt","projectidea","music","podcasts","llm"]
+tags: ["ai","video","chicanobatman","generativeai","genai","spotify","google","microsoft","bing","copilot","dalle","image","prompt","projectidea","music","podcasts","llm"]
 ---
 
 ## Introduction
@@ -46,7 +46,7 @@ Now that we know the general process, what does it actually look like in practic
 
 In the example shared by Google, they used a prompt to generate a script made up of a series of prompts. In the case of songs on Spotify, we can use that as context and the starting point for our script. From there, we can ask Copilot to compose scenes for the verses in the song. We can also make sure as these scenes are generated, that there is a smooth transition between them and the storytelling is consistent. 
 
-Let's take a look at what this might look like using the Chicano Batman song "A Hundred Dead and Loving Souls". The general theme of that song is about the cycles of life experienced across millenia and generations. 
+Let's take a look at what this might look like using the Chicano Batman song "A Hundred Dead and Loving Souls". Why that one? Just check out my [Spotify Wrapped](/feed/spotify-wrapped-2023). The general theme of that song is about the cycles of life experienced across millenia and generations. 
 
 **Prompt**
 
