@@ -15,7 +15,7 @@ jobs:
       - name: Print working directory
         run: pwd
       - name: List files
-        run: ls      
+        run: ls .     
       - name: Build project
         run: dotnet build --no-restore          
       - name: Display Post Metrics
