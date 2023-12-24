@@ -67,6 +67,13 @@ let responsesByTag =
     |> Array.countBy(fun x -> x)
     |> Array.sortByDescending(snd)
 
+// Organize responses by host name (domain)
+let responsesByDomain = 
+    responses
+    |> Array.filter(fun x -> (DateTime.Parse(x.Metadata.DatePublished) |> _.Year) = 2023)
+    |> Array.countBy(fun x -> Uri(x.Metadata.TargetUrl).Host)
+    |> Array.sortByDescending(snd)
+
 // Utility function to display counts
 let printEntryCounts<'a> (title:string) (entryCounts:('a * int) array) (n:int) = 
     printfn $"{title}"
@@ -94,11 +101,14 @@ printEntryCounts "Response Types" responsesByType -1
 
 // Print response tag counts
 printEntryCounts "Response Tags" responsesByTag 5
+
+// Print response by host name
+printEntryCounts "Domains" responsesByDomain 5
 ```
 
 ## Expected Output
 
-```bash
+```text
 Blogs
 2023 5
 2022 7
@@ -123,4 +133,11 @@ llm 42
 untagged 41
 opensource 31
 internet 17
+
+Domains
+github.com 15
+huggingface.co 11
+arxiv.org 10
+openai.com 6
+www.theverge.com 4
 ```

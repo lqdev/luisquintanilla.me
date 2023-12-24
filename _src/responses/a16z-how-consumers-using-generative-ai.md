@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "How consumers are using Generative AI"
 targeturl: https://a16z.com/how-are-consumers-using-generative-ai/ 
 response_type: bookmark
 dt_published: "2023-09-17 12:40"
