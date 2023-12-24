@@ -25,8 +25,6 @@ jobs:
         run: dotnet run
       - name: Check total webpage size
         run: du -sh ./_public
-      - name: Display Post Metrics
-        run: dotnet fsi Scripts/stats.fsx
       - name: Upload to blob storage
         uses: azure/CLI@v1
         with:
