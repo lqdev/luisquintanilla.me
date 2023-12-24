@@ -35,4 +35,4 @@ Armchair quarterbacking, but at 44% 4th down conversions, I don't think you go f
 
 **22:25**
 
-And there it is. Starting QB came back into the game and had a short field to work with against a tired defence. Offense is going to have to dig deep for Utah.
+And there it is. Starting QB came back into the game and had a short field to work with against a tired defense. Offense is going to have to dig deep for Utah.
