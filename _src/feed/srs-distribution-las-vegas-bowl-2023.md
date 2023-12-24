@@ -32,3 +32,7 @@ Okay. I think I got it. Utah like many of the Pac-12 teams is a passing team. No
 **22:16**
 
 Armchair quarterbacking, but at 44% 4th down conversions, I don't think you go for it on 4th and 2 in the middle of the field. No matter how well your defense is playing and going against a backup quarterback. 
+
+**22:25**
+
+And there it is. Starting QB came back into the game and had a short field to work with against a tired defence. Offense is going to have to dig deep for Utah.
