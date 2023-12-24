@@ -28,3 +28,7 @@ Okay. I think I got it. Utah like many of the Pac-12 teams is a passing team. No
 7-7!
 
 ![Jim Carrey GIF Dumb and Dumber with caption "So you're telling me there's a chance"](https://media.giphy.com/media/j6uK36y32LxQs/giphy.gif)
+
+**22:16**
+
+Armchair quarterbacking, but at 44% 4th down conversions, I don't think you go for it on 4th and 2 in the middle of the field. No matter how well your defense is playing and going against a backup quarterback. 
