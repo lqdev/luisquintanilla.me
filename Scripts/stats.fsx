@@ -46,6 +46,13 @@ let responsesByTag =
     |> Array.countBy(fun x -> x)
     |> Array.sortByDescending(snd)
 
+// Organize responses by host name (domain)
+let responsesByDomain = 
+    responses
+    |> Array.filter(fun x -> (DateTime.Parse(x.Metadata.DatePublished) |> _.Year) = 2023)
+    |> Array.countBy(fun x -> Uri(x.Metadata.TargetUrl).Host)
+    |> Array.sortByDescending(snd)
+
 // Utility function to display counts
 let printEntryCounts<'a> (title:string) (entryCounts:('a * int) array) (n:int) = 
     printfn $"{title}"
@@ -73,3 +80,6 @@ printEntryCounts "Response Types" responsesByType -1
 
 // Print response tag counts
 printEntryCounts "Response Tags" responsesByTag 5
+
+// Print response by host name
+printEntryCounts "Domains" responsesByDomain 5
