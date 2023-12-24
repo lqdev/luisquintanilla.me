@@ -309,7 +309,7 @@ As fascinating as this is, is it worth the energy and cooling demands it require
 
 ### People
 
-For music videos, there's a human element to it both from the performers and the people who produce them. Again, the Generative AI is impressive and for someone like me without any artistic skills, it can be an empowering tool. Although I'm tempted to see what an AI Rick Roll might look like, I prefer the human version. :slightly_smiling_face:
+For music videos, there's a human element to it both from the performers and the people who produce them. Again, the Generative AI is impressive and for someone like me without any artistic skills, it can be an empowering tool. Although I'm tempted to see what an [AI Rickroll](https://www.youtube.com/watch?v=dQw4w9WgXcQ) might look like, I prefer the human version. :slightly_smiling_face:
 
 ## Conclusion
 
