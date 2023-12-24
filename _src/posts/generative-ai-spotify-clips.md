@@ -314,3 +314,5 @@ For music videos, there's a human element to it both from the performers and the
 ## Conclusion
 
 In this post I discussed how you might use Generative AI models like VideoPoet to generate short videos for Spotify Clips. Since I don't have acess to VideoPoet or other video generation models at this time, I decided to show practical image generation examples instead using models like DALL-E to illustrate the general concepts. It's not wihtout its challenges and there's a ton of improvements I can think of but it was a fun experiment regardless. What else would you use these Generative AI models for? 
+
+You can find an addendum to this post [here](/feed/genai-spotify-clips-instrumental).
