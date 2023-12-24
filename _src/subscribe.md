@@ -62,6 +62,19 @@ Follow on Feedly
 Follow on NewsBlur
 </button></a>
 
+## Bluesky
+
+Feed URL: [https://bsky.app/profile/did:plc:pme7qquljcdx6i4zyawoxypd/rss](https://bsky.app/profile/did:plc:pme7qquljcdx6i4zyawoxypd/rss)
+
+<a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fbsky.app%2Fprofile%2Fdid%3Aplc%3Apme7qquljcdx6i4zyawoxypd%2Frss"><button type="button" class="btn" style="background-color:green;margin:5px;">
+<span class="bi bi-rss"></span>
+Follow on Feedly
+</button></a>
+<a href="http://www.newsblur.com/?url=https%3A%2F%2Fbsky.app%2Fprofile%2Fdid%3Aplc%3Apme7qquljcdx6i4zyawoxypd%2Frss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
+<span class="bi bi-rss"></span>
+Follow on NewsBlur
+</button></a>
+
 ## YouTube Channel
 
 Video posts on YouTube
