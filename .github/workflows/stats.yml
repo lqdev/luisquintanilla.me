@@ -2,6 +2,7 @@ name: Post Statistics
 on:
   schedule: 
     - cron: '30 0 1 * *'
+  workflow_dispatch: 
 jobs:
   Run-Stats:
     runs-on: ubuntu-latest
