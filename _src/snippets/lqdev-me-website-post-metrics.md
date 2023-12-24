@@ -51,13 +51,14 @@ let responseCountsByYear =
 // Organize responses by type
 let responsesByType = 
     responses
-    |> Array.filter(fun x -> (DateTime.Parse(x.Metadata.DatePublished) |> _.Year) = 2023)
+    |> Array.filter(fun x -> (DateTime.Parse(x.Metadata.DatePublished) |> _.Year) = DateTime.UtcNow.Year)
     |> Array.countBy(fun x -> x.Metadata.ResponseType)
+    |> Array.sortByDescending(snd)
 
 // Organize responses by tag
 let responsesByTag = 
     responses
-    |> Array.filter(fun x -> (DateTime.Parse(x.Metadata.DatePublished) |> _.Year) = 2023)
+    |> Array.filter(fun x -> (DateTime.Parse(x.Metadata.DatePublished) |> _.Year) = DateTime.UtcNow.Year)
     |> Array.collect(fun x -> 
             match x.Metadata.Tags with
             | null -> [|"untagged"|]
@@ -70,7 +71,7 @@ let responsesByTag =
 // Organize responses by host name (domain)
 let responsesByDomain = 
     responses
-    |> Array.filter(fun x -> (DateTime.Parse(x.Metadata.DatePublished) |> _.Year) = 2023)
+    |> Array.filter(fun x -> (DateTime.Parse(x.Metadata.DatePublished) |> _.Year) = DateTime.UtcNow.Year)
     |> Array.countBy(fun x -> Uri(x.Metadata.TargetUrl).Host)
     |> Array.sortByDescending(snd)
 
