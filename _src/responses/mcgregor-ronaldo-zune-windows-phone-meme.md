@@ -4,7 +4,7 @@ targeturl: https://twitter.com/HappyPunch/status/1738661281236672833
 response_type: reply
 dt_published: "2023-12-23 20:23"
 dt_updated: "2023-12-23 20:23 -05:00"
-tags: ["windowsphone","zune","ai","copilot",""meme"]
+tags: ["windowsphone","zune","ai","copilot","meme"]
 ---
 
 ^^^
