@@ -307,6 +307,10 @@ If there are flashbacks or different visuals between scenes, you might achieve c
 
 As fascinating as this is, is it worth the energy and cooling demands it requires when using large models? Maybe not in its current form, but maybe it makes sense when using smaller models or more power efficient compute. 
 
+### People
+
+For music videos, there's a human element to it both from the performers and the people who produce them. Again, the Generative AI is impressive and for someone like me without any artistic skills, it can be an empowering tool. Although I'm tempted to see what an AI Rick Roll might look like, I prefer the human version. :slightly_smiling_face:
+
 ## Conclusion
 
 In this post I discussed how you might use Generative AI models like VideoPoet to generate short videos for Spotify Clips. Since I don't have acess to VideoPoet or other video generation models at this time, I decided to show practical image generation examples instead using models like DALL-E to illustrate the general concepts. It's not wihtout its challenges and there's a ton of improvements I can think of but it was a fun experiment regardless. What else would you use these Generative AI models for? 
