@@ -22,3 +22,9 @@ Yet they can't put together a drive. Something doesn't add up.
 21:54
 
 Okay. I think I got it. Utah like many of the Pac-12 teams is a passing team. Northwestern is in the [top 25 passing defenses](https://www.foxsports.com/articles/college-football/2023-college-football-defense-rankings-team-pass-and-rush-stats). So I guess this is the toughest defense they've faced?
+
+22:01
+
+7-7!
+
+![Jim Carrey GIF Dumb and Dumber with caption "So you're telling me there's a chance"](https://media.giphy.com/media/j6uK36y32LxQs/giphy.gif)
