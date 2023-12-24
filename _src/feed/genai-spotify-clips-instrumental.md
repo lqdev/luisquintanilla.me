@@ -5,7 +5,7 @@ published_date: "2023-12-23 19:32"
 tags: ["ai","genai","music","instrumental","spotify","generativeai","llm"]
 ---
 
-In my recent post, [Using Generative AI to produce Spotify Clips](/posts/generative-ai-spotify-clips) I listed a bunch of challenges but realized I missed a big one. While listening to [IJ by Sam Gendel](https://www.youtube.com/watch?v=G0CqHxDG74k), I realized, what do you do about instrumental songs or songs with few lyrics? 
+In my recent post, [Using Generative AI to produce Spotify Clips](/posts/generative-ai-spotify-clips) I listed a bunch of challenges but realized I missed a big one. While listening to [IJ by Sam Gendel](https://www.youtube.com/watch?v=G0CqHxDG74k), I realized, what do you do about instrumental songs, solos, or songs with few lyrics? 
 
 Some sort of audio-to-video technique? 
 
