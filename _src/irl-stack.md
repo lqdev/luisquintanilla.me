@@ -1,6 +1,7 @@
 # In Real Life (IRL) Stack
 
 Devices, apps, and services I use day-to-day.
+
 ## Every Day Carry (EDC) S
 
 The essentials:
@@ -16,7 +17,6 @@ When using a sling bag:
 - **MP3 Player**: [FiiO M6](https://www.fiio.com/m6)
 - **E-Reader**: [Onyx Boox Nova Air 2](https://shop.boox.com/products/novaair2)
 - **Headphones**: [Apple Earpods (3.5mm)](https://www.apple.com/shop/product/MNHF2AM/A/earpods-35mm-headphone-plug)
-
 - **Charger**: [Surface USB-C Power Supply](https://www.microsoft.com/en-us/d/surface-23w-usb-c-power-supply/8tz3pknddhjd)
 
 ## Every Day Carry (EDC) L
