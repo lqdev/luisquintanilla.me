@@ -4,7 +4,7 @@ author: "Tim Hawking"
 isbn: "9780645579109"
 cover: ""
 status: "InProgress"
-rating: "N/A"
+rating: ""
 source: ""
 ---
 
