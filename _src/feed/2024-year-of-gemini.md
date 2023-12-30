@@ -14,4 +14,4 @@ I've been seeing a few posts about Gemini cross my feed reader which is more tha
 
 Gemini is weird in a fun way. 
 
-Since content is text-based, using terminal clients like [Elpher](https://thelambdalab.xyz/elpher/) and [Amfora](https://github.com/makew0rld/amfora) make it easy to browser pages (pods) and blogs (gemlogs).
+Since content is text-based, using terminal clients like [Elpher](https://thelambdalab.xyz/elpher/) and [Amfora](https://github.com/makew0rld/amfora) make it easy to browse pages (pods) and blogs (gemlogs).
