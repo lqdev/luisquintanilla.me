@@ -1,5 +1,5 @@
 ---
-title: "Blogs + RSS - best decenralized social media we ever had"
+title: "Blogs + RSS - best decentralized social media we ever had"
 targeturl: https://octodon.social/@cwebber/111647596861000656
 response_type: reply
 dt_published: "2023-12-30 00:30"
