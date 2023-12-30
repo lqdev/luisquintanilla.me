@@ -9,7 +9,7 @@ tags: ["rss","blog","decentralized","socialmedia","blogging","mastodon","fediver
 
 ^^^
 > Bring back self-hosted blogs, reinstall a feed reader, make your feed icon prominent on your blog.  Blogs + Atom/RSS is the best decentralized social media system we've ever had!  
-> <br>
+> <br>  
 > And yes I am saying that as co-author of ActivityPub: self hosted blogs is the best decentralized social networking we've had
 ^^^ Source: [Christine Lemmer-Webber (@cwebber@octodon.social)](https://octodon.social/@cwebber)
 
