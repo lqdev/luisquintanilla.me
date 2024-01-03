@@ -58,16 +58,21 @@ let responsesByDomain =
 let printEntryCounts<'a> (title:string) (entryCounts:('a * int) array) (n:int) = 
     printfn $"{title}"
 
-    match n with 
-    | n when n = -1 -> 
-        entryCounts
-        |> Array.iter(fun x -> printfn $"{fst x} {snd x}")
-        |> fun _ -> printfn $""
-    | n when n >= 0 -> 
-        entryCounts
-        |> Array.take n
-        |> Array.iter(fun x -> printfn $"{fst x} {snd x}")
-        |> fun _ -> printfn $""
+    match entryCounts.Length with
+    | 0 -> 
+        printfn $"No entries"
+        printfn $""
+    | a when a > 0 -> 
+        match n with 
+        | n when n = -1 || n > entryCounts.Length -> 
+            entryCounts
+            |> Array.iter(fun x -> printfn $"{fst x} {snd x}")
+            |> fun _ -> printfn $""
+        | n when n > 0 -> 
+            entryCounts
+            |> Array.take n
+            |> Array.iter(fun x -> printfn $"{fst x} {snd x}")
+            |> fun _ -> printfn $""
 
 // Print yearly counts
 printEntryCounts "Blogs" postCountsByYear 2
