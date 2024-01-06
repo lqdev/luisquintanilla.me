@@ -121,7 +121,7 @@ let webmentionForm =
             _method "POST"
             _enctype "application/x-www-form-urlencoded"
         ] [
-            h5 [_class "text-center"] [str "Send me a " ; a [_href "https://indieweb.org/webmentions"] [Text "webmention"]]
+            h5 [_class "text-center"] [str "Send me a " ; a [_href "/contact"] [Text "message"];str " or ";a [_href "https://indieweb.org/webmentions"] [Text "webmention"]]
             div [_class "form-row justify-content-center"] [
                 div [_class "w-75"] [
                     input [
