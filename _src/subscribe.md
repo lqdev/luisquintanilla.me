@@ -6,28 +6,28 @@ I'm a big fan of RSS and have written about it in posts like [Rediscovering the 
 
 Long-form posts. Mainly around tech topics.
 
-Feed URL: [https://www.luisquintanilla.me/posts/index.xml](/posts/index.xml)
+Feed URL: [https://www.lqdev.me/blog.rss](/blog.rss)
 
-<a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fwww.luisquintanilla.me%2Fposts%2Findex.xml"><button type="button" class="btn" style="background-color:green;margin:5px;">
+<a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fwww.lqdev.me%2Fblog.rss"><button type="button" class="btn" style="background-color:green;margin:5px;">
 <span class="bi bi-rss"></span>
 Follow on Feedly
 </button></a>
-<a href="http://www.newsblur.com/?url=https%3A%2F%2Fwww.luisquintanilla.me%2Fposts%2Findex.xml"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
+<a href="http://www.newsblur.com/?url=https%3A%2F%2Fwww.lqdev.me%2Fblog.rss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
 <span class="bi bi-rss"></span>
 Follow on NewsBlur
 </button></a>
 
-## Main Feed
+## Microblog Feed
 
 Microblog-like short posts containing different types of content such as notes, photos, and videos.
 
-Feed URL: [https://www.luisquintanilla.me/feed/index.xml](/feed/index.xml)
+Feed URL: [https://www.lqdev.me/posts.rss](/posts.rss)
 
-<a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fwww.luisquintanilla.me%2Ffeed%2Findex.xml"><button type="button" class="btn" style="background-color:green;margin:5px;">
+<a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fwww.lqdev.me%2Fposts.rss"><button type="button" class="btn" style="background-color:green;margin:5px;">
 <span class="bi bi-rss"></span>
 Follow on Feedly
 </button></a>
-<a href="http://www.newsblur.com/?url=https%3A%2F%2Fwww.luisquintanilla.me%2Ffeed%2Findex.xml"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
+<a href="http://www.newsblur.com/?url=https%3A%2F%2Fwww.lqdev.me%2Fposts.rss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
 <span class="bi bi-rss"></span>
 Follow on NewsBlur
 </button></a>
@@ -36,13 +36,13 @@ Follow on NewsBlur
 
 Microblog-like short posts containing replies, reshares (repost), favorites (likes), and bookmarks.
 
-Feed URL: [https://www.luisquintanilla.me/feed/responses/index.xml](/feed/responses/index.xml)
+Feed URL: [https://www.lqdev.me/responses.rss](/responses.rss)
 
-<a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fwww.luisquintanilla.me%2Ffeed%2Fresponses%2Findex.xml"><button type="button" class="btn" style="background-color:green;margin:5px;">
+<a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fwww.lqdev.me%2Fresponses.rss"><button type="button" class="btn" style="background-color:green;margin:5px;">
 <span class="bi bi-rss"></span>
 Follow on Feedly
 </button></a>
-<a href="http://www.newsblur.com/?url=https%3A%2F%2Fwww.luisquintanilla.me%2Ffeed%2Fresponses%2Findex.xml"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
+<a href="http://www.newsblur.com/?url=https%3A%2F%2Fwww.lqdev.me%2Fresponses.rss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
 <span class="bi bi-rss"></span>
 Follow on NewsBlur
 </button></a>
@@ -51,26 +51,26 @@ Follow on NewsBlur
 
 RSS Feed for Mastodon posts.
 
-Feed URL: [http://toot.lqdev.tech/@lqdev.rss](http://toot.lqdev.tech/@lqdev.rss)
+Feed URL: [https://www.lqdev.me/mastodon.rss](http://toot.lqdev.tech/@lqdev.rss)
 
-<a href="https://feedly.com/i/subscription/feed%2Fhttp%3A%2F%2Ftoot.lqdev.tech%2F%40lqdev.rss"><button type="button" class="btn" style="background-color:green;margin:5px;">
+<a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%www.lqdev.me%2Fmastodon.rss"><button type="button" class="btn" style="background-color:green;margin:5px;">
 <span class="bi bi-rss"></span>
 Follow on Feedly
 </button></a>
-<a href="http://www.newsblur.com/?url=http%3A%2F%2Ftoot.lqdev.tech%2F%40lqdev.rss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
+<a href="http://www.newsblur.com/?url=https%3A%2F%www.lqdev.me%2Fmastodon.rss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
 <span class="bi bi-rss"></span>
 Follow on NewsBlur
 </button></a>
 
 ## Bluesky
 
-Feed URL: [https://bsky.app/profile/did:plc:pme7qquljcdx6i4zyawoxypd/rss](https://bsky.app/profile/did:plc:pme7qquljcdx6i4zyawoxypd/rss)
+Feed URL: [https://www.lqdev.me/bluesky.rss](/bluesky.rss)
 
-<a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fbsky.app%2Fprofile%2Fdid%3Aplc%3Apme7qquljcdx6i4zyawoxypd%2Frss"><button type="button" class="btn" style="background-color:green;margin:5px;">
+<a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%www.lqdev.me%2Fbluesky.rss"><button type="button" class="btn" style="background-color:green;margin:5px;">
 <span class="bi bi-rss"></span>
 Follow on Feedly
 </button></a>
-<a href="http://www.newsblur.com/?url=https%3A%2F%2Fbsky.app%2Fprofile%2Fdid%3Aplc%3Apme7qquljcdx6i4zyawoxypd%2Frss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
+<a href="http://www.newsblur.com/?url=https%3A%2F%www.lqdev.me%2Fbluesky.rss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
 <span class="bi bi-rss"></span>
 Follow on NewsBlur
 </button></a>
@@ -79,13 +79,13 @@ Follow on NewsBlur
 
 Video posts on YouTube
 
-Feed URL: [https://yewtu.be/feed/channel/UCkA5fHdQ4cf3D1J19UNgV7A](https://yewtu.be/feed/channel/UCkA5fHdQ4cf3D1J19UNgV7A)
+Feed URL: [https://www.lqdev.me/youtube.rss](/youtube.rss)
 
-<a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fyewtu.be%2Ffeed%2Fchannel%2FUCkA5fHdQ4cf3D1J19UNgV7A"><button type="button" class="btn" style="background-color:green;margin:5px;">
+<a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%www.lqdev.me%2Fyoutube.rss"><button type="button" class="btn" style="background-color:green;margin:5px;">
 <span class="bi bi-rss"></span>
 Follow on Feedly
 </button></a>
-<a href="http://www.newsblur.com/?url=https%3A%2F%2Fyewtu.be%2Ffeed%2Fchannel%2FUCkA5fHdQ4cf3D1J19UNgV7A"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
+<a href="http://www.newsblur.com/?url=https%3A%2F%www.lqdev.me%2Fyoutube.rss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
 <span class="bi bi-rss"></span>
 Follow on NewsBlur
 </button></a>
