@@ -58,10 +58,10 @@ let homeView (blog:Post) (microblog:Post) (response:Response) =
                             li [] [
                                 span [_class "mr-1"] [Text "&#x1F4AC;"]
                                 str "Scroll through my "
-                                a [_href "/feed"] [Text "main"]
+                                a [_href "/feed"] [Text "microblog"]
                                 str " and "
                                 a [_href "/feed/responses"] [Text "response"]
-                                str " microblog feeds"
+                                str " feeds"
                             ]
                             li [] [
                                 span [_class "mr-1"] [Text "&#x1F514;"]
