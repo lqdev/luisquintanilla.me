@@ -177,7 +177,7 @@ module Layouts
 
     let rssFeeds = [
         link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Blog RSS Feed"; _href "/blog.rss"]
-        link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Microblog RSS Feed"; _href "/posts.rss"]
+        link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Microblog RSS Feed"; _href "/microblog.rss"]
         link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Response RSS Feed"; _href "/responses.rss"]
     ]
 

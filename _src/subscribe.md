@@ -17,9 +17,9 @@ Follow on NewsBlur
 
 Microblog-like short posts containing different types of content such as notes, photos, and videos.
 
-Feed URL: [https://www.lqdev.me/posts.rss](/posts.rss)
+Feed URL: [https://www.lqdev.me/microblog.rss](/microblog.rss)
 
-<a href="http://www.newsblur.com/?url=https%3A%2F%2Fwww.lqdev.me%2Fposts.rss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
+<a href="http://www.newsblur.com/?url=https%3A%2F%2Fwww.lqdev.me%2Fmicroblog.rss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
 <span class="bi bi-rss"></span>
 Follow on NewsBlur
 </button></a>
