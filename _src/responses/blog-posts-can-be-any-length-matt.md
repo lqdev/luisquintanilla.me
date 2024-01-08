@@ -11,4 +11,4 @@ tags: ["writing","blog","web","internet"]
 ![A comment thread between Luis and Matt](https://github.com/lqdev/luisquintanilla.me/assets/11130940/d42cc57e-b882-4042-b2be-e68810105c3d)
 ^^^ Source: *[Matt Mullenweg](https://ma.tt/)*
 
-![A picture of a man dressed in black pointing up to blinking overhead text "THIS"](https://media.giphy.com/media/26FLgGTPUDH6UGAbm/giphy.gif)
+![A GIF of a man dressed in black pointing up to blinking overhead text "THIS"](https://media.giphy.com/media/26FLgGTPUDH6UGAbm/giphy.gif)
