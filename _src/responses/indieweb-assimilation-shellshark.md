@@ -8,9 +8,9 @@ tags: ["indieweb","guide","catalog"]
 ---
 
 
-> Principle Mechanics  
+> Principle Mechanics    
 >   
-This section does not provide exhaustive coverage of how to implement IndieWeb functionality. Instead, I simply summarize five core primitives which I feel comprise an IndieWeb site. For a more official gauge on where a site scores within the IndieWeb spectrum, consider leveraging IndieMark!  
+> This section does not provide exhaustive coverage of how to implement IndieWeb functionality. Instead, I simply summarize five core primitives which I feel comprise an IndieWeb site. For a more official gauge on where a site scores within the IndieWeb spectrum, consider leveraging IndieMark!  
 >   
 >    Hosting: You need a place to host your site and store your content. There are a lot of great options out there. Ideally, choose one that allows you the ability to make some under-the-hood changes and does not limit your content portability.  
 >  
