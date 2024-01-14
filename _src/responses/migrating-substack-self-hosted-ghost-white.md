@@ -13,4 +13,4 @@ tags: ["substack","selfhost","indieweb","ghost"]
 
 > I realize that this is...a lot. If you are a newsletter writer looking to flee the Substack ship, please don't let this discourage you.
 
-Love seeing this! Whether through self-hosted or hosted options, I hope more people get to experience the benefits of owning your own platform.
+Love seeing this! Whether through self-hosted or hosted options, I hope more people get to experience the benefits of owning their own platform.
