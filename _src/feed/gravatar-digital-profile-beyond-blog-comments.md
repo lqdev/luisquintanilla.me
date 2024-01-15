@@ -2,7 +2,7 @@
 post_type: "note" 
 title: "Gravatar - Your digital profile beyond blog comments"
 published_date: "2024-01-15 11:18"
-tags: ["profile","online","gravatar","website","web","comments","internet","automattic","wordpress","identity","linktree","indieweb"]
+tags: ["profile","online","gravatar","website","web","comments","internet","automattic","wordpress","identity","linktree","indieweb","socialmedia","blog","bloggin"]
 ---
 
 I had known about [Gravatar](https://gravatar.com/) since its early days. I was under the (incorrect) impression that it could only be used to comment on blogs. I thought when you created an account, you added your name, e-mail, and image as part of your profile. Then, when you wanted to comment on blogs, instead of creating individual accounts or profiles, you could just reuse your Gravatar profile. That's partially true. However, I'm happy to report I was wrong and there's so much more. 
