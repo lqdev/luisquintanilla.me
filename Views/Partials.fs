@@ -574,8 +574,9 @@ let bookPostView (book: Book) =
                     a [_href $"/library/{book.FileName}"] [
                         h5 [_class "card-title"] [Text book.Metadata.Title]
                     ]
-                    p [_class "card-text"] [Text book.Metadata.Author]
-                    p [_class "card-text"] [Text $"{book.Metadata.Rating}/5"]
+                    p [_class "card-text"] [Text $"Author: {book.Metadata.Author}"]
+                    p [_class "card-text"] [Text $"Status: {book.Metadata.Status}"]
+                    p [_class "card-text"] [Text $"Rating: {book.Metadata.Rating}/5"]
                 ]                
             ]
         ]
