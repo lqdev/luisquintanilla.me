@@ -56,8 +56,8 @@
     {
         "Title": "FLOSS Weekly",
         "Type": "rss",
-        "HtmlUrl": "https://twit.tv/shows/floss-weekly",
-        "XmlUrl": "https://feeds.twit.tv/floss.xml"
+        "HtmlUrl": "https://hackaday.com/tag/floss-weekly/",
+        "XmlUrl": "https://feeds.libsyn.com/499093/rss"
     },
     {
         "Title": "Windows Weekly",
