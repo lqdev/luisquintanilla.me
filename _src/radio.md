@@ -1,6 +1,6 @@
 # Online Radio
 
-Quick links to some of my favorite online radio stations:
+Quick links to some of my favorite radio stations:
 
 | Station | Stream Link | lqvlc link |
 | --- | --- | --- |
