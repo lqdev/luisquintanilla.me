@@ -7,7 +7,7 @@ dt_updated: "2024-01-15 12:36 -05:00"
 tags: ["music","chicanobatman"]
 ---
 
-Starting off the year right with new Chicano Batman! 
+Starting off the year right with new [Chicano Batman](https://chicanobatman.com/)! 
 
 ^^^
 > “Fly” is yours 1/23 🕊 And this is just the beginning!  
