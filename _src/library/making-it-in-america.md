@@ -8,6 +8,19 @@ rating:
 source: "https://www.penguinrandomhouse.com/books/706867/making-it-in-america-by-rachel-slade/"
 ---
 
+## Description
+
+> Meet Ben and Whitney Waxman, two tireless idealists attempting to do the impossible: produce an American-made, union-made, all American-sourced sweatshirt—an American hoodie.  
+> <br>
+> Ben spent a decade organizing workers in Pennsylvania, Ohio, and Wisconsin, fighting for Americans at a time when national support for unions had sunk to an all-time low. Struggling with depression and a drug dependency, Ben lands back in his hometown of Portland, Maine, desperate to prove that ethical manufacturing is possible. There, he meets Whitney, a bartender wrestling with her own complicated past. In each other they see a better future, a version of the American dream they can build together.  
+> <br>
+> Making It in America is a deeply personal account of one couple’s quest to change the world. As they navigate private struggles, international trade wars, and a global pandemic, their story carries us across the nation and across time, from the cotton fields of Mississippi to New York City’s hollowed-out garment district to a family-owned zipper company in Los Angeles to the enormous knit-and-dye factories in North Carolina. Throughout, we grapple with what “Made in the USA” really means to Americans in the twenty-first century.  
+> <br>
+> Making It in America also offers a unique look at global politics, economics, and labor through the story of textile manufacturing. It was the demand for cheap cloth that sparked the industrial revolution. It was the brutality of the textile industry that first drove workers to organize.  
+> <br>
+> Making It in America reveals how profoundly manufacturing shapes all of us. Each twist and turn of the Waxmans’ quest tells us how we got here, where we are now, and where we’re headed—through the people that produce the fabric of our lives.  
+
+
 ## Review
 
 ## Quotes
