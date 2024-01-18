@@ -4,7 +4,7 @@ targeturl: https://www.theverge.com/2024/1/17/24041330/notion-calendar-app
 response_type: reshare
 dt_published: "2024-01-17 19:33"
 dt_updated: "2024-01-17 19:33 -05:00"
-tags: ["calendar","notion","productivity","gtd","software","app"]
+tags: ["calendar","notion","productivity","gtd","software","app","pkm"]
 ---
 
 > After acquiring Cron in 2022, Notion is bringing the calendar app fully into its all-in-one workspace.
