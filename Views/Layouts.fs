@@ -23,7 +23,6 @@ module Layouts
                         a [_class "nav-link"; _href "/"] [ Text "Home" ]
                     ]
 
-
                     // About dropdown
                     li [_class "nav-item dropdown"] [
                         a [
@@ -42,13 +41,10 @@ module Layouts
                             attr "aria-labelledby" "aboutDropdown"
                             ] [
                                 a [_class "dropdown-item"; _href "/about"] [Text "Profile"]
+                                a [_class "dropdown-item"; _href "/contact"] [ Text "Contact" ]
                                 a [_class "dropdown-item"; _href "/irl-stack"] [Text "IRL Stack"]
                                 a [_class "dropdown-item"; _href "/colophon"] [Text "Colophon"]
                         ]
-                    ]
-
-                    li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/contact"] [ Text "Contact" ]
                     ]
 
                     // Feeds dropdown
@@ -69,25 +65,39 @@ module Layouts
                             attr "aria-labelledby" "feedDropdown"
                             ] [
                                 a [_class "dropdown-item"; _href "/feed"] [Text "Main"]
-                                a [_class "dropdown-item"; _href "/feed/responses"] [Text "Responses"]                                
+                                a [_class "dropdown-item"; _href "/feed/responses"] [Text "Responses"]
+                                a [_class "dropdown-item"; _href "/posts/1"] [ Text "Blog" ]                                
                                 div [_class "dropdown-divider"] []
                                 a [_class "dropdown-item"; _href "/feed/blogroll"] [Text "Blogroll"]
                                 a [_class "dropdown-item"; _href "/feed/podroll"] [Text "Podroll"]
                         ]
-                    ]
-
-                    li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/posts/1"] [ Text "Blog" ]
                     ]
                     
                     li [_class "nav-item"] [
                         a [_class "nav-link"; _href "/subscribe"] [ Text "Subscribe" ]
                     ]
 
-                    li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/radio"] [ Text "Radio" ]
+                    //Collections dropdown
+                    li [_class "nav-item dropdown"] [
+                        a [
+                            _class "nav-link dropdown-toggle"
+                            _href "#"
+                            _id "collectionDropdown"
+                            attr "role" "button"
+                            attr "data-toggle" "dropdown"
+                            attr "aria-haspopup" "true"
+                            attr "aria-expanded" "false"
+                        ] [
+                            Text "Colletions"
+                        ]
+                        div [
+                            _class "dropdown-menu"
+                            attr "aria-labelledby" "collectionDropdown"
+                            ] [
+                                a [_class "dropdown-item"; _href "/radio"] [ Text "Radio" ]
+                                a [_class "dropdown-item"; _href "/library"] [ Text "Library" ]
+                            ]
                     ]
-
 
                     //Knowledgebase dropdown
                     li [_class "nav-item dropdown"] [
@@ -100,7 +110,7 @@ module Layouts
                             attr "aria-haspopup" "true"
                             attr "aria-expanded" "false"
                         ] [
-                            Text "KB"
+                            Text "Knowledgebase"
                         ]
                         div [
                             _class "dropdown-menu"
@@ -108,7 +118,6 @@ module Layouts
                             ] [
                                 a [_class "dropdown-item"; _href "/snippets"] [ Text "Snippets" ]
                                 a [_class "dropdown-item"; _href "/wiki"] [ Text "Wiki" ]
-                                a [_class "dropdown-item"; _href "/library"] [ Text "Library" ]
                                 a [_class "dropdown-item"; _href "/presentations"] [ Text "Presentations" ]
                         ]
                     ]
