@@ -86,7 +86,7 @@ module Layouts
                             attr "aria-haspopup" "true"
                             attr "aria-expanded" "false"
                         ] [
-                            Text "Colletions"
+                            Text "Collections"
                         ]
                         div [
                             _class "dropdown-menu"
