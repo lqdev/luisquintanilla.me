@@ -3,6 +3,7 @@
     "extensions": [
         "Ionide.Ionide-fsharp",
         "max-SS.cyberpunk",
-        "ms-vscode.live-server"   
+        "ms-vscode.live-server",
+        "github.vscode-github-actions"   
     ]
 }
