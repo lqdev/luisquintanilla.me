@@ -111,6 +111,6 @@ Examples: [RSS-Only Club](https://daverupert.com/2018/01/welcome-to-rss-club/)
   - Can't really control who sees this since the feed is public. Maybe private feeds could help here.
   - Limited interaction. Users can't comment or reply to items in a feed.
 
-  Note that this is not an exhaustive list of pros and cons, just a few that I thought of. I persoanlly would skew towards e-mail and messaging apps. The main reason at least with e-mail is that everyone is familiar with it and most likely won't have to create separate accounts on various silos to communicate and engage with others. With apps like [DeltaChat](https://delta.chat/) you could actualy combine them and get the best of both. 
+Note that this is not an exhaustive list of pros and cons, just a few that I thought of. I persoanlly would skew towards e-mail and messaging apps. The main reason at least with e-mail is that everyone is familiar with it and most likely won't have to create separate accounts on various silos to communicate and engage with others. With apps like [DeltaChat](https://delta.chat/) you could actualy combine them and get the best of both. 
 
-  What are your thoughts? 
+What are your thoughts? 
