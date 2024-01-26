@@ -9,7 +9,7 @@ tags: ["ollama","ai","llama","python","javascript","opensource"]
 
 > The initial versions of the Ollama Python and JavaScript libraries are now available:  
 > <br>
->   [Ollama Python Library](https://github.com/ollama/ollama-python)
+>   [Ollama Python Library](https://github.com/ollama/ollama-python)  
 >   [Ollama JavaScript Library](https://github.com/ollama/ollama-js)  
 > <br>
 > Both libraries make it possible to integrate new and existing apps with Ollama in a few lines of code, and share the features and feel of the Ollama REST API.  
