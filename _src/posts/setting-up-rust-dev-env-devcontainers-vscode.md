@@ -99,7 +99,7 @@ That's it! You now have a Rust development environment to get started learning a
 
 ## Conclusion
 
-Dev Containers make it easy for you to configure full-featured development environments. When paired with Visual Studio Code and GitHub Codespaces, they can help you focus on learning and building applications rather than setting up your environment. Happy coding! 
+Dev Containers make it easy for you to configure full-featured development environments. When paired with Visual Studio Code and GitHub Codespaces, they can help you focus on learning and building applications rather than setting up your environment. You can find a [final version of the configured environment and app on GitHub](https://github.com/lqdev/rust-codespace-sandbox). Happy coding! 
 
 ## Additional Resources
 
