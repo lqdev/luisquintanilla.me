@@ -1,6 +1,6 @@
 ---
 post_type: "note" 
-title: ""
+title: "Website Post Statistics - February 2024"
 published_date: "2024-02-03 12:29"
 tags: ["githubactions","cicd","blogging","stats"]
 ---
