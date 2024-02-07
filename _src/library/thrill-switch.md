@@ -2,11 +2,17 @@
 title: "Thrill Switch"
 author: "Tim Hawking"
 isbn: "9780645579109"
-cover: ""
+cover: "https://images.squarespace-cdn.com/content/v1/5875f6a815d5dba00bbed0ea/1671223905780-BSJU33CS2HOQO8MIPRDB/thrillswitch+cover.jpg?format=1000w"
 status: "Read"
 rating: 4.2
-source: ""
+source: "https://www.timhawken.com/thrill-switch"
 ---
+
+## Description
+
+> A cyberpunk thriller set in near-future Las Vegas...
+
+> Detective Ada Byron is pumped to be assigned her first murder case–until she sees the crime scene. Someone has been killed exactly the same way as her father was seven years earlier. But, impossibly, he died using VR and the programmer responsible is still in prison. To see if this is a copycat or something more sinister, Ada must confront her father’s killer: the enigmatic Jazlin Switch. What she discovers will change the face of both the real world and the metaverse forever....
 
 ## Review
 
