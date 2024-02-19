@@ -93,7 +93,7 @@ module Layouts
                             attr "aria-labelledby" "collectionDropdown"
                             ] [
                                 a [_class "dropdown-item"; _href "/radio"] [ Text "Radio" ]
-                                a [_class "dropdown-item"; _href "/library"] [ Text "Library" ]
+                                a [_class "dropdown-item"; _href "/library"] [ Text "Books" ]
                                 a [_class "dropdown-item"; _href "/tags"] [ Text "Tags" ]
                             ]
                     ]
