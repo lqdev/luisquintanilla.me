@@ -10,4 +10,4 @@ tags: ["huggingface","assistants","ai","chat","opensource"]
 > The goal of this app is to showcase that it is now possible to build an open source alternative to ChatGPT. 
 
 - [GitHub repo](https://github.com/huggingface/chat-ui)
-- []()
+- [Text Generation Inference](https://github.com/huggingface/text-generation-inference)
