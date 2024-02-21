@@ -4,7 +4,7 @@ targeturl: https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/the-
 response_type: bookmark
 dt_published: "2024-02-21 15:18"
 dt_updated: "2024-02-21 15:18 -05:00"
-tags: ["azure","tutorial","machinelearning","ml","ai"]
+tags: ["azure","tutorial","machinelearning","ml","ai","azureml"]
 ---
 
 > The AI Study Guide: Discover Machine Learning with these free Azure resources  
