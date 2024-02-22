@@ -298,6 +298,75 @@ NOTE: Node 18 not supported yet. If you run into issues upgrading directly from 
 12. Restart services - `systemctl start mastodon-sidekiq mastodon-web mastodon-streaming`
 13. Run postdeployment DB migration - `RAILS_ENV=production bundle exec rails db:migrate`
 
+### 4.2.1
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.2.1 tag - `git checkout v4.2.1`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install --frozen-lockfile`
+7. Precompile assets - `RAILS_ENV=production bundle exec rails assets:precompile`
+
+### 4.2.2
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.2.2 tag - `git checkout v4.2.2`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install --frozen-lockfile`
+7. Precompile assets - `RAILS_ENV=production bundle exec rails assets:precompile`
+
+### 4.2.3
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.2.3 tag - `git checkout v4.2.3`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install --frozen-lockfile`
+7. Precompile assets - `RAILS_ENV=production bundle exec rails assets:precompile`
+
+### 4.2.4
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.2.4 tag - `git checkout v4.2.4`
+5. Update rbenv version - `git -C /home/mastodon/.rbenv/plugins/ruby-build pull`
+6. Install Ruby 3.2.3 - `RUBY_CONFIGURE_OPTS=--with-jemalloc rbenv install 3.2.3`
+7. Install Ruby dependencies - `bundle install`
+8. Install JS dependencies - `yarn install --frozen-lockfile`
+9. Precompile assets - `RAILS_ENV=production bundle exec rails assets:precompile`
+
+### 4.2.5
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.2.5 tag - `git checkout v4.2.5`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install --frozen-lockfile`
+
+### 4.2.6
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.2.6 tag - `git checkout v4.2.6`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install --frozen-lockfile`
+
+### 4.2.7
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.2.7 tag - `git checkout v4.2.7`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install --frozen-lockfile`
+
 ## Documentation
 
 - https://docs.joinmastodon.org/admin/troubleshooting/index-corruption
