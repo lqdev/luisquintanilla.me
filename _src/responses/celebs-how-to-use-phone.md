@@ -17,7 +17,7 @@ tags: ["technology","communication","phones","smartphones","dumbphones","email",
 
 > It sounds a little like I’m advocating for the return of the ’90s, when the computer was a giant box that lived in a central room of your home and the only way to use it was to go to it. And to some extent, I am! I’m increasingly convinced that my primary computer should be a device I use on purpose — that I sit down at, operate, and then extract myself from until the next time. Whether it’s a laptop on a desk or an iPad on your nightstand, your computer should be a place as much as it is a device. And when you’re not in that place, you’re somewhere else. The computer doesn’t come along.
 
-> Over the last few weeks, as an experiment, I’ve moved as many apps as possible — the obviously distracting social media stuff but also anything I can live without on a minute-to-minute basis — off my phone and onto my tablet and my laptop...
+> Over the last few weeks, as an experiment, I’ve moved as many apps as possible — the obviously distracting social media stuff but also anything I can live without on a minute-to-minute basis — off my phone and onto my tablet and my laptop...  
 > <br>
 > So far, it’s been great. I’m realizing how much of a crutch my phone really has become: I would open up TikTok just to keep me company on the walk to the kitchen or scroll through Threads while I waited for the microwave to finish. Now, I’m not sure I’m doing any less of those things in aggregate, but at least I’m doing them on purpose. I’ve turned time-wasting into a deliberate activity — I sit in my scrolling chair and scroll away, then I get up, and the scrolling stays put. And best of all, when I leave the house, there’s nothing to scroll at all.
 
