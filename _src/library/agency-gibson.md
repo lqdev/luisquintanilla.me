@@ -23,3 +23,9 @@ I really wanted to like this book but didn't. It had a lot of interesting concep
 Unfortunately, I never really cared for any of the characters. One of the subplots was the threat of nuclear disaster orchestrated by a terrorist organization. However, at no point did I feel any impending doom throughout the story. The story itself for the most part is uneventful. It wasn't until about three quarters into the book that the story felt like it picked up. There were a few subplots that got going but were dropped. In some instances though, these subplots left the door open to another book which takes place in the timeline a century ahead.  
 
 I was not aware that the first book in this story was The Peripheral. A week before picking up Agency, I started it but couldn't get past the first chapter. I had similar challenges pushing through the first few chapters with Neuromancer as well, which is still a book I want to read. One of the things I find challenging when reading Gibson's books is being thrown straight into a familiar, yet foreign world. I found though from reading Agency, once you push past the first few chapters, things begin to settle down and you can really get into the story. Despite not reading The Peripheral though, I was able to get through Agence no problem. There was enough information given, you could infer and put enough pieces together to make out the references to The Peripheral. Gibson did a great job there. Maybe now that I've read Agency, I can try a similar strategy of pushing past the first few chapters. Given I didn't like Agency, it's not really something I'm looking forward to.
+
+## Notes
+
+In the book, there are references made to Futuro Goth fashion style. Here's what that might look like according to Copilot.
+
+![AI generated image of male and female fashion apparel in the style of futuro goth](https://github.com/lqdev/luisquintanilla.me/assets/11130940/6f48ef77-6fff-4e2f-87c0-d3ad59761859)
