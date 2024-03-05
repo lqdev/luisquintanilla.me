@@ -4,7 +4,7 @@ targeturl: https://www.theverge.com/24087834/hank-green-decoder-podcast-google-y
 response_type: reshare
 dt_published: "2024-03-04 22:45"
 dt_updated: "2024-03-04 22:45 -05:00"
-tags: ["websites","internet","podcast","decoder"]
+tags: ["websites","internet","podcast","decoder","rss","platforms","blogs","technology"]
 ---
 
 > ...the last platform on the web of any scale or influence is Google Search. And so, over time, webpages have become dramatically optimized for Google Search. And that means the kinds of things people write about, the containers that we write in, are mostly designed to be optimized for Google Search. They’re not designed for, “I need to just quickly tell you about this and move on.” Our little insight was, “Well, what if we just don’t do that? What if we only write for the people who come directly to our website instead of the people who find our articles through Search or Google Discover or whatever other Google platforms are in the world?” And so we just made these little blog posts, and the idea was, if you just come to our website one more time a day because there’s one more thing to look at that you’ll like, we will be fine.
