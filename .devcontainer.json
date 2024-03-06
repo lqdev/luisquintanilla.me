@@ -1,9 +1,14 @@
 {
-    "image": "mcr.microsoft.com/dotnet/sdk:7.0",
-    "extensions": [
-        "Ionide.Ionide-fsharp",
-        "max-SS.cyberpunk",
-        "ms-vscode.live-server",
-        "github.vscode-github-actions"   
-    ]
+    "image": "mcr.microsoft.com/dotnet/sdk:8.0",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "Ionide.Ionide-fsharp",
+                "max-SS.cyberpunk",
+                "ms-vscode.live-server",
+                "github.vscode-github-actions"   
+            ]
+        }
+    },
+    "postCreateCommand": "curl -fsSL https://ollama.com/install.sh | sh"
 }
