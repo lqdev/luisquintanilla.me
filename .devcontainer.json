@@ -10,5 +10,6 @@
             ]
         }
     },
-    "postCreateCommand": "curl -fsSL https://ollama.com/install.sh | sh"
+    "postCreateCommand": "curl -fsSL https://ollama.com/install.sh | sh",
+    "postStartCommand": "ollama serve"
 }
