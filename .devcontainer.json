@@ -11,5 +11,8 @@
         }
     },
     "postCreateCommand": "curl -fsSL https://ollama.com/install.sh | sh",
-    "postStartCommand": "ollama serve"
+    "postStartCommand": [
+        "ollama serve",
+        "ollama pull phi"
+    ]
 }
