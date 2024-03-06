@@ -55,10 +55,17 @@ To get the model:
 
     After a few minutes, the model is downloaded and ready to use. 
 
-1. Enter the following command to ensure that your model is running
+1. Enter the following command to ensure that your model is now available
 
     ```bash
     ollama list
+    ```
+
+    The result should look like the following:
+
+    ```text
+    NAME            ID              SIZE    MODIFIED      
+    phi:latest      e2fd6321a5fe    1.6 GB  6 seconds ago
     ```
 
 For more details, see the [Ollama model library](https://ollama.com/library). 
