@@ -4,7 +4,7 @@ targeturl: https://tylerhou.com/posts/datalog-go-brrr/
 response_type: reshare
 dt_published: "2024-03-06 21:39"
 dt_updated: "2024-03-06 21:39 -05:00"
-tags: ["datalog","programming","graphs","datatypes"]
+tags: ["datalog","programming","graphs","datatypes","programminglanguages","software","database","algorithms"]
 ---
 
 > The datatype for a graph is a relation, and graph algorithms are queries on the relation. But modern languages need better support for the relational model.
