@@ -1,5 +1,5 @@
 ---
-title: "The "missing" graph datatype already exists. It was invented in the '70s"
+title: "The missing graph datatype already exists. It was invented in the '70s"
 targeturl: https://tylerhou.com/posts/datalog-go-brrr/
 response_type: reshare
 dt_published: "2024-03-06 21:39"
