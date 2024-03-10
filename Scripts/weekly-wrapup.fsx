@@ -13,7 +13,6 @@ let blogs = loadPosts ()
 let notes = loadFeed ()
 let responses = loadReponses()
 
-
 let filteredBlogs = 
     blogs
     |> Array.filter(fun x -> 
@@ -92,14 +91,14 @@ let responsesPartial (posts: Response array) =
         {postStrings}
         """
 
-
-
-let weeklyReviewPartial (title) (blogs:string) (notes:string) (responses:string)= 
+let weeklyReviewPartial (title) (blogs:string) (notes:string) (responses:string) = 
+    let pubDate = DateTimeOffset(DateTime.Now.Subtract(TimeSpan(5,0,0)).Ticks,TimeSpan(-5,0,0)).ToString("yyyy-MM-dd HH:mm zzz")
+    
     $"""
     ---
     post_type: "note" 
     title: "{title}"
-    published_date: "2024-03-10 14:52"
+    published_date: "{pubDate}"
     tags: ["weeklysummary","blogging","website","indieweb"]
     ---
 

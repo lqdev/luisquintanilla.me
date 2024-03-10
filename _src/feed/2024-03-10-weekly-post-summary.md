@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Week of March 10, 2024 - Post Summary"
-published_date: "2024-03-10 14:52"
+published_date: "2024-03-10 14:26 -05:00"
 tags: ["weeklysummary","blogging","website","indieweb"]
 ---
     
@@ -13,7 +13,8 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 ## Notes
 
 - [Crate Finds - February 2024](/feed/crate-finds-february-2024)
-            
+- [Week of March 10, 2024 - Post Summary](/feed/2024-03-10-weekly-post-summary)
+
 ## Responses
 
 - [Microsoft to end its Android apps on Windows 11 subsystem in 2025](/feed/windows-subsystem-for-android-end-of-support-2025)
