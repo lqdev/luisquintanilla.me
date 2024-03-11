@@ -17,3 +17,5 @@ I've been trying to visualize scenarios where:
 1. You would accept
 
 Maybe in scenarios where you're traveling with friends or family? In the case of family, maybe someone doesn't have a carry-on and if there's an extra bag that's small enough to be considered carry-on they'll "claim" it as their carry-on to not pay the extra fees. Still though, that's not checking it in. I'm just having a hard time seeing it.
+
+Putting this out there ahead of time - no stranger, I will not check in your bag. 
