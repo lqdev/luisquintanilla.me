@@ -26,5 +26,3 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 - [Grok-1](/feed/grok-1-open-release)
 - [OpenAI Transformer Debugger](/feed/openai-transformer-debugger)
 - [Bluesky’s Stackable Approach to Moderation](/feed/bluesky-stackable-approach-moderation)
-        
-    
