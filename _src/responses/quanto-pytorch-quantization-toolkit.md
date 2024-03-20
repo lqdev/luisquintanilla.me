@@ -11,13 +11,13 @@ tags: ["huggingface","quantization","pytorch","tools","ai"]
 
 > Today, we are excited to introduce quanto, a versatile pytorch quantization toolkit, that provides several unique features:  
 ><br>
->    available in eager mode (works with non-traceable models)
->    quantized models can be placed on any device (including CUDA and MPS),
->    automatically inserts quantization and dequantization stubs,
->    automatically inserts quantized functional operations,
->    automatically inserts quantized modules (see below the list of supported modules),
->    provides a seamless workflow for a float model, going from a dynamic to a static quantized model,
->    supports quantized model serialization as a state_dict,
->    supports not only int8 weights, but also int2 and int4,
->    supports not only int8 activations, but also float8.
+>    - available in eager mode (works with non-traceable models)
+>    - quantized models can be placed on any device (including CUDA and MPS),
+>    - automatically inserts quantization and dequantization stubs,
+>    - automatically inserts quantized functional operations,
+>    - automatically inserts quantized modules (see below the list of supported modules),
+>    - provides a seamless workflow for a float model, going from a dynamic to a static quantized model,
+>    - supports quantized model serialization as a state_dict,
+>    - supports not only int8 weights, but also int2 and int4,
+>    - supports not only int8 activations, but also float8.
 
