@@ -36,6 +36,7 @@ General topics I'm interested in:
 - Books
 - Travel
 - Retro Tech
+- Retro Gaming
 
 E-mail me your recommendations at contact@lqdev.me or send me a Webmention!
 
