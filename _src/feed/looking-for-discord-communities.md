@@ -13,7 +13,7 @@ I finally decided to dust off my Discord. So far, I've joined several communitie
 - Racket
 - Virtual ML.NET
 - Shudder
-- TwitClub
+- ClubTwit
 - ...and many others
 
 I've noticed that server / community discovery needs improvement, so I'm asking for your recommendations!
