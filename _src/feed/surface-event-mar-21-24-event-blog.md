@@ -9,3 +9,15 @@ tags: ["windows","microsoft","surface","copilot"]
 
 - Copilot is making people more productive.  
 
+12:06
+
+- Copilot for Microsoft 365 integrated into Windows.
+- Demo: After coming back from vacation, you want to catch up.
+    - Ask copilot about latest project updates
+    - Ask copilot for summary of meeting you missed which generates a summary of the discussion and action items.
+    - Copilot then can help you tackle the action items like drafting and sending e-mails.
+
+12:09
+
+- Demo: Using Copilot to configure Windows settings
+
