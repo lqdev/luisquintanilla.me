@@ -21,3 +21,6 @@ tags: ["windows","microsoft","surface","copilot"]
 
 - Demo: Using Copilot to configure Windows settings
 
+12:13
+
+- Demo: Using Windows App to manage Windows 365
