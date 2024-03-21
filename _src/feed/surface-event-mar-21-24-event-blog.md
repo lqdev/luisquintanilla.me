@@ -28,3 +28,8 @@ tags: ["windows","microsoft","surface","copilot","ai","pc","hardware"]
 12:21
 
 Surface Pro 10 and Surface Laptop 6 announced for business. Comes with latest Intel processors, Neural Processing Units (NPUs), and Copilot. 
+
+12:39
+
+The demo showing a .NET development workflow on the Surface Laptop 6 was great. Usually that same workflow longer on my Lenovo P4. 
+
