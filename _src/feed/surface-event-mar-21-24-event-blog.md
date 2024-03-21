@@ -24,3 +24,7 @@ tags: ["windows","microsoft","surface","copilot","ai","pc","hardware"]
 12:13
 
 - Demo: Using Windows App to manage Windows 365 cloud PCs
+
+12:21
+
+Surface Pro 10 and Surface Laptop 6 announced for business. Comes with latest Intel processors, NPUs, and Copilot. 
