@@ -23,4 +23,4 @@ tags: ["windows","microsoft","surface","copilot","ai","pc","hardware"]
 
 12:13
 
-- Demo: Using Windows App to manage Windows 365
+- Demo: Using Windows App to manage Windows 365 cloud PCs
