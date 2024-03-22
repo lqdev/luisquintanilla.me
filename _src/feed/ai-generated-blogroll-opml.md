@@ -2,7 +2,7 @@
 post_type: "note" 
 title: "Use AI to generate a blogroll others can subscribe to"
 published_date: "2024-03-21 22:01"
-tags: ["blogroll","indieweb","ai","copilot"]
+tags: ["blogroll","indieweb","ai","copilot","rss","openweb"]
 ---
 
 I've seen several posts about blogrolls recently across my feed. My own needs some updating, but you can find it [here](/feed/blogroll). I also [created one for podcasts](/feed/podroll) which I call a podroll. 
