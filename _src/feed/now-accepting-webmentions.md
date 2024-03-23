@@ -2,7 +2,7 @@
 post_type: "note" 
 title: "Now accepting webmentions"
 published_date: "2022-12-18 22:41"
-tags: ["indieweb","webmentions","community","fsharp","azurefunctions"."azure"]
+tags: ["indieweb","webmentions","community","fsharp","azurefunctions","azure"]
 ---
 
 It took me a while to get all the pieces working but I'm excited that my website now accepts [webmentions](https://www.w3.org/TR/webmention/)!
