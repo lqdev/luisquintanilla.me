@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Terrifier 2 - 100/10"
 published_date: "10/09/2022 14:21"
+tags: ["terrifier","horror","movie","art","terrifier2"]
 ---
 
 [Terrifier 2](https://www.terrifier2themovie.com/home/) did not disappoint. 100/10. Can't wait for Terrifier 3.

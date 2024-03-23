@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Fitch: CLI system information utility built with F#"
 published_date: "2022-12-25 20:10"
+tags: ["dotnet","fsharp","linux","system","utilities","cli","fitch"]
 ---
 
 I wasn't really planning on this, but here we are. I've been using [Neofetch](https://github.com/dylanaraps/neofetch) on my PC to display system information whenever the terminal opens. However, in some cases, that would hang and it would take a while before I was able to use my terminal. 

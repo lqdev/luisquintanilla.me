@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "ATOM Weather Alerts"
 published_date: "04/27/2022 20:19"
+tags: ["rss","atom","weather","alerts"]
 ---
 
 Yesterday I ran into more feed goodness. When going to a website to get the weather forecast, weather alerts are displayed (if there are any). 

@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Chip-making Chip Shortage"
 published_date: "05/03/2022 18:50"
+tags: ["chip","pc","hardware","news"]
 ---
 
 [Chips for chipmaking machines are affected by chip shortage, says TSMC and Intel - via 9to5Mac](https://9to5mac.com/2022/05/03/chips-for-chipmaking-machines/)

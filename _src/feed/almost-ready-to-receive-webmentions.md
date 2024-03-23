@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "ALMOST ready to receive Webmentions"
 published_date: "2022-10-06 22:29"
+tags: ["webmentions","indieweb","comments"]
 ---
 
 Finally got a working prototype. A few days ago I added the [request](/snippets/webmentions-request-verification) and [webmention](/snippets/webmentions-verification) verification components.

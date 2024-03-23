@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Use Azure CDN from Verizon Premium for Regex URL redirects"
 published_date: "2022-12-21 15:09"
+tags: ["azure","azurecdn","redirect","indieweb","selfhosting"]
 ---
 
 Well, that's time that I'm never going to get back. 

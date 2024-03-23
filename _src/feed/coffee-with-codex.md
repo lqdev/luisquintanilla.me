@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Coffee with a Codex"
 published_date: "10/19/2021 10:21 AM"
+tags: ["event","learning","history"]
 ---
 
 Came accross this event series via [Chris Aldrich's microblog](https://boffosocko.com/type/status/).

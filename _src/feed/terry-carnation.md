@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Terry Carnation"
 published_date: "07/03/2022 22:04"
+tags: ["podcast","terrycarnation","radiorental","darkair"]
 ---
 
 Can't believe I hadn't heard about these podcasts before:

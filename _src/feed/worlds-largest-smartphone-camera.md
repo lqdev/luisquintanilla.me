@@ -2,6 +2,7 @@
 post_type: "photo" 
 title: "World's Largest Smartphone Camera"
 published_date: "07/07/2022 21:17"
+tags: ["camera","tech","smartphone"]
 ---
 
 Cries in Lumia 1020 <span>&#x1F622;</span>

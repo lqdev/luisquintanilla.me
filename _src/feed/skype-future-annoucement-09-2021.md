@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "The future of Skype"
 published_date: "10/01/2021 4:20 PM"
+tags: ["skype","messaging","microsoft","roadmap"]
 ---
 
 For personal use, I tend to default to Skype for my video / audio call needs.   

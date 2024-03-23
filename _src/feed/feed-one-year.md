@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Personal Feed - One Year In"
 published_date: "09/29/2022 10:55"
+tags: ["microblog","blog","feed","rss","indieweb","openweb","internet"]
 ---
 
 It's been a year since I created this feed and [started posting](/feed/hello-world/) mainly on my website. Since then, I've:

@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "iPod Touch discontinued"
 published_date: "05/10/2022 12:27"
+tags: ["apple","ipod","music","ipodtouch"]
 ---
 
 Apple just announced they're discontinuing the [iPod Touch](https://www.apple.com/newsroom/2022/05/the-music-lives-on/). I'm surprised it hadn't happened earlier! Still, it's sad to see the end of an era for these devices which are effectively smartphones without the phone / cellular data connectivity. I still have my iPod Touch from 2014 that I use occasionally for FaceTime which aside from poor battery life and being stuck on an older version of iOS, it still works smoothly. 

@@ -2,6 +2,7 @@
 post_type: "photo" 
 title: "Reminiscing about Windows Phone"
 published_date: "11/13/2021 21:00"
+tags: ["windowsphone","lumia","nokia","windows","smartphone","phone"]
 ---
 
 Found these while cleaning out some drawers 😢. Good times.

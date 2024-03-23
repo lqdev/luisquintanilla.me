@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Windows 11 upgrade"
 published_date: "10/05/2021 08:55 AM"
+tags: ["windows10","windows","windows11","microsoft"]
 ---
 
 No Windows 11 upgrade for me. 😥

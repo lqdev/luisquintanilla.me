@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Assorted links - Ubuntu 22.04 LTS, Bitwarden, DALLE-2, Emacs"
 published_date: "04/21/2022 19:44"
+tags: ["links","assortedlinks","ubuntu","bitwarden","dalle","openai","emacs","linkblog"]
 ---
 
 Here's a few links I found in the interwebs today that I thought were worth sharing.

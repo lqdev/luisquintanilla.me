@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "The Fediverse beyond Mastodon"
 published_date: "2022-11-20 19:28"
+tags: ["fediverse","mastodon","decentralization","owncast","peertube","pixelfed","funkwhale","alternatives"]
 ---
 
 It's been great to see many old and new friends joining Mastodon and considering alternatives to online communities over the past few weeks. Selfishly my feed had been quiet since I started using it and self-hosting back in 2018 so it's nice to see more activity. As folks have started to settle in and get a better understanding of Mastodon, I'd like to point out that Mastodon is only one of many apps and services on the [Fediverse](https://fediverse.party/en/fediverse/). Now I won't try to explain the Fediverse but in general, it's the collection of applications and services that interoperate in a federated manner, Mastodon being one of them. If in general you like Mastodon and are looking for alternatives to services like Instagram, YouTube, SoundCloud, the Fediverse has a few options:

@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Next gen stick figures using AI and NVIDIA Canvas"
 published_date: "10/19/2021 10:51 PM"
+tags: ["nvidia","ai","genai","art"]
 ---
 
 I have almost zero artistic skills, so when I came across [NVIDIA Canvas](https://www.nvidia.com/en-us/studio/canvas/) I was extremely excited!

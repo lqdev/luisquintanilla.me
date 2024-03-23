@@ -2,6 +2,7 @@
 post_type: "video" 
 title: "Terrifier 2"
 published_date: "08/23/2022 19:57"
+tags: ["terrifier","horror","movie","art","terrifier2"]
 ---
 
 I know what I'm doing October 6th.

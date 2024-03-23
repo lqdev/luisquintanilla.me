@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Praying for OSU downfall"
 published_date: "09/03/2022 20:09"
+tags: ["psu","osu","pennstate","ohiostate","ncaafb","football","ncaa","collegefootball"]
 ---
 
 Same... :pray:

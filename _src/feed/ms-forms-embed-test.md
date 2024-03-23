@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Microsoft Forms Test Embedding"
 published_date: "2023-01-30 11:46"
+tags: ["forms","microsoft","polls","web","indieweb"]
 ---
 
 Testing whether my site can handle embedding [Microsoft Forms](https://forms.office.com/). Useful for polls across a variety of channels.  

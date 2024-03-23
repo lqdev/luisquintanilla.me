@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Use your domain for verification everywhere"
 published_date: "2022-11-22 10:19"
+tags: ["indieweb","ownyourlinks","internet","domain","identity","technology","ownership"]
 ---
 
 I've never had a blue checkmark on Twitter so I can't say what that process is like. Looking at it from the outside though it seems the process isn't simple or straightforward. My experience with verification has been with other applications such as [Mastodon](https://docs.joinmastodon.org/user/profile/#verification) and [IndieAuth](https://indieauth.com/). In both of these cases, the main verification techniques use your domain and/or the [`rel=me` link type](https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/me). Although with Mastodon you can add multiple verified links to your profile, verification on those external domains pose challenges which include but are not limited to:

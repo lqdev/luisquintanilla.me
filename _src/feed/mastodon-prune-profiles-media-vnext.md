@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Removing avatars and headers in Mastodon"
 published_date: "2022-12-26 17:00"
+tags: ["mastodon","fediverse","selfhost","sysadmin"]
 ---
 
 The next version of Mastodon can't come soon enough. 

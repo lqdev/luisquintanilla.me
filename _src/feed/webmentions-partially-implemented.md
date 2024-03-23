@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Webmentions (partially) implemented"
 published_date: "09/17/2022 19:59"
+tags: ["indieweb","webmentions","fsharp","website"]
 ---
 
 Success! I just partially implemented [Webmentions](https://www.w3.org/TR/webmention/) for my website. Although I haven't figured out a good way to receive Webmentions yet, I'm able to send them. Fortunately most of the work was done, as detailed in the post [Sending Webmentions with F#](/posts/sending-webmentions-fsharp-fsadvent/). The rest was mainly a matter of adapting it to my static site generator. 

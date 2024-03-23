@@ -2,6 +2,7 @@
 post_type: "note"
 title: "Site updated to .NET 6"
 published_date: "12/22/2021 20:27"
+tags: ["dotnet","website","net6","upgrade","selfhost"]
 ---
 
 That was easy. Site's been updated to .NET 6 and all it took was a one-line change. 

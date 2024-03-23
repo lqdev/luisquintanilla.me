@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "A year's worth of Azure hosting costs"
 published_date: "2022-05-04 20:36"
+tags: ["azure","website","cost","hosting","selfhosting","cloud","indieweb"]
 ---
 
 It's been a little over a year since I started hosting my website on Azure. The resources I use include:

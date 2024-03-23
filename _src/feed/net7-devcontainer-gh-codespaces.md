@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Configured GitHub Codespaces Dev Container with .NET 7"
 published_date: "2022-11-21 11:28"
+tags: ["dotnet","github","codespaces","development","devcontainer","website","internet"]
 ---
 
 Soon after .NET 7 was released, I [upgraded](/feed/net7-website-update) the static site generator I use as well as the GitHub Actions that build and publish my website. Having upgraded last year from .NET 6, the process was as smooth as I had expected with no code refactoring required. 

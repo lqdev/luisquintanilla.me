@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "TIL: Canonical HTML tags"
 published_date: "10/21/2021 21:31"
+tags: ["html","til","canonical","web","w3c","standards"]
 ---
 
 Today I learned about canonical URLs. While looking into how I can syndicate content from this site, specifically longer form blog posts on other sites like dev.to, I came across canonical tags. 

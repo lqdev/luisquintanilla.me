@@ -2,7 +2,7 @@
 post_type: "note" 
 title: "Timeless habits"
 published_date: "2023-11-12 14:05"
-tags: ["books"]
+tags: ["books","reading","sevenhabits"]
 ---
 
 Following up on the theme of cycles and looking back at things from yesteryear explored in my post [AI abundance after scarcity cycles](/feed/ai-abundance-scarcity-cycle-repeats-rss-enclosure-use-case/), I came across another example.

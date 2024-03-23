@@ -2,6 +2,7 @@
 post_type: "note" 
 title: "Impressed by Azure Cloud Shell"
 published_date: "2022-10-13 22:45"
+tags: ["azure","cloud","tools","development"]
 ---
 
 I can probably count the number of times I've used the Azure Cloud Shell inside the Azure Portal with one hand. However, I recently had a need to use it and was impressed by the experience. 
