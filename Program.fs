@@ -70,7 +70,7 @@ let main argv =
     buildPodrollPage podrollLinks
     buildPodrollOpml podrollLinks
     buildForumsPage forumLinks
-    buildForumsOpml podrollLinks    
+    buildForumsOpml forumLinks    
 
     // Build event page
     buildEventPage ()
