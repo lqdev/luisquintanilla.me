@@ -8,6 +8,14 @@ rating: "4"
 source: "https://openlibrary.org/works/OL28800590W/The_Internet_Con?edition=key%3A/books/OL39552949M"
 ---
 
+## Description
+
+> The platforms locked us into their systems and made us easy pickings, ripe for extraction. Twitter, Facebook and other Big Tech platforms hard to leave by design. They hold hostage the people we love, the communities that matter to us, the audiences and customers we rely on. The impossibility of staying connected to these people after you delete your account has nothing to do with technological limitations: it’s a business strategy in service to commodifying your personal life and relationships.
+> <br>
+> We can – we must – dismantle the tech platforms. In The Internet Con, Cory Doctorow explains how to seize the means of computation, by forcing Silicon Valley to do the thing it fears most: interoperate. Interoperability will tear down the walls between technologies, allowing users leave platforms, remix their media, and reconfigure their devices without corporate permission.
+> <br>
+> Interoperability is the only route to the rapid and enduring annihilation of the platforms. The Internet Con is the disassembly manual we need to take back our internet.
+
 ## Review
 
 Good book on how user control has been eroding over time resulting in walled gardens and large corporations with monopolistic tendencies. The first parts explore how we got here as well as lay out how adversarial interop may be a solution out of it. The last sections present and break down arguments against interoperability. Overall though it's a team sport that will take users and their representatives working together to take back user soverignty. 
