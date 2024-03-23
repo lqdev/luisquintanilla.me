@@ -17,11 +17,3 @@ source: "https://futuretensebooks.com/product/user-not-found-felicity-fenton/"
 ## Review
 
 Quick read but very personal introspection into relationships with technology and connectedness.
-
-## Quotes
-
-## Notes
-
-## Bookmarks
-
-## Actions
