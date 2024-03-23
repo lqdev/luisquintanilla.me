@@ -111,7 +111,7 @@ module Builder
             links
             |> forumsView
 
-        let forumsPage = generate podrollContent "default" "Forums - Luis Quintanilla"
+        let forumsPage = generate forumContent "default" "Forums - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"feed","forums")
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), podrollPage)
