@@ -70,8 +70,6 @@ module MarkdownService
 
     let parsePost (filePath:string) : Post = 
 
-        printfn $"Path: {filePath}"
-
         let postDetails = getContentAndMetadata<PostDetails>(filePath)
 
         { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = postDetails.Yaml; Content = postDetails.Content}
