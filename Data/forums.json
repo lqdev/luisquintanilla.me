@@ -1,0 +1,26 @@
+[
+    {
+        "Title": "Spotify Discovery & Promo",
+        "Type": "rss",
+        "HtmlUrl": "https://community.spotify.com/t5/Discovery-Promo/bd-p/discovery_and_promo",
+        "XmlUrl": "https://community.spotify.com/spotify/rss/boardmessages?board.id=discovery_and_promo"
+    },
+    {
+        "Title": "OpenAI Developer Forum",
+        "Type": "rss",
+        "HtmlUrl": "https://community.openai.com",
+        "XmlUrl": "https://community.openai.com/posts.rss"
+    },
+    {
+        "Title": "Techlore Discussions",
+        "Type": "rss",
+        "HtmlUrl": "https://discuss.techlore.tech/latest",
+        "XmlUrl": "https://discuss.techlore.tech/latest.rss"        
+    },
+    {
+        "Title": "Techlore Discussions",
+        "Type": "rss",
+        "HtmlUrl": "https://www.twit.community",
+        "XmlUrl": "https://www.twit.community/posts.rss"
+    }
+]

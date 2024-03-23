@@ -33,6 +33,7 @@ let main argv =
     let presentations = loadPresentations ()
     let blogrollLinks = loadBlogrollLinks ()
     let podrollLinks = loadPodrollLinks ()
+    let forumLinks = loadForumsLinks ()
     let redirects = loadRedirects ()
     let snippets = loadSnippets ()
     let wikis = loadWikis ()
@@ -68,6 +69,8 @@ let main argv =
     buildBlogrollOpml blogrollLinks
     buildPodrollPage podrollLinks
     buildPodrollOpml podrollLinks
+    buildForumsPage forumLinks
+    buildForumsOpml podrollLinks    
 
     // Build event page
     buildEventPage ()

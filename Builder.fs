@@ -106,6 +106,16 @@ module Builder
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), podrollPage)
 
+    let buildForumsPage (links:Outline array) = 
+        let forumContent = 
+            links
+            |> forumsView
+
+        let forumsPage = generate podrollContent "default" "Forums - Luis Quintanilla"
+        let saveDir = Path.Join(outputDir,"feed","forums")
+        Directory.CreateDirectory(saveDir) |> ignore
+        File.WriteAllText(Path.Join(saveDir,"index.html"), podrollPage)
+
     let buildIRLStackPage () = 
         let irlStackContent = Path.Join(srcDir,"irl-stack.md") |> convertFileToHtml |> contentView
         let irlStackPage = generate irlStackContent "default" "In Real Life Stack - Luis Quintanilla"
@@ -200,6 +210,13 @@ module Builder
     
         links
 
+    let loadForumsLinks () = 
+        let links =  
+            File.ReadAllText(Path.Join("Data","forums.json"))
+            |> JsonSerializer.Deserialize<Outline array>
+    
+        links
+
     let loadRedirects () = 
         let (redirects:RedirectDetails array) = 
             [|
@@ -283,6 +300,12 @@ module Builder
     let buildPodrollOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Podroll" "https://www.luisquintanilla.me" links
         let saveDir = Path.Join(outputDir,"feed","podroll")
+        File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
+        File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
+
+    let buildForumsOpml (links:Outline array) = 
+        let feed = buildOpmlFeed "Luis Quintanilla Forums" "https://www.luisquintanilla.me" links
+        let saveDir = Path.Join(outputDir,"feed","forums")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
