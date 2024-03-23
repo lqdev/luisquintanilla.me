@@ -114,7 +114,7 @@ module Builder
         let forumsPage = generate forumContent "default" "Forums - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"feed","forums")
         Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"), podrollPage)
+        File.WriteAllText(Path.Join(saveDir,"index.html"), forumsPage)
 
     let buildIRLStackPage () = 
         let irlStackContent = Path.Join(srcDir,"irl-stack.md") |> convertFileToHtml |> contentView
