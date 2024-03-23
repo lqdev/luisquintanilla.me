@@ -8,6 +8,14 @@ rating: 4.0
 source: https://openlibrary.org/works/OL26417584W/Building_a_Second_Brain
 ---
 
+## Description
+
+> For the first time in history, we have instantaneous access to the world’s knowledge. There has never been a better time to learn, to contribute, and to improve ourselves. Yet, rather than feeling empowered, we are often left feeling overwhelmed by this constant influx of information. The very knowledge that was supposed to set us free has instead led to the paralyzing stress of believing we’ll never know or remember enough.   
+> <br>
+> Now, this eye-opening and accessible guide shows how you can easily create your own personal system for knowledge management, otherwise known as a Second Brain. As a trusted and organized digital repository of your most valued ideas, notes, and creative work synced across all your devices and platforms, a Second Brain gives you the confidence to tackle your most important projects and ambitious goals.  
+> <br>
+> Discover the full potential of your ideas and translate what you know into more powerful, more meaningful improvements in your work and life by Building a Second Brain.  
+
 ## Quotes
 
 > ...the value of physical capital in the US-land,machinery, and buildings for example-is about $10 trillion, but that value is dwarfed by the total value of *human* capital, which is estimated to be five to ten times larger. Human capital includes "the knowledge and the knowhow embodied in humans-their education, their experience, their wisdom, their skills, their relationships, their common sense, their intuition (p. 15/202)

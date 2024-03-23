@@ -8,6 +8,10 @@ rating:
 source: "https://openlibrary.org/works/OL25000790W/On_Writing"
 ---
 
+## Description
+
+> On Writing is both a textbook for writers and a memoir of Stephen's life and will, thus, appeal even to those who are not aspiring writers. If you've always wondered what led Steve to become a writer and how he came to be the success he is today, this will answer those questions.
+
 ## Review
 
 ## Quotes
