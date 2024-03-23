@@ -2,7 +2,7 @@
 post_type: "note" 
 title: "New Forums Page"
 published_date: "2024-03-23 12:38"
-tags: ["forums","community","rss","web","openweb","internet"]
+tags: ["forums","community","rss","web","openweb","internet","indieweb"]
 ---
 
 Following the patterns of a blogroll and podroll, I decided to post a [forums page](/feed/forums) to list various forums and communities I find interesting.
