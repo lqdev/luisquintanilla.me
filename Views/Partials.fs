@@ -275,10 +275,10 @@ let forumsView (links:Outline array) =
     div [ _class "mr-auto" ] [
         h2 [] [ Text "Forums" ]
         p [] [ 
-            str "This is a list of forums I find interesting. If you're interested, you can also check out my 
-            a [_href "/feed/blogroll"] [Text "blogroll "]
-            str "and"
-            a [_href "/feed/podroll"] [Text " podroll"]            
+            str "This is a list of forums I find interesting. If you're interested, you can also check out my "
+            a [_href "/feed/blogroll"] [Text "blogroll"]
+            str " and "
+            a [_href "/feed/podroll"] [Text "podroll"]            
             str "."
         ]
         p [] [
