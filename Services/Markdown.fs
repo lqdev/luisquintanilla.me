@@ -72,6 +72,8 @@ module MarkdownService
 
         let postDetails = getContentAndMetadata<PostDetails>(filePath)
 
+        printfn $"Path: {filePath}"
+
         { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = postDetails.Yaml; Content = postDetails.Content}
 
     let parsePresentation (filePath:string) : Presentation = 
