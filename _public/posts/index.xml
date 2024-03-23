@@ -3,8 +3,954 @@
     <title>Luis Quintanilla Blog</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Luis Quintanilla's blog</description>
-    <lastPubDate>2023-08-22 18:03</lastPubDate>
+    <lastPubDate>2024-03-06 13:50</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Configure Ollama on Dev Containers and VS Code</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/install-ollama-vscode-devcontainer?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/install-ollama-vscode-devcontainer&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;The source for my website is &lt;a href="/github/luisquintanilla.me"&gt;hosted on GitHub&lt;/a&gt;. As a result, I use VS Code as the text editor to author my posts. Typically, I use &lt;a href="/colophon"&gt;Codespaces or github.dev&lt;/a&gt; to quickly draft and publish articles to simplify the process.&lt;/p&gt;
+&lt;p&gt;As part of my authoring and publishing posts, there's a few things I do like:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Coming up with a title&lt;/li&gt;
+&lt;li&gt;Creating relevant tags to help with discovery and connecting related information on my website.&lt;/li&gt;
+&lt;li&gt;For long-form blog posts, I also include a description.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This is generally relatively easy to do. However, sometimes I spend too much time coming up with something that truly summarizes and condenses the information in the post. It'd be nice if I had an assistant to help me brainstorm and workshop some of these items.&lt;/p&gt;
+&lt;p&gt;In comes AI. Now, I could use something like &lt;a href="https://code.visualstudio.com/docs/copilot/overview"&gt;Copilot&lt;/a&gt; which would work wonderfully and easily plug into my workflow. However, my website is a labor of love and I don't make any money from it. In many instances, I've designed &lt;a href="/posts/receive-webmentions-fsharp-az-functions-fsadvent"&gt;various components to be as low-cost as possible&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Recently, I created a post which showed &lt;a href="/posts/getting-started-ollama-windows"&gt;how to get started with Ollama on Windows&lt;/a&gt;. In this post, I'll show how you can do the same for your Dev Container environments.&lt;/p&gt;
+&lt;h2&gt;Install Ollama&lt;/h2&gt;
+&lt;p&gt;Assuming you already have a &lt;a href="https://code.visualstudio.com/docs/devcontainers/create-dev-container"&gt;Dev Container configuration file&lt;/a&gt;, add the following line to it:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;&amp;quot;postCreateCommand&amp;quot;: &amp;quot;curl -fsSL https://ollama.com/install.sh | sh&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This command triggers when the container environment is created. This will install Ollama in your development environment. For more details, see the &lt;a href="https://ollama.com/download/linux"&gt;Ollama download instructions&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Start Ollama&lt;/h2&gt;
+&lt;p&gt;Now that Ollama is installed, it's time to start the service so you can get models and use them. To start the Ollama service on your Dev Conatiner environment, add the following line to your Dev Container configuration file.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;&amp;quot;postStartCommand&amp;quot;: &amp;quot;ollama serve&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This command will run &lt;code&gt;ollama serve&lt;/code&gt; when the Dev Container environment starts.&lt;/p&gt;
+&lt;h2&gt;Pull a model&lt;/h2&gt;
+&lt;p&gt;To use Ollama, you're going to need a model. In my case, I went with &lt;a href="https://ollama.com/library/phi"&gt;Phi-2&lt;/a&gt; because it's lightweight and space on Codespaces is limited.&lt;/p&gt;
+&lt;p&gt;To get the model:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Open the terminal&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Enter the following command:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;ollama pull phi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After a few minutes, the model is downloaded and ready to use.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Enter the following command to ensure that your model is now available&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;ollama list
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The result should look like the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;NAME            ID              SIZE    MODIFIED      
+phi:latest      e2fd6321a5fe    1.6 GB  6 seconds ago
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For more details, see the &lt;a href="https://ollama.com/library"&gt;Ollama model library&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this post, I showed how you can configure Ollama with Dev Containers to use AI models locally in your projects. In subsequent posts, I'll show how once the service is running, I use it as part of my authoring and publishing posts. You can see a preview of it in my &lt;a href="https://github.com/lqdev/luisquintanilla.me/blob/main/Scripts/ai.fsx"&gt;scripts directory&lt;/a&gt;. Happy coding!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/install-ollama-vscode-devcontainer?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/install-ollama-vscode-devcontainer</guid>
+      <pubDate>2024-03-06 13:50</pubDate>
+      <category>#ollama</category>
+      <category>#vscode</category>
+      <category>#devcontainer</category>
+      <category>#ai</category>
+      <category>#llm</category>
+      <category>#opensource</category>
+      <category>#development</category>
+    </item>
+    <item>
+      <title>Getting started with Ollama on Windows</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/getting-started-ollama-windows?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/getting-started-ollama-windows&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Recently &lt;a href="/feed/ollama-windows-preview"&gt;Ollama announced support for Windows&lt;/a&gt; in preview. In doing so, people who want to use AI models like Llama, Phi, and many others can do so locally on their PC. In this post, I'll go over how you can get started with Ollama on Windows.&lt;/p&gt;
+&lt;h2&gt;Install Ollama&lt;/h2&gt;
+&lt;p&gt;The first thing you'll want to do is install Ollama.&lt;/p&gt;
+&lt;p&gt;You can do so by &lt;a href="https://ollama.com/download/windows"&gt;downloading the installer from the website&lt;/a&gt; and following the installation prompts.&lt;/p&gt;
+&lt;h2&gt;Get a model&lt;/h2&gt;
+&lt;p&gt;Once you've installed Ollama, it's time to get a model.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Open PowerShell&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Run the following command&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-powershell"&gt;ollama pull llama2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In this case, I'm using llama2. However, you can choose another model. You could even download many models at once and switch between them. For a full list of supported models, see the &lt;a href="https://ollama.com/library"&gt;Ollama model documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Use the model&lt;/h2&gt;
+&lt;p&gt;Now that you have the model, it's time to use it. The easiest way to use the model is using the REST API. When you install Ollama, it starts up a server to host your model. One other neat thing is, the REST API is &lt;a href="https://ollama.com/blog/openai-compatibility"&gt;OpenAI API compatible&lt;/a&gt;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Open PowerShell&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Send the following request:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-powershell"&gt;(Invoke-WebRequest -method POST -Body '{&amp;quot;model&amp;quot;:&amp;quot;llama2&amp;quot;, &amp;quot;prompt&amp;quot;:&amp;quot;Why is the sky blue?&amp;quot;, &amp;quot;stream&amp;quot;: false}' -uri http://localhost:11434/api/generate ).Content | ConvertFrom-json
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This command will issue an HTTP POST request to the server listening on port 11434.&lt;/p&gt;
+&lt;p&gt;The main things to highlight in the body:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;model&lt;/em&gt;: The model you'll use. Make sure this is one of the models you pulled.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;prompt&lt;/em&gt;: The input to the model&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;stream&lt;/em&gt;: Whether to stream responses back to the client&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more details on the REST API, see the &lt;a href="https://github.com/ollama/ollama/blob/main/docs/api.md"&gt;Ollama REST API documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this post, I went over how you can quickly install Ollama to start using generative AI models like Llama and Phi locally on your Windows PC. If you use Mac or Linux, you can perform similar steps as those outlined in this guide to get started on those operating systems. Happy coding!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/getting-started-ollama-windows?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/getting-started-ollama-windows</guid>
+      <pubDate>2024-03-05 10:32</pubDate>
+      <category>#ai</category>
+      <category>#ollama</category>
+      <category>#windows</category>
+      <category>#llm</category>
+      <category>#opensource</category>
+      <category>#llama</category>
+      <category>#openai</category>
+      <category>#generativeai</category>
+      <category>#genai</category>
+    </item>
+    <item>
+      <title>Setting up your Rust development environment using Dev Containers</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/setting-up-rust-dev-env-devcontainers-vscode?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/setting-up-rust-dev-env-devcontainers-vscode&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Setting up a new development environment that's configured with all the SDKs and tools you need to get started working can be a multi-step process that is error-prone. Especially when you don't know whether you want to commit to a specific technology or don't have too much space on your device, you might not want to install everything on your device. Additionally, cleaning up and removing everything you installed isn't always 100%. This is where development environments like Dev Containers can come in handy.&lt;/p&gt;
+&lt;h2&gt;What are Dev Containers&lt;/h2&gt;
+&lt;p&gt;A development container (Dev Container) lets you use a container as a full development environment.&lt;/p&gt;
+&lt;p&gt;Because your development environment is in a container, the environment is isolated. The builds are reproducible and disposable. This means you can quickly stand up a new clean development environments and dispose of them just as easily.&lt;/p&gt;
+&lt;p&gt;For more details, see the &lt;a href="https://containers.dev/"&gt;Dev Containers website&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have Docker installed, you can run them locally. Otherwise, you can run Dev Containers using GitHub Codespaces&lt;/p&gt;
+&lt;h2&gt;What are GitHub Codespaces&lt;/h2&gt;
+&lt;p&gt;A codespace is a development environment that's hosted in the cloud.&lt;/p&gt;
+&lt;p&gt;For more details, see the &lt;a href="https://github.com/features/codespaces"&gt;GitHub Codespaces website&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Set up Dev Container for Rust Development&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Create a new directory.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add a Dev Container configuration file called &lt;em&gt;.devcontainer.json&lt;/em&gt; that contains the following content:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;Rust Development Environment&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/rust:latest&amp;quot;,
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;rust-lang.rust-analyzer&amp;quot;
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;name&lt;/strong&gt;: A human friendly name to identify your development environment. It's not as important when you only have one environment but if you have different environments, it can be useful for differentiating between the various configurations.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;image&lt;/strong&gt;: For the most customization, you can provide the path to a Docker file. However, to make things easier, there are a set of prebuilt container images. In this case, I'm using the &lt;a href="https://github.com/devcontainers/images/tree/main/src/rust"&gt;Rust image&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;customizations.vscode.extensions&lt;/strong&gt;: A list of Visual Studio Code extensions that can help you with your development. In this case, it's the &lt;a href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer"&gt;&lt;em&gt;rust-analyzer&lt;/em&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;At minimum, this is all you need to get started.&lt;/p&gt;
+&lt;h2&gt;Start your environment&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://code.visualstudio.com/docs/devcontainers/tutorial"&gt;Visual Studio Code provides good support for Dev Containers&lt;/a&gt;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Install &lt;a href="https://code.visualstudio.com/download"&gt;VS Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Open your directory where you configured your Dev Container in Visual Studio Code&lt;/li&gt;
+&lt;li&gt;Install the &lt;a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers"&gt;Dev Containers VS Code extension&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Open the command palette in VS Code. In the menu bar, select &lt;strong&gt;View &amp;gt; Command Palette.&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Enter the following command &lt;strong&gt;&amp;gt;Dev Containers: Open Dev Container&lt;/strong&gt;. This will start building your dev container. Wait for it to start.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Check your environment&lt;/h2&gt;
+&lt;p&gt;Once your Dev Container starts, check that &lt;code&gt;rustc&lt;/code&gt; is installed.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open the terminal.&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;rustc -h&lt;/code&gt;. A help message should output to the console for the Rust compiler.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Build your app&lt;/h2&gt;
+&lt;p&gt;For simplicity, I've used the &lt;a href="https://doc.rust-lang.org/rust-by-example/hello.html"&gt;Hello World sample from the Rust By Example website&lt;/a&gt;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Create a new file called &lt;em&gt;hello.rs&lt;/em&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add the following code:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-rust"&gt;fn main ()
+{
+    println!(&amp;quot;Hello World!&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Compile your program&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;rustc hello.rs
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This will generate an executable called &lt;em&gt;hello&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Run your app&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;./hello
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The application should print out the string &amp;quot;Hello World&amp;quot; to the console.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;That's it! You now have a Rust development environment to get started learning and building apps.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Dev Containers make it easy for you to configure full-featured development environments. When paired with Visual Studio Code and GitHub Codespaces, they can help you focus on learning and building applications rather than setting up your environment. You can find a &lt;a href="https://github.com/lqdev/rust-codespace-sandbox"&gt;final version of the configured environment and app on GitHub&lt;/a&gt;. Happy coding!&lt;/p&gt;
+&lt;h2&gt;Additional Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://code.visualstudio.com/docs/languages/rust"&gt;Rust in Visual Studio Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://doc.rust-lang.org/rust-by-example/index.html"&gt;Rust by Example&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://code.visualstudio.com/docs/devcontainers/containers"&gt;Developing Inside a Container&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/setting-up-rust-dev-env-devcontainers-vscode?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/setting-up-rust-dev-env-devcontainers-vscode</guid>
+      <pubDate>2024-01-31 21:05</pubDate>
+      <category>#rust</category>
+      <category>#vscode</category>
+      <category>#devcontainers</category>
+      <category>#codespaces</category>
+      <category>#programming</category>
+      <category>#technology</category>
+      <category>#docker</category>
+      <category>#containers</category>
+      <category>#github</category>
+    </item>
+    <item>
+      <title>POSSE to Mastodon using RSS and Azure Logic Apps</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/rss-to-mastodon-posse-azure-logic-apps?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/rss-to-mastodon-posse-azure-logic-apps&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;&lt;a href="/feed/weblogging-rewind-2023"&gt;Over the past year, I've made this website the main place where I post content&lt;/a&gt;. The easiest way to &lt;a href="/subscribe"&gt;subscribe to content on my website&lt;/a&gt; is through the various RSS feeds. However, I have accounts on other platforms like X (formerly Twitter), Bluesky, and Mastodon where I'd still like to repost my content to. Since the &lt;a href="https://techcrunch.com/2023/03/29/twitter-announces-new-api-with-only-free-basic-and-enterprise-levels/"&gt;changes to the Twitter API&lt;/a&gt;, the only place I cross-post to is Mastodon. The main reason behind it is, as of now, it's one of the few platforms that allows me to automate post creation via its REST APIs without restrictions. A large part of that is I self-host my own Mastodon instance but I assume there aren't as many restrictions when using other instances like mastodon.social. The way I automate posting is by setting up workflows using Azure Logic Apps. These workflows subscribe to my various RSS feeds and whenever a new post is published, they make an HTTP request to my Mastodon instance to create a new post. I've been doing this for some time but never got around to documenting it. This blog post goes into more details about how to set up these workflows.&lt;/p&gt;
+&lt;h2&gt;What is POSSE&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://indieweb.org/POSSE"&gt;POSSE&lt;/a&gt; is short for &amp;quot;Post on your Own Site Syndicate Elsewhere&amp;quot;. It's one of the patterns adopted within IndiWeb communities and projects. The main idea is, your website or a website you own or have administrative rights to becomes the main platform where you publish your content. Effectively, it's the cannonical version of your content. Once your content is on your website, you can optionally choose to distribute it on other platforms.&lt;/p&gt;
+&lt;h2&gt;What is RSS&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/RSS"&gt;RSS&lt;/a&gt; is short for Really Simple Syndication. Accorting to Wikipedia, this protocol &amp;quot;allows users and applications to access updates to websites in a standardized, computer-readable format&amp;quot;.&lt;/p&gt;
+&lt;h2&gt;What is Mastodon&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://joinmastodon.org/"&gt;Mastodon&lt;/a&gt; is an &lt;a href="https://github.com/mastodon/mastodon"&gt;open-source&lt;/a&gt; decentralized microblogging platform built on the &lt;a href="https://activitypub.rocks/"&gt;ActivityPub&lt;/a&gt; protocol and part of the larger collective of federated systems known as the &lt;a href="https://fediverse.info/"&gt;Fediverse&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;What are Azure Logic Apps&lt;/h2&gt;
+&lt;p&gt;If you've used workflow automation systems like &lt;a href="https://ifttt.com/"&gt;IFTTT&lt;/a&gt;, then you generally know what Azure Logic Apps are.&lt;/p&gt;
+&lt;p&gt;A more formal definition from the Azure documentation - &amp;quot;Azure Logic Apps is a cloud platform where you can create and run automated workflows with little to no code. By using the visual designer and selecting from prebuilt operations, you can quickly build a workflow that integrates and manages your apps, data, services, and systems.&amp;quot;&lt;/p&gt;
+&lt;p&gt;For more details, see the &lt;a href="https://learn.microsoft.com/azure/logic-apps/logic-apps-overview"&gt;Azure Logic Apps documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;Since you'll be creating Logic App Resources on Azure, you'll need an &lt;a href="https://aka.ms/free"&gt;Azure account&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Create Consumption Azure Logic App Resource&lt;/h2&gt;
+&lt;p&gt;There's various ways to create an Azure Logic App Resource but the easiest one for this relatively simple workflow is using the Azure Portal. For more details, see the &lt;a href="https://learn.microsoft.com/azure/logic-apps/quickstart-create-example-consumption-workflow#create-a-consumption-logic-app-resource"&gt;create a consumption logic app resource documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For the most part you can leave the defaults as is. Since the intended use for this workflow is personal and I don't need enterprise features, I chose to create my logic app using the consumption plan.&lt;/p&gt;
+&lt;p&gt;When prompted to choose &lt;strong&gt;Plan Type&lt;/strong&gt;, select &lt;strong&gt;Consumption&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;The Workflow&lt;/h2&gt;
+&lt;p&gt;The workflow is relatively simple. Whenever a new item is posted to an RSS feed, make an HTTP POST request to the Mastodon API&lt;/p&gt;
+&lt;div class="mermaid"&gt;flowchart TD
+    A["RSS"] --&gt; B["HTTP (Mastodon API)"]
+&lt;/div&gt;
+&lt;p&gt;Once your Logic App resource deploys to Azure, create a new logic app using the Blank Template. For more details, see the &lt;a href="https://learn.microsoft.com/azure/logic-apps/quickstart-create-example-consumption-workflow#select-the-blank-template"&gt;select a blank template documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This will launch you into the Logic app designer UI where you can begin to configure your workflow.&lt;/p&gt;
+&lt;h3&gt;RSS trigger&lt;/h3&gt;
+&lt;p&gt;The first thing you'll want to do is set up the trigger that initiates the workflow. The trigger in this case will be new posts on an RSS feed.&lt;/p&gt;
+&lt;p&gt;In the Logic app designer, search for &lt;em&gt;RSS&lt;/em&gt; and add it as a trigger.&lt;/p&gt;
+&lt;p&gt;Once the RSS trigger is added to your workflow, configure it as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The RSS feed URL&lt;/strong&gt;: The feed you want want to get posts from. In this case, I'm using my blog posts &lt;a href="https://www.luisquintanilla.me/posts/index.xml"&gt;feed&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;TIP: The RSS feed can be ANY feed. So if you wanted to subscribe and repost items from your favorite blog or website, you can as well. Just note though that if you don't own the content it might not be something the author wants you doing and for websites that update multiple times a day, it might produce a lot of noise in your feed. Other than that though, subscribe and post away!&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;How often do you want to check for items?&lt;/strong&gt;: The frequency at which you want to poll the RSS feed and check for new posts. In my case, I don't post very often but I do want my posts to be published on Mastodon within an hour of publishing. Therefore, I chose 1 hour as the update frequency.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;HTTP action&lt;/h3&gt;
+&lt;p&gt;Now that your trigger is configured, it's time to do someting with the latest posts. In this case, since I want to create a new post on Mastodon, I can do so via their REST API.&lt;/p&gt;
+&lt;h4&gt;Get Mastodon credentials&lt;/h4&gt;
+&lt;p&gt;One thing that you'll need to publish posts to Mastodon is an application token. The easiest way to get one is using the Web UI.&lt;/p&gt;
+&lt;p&gt;To get your app credentials through the web UI:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;In the Mastodon Web UI, select &lt;strong&gt;Preferences&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;In the preferences page, select &lt;strong&gt;Development&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;In the development preferences tab, select &lt;strong&gt;New application&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;In the new application page:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Provide a name for your application&lt;/li&gt;
+&lt;li&gt;Choose the &lt;strong&gt;write:statuses&lt;/strong&gt; scope checkbox. For details on required scopes to post statuses, see the &lt;a href="https://docs.joinmastodon.org/methods/statuses/#create"&gt;Post a new status REST API documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Select &lt;strong&gt;Submit&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If successful, this will create credentials and a token you can use to send authenticated requests to the Mastodon API.&lt;/p&gt;
+&lt;h4&gt;Configure HTTP action&lt;/h4&gt;
+&lt;p&gt;Now that you have your credentials, you can configure your HTTP action in the Logic Apps workflow.&lt;/p&gt;
+&lt;p&gt;In the Logic App designer:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Select &lt;strong&gt;+ New Step&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Search for &lt;em&gt;HTTP&lt;/em&gt; and add it as an action.&lt;/li&gt;
+&lt;li&gt;Once the HTTP action is added, configure it as follows:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Method&lt;/strong&gt;: The HTTP Method. To create statuses, choose &lt;strong&gt;POST&lt;/strong&gt; from the dropdown.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;URI&lt;/strong&gt;: The endpoint to make the requests to. For mastodon, it's &lt;code&gt;https://&amp;lt;HOST&amp;gt;/api/v1/statuses&lt;/code&gt;. Make sure to replace &lt;code&gt;&amp;lt;HOST&amp;gt;&lt;/code&gt; with your Mastodon instance. In my case, it's &lt;code&gt;toot.lqdev.tech&lt;/code&gt; since that's where I host my mastodon instance.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Headers&lt;/strong&gt;: HTTP Headers to use. In this case, set the following:&lt;/p&gt;
+&lt;table class="table"&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th&gt;Value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Content-Type&lt;/td&gt;
+&lt;td&gt;application/x-www-form-urlencoded&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Queries&lt;/strong&gt;: URL Query Parameters to add to the request. This is where you'll set your access token.&lt;/p&gt;
+&lt;table class="table"&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th&gt;Value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;access_token&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;[YOUR-ACCESS-TOKEN]&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Make sure to replace &lt;code&gt;[YOUR-ACCESS-TOKEN]&lt;/code&gt; with the token credential generated in the Mastodon Web UI.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Body&lt;/strong&gt;: The content to be published in your Mastodon post. This is entirely up to you though at minumum, you'll add the following to the text feed. &lt;code&gt;status=&amp;lt;YOUR-CONTENT&amp;gt;&lt;/code&gt;. &lt;code&gt;&amp;lt;YOUR-CONTENT&amp;gt;&lt;/code&gt; is what will be displayed in the Mastodon post.&lt;/p&gt;
+&lt;p&gt;One of the nice things about Azure Logic Apps is, properties from previous steps are available to you in subsequent steps. Since our trigger is an RSS feed, we can get access to the feed and item properties of our feed in the HTTP action. If all you wanted was to post the tile and URL, you can do that using the &lt;strong&gt;Feed title&lt;/strong&gt; and &lt;strong&gt;Primary Feed Link&lt;/strong&gt; properties. For more details, see the &lt;a href="https://learn.microsoft.com/connectors/rss/"&gt;RSS connector documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Save and run&lt;/h2&gt;
+&lt;p&gt;That's it! Now you just need to select &lt;strong&gt;Save&lt;/strong&gt; in the Logic app designer page.&lt;/p&gt;
+&lt;p&gt;Once it's saved, click &lt;strong&gt;Run trigger&lt;/strong&gt; which will kick off your trigger. If you have anything recent to publish and everything is configured correctly, it should show up in your Mastodon feed.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;By publishing content on your own website first, you're in full control of your content. Regardless of which platforms come and go, you won't have to adjust to those changes because your content is not locked in to those platforms. However, that doesn't mean you can't also publish your content there. Using protocols like RSS make it easy to subscribe to updates on your website. Using REST APIs provided by the respective platforms, you can automate publishing these updates. To further automate and simplify this process, you can use services like Azure Logic Apps to make publishing to all places easy.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/rss-to-mastodon-posse-azure-logic-apps?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/rss-to-mastodon-posse-azure-logic-apps</guid>
+      <pubDate>2023-12-24 16:40</pubDate>
+      <category>#azure</category>
+      <category>#mastodon</category>
+      <category>#indieweb</category>
+      <category>#logicapps</category>
+      <category>#fediverse</category>
+      <category>#posse</category>
+      <category>#internet</category>
+      <category>#web</category>
+      <category>#blogging</category>
+      <category>#blog</category>
+      <category>#automation</category>
+      <category>#programming</category>
+      <category>#rss</category>
+    </item>
+    <item>
+      <title>Computing website metrics using GitHub Actions</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/website-metrics-github-actions?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/website-metrics-github-actions&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;I recently posted my &lt;a href="/feed/weblogging-rewind-2023"&gt;(We)blogging Rewind&lt;/a&gt; and &lt;a href="/feed/weblogging-rewind-2023-continued"&gt;(We)blogging Rewind Continued&lt;/a&gt; for 2023. In these posts, I discuss some analysis I did of my posting behaviors over the past year on this website. I don't use platforms like Google Analytics to track visitors. I used to self-host a &lt;a href="https://www.goatcounter.com/"&gt;GoatCounter&lt;/a&gt; instance but personally I don't really care about traffic so I got rid of that. There are some standard reports I get from my &lt;a href="https://learn.microsoft.com/azure/cdn/cdn-advanced-http-reports"&gt;CDN provider on Azure&lt;/a&gt;, but again I don't really care about those metrics. What I do care about though is my output and understanding what I'm publishing and the topics that were important to me at any given time. In the case of those blog posts, it was for the year 2023. Given that I had already done the analysis and had written the script, I thought, why not automate it and run it on a more regular basis to have monthly summaries. Since my blog and scripts are already on GitHub, it makes sense to create a GitHub Action workflow. In this post, I discuss in more details what my post analytics script does and how I configured my workflow in GitHub Actions to run the script on the first of every month.&lt;/p&gt;
+&lt;h2&gt;The script&lt;/h2&gt;
+&lt;p&gt;This script loads the various posts on my website and computes aggregate metrics based on post types and their metadata. You can find the full script at &lt;a href="/snippets/lqdev-me-website-post-metrics"&gt;stats.fsx&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Loading files&lt;/h3&gt;
+&lt;p&gt;The following are convenience functions which I use as part of my website build process.&lt;/p&gt;
+&lt;p&gt;In general these functions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Load the individual post files&lt;/li&gt;
+&lt;li&gt;Parse the content and YAML metadata&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;let posts = loadPosts()
+let notes = loadFeed ()
+let responses = loadReponses ()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Instead of building new custom functions, I can repurpose them and apply additional transformations to compute aggregate statistics.&lt;/p&gt;
+&lt;h3&gt;Computing aggregate statistics&lt;/h3&gt;
+&lt;p&gt;Once the posts are loaded, I apply transformations on the collections to compute aggregate metrics:&lt;/p&gt;
+&lt;h4&gt;Annual post counts&lt;/h4&gt;
+&lt;p&gt;The following are annual aggreagates of blog posts, notes, and responses.&lt;/p&gt;
+&lt;h5&gt;Blog posts&lt;/h5&gt;
+&lt;p&gt;Takes the blog post collection, parses the published date, and computes counts by the year property. Then, it sorts them in descending order.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;let postCountsByYear = 
+    posts
+    |&amp;gt; Array.countBy (fun (x:Post) -&amp;gt; DateTime.Parse(x.Metadata.Date) |&amp;gt; _.Year)
+    |&amp;gt; Array.sortByDescending fst 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;Notes&lt;/h5&gt;
+&lt;p&gt;Takes the note collection, parses the published date, and computes counts by the year property. Then, it sorts them in descending order.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;let noteCountsByYear = 
+    notes
+    |&amp;gt; Array.countBy (fun (x:Post) -&amp;gt; DateTime.Parse(x.Metadata.Date) |&amp;gt; _.Year)
+    |&amp;gt; Array.sortByDescending fst
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5&gt;Responses&lt;/h5&gt;
+&lt;p&gt;Takes the response collection, parses the published date, and computes counts by the year property. Then, it sorts them in descending order.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;let responseCountsByYear = 
+    responses
+    |&amp;gt; Array.countBy (fun (x:Response) -&amp;gt; DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year)
+    |&amp;gt; Array.sortByDescending fst
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Response counts by type&lt;/h4&gt;
+&lt;p&gt;Takes the response collection, parses the published date, filters it for the current year, and computes counts by the post type (reply, bookmark, reshare, star).&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;let responsesByType = 
+    responses
+    |&amp;gt; Array.filter(fun x -&amp;gt; (DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year) = DateTime.UtcNow.Year)
+    |&amp;gt; Array.countBy(fun x -&amp;gt; x.Metadata.ResponseType)
+    |&amp;gt; Array.sortByDescending(snd)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Tag counts (responses)&lt;/h4&gt;
+&lt;p&gt;Takes the response collection, parses the published date, filters it for the current year, and computes counts by the tag name, and sorts in descending order using the count.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;let responsesByTag = 
+    responses
+    |&amp;gt; Array.filter(fun x -&amp;gt; (DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year) = DateTime.UtcNow.Year)
+    |&amp;gt; Array.collect(fun x -&amp;gt; 
+            match x.Metadata.Tags with
+            | null -&amp;gt; [|&amp;quot;untagged&amp;quot;|]
+            | [||] -&amp;gt; [|&amp;quot;untagged&amp;quot;|]
+            | _ -&amp;gt; x.Metadata.Tags
+        )
+    |&amp;gt; Array.countBy(fun x -&amp;gt; x)
+    |&amp;gt; Array.sortByDescending(snd)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Domain counts (responses)&lt;/h4&gt;
+&lt;p&gt;Takes the response collection, parses the published date, filters it for the current year, and computes counts by the target URL host name, and sorts it in descending order using the count.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;let responsesByDomain = 
+    responses
+    |&amp;gt; Array.filter(fun x -&amp;gt; (DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year) = DateTime.UtcNow.Year)
+    |&amp;gt; Array.countBy(fun x -&amp;gt; Uri(x.Metadata.TargetUrl).Host)
+    |&amp;gt; Array.sortByDescending(snd)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Displaying counts&lt;/h3&gt;
+&lt;p&gt;Since the &lt;code&gt;countBy&lt;/code&gt; function is the one used to compute the counts, this produces a tuple. The tuple though could be &lt;code&gt;string&lt;/code&gt; or &lt;code&gt;int&lt;/code&gt;. Therefore, I set the collection of entry counts to use a generic &lt;code&gt;'a&lt;/code&gt; for the first item in the tuple. I'm also able to control using &lt;code&gt;n&lt;/code&gt; whether to display the entire collection by using &lt;code&gt;-1&lt;/code&gt; as input or a limit when &lt;code&gt;n &amp;gt;= 0&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;let printEntryCounts&amp;lt;'a&amp;gt; (title:string) (entryCounts:('a * int) array) (n:int) = 
+    printfn $&amp;quot;{title}&amp;quot;
+
+    match n with 
+    | n when n = -1 -&amp;gt; 
+        entryCounts
+        |&amp;gt; Array.iter(fun x -&amp;gt; printfn $&amp;quot;{fst x} {snd x}&amp;quot;)
+        |&amp;gt; fun _ -&amp;gt; printfn $&amp;quot;&amp;quot;
+    | n when n &amp;gt;= 0 -&amp;gt; 
+        entryCounts
+        |&amp;gt; Array.take n
+        |&amp;gt; Array.iter(fun x -&amp;gt; printfn $&amp;quot;{fst x} {snd x}&amp;quot;)
+        |&amp;gt; fun _ -&amp;gt; printfn $&amp;quot;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The result of running this script produces the following results:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Blogs
+2023 5
+2022 7
+
+Notes
+2023 34
+2022 36
+
+Responses
+2023 216
+2022 146
+
+Response Types
+bookmark 151
+reshare 48
+reply 10
+star 7
+
+Response Tags
+ai 104
+llm 42
+untagged 41
+opensource 31
+internet 17
+
+Domains
+github.com 15
+huggingface.co 11
+arxiv.org 10
+openai.com 6
+www.theverge.com 4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;The workflow file&lt;/h2&gt;
+&lt;p&gt;The workflow file is a GitHub Actions workflow which you can find in my &lt;a href="https://github.com/lqdev/luisquintanilla.me/blob/main/.github/workflows/stats.yml"&gt;website repo&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Triggers&lt;/h3&gt;
+&lt;p&gt;I don't really want the script to run every time I publish my website. Instead, I just want to have these aggregate values computed on a monthly basis. Optionally though, I'd like to be able to run ad-hoc reports and trigger this job manually.&lt;/p&gt;
+&lt;p&gt;The triggers in my workflow file look like the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-yaml"&gt;schedule: 
+  - cron: '30 0 1 * *'
+workflow_dispatch: 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Using cron job syntax, I use the &lt;code&gt;schedule&lt;/code&gt; trigger to configure the script to run at 12:30 AM on the 1st day of every month.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;workflow_dispatch&lt;/code&gt; trigger is there so I can manually trigger this job.&lt;/p&gt;
+&lt;h2&gt;Steps&lt;/h2&gt;
+&lt;p&gt;The steps in the workflow file are the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Check out the repo&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-yaml"&gt;- uses: actions/checkout@v2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Install the .NET 8 SDK&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-yaml"&gt;- name: Setup .NET SDK 8.x
+  uses: actions/setup-dotnet@v1.9.0
+  with: 
+    dotnet-version: '8.0.x'    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Restore dependencies&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-yaml"&gt;- name: Install dependencies
+  run: dotnet restore    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Build the project&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-yaml"&gt;- name: Build project
+  run: dotnet build --no-restore  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Run the script and display metrics&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-yaml"&gt;- name: Display Post Metrics
+  run: dotnet fsi Scripts/stats.fsx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;If you have scripts that you run on a repo on a fairly regular basis, consider using GitHub Actions to automate the execution of these scripts. Happy coding!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/website-metrics-github-actions?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/website-metrics-github-actions</guid>
+      <pubDate>2023-12-24 13:24</pubDate>
+      <category>#github</category>
+      <category>#cicd</category>
+      <category>#website</category>
+      <category>#blog</category>
+      <category>#blogging</category>
+      <category>#web</category>
+      <category>#internet</category>
+      <category>#fsharp</category>
+      <category>#dotnet</category>
+    </item>
+    <item>
+      <title>Using Generative AI to produce Spotify Clips</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/generative-ai-spotify-clips?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/generative-ai-spotify-clips&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;While listening to music on Spotify last night, this thought hit me. It's been cooking for some time so now you get to read about it. Spotify and YouTube, if you build this into your platforms for songs or podcasts, &lt;a href="/contact"&gt;contact me&lt;/a&gt; for info on where to send the check 😂. As the title of the post suggests, this is a thought experiment on how you might use Generative AI to produce Spotify Clips. This is not limited to songs but could also be extended to audio-only podcasts. However, given the long-form nature of podcasts it might be extremely resource intensive to produce clips per episode. This post is not exactly a how-to guide, though there are some practical examples of how some of the steps in the workflow might work using &lt;a href="https://copilot.microsoft.com/"&gt;Microsoft Copilot (formerly Bing Chat)&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Spotify Clips&lt;/h2&gt;
+&lt;p&gt;Let's start off by talking about what Spotify Clips are. Back in March of 2023, &lt;a href="https://artists.spotify.com/blog/spotify-clips-get-started-short-form-video-stream-on"&gt;Spotify introduced Clips to their platform&lt;/a&gt;. Spotify describes &lt;a href="https://clips.byspotify.com/"&gt;Clips&lt;/a&gt; as &amp;quot;short, under-30-second vertical videos that are uploaded directly to Spotify for Artists. They’re designed to put you and your music front-and-center, so they can be attached to your artist profile, to a song, to an album, or to an upcoming release.&amp;quot;. When paired with a song, you can think of them as short music videos. Music videos being the videos made to accompany songs that played on TV channels like Music Television (MTV) before Jersey Shore and Catfish. Music videos are still in production today and they generally serve the same purpose. They provide a visual representation of the story being told by the song.&lt;/p&gt;
+&lt;h2&gt;Generative AI for video&lt;/h2&gt;
+&lt;p&gt;An overwhelming majority of Generative AI models only generate text. With models like DALL-E and Stable Diffusion, you can also generate images. Other models to generate audio and video have started coming on the scene. Most recently, Google announced &lt;a href="https://blog.research.google/2023/12/videopoet-large-language-model-for-zero.html"&gt;VideoPoet&lt;/a&gt;, a large language model for zero-shot video generation. There's many interesting techniques that VideoPoet introduces but I'll keep it to one of the more simple scenarios and the technique used in this post, text-to-image. Given a text prompt, VideoPoet can generate by default, a short 2-second clip. You can use VideoPoet as well to extend a clip so you could go well beyond the default 2 seconds. That however is outside the scope of this post. With that in mind, let's talk about how we might use a Generative AI model and apply it to the context of Spotify Clips.&lt;/p&gt;
+&lt;h2&gt;Generative AI Spotify Clips workflow&lt;/h2&gt;
+&lt;p&gt;The following is a rough idea of how you might use song information like lyrics to&lt;/p&gt;
+&lt;div class="mermaid"&gt;flowchart TD
+  A["Get song lyrics"] --&gt; B["Generate scenes and script"]
+  B --&gt; C["Generate prompts for each scene"]
+  C --&gt; D["Generate video clips"]
+  D --&gt; E["(Optional) Edit clips"]
+  D --&gt; F["Stitch clips together"]
+  E--&gt;F
+&lt;/div&gt;
+&lt;p&gt;This is roughly what Google did in their VideoPoet samples. They &amp;quot;...produced a short movie composed of many short clips generated by the model. For the script, we asked Bard to write a series of prompts to detail a short story about a traveling raccoon. We then generated video clips for each prompt, and stitched together all resulting clips&amp;quot;. The resulting video looks like the following:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=70wZKfx6Ylk" title="An AI generated video of a traveling racoon demoing VideoPoet AI model capabilities"&gt;&lt;img src="http://img.youtube.com/vi/70wZKfx6Ylk/0.jpg" class="img-fluid" alt="An AI generated video of a traveling racoon demoing VideoPoet AI model capabilities" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;One thing to note is that the videos generated are YouTube Shorts which are vertical as well. This makes it easier to produce videos in the format Spotify expects Clips to be in.&lt;/p&gt;
+&lt;h2&gt;AI Generated Spotify Clips in practice&lt;/h2&gt;
+&lt;p&gt;Now that we know the general process, what does it actually look like in practice? To help me with that, I used Microsoft Copilot.&lt;/p&gt;
+&lt;h3&gt;Generate scenes and script&lt;/h3&gt;
+&lt;p&gt;In the example shared by Google, they used a prompt to generate a script made up of a series of prompts. In the case of songs on Spotify, we can use that as context and the starting point for our script. From there, we can ask Copilot to compose scenes for the verses in the song. We can also make sure as these scenes are generated, that there is a smooth transition between them and the storytelling is consistent.&lt;/p&gt;
+&lt;p&gt;Let's take a look at what this might look like using the Chicano Batman song &amp;quot;A Hundred Dead and Loving Souls&amp;quot;. Why that one? Just check out my &lt;a href="/feed/spotify-wrapped-2023"&gt;Spotify Wrapped&lt;/a&gt;. The general theme of that song is about the cycles of life experienced across millenia and generations.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Prompt&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Given the following prompt:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Using the song information below as context, generate a script for a story that visually represents the song lyrics. Ensure that the script is broken down into individual scenes and the scenes are linear and cohesively transition.
+
+&amp;lt;song&amp;gt;
+&amp;lt;title&amp;gt;A Hundred Dead and Loving Souls&amp;lt;/title&amp;gt;
+&amp;lt;lyrics&amp;gt;
+I am the sand stuck under miles of rock
+watching the dry air sweep away my thoughts
+as we travel protected by shards of glass
+driving through the history of a million memories
+
+In a sea of a hundred dead and loving souls
+In a sea of a hundred dead and loving souls
+In a sea of a hundred dead and loving souls
+Climbing a thousand unclimbed trees
+I don't know I want to know how it would feel
+to be on top of one of these!
+
+I am the root
+quickly ascending
+up through the surrounding dirt
+quickly devoured by a hungry sun
+quickly devoured by a hungry son
+who is my father
+and we are alike
+we look alike we talk alike
+we are alike
+we are alike
+we are alike we look alike
+we talk alike
+
+Thats why Im hungry
+like the bellowing sky
+this is no lie
+as sure as light
+entering eye
+want to stay high
+everything's cool too cool so cool
+and I remember that everything falls
+
+So I take a look around me now, as I speak
+and I imagine a disinterested crowd
+talking aloud
+and I think of what I want most
+and the crowd disappears
+and a fixated gaze envelopes my wondering mind
+and then she recruits and takes me to this place
+I've been there before and that's where I saw her face
+
+In a sea of a hundred dead and loving souls
+In a sea of a hundred dead and loving souls
+In a sea of a hundred dead and loving souls
+Climbing a thousand unclimbed trees
+I don't know I want to know how it would feel
+to be on top of one of these!
+&amp;lt;/lyrics&amp;gt;
+&amp;lt;/song&amp;gt;
+
+Story: 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The response looks like the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;# Script for A Hundred Dead and Loving Souls
+
+## Scene 1: The Sand
+- A close-up shot of a grain of sand under a microscope, showing its intricate structure and texture.
+- The camera zooms out to reveal that the sand is part of a vast desert landscape, with dunes and rocks stretching to the horizon.
+- A voice-over of the protagonist (a young man) narrates the first verse of the song, expressing his feelings of being trapped and forgotten under the weight of the world.
+- The camera pans to show a car driving on a dusty road, with the protagonist and his father inside. They are both wearing sunglasses and hats to protect themselves from the sun.
+- The car is filled with boxes and bags, indicating that they are moving to a new place.
+- The father is driving and listening to the radio, while the protagonist is looking out the window, bored and restless.
+- The radio plays a news report about a nuclear fusion experiment in South Korea, followed by a song by a popular band.
+- The father comments on the news, saying that it is a breakthrough for humanity and that he hopes to see it in his lifetime.
+- The protagonist does not respond, but thinks to himself that he does not care about anything anymore.
+
+## Scene 2: The Sea
+- A montage of shots showing the protagonist and his father arriving at their new home, a small town by the sea.
+- The father is excited and optimistic, while the protagonist is indifferent and detached.
+- The father unpacks their belongings and sets up their new house, while the protagonist wanders around the town, exploring the beach, the pier, and the streets.
+- The protagonist sees a group of teenagers hanging out at a skate park, laughing and having fun. He feels out of place and lonely.
+- The protagonist walks to the edge of the pier, where he sees a sign that says &amp;quot;No diving&amp;quot;.
+- He looks down at the water, where he sees hundreds of dead fish floating on the surface, victims of a recent oil spill.
+- He hears the chorus of the song in his head, imagining himself diving into the sea of a hundred dead and loving souls, and climbing a thousand unclimbed trees.
+- He wonders what it would feel like to be free and alive, instead of being stuck and dead inside.
+
+## Scene 3: The Root
+- A flashback scene, showing the protagonist as a child, playing in a garden with his father.
+- The father is a botanist, and he teaches his son about different plants and flowers, showing him how to care for them and appreciate their beauty.
+- The son is curious and eager, and he asks his father many questions about the natural world.
+- The father tells his son that he is a root, quickly ascending up through the surrounding dirt, and that he will grow into a strong and beautiful tree one day.
+- The son smiles and hugs his father, saying that he loves him and that he wants to be like him.
+- The father smiles and hugs his son back, saying that he loves him too and that he is proud of him.
+
+## Scene 4: The Sun
+- A flash-forward scene, showing the protagonist as a young adult, working in a laboratory with his father.
+- The father is a nuclear physicist, and he is working on a project to harness the power of nuclear fusion, the same process that fuels the sun.
+- The son is his assistant, and he helps his father with the experiments and calculations, following his instructions and commands.
+- The father tells his son that he is a hungry sun, quickly devoured by a hungry son, and that he will make a great contribution to science and humanity one day.
+- The son nods and agrees, but he does not look happy or satisfied. He feels pressured and obligated to follow his father's footsteps, even though he does not share his passion or vision.
+- The son thinks to himself that he is hungry, like the bellowing sky, and that he wants to stay high, away from the reality and expectations that weigh him down.
+
+## Scene 5: The Crowd
+- A present-day scene, showing the protagonist at a party, surrounded by a crowd of people.
+- The party is hosted by one of the teenagers that he saw at the skate park, who invited him out of pity and curiosity.
+- The party is loud and chaotic, with music, drinks, and drugs everywhere.
+- The protagonist feels uncomfortable and anxious, and he does not fit in with the crowd. He does not know anyone, and no one knows him.
+- He tries to make small talk with some of the guests, but they are either rude, bored, or high, and they do not pay attention to him.
+- He feels invisible and insignificant, and he wishes he could disappear.
+- He takes a look around him, as he speaks, and he imagines a disinterested crowd, talking aloud, and he thinks of what he wants most.
+
+## Scene 6: The Gaze
+- A close-up shot of a pair of eyes, staring intently at the protagonist.
+- The eyes belong to a girl, who is also at the party, but who is different from the rest of the crowd. She is quiet and mysterious, and she has a captivating and mysterious aura.
+- The girl notices the protagonist, and she is intrigued by him. She sees something in him that no one else sees, something that she relates to and understands.
+- She walks up to him, and she introduces herself. She says her name is Luna, and that she likes his song. She says she heard him humming it to himself, and that she knows the lyrics by heart.
+- The protagonist is surprised and confused, and he asks her how she knows his song. He says he wrote it himself, and that he never shared it with anyone.
+- The girl smiles and says that she knows his song, because she wrote it too. She says she has a gift, or a curse, depending on how you look at it. She says she can hear the songs that people sing in their souls, and that she can sing them back to them.
+- The protagonist is shocked and amazed, and he asks her to prove it. He asks her to sing his song, or any song that he knows.
+- The girl nods and agrees, and she sings his song, word for word, note for note, perfectly. She sings it with emotion and expression, as if she wrote it herself.
+- The protagonist is speechless and mesmerized, and he feels a connection with the girl that he never felt with anyone before. He feels like she knows him, and he wants to know her.
+- The girl stops singing, and she looks at him with a fixated gaze, that envelopes his wondering mind. She says she likes him, and she asks him if he wants to go with her to a place that she knows.
+- The protagonist nods and agrees, and he follows her out of the party, leaving the crowd behind.
+
+## Scene 7: The Place
+- A montage of shots showing the protagonist and the girl driving to a secluded spot in the woods, where they park their car and get out.
+- The spot is a clearing, where there is a large tree, with a rope swing hanging from one of its branches.
+- The tree is the only one of its kind in the area, and it stands out from the rest of the forest. It is tall and majestic, with green leaves and red flowers.
+- The girl tells the protagonist that this is her place, and that she comes here often to escape from the world. She says she loves this tree, and that she calls it Luna, after herself.
+- The protagonist tells the girl that this is his place too, and that he has been here before. He says he saw this tree in his dreams, and that he always wanted to climb it.
+- The girl smiles and says that they have more in common than they thought, and that they are meant to be together. She says she wants to show him something, and she asks him to follow her.
+- The girl climbs the tree, using the rope swing as a support. She is agile and graceful, and she reaches the top in no time.
+- The protagonist follows her, using the rope swing as well. He is clumsy and nervous, and he struggles to keep up with her.
+- The girl reaches the top of the tree, where she finds a small platform, made of wood and rope. She sits on the platform, and she looks at the view.
+- The view is breathtaking, and it shows the sea, the town, and the sky, all in one panorama. The sun is setting, and it casts a golden glow on everything.
+- The girl waves at the protagonist, and she invites him to join her. She says this is the best place to watch the sunset, and that she wants to share it with him.
+- The protagonist reaches the top of the tree, where he joins the girl on the platform. He sits next to her, and he looks at the view. He is awestruck, and he agrees that this is the best place to watch the sunset.
+- The girl leans in and kisses the protagonist, and he kisses her back. They embrace each other, and they watch the sunset together.
+- The chorus of the song plays in the background, as the scene fades to black.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Not too bad for a first pass. From here you might want to continue tweaking the different scenes but at least you have a starting point.&lt;/p&gt;
+&lt;h3&gt;Generate prompts for each scene&lt;/h3&gt;
+&lt;p&gt;Using the text-to-image technique, I first need to generate prompts to guide the model in the video generation process. In the case of this sample, you could take each of the bullet points in the scenes and generate a video for each of them.&lt;/p&gt;
+&lt;p&gt;At the time of this writing, I didn't have access to a video generation model and I don't think VideoPoet is open to the public yet. Therefore, I had to slightly modify what I was generating. Instead of generating a video, I used Copilot to generate images using DALL-E. The concept is the same, except instead of generating videos, I'm generating still images.&lt;/p&gt;
+&lt;p&gt;I could've applied the same concept of one image per bullet point. However, for brevity, I chose to summarize all of the bullet points in a scene into a single prompt.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Prompt&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Given the following prompt:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Using storyboarding techniques, for each scene, generate a single prompt to use as input for DALL-E to generate an image. Since there are 7 scenes, there should be only 7 prompts. Distill as much of the concepts from each of the bullet points in each scene.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The results from that prompt are the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Scene 1: The Sand
+    A grain of sand under a microscope and a car driving on a dusty road in a desert
+Scene 2: The Sea
+    A boy standing on a pier looking at a sea of dead fish and a sign that says “No diving”
+Scene 3: The Root
+    A father and a son playing in a garden with different plants and flowers
+Scene 4: The Sun
+    A father and a son working in a laboratory with a nuclear fusion reactor
+Scene 5: The Crowd
+    A boy at a party surrounded by a crowd of people with music, drinks, and drugs
+Scene 6: The Gaze
+    A girl with a pair of eyes that can hear the songs that people sing in their souls
+Scene 7: The Place
+    A boy and a girl sitting on a platform on top of a tree with a rope swing and a view of the sea, the town, and the sunset
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Again, not too bad for a first pass. The main points of the scene are captured. I can already foresee there are a few scenes like &amp;quot;The Sand&amp;quot; which might be difficult to illustrate in a single image.&lt;/p&gt;
+&lt;h3&gt;Generate images (video clips)&lt;/h3&gt;
+&lt;p&gt;Now that we have individual prompts, it's time to generate some images. Again, I'm doing this because I don't have access to a video generation model but the process would be generally the same.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Prompt&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Use the prompts for each of the scenes to generate images with DALL-E. Render them as pencil art.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For brevity, I'll only include some of the images generated:&lt;/p&gt;
+&lt;p&gt;&amp;quot;The Sand&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/generative-ai-spotify-clips/sand-car-dirt-road.jpg" class="img-fluid" alt="AI genreated image of a grain of sand under a microscope and a car driving on a dusty road in a desert" /&gt;&lt;/p&gt;
+&lt;p&gt;&amp;quot;The Sea&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/generative-ai-spotify-clips/child-dock.jpg" class="img-fluid" alt="AI generated image of a boy standing on a pier looking at a sea of dead fish and a sign that says “No diving”" /&gt;&lt;/p&gt;
+&lt;p&gt;&amp;quot;The Root&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/generative-ai-spotify-clips/father-son-playing.jpg" class="img-fluid" alt="AI generated image of a father and a son playing in a garden with different plants and flowers”" /&gt;&lt;/p&gt;
+&lt;p&gt;The pencil art part was something I thought would look nice to illustrate this instead of digital art or photorealism. That was a personal choice though.&lt;/p&gt;
+&lt;p&gt;As we can see from the images, in general they're not too bad. When not condensed into a single image though and you have an image or video per frame in a scene, the generated content can be richer.&lt;/p&gt;
+&lt;h3&gt;Edit and stitch videos&lt;/h3&gt;
+&lt;p&gt;For the image generation example, this seems like a natural stopping point. However, with videos, you can imagine using AI to edit these videos. The VideoPoet post mentions how you might be able to do that. Part of that editing might also include lengthening the video clips. Once you're happy with your videos, you would then stitch them together to compose a larger clip.&lt;/p&gt;
+&lt;h2&gt;Improvements&lt;/h2&gt;
+&lt;p&gt;Tons! I used the simplest tools available at hand to validate whether my idea is feasible.&lt;/p&gt;
+&lt;h3&gt;Videos&lt;/h3&gt;
+&lt;p&gt;The most obvious improvement here would be to actually generate the videos. Whether that's using VideoPoet or another video generation model, the whole point is to end up with a video clip to upload to Spotify.&lt;/p&gt;
+&lt;h3&gt;Prompts&lt;/h3&gt;
+&lt;p&gt;The prompts I used were not complex at all. I tried to keep them as simple as possible and in many cases, I wasn't the one providing the prompts, Copilot generated them for me. I would try to use more complex prompts to further guide the model in the formats I expect the outputs to be in and give more details for the model to generate better results.&lt;/p&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;p&gt;All of this was done using Copilot in the browser. As a starting point to validate my ideas this was fine. However, this approach is not composable, testable, reproducible, or scalable. I'd convert these steps to code in order to get all of the things Copilot doesn't give me.&lt;/p&gt;
+&lt;h3&gt;Timestamp sync&lt;/h3&gt;
+&lt;p&gt;One of the features Spotify offers is lyrics that are synced to the song. Similarly, being able to sync these generated clips to the song would be important so the visuals match the&lt;/p&gt;
+&lt;h2&gt;Challenges&lt;/h2&gt;
+&lt;h3&gt;Consistency&lt;/h3&gt;
+&lt;p&gt;One challenge that someone brought up when I was explaining this idea was, how do you ensure that the visuals are consistent throughout all of the video clips.&lt;/p&gt;
+&lt;p&gt;That is a great question I don't have a great answer for, though I have ideas.&lt;/p&gt;
+&lt;p&gt;If there aren't many changes throughout scenes, you could just opt to keep lengthening the video clip.&lt;/p&gt;
+&lt;p&gt;If there are flashbacks or different visuals between scenes, you might achieve consistency by  using the image-to-video modality. Using a snapshot from a frame in a previous video clip, you might try to edit that snapshot to use in between transitions and then lengthen the video to produce the next scene.&lt;/p&gt;
+&lt;h3&gt;Power Consumption&lt;/h3&gt;
+&lt;p&gt;As fascinating as this is, is it worth the energy and cooling demands it requires when using large models? Maybe not in its current form, but maybe it makes sense when using smaller models or more power efficient compute.&lt;/p&gt;
+&lt;h3&gt;People&lt;/h3&gt;
+&lt;p&gt;For music videos, there's a human element to it both from the performers and the people who produce them. Again, the Generative AI is impressive and for someone like me without any artistic skills, it can be an empowering tool. Although I'm tempted to see what an &lt;a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"&gt;AI Rickroll&lt;/a&gt; might look like, I prefer the human version. 🙂&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this post I discussed how you might use Generative AI models like VideoPoet to generate short videos for Spotify Clips. Since I don't have acess to VideoPoet or other video generation models at this time, I decided to show practical image generation examples instead using models like DALL-E to illustrate the general concepts. It's not wihtout its challenges and there's a ton of improvements I can think of but it was a fun experiment regardless. What else would you use these Generative AI models for?&lt;/p&gt;
+&lt;p&gt;You can find an addendum to this post &lt;a href="/feed/genai-spotify-clips-instrumental"&gt;here&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/generative-ai-spotify-clips?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/generative-ai-spotify-clips</guid>
+      <pubDate>2023-12-23 18:30</pubDate>
+      <category>#ai</category>
+      <category>#video</category>
+      <category>#chicanobatman</category>
+      <category>#generativeai</category>
+      <category>#genai</category>
+      <category>#spotify</category>
+      <category>#google</category>
+      <category>#microsoft</category>
+      <category>#bing</category>
+      <category>#copilot</category>
+      <category>#dalle</category>
+      <category>#image</category>
+      <category>#prompt</category>
+      <category>#projectidea</category>
+      <category>#music</category>
+      <category>#podcasts</category>
+      <category>#llm</category>
+    </item>
+    <item>
+      <title>AI like it's 1999 or 1899</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/ai-1999-1899?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/ai-1999-1899&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;In an earlier note, I talked about the natural progression of technology which goes from &lt;a href="/feed/ai-abundance-scarcity-cycle-repeats-rss-enclosure-use-case"&gt;scarcity to abundance&lt;/a&gt; over time and AI is no different. That was in the context of media on the internet and paying per minute with early cell phones. One of the original challenges with AI was context length and token limits. It's becoming less relevant as context sizes continue to increase. However, it's not like you can fit the entire Harry Potter series either. So you still need to cleverly manage your context size especially when using documents and chat history as part of that context. Historically, people have used abbreviations to compress messages either because of cost or medium constraints. That's what this post explores in the context of AI.&lt;/p&gt;
+&lt;h2&gt;Compressing text like T9&lt;/h2&gt;
+&lt;p&gt;Below is a conversation Microsoft Copilot (formerly Bing Chat) using some information from the article &lt;a href="https://sundaymagazine.org/2010/08/10/from-1890-the-first-text-messages/"&gt;From 1890: The First Text Messages&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Me&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Summarize this text:&lt;/p&gt;
+&lt;p&gt;I’m trying something new today. Sometimes in my research I find an interesting old article that I wouldn’t normally post because it’s not from the Sunday Magazine section, or it’s from further than 100 years ago so I’ll never get to it. Instead of letting these go unused, I figure I’ll occasionally post them midweek during what would otherwise be slow weeks. Since this weekend I only have three articles to post, it seems like a good week to try it.&lt;/p&gt;
+&lt;p&gt;Telegraph operators on opposite sides of the country had some time to get to know each other when they weren’t busy sending other people’s messages. “Metaphorically they shake hands cordially twice a day — when they begin work and when they end it. And when business is dull they hold long conversations, with hundreds of miles — perhaps thousands — separating them, as two friends might do over a dinner table.”&lt;/p&gt;
+&lt;p&gt;What really caught my eye, though, is that the abbreviations they used seem a lot like the abbreviations used in today’s text messages.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Copilot&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Here is a possible summary of the text:&lt;/p&gt;
+&lt;p&gt;The author is trying a new feature of posting old articles from the Sunday Magazine section on midweek. The article is about how telegraph operators communicated with each other using abbreviations that are similar to today’s text messages. The author finds this interesting and wonders if there are other similarities between old and new forms of communication.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Me&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Now abbreviate it as if using a T9 keyboard for conciseness&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Copilot&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;That sounds like a fun challenge. Here is a possible abbreviation of the summary:&lt;/p&gt;
+&lt;p&gt;try new feat post old artcls midwk. artcl abt telgrph oprtrs chat w/ abbrvtns lk txt msgs. find intrstng n wndr othr smilrts btwn old n new comms.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In this conversation, I first had Copilot summarize the original text. It's not a very long piece of text but it works for this example. You could imagine though how a longer piece of text would benefit even more from this summarization. Copilot does a good job of summarizing the text. However, what if I wanted to summarize it even more?&lt;/p&gt;
+&lt;p&gt;In comes T9 (kind of). T9 is short for &amp;quot;Text on 9 keys&amp;quot; and it was predictive text technology that made it easier to compose SMS text messages using only the 9 keys on the phone keypad. Before T9, it was cumbersome and time consuming to compose full sentences so you might abbreviate them. For example &amp;quot;See you later&amp;quot; might be abbreviated as &amp;quot;c u l8r&amp;quot;. You can learn more in the &lt;a href="https://en.wikipedia.org/wiki/SMS_language"&gt;SMS language Wikipedia article&lt;/a&gt;. Not only would you abbreviate because it was tedious to compose messages one letter at a time, but also you were limited in the number of characters you could send in a single SMS. Somewhat related, in the early days of microblogging on Twitter, one of the ways you could compose and view tweets was through SMS. There was the cost aspects as well. You were charged per SMS so you wanted to send as much information in a single SMS as possible. Now SMS is only one example where this took place. Telegrams and telegraphs from yesteryear had similar constraints. Whether it was cost, size limits, or general UX challenges, people looked to abbreviations to draft their messages.&lt;/p&gt;
+&lt;p&gt;Now that we're caught up on this history, that's what you're seeing in this response from Copilot.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;try new feat post old artcls midwk. artcl abt telgrph oprtrs chat w/ abbrvtns lk txt msgs. find intrstng n wndr othr smilrts btwn old n new comms.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It is an abbreviated form of the summarized message enabling you to use even less tokens as part of the prompts you submit to AI.&lt;/p&gt;
+&lt;p&gt;When looking at &amp;quot;word&amp;quot; counts, they are roughly the following:&lt;/p&gt;
+&lt;table class="table"&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Text&lt;/th&gt;
+&lt;th&gt;Word Count&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Original&lt;/td&gt;
+&lt;td&gt;58&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Summarized&lt;/td&gt;
+&lt;td&gt;25&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;T9&lt;/td&gt;
+&lt;td&gt;18&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;We can see that the abbreviated version is ~3x smaller than the original message.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Given that models like GPT and others have been trained on the entire internet, it has some knowledge of these types of abbreviations to compose messages. Now, is it scalable and would you want to use this in your production applications, I can't say. Probably not because the abbreviations are lossy. While in general you could read and get the gist of the message using the abbreviations, there are things lost in translation. Now maybe the LLM might do a better job at interpreting the abbreviations. It'd be a fun experiment.&lt;/p&gt;
+&lt;p&gt;&amp;quot;n d mntm, il kp usng AI lk its 1999. c u l8r!&amp;quot;&lt;/p&gt;
+&lt;p&gt;Translation: &amp;quot;In the meantime, I'll keep using AI like it's 1999. See you later!&amp;quot; 🙂&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/ai-1999-1899?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/ai-1999-1899</guid>
+      <pubDate>2023-12-15 08:56</pubDate>
+      <category>#ai</category>
+      <category>#communication</category>
+      <category>#sms</category>
+      <category>#retro</category>
+      <category>#internet</category>
+    </item>
+    <item>
+      <title>Quick thoughts about Snapdragon Summit 2023</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/quick-thoughts-snapdragon-summit-2023?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/quick-thoughts-snapdragon-summit-2023&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;This started as a note where I was planning on posting a bullet point or two with my thoughts but kept on writing so I decided to turn it into a blog post.&lt;/p&gt;
+&lt;p&gt;Here's a few of my thoughts after the Snapdragon Summit 2023 keynote.&lt;/p&gt;
+&lt;p&gt;Today was the start of Snapdragon Summit 2023 and all I can say is, &lt;strong&gt;WOW&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;CNET has a &lt;a href="https://www.youtube.com/watch?v=K7Q5iYHvgwo"&gt;14 minute clip&lt;/a&gt; that summarizes all the announcements.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=K7Q5iYHvgwo" title="Qualcomm’s Snapdragon AI Event: Everything Revealed in 14 Minutes"&gt;&lt;img src="http://img.youtube.com/vi/K7Q5iYHvgwo/0.jpg" class="img-fluid" alt="Qualcomm’s Snapdragon AI Event: Everything Revealed in 14 Minutes" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I was cautiously optimistic about what would be shown today but Qualcomm delivered.&lt;/p&gt;
+&lt;p&gt;The main thing that I'm excited about are their Snapdragon X Elite Oryon-based CPUs.&lt;/p&gt;
+&lt;p&gt;As someone who does all of their computing on a laptop, I'd love to have a PC that I can take with me on the go. Now you might think that's what your phone is for, and for many people that is definitely the case. However, I only use my phone for calls and messages. I find it much more enjoyable to have a larger screen and keyboard.&lt;/p&gt;
+&lt;p&gt;Keeping my preferences in mind, being able to connect to your PC on the go is nothing new either. I can just use the hotspot on my phone or tether over USB in order to connect my PC to the internet. Also, SIM card slots in PCs have been a thing for a while and products like the &lt;a href="https://www.microsoft.com/d/surface-pro-9/93vkd8np4fvk?activetab=pivot:overviewtab"&gt;Surface Pro 9 with 5G&lt;/a&gt; provide an even more integrated experience.&lt;/p&gt;
+&lt;p&gt;However, in order to truly make this experience mobile, I need to be untethered. Just like a mobile phone, I need my device battery to last all-day while on the go so I don't have to carry my charger. To do that, either you need a device with a large battery or a low-power chip. Larger battery immediately takes the mobile out of mobile computing. I recently carried around my 16&amp;quot; work laptop for a while walking in the city and that was no fun. So then low-power chip it is. Problem solved. Not quite, because in order for it to be low-power, performance needs to be throttled. So for the longest time, it's been a constant struggle between power-efficiency and battery life.&lt;/p&gt;
+&lt;p&gt;Apple was the first to solve this problem with their M1 line of chips. However, that meant this innovation was confined to the Apple ecosystem. It's not until now with the Oryon CPUs that Windows (and hopefully soon Linux too) can tap into these types of computing platforms that promise to deliver true mobile computing. This now opens up a world of possibilities when we think about mobile computing. Our phones keep getting &lt;a href="https://www.theverge.com/23913658/best-small-phone-dead-iphone-mini-z-flip-pixel-8"&gt;larger in size&lt;/a&gt; that at this point it's harder to carry them in your pocket or use them with one hand. We've seen a surge in interest in handheld gaming devices like the &lt;a href="https://www.steamdeck.com/"&gt;SteamDeck&lt;/a&gt; which are full PCs. Their problem is they're using chips that are not power efficient, especially because of their requirements for gaming.&lt;/p&gt;
+&lt;p&gt;What happens if you replace the current chips in those devices with Snapdragon X Elite? Now that it's high-performance and power efficient, does your handheld gaming device now become your handheld computing device? And if we're in handheld computing device territory, now all of a sudden it's bumping up against what smartphones do today. So at that point, do we need both a smartphone and a handheld computing device? If I was able to handle calls and messages from my PC then I wouldn't need a phone and I'd much rather just carry a single handheld computing device. Considering that smartphones are general computing devices that are serverely locked down and restricted, I'd much rather go for the general computing type of device like a PC because I have more freedom over what I can do with my PC. More importantly, because it's a full PC, it means when I need to dock down for serious work with a keyboard and multiple monitors, I can plug a USB-C Hub and connect all of my peripherals to the device. This was something projects like &lt;a href="https://learn.microsoft.com/windows-hardware/design/device-experiences/continuum-phone"&gt;Continuum&lt;/a&gt; tried to achieve but were unsuccessful doing for various reasons. Because now your PC is now also your mobile device, you take a big problem with these type of experiences which is reconciling mobile and desktop UX patterns.&lt;/p&gt;
+&lt;p&gt;What about apps? Not exactly sure what this looks like in the near-term but considering devices running Oryon CPUs will take some time to get to market, by using the AI capabilities you can think of a future where AI is the interface and the apps become background services for interactive with external systems. So no need for specific apps because you can express intent and complete tasks using natural language.&lt;/p&gt;
+&lt;p&gt;What about form factors? The steamdeck might not be what folks are looking for when it comes to a mobile device. Foldables are seeing an uptick in adoption. Despite it's lack of commercial success, the Surface Duo was an excellent foldable form factor that was compact but functional for productivity. I think the Surface Duo was misunderstood because it was put into the box of mobile phone. As a mobile phone it didn't work as well. But as a mobile computer, it struck the right form factor that enabled you to be productive on the go while still being portable. Needed more screen real estate? Surface Neo or Courier would've been  nice devices to have.&lt;/p&gt;
+&lt;p&gt;Let's go 3 years into the future. What happens when virtual and augmented reality headsets all of a sudden become as small as the &lt;a href="https://www.ray-ban.com/usa/ray-ban-meta-smart-glasses"&gt;Ray-Ban Meta Smartglasses&lt;/a&gt;? Do we even need handheld PCs at that point if all we need is for the headset to display the screens we're looking at. Bring in IoT. If the items around us are also &amp;quot;smart&amp;quot; devices, all of a sudden your environment becomes your compute platform. Bring AI into the mix and your AI assistant has access to your environment.&lt;/p&gt;
+&lt;p&gt;I'd say the biggest miss from Qualcomm and Windows partners today was not having a lineup of devices ready for purchase. That will come with time. Hopefully not too long after these announcements. I'm sure that Apple which has an announcement coming up on October 30th will have a response. The most important thing though is that now there's competition and as we enter this new era of AI and TRUE mobile computing, it'll lead to innovation. The next things that need to happen is operating systems like Windows need to ensure their existing applications work on these platforms and Linux needs to enable support for these chipsets. I'm so excited for the future of mobile computing and can't wait to be able to carry a device running Linux with always-on connectivity and all-day battery life in the form factor of a Surface Duo.&lt;/p&gt;
+&lt;p&gt;An addendum to this post can be found &lt;a href="/feed/snapdragon-summit-2023-addendum"&gt;here&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/quick-thoughts-snapdragon-summit-2023?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/quick-thoughts-snapdragon-summit-2023</guid>
+      <pubDate>2023-10-24 23:14</pubDate>
+      <category>#arm</category>
+      <category>#qualcomm</category>
+      <category>#hardware</category>
+      <category>#mobilecomputing</category>
+      <category>#5g</category>
+      <category>#ai</category>
+    </item>
+    <item>
+      <title>Generate QR Codes for MeCard Data in F#</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/generate-mecard-qr-code-fsharp?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/generate-mecard-qr-code-fsharp&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Today I learned about MeCard file formats for representing contact information while reading the post &lt;a href="https://andregarzia.com/2023/10/sharing-contacts-using-qr-code.html"&gt;Sharing contacts using QR Code without requiring a network connection&lt;/a&gt; by Andre Garzia.&lt;/p&gt;
+&lt;p&gt;Currently I host my &lt;a href="../vcard.vcf"&gt;vCard&lt;/a&gt; on my site in a very similar way Andre describes in his post. I've also encoded it in &lt;a href="../images/contact/qr-vcard.svg"&gt;QR Code format&lt;/a&gt; to make it easy to import and share.&lt;/p&gt;
+&lt;p&gt;When I saw the MeCard format, I immediately liked how simple it was so I decided to see how difficult it'd be to write some code to generate a QR code for my own contact data.&lt;/p&gt;
+&lt;h2&gt;What is MeCard?&lt;/h2&gt;
+&lt;p&gt;According to Wikipedia, MeCard is &amp;quot;...a data file similar to vCard...It is largely compatible with most QR-readers for smartphones. It is an easy way to share a contact with the most used fields. Usually, devices can recognize it and treat it like a contact ready to import.&amp;quot;&lt;/p&gt;
+&lt;p&gt;An example might look like: &lt;code&gt;MECARD:N:Doe,John;TEL:13035551212;EMAIL:john.doe@example.com;;&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;Encoding text as a QR code using F#&lt;/h2&gt;
+&lt;p&gt;I'd written a &lt;a href="/snippets/qr-code-generator"&gt;snippet&lt;/a&gt; a few years ago to help me generate the QR Codes for all accounts in &lt;a href="/contact"&gt;my contact page&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The snippet is a F# Interactive script which uses &lt;a href="https://www.nuget.org/packages/Net.Codecrete.QrCodeGenerator"&gt;Net.Codecrete.QrCodeGenerator NuGet package&lt;/a&gt; to encode text as a QR code and saves it to an SVG file.&lt;/p&gt;
+&lt;p&gt;The core logic consists of the following code:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;let createQrCode (savePath:string) (target:string) = 
+    let qr = QrCode.EncodeText(target,QrCode.Ecc.High)
+    let svgString = qr.ToSvgString(4)
+    File.WriteAllText(savePath,svgString, Encoding.UTF8)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this case &lt;code&gt;target&lt;/code&gt; is the text I want to encode and &lt;code&gt;savePath&lt;/code&gt; is the path of the SVG file I'm saving the generated QR code in.&lt;/p&gt;
+&lt;p&gt;Given MeCard with the following content:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;MECARD:N:Doe,John;TEL:13035551212;EMAIL:john.doe@example.com;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The QR Code generated might look as follows:&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/generate-mecard-qr-code-fsharp/mecard.svg" class="img-fluid" alt="MECARD QR CODE" /&gt;&lt;/p&gt;
+&lt;p&gt;Scanning the QR Code with a smartphone would then immediately recognize it as a contact and prompt you to save the contact information to your device.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Since I already had the code snippet to do this available, creating a MeCard was straightforward. I've since added my &lt;a href="/mecard.txt"&gt;MeCard&lt;/a&gt; alongside by vCard. You can check out the corresponding &lt;a href="/images/contact/qr-mecard.svg"&gt;QR code&lt;/a&gt; in my &lt;a href="/contact"&gt;contact&lt;/a&gt; page.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/generate-mecard-qr-code-fsharp?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/generate-mecard-qr-code-fsharp</guid>
+      <pubDate>2023-10-23 19:24</pubDate>
+      <category>#dotnet</category>
+      <category>#fsharp</category>
+      <category>#qrcode</category>
+    </item>
+    <item>
+      <title>Down the Slow / Quiet Web Rabbit Hole</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/down-the-slow-web-rabbit-hole?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/down-the-slow-web-rabbit-hole&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;No real commentary on this post other than a web surf down the slow / quite web.&lt;/p&gt;
+&lt;div class="mermaid"&gt;flowchart TD
+  A["My 20th anniversary of blogging!"] --&gt; B["The Quiet Web"]
+  B --&gt; C["Asyncronous Conversations"]
+  C --&gt; D["The Slow Web"]
+  D --&gt; E["The Slow Web Movement - I DONE THIS"]
+  E --&gt; F["The Slow Web (plus: the modern experience of film-watching)"]
+  F --&gt; G["Minimal Gallery"]
+  G --&gt; H["My website is a shifting house next to a river of knowledge. What could yours be?"]
+  H --&gt; I["Quiet web"]
+  I --&gt; J["Jeremy Sarber"]
+  J --&gt; K["datagubbe"]
+  K --&gt; L["Writers and talkers and leaders, oh my!"]
+  L --&gt; M["Is Blogging Dead?"]
+  click A href "https://tracydurnell.com/2023/09/23/my-20th-anniversary-of-blogging/" "My 20th anniversary of blogging!"
+  click B href "https://briankoberlein.com/tech/quiet-web/" "The Quiet Web"
+  click C href "https://manuelmoreale.com/asynchronous-conversations" "Asyncronous Conversations"
+  click D href "https://www.jackcheng.com/the-slow-web/" "The Slow Web"
+  click E href "https://blog.idonethis.com/the-slow-web-movement/?ref=jackcheng.com" "The Slow Web Movement - I DONE THIS"
+  click F href "http://www.rebeccablood.net/archive/2010/06/a_slow_web.html" "The Slow Web (plus: the modern experience of film-watching)"
+  click G href "https://minimal.gallery/" "Minimal Gallery"
+  click H href "https://thecreativeindependent.com/essays/laurel-schwulst-my-website-is-a-shifting-house-next-to-a-river-of-knowledge-what-could-yours-be/" "My website is a shifting house next to a river of knowledge. What could yours be?"
+  click I href "https://manuelmoreale.com/quiet-web" "Quiet web"
+  click J href "https://jeremysarber.com/" "Jeremy Sarber"
+  click K href "https://datagubbe.se/" "datagubbe"
+  click L href "https://everythingchanges.us/blog/writers-and-talkers-and-leaders/" "Writers and talkers and leaders, oh my!"
+  click M href "https://abeautifulmess.com/is-blogging-dead/" "Is Blogging Dead?"
+&lt;/div&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/down-the-slow-web-rabbit-hole?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/down-the-slow-web-rabbit-hole</guid>
+      <pubDate>2023-09-23 23:36</pubDate>
+      <category>#blogs</category>
+      <category>#indieweb</category>
+      <category>#internet</category>
+      <category>#slowweb</category>
+      <category>#quietweb</category>
+    </item>
     <item>
       <title>First Steps with NixOS</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/first-steps-nixos?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/first-steps-nixos&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Introduction&lt;/h2&gt;
