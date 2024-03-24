@@ -72,6 +72,7 @@ module Layouts
                                 div [_class "dropdown-divider"] []
                                 a [_class "dropdown-item"; _href "/feed/blogroll"] [Text "Blogroll"]
                                 a [_class "dropdown-item"; _href "/feed/podroll"] [Text "Podroll"]
+                                a [_class "dropdown-item"; _href "/feed/forums"] [Text "Forums"]
                         ]
                     ]
                     
