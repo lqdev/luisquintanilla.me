@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Introducing the 100 Sways Project"
-published_date: "2024-03-24 16:33"
+published_date: "2024-03-24 16:33 -05:00"
 tags: ["microsoft","sway","indieweb","blog","website","microblog","blogging","content","m365","office","internet","web","microsoftoffice","microsoft365"]
 ---
 
