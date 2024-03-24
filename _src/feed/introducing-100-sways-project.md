@@ -9,7 +9,7 @@ Introducing the 100 Sways project.
 
 Over the next few months, I plan on creating artifacts like blog posts, newsletters, and websites using [Microsoft Sway](https://sway.cloud.microsoft/). 
 
-Bookmark the [site 100sways.lqdev.tech](http://100sways.lqdev.tech) and follow along!
+Bookmark the site [100sways.lqdev.tech](http://100sways.lqdev.tech) and follow along!
 
 Note: If you can't access the website, you can use the [direct link (https://sway.cloud.microsoft/aC19McbR3xcNo6s8)](https://sway.cloud.microsoft/aC19McbR3xcNo6s8).
 
