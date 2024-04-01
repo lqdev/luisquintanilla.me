@@ -3,8 +3,8 @@ title: "Slow Productivity: The Lost Art of Accomplishment Without Burnout"
 author: "Cal Newport"
 isbn: "9780593544853"
 cover: https://images1.penguinrandomhouse.com/cover/9780593544853
-status: InProgress
-rating: 
+status: "Read"
+rating: 4.2
 source: "https://www.penguinrandomhouse.com/books/722732/slow-productivity-by-cal-newport/"
 ---
 
@@ -17,6 +17,8 @@ source: "https://www.penguinrandomhouse.com/books/722732/slow-productivity-by-ca
 > From the aggressive rethinking of workload management, to introducing seasonal variation, to shifting your performance toward long-term quality, Slow Productivity provides a roadmap for escaping overload and arriving instead at a more timeless approach to pursuing meaningful accomplishment. The world of work is due for a new revolution. Slow productivity is exactly what we need.
 
 ## Review
+
+This was a quick and easy read full of biographies and relevant examples of how people have applied the various principles outlined in the book. If you listen to Cal's podcast, Deep Questions as well as his newsletter and articles, many of the ideas in the book may not be novel. The book is a structured collection of those same ideas. Still a good and enjoyable read though. 
 
 ## Quotes
 
