@@ -9,7 +9,7 @@
                 "Ionide.Ionide-fsharp",
                 "max-SS.cyberpunk",
                 "ms-vscode.live-server",
-                "github.vscode-github-actions"   
+                "github.vscode-github-actions"
             ]
         }
     },
