@@ -1,0 +1,39 @@
+{
+	"$schema": "vscode://schemas/color-theme",
+	"name": "UtahDesertTheme",
+	"type": "dark",
+	"colors": {
+	  "editor.background": "#D2B48C",
+	  "editor.foreground": "#8B4513",
+	  "editorIndentGuide.background": "#A0522D",
+	  "editorRuler.foreground": "#CD853F",
+	  "activityBarBadge.background": "#FF4500",
+	  "sideBarTitle.foreground": "#F4A460"
+	},
+	"tokenColors": [
+	  {
+		"scope": "comment",
+		"settings": {
+		  "foreground": "#8B4513"
+		}
+	  },
+	  {
+		"scope": "string",
+		"settings": {
+		  "foreground": "#D2B48C"
+		}
+	  },
+	  {
+		"scope": "keyword",
+		"settings": {
+		  "foreground": "#CD853F"
+		}
+	  },
+	  {
+		"scope": "variable",
+		"settings": {
+		  "foreground": "#F4A460"
+		}
+	  }
+	]
+}
