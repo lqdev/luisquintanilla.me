@@ -1,5 +1,8 @@
 {
-    "image": "mcr.microsoft.com/dotnet/sdk:8.0",
+    "image": "mcr.microsoft.com/devcontainers/universal:linux",
+    "features": {
+        "ghcr.io/devcontainers/features/dotnet": {"version": "8.0"}
+    },
     "customizations": {
         "vscode": {
             "extensions": [
