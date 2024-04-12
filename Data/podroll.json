@@ -33,7 +33,7 @@
         "Title": "Surveillance Report",
         "Type": "rss",
         "HtmlUrl": "https://surveillancereport.tech/",
-        "XmlUrl": "https://surveillance-report.castos.com/feed"
+        "XmlUrl": "https://api.substack.com/feed/podcast/1180773.rss"
     },
     {
         "Title": "Cyber",
