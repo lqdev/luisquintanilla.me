@@ -116,6 +116,16 @@ module Builder
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), forumsPage)
 
+    let buildYouTubeChannelsPage (links:Outline array) = 
+        let ytContent = 
+            links
+            |> youTubeFeedView
+
+        let ytFeedPage = generate ytContent "default" "YouTube Channels - Luis Quintanilla"
+        let saveDir = Path.Join(outputDir,"feed","youtube")
+        Directory.CreateDirectory(saveDir) |> ignore
+        File.WriteAllText(Path.Join(saveDir,"index.html"), ytFeedPage)
+
     let buildIRLStackPage () = 
         let irlStackContent = Path.Join(srcDir,"irl-stack.md") |> convertFileToHtml |> contentView
         let irlStackPage = generate irlStackContent "default" "In Real Life Stack - Luis Quintanilla"
@@ -217,6 +227,13 @@ module Builder
     
         links
 
+    let loadYouTubeLinks () = 
+        let links =  
+            File.ReadAllText(Path.Join("Data","youtube.json"))
+            |> JsonSerializer.Deserialize<Outline array>
+    
+        links
+
     let loadRedirects () = 
         let (redirects:RedirectDetails array) = 
             [|
@@ -306,6 +323,12 @@ module Builder
     let buildForumsOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Forums" "https://www.luisquintanilla.me" links
         let saveDir = Path.Join(outputDir,"feed","forums")
+        File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
+        File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
+
+    let buildYouTubeOpml (links:Outline array) = 
+        let feed = buildOpmlFeed "Luis Quintanilla YouTube Channels" "https://www.luisquintanilla.me" links
+        let saveDir = Path.Join(outputDir,"feed","youtube")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 

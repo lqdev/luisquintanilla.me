@@ -34,6 +34,7 @@ let main argv =
     let blogrollLinks = loadBlogrollLinks ()
     let podrollLinks = loadPodrollLinks ()
     let forumLinks = loadForumsLinks ()
+    let youTubeLinks = loadYouTubeLinks ()
     let redirects = loadRedirects ()
     let snippets = loadSnippets ()
     let wikis = loadWikis ()
@@ -70,7 +71,9 @@ let main argv =
     buildPodrollPage podrollLinks
     buildPodrollOpml podrollLinks
     buildForumsPage forumLinks
-    buildForumsOpml forumLinks    
+    buildForumsOpml forumLinks
+    buildYouTubeChannelsPage youTubeLinks
+    buildYouTubeOpml youTubeLinks
 
     // Build event page
     buildEventPage ()

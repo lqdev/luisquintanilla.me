@@ -3,8 +3,241 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>2024-03-23 12:38</lastPubDate>
+    <lastPubDate>2024-04-08 23:43</lastPubDate>
     <language>en</language>
+    <item>
+      <title>These models are too damn big!</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/slm-too-big?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/slm-too-big&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;While the size of these smaller language models is significantly less than the trillion parameter models like GPT, they still take up a lot of storage space. Playing around with &lt;a href="https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2"&gt;Mistral 7B Instruct v0.2&lt;/a&gt;, the safetensor files containing the weights take up roughly 15GB of space. I'm thinking of playing around with &lt;a href="https://learn.microsoft.com/azure/storage/blobs/blobfuse2-what-is"&gt;blobfuse&lt;/a&gt; to mount a storage container to my local file system. That way, I'm only caching and accessing the models I'm working with at any given time.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/slm-too-big?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/slm-too-big</guid>
+      <pubDate>2024-04-08 23:43</pubDate>
+      <category>#ai</category>
+      <category>#slm</category>
+      <category>#huggingface</category>
+      <category>#llm</category>
+      <category>#opensource</category>
+    </item>
+    <item>
+      <title>Enjoying El Sonido from KEXP</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/enjoying-kexp-el-sonido?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/enjoying-kexp-el-sonido&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I just found &lt;a href="https://www.kexp.org/shows/El-Sonido/"&gt;El Sonido from KEXP&lt;/a&gt;. Albina Cabrera is a great host. I've already found a few new songs and artists to listen to I otherwise wouldn't have been aware of or exposed to.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/enjoying-kexp-el-sonido?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/enjoying-kexp-el-sonido</guid>
+      <pubDate>2024-04-08 23:36</pubDate>
+      <category>#radio</category>
+      <category>#music</category>
+      <category>#kexp</category>
+      <category>#shows</category>
+    </item>
+    <item>
+      <title>Week of April 07, 2024 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-04-07-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-04-07-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/notebook-fantasy-chicano-batman-released"&gt;New Album - Notebook Fantasy from Chicano Batman&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/better-offline-podroll"&gt;New podcast added to blogroll&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/post-statistics-april-2024"&gt;Website Post Statistics - April 2024&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/2024-04-01-weekly-post-summary"&gt;Week of April 1, 2024 - Post Summary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/world-wide-whack-tierra-whack-review"&gt;Thoughts on World Wide Whack&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/crate-finds-march-2024"&gt;Crate Finds - March 2024&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/llm-time-series-forecasting"&gt;Large Language Models Are Zero-Shot Time Series Forecasters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/google-podcasts-gone-youtube-cant-replace-it-verge"&gt;Google Podcasts is gone — and so is my faith in Google&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/intel-ipex-llm"&gt;IPEX-LLM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/introducing-stable-audio-2-0"&gt;Introducing Stable Audio 2.0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/start-using-chatgpt-seamlessly-no-signup"&gt;Start using ChatGPT instantly&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/introducing-cohere-comandr-plus"&gt;Introducing Command R+: A Scalable LLM Built for Business&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/openai-introducing-fine-tuning-improvements"&gt;OpenAI - Introducing improvements to the fine-tuning API and expanding our custom models program&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/announcing-dbrx-llm"&gt;Announcing DBRX: A new standard for efficient open source LLMs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/apple-realm-research-paper"&gt;ReALM: Reference Resolution As Language Modeling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/tmobile-sidekick-jump-button-mobile-productivity"&gt;T-Mobile Sidekick’s Jump button made mobile multitasking easy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/matrix-five-announced"&gt;The Matrix is coming back for a fifth movie&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2024-04-07-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2024-04-07-weekly-post-summary</guid>
+      <pubDate>2024-04-07 16:01 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>New podcast (Better Offline) added to blogroll</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/better-offline-podroll?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/better-offline-podroll&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;While doing chores today, I put on one of the episodes from &lt;a href="https://www.wheresyoured.at/about/"&gt;Ed Zitron's&lt;/a&gt; &lt;a href="https://www.betteroffline.com/"&gt;Better Offline podcast&lt;/a&gt;. This resulted me in me basically binging the rest of the episodes on the backlog. Also, it's now made its way into the regular rotation with other podcasts and the &lt;a href="/feed/podroll"&gt;podroll&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/better-offline-podroll?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/better-offline-podroll</guid>
+      <pubDate>2024-04-07 16:50</pubDate>
+      <category>#podcast</category>
+      <category>#podroll</category>
+      <category>#betteroffline</category>
+    </item>
+    <item>
+      <title>Thoughts on World Wide Whack</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/world-wide-whack-tierra-whack-review?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/world-wide-whack-tierra-whack-review&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I saw this come across my feed a few days ago but didn't get around to listening to it until today. I really enjoyed it.&lt;/p&gt;
+&lt;p&gt;Some of my favorite tracks are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Chanel Pit&lt;/li&gt;
+&lt;li&gt;Imaginary Friends&lt;/li&gt;
+&lt;li&gt;Shower Song&lt;/li&gt;
+&lt;/ul&gt;
+&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/128kgBRYqmfY4EjTOhiDWq?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/world-wide-whack-tierra-whack-review?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/world-wide-whack-tierra-whack-review</guid>
+      <pubDate>2024-04-02 22:43</pubDate>
+      <category>#music</category>
+      <category>#newrelease</category>
+      <category>#tierrawhack</category>
+      <category>#worldwidewhack</category>
+    </item>
+    <item>
+      <title>Website Post Statistics - April 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/post-statistics-april-2024?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/post-statistics-april-2024&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;My &lt;a href="/posts/website-metrics-github-actions/"&gt;website stats script&lt;/a&gt; seems to be running as expected.&lt;/p&gt;
+&lt;p&gt;Some highlights from last month:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;With 33 notes posted in the microblog, I'm about 80% of the way to the number of total notes posted last year. These monthly summary posts, as well as my &lt;a href="/feed/crate-finds-march-2024"&gt;Crate Finds&lt;/a&gt; and &lt;a href="/feed/2024-04-01-weekly-post-summary"&gt;Weekly Summary&lt;/a&gt; posts have somewhat contributed to this number but I like the pace I'm setting. Not even halfway through the year and it looks promising.&lt;/li&gt;
+&lt;li&gt;While most of my responses are reshares (93), there's still a broader distribution across bookmarks and other type of reponses posts.&lt;/li&gt;
+&lt;li&gt;AI continue to be the main topic I share posts around.&lt;/li&gt;
+&lt;li&gt;The Verge is still one of the main sources I reshare. Personally, the redesign has contributed to the way I consume content from The Verge but also, the topics covered align with many of the things I'm interested in.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have yet to make progress on the long-form posts, but there are some experiments I've been tinkering with that will eventually make it on there.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/post-statistics-april-2024?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/post-statistics-april-2024</guid>
+      <pubDate>2024-04-01 23:20</pubDate>
+      <category>#githubactions</category>
+      <category>#cicd</category>
+      <category>#blogging</category>
+      <category>#stats</category>
+      <category>#github</category>
+    </item>
+    <item>
+      <title>Crate Finds - March 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/crate-finds-march-2024?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/crate-finds-march-2024&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Similar to February, I didn't spend too much time listening this month so the list is somewhat short. I got a chance to listen to a few songs off Chicano Batman's new album, &lt;a href="/feed/notebook-fantasy-chicano-batman-released/"&gt;Noteboook Fantasy&lt;/a&gt; though. Here's the drop for March 2024:&lt;/p&gt;
+&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2XvkXTxdUtKm5pRwp8dRlv?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/crate-finds-march-2024?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/crate-finds-march-2024</guid>
+      <pubDate>2024-04-01 23:17</pubDate>
+      <category>#cratefinds</category>
+      <category>#music</category>
+      <category>#playlist</category>
+      <category>#spotify</category>
+    </item>
+    <item>
+      <title>New Album - Notebook Fantasy from Chicano Batman</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/notebook-fantasy-chicano-batman-released?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/notebook-fantasy-chicano-batman-released&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I have to admit, I wasn't the biggest fan of the singles released before the album. Though I have to say, there's been a few times Era Primavera has been stuck in my head. Very catchy.&lt;/p&gt;
+&lt;p&gt;I haven't listened to the whole thing, but so far I really like the tracks Notebook Fantasy, Parallels, and Beautiful Daughter.&lt;/p&gt;
+&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/11oAb5VEhTqhiAyfs5AOQX?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/notebook-fantasy-chicano-batman-released?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/notebook-fantasy-chicano-batman-released</guid>
+      <pubDate>2024-03-31 20:19 -05:00</pubDate>
+      <category>#music</category>
+      <category>#chicanobatman</category>
+      <category>#newrelease</category>
+    </item>
+    <item>
+      <title>Week of April 1, 2024 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-04-01-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-04-01-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/notebook-fantasy-chicano-batman-released"&gt;New Album - Notebook Fantasy from Chicano Batman&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/announcing-dbrx-llm"&gt;Announcing DBRX: A new standard for efficient open source LLMs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2024-04-01-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2024-04-01-weekly-post-summary</guid>
+      <pubDate>2024-03-31 19:30 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Introducing the 100 Sways Project</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/introducing-100-sways-project?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/introducing-100-sways-project&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Introducing the 100 Sways project.&lt;/p&gt;
+&lt;p&gt;Over the next few months, I plan on creating artifacts like blog posts, newsletters, and websites using &lt;a href="https://sway.cloud.microsoft/"&gt;Microsoft Sway&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Bookmark the site &lt;a href="http://100sways.lqdev.tech"&gt;100sways.lqdev.tech&lt;/a&gt; and follow along!&lt;/p&gt;
+&lt;p&gt;Note: If you can't access the website, you can use the &lt;a href="https://sway.cloud.microsoft/aC19McbR3xcNo6s8"&gt;direct link (https://sway.cloud.microsoft/aC19McbR3xcNo6s8)&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;What is the 100 Sways project?&lt;/h2&gt;
+&lt;p&gt;This project is an attempt to show how you might use Sway as a publishing platform for content like newsletters, blog posts, and websites.&lt;/p&gt;
+&lt;p&gt;This project was inspired by &lt;a href="https://jamesg.blog/"&gt;James'&lt;/a&gt; &lt;a href="https://jamesg.blog/2024/02/19/personal-website-ideas/"&gt;100 things you can do on your personal website post&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Motivations&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Learn more about Microsoft Sway&lt;/li&gt;
+&lt;li&gt;Show how you can make the most use out of apps and services already included with your Microsoft Account&lt;/li&gt;
+&lt;li&gt;Show how easy it is to create and consume web content using Sway&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/introducing-100-sways-project?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/introducing-100-sways-project</guid>
+      <pubDate>2024-03-24 16:33 -05:00</pubDate>
+      <category>#microsoft</category>
+      <category>#sway</category>
+      <category>#indieweb</category>
+      <category>#blog</category>
+      <category>#website</category>
+      <category>#microblog</category>
+      <category>#blogging</category>
+      <category>#content</category>
+      <category>#m365</category>
+      <category>#office</category>
+      <category>#internet</category>
+      <category>#web</category>
+      <category>#microsoftoffice</category>
+      <category>#microsoft365</category>
+    </item>
+    <item>
+      <title>Week of March 24, 2024 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-03-24-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-03-24-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/new-forums-page"&gt;New Forums Page&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/2024-03-18-weekly-post-summary"&gt;Week of March 18, 2024 - Post Summary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/surface-event-mar-21-24-event-blog"&gt;New Era of Work - Windows / Surface Event Blog (March 21, 2024)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/looking-for-discord-communities"&gt;Looking for Discord server / community recommendations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/ai-generated-blogroll-opml"&gt;Use AI to generate a blogroll others can subscribe to&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/building-meta-genai-infrastructure"&gt;Building Meta’s GenAI Infrastructure&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/fast-inner-product-dnn-accelerators"&gt;Fast Inner-Product Algorithms and Architectures for Deep Neural Network Accelerators&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/diffusion-models-from-scratch-yuan"&gt;Diffusion models from scratch, from a new theoretical perspective&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/spreadsheets-are-all-you-need"&gt;Spreadsheets are all you need&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/introducing-stable-video-3d"&gt;Introducing Stable Video 3D: Quality Novel View Synthesis and 3D Generation from Single Images&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/mamba-linear-time-sequence-selective-state-spaces"&gt;Mamba: Linear-Time Sequence Modeling with Selective State Spaces&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/nvidia-blackwell-b200-gpu"&gt;Nvidia reveals Blackwell B200 GPU&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/demistifying-embedding-spaces-llms"&gt;Demystifying Embedding Spaces using Large Language Models&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/quanto-pytorch-quantization-toolkit"&gt;Quanto: a PyTorch quantization toolkit &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/lavague-large-action-model"&gt;LaVague - Large Action Model framework&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/enhace-rag-application-accuracy-knowledge-graphs"&gt;Enhancing RAG-based application accuracy by constructing and leveraging knowledge graphs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/algorithms-modern-hardware-book"&gt;Algorithms for Modern Hardware&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/ollama-supports-amd-gpus"&gt;Ollama now supports AMD graphics cards&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/diffusion-models-from-scratch-duan"&gt;Diffusion Models From Scratch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/machine-learning-for-games-course-huggingface"&gt;Machine Learning for Games Course - HuggingFace&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/stability-ai-ceo-resigns"&gt;Stability CEO Resigns&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/tokenizer-playground"&gt;The Tokenizer Playground&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/common-corpus-llm-training-dataset"&gt;Releasing Common Corpus: the largest public domain dataset for training LLMs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/grok-1-open-release"&gt;Grok-1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/openai-transformer-debugger"&gt;OpenAI Transformer Debugger&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/online-local-chronicle-searls"&gt;The Online Local Chronicle&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/mm1-multimodal-llm-pretraining"&gt;MM1: Methods, Analysis &amp;amp; Insights from Multimodal LLM Pre-training&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2024-03-24-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2024-03-24-weekly-post-summary</guid>
+      <pubDate>2024-03-24 13:05 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
     <item>
       <title>New Forums Page</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/new-forums-page?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/new-forums-page&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Following the patterns of a blogroll and podroll, I decided to post a &lt;a href="/feed/forums"&gt;forums page&lt;/a&gt; to list various forums and communities I find interesting.&lt;/p&gt;
@@ -1282,18 +1515,6 @@
       <category>#socialmedia</category>
     </item>
     <item>
-      <title>Spotify Wrapped 2023</title>
-      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/spotify-wrapped-2023&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Kind of late, but here's my Spotify Wrapped for the year. No idea how Eslabon Armado snuck in there at the end. It'd be cool if I was also able to get data from my MP3 player which is where I mainly listen to music. Though the artists wouldn't change much.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-1.png" class="img-fluid" alt="Spotify Wrapped 2023 Summary" /&gt;&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/feed/spotify-wrapped-2023</guid>
-      <pubDate>2023-12-12 21:03</pubDate>
-      <category>#music</category>
-      <category>#stats</category>
-      <category>#spotifywrapped</category>
-    </item>
-    <item>
       <title>Antennapod Echo (Wrapped) 2023</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/antennapod-echo-2023?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/antennapod-echo-2023&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;This was a nice surprise to see when I opened up Antennapod the other day. Using my listening statistics, it was able to compile a yearly summary for me (locally).&lt;/p&gt;
 &lt;p&gt;&lt;img src="/images/feed/antennapod-wrapped-1.png" class="img-fluid" alt="Antennapod Echo" /&gt;&lt;/p&gt;
@@ -1310,6 +1531,18 @@
       <category>#opensource</category>
       <category>#antennapod</category>
       <category>#stats</category>
+    </item>
+    <item>
+      <title>Spotify Wrapped 2023</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/spotify-wrapped-2023&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Kind of late, but here's my Spotify Wrapped for the year. No idea how Eslabon Armado snuck in there at the end. It'd be cool if I was also able to get data from my MP3 player which is where I mainly listen to music. Though the artists wouldn't change much.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-1.png" class="img-fluid" alt="Spotify Wrapped 2023 Summary" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/spotify-wrapped-2023</guid>
+      <pubDate>2023-12-12 21:03</pubDate>
+      <category>#music</category>
+      <category>#stats</category>
+      <category>#spotifywrapped</category>
     </item>
     <item>
       <title>RSS Only Blog</title>

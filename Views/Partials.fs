@@ -291,6 +291,31 @@ let forumsView (links:Outline array) =
         linkContent
     ]
 
+let youTubeFeedView (links:Outline array) = 
+
+    let linkContent = rollLinkView links
+
+    div [ _class "mr-auto" ] [
+        h2 [] [ Text "YouTube" ]
+        p [] [ 
+            str "This is a list of YouTube channels I find interesting. If you're interested, you can also check out my "
+            a [_href "/feed/blogroll"] [Text "blogroll"]
+            str ", "
+            a [_href "/feed/podroll"] [Text "podroll"]            
+            str ", and "
+            a [_href "/feed/forums"] [Text "forums"]
+            str "."
+        ]
+        p [] [
+            str "You can subscribe to any of the individual channels in your preferred RSS reader using the RSS feed links below. Want to subscribe to all of them? Use the "
+            a [ _href "/feed/youtube/index.opml"] [Text "OPML file"]
+            str " if your RSS reader or podcast client supports "
+            a [_href "http://opml.org/"] [Text "OPML."]
+        ]
+        
+        linkContent
+    ]
+
 let snippetsView (snippets: Snippet array) = 
     div [ _class "d-grip gap-3" ] [
         h2[] [Text "Snippets"]

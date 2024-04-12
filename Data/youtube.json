@@ -1,0 +1,98 @@
+[
+    {
+       "Title": "3Blue1Brown",
+       "Type": "rss",
+       "HtmlUrl": "https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw",
+       "XmlUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw"
+    },
+    {
+       "Title": "DistroTube",
+       "Type": "rss",
+       "HtmlUrl": "https://www.youtube.com/channel/UCVls1GmFKf6WlTraIb_IaJg",
+       "XmlUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg"
+    },
+    {
+       "Title": "dotnet",
+       "Type": "rss",
+       "HtmlUrl": "https://www.youtube.com/channel/UCvtT19MZW8dq5Wwfu6B0oxw",
+       "XmlUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCvtT19MZW8dq5Wwfu6B0oxw"
+    },
+    {
+    "Title": "Dread Central",
+    "Type": "rss",
+    "HtmlUrl": "https://www.youtube.com/channel/UCd1cLnwL83Xh-zAq5yGc7qw",
+    "XmlUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCd1cLnwL83Xh-zAq5yGc7qw"
+    },
+    {
+       "Title": "Matrix.org",
+       "Type": "rss",
+       "HtmlUrl": "https://www.youtube.com/channel/UCVFkW-chclhuyYRbmmfwt6w",
+       "XmlUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCVFkW-chclhuyYRbmmfwt6w"
+    },
+    {
+       "Title": "Microsoft Reactor",
+       "Type": "rss",
+       "HtmlUrl": "https://www.youtube.com/channel/UCkm6luGCS3hD25jcEhvRMIA",
+       "XmlUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCkm6luGCS3hD25jcEhvRMIA"
+    },
+    {
+       "Title": "Microsoft Research",
+       "Type": "rss",
+       "HtmlUrl": "https://www.youtube.com/channel/UCCb9_Kn8F_Opb3UCGm-lILQ",
+       "XmlUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCCb9_Kn8F_Opb3UCGm-lILQ"
+    },
+    {
+       "Title": "MrBallen",
+       "Type": "rss",
+       "HtmlUrl": "https://www.youtube.com/channel/UCtPrkXdtCM5DACLufB9jbsA",
+       "XmlUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCtPrkXdtCM5DACLufB9jbsA"
+    },
+    {
+       "Title": "Pack Hacker",
+       "Type": "rss",
+       "HtmlUrl": "https://www.youtube.com/channel/UC_rI3y1DzDULTr-UIvshiwg",
+       "XmlUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UC_rI3y1DzDULTr-UIvshiwg"
+    },
+    {
+       "Title": "Retro Dodo",
+       "Type": "rss",
+       "HtmlUrl": "https://www.youtube.com/channel/UCRg2tBkpKYDxOKtX3GvLZcQ",
+       "XmlUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCRg2tBkpKYDxOKtX3GvLZcQ"
+    },
+    {
+       "Title": "Retro Game Corps",
+       "Type": "rss",
+       "HtmlUrl": "https://www.youtube.com/channel/UCoZQiN0o7f36H7PaW4fVhFw",
+       "XmlUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCoZQiN0o7f36H7PaW4fVhFw"
+    },
+    {
+       "Title": "Techlore",
+       "Type": "rss",
+       "HtmlUrl": "https://www.youtube.com/channel/UCs6KfncB4OV6Vug4o_bzijg",
+       "XmlUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCs6KfncB4OV6Vug4o_bzijg"
+    },
+    {
+       "Title": "Townsends",
+       "Type": "rss",
+       "HtmlUrl": "https://www.youtube.com/channel/UCxr2d4As312LulcajAkKJYw",
+       "XmlUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCxr2d4As312LulcajAkKJYw"
+    },
+    {
+       "Title": "TWiT",
+       "Type": "rss",
+       "HtmlUrl": "https://www.youtube.com/channel/UCwY9B5_8QDGP8niZhBtTh8w",
+       "XmlUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCwY9B5_8QDGP8niZhBtTh8w"
+    },
+    {
+       "Title": "Two Minute Papers",
+       "Type": "rss",
+       "HtmlUrl": "https://www.youtube.com/channel/UCbfYPyITQ-7l4upoX8nvctg",
+       "XmlUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg"
+    },
+    {
+       "Title": "Windows Weekly",
+       "Type": "rss",
+       "HtmlUrl": "https://www.youtube.com/channel/UC1WHdBv9P5tYEGfy-btvYfA",
+       "XmlUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UC1WHdBv9P5tYEGfy-btvYfA"
+    }
+]
