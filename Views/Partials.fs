@@ -51,17 +51,17 @@ let homeView (blog:Post) (microblog:Post) (response:Response) =
                         ]
                         ul [_class "list-group list-unstyled";] [
                             li [] [
-                                span [_class "mr-1"] [Text "&#x1F4D6;"]
-                                str "Check out my "
-                                a [_href "/posts/1"] [Text "blog"]
-                            ]
-                            li [] [
                                 span [_class "mr-1"] [Text "&#x1F4AC;"]
                                 str "Scroll through my "
                                 a [_href "/feed"] [Text "microblog"]
                                 str " and "
                                 a [_href "/feed/responses"] [Text "response"]
                                 str " feeds"
+                            ]
+                            li [] [
+                                span [_class "mr-1"] [Text "&#x1F4D6;"]
+                                str "Check out my "
+                                a [_href "/posts/1"] [Text "blog"]
                             ]
                             li [] [
                                 span [_class "mr-1"] [Text "&#x1F514;"]
