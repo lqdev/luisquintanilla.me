@@ -177,6 +177,12 @@ module Layouts
         link [_rel "webmention"; _title "Luis Quintanilla Webmention Endpoint"; _href "https://webmentions.lqdev.tech/api/inbox"]
 
 
+    let rollLinks = [
+        link [_rel "blogroll"; _title "Luis Quintanilla's Blogroll"; _href "/feed/blogroll"]
+        link [_rel "podroll"; _title "Luis Quintanilla's Podroll"; _href "/feed/podroll"]
+    ]
+
+
     let scripts = [
         script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
         script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
@@ -246,6 +252,10 @@ module Layouts
                 // Webmentions
                 webmentionLink
 
+                // Rolls
+                for roll in rollLinks do
+                    roll
+
                 // Robots
                 meta [_name "robots"; _content "nosnippet"]
                 title [] [Text pageTitle]
@@ -287,6 +297,10 @@ module Layouts
 
                 // Webmentions
                 webmentionLink
+
+                // Rolls
+                for roll in rollLinks do
+                    roll
 
                 // Robots
                 meta [_name "robots"; _content "nosnippet"]
@@ -332,6 +346,10 @@ module Layouts
 
                 // Webmentions
                 webmentionLink
+
+                // Rolls
+                for roll in rollLinks do
+                    roll
 
                 // Robots                
                 meta [_name "robots"; _content "nosnippet"]
