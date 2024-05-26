@@ -73,6 +73,7 @@ I am :slightly_smiling_face:
 | :lock: | U+1F512 	| `:lock:`| 
 | :closed_lock_with_key: | U+1F510 	|`:closed_lock_with_key:` |
 | :link: | U+1F517 | `:link:` |
+| :raising_hand_man: | U+1F64B | `:raising_hand_man:` |
 
 ## References
 
