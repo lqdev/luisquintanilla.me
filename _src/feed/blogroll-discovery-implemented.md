@@ -17,4 +17,6 @@ Just enabled discovery for my [blogroll](/feed/blogroll) based on the [OPML blog
 </head>
 ```
 
-youtuberoll doesn't really roll off the tongue, but I'm hesitant to call it videoroll or vidroll. Ideas welcome!
+youtuberoll doesn't really roll off the tongue, but I'm hesitant to call it videoroll or vidroll. My concerns mainly come from the fact that YouTube != video. 
+
+Ideas welcome!
