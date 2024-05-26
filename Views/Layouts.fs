@@ -178,8 +178,8 @@ module Layouts
 
 
     let rollLinks = [
-        link [_rel "blogroll"; _title "Luis Quintanilla's Blogroll"; _href "/feed/blogroll"]
-        link [_rel "podroll"; _title "Luis Quintanilla's Podroll"; _href "/feed/podroll"]
+        link [_rel "blogroll"; _title "Luis Quintanilla's Blogroll"; _href "/feed/blogroll/index.opml"]
+        link [_rel "podroll"; _title "Luis Quintanilla's Podroll"; _href "/feed/podroll/index.opml"]
     ]
 
 
