@@ -73,6 +73,7 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/feed/blogroll"] [Text "Blogroll"]
                                 a [_class "dropdown-item"; _href "/feed/podroll"] [Text "Podroll"]
                                 a [_class "dropdown-item"; _href "/feed/forums"] [Text "Forums"]
+                                a [_class "dropdown-item"; _href "/feed/youtube"] [Text "YouTube"]
                         ]
                     ]
                     
