@@ -16,3 +16,5 @@ tags: ["wordpress","blogging","web","anniversary","opensource","openweb"]
 > 3. Wikis are amazing, and our documentation should be wiki-easy to edit.
 > ...
 > 11. It’s important that we all do support, go to meetups and events, anything we can to stay close to regular end-users of what we make.
+
+Congrats to WordPress and the team on 21 years. I think the following are some good elements to keep building on. 
