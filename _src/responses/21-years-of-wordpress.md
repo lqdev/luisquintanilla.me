@@ -11,10 +11,10 @@ tags: ["wordpress","blogging","web","anniversary","opensource","openweb"]
 
 > I’ve been thinking a lot about elements that made WordPress successful in its early years that we should keep in mind as we build this year and beyond. Here’s 11 opinions:  
 > <br>
-> 1. Simple things should be easy and intuitive, and complex things possible.
-> ...
-> 3. Wikis are amazing, and our documentation should be wiki-easy to edit.
-> ...
+> 1. Simple things should be easy and intuitive, and complex things possible.  
+> <br>...
+> 3. Wikis are amazing, and our documentation should be wiki-easy to edit.  
+> <br>...
 > 11. It’s important that we all do support, go to meetups and events, anything we can to stay close to regular end-users of what we make.
 
 Congrats to WordPress and the team on 21 years. I think the following are some good elements to keep building on. 
