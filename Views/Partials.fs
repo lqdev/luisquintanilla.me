@@ -468,7 +468,7 @@ let cardFooter (fileName:string) (tags: string array)=
     div [_class "card-footer"] [
         let permalink = $"/feed/{fileName}/" 
         Text "Permalink: " 
-        a [_href permalink; _class "u-url"] [Text $"https://www.luisquintanilla.me{permalink}"] 
+        a [_href permalink; _class "u-url"] [Text $"{permalink}"] 
         
         div [] [
             str "Tags: "
