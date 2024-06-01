@@ -159,7 +159,7 @@ let tagLinkView (tags: string array) =
     ul [] [
         for tag in tags do
             li [] [
-                a [_href $"/tags/{tag}"] [Text $"#{tag}"]
+                a [_href $"/tags/{tag}"; _rel "tag"] [Text $"#{tag}"]
             ]
     ]
 
