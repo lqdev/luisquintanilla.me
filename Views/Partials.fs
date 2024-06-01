@@ -463,7 +463,7 @@ let cardFooter (fileName:string) (tags: string array)=
     let tagElements = 
         tags
         |> cleanTags
-        |> Array.map(fun tag -> a [_href $"/tags/{tag}"] [Text $"#{tag}"])
+        |> Array.map(fun tag -> a [_href $"/tags/{tag}"; _class "p-category"] [Text $"#{tag}"])
 
     div [_class "card-footer"] [
         let permalink = $"/feed/{fileName}/" 
