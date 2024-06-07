@@ -100,5 +100,11 @@
        "Type": "rss",
        "HtmlUrl": "https://manuelmoreale.com/",
        "XmlUrl": "https://manuelmoreale.com/feed/rss"
-    }
+    },
+    {
+       "Title": "Plain text. Paper, less.",
+       "Type": "rss",
+       "HtmlUrl": "https://www.blog.plaintextpaperless.com/",
+       "XmlUrl": "https://www.blog.plaintextpaperless.com/feed"
+    }    
 ]
