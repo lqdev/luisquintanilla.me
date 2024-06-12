@@ -4,7 +4,7 @@ targeturl: https://bair.berkeley.edu/blog/2024/05/29/tiny-agent/
 response_type: reshare
 dt_published: "2024-06-11 19:43"
 dt_updated: "2024-06-11 19:43 -05:00"
-tags: ["agent","ai","function","edge","local",]
+tags: ["agent","ai","slm","function","edge","local","languagemodel","smalllanguagemodel","research"]
 ---
 
 ![High level conceptual diagram of TinyAgent system](https://bair.berkeley.edu/static/blog/tiny-agent/Figure2.png)
