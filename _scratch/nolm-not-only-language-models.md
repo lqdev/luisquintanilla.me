@@ -1,4 +1,4 @@
-# NoLM - Say no to Language Models
+# NoLM - Not Only Language Models
 
 ## Why?
 
