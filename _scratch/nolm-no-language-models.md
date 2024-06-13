@@ -10,6 +10,8 @@ While the scope of the content is focused around language models, much of it is 
 
 ### Language Models aren't very useful (on their own)
 
+Chances are, when you think of applications that use Language Models, you think ChatGPT. However, while Language Models drive apps like ChatGPT, Language Models are not ChatGPT. Going from Language Model to ChatGPT takes work. 
+
 #### Internal knowledge needs to be augmented
 
 Although the responses a language model can generate without any additional guidance are impressive, it's not able to access real-time information. More importantly, models don't have access to your data which is what makes their responses more useful and relevant. 
@@ -74,6 +76,8 @@ You:
 Given enough time, you may figure it out and everyone will be better for it. Chances are though, you won't solve it in a few seconds or minutes which is probably the reasonable amount of time we expect language models to respond to us (if they even respond or solve the problem).
 
 ### Small Language Models (SLMs) aren't any better in some cases
+
+Small Language Models are exciting for so many reasons. However, they still face challenges. In some cases, they're similar to Large Language Models, and in others, they're unique. 
 
 #### Size of Small Language Models
 
