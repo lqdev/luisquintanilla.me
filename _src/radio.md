@@ -20,6 +20,9 @@ Quick links to some of my favorite radio stations:
 | [Tilderadio](https://tilderadio.org/) | [Stream Link](https://azuracast.tilderadio.org/radio/8000/radio.ogg) |
 | [Tejano 95.7](https://www.tejano957.com/) | [Stream Link](https://live.amperwave.net/direct/alphacorporate-kleyfmaac-ibc4) |
 | [97.5 The Vibe](https://www.975thevibe.com/) | [Stream Link](https://24503.live.streamtheworld.com/KSZRFMAAC.aac) | 
+| [Nightride FM - Nightride](https://nightride.fm/stations?station=nightride) | [Stream Link](ttps://stream.nightride.fm:8443/nightride/aac_hifi.m3u8) | 
+| [Nightride FM - Chillsynth](https://nightride.fm/stations?station=chillsynth) | [Stream Link](ttps://stream.nightride.fm:8443/chillsynth/aac_hifi.m3u8) | 
+| [Nightride FM - ESBM](https://nightride.fm/stations?station=esbm) | [Stream Link](ttps://stream.nightride.fm:8443/ebsm/aac_hifi.m3u8) | 
 
 Alternatively, use the [online radio playlist](/radio/OnlineRadioPlaylist.m3u) I've created to get access to all of them on [MPV](https://mpv.io/) or [VLC](https://www.videolan.org/vlc/). 
 
