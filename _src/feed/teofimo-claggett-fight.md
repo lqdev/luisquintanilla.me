@@ -13,8 +13,8 @@ Didn't see Claggett's but Lopez ring was was a little cringe.
 
 | Round | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Lopez | 10 | 10 | 10 | | | | | | | | | |
-| Claggett | 9 | 9 | 9 | | | | | | | | | |
+| Lopez | 10 | 10 | 10 | 10 | | | | | | | | |
+| Claggett | 9 | 9 | 9 | 9 | | | | | | | | |
 
 ## Rd 1
 
@@ -27,3 +27,15 @@ Claggett still putting in a lot of pressure but Teofimo still looks in control.
 ## Rd 3
 
 Teofimo still in control. Claggett has some damage to the face but still keeps going forward. 
+
+## Rd 4
+
+Some nasty shots from Teofimo but Claggett still keeps coming forward. 
+
+## Rd 5
+
+Solid back and forth
+
+## Rd 6
+
+Claggett is solid. Making Teofimo work and he's got some wear on his face. 
