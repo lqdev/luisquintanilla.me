@@ -13,9 +13,17 @@ Didn't see Claggett's but Lopez ring was was a little cringe.
 
 | Round | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Lopez | 10 | | | | | | | | | | | |
-| Claggett | 9 | | | | | | | | | | | |
+| Lopez | 10 | 10 | 10 | | | | | | | | | |
+| Claggett | 9 | 9 | 9 | | | | | | | | | |
 
 ## Rd 1
 
 Claggett put more pressure but Lopez got in the better shots and looked in control even boxing off his back foot. 
+
+## Rd 2
+
+Claggett still putting in a lot of pressure but Teofimo still looks in control.
+
+## Rd 3
+
+Teofimo still in control. Claggett has some damage to the face but still keeps going forward. 
