@@ -13,8 +13,8 @@ Didn't see Claggett's but Lopez ring was was a little cringe.
 
 | Round | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Lopez | 10 | 10 | 10 | 10 | | | | | | | | |
-| Claggett | 9 | 9 | 9 | 9 | | | | | | | | |
+| Lopez | 10 | 10 | 10 | 10 | 10| 10 | ? | 10 | 9 | | | |
+| Claggett | 9 | 9 | 9 | 9 | 9 | 9 | 9 | ? | 9 | 10 | | | |
 
 ## Rd 1
 
@@ -39,3 +39,15 @@ Solid back and forth
 ## Rd 6
 
 Claggett is solid. Making Teofimo work and he's got some wear on his face. 
+
+## Rd 7
+
+PC battery died :)
+
+## Rd 8
+
+Big uppercuts from Teofimo but Claggett keeps coming forward.
+
+## Rd 9
+
+Claggett keeps coming forward and he landed some good shots. 
