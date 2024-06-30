@@ -13,8 +13,8 @@ Didn't see Claggett's but Lopez ring was was a little cringe.
 
 | Round | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Lopez | 10 | 10 | 10 | 10 | 10| 10 | ? | 10 | 9 | | | |
-| Claggett | 9 | 9 | 9 | 9 | 9 | 9 | 9 | ? | 9 | 10 | | | |
+| Lopez | 10 | 10 | 10 | 10 | 10| 10 | ? | 10 | 9 | 10 | | |
+| Claggett | 9 | 9 | 9 | 9 | 9 | 9 | 9 | ? | 9 | 10 | 9 | | |
 
 ## Rd 1
 
@@ -51,3 +51,7 @@ Big uppercuts from Teofimo but Claggett keeps coming forward.
 ## Rd 9
 
 Claggett keeps coming forward and he landed some good shots. 
+
+## Rd 10
+
+Teofimo stole the round at the end. Not like he needed to. He got the better shots. Sad to see because Claggett is putting the pressure but not doing as much damage.
