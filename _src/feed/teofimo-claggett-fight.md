@@ -7,7 +7,7 @@ tags: ["boxing","teofimoclaggett","teofimo","clagget","toprank"]
 
 ## Ring Walk
 
-Didn't see Claggett's but Lopez ring was was a little cringe.
+Didn't see Claggett's but Lopez ring walk was a little cringe.
 
 ## Scorecard (Unofficial)
 
@@ -58,7 +58,7 @@ Teofimo stole the round at the end. Not like he needed to. He got the better sho
 
 ## Rd 11
 
-Much of the same. Claggett reguses to go away. Sadly, he hasn't done enough that if / when it goes the distance, he'll lose. He needs a knowckout and it looks unlikely. 
+Much of the same. Claggett reguses to go away. Sadly, he hasn't done enough that if / when it goes the distance, he'll lose. He needs a knockout and it looks unlikely. 
 
 ## Rd 12
 
