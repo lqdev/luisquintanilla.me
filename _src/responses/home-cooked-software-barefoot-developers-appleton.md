@@ -4,7 +4,7 @@ targeturl: https://maggieappleton.com/home-cooked-software
 response_type: star
 dt_published: "2024-07-06 22:02"
 dt_updated: "2024-07-06 22:02 -05:00"
-tags: ["localfirst","smallweb","","so]
+tags: ["localfirst","smallweb","sofware","llm","programming","talk","indieweb"]
 ---
 
 > The emerging golden age of home-cooked software, barefoot developers, and why the local-first community should help build it
