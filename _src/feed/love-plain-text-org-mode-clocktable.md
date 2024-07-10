@@ -9,7 +9,7 @@ Org-mode appreciation post.
 
 I use plain text and org-mode for most things in my life, especially when it comes to task and life management. 
 
-I won't rehash all the resons Emacs and org-mode are amazing. There are tons of blog posts and videos out there that would do it more justice than I ever could. 
+I won't rehash all the reasons Emacs and org-mode are amazing. There are tons of blog posts and videos out there that would do it more justice than I ever could. 
 
 Over the last few years, Emacs has become my go-to text editor. Yet despite all the time, I keep finding new features that delight. 
 
