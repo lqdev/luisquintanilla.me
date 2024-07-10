@@ -11,7 +11,7 @@ I use plain text and org-mode for most things in my life, especially when it com
 
 I won't rehash all the reasons Emacs and org-mode are amazing. There are tons of blog posts and videos out there that would do it more justice than I ever could. 
 
-Over the last few years, Emacs has become my go-to text editor. Yet despite all the time, I keep finding new features that delight. 
+Over the last few years, Emacs has become my go-to text editor. Throughout all that time, I've continued to find new features that delight. 
 
 The most recent is [clock table](https://orgmode.org/manual/The-clock-table.html).
 
