@@ -1,0 +1,10 @@
+---
+title: %^{TITLE}
+targeturl: %^{URL}
+response_type: %^{RESPONSE|reshare|star|reply|bookmark}
+dt_published: %<%F %R -05:00>
+dt_updated: %<%F %R -05:00>
+tags: [%^{TAGS}]
+---
+
+%?
