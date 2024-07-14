@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Mastodon Server Cleanup"
-last_updated_date: "05/17/2024 22:17"
+last_updated_date: "07/14/2024 03:24"
 tags: mastodon,linux,socialmedia,sysadmin
 ---
 
@@ -26,7 +26,7 @@ General commands for cleaning up resources on Mastodon servers
 1. Log into mastodon user
 
     ```bash
-    sudo su -u mastodon
+    sudo su - mastodon
     ```
 
 1. Go to `live` directory

@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Mastodon Server Upgrades"
-last_updated_date: "02/11/2023 09:30"
+last_updated_date: "07/14/2024 03:16"
 tags: selfhost,socialmedia,mastodon,fediverse
 ---
 
@@ -366,6 +366,39 @@ NOTE: Node 18 not supported yet. If you run into issues upgrading directly from 
 4. Checkout 4.2.7 tag - `git checkout v4.2.7`
 5. Install Ruby dependencies - `bundle install`
 6. Install JS dependencies - `yarn install --frozen-lockfile`
+
+### 4.2.8
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.2.8 tag - `git checkout v4.2.8`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install --frozen-lockfile`
+
+### 4.2.9
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.2.9 tag - `git checkout v4.2.9`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install --frozen-lockfile`
+
+### 4.2.10
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.2.10 tag - `git checkout v4.2.10`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install --frozen-lockfile`
+
+## Restart Services
+
+```bash
+sudo systemctl restart mastodon-sidekiq mastodon-streaming mastodon-web
+```
 
 ## Documentation
 
