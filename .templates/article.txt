@@ -1,0 +1,9 @@
+---
+post_type: "article"
+title: %^{TITLE}
+description: "%^{DESCRIPTION}"
+published_date: %<%F %R -05:00>
+tags: [%^{TAGS}]
+---
+
+%?
