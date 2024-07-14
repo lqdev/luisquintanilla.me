@@ -22,7 +22,7 @@ source: https://www.hachettebookgroup.com/titles/alan-siegel/simple/978145550968
 >    - What SIMPLE idea allowed the Cleveland Clinic to improve care and increase revenue
 >    - How OXO designed a measuring cup that sold a million units in its first 18 months on the market
 >    - Where Target got the idea for their \u201cClearRX\u201d prescription system
->    - How New York City simplified its unwieldy bureaucracy with three simple numbers  
+>    - How New York City simplified its unwieldy bureaucracy with three simple numbers
 > <br>
 > By exposing the overly complex things we encounter every day, SIMPLE reveals the reasons we allow confusion to persist, inspires us to seek clarity, and explores how social media is empowering consumers to demand simplicity.  
 > <br>
