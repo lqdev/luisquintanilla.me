@@ -45,7 +45,7 @@ Once you've configured the channel for the latest version, switch to it just lik
 nixos-rebuild switch --upgrade
 ```
 
-After the operation completes, you'll want to check which version you have using the lsb_release instructions above.
+After the operation completes, you'll want to check which version is running as mentioned in previous instructions.
 
 ## Additional Resources
 
