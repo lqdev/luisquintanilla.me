@@ -117,7 +117,10 @@ let content = weeklyReviewPartial title (blogPartial filteredBlogs) (notesPartia
 
 let currentDateString = currentDate.ToString("yyyy-MM-dd")
 
-let savePath = Path.Join("/","workspaces","luisquintanilla.me","_src","feed")
+// This is the root directory of the repo
+let rootDir = Directory.GetCurrentDirectory()
+
+let savePath = Path.Join($"{rootDir}","_src","feed")
 let saveFileName = $"{currentDateString}-weekly-post-summary.md"
 
 File.WriteAllText(Path.Join(savePath,saveFileName),content)
