@@ -1,6 +1,6 @@
 ---
 post_type: "note"
-title: Note to Self: Useful Emacs Commands Pt. 1
+title: "Note to Self: Useful Emacs Commands Pt. 1"
 published_date: 2024-07-28 17:00 -05:00
 tags: ["emacs","lisp","elisp","programming","code","notetoself"]
 ---
