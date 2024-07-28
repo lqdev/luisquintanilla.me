@@ -1,4 +1,3 @@
-
 ---
 title: Nyxt Emacs Hacks
 targeturl: https://nyxt.atlas.engineer/article/emacs-hacks.org
