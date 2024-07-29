@@ -154,5 +154,11 @@
        "Type": "rss",
        "HtmlUrl": "desertoracle.com/radio",
        "XmlUrl": "https://www.omnycontent.com/d/playlist/33bd51d8-cd0c-4607-84d5-af0901305df5/d53a0c5a-2f7f-4b69-8f9d-af090132fd33/be70cec1-18b9-4f9a-8092-af090132fd41/podcast.rss"
-    }                      
+    }
+    {
+       "Title": "The Joe Rogan Experience",
+       "Type": "rss",
+       "HtmlUrl": "https://podcasters.spotify.com/pod/show/joeroganexperience",
+       "XmlUrl": "https://feeds.megaphone.fm/GLT1412515089"
+    }                          
 ]
