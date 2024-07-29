@@ -148,5 +148,11 @@
        "Type": "rss",
        "HtmlUrl": "https://www.betteroffline.com/",
        "XmlUrl": "https://www.omnycontent.com/d/playlist/e73c998e-6e60-432f-8610-ae210140c5b1/cf0c25ad-cf01-4da5-ae1c-b0fc015f790e/53ed270b-7147-4f70-81c2-b0fc015fe4ed/podcast.rss"
-    }                  
+    },
+    {
+       "Title": "Desert Oracle Radio",
+       "Type": "rss",
+       "HtmlUrl": "desertoracle.com/radio",
+       "XmlUrl": "https://www.omnycontent.com/d/playlist/33bd51d8-cd0c-4607-84d5-af0901305df5/d53a0c5a-2f7f-4b69-8f9d-af090132fd33/be70cec1-18b9-4f9a-8092-af090132fd41/podcast.rss"
+    }                      
 ]
