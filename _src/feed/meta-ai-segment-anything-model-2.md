@@ -2,8 +2,8 @@
 title: "Meta AI's Segment Anything Model (SAM) 2"
 targeturl: https://ai.meta.com/blog/segment-anything-2/
 response_type: reshare
-dt_published: 2024-07-29 22:22 -05:00
-dt_updated: 2024-07-29 22:22 -05:00
+dt_published: "2024-07-29 22:22 -05:00"
+dt_updated: "2024-07-29 22:22 -05:00"
 tags: ["meta","ai","computervision","sam2","segmentanythingmodel","aimodel","cv"]
 ---
 
