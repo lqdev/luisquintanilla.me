@@ -1,6 +1,6 @@
 ## Subscribe & follow
 
-I'm a big fan of RSS and have written about it in posts like [Rediscovering the RSS Protocol](/posts/rediscovering-rss-user-freedom). Therefore, I've made it easy to subscribe to content on this site through various RSS feeds. For convenience, I've added a quick access button for NewsBlur. However, you can add these feeds to your prefered RSS reader using the Feed URL provided. 
+I'm a big fan of RSS and have written about it in posts like [Rediscovering the RSS Protocol](/posts/rediscovering-rss-user-freedom). Therefore, I've made it easy to subscribe to content on this site through various RSS feeds. For convenience, I've added a quick access button for NewsBlur. However, you can add these feeds to your prefered RSS reader using the Feed URL provided. You can subscribe to all of them at once, use the [OPML file](/feed/index.opml). 
 
 ## [Blog](/posts/1/)
 

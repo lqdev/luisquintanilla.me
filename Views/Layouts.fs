@@ -180,6 +180,7 @@ module Layouts
 
 
     let rollLinks = [
+        link [_rel "feeds"; _type "text/xml" ; _title "Luis Quintanilla's Feeds"; _href "/feed/index.opml"]
         link [_rel "blogroll"; _type "text/xml" ; _title "Luis Quintanilla's Blogroll"; _href "/feed/blogroll/index.opml"]
         link [_rel "podroll"; _type "text/xml" ; _title "Luis Quintanilla's Podroll"; _href "/feed/podroll/index.opml"]
         link [_rel "youtuberoll"; _type "text/xml" ; _title "Luis Quintanilla's YouTube Roll"; _href "/feed/youtube/index.opml"]

@@ -31,6 +31,7 @@ let main argv =
     let posts = loadPosts() 
     let feedPosts = loadFeed ()
     let presentations = loadPresentations ()
+    let feedLinks = loadFeedLinks ()
     let blogrollLinks = loadBlogrollLinks ()
     let podrollLinks = loadPodrollLinks ()
     let forumLinks = loadForumsLinks ()
@@ -66,6 +67,8 @@ let main argv =
     buildResponseFeedRssPage responses "index"
    
     // Build roll pages
+    buildFeedsOpml feedLinks
+    
     buildBlogrollPage blogrollLinks
     buildBlogrollOpml blogrollLinks
     buildPodrollPage podrollLinks

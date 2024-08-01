@@ -206,6 +206,13 @@ module Builder
         
         wikis        
 
+    let loadFeedLinks () = 
+        let links =  
+            File.ReadAllText(Path.Join("Data","feeds.json"))
+            |> JsonSerializer.Deserialize<Outline array>
+    
+        links
+
     let loadBlogrollLinks () = 
         let links =  
             File.ReadAllText(Path.Join("Data","blogroll.json"))
@@ -307,6 +314,12 @@ module Builder
 
         let saveDir = Path.Join(outputDir, "feed", "responses")
         File.WriteAllText(Path.Join(saveDir,$"{saveFileName}.xml"), rssPage)
+
+    let buildFeedsOpml (links:Outline array) = 
+        let feed = buildOpmlFeed "Luis Quintanilla Feeds" "https://www.luisquintanilla.me" links
+        let saveDir = Path.Join(outputDir,"feed")
+        File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
+        File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
     let buildBlogrollOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Blogroll" "https://www.luisquintanilla.me" links
