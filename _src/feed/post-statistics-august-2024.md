@@ -29,4 +29,4 @@ Once that's done, at some point, I'd also like to consolidate my URLs.
 - `/posts` captures long-form blog posts
 - `/feed` captures microblog posts and responses
 
-Since everything is a post, consolidating under one of them for all my posts and providing additional urls like `/notes`, `/photos`, `articles` for the individual types of posts might make more sense. 
+Since everything is a post, consolidating under one of them for all my posts and providing additional urls like `/notes`, `/photos`, `/articles` for the individual types of posts might make more sense. 
