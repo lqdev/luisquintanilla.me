@@ -11,7 +11,7 @@ The concept is the same, except instead of making my blogroll discoverable, I'm 
 
 The implementation ended up being:
 
-1. Create an OPML file
+1. Create an OPML file for[ each of the feeds on by website](/subscribe).
 
 	```xml
 	<opml version="2.0">
