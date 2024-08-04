@@ -1,5 +1,5 @@
 ---
-title: "Contratulations on ten years of Overcast"
+title: "Congratulations on ten years of Overcast"
 targeturl: https://marco.org/2024/07/16/overcast-rewrite
 response_type: reshare
 dt_published: 2024-08-04 17:07 -05:00
