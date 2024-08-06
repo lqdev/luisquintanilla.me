@@ -42,7 +42,7 @@ module Layouts
                             ] [
                                 a [_class "dropdown-item"; _href "/about"] [Text "Profile"]
                                 a [_class "dropdown-item"; _href "/contact"] [ Text "Contact" ]
-                                a [_class "dropdown-item"; _href "/uses"] [Text "IRL Stack"]
+                                a [_class "dropdown-item"; _href "/uses"] [Text "Uses"]
                                 a [_class "dropdown-item"; _href "/colophon"] [Text "Colophon"]
                         ]
                     ]
