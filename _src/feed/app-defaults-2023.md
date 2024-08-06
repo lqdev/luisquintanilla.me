@@ -5,7 +5,7 @@ published_date: "2023-12-25 22:28"
 tags: ["apps","appdefaults","edc"]
 ---
 
-Late to the [App Defaults](https://defaults.rknight.me/) train but here's what I use as of December 2023. For the latest list and Every Day Carry (EDC) list, see the [IRL Stack page](/irl-stack).
+Late to the [App Defaults](https://defaults.rknight.me/) train but here's what I use as of December 2023. For the latest list and Every Day Carry (EDC) list, see the [Uses page](/uses).
 
 - **Operating System**: [NixOS](https://nixos.org/) (Desktop) / [Android](https://www.android.com/) (Mobile)
 - **E-Mail**: [Thunderbird](https://www.thunderbird.net/) (Desktop) / [Outlook](https://www.microsoft.com/en-us/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook) (Mobile)

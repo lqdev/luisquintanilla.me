@@ -11,6 +11,6 @@ Like many in the comments, I like the idea of this device and what it's aiming t
 
 The "LivePaper" display technology seems interesting. 
 
-At $729 though, it seems a little steep. I paid a fraction of that for my [Onyx Boox Nova Air 2](/irl-stack) and I have most of the functionality of this device. As an e-reader, note-taking device, and tablet that can install any Android app, it works perfectly fine for my use cases and I'm very happy with it. 
+At $729 though, it seems a little steep. I paid a fraction of that for my [Onyx Boox Nova Air 2](/uses) and I have most of the functionality of this device. As an e-reader, note-taking device, and tablet that can install any Android app, it works perfectly fine for my use cases and I'm very happy with it. 
 
 Still, I'm interested in seeing whether this takes off or whether it ends up being another Rabbit R1 or Humane Ai Pin.

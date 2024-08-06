@@ -16,7 +16,7 @@ I'm passionate about:
 
 ## What I use
 
-For a list of technologies, products, apps, and services I use in my day-to-day, check out my [IRL stack](/irl-stack).
+For a list of technologies, products, apps, and services I use in my day-to-day, check out my [uses page](/uses).
 
 ## How this site is built
 

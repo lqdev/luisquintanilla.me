@@ -127,9 +127,9 @@ module Builder
         File.WriteAllText(Path.Join(saveDir,"index.html"), ytFeedPage)
 
     let buildIRLStackPage () = 
-        let irlStackContent = Path.Join(srcDir,"irl-stack.md") |> convertFileToHtml |> contentView
+        let irlStackContent = Path.Join(srcDir,"uses.md") |> convertFileToHtml |> contentView
         let irlStackPage = generate irlStackContent "default" "In Real Life Stack - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"irl-stack")
+        let saveDir = Path.Join(outputDir,"uses")
         Directory.CreateDirectory(saveDir) |> ignore   
         File.WriteAllText(Path.Join(saveDir,"index.html"), irlStackPage)
 
