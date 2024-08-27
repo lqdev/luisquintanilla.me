@@ -130,8 +130,10 @@ module Domain
 
     [<CLIMutable>]
     type AlbumDetails = {
+        [<YamlMember(Alias="post_type")>] PostType: string
         [<YamlMember(Alias="title")>] Title: string
         [<YamlMember(Alias="mainimage")>] MainImage: string
+        [<YamlMember(Alias="published_date")>] Date: string
         [<YamlMember(Alias="images")>] Images: AlbumImage array                
     }
 
