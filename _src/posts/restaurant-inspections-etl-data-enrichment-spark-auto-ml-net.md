@@ -1,4 +1,5 @@
 ---
+post_type: "article" 
 title: Restaurant Inspections ETL & Data Enrichment with Spark.NET and ML.NET Automated (Auto) ML
 published_date: 2019-09-15 15:12:01
 tags: [mlnet,ml,machine-learning,ai,artificial-intelligence,big-data,spark,dotnet, dotnetcore]

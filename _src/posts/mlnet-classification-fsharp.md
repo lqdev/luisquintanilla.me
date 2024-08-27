@@ -1,4 +1,5 @@
 ---
+post_type: "article" 
 title: Classification with F# ML.NET Models 
 published_date: 2018-06-13 18:19:05
 tags: [fsharp,dotnet,dotnetcore,programming,development,mlnet,machinelearning,artificialintelligence,functionalprogramming]

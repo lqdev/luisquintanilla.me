@@ -1,4 +1,5 @@
 ---
+post_type: "article" 
 title: Hello World
 published_date: 2017-12-09 12:00:00
 ---

@@ -1,4 +1,5 @@
 ---
+post_type: "article" 
 title: "Back To School: Emacs Edition"
 published_date: 2017-12-09 13:01:19
 tags: [emacs,org-mode]

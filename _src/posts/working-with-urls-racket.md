@@ -1,4 +1,5 @@
 ---
+post_type: "article" 
 title: Working with URLs in Racket
 published_date: 2017-12-13 16:01:57
 tags: [lisp, racket]

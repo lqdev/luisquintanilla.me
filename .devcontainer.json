@@ -12,10 +12,10 @@
                 "github.vscode-github-actions"
             ]
         }
-    },
-    "postCreateCommand": "curl -fsSL https://ollama.com/install.sh | sh",
-    "postStartCommand": [
-        "ollama serve",
-        "ollama pull phi"
-    ]
+    }
+    // "postCreateCommand": "curl -fsSL https://ollama.com/install.sh | sh",
+    // "postStartCommand": [
+    //     "ollama serve",
+    //     "ollama pull phi"
+    // ]
 }

@@ -1,4 +1,5 @@
 ---
+post_type: "article" 
 title: Octave Development in the Terminal
 published_date: 2017-12-09 12:46:54
 tags: [octave,tmux,developer tools]

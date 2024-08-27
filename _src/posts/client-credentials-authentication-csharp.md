@@ -1,4 +1,5 @@
 ---
+post_type: "article" 
 title: 'Client Credentials Authorization in C#'
 tags: [csharp, authentication, web applications, .net, api, .net core]
 published_date: 2017-12-25 19:28:48

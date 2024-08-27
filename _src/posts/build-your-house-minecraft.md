@@ -1,4 +1,5 @@
 ---
+post_type: "article" 
 title: Design and Build Your Next Home in Minecraft
 published_date: 2017-12-15 22:34:12
 tags: [microsoft, artificial intelligence, thoughts, robots]

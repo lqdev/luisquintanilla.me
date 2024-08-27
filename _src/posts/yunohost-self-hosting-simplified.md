@@ -1,4 +1,5 @@
 ---
+post_type: "article" 
 title: Self-hosting made easy with YunoHost
 description: YunoHost can help you self-host applications and services by simplifying your deployment process. 
 published_date: 2021-08-10 18:00:00

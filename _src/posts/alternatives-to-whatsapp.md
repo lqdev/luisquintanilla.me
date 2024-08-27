@@ -1,4 +1,5 @@
 ---
+post_type: "article" 
 title: Alternatives to WhatsApp
 published_date: 2021-01-09 13:44:27
 tags: [privacy, self-hosted, security, open-source, apps]
