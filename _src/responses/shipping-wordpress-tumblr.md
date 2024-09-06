@@ -13,7 +13,7 @@ A little late, but I can't express how much I love this.
 
 > We love Tumblr’s streamlined posting experience and its current product direction. We’re not changing that. We’re talking about running Tumblr’s backend on WordPress. You won’t even notice a difference from the outside.
 
-Although it sounds outside the scope of the original plan, it would be amazing if the shared backend as well as the Tumblr front-end made their way into the open-source version of WordPress.
+Although it sounds outside the scope of the original plan, it would be amazing if the shared backend as well as the Tumblr publishing front-end made their way into the open-source version of WordPress.
 
 That would open the door to self-hosted personal websites that also make it significantly easier to post content in smaller chunks like a microblog. 
 
