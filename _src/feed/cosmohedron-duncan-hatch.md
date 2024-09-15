@@ -2,7 +2,7 @@
 title: "Cosmohedron by Duncan Hatch"
 targeturl: https://www.youtube.com/watch?v=3pxrECZYEAA 
 response_type: star
-dt_published: "2024-09-14 22:06"
+dt_published: "2024-09-14 22:06 -05:00"
 dt_updated: "2024-09-14 22:06 -05:00"
 tags: ["short","animation","psychidelic","duncanhatch","video","youtube"]
 ---
