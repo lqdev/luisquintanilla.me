@@ -5,14 +5,14 @@
             "front_matter_title": ""
         }
     },
-    "workbench.colorCustomizations": {
-      "editor.background": "#3D2C1D",
-      "editor.foreground": "#D2B48C",
-      "editorIndentGuide.background": "#A0522D",
-      "editorRuler.foreground": "#CD853F",
-      "activityBarBadge.background": "#FF4500",
-      "sideBar.background": "#A0522D",
-      "sideBarTitle.foreground": "#F4A460",
-      "sideBarSectionHeader.foreground": "#ffffff"
-    }
+    // "workbench.colorCustomizations": {
+    //   "editor.background": "#3D2C1D",
+    //   "editor.foreground": "#D2B48C",
+    //   "editorIndentGuide.background": "#A0522D",
+    //   "editorRuler.foreground": "#CD853F",
+    //   "activityBarBadge.background": "#FF4500",
+    //   "sideBar.background": "#A0522D",
+    //   "sideBarTitle.foreground": "#F4A460",
+    //   "sideBarSectionHeader.foreground": "#ffffff"
+    // }
 }
