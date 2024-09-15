@@ -67,7 +67,7 @@ module Builder
         let recentFeedPost = 
             feedPosts
             |> Array.sortByDescending(fun x -> 
-                printfn "%s" x.Medatada.Title
+                printfn "%s" x.Metadata.Title
                 DateTime.Parse(x.Metadata.Date))
             |> Array.head
 
