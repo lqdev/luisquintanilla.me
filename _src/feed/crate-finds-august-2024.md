@@ -15,4 +15,4 @@ Some songs that were on repeat:
 - Pretty Girl Why by Buffalo Springfield
 - Sit with the Guru by Strawberry Alarm Clock
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/playlist/4WioPgkf1uJsLQWAw4nYuS?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4WioPgkf1uJsLQWAw4nYuS?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
