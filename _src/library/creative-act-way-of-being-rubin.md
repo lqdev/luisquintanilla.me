@@ -4,7 +4,7 @@ author: "Rick Rubin"
 isbn: "9780593653425"
 cover: "https://images2.penguinrandomhouse.com/cover/9780593653425"
 status: "Read"
-rating: 4.7
+rating: 4.75
 source: "https://www.penguinrandomhouse.com/books/717356/the-creative-act-by-rick-rubin/"
 ---
 
