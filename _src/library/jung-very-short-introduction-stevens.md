@@ -2,7 +2,7 @@
 title: "Jung: A Very Short Introduction"
 author: "Anthony Stevens"
 isbn: "9780192854582"
-cover: "http://anthonystevens.co.uk/images/jung.jpg"
+cover: "https://covers.powells.com/9780192854582.jpg"
 status: "Read"
 rating: 4.8
 source: "http://anthonystevens.co.uk/jung.htm"
