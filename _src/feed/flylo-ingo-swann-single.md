@@ -2,7 +2,7 @@
 post_type: "note" 
 title: "New Release: Ingo Swann by Flying Lotus"
 published_date: "2024-10-10 21:13"
-tags: ["music","newrelease","flyinglotus","flylo","dance","cia","remoteviewing"]
+tags: ["music","newrelease","flyinglotus","flylo","dance","cia","remoteviewing","ingoswann"]
 ---
 
 New drop from FlyLo. This feels like a new album coming. So far the theme is mystical. 
