@@ -33,7 +33,7 @@ Yes, you should!
 
 Great article by [Cory Doctorow](https://craphound.com/bio/). 
 
-I've written at length on this blog as to [why I enjoy RSS](/posts/rediscovering-rss-user-freedom). My use goes back to the days of Google Reader. Like many, once that was disbanded, my consumption pretty much shifted to social media for a few years. After growing dissatisfaction with the limitations and lack of control over my feed, I started my journey back to RSS readers eventually landing on [NewsBlur](/feed/subscribed-to-1042-feeds-newsblur) and elfeed as my readers of choice. 
+I've written at length on my website as to [why I enjoy RSS](/posts/rediscovering-rss-user-freedom). My use goes back to the days of Google Reader. Like many, once that was disbanded, my consumption pretty much shifted to social media for a few years. After growing dissatisfaction with the limitations and lack of control over my feed, I started my journey back to RSS readers eventually landing on [NewsBlur](/feed/subscribed-to-1042-feeds-newsblur) and elfeed as my readers of choice. 
 
 On this website, RSS plays an important role in a few areas. 
 
