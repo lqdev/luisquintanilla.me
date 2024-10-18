@@ -21,9 +21,9 @@ Yes, you should!
 > </br>
 > Now, you sign up to so many feeds that you're feeling overwhelmed and you want an algorithm to prioritize posts – or recommend content. Lots of RSS readers have some kind of algorithm and recommendation system...  
 > </br>
-> But you control the algorithm, you control the recommendations. And if a new RSS reader pops up with an algorithm you're dying to try, you can export all the feeds you follow with a single click, which will generate an OPML file. Then, with one click, you can import that OPML file into any other RSS reader in existence and all your feeds will be seamlessly migrated there. You can delete your old account, or you can even use different readers for different purposes.
+> But you control the algorithm, you control the recommendations. And if a new RSS reader pops up with an algorithm you're dying to try, you can export all the feeds you follow with a single click, which will generate an OPML file. Then, with one click, you can import that OPML file into any other RSS reader in existence and all your feeds will be seamlessly migrated there. You can delete your old account, or you can even use different readers for different purposes.  
 > </br>
-> RSS basically works like social media should work. Using RSS is a chance to visit a utopian future in which the platforms have no power, and all power is vested in publishers, who get to decide what to publish, and in readers, who have total control over what they read and how, without leaking any personal information through the simple act of reading.
+> RSS basically works like social media should work. Using RSS is a chance to visit a utopian future in which the platforms have no power, and all power is vested in publishers, who get to decide what to publish, and in readers, who have total control over what they read and how, without leaking any personal information through the simple act of reading.  
 > </br>
 > And here's the best part: every time you use RSS, you bring that world closer into being!  
 > </br>
