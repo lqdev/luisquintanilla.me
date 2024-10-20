@@ -6,7 +6,7 @@ published_date: "2024-10-20 14:01"
 tags: ["owncast","dotnet","indieweb","fediverse","aspire","livestreaming","twitch","youtube","blazor"]
 ---
 
-Platforms come and go. As a result, I'm a strong advocate for [owning your data](https://indieweb.org/own_your_data) (when possible). Self-hosting is a way for you to do that. That could mean self-hosting [your website](https://buttondown.com/ownyourweb/archive/issue-06/), [password manager](https://bitwarden.com/blog/host-your-own-open-source-password-manager/), [media server](https://jellyfin.org/docs/), or [social media](https://docs.joinmastodon.org/user/run-your-own/). However, self-hosting comes with its own challenges, primarily cost (time and money) and in cases where software isn't provided as an appliance on your hosting provider of choice, some technical knowledge may be required. 
+Platforms come and go. As a result, I'm a strong advocate for [owning your data](https://indieweb.org/own_your_data) (when possible). Self-hosting is a way for you to do that. Owning your data could mean self-hosting [your website](https://buttondown.com/ownyourweb/archive/issue-06/), [password manager](https://bitwarden.com/blog/host-your-own-open-source-password-manager/), [media server](https://jellyfin.org/docs/), or [social media](https://docs.joinmastodon.org/user/run-your-own/). However, self-hosting comes with its own challenges, primarily cost (time and money) and in cases where software isn't provided as an appliance on your hosting provider of choice, some technical knowledge may be required. 
 
 As I got more into self-hosting applications such as my [Mastodon instance](/mastodon), I came across Owncast.   
 
