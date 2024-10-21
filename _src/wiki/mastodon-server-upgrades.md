@@ -394,6 +394,51 @@ NOTE: Node 18 not supported yet. If you run into issues upgrading directly from 
 5. Install Ruby dependencies - `bundle install`
 6. Install JS dependencies - `yarn install --frozen-lockfile`
 
+### 4.2.11
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.2.11 tag - `git checkout v4.2.11`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install --frozen-lockfile`
+7. Precompile assets - `RAILS_ENV=production bundle exec rails assets:precompile`
+
+### 4.2.12
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.2.12 tag - `git checkout v4.2.12`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install --frozen-lockfile`
+7. Precompile assets - `RAILS_ENV=production bundle exec rails assets:precompile`
+
+### 4.2.13
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.2.13 tag - `git checkout v4.2.13`
+5. Install Ruby dependencies - `bundle install`
+6. Install JS dependencies - `yarn install --frozen-lockfile`
+
+### 4.3.0 NOT WORKING
+
+1. Stop services - `systemctl stop mastodon-*.service`
+2. Backup database and env file
+3. Fetch tags - `git fetch && git fetch --tags`
+4. Checkout 4.3.0 tag - `git checkout v4.3.0`
+5. Install yarn4 - `corepack enable` then, `corepack prepare`
+6. Install Ruby dependencies - `bundle install`
+7. Install JS dependencies - `yarn install --immutable`
+8. Generate secrets - `RAILS_ENV=production bin/rails db:encryption:init`
+9. Copy secrets to `.env.production` file
+10. Precompile assets - `RAILS_ENV=production bundle exec rails assets:precompile`
+11. Run predeployment database migrations - `SKIP_POST_DEPLOYMENT_MIGRATIONS=true RAILS_ENV=production bundle exec rails db:migrate`
+12. Restart services - `sudo systemctl restart mastodon-sidekiq mastodon-streaming mastodon-web`
+13. Run postdeployment database migrations - `RAILS_ENV=production bundle exec rails db:migrate`
+
 ## Restart Services
 
 ```bash
