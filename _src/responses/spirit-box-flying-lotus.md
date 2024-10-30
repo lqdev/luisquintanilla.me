@@ -13,4 +13,4 @@ I already loved Garmonbozia but Ajhussi is my favorite track.
 
 Although on this album you hear some of the early FlyLo sound, it still feels new and fresh.
 
-[![Flying Lotus Spirit Box Album Playlist Thumbnail](http://img.youtube.com/vi/E-BbWldXfJk/0.jpg)](https://www.youtube.com/playlist?v=OLAK5uy_kQDB4vsLJy0bmjuYsCXKa-eMO-W33na2w "Flying Lotus Spirit Box Album Playlist Thumbnail")
+[![Flying Lotus Spirit Box Album Playlist Thumbnail](http://img.youtube.com/vi/E-BbWldXfJk/0.jpg)](https://www.youtube.com/playlist?OLAK5uy_kQDB4vsLJy0bmjuYsCXKa-eMO-W33na2w "Flying Lotus Spirit Box Album Playlist Thumbnail")
