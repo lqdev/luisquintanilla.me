@@ -12,7 +12,7 @@ This past year I've made more of an effort to read. I track books in my [/librar
 
 Although I have a [Nova Air 2 E-Note device](https://shop.boox.com/products/novaair2), given the choice, I prefer physical books. Despite the conveniene of an electronic note-taking device, theres something about analog that I find hard to quit. 
 
-As I read books, expecially non-fiction, I annotate them in various ways. Eventually, those annotations make their way into my library page.
+As I read books, especially non-fiction, I annotate them in various ways. Eventually, those annotations make their way into my library page.
 
 Here's an example of those annotations for [Building A Second Brain by Thiago Forte](/library/building-a-second-brain).
 
@@ -144,7 +144,7 @@ Once you have the images loaded, it's time to proces them.
         }
         ```
 
-        Some of the more recent AI models support structured output, which enforce a schema on AI model outputs. You can take a look at the [OpenAI documentation](https://openai.com/index/introducing-structured-outputs-in-the-api/) for more details. It's important to note though that the functionality it's not exclusing to OpenAI.
+        Some of the more recent AI models support structured output, which enforce a schema on AI model outputs. You can take a look at the [OpenAI documentation](https://openai.com/index/introducing-structured-outputs-in-the-api/) for more details. It's important to note though that the functionality is not exclusive to OpenAI models.
 
     1. Adds the extracted passages to the `passages` collection.
 
