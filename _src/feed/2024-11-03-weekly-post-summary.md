@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Week of November 3, 2024 - Post Summary"
-published_date: "2024-11-03 15:42 -05:00"
+published_date: "2024-11-03 20:42 -05:00"
 tags: ["weeklysummary","blogging","website","indieweb"]
 ---
 

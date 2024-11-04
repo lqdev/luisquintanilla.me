@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Finally starting to feel like fall"
-published_date: "2024-11-03 20:30"
+published_date: "2024-11-03 20:30 -05:00"
 tags: ["fall","autumn","seasons"]
 ---
 
