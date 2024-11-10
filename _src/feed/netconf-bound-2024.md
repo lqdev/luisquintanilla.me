@@ -7,7 +7,7 @@ tags: ["dotnet","dotnetconf","conference","ai","dotnet9","net9"]
 
 It's that time of the year again. A new .NET release.
 
-Tons of great sessions, which you can see in the [agenda](https://www.dotnetconf.net/).
+Tons of great sessions at .NET Conf this year, which you can see in the [agenda](https://www.dotnetconf.net/).
 
 I'll be taking part in two sessions:
 
