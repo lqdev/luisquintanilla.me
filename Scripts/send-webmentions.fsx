@@ -1,4 +1,4 @@
-#r "../bin/Debug/net8.0/PersonalSite.dll"
+#r "../bin/Debug/net9.0/PersonalSite.dll"
 
 Builder.loadReponses()
 |> WebmentionService.sendWebmentions
