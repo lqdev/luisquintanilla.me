@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FSharp.Data" Version="6.4.0" />
+    <PackageReference Include="FSharp.Data" Version="5.0.2" />
     <PackageReference Include="Giraffe.ViewEngine" Version="1.4.0" />
     <PackageReference Include="lqdev.WebmentionFs" Version="0.0.7" />
     <PackageReference Include="Markdig" Version="0.38.0" />
