@@ -20,11 +20,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FSharp.Data" Version="5.0.2" />
+    <PackageReference Include="FSharp.Data" Version="6.4.0" />
     <PackageReference Include="Giraffe.ViewEngine" Version="1.4.0" />
     <PackageReference Include="lqdev.WebmentionFs" Version="0.0.7" />
-    <PackageReference Include="Markdig" Version="0.30.3" />
-    <PackageReference Include="YamlDotNet" Version="12.0.0" />
+    <PackageReference Include="Markdig" Version="0.38.3" />
+    <PackageReference Include="YamlDotNet" Version="16.2.0" />
   </ItemGroup>
 
 </Project>
