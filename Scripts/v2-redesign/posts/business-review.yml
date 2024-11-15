@@ -1,0 +1,12 @@
+title: "Business Review"
+date: "2021-01-01T00:00:00Z"
+tags: ["business", "review"]
+categories: []
+postType:
+  Business:
+    rating: 5
+    details:
+      name: "Business Name"
+      location:
+        latitude: 0.0
+        longitude: 0.0
