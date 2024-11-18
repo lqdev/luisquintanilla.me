@@ -3,8 +3,296 @@
     <title>Luis Quintanilla Blog</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Luis Quintanilla's blog</description>
-    <lastPubDate>2024-03-06 13:50</lastPubDate>
+    <lastPubDate>2024-10-31 21:41 -05:00</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Digitize Analog Bookmarks using AI, .NET, and GitHub Models</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/digitize-analog-bookmarks-with-ai-dotnet?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/digitize-analog-bookmarks-with-ai-dotnet&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;This past year I've made more of an effort to read. I track books in my &lt;a href="/library"&gt;/library&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;Although I have a &lt;a href="https://shop.boox.com/products/novaair2"&gt;Nova Air 2 E-Note device&lt;/a&gt;, given the choice, I prefer physical books. Despite the conveniene of an electronic note-taking device, theres something about analog that I find hard to quit.&lt;/p&gt;
+&lt;p&gt;As I read books, especially non-fiction, I annotate them in various ways. Eventually, those annotations make their way into my library page.&lt;/p&gt;
+&lt;p&gt;Here's an example of those annotations for &lt;a href="/library/building-a-second-brain"&gt;Building A Second Brain by Thiago Forte&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The process of transferring notes is manual and tedious. I don't always have the discipline to transfer them at periodic intervals and what ends up happening is, I get to the end of the book without transferring any notes. To make space for new books, I donate it or resell the ones I've read. If I didn't take the time to transfer those notes, they're gone. &lt;a href="/library/slow-productivity-newport"&gt;Slow Productivity&lt;/a&gt; is an example of that.&lt;/p&gt;
+&lt;p&gt;I want to find a better system that's low-maintenance for keeping more of these notes and retaining knowledge I've found valuable.&lt;/p&gt;
+&lt;p&gt;Then it hit me, why not use AI? I know I could use OCR or even some of the AI models of yesteryear. The challenge is, those systems are error prone and given I don't always have the motivation to transfer notes manually, I have even less motivation to build and maintain such a system.&lt;/p&gt;
+&lt;p&gt;However, vision models have advanced significantly and when paired with language models, the barrier to entry for reasoning over image data has drastically decreased.&lt;/p&gt;
+&lt;p&gt;That's what led to this post. In this post, I'll show how you can use AI models like GPT-4o Mini to extract the passages I've annotated in physical books from an image. I then format those passages in markdown to make them easy to directly copy and paste them onto the website.&lt;/p&gt;
+&lt;p&gt;I know there's probably a ton of services that do this for you, but it's a lot more fun to build one from scratch. With that in mind, let's get started.&lt;/p&gt;
+&lt;p&gt;You can find the source for the application in the &lt;a href="/github/AIBookmarks"&gt;AIBookmarks GitHub repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Alternatively, I've configured the repo to use GitHub CodeSpaces, so you can launch the application there as well.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://codespaces.new/lqdev/AIBookmarks"&gt;&lt;img src="https://github.com/codespaces/badge.svg" class="img-fluid" alt="Open in GitHub Codespaces" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Configure access to GitHub Models&lt;/h2&gt;
+&lt;p&gt;I'll be using &lt;a href="https://github.blog/news-insights/product-news/introducing-github-models/"&gt;GitHub Models&lt;/a&gt; as my AI model provider. GitHub Models provides developers with access to a catalog of AI models such as GPT-4o, Llama 3.2, Phi 3.5, and many others. Best of all, it's completely free, &lt;a href="https://docs.github.com/en/github-models/prototyping-with-ai-models#rate-limits"&gt;though restrictions apply&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I chose GitHub Models for the following reasons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Zero installation. Although I really like Ollama and some of the other local AI model providers, I didn't want to fill precious hard-drive space with AI models.&lt;/li&gt;
+&lt;li&gt;It's free! Since I'm just prototyping, even with their limited capacity, it should be enough to prove out whether my scenario is feasible.&lt;/li&gt;
+&lt;li&gt;They provide access to multi-modal models such as GPT-4o, Llama 3.2 Vision, and Phi 3.5 Vision, which can reason over text and images, which is what I need.&lt;/li&gt;
+&lt;li&gt;I'm one of the GPU poor. My &lt;a href="https://www.lenovo.com/us/en/p/laptops/thinkpad/thinkpadx1/x1-titanium-g1/22tp2x1x1t1?orgRef=https%253A%252F%252Fduckduckgo.com%252F"&gt;Lenovo Thinkpad X1&lt;/a&gt; couldn't handle running one of the vision models.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Getting set up with GitHub models is fairly easy. At minimum, it requires:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A GitHub Account.&lt;/li&gt;
+&lt;li&gt;A Personal Access Token. For more details, see the &lt;a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens"&gt;GitHub documentation&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Once you have both of those, you can get started building your application.&lt;/p&gt;
+&lt;h2&gt;Create a client&lt;/h2&gt;
+&lt;p&gt;The sample application is a C# console application which targets .NET 9. However, the code shown here should work on the latest LTS version as well.&lt;/p&gt;
+&lt;p&gt;For this solution, I use the Azure AI Inference implementation of &lt;a href="https://www.nuget.org/packages/Microsoft.Extensions.AI.AzureAIInference/"&gt;Microsoft.Extensions.AI&lt;/a&gt;. &lt;a href="https://devblogs.microsoft.com/dotnet/introducing-microsoft-extensions-ai-preview/"&gt;Microsoft.Extensions.AI&lt;/a&gt;, M.E.AI for short, is a set of abstractions that provides a common set of interfaces for interacting with AI models.&lt;/p&gt;
+&lt;p&gt;Although we're using the Azure AI Inference client SDK implementation of M.E.AI, we can still use it to work with models from the GitHub Model catalog.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;IChatClient client =
+    new ChatCompletionsClient(
+        endpoint: new Uri(&amp;quot;https://models.inference.ai.azure.com&amp;quot;), 
+        new AzureKeyCredential(Environment.GetEnvironmentVariable(&amp;quot;GITHUB_TOKEN&amp;quot;)))
+        .AsChatClient(&amp;quot;gpt-4o-mini&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Load your images&lt;/h2&gt;
+&lt;p&gt;In the repo, I have a set of sample images containing annotations. These are the images I'll send to the AI model for processing.&lt;/p&gt;
+&lt;p&gt;The following is an sample from &lt;a href="/library/creative-act-way-of-being-rubin"&gt;The Creative Act by Rick Rubin&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/lqdev/AIBookmarks/raw/main/data/creative-act-1.jpg" class="img-fluid" alt="An image of a book with pencil markings" /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Load the files&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;var filePaths = Directory.GetFiles(&amp;quot;data&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Create a collection to store extracted passages&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;var passages = new List&amp;lt;AIBookmark&amp;gt;();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Process the images&lt;/h2&gt;
+&lt;p&gt;Once you have the images loaded, it's time to proces them.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Start by setting the system prompt. This will provide the initial guidance for the extraction task.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;var systemPrompt = 
+    &amp;quot;&amp;quot;&amp;quot;
+    You are an AI assistant that extracts underlined, highlighted, and marked passages from book page images.
+
+    When passages have a natural continuation between pages, merge them and assign the page number where the first passage starts.
+    &amp;quot;&amp;quot;&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Then, iterate over each of the images and process them.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;foreach(var path in filePaths)
+{
+    var file = await File.ReadAllBytesAsync(path);
+    var messages = new List&amp;lt;ChatMessage&amp;gt;
+    {
+        new ChatMessage(ChatRole.System, systemPrompt),
+        new ChatMessage(ChatRole.User, new AIContent[] {
+            new ImageContent(file, &amp;quot;image/jpeg&amp;quot;),
+            new TextContent(&amp;quot;Extract the marked passages from the image&amp;quot;),
+        })
+    };
+
+    var response = await client.CompleteAsync&amp;lt;List&amp;lt;AIBookmark&amp;gt;&amp;gt;(messages, options: new ChatOptions {Temperature = 0.1f});
+
+    passages.AddRange(response.Result);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This code:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Loads the image as a &lt;code&gt;byte[]&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Composes a set of messages that include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The system prompt&lt;/li&gt;
+&lt;li&gt;The image&lt;/li&gt;
+&lt;li&gt;The user prompt instructing the model to extract the marked passages from the image&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Sends the messages to the model for processing and returns a list of &lt;code&gt;AIBookmark&lt;/code&gt;. An &lt;code&gt;AIBookmark&lt;/code&gt; is a custom class I've defined as follows:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;class AIBookmark
+{
+    public string Text {get;set;}
+
+    public int PageNumber {get;set;}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Some of the more recent AI models support structured output, which enforce a schema on AI model outputs. You can take a look at the &lt;a href="https://openai.com/index/introducing-structured-outputs-in-the-api/"&gt;OpenAI documentation&lt;/a&gt; for more details. It's important to note though that the functionality is not exclusive to OpenAI models.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Adds the extracted passages to the &lt;code&gt;passages&lt;/code&gt; collection.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Format the results&lt;/h2&gt;
+&lt;p&gt;Once all of the files are processed by the AI model, additional processing is done to ensure that they're in the correct page order as well as formatted as markdown blockquotes.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;var sortedPassages = 
+    passages
+        .OrderBy(p =&amp;gt; p.PageNumber)
+        .Select(p =&amp;gt; $&amp;quot;&amp;gt; {p.Text} (pg. {p.PageNumber})&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Display the results&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;foreach(var passage in sortedPassages)
+{
+    Console.WriteLine(passage);
+    Console.WriteLine(&amp;quot;&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For the images included in the repo's &lt;em&gt;data&lt;/em&gt; directory, output might look like the following.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-markdown"&gt;&amp;gt; This isn’t a matter of blind belief in yourself. It’s a matter of experimental faith. (pg. 278)
+
+&amp;gt; When we don’t yet know where we’re going, we don’t wait. We move forward in the dark. If nothing we attempt yields progress, we rely on belief and will. We may take several steps backward in the sequence to move ahead. (pg. 278)
+
+&amp;gt; If we try ten experiments and none of them work; we have a choice. We can take it personally, and think of ourselves as a failure and question our ability to solve the problem. (pg. 278)
+
+&amp;gt; Staying in it means a commitment to remain open to what’s around you. Paying attention and listening. Looking for connections and relationships in the outside world. Searching for beauty. Seeking stories. Noticing what you find interesting, what makes you lean forward. And knowing all of this is available to use next time you sit down to work, where the raw data gets put into form. (pg. 296)
+
+&amp;gt; Just as a surfer can’t control the waves, artists are at the mercy of the creative rhythms of nature. This is why it’s of such great importance to remain aware and present at all times. Watching and waiting. (pg. 296)
+
+&amp;gt; Maybe the best idea is the one you’re going to come up with this evening. (pg. 297)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Improvements and next steps&lt;/h2&gt;
+&lt;p&gt;Putting the application together took me less than an hour so this is far from done. However, it does provide me with a starting point and offers validation that this could be a way to more easily capture the knowledge I'm curating from physical books.&lt;/p&gt;
+&lt;p&gt;Some improvements I can make here:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Update the system prompt with some samples to help guide the extraction. For example, in the output I shared, that last passage is not annotated. It just happens to be a mostly blank page with that quote in the center, therefore giving the illusion that the passage is important in some way.&lt;/li&gt;
+&lt;li&gt;Add additional information to the AIBookmark class like &lt;code&gt;Index&lt;/code&gt; so I can ensure order within a page is preserved. Right now page number is good enough, but I can't guarantee the correct order. An index property might help here.&lt;/li&gt;
+&lt;li&gt;Use a service with higher rate limits. The current rate limits wouldn't allow me to process a large number of images at once. Therefore, I'd need to use a service with higher limits. Alternatively, I could make this a job that runs in the background which abides by the rate limits but I also don't have to spend money on. Given I'm not using this for anything mission-critical, that'd be an acceptable solution as well.&lt;/li&gt;
+&lt;li&gt;Refactor the solution so I can more easily swap between tasks. For example, sometimes I might want to use it with images from my bullet journal. Other times, I might want to use it with handwritten notes. Whatever the case may be, it'd be good to not have to rewrite the prompts every time.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Some ways I see myself using this project:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Periodically collect images of annotated pages and save them to cloud storage.&lt;/li&gt;
+&lt;li&gt;When I'm done with the book, drop all the images in the &lt;em&gt;data&lt;/em&gt; directory.&lt;/li&gt;
+&lt;li&gt;Further enrich data by condensing repetitive passages and extracting key concepts.&lt;/li&gt;
+&lt;li&gt;Storing this knowledge into some sort of knowledge store to make it actionable.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Just for fun, Tyler released all of the lyrics to his &lt;a href="/feed/chromakopia-tyler-the-creator-released"&gt;latest album&lt;/a&gt; as &lt;a href="https://twitter.com/tylerthecreator/status/1852105825650708651/photo/1"&gt;images on X&lt;/a&gt;. With a few tweaks, I was able to repurpose this solution to extract the text from them and that worked relatively well.&lt;/p&gt;
+&lt;p&gt;Just with this simple solution, there's a ton of other applications I can think of in my daily life to help bridge my analog and digital lives.&lt;/p&gt;
+&lt;p&gt;What other use cases do you see yourself using something like this for? &lt;a href="/contact"&gt;Let me know&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Happy coding!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/digitize-analog-bookmarks-with-ai-dotnet?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/digitize-analog-bookmarks-with-ai-dotnet</guid>
+      <pubDate>2024-10-31 21:41 -05:00</pubDate>
+      <category>#ai</category>
+      <category>#dotnet</category>
+      <category>#github</category>
+      <category>#reading</category>
+      <category>#bookmarks</category>
+      <category>#analog</category>
+      <category>#digital</category>
+      <category>#reading</category>
+      <category>#notes</category>
+    </item>
+    <item>
+      <title>Build your own self-hosted live streaming application with Owncast and .NET Aspire</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Platforms come and go. As a result, I'm a strong advocate for &lt;a href="https://indieweb.org/own_your_data"&gt;owning your data&lt;/a&gt; (when possible). Self-hosting is a way for you to do that. Owning your data could mean self-hosting &lt;a href="https://buttondown.com/ownyourweb/archive/issue-06/"&gt;your website&lt;/a&gt;, &lt;a href="https://bitwarden.com/blog/host-your-own-open-source-password-manager/"&gt;password manager&lt;/a&gt;, &lt;a href="https://jellyfin.org/docs/"&gt;media server&lt;/a&gt;, or &lt;a href="https://docs.joinmastodon.org/user/run-your-own/"&gt;social media&lt;/a&gt;. However, self-hosting comes with its own challenges, primarily cost (time and money) and in cases where software isn't provided as an appliance on your hosting provider of choice, some technical knowledge may be required.&lt;/p&gt;
+&lt;p&gt;As I got more into self-hosting applications such as my &lt;a href="/mastodon"&gt;Mastodon instance&lt;/a&gt;, I came across Owncast.&lt;/p&gt;
+&lt;p&gt;During peak COVID lockdowns, like many others, live streaming is one of the ways I passed the time. While Twitch and YouTube got the job done, self-hosting was always in the back of my mind.&lt;/p&gt;
+&lt;p&gt;It's been a while since I've live-streamed, so I never really went through the process of evaluating the self-hosted route with Owncast.&lt;/p&gt;
+&lt;p&gt;While browsing for something on YouTube the other day, I ran into some of my &lt;a href="https://www.youtube.com/playlist?list=PLsdMoYmuvh9ZtgB8U7FECR_8wKMYXJNAm"&gt;old live-stream recordings&lt;/a&gt;. This got me thinking again, how difficult would it be to put together my own live-streaming setup.&lt;/p&gt;
+&lt;p&gt;This post is the result of that exploration.&lt;/p&gt;
+&lt;p&gt;In this post, I'll modify a .NET Aspire Starter Application template and show how to set up a self-hosted live-streaming application using Owncast and .NET Aspire.&lt;/p&gt;
+&lt;p&gt;You can find the source code in the &lt;a href="/github/BYOwncastAspire"&gt;lqdev/BYOwncastAspire&lt;/a&gt; repository.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/bdd9f901-8d8f-45be-9e37-4dce8459e481" class="img-fluid" alt="BYOwnCastAspire Web Frontend" /&gt;&lt;/p&gt;
+&lt;h2&gt;What is Owncast?&lt;/h2&gt;
+&lt;p&gt;The Owncast website describes the project as, &amp;quot;...a free and open source live video and web chat server for use with existing popular broadcasting software.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/769ec2d8-a3d1-4ec3-8271-c2de6e11ddd3" class="img-fluid" alt="Owncast admin server page" /&gt;&lt;/p&gt;
+&lt;p&gt;It goes on to further describe some of the reasons I like Owncast, which are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Self-hosting&lt;/strong&gt; - I'm in complete control over the service and my data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Open-source&lt;/strong&gt; - I can freely use and contribute to the project. Free in this case meaning both as in freedom and pizza.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Builds on top of open standards like RMTP&lt;/strong&gt; - Software that supports the Real-Time Messaging Protocol (RMTP) like OBS can immediately be leveraged.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fediverse compatible&lt;/strong&gt; - Your content and network federated across &lt;a href="https://joinfediverse.wiki/What_is_the_Fediverse%3F"&gt;the Fediverse&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To learn more, check out the &lt;a href="https://owncast.online/"&gt;Owncast website&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;What is .NET Aspire?&lt;/h2&gt;
+&lt;p&gt;The .NET Aspire documentation describes it as, &amp;quot;...an opinionated, cloud ready stack for building observable, production ready, distributed applications.​ .NET Aspire is delivered through a collection of NuGet packages that handle specific cloud-native concerns.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Personally, the parts of .NET Aspire that matter to me are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;App composition&lt;/strong&gt; - The .NET Aspire programming model makes it easy to define and compose a variety of resources such as .NET projects, containers, and much more in a single place. In many cases, for commonly used services, these resources are exposed in the form of &lt;a href="https://learn.microsoft.com/dotnet/aspire/fundamentals/integrations-overview"&gt;integrations&lt;/a&gt;. These integrations further simplify the composition of applications.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tooling (Dashboard)&lt;/strong&gt; - .NET Aspire provides a set of tools and templates. However, my favorite is the dashboard. The dashboard provides me with a single place to view my resources, their configurations, and logs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Although in this post, I don't cover deployment, there is also the provisioning component provided by .NET Aspire which in many cases can &lt;a href="https://learn.microsoft.com/dotnet/aspire/deployment/overview"&gt;simplify your application deployments&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To learn more, check out the &lt;a href="https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview"&gt;.NET Aspire documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Build your application&lt;/h2&gt;
+&lt;p&gt;This application makes a few modifications to the &lt;a href="https://learn.microsoft.com/dotnet/aspire/fundamentals/setup-tooling?tabs=linux&amp;amp;pivots=dotnet-cli#net-aspire-project-templates"&gt;.NET Aspire Starter Application template&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The application consists of a few projects:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;BYOwncastAspire.AppHost&lt;/strong&gt; - This project is the entrypoint for .NET Aspire applications. This is where we'll configure the Owncast server as a container resource.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BYOwncastAspire.Web&lt;/strong&gt; - Blazor web application. Although Owncast provides its own page where viewers can tune into your stream, by having a separate web application, preferably your own personal website, you can further enrich and customize how and where you publish content.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BYOwncastAspire.ServiceDefaults&lt;/strong&gt; - This project contains default configurations for telemetry, health checks, resiliency, etc. No changes or updates required here.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Configure Owncast&lt;/h3&gt;
+&lt;p&gt;There are many ways to host an Owncast server, with one of them being a container.&lt;/p&gt;
+&lt;p&gt;In the context of Aspire which has built-in container support, you can easily add Owncast as a resource in your application.&lt;/p&gt;
+&lt;p&gt;From the &lt;a href="https://owncast.online/quickstart/container/"&gt;Owncast documentation&lt;/a&gt;, once you've pulled the Owncast container image, you can start it with the following command.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;docker run -v `pwd`/data:/app/data -p 8080:8080 -p 1935:1935 owncast/owncast:latest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This translates to the following in the &lt;em&gt;Program.cs&lt;/em&gt; of the &lt;em&gt;BYOwncastAspire.AppHost&lt;/em&gt; project.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;var owncast = builder
+    .AddContainer(name: &amp;quot;owncast&amp;quot;, image:&amp;quot;owncast/owncast&amp;quot;)
+    .WithBindMount(&amp;quot;./data&amp;quot;,&amp;quot;/app/data&amp;quot;)
+    .WithHttpEndpoint(port:8080,targetPort:8080,name:&amp;quot;admin&amp;quot;)
+    .WithHttpEndpoint(port:1935,targetPort:1935,name:&amp;quot;streaming&amp;quot;)
+    .WithExternalHttpEndpoints();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This code:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Adds the owncast container image&lt;/li&gt;
+&lt;li&gt;Mounts a local &lt;em&gt;data&lt;/em&gt; directory to the &lt;em&gt;/app/data&lt;/em&gt; directory in the container&lt;/li&gt;
+&lt;li&gt;Maps port &lt;code&gt;8080&lt;/code&gt; for the Owncast admin server and &lt;code&gt;1935&lt;/code&gt; for RMTP server.&lt;/li&gt;
+&lt;li&gt;Exposes the endpoints publicly&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Embed your stream&lt;/h3&gt;
+&lt;p&gt;Owncast provides the ability to &lt;a href="https://owncast.online/docs/embed/"&gt;embed your video stream onto a website&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Although we don't need a frontend because one is already provided by Owncast, by embedding your stream on your website you can provide a single place for your viewers to consume your content.&lt;/p&gt;
+&lt;p&gt;In this case, we can treat the &lt;em&gt;BYOwncastAspire.Web&lt;/em&gt; project as our website.&lt;/p&gt;
+&lt;p&gt;To embed your stream to the website, add the following code to your &lt;em&gt;Home.razor&lt;/em&gt; page.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;&amp;lt;iframe
+  src=&amp;quot;http://localhost:8080/embed/video&amp;quot;
+  title=&amp;quot;Owncast&amp;quot;
+  height=&amp;quot;350px&amp;quot; width=&amp;quot;550px&amp;quot;
+  referrerpolicy=&amp;quot;origin&amp;quot;
+  allowfullscreen&amp;gt;
+&amp;lt;/iframe&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this case, we're pointing to the endpoint listening on port &lt;code&gt;8080&lt;/code&gt; of our &lt;code&gt;localhost&lt;/code&gt;. When you deploy the application, you'd replace &lt;code&gt;src&lt;/code&gt; with your domain.&lt;/p&gt;
+&lt;h2&gt;Start your application&lt;/h2&gt;
+&lt;p&gt;That's all there is in terms of configuration.&lt;/p&gt;
+&lt;p&gt;To start the application:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Open the terminal&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Navigate to the &lt;em&gt;BYOwncastAspire.AppHost&lt;/em&gt; project and run the following command.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet run
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This will launch you into the .NET Aspire dashboard. At this point, you can further customize your Owncast server as well as the website.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/c20d84d8-925a-4f80-9058-622466cb08e9" class="img-fluid" alt="BYOwncastAspire .NET Aspire Dashboard Resource Page" /&gt;&lt;/p&gt;
+&lt;h2&gt;What next?&lt;/h2&gt;
+&lt;p&gt;Now that you have your application running, in its current form, this application is only meant to serve as a sample of what you can do with Owncast and .NET Aspire.&lt;/p&gt;
+&lt;p&gt;Some next steps might include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://owncast.online/docs/configuration/"&gt;Change your admin password and customize your Owncast server&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://owncast.online/docs/storage/"&gt;Configure object storage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://owncast.online/docs/broadcasting/obs/"&gt;Set up your steaming software&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://learn.microsoft.com/dotnet/aspire/deployment/azure/aca-deployment"&gt;Deploy your application&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://owncast.online/thirdparty/"&gt;Extend the app's functionality by building custom plugins and extensions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The plugins and extensions are particularly interesting to me because there may even be opportunities to experiment and insert AI capabilities at various layers such as moderation, translation, accessibility, show notes, chat summaries, etc.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this post, I showed how you can combine the powerful live-steaming features of Owncast with the app orchestration and tooling in .NET Aspire to create rich self-hosted live-steaming applications.&lt;/p&gt;
+&lt;p&gt;If you use this sample as a starting point for your own live-streaming or self-hosting explorations, &lt;a href="/contact"&gt;send me a message&lt;/a&gt;. I'd love to hear about it.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire</guid>
+      <pubDate>2024-10-20 14:01</pubDate>
+      <category>#owncast</category>
+      <category>#dotnet</category>
+      <category>#indieweb</category>
+      <category>#fediverse</category>
+      <category>#aspire</category>
+      <category>#livestreaming</category>
+      <category>#twitch</category>
+      <category>#youtube</category>
+      <category>#blazor</category>
+    </item>
     <item>
       <title>Configure Ollama on Dev Containers and VS Code</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/install-ollama-vscode-devcontainer?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/install-ollama-vscode-devcontainer&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;The source for my website is &lt;a href="/github/luisquintanilla.me"&gt;hosted on GitHub&lt;/a&gt;. As a result, I use VS Code as the text editor to author my posts. Typically, I use &lt;a href="/colophon"&gt;Codespaces or github.dev&lt;/a&gt; to quickly draft and publish articles to simplify the process.&lt;/p&gt;
@@ -232,9 +520,9 @@ phi:latest      e2fd6321a5fe    1.6 GB  6 seconds ago
 &lt;p&gt;When prompted to choose &lt;strong&gt;Plan Type&lt;/strong&gt;, select &lt;strong&gt;Consumption&lt;/strong&gt;.&lt;/p&gt;
 &lt;h2&gt;The Workflow&lt;/h2&gt;
 &lt;p&gt;The workflow is relatively simple. Whenever a new item is posted to an RSS feed, make an HTTP POST request to the Mastodon API&lt;/p&gt;
-&lt;div class="mermaid"&gt;flowchart TD
+&lt;pre class="mermaid"&gt;flowchart TD
     A["RSS"] --&gt; B["HTTP (Mastodon API)"]
-&lt;/div&gt;
+&lt;/pre&gt;
 &lt;p&gt;Once your Logic App resource deploys to Azure, create a new logic app using the Blank Template. For more details, see the &lt;a href="https://learn.microsoft.com/azure/logic-apps/quickstart-create-example-consumption-workflow#select-the-blank-template"&gt;select a blank template documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This will launch you into the Logic app designer UI where you can begin to configure your workflow.&lt;/p&gt;
 &lt;h3&gt;RSS trigger&lt;/h3&gt;
@@ -527,14 +815,14 @@ workflow_dispatch:
 &lt;p&gt;An overwhelming majority of Generative AI models only generate text. With models like DALL-E and Stable Diffusion, you can also generate images. Other models to generate audio and video have started coming on the scene. Most recently, Google announced &lt;a href="https://blog.research.google/2023/12/videopoet-large-language-model-for-zero.html"&gt;VideoPoet&lt;/a&gt;, a large language model for zero-shot video generation. There's many interesting techniques that VideoPoet introduces but I'll keep it to one of the more simple scenarios and the technique used in this post, text-to-image. Given a text prompt, VideoPoet can generate by default, a short 2-second clip. You can use VideoPoet as well to extend a clip so you could go well beyond the default 2 seconds. That however is outside the scope of this post. With that in mind, let's talk about how we might use a Generative AI model and apply it to the context of Spotify Clips.&lt;/p&gt;
 &lt;h2&gt;Generative AI Spotify Clips workflow&lt;/h2&gt;
 &lt;p&gt;The following is a rough idea of how you might use song information like lyrics to&lt;/p&gt;
-&lt;div class="mermaid"&gt;flowchart TD
+&lt;pre class="mermaid"&gt;flowchart TD
   A["Get song lyrics"] --&gt; B["Generate scenes and script"]
   B --&gt; C["Generate prompts for each scene"]
   C --&gt; D["Generate video clips"]
   D --&gt; E["(Optional) Edit clips"]
   D --&gt; F["Stitch clips together"]
   E--&gt;F
-&lt;/div&gt;
+&lt;/pre&gt;
 &lt;p&gt;This is roughly what Google did in their VideoPoet samples. They &amp;quot;...produced a short movie composed of many short clips generated by the model. For the script, we asked Bard to write a series of prompts to detail a short story about a traveling raccoon. We then generated video clips for each prompt, and stitched together all resulting clips&amp;quot;. The resulting video looks like the following:&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=70wZKfx6Ylk" title="An AI generated video of a traveling racoon demoing VideoPoet AI model capabilities"&gt;&lt;img src="http://img.youtube.com/vi/70wZKfx6Ylk/0.jpg" class="img-fluid" alt="An AI generated video of a traveling racoon demoing VideoPoet AI model capabilities" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;One thing to note is that the videos generated are YouTube Shorts which are vertical as well. This makes it easier to produce videos in the format Spotify expects Clips to be in.&lt;/p&gt;
@@ -914,7 +1202,7 @@ Scene 7: The Place
     <item>
       <title>Down the Slow / Quiet Web Rabbit Hole</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/down-the-slow-web-rabbit-hole?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/down-the-slow-web-rabbit-hole&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;No real commentary on this post other than a web surf down the slow / quite web.&lt;/p&gt;
-&lt;div class="mermaid"&gt;flowchart TD
+&lt;pre class="mermaid"&gt;flowchart TD
   A["My 20th anniversary of blogging!"] --&gt; B["The Quiet Web"]
   B --&gt; C["Asyncronous Conversations"]
   C --&gt; D["The Slow Web"]
@@ -940,7 +1228,7 @@ Scene 7: The Place
   click K href "https://datagubbe.se/" "datagubbe"
   click L href "https://everythingchanges.us/blog/writers-and-talkers-and-leaders/" "Writers and talkers and leaders, oh my!"
   click M href "https://abeautifulmess.com/is-blogging-dead/" "Is Blogging Dead?"
-&lt;/div&gt;
+&lt;/pre&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/down-the-slow-web-rabbit-hole?utm_medium=feed</link>
       <guid>https://www.luisquintanilla.me/posts/down-the-slow-web-rabbit-hole</guid>
@@ -1013,7 +1301,7 @@ Scene 7: The Place
 &lt;p&gt;According to the W3C specification, Webmentions are &amp;quot;...a simple way to notify any URL when you mention it on your site. From the receiver's perspective, it's a way to request notifications when other sites mention it.&amp;quot;.&lt;/p&gt;
 &lt;p&gt;One of the goals according to the IndieWeb wiki is to enable cross-site conversations.&lt;/p&gt;
 &lt;p&gt;Here's how a potential Webmention workflow might look like:&lt;/p&gt;
-&lt;div class="mermaid"&gt;sequenceDiagram
+&lt;pre class="mermaid"&gt;sequenceDiagram
   autonumber
   actor A as Alice
   participant AS as Alice's "Website"
@@ -1046,7 +1334,7 @@ Scene 7: The Place
     AS -&gt;&gt; AW: Fetch Webmentions
     note over AS: Display / publish Webmentions
   end
-&lt;/div&gt;
+&lt;/pre&gt;
 &lt;p&gt;I use the term website here very loosely because it's not only limited to your own personal website. You can technically use Webmentions through any public website including social media platforms like Twitter, Mastodon, or even GitHub.&lt;/p&gt;
 &lt;p&gt;This post will focus on the middle blocks consisting of sending and receiving Webmentions. For more information, check out the &lt;a href="https://www.w3.org/TR/webmention/#abstract-p-1"&gt;specification&lt;/a&gt; and &lt;a href="https://indieweb.org/Webmention"&gt;Webmentions page&lt;/a&gt; on the IndieWeb wiki.&lt;/p&gt;
 &lt;h2&gt;My webmention solution&lt;/h2&gt;

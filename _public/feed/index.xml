@@ -3,8 +3,514 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>2024-08-01 20:08 -05:00</lastPubDate>
+    <lastPubDate>2024-11-16 10:36 -05:00</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Mike Tyson vs Jake Paul</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/tyson-vs-paul?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/tyson-vs-paul&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Amazing that Tyson at his age just did that. He earned that paycheck. That said, it was tough to watch and fortunately it didn't seem like he got hurt too bad. It looked like Jake was pulling his punches because that fight could've ended in the 2nd / 3rd round. Overall, it's the best outcome possible. Jake can say he &amp;quot;beat&amp;quot; Mike Tyson, Tyson didn't get knocked out or hurt too bad, and they both earned a decent paycheck.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/tyson-vs-paul?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/tyson-vs-paul</guid>
+      <pubDate>2024-11-16 10:36 -05:00</pubDate>
+      <category>#boxing</category>
+      <category>#tyson</category>
+      <category>#ironmike</category>
+    </item>
+    <item>
+      <title>Upgraded to .NET 9</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/website-upgraded-dotnet-9?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/website-upgraded-dotnet-9&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Obligatory upgrade post. Just upgraded the website to .NET 9. As with all the previous years, it involved no code changes, and all I had to do was updade the version I'm using in my project file and GitHub Actions file.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/website-upgraded-dotnet-9?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/website-upgraded-dotnet-9</guid>
+      <pubDate>2024-11-14 00:38 -05:00</pubDate>
+      <category>#dotnet</category>
+      <category>#net9</category>
+      <category>#githubactions</category>
+      <category>#github</category>
+      <category>#indieweb</category>
+      <category>#upgrade</category>
+    </item>
+    <item>
+      <title>.NET Conf 2024 Bound</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/netconf-bound-2024?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/netconf-bound-2024&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;It's that time of the year again. A new .NET release.&lt;/p&gt;
+&lt;p&gt;Tons of great sessions at .NET Conf this year, which you can see in the &lt;a href="https://www.dotnetconf.net/"&gt;agenda&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I'll be taking part in two sessions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Building AI Applications from Scratch: A Hands-On Guide for .NET Developers&lt;/li&gt;
+&lt;li&gt;Building the Foundation: AI Fundamentals in .NET&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/netconf-bound-2024?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/netconf-bound-2024</guid>
+      <pubDate>2024-11-10 14:29 -05:00</pubDate>
+      <category>#dotnet</category>
+      <category>#dotnetconf</category>
+      <category>#conference</category>
+      <category>#ai</category>
+      <category>#dotnet9</category>
+      <category>#net9</category>
+    </item>
+    <item>
+      <title>Week of November 10, 2024 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-11-10-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-11-10-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Started experimenting some more with posting photos this week.&lt;/p&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/2024-11-03-weekly-post-summary"&gt;Week of November 3, 2024 - Post Summary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/nyc-sunrise-fall-2024"&gt;NYC Sunrise&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/netconf-bound-2024"&gt;.NET Conf 2024 Bound&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/finally-feels-like-fall"&gt;Finally starting to feel like fall&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/microsoft-research-focus-oct-28-2024"&gt;Microsoft Research Focus: Week of October 28, 2024&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/thinking-llms-instruction-following-thought-generation"&gt;Thinking LLMs: General Instruction Following with Thought Generation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/introducing-drift-search"&gt;Microsoft Research: Introducing DRIFT Search&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/in-context-lora"&gt;In-Context LoRA for Diffusion Transformers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/leo-fm-moves-to-microblog"&gt;Leo.fm move to micro.blog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2024-11-10-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2024-11-10-weekly-post-summary</guid>
+      <pubDate>2024-11-10 09:33 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>NYC Sunrise</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/nyc-sunrise-fall-2024?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/nyc-sunrise-fall-2024&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I was lucky to snap this picture the other day.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/nyc-sunrise.jpg" class="img-fluid" alt="Sun rising behind NYC skyline" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/nyc-sunrise-fall-2024?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/nyc-sunrise-fall-2024</guid>
+      <pubDate>2024-11-06 19:35</pubDate>
+      <category>#photo</category>
+      <category>#sunrise</category>
+      <category>#nyc</category>
+      <category>#city</category>
+    </item>
+    <item>
+      <title>Week of November 3, 2024 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-11-03-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-11-03-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Fairly active week on the website.&lt;/p&gt;
+&lt;h2&gt;Blogs&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/posts/digitize-analog-bookmarks-with-ai-dotnet"&gt;Digitize Analog Bookmarks using AI, .NET, and GitHub Models&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/post-statistics-october-2024"&gt;Website Post Statistics - October 2024&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/crate-finds-october-2024"&gt;Crate Finds - October 2024&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/finally-feels-like-fall"&gt;Finally starting to feel like fall&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/spooky-season-2024-over"&gt;Only 365 more days until next halloween&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/st-chroma-chromakopia"&gt;St. Chroma is a great intro&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/spirit-box-flying-lotus"&gt;New Release: Spirit Box by Flying Lotus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/chromakopia-tyler-the-creator-released"&gt;Chromakopia by Tyler The Creator Released&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/notebook-llama-oss-notebook-lm"&gt;NotebookLlama: An Open Source version of NotebookLM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/haves-choices-brown-nielsen"&gt;Haves and Choices&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/art-clown-nasdaq-bell-halloween"&gt;Art the Clown Will Ring the Nasdaq Closing Bell in Times Square on Halloween!&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2024-11-03-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2024-11-03-weekly-post-summary</guid>
+      <pubDate>2024-11-03 20:42 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Finally starting to feel like fall</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/finally-feels-like-fall?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/finally-feels-like-fall&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;It's been unseasonably warm around these parts but this weekend it finally started to cool down. That meant hot cider and cider donuts straight from the source.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/finally-feels-like-fall.jpg" class="img-fluid" alt="A man playing the piano and woman singing under a canopy with a lake in the background" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/finally-feels-like-fall?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/finally-feels-like-fall</guid>
+      <pubDate>2024-11-03 20:30 -05:00</pubDate>
+      <category>#fall</category>
+      <category>#autumn</category>
+      <category>#seasons</category>
+    </item>
+    <item>
+      <title>St. Chroma is a great intro</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/st-chroma-chromakopia?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/st-chroma-chromakopia&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I love the album overall but St. Chroma is a great intro that sets up the rest of the album.&lt;/p&gt;
+&lt;p&gt;Some of my favorite parts from the track&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;You are the light. It's not on you, it's in you. Don't you ever in your motherfucking life dim your light for nobody.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;P said I could do it too, and boy, did I believe him. I built a path to freedom 'cause them words that he said. Give a fuck about tradition, stop impressin' the dead&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Don't you ever stop bein' who you are and dimmin' your light for none of these motherfuckers out here&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=hCcwCv3G1FQ" title="Album cover of Chromakopia - Tyler The Creator in a Mask"&gt;&lt;img src="http://img.youtube.com/vi/hCcwCv3G1FQ/0.jpg" class="img-fluid" alt="Album cover of Chromakopia - Tyler The Creator in a Mask" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/st-chroma-chromakopia?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/st-chroma-chromakopia</guid>
+      <pubDate>2024-11-01 22:28</pubDate>
+      <category>#chromakopia</category>
+      <category>#tylerthecreator</category>
+      <category>#music</category>
+    </item>
+    <item>
+      <title>Crate Finds - October 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/crate-finds-october-2024?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/crate-finds-october-2024&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Lots of music released this month&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/chromakopia-tyler-the-creator-released"&gt;Chromakopia by Tyler The Creator&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/spirit-box-flying-lotus"&gt;Spirit Box by Flying Lotus&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Both amazing albums I've now listed to multiple times from beginning to end.&lt;/p&gt;
+&lt;p&gt;That said, the Crate Finds this month are light and can best be summarized as my favorite songs from &lt;a href="/feed/got-a-story-to-tell-thee-sacred-souls"&gt;Got A Story to Tell by Thee Sacred Souls&lt;/a&gt;.&lt;/p&gt;
+&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/18ZVcs71usQpBjaYO7XEA0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/crate-finds-october-2024?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/crate-finds-october-2024</guid>
+      <pubDate>2024-11-01 09:26</pubDate>
+      <category>#cratefinds</category>
+      <category>#music</category>
+      <category>#playlist</category>
+      <category>#spotify</category>
+    </item>
+    <item>
+      <title>Website Post Statistics - October 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/post-statistics-october-2024?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/post-statistics-october-2024&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;It's been a while since I've done one of these.&lt;/p&gt;
+&lt;p&gt;One thing I'm changing is the titles. For the other posts, the titles don't match up with the date for the metrics. For example the post for &amp;quot;July 2024&amp;quot; was actually talking about June metrics. Kind of confusing, so fixing that this month.&lt;/p&gt;
+&lt;p&gt;This is my post&lt;/p&gt;
+&lt;table class="table"&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Post Type&lt;/th&gt;
+&lt;th&gt;Count&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Blogs&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Notes&lt;/td&gt;
+&lt;td&gt;83&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Responses&lt;/td&gt;
+&lt;td&gt;251&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Overall the trend is nice. I'm just under 1 response a day. Not like that's the goal, but in general I think it shows a steady stream of content I'm posting on the website.&lt;/p&gt;
+&lt;p&gt;With two recent blog posts published, that brings me to 5. The script ran just before I hit publish on the last blog which is why you only see four.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire/"&gt;Build your own self-hosted live streaming application with Owncast and .NET Aspire&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/posts/digitize-analog-bookmarks-with-ai-dotnet/"&gt;Digitize Analog Bookmarks using AI, .NET, and GitHub Models&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There's a few other ideas I'm tinkering with, which might easily get me close to or past the 8 blog posts from last year.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/post-statistics-october-2024?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/post-statistics-october-2024</guid>
+      <pubDate>2024-11-01 09:25</pubDate>
+      <category>#githubactions</category>
+      <category>#cicd</category>
+      <category>#blogging</category>
+      <category>#stats</category>
+      <category>#github</category>
+    </item>
+    <item>
+      <title>Only 365 more days until next halloween</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/spooky-season-2024-over?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/spooky-season-2024-over&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;That's a wrap for spooky season. It was unseasonably warm so it hasn't really felt like fall.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/365-days-nightmare-before-christmas.jpg" class="img-fluid" alt="Nightmare Before Christmas Mayor Speaking Into Loudspeaker with Caption" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/spooky-season-2024-over?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/spooky-season-2024-over</guid>
+      <pubDate>2024-10-31 08:29</pubDate>
+      <category>#fall</category>
+      <category>#spookyszn</category>
+      <category>#halloween</category>
+    </item>
+    <item>
+      <title>Week of October 20, 2024 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-10-20-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-10-20-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Blogs&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire"&gt;Build your own self-hosted live streaming application with Owncast and .NET Aspire&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/you-should-be-using-rss-reader-pluralistic"&gt;You should be using an RSS reader&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/chromakopia-tyler-the-creator"&gt;Chromakopia - Tyler The Creator&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2024-10-20-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2024-10-20-weekly-post-summary</guid>
+      <pubDate>2024-10-20 09:27 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Penn State (33) vs. USC (30)</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/penn-state-usc-oct-2024?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/penn-state-usc-oct-2024&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Wow! This game delivered. I haven't watched any games this season and I couldn't have picked a better one to tune into.&lt;/p&gt;
+&lt;p&gt;It was an ugly game for Penn State and they got lucky on some calls but they found a way to get it done on the road.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/penn-state-usc-oct-2024?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/penn-state-usc-oct-2024</guid>
+      <pubDate>2024-10-12 19:22</pubDate>
+      <category>#pennstate</category>
+      <category>#usc</category>
+      <category>#football</category>
+      <category>#ncaaf</category>
+      <category>#ncaa</category>
+      <category>#psu</category>
+    </item>
+    <item>
+      <title>New Release: Ingo Swann by Flying Lotus</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/flylo-ingo-swann-single?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/flylo-ingo-swann-single&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;New drop from FlyLo. This feels like a new album coming. So far the theme is mystical.&lt;/p&gt;
+&lt;p&gt;The previous single, &lt;a href="/feed/new-flying-lotus-garmonbozia"&gt;Garmonbozia&lt;/a&gt;, was a reference to Twin Peaks.&lt;/p&gt;
+&lt;p&gt;Ingo Swann's website describes him as&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...a pioneer of parapsychology and remote viewing, who worked with CIA and NASA, wrote books, and created art.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The website invites visitors to,&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;explore his research on NHEs, UFOs, UAPs, and the planets.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Similarly, Wikipedia describes him as&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;an American psychic, artist, and author, whose claims of clairvoyance were investigated as a part of the Central Intelligence Agency’s Stargate Project. Swann is credited as the creator of the term “Remote Viewing,&amp;quot; a term which refers to the use of extrasensory perception to perceive distant persons, places, or events.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I'm excited to discovery the mystery behind this new project from FlyLo.&lt;/p&gt;
+&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0MorRE2kwzea56XwkFMUYE?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/flylo-ingo-swann-single?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/flylo-ingo-swann-single</guid>
+      <pubDate>2024-10-10 21:13</pubDate>
+      <category>#music</category>
+      <category>#newrelease</category>
+      <category>#flyinglotus</category>
+      <category>#flylo</category>
+      <category>#dance</category>
+      <category>#cia</category>
+      <category>#remoteviewing</category>
+      <category>#ingoswann</category>
+    </item>
+    <item>
+      <title>New Release: Got a Story to Tell by Thee Sacred Souls</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/got-a-story-to-tell-thee-sacred-souls?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/got-a-story-to-tell-thee-sacred-souls&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;New release from Thee Sacred Souls. I really enjoyed the beginning and the end.&lt;/p&gt;
+&lt;p&gt;My favorite songs are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lucid Girl&lt;/li&gt;
+&lt;li&gt;Price I'll Pay&lt;/li&gt;
+&lt;li&gt;Live for You&lt;/li&gt;
+&lt;li&gt;On My Mind&lt;/li&gt;
+&lt;li&gt;Waiting on the Right Time&lt;/li&gt;
+&lt;li&gt;I'm So Glad I Found You, Baby&lt;/li&gt;
+&lt;/ul&gt;
+&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/6yvKcQNyd09wYCCp8O8mNB?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/got-a-story-to-tell-thee-sacred-souls?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/got-a-story-to-tell-thee-sacred-souls</guid>
+      <pubDate>2024-10-10 21:10</pubDate>
+      <category>#music</category>
+      <category>#newrelease</category>
+      <category>#theesacredsouls</category>
+      <category>#soul</category>
+      <category>#rnb</category>
+      <category>#oldies</category>
+    </item>
+    <item>
+      <title>Crate Finds - September 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/crate-finds-september-2024?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/crate-finds-september-2024&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;This month had a mix of genres. Some of the ones I kept coming back to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Wharf Rat by Grateful Dead&lt;/li&gt;
+&lt;li&gt;Deal by Grateful Dead&lt;/li&gt;
+&lt;li&gt;God is Love by Marvin Gaye&lt;/li&gt;
+&lt;li&gt;Save the Children by Marvin Gaye&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I listened to &lt;a href="/feed/marvin-gaye-whats-going-on"&gt;the album What's Going On a few times throughout the month&lt;/a&gt;.&lt;/p&gt;
+&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1EsdYKLwNkmwR8s6uRyjHZ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/crate-finds-september-2024?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/crate-finds-september-2024</guid>
+      <pubDate>2024-10-10 21:04</pubDate>
+      <category>#cratefinds</category>
+      <category>#music</category>
+      <category>#playlist</category>
+      <category>#spotify</category>
+    </item>
+    <item>
+      <title>Week of September 15, 2024 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-09-15-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-09-15-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/crate-finds-august-2024"&gt;Crate Finds - August 2024&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/leadership-ascension-track-omegamart"&gt;Leadership Ascension Track (LAT)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/post-statistics-september-2024"&gt;Website Post Statistics - September 2024&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/andre-3000-listening-to-the-sun"&gt;Listening to the Sun by Andre 3000&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/cosmohedron-duncan-hatch"&gt;Cosmohedron by Duncan Hatch&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2024-09-15-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2024-09-15-weekly-post-summary</guid>
+      <pubDate>2024-09-15 13:26 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Website Post Statistics - September 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/post-statistics-september-2024?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/post-statistics-september-2024&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;The most significant update from last month is that I have now passed the number of responses compared to last year.&lt;/p&gt;
+&lt;p&gt;The top tag continues to be AI and The Verge is the top domain I link to.&lt;/p&gt;
+&lt;p&gt;I'm in the process of redesigning the website, so that's probably one of the things I'll be focusing the next few months.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/post-statistics-september-2024?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/post-statistics-september-2024</guid>
+      <pubDate>2024-09-15 09:19</pubDate>
+      <category>#githubactions</category>
+      <category>#cicd</category>
+      <category>#blogging</category>
+      <category>#stats</category>
+      <category>#github</category>
+    </item>
+    <item>
+      <title>Crate Finds - August 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/crate-finds-august-2024?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/crate-finds-august-2024&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;A little late with this post, but here's what I was listening to in August.&lt;/p&gt;
+&lt;p&gt;Some songs that were on repeat:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dark Star by Grateful Dead&lt;/li&gt;
+&lt;li&gt;Ripple by Grateful Dead&lt;/li&gt;
+&lt;li&gt;Garmonbozia by Flying Lotus&lt;/li&gt;
+&lt;li&gt;Pretty Girl Why by Buffalo Springfield&lt;/li&gt;
+&lt;li&gt;Sit with the Guru by Strawberry Alarm Clock&lt;/li&gt;
+&lt;/ul&gt;
+&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4WioPgkf1uJsLQWAw4nYuS?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/crate-finds-august-2024?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/crate-finds-august-2024</guid>
+      <pubDate>2024-09-15 09:11</pubDate>
+      <category>#cratefinds</category>
+      <category>#music</category>
+      <category>#playlist</category>
+      <category>#spotify</category>
+    </item>
+    <item>
+      <title>Leadership Ascension Track (LAT)</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/leadership-ascension-track-omegamart?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/leadership-ascension-track-omegamart&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Excerpts from the Omega Mart Leadership Ascension Track (LAT)&lt;/p&gt;
+&lt;h2&gt;Meeting the self&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Make a human pyramid with your high school guidance counselor and middle school crush.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Renouncing the body&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Contribute 14% of your net worth to Drampcorp.&lt;/li&gt;
+&lt;li&gt;Be nice to 77 dogs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Understanding nature&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Learn to suck venom out of a snake bite.&lt;/li&gt;
+&lt;li&gt;Befriend a snake.&lt;/li&gt;
+&lt;li&gt;Interview a rock and ghost write its memoir.&lt;/li&gt;
+&lt;li&gt;Spend a week in the desert, living off the land.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Harmonizing with the essence&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Buy two cakes. Decorate and dedicate one of the cakes to the other. Stack the cakes. Leave them both on a neighbor's doorstep in a ding-dong-ditch scenario.&lt;/li&gt;
+&lt;li&gt;Swim to a whirlpool and dance within its rotating waves (hint: go with the flow).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Moving beyond&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Approach a stranger in a coffee shop, have them show you their laptop search history, find the second-most recent country they've searched and move there for 7 months.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Come to peace with the infinite&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Use an infinity mirror to get ready for a night on the town.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Manifesting the self&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Take a childhood photo to the top of a mountain. Bury the photo and create a new peak.&lt;/li&gt;
+&lt;li&gt;One day a week, wake at dawn and meditate until sundown.&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/leadership-ascension-track-omegamart?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/leadership-ascension-track-omegamart</guid>
+      <pubDate>2024-09-15 08:59</pubDate>
+      <category>#meowwolf</category>
+      <category>#omegamart</category>
+      <category>#art</category>
+      <category>#lasvegas</category>
+      <category>#las</category>
+      <category>#corporate</category>
+      <category>#lat</category>
+      <category>#leadershipascensiontrack</category>
+      <category>#source</category>
+      <category>#area15</category>
+      <category>#leadership</category>
+      <category>#fun</category>
+      <category>#conspiracy</category>
+    </item>
+    <item>
+      <title>Playing around with the Ivy Cliq+ 2</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/ivy-cliq-2-camera-photo-printer?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/ivy-cliq-2-camera-photo-printer&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;&lt;img src="https://s7d1.scene7.com/is/image/canon/4519C001_ivy-cliq-plus2-instant-camera-printer-plus-app-rose-gold_primary?fmt=webp-alpha&amp;amp;wid=800" class="img-fluid" alt="Image of Canon Ivy Cliq+ 2 camera and photo printer" /&gt;&lt;/p&gt;
+&lt;p&gt;I got my hands on an &lt;a href="https://www.usa.canon.com/shop/p/ivy-cliq-2-instant-camera-printer-app"&gt;Ivy Cliq+ 2&lt;/a&gt; earlier today and am really liking it.&lt;/p&gt;
+&lt;p&gt;It's really cool that it's both a point-and-shoot camera as well as a photo printer. The camera comes in handy if you want to capture something in the moment and print it out immediately. The printer is great for pictures you've taken on your phone or some other device. Even better, you can create collages, apply filters, and do all sorts of adjustments to images before printing.&lt;/p&gt;
+&lt;p&gt;If there's one thing I didn't like is that in order to set it up, it needed access to my exact location. Trying approximate location wasn't enough. It connects over Bluetooth, so you'd think that should be enough to pair. Not sure what it needs my EXACT location for.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/ivy-cliq-2-camera-photo-printer?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/ivy-cliq-2-camera-photo-printer</guid>
+      <pubDate>2024-08-13 22:29 -05:00</pubDate>
+      <category>#analog</category>
+      <category>#camera</category>
+      <category>#photos</category>
+      <category>#journal</category>
+      <category>#memory</category>
+    </item>
+    <item>
+      <title>Week of August 11, 2024 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-08-11-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-08-11-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/what-is-kick"&gt;What is Kick?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/mike-masnick-bluesky-board-of-directors"&gt;Bluesky Welcomes Mike Masnick to Board of Directors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/blogroll-club-blog-directory"&gt;Blogroll Club - A blog directory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/jackson-hole-instagram-filter-wildlife"&gt;Jackson Hole's new Instagram filter warns you when you're dangerously close to wildlife&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/congratulations-overcast-ten-years"&gt;Congratulations on ten years of Overcast&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/cnet-bought-for-just-100-million"&gt;CNET purchased for JUST $100 million&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/gpt4o-system-card"&gt;GPT-4o System Card&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2024-08-11-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2024-08-11-weekly-post-summary</guid>
+      <pubDate>2024-08-11 13:54 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>What is Kick?</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/what-is-kick?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/what-is-kick&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I'm oficially old. I had to look up what &lt;a href="https://kick.com/"&gt;Kick&lt;/a&gt; is.&lt;/p&gt;
+&lt;p&gt;In case you also didn't know, I'll save you some time.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Kick is a platform where you can watch and interact with live streamers from various categories, such as games, music, gambling and creative.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/what-is-kick?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/what-is-kick</guid>
+      <pubDate>2024-08-05 21:30</pubDate>
+      <category>#livestream</category>
+      <category>#video</category>
+      <category>#app</category>
+      <category>#web</category>
+      <category>#internet</category>
+    </item>
     <item>
       <title>OPML for website feeds</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/website-feeds-opml?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/website-feeds-opml&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;While thiking about implementing &lt;a href="/feed/well-known-feeds/"&gt;&lt;code&gt;.well-known&lt;/code&gt; for RSS feeds on my site&lt;/a&gt;, I had another idea. Since that uses OPML anyways, I remembered recently &lt;a href="/feed/blogroll-discovery-implemented/"&gt;doing something similar for my blogroll&lt;/a&gt;.&lt;/p&gt;
@@ -699,6 +1205,22 @@
       <category>#championship</category>
     </item>
     <item>
+      <title>Week of May 06, 2024 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-05-06-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-05-06-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/crate-finds-april-2024"&gt;Crate Finds - April 2024&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/2024-04-29-weekly-post-summary"&gt;Week of April 29, 2024 - Post Summary&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2024-05-06-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2024-05-06-weekly-post-summary</guid>
+      <pubDate>2024-05-05 19:24 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
       <title>Website Post Statistics - May 2024</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/post-statistics-may-2024?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/post-statistics-may-2024&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Still not mid-year and I'm making progress on publishing to the website. Some notable observations this month:&lt;/p&gt;
 &lt;ul&gt;
@@ -715,22 +1237,6 @@
       <category>#blogging</category>
       <category>#stats</category>
       <category>#github</category>
-    </item>
-    <item>
-      <title>Week of May 06, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-05-06-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-05-06-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="/feed/crate-finds-april-2024"&gt;Crate Finds - April 2024&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="/feed/2024-04-29-weekly-post-summary"&gt;Week of April 29, 2024 - Post Summary&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/2024-05-06-weekly-post-summary?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/feed/2024-05-06-weekly-post-summary</guid>
-      <pubDate>2024-05-05 19:24 -05:00</pubDate>
-      <category>#weeklysummary</category>
-      <category>#blogging</category>
-      <category>#website</category>
-      <category>#indieweb</category>
     </item>
     <item>
       <title>Crate Finds - April 2024</title>
@@ -1695,13 +2201,13 @@
     <item>
       <title>I need to optimize my response publishing workflow</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/simplifying-feed-publishing-workflow?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/simplifying-feed-publishing-workflow&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I like to use my &lt;a href="/feed/responses"&gt;response feed&lt;/a&gt; to bookmark and reshare interesting content I find online. Typically my workflow looks like the following:&lt;/p&gt;
-&lt;div class="mermaid"&gt;flowchart TD
+&lt;pre class="mermaid"&gt;flowchart TD
   A["Scroll through feed reader"] --&gt; B["Open articles I want to read in a new tab"]
   B --&gt; C["Read articles"]
   C --&gt; D["Create a response file to publish on my website"]
   D --&gt; E["Capture interesting information from the article in the response file"]
   E --&gt; F["Publish the response"]
-&lt;/div&gt;
+&lt;/pre&gt;
 &lt;p&gt;The bottleneck I usually find is in the middle steps of creating a response file and capturing the relevant content. This usually happens as I'm reading the article. For a single file, it's not a big deal. Doing it for several can be time consuming, especially with the &lt;a href="/feed/subscribed-to-1042-feeds-newsblur"&gt;number of feeds I subscribe to&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;There's a few things I think could help here:&lt;/p&gt;
 &lt;ol&gt;
@@ -2338,18 +2844,6 @@
       <category>#socialmedia</category>
     </item>
     <item>
-      <title>Spotify Wrapped 2023</title>
-      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/spotify-wrapped-2023&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Kind of late, but here's my Spotify Wrapped for the year. No idea how Eslabon Armado snuck in there at the end. It'd be cool if I was also able to get data from my MP3 player which is where I mainly listen to music. Though the artists wouldn't change much.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-1.png" class="img-fluid" alt="Spotify Wrapped 2023 Summary" /&gt;&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/feed/spotify-wrapped-2023</guid>
-      <pubDate>2023-12-12 21:03</pubDate>
-      <category>#music</category>
-      <category>#stats</category>
-      <category>#spotifywrapped</category>
-    </item>
-    <item>
       <title>Antennapod Echo (Wrapped) 2023</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/antennapod-echo-2023?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/antennapod-echo-2023&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;This was a nice surprise to see when I opened up Antennapod the other day. Using my listening statistics, it was able to compile a yearly summary for me (locally).&lt;/p&gt;
 &lt;p&gt;&lt;img src="/images/feed/antennapod-wrapped-1.png" class="img-fluid" alt="Antennapod Echo" /&gt;&lt;/p&gt;
@@ -2366,6 +2860,18 @@
       <category>#opensource</category>
       <category>#antennapod</category>
       <category>#stats</category>
+    </item>
+    <item>
+      <title>Spotify Wrapped 2023</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/spotify-wrapped-2023&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Kind of late, but here's my Spotify Wrapped for the year. No idea how Eslabon Armado snuck in there at the end. It'd be cool if I was also able to get data from my MP3 player which is where I mainly listen to music. Though the artists wouldn't change much.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-1.png" class="img-fluid" alt="Spotify Wrapped 2023 Summary" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/spotify-wrapped-2023</guid>
+      <pubDate>2023-12-12 21:03</pubDate>
+      <category>#music</category>
+      <category>#stats</category>
+      <category>#spotifywrapped</category>
     </item>
     <item>
       <title>RSS Only Blog</title>
