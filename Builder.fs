@@ -32,6 +32,7 @@ module Builder
             "js"
             "images"
             "lib"
+            ".well-known"
         ]
 
         directories

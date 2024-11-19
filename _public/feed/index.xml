@@ -3,8 +3,51 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>2024-11-16 10:36 -05:00</lastPubDate>
+    <lastPubDate>2024-11-18 17:34 -05:00</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Mastodon instance working again</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/mastodon-working-again-v-4-3-1?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/mastodon-working-again-v-4-3-1&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;After about a month of not being able to access my Mastodon instance, I'm so excited to have it working again!&lt;/p&gt;
+&lt;p&gt;Not sure what I did wrong with my upgrade to 4.3.0. Fortunately, the issues appears to have been on the frontend and the fix wasn't too involved.&lt;/p&gt;
+&lt;p&gt;Upgrading to the latest 4.3.1 fixed the issue I ran into during my last upgrade.&lt;/p&gt;
+&lt;p&gt;Thanks to my &lt;a href="/posts/rss-to-mastodon-posse-azure-logic-apps/"&gt;POSSE setup&lt;/a&gt;, I've been able to continue posting to my website and syndicating to Mastodon. Unfortunately, since the frontend wasn't working, I was unable to access my notifications. Because the mobile apps make use of the web frontend to log in, I couldn't use the mobile app either.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/mastodon-working-again-v-4-3-1?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/mastodon-working-again-v-4-3-1</guid>
+      <pubDate>2024-11-18 17:34 -05:00</pubDate>
+      <category>#mastodon</category>
+      <category>#fediverse</category>
+      <category>#sysadmin</category>
+      <category>#selfhost</category>
+      <category>#socialmedia</category>
+      <category>#social</category>
+      <category>#microblog</category>
+      <category>#indieweb</category>
+      <category>#posse</category>
+    </item>
+    <item>
+      <title>Week of November 18, 2024 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-11-18-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-11-18-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/website-upgraded-dotnet-9"&gt;Upgraded to .NET 9&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/tyson-vs-paul"&gt;Mike Tyson vs Jake Paul&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/thundercat-chromakopia"&gt;Thundercat on Tyler's Chromakopia album?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/dotnetconf-2024-day-1-success"&gt;Day 1 of .NET Conf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/dotnet-conf-2024-session-playlist"&gt;.NET Conf 2024 - Session Recordings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/why-you-should-make-a-website-luvstarkei"&gt;Why YOU Should Make A Website&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2024-11-18-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2024-11-18-weekly-post-summary</guid>
+      <pubDate>2024-11-17 19:56 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
     <item>
       <title>Mike Tyson vs Jake Paul</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/tyson-vs-paul?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/tyson-vs-paul&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Amazing that Tyson at his age just did that. He earned that paycheck. That said, it was tough to watch and fortunately it didn't seem like he got hurt too bad. It looked like Jake was pulling his punches because that fight could've ended in the 2nd / 3rd round. Overall, it's the best outcome possible. Jake can say he &amp;quot;beat&amp;quot; Mike Tyson, Tyson didn't get knocked out or hurt too bad, and they both earned a decent paycheck.&lt;/p&gt;
@@ -2844,6 +2887,18 @@
       <category>#socialmedia</category>
     </item>
     <item>
+      <title>Spotify Wrapped 2023</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/spotify-wrapped-2023&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Kind of late, but here's my Spotify Wrapped for the year. No idea how Eslabon Armado snuck in there at the end. It'd be cool if I was also able to get data from my MP3 player which is where I mainly listen to music. Though the artists wouldn't change much.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-1.png" class="img-fluid" alt="Spotify Wrapped 2023 Summary" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/spotify-wrapped-2023</guid>
+      <pubDate>2023-12-12 21:03</pubDate>
+      <category>#music</category>
+      <category>#stats</category>
+      <category>#spotifywrapped</category>
+    </item>
+    <item>
       <title>Antennapod Echo (Wrapped) 2023</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/antennapod-echo-2023?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/antennapod-echo-2023&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;This was a nice surprise to see when I opened up Antennapod the other day. Using my listening statistics, it was able to compile a yearly summary for me (locally).&lt;/p&gt;
 &lt;p&gt;&lt;img src="/images/feed/antennapod-wrapped-1.png" class="img-fluid" alt="Antennapod Echo" /&gt;&lt;/p&gt;
@@ -2860,18 +2915,6 @@
       <category>#opensource</category>
       <category>#antennapod</category>
       <category>#stats</category>
-    </item>
-    <item>
-      <title>Spotify Wrapped 2023</title>
-      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/spotify-wrapped-2023&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Kind of late, but here's my Spotify Wrapped for the year. No idea how Eslabon Armado snuck in there at the end. It'd be cool if I was also able to get data from my MP3 player which is where I mainly listen to music. Though the artists wouldn't change much.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-1.png" class="img-fluid" alt="Spotify Wrapped 2023 Summary" /&gt;&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/feed/spotify-wrapped-2023</guid>
-      <pubDate>2023-12-12 21:03</pubDate>
-      <category>#music</category>
-      <category>#stats</category>
-      <category>#spotifywrapped</category>
     </item>
     <item>
       <title>RSS Only Blog</title>

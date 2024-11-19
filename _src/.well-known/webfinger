@@ -1,0 +1,28 @@
+{
+    "subject": "acct:lqdev@toot.lqdev.tech",
+    "aliases": [
+        "https://toot.lqdev.tech/@lqdev",
+        "https://toot.lqdev.tech/users/lqdev"
+    ],
+    "links": [
+        {
+            "rel": "http://webfinger.net/rel/profile-page",
+            "type": "text/html",
+            "href": "https://toot.lqdev.tech/@lqdev"
+        },
+        {
+            "rel": "self",
+            "type": "application/activity+json",
+            "href": "https://toot.lqdev.tech/users/lqdev"
+        },
+        {
+            "rel": "http://ostatus.org/schema/1.0/subscribe",
+            "template": "https://toot.lqdev.tech/authorize_interaction?uri={uri}"
+        },
+        {
+            "rel": "http://webfinger.net/rel/avatar",
+            "type": "image/png",
+            "href": "https://toot.lqdev.tech/system/accounts/avatars/000/000/001/original/8c8e74deb6d899a9.png"
+        }
+    ]
+}
