@@ -2,5 +2,10 @@ BEGIN:VCARD
 VERSION:3.0
 N:Quintanilla;Luis;;;
 EMAIL;type=INTERNET;type=HOME;type=pref:contact@lqdev.me
-URL:https://www.lqdev.me/
+URL;PREF=1:https://www.lqdev.me/
+URL;TYPE=LinkedIn:https://www.lqdev.me/linkedin
+URL;TYPE=BlueSky:https://www.lqdev.me/bluesky
+URL;TYPE=Twitter:https://www.lqdev.me/twitter
+URL;TYPE=Mastodon:https://www.lqdev.me/mastodon
+URL;TYPE=GitHub:https://www.lqdev.me/github
 END:VCARD
