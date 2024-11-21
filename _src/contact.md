@@ -4,7 +4,7 @@ Say hi on any of these platforms.
 
 - **Email** <- contact **@** lqdev.me
 - **Gravatar** <- [Profile](/gravatar)
-- **LinkedIn** <- [lquintanilla01](/linkedin) |> [QR Code](/images/contact/qr-linkedin.svg)
+- **LinkedIn** <- [lquintanilla01](/linkedin) |> [QR Code](/images/contact/qr-linkedin.png)
 - **Mastodon** <-  [@lqdev@toot.lqdev.tech](/mastodon) |> [QR Code](/images/contact/qr-mastodon.svg)
 - **GitHub** <- [lqdev](/github) |> [QR Code](/images/contact/qr-github.svg)
 - **X (formerly Twitter)** <- [ljquintanilla](/twitter) |> [QR Code](/images/contact/qr-twitter.svg)
