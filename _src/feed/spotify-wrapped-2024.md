@@ -11,7 +11,7 @@ I can't say I'm too surprised by the results.
 
 ![Spotify Wrapped Screenshot Summary of top artists, songs, and listening minutes](/images/feed/spotify-wrapped-2024-0.png)
 
-Compared to last year, I nearly doubled my listening minutes. Also, none of the artists from the [previous year](/feed/spotify-wrapped-2023.md) made it onto this list. Although, I'm not sure how Buffalo Springfield worked its way into the list of top artists. 
+Compared to last year, I nearly doubled my listening minutes. Also, none of the artists from the [previous year](/feed/spotify-wrapped-2023) made it onto this list. Although, I'm not sure how Buffalo Springfield worked its way into the list of top artists. 
 
 I love how my listening habits from September are described, "Witchy Jam Band Psychedelic Rock". 
 
