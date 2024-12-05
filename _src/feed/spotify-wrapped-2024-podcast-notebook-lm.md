@@ -18,5 +18,7 @@ There's a reason I purposefully haven't linked Spotify to other accounts.
 
 I know there's probably hundreds of worse ways my data is being used I don't know about. This one though was hard to miss and a sad reminder that often you don't learn about how your data is being used until after the fact. Cases like this are not really a big deal. So what if you know I was going through a "Witchy Jam Band Phsychedelic Rock" phase in September? Where it does matter though is when it involves more personal and sensitive data. Again, because we don't realize it until after the fact, it's not until then that we learn what we're giving up when we make the simple, often uninformed, decision to select "I Agree".  
 
-<video controls="" autoplay="" name="media"><source src="https://wrappedaipodcast.spotifycdn.com/bDEn3i-uWoItOTYMmcRcNGKBqZ18M9ygFTAY0X8YHXk.mp4" type="video/mp4"></video>
+![AI Genereated Spotify Wrapped Podcast](https://wrappedaipodcast.spotifycdn.com/bDEn3i-uWoItOTYMmcRcNGKBqZ18M9ygFTAY0X8YHXk.mp4)
+
+<!-- <video controls="" autoplay="" name="media"><source src="https://wrappedaipodcast.spotifycdn.com/bDEn3i-uWoItOTYMmcRcNGKBqZ18M9ygFTAY0X8YHXk.mp4" type="video/mp4"></video> -->
 
