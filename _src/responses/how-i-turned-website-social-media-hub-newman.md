@@ -11,4 +11,4 @@ tags: ["indieweb","social","microblog","blogging","internet","web","socialmedia"
 
 > There’s also just something deeply satisfying about seeing a running feed of my own writing, on my own website, with my own design and presentation. A social network alone can’t replicate that, but the POSSE approach offers the best of both worlds.
 
-I've enjoyed seeing over the past few weeks as people seek new online platforms rediscover the personal website. 
+I've enjoyed seeing over the past few weeks, as people seek new online platforms, the personal website is being rediscovered. 
