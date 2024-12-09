@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: "Starter Packs with OPML and RSS"
-description: ""
+description: "Exploring "Starter Packs" on Bluesky and beyond using open standards like RSS and OPML"
 published_date: "2024-12-08 19:40"
 tags: ["rss","opml","indieweb","starterpacks","community","bluesky","socialmedia","openweb","protocols","openstandards","feedland"]
 ---
