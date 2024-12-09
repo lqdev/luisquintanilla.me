@@ -3,7 +3,7 @@ post_type: "article"
 title: "Starter Packs with OPML and RSS"
 description: ""
 published_date: "2024-12-08 19:40"
-tags: ["rss","opml","indieweb","starterpacks","community","bluesky","socialmedia","openweb","protocols","openstandards"]
+tags: ["rss","opml","indieweb","starterpacks","community","bluesky","socialmedia","openweb","protocols","openstandards","feedland"]
 ---
 
 One of the things I like about Bluesky is the [Starter Pack feature](https://bsky.social/about/blog/06-26-2024-starter-packs). 
@@ -41,3 +41,5 @@ Here are other "starter packs" you might consider subscribing to.
 
 - [People and Blogs](https://www.thingelstad.com/2024/12/03/people-blogs-list.html)
 - [Blogroll Club](https://blogroll.club/faq/)
+
+If this is interesting to you, [Feedland](https://feedland.org/) might be a project worth checking out.  
