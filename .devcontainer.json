@@ -17,5 +17,8 @@
                 "github.vscode-github-actions"
             ]
         }
+    },
+    "hostRequirements": {
+        "gpu": "optional"
     }
 }
