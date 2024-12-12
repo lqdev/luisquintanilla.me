@@ -40,8 +40,9 @@ A collection of DevContainer configurations
         "ghcr.io/devcontainers/features/git:1": {},
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/devcontainers/features/python:1": {
-            "version": "3.10"
-        }
+            "version": "3.11"
+        },
+        "ghcr.io/devcontainers-extra/features/poetry:2": {}
     },
     "customizations": {
         "vscode": {
@@ -65,9 +66,10 @@ A collection of DevContainer configurations
         "ghcr.io/devcontainers/features/git:1": {},
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/devcontainers/features/python:1": {
-            "version": "3.10"
+            "version": "3.11"
         },
-        "ghcr.io/devcontainers/features/nvidia-cuda:1": {}
+        "ghcr.io/devcontainers/features/nvidia-cuda:1": {},
+        "ghcr.io/devcontainers-extra/features/poetry:2": {}
     },
     "customizations": {
         "vscode": {
@@ -77,7 +79,11 @@ A collection of DevContainer configurations
                 "ms-python.python"
             ]
         }
-    }
+    },
+    "runArgs": [
+        "--gpus", 
+        "all"
+    ]
 }
 ```
 
@@ -91,7 +97,7 @@ A collection of DevContainer configurations
         "ghcr.io/devcontainers/features/git:1": {},
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/devcontainers/features/dotnet:2": {
-            "version": "8.0"
+            "version": "9.0"
         }
     },
     "customizations": {
@@ -117,7 +123,7 @@ A collection of DevContainer configurations
         "ghcr.io/devcontainers/features/git:1": {},
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/devcontainers/features/dotnet:2": {
-            "version": "8.0"
+            "version": "9.0"
         },
         "ghcr.io/devcontainers/features/nvidia-cuda:1": {}
     },
@@ -130,7 +136,11 @@ A collection of DevContainer configurations
                 "Ionide.Ionide-fsharp"
             ]
         }
-    }
+    },
+    "runArgs": [
+        "--gpus", 
+        "all"
+    ]
 }
 ```
 
