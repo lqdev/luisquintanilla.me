@@ -1,21 +1,21 @@
 {
-    "image": "mcr.microsoft.com/devcontainers/universal:linux",
+    "image": "mcr.microsoft.com/devcontainers/base:debian",
     "features": {
-        "ghcr.io/devcontainers/features/dotnet": {"version": "9.0"}
+        "ghcr.io/devcontainers/features/dotnet": {
+            "version": "9.0"
+        },
+        "ghcr.io/prulloac/devcontainer-features/ollama:1": {
+            "pull": "smollm2:135m"   
+        },
+        "ghcr.io/devcontainers/features/git:1": {}
     },
     "customizations": {
         "vscode": {
             "extensions": [
                 "Ionide.Ionide-fsharp",
-                "max-SS.cyberpunk",
                 "ms-vscode.live-server",
                 "github.vscode-github-actions"
             ]
         }
     }
-    // "postCreateCommand": "curl -fsSL https://ollama.com/install.sh | sh",
-    // "postStartCommand": [
-    //     "ollama serve",
-    //     "ollama pull phi"
-    // ]
 }
