@@ -63,7 +63,7 @@ Speaking specifically about [Weird the product and what the team plans of shippi
 > <br>
 > Hence our commitment to both models, starting with the least laborious one [PESOS].  
 
-As someone
+Personally, [I prefer POSSE](https://www.lqdev.me/posts/rss-to-mastodon-posse-azure-logic-apps/), but it's great to see that Weird plans on meeting people where they are.
 
 ### Late 2025
 
