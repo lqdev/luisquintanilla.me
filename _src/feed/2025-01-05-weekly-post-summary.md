@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Week of January 5, 2025 - Post Summary"
-published_date: "2025-01-05 16:08 -05:00"
+published_date: "2025-01-05 21:08 -05:00"
 tags: ["weeklysummary","blogging","website","indieweb"]
 ---
 
