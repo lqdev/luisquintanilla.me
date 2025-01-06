@@ -56,7 +56,7 @@ To subscribe to the LibriVox New Release feed:
 
     ![AntennaPod Add Podcast Dialog](/images/listen-audiobooks-librivox-antennapod/add-podcast-antennapod.png)
 
-1. Past the LibriVox New Releases RSS feed URL into the text box and select **Confirm**. 
+1. Paste the LibriVox New Releases RSS feed URL into the text box and select **Confirm**. 
 
 At this point, you should see the feed listed in your AntennaPod subscriptions. 
 
