@@ -1,6 +1,6 @@
 ---
 post_type: "note" 
-title: "Got an instance "
+title: "Got an instance of Owncast deployed to Azure!"
 published_date: "2025-01-07 19:52"
 tags: ["owncast","livestream","azure","selfhost","fediverse","obs","containers","aca"]
 ---
