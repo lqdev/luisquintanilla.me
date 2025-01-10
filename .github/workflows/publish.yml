@@ -29,13 +29,13 @@ jobs:
       - name: Upload to blob storage
         uses: azure/CLI@v1
         with:
-          azcliversion: 2.56.0
+          azcliversion: 2.67.0
           inlineScript: |
               az storage blob sync --account-name ${{secrets.STORAGE_ACC_NAME}} -c '$web' -s ./_public
       - name: Purge CDN endpoint
         uses: azure/CLI@v1
         with:
-          azcliversion: 2.56.0
+          azcliversion: 2.67.0
           inlineScript: |
             az cdn endpoint purge --content-paths  "/*" --profile-name ${{secrets.CDN_PROFILE_NAME}} --name ${{secrets.CDN_ENDPOINT_NAME}} --resource-group ${{secrets.RG}}
       - name: Send Webmentions
