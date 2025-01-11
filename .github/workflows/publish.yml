@@ -33,8 +33,8 @@ jobs:
           # azcopy workadound https://github.com/Azure/azure-cli/issues/30635
           inlineScript: |
               curl -O https://azcopyvnext-awgzd8g7aagqhzhe.b02.azurefd.net/release20211027/azcopy_linux_amd64_10.13.0.tar.gz;
-              mkdir /root/.azure;
-              mkdir /root/.azure/bin;
+              # mkdir /root/.azure;
+              # mkdir /root/.azure/bin;
               tar -xf azcopy_linux_amd64_10.13.0.tar.gz --strip-components=1 -C /root/.azure/bin;
               az storage blob sync --account-name ${{secrets.STORAGE_ACC_NAME}} -c '$web' -s ./_public
       - name: Purge CDN endpoint
