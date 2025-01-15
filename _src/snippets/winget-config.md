@@ -1,7 +1,7 @@
 ---
 title: "Winget Configuration"
-language: "PowerShell"
-tags: windows,powershell 
+language: "Yaml"
+tags: windows,powershell ,yaml
 ---
 
 ## Description
