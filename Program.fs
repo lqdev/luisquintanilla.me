@@ -51,6 +51,7 @@ let main argv =
     buildColophonPage ()
     buildSubscribePage ()
     buildOnlineRadioPage ()
+    buildLiveStreamPage ()
 
     // Write Post / Archive Pages
     buildPostPages posts

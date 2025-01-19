@@ -111,6 +111,19 @@ let contentViewWithTitle (title:string) (content:string) =
         rawText content
     ]    
 
+let liveStreamView (title:string) = 
+    div [ _class "mr-auto" ] [
+        h1 [] [Text title]
+        iframe [
+            _src "https://test-owncast2.jollybeach-ea688d6c.northcentralus.azurecontainerapps.io/embed/video"
+            _title "lqdev Live Stream"
+            _height "350px"
+            _width "550px"
+            attr "referrerpolicy" "origin"
+            flag "allowfullscreen"
+        ] []
+    ]
+
 let webmentionForm = 
     div [ ] [
         script [_type "application/javascript"] [
