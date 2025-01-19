@@ -125,7 +125,11 @@ module Layouts
                     
                     li [_class "nav-item"] [
                         a [_class "nav-link"; _href "/events"] [ Text "Events" ]
-                    ]                    
+                    ]
+
+                    li [_class "nav-item"] [
+                        a [_class "nav-link"; _href "/live"] [ Text "Live" ]
+                    ]                                        
                 ]
 
                 a [_href "/subscribe"] [
