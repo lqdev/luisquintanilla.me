@@ -15,9 +15,7 @@ The flow on OBS is straightforward and simple. I might automate it either using 
 
 As far as hosting the recordings, the process of uploading to YouTube was straightforward. It took a little over 10 minutes, but that's something that I can just do in the background so not really worried about that. For the time being, I think I'll just use YouTube to host the videos and mark them as unlisted. No particular reason behind that other than I only want YouTube to serve as my video host. The main place I plan on showcasing and organizing videos is on my website. 
 
-For the time being, I'll just create notes like these. 
-
-Eventually though, I'd like to have a video post type which shows up on my feed. The post card will only display the video but the detailed view, I'd like for it to be like my [presentation pages](/presentations/hello-world). Except, instead of a presentation, it'd contain the video, show notes, maybe the transcript, and links mentioned during the stream. Also, I'd like video posts to have their own RSS feed just like other posts on this page so folks who are interested in following along can via their RSS reader. 
+For the time being, I'll just create notes like these. Eventually though, I'd like to have a video post type which shows up on my feed. The post card will only display the video but the detailed view, I'd like for it to be like my [presentation pages](/presentations/hello-world). Except, instead of a presentation, it'd contain the video, show notes, maybe the transcript, and links mentioned during the stream. Also, I'd like video posts to have their own RSS feed just like other posts on this page so folks who are interested in following along can via their RSS reader. 
 
 A few other things I want to figure out are:
 
