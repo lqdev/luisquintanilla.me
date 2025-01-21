@@ -17,7 +17,7 @@ As far as hosting the recordings, the process of uploading to YouTube was straig
 
 For the time being, I'll just create notes like these. 
 
-Eventually though, I'd like to have a video post type which shows up on my feed. The post card will only display the video but the detailed view, I'd like for it to be like my presentation pages. Except, instead of a presentation, it'd contain the video, show notes, maybe the transcript, and links mentioned during the stream. Also, I'd like video posts to have their own RSS feed just like other posts on this page so folks who are interested in following along can via their RSS reader. 
+Eventually though, I'd like to have a video post type which shows up on my feed. The post card will only display the video but the detailed view, I'd like for it to be like my [presentation pages](/presentations/hello-world). Except, instead of a presentation, it'd contain the video, show notes, maybe the transcript, and links mentioned during the stream. Also, I'd like video posts to have their own RSS feed just like other posts on this page so folks who are interested in following along can via their RSS reader. 
 
 A few other things I want to figure out are:
 
