@@ -465,7 +465,7 @@ let cardHeader (date:string) =
     div [_class "card-header u-author h-card"] [
         img [_src "/avatar.png"; _height "32"; _width "32"; _class "d-inline-block align-top rounded-circle u-photo"; _style "margin-right:5px"; attr "loading" "lazy"]
         a [ _href "http://lqdev.me/about"; _class "u-url p-name"] [Text "lqdev"]
-        span [_style "margin-right:5px;margin-left:5px;"] [Text "&#x1F384;"]
+        span [_style "margin-right:5px;margin-left:5px;"] [Text "&#x26C4;"]
         span [_class "float-right"] [
             time [_class "dt-published"; _datetime date] [Text $"{dt.ToShortDateString()}"]
         ] 
