@@ -5,7 +5,7 @@ published_date: "2025-01-29 19:59"
 tags: ["deepseek","ai","dotnet","github","azure","livestream"]
 ---
 
-I saw that the [DeepSeek R1 model is now on GitHub Models and Azure AI Foundry](https://azure.microsoft.com/en-us/blog/deepseek-r1-is-now-available-on-azure-ai-foundry-and-github/), so I decided to start a stream and play around with in the GitHub Models playground as well as a .NET application. 
+I saw that the [DeepSeek R1 model is now on GitHub Models and Azure AI Foundry](https://azure.microsoft.com/en-us/blog/deepseek-r1-is-now-available-on-azure-ai-foundry-and-github/), so I decided to start a stream and play around with it in the GitHub Models playground as well as a .NET application. 
 
 Here's the recording.
 
