@@ -9,7 +9,7 @@ I saw that the [DeepSeek R1 model is now on GitHub Models and Azure AI Foundry](
 
 Here's the recording.
 
-[![YouTube Video Thumbnail Tinkering on Stream with DeepSeek R1, GitHub Models,  .NET](http://img.youtube.com/vi/8Z6iFALi8kM/0.jpg)](https://www.youtube.com/watch?v=8Z6iFALi8kM "YouTube Video Thumbnail Tinkering on Stream with DeepSeek R1, GitHub Models, and .NET")
+[![YouTube Video Thumbnail Tinkering on Stream with DeepSeek R1, GitHub Models, .NET](http://img.youtube.com/vi/8Z6iFALi8kM/0.jpg)](https://www.youtube.com/watch?v=8Z6iFALi8kM "YouTube Video Thumbnail Tinkering on Stream with DeepSeek R1, GitHub Models, and .NET")
 
 I rambled on stream since it's my stream of consciousness as I'm tinkering with these technologies. 
 
