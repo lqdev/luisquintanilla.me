@@ -13,4 +13,4 @@ Using the [guidance from the OBS community](https://obsproject.com/forum/resourc
 
 It didn't work as-is but after using an AI assistant to help me tweak the ffmpeg command, I was able to get it working.
 
-I posted the command to my [Wiki](/wiki/owncast.md) and plan on writing a more detailed post at a later time. 
+I posted the command to my [Wiki](/wiki/owncast) and plan on writing a more detailed post at a later time. 
