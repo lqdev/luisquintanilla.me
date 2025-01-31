@@ -9,7 +9,7 @@ About a week ago, I was telling [maho.dev](https://maho.dev/) about Owncast and 
 
 During our chat, the question of simulcasting came up. 
 
-I used the [guidance from the OBS community](https://obsproject.com/forum/resources/obs-studio-stream-to-multiple-platforms-or-channels-at-once.932/) as a starting point, I decided to try it out for myself. 
+Using the [guidance from the OBS community](https://obsproject.com/forum/resources/obs-studio-stream-to-multiple-platforms-or-channels-at-once.932/) as a starting point, I decided to try it out for myself. 
 
 It didn't work as-is but after using an AI assistant to help me tweak the ffmpeg command, I was able to get it working.
 
