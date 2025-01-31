@@ -3,8 +3,413 @@
     <title>Luis Quintanilla Blog</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Luis Quintanilla's blog</description>
-    <lastPubDate>2024-10-31 21:41 -05:00</lastPubDate>
+    <lastPubDate>2025-01-09 20:47 -05:00</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Deploy your own Owncast server</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/deploy-owncast-azure?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/deploy-owncast-azure&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I'm a fan of learning in public. One way I do that is writing these types of posts. Another is live-streaming. It's been about four years since the last time I streamed. You can check out some of those recordings on my &lt;a href="/youtube"&gt;YouTube channel&lt;/a&gt; if you're interested.&lt;/p&gt;
+&lt;p&gt;Lately, I've been wanting to get back into live-streaming, but like many parts of my digital presence, it's an area I want ownership over. That means, I don't want to use Twitch, YouTube, Kick, or any other streaming platform. I want to self-host my own livestream server.&lt;/p&gt;
+&lt;p&gt;For years, I've been following &lt;a href="https://owncast.online/"&gt;Owncast&lt;/a&gt;. I'm a big fan. Aside from being open-source and allowing me to self-host, it has &lt;a href="https://owncast.online/docs/social/"&gt;Fediverse&lt;/a&gt; and &lt;a href="https://owncast.online/docs/chat/chat-authentication/#indieauth"&gt;IndieAuth&lt;/a&gt; integrations.&lt;/p&gt;
+&lt;p&gt;Because I don't plan to monetize my streams, I want to make sure I keep my costs down. Owncast offers a container deployment option. That means, I can deploy my application to &lt;a href="https://learn.microsoft.com/azure/container-apps/overview"&gt;Azure Container Apps&lt;/a&gt; using a &lt;a href="https://learn.microsoft.com/azure/container-apps/plans#consumption"&gt;consumption plan&lt;/a&gt;. By doing so, I only pay for compute and networking when I'm streaming. The rest of the time, I can scale down the application to zero and I'm not charged for it.&lt;/p&gt;
+&lt;p&gt;In this post, I'll go over how to set up a self-hosted Owncast instance on Azure Container Apps and once deployed, how to configure it with &lt;a href="https://obsproject.com/"&gt;OBS&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Deploy owncast server&lt;/h2&gt;
+&lt;p&gt;The deployment is fairly straightforward. You can use the &lt;a href="https://learn.microsoft.com/azure/container-apps/vnet-custom?tabs=bash&amp;amp;pivots=azure-portal"&gt;&amp;quot;Provide a virtual network to an Azure Container Apps environment&amp;quot;&lt;/a&gt; tutorial. I'd recommend going through the portal if you don't want to install the Azure CLI or are not comfortable with the command line.&lt;/p&gt;
+&lt;p&gt;The few configurations that tutorial doesn't guide you through is setting up your container and ingress since those are application specific.&lt;/p&gt;
+&lt;p&gt;After you configure your environment and virtual network in the &lt;em&gt;Basics&lt;/em&gt; tab, continue your setup using the steps below.&lt;/p&gt;
+&lt;h3&gt;Container&lt;/h3&gt;
+&lt;p&gt;To set up Owncast, you can use the &lt;a href="https://hub.docker.com/r/owncast/owncast/tags"&gt;public docker image&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When you get to the &lt;em&gt;Container&lt;/em&gt; tab in the setup process, fill in the fields with the following values:&lt;/p&gt;
+&lt;table class="table"&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Field&lt;/th&gt;
+&lt;th&gt;Value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Name&lt;/td&gt;
+&lt;td&gt;Enter a name for your container&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Image source&lt;/td&gt;
+&lt;td&gt;Docker Hub or other registies&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Image type&lt;/td&gt;
+&lt;td&gt;Public&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Registry login server&lt;/td&gt;
+&lt;td&gt;docker.io&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Image and tag&lt;/td&gt;
+&lt;td&gt;owncast/owncast:latest&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Command override&lt;/td&gt;
+&lt;td&gt;You can leave this blank&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Arguments override&lt;/td&gt;
+&lt;td&gt;You can leave this blank&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Deployment stack&lt;/td&gt;
+&lt;td&gt;Generic&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Workload profile&lt;/td&gt;
+&lt;td&gt;Consumption&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CPU and Memory&lt;/td&gt;
+&lt;td&gt;2 CPU Cores, 4Gi Memory&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;Ingress&lt;/h3&gt;
+&lt;p&gt;By setting up ingress on your deployment, you'll expose the ports Owncast listens on.&lt;/p&gt;
+&lt;p&gt;The reason you need a virtual network is because Owncast listens on two ports:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;8080&lt;/strong&gt; - The web application and admin portal&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;1935&lt;/strong&gt; - The RMTP server used for streaming&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;By default, Azure Container Apps only allows you to expose one port. For more details, see the &lt;a href="https://learn.microsoft.com/azure/container-apps/ingress-overview#additional-tcp-ports"&gt;Azure Container Apps documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In the &lt;em&gt;Ingress&lt;/em&gt; tab, check the box that says &lt;strong&gt;Enabled&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Then, fill in the fields with the following values:&lt;/p&gt;
+&lt;table class="table"&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Field&lt;/th&gt;
+&lt;th&gt;Value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Ingress traffic&lt;/td&gt;
+&lt;td&gt;Accepting traffic from anywhere&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ingress type&lt;/td&gt;
+&lt;td&gt;HTTP&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Transport&lt;/td&gt;
+&lt;td&gt;Auto&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Insecure connections&lt;/td&gt;
+&lt;td&gt;Leave unchecked&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Target port&lt;/td&gt;
+&lt;td&gt;8080&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Session affinity&lt;/td&gt;
+&lt;td&gt;Leave unchecked&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Expand the Additional TCP ports section and configure the RMTP port&lt;/p&gt;
+&lt;table class="table"&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Field&lt;/th&gt;
+&lt;th&gt;Value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Target port&lt;/td&gt;
+&lt;td&gt;1935&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Exposed port&lt;/td&gt;
+&lt;td&gt;1935&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ingress traffic&lt;/td&gt;
+&lt;td&gt;Accepting traffic from anywhere&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Once you've configured ingress, you can select on &lt;strong&gt;Review + create&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Review your configurations in the &lt;em&gt;Review + create&lt;/em&gt; tab. If everything looks good, select &lt;strong&gt;Create&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;&lt;strong&gt;IMPORTANT&lt;/strong&gt; Change admin password&lt;/h2&gt;
+&lt;p&gt;Once your application deploys, make sure to change your admin password.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;In the portal, go to your container app resource and copy your application URL.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/deploy-owncast-azure/portal-container-resource.png" class="img-fluid" alt="Screenshot of Azure Container Apps resource in Azure Portal highlighting Application URL" /&gt;&lt;/p&gt;
+&lt;p&gt;Make sure to keek your application URL around since you'll also be using it when configuring OBS.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Access the admin portal at the following URL - &lt;code&gt;&amp;lt;YOUR-APPLICATION-URL&amp;gt;/admin&lt;/code&gt;. Replace &lt;code&gt;&amp;lt;YOUR-APPLICATION-URL&amp;gt;&lt;/code&gt; with your application URL.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Log in with the default credentials.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;| Field | Value |
+| Username | admin |
+| Password | abc123 |&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;In the Owncast admin portal, select &lt;strong&gt;Configuration &amp;gt; Server Setup&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Change your admin password.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For more details, see the &lt;a href="https://owncast.online/docs/configuration/"&gt;Owncast documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Create stream key&lt;/h2&gt;
+&lt;p&gt;Once you've changed your admin password, create a stream key. This will enable you to log into your server through OBS and begin streaming.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;In the Owncast admin portal, select &lt;strong&gt;Configuration &amp;gt; Server Setup&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Select the &lt;strong&gt;Stream Keys&lt;/strong&gt; tab.&lt;/li&gt;
+&lt;li&gt;Copy the default stream key or create a new one.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Configure OBS&lt;/h2&gt;
+&lt;p&gt;Now that everything is configured, it's time to set up OBS.&lt;/p&gt;
+&lt;p&gt;To do so, &lt;a href="https://owncast.online/docs/broadcasting/obs/"&gt;follow the guidance in the Owncast documentattion&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Replace the server address with your application URL and use the stream key you copied or created. Note that the protocol is not &lt;code&gt;http&lt;/code&gt; or &lt;code&gt;https&lt;/code&gt;. &lt;strong&gt;Use &lt;code&gt;rmtp&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;That's it! If everything is configured correctly, you should be able to select &lt;strong&gt;Start Streaming&lt;/strong&gt; in OBS.&lt;/p&gt;
+&lt;p&gt;Go to your Owncast instance using your application URL and in a few seconds, your broadcast should start.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I want to end by thanking the Owncast contributors and community for making self-hosting a live-streaming server so easy.&lt;/p&gt;
+&lt;p&gt;My plan in the next couple of weeks is to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Embed my stream on my website. Most likely, I'll make it a dedicated page. Something like &lt;code&gt;lqdev.me/live&lt;/code&gt; or something like that.&lt;/li&gt;
+&lt;li&gt;Do a few pilot streams to make sure my stream quality and configurations are all set up correctly.&lt;/li&gt;
+&lt;li&gt;Evaluate what the costs are for this solution and whethere it's sustainable.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If all goes as expected, I'll start streaming more regularly. As mentioned, I want to keep my costs down and video hosting is expensive, so I'll use YouTube to post recordings. I'll also keep backups though in case any of those videos get taken down, I can always have a local copy still available.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/deploy-owncast-azure?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/deploy-owncast-azure</guid>
+      <pubDate>2025-01-09 20:47 -05:00</pubDate>
+      <category>#owncast</category>
+      <category>#azure</category>
+      <category>#selfhost</category>
+      <category>#fediverse</category>
+      <category>#obs</category>
+      <category>#livestream</category>
+    </item>
+    <item>
+      <title>Building a Reading Habit with Audiobooks, LibriVox, and AntennaPod</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/listen-audiobooks-librivox-antennapod?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/listen-audiobooks-librivox-antennapod&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Last year, I was able to complete my goal of reading 12 books or roughly one book per month. I kept track of some of the books I read in my &lt;a href="https://www.lqdev.me/library"&gt;library page&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I enjoyed most of the books I read. However, despite hitting my goal and averaging a book a month, I didn't build up a habit which is what I would've preferred. Many of the books I read last year, I read them during long periods of uninterrupted time, such as cross-country flights. The topic of goal setting and measuring the right thing could be an entire post, but I'll leave that for another time.&lt;/p&gt;
+&lt;p&gt;Taking the learnings from last year, this year, I'll try to focus on building a reading habit rather than reading a set number of books. While I'd still like to finish at least one book per month, that's a metric I'll use to track general progress rather than making it the goal. Unless I'm reading something like War and Peace, I'd expect that by establishing a consistent cadence, I should be able to get through at least one book every month. Also, I'm only accounting for uninterrupted reading time blocks. Using audiobooks, I can continue building my reading habit while working out or doing chores. Kind of like having TV playing in the background.&lt;/p&gt;
+&lt;p&gt;There is no shortage of audiobooks out there. Audible is one of the easiest ways to access audiobooks and they have a large selection to choose from. Personally, I don't use Audible. I don't like paying for a separate subscription, getting credits to &amp;quot;buy&amp;quot; books that I don't really own and can only listen through the Audible app. Instead, I use Spotify. I get &lt;a href="https://support.spotify.com/us/article/audiobooks-access-plan/"&gt;15 hours of access to audiobooks per month&lt;/a&gt; as part of my subscription. While I still don't own the books and can only listen on the Spotify app, at least I'm not paying a separate subscription. Also, the 15 hour limit at this time is more than enough for me.&lt;/p&gt;
+&lt;p&gt;The library is another amazing option. No subscription fees and you get access to your local library's entire digital catalog. Using the &lt;a href="https://www.overdrive.com/apps/libby"&gt;Libby app&lt;/a&gt;, you can borrow books and start listening for free. Selection though may be an issue here since you are limited to what's available through your local library. Pro-tip, universities and employers sometimes have libraries, so as an alumnus or employee, you can expand the number of books available to you by registering multiple libraries on the Libby app. Regardless of which library you choose though, you still have to go through the Libby app.&lt;/p&gt;
+&lt;p&gt;The dream setup for me is, having direct access to the audiobook files so I can listen to them whenever and wherever I'd like. Similar to podcasts. Thanks to LibriVox and AntennaPod, that setup is possible.&lt;/p&gt;
+&lt;p&gt;In case you're interested in setting up something similar, in this post, I'll briefly explain what LibriVox and AntennaPod are and show how you can use them to start listening to free audiobooks on your phone.&lt;/p&gt;
+&lt;h2&gt;What is LibriVox?&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://librivox.org/"&gt;LibriVox&lt;/a&gt; is a website that provides a collection of free audiobooks from the public domain. Thanks to a vibrant community of volunteers, you can enjoy classics such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://librivox.org/the-divine-comedy-by-dante-alighieri/"&gt;The Divine Comedy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://librivox.org/the-adventures-of-sherlock-holmes/"&gt;The Adventures of Sherlock Holmes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://librivox.org/discourses-of-epictetus-by-epictetus/"&gt;Discourses of Epictetus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://librivox.org/roughing-it/"&gt;Roughing It&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://librivox.org/search?primary_key=0&amp;amp;search_category=title&amp;amp;search_page=1&amp;amp;search_form=get_results&amp;amp;search_order=catalog_date"&gt;And many others...&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It's important to note that the catalog is limited to public domain works. That means you won't have access to the latest self-help, business, or current events books. However, there are still thousands of books to keep you busy for an entire lifetime and the list is constantly growining since there are new works introduced into the public domain every year.&lt;/p&gt;
+&lt;p&gt;Here's &lt;a href="https://blog.archive.org/2025/01/01/welcome-to-the-public-domain-in-2025/"&gt;a few notable literary works that entered the public domain in 2025&lt;/a&gt; as well as the complete list of &lt;a href="https://archive.org/details/internetarchivebooks?tab=collection&amp;amp;query=date%3A1929"&gt;literary works from 1929&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;What is Antennapod?&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://antennapod.org/"&gt;AntennaPod&lt;/a&gt; is an open-source podcast player for Android.&lt;/p&gt;
+&lt;p&gt;The app has a ton of great features, such as &lt;a href="https://podcastindex.org/"&gt;Podcast Index&lt;/a&gt; support, subscribe via RSS directly,  OPML import and export, chapters, adjustable playback speed, and for the past few years, a personalized yearly summary which is computed locally on your device &lt;a href="/feed/antennapod-echo-2024"&gt;(here's my summary from 2024)&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can get AntennaPod from the Play Store or &lt;a href="https://f-droid.org/en/packages/de.danoeh.antennapod/"&gt;F-Droid&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Keep track of new releases&lt;/h2&gt;
+&lt;p&gt;LibriVox provides &lt;a href="https://librivox.org/pages/librivox-feeds/"&gt;several feeds&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Since podcast distribution is primarly done through RSS and you can subscribe to podcasts directly using RSS feeds in AntennaPod, we can use the app to stay up to date with new audiobook releases.&lt;/p&gt;
+&lt;p&gt;To subscribe to the LibriVox New Release feed:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Copy the LibriVox New Releases RSS feed URL to your clipboard: &lt;a href="https://librivox.org/rss/latest_releases"&gt;https://librivox.org/rss/latest_releases&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In AntennaPod, open up the hamburger menu and select &lt;strong&gt;Add Podcast&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In the &lt;em&gt;Add Podcast&lt;/em&gt; dialog, select &lt;strong&gt;Add podcast by RSS address&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/listen-audiobooks-librivox-antennapod/add-podcast-antennapod.png" class="img-fluid" alt="AntennaPod Add Podcast Dialog" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Paste the LibriVox New Releases RSS feed URL into the text box and select &lt;strong&gt;Confirm&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;At this point, you should see the feed listed in your AntennaPod subscriptions.&lt;/p&gt;
+&lt;p&gt;By subscribing the LibriVox New Release feed, AntennaPod treats the feed as a podcast, and each new release entry or audiobook is like a podcast episode.&lt;/p&gt;
+&lt;p&gt;For more information on subscribing to podcasts, see the &lt;a href="https://antennapod.org/documentation/getting-started/subscribe"&gt;AntennaPod documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Add books to Antennapod&lt;/h2&gt;
+&lt;p&gt;Subscribing to the new releases feed only notifies you when new books are added, you can't listen to or download the books. To do that, you'll need to subscribe to the RSS feed of the book you want to listen to in AntennaPod.&lt;/p&gt;
+&lt;h3&gt;From New Releases Feed&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;In AntennaPod's Subscription screen, select &lt;strong&gt;LibriVox's New Releases&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;From the list of new releases, select the book you want to listen to. For example, &amp;quot;Room of One's Own&amp;quot; by Virginia Woolf.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/listen-audiobooks-librivox-antennapod/antennapod-librivox-new-releases.png" class="img-fluid" alt="AntennaPod New Releases Feed" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In the audiobook's screen, select &lt;strong&gt;Visit Website&lt;/strong&gt;. This will take you to the LibriVox audiobook's page in the browser.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/listen-audiobooks-librivox-antennapod/antennapod-room-of-ones-own.png" class="img-fluid" alt="AntennaPod Audiobook Screen" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In the LibriVox audiobook page, select the book's RSS Feed.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/listen-audiobooks-librivox-antennapod/librivox-room-ones-own.png" class="img-fluid" alt="A Room of One's Own by Virginia Woolf LibriVox book page" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Copy the book's feed URL to your clipboard.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In AntennaPod, open up the hamburger menu and select &lt;strong&gt;Add Podcast&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In the &lt;em&gt;Add Podcast&lt;/em&gt; dialog, select &lt;strong&gt;Add podcast by RSS address&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Paste the book's RSS feed URL into the text box and select &lt;strong&gt;Confirm&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Any other books&lt;/h3&gt;
+&lt;p&gt;The process works the same for other books but you'll have to use LibriVox as the entrypoint to browse books.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;In your browser, navigate to LibriVox.&lt;/li&gt;
+&lt;li&gt;Go to the audiobook page. For example, this is the page for &lt;a href="https://librivox.org/walden-by-henry-david-thoreau"&gt;Walden&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;In the audiobook page, select the book's RSS Feed. For Walden, it's &lt;a href="https://librivox.org/rss/549"&gt;https://librivox.org/rss/549&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Copy the book's feed URL to your clipboard.&lt;/li&gt;
+&lt;li&gt;In AntennaPod, open up the hamburger menu and select &lt;strong&gt;Add Podcast&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;In the &lt;em&gt;Add Podcast&lt;/em&gt; dialog, select &lt;strong&gt;Add podcast by RSS address&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Paste the book's RSS feed URL into the text box and select &lt;strong&gt;Confirm&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Although AntennaPod wasn't designed for audiobook listening, thanks to the flexibility of RSS feeds and the thankless work of the LibriVox community, you can easily listen to audiobooks for free on your mobile device. I plan on testing out this setup and seeing whether it helps keep my reading habit on track.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/listen-audiobooks-librivox-antennapod?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/listen-audiobooks-librivox-antennapod</guid>
+      <pubDate>2025-01-05 21:04 -05:00</pubDate>
+      <category>#book</category>
+      <category>#audiobook</category>
+      <category>#rss</category>
+      <category>#antennapod</category>
+      <category>#librivox</category>
+      <category>#android</category>
+      <category>#podcast</category>
+      <category>#publicdomain</category>
+      <category>#opensource</category>
+    </item>
+    <item>
+      <title>Weird, Inc. and 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/weird-inc-2025?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/weird-inc-2025&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I don't remember how I came across Weird and their projects but I'm glad I did. I appreciate their approach of using existing platforms, protocols, and practices from the yesterweb to put the personal website front and center.&lt;/p&gt;
+&lt;h2&gt;Weird, Inc&lt;/h2&gt;
+&lt;p&gt;First, the topic of &lt;a href="https://blog.muni.town/weird-inc/"&gt;Weird the organization and their aspirations&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We have big aspirations for Weird. At minimum, a 'social network of personal websites' can be catalyzed by simply mapping and linking existing web spaces together, playing the role of social glue. On a grander scale there's potential for a pro-social reformation of the web as we know it, putting people's websites at the center of our sociodigital interactions.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;By aligning to the foundations of &lt;a href="https://seths.blog/2010/05/the-modern-business-plan/"&gt;Seth Godin's Modern Business Plan&lt;/a&gt;, they aim to focus on:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Truth -  describe the world as it is&lt;/li&gt;
+&lt;li&gt;Assertions - how you’re going to change things&lt;/li&gt;
+&lt;li&gt;Alternatives - what you'll do if assertions don't pan out.&lt;/li&gt;
+&lt;li&gt;People - who is on your team, who is going to join your team&lt;/li&gt;
+&lt;li&gt;Money - how much do you need and how will you spend it&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Below are some of the points that resonated with me.&lt;/p&gt;
+&lt;h3&gt;Truth&lt;/h3&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Home ownership on the web, remarkably, is just as fraught with rent-seeking monopolists as our physical spaces. No one gets to own anything anymore.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;While they're mainly referring to the social web, this is is generally true across many areas of our digital spaces.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Bluesky...is bringing into mainstream a nearly forgotten cornerstone of the Indie Web: Domain sovereignty&lt;br /&gt;
+&lt;br&gt;
+In a reinvigorated social web where your domain-name is your universal address in the digital sphere, Weird is the virtual home to which that address is pointing&lt;br /&gt;
+&lt;br&gt;
+'Weird the data importer' is our wedge into the data fortresses keeping our digital identities captive. What will start as a Publish Elsewhere, Syndicate (to your) Own Site (PESOS) strategy makes way for a fully self-sovereign Publish (on your) Own Site, Syndicate Elsewhere (POSSE) end state.&lt;br /&gt;
+&lt;br&gt;
+Imagine a WordPress-like website engine that aggregates all of your digital personas into a unified mosaic, completely under your control by combination of cloud backing and local storage.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Alternatives&lt;/h3&gt;
+&lt;p&gt;If the assertions don't pan out, the alternatives that I think might be interesting:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Local-first knowledge base with cloud synchronization. &lt;a href="https://anytype.io/"&gt;AnyType&lt;/a&gt; comes to mind.&lt;/li&gt;
+&lt;li&gt;Cloud + local archiver for many other 3rd party accounts such as Bluesky, Mastodon, Discourse etc. This might make PESOS scenarios easier. Of course, this only works if the 3rd party services allow developer access to their APIs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Weird in 2025&lt;/h2&gt;
+&lt;p&gt;Speaking specifically about &lt;a href="https://blog.muni.town/weird-2025/"&gt;Weird the product and what the team plans of shipping in 2025&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Weird is best understood as a single-page website generator&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Q1 and Q2&lt;/h3&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;'Weird the data importer' is our wedge into the data fortresses keeping our digital identities captive.&lt;br /&gt;
+&lt;br&gt;
+'Weird: ₱ESOS-edition' aggregates all of your digital personas into a harmonious mosaic, made completely yours by combination of cloud backing and local-first storage.&lt;br /&gt;
+&lt;br&gt;
+Setting up a POSSE pipeline however requires not just the right infrastructure...but also a big shift in workflow.&lt;br /&gt;
+&lt;br&gt;
+Most people will probably want a combination of both.&lt;br /&gt;
+&lt;br&gt;
+Hence our commitment to both models, starting with the least laborious one [PESOS].&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Personally, &lt;a href="https://www.lqdev.me/posts/rss-to-mastodon-posse-azure-logic-apps/"&gt;I prefer POSSE&lt;/a&gt;, but it's great to see that Weird plans on meeting people where they are.&lt;/p&gt;
+&lt;h3&gt;Late 2025&lt;/h3&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Around half-way through 2025, we're hoping to shift some of our attention away from Weird as an individualistic publishing tool to Weird as a network engine.&lt;br /&gt;
+&lt;br&gt;
+We think there's massive untapped potential in the web 1.0 concept of webrings, and we fully intend to bring them back.&lt;br /&gt;
+&lt;br&gt;
+All of this culminates in one of the key motivations behind the Weird project: &lt;a href="https://github.com/muni-town/weird/issues/3"&gt;A Network of Shared Purpose&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I'm not sure yet what this looks like but making it easier to discover and build networks of personal websites is a good problem to try to solve.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I wish them luck and success in what they're aiming to accomplish. I'm excited to see more projects like this sprouting to shake up the status-quo in our digital spaces.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/weird-inc-2025?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/weird-inc-2025</guid>
+      <pubDate>2024-12-17 18:41</pubDate>
+      <category>#weird</category>
+      <category>#cms</category>
+      <category>#munitown</category>
+      <category>#2025</category>
+      <category>#indieweb</category>
+      <category>#posse</category>
+      <category>#pesos</category>
+      <category>#personalweb</category>
+      <category>#internet</category>
+    </item>
+    <item>
+      <title>Starter Packs with OPML and RSS</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/rss-opml-starter-packs?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/rss-opml-starter-packs&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;One of the things I like about Bluesky is the &lt;a href="https://bsky.social/about/blog/06-26-2024-starter-packs"&gt;Starter Pack feature&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In a gist, a Starter Pack is a collection of feeds.&lt;/p&gt;
+&lt;p&gt;Bluesky users can:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create starter packs&lt;/li&gt;
+&lt;li&gt;Share starter packs&lt;/li&gt;
+&lt;li&gt;Subscribe to starter packs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Unfortunately, Starter Packs are limited to Bluesky.&lt;/p&gt;
+&lt;p&gt;Or are they?&lt;/p&gt;
+&lt;p&gt;As mentioned, starter packs are a collection of feeds that others can create, share, and subscribe to.&lt;/p&gt;
+&lt;p&gt;&lt;a href="/feed/bluesky-rss-support"&gt;Bluesky supports RSS&lt;/a&gt;, which means you could organize the feeds using an OPML file that you can share with others and others can subscribe to. The benefits of this is, you can continue to keep up with activity on Bluesky from the feed reader of your choice without being required to have an account on Bluesky.&lt;/p&gt;
+&lt;p&gt;More importantly, because RSS and OPML are open standards, you're not limited to building starter packs for Bluesky. You can create, share, and subscribe to starter packs for any platform that supports RSS. That includes blogs, podcasts, forums, YouTube, Mastodon, etc. &lt;a href="https://www.manton.org/2024/12/07/with-the-success.html"&gt;Manton seems to have something similar in mind&lt;/a&gt; as a means of building on open standards that make it easy for Micro.blog to interop with various platforms.&lt;/p&gt;
+&lt;p&gt;If you're interested in what that might look like in practice, check out my &amp;quot;starter packs&amp;quot; which you can subscribe to using your RSS reader of choice and the provided OPML files.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/feed/blogroll"&gt;Blogs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/feed/podroll"&gt;Podcasts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/feed/youtube"&gt;YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/feed/forums"&gt;Forums&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I'm still working on similar collections for Mastodon and Bluesky but the same concept applies.&lt;/p&gt;
+&lt;p&gt;Although these are just simple examples, it shows the importance of building on open standards and the open web. Doing so introduces more freedom for creators and communities.&lt;/p&gt;
+&lt;p&gt;Here are other &amp;quot;starter packs&amp;quot; you might consider subscribing to.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.thingelstad.com/2024/12/03/people-blogs-list.html"&gt;People and Blogs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blogroll.club/faq/"&gt;Blogroll Club&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If this is interesting to you, &lt;a href="https://feedland.org/"&gt;Feedland&lt;/a&gt; might be a project worth checking out.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/rss-opml-starter-packs?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/posts/rss-opml-starter-packs</guid>
+      <pubDate>2024-12-08 19:40</pubDate>
+      <category>#rss</category>
+      <category>#opml</category>
+      <category>#indieweb</category>
+      <category>#starterpacks</category>
+      <category>#community</category>
+      <category>#bluesky</category>
+      <category>#socialmedia</category>
+      <category>#openweb</category>
+      <category>#protocols</category>
+      <category>#openstandards</category>
+      <category>#feedland</category>
+    </item>
     <item>
       <title>Digitize Analog Bookmarks using AI, .NET, and GitHub Models</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/posts/digitize-analog-bookmarks-with-ai-dotnet?utm_medium=feed"&gt;https://www.luisquintanilla.me/posts/digitize-analog-bookmarks-with-ai-dotnet&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Introduction&lt;/h2&gt;

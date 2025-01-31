@@ -42,7 +42,7 @@ module Builder
             |> fun a -> a @ [x])
         |> List.collect(fun x -> 
                 x
-                |> List.map(fun y -> y.Replace("_src/","")))
+                |> List.map(fun y -> y.Replace("_src" + Path.DirectorySeparatorChar.ToString(),"")))
         |> List.map(fun (dir:string) -> Path.Join(srcDir,dir),Path.Join(outputDir,dir))
         |> List.iter(fun (s,d) -> 
             let saveDir = Directory.CreateDirectory(d)
@@ -455,7 +455,7 @@ module Builder
 
         combinedTaggedPosts
         |> Array.iter(fun (tag,pc)-> 
-            let individualTagSaveDir = Path.Join(saveDir,tag)
+            let individualTagSaveDir = Path.Join(saveDir,tag.Trim().Replace("\"",""))
             Directory.CreateDirectory(individualTagSaveDir) |> ignore
             let individualTagPage = generate (individualTagView tag pc.Posts pc.Notes pc.Responses) "default" $"{tag} - Tags - Luis Quintanilla"
             File.WriteAllText(Path.Join(individualTagSaveDir,"index.html"),individualTagPage)

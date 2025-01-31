@@ -3,8 +3,462 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>2024-11-18 17:34 -05:00</lastPubDate>
+    <lastPubDate>2025-01-29 19:59</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Tinkering with DeepSeek R1, GitHub Models, and .NET on stream</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/tinkering-deepseek-r1-dotnet-github-models?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/tinkering-deepseek-r1-dotnet-github-models&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I saw that the &lt;a href="https://azure.microsoft.com/en-us/blog/deepseek-r1-is-now-available-on-azure-ai-foundry-and-github/"&gt;DeepSeek R1 model is now on GitHub Models and Azure AI Foundry&lt;/a&gt;, so I decided to start a stream and play around with it in the GitHub Models playground as well as a .NET application.&lt;/p&gt;
+&lt;p&gt;Here's the recording.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=8Z6iFALi8kM" title="YouTube Video Thumbnail Tinkering on Stream with DeepSeek R1, GitHub Models, and .NET"&gt;&lt;img src="http://img.youtube.com/vi/8Z6iFALi8kM/0.jpg" class="img-fluid" alt="YouTube Video Thumbnail Tinkering on Stream with DeepSeek R1, GitHub Models, .NET" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I rambled on stream since it's my stream of consciousness as I'm tinkering with these technologies.&lt;/p&gt;
+&lt;p&gt;If you're mainly interested in the code, here's the GitHub repo: &lt;a href="https://github.com/lqdev/DeepSeekDotnetSample"&gt;lqdev/DeepSeekDotnetSample&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/tinkering-deepseek-r1-dotnet-github-models?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/tinkering-deepseek-r1-dotnet-github-models</guid>
+      <pubDate>2025-01-29 19:59</pubDate>
+      <category>#deepseek</category>
+      <category>#ai</category>
+      <category>#dotnet</category>
+      <category>#github</category>
+      <category>#azure</category>
+      <category>#livestream</category>
+    </item>
+    <item>
+      <title>Do not feed or aggravate the gators</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/do-not-feed-aggravate-gators?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/do-not-feed-aggravate-gators&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Mama says that alligators are ornery because they got all them teeth and no toothbrush.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/do-not-feed-aggravate-gators.png" class="img-fluid" alt="Sign saying do not feed or aggravate the gators" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/do-not-feed-aggravate-gators?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/do-not-feed-aggravate-gators</guid>
+      <pubDate>2025-01-25 15:13</pubDate>
+      <category>#gators</category>
+      <category>#bayou</category>
+      <category>#swamp</category>
+    </item>
+    <item>
+      <title>First live stream using Owncast done</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/first-owncast-stream?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/first-owncast-stream&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Earlier today I tested out my &lt;a href="/posts/deploy-owncast-azure/"&gt;self-hosted Owncast setup&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=3opjC7fEAJs" title="Video Thumbnail from live stream"&gt;&lt;img src="http://img.youtube.com/vi/3opjC7fEAJs/0.jpg" class="img-fluid" alt="Video Thumbnail from live stream" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Overall, I think it went well considering I was using the built-in camera and mic on my laptop. Despite sharing my screen, using the browser, broadcasting and recording the stream, the laptop seemed to handle it just fine. I didn't get a chance to test writing and running code which is going to make up a bulk of the content on stream.&lt;/p&gt;
+&lt;p&gt;The flow on OBS is straightforward and simple. I might automate it either using my Stream Deck or just mapping hotkeys. It's simple enough that I only need to transition between a few scenes.&lt;/p&gt;
+&lt;p&gt;As far as hosting the recordings, the process of uploading to YouTube was straightforward. It took a little over 10 minutes, but that's something that I can just do in the background so not really worried about that. For the time being, I think I'll just use YouTube to host the videos and mark them as unlisted. No particular reason behind that other than I only want YouTube to serve as my video host. The main place I plan on showcasing and organizing videos is on my website.&lt;/p&gt;
+&lt;p&gt;For the time being, I'll just create notes like these. Eventually though, I'd like to have a video post type which shows up on my feed. The post card will only display the video but the detailed view, I'd like for it to be like my &lt;a href="/presentations/hello-world"&gt;presentation pages&lt;/a&gt;. Except, instead of a presentation, it'd contain the video, show notes, maybe the transcript, and links mentioned during the stream. Also, I'd like video posts to have their own RSS feed just like other posts on this page so folks who are interested in following along can via their RSS reader.&lt;/p&gt;
+&lt;p&gt;A few other things I want to figure out are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Setting up a custom domain that points to my Owncast server rather than the default one provided by Azure Container Apps.&lt;/li&gt;
+&lt;li&gt;Displaying and managing chat outside of the built-in Owncast frontend.&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/first-owncast-stream?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/first-owncast-stream</guid>
+      <pubDate>2025-01-20 18:33</pubDate>
+      <category>#owncast</category>
+      <category>#livestream</category>
+      <category>#selfhost</category>
+      <category>#opensource</category>
+      <category>#fediverse</category>
+      <category>#video</category>
+      <category>#azure</category>
+    </item>
+    <item>
+      <title>Week of January 19, 2025 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2025-01-19-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2025-01-19-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/2025-01-12-weekly-post-summary"&gt;Week of January 12, 2025 - Post Summary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/created-owncast-livestream-page"&gt;Embedded Owncast live stream into my website&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/how-do-you-watch-blueray-on-pc"&gt;How do you watch Blu-Ray on PC?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/spotify-address-missing-info"&gt;Why does Spotify need my full address?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/ai-subtitles-coming-vlc"&gt;AI Subtitles Are Coming to VLC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/calm-tech-interview"&gt;The Future of Calm Technology with Amber Case&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/landlord-of-your-notes"&gt;Stop renting space for your notes and start being your own landlord&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/making-space-handmade-web"&gt;Making space for a handmade web&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/rip-david-lynch"&gt;R.I.P David Lynch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/swarm-cyborg-insects-agents"&gt;Swarm navigation of cyborg-insects in unknown obstructed soft terrain&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2025-01-19-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2025-01-19-weekly-post-summary</guid>
+      <pubDate>2025-01-19 13:59 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Embedded Owncast live stream into my website</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/created-owncast-livestream-page?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/created-owncast-livestream-page&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;The live stream page on my site is up.&lt;/p&gt;
+&lt;p&gt;If you go to &lt;a href="/live"&gt;/live&lt;/a&gt;, you'll see the stream.&lt;/p&gt;
+&lt;p&gt;Still not sure what stream schedule will look like, but I'm thinking maybe I'll do a test one on Monday.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/created-owncast-livestream-page?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/created-owncast-livestream-page</guid>
+      <pubDate>2025-01-18 19:20</pubDate>
+      <category>#owncast</category>
+      <category>#indieweb</category>
+      <category>#livestream</category>
+      <category>#fediverse</category>
+      <category>#opensource</category>
+      <category>#website</category>
+    </item>
+    <item>
+      <title>Why does Spotify need my full address?</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/spotify-address-missing-info?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/spotify-address-missing-info&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;&lt;img src="/images/feed/spotify-missing-information.png" class="img-fluid" alt="Pop-up requesting address information in Spotify Android app" /&gt;&lt;/p&gt;
+&lt;p&gt;Why?&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/spotify-address-missing-info?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/spotify-address-missing-info</guid>
+      <pubDate>2025-01-14 19:25</pubDate>
+      <category>#spotify</category>
+      <category>#privacy</category>
+    </item>
+    <item>
+      <title>How do you watch Blu-Ray on PC?</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/how-do-you-watch-blueray-on-pc?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/how-do-you-watch-blueray-on-pc&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I have a preference for physical media. There's many reasons, some related to the sentiment of &lt;a href="/feed/landlord-of-your-notes"&gt;owning vs. renting content&lt;/a&gt;. Along the same lines, streaming services and service providers can change the terms of service and you have little to no control over it. &lt;a href="https://en.wikipedia.org/wiki/Westworld_(TV_series)"&gt;Westworld&lt;/a&gt; is an example of that. One day, HBO decided to pull it from its streaming service and physical copies were the only way you could watch it.&lt;/p&gt;
+&lt;p&gt;Anyway, on to my most recent experience trying to play a Blu-Ray disc on my PC.&lt;/p&gt;
+&lt;p&gt;The other day I decided to sit down to watch an episode of Westworld. Usually, I get the DVD version. In this case though, I had the Blu-Ray.&lt;/p&gt;
+&lt;p&gt;I have an external Blu-Ray player so I thought, &amp;quot;Great! Let me just plug that into my laptop and start the show&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Wrong!&lt;/p&gt;
+&lt;p&gt;What I thought was a simple task, ended up taking me about 20 minutes to figure out and even then I got to a subpar solution.&lt;/p&gt;
+&lt;p&gt;I prefer playing media either with MPV or VLC.&lt;/p&gt;
+&lt;p&gt;At first, it wouldn't play so I decided to go online and figure out why. Turns out, that's not supported out of the box and to get it working you need to download an additional DLL and &lt;a href="https://www.easefab.com/resource/play-blu-ray-with-vlc.html"&gt;configure a few things in the VLC settings&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I could've gone through that process, but I just wanted to watch a show. There's got to be an easier way.&lt;/p&gt;
+&lt;p&gt;Next, I turned to the built-in Media Player in Windows. No luck there either.&lt;/p&gt;
+&lt;p&gt;I ended up going with the &lt;a href="https://www.leawo.com/blu-ray-player/"&gt;Leawo Blu-Ray player&lt;/a&gt;. Although it's free, you have to deal with pop-ups prompting you to upgrade to the paid version. It works though.&lt;/p&gt;
+&lt;p&gt;I would prefer to use VLC or the built-in media player but it's unfortunate using them isn't as straightforward. Now that I have some more time, I'll set up VLC so that next time, it can &amp;quot;just work&amp;quot;.&lt;/p&gt;
+&lt;p&gt;I'll close it out with a question.&lt;/p&gt;
+&lt;p&gt;How do you watch Blu-Rays on your PC?&lt;/p&gt;
+&lt;p&gt;&lt;a href="/contact"&gt;Send me a message&lt;/a&gt; and let me know.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/how-do-you-watch-blueray-on-pc?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/how-do-you-watch-blueray-on-pc</guid>
+      <pubDate>2025-01-14 18:55</pubDate>
+      <category>#bluray</category>
+      <category>#media</category>
+      <category>#physicalmedia</category>
+      <category>#vlc</category>
+    </item>
+    <item>
+      <title>Week of January 12, 2025 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2025-01-12-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2025-01-12-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Blogs&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/posts/deploy-owncast-azure"&gt;Deploy your own Owncast server&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/posts/listen-audiobooks-librivox-antennapod"&gt;Building a Reading Habit with Audiobooks, LibriVox, and AntennaPod&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/2025-01-05-weekly-post-summary"&gt;Week of January 5, 2025 - Post Summary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/attended-first-indieweb-hwc"&gt;Attended my first IndieWeb Homebrew Website Club&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/gh-actions-az-cli-docker-azcopy-workaround"&gt;Workaround for Azure CLI docker image azcopy issue in GitHub Actions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/owncast-azure-container-apps-deployment"&gt;Got an Owncast instance deployed to Azure!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/psu-nd-ncaaf-semifinal-2025"&gt;So glad I didn't watch the Penn State game&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/agents-huyen"&gt;Agents&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/kaggle-agents-whitepaper"&gt;Agents Whitepaper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/year-of-curiosity"&gt;A Year of Curiosity&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2025-01-12-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2025-01-12-weekly-post-summary</guid>
+      <pubDate>2025-01-12 11:57 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Workaround for Azure CLI docker image azcopy issue in GitHub Actions</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/gh-actions-az-cli-docker-azcopy-workaround?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/gh-actions-az-cli-docker-azcopy-workaround&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Publishing on my site was broken since yesterday. I thought it was only me but after doing some digging looks like it was an issue with Azure CLI and the link it uses to download azcopy.&lt;/p&gt;
+&lt;p&gt;Looks like the team is already working on a fix and you can track progress using this issue&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/Azure/azure-cli/issues/30635"&gt;https://github.com/Azure/azure-cli/issues/30635&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you're using Azure CLI in GitHub Actions and running into this problem, you can unblock yourself by installing azcopy manually. Here's the snippet that worked for me.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-yaml"&gt;- name: Upload to blob storage
+  uses: azure/CLI@v1
+  with:
+    azcliversion: 2.67.0
+    # azcopy workadound https://github.com/Azure/azure-cli/issues/30635
+    inlineScript: |
+        tdnf install -y azcopy;
+        # YOUR SCRIPT
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/gh-actions-az-cli-docker-azcopy-workaround?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/gh-actions-az-cli-docker-azcopy-workaround</guid>
+      <pubDate>2025-01-10 21:12</pubDate>
+      <category>#azure</category>
+      <category>#github</category>
+      <category>#cicd</category>
+    </item>
+    <item>
+      <title>So glad I didn't watch the Penn State game</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/psu-nd-ncaaf-semifinal-2025?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/psu-nd-ncaaf-semifinal-2025&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I'm so glad I didn't bother tuning in. That ending was rough.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/psu-nd-ncaaf-semifinal-2025?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/psu-nd-ncaaf-semifinal-2025</guid>
+      <pubDate>2025-01-10 20:33</pubDate>
+      <category>#football</category>
+      <category>#pennstate</category>
+      <category>#notredame</category>
+      <category>#psu</category>
+      <category>#ncaaf</category>
+    </item>
+    <item>
+      <title>Attended my first IndieWeb Homebrew Website Club</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/attended-first-indieweb-hwc?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/attended-first-indieweb-hwc&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Last night I attended my &lt;a href="https://events.indieweb.org/2025/01/homebrew-website-club-pacific-V49lZfOizy1E"&gt;first IndieWeb Homebrew Website Club meeting&lt;/a&gt;. Although it was my first, everyone was very welcoming and it felt like I'd been a longtime participant. It was also great to put faces to the many websites I already follow as well as discover new people in the community. Looking forward to the next one.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/attended-first-indieweb-hwc?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/attended-first-indieweb-hwc</guid>
+      <pubDate>2025-01-09 20:12</pubDate>
+      <category>#indieweb</category>
+      <category>#community</category>
+    </item>
+    <item>
+      <title>Got an Owncast instance deployed to Azure!</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/owncast-azure-container-apps-deployment?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/owncast-azure-container-apps-deployment&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;A few months ago, I started tinkering with Owncast. In that case, I was figuring out how I could use .NET Aspire and Blazor to &lt;a href="/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire/"&gt;configure an Owncast server and embed the stream on a website&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Although I didn't go all the way through creating the deployment, doing so with &lt;a href="https://learn.microsoft.com/dotnet/aspire/deployment/azure/aca-deployment"&gt;Aspire would've been fairly straightforward&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Since I already have a website, all I care about deploying is the Owncast server.&lt;/p&gt;
+&lt;p&gt;After spending about an hour on it today, I was able deploy and Owncast server to Azure Container Apps using the &lt;a href="https://learn.microsoft.com/en-us/azure/container-apps/vnet-custom?tabs=bash&amp;amp;pivots=azure-portal"&gt;virtual network environment setup tutorial&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The hardest part was figuring out that I needed to set up a virtual network in order to publicly expose multiple ports.&lt;/p&gt;
+&lt;p&gt;Once the server was up and running, configuring OBS was relatively easy as well.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/owncast-obs-azure-container-apps-deployment.png" class="img-fluid" alt="AI Generated image of two aliens enjoying a beer in the middle of the desert by a campfire on a starry night" /&gt;&lt;/p&gt;
+&lt;p&gt;I'll try to put together a more detailed writeup so I remember what I did for next time as well as help others who may be interested in self-hosting their own livestream server.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/owncast-azure-container-apps-deployment?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/owncast-azure-container-apps-deployment</guid>
+      <pubDate>2025-01-07 19:52</pubDate>
+      <category>#owncast</category>
+      <category>#livestream</category>
+      <category>#azure</category>
+      <category>#selfhost</category>
+      <category>#fediverse</category>
+      <category>#obs</category>
+      <category>#containers</category>
+      <category>#aca</category>
+    </item>
+    <item>
+      <title>Week of January 5, 2025 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2025-01-05-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2025-01-05-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Blogs&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/posts/listen-audiobooks-librivox-antennapod"&gt;Building a Reading Habit with Audiobooks, LibriVox, and AntennaPod&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/internet-archive-public-domain-2025"&gt;Welcome to the Public Domain in 2025&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/langchain-state-of-ai-2024"&gt;LangChain State of AI 2024 Report&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2025-01-05-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2025-01-05-weekly-post-summary</guid>
+      <pubDate>2025-01-05 21:08 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Week of December 15, 2024 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-12-15-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-12-15-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Blogs&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/posts/rss-opml-starter-packs"&gt;Starter Packs with OPML and RSS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/antennapod-echo-2024"&gt;Antennapod Echo 2024&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/surrender-quantum-conscience"&gt;Surrender to the quantum conscience&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/sora-released"&gt;Sora is here&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2024-12-15-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2024-12-15-weekly-post-summary</guid>
+      <pubDate>2024-12-15 13:26 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Surrender to the quantum conscience</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/surrender-quantum-conscience?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/surrender-quantum-conscience&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;&lt;img src="../images/feed/surrender-quantum-conscience.jpg" class="img-fluid" alt="Writing on railing &amp;quot;surrender to the quantum conscience&amp;quot;" /&gt;&lt;/p&gt;
+&lt;p&gt;I'm trying.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/surrender-quantum-conscience?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/surrender-quantum-conscience</guid>
+      <pubDate>2024-12-12 20:08</pubDate>
+      <category>#quantum</category>
+      <category>#conscience</category>
+      <category>#message</category>
+    </item>
+    <item>
+      <title>Antennapod Echo 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/antennapod-echo-2024?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/antennapod-echo-2024&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;That's a lot of podcasts!&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/antennapod-2024-1.png" class="img-fluid" alt="Screenshot of Antennapod Echo Podcast Hours Listened" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/antennapod-2024-2.png" class="img-fluid" alt="Screenshot of Antennapod Echo Podcast Addict" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/antennapod-echo-2024?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/antennapod-echo-2024</guid>
+      <pubDate>2024-12-11 20:52</pubDate>
+      <category>#podcasts</category>
+      <category>#opensource</category>
+      <category>#antennapod</category>
+      <category>#stats</category>
+    </item>
+    <item>
+      <title>Week of December 09, 2024 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-12-09-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-12-09-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Blogs&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/posts/rss-opml-starter-packs"&gt;Starter Packs with OPML and RSS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/spotify-wrapped-2024"&gt;Spotify Wrapped 2024&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/spotify-wrapped-2024-podcast-notebook-lm"&gt;Spotify Wrapped 2024 AI Generated Podcast&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/how-i-turned-website-social-media-hub-newman"&gt;How I turned my blog into a social media hub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2024-12-09-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2024-12-09-weekly-post-summary</guid>
+      <pubDate>2024-12-08 19:45 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Spotify Wrapped 2024 AI Generated Podcast</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/spotify-wrapped-2024-podcast-notebook-lm?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/spotify-wrapped-2024-podcast-notebook-lm&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;While looking at &lt;a href="/feed/spotify-wrapped-2024.md"&gt;Spotify Wrapped this year&lt;/a&gt;, I completely missed the AI-generated podcast that came along with it.&lt;/p&gt;
+&lt;p&gt;As cool as this is, &lt;strong&gt;it should've been opt-in&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Although I would hope that when I clicked &amp;quot;I Agree&amp;quot; on the user agreement, the use of my data in this way is covered (for Spotify's sake), it's not clear or easy to find:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;What data was shared with Google's NotebookLM&lt;/li&gt;
+&lt;li&gt;What Google will do with that data&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;There's a reason I purposefully haven't linked Spotify to other accounts.&lt;/p&gt;
+&lt;p&gt;I know there's probably hundreds of worse ways my data is being used I don't know about. This one though was hard to miss and a sad reminder that often you don't learn about how your data is being used until after the fact. Cases like this are not really a big deal. So what if you know I was going through a &amp;quot;Witchy Jam Band Phsychedelic Rock&amp;quot; phase in September? Where it does matter though is when it involves more personal and sensitive data. Again, because we don't realize it until after the fact, it's not until then that we learn what we're giving up when we make the simple, often uninformed, decision to select &amp;quot;I Agree&amp;quot;.&lt;/p&gt;
+&lt;p&gt;&lt;video class="img-fluid" width="500" height="281" controls=""&gt;&lt;source type="video/mp4" src="https://wrappedaipodcast.spotifycdn.com/bDEn3i-uWoItOTYMmcRcNGKBqZ18M9ygFTAY0X8YHXk.mp4"&gt;&lt;/source&gt;&lt;/video&gt;&lt;/p&gt;
+&lt;!-- &lt;video controls="" autoplay="" name="media"&gt;&lt;source src="https://wrappedaipodcast.spotifycdn.com/bDEn3i-uWoItOTYMmcRcNGKBqZ18M9ygFTAY0X8YHXk.mp4" type="video/mp4"&gt;&lt;/video&gt; --&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/spotify-wrapped-2024-podcast-notebook-lm?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/spotify-wrapped-2024-podcast-notebook-lm</guid>
+      <pubDate>2024-12-05 09:02</pubDate>
+      <category>#spotify</category>
+      <category>#ai</category>
+      <category>#spotifywrapped</category>
+      <category>#google</category>
+      <category>#notebooklm</category>
+      <category>#privacy</category>
+      <category>#podcast</category>
+      <category>#generativeai</category>
+      <category>#genai</category>
+    </item>
+    <item>
+      <title>Spotify Wrapped 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/spotify-wrapped-2024?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/spotify-wrapped-2024&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;It's finally here!&lt;/p&gt;
+&lt;p&gt;I can't say I'm too surprised by the results.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-2024-0.png" class="img-fluid" alt="Spotify Wrapped Screenshot Summary of top artists, songs, and listening minutes" /&gt;&lt;/p&gt;
+&lt;p&gt;Compared to last year, I nearly doubled my listening minutes. Also, none of the artists from the &lt;a href="/feed/spotify-wrapped-2023"&gt;previous year&lt;/a&gt; made it onto this list. Although, I'm not sure how Buffalo Springfield worked its way into the list of top artists.&lt;/p&gt;
+&lt;p&gt;I love how my listening habits from September are described, &amp;quot;Witchy Jam Band Psychedelic Rock&amp;quot;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-2024-1.png" class="img-fluid" alt="Spotify Wrapped Screenshot Listening Habits" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/spotify-wrapped-2024?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/spotify-wrapped-2024</guid>
+      <pubDate>2024-12-04 08:39</pubDate>
+      <category>#music</category>
+      <category>#spotify</category>
+      <category>#spotifywrapped</category>
+      <category>#stats</category>
+    </item>
+    <item>
+      <title>Running Linux GUI Apps on Windows (WSLg) is amazing!</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/running-linux-gui-apps-windows-wsl-amazing?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/running-linux-gui-apps-windows-wsl-amazing&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;So you might've heard of Windows Subsystem for Linux (WSL), but did you know you can also &lt;a href="https://learn.microsoft.com/windows/wsl/tutorials/gui-apps"&gt;run Linux GUI apps with WSLg&lt;/a&gt;?&lt;/p&gt;
+&lt;p&gt;While trying to install the Element Desktop client on my Spandragon X Elite Windows device, I quickly realized &lt;a href="https://github.com/element-hq/element-desktop/issues/650"&gt;you can't because of an issue with Electron&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;WSL is supported on ARM64 Windows devices. This means, it should also support GUI apps.&lt;/p&gt;
+&lt;p&gt;I decided to try and install the Element Desktop client for Linux in WSL and this was the result!&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/element-linux-wsl.png" class="img-fluid" alt="Screenshot of Element Desktop Login Screen" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/running-linux-gui-apps-windows-wsl-amazing?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/running-linux-gui-apps-windows-wsl-amazing</guid>
+      <pubDate>2024-11-27 20:48</pubDate>
+      <category>#wsl</category>
+      <category>#linux</category>
+      <category>#windows</category>
+      <category>#gui</category>
+      <category>#element</category>
+      <category>#matrix</category>
+    </item>
+    <item>
+      <title>Week of November 25, 2024 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-11-25-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-11-25-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/mastodon-working-again-v-4-3-1"&gt;Mastodon instance working again&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/2024-11-18-weekly-post-summary"&gt;Week of November 18, 2024 - Post Summary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/using-domain-mastodon-discovery"&gt;Using my domain for discovery in Mastodon&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/mastodon-instance-supports-opengraph-creator-tag"&gt;Mastodon instance now supports OpenGraph creator tag&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/digital-minimalism-moral-duty-deep-questions"&gt;Digital minimalism: A moral duty?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/jimmy-gambler-psu"&gt;Jimmy The Gambler&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/implement-activitypub-static-site-series-maho"&gt;Implement ActivityPub on a static site series by maho.dev&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2024-11-25-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2024-11-25-weekly-post-summary</guid>
+      <pubDate>2024-11-24 19:41 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Using my domain for discovery in Mastodon</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/using-domain-mastodon-discovery?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/using-domain-mastodon-discovery&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;For a while, I've known that I can use my domain and the WebFinger protocol to aid with discovery in the Fediverse, specifically Mastodon.&lt;/p&gt;
+&lt;p&gt;I tried implementing this feature on my website a while back but was unsuccessful.&lt;/p&gt;
+&lt;p&gt;Last night, I got an itch to try it again and got it working.&lt;/p&gt;
+&lt;p&gt;Basically, what I was doing wrong the first time was, I was trying to use &lt;code&gt;lqdev.me&lt;/code&gt; as the domain. Currently, my domain is not set up to use apex / naked domains. Therefore, it makes sense why that didn't work.&lt;/p&gt;
+&lt;p&gt;Once I used &lt;code&gt;www.lqdev.me&lt;/code&gt;, everything seemed to be working fine. The implementation isn't perfect, because technically you can use any username. &lt;a href="https://www.hanselman.com/blog/use-your-own-user-domain-for-mastodon-discoverability-with-the-webfinger-protocol-without-hosting-a-server"&gt;Scott Hanselman does a nice job explaining that&lt;/a&gt;. The important part though is that &lt;a href="/feed/now-on-bluesky/"&gt;my persence on the Fediverse is now directly linked to my domain, just like it is with Bluesky&lt;/a&gt;. This goes beyond the link verification Mastodon provides. As a result, it provides more flexibility and opportunities to shape my presence on the Fediverse.&lt;/p&gt;
+&lt;p&gt;If you're interested in implementing it for yourself, there's a ton of guides, but here's the one I used: &lt;a href="https://guide.toot.as/guide/use-your-own-domain/"&gt;Use your own user @ domain for Mastodon discoverability&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I don't like the &lt;code&gt;www&lt;/code&gt; subdomain. So far I've put up with it for a while but this might be the forcing function to finally getting the apex domain setup.&lt;/p&gt;
+&lt;p&gt;In the meantime, you can search my account in Mastodon using &lt;code&gt;@lqdev@www.lqdev.me&lt;/code&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/using-domain-mastodon-discovery?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/using-domain-mastodon-discovery</guid>
+      <pubDate>2024-11-19 09:35</pubDate>
+      <category>#mastodon</category>
+      <category>#fediverse</category>
+      <category>#indieweb</category>
+      <category>#openweb</category>
+      <category>#web</category>
+      <category>#smallweb</category>
+      <category>#cdn</category>
+      <category>#internet</category>
+    </item>
+    <item>
+      <title>Mastodon instance now supports OpenGraph creator tag</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/mastodon-instance-supports-opengraph-creator-tag?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/mastodon-instance-supports-opengraph-creator-tag&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;In version 4.3, &lt;a href="https://blog.joinmastodon.org/2024/10/mastodon-4.3/#:%7E:text=Helping%20writers%20and%20journalists"&gt;Mastodon introduced OpenGraph creator tags&lt;/a&gt; to link to an author's Fediverse account from within a post.&lt;/p&gt;
+&lt;p&gt;I had &lt;a href="/feed/added-fediverse-og-creator-tag/"&gt;implemented it on my website&lt;/a&gt; a while back. However, because my instance wasn't using a version that supported it, it didn't show up on my instance.&lt;/p&gt;
+&lt;p&gt;Since upgrading to 4.3.1, I can now see my posts making use of the creator tag feature.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/c8be21fd-daa8-40ef-b923-fd6c302ab1f3" class="img-fluid" alt="Screenshot of Mastodon Post with Author Profile Link" /&gt;&lt;/p&gt;
+&lt;p&gt;As you can see from the original post, implementing it was relatively trivial. Another win for open protocols and standards.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/mastodon-instance-supports-opengraph-creator-tag?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/mastodon-instance-supports-opengraph-creator-tag</guid>
+      <pubDate>2024-11-19 09:25</pubDate>
+      <category>#mastodon</category>
+      <category>#fediverse</category>
+      <category>#opengraph</category>
+      <category>#protocols</category>
+      <category>#indieweb</category>
+    </item>
     <item>
       <title>Mastodon instance working again</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/mastodon-working-again-v-4-3-1?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/mastodon-working-again-v-4-3-1&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;After about a month of not being able to access my Mastodon instance, I'm so excited to have it working again!&lt;/p&gt;
@@ -555,6 +1009,37 @@
       <category>#internet</category>
     </item>
     <item>
+      <title>Website Post Statistics - August 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/post-statistics-august-2024?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/post-statistics-august-2024&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Finished July with more regular posting.&lt;/p&gt;
+&lt;p&gt;Only 4 posts away from passing last year's response count.&lt;/p&gt;
+&lt;p&gt;As mentioned on &lt;a href="/feed/org-capture-functions-file-target/"&gt;another post&lt;/a&gt;, I've been slowly working on transitioning authoring workflows to Emacs using org-capture templates.&lt;/p&gt;
+&lt;p&gt;This month, I want to work on making capturing content from Nyxt more seamless, especially since responses are the types of posts I use most.&lt;/p&gt;
+&lt;p&gt;The other thing I'd like to start doing is consolidating the structure of my posts. Right now the YAML front-matter for the various posts types is significantly different. However, it doesn't have to be.&lt;/p&gt;
+&lt;p&gt;For most posts, I need:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Title&lt;/li&gt;
+&lt;li&gt;Date published&lt;/li&gt;
+&lt;li&gt;Data updated&lt;/li&gt;
+&lt;li&gt;Tags&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Responses are a little different because I also need to include the link to the original content I'm referencing in the post.&lt;/p&gt;
+&lt;p&gt;Once that's done, at some point, I'd also like to consolidate my URLs.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/posts&lt;/code&gt; captures long-form blog posts&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/feed&lt;/code&gt; captures microblog posts and responses&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Since everything is a post, consolidating under one of them for all my posts and providing additional urls like &lt;code&gt;/notes&lt;/code&gt;, &lt;code&gt;/photos&lt;/code&gt;, &lt;code&gt;/articles&lt;/code&gt; for the individual types of posts might make more sense.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/post-statistics-august-2024?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/post-statistics-august-2024</guid>
+      <pubDate>2024-08-01 20:19</pubDate>
+      <category>#githubactions</category>
+      <category>#cicd</category>
+      <category>#blogging</category>
+      <category>#stats</category>
+      <category>#github</category>
+    </item>
+    <item>
       <title>OPML for website feeds</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/website-feeds-opml?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/website-feeds-opml&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;While thiking about implementing &lt;a href="/feed/well-known-feeds/"&gt;&lt;code&gt;.well-known&lt;/code&gt; for RSS feeds on my site&lt;/a&gt;, I had another idea. Since that uses OPML anyways, I remembered recently &lt;a href="/feed/blogroll-discovery-implemented/"&gt;doing something similar for my blogroll&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The concept is the same, except instead of making my blogroll discoverable, I'm doing it for my feeds. At the end of the day, a blogroll is a collection of feeds, so it should just work for my own feeds.&lt;/p&gt;
@@ -614,37 +1099,6 @@
       <category>#music</category>
       <category>#playlist</category>
       <category>#spotify</category>
-    </item>
-    <item>
-      <title>Website Post Statistics - August 2024</title>
-      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/post-statistics-august-2024?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/post-statistics-august-2024&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Finished July with more regular posting.&lt;/p&gt;
-&lt;p&gt;Only 4 posts away from passing last year's response count.&lt;/p&gt;
-&lt;p&gt;As mentioned on &lt;a href="/feed/org-capture-functions-file-target/"&gt;another post&lt;/a&gt;, I've been slowly working on transitioning authoring workflows to Emacs using org-capture templates.&lt;/p&gt;
-&lt;p&gt;This month, I want to work on making capturing content from Nyxt more seamless, especially since responses are the types of posts I use most.&lt;/p&gt;
-&lt;p&gt;The other thing I'd like to start doing is consolidating the structure of my posts. Right now the YAML front-matter for the various posts types is significantly different. However, it doesn't have to be.&lt;/p&gt;
-&lt;p&gt;For most posts, I need:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Title&lt;/li&gt;
-&lt;li&gt;Date published&lt;/li&gt;
-&lt;li&gt;Data updated&lt;/li&gt;
-&lt;li&gt;Tags&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Responses are a little different because I also need to include the link to the original content I'm referencing in the post.&lt;/p&gt;
-&lt;p&gt;Once that's done, at some point, I'd also like to consolidate my URLs.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;/posts&lt;/code&gt; captures long-form blog posts&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;/feed&lt;/code&gt; captures microblog posts and responses&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Since everything is a post, consolidating under one of them for all my posts and providing additional urls like &lt;code&gt;/notes&lt;/code&gt;, &lt;code&gt;/photos&lt;/code&gt;, &lt;code&gt;/articles&lt;/code&gt; for the individual types of posts might make more sense.&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/post-statistics-august-2024?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/feed/post-statistics-august-2024</guid>
-      <pubDate>2024-08-01 20:19</pubDate>
-      <category>#githubactions</category>
-      <category>#cicd</category>
-      <category>#blogging</category>
-      <category>#stats</category>
-      <category>#github</category>
     </item>
     <item>
       <title>Subscription dark patterns</title>
@@ -1248,22 +1702,6 @@
       <category>#championship</category>
     </item>
     <item>
-      <title>Week of May 06, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-05-06-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-05-06-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="/feed/crate-finds-april-2024"&gt;Crate Finds - April 2024&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="/feed/2024-04-29-weekly-post-summary"&gt;Week of April 29, 2024 - Post Summary&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/2024-05-06-weekly-post-summary?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/feed/2024-05-06-weekly-post-summary</guid>
-      <pubDate>2024-05-05 19:24 -05:00</pubDate>
-      <category>#weeklysummary</category>
-      <category>#blogging</category>
-      <category>#website</category>
-      <category>#indieweb</category>
-    </item>
-    <item>
       <title>Website Post Statistics - May 2024</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/post-statistics-may-2024?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/post-statistics-may-2024&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Still not mid-year and I'm making progress on publishing to the website. Some notable observations this month:&lt;/p&gt;
 &lt;ul&gt;
@@ -1297,6 +1735,22 @@
       <category>#music</category>
       <category>#playlist</category>
       <category>#spotify</category>
+    </item>
+    <item>
+      <title>Week of May 06, 2024 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-05-06-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-05-06-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/crate-finds-april-2024"&gt;Crate Finds - April 2024&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/2024-04-29-weekly-post-summary"&gt;Week of April 29, 2024 - Post Summary&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2024-05-06-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2024-05-06-weekly-post-summary</guid>
+      <pubDate>2024-05-05 19:24 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
     </item>
     <item>
       <title>Week of April 29, 2024 - Post Summary</title>
@@ -1403,6 +1857,17 @@
       <category>#shows</category>
     </item>
     <item>
+      <title>New podcast (Better Offline) added to blogroll</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/better-offline-podroll?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/better-offline-podroll&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;While doing chores today, I put on one of the episodes from &lt;a href="https://www.wheresyoured.at/about/"&gt;Ed Zitron's&lt;/a&gt; &lt;a href="https://www.betteroffline.com/"&gt;Better Offline podcast&lt;/a&gt;. This resulted me in me basically binging the rest of the episodes on the backlog. Also, it's now made its way into the regular rotation with other podcasts and the &lt;a href="/feed/podroll"&gt;podroll&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/better-offline-podroll?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/better-offline-podroll</guid>
+      <pubDate>2024-04-07 16:50</pubDate>
+      <category>#podcast</category>
+      <category>#podroll</category>
+      <category>#betteroffline</category>
+    </item>
+    <item>
       <title>Week of April 07, 2024 - Post Summary</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2024-04-07-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2024-04-07-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
@@ -1435,17 +1900,6 @@
       <category>#blogging</category>
       <category>#website</category>
       <category>#indieweb</category>
-    </item>
-    <item>
-      <title>New podcast (Better Offline) added to blogroll</title>
-      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/better-offline-podroll?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/better-offline-podroll&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;While doing chores today, I put on one of the episodes from &lt;a href="https://www.wheresyoured.at/about/"&gt;Ed Zitron's&lt;/a&gt; &lt;a href="https://www.betteroffline.com/"&gt;Better Offline podcast&lt;/a&gt;. This resulted me in me basically binging the rest of the episodes on the backlog. Also, it's now made its way into the regular rotation with other podcasts and the &lt;a href="/feed/podroll"&gt;podroll&lt;/a&gt;.&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/better-offline-podroll?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/feed/better-offline-podroll</guid>
-      <pubDate>2024-04-07 16:50</pubDate>
-      <category>#podcast</category>
-      <category>#podroll</category>
-      <category>#betteroffline</category>
     </item>
     <item>
       <title>Thoughts on World Wide Whack</title>
