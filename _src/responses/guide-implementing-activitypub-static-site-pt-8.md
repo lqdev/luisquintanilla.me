@@ -9,4 +9,4 @@ tags: ["fediverse","indieweb","activitypub","personalweb","internet","opensource
 
 Part 8 of ["A guide to implement ActivityPub in a static site (or any website)"](https://www.maho.dev/2024/02/a-guide-to-implement-activitypub-in-a-static-site-or-any-website/) by [maho.dev](https://www.maho.dev/) recently dropped. 
 
-This part goes over how to add replies and coments to your static site. 
+This part goes over how to add replies and comments to your static site. 
