@@ -87,6 +87,7 @@ let main argv =
     buildPresentationPages presentations
 
     // Build livestream pages
+    buildLiveStreamPage ()
     buildLiveStreamsPage liveStreams
     buildLiveStreamPages liveStreams
 
