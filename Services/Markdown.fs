@@ -80,6 +80,13 @@ module MarkdownService
 
         { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = presentationDetails.Yaml; Content = presentationDetails.Content }
 
+    let parseLivestream (filePath:string) : Livestream = 
+        
+        let livestreamDetails = getContentAndMetadata<LivestreamDetails>(filePath)
+
+        { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = livestreamDetails.Yaml; Content = livestreamDetails.Content }
+
+
     let parseSnippet (filePath:string) : Snippet = 
         let snippetDetails = getContentAndMetadata<SnippetDetails>(filePath);
 

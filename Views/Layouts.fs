@@ -120,6 +120,7 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/snippets"] [ Text "Snippets" ]
                                 a [_class "dropdown-item"; _href "/wiki"] [ Text "Wiki" ]
                                 a [_class "dropdown-item"; _href "/presentations"] [ Text "Presentations" ]
+                                a [_class "dropdown-item"; _href "/streams"] [ Text "Live Stream Recordings" ]                                
                         ]
                     ]
                     

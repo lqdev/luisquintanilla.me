@@ -3,8 +3,70 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>2025-01-29 19:59</lastPubDate>
+    <lastPubDate>2025-02-02 18:06</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Website Post Statistics - January 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/post-statistics-jan-2025?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/post-statistics-jan-2025&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Off to a good start.&lt;/p&gt;
+&lt;p&gt;In the month of January, I wrote two long-form posts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/posts/listen-audiobooks-librivox-antennapod/"&gt;Building a Reading Habit with Audiobooks, LibriVox, and AntennaPod&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/posts/deploy-owncast-azure/"&gt;Deploy your own Owncast server&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Last year, I published about seven of them.&lt;/p&gt;
+&lt;p&gt;As I tinker some more &lt;a href="https://www.lqdev.me/feed/first-owncast-stream"&gt;live on stream&lt;/a&gt; and use blog posts as a more structured way to orgqanize my explorations, I expect this year to have a healthy number of longer-form blog posts.&lt;/p&gt;
+&lt;p&gt;Notes and responses are not too far behind either. Both of them are at 14 in January. That's about 10% and 5% the number of posts in both of those categories last year. I haven't been reposting things I'm reading as often, but I'd like to start doing that some more.&lt;/p&gt;
+&lt;p&gt;Similar to long-form posts, as I &lt;a href="/feed/tinkering-deepseek-r1-dotnet-github-models/"&gt;reflect on each stream and publish the recordings&lt;/a&gt;, I expect at least one note every one or two weeks just for the stream.&lt;/p&gt;
+&lt;p&gt;No surprise, tags on my posts continue to be related to AI.&lt;/p&gt;
+&lt;p&gt;This month I didn't really do the monthly &lt;a href="/tags/cratefinds"&gt;music playlist&lt;/a&gt; kind of posts. If I were to quickly summarize the music on repeat this month, it'd be the &lt;a href="/feed/andre-3000-listening-to-the-sun/"&gt;Andre 3000 album, New Blue Sun&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/post-statistics-jan-2025?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/post-statistics-jan-2025</guid>
+      <pubDate>2025-02-02 18:06</pubDate>
+      <category>#githubactions</category>
+      <category>#cicd</category>
+      <category>#blogging</category>
+      <category>#stats</category>
+      <category>#github</category>
+    </item>
+    <item>
+      <title>Week of February 2, 2025 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2025-02-02-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2025-02-02-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/owncast-simulcast-youtube"&gt;Simulcasting to Owncast and YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/tinkering-deepseek-r1-dotnet-github-models"&gt;Tinkering with DeepSeek R1, GitHub Models, and .NET on stream&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/bucees-wisconsin"&gt;Buc-ee's plans first Wisconsin travel center&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2025-02-02-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2025-02-02-weekly-post-summary</guid>
+      <pubDate>2025-02-02 13:05 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Simulcasting to Owncast and YouTube</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/owncast-simulcast-youtube?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/owncast-simulcast-youtube&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;About a week ago, I was telling &lt;a href="https://maho.dev/"&gt;maho.dev&lt;/a&gt; about Owncast and my &lt;a href="/posts/deploy-owncast-azure"&gt;self-hosted setup&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;During our chat, the question of simulcasting came up.&lt;/p&gt;
+&lt;p&gt;Using the &lt;a href="https://obsproject.com/forum/resources/obs-studio-stream-to-multiple-platforms-or-channels-at-once.932/"&gt;guidance from the OBS community&lt;/a&gt; as a starting point, I decided to try it out for myself.&lt;/p&gt;
+&lt;p&gt;It didn't work as-is but after using an AI assistant to help me tweak the ffmpeg command, I was able to get it working.&lt;/p&gt;
+&lt;p&gt;I posted the command to my &lt;a href="/wiki/owncast"&gt;Wiki&lt;/a&gt; and plan on writing a more detailed post at a later time.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/owncast-simulcast-youtube?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/owncast-simulcast-youtube</guid>
+      <pubDate>2025-01-30 20:25</pubDate>
+      <category>#owncast</category>
+      <category>#obs</category>
+      <category>#youtube</category>
+      <category>#livestream</category>
+      <category>#fediverse</category>
+      <category>#opensource</category>
+    </item>
     <item>
       <title>Tinkering with DeepSeek R1, GitHub Models, and .NET on stream</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/tinkering-deepseek-r1-dotnet-github-models?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/tinkering-deepseek-r1-dotnet-github-models&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I saw that the &lt;a href="https://azure.microsoft.com/en-us/blog/deepseek-r1-is-now-available-on-azure-ai-foundry-and-github/"&gt;DeepSeek R1 model is now on GitHub Models and Azure AI Foundry&lt;/a&gt;, so I decided to start a stream and play around with it in the GitHub Models playground as well as a .NET application.&lt;/p&gt;

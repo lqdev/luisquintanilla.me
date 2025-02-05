@@ -167,14 +167,6 @@ module Builder
         // Write out page
         File.WriteAllText(Path.Join(saveDir,"index.html"), onlineRadioPage)        
 
-    let buildLiveStreamPage () = 
-        let title = "Live Stream - Luis Quintanilla"
-        let page = generate (liveStreamView title) "default" title
-        let saveDir = Path.Join(outputDir,"live")
-        Directory.CreateDirectory(saveDir) |> ignore
-
-        File.WriteAllText(Path.Join(saveDir,"index.html"), page)
-
     let loadPosts () = 
         let postPaths = 
             Directory.GetFiles(Path.Join(srcDir,"posts"))
@@ -198,6 +190,14 @@ module Builder
         let presentations = presentationPaths |> Array.map(parsePresentation)
         
         presentations
+
+    let loadLiveStreams () =
+        let streamPaths = 
+            Directory.GetFiles(Path.Join(srcDir,"streams"))
+        
+        let streams = streamPaths |> Array.map(parseLivestream)
+        
+        streams
 
     let loadSnippets () = 
         let snippetPaths = 
@@ -523,6 +523,22 @@ module Builder
             let saveDir = Path.Join(rootSaveDir,$"{presentation.FileName}")
             Directory.CreateDirectory(saveDir) |> ignore
             File.WriteAllText(Path.Join(saveDir,"index.html"),presentationView))
+
+    let buildLiveStreamsPage (streams: Livestream array) = 
+        let liveStreamsPage = generate (liveStreamsView streams) "defaultindex" "Live Stream Recordings - Luis Quintanilla"
+        let saveDir = Path.Join(outputDir,"streams")
+        Directory.CreateDirectory(saveDir) |> ignore
+        File.WriteAllText(Path.Join(saveDir,"index.html"),liveStreamsPage)
+
+    let buildLiveStreamPages (streams:Livestream array) = 
+        streams
+        |> Array.iter(fun stream ->
+            let rootSaveDir = Path.Join(outputDir,"streams")
+            let html = liveStreamPageView {stream with Content = stream.Content |> convertMdToHtml}
+            let streamView = generate  html "defaultindex" $"Live Stream Recording | {stream.Metadata.Title} | Luis Quintanilla"
+            let saveDir = Path.Join(rootSaveDir,$"{stream.FileName}")
+            Directory.CreateDirectory(saveDir) |> ignore
+            File.WriteAllText(Path.Join(saveDir,"index.html"),streamView))
 
     let buildSnippetPage(snippets:Snippet array) = 
         let snippetsPage = generate (snippetsView snippets) "defaultindex" "Snippets | Luis Quintanilla"

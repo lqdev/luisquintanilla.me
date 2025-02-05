@@ -31,6 +31,7 @@ let main argv =
     let posts = loadPosts() 
     let feedPosts = loadFeed ()
     let presentations = loadPresentations ()
+    let liveStreams = loadLiveStreams ()
     let feedLinks = loadFeedLinks ()
     let blogrollLinks = loadBlogrollLinks ()
     let podrollLinks = loadPodrollLinks ()
@@ -51,7 +52,6 @@ let main argv =
     buildColophonPage ()
     buildSubscribePage ()
     buildOnlineRadioPage ()
-    buildLiveStreamPage ()
 
     // Write Post / Archive Pages
     buildPostPages posts
@@ -85,6 +85,10 @@ let main argv =
     // Build presentation pages
     buildPresentationsPage presentations
     buildPresentationPages presentations
+
+    // Build livestream pages
+    buildLiveStreamsPage liveStreams
+    buildLiveStreamPages liveStreams
 
     // Redirects
     buildRedirectPages redirects

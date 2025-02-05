@@ -681,6 +681,33 @@ let presentationPageView (presentation:Presentation) =
         ]  
     ]
 
+
+let liveStreamsView (livestreams: Livestream array) = 
+    div [ _class "d-grip gap-3" ] [
+        h2[] [Text "Live Stream Recordings"]
+        p [] [Text "List of live stream recordings and associated resources"]
+        ul [] [
+            for stream in livestreams do
+                li [] [
+                    a [ _href $"/streams/{stream.FileName}"] [ Text stream.Metadata.Title ]
+                ]
+        ]
+    ]
+
+let liveStreamPageView (stream:Livestream) = 
+
+
+    div [_class "presentation-container"] [
+        h2 [] [Text stream.Metadata.Title]
+        rawText stream.Content
+        hr []
+        h3 [] [Text "Resources"]
+        ul [] [
+            for resource in stream.Metadata.Resources do
+                li [] [a [_href $"{resource.Url}"] [Text resource.Text]]
+        ]  
+    ]
+
 let albumsPageView (images:Album array) = 
     let albumGroups = images |> Array.chunkBySize 3
     div [_class "mr-auto"] [

@@ -65,6 +65,26 @@ module Domain
     }
 
     [<CLIMutable>]
+    type LivestreamResource = {
+        [<YamlMember(Alias="text")>] Text: string
+        [<YamlMember(Alias="url")>] Url: string
+    }
+
+    [<CLIMutable>]
+    type LivestreamDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="video_url")>] VideoUrl: string
+        [<YamlMember(Alias="published_date")>] Date: string
+        [<YamlMember(Alias="resources")>] Resources: LivestreamResource array
+    }
+
+    type Livestream = {
+        FileName: string
+        Metadata: LivestreamDetails
+        Content: string
+    }
+
+    [<CLIMutable>]
     type SnippetDetails = {
         [<YamlMember(Alias="title")>] Title: string
         [<YamlMember(Alias="language")>] Language: string        
