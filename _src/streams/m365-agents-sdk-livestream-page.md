@@ -16,3 +16,9 @@ resources:
 ---
 
 [![Thumnail of live stream](http://img.youtube.com/vi/ZKsfKp9s6I0/0.jpg)](https://www.youtube.com/watch?v=ZKsfKp9s6I0 "Thumnail of live stream")
+
+## Timestamps
+
+- [00:01:52](https://youtu.be/ZKsfKp9s6I0?feature=shared&t=112) - Intro
+- [00:09:16](https://youtu.be/ZKsfKp9s6I0?feature=shared&t=556) - M365 Agents SDK
+- [01:44:00](https://youtu.be/ZKsfKp9s6I0?feature=shared&t=6240) - Adding livestream pages to website
