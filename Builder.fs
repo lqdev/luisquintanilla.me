@@ -524,6 +524,14 @@ module Builder
             Directory.CreateDirectory(saveDir) |> ignore
             File.WriteAllText(Path.Join(saveDir,"index.html"),presentationView))
 
+    let buildLiveStreamPage () = 
+        let title = "Live Stream - Luis Quintanilla"
+        let page = generate (liveStreamView title) "default" title
+        let saveDir = Path.Join(outputDir,"live")
+        Directory.CreateDirectory(saveDir) |> ignore
+
+        File.WriteAllText(Path.Join(saveDir,"index.html"), page)
+
     let buildLiveStreamsPage (streams: Livestream array) = 
         let liveStreamsPage = generate (liveStreamsView streams) "defaultindex" "Live Stream Recordings - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"streams")
