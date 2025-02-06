@@ -122,11 +122,6 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/presentations"] [ Text "Presentations" ]
                         ]
                     ]
-                    
-                    li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/events"] [ Text "Events" ]
-                    ]
-
 
                     //Livestream dropdown
                     li [_class "nav-item dropdown"] [
@@ -146,9 +141,14 @@ module Layouts
                             attr "aria-labelledby" "liveDropdown"
                             ] [
                                 a [_class "dropdown-item"; _href "/live"] [ Text "Stream" ]
-                                a [_class "dropdown-item"; _href "/streams"] [ Text "Live Stream Recordings" ]
+                                a [_class "dropdown-item"; _href "/streams"] [ Text "Recordings" ]
                             ]
                     ]
+
+                    li [_class "nav-item"] [
+                        a [_class "nav-link"; _href "/events"] [ Text "Events" ]
+                    ]
+
                  ]
 
                 a [_href "/subscribe"] [
