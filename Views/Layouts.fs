@@ -120,7 +120,6 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/snippets"] [ Text "Snippets" ]
                                 a [_class "dropdown-item"; _href "/wiki"] [ Text "Wiki" ]
                                 a [_class "dropdown-item"; _href "/presentations"] [ Text "Presentations" ]
-                                a [_class "dropdown-item"; _href "/streams"] [ Text "Live Stream Recordings" ]                                
                         ]
                     ]
                     
@@ -128,10 +127,29 @@ module Layouts
                         a [_class "nav-link"; _href "/events"] [ Text "Events" ]
                     ]
 
-                    li [_class "nav-item"] [
-                        a [_class "nav-link"; _href "/live"] [ Text "Live" ]
-                    ]                                        
-                ]
+
+                    //Livestream dropdown
+                    li [_class "nav-item dropdown"] [
+                        a [
+                            _class "nav-link dropdown-toggle"
+                            _href "#"
+                            _id "liveDropdown"
+                            attr "role" "button"
+                            attr "data-toggle" "dropdown"
+                            attr "aria-haspopup" "true"
+                            attr "aria-expanded" "false"
+                        ] [
+                            Text "Live"
+                        ]
+                        div [
+                            _class "dropdown-menu"
+                            attr "aria-labelledby" "liveDropdown"
+                            ] [
+                                a [_class "dropdown-item"; _href "/live"] [ Text "Stream" ]
+                                a [_class "dropdown-item"; _href "/streams"] [ Text "Live Stream Recordings" ]
+                            ]
+                    ]
+                 ]
 
                 a [_href "/subscribe"] [
                     tag "svg" [
