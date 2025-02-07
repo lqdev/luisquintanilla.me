@@ -7,6 +7,9 @@ dt_updated: "2025-02-06 19:42 -05:00"
 tags: ["eink","pebble","smartwatch","google","opensource"]
 ---
 
+> **TL;DR**
+> We’re making a new Pebble-style smartwatch.
+
 This is amazing news! By the time I decided to get a Pebble, they'd already been sold to Google. 
 
 I agree with Eric's points here:
