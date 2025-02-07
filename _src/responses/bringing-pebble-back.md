@@ -22,7 +22,7 @@ Simple and beautiful user experience around a core set of features I use regular
 > - **Buttons!** (to play/pause/skip music on my phone without looking at the screen)
 > - **Hackable** (apparently you can’t even write your own watchfaces for Apple Watch? That is wild. There were >16k watchfaces on the Pebble appstore!)
 
-Garmin is the closes I've come to it at least on the battery life and buttons front. Pebble was one-of-a-kind.
+Garmin is the closest I've come to it at least on the battery life and buttons front. Pebble was one-of-a-kind.
 
 I already signed up to stay up to date with the project and plan on being a day one customer. You can too at [repebble.com](https://repebble.com/).
 
