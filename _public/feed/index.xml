@@ -3,8 +3,52 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>2025-02-02 18:06</lastPubDate>
+    <lastPubDate>2025-02-09 13:15 -05:00</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Week of February 9, 2025 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2025-02-09-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2025-02-09-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/cdn-issue-fixed-redirects-working"&gt;Redirect URLs working again&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/post-statistics-jan-2025"&gt;Website Post Statistics - January 2025&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/bringing-pebble-back"&gt;Bringing Pebble Back&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/build-a-link-blog-xuanwo"&gt;Build a link blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/guide-implementing-activitypub-static-site-pt-8"&gt;A Guide to Implementing ActivityPub in a Static Site (or Any Website) - Part 8&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/illustrated-deepseek-r1"&gt;The Illustrated DeepSeek-R1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/master-art-of-product-manager"&gt;Master the Art of the Product Manager 'No'&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/openai-deep-research"&gt;Introducing deep research&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2025-02-09-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2025-02-09-weekly-post-summary</guid>
+      <pubDate>2025-02-09 13:15 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Redirect URLs working again</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/cdn-issue-fixed-redirects-working?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/cdn-issue-fixed-redirects-working&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Thanks to the kind e-mail from &lt;a href="https://www.benji.dog/"&gt;benji.dog&lt;/a&gt;, I realized people couldn't subscribe to my RSS feeds using the links provided in the &lt;a href="/subscribe"&gt;/subscribe&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;I'd noticed something weird had been going on for the past few days but since the rest of my site was working, I didn't pay attention to it.&lt;/p&gt;
+&lt;p&gt;When I went in earlier today to fix the issue, I realized because of changes to &lt;a href="https://learn.microsoft.com/azure/cdn/edgio-retirement-faq"&gt;Azure CDN&lt;/a&gt;, none of my redirects were working.&lt;/p&gt;
+&lt;p&gt;My site kept working fine, but that's because the migration was autmatically done by Azure.&lt;/p&gt;
+&lt;p&gt;What wasn't automatically migrated were my CDN rules which I'd set up to &lt;a href="/feed/new-rss-feed-links"&gt;simplify URLs&lt;/a&gt; and &lt;a href="/feed/own-your-rss-links"&gt;own my links&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/cdn-issue-fixed-redirects-working?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/cdn-issue-fixed-redirects-working</guid>
+      <pubDate>2025-02-08 14:38 -05:00</pubDate>
+      <category>#cdn</category>
+      <category>#azure</category>
+      <category>#rss</category>
+      <category>#ownyourlinks</category>
+      <category>#cdn</category>
+      <category>#frontdoor</category>
+      <category>#community</category>
+    </item>
     <item>
       <title>Website Post Statistics - January 2025</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/post-statistics-jan-2025?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/post-statistics-jan-2025&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Off to a good start.&lt;/p&gt;
@@ -3403,18 +3447,6 @@
       <category>#socialmedia</category>
     </item>
     <item>
-      <title>Spotify Wrapped 2023</title>
-      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/spotify-wrapped-2023&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Kind of late, but here's my Spotify Wrapped for the year. No idea how Eslabon Armado snuck in there at the end. It'd be cool if I was also able to get data from my MP3 player which is where I mainly listen to music. Though the artists wouldn't change much.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-1.png" class="img-fluid" alt="Spotify Wrapped 2023 Summary" /&gt;&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/feed/spotify-wrapped-2023</guid>
-      <pubDate>2023-12-12 21:03</pubDate>
-      <category>#music</category>
-      <category>#stats</category>
-      <category>#spotifywrapped</category>
-    </item>
-    <item>
       <title>Antennapod Echo (Wrapped) 2023</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/antennapod-echo-2023?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/antennapod-echo-2023&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;This was a nice surprise to see when I opened up Antennapod the other day. Using my listening statistics, it was able to compile a yearly summary for me (locally).&lt;/p&gt;
 &lt;p&gt;&lt;img src="/images/feed/antennapod-wrapped-1.png" class="img-fluid" alt="Antennapod Echo" /&gt;&lt;/p&gt;
@@ -3431,6 +3463,18 @@
       <category>#opensource</category>
       <category>#antennapod</category>
       <category>#stats</category>
+    </item>
+    <item>
+      <title>Spotify Wrapped 2023</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/spotify-wrapped-2023&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Kind of late, but here's my Spotify Wrapped for the year. No idea how Eslabon Armado snuck in there at the end. It'd be cool if I was also able to get data from my MP3 player which is where I mainly listen to music. Though the artists wouldn't change much.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-1.png" class="img-fluid" alt="Spotify Wrapped 2023 Summary" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/spotify-wrapped-2023</guid>
+      <pubDate>2023-12-12 21:03</pubDate>
+      <category>#music</category>
+      <category>#stats</category>
+      <category>#spotifywrapped</category>
     </item>
     <item>
       <title>RSS Only Blog</title>
