@@ -16,7 +16,7 @@ module RssService
 
     let blogEntryXml (entry:Post) =
         
-        let url = $"https://www.luisquintanilla.me/posts/{entry.FileName}"
+        let url = $"{link}/posts/{entry.FileName}"
         let urlWithUtm = $"{url}?utm_medium=feed"
 
         let content = entry.Content |> convertMdToHtml    
@@ -42,7 +42,7 @@ module RssService
 
     let feedEntryXml (entry:Post) =
 
-        let url = $"https://www.luisquintanilla.me/feed/{entry.FileName}"
+        let url = $"{link}/feed/{entry.FileName}"
         let urlWithUtm = $"{url}?utm_medium=feed"
         
         let content = entry.Content |> convertMdToHtml
@@ -67,7 +67,7 @@ module RssService
 
     let reponseFeedEntryXml (entry:Response) =
 
-        let url = $"https://www.luisquintanilla.me/feed/{entry.FileName}"
+        let url = $"{link}/feed/{entry.FileName}"
         let urlWithUtm = $"{url}?utm_medium=feed"
         
         let content = entry.Content |> convertMdToHtml
