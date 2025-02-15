@@ -1,4 +1,4 @@
 #r "../bin/Debug/net9.0/PersonalSite.dll"
 
-Builder.loadReponses()
+Loaders.loadReponses("_src")
 |> WebmentionService.sendWebmentions
