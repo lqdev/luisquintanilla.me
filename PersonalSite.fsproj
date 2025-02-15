@@ -15,6 +15,7 @@
     <Compile Include="Views\Layouts.fs" />
     <Compile Include="Views\Partials.fs" />
     <Compile Include="Views\Generator.fs" />
+    <Compile Include="Loaders.fs" />    
     <Compile Include="Builder.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

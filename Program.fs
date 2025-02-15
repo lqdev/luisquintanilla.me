@@ -2,6 +2,7 @@
 
 open System
 open System.IO
+open Loaders
 open Builder
 open WebmentionService
 open Domain
@@ -28,21 +29,21 @@ let main argv =
     // copyImages "images" "images"
 
     // Data
-    let posts = loadPosts() 
-    let feedPosts = loadFeed ()
-    let presentations = loadPresentations ()
-    let liveStreams = loadLiveStreams ()
-    let feedLinks = loadFeedLinks ()
+    let posts = loadPosts(srcDir) 
+    let feedPosts = loadFeed (srcDir)
+    let presentations = loadPresentations (srcDir)
+    let liveStreams = loadLiveStreams (srcDir)
+    let feedLinks = loadFeedLinks (srcDir)
+    let redirects = loadRedirects ()
+    let snippets = loadSnippets (srcDir)
+    let wikis = loadWikis (srcDir)
+    let books = loadBooks (srcDir)
+    let albums = loadAlbums (srcDir)
+    let responses = loadReponses (srcDir)
     let blogrollLinks = loadBlogrollLinks ()
     let podrollLinks = loadPodrollLinks ()
     let forumLinks = loadForumsLinks ()
     let youTubeLinks = loadYouTubeLinks ()
-    let redirects = loadRedirects ()
-    let snippets = loadSnippets ()
-    let wikis = loadWikis ()
-    let books = loadBooks ()
-    let albums = loadAlbums ()
-    let responses = loadReponses ()
 
     // Build static pages
     buildHomePage posts feedPosts responses
