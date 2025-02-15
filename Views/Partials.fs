@@ -457,6 +457,22 @@ let linkView (links: Link array) =
      ]
 
 
+let seasonalCheckmarkEmoji = 
+    match DateTime.Now.Month with
+    | 1 -> span [_style "margin-right:5px;margin-left:5px;"] [Text "&#x26C4;"]
+    | 2 -> span [_style "margin-right:5px;margin-left:5px;"] [Text "&#x1F9AB;"]
+    | 3 -> span [_style "margin-right:5px;margin-left:5px;"] [Text "&#x1F33B;"]
+    | 4 -> span [_style "margin-right:5px;margin-left:5px;"] [Text "&#x2614;"]
+    | 5 -> span [_style "margin-right:5px;margin-left:5px;"] [Text "&#x1F33C;"]
+    | 6 -> span [_style "margin-right:5px;margin-left:5px;"] [Text "&#x2600;"]
+    | 7 -> span [_style "margin-right:5px;margin-left:5px;"] [Text "&#x1F47D;"]
+    | 8 -> span [_style "margin-right:5px;margin-left:5px;"] [Text "&#x1F427;"]
+    | 9 -> span [_style "margin-right:5px;margin-left:5px;"] [Text "&#x1F342;"]
+    | 10 -> span [_style "margin-right:5px;margin-left:5px;"] [Text "&#x1F383;"]
+    | 11 -> span [_style "margin-right:5px;margin-left:5px;"] [Text "&#x1F983;"]
+    | 12 -> span [_style "margin-right:5px;margin-left:5px;"] [Text "&#x1F384;"]
+    | _ -> span [_style "margin-right:5px;margin-left:5px;"] [Text "&#x1F4CE;"]
+
 let cardHeader (date:string) =
     
     let dt = 
@@ -465,7 +481,7 @@ let cardHeader (date:string) =
     div [_class "card-header u-author h-card"] [
         img [_src "/avatar.png"; _height "32"; _width "32"; _class "d-inline-block align-top rounded-circle u-photo"; _style "margin-right:5px"; attr "loading" "lazy"]
         a [ _href "http://lqdev.me/about"; _class "u-url p-name"] [Text "lqdev"]
-        span [_style "margin-right:5px;margin-left:5px;"] [Text "&#x1F9AB;"]
+        seasonalCheckmarkEmoji
         span [_class "float-right"] [
             time [_class "dt-published"; _datetime date] [Text $"{dt.ToShortDateString()}"]
         ] 
