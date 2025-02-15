@@ -11,7 +11,7 @@ So excited to see the [AI Dev Gallery is now in the Microsoft Store](https://app
 
 Through various interactive samples, developers get to see how they might use AI for different tasks like text classification, object detection, and many others.
 
-Best of all, the models are all running locally and you get to see and export the C# code powering the samples to Visual Studio to continue tinkering on your own and integrate into your own applications. 
+Best of all, the models are all running locally and you get to see and export the C# code powering the samples to Visual Studio so you can continue tinkering on your own and integrate into your own applications. 
 
 A few months ago, the team came on the .NET AI Community Standup to showcase the app. Since then, it's only kept improving and introducing new scenarios. 
 
