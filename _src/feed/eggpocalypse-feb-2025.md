@@ -7,6 +7,6 @@ tags: ["costco","eggs"]
 
 It's rough out there. 
 
-![Image of sign saying Limit 3 Eggs](../images/feed/eggs-limit.jpg)
+![Image of sign saying Limit 3 Eggs](/images/feed/eggs-limit.jpg)
 
-![Image of empty shelves in warehouse](../images/feed//empty-eggs.jpg)
+![Image of empty shelves in warehouse](/images/feed//empty-eggs.jpg)
