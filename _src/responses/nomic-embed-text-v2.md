@@ -20,6 +20,6 @@ Research into embedding model architecture has significant practical implication
 > <br>
 > - Lower latency for high-volume applications of embeddings like retrieval  
 > <br>
-> Reduced deployment costs through more efficient parameter usage  
+> - Reduced deployment costs through more efficient parameter usage  
 > <br>
-> More accessibility to embeddings in settings with constrained compute  
+> - More accessibility to embeddings in settings with constrained compute  
