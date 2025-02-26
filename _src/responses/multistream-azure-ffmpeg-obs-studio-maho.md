@@ -11,4 +11,4 @@ tags: ["livestream","azure","obs"]
 
 Love this detailed writeup from [Maho](https://maho.dev/).
 
-When I originally experimented with sometime similar using my Owncast instance, I was running ffmpeg locally but I like his solution better. 
+When I originally experimented with something similar using my Owncast instance, I was running ffmpeg locally but I like his solution better. 
