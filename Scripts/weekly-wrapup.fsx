@@ -7,11 +7,11 @@
 open System
 open System.IO
 open Domain
-open Builder
+open Loaders
 
-let blogs = loadPosts ()
-let notes = loadFeed ()
-let responses = loadReponses()
+let blogs = loadPosts "_src"
+let notes = loadFeed "_src"
+let responses = loadReponses"_src"
 
 let filteredBlogs = 
     blogs
