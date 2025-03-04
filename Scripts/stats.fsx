@@ -3,13 +3,13 @@
 
 // Add modules
 open Domain
-open Builder
+open Loaders
 open System
 
 // Load posts
-let posts = loadPosts()
-let notes = loadFeed ()
-let responses = loadReponses ()
+let posts = loadPosts "_src"
+let notes = loadFeed "_src"
+let responses = loadReponses "_src"
 
 // Organize posts by year
 let postCountsByYear = 
