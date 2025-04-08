@@ -9,6 +9,6 @@ In the latest [Ollama 0.6.5 release](https://github.com/ollama/ollama/releases/t
 
 In an earlier post, I [highlighted the announcement and summarized the key features](/feed/mistral-small-3-1).
 
-I've been using it with [GitHub Models](https://github.com/marketplace/models/azureml-mistral/mistral-small-2503) and based on vibes found it was more reliable at structured output compared to Llama 3.3, especially when considering the model and context window size. 
+I've been using it with [GitHub Models](https://github.com/marketplace/models/azureml-mistral/mistral-small-2503) and based on vibes I found it was more reliable at structured output compared to Gemma 3, especially when considering the model and context window size.
 
 Now that it's on Ollama thought, I can use it offline as well. However, I'm not sure how well that'll work on my ARM64 device, which only has 16GB of RAM.
