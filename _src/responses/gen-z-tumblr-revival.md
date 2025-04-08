@@ -22,3 +22,5 @@ Don't call it a comeback.
 Tumblr's been through a rough ride, but at the core there's a lot of nice things to like about it. In previous posts, I talked about some opportunities for Tumblr as a result of [replatforming on top of WordPress](/feed/shipping-wordpress-tumblr) and its expressed intent for [ActivityPub integration](/feed/tumblr-still-working-fediverse-integration). In doing so, not only would it enable an intuitive front-end for publishing different kinds of posts, but it would also provide opportunities for self-hosting and a more federated and decentralized social platform. 
 
 I'm excited to see where this goes. 
+
+[Related post from Business Insider's Amanada Hoover](https://www.businessinsider.com/gen-z-flocking-tumblr-millennials-musk-zuckerberg-safe-space-2025-4) on the topic. 
