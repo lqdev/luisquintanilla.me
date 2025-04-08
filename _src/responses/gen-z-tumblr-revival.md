@@ -23,4 +23,4 @@ Tumblr's been through a rough ride, but at the core there's a lot of nice things
 
 I'm excited to see where this goes. 
 
-[Related post from Business Insider's Amanada Hoover](https://www.businessinsider.com/gen-z-flocking-tumblr-millennials-musk-zuckerberg-safe-space-2025-4) on the topic. 
+[Related post from Business Insider's Amanda Hoover](https://www.businessinsider.com/gen-z-flocking-tumblr-millennials-musk-zuckerberg-safe-space-2025-4) on the topic. 
