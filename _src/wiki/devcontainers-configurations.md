@@ -23,7 +23,10 @@ A collection of DevContainer configurations
         "vscode": {
             "extensions": [
                 "ms-vscode-remote.vscode-remote-extensionpack",
-                "ms-azuretools.vscode-docker"
+                "ms-azuretools.vscode-docker",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "saoudrizwan.claude-dev"
             ]
         }
     }
@@ -42,14 +45,17 @@ A collection of DevContainer configurations
         "ghcr.io/devcontainers/features/python:1": {
             "version": "3.11"
         },
-        "ghcr.io/devcontainers-extra/features/poetry:2": {}
+        "ghcr.io/va-h/devcontainers-features/uv:1": {}
     },
     "customizations": {
         "vscode": {
             "extensions": [
                 "ms-vscode-remote.vscode-remote-extensionpack",
                 "ms-azuretools.vscode-docker",
-                "ms-python.python"
+                "ms-python.python",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "saoudrizwan.claude-dev"                
             ]
         }
     }
@@ -69,14 +75,17 @@ A collection of DevContainer configurations
             "version": "3.11"
         },
         "ghcr.io/devcontainers/features/nvidia-cuda:1": {},
-        "ghcr.io/devcontainers-extra/features/poetry:2": {}
+        "ghcr.io/va-h/devcontainers-features/uv:1": {}
     },
     "customizations": {
         "vscode": {
             "extensions": [
                 "ms-vscode-remote.vscode-remote-extensionpack",
                 "ms-azuretools.vscode-docker",
-                "ms-python.python"
+                "ms-python.python",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "saoudrizwan.claude-dev"                
             ]
         }
     },
@@ -106,7 +115,11 @@ A collection of DevContainer configurations
                 "ms-vscode-remote.vscode-remote-extensionpack",
                 "ms-azuretools.vscode-docker",
                 "ms-dotnettools.csharp",
-                "Ionide.Ionide-fsharp"
+                "Ionide.Ionide-fsharp",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "saoudrizwan.claude-dev",
+                "ms-dotnettools.csdevkit"                                
             ]
         }
     }
@@ -133,7 +146,11 @@ A collection of DevContainer configurations
                 "ms-vscode-remote.vscode-remote-extensionpack",
                 "ms-azuretools.vscode-docker",
                 "ms-dotnettools.csharp",
-                "Ionide.Ionide-fsharp"
+                "Ionide.Ionide-fsharp",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "saoudrizwan.claude-dev",
+                "ms-dotnettools.csdevkit"                
             ]
         }
     },
@@ -159,7 +176,7 @@ A collection of DevContainer configurations
         "ghcr.io/devcontainers/features/dotnet:2": {
             "version": "9.0"
         },
-        "ghcr.io/devcontainers-extra/features/poetry:2": {}
+        "ghcr.io/va-h/devcontainers-features/uv:1": {}
     },
     "customizations": {
         "vscode": {
@@ -168,7 +185,11 @@ A collection of DevContainer configurations
                 "ms-azuretools.vscode-docker",
                 "ms-python.python",
                 "ms-dotnettools.csharp",
-                "Ionide.Ionide-fsharp"
+                "Ionide.Ionide-fsharp",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "saoudrizwan.claude-dev",
+                "ms-dotnettools.csdevkit"                
             ]
         }
     }
@@ -191,7 +212,7 @@ A collection of DevContainer configurations
             "version": "9.0"
         },
         "ghcr.io/devcontainers/features/nvidia-cuda:1": {},
-        "ghcr.io/devcontainers-extra/features/poetry:2": {}
+        "ghcr.io/va-h/devcontainers-features/uv:1": {}
     },
     "customizations": {
         "vscode": {
@@ -200,7 +221,11 @@ A collection of DevContainer configurations
                 "ms-azuretools.vscode-docker",
                 "ms-python.python",
                 "ms-dotnettools.csharp",
-                "Ionide.Ionide-fsharp"
+                "Ionide.Ionide-fsharp",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "saoudrizwan.claude-dev",
+                "ms-dotnettools.csdevkit"               
             ]
         }
     },
