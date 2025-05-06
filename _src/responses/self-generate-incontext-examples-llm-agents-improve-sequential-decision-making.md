@@ -1,0 +1,10 @@
+---
+title: "Self-Generated In-Context Examples Improve LLM Agents for Sequential Decision-Making Tasks"
+targeturl: https://arxiv.org/abs/2505.00234
+response_type: reshare
+dt_published: "2025-05-05 19:50"
+dt_updated: "2025-05-05 19:50 -05:00"
+tags: ["ai","agents","planning"]
+---
+
+> Many methods for improving Large Language Model (LLM) agents for sequential decision-making tasks depend on task-specific knowledge engineering--such as prompt tuning, curated in-context examples, or customized observation and action spaces. Using these approaches, agent performance improves with the quality or amount of knowledge engineering invested. Instead, we investigate how LLM agents can automatically improve their performance by learning in-context from their own successful experiences on similar tasks. Rather than relying on task-specific knowledge engineering, we focus on constructing and refining a database of self-generated examples. We demonstrate that even a naive accumulation of successful trajectories across training tasks boosts test performance on three benchmarks: ALFWorld (73% to 89%), Wordcraft (55% to 64%), and InterCode-SQL (75% to 79%)--matching the performance the initial agent achieves if allowed two to three attempts per task. We then introduce two extensions: (1) database-level selection through population-based training to identify high-performing example collections, and (2) exemplar-level selection that retains individual trajectories based on their empirical utility as in-context examples. These extensions further enhance performance, achieving 91% on ALFWorld--matching more complex approaches that employ task-specific components and prompts. Our results demonstrate that **automatic trajectory database construction offers a compelling alternative to labor-intensive knowledge engineering.**
