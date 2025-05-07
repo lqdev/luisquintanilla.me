@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: "Vibe-Specing - From concepts to specification"
-description: "An exploration into using AI for bringing ideas together into a specification"
+description: "An exploration into using AI for bringing concepts together into a specification"
 published_date: "2025-05-06 20:40"
 tags: ["dweb","standards","ai","decentralization","protocol"]
 ---
