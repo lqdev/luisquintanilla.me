@@ -4,8 +4,6 @@ title: "Week of May 12, 2025 - Post Summary"
 published_date: "2025-05-11 19:11 -05:00"
 tags: ["weeklysummary","blogging","website","indieweb"]
 ---
-    
-# Week of May 5, 2025 Post Roundup
 
 ## Blogs
 
