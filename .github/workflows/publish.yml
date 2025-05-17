@@ -32,6 +32,7 @@ jobs:
           azcliversion: 2.69.0
           # azcopy workadound https://github.com/Azure/azure-cli/issues/30635
           inlineScript: |
+              azcopy login --service-principal --application-id ${{secrets.APPID}} --tenant-id=${{secrets.TENANTID}}
               az storage blob sync --account-name ${{secrets.STORAGE_ACC_NAME}} -c '$web' -s ./_public
       - name: Purge CDN endpoint
         uses: azure/CLI@v1
