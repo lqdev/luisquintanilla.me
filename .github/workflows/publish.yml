@@ -42,7 +42,7 @@ jobs:
       - name: Purge CDN endpoint
         uses: azure/CLI@v1
         with:
-          azcliversion: 2.67.0
+          azcliversion: 2.69.0
           inlineScript: |
             az cdn endpoint purge --content-paths  "/*" --profile-name ${{secrets.CDN_PROFILE_NAME}} --name ${{secrets.CDN_ENDPOINT_NAME}} --resource-group ${{secrets.RG}}
       - name: Send Webmentions
