@@ -34,7 +34,7 @@ jobs:
           AZCOPY_SPA_CLIENT_SECRET: ${{secrets.AZCOPYSECRET}}
           AZCOPY_TENANT_ID: ${{secrets.TENANTID}}
         with:
-          azcliversion: 2.69.0
+          azcliversion: 2.72.0
           # azcopy workadound https://github.com/Azure/azure-cli/issues/30635
           inlineScript: |
               tdnf install -y azcopy;
@@ -42,7 +42,7 @@ jobs:
       - name: Purge CDN endpoint
         uses: azure/CLI@v1
         with:
-          azcliversion: 2.69.0
+          azcliversion: 2.72.0
           inlineScript: |
             az cdn endpoint purge --content-paths  "/*" --profile-name ${{secrets.CDN_PROFILE_NAME}} --name ${{secrets.CDN_ENDPOINT_NAME}} --resource-group ${{secrets.RG}}
       - name: Send Webmentions
