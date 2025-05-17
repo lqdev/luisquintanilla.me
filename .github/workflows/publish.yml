@@ -29,10 +29,10 @@ jobs:
       - name: Upload to blob storage
         uses: azure/CLI@v1
         env: 
-          AZCOPY_AUTO_LOGIN_TYPE=SPN
+          AZCOPY_AUTO_LOGIN_TYPE: SPN
           AZCOPY_SPA_APPLICATION_ID: ${{secrets.APPID}}
           AZCOPY_SPA_CLIENT_SECRET: ${{secrets.AZCOPYSECRET}}
-          AZCOPY_TENANT_ID=${{secrets.TENANTID}}
+          AZCOPY_TENANT_ID: ${{secrets.TENANTID}}
         with:
           azcliversion: 2.67.0
           # azcopy workadound https://github.com/Azure/azure-cli/issues/30635
