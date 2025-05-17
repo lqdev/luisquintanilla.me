@@ -28,11 +28,12 @@ jobs:
         run: du -sh ./_public
       - name: Upload to blob storage
         uses: azure/CLI@v1
+        env: 
+          AZCOPY_SPA_CLIENT_SECRET: ${{secrets.AZCOPYSECRET}}
         with:
           azcliversion: 2.67.0
           # azcopy workadound https://github.com/Azure/azure-cli/issues/30635
-          env: 
-            AZCOPY_SPA_CLIENT_SECRET: ${{secrets.AZCOPYSECRET}}
+
           inlineScript: |
               tdnf install -y azcopy;
               azcopy login --service-principal --application-id ${{secrets.APPID}} --tenant-id ${{secrets.TENANTID}}
