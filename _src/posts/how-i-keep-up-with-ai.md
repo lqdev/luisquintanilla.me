@@ -33,6 +33,8 @@ I pride myself on being able to track down an RSS feed on just about any website
 
 **OpenAI and Anthropic, if you could do everyone a favor and drop a link, that would be great.** 
 
+UPDATE: Thanks to [@m2vh@mastodontech.de](https://toot.lqdev.tech/@m2vh@mastodontech.de) for sharing the OpenAI news feed. 
+
 I know I could use one of those web-page-to-RSS converters, but I'd much rather have an official link directly from the source.
 
 - [OpenAI](https://openai.com/news/)

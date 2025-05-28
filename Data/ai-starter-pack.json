@@ -6,10 +6,10 @@
         "XmlUrl": "https://www.latent.space/feed/"
     },
     {
-        "Title": "Gooogle AI Blog",
+        "Title": "OpenAI AI Blog",
         "Type": "rss",
-        "HtmlUrl": "https://blog.google/technology/ai/",
-        "XmlUrl": "https://blog.google/technology/ai/rss/"
+        "HtmlUrl": "https://openai.com/news/",
+        "XmlUrl": "https://openai.com/news/rss.xml"
     },
     {
         "Title": "Google AI Blog",
@@ -34,12 +34,6 @@
         "Type": "rss",
         "HtmlUrl": "https://research.google/blog/",
         "XmlUrl": "https://research.google/blog/rss/"
-    },
-    {
-        "Title": "Simon Willison's Weblog",
-        "Type": "rss",
-        "HtmlUrl": "https://simonwillison.net/",
-        "XmlUrl": "https://simonwillison.net/atom/everything/"
     },
     {
         "Title": "Simon Willison's Weblog",
