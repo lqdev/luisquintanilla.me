@@ -339,8 +339,8 @@ let aiStarterPackFeedView (links:Outline array) =
             str "This is a list of AI resources I use to stay on top of AI news."
         ]
         p [] [
-            str "You can subscribe to any of the individual channels in your preferred RSS reader using the RSS feed links below. Want to subscribe to all of them? Use the "
-            a [ _href "/feed/youtube/index.opml"] [Text "OPML file"]
+            str "You can subscribe to any of the individual feeds in your preferred RSS reader using the RSS feed links below. Want to subscribe to all of them? Use the "
+            a [ _href "/feed/starter/ai/index.opml"] [Text "OPML file"]
             str " if your RSS reader or podcast client supports "
             a [_href "http://opml.org/"] [Text "OPML."]
         ]
