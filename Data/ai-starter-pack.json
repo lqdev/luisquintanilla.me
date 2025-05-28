@@ -1,0 +1,68 @@
+[
+    {
+        "Title": "Latent Space",
+        "Type": "rss",
+        "HtmlUrl": "https://www.latent.space/",
+        "XmlUrl": "https://www.latent.space/feed/"
+    },
+    {
+        "Title": "Gooogle AI Blog",
+        "Type": "rss",
+        "HtmlUrl": "https://blog.google/technology/ai/",
+        "XmlUrl": "https://blog.google/technology/ai/rss/"
+    },
+    {
+        "Title": "Google AI Blog",
+        "Type": "rss",
+        "HtmlUrl": "https://blog.google/technology/ai/",
+        "XmlUrl": "https://blog.google/technology/ai/rss/"
+    },
+    {
+        "Title": "AWS Machine Learning Blog",
+        "Type": "rss",
+        "HtmlUrl": "https://aws.amazon.com/blogs/machine-learning/",
+        "XmlUrl": "https://aws.amazon.com/blogs/machine-learning/feed/"
+    },    
+    {
+        "Title": "Microsoft Research Blog",
+        "Type": "rss",
+        "HtmlUrl": "https://www.microsoft.com/en-us/research/blog/",
+        "XmlUrl": "https://www.microsoft.com/en-us/research/feed/"
+    },
+    {
+        "Title": "Google Research Blog",
+        "Type": "rss",
+        "HtmlUrl": "https://research.google/blog/",
+        "XmlUrl": "https://research.google/blog/rss/"
+    },
+    {
+        "Title": "Simon Willison's Weblog",
+        "Type": "rss",
+        "HtmlUrl": "https://simonwillison.net/",
+        "XmlUrl": "https://simonwillison.net/atom/everything/"
+    },
+    {
+        "Title": "Simon Willison's Weblog",
+        "Type": "rss",
+        "HtmlUrl": "https://simonwillison.net/",
+        "XmlUrl": "https://simonwillison.net/atom/everything/"
+    },
+    {
+        "Title": "The AI Daily Brief",
+        "Type": "rss",
+        "HtmlUrl": "https://www.podchaser.com/podcasts/the-ai-daily-brief-formerly-th-5260567",
+        "XmlUrl": "https://anchor.fm/s/f7cac464/podcast/rss"
+    },                
+    {
+        "Title": "The TWIML AI Podcast",
+        "Type": "rss",
+        "HtmlUrl": "https://twimlai.com/",
+        "XmlUrl": "https://feeds.megaphone.fm/MLN2155636147"
+    },
+    {
+        "Title": "Practical AI",
+        "Type": "rss",
+        "HtmlUrl": "https://changelog.com/practicalai",
+        "XmlUrl": "https://changelog.com/practicalai/feed"
+    }    
+]

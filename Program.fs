@@ -20,6 +20,7 @@ let main argv =
     //Create directories
     Path.Join(outputDir,"feed") |> Directory.CreateDirectory |> ignore
     Path.Join(outputDir,"feed","responses") |> Directory.CreateDirectory |> ignore
+    Path.Join(outputDir,"feed","starter") |> Directory.CreateDirectory |> ignore
     Path.Join(outputDir,"posts") |> Directory.CreateDirectory |> ignore
     Path.Join(outputDir,"presentations") |> Directory.CreateDirectory |> ignore
     Path.Join(outputDir,"snippets") |> Directory.CreateDirectory |> ignore
@@ -44,11 +45,13 @@ let main argv =
     let podrollLinks = loadPodrollLinks ()
     let forumLinks = loadForumsLinks ()
     let youTubeLinks = loadYouTubeLinks ()
+    let aiStarterPackLinks = loadAIStarterPackLinks ()
 
     // Build static pages
     buildHomePage posts feedPosts responses
     buildAboutPage ()
     buildContactPage ()
+    buildStarterPackPage ()
     buildIRLStackPage ()
     buildColophonPage ()
     buildSubscribePage ()
@@ -79,6 +82,8 @@ let main argv =
     buildForumsOpml forumLinks
     buildYouTubeChannelsPage youTubeLinks
     buildYouTubeOpml youTubeLinks
+    buildAIStarterPackPage aiStarterPackLinks
+    buildAIStarterPackOpml aiStarterPackLinks
 
     // Build event page
     buildEventPage ()

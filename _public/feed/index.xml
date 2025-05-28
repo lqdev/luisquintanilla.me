@@ -3,8 +3,251 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>2025-02-09 13:15 -05:00</lastPubDate>
+    <lastPubDate>2025-05-26 13:06 -05:00</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Week of May 26, 2025 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2025-05-26-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2025-05-26-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/attitude-copilot-agent"&gt;Copilot Agent is giving me attitude&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/pocket-shutting-down"&gt;Pocket shutting down&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2025-05-26-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2025-05-26-weekly-post-summary</guid>
+      <pubDate>2025-05-26 13:06 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Copilot Agent is giving me attitude</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/attitude-copilot-agent?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/attitude-copilot-agent&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;(see your rules and project plan)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Is that Copilot's way of saying, &amp;quot;Per my previous e-mail...&amp;quot;?&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/sassy-copilot-agent.png" class="img-fluid" alt="A conversation with Github Copilot Agent" /&gt;&lt;/p&gt;
+&lt;p&gt;And then it rage quit.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/copilot-agent-quit.png" class="img-fluid" alt="Error message saying GitHub Copilot Agent exhausted token limit" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/attitude-copilot-agent?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/attitude-copilot-agent</guid>
+      <pubDate>2025-05-22 21:14</pubDate>
+      <category>#github</category>
+      <category>#copilot</category>
+      <category>#agent</category>
+      <category>#funny</category>
+    </item>
+    <item>
+      <title>See you at FediForum June 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/attending-fediforum-2025?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/attending-fediforum-2025&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Super excited to be attending &lt;a href="https://fediforum.org/"&gt;FediForum&lt;/a&gt; in a few weeks!&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/fediforum-ticket.png" class="img-fluid" alt="Screenshot of Fediforum ticket showing name and event title" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/attending-fediforum-2025?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/attending-fediforum-2025</guid>
+      <pubDate>2025-05-16 19:44</pubDate>
+      <category>#fediforum</category>
+      <category>#openweb</category>
+      <category>#conference</category>
+      <category>#community</category>
+    </item>
+    <item>
+      <title>Week of May 12, 2025 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2025-05-12-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2025-05-12-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Blogs&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/posts/vibe-specing-prompt-to-spec"&gt;Vibe-Specing - From concepts to specification&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/too-many-browser-tabs-shellsharks"&gt;Extreme web surfing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/chicano-batman-album"&gt;Diving deeper into the Chicano Batman catalog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/evolution-of-blogging-history-web"&gt;The Evolution of Blogging&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/zero-search-alibaba"&gt;ZeroSearch - Incentivize the Search Capability of LLMs without Searching&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/intel-autoround"&gt;Introducing AutoRound&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/discourse-fediverse"&gt;Discourse and the Fediverse&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/socialweb-network"&gt;socialweb.network&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/telograf"&gt;TeLoGraF: Temporal Logic Planning via Graph-encoded Flow Matching&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/bukmark-club"&gt;Bukmark Club&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/nvidia-parakeet-v2"&gt;Parakeet TDT 0.6B V2 (En)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/corg-context-organizer-framework"&gt;CORG: Generating Answers from Complex, Interrelated Contexts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/meta-locate3d"&gt;Introducing Locate 3D&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/in-praise-of-links-osteophage"&gt;In Praise of Links&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/announcing-distributed-press-social-inbox"&gt;Announcing Distributed.Press Social Inbox 1.0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/resisting-urge-rewrite-website-santala"&gt;Resisting the urge to rewrite the website&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/just-post-on-your-blog-shellsharks"&gt;Just Put It On Your Blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/fediverse-house-2025-roundup"&gt;Fediverse House 2025 Roundup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/self-generate-incontext-examples-llm-agents-improve-sequential-decision-making"&gt;Self-Generated In-Context Examples Improve LLM Agents for Sequential Decision-Making Tasks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/claude-artifacts-reece"&gt;Claude Artifacts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/survey-ai-agent-protocols"&gt;A Survey of AI Agent Protocols&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2025-05-12-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2025-05-12-weekly-post-summary</guid>
+      <pubDate>2025-05-11 19:11 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Extreme web surfing</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/too-many-browser-tabs-shellsharks?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/too-many-browser-tabs-shellsharks&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;This is what my browser looks like every time &lt;a href="https://shellsharks.com/"&gt;shellsharks&lt;/a&gt; drops one of their &lt;a href="https://shellsharks.com/scrolls/"&gt;scrolls&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/too-many-browser-tabs.png" class="img-fluid" alt="A lot of open browser tabs" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/too-many-browser-tabs-shellsharks?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/too-many-browser-tabs-shellsharks</guid>
+      <pubDate>2025-05-10 18:31</pubDate>
+      <category>#indieweb</category>
+      <category>#web</category>
+      <category>#community</category>
+      <category>#surfing</category>
+      <category>#openweb</category>
+      <category>#blog</category>
+    </item>
+    <item>
+      <title>Diving deeper into the Chicano Batman catalog</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/chicano-batman-album?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/chicano-batman-album&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I find it amazing how you could've heard a song before but on rare occasions, you actually get to really listen to the song. That's been happening to me with this album from Chicano Batman. I've written before about how much I enjoy A Hundred Dead and Loving Souls. Lately though, I've been really into Itotiani, La Samoana, and Soniatl. The instrumentals are amazing. Wild to think this album is now 15 years old.&lt;/p&gt;
+&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/6tN9jametp8Y1xtraYzYNe?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/chicano-batman-album?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/chicano-batman-album</guid>
+      <pubDate>2025-05-05 20:21</pubDate>
+      <category>#music</category>
+      <category>#chicanobatman</category>
+      <category>#indie</category>
+    </item>
+    <item>
+      <title>Crate Finds - April 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/crate-finds-april-2025?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/crate-finds-april-2025&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;April 2025 drop.&lt;/p&gt;
+&lt;p&gt;SAULT, Cleo Sol (SAULT singer), and Little Simz were on repeat.&lt;/p&gt;
+&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4xaMGKfJVa5DMpp6S3i7N8" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/crate-finds-april-2025?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/crate-finds-april-2025</guid>
+      <pubDate>2025-05-02 13:35 -05:00</pubDate>
+      <category>#cratefinds</category>
+      <category>#music</category>
+      <category>#playlist</category>
+      <category>#spotify</category>
+    </item>
+    <item>
+      <title>Ollama Adds Mistral 3.1 Support</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/ollama-adds-support-mistral-small-3-1?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/ollama-adds-support-mistral-small-3-1&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;In the latest &lt;a href="https://github.com/ollama/ollama/releases/tag/v0.6.5"&gt;Ollama 0.6.5 release&lt;/a&gt; support was added for &lt;a href="https://ollama.com/library/mistral-small3.1"&gt;Mistral Small 3.1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In an earlier post, I &lt;a href="/feed/mistral-small-3-1"&gt;highlighted the announcement and summarized the key features&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I've been using it with &lt;a href="https://github.com/marketplace/models/azureml-mistral/mistral-small-2503"&gt;GitHub Models&lt;/a&gt; and based on vibes I found it was more reliable at structured output compared to Gemma 3, especially when considering the model and context window size.&lt;/p&gt;
+&lt;p&gt;Now that it's on Ollama thought, I can use it offline as well. However, I'm not sure how well that'll work on my ARM64 device, which only has 16GB of RAM.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/ollama-adds-support-mistral-small-3-1?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/ollama-adds-support-mistral-small-3-1</guid>
+      <pubDate>2025-04-08 08:19</pubDate>
+      <category>#mistral</category>
+      <category>#ollama</category>
+      <category>#ai</category>
+      <category>#llm</category>
+    </item>
+    <item>
+      <title>Install Element Desktop on Windows ARM64 Devices</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/install-element-desktop-windows-arm64?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/install-element-desktop-windows-arm64&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;In a previous post, I talked about my &lt;a href="/feed/running-linux-gui-apps-windows-wsl-amazing"&gt;workaround for running Element Desktop on my ARM64 Windows device&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I'm happy that I no longer need that workaround.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/element-hq/element-desktop"&gt;Element Desktop&lt;/a&gt; enabled support for &lt;a href="https://github.com/element-hq/element-desktop/pull/624"&gt;ARM64 on Windows&lt;/a&gt; and shipped it as part of the &lt;a href="https://github.com/element-hq/element-desktop/releases/tag/v1.11.95"&gt;1.11.95 release&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While you could go to the &lt;a href="https://element.io/download"&gt;downloads website&lt;/a&gt; and get the installer from there, you can now also get it via &lt;a href="https://learn.microsoft.com/windows/package-manager/winget/"&gt;WinGet&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I built on the work of the &lt;a href="https://github.com/microsoft/winget-pkgs/tree/master/manifests/e/Element/Element"&gt;existing community manifest&lt;/a&gt; in the winget-pkgs repo and via a &lt;a href="https://github.com/microsoft/winget-pkgs/pull/244768"&gt;pull request&lt;/a&gt; updated the latest 1.11.96 version to include the ARM64 installer.&lt;/p&gt;
+&lt;p&gt;While I didn't create the manifest from scratch, I thought it was really easy to contribute a new installer. I'll leave the details of my process for another post though.&lt;/p&gt;
+&lt;p&gt;Installing Element Desktop via WinGet is relativaly straightforward.&lt;/p&gt;
+&lt;p&gt;Assuming you already have the WinGet tool installed, all you have to do is run the following commmand in the terminal and you're all set!&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-powershell"&gt;winget install Element.Element -a arm64
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/install-element-desktop-windows-arm64?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/install-element-desktop-windows-arm64</guid>
+      <pubDate>2025-04-07 08:38</pubDate>
+      <category>#matrix</category>
+      <category>#arm64</category>
+      <category>#windows</category>
+      <category>#element</category>
+      <category>#winget</category>
+      <category>#opensource</category>
+      <category>#decentralization</category>
+    </item>
+    <item>
+      <title>Week of March 23, 2025 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2025-03-23-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2025-03-23-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/bringing-static-sites-fediverse-enhancements-implementations-maho"&gt;Bringing Static Sites to the Fediverse - Enhancements and Implementations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/introducing-command-a-cohere"&gt;Introducing Command A&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/introducing-gemma-3"&gt;Introducing Gemma 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/mistral-small-3-1"&gt;Mistral Small 3.1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/preordered-pebbleos-watch"&gt;Just pre-ordered by PebbleOS Core Time 2 smartwatch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/willison-tools-colophon"&gt;Simon Willison's AI-Generated Tools Colophon&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2025-03-23-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2025-03-23-weekly-post-summary</guid>
+      <pubDate>2025-03-23 12:25 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Crate Finds - February 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/crate-finds-february-2025?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/crate-finds-february-2025&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;February's drop.&lt;/p&gt;
+&lt;p&gt;I've been listening to a lot of Andre 3000 and stumbled upon Carlos Nino and Friends.&lt;/p&gt;
+&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4zpzvhZWVOvmq0ZdbrKh8H" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/crate-finds-february-2025?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/crate-finds-february-2025</guid>
+      <pubDate>2025-03-02 13:35 -05:00</pubDate>
+      <category>#cratefinds</category>
+      <category>#music</category>
+      <category>#playlist</category>
+      <category>#spotify</category>
+    </item>
+    <item>
+      <title>Week of March 2, 2025 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2025-03-02-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2025-03-02-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Blogs&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/posts/fractures-unfamiliarity-circumvention-pursuit-good-time-robert-hunter"&gt;Fractures of Unfamiliarity &amp;amp; Circumvention in Pursuit of a Nice Time and the Meaning of Franklin's Tower&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/anthropic-claude-3-7-sonnet-code"&gt;Claude 3.7 Sonnet and Claude Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/inevitable-jcole-blog"&gt;The Algorithm - J. Cole has a blog?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/mercury-first-commercial-scale-llm"&gt;Introducing Mercury, the first commercial-scale diffusion large language model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/multistream-azure-ffmpeg-obs-studio-maho"&gt;How to Multistream Using Azure, Azure VM, MonaServer 2, and FFmpeg with OBS Studio&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/nomic-embed-text-v2"&gt;Nomic Embed Text V2: An Open Source, Multilingual, Mixture-of-Experts Embedding Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/s1-simple-test-time-scaling"&gt;s1: Simple test-time scaling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/unplatform-indieweb"&gt;Unplatform&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/your-site-is-a-home-hamid"&gt;Your Site Is a Home&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2025-03-02-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2025-03-02-weekly-post-summary</guid>
+      <pubDate>2025-03-02 05:53 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#indieweb</category>
+      <category>#website</category>
+    </item>
+    <item>
+      <title>Eggpocalypse 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/eggpocalypse-feb-2025?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/eggpocalypse-feb-2025&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;It's rough out there.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/eggs-limit.jpg" class="img-fluid" alt="Image of sign saying Limit 3 Eggs" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/empty-eggs.jpg" class="img-fluid" alt="Image of empty shelves in warehouse" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/eggpocalypse-feb-2025?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/eggpocalypse-feb-2025</guid>
+      <pubDate>2025-02-17 15:57</pubDate>
+      <category>#costco</category>
+      <category>#eggs</category>
+    </item>
     <item>
       <title>Week of February 9, 2025 - Post Summary</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2025-02-09-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2025-02-09-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
@@ -3447,6 +3690,18 @@
       <category>#socialmedia</category>
     </item>
     <item>
+      <title>Spotify Wrapped 2023</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/spotify-wrapped-2023&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Kind of late, but here's my Spotify Wrapped for the year. No idea how Eslabon Armado snuck in there at the end. It'd be cool if I was also able to get data from my MP3 player which is where I mainly listen to music. Though the artists wouldn't change much.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-1.png" class="img-fluid" alt="Spotify Wrapped 2023 Summary" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/spotify-wrapped-2023</guid>
+      <pubDate>2023-12-12 21:03</pubDate>
+      <category>#music</category>
+      <category>#stats</category>
+      <category>#spotifywrapped</category>
+    </item>
+    <item>
       <title>Antennapod Echo (Wrapped) 2023</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/antennapod-echo-2023?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/antennapod-echo-2023&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;This was a nice surprise to see when I opened up Antennapod the other day. Using my listening statistics, it was able to compile a yearly summary for me (locally).&lt;/p&gt;
 &lt;p&gt;&lt;img src="/images/feed/antennapod-wrapped-1.png" class="img-fluid" alt="Antennapod Echo" /&gt;&lt;/p&gt;
@@ -3463,18 +3718,6 @@
       <category>#opensource</category>
       <category>#antennapod</category>
       <category>#stats</category>
-    </item>
-    <item>
-      <title>Spotify Wrapped 2023</title>
-      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/spotify-wrapped-2023&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Kind of late, but here's my Spotify Wrapped for the year. No idea how Eslabon Armado snuck in there at the end. It'd be cool if I was also able to get data from my MP3 player which is where I mainly listen to music. Though the artists wouldn't change much.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-1.png" class="img-fluid" alt="Spotify Wrapped 2023 Summary" /&gt;&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/feed/spotify-wrapped-2023?utm_medium=feed</link>
-      <guid>https://www.luisquintanilla.me/feed/spotify-wrapped-2023</guid>
-      <pubDate>2023-12-12 21:03</pubDate>
-      <category>#music</category>
-      <category>#stats</category>
-      <category>#spotifywrapped</category>
     </item>
     <item>
       <title>RSS Only Blog</title>

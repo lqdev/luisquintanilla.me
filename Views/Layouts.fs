@@ -70,6 +70,8 @@ module Layouts
                                 div [_class "dropdown-divider"] []
                                 a [_class "dropdown-item"; _href "/subscribe"] [ Text "Subscribe" ]
                                 div [_class "dropdown-divider"] []
+                                a [_class "dropdown-item"; _href "/feed/starter"] [Text "Starter Packs"]
+                                div [_class "dropdown-divider"] []
                                 a [_class "dropdown-item"; _href "/feed/blogroll"] [Text "Blogroll"]
                                 a [_class "dropdown-item"; _href "/feed/podroll"] [Text "Podroll"]
                                 a [_class "dropdown-item"; _href "/feed/forums"] [Text "Forums"]
@@ -208,7 +210,6 @@ module Layouts
         link [_rel "podroll"; _type "text/xml" ; _title "Luis Quintanilla's Podroll"; _href "/feed/podroll/index.opml"]
         link [_rel "youtuberoll"; _type "text/xml" ; _title "Luis Quintanilla's YouTube Roll"; _href "/feed/youtube/index.opml"]
     ]
-
 
     let scripts = [
         script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1

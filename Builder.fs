@@ -87,6 +87,14 @@ module Builder
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), aboutPage)
 
+    let buildStarterPackPage () = 
+
+        let starterContent = convertFileToHtml (Path.Join(srcDir,"starter-packs.md")) |> contentView
+        let starterPage = generate starterContent "default" "Starter Packs - Luis Quintanilla"
+        let saveDir = Path.Join(outputDir,"feed","starter")
+        Directory.CreateDirectory(saveDir) |> ignore
+        File.WriteAllText(Path.Join(saveDir,"index.html"), starterPage)
+
     let buildBlogrollPage (links:Outline array) = 
         let blogRollContent = 
             links
@@ -124,6 +132,16 @@ module Builder
 
         let ytFeedPage = generate ytContent "default" "YouTube Channels - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"feed","youtube")
+        Directory.CreateDirectory(saveDir) |> ignore
+        File.WriteAllText(Path.Join(saveDir,"index.html"), ytFeedPage)
+
+    let buildAIStarterPackPage (links:Outline array) = 
+        let aiStarterPackContent = 
+            links
+            |> aiStarterPackFeedView
+
+        let ytFeedPage = generate aiStarterPackContent "default" "AI Starter Pack - Luis Quintanilla"
+        let saveDir = Path.Join(outputDir,"feed","starter","ai")
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), ytFeedPage)
 
@@ -211,20 +229,26 @@ module Builder
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
     let buildPodrollOpml (links:Outline array) = 
-        let feed = buildOpmlFeed "Luis Quintanilla Podroll" "https://www.luisquintanilla.me" links
+        let feed = buildOpmlFeed "Luis Quintanilla Podroll" "https://www.lqdev.me" links
         let saveDir = Path.Join(outputDir,"feed","podroll")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
     let buildForumsOpml (links:Outline array) = 
-        let feed = buildOpmlFeed "Luis Quintanilla Forums" "https://www.luisquintanilla.me" links
+        let feed = buildOpmlFeed "Luis Quintanilla Forums" "https://www.lqdev.me" links
         let saveDir = Path.Join(outputDir,"feed","forums")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
     let buildYouTubeOpml (links:Outline array) = 
-        let feed = buildOpmlFeed "Luis Quintanilla YouTube Channels" "https://www.luisquintanilla.me" links
+        let feed = buildOpmlFeed "Luis Quintanilla YouTube Channels" "https://www.lqdev.me" links
         let saveDir = Path.Join(outputDir,"feed","youtube")
+        File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
+        File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
+
+    let buildAIStarterPackOpml (links:Outline array) = 
+        let feed = buildOpmlFeed "Luis Quintanilla AI Starter Pack" "https://www.lqdev.me" links
+        let saveDir = Path.Join(outputDir,"feed","starter","ai")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 

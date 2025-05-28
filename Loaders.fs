@@ -88,6 +88,13 @@ module Loaders
     
         links
 
+    let loadAIStarterPackLinks () =
+        let links =  
+            File.ReadAllText(Path.Join("Data","ai-starter-pack.json"))
+            |> JsonSerializer.Deserialize<Outline array>
+    
+        links
+
     let loadRedirects () = 
         let (redirects:RedirectDetails array) = 
             [|
