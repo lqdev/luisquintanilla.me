@@ -18,7 +18,7 @@ That said, here are some sources I use to try and stay informed:
 
 For your convenience, if any of the sources (including podcasts) I list below have RSS feeds, I’ve included them in my [AI Starter Pack](/feed/starter/ai), which you can [download and import into your favorite RSS reader](/feed/starter/ai/index.opml) (as long as it supports OPML file imports).
 
-If you have some sources to share, [send me a message](/contact). I'd love to keep adding to this list! If they have a feed I can subscribe to, even better.
+If you have some sources to share, [send me an e-mail](/contact). I'd love to keep adding to this list! If they have a feed I can subscribe to, even better.
 
 ## Newsletters
 
