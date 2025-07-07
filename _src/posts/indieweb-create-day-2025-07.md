@@ -8,7 +8,7 @@ tags: ["indieweb","iwc","community","website"]
 
 Since it was a holiday weekend in the U.S. that kind of snuck up on me, I found myself with nothing planned on a Saturday. So I chose to spend it creating stuff for my website with the IndieWeb community during [IndieWeb Create Day](https://events.indieweb.org/2025/07/indieweb-create-day-3q2PTCbGioi9).
 
-Over the last few months I've been overthinking my website redesign and while I've made several attempts at it, I've never been satisfied the outcome, so I throw away all the progress I've made and go back to the drawing board. 
+Over the last few months I've been overthinking my website redesign and while I've made several attempts at it, I've never been satisfied the outcome. I end up throwing away all the progress I've made and go back to the drawing board. 
 
 Yesterday, I decided to not let perfect be the enemy of good and the approach I took was creating just a simpler piece of functionality outside of my website. How I integrate it into my website is a future me problem. But I want to work from a place of creativity and complete freedom to think of what could be rather than what is. 
 
