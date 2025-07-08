@@ -254,103 +254,67 @@ When adding entries to `changelog.md`, use this template:
 
 This workflow ensures systematic, documented, and quality-focused development that preserves functionality while improving architecture incrementally.
 
-## Specification Translation Workflow
+## Workflow Improvements and Lessons Learned
 
-When working with comprehensive specifications or upgrade documents, follow this proven pattern:
+### Log Management Best Practices
 
-### 1. Specification Analysis and Decomposition
-- **Read Complete Specification**: Use large chunk reads to understand full scope
-- **Identify Phase Structure**: Look for natural breakpoints and dependencies
-- **Map Technical Constraints**: Analyze current codebase to understand limitations
-- **Document Analysis**: Capture findings in daily log with specific file references
+**Key Learning**: Phase-specific logs should be summarized in changelog and deleted to maintain clean documentation structure.
 
-### 2. Project Identification and Breakdown
-- **Phase to Project Mapping**: Transform specification phases into discrete projects
-- **Dependency Analysis**: Identify technical and logical dependencies between projects
-- **Scope Validation**: Ensure each project has clear boundaries and deliverables
-- **Effort Estimation**: Base estimates on similar completed work and complexity analysis
+- **Summarize Before Deletion**: Always capture key achievements, metrics, and lessons learned in `changelog.md` before deleting logs
+- **Active Project Logs Only**: Only keep logs for currently active projects/phases - completed work should be summarized and archived
+- **Changelog as Permanent Record**: Use `changelog.md` as the permanent record of what was accomplished, with links to archived project plans
+- **Log Cleanup Protocol**: After summarizing completed work in changelog, delete phase-specific logs to prevent documentation bloat
 
-### 3. Priority Assignment Framework
-- **Technical Dependencies First**: Infrastructure projects get high priority
-- **Risk Mitigation**: Projects that enable rollback/validation get high priority
-- **Feature Implementation**: Core functionality gets medium priority
-- **Optimization Last**: Performance and cleanup get low priority
-- **Exploration Separate**: Research items get research priority
+### Test Script Organization
 
-### 4. Backlog Quality Validation
-- **Completeness Check**: Verify all specification elements have corresponding projects
-- **Dependency Verification**: Ensure prerequisite relationships are logical and achievable
-- **Success Criteria Review**: Confirm each project has measurable outcomes
-- **Effort Distribution**: Check that high-priority work is appropriately sized for capacity
+**Key Learning**: Test scripts need dedicated organization separate from main codebase.
 
-## Cross-Reference Documentation Standards
+- **Dedicated Test Folder**: Create `/test-scripts/` directory for validation and testing scripts
+- **Phase-Specific Tests**: Create test scripts for each major phase to validate functionality
+- **Preserve Test Scripts**: Unlike logs, keep test scripts as they provide ongoing validation capability
+- **Test Script Naming**: Use descriptive names like `test-[phase-name].fsx` or `test-[feature].fsx`
 
-### File Linking Patterns
-When working across multiple related documents, use consistent cross-referencing:
+### Phase Transition Protocol Enhancement
 
-```markdown
-**Specification Reference**: `website-upgrade.md` Phase 1
-**Implementation Plan**: `projects/active/core-infrastructure.md`
-**Progress Log**: `logs/2025-07-08-log.md` Step 3
-**Backlog Item**: `projects/backlog.md` Core Infrastructure Implementation
-```
+**Key Learning**: Explicit approval protocol prevents scope creep and ensures quality completion.
 
-### Traceability Maintenance
-- **Specification → Project**: Clear mapping from source requirements to implementation projects
-- **Project → Tasks**: Breakdown from project goals to actionable steps
-- **Tasks → Validation**: Connection from implementation to success criteria
-- **Validation → Documentation**: Results feeding back to project progress
+- **Explicit User Approval Required**: Never proceed to next phase without explicit user instruction
+- **Completion Validation**: Ensure all phase objectives are met and tested before requesting approval
+- **Workflow Improvement Check**: After each phase, explicitly check for and document workflow/process improvements
+- **Architecture Readiness**: Verify foundation is solid for next work before proceeding
 
-## Context Preservation Enhancements
+### Multi-Phase Project Management
 
-### Session Continuity Patterns
-- **Reference Previous Work**: Always cite relevant previous logs and project documentation
-- **State Transition Documentation**: Explicitly document what changed between sessions
-- **Decision Rationale**: Capture why specific approaches were chosen over alternatives
-- **Learning Integration**: Update project plans based on implementation discoveries
+**Key Learning**: Large projects benefit from phase-based organization with clear boundaries.
 
-### Multi-Document Workflow
-When working with specifications, backlog, and project plans:
-1. **Start with Specification Analysis**: Understand complete scope before decomposition
-2. **Create Implementation Structure**: Establish project hierarchy and dependencies
-3. **Validate Against Constraints**: Check technical feasibility and resource capacity
-4. **Document Decision Path**: Capture reasoning for prioritization and scope decisions
+- **Phase-Specific Planning**: Break large projects into phases with clear deliverables
+- **Phase Completion Documentation**: Update project plan to mark completed phases with validation results
+- **Progressive Architecture**: Build foundation phases first, then layer additional functionality
+- **Test-Driven Validation**: Create test scripts for each phase to validate implementation
 
-## Quality Assurance Patterns
+### Technical Implementation Refinements
 
-### Backlog Validation Checklist
-When creating or reviewing backlogs from specifications:
-- [ ] **Completeness**: All specification phases/requirements have corresponding projects
-- [ ] **Dependencies**: Technical prerequisites clearly identified and ordered
-- [ ] **Scope Boundaries**: Each project has clear start/end criteria
-- [ ] **Success Metrics**: Measurable outcomes defined for each project
-- [ ] **Effort Realism**: Time estimates based on complexity analysis and historical data
-- [ ] **Priority Logic**: High priority items enable subsequent work or reduce risk
-- [ ] **Rollback Strategy**: Each project includes safe fallback approach
+**Key Learning**: Type qualification and compilation validation are critical for F# projects.
 
-### Implementation Validation Patterns
-- **Continuous Compilation**: Test build after each significant change
-- **Output Comparison**: Validate new implementations against existing behavior
-- **Feature Flag Testing**: Verify both old and new systems work in parallel
-- **Regression Prevention**: Test existing functionality before and after changes
-- **Documentation Sync**: Update project documentation as implementation progresses
+- **Type Qualification**: Always use fully qualified types (e.g., `MediaType.Unknown` not `Unknown`)
+- **Continuous Compilation**: Test build after each significant change, not just at end
+- **Module Dependencies**: Ensure new modules are properly added to project file immediately
+- **Test Script Validation**: Run test scripts after implementation to validate functionality
 
-## Tool Usage Optimization Patterns
+### Documentation Quality Standards
 
-### File Analysis Strategy
-- **Large Chunk Reads**: Read 100+ lines at once rather than multiple small reads
-- **Pattern Recognition**: Use grep search to identify repetitive code structures
-- **Context Building**: Read related files in parallel when dependencies exist
-- **State Documentation**: Capture file analysis findings in daily logs immediately
+**Key Learning**: Consistent documentation patterns improve project continuity.
 
-### Edit Tool Selection
-- **replace_string_in_file**: When exact string replacement with sufficient context
-- **insert_edit_into_file**: When adding new functionality with minimal context hints
-- **create_file**: When establishing new documentation or project structures
-- **Avoid Manual Copy-Paste**: Always use appropriate tools rather than showing code blocks
+- **Traceability**: Maintain clear links between specifications, project plans, implementation logs, and test results
+- **Progress Tracking**: Update project plans with completion status and validation details
+- **Decision Documentation**: Capture why specific approaches were chosen over alternatives
+- **Learning Integration**: Update workflow instructions based on implementation discoveries
 
-### Terminal Usage Guidelines
-- **Background Processes**: Use `isBackground=true` for servers, watch tasks, long-running builds
-- **Compilation Testing**: Run build commands after significant code changes
-- **Output Management**: Use head/tail for potentially large outputs
-- **Pager Prevention**: Add `| cat` or `--no-pager` flags for git, less, man commands
+### Error Recovery Patterns
+
+**Key Learning**: Systematic approach to fixing compilation and runtime errors.
+
+- **Incremental Testing**: Test each module individually before integration
+- **Type System Leverage**: Use F# type system to catch issues early
+- **Context Preservation**: Document error fixes in logs for future reference
+- **Rollback Capability**: Ensure each change can be safely reverted if needed
