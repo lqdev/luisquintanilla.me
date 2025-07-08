@@ -319,3 +319,14 @@ This workflow ensures systematic, documented, and quality-focused development th
 - **Type System Leverage**: Use F# type system to catch issues early
 - **Context Preservation**: Document error fixes in logs for future reference
 - **Rollback Capability**: Ensure each change can be safely reverted if needed
+
+### Comprehensive Testing Strategies
+
+**Key Learning**: Multi-layer testing approach ensures infrastructure reliability and compatibility.
+
+- **Comparison Testing**: When replacing existing systems, create test scripts that compare old vs new output
+- **Context Validation**: Test new functionality in different usage contexts (cards, feeds, pages)
+- **Integration Testing**: Verify new components don't break existing build processes during parallel development
+- **Regression Prevention**: Validate all existing functionality continues to work after infrastructure changes
+- **Test Script Preservation**: Keep test scripts for ongoing validation, unlike phase-specific logs which should be archived
+- **Documentation Testing**: Create comprehensive test content files that exercise all custom block types and edge cases

@@ -7,9 +7,9 @@
 
   <ItemGroup>
     <Compile Include="Domain.fs" />
-    <Compile Include="ASTParsing.fs" />
     <Compile Include="CustomBlocks.fs" />
     <Compile Include="MediaTypes.fs" />
+    <Compile Include="ASTParsing.fs" />
     <Compile Include="BlockRenderers.fs" />
     <Compile Include="GenericBuilder.fs" />
     <Compile Include="Services\Markdown.fs" />

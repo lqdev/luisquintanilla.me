@@ -7,8 +7,9 @@ open Markdig.Syntax
 open YamlDotNet.Serialization
 open YamlDotNet.Serialization.NamingConventions
 
-// Import existing domain types
+// Import existing domain types and custom blocks
 open Domain
+open CustomBlocks
 
 /// Result type for parsing operations with comprehensive error handling
 type ParseError = 
@@ -22,7 +23,7 @@ type ParseError =
 type ParsedDocument<'TMetadata> = {
     Metadata: 'TMetadata option
     TextContent: string
-    CustomBlocks: Map<string, string list>  // Block type -> content list
+    CustomBlocks: Map<string, obj list>  // Block type -> obj list (matches CustomBlocks output)
     RawMarkdown: string
     MarkdownAst: MarkdownDocument
 }
@@ -82,26 +83,45 @@ let private extractTextContentFromAst (doc: MarkdownDocument) : string =
     
     writer.ToString()
 
-/// Extract custom blocks from AST (placeholder for CustomBlocks.fs integration)
-/// This will be enhanced when CustomBlocks.fs module is implemented
-let private extractCustomBlocks (doc: MarkdownDocument) : Map<string, string list> =
-    // Placeholder implementation - will be replaced with actual custom block extraction
-    // when CustomBlocks.fs is created in next step
-    Map.empty
+/// Extract custom blocks from AST using CustomContainer blocks
+let private extractCustomBlocks (doc: MarkdownDocument) : Map<string, obj list> =
+    let customContainers = 
+        doc.Descendants<Markdig.Extensions.CustomContainers.CustomContainer>()
+        |> Seq.toList
+    
+    let groupedBlocks = 
+        customContainers
+        |> List.choose (fun container ->
+            let blockType = 
+                match container.Info with
+                | null -> ""
+                | info -> info.ToString()
+            
+            if not (String.IsNullOrEmpty(blockType)) then
+                // Extract the content of the custom container
+                let contentLines = 
+                    container.Descendants<Markdig.Syntax.LeafBlock>()
+                    |> Seq.map (fun leaf -> leaf.ToString())
+                    |> Seq.toList
+                    |> List.filter (fun line -> not (String.IsNullOrWhiteSpace(line)))
+                
+                let yamlContent = String.concat "\n" contentLines
+                Some (blockType, yamlContent)
+            else
+                None)
+        |> List.groupBy fst
+        |> List.map (fun (blockType, items) -> 
+            blockType, items |> List.map snd |> List.map box)
+        |> Map.ofList
+    
+    groupedBlocks
 
 /// Create markdown pipeline with extensions
 /// Uses same configuration as existing MarkdownService for consistency
 let private createMarkdownPipeline () : MarkdownPipeline =
-    // Start with same extensions as existing system
     MarkdownPipelineBuilder()
-        .UseAdvancedExtensions()  // Includes PipeTables, TaskLists, etc.
-        .UseDiagrams()
-        .UseMediaLinks()
-        .UseMathematics()
-        .UseCustomContainers()
-        .UseBootstrap()
-        .UseFigures()
-        // Custom block extensions will be added here when CustomBlocks.fs is ready
+        .UseYamlFrontMatter()
+        .UseAdvancedExtensions()  // This includes UseCustomContainers()
         .Build()
 
 /// Central document parsing function - single entry point for all content types

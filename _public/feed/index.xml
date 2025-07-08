@@ -3,8 +3,138 @@
     <title>Luis Quintanilla Feed</title>
     <link>https://www.luisquintanilla.me</link>
     <description>Main Feed</description>
-    <lastPubDate>2025-05-26 13:06 -05:00</lastPubDate>
+    <lastPubDate>2025-07-06 14:48 -05:00</lastPubDate>
     <language>en</language>
+    <item>
+      <title>Week of July 6, 2025 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2025-07-06-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2025-07-06-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/2025-06-29-weekly-post-summary"&gt;Week of June 29, 2025 - Post Summary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/crate-finds-june-2025"&gt;Crate Finds - June 2025&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/crate-finds-may-2025"&gt;Crate Finds - May 2025&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/post-statistics-june-2025"&gt;Website Post Statistics - June 2025&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/do-not-privatize-federal-land"&gt;Do not privatize federal land&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/feed/tumblr-wordpress-fediverse-integration-pause"&gt;Tumblr’s move to WordPress and fediverse integration is ‘on hold’&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2025-07-06-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2025-07-06-weekly-post-summary</guid>
+      <pubDate>2025-07-06 14:48 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Crate Finds - June 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/crate-finds-june-2025?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/crate-finds-june-2025&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Playlist from June 2025.&lt;/p&gt;
+&lt;p&gt;Some of my favorites:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Claudia, Wilhelm R And Me by Roberto Musci&lt;/li&gt;
+&lt;li&gt;Journey in Satchidananda by Alice Coltrane and Pharoah Sanders&lt;/li&gt;
+&lt;li&gt;Little Sunflower by Dorothy Ashby&lt;/li&gt;
+&lt;/ul&gt;
+&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6ZhcCrMutGjgL80C22iN1u" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/crate-finds-june-2025?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/crate-finds-june-2025</guid>
+      <pubDate>2025-07-01 20:00</pubDate>
+      <category>#cratefinds</category>
+      <category>#music</category>
+      <category>#playlist</category>
+      <category>#spotify</category>
+    </item>
+    <item>
+      <title>Website Post Statistics - June 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/post-statistics-june-2025?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/post-statistics-june-2025&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I haven't published much this past month. Notes and responses are significantly down from last year.&lt;/p&gt;
+&lt;p&gt;That said, I'm happy that so far I've published seven long-form blog posts, which is how many I published all of last year.&lt;/p&gt;
+&lt;p&gt;I haven't spent as much time bookmarking and resharing content. Partially due to the fact that I'm still working on the redesign. So far &lt;a href="/posts/vibe-specing-prompt-to-spec/"&gt;vibe-specing&lt;/a&gt; the redesign hasn't yielded good enough results. Maybe I need to break down my problem further. That experience on its own might make a good blog post.&lt;/p&gt;
+&lt;p&gt;Part of the challenge with the redesign is that I'm trying to find a balance between standardizing my front-matter YAML schemas so that I can simplify my code and just have a single function handle the parsing of the front-matter, while at the same time enabling custom rendering depending on the post type. I think in the end what I'll end up doing is having different schemas per post type and maybe refactoring some of my code to remove redundancies.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/post-statistics-june-2025?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/post-statistics-june-2025</guid>
+      <pubDate>2025-07-01 20:00</pubDate>
+      <category>#githubactions</category>
+      <category>#cicd</category>
+      <category>#blogging</category>
+      <category>#stats</category>
+      <category>#github</category>
+    </item>
+    <item>
+      <title>Crate Finds - May 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/crate-finds-may-2025?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/crate-finds-may-2025&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Better late than never. Here's the May 2025 drop.&lt;/p&gt;
+&lt;p&gt;Some of my favorites from last month:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Prayer to the Stars by Vianney Lopez, Sam Bottner&lt;/li&gt;
+&lt;li&gt;Diarabi by Viex Farka Toure, Khruangbin&lt;/li&gt;
+&lt;li&gt;Everything &amp;amp; Nothing, OHMA&lt;/li&gt;
+&lt;li&gt;Bloom, Deya Dova&lt;/li&gt;
+&lt;li&gt;Dance of the Seven Sisters, Deya Dova&lt;/li&gt;
+&lt;li&gt;Wisdom Eye by Alice Coltrane&lt;/li&gt;
+&lt;li&gt;Black Meditation by Shabaka&lt;/li&gt;
+&lt;/ul&gt;
+&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0ETG3ZcVXCPqgHN4xFQ8qN" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/crate-finds-may-2025?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/crate-finds-may-2025</guid>
+      <pubDate>2025-06-29 18:00</pubDate>
+      <category>#cratefinds</category>
+      <category>#music</category>
+      <category>#playlist</category>
+      <category>#spotify</category>
+    </item>
+    <item>
+      <title>Week of June 29, 2025 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2025-06-29-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2025-06-29-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/crate-finds-may-2025"&gt;Crate Finds - May 2025&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/feed/do-not-privatize-federal-land"&gt;Do not privatize federal land&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/2025-06-29-weekly-post-summary?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/2025-06-29-weekly-post-summary</guid>
+      <pubDate>2025-06-29 14:00 -05:00</pubDate>
+      <category>#weeklysummary</category>
+      <category>#blogging</category>
+      <category>#website</category>
+      <category>#indieweb</category>
+    </item>
+    <item>
+      <title>Thee Sacred Souls 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/thee-sacred-souls-2025?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/thee-sacred-souls-2025&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;Some pictures from the Thee Sacred Souls concert I attended a few weeks ago.&lt;/p&gt;
+&lt;p&gt;I caught them in New York when the tour started, so it was nice to catch them at the end of the tour as well.&lt;/p&gt;
+&lt;p&gt;In both cases, they were great performances.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/thee-sacred-souls-2025-1.jpg" class="img-fluid" alt="A stage with Thee Sacred Souls band performing" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/thee-sacred-souls-2025-2.jpg" class="img-fluid" alt="Thee Sacred Souls members on stage embracing" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/thee-sacred-souls-2025?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/thee-sacred-souls-2025</guid>
+      <pubDate>2025-06-14 12:30</pubDate>
+      <category>#music</category>
+      <category>#concert</category>
+      <category>#theesacredsouls</category>
+    </item>
+    <item>
+      <title>Local Artist Websites</title>
+      <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/local-mural-artist-websites?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/local-mural-artist-websites&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt;I saw these really cool murals around the neighborhood. The artists signed their work either with their name or Instagram handle. I don't use Instagram, so it was nice to see that some of them also had websites where I could follow their work.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.shawnimals.com/"&gt;Shawnimals&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://cydsmillie.com/"&gt;Cyd Smillie&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/feed/local-mural-artist-websites?utm_medium=feed</link>
+      <guid>https://www.luisquintanilla.me/feed/local-mural-artist-websites</guid>
+      <pubDate>2025-06-14 10:57</pubDate>
+      <category>#art</category>
+      <category>#website</category>
+      <category>#openweb</category>
+    </item>
     <item>
       <title>Week of May 26, 2025 - Post Summary</title>
       <description>&lt;![CDATA[&lt;p&gt;See the original post at &lt;a href="https://www.luisquintanilla.me/feed/2025-05-26-weekly-post-summary?utm_medium=feed"&gt;https://www.luisquintanilla.me/feed/2025-05-26-weekly-post-summary&lt;/a&gt;&lt;/p&gt;&lt;br&gt;&lt;h2&gt;Notes&lt;/h2&gt;
