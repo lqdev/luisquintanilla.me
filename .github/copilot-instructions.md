@@ -330,3 +330,32 @@ This workflow ensures systematic, documented, and quality-focused development th
 - **Regression Prevention**: Validate all existing functionality continues to work after infrastructure changes
 - **Test Script Preservation**: Keep test scripts for ongoing validation, unlike phase-specific logs which should be archived
 - **Documentation Testing**: Create comprehensive test content files that exercise all custom block types and edge cases
+
+### Project Cleanup and Maintenance
+
+**Key Learning**: Regular cleanup prevents documentation and test script bloat, maintaining clean development environment.
+
+- **Completed Phase Log Deletion**: Delete phase-specific logs immediately after summarizing in changelog - don't accumulate
+- **Project Archival Timing**: When all phases of a project are complete, archive immediately to keep active directory focused
+- **Test Script Lifecycle**: Distinguish between core validation scripts (keep) vs temporary debug scripts (delete after issue resolution)
+- **Cleanup Triggers**: Perform cleanup at project completion, not as separate maintenance tasks
+- **Reference Accuracy**: Update all documentation references when archiving/deleting to prevent broken links
+
+### Test Script Classification
+
+**Keep - Core Validation Scripts**: 
+- Scripts that validate fundamental functionality (AST parsing, domain integration, etc.)
+- Scripts used for regression testing after future changes
+- Scripts that test complete workflows end-to-end
+
+**Remove - Temporary Debug Scripts**:
+- Scripts created to debug specific issues during implementation
+- Minimal test scripts superseded by comprehensive versions  
+- Pipeline configuration debug scripts after issues are resolved
+
+### Documentation Cleanup Protocol
+
+1. **Phase Completion**: Summarize achievements in changelog, delete phase log immediately
+2. **Project Completion**: Archive project plan, remove from active, update any references
+3. **Test Scripts**: Remove debug/temporary scripts, update README to reflect current state
+4. **Reference Validation**: Ensure all documentation links point to correct archived/current locations
