@@ -10,6 +10,14 @@ module Domain
         Content: string
     }
 
+    // Unified content interface for tag processing
+    type ITaggable = 
+        abstract member Tags: string array
+        abstract member Title: string
+        abstract member Date: string
+        abstract member FileName: string
+        abstract member ContentType: string
+
     [<CLIMutable>]
     type PostDetails = {
         [<YamlMember(Alias="post_type")>] PostType: string
@@ -185,3 +193,55 @@ module Domain
     }
 
     type TaggedPosts = { Posts:Post array; Notes:Post array; Responses:Response array }
+
+    // ITaggable helper functions for unified tag processing
+    module ITaggableHelpers =
+        
+        let getPostTags (post: Post) = post.Metadata.Tags
+        let getPostTitle (post: Post) = post.Metadata.Title
+        let getPostDate (post: Post) = post.Metadata.Date
+        let getPostFileName (post: Post) = post.FileName
+        let getPostContentType (_: Post) = "post"
+        
+        let getSnippetTags (snippet: Snippet) = 
+            if String.IsNullOrEmpty(snippet.Metadata.Tags) then [||]
+            else snippet.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+        let getSnippetTitle (snippet: Snippet) = snippet.Metadata.Title
+        let getSnippetDate (_: Snippet) = "" // Snippets don't have dates
+        let getSnippetFileName (snippet: Snippet) = snippet.FileName
+        let getSnippetContentType (_: Snippet) = "snippet"
+        
+        let getWikiTags (wiki: Wiki) = 
+            if String.IsNullOrEmpty(wiki.Metadata.Tags) then [||]
+            else wiki.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+        let getWikiTitle (wiki: Wiki) = wiki.Metadata.Title
+        let getWikiDate (wiki: Wiki) = wiki.Metadata.LastUpdatedDate
+        let getWikiFileName (wiki: Wiki) = wiki.FileName
+        let getWikiContentType (_: Wiki) = "wiki"
+        
+        let getResponseTags (response: Response) = response.Metadata.Tags
+        let getResponseTitle (response: Response) = response.Metadata.Title
+        let getResponseDate (response: Response) = response.Metadata.DatePublished
+        let getResponseFileName (response: Response) = response.FileName
+        let getResponseContentType (_: Response) = "response"
+        
+        // Generic function to work with any ITaggable-like object
+        let createTaggableRecord (tags: string array) (title: string) (date: string) (fileName: string) (contentType: string) =
+            { new ITaggable with
+                member _.Tags = tags
+                member _.Title = title
+                member _.Date = date
+                member _.FileName = fileName
+                member _.ContentType = contentType }
+        
+        let postAsTaggable (post: Post) = 
+            createTaggableRecord (getPostTags post) (getPostTitle post) (getPostDate post) (getPostFileName post) (getPostContentType post)
+            
+        let snippetAsTaggable (snippet: Snippet) = 
+            createTaggableRecord (getSnippetTags snippet) (getSnippetTitle snippet) (getSnippetDate snippet) (getSnippetFileName snippet) (getSnippetContentType snippet)
+            
+        let wikiAsTaggable (wiki: Wiki) = 
+            createTaggableRecord (getWikiTags wiki) (getWikiTitle wiki) (getWikiDate wiki) (getWikiFileName wiki) (getWikiContentType wiki)
+            
+        let responseAsTaggable (response: Response) = 
+            createTaggableRecord (getResponseTags response) (getResponseTitle response) (getResponseDate response) (getResponseFileName response) (getResponseContentType response)

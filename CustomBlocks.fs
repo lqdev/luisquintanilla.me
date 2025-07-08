@@ -293,7 +293,11 @@ let filterCustomBlocks (doc: MarkdownDocument) : MarkdownDocument =
         | :? ReviewBlock -> () // Skip review blocks
         | :? VenueBlock -> () // Skip venue blocks
         | :? RsvpBlock -> () // Skip rsvp blocks
-        | _ -> filteredDoc.Add(block)
+        | _ -> 
+            // Remove block from parent before adding to filtered doc
+            if block.Parent <> null then
+                block.Parent.Remove(block) |> ignore
+            filteredDoc.Add(block)
     
     filteredDoc
 
@@ -318,3 +322,55 @@ type CustomBlockExtension() =
 /// Helper function to add custom block extension to a pipeline builder
 let useCustomBlocks (pipelineBuilder: MarkdownPipelineBuilder) =
     pipelineBuilder.Use<CustomBlockExtension>()
+
+/// Parse custom blocks using provided block parsers (Phase 1C specification)
+let parseCustomBlocks (blockParsers: Map<string, string -> obj list>) (doc: MarkdownDocument) : Map<string, obj list> =
+    let results = System.Collections.Generic.Dictionary<string, obj list>()
+    
+    // Initialize result dictionary with empty lists for all parser types
+    for (blockType, _) in blockParsers |> Map.toSeq do
+        results.[blockType] <- []
+    
+    // Process all custom blocks in the document
+    for descendant in doc.Descendants() do
+        let block = descendant :> Block
+        match block with
+        | :? MediaBlock as mediaBlock ->
+            let blockType = "media"
+            if blockParsers.ContainsKey(blockType) then
+                let parser = blockParsers.[blockType]
+                let parsedObjects = parser mediaBlock.RawContent
+                if results.ContainsKey(blockType) then
+                    results.[blockType] <- results.[blockType] @ parsedObjects
+                else
+                    results.[blockType] <- parsedObjects
+        | :? ReviewBlock as reviewBlock ->
+            let blockType = "review"
+            if blockParsers.ContainsKey(blockType) then
+                let parser = blockParsers.[blockType]
+                let parsedObjects = parser reviewBlock.RawContent
+                if results.ContainsKey(blockType) then
+                    results.[blockType] <- results.[blockType] @ parsedObjects
+                else
+                    results.[blockType] <- parsedObjects
+        | :? VenueBlock as venueBlock ->
+            let blockType = "venue"
+            if blockParsers.ContainsKey(blockType) then
+                let parser = blockParsers.[blockType]
+                let parsedObjects = parser venueBlock.RawContent
+                if results.ContainsKey(blockType) then
+                    results.[blockType] <- results.[blockType] @ parsedObjects
+                else
+                    results.[blockType] <- parsedObjects
+        | :? RsvpBlock as rsvpBlock ->
+            let blockType = "rsvp"
+            if blockParsers.ContainsKey(blockType) then
+                let parser = blockParsers.[blockType]
+                let parsedObjects = parser rsvpBlock.RawContent
+                if results.ContainsKey(blockType) then
+                    results.[blockType] <- results.[blockType] @ parsedObjects
+                else
+                    results.[blockType] <- parsedObjects
+        | _ -> ()
+    
+    results |> Seq.map (fun kvp -> kvp.Key, kvp.Value) |> Map.ofSeq
