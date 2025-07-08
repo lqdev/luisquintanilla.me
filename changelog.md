@@ -1,5 +1,43 @@
 # Changelog
 
+## 2025-07-08 - Core Infrastructure Phase 1C: Domain Enhancement and Pipeline Integration ✅
+
+**Project**: [Core Infrastructure Implementation](projects/active/core-infrastructure.md)  
+**Duration**: 2025-07-08 (Phase 1C)  
+**Status**: Phase Complete
+
+### What Changed
+Completed domain enhancement and pipeline integration for the core infrastructure project, implementing ITaggable interface and parseCustomBlocks function with comprehensive testing.
+
+### Technical Improvements
+- **ITaggable Interface**: Unified tag processing across all domain types (Post, Snippet, Wiki, Response)
+- **parseCustomBlocks Function**: Exact specification implementation for Map<string, string -> obj list> processing
+- **Helper Functions**: Created ITaggableHelpers module for domain type conversions
+- **Tag Processing**: Handles both string arrays and comma-separated string formats
+- **Pipeline Integration**: Full integration with Markdig AST and custom block processing
+- **Bug Resolution**: Fixed filterCustomBlocks block attachment issue
+
+### Features Added
+- ITaggable interface in Domain.fs with required members (Tags, Title, Date, FileName, ContentType)
+- parseCustomBlocks function in CustomBlocks.fs matching website-upgrade.md specification
+- ITaggableHelpers module with conversion functions for all domain types
+- Comprehensive test script (test-phase1c.fsx) validating all functionality
+- Enhanced pipeline configuration for custom block registration
+
+### Architecture Impact
+Phase 1C completes the foundational infrastructure for unified content processing:
+- Domain types enhanced with consistent interface
+- Custom block processing pipeline fully operational
+- Foundation ready for Phase 1D testing and validation
+- Seamless integration with existing AST parsing system
+
+### Documentation Created/Updated
+- Comprehensive Phase 1C implementation log (logs/2025-07-08-phase1c-log.md)
+- Updated project plan with completion status and validation results
+- Test script with real-world validation scenarios
+
+---
+
 ## 2025-07-08 - Workflow Improvements and Test Script Organization ✅
 
 **Project**: [Core Infrastructure Implementation](projects/active/core-infrastructure.md)  

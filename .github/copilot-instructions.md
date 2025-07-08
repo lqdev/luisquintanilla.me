@@ -300,6 +300,7 @@ This workflow ensures systematic, documented, and quality-focused development th
 - **Continuous Compilation**: Test build after each significant change, not just at end
 - **Module Dependencies**: Ensure new modules are properly added to project file immediately
 - **Test Script Validation**: Run test scripts after implementation to validate functionality
+- **Type Annotations in Scripts**: Use explicit type annotations (`: Post`, `: Snippet`) in test scripts to prevent F# type inference issues
 
 ### Documentation Quality Standards
 
