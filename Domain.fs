@@ -64,6 +64,8 @@ module Domain
     type PresentationDetails = {
         [<YamlMember(Alias="title")>] Title: string
         [<YamlMember(Alias="resources")>] Resources: PresentationResource array
+        [<YamlMember(Alias="tags")>] Tags: string
+        [<YamlMember(Alias="date")>] Date: string
     }
 
     type Presentation = {
@@ -71,6 +73,15 @@ module Domain
         Metadata: PresentationDetails
         Content: string
     }
+    with
+        interface ITaggable with
+            member this.Tags = 
+                if String.IsNullOrEmpty(this.Metadata.Tags) then [||]
+                else this.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+            member this.Title = this.Metadata.Title
+            member this.Date = this.Metadata.Date
+            member this.FileName = this.FileName
+            member this.ContentType = "presentation"
 
     [<CLIMutable>]
     type LivestreamResource = {
