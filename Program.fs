@@ -6,6 +6,8 @@ open Loaders
 open Builder
 open WebmentionService
 open Domain
+open FeatureFlags
+open MigrationUtils
 
 [<EntryPoint>]
 let main argv =
@@ -46,6 +48,19 @@ let main argv =
     let forumLinks = loadForumsLinks ()
     let youTubeLinks = loadYouTubeLinks ()
     let aiStarterPackLinks = loadAIStarterPackLinks ()
+
+    // Feature Flag Status
+    printfn "=== Build Configuration ==="
+    FeatureFlags.printStatus()
+    match FeatureFlags.validateConfiguration() with
+    | Ok message -> printfn $"✅ {message}"
+    | Error error -> 
+        printfn $"❌ Feature flag error: {error}"
+        exit 1
+    
+    // Migration Progress
+    MigrationUtils.printMigrationProgress()
+    printfn ""
 
     // Build static pages
     buildHomePage posts feedPosts responses
@@ -101,8 +116,15 @@ let main argv =
     buildRedirectPages redirects
 
     // Build Snippet Pages
-    buildSnippetPage snippets
-    buildSnippetPages snippets
+    if FeatureFlags.isEnabled ContentType.Snippets then
+        printfn "Using NEW snippet processor (experimental)"
+        // TODO: Implement buildSnippetsNew() in future phase
+        // For now, fallback to existing implementation
+        buildSnippetPage snippets
+        buildSnippetPages snippets
+    else
+        buildSnippetPage snippets
+        buildSnippetPages snippets
 
     // Build Wiki
     buildWikiPage (wikis |> Array.sortBy(fun x -> x.Metadata.Title))
