@@ -51,6 +51,7 @@ let isEnabled contentType =
         // Default values for migrated content types
         match contentType with
         | Snippets -> true  // Snippets migration complete - default to new processor
+        | Wiki -> true      // Wiki migration complete - default to new processor
         | _ -> false        // Other content types default to old processors
     | _ -> parseBooleanFlag value
 

@@ -478,3 +478,35 @@ module Builder
         
         // Return feed data for potential RSS generation
         feedData
+
+    // AST-based wiki processing using GenericBuilder infrastructure  
+    let buildWikis() = 
+        let wikiFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "wiki"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        let processor = GenericBuilder.WikiProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor wikiFiles
+        
+        // Generate individual wiki pages
+        feedData
+        |> List.iter (fun item ->
+            let wiki = item.Content
+            let saveDir = Path.Join(outputDir, "wiki", wiki.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            
+            let html = contentViewWithTitle wiki.Metadata.Title (wiki.Content |> convertMdToHtml)
+            let wikiView = generate html "defaultindex" $"{wiki.Metadata.Title} | Wiki | Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, wikiView))
+        
+        // Generate wiki index page using existing view
+        let wikis = feedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.sortBy(fun x -> x.Metadata.Title)
+        let wikiIndexHtml = generate (wikisView wikis) "defaultindex" "Wiki | Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "wiki")
+        Directory.CreateDirectory(indexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), wikiIndexHtml)
+        
+        // Return feed data for potential RSS generation
+        feedData

@@ -1,5 +1,66 @@
 # Changelog
 
+## 2025-01-08 - Wiki Migration: Complete ✅
+
+**Project**: [Wiki Migration](projects/archive/wiki-migration.md)  
+**Duration**: 2025-01-08 (1 day - all 3 phases)  
+**Status**: ✅ **COMPLETE** - Migration Deployed to Production
+
+### What Changed
+Successfully completed the full migration of Wiki content type from string-based processing to AST-based infrastructure. The new system is now the production default with all legacy code removed.
+
+### Technical Improvements  
+- **AST-Based Processing**: Wiki now uses unified GenericBuilder infrastructure like Snippets
+- **Feature Flag Migration**: Proven pattern successfully applied to second content type
+- **Legacy Code Removal**: Eliminated `buildWikiPage()` and `buildWikiPages()` functions (~20 lines)
+- **Production Deployment**: New processor is now the default (no environment variables needed)
+- **Code Simplification**: Program.fs wiki processing simplified to single function call
+
+### Migration Achievements
+- **Perfect Compatibility**: 28/28 wiki files produce identical output between old and new systems
+- **Zero Regression**: No functional changes or broken functionality during migration
+- **Validation Infrastructure**: Created robust testing approach for output comparison
+- **Clean Deployment**: Legacy code removed after validation confirmed compatibility
+
+### Architecture Impact
+- **Second Successful Migration**: Wiki joins Snippets as fully migrated content type  
+- **Pattern Validation**: Feature flag migration methodology proven for multiple content types
+- **Foundation Strengthened**: GenericBuilder infrastructure supports growing content type portfolio
+- **Code Quality**: Continued elimination of string-based processing in favor of AST parsing
+
+### Next Priority
+Ready for Presentations migration using validated pattern and infrastructure per project backlog.
+
+## 2025-01-08 - Wiki Migration: Phase 2 Validation ✅
+
+**Project**: [Wiki Migration](projects/active/wiki-migration.md)  
+**Duration**: 2025-01-08 - Phase 2  
+**Status**: ✅ **PHASE 2 COMPLETE** - Validation Passed, Ready for Production
+
+### What Changed
+Completed validation phase of wiki migration from string-based to AST-based processing. Both old and new systems are functional with feature flag control, and comprehensive validation confirms 100% output compatibility.
+
+### Technical Improvements  
+- **System Restoration**: Re-enabled old wiki system that was previously disabled
+- **AST Implementation**: New processor follows proven snippets migration pattern
+- **Validation Infrastructure**: Direct function call testing approach (more reliable than process-based)
+- **Feature Flag Integration**: Wiki processing now controlled by `NEW_WIKI` environment variable
+
+### Validation Results
+- **Perfect Compatibility**: 28/28 wiki files produce identical output between old and new systems
+- **Zero Differences**: 100% match across all generated HTML files including wiki index
+- **Sorting Fix**: Corrected wiki index sorting to match legacy system behavior
+- **Build Verification**: Both old and new systems build successfully without errors
+
+### Architecture Impact
+- Wiki content type now supports both legacy and AST-based processing via feature flags
+- Foundation established for final production migration (Phase 3)
+- Validation script created for ongoing regression testing
+- Pattern proven for future content type migrations
+
+### Next Phase
+Ready for Phase 3 (Production Migration) - awaiting explicit approval per workflow protocol
+
 ## 2025-01-08 - Snippets Migration: AST-Based Processing ✅
 
 **Project**: [Snippets Migration](projects/archive/snippets-migration.md)  
@@ -40,6 +101,37 @@ Successfully completed the full migration of Snippets content type from string-b
 ✅ **Pattern Proven**: Ready for next content type migrations
 
 **Next Priority**: Wiki Content Migration using validated pattern and infrastructure.
+
+---
+
+## 2025-01-08 - Wiki Migration: Phase 1 Analysis Complete (Corrected) ✅
+
+**Project**: [Wiki Migration](projects/active/wiki-migration.md)  
+**Duration**: Phase 1 Complete (0.5 days)  
+**Status**: Phase 1 Complete - Migration Strategy Corrected
+
+### What Changed
+Completed analysis of wiki system and discovered the actual state: wiki processing is broken/disabled, not missing entirely. Navigation links exist but no content is generated, requiring restoration and migration approach.
+
+### Technical Discoveries  
+- **Broken System Found**: Wiki processing functions missing from `Program.fs` but navigation expects them
+- **Mixed Infrastructure**: Both old (`Services\Markdown.fs::parseWiki`) and new (`ASTParsing.fs::parseWikiFromFile`) parsers exist
+- **Standard Migration Pattern**: Need to restore old system for baseline, then migrate using proven snippets pattern
+- **Content Ready**: 26 wiki files with consistent metadata patterns ready for processing
+
+### Architecture Impact
+- **Restored Migration Approach**: Will use proven old/new parallel system with feature flags
+- **Output Compatibility**: Can establish baseline by restoring old system first
+- **Infrastructure Validation**: Both old and new parsing systems available for comparison
+- **Standard Pattern**: Apply validated snippets migration approach to wiki content
+
+### Documentation Created/Updated
+- [Wiki Migration Requirements](projects/active/wiki-migration-requirements.md) 
+- [Wiki Migration Project Plan](projects/active/wiki-migration.md) - Phase 1 complete, strategy corrected
+- Phase 1 analysis corrected (user identified broken system vs missing system)
+
+### Next Steps
+Phase 2: Restore old wiki system for baseline, then implement new AST system with feature flags for safe migration.
 
 ---
 

@@ -38,7 +38,6 @@ let main argv =
     let liveStreams = loadLiveStreams (srcDir)
     let feedLinks = loadFeedLinks (srcDir)
     let redirects = loadRedirects ()
-    let wikis = loadWikis (srcDir)
     let books = loadBooks (srcDir)
     let albums = loadAlbums (srcDir)
     let responses = loadReponses (srcDir)
@@ -118,9 +117,10 @@ let main argv =
     let _ = buildSnippets()
     ()
 
-    // Build Wiki (TODO: Functions missing, need implementation)
-    // buildWikiPage (wikis |> Array.sortBy(fun x -> x.Metadata.Title))
-    // buildWikiPages wikis
+    // Build Wiki Pages  
+    printfn "Building wiki pages with AST-based processor"
+    let _ = buildWikis()
+    ()
 
     // Build books (TODO: Functions missing, need implementation)
     // buildLibraryPage books
