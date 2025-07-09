@@ -116,23 +116,34 @@ Migrate presentations to new processor:
 ---
 
 ### [ ] Phase 2: Books/Library Migration
-**Project**: Website Architecture Upgrade - Books Processor  
+**Project**: Website Architecture Upgrade - Books with Review Blocks  
 **Complexity**: Medium  
-**Estimated Effort**: 1-2 weeks  
+**Estimated Effort**: 1 week  
 **Dependencies**: Presentations Migration Success
 
-Migrate book/library content with review system:
-- Convert book reviews to `:::review` blocks
-- Standardize book metadata format
-- Implement book processor with review support
-- Create book card and RSS renderers
+**Revised Approach**: Convert books to use existing `:::review` blocks for consistency.
+
+**Key Insight**: Books are reviews, and the system already has review blocks! Use existing proven architecture.
+
+**Current Books Structure**:
+- Metadata: `rating: 5.0`, `status: "Read"`, `author`, `title`, `isbn`
+- Content: `## Review` sections with review text
+
+**Migration Strategy**:
+- Convert `## Review` sections to `:::review` blocks for metadata only (rating, item title)
+- Keep review text as the post's main content, not inside the review block
+- Map book metadata to review block structure (`rating`, `item_title`) 
+- Preserve `isbn`, `author`, `cover` as book-specific metadata outside the block
+- Use existing `ReviewRenderer` for consistent metadata output and microformats
 - Add `NEW_BOOKS=true` feature flag
 
 **Success Criteria**:
-- [ ] Books use `:::review` blocks for structured reviews
-- [ ] Book ratings and reviews render consistently
-- [ ] Library feeds generated automatically
-- [ ] Migration preserves all existing functionality
+- [ ] Books use existing `:::review` blocks for review content
+- [ ] Book metadata properly mapped to `ReviewData` structure
+- [ ] Library pages render with consistent review formatting
+- [ ] Microformats support inherited from existing review blocks
+- [ ] All existing book functionality preserved
+- [ ] Migration validated through feature flag and output comparison
 
 ---
 
