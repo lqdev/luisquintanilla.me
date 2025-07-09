@@ -361,3 +361,24 @@ This workflow ensures systematic, documented, and quality-focused development th
 2. **Project Completion**: Archive project plan, remove from active, update any references
 3. **Test Scripts**: Remove debug/temporary scripts, update README to reflect current state
 4. **Reference Validation**: Ensure all documentation links point to correct archived/current locations
+
+### Post-Project Cleanup Lessons
+
+**Key Learning**: Partial cleanup creates confusing workspace state and violates Active Directory Rule.
+
+- **Complete Project Archival**: When archiving projects, move ALL related files (project plan + requirements) together
+- **Requirements File Lifecycle**: Requirements files should follow same archival pattern as their project files
+- **Zero-Byte File Detection**: Empty placeholder files in active directory indicate incomplete cleanup
+- **Cleanup Verification**: After archival, verify active directory contains only genuinely active projects
+- **Accumulated Log Problem**: Completed logs accumulate quickly and create documentation bloat
+- **Regular Cleanup Triggers**: Perform cleanup immediately after project completion, not as delayed maintenance
+
+### Active Directory Hygiene
+
+**Critical Workflow Compliance**: The `projects/active/` directory must contain only current work.
+
+- **Daily Active Check**: Regularly verify active directory contains only genuinely active projects
+- **Complete File Removal**: Remove both project plans AND requirements files when archiving
+- **No Placeholder Files**: Never leave empty or zero-byte files in active directory
+- **Clean State Principle**: Active directory should clearly show current work focus at a glance
+- **Archive Completeness**: Ensure all project-related files are moved to archive together

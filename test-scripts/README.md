@@ -16,6 +16,13 @@ dotnet fsi test-scripts\test-phase1c.fsx            # ITaggable and domain integ
 dotnet fsi test-scripts\test-comparison-phase1d.fsx # AST vs string parsing comparison
 dotnet fsi test-scripts\test-context-validation.fsx # Custom blocks in different contexts
 dotnet fsi test-scripts\test-integration-phase1d.fsx # Integration with existing build
+
+# Content Migration Tests
+dotnet fsi test-scripts\test-snippets-migration.fsx # Snippets migration validation
+dotnet fsi test-scripts\test-wiki-migration.fsx     # Wiki migration validation
+
+# Feature Flag Tests
+dotnet fsi test-scripts\test-feature-flags.fsx      # Feature flag system validation
 ```
 
 ## Core Infrastructure Tests
