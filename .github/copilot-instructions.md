@@ -66,9 +66,10 @@ This document outlines the systematic project development workflow for the indie
 ### Active Development
 
 3. **Daily Work Sessions**
-   - Start with current state analysis in `logs/YYYY-MM-DD-log.md`
-   - Document session objectives and planned approach
+   - Create phase-specific logs for focused work: `logs/YYYY-MM-DD-[project-phase]-log.md`
+   - Document session objectives and planned approach for the specific phase
    - Reference active project plan for context and progress tracking
+   - **Focus Principle**: One log per active project phase enables better context and completion tracking
 
 4. **Step-by-Step Implementation**
    - Make one logical change at a time
@@ -258,12 +259,13 @@ This workflow ensures systematic, documented, and quality-focused development th
 
 ### Log Management Best Practices
 
-**Key Learning**: Phase-specific logs should be summarized in changelog and deleted to maintain clean documentation structure.
+**Key Learning**: Phase-specific logs should be summarized in changelog and deleted immediately to maintain clean documentation structure.
 
-- **Summarize Before Deletion**: Always capture key achievements, metrics, and lessons learned in `changelog.md` before deleting logs
-- **Active Project Logs Only**: Only keep logs for currently active projects/phases - completed work should be summarized and archived
-- **Changelog as Permanent Record**: Use `changelog.md` as the permanent record of what was accomplished, with links to archived project plans
-- **Log Cleanup Protocol**: After summarizing completed work in changelog, delete phase-specific logs to prevent documentation bloat
+- **Phase-Specific Logs**: Create `logs/YYYY-MM-DD-[project-phase]-log.md` for each active project phase
+- **Immediate Cleanup Protocol**: Summarize achievements in `changelog.md` and delete phase logs immediately upon completion
+- **No Log Accumulation**: Only keep logs for currently active work - completed logs should never accumulate
+- **Changelog as Permanent Record**: Use `changelog.md` as the permanent record with links to archived project plans
+- **Focus Benefit**: Phase-specific logs provide better context and completion tracking than single accumulated logs
 
 ### Test Script Organization
 
