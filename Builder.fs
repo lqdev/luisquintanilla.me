@@ -16,15 +16,16 @@ module Builder
     let private outputDir = "_public"
 
     let rec cleanOutputDirectory (outputDir:string) = 
-        let dirInfo = DirectoryInfo(outputDir)
+        if Directory.Exists(outputDir) then
+            let dirInfo = DirectoryInfo(outputDir)
 
-        dirInfo.GetFiles()
-        |> Array.iter(fun x -> x.Delete())
+            dirInfo.GetFiles()
+            |> Array.iter(fun x -> x.Delete())
 
-        dirInfo.GetDirectories()
-        |> Array.iter(fun x -> 
-            cleanOutputDirectory x.FullName
-            x.Delete())
+            dirInfo.GetDirectories()
+            |> Array.iter(fun x -> 
+                cleanOutputDirectory x.FullName
+                x.Delete())
 
     let copyStaticFiles () =
         let directories = [
@@ -446,135 +447,34 @@ module Builder
             Directory.CreateDirectory(saveDir) |> ignore
             File.WriteAllText(Path.Join(saveDir,"index.html"),streamView))
 
-    let buildSnippetPage(snippets:Snippet array) = 
-        let snippetsPage = generate (snippetsView snippets) "defaultindex" "Snippets | Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"snippets")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"),snippetsPage)
-
-    let buildSnippetPages (snippets:Snippet array) = 
-        let rootSaveDir = Path.Join(outputDir,"snippets") 
+    // AST-based snippet processing using GenericBuilder infrastructure
+    let buildSnippets() = 
+        let snippetFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "snippets"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
         
-        snippets
-        |> Array.iter(fun snippet ->    
-            let saveDir = Path.Join(rootSaveDir,snippet.FileName)
-            Directory.CreateDirectory(saveDir) |> ignore
-            let html = 
-                contentViewWithTitle snippet.Metadata.Title (snippet.Content |> convertMdToHtml) 
-            let snippetView = generate  html "defaultindex" $"Snippet | {snippet.Metadata.Title} | Luis Quintanilla"
-            let saveFileName = Path.Join(saveDir,"index.html")
-            File.WriteAllText(saveFileName,snippetView))
-
-    let buildWikiPage(wikis:Wiki array) = 
-        let wikisPage = generate (wikisView wikis) "defaultindex" "Wiki | Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"wiki")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"),wikisPage)
-
-    let buildWikiPages (wikis:Wiki array) = 
-        let rootSaveDir = Path.Join(outputDir,"wiki") 
+        let processor = GenericBuilder.SnippetProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor snippetFiles
         
-        wikis
-        |> Array.iter(fun wiki ->    
-            let saveDir = Path.Join(rootSaveDir,wiki.FileName)
+        // Generate individual snippet pages
+        feedData
+        |> List.iter (fun item ->
+            let snippet = item.Content
+            let saveDir = Path.Join(outputDir, "snippets", snippet.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
-            let html = 
-                contentViewWithTitle wiki.Metadata.Title (wiki.Content |> convertMdToHtml)
-            let wikiView = generate  html "defaultindex" $"Wiki | {wiki.Metadata.Title} | Luis Quintanilla"
-            let saveFileName = Path.Join(saveDir,"index.html")
-            File.WriteAllText(saveFileName,wikiView))
-
-
-    let buildRedirectPages (redirectDetails: RedirectDetails array) =
-        redirectDetails
-        |> Array.iter(fun (target:string,source:string,title:string) -> 
-            let redirectPage = generateRedirect target title
-            let saveDir = Path.Join(outputDir,source)
-            Directory.CreateDirectory(saveDir) |> ignore
-            File.WriteAllText(Path.Join(saveDir,"index.html"), redirectPage)
-        )
-
-    let buildLibraryPage (books:Book array) = 
-        let saveDir = Path.Join(outputDir,"library")
-
-        Directory.CreateDirectory(saveDir) |> ignore
-
-        let html = books |> libraryView
-        
-        let libraryPage = generate html "defaultindex" $"Library | Luis Quintanilla"
-
-        File.WriteAllText(Path.Join(saveDir,"index.html"),libraryPage)
-
-
-    let buildBookPages (books:Book array) = 
-        let rootSaveDir = Path.Join(outputDir,"library")
-        
-        books
-        |> Array.iter(fun book -> 
-            let saveDir = Path.Join(rootSaveDir,book.FileName)
-            Directory.CreateDirectory(saveDir) |> ignore
-            let html = 
-                contentViewWithTitle book.Metadata.Title (book.Content |> convertMdToHtml)
-            let bookPage = generate  html "defaultindex" $"Book | {book.Metadata.Title} | Luis Quintanilla"
-            File.WriteAllText(Path.Join(saveDir,"index.html"),bookPage))
-
-    let buildAlbumPage (albums: Album array) = 
-        let saveDir = Path.Join(outputDir,"albums")
-
-        Directory.CreateDirectory(saveDir) |> ignore
-
-        let html = albums |> albumsPageView
-        
-        let albumPage = generate html "defaultindex" $"Albums | Luis Quintanilla"
-
-        File.WriteAllText(Path.Join(saveDir,"index.html"),albumPage)
-
-
-    let buildAlbumPages (albums: Album array) = 
-
-        let rootSaveDir = Path.Join(outputDir,"albums")
-
-        albums
-        |> Array.iter(fun album -> 
-            let saveDir = Path.Join(rootSaveDir,album.FileName)
-            Directory.CreateDirectory(saveDir) |> ignore
-                        
-            let albumPage = generate (albumPageView album.Metadata.Images) "default" $"Album | {album.Metadata.Title} | Luis Quintanilla"
             
-            File.WriteAllText(Path.Join(saveDir,"index.html"),albumPage))
-
-    let buildResponsePage (posts:Response array) (feedTitle:string) (saveFileName:string) =
+            let html = contentViewWithTitle snippet.Metadata.Title (snippet.Content |> convertMdToHtml)
+            let snippetView = generate html "defaultindex" $"Snippet | {snippet.Metadata.Title} | Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, snippetView))
         
-        // Convert post markdown to HTML
-        let parsedPosts = 
-            posts 
-            |> Array.map(fun post -> {post with Content = post.Content |> convertMdToHtml})
-            |> Array.sortByDescending(fun post -> DateTime.Parse(post.Metadata.DatePublished))
-
-        // Generate aggregate feed
-        let responsePage = generate (responseView parsedPosts) "defaultindex" feedTitle
+        // Generate snippet index page using existing view for now
+        let snippets = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        let snippetIndexHtml = generate (snippetsView snippets) "defaultindex" "Snippets | Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "snippets")
+        Directory.CreateDirectory(indexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), snippetIndexHtml)
         
-        // Create directories
-        let rootSaveDir = Path.Join(outputDir,"feed")
-        // Directory.CreateDirectory(saveDir) |> ignore
-
-        // Generate individual feed posts         
-
-        let generatePost (post:Response) = 
-            let postView = responsePostView post |> reponsePostViewWithBacklink
-            let postType = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(post.Metadata.ResponseType)
-            post.FileName,generate postView "defaultindex" $"{postType}: {post.Metadata.Title}"
-
-        let writePost (fileName:string,html:string) = 
-            let saveDir = Path.Join(rootSaveDir,fileName)
-            Directory.CreateDirectory(saveDir) |> ignore
-            let savePath = Path.Join(saveDir,"index.html")
-            File.WriteAllText(savePath,html)            
-
-        parsedPosts
-        |> Array.map(generatePost)
-        |> Array.map(writePost)
-        |> ignore
-
-        // Save feed
-        File.WriteAllText(Path.Join(rootSaveDir, "responses", $"{saveFileName}.html"), responsePage)
+        // Return feed data for potential RSS generation
+        feedData

@@ -136,7 +136,7 @@ let parseDocumentFromAst<'TMetadata> (content: string) : Result<ParsedDocument<'
             
             Ok {
                 Metadata = metadata
-                TextContent = extractTextContentFromAst doc
+                TextContent = contentWithoutFrontMatter  // Use raw markdown, not HTML
                 CustomBlocks = extractCustomBlocks doc
                 RawMarkdown = content
                 MarkdownAst = doc

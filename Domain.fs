@@ -104,6 +104,15 @@ module Domain
         Metadata: SnippetDetails
         Content: string
     }
+    with
+        interface ITaggable with
+            member this.Tags = 
+                if String.IsNullOrEmpty(this.Metadata.Tags) then [||]
+                else this.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+            member this.Title = this.Metadata.Title
+            member this.Date = "" // Snippets don't have dates
+            member this.FileName = this.FileName
+            member this.ContentType = "snippet"
 
     [<CLIMutable>]
     type WikiDetails = {

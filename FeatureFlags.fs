@@ -40,11 +40,19 @@ let parseBooleanFlag (value: string) =
     | v when v = "0" -> false
     | _ -> false
 
-/// Get feature flag status for a content type
+/// Get feature flag status for a content type with migration-specific defaults
 let isEnabled contentType =
     let envVar = getEnvironmentVariable contentType
     let value = Environment.GetEnvironmentVariable(envVar)
-    parseBooleanFlag value
+    
+    // Handle explicit environment variable values
+    match value with
+    | null | "" -> 
+        // Default values for migrated content types
+        match contentType with
+        | Snippets -> true  // Snippets migration complete - default to new processor
+        | _ -> false        // Other content types default to old processors
+    | _ -> parseBooleanFlag value
 
 /// Get all feature flags with their current status
 let getAllFlags () =
