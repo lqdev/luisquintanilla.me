@@ -230,6 +230,74 @@ module PresentationProcessor =
             Some item
     }
 
+/// Book content processor
+module BookProcessor =
+    let create() : ContentProcessor<Book> = {
+        Parse = fun filePath ->
+            match parseBookFromFile filePath with
+            | Ok parsedDoc -> 
+                match parsedDoc.Metadata with
+                | Some metadata -> 
+                    Some {
+                        FileName = Path.GetFileNameWithoutExtension(filePath)
+                        Metadata = metadata
+                        Content = parsedDoc.TextContent
+                    }
+                | None -> None
+            | Error _ -> None
+        
+        Render = fun book ->
+            // For now, return content as-is. Later integrate with existing Views.Generator
+            sprintf "<article>%s</article>" book.Content
+        
+        OutputPath = fun book ->
+            sprintf "library/%s.html" book.FileName
+        
+        RenderCard = fun book ->
+            let title = Html.escapeHtml book.Metadata.Title
+            let author = Html.escapeHtml book.Metadata.Author
+            let status = Html.escapeHtml book.Metadata.Status
+            let url = sprintf "/library/%s" book.FileName
+            
+            // Display rating if available
+            let ratingHtml = 
+                if book.Metadata.Rating > 0.0 then
+                    sprintf "<div class=\"rating\">Rating: %.1f/5</div>" book.Metadata.Rating
+                else ""
+            
+            // Create book card with cover, title, author, status
+            let coverHtml = 
+                if not (String.IsNullOrEmpty(book.Metadata.Cover)) then
+                    sprintf "<img src=\"%s\" alt=\"%s cover\" class=\"book-cover\">" 
+                        (Html.escapeHtml book.Metadata.Cover) (Html.escapeHtml book.Metadata.Title)
+                else ""
+            
+            Html.element "article" (Html.attribute "class" "book-card")
+                (coverHtml +
+                 Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
+                 Html.element "div" (Html.attribute "class" "author") ("by " + author) +
+                 Html.element "div" (Html.attribute "class" "status") status +
+                 ratingHtml)
+        
+        RenderRss = fun book ->
+            // Create RSS item for book
+            let url = sprintf "https://www.luisquintanilla.me/library/%s" book.FileName
+            let pubDate = 
+                if not (String.IsNullOrEmpty(book.Metadata.DatePublished)) then
+                    book.Metadata.DatePublished
+                else
+                    DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz")
+            
+            let item = 
+                XElement(XName.Get "item",
+                    XElement(XName.Get "title", sprintf "%s by %s" book.Metadata.Title book.Metadata.Author),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" book.Content),
+                    XElement(XName.Get "link", url),
+                    XElement(XName.Get "guid", url),
+                    XElement(XName.Get "pubDate", pubDate))
+            Some item
+    }
+
 /// Generic content processing pipeline
 module ContentPipeline =
     
@@ -299,11 +367,17 @@ module Builder =
                 (Path.Combine(sourceRoot, "presentations"))
                 outputRoot
         
+        let bookFeedData = 
+            ContentPipeline.processAllContent 
+                (BookProcessor.create()) 
+                (Path.Combine(sourceRoot, "library"))
+                outputRoot
+        
         // Combine all feed data (note: would need proper type handling for mixed types)
-        // let allFeedData = List.concat [ postFeedData; snippetFeedData; wikiFeedData ]
+        // let allFeedData = List.concat [ postFeedData; snippetFeedData; wikiFeedData; presentationFeedData; bookFeedData ]
         
         // Build main feeds
         // ContentPipeline.buildMainFeeds allFeedData outputRoot
         
-        sprintf "Processed %d posts, %d snippets, %d wiki pages" 
-            postFeedData.Length snippetFeedData.Length wikiFeedData.Length
+        sprintf "Processed %d posts, %d snippets, %d wiki pages, %d presentations, %d books" 
+            postFeedData.Length snippetFeedData.Length wikiFeedData.Length presentationFeedData.Length bookFeedData.Length

@@ -564,3 +564,70 @@ module Builder
         
         // Return feed data for potential RSS generation
         feedData
+
+    // AST-based book processing using GenericBuilder infrastructure
+    let buildBooks() = 
+        let bookFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "library"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        let processor = GenericBuilder.BookProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor bookFiles
+        
+        // Generate individual book pages
+        feedData
+        |> List.iter (fun item ->
+            let book = item.Content
+            let saveDir = Path.Join(outputDir, "library", book.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            
+            let html = contentViewWithTitle book.Metadata.Title (book.Content |> convertMdToHtml)
+            let bookView = generate html "defaultindex" $"{book.Metadata.Title} | Library | Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, bookView))
+        
+        // Generate library index page using existing libraryView
+        let books = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        let libraryIndexHtml = generate (libraryView books) "defaultindex" "Library | Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "library")
+        Directory.CreateDirectory(indexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), libraryIndexHtml)
+        
+        // Generate RSS feed for books
+        let rssItems = feedData |> List.choose (fun item -> item.RssXml)
+        if not (List.isEmpty rssItems) then
+            // Create RSS channel for books
+            let latestBook = 
+                books 
+                |> Array.filter (fun b -> not (String.IsNullOrEmpty(b.Metadata.DatePublished)))
+                |> Array.sortByDescending (fun b -> DateTime.Parse(b.Metadata.DatePublished))
+                |> Array.tryHead
+            
+            let lastPubDate = 
+                match latestBook with
+                | Some b -> b.Metadata.DatePublished
+                | None -> DateTime.Now.ToString("yyyy-MM-dd")
+            
+            let channel = 
+                XElement(XName.Get "rss",
+                    XAttribute(XName.Get "version", "2.0"),
+                    XElement(XName.Get "channel",
+                        XElement(XName.Get "title", "Luis Quintanilla Library"),
+                        XElement(XName.Get "link", "https://www.luisquintanilla.me/library"),
+                        XElement(XName.Get "description", "Books read by Luis Quintanilla"),
+                        XElement(XName.Get "lastPubDate", lastPubDate),
+                        XElement(XName.Get "language", "en")))
+            
+            // Add RSS items to channel
+            let channelElement = channel.Descendants(XName.Get "channel").First()
+            channelElement.Add(rssItems |> List.toArray)
+            
+            // Save RSS feed
+            let feedSaveDir = Path.Join(outputDir, "library", "feed")
+            Directory.CreateDirectory(feedSaveDir) |> ignore
+            let rssContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
+            File.WriteAllText(Path.Join(feedSaveDir, "index.xml"), rssContent)
+        
+        // Return feed data for potential RSS generation
+        feedData
