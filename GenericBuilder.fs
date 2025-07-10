@@ -174,6 +174,62 @@ module WikiProcessor =
             Some item
     }
 
+/// Presentation content processor
+module PresentationProcessor =
+    let create() : ContentProcessor<Presentation> = {
+        Parse = fun filePath ->
+            match parsePresentationFromFile filePath with
+            | Ok parsedDoc -> 
+                match parsedDoc.Metadata with
+                | Some metadata -> 
+                    Some {
+                        FileName = Path.GetFileNameWithoutExtension(filePath)
+                        Metadata = metadata
+                        Content = parsedDoc.TextContent
+                    }
+                | None -> None
+            | Error _ -> None
+        
+        Render = fun presentation ->
+            // Preserve existing Reveal.js integration - return content as-is for now
+            sprintf "<article>%s</article>" presentation.Content
+        
+        OutputPath = fun presentation ->
+            sprintf "presentations/%s.html" presentation.FileName
+        
+        RenderCard = fun presentation ->
+            let title = Html.escapeHtml presentation.Metadata.Title
+            let excerpt = Html.escapeHtml (presentation.Content.Substring(0, min 150 presentation.Content.Length) + "...")
+            let url = sprintf "/presentations/%s" presentation.FileName
+            
+            // Add resources display
+            let resourcesHtml = 
+                if presentation.Metadata.Resources.Length > 0 then
+                    let resourceLinks = 
+                        presentation.Metadata.Resources
+                        |> Array.map (fun resource -> 
+                            Html.element "a" (Html.attribute "href" resource.Url) (Html.escapeHtml resource.Text))
+                        |> String.concat " | "
+                    Html.element "div" (Html.attribute "class" "resources") resourceLinks
+                else ""
+            
+            Html.element "article" (Html.attribute "class" "presentation-card")
+                (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
+                 Html.element "p" "" excerpt +
+                 resourcesHtml)
+        
+        RenderRss = fun presentation ->
+            // Create RSS item for presentation
+            let url = sprintf "https://www.luisquintanilla.me/presentations/%s" presentation.FileName
+            let item = 
+                XElement(XName.Get "item",
+                    XElement(XName.Get "title", presentation.Metadata.Title),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" presentation.Content),
+                    XElement(XName.Get "link", url),
+                    XElement(XName.Get "guid", url))
+            Some item
+    }
+
 /// Generic content processing pipeline
 module ContentPipeline =
     
@@ -235,6 +291,12 @@ module Builder =
             ContentPipeline.processAllContent 
                 (WikiProcessor.create()) 
                 (Path.Combine(sourceRoot, "wiki"))
+                outputRoot
+        
+        let presentationFeedData = 
+            ContentPipeline.processAllContent 
+                (PresentationProcessor.create()) 
+                (Path.Combine(sourceRoot, "presentations"))
                 outputRoot
         
         // Combine all feed data (note: would need proper type handling for mixed types)

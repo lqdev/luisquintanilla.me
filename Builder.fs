@@ -3,7 +3,9 @@ module Builder
     open System
     open System.Globalization
     open System.IO
+    open System.Linq
     open System.Text.Json
+    open System.Xml.Linq
     open Domain
     open MarkdownService
     open TagService
@@ -507,6 +509,74 @@ module Builder
         let indexSaveDir = Path.Join(outputDir, "wiki")
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), wikiIndexHtml)
+        
+        // Return feed data for potential RSS generation
+        feedData
+
+    // AST-based presentation processing using GenericBuilder infrastructure
+    let buildPresentations() = 
+        let presentationFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "presentations"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        let processor = GenericBuilder.PresentationProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor presentationFiles
+        
+        // Generate individual presentation pages
+        feedData
+        |> List.iter (fun item ->
+            let presentation = item.Content
+            let saveDir = Path.Join(outputDir, "presentations", presentation.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            
+            // Preserve Reveal.js integration - use existing presentation processing for now
+            let html = contentViewWithTitle presentation.Metadata.Title (presentation.Content |> convertMdToHtml)
+            let presentationView = generate html "defaultindex" $"{presentation.Metadata.Title} | Presentation | Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, presentationView))
+        
+        // Generate presentation index page
+        let presentations = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        let presentationIndexHtml = generate (presentationsView presentations) "defaultindex" "Presentations | Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "presentations")
+        Directory.CreateDirectory(indexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), presentationIndexHtml)
+        
+        // Generate RSS feed
+        let rssItems = feedData |> List.choose (fun item -> item.RssXml)
+        if not (List.isEmpty rssItems) then
+            // Create RSS channel for presentations
+            let latestPresentation = 
+                presentations 
+                |> Array.filter (fun p -> not (String.IsNullOrEmpty(p.Metadata.Date)))
+                |> Array.sortByDescending (fun p -> DateTime.Parse(p.Metadata.Date))
+                |> Array.tryHead
+            
+            let lastPubDate = 
+                match latestPresentation with
+                | Some p -> p.Metadata.Date
+                | None -> DateTime.Now.ToString("yyyy-MM-dd")
+            
+            let channel = 
+                XElement(XName.Get "rss",
+                    XAttribute(XName.Get "version", "2.0"),
+                    XElement(XName.Get "channel",
+                        XElement(XName.Get "title", "Luis Quintanilla Presentations"),
+                        XElement(XName.Get "link", "https://www.luisquintanilla.me/presentations"),
+                        XElement(XName.Get "description", "Presentations by Luis Quintanilla"),
+                        XElement(XName.Get "lastPubDate", lastPubDate),
+                        XElement(XName.Get "language", "en")))
+            
+            // Add RSS items to channel
+            let channelElement = channel.Descendants(XName.Get "channel").First()
+            channelElement.Add(rssItems |> List.toArray)
+            
+            // Save RSS feed
+            let feedSaveDir = Path.Join(outputDir, "presentations", "feed")
+            Directory.CreateDirectory(feedSaveDir) |> ignore
+            let rssContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
+            File.WriteAllText(Path.Join(feedSaveDir, "index.xml"), rssContent)
         
         // Return feed data for potential RSS generation
         feedData

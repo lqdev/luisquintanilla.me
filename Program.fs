@@ -102,8 +102,13 @@ let main argv =
     buildEventPage ()
 
     // Build presentation pages
-    buildPresentationsPage presentations
-    buildPresentationPages presentations
+    if FeatureFlags.isEnabled ContentType.Presentations then
+        printfn "Building presentations with AST-based processor"
+        let _ = buildPresentations()
+        ()
+    else
+        buildPresentationsPage presentations
+        buildPresentationPages presentations
 
     // Build livestream pages
     buildLiveStreamPage ()
