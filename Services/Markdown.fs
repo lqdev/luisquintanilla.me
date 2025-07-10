@@ -74,12 +74,6 @@ module MarkdownService
 
         { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = postDetails.Yaml; Content = postDetails.Content}
 
-    let parsePresentation (filePath:string) : Presentation = 
-        
-        let presentationDetails = getContentAndMetadata<PresentationDetails>(filePath)
-
-        { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = presentationDetails.Yaml; Content = presentationDetails.Content }
-
     let parseLivestream (filePath:string) : Livestream = 
         
         let livestreamDetails = getContentAndMetadata<LivestreamDetails>(filePath)

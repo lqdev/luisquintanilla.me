@@ -34,7 +34,6 @@ let main argv =
     // Data
     let posts = loadPosts(srcDir) 
     let feedPosts = loadFeed (srcDir)
-    let presentations = loadPresentations (srcDir)
     let liveStreams = loadLiveStreams (srcDir)
     let feedLinks = loadFeedLinks (srcDir)
     let redirects = loadRedirects ()
@@ -102,13 +101,9 @@ let main argv =
     buildEventPage ()
 
     // Build presentation pages
-    if FeatureFlags.isEnabled ContentType.Presentations then
-        printfn "Building presentations with AST-based processor"
-        let _ = buildPresentations()
-        ()
-    else
-        buildPresentationsPage presentations
-        buildPresentationPages presentations
+    printfn "Building presentations with AST-based processor"
+    let _ = buildPresentations()
+    ()
 
     // Build livestream pages
     buildLiveStreamPage ()

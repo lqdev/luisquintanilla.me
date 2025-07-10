@@ -21,14 +21,6 @@ module Loaders
         
         posts
 
-    let loadPresentations (srcDir: string) =
-        let presentationPaths = 
-            Directory.GetFiles(Path.Join(srcDir,"presentations"))
-        
-        let presentations = presentationPaths |> Array.map(parsePresentation)
-        
-        presentations
-
     let loadLiveStreams (srcDir: string) =
         let streamPaths = 
             Directory.GetFiles(Path.Join(srcDir,"streams"))

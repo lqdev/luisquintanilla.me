@@ -409,22 +409,6 @@ module Builder
         // Save feed
         File.WriteAllText(Path.Join(rootSaveDir, $"{saveFileName}.html"), feedPage)
 
-    let buildPresentationsPage (presentations: Presentation array) = 
-        let presentationPage = generate (presentationsView presentations) "defaultindex" "Presentations - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"presentations")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"),presentationPage)
-
-    let buildPresentationPages (presentations:Presentation array) = 
-        presentations
-        |> Array.iter(fun presentation ->
-            let rootSaveDir = Path.Join(outputDir,"presentations")
-            let html = presentationPageView presentation
-            let presentationView = generate  html "presentation" $"Presentation | {presentation.Metadata.Title} | Luis Quintanilla"
-            let saveDir = Path.Join(rootSaveDir,$"{presentation.FileName}")
-            Directory.CreateDirectory(saveDir) |> ignore
-            File.WriteAllText(Path.Join(saveDir,"index.html"),presentationView))
-
     let buildLiveStreamPage () = 
         let title = "Live Stream - Luis Quintanilla"
         let page = generate (liveStreamView title) "default" title
