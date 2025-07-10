@@ -161,6 +161,7 @@ module Domain
         [<YamlMember(Alias="status")>] Status: string
         [<YamlMember(Alias="rating")>] Rating: float
         [<YamlMember(Alias="source")>] Source: string
+        [<YamlMember(Alias="date_published")>] DatePublished: string
     }
 
     type Book = {
@@ -168,6 +169,13 @@ module Domain
         Metadata: BookDetails
         Content: string
     }
+    with
+        interface ITaggable with
+            member this.Tags = [||] // Books don't have explicit tags
+            member this.Title = this.Metadata.Title
+            member this.Date = this.Metadata.DatePublished
+            member this.FileName = this.FileName
+            member this.ContentType = "book"
 
     [<CLIMutable>]
     type AlbumImage = {
@@ -245,6 +253,12 @@ module Domain
         let getResponseFileName (response: Response) = response.FileName
         let getResponseContentType (_: Response) = "response"
         
+        let getBookTags (_: Book) = [||] // Books don't have explicit tags
+        let getBookTitle (book: Book) = book.Metadata.Title
+        let getBookDate (book: Book) = book.Metadata.DatePublished
+        let getBookFileName (book: Book) = book.FileName
+        let getBookContentType (_: Book) = "book"
+        
         // Generic function to work with any ITaggable-like object
         let createTaggableRecord (tags: string array) (title: string) (date: string) (fileName: string) (contentType: string) =
             { new ITaggable with
@@ -265,3 +279,6 @@ module Domain
             
         let responseAsTaggable (response: Response) = 
             createTaggableRecord (getResponseTags response) (getResponseTitle response) (getResponseDate response) (getResponseFileName response) (getResponseContentType response)
+            
+        let bookAsTaggable (book: Book) = 
+            createTaggableRecord (getBookTags book) (getBookTitle book) (getBookDate book) (getBookFileName book) (getBookContentType book)
