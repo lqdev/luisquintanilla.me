@@ -49,6 +49,7 @@ As your coding partner, I follow this systematic workflow to deliver high-qualit
 
 ### 3. Project Completion
 - **Comprehensive Testing**: All functionality + regression testing
+- **Document Learnings**: Update `.github/copilot-instructions.md` with proven patterns in appropriate sections
 - **Archive Completely**: Move ALL project files to archive, clean active directory
 - **Update Records**: Changelog entry, backlog cleanup, delete temporary logs
 
@@ -221,6 +222,17 @@ Use `projects/templates/requirements-template.md` including:
 - **Complete Documentation**: Finalize all logs with metrics and lessons learned
 - **No Technical Debt**: Ensure no issues that would complicate future work
 
+### Workflow Evolution Documentation
+- **Capture Learnings**: Document any workflow improvements, new patterns, or process refinements discovered during the project
+- **Update Instructions**: Add proven methodologies and best practices to `.github/copilot-instructions.md` in the appropriate sections:
+  - New technical patterns → `🔧 Technical Standards` section
+  - Testing improvements → `🧪 Testing & Validation` section  
+  - Process refinements → `⚙️ Development Process` section
+  - Documentation patterns → `📝 Documentation Standards` section
+  - Migration learnings → `🚀 Migration Pattern` section
+- **Pattern Validation**: Note when existing patterns work well or need refinement across different project types
+- **Process Improvements**: Document any efficiency gains, error prevention techniques, or quality improvements found
+
 ### Completion Checklist
 - [ ] All objectives implemented and tested
 - [ ] No regression in existing functionality  
@@ -230,6 +242,7 @@ Use `projects/templates/requirements-template.md` including:
 - [ ] Backlog updated (item marked complete and removed)
 - [ ] Changelog entry created with project summary
 - [ ] Phase logs summarized and deleted
+- [ ] Workflow improvements documented in `.github/copilot-instructions.md` appropriate sections
 - [ ] Explicit completion declaration made
 
 This workflow ensures systematic, quality-focused development that preserves functionality while improving architecture incrementally.
