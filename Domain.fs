@@ -32,6 +32,15 @@ module Domain
         Metadata: PostDetails
         Content: string
     }
+    with
+        interface ITaggable with
+            member this.Tags = 
+                if isNull this.Metadata.Tags then [||]
+                else this.Metadata.Tags
+            member this.Title = this.Metadata.Title
+            member this.Date = this.Metadata.Date
+            member this.FileName = this.FileName
+            member this.ContentType = "post"
 
     type Event = {
         Name: string
