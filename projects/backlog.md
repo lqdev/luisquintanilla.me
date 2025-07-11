@@ -125,11 +125,13 @@ This backlog drives the systematic architectural upgrade of the indieweb content
 
 ---
 
-### [ ] Phase 2: Posts Migration
+### [>] Phase 2: Posts Migration - ACTIVE
 **Project**: Website Architecture Upgrade - Posts Processor  
 **Complexity**: Large  
-**Estimated Effort**: 1-2 weeks  
-**Dependencies**: Books Migration Success
+**Estimated Effort**: 1-2 days  
+**Dependencies**: Books Migration Success ✅  
+**Started**: 2025-07-10  
+**Status**: Phase 1 - Domain Enhancement
 
 Migrate main blog posts to new processor:
 - Enhance post metadata standardization
@@ -143,6 +145,34 @@ Migrate main blog posts to new processor:
 - [ ] Custom blocks functional in post content
 - [ ] Post feeds generated through unified system
 - [ ] All existing post functionality preserved
+
+---
+
+### [ ] Phase 2: Notes Migration
+**Project**: Website Architecture Upgrade - Notes Processor  
+**Complexity**: Medium  
+**Estimated Effort**: 1-2 days  
+**Dependencies**: Posts Migration Success
+
+Migrate notes/feed content to AST-based processing:
+- Convert notes from legacy `buildFeedPage` to unified processor
+- Enable custom block support for rich note content
+- Implement note processor with microblog features
+- Preserve existing note feeds and functionality
+- Add `NEW_NOTES=true` feature flag
+
+**Current State**:
+- **Location**: `_src/feed/*.md` (150+ note files)
+- **Type**: Short-form content (`post_type: "note"`)
+- **Processing**: Legacy `loadFeed()` + `buildFeedPage()`
+- **Output**: `/feed/` index + RSS feeds working
+
+**Success Criteria**:
+- [ ] Notes use AST-based processing
+- [ ] Custom blocks available for rich note content
+- [ ] Note feeds generated through unified system
+- [ ] All existing note functionality preserved
+- [ ] Microblog-specific features enhanced
 
 ---
 
