@@ -194,6 +194,13 @@ Use `projects/templates/requirements-template.md` including:
 - **New Capabilities**: Document features enabled (RSS feeds, unified processing)
 - **Architecture Consistency**: Validate pattern reuse across content types
 
+### Books Migration Pattern Learnings (2025-07-10)
+- **Architecture Reuse Insight**: Successfully applied "books are reviews" insight to reuse existing review block infrastructure instead of creating new custom blocks - demonstrates value of analyzing domain relationships before implementation
+- **Review Block Validation**: Confirmed that existing `:::review` blocks are robust and can handle different content types (books) while maintaining their original purpose
+- **Feature Flag Safety**: Fourth consecutive successful migration using feature flag pattern - confirms this is a reliable, low-risk approach for production migrations
+- **Content Metadata Preservation**: Books migration successfully preserved all complex metadata (title, author, rating, status, ISBN, cover) while converting from loading-only to full processing
+- **RSS Feed Integration**: Adding RSS feeds during migration continues to be valuable and straightforward using existing infrastructure
+
 ## 🔄 Production Deployment Best Practices
 
 ### Feature Flag Removal

@@ -122,15 +122,10 @@ let main argv =
     let _ = buildWikis()
     ()
 
-    // Build books with feature flag control
-    if FeatureFlags.isEnabled FeatureFlags.Books then
-        printfn "Building books with AST-based processor (NEW_BOOKS=true)"
-        let _ = buildBooks()
-        ()
-    else
-        printfn "Skipping books - AST processor not enabled (set NEW_BOOKS=true to enable)"
-        // Books are currently loaded but not processed
-        ()
+    // Build Books
+    printfn "Building books with AST-based processor"
+    let _ = buildBooks()
+    ()
 
     // Build gallery pages (TODO: Functions missing, need implementation)
     // buildAlbumPage albums

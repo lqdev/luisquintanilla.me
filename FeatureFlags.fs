@@ -50,9 +50,11 @@ let isEnabled contentType =
     | null | "" -> 
         // Default values for migrated content types
         match contentType with
-        | Snippets -> true  // Snippets migration complete - default to new processor
-        | Wiki -> true      // Wiki migration complete - default to new processor
-        | _ -> false        // Other content types default to old processors
+        | Snippets -> true       // Snippets migration complete - default to new processor
+        | Wiki -> true           // Wiki migration complete - default to new processor
+        | Presentations -> true  // Presentations migration complete - default to new processor
+        | Books -> true          // Books migration complete - default to new processor
+        | _ -> false             // Other content types default to old processors
     | _ -> parseBooleanFlag value
 
 /// Get all feature flags with their current status
