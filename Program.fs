@@ -69,15 +69,8 @@ let main argv =
     buildSubscribePage ()
     buildOnlineRadioPage ()
 
-    // Write Post / Archive Pages
-    if FeatureFlags.isEnabled FeatureFlags.Posts then
-        // Use new AST-based processor
-        let _ = buildPosts()
-        ()
-    else
-        // Use legacy string-based processor
-        buildPostPages posts
-        buildPostArchive posts
+    // Write Post / Archive Pages - Using AST-based processor
+    let _ = buildPosts()
 
     // Build Feeds
     buildFeedPage feedPosts "Main Feed - Luis Quintanilla" "index"

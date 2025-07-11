@@ -254,40 +254,6 @@ module Builder
         let saveDir = Path.Join(outputDir,"feed","starter","ai")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
-
-    let buildPostPages (posts:Post array) = 
-        let postPages = 
-            posts
-            |> Array.map(fun post -> 
-                let postTitle = post.Metadata.Title
-                let postContent = post.Content |> convertMdToHtml 
-                let postView = blogPostView postTitle postContent
-                post.FileName,generate postView "defaultindex" $"{post.Metadata.Title} - Luis Quintanilla")
-        
-        let rootSaveDir = Path.Join(outputDir,"posts")
-        // Directory.CreateDirectory(saveDir) |> ignore
-        postPages
-        |> Array.iter(fun (fileName,html) ->
-            let saveDir = Path.Join(rootSaveDir,fileName)
-            Directory.CreateDirectory(saveDir) |> ignore
-            // let saveFileName = sprintf "%s.html" fileName
-            let savePath = Path.Join(saveDir,"index.html")
-            File.WriteAllText(savePath,html))
-
-    let buildPostArchive (posts:Post array) = 
-        let postsPerPage = 10
-
-        posts
-        |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
-        |> Array.chunkBySize postsPerPage
-        |> Array.iteri(fun i x -> 
-            let len = posts |> Array.chunkBySize postsPerPage |> Array.length
-            let currentPage = i + 1
-            let idx = string currentPage
-            let page = generate (postPaginationView currentPage len x) "defaultindex" $"Posts {idx} - Luis Quintanilla"
-            let dir = Directory.CreateDirectory(Path.Join(outputDir,"posts", idx))
-            let fileName = "index.html"
-            File.WriteAllText(Path.Join(dir.FullName,fileName), page))
     
     let buildTagsPages (posts: Post array) (notes: Post array) (responses: Response array) = 
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla Presentations</title>
+    <link>https://www.luisquintanilla.me/presentations</link>
+    <description>Presentations by Luis Quintanilla</description>
+    <lastPubDate>2025-07-10</lastPubDate>
+    <language>en</language>
+    <item>
+      <title>Hello World!</title>
+      <description>&lt;![CDATA[
+## Slide 1
+
+A paragraph with some text and a [link](https://luisquintanilla.me).
+
+---
+
+## Slide 2
+
+---
+
+## Slide 3
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/presentations/hello-world</link>
+      <guid>https://www.luisquintanilla.me/presentations/hello-world</guid>
+    </item>
+    <item>
+      <title>Implementacion de modelos ML.NET con Azure Container Apps</title>
+      <description>&lt;![CDATA[]]&gt;</description>
+      <link>https://www.luisquintanilla.me/presentations/mlnet-globalai-2022</link>
+      <guid>https://www.luisquintanilla.me/presentations/mlnet-globalai-2022</guid>
+    </item>
+    <item>
+      <title>Deploy ML.NET Models to Azure Container Apps</title>
+      <description>&lt;![CDATA[]]&gt;</description>
+      <link>https://www.luisquintanilla.me/presentations/reactor-mlnet-container-apps</link>
+      <guid>https://www.luisquintanilla.me/presentations/reactor-mlnet-container-apps</guid>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/bootstrap-icons-1.5.0/bootstrap-icons.css"><link rel="stylesheet" href="/css/highlight.github-dark-dimmed.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/customthemes.css"><meta property="og:title" content="Serverless Machine Learning with ML.NET and Azure Functions - Luis Quintanilla"><meta property="og:type" content="website"><meta property="og:image" content="https://www.luisquintanilla.me/avatar.png"><meta property="og:image:secure_url" content="https://www.luisquintanilla.me/avatar.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="200"><meta property="og:image:height" content="200"><meta property="og:site_name" content="Luis Quintanilla Personal Website"><meta property="og:locale" content="en_US"><meta property="twitter:image" content="https://www.luisquintanilla.me/avatar.png"><meta property="fediverse:creator" content="@lqdev@toot.lqdev.tech"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Blog RSS Feed" href="/blog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Microblog RSS Feed" href="/microblog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Response RSS Feed" href="/responses.rss"><link rel="webmention" title="Luis Quintanilla Webmention Endpoint" href="https://webmentions.lqdev.tech/api/inbox"><link rel="feeds" type="text/xml" title="Luis Quintanilla&#39;s Feeds" href="/feed/index.opml"><link rel="blogroll" type="text/xml" title="Luis Quintanilla&#39;s Blogroll" href="/feed/blogroll/index.opml"><link rel="podroll" type="text/xml" title="Luis Quintanilla&#39;s Podroll" href="/feed/podroll/index.opml"><link rel="youtuberoll" type="text/xml" title="Luis Quintanilla&#39;s YouTube Roll" href="/feed/youtube/index.opml"><meta name="robots" content="nosnippet"><title>Serverless Machine Learning with ML.NET and Azure Functions - Luis Quintanilla</title></head><body><nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"><a class="navbar-brand" href="/"><img src="/avatar.png" height="32" width="32" class="d-inline-block align-top rounded-circle" style="margin-right:5px" loading="lazy">Luis Quintanilla</a><button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav mr-auto"><li class="nav-item active"><a class="nav-link" href="/">Home</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a><div class="dropdown-menu" aria-labelledby="aboutDropdown"><a class="dropdown-item" href="/about">Profile</a><a class="dropdown-item" href="/contact">Contact</a><a class="dropdown-item" href="/uses">Uses</a><a class="dropdown-item" href="/colophon">Colophon</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="feedDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a><div class="dropdown-menu" aria-labelledby="feedDropdown"><a class="dropdown-item" href="/feed">Main</a><a class="dropdown-item" href="/feed/responses">Responses</a><a class="dropdown-item" href="/posts/1">Blog</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/subscribe">Subscribe</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/feed/starter">Starter Packs</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/feed/blogroll">Blogroll</a><a class="dropdown-item" href="/feed/podroll">Podroll</a><a class="dropdown-item" href="/feed/forums">Forums</a><a class="dropdown-item" href="/feed/youtube">YouTube</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="collectionDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Collections</a><div class="dropdown-menu" aria-labelledby="collectionDropdown"><a class="dropdown-item" href="/radio">Radio</a><a class="dropdown-item" href="/library">Books</a><a class="dropdown-item" href="/tags">Tags</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="kbDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Knowledgebase</a><div class="dropdown-menu" aria-labelledby="kbDropdown"><a class="dropdown-item" href="/snippets">Snippets</a><a class="dropdown-item" href="/wiki">Wiki</a><a class="dropdown-item" href="/presentations">Presentations</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="liveDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Live</a><div class="dropdown-menu" aria-labelledby="liveDropdown"><a class="dropdown-item" href="/live">Stream</a><a class="dropdown-item" href="/streams">Recordings</a></div></li><li class="nav-item"><a class="nav-link" href="/events">Events</a></li></ul><a href="/subscribe"><svg class="bi bi-rss text-secondary" fill="currentColor" viewBox="0 0 16 16" height="32" width="32"><path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path><path d="M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"></path></svg></a></div></nav><main role="main" class="container"><div class="mr-auto"><h1>Serverless Machine Learning with ML.NET and Azure Functions</h1><h2>Introduction</h2>
+<p>In a previous blog <a href="http://luisquintanilla.me/2018/05/11/deploy-netml-docker-aci/">post</a>, I explored how to build and deploy machine learning models built with the <code>ML.NET</code> framework using an ASP.NET Core Web API, Docker and Azure Container Instances. While this is certainly a good way to deploy such models especially those that are critical and require high availability and/or consist of long-running processes, it's not the case when those requirements are not needed. In such cases serverless computing makes more sense from a cost and resource utilization standpoint. Therefore, in this blog post I will go over how to train a classification model with <code>ML.NET</code> and deploy it using Azure Functions. Source code for this post can be found at the following <a href="https://github.com/lqdev/azfnmlnetdemo">link</a>.</p>
+<h2>Prerequisites</h2>
+<p>Prior to starting, make sure you have all of the necessary software to build this project. Although this project was built on a system running Ubuntu 16.04 it should work cross-platform.</p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest">Azure CLI</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local">Azure Functions Core Tools Version 2.x</a></li>
+<li><a href="https://www.microsoft.com/net/download">.NET Core SDK 2.0+</a></li>
+</ul>
+<h2>Set Up Azure Environment</h2>
+<p>Before writing any code we want to configure our Azure environment. To do so we'll be using the Azure CLI. Although in these examples I am providing the resource group name, storage account name and function application name feel free to use one of your choosing. Naming is not as important for resource group or storage account but definitely is the case for the application.</p>
+<p>Fist we want to log into our account using the following command</p>
+<pre><code class="language-bash">az login
+</code></pre>
+<p>This will guide you through a series of prompts that will eventually result in you being logged in. To make sure you are logged in you can use the <code>account</code> command.</p>
+<pre><code class="language-bash">az account list
+</code></pre>
+<p>The following output should appear if successfull.</p>
+<pre><code class="language-bash">[
+  {
+    &quot;cloudName&quot;: &quot;AzureCloud&quot;,
+    &quot;id&quot;: &quot;&lt;YOUR-ID&gt;&quot;,
+    &quot;isDefault&quot;: true,
+    &quot;name&quot;: &quot;Pay-As-You-Go&quot;,
+    &quot;state&quot;: &quot;Enabled&quot;,
+    &quot;tenantId&quot;: &quot;&lt;YOUR-TENANT-ID&gt;&quot;,
+    &quot;user&quot;: {
+      &quot;name&quot;: &quot;&lt;YOUR-USERNAME&gt;&quot;,
+      &quot;type&quot;: &quot;user&quot;
+    }
+  }
+]
+</code></pre>
+<p>Next, we want to create a resource group to contain all of our Azure resources for this application.</p>
+<pre><code class="language-bash">az group create --name azfnmlnetdemo --location eastus
+</code></pre>
+<p>Once our resource group is created, it's time to start adding resources for it. First we'll add a storage account which will contain our trained model.</p>
+<pre><code class="language-bash">az storage account create --name azfnmlnetdemostorage --location eastus --resource-group azfnmlnetdemo --sku Standard_LRS
+</code></pre>
+<p>Then we'll create an Serverless Function Application and link it to our storage account. We'll want to create a unique name for it. An easy way to do so is to add the date to the end of the name of our application (i.e. myappname20180816).</p>
+<pre><code class="language-bash">az functionapp create --name azfnmlnetdemo20180821 --storage-account azfnmlnetdemostorage --consumption-plan-location eastus --resource-group azfnmlnetdemo
+</code></pre>
+<p>The final step in the environment setup is to set the runtime of our Serverless Function Application in the Application Settings to <code>beta</code> which supports <code>.NET Core</code>.</p>
+<pre><code class="language-bash">az functionapp config appsettings set --name azfnmlnetdemo20180821 --resource-group azfnmlnetdemo --settings FUNCTIONS_EXTENSION_VERSION=beta
+</code></pre>
+<p>Now we're ready to build our machine learning model and upload it to our storage account</p>
+<h2>Building The Model</h2>
+<p>Once our environment is set up we can start building our solution. The first step is to create a directory and initialize our solution inside of it.</p>
+<h3>Set Up The Solution</h3>
+<pre><code class="language-bash">mkdir azfnmlnetdemo
+cd azfnmlnetdemo
+dotnet new sln
+</code></pre>
+<h3>Create The Model Project</h3>
+<p>Then we want to create a console project for our model and add it to our solution.</p>
+<pre><code class="language-bash">dotnet new console -o model
+dotnet sln add model/model.csproj
+</code></pre>
+<h3>Add Dependencies</h3>
+<p>Since we’ll be using the <code>ML.NET</code> framework, we need to add it to our model project.</p>
+<pre><code>cd model
+dotnet add package Microsoft.ML
+dotnet restore
+</code></pre>
+<h3>Download The Data</h3>
+<p>Before we start training the model, we need to download the data we’ll be using to train. We do so by creating a directory called <code>data</code> and downloading the data file onto there.</p>
+<pre><code class="language-bash">mkdir data
+curl -o data/iris.txt https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data
+</code></pre>
+<p>If we take a look at the data file, it should look something like this:</p>
+<pre><code class="language-bash">5.1,3.5,1.4,0.2,Iris-setosa
+4.9,3.0,1.4,0.2,Iris-setosa
+4.7,3.2,1.3,0.2,Iris-setosa
+4.6,3.1,1.5,0.2,Iris-setosa
+5.0,3.6,1.4,0.2,Iris-setosa
+5.4,3.9,1.7,0.4,Iris-setosa
+4.6,3.4,1.4,0.3,Iris-setosa
+5.0,3.4,1.5,0.2,Iris-setosa
+4.4,2.9,1.4,0.2,Iris-setosa
+4.9,3.1,1.5,0.1,Iris-setosa
+</code></pre>
+<h3>Train The Model</h3>
+<p>Now that we have all our dependencies set up, it’s time to train our model. I leveraged the demo that is used on the <a href="https://www.microsoft.com/net/learn/machine-learning-and-ai/get-started-with-ml-dotnet-tutorial">ML.NET Getting-Started website</a>.</p>
+<h4>Define Data Structures</h4>
+<p>In the root directory of our <code>model</code> project, let’s create two classes called <code>IrisData</code> and <code>IrisPrediction</code> which will define our features and predicted attribute respectively. Both of them will use <code>Microsoft.ML.Runtime.Api</code> to add the property attributes.</p>
+<p>Here is what our <code>IrisData</code> class looks like:</p>
+<pre><code class="language-csharp">using Microsoft.ML.Runtime.Api;
+
+namespace model
+{
+    public class IrisData
+    {
+        [Column(&quot;0&quot;)]
+        public float SepalLength;
+
+        [Column(&quot;1&quot;)]
+        public float SepalWidth;
+
+        [Column(&quot;2&quot;)]
+        public float PetalLength;
+
+        [Column(&quot;3&quot;)]
+        public float PetalWidth;
+
+        [Column(&quot;4&quot;)]
+        [ColumnName(&quot;Label&quot;)]
+        public string Label;
+    }
+}
+</code></pre>
+<p>Similarly, here is the <code>IrisPrediction</code> class:</p>
+<pre><code class="language-csharp">using Microsoft.ML.Runtime.Api;
+
+namespace model
+{
+    public class IrisPrediction
+    {
+        [ColumnName(&quot;PredictedLabel&quot;)]
+        public string PredictedLabels;
+    }
+}
+</code></pre>
+<h4>Build the Training Pipeline</h4>
+<p>The way the <code>ML.NET</code> computations process data is via a sequential pipeline of steps that are performed eventually leading up to the training of the model. Therefore, we can create a class called <code>Model</code> to perform all of these tasks for us.</p>
+<pre><code class="language-csharp">using Microsoft.ML.Data;
+using Microsoft.ML;
+using Microsoft.ML.Runtime.Api;
+using Microsoft.ML.Trainers;
+using Microsoft.ML.Transforms;
+using Microsoft.ML.Models;
+using System;
+using System.Threading.Tasks;
+
+namespace model
+{
+    class Model
+    {
+
+        public static async Task&lt;PredictionModel&lt;IrisData,IrisPrediction&gt;&gt; Train(LearningPipeline pipeline, string dataPath, string modelPath)
+        {
+            // Load Data
+            pipeline.Add(new TextLoader(dataPath).CreateFrom&lt;IrisData&gt;(separator:','));
+
+            // Transform Data
+            // Assign numeric values to text in the &quot;Label&quot; column, because
+            // only numbers can be processed during model training
+            pipeline.Add(new Dictionarizer(&quot;Label&quot;));
+
+            // Vectorize Features
+            pipeline.Add(new ColumnConcatenator(&quot;Features&quot;, &quot;SepalLength&quot;, &quot;SepalWidth&quot;, &quot;PetalLength&quot;, &quot;PetalWidth&quot;));
+
+            // Add Learner
+            pipeline.Add(new StochasticDualCoordinateAscentClassifier());
+
+            // Convert Label back to text
+            pipeline.Add(new PredictedLabelColumnOriginalValueConverter() {PredictedLabelColumn = &quot;PredictedLabel&quot;});
+
+            // Train Model
+            var model = pipeline.Train&lt;IrisData,IrisPrediction&gt;();
+
+            // Persist Model
+            await model.WriteAsync(modelPath);
+
+            return model;
+        }
+    }
+}
+</code></pre>
+<p>In addition to building our pipeline and training our machine learning model, the <code>Model</code> class also serialized and persisted the model for future use in a file called <code>model.zip</code>.</p>
+<h3>Test The Model</h3>
+<p>Now that we have our data structures and model training pipeline set up, it’s time to test everything to make sure it’s working. We’ll put our logic inside of our <code>Program.cs</code> file.</p>
+<pre><code class="language-csharp">using System;
+using Microsoft.ML;
+
+namespace model
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string dataPath = &quot;model/data/iris.txt&quot;;
+
+            string modelPath = &quot;model/model.zip&quot;;
+
+            var model = Model.Train(new LearningPipeline(),dataPath,modelPath).Result;
+
+            // Test data for prediction
+            var prediction = model.Predict(new IrisData()
+            {
+                SepalLength = 3.3f,
+                SepalWidth = 1.6f,
+                PetalLength = 0.2f,
+                PetalWidth = 5.1f
+            });
+
+            Console.WriteLine($&quot;Predicted flower type is: {prediction.PredictedLabels}&quot;);
+        }
+    }
+}
+</code></pre>
+<p>All set to run. We can do so by entering the following command from our solution directory:</p>
+<pre><code class="language-bash">dotnet run -p model/model.csproj
+</code></pre>
+<p>Once the application has been run, the following output should display on the console.</p>
+<pre><code class="language-bash">Automatically adding a MinMax normalization transform, use 'norm=Warn' or
+'norm=No' to turn this behavior off.Using 2 threads to train.
+Automatically choosing a check frequency of 2.Auto-tuning parameters: maxIterations = 9998.
+Auto-tuning parameters: L2 = 2.667734E-05.
+Auto-tuning parameters: L1Threshold (L1/L2) = 0.Using best model from iteration 882.
+Not training a calibrator because it is not needed.
+Predicted flower type is: Iris-virginica
+</code></pre>
+<p>Additionally, you’ll notice that a file called <code>model.zip</code> was created in the root directory of our model project. This persisted model can now be used outside of our application to make predictions, but first we need to upload it to our Azure Storage account.</p>
+<h3>Upload The Model</h3>
+<p>Now that we have a trained model and it has been persisted to the <code>model.zip</code> file, it's time to upload it to Azure Storage so that it is available to our Azure Functions application.</p>
+<p>To get started with that, first we need the access keys for our storage account. You can get those by using the following command.</p>
+<pre><code class="language-bash">az storage account keys list --account-name azfnmlnetdemostorage --resource-group azfnmlnetdemo
+</code></pre>
+<p>The result of that command should return your primary and secondary keys. You can use either one for the following steps.</p>
+<p>Although we can upload directly to the account, it's best to create a container to upload our model to. To keep it simple, I'll call the container <code>models</code>.</p>
+<pre><code class="language-bash">az storage container create --name models --account-key &lt;YOUR-ACCOUNT-KEY&gt; --account-name azfnmlnetdemostorage --fail-on-exist
+</code></pre>
+<p>Once our container's created, we can upload our <code>model.zip</code> file to it.</p>
+<pre><code class="language-bash">az storage blob upload --container-name models --account-name azfnmlnetdemostorage --file model/model.zip --name model.zip
+</code></pre>
+<p>To verify that the file has been uploaded, you can list the files inside the <code>models</code> storage container.</p>
+<pre><code class="language-bash">az storage blob list --container-name models --account-name azfnmlnetdemostorage --output table
+</code></pre>
+<p>That command should produce output similar to that below:</p>
+<pre><code class="language-bash">Name       Blob Type    Blob Tier    Length    Content Type     Last Modified              Snapshot
+---------  -----------  -----------  --------  ---------------  -------------------------  ----------
+model.zip  BlockBlob                 4373      application/zip  2018-08-21T19:26:09+00:00
+</code></pre>
+<p>That's all there is to the upload process. It's now time to build our Azure Functions Application</p>
+<h2>Build The Azure Functions Application</h2>
+<h3>Initialize Azure Function Project</h3>
+<p>In our solution directory, we want to create a new directory for our Azure Function project</p>
+<pre><code class="language-bash">mkdir serverlessfunctionapp
+dotnet sln add serverlessfunctionapp/serverlessfunctionapp.csproj
+</code></pre>
+<p>Then, we can scaffold an Azure Functions project inside our newly created <code>serverlessfunctionapp</code> project directory using Azure Functions Core Tools</p>
+<pre><code class="language-bash">cd serverlessfunctionapp
+func init
+</code></pre>
+<p>At this point you will be prompted to select the runtime for your application. For this application select <code>dotnet</code>.</p>
+<p>This will generate a few files in the <code>serverlessfunctionapp</code> directory. Keep in mind though that this does not create the function.</p>
+<h3>Add Dependencies</h3>
+<p>Before we create any functions, we need to add the dependencies for our Azure Functions application. Since we'll be using <code>Microsoft.ML</code> in our Azure Function application, we'll need to add it as a dependency. From the <code>serverlessfunctionapp</code> enter the following command:</p>
+<pre><code class="language-bash">dotnet add package Microsoft.ML
+dotnet restore
+</code></pre>
+<h3>Create Serverless Function</h3>
+<p>Once we've added the dependencies it's time to create a new function. To do so we'll use the Azure Functions Core Tools <code>new</code> command. Although not required, it's good practice to separate functions and related files into their own directory.</p>
+<pre><code class="language-bash">mkdir Predict
+cd Predict
+func new
+</code></pre>
+<p>At this time you will be prompted to select a template. For our classification model, we'll be using an HttpTrigger which is exactly what it sounds like. An HTTP request is what calls or invokes our function. With that being said, select the <code>HttpTrigger</code> option.</p>
+<p>You will then be prompted to enter a name for your function. You can use any name but to make things easy, name it the same as the directory the function is in. Once that process is complete, there should be a file called <code>Predict.cs</code> inside our <code>serverlessfunctionapp/Predict</code> directory. This is where we'll write the logic for our application.</p>
+<h3>Define Data Structures</h3>
+<p>We'll also be making use of the IrisData and IrisPrediction classes inside our <code>Predict</code> function. Therefore, we need to create classes for them inside our <code>Predict</code> directory. The content will be the same as when we trained our model with the exception of the namespace which will now be <code>serverlessfunctionapp.Predict</code>. The content of those files should look like the code below:</p>
+<pre><code class="language-csharp">//IrisData.cs
+using Microsoft.ML.Runtime.Api;
+
+namespace serverlessfunctionapp.Predict
+{
+    public class IrisData
+    {
+        [Column(&quot;0&quot;)]
+        public float SepalLength;
+
+        [Column(&quot;1&quot;)]
+        public float SepalWidth;
+
+        [Column(&quot;2&quot;)]
+        public float PetalLength;
+
+        [Column(&quot;3&quot;)]
+        public float PetalWidth;
+
+        [Column(&quot;4&quot;)]
+        [ColumnName(&quot;Label&quot;)]
+        public string Label;
+    }
+}
+
+//IrisPrediction.cs
+using Microsoft.ML.Runtime.Api;
+
+namespace serverlessfunctionapp.Predict
+{
+    public class IrisPrediction
+    {
+        [ColumnName(&quot;PredictedLabel&quot;)]
+        public string PredictedLabels;
+    }
+}
+</code></pre>
+<h3>Write Function Logic</h3>
+<p>With our dependencies and data structures set up, it's time to write our function logic to make predictions. The first thing we want to do is replace the <code>Run</code> method inside the <code>Predict</code> class with the following code.</p>
+<pre><code class="language-csharp">public static IActionResult Run(
+    [HttpTrigger(AuthorizationLevel.Function, &quot;get&quot;, &quot;post&quot;, Route = null)]HttpRequest req,
+    [Blob(&quot;models/model.zip&quot;, FileAccess.Read, Connection = &quot;AzureWebJobsStorage&quot;)] Stream serializedModel,
+    TraceWriter log)
+{
+    // Workaround for Azure Functions Host
+    if (typeof(Microsoft.ML.Runtime.Data.LoadTransform) == null ||
+        typeof(Microsoft.ML.Runtime.Learners.LinearClassificationTrainer) == null ||
+        typeof(Microsoft.ML.Runtime.Internal.CpuMath.SseUtils) == null ||
+        typeof(Microsoft.ML.Runtime.FastTree.FastTree) == null)
+    {
+        log.Error(&quot;Error loading ML.NET&quot;);
+        return new StatusCodeResult(500);
+    }
+
+    //Read incoming request body
+    string requestBody = new StreamReader(req.Body).ReadToEnd();
+
+    log.Info(requestBody);
+
+    //Bind request body to IrisData object
+    IrisData data = JsonConvert.DeserializeObject&lt;IrisData&gt;(requestBody);
+
+    //Load prediction model
+    var model = PredictionModel.ReadAsync&lt;IrisData, IrisPrediction&gt;(serializedModel).Result;
+
+    //Make prediction
+    IrisPrediction prediction = model.Predict(data);
+
+    //Return prediction
+    return (IActionResult)new OkObjectResult(prediction.PredictedLabels);
+}
+</code></pre>
+<p>There are a few notable change worth looking at. One of them is the workaround at the beginning of the function.</p>
+<pre><code class="language-csharp">if (typeof(Microsoft.ML.Runtime.Data.LoadTransform) == null ||
+    typeof(Microsoft.ML.Runtime.Learners.LinearClassificationTrainer) == null ||
+    typeof(Microsoft.ML.Runtime.Internal.CpuMath.SseUtils) == null ||
+    typeof(Microsoft.ML.Runtime.FastTree.FastTree) == null)
+{
+    log.Error(&quot;Error loading ML.NET&quot;);
+    return new StatusCodeResult(500);
+}
+</code></pre>
+<p>There are some issues with Azure Functions and ML.NET Assemblies which are being worked on by both teams at Microsoft (see <a href="https://github.com/Azure/azure-functions-host/issues/3190">Github Issue</a>). In the meantime, it's safe to just include that code in there.</p>
+<p>The other addition to note is the method signature. As you can see, I have added an additional parameter called <code>serializedModel</code> which is decorated by the <code>Blob</code> attribute.</p>
+<pre><code class="language-csharp">[Blob(&quot;models/model.zip&quot;, FileAccess.Read, Connection = &quot;AzureWebJobsStorage&quot;)] Stream serializedModel
+</code></pre>
+<p>What this code is doing is telling the function to import the blob <code>model.zip</code> as a <code>Stream</code> and bind it to <code>serializedModel</code>. Using additional arguments, I tell my function to only have <code>Read</code> access to the <code>model.zip</code> blob inside the <code>models</code> container which can be accessed with the <code>AzureWebJobsStorage</code> connection string. Right now that last part might seem confusing, but this is something we configured when we set up the Azure environment and linked <code>azfnmlnetdemostorage</code> account with our <code>azfnmlnetdemo20180821</code> serverless function app using the <code>--storage-account</code> option. Although the production environment is configured, if we try to test our application locally we won't be able to access our storage account because we have not configured the connection string locally. We can do so by looking in the <code>local.settings.json</code> file inside our <code>serverlessfunctionapp</code> directory. The contents should look like the following.</p>
+<pre><code class="language-json">{
+  &quot;IsEncrypted&quot;: false,
+  &quot;Values&quot;: {
+    &quot;AzureWebJobsStorage&quot;: &quot;&quot;,
+    &quot;AzureWebJobsDashboard&quot;: &quot;&quot;,
+    &quot;FUNCTIONS_WORKER_RUNTIME&quot;: &quot;dotnet&quot;
+  }
+}
+</code></pre>
+<p>Our function running locally will look in this file, try to find <code>AzureWebJobsStorage</code> and use the connection string value in the <code>Predict</code> function. To get the connection string for our <code>azfnmlnetdemostorage</code> account, enter the following command.</p>
+<pre><code class="language-bash">az storage account show-connection-string --name azfnmlnetdemostorage
+</code></pre>
+<p>The output of that command should look like the following:</p>
+<pre><code class="language-json">{
+  &quot;connectionString&quot;: &quot;&lt;YOUR-CONNECTION-STRING&gt;&quot;
+}
+</code></pre>
+<p>At this point, you just need to copy the value of <code>connectionString</code> to your <code>local.settings.json</code> file and replace the current empty string for <code>AzureWebJobsStorage</code>. It's important to note that it's okay to paste the connection string in here since the <code>local.settings.json</code> file is not committed to version control. (See <code>.gitignore</code> inside <code>serverlessfunctionapp</code> directory). Now the application is ready to be tested locally.</p>
+<h3>Testing The Function Locally</h3>
+<p>To test the application, first build your project by entering the following command from the <code>serverlessfunctionapp</code> directory.</p>
+<pre><code class="language-bash">dotnet build
+</code></pre>
+<p>Then, navigate to the build directory <code>./bin/Debug/netstandard2.0</code> and enter the following command:</p>
+<pre><code class="language-bash">func host start
+</code></pre>
+<p>Finally, using a tool like Postman or Insomnia make an HTTP POST request to the <code>http://localhost:7071/api/Predict</code> endpoint with the following body:</p>
+<pre><code class="language-json">{
+  &quot;SepalLength&quot;: 3.3,
+  &quot;SepalWidth&quot;: 1.6,
+  &quot;PetalLength&quot;: 0.2,
+  &quot;PetalWidth&quot;: 5.1
+}
+</code></pre>
+<p>If everything is set up correctly, you should receive the following output</p>
+<pre><code class="language-bash">Iris-virginica
+</code></pre>
+<p>Once satisfied with testing, press <code>Ctrl + C</code> to stop the application.</p>
+<h2>Deploy To Azure</h2>
+<h3>Push Build</h3>
+<p>Great! Now on to the final step, deploying our application to production. Since we already configured everything it should only require a few commands to do so.</p>
+<p>First, make sure you are logged in. Using Azure Functions Core Tools log in with the following command:</p>
+<pre><code class="language-bash">func azure login
+</code></pre>
+<p>Like with the Azure CLI, you will follow a series of prompts to log into your account.</p>
+<p>Once you have successfully logged in, it's time to publish our application to Azure. From the <code>serverlessfunctionapp</code> directory enter the following command.</p>
+<pre><code class="language-bash">func azure functionapp publish azfnmlnetdemo20180821
+</code></pre>
+<p>When our deployment is complete, we can check whether our function was published successfully by using the following command.</p>
+<pre><code class="language-bash">func azure functionapp list-functions azfnmlnetdemo20180821
+</code></pre>
+<p>The output should look similar to that below.</p>
+<pre><code class="language-bash">Functions in azfnmlnetdemo20180821:
+    Predict - [httpTrigger]
+</code></pre>
+<h3>Configure Platform</h3>
+<p>For the last part of the deployment step, we'll need to head over to the Azure Portal. To do so, visit <a href="https://portal.azure.com">https://portal.azure.com</a> and log in.</p>
+<p>Once logged in, type the name of your application into the search bar at the top of the page and select your Azure Function application of type <code>App Service</code></p>
+<p><img src="/images/serverless-machine-learning-mlnet-azure-functions/azfnmlnetdemo1.png" class="img-fluid" alt="" /></p>
+<p>Then, from the accordion element on the left, select the top-most item with your appplication name on it. Then, select the <code>Platform features</code> tab and open the <code>Application settings</code> option.</p>
+<p><img src="/images/serverless-machine-learning-mlnet-azure-functions/azfnmlnetdemo2.png" class="img-fluid" alt="" /></p>
+<p>When the <code>Application settings</code> page loads, change the <code>Platform</code> setting to <code>64-bit</code>. The reason for this is <code>ML.NET</code> has to be built and run on a 64-bit environment due to some of its native dependencies.</p>
+<p><img src="/images/serverless-machine-learning-mlnet-azure-functions/azfnmlnetdemo3.png" class="img-fluid" alt="" /></p>
+<p>That's all there is to it.</p>
+<h3>Test The Deployed Function</h3>
+<p>Now it's time to test our deployed function. We can do so from the portal by going back to the accordion and selecting the function name below the <code>Functions</code> parent element and clicking on the <code>Test</code> button on the far right. Doing so will show a form that will allow us to test our application. Make sure the <code>HTTP method</code> option is set to POST. In the text area for the <code>Request body</code> paste the following content:</p>
+<pre><code class="language-json">{
+  &quot;SepalLength&quot;: 3.3,
+  &quot;SepalWidth&quot;: 1.6,
+  &quot;PetalLength&quot;: 0.2,
+  &quot;PetalWidth&quot;: 5.1
+}
+</code></pre>
+<p>Once the form is filled in, click <code>Run</code> at the top of the page and if successful <code>Iris-virginica</code> should show up in the <code>Output</code> area.</p>
+<p><img src="/images/serverless-machine-learning-mlnet-azure-functions/azfnmlnetdemo4.png" class="img-fluid" alt="" /></p>
+<p>To test the function outside the portal, you can click on the <code>Get function URL</code> link next to the <code>Run</code> button and make an HTTP POST request using that link.</p>
+<h2>Conclusion</h2>
+<p>In this writeup, we trained a classification model that predicts a class of flower using Microsoft's <code>ML.NET</code> framework. Then, we exposed this model for inference via an Azure Functions serverless application. In doing so, we can more efficiently manage our cost as well as our resource utilization. Happy coding!</p>
+<h6>Resources</h6>
+<p><a href="https://docs.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-serverless">Create a function app for serverless code execution</a><br />
+<a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-azure-cli">Using the Azure CLI 2.0 with Azure Storage</a><br />
+<a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local">Work with Azure Functions Core Tools</a></p>
+<hr /><div><script type="application/javascript">window.onload = function() { document.getElementById('webmention-target').value = window.location.href }</script><form action="https://webmentions.lqdev.tech/api/inbox" method="POST" enctype="application/x-www-form-urlencoded"><h5 class="text-center">Send me a <a href="/contact">message</a> or <a href="https://indieweb.org/webmentions">webmention</a></h5><div class="form-row justify-content-center"><div class="w-75"><input type="text" name="source" class="form-control" placeholder="Your URL (source)" /></div><div class="col-auto"><input type="submit" class="btn btn-primary" value="Send" /></div><input readonly class="form-control-plaintext" style="visibility:hidden" type="text" id="webmention-target" name="target" /></div></form></div></div></main><script src="/lib/jquery/jquery.slim.min.js"></script><script src="/lib/boostrap/bootstrap.min.js"></script><script src="/lib/highlight/highlight.min.js"></script><script src="/lib/highlight/highlight.fsharp.min.js"></script><script src="/lib/highlight/highlight.nix.min.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script type="application/javascript">mermaid.initialize({startOnLoad:true});</script><script type="application/javascript">hljs.initHighlightingOnLoad();</script></body><footer><a rel="me" href="https://toot.lqdev.tech/@lqdev"></a><a rel="me" href="https://github.com/lqdev"></a><a rel="me" href="https://twitter.com/ljquintanilla"></a><a rel="me" href="https://www.linkedin.com/in/lquintanilla01/"></a><a rel="me" href="mailto:lqdev@outlook.com"></a></footer></html>
