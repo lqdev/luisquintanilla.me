@@ -631,3 +631,78 @@ module Builder
         
         // Return feed data for potential RSS generation
         feedData
+
+    // AST-based post processing using GenericBuilder infrastructure
+    let buildPosts() = 
+        let postFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "posts"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        let processor = GenericBuilder.PostProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor postFiles
+        
+        // Generate individual post pages
+        feedData
+        |> List.iter (fun item ->
+            let post = item.Content
+            let saveDir = Path.Join(outputDir, "posts", post.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            
+            let html = blogPostView post.Metadata.Title (post.Content |> convertMdToHtml)
+            let postView = generate html "defaultindex" $"{post.Metadata.Title} - Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, postView))
+        
+        // Generate post archive pages (paginated)
+        let posts = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        let postsPerPage = 10
+        
+        posts
+        |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
+        |> Array.chunkBySize postsPerPage
+        |> Array.iteri(fun i x -> 
+            let len = posts |> Array.chunkBySize postsPerPage |> Array.length
+            let currentPage = i + 1
+            let idx = string currentPage
+            let page = generate (postPaginationView currentPage len x) "defaultindex" $"Posts {idx} - Luis Quintanilla"
+            let dir = Directory.CreateDirectory(Path.Join(outputDir,"posts", idx))
+            let fileName = "index.html"
+            File.WriteAllText(Path.Join(dir.FullName,fileName), page))
+        
+        // Generate RSS feed for posts
+        let rssItems = feedData |> List.choose (fun item -> item.RssXml)
+        if not (List.isEmpty rssItems) then
+            // Create RSS channel for posts using existing pattern
+            let latestPost = 
+                posts 
+                |> Array.sortByDescending (fun p -> DateTime.Parse(p.Metadata.Date))
+                |> Array.tryHead
+            
+            let lastPubDate = 
+                match latestPost with
+                | Some p -> p.Metadata.Date
+                | None -> DateTime.Now.ToString("yyyy-MM-dd")
+            
+            let channel = 
+                XElement(XName.Get "rss",
+                    XAttribute(XName.Get "version", "2.0"),
+                    XElement(XName.Get "channel",
+                        XElement(XName.Get "title", "Luis Quintanilla Posts"),
+                        XElement(XName.Get "link", "https://www.luisquintanilla.me/posts"),
+                        XElement(XName.Get "description", "Blog posts by Luis Quintanilla"),
+                        XElement(XName.Get "lastPubDate", lastPubDate),
+                        XElement(XName.Get "language", "en")))
+            
+            // Add RSS items to channel
+            let channelElement = channel.Descendants(XName.Get "channel").First()
+            channelElement.Add(rssItems |> List.toArray)
+            
+            // Save RSS feed
+            let feedSaveDir = Path.Join(outputDir, "posts", "feed")
+            Directory.CreateDirectory(feedSaveDir) |> ignore
+            let rssContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
+            File.WriteAllText(Path.Join(feedSaveDir, "index.xml"), rssContent)
+        
+        // Return feed data for potential RSS generation
+        feedData

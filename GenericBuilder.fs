@@ -53,27 +53,33 @@ module PostProcessor =
                     Some {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
-                        Content = parsedDoc.TextContent
+                        Content = parsedDoc.TextContent  // Raw markdown content
                     }
                 | None -> None
             | Error _ -> None
         
         Render = fun post ->
-            // TODO: Integrate with existing Views.Generator or create new renderer
+            // Convert markdown to HTML - will be handled by calling code
+            // This matches the pattern from existing processors
             sprintf "<article>%s</article>" post.Content
         
         OutputPath = fun post ->
-            sprintf "posts/%s.html" post.FileName
+            sprintf "posts/%s/index.html" post.FileName
         
         RenderCard = fun post ->
             let title = Html.escapeHtml post.Metadata.Title
-            let excerpt = Html.escapeHtml (post.Content.Substring(0, min 150 post.Content.Length) + "...")
+            let description = 
+                if isNull post.Metadata.Description then 
+                    "No description available"
+                else 
+                    Html.escapeHtml post.Metadata.Description
             let url = sprintf "/posts/%s" post.FileName
+            let date = post.Metadata.Date
             
             Html.element "article" (Html.attribute "class" "post-card")
                 (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
-                 Html.element "p" "" excerpt +
-                 Html.element "time" "" (Html.escapeHtml (post.Metadata.Date.ToString())))
+                 Html.element "p" "" description +
+                 Html.element "time" "" (Html.escapeHtml date))
         
         RenderRss = fun post ->
             // Create RSS item for post using existing pattern
@@ -84,7 +90,7 @@ module PostProcessor =
                     XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" post.Content),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url),
-                    XElement(XName.Get "pubDate", post.Metadata.Date.ToString()))
+                    XElement(XName.Get "pubDate", post.Metadata.Date))
             Some item
     }
 
