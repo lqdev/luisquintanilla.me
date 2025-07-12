@@ -48,7 +48,18 @@ let main argv =
     let redirects = loadRedirects ()
     let books = loadBooks (srcDir)
     let albums = loadAlbums (srcDir)
-    let responses = loadReponses (srcDir)
+    let responses = 
+        if FeatureFlags.isEnabled FeatureFlags.Responses then
+            // Load responses using new AST-based system
+            let responseFiles = 
+                Directory.GetFiles(Path.Join(srcDir, "responses"))
+                |> Array.filter (fun f -> f.EndsWith(".md"))
+                |> Array.toList
+            let processor = GenericBuilder.ResponseProcessor.create()
+            let feedData = GenericBuilder.buildContentWithFeeds processor responseFiles
+            feedData |> List.map (fun item -> item.Content) |> List.toArray
+        else
+            loadReponses (srcDir)
     let blogrollLinks = loadBlogrollLinks ()
     let podrollLinks = loadPodrollLinks ()
     let forumLinks = loadForumsLinks ()
@@ -88,7 +99,11 @@ let main argv =
     buildBlogRssFeed posts
     
     // Build responses (star,repost,reply,bookmarks)
-    buildResponseFeedRssPage responses "index"
+    if FeatureFlags.isEnabled FeatureFlags.Responses then
+        let _ = buildResponses()
+        ()
+    else
+        buildResponseFeedRssPage responses "index"
    
     // Build roll pages
     buildFeedsOpml feedLinks

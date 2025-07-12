@@ -696,3 +696,65 @@ module Builder
         
         // Return feed data for potential RSS generation
         feedData
+
+    // AST-based responses processing using GenericBuilder infrastructure
+    let buildResponses() = 
+        let responseFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "responses"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        let processor = GenericBuilder.ResponseProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor responseFiles
+        
+        // Generate individual response pages
+        feedData
+        |> List.iter (fun item ->
+            let response = item.Content
+            let saveDir = Path.Join(outputDir, "feed", response.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            
+            let html = responsePostView response |> reponsePostViewWithBacklink
+            let responseView = generate html "defaultindex" response.Metadata.Title
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, responseView))
+        
+        // Generate responses index page
+        let responses = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        let sortedResponses = responses |> Array.sortByDescending(fun (x: Response) -> DateTime.Parse(x.Metadata.DatePublished))
+        
+        // Generate RSS feed for responses
+        let rssItems = feedData |> List.choose (fun item -> item.RssXml)
+        if not (List.isEmpty rssItems) then
+            let latestResponse = 
+                responses 
+                |> Array.sortByDescending (fun (r: Response) -> DateTime.Parse(r.Metadata.DatePublished))
+                |> Array.tryHead
+            
+            let lastPubDate = 
+                match latestResponse with
+                | Some r -> r.Metadata.DatePublished
+                | None -> DateTime.Now.ToString("yyyy-MM-dd")
+            
+            let channel = 
+                XElement(XName.Get "rss",
+                    XAttribute(XName.Get "version", "2.0"),
+                    XElement(XName.Get "channel",
+                        XElement(XName.Get "title", "Luis Quintanilla Responses"),
+                        XElement(XName.Get "link", "https://www.luisquintanilla.me/feed/responses"),
+                        XElement(XName.Get "description", "IndieWeb responses by Luis Quintanilla"),
+                        XElement(XName.Get "lastPubDate", lastPubDate),
+                        XElement(XName.Get "language", "en")))
+            
+            // Add RSS items to channel
+            let channelElement = channel.Descendants(XName.Get "channel").First()
+            channelElement.Add(rssItems |> List.toArray)
+            
+            // Save RSS feed in expected location
+            let feedSaveDir = Path.Join(outputDir, "feed", "responses")
+            Directory.CreateDirectory(feedSaveDir) |> ignore
+            let rssContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
+            File.WriteAllText(Path.Join(feedSaveDir, "index.xml"), rssContent)
+        
+        // Return feed data for potential integration
+        feedData

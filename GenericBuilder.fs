@@ -355,6 +355,60 @@ module BookProcessor =
             Some item
     }
 
+/// Response content processor
+module ResponseProcessor =
+    let create() : ContentProcessor<Response> = {
+        Parse = fun filePath ->
+            match parseResponseFromFile filePath with
+            | Ok parsedDoc -> 
+                match parsedDoc.Metadata with
+                | Some metadata -> 
+                    Some {
+                        FileName = Path.GetFileNameWithoutExtension(filePath)
+                        Metadata = metadata
+                        Content = parsedDoc.TextContent
+                    }
+                | None -> None
+            | Error _ -> None
+        
+        Render = fun response ->
+            // Response rendering with IndieWeb microformat support
+            sprintf "<article class=\"h-entry response response-%s\">%s</article>" 
+                (response.Metadata.ResponseType.ToLower()) response.Content
+        
+        OutputPath = fun response ->
+            sprintf "responses/%s.html" response.FileName
+        
+        RenderCard = fun response ->
+            let title = Html.escapeHtml response.Metadata.Title
+            let targetUrl = Html.escapeHtml response.Metadata.TargetUrl
+            let responseType = Html.escapeHtml response.Metadata.ResponseType
+            let url = sprintf "/responses/%s" response.FileName
+            let date = response.Metadata.DatePublished
+            
+            // IndieWeb microformat card with response type indication
+            Html.element "article" (Html.attribute "class" "response-card h-entry")
+                (Html.element "div" (Html.attribute "class" "response-type") responseType +
+                 Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
+                 Html.element "div" (Html.attribute "class" "response-target") 
+                    (sprintf "→ %s" (Html.element "a" (Html.attribute "href" targetUrl) targetUrl)) +
+                 Html.element "time" (Html.attribute "class" "dt-published") (Html.escapeHtml date))
+        
+        RenderRss = fun response ->
+            // Create RSS item for response
+            let url = sprintf "https://www.luisquintanilla.me/responses/%s" response.FileName
+            let description = sprintf "[%s] %s" response.Metadata.ResponseType response.Content
+            
+            let item = 
+                XElement(XName.Get "item",
+                    XElement(XName.Get "title", response.Metadata.Title),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" description),
+                    XElement(XName.Get "link", url),
+                    XElement(XName.Get "guid", url),
+                    XElement(XName.Get "pubDate", response.Metadata.DatePublished))
+            Some item
+    }
+
 /// Generic content processing pipeline
 module ContentPipeline =
     
@@ -434,6 +488,12 @@ module Builder =
             ContentPipeline.processAllContent 
                 (BookProcessor.create()) 
                 (Path.Combine(sourceRoot, "library"))
+                outputRoot
+        
+        let responseFeedData = 
+            ContentPipeline.processAllContent 
+                (ResponseProcessor.create()) 
+                (Path.Combine(sourceRoot, "responses"))
                 outputRoot
         
         // Combine all feed data (note: would need proper type handling for mixed types)
