@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/bootstrap-icons-1.5.0/bootstrap-icons.css"><link rel="stylesheet" href="/css/highlight.github-dark-dimmed.min.css"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/css/customthemes.css"><meta property="og:title" content="POSSE to Mastodon using RSS and Azure Logic Apps - Luis Quintanilla"><meta property="og:type" content="website"><meta property="og:image" content="https://www.luisquintanilla.me/avatar.png"><meta property="og:image:secure_url" content="https://www.luisquintanilla.me/avatar.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="200"><meta property="og:image:height" content="200"><meta property="og:site_name" content="Luis Quintanilla Personal Website"><meta property="og:locale" content="en_US"><meta property="twitter:image" content="https://www.luisquintanilla.me/avatar.png"><meta property="fediverse:creator" content="@lqdev@toot.lqdev.tech"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Blog RSS Feed" href="/blog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Microblog RSS Feed" href="/microblog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Response RSS Feed" href="/responses.rss"><link rel="webmention" title="Luis Quintanilla Webmention Endpoint" href="https://webmentions.lqdev.tech/api/inbox"><link rel="feeds" type="text/xml" title="Luis Quintanilla&#39;s Feeds" href="/feed/index.opml"><link rel="blogroll" type="text/xml" title="Luis Quintanilla&#39;s Blogroll" href="/feed/blogroll/index.opml"><link rel="podroll" type="text/xml" title="Luis Quintanilla&#39;s Podroll" href="/feed/podroll/index.opml"><link rel="youtuberoll" type="text/xml" title="Luis Quintanilla&#39;s YouTube Roll" href="/feed/youtube/index.opml"><meta name="robots" content="nosnippet"><title>POSSE to Mastodon using RSS and Azure Logic Apps - Luis Quintanilla</title></head><body><nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"><a class="navbar-brand" href="/"><img src="/avatar.png" height="32" width="32" class="d-inline-block align-top rounded-circle" style="margin-right:5px" loading="lazy">Luis Quintanilla</a><button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav mr-auto"><li class="nav-item active"><a class="nav-link" href="/">Home</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a><div class="dropdown-menu" aria-labelledby="aboutDropdown"><a class="dropdown-item" href="/about">Profile</a><a class="dropdown-item" href="/contact">Contact</a><a class="dropdown-item" href="/uses">Uses</a><a class="dropdown-item" href="/colophon">Colophon</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="feedDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a><div class="dropdown-menu" aria-labelledby="feedDropdown"><a class="dropdown-item" href="/feed">Main</a><a class="dropdown-item" href="/feed/responses">Responses</a><a class="dropdown-item" href="/posts/1">Blog</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/subscribe">Subscribe</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/feed/starter">Starter Packs</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/feed/blogroll">Blogroll</a><a class="dropdown-item" href="/feed/podroll">Podroll</a><a class="dropdown-item" href="/feed/forums">Forums</a><a class="dropdown-item" href="/feed/youtube">YouTube</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="collectionDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Collections</a><div class="dropdown-menu" aria-labelledby="collectionDropdown"><a class="dropdown-item" href="/radio">Radio</a><a class="dropdown-item" href="/library">Books</a><a class="dropdown-item" href="/tags">Tags</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="kbDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Knowledgebase</a><div class="dropdown-menu" aria-labelledby="kbDropdown"><a class="dropdown-item" href="/snippets">Snippets</a><a class="dropdown-item" href="/wiki">Wiki</a><a class="dropdown-item" href="/presentations">Presentations</a></div></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="liveDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Live</a><div class="dropdown-menu" aria-labelledby="liveDropdown"><a class="dropdown-item" href="/live">Stream</a><a class="dropdown-item" href="/streams">Recordings</a></div></li><li class="nav-item"><a class="nav-link" href="/events">Events</a></li></ul><a href="/subscribe"><svg class="bi bi-rss text-secondary" fill="currentColor" viewBox="0 0 16 16" height="32" width="32"><path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path><path d="M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"></path></svg></a></div></nav><main role="main" class="container"><div class="mr-auto"><h1>POSSE to Mastodon using RSS and Azure Logic Apps</h1><h2>Introduction</h2>
+<p><a href="/feed/weblogging-rewind-2023">Over the past year, I've made this website the main place where I post content</a>. The easiest way to <a href="/subscribe">subscribe to content on my website</a> is through the various RSS feeds. However, I have accounts on other platforms like X (formerly Twitter), Bluesky, and Mastodon where I'd still like to repost my content to. Since the <a href="https://techcrunch.com/2023/03/29/twitter-announces-new-api-with-only-free-basic-and-enterprise-levels/">changes to the Twitter API</a>, the only place I cross-post to is Mastodon. The main reason behind it is, as of now, it's one of the few platforms that allows me to automate post creation via its REST APIs without restrictions. A large part of that is I self-host my own Mastodon instance but I assume there aren't as many restrictions when using other instances like mastodon.social. The way I automate posting is by setting up workflows using Azure Logic Apps. These workflows subscribe to my various RSS feeds and whenever a new post is published, they make an HTTP request to my Mastodon instance to create a new post. I've been doing this for some time but never got around to documenting it. This blog post goes into more details about how to set up these workflows.</p>
+<h2>What is POSSE</h2>
+<p><a href="https://indieweb.org/POSSE">POSSE</a> is short for &quot;Post on your Own Site Syndicate Elsewhere&quot;. It's one of the patterns adopted within IndiWeb communities and projects. The main idea is, your website or a website you own or have administrative rights to becomes the main platform where you publish your content. Effectively, it's the cannonical version of your content. Once your content is on your website, you can optionally choose to distribute it on other platforms.</p>
+<h2>What is RSS</h2>
+<p><a href="https://en.wikipedia.org/wiki/RSS">RSS</a> is short for Really Simple Syndication. Accorting to Wikipedia, this protocol &quot;allows users and applications to access updates to websites in a standardized, computer-readable format&quot;.</p>
+<h2>What is Mastodon</h2>
+<p><a href="https://joinmastodon.org/">Mastodon</a> is an <a href="https://github.com/mastodon/mastodon">open-source</a> decentralized microblogging platform built on the <a href="https://activitypub.rocks/">ActivityPub</a> protocol and part of the larger collective of federated systems known as the <a href="https://fediverse.info/">Fediverse</a>.</p>
+<h2>What are Azure Logic Apps</h2>
+<p>If you've used workflow automation systems like <a href="https://ifttt.com/">IFTTT</a>, then you generally know what Azure Logic Apps are.</p>
+<p>A more formal definition from the Azure documentation - &quot;Azure Logic Apps is a cloud platform where you can create and run automated workflows with little to no code. By using the visual designer and selecting from prebuilt operations, you can quickly build a workflow that integrates and manages your apps, data, services, and systems.&quot;</p>
+<p>For more details, see the <a href="https://learn.microsoft.com/azure/logic-apps/logic-apps-overview">Azure Logic Apps documentation</a>.</p>
+<h2>Prerequisites</h2>
+<p>Since you'll be creating Logic App Resources on Azure, you'll need an <a href="https://aka.ms/free">Azure account</a>.</p>
+<h2>Create Consumption Azure Logic App Resource</h2>
+<p>There's various ways to create an Azure Logic App Resource but the easiest one for this relatively simple workflow is using the Azure Portal. For more details, see the <a href="https://learn.microsoft.com/azure/logic-apps/quickstart-create-example-consumption-workflow#create-a-consumption-logic-app-resource">create a consumption logic app resource documentation</a>.</p>
+<p>For the most part you can leave the defaults as is. Since the intended use for this workflow is personal and I don't need enterprise features, I chose to create my logic app using the consumption plan.</p>
+<p>When prompted to choose <strong>Plan Type</strong>, select <strong>Consumption</strong>.</p>
+<h2>The Workflow</h2>
+<p>The workflow is relatively simple. Whenever a new item is posted to an RSS feed, make an HTTP POST request to the Mastodon API</p>
+<pre class="mermaid">flowchart TD
+    A["RSS"] --> B["HTTP (Mastodon API)"]
+</pre>
+<p>Once your Logic App resource deploys to Azure, create a new logic app using the Blank Template. For more details, see the <a href="https://learn.microsoft.com/azure/logic-apps/quickstart-create-example-consumption-workflow#select-the-blank-template">select a blank template documentation</a>.</p>
+<p>This will launch you into the Logic app designer UI where you can begin to configure your workflow.</p>
+<h3>RSS trigger</h3>
+<p>The first thing you'll want to do is set up the trigger that initiates the workflow. The trigger in this case will be new posts on an RSS feed.</p>
+<p>In the Logic app designer, search for <em>RSS</em> and add it as a trigger.</p>
+<p>Once the RSS trigger is added to your workflow, configure it as follows:</p>
+<ul>
+<li><p><strong>The RSS feed URL</strong>: The feed you want want to get posts from. In this case, I'm using my blog posts <a href="https://www.luisquintanilla.me/posts/index.xml">feed</a>.</p>
+<p><strong>TIP: The RSS feed can be ANY feed. So if you wanted to subscribe and repost items from your favorite blog or website, you can as well. Just note though that if you don't own the content it might not be something the author wants you doing and for websites that update multiple times a day, it might produce a lot of noise in your feed. Other than that though, subscribe and post away!</strong></p>
+</li>
+<li><p><strong>How often do you want to check for items?</strong>: The frequency at which you want to poll the RSS feed and check for new posts. In my case, I don't post very often but I do want my posts to be published on Mastodon within an hour of publishing. Therefore, I chose 1 hour as the update frequency.</p>
+</li>
+</ul>
+<h3>HTTP action</h3>
+<p>Now that your trigger is configured, it's time to do someting with the latest posts. In this case, since I want to create a new post on Mastodon, I can do so via their REST API.</p>
+<h4>Get Mastodon credentials</h4>
+<p>One thing that you'll need to publish posts to Mastodon is an application token. The easiest way to get one is using the Web UI.</p>
+<p>To get your app credentials through the web UI:</p>
+<ol>
+<li>In the Mastodon Web UI, select <strong>Preferences</strong>.</li>
+<li>In the preferences page, select <strong>Development</strong>.</li>
+<li>In the development preferences tab, select <strong>New application</strong>.</li>
+<li>In the new application page:</li>
+</ol>
+<ul>
+<li>Provide a name for your application</li>
+<li>Choose the <strong>write:statuses</strong> scope checkbox. For details on required scopes to post statuses, see the <a href="https://docs.joinmastodon.org/methods/statuses/#create">Post a new status REST API documentation</a></li>
+<li>Select <strong>Submit</strong></li>
+</ul>
+<p>If successful, this will create credentials and a token you can use to send authenticated requests to the Mastodon API.</p>
+<h4>Configure HTTP action</h4>
+<p>Now that you have your credentials, you can configure your HTTP action in the Logic Apps workflow.</p>
+<p>In the Logic App designer:</p>
+<ol>
+<li>Select <strong>+ New Step</strong>.</li>
+<li>Search for <em>HTTP</em> and add it as an action.</li>
+<li>Once the HTTP action is added, configure it as follows:</li>
+</ol>
+<ul>
+<li><p><strong>Method</strong>: The HTTP Method. To create statuses, choose <strong>POST</strong> from the dropdown.</p>
+</li>
+<li><p><strong>URI</strong>: The endpoint to make the requests to. For mastodon, it's <code>https://&lt;HOST&gt;/api/v1/statuses</code>. Make sure to replace <code>&lt;HOST&gt;</code> with your Mastodon instance. In my case, it's <code>toot.lqdev.tech</code> since that's where I host my mastodon instance.</p>
+</li>
+<li><p><strong>Headers</strong>: HTTP Headers to use. In this case, set the following:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/x-www-form-urlencoded</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Queries</strong>: URL Query Parameters to add to the request. This is where you'll set your access token.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>access_token</td>
+<td><code>[YOUR-ACCESS-TOKEN]</code></td>
+</tr>
+</tbody>
+</table>
+<p>Make sure to replace <code>[YOUR-ACCESS-TOKEN]</code> with the token credential generated in the Mastodon Web UI.</p>
+</li>
+<li><p><strong>Body</strong>: The content to be published in your Mastodon post. This is entirely up to you though at minumum, you'll add the following to the text feed. <code>status=&lt;YOUR-CONTENT&gt;</code>. <code>&lt;YOUR-CONTENT&gt;</code> is what will be displayed in the Mastodon post.</p>
+<p>One of the nice things about Azure Logic Apps is, properties from previous steps are available to you in subsequent steps. Since our trigger is an RSS feed, we can get access to the feed and item properties of our feed in the HTTP action. If all you wanted was to post the tile and URL, you can do that using the <strong>Feed title</strong> and <strong>Primary Feed Link</strong> properties. For more details, see the <a href="https://learn.microsoft.com/connectors/rss/">RSS connector documentation</a>.</p>
+</li>
+</ul>
+<h2>Save and run</h2>
+<p>That's it! Now you just need to select <strong>Save</strong> in the Logic app designer page.</p>
+<p>Once it's saved, click <strong>Run trigger</strong> which will kick off your trigger. If you have anything recent to publish and everything is configured correctly, it should show up in your Mastodon feed.</p>
+<h2>Conclusion</h2>
+<p>By publishing content on your own website first, you're in full control of your content. Regardless of which platforms come and go, you won't have to adjust to those changes because your content is not locked in to those platforms. However, that doesn't mean you can't also publish your content there. Using protocols like RSS make it easy to subscribe to updates on your website. Using REST APIs provided by the respective platforms, you can automate publishing these updates. To further automate and simplify this process, you can use services like Azure Logic Apps to make publishing to all places easy.</p>
+<hr /><div><script type="application/javascript">window.onload = function() { document.getElementById('webmention-target').value = window.location.href }</script><form action="https://webmentions.lqdev.tech/api/inbox" method="POST" enctype="application/x-www-form-urlencoded"><h5 class="text-center">Send me a <a href="/contact">message</a> or <a href="https://indieweb.org/webmentions">webmention</a></h5><div class="form-row justify-content-center"><div class="w-75"><input type="text" name="source" class="form-control" placeholder="Your URL (source)" /></div><div class="col-auto"><input type="submit" class="btn btn-primary" value="Send" /></div><input readonly class="form-control-plaintext" style="visibility:hidden" type="text" id="webmention-target" name="target" /></div></form></div></div></main><script src="/lib/jquery/jquery.slim.min.js"></script><script src="/lib/boostrap/bootstrap.min.js"></script><script src="/lib/highlight/highlight.min.js"></script><script src="/lib/highlight/highlight.fsharp.min.js"></script><script src="/lib/highlight/highlight.nix.min.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script type="application/javascript">mermaid.initialize({startOnLoad:true});</script><script type="application/javascript">hljs.initHighlightingOnLoad();</script></body><footer><a rel="me" href="https://toot.lqdev.tech/@lqdev"></a><a rel="me" href="https://github.com/lqdev"></a><a rel="me" href="https://twitter.com/ljquintanilla"></a><a rel="me" href="https://www.linkedin.com/in/lquintanilla01/"></a><a rel="me" href="mailto:lqdev@outlook.com"></a></footer></html>

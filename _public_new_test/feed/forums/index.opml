@@ -1,0 +1,12 @@
+<opml version="2.0">
+  <head>
+    <title>Luis Quintanilla Forums</title>
+    <ownerId>https://www.lqdev.me</ownerId>
+  </head>
+  <body>
+    <outline title="Spotify Discovery &amp; Promo" text="Spotify Discovery &amp; Promo" type="rss" htmlUrl="https://community.spotify.com/t5/Discovery-Promo/bd-p/discovery_and_promo" xmlUrl="https://community.spotify.com/spotify/rss/boardmessages?board.id=discovery_and_promo" />
+    <outline title="OpenAI Developer Forum" text="OpenAI Developer Forum" type="rss" htmlUrl="https://community.openai.com" xmlUrl="https://community.openai.com/posts.rss" />
+    <outline title="Techlore Discussions" text="Techlore Discussions" type="rss" htmlUrl="https://discuss.techlore.tech/latest" xmlUrl="https://discuss.techlore.tech/latest.rss" />
+    <outline title="TWiT Community" text="TWiT Community" type="rss" htmlUrl="https://www.twit.community" xmlUrl="https://www.twit.community/posts.rss" />
+  </body>
+</opml>
