@@ -49,17 +49,14 @@ let main argv =
     let books = loadBooks (srcDir)
     let albums = loadAlbums (srcDir)
     let responses = 
-        if FeatureFlags.isEnabled FeatureFlags.Responses then
-            // Load responses using new AST-based system
-            let responseFiles = 
-                Directory.GetFiles(Path.Join(srcDir, "responses"))
-                |> Array.filter (fun f -> f.EndsWith(".md"))
-                |> Array.toList
-            let processor = GenericBuilder.ResponseProcessor.create()
-            let feedData = GenericBuilder.buildContentWithFeeds processor responseFiles
-            feedData |> List.map (fun item -> item.Content) |> List.toArray
-        else
-            loadReponses (srcDir)
+        // Load responses using AST-based system
+        let responseFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "responses"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        let processor = GenericBuilder.ResponseProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor responseFiles
+        feedData |> List.map (fun item -> item.Content) |> List.toArray
     let blogrollLinks = loadBlogrollLinks ()
     let podrollLinks = loadPodrollLinks ()
     let forumLinks = loadForumsLinks ()
@@ -98,12 +95,9 @@ let main argv =
     // Build RSS pages
     buildBlogRssFeed posts
     
-    // Build responses (star,repost,reply,bookmarks)
-    if FeatureFlags.isEnabled FeatureFlags.Responses then
-        let _ = buildResponses()
-        ()
-    else
-        buildResponseFeedRssPage responses "index"
+    // Build responses (star,repost,reply,bookmarks) - AST-based processor
+    let _ = buildResponses()
+    ()
    
     // Build roll pages
     buildFeedsOpml feedLinks

@@ -57,6 +57,7 @@ let isEnabled contentType =
         | Presentations -> true  // Presentations migration complete - default to new processor
         | Books -> true          // Books migration complete - default to new processor
         | Notes -> true          // Notes migration complete - default to new processor
+        | Responses -> true      // Responses migration complete - default to new processor
         | _ -> false             // Other content types default to old processors
     | _ -> parseBooleanFlag value
 

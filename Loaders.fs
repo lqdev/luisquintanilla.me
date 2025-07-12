@@ -113,11 +113,3 @@ module Loaders
         let albums = albumPaths |> Array.map(parseAlbum)
 
         albums
-
-    let loadReponses (srcDir: string) = 
-        let responsePaths = 
-            Directory.GetFiles(Path.Join(srcDir,"responses"))
-
-        let responses = responsePaths |> Array.map(parseResponse)
-
-        responses
