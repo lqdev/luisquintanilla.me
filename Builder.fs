@@ -672,3 +672,70 @@ module Builder
         
         // Return feed data for potential RSS generation
         feedData
+
+    // AST-based notes processing using GenericBuilder infrastructure
+    let buildNotes() = 
+        let noteFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "feed"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        let processor = GenericBuilder.NoteProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor noteFiles
+        
+        // Generate individual note pages
+        feedData
+        |> List.iter (fun item ->
+            let note = item.Content
+            let saveDir = Path.Join(outputDir, "feed", note.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            
+            let html = feedPostView note |> feedPostViewWithBacklink
+            let noteView = generate html "defaultindex" note.Metadata.Title
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, noteView))
+        
+        // Generate notes index page using existing feedView
+        let notes = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        let sortedNotes = notes |> Array.sortByDescending(fun (x: Post) -> DateTime.Parse(x.Metadata.Date))
+        let notesIndexHtml = generate (feedView sortedNotes) "defaultindex" "Main Feed - Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "feed")
+        Directory.CreateDirectory(indexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), notesIndexHtml)
+        
+        // Generate RSS feed for notes
+        let rssItems = feedData |> List.choose (fun item -> item.RssXml)
+        if not (List.isEmpty rssItems) then
+            // Create RSS channel for notes using existing pattern
+            let latestNote = 
+                notes 
+                |> Array.sortByDescending (fun (n: Post) -> DateTime.Parse(n.Metadata.Date))
+                |> Array.tryHead
+            
+            let lastPubDate = 
+                match latestNote with
+                | Some n -> n.Metadata.Date
+                | None -> DateTime.Now.ToString("yyyy-MM-dd")
+            
+            let channel = 
+                XElement(XName.Get "rss",
+                    XAttribute(XName.Get "version", "2.0"),
+                    XElement(XName.Get "channel",
+                        XElement(XName.Get "title", "Luis Quintanilla Main Feed"),
+                        XElement(XName.Get "link", "https://www.luisquintanilla.me/feed"),
+                        XElement(XName.Get "description", "Notes and updates by Luis Quintanilla"),
+                        XElement(XName.Get "lastPubDate", lastPubDate),
+                        XElement(XName.Get "language", "en")))
+            
+            // Add RSS items to channel
+            let channelElement = channel.Descendants(XName.Get "channel").First()
+            channelElement.Add(rssItems |> List.toArray)
+            
+            // Save RSS feed
+            let feedSaveDir = Path.Join(outputDir, "feed")
+            Directory.CreateDirectory(feedSaveDir) |> ignore
+            let rssContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
+            File.WriteAllText(Path.Join(feedSaveDir, "index.xml"), rssContent)
+        
+        // Return feed data for potential RSS generation
+        feedData

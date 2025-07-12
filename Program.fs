@@ -72,12 +72,19 @@ let main argv =
     // Write Post / Archive Pages - Using AST-based processor
     let _ = buildPosts()
 
-    // Build Feeds
-    buildFeedPage feedPosts "Main Feed - Luis Quintanilla" "index"
-
+    // Build Feeds - Feature flag integration for notes migration
+    if FeatureFlags.isEnabled FeatureFlags.Notes then
+        // Use new AST-based notes processor
+        let _ = buildNotes()
+        printfn "✅ Using NEW notes processor (buildNotes)"
+    else
+        // Use legacy feed system
+        buildFeedPage feedPosts "Main Feed - Luis Quintanilla" "index"
+        buildFeedRssPage feedPosts "index" 
+        printfn "⚠️  Using LEGACY feed system"
+    
     // Build RSS pages
     buildBlogRssFeed posts
-    buildFeedRssPage feedPosts "index"
     
     // Build responses (star,repost,reply,bookmarks)
     buildResponseFeedRssPage responses "index"

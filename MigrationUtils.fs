@@ -31,6 +31,7 @@ let getOutputDirectory contentType =
     | Presentations -> "presentations"
     | Books -> "library"
     | Posts -> "posts"
+    | Notes -> "feed"
     | Responses -> "feed/responses"
     | Albums -> "albums"
 

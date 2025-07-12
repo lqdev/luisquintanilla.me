@@ -9,6 +9,7 @@ type ContentType =
     | Presentations 
     | Books 
     | Posts 
+    | Notes
     | Responses 
     | Albums
 
@@ -27,6 +28,7 @@ let getEnvironmentVariable contentType =
     | Presentations -> "NEW_PRESENTATIONS"
     | Books -> "NEW_BOOKS"
     | Posts -> "NEW_POSTS"
+    | Notes -> "NEW_NOTES"
     | Responses -> "NEW_RESPONSES"
     | Albums -> "NEW_ALBUMS"
 
@@ -65,6 +67,7 @@ let getAllFlags () =
         { ContentType = Presentations; Enabled = isEnabled Presentations; EnvironmentVariable = getEnvironmentVariable Presentations }
         { ContentType = Books; Enabled = isEnabled Books; EnvironmentVariable = getEnvironmentVariable Books }
         { ContentType = Posts; Enabled = isEnabled Posts; EnvironmentVariable = getEnvironmentVariable Posts }
+        { ContentType = Notes; Enabled = isEnabled Notes; EnvironmentVariable = getEnvironmentVariable Notes }
         { ContentType = Responses; Enabled = isEnabled Responses; EnvironmentVariable = getEnvironmentVariable Responses }
         { ContentType = Albums; Enabled = isEnabled Albums; EnvironmentVariable = getEnvironmentVariable Albums }
     ]

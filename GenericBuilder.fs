@@ -94,6 +94,57 @@ module PostProcessor =
             Some item
     }
 
+/// Note content processor - notes are Post objects with post_type: "note"
+module NoteProcessor =
+    let create() : ContentProcessor<Post> = {
+        Parse = fun filePath ->
+            match parsePostFromFile filePath with
+            | Ok parsedDoc -> 
+                match parsedDoc.Metadata with
+                | Some metadata -> 
+                    Some {
+                        FileName = Path.GetFileNameWithoutExtension(filePath)
+                        Metadata = metadata
+                        Content = parsedDoc.TextContent  // Raw markdown content
+                    }
+                | None -> None
+            | Error _ -> None
+        
+        Render = fun note ->
+            // Convert markdown to HTML - will be handled by calling code
+            sprintf "<article class=\"note\">%s</article>" note.Content
+        
+        OutputPath = fun note ->
+            sprintf "feed/%s/index.html" note.FileName
+        
+        RenderCard = fun note ->
+            let title = Html.escapeHtml note.Metadata.Title
+            let description = 
+                if isNull note.Metadata.Description then 
+                    "No description available"
+                else 
+                    Html.escapeHtml note.Metadata.Description
+            let url = sprintf "/feed/%s" note.FileName
+            let date = note.Metadata.Date
+            
+            Html.element "article" (Html.attribute "class" "note-card")
+                (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
+                 Html.element "p" "" description +
+                 Html.element "time" "" (Html.escapeHtml date))
+        
+        RenderRss = fun note ->
+            // Create RSS item for note using existing pattern
+            let url = sprintf "https://www.luisquintanilla.me/feed/%s" note.FileName
+            let item = 
+                XElement(XName.Get "item",
+                    XElement(XName.Get "title", note.Metadata.Title),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" note.Content),
+                    XElement(XName.Get "link", url),
+                    XElement(XName.Get "guid", url),
+                    XElement(XName.Get "pubDate", note.Metadata.Date))
+            Some item
+    }
+
 /// Snippet content processor  
 module SnippetProcessor =
     let create() : ContentProcessor<Snippet> = {
@@ -355,6 +406,12 @@ module Builder =
                 (Path.Combine(sourceRoot, "posts"))
                 outputRoot
         
+        let noteFeedData = 
+            ContentPipeline.processAllContent 
+                (NoteProcessor.create()) 
+                (Path.Combine(sourceRoot, "notes"))
+                outputRoot
+        
         let snippetFeedData = 
             ContentPipeline.processAllContent 
                 (SnippetProcessor.create()) 
@@ -385,5 +442,5 @@ module Builder =
         // Build main feeds
         // ContentPipeline.buildMainFeeds allFeedData outputRoot
         
-        sprintf "Processed %d posts, %d snippets, %d wiki pages, %d presentations, %d books" 
-            postFeedData.Length snippetFeedData.Length wikiFeedData.Length presentationFeedData.Length bookFeedData.Length
+        sprintf "Processed %d posts, %d notes, %d snippets, %d wiki pages, %d presentations, %d books" 
+            postFeedData.Length noteFeedData.Length snippetFeedData.Length wikiFeedData.Length presentationFeedData.Length bookFeedData.Length
