@@ -149,11 +149,11 @@ This backlog drives the systematic architectural upgrade of the indieweb content
 
 ---
 
-### [>] Phase 2: Notes Migration - ACTIVE
+### [ ] Phase 2: Notes Migration
 **Project**: Website Architecture Upgrade - Notes Processor  
 **Complexity**: Medium  
 **Estimated Effort**: 1-2 days  
-**Dependencies**: Posts Migration Success
+**Dependencies**: ✅ Posts Migration Complete
 
 Migrate notes/feed content to AST-based processing:
 - Convert notes from legacy `buildFeedPage` to unified processor
