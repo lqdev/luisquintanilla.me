@@ -265,6 +265,13 @@ Before starting any migration:
 - **Content Metadata Preservation**: Books migration successfully preserved all complex metadata (title, author, rating, status, ISBN, cover) while converting from loading-only to full processing
 - **RSS Feed Integration**: Adding RSS feeds during migration continues to be valuable and straightforward using existing infrastructure
 
+### Notes Migration Pattern Learnings (2025-07-12)
+- **AST Parsing Critical Fix**: Discovered ASTParsing.fs was storing raw markdown instead of rendered HTML, affecting all content types - essential to verify rendered output post-deployment
+- **Cross-Content Impact**: Single AST infrastructure change affects all content types (notes, posts, snippets, wiki, presentations, books) - demonstrates importance of comprehensive testing
+- **Production Validation**: Post-deployment content verification caught critical regression not visible in build process - validates need for actual output testing
+- **Immediate Fix Protocol**: Critical rendering issues require immediate resolution before project archival - maintains production quality standards
+- **Architecture Consolidation**: 6th successful migration completes major content type unification under GenericBuilder pattern - establishes this as proven standard approach
+
 ## 🔄 Production Deployment Best Practices
 
 ### Feature Flag Removal
@@ -272,6 +279,12 @@ Before starting any migration:
 - **Default Selection**: Code should default to new system with old system completely removed
 - **Systematic Removal**: Remove legacy functions in logical order (Program.fs → supporting functions → imports)
 - **Build Validation**: Test compilation after each removal step
+
+### Post-Deployment Validation
+- **Immediate Testing**: Test actual rendered output after deployment to catch regressions
+- **Content Verification**: Verify content renders correctly (HTML vs raw markdown)
+- **Cross-Content Impact**: Check if changes affect other content types using same infrastructure
+- **Quick Fix Protocol**: Apply immediate fixes for critical rendering issues before final archival
 
 ### Legacy Code Cleanup
 - **Complete Identification**: Systematically find all components (processors, loaders, parsers, integrations)

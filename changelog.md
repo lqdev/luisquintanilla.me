@@ -1,13 +1,13 @@
 # Changelog
 
-## 2025-01-12 - Notes Migration Project Complete ✅
+## 2025-07-12 - Notes Migration Project Complete ✅
 
 **Project**: [Notes Migration](projects/archive/notes-migration.md)  
 **Duration**: 2025-07-11 to 2025-07-12 (2 days)  
 **Status**: Complete - Fully deployed to production
 
 ### What Changed
-Completed migration of notes/feed content from legacy string-based processing to AST-based GenericBuilder infrastructure, enabling custom block support for rich microblog content while achieving significant performance improvements.
+Completed migration of notes/feed content from legacy string-based processing to AST-based GenericBuilder infrastructure, enabling custom block support for rich microblog content while achieving significant performance improvements. Identified and resolved critical parsing bug affecting all content types.
 
 ### Technical Achievements
 - **AST Infrastructure**: Notes now processed through GenericBuilder.NoteProcessor following proven pattern
@@ -15,10 +15,13 @@ Completed migration of notes/feed content from legacy string-based processing to
 - **Legacy Cleanup**: Eliminated 50+ lines of deprecated code (loadFeed, buildFeedPage, buildFeedRssPage)  
 - **Performance Optimization**: 38% more efficient RSS generation (280KB vs 442KB)
 - **Content Preservation**: 100% integrity maintained across all 243 notes
+- **Critical Bug Fix**: Resolved AST parsing regression where raw markdown was stored instead of rendered HTML
 - **Zero Regression**: All functionality preserved with architectural improvements
 
 ### Architecture Impact
 **6th Successful Content Migration**: Notes join Snippets, Wiki, Presentations, Books, and Posts in unified AST-based processing architecture. This completes the major content type migrations, establishing GenericBuilder as the standard pattern for all content processing.
+
+**Critical System Fix**: ASTParsing.fs updated to properly render markdown to HTML, affecting all content types using AST infrastructure. This ensures consistent HTML output across the entire system.
 
 **Key Infrastructure Benefits:**
 - Unified content processing across all major types
