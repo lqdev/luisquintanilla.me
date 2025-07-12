@@ -133,10 +133,11 @@ let parseDocumentFromAst<'TMetadata> (content: string) : Result<ParsedDocument<'
         try
             let pipeline = createMarkdownPipeline()
             let doc = Markdown.Parse(contentWithoutFrontMatter, pipeline)
+            let htmlContent = extractTextContentFromAst doc
             
             Ok {
                 Metadata = metadata
-                TextContent = contentWithoutFrontMatter  // Use raw markdown, not HTML
+                TextContent = htmlContent  // Use rendered HTML content
                 CustomBlocks = extractCustomBlocks doc
                 RawMarkdown = content
                 MarkdownAst = doc
