@@ -4,6 +4,7 @@ open System
 open System.IO
 open Loaders
 open Builder
+open GenericBuilder
 open WebmentionService
 open Domain
 open FeatureFlags
@@ -33,7 +34,15 @@ let main argv =
 
     // Data
     let posts = loadPosts(srcDir) 
-    let feedPosts = loadFeed (srcDir)
+    let feedNotes = 
+        // Load notes using new AST-based system
+        let noteFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "feed"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        let processor = GenericBuilder.NoteProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor noteFiles
+        feedData |> List.map (fun item -> item.Content) |> List.toArray
     let liveStreams = loadLiveStreams (srcDir)
     let feedLinks = loadFeedLinks (srcDir)
     let redirects = loadRedirects ()
@@ -60,7 +69,7 @@ let main argv =
     printfn ""
 
     // Build static pages
-    buildHomePage posts feedPosts responses
+    buildHomePage posts feedNotes responses
     buildAboutPage ()
     buildContactPage ()
     buildStarterPackPage ()
@@ -72,16 +81,8 @@ let main argv =
     // Write Post / Archive Pages - Using AST-based processor
     let _ = buildPosts()
 
-    // Build Feeds - Feature flag integration for notes migration
-    if FeatureFlags.isEnabled FeatureFlags.Notes then
-        // Use new AST-based notes processor
-        let _ = buildNotes()
-        printfn "✅ Using NEW notes processor (buildNotes)"
-    else
-        // Use legacy feed system
-        buildFeedPage feedPosts "Main Feed - Luis Quintanilla" "index"
-        buildFeedRssPage feedPosts "index" 
-        printfn "⚠️  Using LEGACY feed system"
+    // Build Notes - Using AST-based processor (Notes Migration Complete)
+    let _ = buildNotes()
     
     // Build RSS pages
     buildBlogRssFeed posts
@@ -141,6 +142,6 @@ let main argv =
     // buildResponsePage responses "Responses" "index"
 
     // Build tags page
-    buildTagsPages posts feedPosts responses
+    buildTagsPages posts feedNotes responses
 
     0

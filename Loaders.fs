@@ -13,14 +13,6 @@ module Loaders
         
         posts
 
-    let loadFeed (srcDir: string) =
-        let postPaths = 
-            Directory.GetFiles(Path.Join(srcDir,"feed"))
-        
-        let posts = postPaths |> Array.map(parsePost)
-        
-        posts
-
     let loadLiveStreams (srcDir: string) =
         let streamPaths = 
             Directory.GetFiles(Path.Join(srcDir,"streams"))

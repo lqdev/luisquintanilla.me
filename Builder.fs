@@ -198,16 +198,6 @@ module Builder
         let saveDir = Path.Join(outputDir,"posts")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), rssPage)  
 
-    let buildFeedRssPage (posts: Post array) (saveFileName:string)= 
-        let rssPage = 
-            posts
-            |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
-            |> generateMainFeedRss
-            |> string
-
-        let saveDir = Path.Join(outputDir,"feed")            
-        File.WriteAllText(Path.Join(saveDir,$"{saveFileName}.xml"), rssPage)  
-
     let buildResponseFeedRssPage (posts: Response array) (saveFileName:string) = 
 
         let rssPage = 
@@ -341,39 +331,6 @@ module Builder
 
     let filterFeedByPostType (posts: Post array) (postType: string) = 
         posts |> Array.filter(fun post -> post.Metadata.PostType = postType)
-
-    let buildFeedPage (posts:Post array) (feedTitle:string) (saveFileName:string) =
-        
-        // Convert post markdown to HTML
-        let parsedPosts = 
-            posts 
-            |> Array.map(fun post -> {post with Content = post.Content |> convertMdToHtml})
-            |> Array.sortByDescending(fun post -> DateTime.Parse(post.Metadata.Date))
-
-        // Generate aggregate feed
-        let feedPage = generate (feedView parsedPosts) "defaultindex" feedTitle
-        
-        // Create directories
-        let rootSaveDir = Path.Join(outputDir,"feed")
-        // Directory.CreateDirectory(saveDir) |> ignore
-
-        // Generate individual feed posts
-        let generatePost (post:Post) = 
-            let postView = feedPostView post |> feedPostViewWithBacklink
-            post.FileName,generate postView "defaultindex" post.Metadata.Title 
-
-        let writePost (fileName:string, html:string) = 
-            let saveDir = Path.Join(rootSaveDir,fileName)
-            Directory.CreateDirectory(saveDir) |> ignore
-            let savePath = Path.Join(saveDir,"index.html")
-            File.WriteAllText(savePath,html)
-
-        parsedPosts
-        |> Array.map(generatePost)
-        |> Array.iter(writePost)        
-    
-        // Save feed
-        File.WriteAllText(Path.Join(rootSaveDir, $"{saveFileName}.html"), feedPage)
 
     let buildLiveStreamPage () = 
         let title = "Live Stream - Luis Quintanilla"
