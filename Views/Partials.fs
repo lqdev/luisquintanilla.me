@@ -829,7 +829,7 @@ let albumPostView (album: Album) =
             let mediaItems = 
                 album.Metadata.Images 
                 |> Array.map (fun img -> 
-                    sprintf "- media_type: image\n  uri: %s\n  alt_text: %s\n  caption: %s\n  aspect: \"\"" 
+                    sprintf "- media_type: image\n  uri: %s\n  alt_text: %s\n  caption: %s\n  aspect: \"16:9\"" 
                         img.ImagePath img.AltText img.Description)
                 |> String.concat "\n"
             let mediaBlock = sprintf ":::media\n%s\n:::media" mediaItems
