@@ -32,7 +32,7 @@ module Builder
         let directories = [
             "css"
             "js"
-            "images"
+            "assets/images"
             "lib"
             ".well-known"
         ]
@@ -337,7 +337,7 @@ module Builder
     // AST-based snippet processing using GenericBuilder infrastructure
     let buildSnippets() = 
         let snippetFiles = 
-            Directory.GetFiles(Path.Join(srcDir, "snippets"))
+            Directory.GetFiles(Path.Join(srcDir, "resources", "snippets"))
             |> Array.filter (fun f -> f.EndsWith(".md"))
             |> Array.toList
         
@@ -348,7 +348,7 @@ module Builder
         feedData
         |> List.iter (fun item ->
             let snippet = item.Content
-            let saveDir = Path.Join(outputDir, "snippets", snippet.FileName)
+            let saveDir = Path.Join(outputDir, "resources", "snippets", snippet.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
             let html = contentViewWithTitle snippet.Metadata.Title (snippet.Content |> convertMdToHtml)
@@ -359,7 +359,7 @@ module Builder
         // Generate snippet index page using existing view for now
         let snippets = feedData |> List.map (fun item -> item.Content) |> List.toArray
         let snippetIndexHtml = generate (snippetsView snippets) "defaultindex" "Snippets | Luis Quintanilla"
-        let indexSaveDir = Path.Join(outputDir, "snippets")
+        let indexSaveDir = Path.Join(outputDir, "resources", "snippets")
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), snippetIndexHtml)
         
@@ -369,7 +369,7 @@ module Builder
     // AST-based wiki processing using GenericBuilder infrastructure  
     let buildWikis() = 
         let wikiFiles = 
-            Directory.GetFiles(Path.Join(srcDir, "wiki"))
+            Directory.GetFiles(Path.Join(srcDir, "resources", "wiki"))
             |> Array.filter (fun f -> f.EndsWith(".md"))
             |> Array.toList
         
@@ -380,7 +380,7 @@ module Builder
         feedData
         |> List.iter (fun item ->
             let wiki = item.Content
-            let saveDir = Path.Join(outputDir, "wiki", wiki.FileName)
+            let saveDir = Path.Join(outputDir, "resources", "wiki", wiki.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
             let html = contentViewWithTitle wiki.Metadata.Title (wiki.Content |> convertMdToHtml)
@@ -391,7 +391,7 @@ module Builder
         // Generate wiki index page using existing view
         let wikis = feedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.sortBy(fun x -> x.Metadata.Title)
         let wikiIndexHtml = generate (wikisView wikis) "defaultindex" "Wiki | Luis Quintanilla"
-        let indexSaveDir = Path.Join(outputDir, "wiki")
+        let indexSaveDir = Path.Join(outputDir, "resources", "wiki")
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), wikiIndexHtml)
         
@@ -401,7 +401,7 @@ module Builder
     // AST-based presentation processing using GenericBuilder infrastructure
     let buildPresentations() = 
         let presentationFiles = 
-            Directory.GetFiles(Path.Join(srcDir, "presentations"))
+            Directory.GetFiles(Path.Join(srcDir, "resources", "presentations"))
             |> Array.filter (fun f -> f.EndsWith(".md"))
             |> Array.toList
         
@@ -412,7 +412,7 @@ module Builder
         feedData
         |> List.iter (fun item ->
             let presentation = item.Content
-            let saveDir = Path.Join(outputDir, "presentations", presentation.FileName)
+            let saveDir = Path.Join(outputDir, "resources", "presentations", presentation.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
             // Use proper reveal.js integration with presentationPageView and presentationLayout
@@ -423,7 +423,7 @@ module Builder
         // Generate presentation index page
         let presentations = feedData |> List.map (fun item -> item.Content) |> List.toArray
         let presentationIndexHtml = generate (presentationsView presentations) "defaultindex" "Presentations | Luis Quintanilla"
-        let indexSaveDir = Path.Join(outputDir, "presentations")
+        let indexSaveDir = Path.Join(outputDir, "resources", "presentations")
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), presentationIndexHtml)
         
@@ -433,7 +433,7 @@ module Builder
     // AST-based book processing using GenericBuilder infrastructure
     let buildBooks() = 
         let bookFiles = 
-            Directory.GetFiles(Path.Join(srcDir, "library"))
+            Directory.GetFiles(Path.Join(srcDir, "reviews"))
             |> Array.filter (fun f -> f.EndsWith(".md"))
             |> Array.toList
         
@@ -444,20 +444,20 @@ module Builder
         feedData
         |> List.iter (fun item ->
             let book = item.Content
-            let saveDir = Path.Join(outputDir, "library", book.FileName)
+            let saveDir = Path.Join(outputDir, "reviews", book.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
             let html = contentViewWithTitle book.Metadata.Title (book.Content |> convertMdToHtml)
-            let bookView = generate html "defaultindex" $"{book.Metadata.Title} | Library | Luis Quintanilla"
+            let bookView = generate html "defaultindex" $"{book.Metadata.Title} | Reviews | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, bookView))
         
-        // Generate library index page using existing libraryView
+        // Generate reviews index page using existing libraryView (rename later)
         let books = feedData |> List.map (fun item -> item.Content) |> List.toArray
-        let libraryIndexHtml = generate (libraryView books) "defaultindex" "Library | Luis Quintanilla"
-        let indexSaveDir = Path.Join(outputDir, "library")
+        let reviewsIndexHtml = generate (libraryView books) "defaultindex" "Reviews | Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "reviews")
         Directory.CreateDirectory(indexSaveDir) |> ignore
-        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), libraryIndexHtml)
+        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), reviewsIndexHtml)
         
         // Return feed data for unified RSS generation
         feedData
@@ -574,7 +574,7 @@ module Builder
     // AST-based album processing using GenericBuilder infrastructure
     let buildAlbums() = 
         let albumFiles = 
-            Directory.GetFiles(Path.Join(srcDir, "albums"))
+            Directory.GetFiles(Path.Join(srcDir, "media"))
             |> Array.filter (fun f -> f.EndsWith(".md"))
             |> Array.toList
         

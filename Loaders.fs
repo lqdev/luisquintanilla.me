@@ -100,7 +100,7 @@ module Loaders
 
     let loadBooks (srcDir: string) = 
         let bookPaths = 
-            Directory.GetFiles(Path.Join(srcDir,"library"))
+            Directory.GetFiles(Path.Join(srcDir,"reviews"))
 
         let books = bookPaths |> Array.map(parseBook)
 
@@ -108,7 +108,7 @@ module Loaders
 
     let loadAlbums (srcDir: string) = 
         let albumPaths = 
-            Directory.GetFiles(Path.Join(srcDir,"albums"))
+            Directory.GetFiles(Path.Join(srcDir,"media"))
 
         let albums = albumPaths |> Array.map(parseAlbum)
 
