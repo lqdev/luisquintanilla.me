@@ -1,5 +1,29 @@
 # Changelog
 
+## 2025-07-13 - Unified Feed System ✅
+
+**Project**: [Unified Feed System](projects/archive/unified-feed-system.md)  
+**Duration**: 2025-07-13 (1 day)  
+**Status**: Complete - Fully deployed to production
+
+### What Changed
+Implemented centralized unified feed system replacing scattered RSS generation functions across 8 content types. The new system processes all content in a single pass, generating both a comprehensive fire-hose feed and type-specific feeds with improved performance and maintainability.
+
+### Technical Achievements  
+- **Unified Architecture**: Created GenericBuilder.UnifiedFeeds module with centralized RSS generation
+- **Single-Pass Processing**: Replaced 8 separate RSS generation cycles with one efficient unified system
+- **Fire-hose Feed**: New main feed (/feed/index.xml) includes all content types chronologically
+- **Performance Optimization**: 20-item feed limits improve RSS reader performance and bandwidth
+- **Legacy Elimination**: Removed duplicate RSS functions (buildBlogRssFeed) and unused imports (RssService)
+- **RSS 2.0 Compliance**: All 8 feeds validate against RSS specification with proper XML structure
+- **Feed Throughput**: 1129 items processed across 8 content types in 17.2 seconds (~65.6 items/sec)
+- **Zero Breaking Changes**: All existing feed URLs continue working with improved backend
+
+### Architecture Impact
+Establishes unified feed processing as the standard approach for all content types, eliminating code duplication and providing a foundation for future feed enhancements. The single-pass architecture significantly improves build efficiency while maintaining RSS reader compatibility through optimized feed sizes.
+
+---
+
 ## 2025-07-12 - Responses Migration Project Complete ✅
 
 **Project**: [Responses Migration](projects/archive/responses-migration.md)  

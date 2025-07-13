@@ -115,9 +115,6 @@ let main argv =
     
     // Generate unified feeds (fire-hose + type-specific)
     GenericBuilder.UnifiedFeeds.buildAllFeeds allUnifiedItems "_public"
-    
-    // Legacy RSS feed for posts (for DNS redirects)
-    buildBlogRssFeed posts
    
     // Build roll pages
     buildFeedsOpml feedLinks

@@ -9,7 +9,6 @@ module Builder
     open Domain
     open MarkdownService
     open TagService
-    open RssService
     open OpmlService
     open ViewGenerator
     open PartialViews
@@ -187,16 +186,6 @@ module Builder
         
         // Write out page
         File.WriteAllText(Path.Join(saveDir,"index.html"), onlineRadioPage)        
-
-    let buildBlogRssFeed (posts: Post array) = 
-        let rssPage = 
-            posts
-            |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
-            |> generateBlogRss
-            |> string
-
-        let saveDir = Path.Join(outputDir,"posts")
-        File.WriteAllText(Path.Join(saveDir,"index.xml"), rssPage)  
 
     let buildFeedsOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Feeds" "https://www.luisquintanilla.me" links
