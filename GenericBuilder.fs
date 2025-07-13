@@ -409,6 +409,85 @@ module ResponseProcessor =
             Some item
     }
 
+/// Album content processor with :::media block conversion
+module AlbumProcessor =
+    
+    /// Convert AlbumImage to :::media block markdown syntax
+    let private convertImageToMediaBlock (image: AlbumImage) : string =
+        sprintf ":::media\ntype: image\nsrc: %s\nalt: %s\ncaption: %s\n:::" 
+            image.ImagePath image.AltText image.Description
+    
+    /// Convert album images to :::media blocks and combine with existing content
+    let private convertAlbumToMarkdown (album: Album) (existingContent: string) : string =
+        let mediaBlocks = 
+            album.Metadata.Images
+            |> Array.map convertImageToMediaBlock
+            |> String.concat "\n\n"
+        
+        // Combine any existing markdown content with media blocks
+        match existingContent.Trim() with
+        | "" -> mediaBlocks
+        | content -> sprintf "%s\n\n%s" content mediaBlocks
+    
+    let create() : ContentProcessor<Album> = {
+        Parse = fun filePath ->
+            match parseAlbumFromFile filePath with
+            | Ok parsedDoc -> 
+                match parsedDoc.Metadata with
+                | Some metadata -> 
+                    Some {
+                        FileName = Path.GetFileNameWithoutExtension(filePath)
+                        Metadata = metadata
+                    }
+                | None -> None
+            | Error _ -> None
+        
+        Render = fun album ->
+            // Album rendering with IndieWeb h-entry microformat
+            // Content will include :::media blocks converted from album images
+            let contentWithMedia = convertAlbumToMarkdown album ""
+            sprintf "<article class=\"h-entry album\">%s</article>" contentWithMedia
+        
+        OutputPath = fun album ->
+            sprintf "media/%s/index.html" album.FileName
+        
+        RenderCard = fun album ->
+            let title = Html.escapeHtml album.Metadata.Title
+            let url = sprintf "/media/%s" album.FileName
+            let date = album.Metadata.Date
+            let imageCount = Array.length album.Metadata.Images
+            
+            // Album card with first image and photo count
+            let firstImageSrc = 
+                if imageCount > 0 then album.Metadata.Images.[0].ImagePath
+                else "/images/default-album.jpg"
+            
+            Html.element "article" (Html.attribute "class" "album-card h-entry")
+                (Html.element "div" (Html.attribute "class" "album-thumbnail") 
+                    (Html.element "a" (Html.attribute "href" url) 
+                        (Html.element "img" (Html.attribute "src" firstImageSrc + Html.attribute "alt" title + Html.attribute "loading" "lazy") "")) +
+                 Html.element "div" (Html.attribute "class" "album-info") 
+                    (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
+                     Html.element "div" (Html.attribute "class" "album-meta") 
+                        (sprintf "%d photos" imageCount) +
+                     Html.element "time" (Html.attribute "class" "dt-published") (Html.escapeHtml date)))
+        
+        RenderRss = fun album ->
+            // Create RSS item for album with all images included
+            let url = sprintf "https://www.luisquintanilla.me/media/%s" album.FileName
+            let imageCount = Array.length album.Metadata.Images
+            let description = sprintf "Album containing %d photos" imageCount
+            
+            let item = 
+                XElement(XName.Get "item",
+                    XElement(XName.Get "title", album.Metadata.Title),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" description),
+                    XElement(XName.Get "link", url),
+                    XElement(XName.Get "guid", url),
+                    XElement(XName.Get "pubDate", album.Metadata.Date))
+            Some item
+    }
+
 /// Generic content processing pipeline
 module ContentPipeline =
     
@@ -496,11 +575,17 @@ module Builder =
                 (Path.Combine(sourceRoot, "responses"))
                 outputRoot
         
+        let albumFeedData = 
+            ContentPipeline.processAllContent 
+                (AlbumProcessor.create()) 
+                (Path.Combine(sourceRoot, "albums"))
+                outputRoot
+        
         // Combine all feed data (note: would need proper type handling for mixed types)
         // let allFeedData = List.concat [ postFeedData; snippetFeedData; wikiFeedData; presentationFeedData; bookFeedData ]
         
         // Build main feeds
         // ContentPipeline.buildMainFeeds allFeedData outputRoot
         
-        sprintf "Processed %d posts, %d notes, %d snippets, %d wiki pages, %d presentations, %d books" 
-            postFeedData.Length noteFeedData.Length snippetFeedData.Length wikiFeedData.Length presentationFeedData.Length bookFeedData.Length
+        sprintf "Processed %d posts, %d notes, %d snippets, %d wiki pages, %d presentations, %d books, %d albums" 
+            postFeedData.Length noteFeedData.Length snippetFeedData.Length wikiFeedData.Length presentationFeedData.Length bookFeedData.Length albumFeedData.Length

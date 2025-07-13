@@ -753,3 +753,82 @@ module Builder
         
         // Return feed data for potential integration
         feedData
+
+    // AST-based album processing using GenericBuilder infrastructure
+    let buildAlbums() = 
+        let albumFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "albums"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        let processor = GenericBuilder.AlbumProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor albumFiles
+        
+        // Generate individual album pages
+        feedData
+        |> List.iter (fun item ->
+            let album = item.Content
+            let saveDir = Path.Join(outputDir, "media", album.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            
+            // Convert album content to HTML with :::media blocks
+            let albumContent = 
+                let mediaBlocks = 
+                    album.Metadata.Images 
+                    |> Array.map (fun img -> sprintf ":::media\ntype: image\nsrc: %s\nalt: %s\ncaption: %s\n:::" img.ImagePath img.AltText img.Description)
+                    |> String.concat "\n\n"
+                sprintf "# %s\n\n%s" album.Metadata.Title mediaBlocks
+            
+            let html = contentViewWithTitle album.Metadata.Title (albumContent |> convertMdToHtml)
+            let albumView = generate html "defaultindex" $"{album.Metadata.Title} | Media | Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, albumView))
+        
+        // Generate media index page
+        let albums = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        let mediaIndexHtml = generate (albumsPageView albums) "defaultindex" "Media | Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "media")
+        Directory.CreateDirectory(indexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), mediaIndexHtml)
+        
+        // Generate RSS feed for albums
+        let rssItems = feedData |> List.choose (fun item -> item.RssXml)
+        if not (List.isEmpty rssItems) then
+            // Create RSS channel for albums
+            let latestAlbum = 
+                albums 
+                |> Array.filter (fun a -> not (String.IsNullOrEmpty(a.Metadata.Date)))
+                |> Array.sortByDescending (fun a -> DateTime.Parse(a.Metadata.Date))
+                |> Array.tryHead
+            
+            let lastPubDate = 
+                match latestAlbum with
+                | Some a -> a.Metadata.Date
+                | None -> DateTime.Now.ToString("yyyy-MM-dd")
+            
+            let channel = 
+                XElement(XName.Get "rss",
+                    XAttribute(XName.Get "version", "2.0"),
+                    XElement(XName.Get "channel",
+                        XElement(XName.Get "title", "Luis Quintanilla Media"),
+                        XElement(XName.Get "link", "https://www.luisquintanilla.me/media"),
+                        XElement(XName.Get "description", "Photo albums by Luis Quintanilla"),
+                        XElement(XName.Get "lastPubDate", lastPubDate),
+                        XElement(XName.Get "language", "en")))
+            
+            // Add RSS items to channel
+            let channelElement = channel.Descendants(XName.Get "channel").First()
+            channelElement.Add(rssItems |> List.toArray)
+            
+            // Save RSS feed
+            let feedSaveDir = Path.Join(outputDir, "feed", "albums")
+            Directory.CreateDirectory(feedSaveDir) |> ignore
+            let rssContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
+            File.WriteAllText(Path.Join(feedSaveDir, "rss.xml"), rssContent)
+            
+            // Generate HTML index for albums feed
+            let albumsHtmlIndexContent = albumsPageView albums
+            File.WriteAllText(Path.Join(feedSaveDir, "index.html"), generate albumsHtmlIndexContent "defaultindex" "Albums Feed | Luis Quintanilla")
+        
+        // Return feed data for potential RSS generation
+        feedData
