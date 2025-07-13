@@ -739,3 +739,34 @@ Create a comprehensive validation script that:
 - **Monitoring**: Ongoing link health checks after migration
 
 This comprehensive link analysis ensures zero broken internal references during the URL migration, maintaining site integrity across both domains while transitioning to the new, standards-compliant URL structure.
+
+## Acceptance Criteria & Definition of Done
+
+### Functional Acceptance Criteria
+- [ ] **URL Structure**: All content types generate URLs following `/content-type/[slug]/` pattern consistently
+- [ ] **Feed Discovery**: All content-proximate feeds (`/posts/feed.xml`, `/notes/feed.xml`) generate and validate as RSS 2.0
+- [ ] **301 Redirects**: All old URLs properly redirect to new structure with zero broken links
+- [ ] **Content Integrity**: All existing content renders identically in new URL structure
+- [ ] **IndieWeb Compliance**: All content types include proper microformats2 markup (h-entry, u-* properties)
+
+### Quality Acceptance Criteria
+- [ ] **Zero Regressions**: All existing functionality preserved (feeds, search, navigation)
+- [ ] **Performance**: Site build time not significantly impacted by URL changes
+- [ ] **Validation**: All RSS feeds pass W3C Feed Validator
+- [ ] **Link Integrity**: Comprehensive internal link validation shows zero broken references
+- [ ] **Cross-Domain Consistency**: Both luisquintanilla.me and lqdev.me domains serve identical content
+
+### User Acceptance Criteria
+- [ ] **Feed Discovery**: RSS readers can discover feeds using autodiscovery links
+- [ ] **Navigation**: Site navigation remains intuitive with new URL structure
+- [ ] **Search Engines**: URLs are crawlable and maintain SEO value through 301 redirects
+- [ ] **Webmentions**: Sending and receiving webmentions continues to work correctly
+- [ ] **Asset Loading**: All images, CSS, and JS load correctly from new `/assets/` structure
+
+### Definition of Done
+- [ ] All acceptance criteria verified and documented
+- [ ] Comprehensive testing completed (build, deploy, validation)
+- [ ] Internal link analysis shows zero broken references
+- [ ] Production deployment successful with monitoring
+- [ ] Post-deployment validation confirms all URLs working
+- [ ] Documentation updated with new URL patterns
