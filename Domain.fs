@@ -197,8 +197,8 @@ module Domain
     type AlbumDetails = {
         [<YamlMember(Alias="post_type")>] PostType: string
         [<YamlMember(Alias="title")>] Title: string
-        [<YamlMember(Alias="mainimage")>] MainImage: string
         [<YamlMember(Alias="published_date")>] Date: string
+        [<YamlMember(Alias="tags")>] Tags: string array
         [<YamlMember(Alias="images")>] Images: AlbumImage array                
     }
 
@@ -206,6 +206,15 @@ module Domain
         FileName: string
         Metadata: AlbumDetails
     }
+    with
+        interface ITaggable with
+            member this.Tags = 
+                if isNull this.Metadata.Tags then [||]
+                else this.Metadata.Tags
+            member this.Title = this.Metadata.Title
+            member this.Date = this.Metadata.Date
+            member this.FileName = this.FileName
+            member this.ContentType = "album"
 
     type ResponseType = 
         | Reply

@@ -751,8 +751,8 @@ let albumsPageView (images:Album array) =
                 for album in group do
                     div [_class "col-md-4"] [
                         div [_class "img-thumbnail"; _style "object-fit:cover;height:100%;"] [
-                            a [_href $"/albums/{album.FileName}"; _target "blank"] [    
-                                img [_src album.Metadata.MainImage; _style "object-fit:cover;object-position:50% 50%;"; attr "loading" "lazy"] 
+                            a [_href $"/media/{album.FileName}"; _target "blank"] [    
+                                img [_src album.Metadata.Images.[0].ImagePath; _style "object-fit:cover;object-position:50% 50%;"; attr "loading" "lazy"] 
                                 p [] [Text album.Metadata.Title]
                             ]                                
                         ]
