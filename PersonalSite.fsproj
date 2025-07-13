@@ -20,6 +20,12 @@
     <Compile Include="Services\Rss.fs" />    
     <Compile Include="Services\Opml.fs" />    
     <Compile Include="Services\Webmention.fs" /> 
+    <Compile Include="Views\ComponentViews.fs" />
+    <Compile Include="Views\TagViews.fs" />
+    <Compile Include="Views\FeedViews.fs" />
+    <Compile Include="Views\ContentViews.fs" />
+    <Compile Include="Views\CollectionViews.fs" />
+    <Compile Include="Views\LayoutViews.fs" />
     <Compile Include="Views\Layouts.fs" />
     <Compile Include="Views\Partials.fs" />
     <Compile Include="Views\Generator.fs" />
