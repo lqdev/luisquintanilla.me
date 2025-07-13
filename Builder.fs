@@ -439,42 +439,7 @@ module Builder
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), presentationIndexHtml)
         
-        // Generate RSS feed
-        let rssItems = feedData |> List.choose (fun item -> item.RssXml)
-        if not (List.isEmpty rssItems) then
-            // Create RSS channel for presentations
-            let latestPresentation = 
-                presentations 
-                |> Array.filter (fun p -> not (String.IsNullOrEmpty(p.Metadata.Date)))
-                |> Array.sortByDescending (fun p -> DateTime.Parse(p.Metadata.Date))
-                |> Array.tryHead
-            
-            let lastPubDate = 
-                match latestPresentation with
-                | Some p -> p.Metadata.Date
-                | None -> DateTime.Now.ToString("yyyy-MM-dd")
-            
-            let channel = 
-                XElement(XName.Get "rss",
-                    XAttribute(XName.Get "version", "2.0"),
-                    XElement(XName.Get "channel",
-                        XElement(XName.Get "title", "Luis Quintanilla Presentations"),
-                        XElement(XName.Get "link", "https://www.luisquintanilla.me/presentations"),
-                        XElement(XName.Get "description", "Presentations by Luis Quintanilla"),
-                        XElement(XName.Get "lastPubDate", lastPubDate),
-                        XElement(XName.Get "language", "en")))
-            
-            // Add RSS items to channel
-            let channelElement = channel.Descendants(XName.Get "channel").First()
-            channelElement.Add(rssItems |> List.toArray)
-            
-            // Save RSS feed
-            let feedSaveDir = Path.Join(outputDir, "presentations", "feed")
-            Directory.CreateDirectory(feedSaveDir) |> ignore
-            let rssContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
-            File.WriteAllText(Path.Join(feedSaveDir, "index.xml"), rssContent)
-        
-        // Return feed data for potential RSS generation
+        // Return feed data for unified RSS generation
         feedData
 
     // AST-based book processing using GenericBuilder infrastructure
@@ -506,42 +471,7 @@ module Builder
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), libraryIndexHtml)
         
-        // Generate RSS feed for books
-        let rssItems = feedData |> List.choose (fun item -> item.RssXml)
-        if not (List.isEmpty rssItems) then
-            // Create RSS channel for books
-            let latestBook = 
-                books 
-                |> Array.filter (fun b -> not (String.IsNullOrEmpty(b.Metadata.DatePublished)))
-                |> Array.sortByDescending (fun b -> DateTime.Parse(b.Metadata.DatePublished))
-                |> Array.tryHead
-            
-            let lastPubDate = 
-                match latestBook with
-                | Some b -> b.Metadata.DatePublished
-                | None -> DateTime.Now.ToString("yyyy-MM-dd")
-            
-            let channel = 
-                XElement(XName.Get "rss",
-                    XAttribute(XName.Get "version", "2.0"),
-                    XElement(XName.Get "channel",
-                        XElement(XName.Get "title", "Luis Quintanilla Library"),
-                        XElement(XName.Get "link", "https://www.luisquintanilla.me/library"),
-                        XElement(XName.Get "description", "Books read by Luis Quintanilla"),
-                        XElement(XName.Get "lastPubDate", lastPubDate),
-                        XElement(XName.Get "language", "en")))
-            
-            // Add RSS items to channel
-            let channelElement = channel.Descendants(XName.Get "channel").First()
-            channelElement.Add(rssItems |> List.toArray)
-            
-            // Save RSS feed
-            let feedSaveDir = Path.Join(outputDir, "library", "feed")
-            Directory.CreateDirectory(feedSaveDir) |> ignore
-            let rssContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
-            File.WriteAllText(Path.Join(feedSaveDir, "index.xml"), rssContent)
-        
-        // Return feed data for potential RSS generation
+        // Return feed data for unified RSS generation
         feedData
 
     // AST-based post processing using GenericBuilder infrastructure
@@ -582,41 +512,7 @@ module Builder
             let fileName = "index.html"
             File.WriteAllText(Path.Join(dir.FullName,fileName), page))
         
-        // Generate RSS feed for posts
-        let rssItems = feedData |> List.choose (fun item -> item.RssXml)
-        if not (List.isEmpty rssItems) then
-            // Create RSS channel for posts using existing pattern
-            let latestPost = 
-                posts 
-                |> Array.sortByDescending (fun p -> DateTime.Parse(p.Metadata.Date))
-                |> Array.tryHead
-            
-            let lastPubDate = 
-                match latestPost with
-                | Some p -> p.Metadata.Date
-                | None -> DateTime.Now.ToString("yyyy-MM-dd")
-            
-            let channel = 
-                XElement(XName.Get "rss",
-                    XAttribute(XName.Get "version", "2.0"),
-                    XElement(XName.Get "channel",
-                        XElement(XName.Get "title", "Luis Quintanilla Posts"),
-                        XElement(XName.Get "link", "https://www.luisquintanilla.me/posts"),
-                        XElement(XName.Get "description", "Blog posts by Luis Quintanilla"),
-                        XElement(XName.Get "lastPubDate", lastPubDate),
-                        XElement(XName.Get "language", "en")))
-            
-            // Add RSS items to channel
-            let channelElement = channel.Descendants(XName.Get "channel").First()
-            channelElement.Add(rssItems |> List.toArray)
-            
-            // Save RSS feed
-            let feedSaveDir = Path.Join(outputDir, "posts", "feed")
-            Directory.CreateDirectory(feedSaveDir) |> ignore
-            let rssContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
-            File.WriteAllText(Path.Join(feedSaveDir, "index.xml"), rssContent)
-        
-        // Return feed data for potential RSS generation
+        // Return feed data for unified RSS generation
         feedData
 
     // AST-based notes processing using GenericBuilder infrastructure
@@ -649,41 +545,7 @@ module Builder
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), notesIndexHtml)
         
-        // Generate RSS feed for notes
-        let rssItems = feedData |> List.choose (fun item -> item.RssXml)
-        if not (List.isEmpty rssItems) then
-            // Create RSS channel for notes using existing pattern
-            let latestNote = 
-                notes 
-                |> Array.sortByDescending (fun (n: Post) -> DateTime.Parse(n.Metadata.Date))
-                |> Array.tryHead
-            
-            let lastPubDate = 
-                match latestNote with
-                | Some n -> n.Metadata.Date
-                | None -> DateTime.Now.ToString("yyyy-MM-dd")
-            
-            let channel = 
-                XElement(XName.Get "rss",
-                    XAttribute(XName.Get "version", "2.0"),
-                    XElement(XName.Get "channel",
-                        XElement(XName.Get "title", "Luis Quintanilla Main Feed"),
-                        XElement(XName.Get "link", "https://www.luisquintanilla.me/feed"),
-                        XElement(XName.Get "description", "Notes and updates by Luis Quintanilla"),
-                        XElement(XName.Get "lastPubDate", lastPubDate),
-                        XElement(XName.Get "language", "en")))
-            
-            // Add RSS items to channel
-            let channelElement = channel.Descendants(XName.Get "channel").First()
-            channelElement.Add(rssItems |> List.toArray)
-            
-            // Save RSS feed
-            let feedSaveDir = Path.Join(outputDir, "feed")
-            Directory.CreateDirectory(feedSaveDir) |> ignore
-            let rssContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
-            File.WriteAllText(Path.Join(feedSaveDir, "index.xml"), rssContent)
-        
-        // Return feed data for potential RSS generation
+        // Return feed data for unified RSS generation
         feedData
 
     // AST-based responses processing using GenericBuilder infrastructure
@@ -718,40 +580,7 @@ module Builder
         Directory.CreateDirectory(responsesIndexSaveDir) |> ignore
         File.WriteAllText(Path.Join(responsesIndexSaveDir, "index.html"), responsesIndexHtml)
         
-        // Generate RSS feed for responses
-        let rssItems = feedData |> List.choose (fun item -> item.RssXml)
-        if not (List.isEmpty rssItems) then
-            let latestResponse = 
-                responses 
-                |> Array.sortByDescending (fun (r: Response) -> DateTime.Parse(r.Metadata.DatePublished))
-                |> Array.tryHead
-            
-            let lastPubDate = 
-                match latestResponse with
-                | Some r -> r.Metadata.DatePublished
-                | None -> DateTime.Now.ToString("yyyy-MM-dd")
-            
-            let channel = 
-                XElement(XName.Get "rss",
-                    XAttribute(XName.Get "version", "2.0"),
-                    XElement(XName.Get "channel",
-                        XElement(XName.Get "title", "Luis Quintanilla Responses"),
-                        XElement(XName.Get "link", "https://www.luisquintanilla.me/feed/responses"),
-                        XElement(XName.Get "description", "IndieWeb responses by Luis Quintanilla"),
-                        XElement(XName.Get "lastPubDate", lastPubDate),
-                        XElement(XName.Get "language", "en")))
-            
-            // Add RSS items to channel
-            let channelElement = channel.Descendants(XName.Get "channel").First()
-            channelElement.Add(rssItems |> List.toArray)
-            
-            // Save RSS feed in expected location
-            let feedSaveDir = Path.Join(outputDir, "feed", "responses")
-            Directory.CreateDirectory(feedSaveDir) |> ignore
-            let rssContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
-            File.WriteAllText(Path.Join(feedSaveDir, "index.xml"), rssContent)
-        
-        // Return feed data for potential integration
+        // Return feed data for unified RSS generation
         feedData
 
     // AST-based album processing using GenericBuilder infrastructure
@@ -783,44 +612,5 @@ module Builder
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), mediaIndexHtml)
         
-        // Generate RSS feed for albums
-        let rssItems = feedData |> List.choose (fun item -> item.RssXml)
-        if not (List.isEmpty rssItems) then
-            // Create RSS channel for albums
-            let latestAlbum = 
-                albums 
-                |> Array.filter (fun a -> not (String.IsNullOrEmpty(a.Metadata.Date)))
-                |> Array.sortByDescending (fun a -> DateTime.Parse(a.Metadata.Date))
-                |> Array.tryHead
-            
-            let lastPubDate = 
-                match latestAlbum with
-                | Some a -> a.Metadata.Date
-                | None -> DateTime.Now.ToString("yyyy-MM-dd")
-            
-            let channel = 
-                XElement(XName.Get "rss",
-                    XAttribute(XName.Get "version", "2.0"),
-                    XElement(XName.Get "channel",
-                        XElement(XName.Get "title", "Luis Quintanilla Media"),
-                        XElement(XName.Get "link", "https://www.luisquintanilla.me/media"),
-                        XElement(XName.Get "description", "Photo albums by Luis Quintanilla"),
-                        XElement(XName.Get "lastPubDate", lastPubDate),
-                        XElement(XName.Get "language", "en")))
-            
-            // Add RSS items to channel
-            let channelElement = channel.Descendants(XName.Get "channel").First()
-            channelElement.Add(rssItems |> List.toArray)
-            
-            // Save RSS feed
-            let feedSaveDir = Path.Join(outputDir, "feed", "media")
-            Directory.CreateDirectory(feedSaveDir) |> ignore
-            let rssContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
-            File.WriteAllText(Path.Join(feedSaveDir, "rss.xml"), rssContent)
-            
-            // Generate HTML index for albums feed
-            let albumsHtmlIndexContent = albumsPageView albums
-            File.WriteAllText(Path.Join(feedSaveDir, "index.html"), generate albumsHtmlIndexContent "defaultindex" "Media Feed | Luis Quintanilla")
-        
-        // Return feed data for potential RSS generation
+        // Return feed data for unified RSS generation
         feedData

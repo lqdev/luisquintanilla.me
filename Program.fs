@@ -86,18 +86,38 @@ let main argv =
     buildSubscribePage ()
     buildOnlineRadioPage ()
 
-    // Write Post / Archive Pages - Using AST-based processor
-    let _ = buildPosts()
-
-    // Build Notes - Using AST-based processor (Notes Migration Complete)
-    let _ = buildNotes()
+    // =============================================================================
+    // UNIFIED FEED SYSTEM - Collect all feed data and generate unified feeds
+    // =============================================================================
+    printfn "=== Unified Feed Generation ==="
     
-    // Build RSS pages
+    // Collect feed data from all content types
+    let postsFeedData = buildPosts()
+    let notesFeedData = buildNotes()
+    let responsesFeedData = buildResponses()
+    let snippetsFeedData = buildSnippets()
+    let wikisFeedData = buildWikis()
+    let presentationsFeedData = buildPresentations()
+    let booksFeedData = buildBooks()
+    let albumsFeedData = buildAlbums()
+    
+    // Convert to unified feed items
+    let allUnifiedItems = [
+        ("posts", GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData)
+        ("notes", GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData)
+        ("responses", GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData)
+        ("snippets", GenericBuilder.UnifiedFeeds.convertSnippetsToUnified snippetsFeedData)
+        ("wiki", GenericBuilder.UnifiedFeeds.convertWikisToUnified wikisFeedData)
+        ("presentations", GenericBuilder.UnifiedFeeds.convertPresentationsToUnified presentationsFeedData)
+        ("library", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
+        ("albums", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified albumsFeedData)
+    ]
+    
+    // Generate unified feeds (fire-hose + type-specific)
+    GenericBuilder.UnifiedFeeds.buildAllFeeds allUnifiedItems "_public"
+    
+    // Legacy RSS feed for posts (for DNS redirects)
     buildBlogRssFeed posts
-    
-    // Build responses (star,repost,reply,bookmarks) - AST-based processor
-    let _ = buildResponses()
-    ()
    
     // Build roll pages
     buildFeedsOpml feedLinks

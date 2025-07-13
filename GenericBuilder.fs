@@ -527,66 +527,288 @@ module ContentPipeline =
         
         ()
 
-/// Main build orchestration
-module Builder =
+/// Unified feed system for consistent feed generation across all content types  
+module UnifiedFeeds =
     
-    /// Enhanced build process using generic content processors
-    let buildSiteWithGenericPipeline (sourceRoot: string) (outputRoot: string) =
+    /// Unified feed item representation
+    type UnifiedFeedItem = {
+        Title: string
+        Content: string
+        Url: string
+        Date: string
+        ContentType: string
+        Tags: string array
+        RssXml: XElement
+    }
+    
+    /// Feed configuration for different feed types
+    type FeedConfiguration = {
+        Title: string
+        Link: string
+        Description: string
+        OutputPath: string
+        ContentType: string option  // None for fire-hose, Some("posts") for type-specific
+    }
+    
+    /// Convert FeedData to UnifiedFeedItem
+    let private convertToUnifiedItem<'T> (contentType: string) (feedData: FeedData<'T>) : UnifiedFeedItem option =
+        match feedData.RssXml with
+        | Some rssXml ->
+            let title = 
+                match rssXml.Element(XName.Get "title") with
+                | null -> "Untitled"
+                | titleElement -> titleElement.Value
+            
+            let url = 
+                match rssXml.Element(XName.Get "link") with
+                | null -> ""
+                | linkElement -> linkElement.Value
+            
+            let content = 
+                match rssXml.Element(XName.Get "description") with
+                | null -> ""
+                | descElement -> descElement.Value
+            
+            let date = 
+                match rssXml.Element(XName.Get "pubDate") with
+                | null -> DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz")
+                | dateElement -> dateElement.Value
+            
+            // Extract tags from RSS categories
+            let tags = 
+                rssXml.Elements(XName.Get "category")
+                |> Seq.map (fun cat -> cat.Value)
+                |> Seq.toArray
+            
+            Some {
+                Title = title
+                Content = content
+                Url = url
+                Date = date
+                ContentType = contentType
+                Tags = tags
+                RssXml = rssXml
+            }
+        | None -> None
+    
+    /// Generate RSS feed for given items and configuration
+    let private generateRssFeed (items: UnifiedFeedItem list) (config: FeedConfiguration) : string =
+        let latestDate = 
+            if items.IsEmpty then 
+                DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz")
+            else 
+                items |> List.head |> fun item -> item.Date
         
-        // Process all content types
-        let postFeedData = 
-            ContentPipeline.processAllContent 
-                (PostProcessor.create()) 
-                (Path.Combine(sourceRoot, "posts"))
-                outputRoot
+        let channel = 
+            XElement(XName.Get "rss",
+                XAttribute(XName.Get "version", "2.0"),
+                XElement(XName.Get "channel",
+                    XElement(XName.Get "title", config.Title),
+                    XElement(XName.Get "link", config.Link),
+                    XElement(XName.Get "description", config.Description),
+                    XElement(XName.Get "lastBuildDate", latestDate),
+                    XElement(XName.Get "language", "en")))
         
-        let noteFeedData = 
-            ContentPipeline.processAllContent 
-                (NoteProcessor.create()) 
-                (Path.Combine(sourceRoot, "notes"))
-                outputRoot
+        // Add RSS items to channel
+        let channelElement = channel.Descendants(XName.Get "channel") |> Seq.head
+        let rssElements = items |> List.map (fun item -> item.RssXml) |> List.toArray
+        channelElement.Add(rssElements)
         
-        let snippetFeedData = 
-            ContentPipeline.processAllContent 
-                (SnippetProcessor.create()) 
-                (Path.Combine(sourceRoot, "snippets"))
-                outputRoot
+        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
+    
+    /// Build unified feeds from all content types with proper type conversion
+    let buildAllFeeds (feedDataSets: (string * (UnifiedFeedItem list)) list) (outputDirectory: string) =
+        // Flatten all feed items and sort chronologically
+        let allUnifiedItems = 
+            feedDataSets
+            |> List.collect snd
+            |> List.sortByDescending (fun item -> DateTime.Parse(item.Date))
         
-        let wikiFeedData = 
-            ContentPipeline.processAllContent 
-                (WikiProcessor.create()) 
-                (Path.Combine(sourceRoot, "wiki"))
-                outputRoot
+        // Fire-hose feed configuration (all content types)
+        let fireHoseConfig = {
+            Title = "Luis Quintanilla - All Updates"
+            Link = "https://www.luisquintanilla.me/feed"
+            Description = "All content updates from Luis Quintanilla's website"
+            OutputPath = "feed/index.xml"
+            ContentType = None
+        }
         
-        let presentationFeedData = 
-            ContentPipeline.processAllContent 
-                (PresentationProcessor.create()) 
-                (Path.Combine(sourceRoot, "presentations"))
-                outputRoot
+        // Generate fire-hose feed
+        let fireHoseFeed = generateRssFeed (allUnifiedItems |> List.take (min 20 allUnifiedItems.Length)) fireHoseConfig
+        let fireHoseDir = Path.Combine(outputDirectory, "feed")
+        Directory.CreateDirectory(fireHoseDir) |> ignore
+        File.WriteAllText(Path.Combine(fireHoseDir, "index.xml"), fireHoseFeed)
         
-        let bookFeedData = 
-            ContentPipeline.processAllContent 
-                (BookProcessor.create()) 
-                (Path.Combine(sourceRoot, "library"))
-                outputRoot
+        // Type-specific feed configurations
+        let typeConfigurations = [
+            ("posts", {
+                Title = "Luis Quintanilla - Posts"
+                Link = "https://www.luisquintanilla.me/posts"
+                Description = "Blog posts by Luis Quintanilla"
+                OutputPath = "posts/feed/index.xml"
+                ContentType = Some "posts"
+            })
+            ("notes", {
+                Title = "Luis Quintanilla - Notes"
+                Link = "https://www.luisquintanilla.me/feed"
+                Description = "Notes and micro-posts by Luis Quintanilla"
+                OutputPath = "feed/notes/index.xml"
+                ContentType = Some "notes"
+            })
+            ("responses", {
+                Title = "Luis Quintanilla - Responses"
+                Link = "https://www.luisquintanilla.me/feed/responses"
+                Description = "IndieWeb responses by Luis Quintanilla"
+                OutputPath = "feed/responses/index.xml"
+                ContentType = Some "responses"
+            })
+            ("snippets", {
+                Title = "Luis Quintanilla - Snippets"
+                Link = "https://www.luisquintanilla.me/snippets"
+                Description = "Code snippets by Luis Quintanilla"
+                OutputPath = "snippets/feed/index.xml"
+                ContentType = Some "snippets"
+            })
+            ("wiki", {
+                Title = "Luis Quintanilla - Wiki"
+                Link = "https://www.luisquintanilla.me/wiki"
+                Description = "Wiki articles by Luis Quintanilla"
+                OutputPath = "wiki/feed/index.xml"
+                ContentType = Some "wiki"
+            })
+            ("presentations", {
+                Title = "Luis Quintanilla - Presentations"
+                Link = "https://www.luisquintanilla.me/presentations"
+                Description = "Presentations by Luis Quintanilla"
+                OutputPath = "presentations/feed/index.xml"
+                ContentType = Some "presentations"
+            })
+            ("library", {
+                Title = "Luis Quintanilla - Library"
+                Link = "https://www.luisquintanilla.me/library"
+                Description = "Book reviews and library updates by Luis Quintanilla"
+                OutputPath = "library/feed/index.xml"
+                ContentType = Some "library"
+            })
+            ("albums", {
+                Title = "Luis Quintanilla - Media"
+                Link = "https://www.luisquintanilla.me/media"
+                Description = "Photo albums and media by Luis Quintanilla"
+                OutputPath = "feed/media/index.xml"
+                ContentType = Some "albums"
+            })
+        ]
         
-        let responseFeedData = 
-            ContentPipeline.processAllContent 
-                (ResponseProcessor.create()) 
-                (Path.Combine(sourceRoot, "responses"))
-                outputRoot
+        // Generate type-specific feeds
+        typeConfigurations
+        |> List.iter (fun (contentType, config) ->
+            let typeItems = 
+                allUnifiedItems 
+                |> List.filter (fun item -> item.ContentType = contentType)
+                |> List.take (min 20 (allUnifiedItems |> List.filter (fun item -> item.ContentType = contentType) |> List.length))
+            
+            if not (List.isEmpty typeItems) then
+                let typeFeed = generateRssFeed typeItems config
+                let feedDir = Path.Combine(outputDirectory, Path.GetDirectoryName(config.OutputPath))
+                Directory.CreateDirectory(feedDir) |> ignore
+                File.WriteAllText(Path.Combine(outputDirectory, config.OutputPath), typeFeed)
+        )
         
-        let albumFeedData = 
-            ContentPipeline.processAllContent 
-                (AlbumProcessor.create()) 
-                (Path.Combine(sourceRoot, "albums"))
-                outputRoot
-        
-        // Combine all feed data (note: would need proper type handling for mixed types)
-        // let allFeedData = List.concat [ postFeedData; snippetFeedData; wikiFeedData; presentationFeedData; bookFeedData ]
-        
-        // Build main feeds
-        // ContentPipeline.buildMainFeeds allFeedData outputRoot
-        
-        sprintf "Processed %d posts, %d notes, %d snippets, %d wiki pages, %d presentations, %d books, %d albums" 
-            postFeedData.Length noteFeedData.Length snippetFeedData.Length wikiFeedData.Length presentationFeedData.Length bookFeedData.Length albumFeedData.Length
+        printfn "✅ Unified feeds generated: %d total items across %d content types" allUnifiedItems.Length (feedDataSets |> List.length)
+    
+    /// Convert FeedData to UnifiedFeedItem - helper functions for each content type
+    let convertPostsToUnified (feedDataList: FeedData<Post> list) : UnifiedFeedItem list =
+        feedDataList |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let title = match rssXml.Element(XName.Get "title") with | null -> "Untitled" | e -> e.Value
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = match rssXml.Element(XName.Get "description") with | null -> "" | e -> e.Value
+                let date = match rssXml.Element(XName.Get "pubDate") with | null -> DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz") | e -> e.Value
+                let tags = rssXml.Elements(XName.Get "category") |> Seq.map (fun cat -> cat.Value) |> Seq.toArray
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "posts"; Tags = tags; RssXml = rssXml }
+            | None -> None)
+    
+    let convertNotesToUnified (feedDataList: FeedData<Post> list) : UnifiedFeedItem list =
+        feedDataList |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let title = match rssXml.Element(XName.Get "title") with | null -> "Untitled" | e -> e.Value
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = match rssXml.Element(XName.Get "description") with | null -> "" | e -> e.Value
+                let date = match rssXml.Element(XName.Get "pubDate") with | null -> DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz") | e -> e.Value
+                let tags = rssXml.Elements(XName.Get "category") |> Seq.map (fun cat -> cat.Value) |> Seq.toArray
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "notes"; Tags = tags; RssXml = rssXml }
+            | None -> None)
+    
+    let convertResponsesToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =
+        feedDataList |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let title = match rssXml.Element(XName.Get "title") with | null -> "Untitled" | e -> e.Value
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = match rssXml.Element(XName.Get "description") with | null -> "" | e -> e.Value
+                let date = match rssXml.Element(XName.Get "pubDate") with | null -> DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz") | e -> e.Value
+                let tags = rssXml.Elements(XName.Get "category") |> Seq.map (fun cat -> cat.Value) |> Seq.toArray
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "responses"; Tags = tags; RssXml = rssXml }
+            | None -> None)
+    
+    let convertSnippetsToUnified (feedDataList: FeedData<Snippet> list) : UnifiedFeedItem list =
+        feedDataList |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let title = match rssXml.Element(XName.Get "title") with | null -> "Untitled" | e -> e.Value
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = match rssXml.Element(XName.Get "description") with | null -> "" | e -> e.Value
+                let date = match rssXml.Element(XName.Get "pubDate") with | null -> DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz") | e -> e.Value
+                let tags = rssXml.Elements(XName.Get "category") |> Seq.map (fun cat -> cat.Value) |> Seq.toArray
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "snippets"; Tags = tags; RssXml = rssXml }
+            | None -> None)
+    
+    let convertWikisToUnified (feedDataList: FeedData<Wiki> list) : UnifiedFeedItem list =
+        feedDataList |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let title = match rssXml.Element(XName.Get "title") with | null -> "Untitled" | e -> e.Value
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = match rssXml.Element(XName.Get "description") with | null -> "" | e -> e.Value
+                let date = match rssXml.Element(XName.Get "pubDate") with | null -> DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz") | e -> e.Value
+                let tags = rssXml.Elements(XName.Get "category") |> Seq.map (fun cat -> cat.Value) |> Seq.toArray
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "wiki"; Tags = tags; RssXml = rssXml }
+            | None -> None)
+    
+    let convertPresentationsToUnified (feedDataList: FeedData<Presentation> list) : UnifiedFeedItem list =
+        feedDataList |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let title = match rssXml.Element(XName.Get "title") with | null -> "Untitled" | e -> e.Value
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = match rssXml.Element(XName.Get "description") with | null -> "" | e -> e.Value
+                let date = match rssXml.Element(XName.Get "pubDate") with | null -> DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz") | e -> e.Value
+                let tags = rssXml.Elements(XName.Get "category") |> Seq.map (fun cat -> cat.Value) |> Seq.toArray
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "presentations"; Tags = tags; RssXml = rssXml }
+            | None -> None)
+    
+    let convertBooksToUnified (feedDataList: FeedData<Book> list) : UnifiedFeedItem list =
+        feedDataList |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let title = match rssXml.Element(XName.Get "title") with | null -> "Untitled" | e -> e.Value
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = match rssXml.Element(XName.Get "description") with | null -> "" | e -> e.Value
+                let date = match rssXml.Element(XName.Get "pubDate") with | null -> DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz") | e -> e.Value
+                let tags = rssXml.Elements(XName.Get "category") |> Seq.map (fun cat -> cat.Value) |> Seq.toArray
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "library"; Tags = tags; RssXml = rssXml }
+            | None -> None)
+    
+    let convertAlbumsToUnified (feedDataList: FeedData<Album> list) : UnifiedFeedItem list =
+        feedDataList |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let title = match rssXml.Element(XName.Get "title") with | null -> "Untitled" | e -> e.Value
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = match rssXml.Element(XName.Get "description") with | null -> "" | e -> e.Value
+                let date = match rssXml.Element(XName.Get "pubDate") with | null -> DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz") | e -> e.Value
+                let tags = rssXml.Elements(XName.Get "category") |> Seq.map (fun cat -> cat.Value) |> Seq.toArray
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "albums"; Tags = tags; RssXml = rssXml }
+            | None -> None)
