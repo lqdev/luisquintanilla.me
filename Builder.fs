@@ -415,9 +415,8 @@ module Builder
             let saveDir = Path.Join(outputDir, "presentations", presentation.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            // Preserve Reveal.js integration - use existing presentation processing for now
-            let html = contentViewWithTitle presentation.Metadata.Title (presentation.Content |> convertMdToHtml)
-            let presentationView = generate html "defaultindex" $"{presentation.Metadata.Title} | Presentation | Luis Quintanilla"
+            // Use proper reveal.js integration with presentationPageView and presentationLayout
+            let presentationView = generate (presentationPageView presentation) "presentation" $"{presentation.Metadata.Title} | Presentation | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, presentationView))
         

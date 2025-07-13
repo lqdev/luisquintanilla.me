@@ -1,5 +1,42 @@
 # Changelog
 
+## 2025-01-22 - Presentation Rendering Fix ✅
+
+**Project**: Phase 3.5 - Critical UX Regression Fix  
+**Duration**: 2025-01-22 (1 session)  
+**Status**: Complete - Interactive presentations restored
+
+### What Changed
+Fixed critical UX regression where presentations displayed as static markdown instead of interactive reveal.js slideshows. The issue was introduced during AST-based migration when PresentationProcessor bypassed reveal.js integration.
+
+### Technical Achievements  
+- **Root Cause Identified**: PresentationProcessor.Render was wrapping content in `<article>` tags instead of preserving raw markdown
+- **Content Processing Fixed**: Updated Parse function to extract raw markdown without frontmatter for reveal.js client-side processing
+- **Layout Integration Restored**: buildPresentations() now uses `presentationPageView` with `"presentation"` layout instead of generic wrappers
+- **Reveal.js Structure Verified**: Generated HTML includes proper `<div class="reveal"><div class="slides">` with `data-markdown` attributes
+- **All Presentations Working**: 3 presentations verified - interactive slides + resource collections render correctly
+- **Zero Breaking Changes**: YAML frontmatter parsing, slide separators (---), and resource display preserved
+
+### File Changes
+- **GenericBuilder.fs**: Fixed PresentationProcessor.Render to return raw content + Parse to extract markdown without frontmatter
+- **Builder.fs**: Updated buildPresentations() to use presentationPageView + "presentation" layout
+
+### Verification Results
+```html
+<div class="reveal">
+  <div class="slides">
+    <section data-markdown>
+      <textarea data-template>
+        ## Slide 1
+        A paragraph with some text and a [link](https://luisquintanilla.me).
+        ---
+        ## Slide 2
+      </textarea>
+    </section>
+  </div>
+</div>
+```
+
 ## 2025-07-13 - Unified Feed System ✅
 
 **Project**: [Unified Feed System](projects/archive/unified-feed-system.md)  

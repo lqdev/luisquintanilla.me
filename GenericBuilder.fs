@@ -239,17 +239,35 @@ module PresentationProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
+                    // For presentations, we need raw markdown content (not HTML) for reveal.js
+                    // Extract the content without frontmatter from the raw markdown
+                    let rawContent = System.IO.File.ReadAllText(filePath)
+                    let lines = rawContent.Split([|'\n'|], StringSplitOptions.None)
+                    
+                    let markdownContent = 
+                        if lines.Length > 0 && lines.[0].Trim() = "---" then
+                            let endIdx = 
+                                lines 
+                                |> Array.skip 1
+                                |> Array.tryFindIndex (fun line -> line.Trim() = "---")
+                            match endIdx with
+                            | Some idx -> 
+                                lines.[(idx + 2)..]
+                                |> String.concat "\n"
+                            | None -> parsedDoc.RawMarkdown
+                        else parsedDoc.RawMarkdown
+                    
                     Some {
-                        FileName = Path.GetFileNameWithoutExtension(filePath)
+                        FileName = System.IO.Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
-                        Content = parsedDoc.TextContent
+                        Content = markdownContent  // Store raw markdown for reveal.js
                     }
                 | None -> None
             | Error _ -> None
         
         Render = fun presentation ->
-            // Preserve existing Reveal.js integration - return content as-is for now
-            sprintf "<article>%s</article>" presentation.Content
+            // Return raw content for reveal.js processing in presentationPageView
+            presentation.Content
         
         OutputPath = fun presentation ->
             sprintf "presentations/%s.html" presentation.FileName
