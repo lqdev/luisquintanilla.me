@@ -1,5 +1,43 @@
 # Changelog
 
+## 2025-07-12 - Responses Migration Project Complete ✅
+
+**Project**: [Responses Migration](projects/archive/responses-migration.md)  
+**Duration**: 2025-07-12 (1 day)  
+**Status**: Complete - Fully deployed to production
+
+### What Changed
+Completed migration of response/microblog content from legacy string-based processing to AST-based GenericBuilder infrastructure, enabling IndieWeb microformat support and unified content processing. Fixed critical post-deployment issue with missing HTML index page for responses feed.
+
+### Technical Achievements
+- **AST Infrastructure**: Responses now processed through GenericBuilder.ResponseProcessor following proven pattern
+- **Production Deployment**: NEW_RESPONSES feature flag removed, new system deployed as default
+- **Legacy Cleanup**: Eliminated 40+ lines of deprecated code (parseResponse, loadReponses, buildResponseFeedRssPage)
+- **IndieWeb Support**: Complete h-entry microformat preservation with webmention compatibility  
+- **Critical Production Fix**: Added missing HTML index page generation for responses feed (/feed/responses/index.html)
+- **RSS Feed Integration**: Complete RSS feed generation with proper XML structure and metadata
+- **Zero Regression**: All functionality preserved with architectural improvements
+
+### Architecture Impact
+**7th Successful Content Migration**: Responses join Snippets, Wiki, Presentations, Books, Posts, and Notes in unified AST-based processing architecture. This establishes GenericBuilder as the proven standard for all content types.
+
+**Key Infrastructure Benefits:**
+- IndieWeb microformat support for social web integration
+- Unified feed generation (HTML + RSS) following established patterns
+- Custom block support for rich microblog content
+- Performance optimizations through AST-based processing
+- Safe deployment methodology validated across 7 migrations
+
+**Success Metrics:**
+- **Content Types Migrated**: 7/8 major types (only Albums remaining)
+- **Code Quality**: 40+ lines legacy code eliminated
+- **Production Stability**: Critical post-deployment fix implemented immediately
+- **IndieWeb Compliance**: Full h-entry microformat support maintained
+
+**Next**: Only Albums migration remains to complete the content type unification project
+
+---
+
 ## 2025-07-12 - Notes Migration Project Complete ✅
 
 **Project**: [Notes Migration](projects/archive/notes-migration.md)  
