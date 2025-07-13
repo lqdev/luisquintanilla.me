@@ -56,6 +56,7 @@ let isEnabled contentType =
         | Wiki -> true           // Wiki migration complete - default to new processor
         | Presentations -> true  // Presentations migration complete - default to new processor
         | Books -> true          // Books migration complete - default to new processor
+        | Posts -> true          // Posts migration complete - default to new processor
         | Notes -> true          // Notes migration complete - default to new processor
         | Responses -> true      // Responses migration complete - default to new processor
         | _ -> false             // Other content types default to old processors
