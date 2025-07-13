@@ -771,20 +771,7 @@ module Builder
             let saveDir = Path.Join(outputDir, "media", album.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            // Convert album content to HTML with :::media block (single block with YAML list)
-            let albumContent = 
-                let mediaItems = 
-                    album.Metadata.Images 
-                    |> Array.map (fun img -> 
-                        sprintf "- media_type: image\n  uri: %s\n  alt_text: %s\n  caption: %s\n  aspect: \"\"" 
-                            img.ImagePath img.AltText img.Description)
-                    |> String.concat "\n"
-                let mediaBlock = sprintf ":::media\n%s\n:::media" mediaItems
-                let finalContent = sprintf "# %s\n\n%s" album.Metadata.Title mediaBlock
-                finalContent
-            
-            // Use standard markdown processing - custom blocks should be handled by pipeline
-            let html = contentViewWithTitle album.Metadata.Title (albumContent |> convertMdToHtml)
+            let html = albumPostView album |> albumPostViewWithBacklink
             let albumView = generate html "defaultindex" $"{album.Metadata.Title} | Media | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, albumView))

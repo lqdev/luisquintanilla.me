@@ -526,6 +526,26 @@ let cardFooter (fileName:string) (tags: string array)=
         ]
     ]
 
+let albumCardFooter (fileName:string) (tags: string array)= 
+
+    let tagElements = 
+        tags
+        |> cleanTags
+        |> Array.map(fun tag -> a [_href $"/tags/{tag}"; _class "p-category"] [Text $"#{tag}"])
+
+    div [_class "card-footer"] [
+        let permalink = $"/media/{fileName}/" 
+        Text "Permalink: " 
+        a [_href permalink; _class "u-url"] [Text $"{permalink}"] 
+        
+        div [] [
+            str "Tags: "
+            for tag in tagElements do
+                tag
+                Text " "
+        ]
+    ]
+
 let feedBacklink (url:string) = 
     div [_class "text-center"] [
         b [] [
@@ -744,28 +764,35 @@ let liveStreamPageView (stream:Livestream) =
     ]
 
 let albumsPageView (albums:Album array) = 
-    div [_class "mr-auto"] [
+    div [ _class "d-grip gap-3" ] [
         for album in albums do
-            article [_class "album-card h-entry"; _style "margin-bottom: 20px; border: 1px solid #dee2e6; border-radius: 0.375rem; padding: 15px;"] [
-                h2 [] [
-                    a [_href $"/media/{album.FileName}"; _class "text-decoration-none"] [
-                        Text album.Metadata.Title
+            let header = cardHeader album.Metadata.Date
+            let footer = albumCardFooter album.FileName album.Metadata.Tags
+            
+            div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
+                header
+                
+                div [ _class "card-body" ] [
+                    h5 [_class "card-title"] [
+                        a [_href $"/media/{album.FileName}"; _class "text-decoration-none"] [
+                            Text album.Metadata.Title
+                        ]
+                    ]
+                    div [_class "album-preview mb-3"] [
+                        img [
+                            _src album.Metadata.Images.[0].ImagePath
+                            _alt album.Metadata.Images.[0].AltText
+                            _class "img-fluid rounded"
+                            _style "max-height: 200px; width: 100%; object-fit: cover;"
+                            attr "loading" "lazy"
+                        ]
+                    ]
+                    p [_class "text-muted"] [
+                        Text $"{Array.length album.Metadata.Images} photos"
                     ]
                 ]
-                div [_class "album-preview"; _style "margin: 10px 0;"] [
-                    img [
-                        _src album.Metadata.Images.[0].ImagePath
-                        _alt album.Metadata.Images.[0].AltText
-                        _style "width: 100%; max-width: 300px; height: 200px; object-fit: cover; border-radius: 0.25rem;"
-                        attr "loading" "lazy"
-                    ]
-                ]
-                p [_class "text-muted"; _style "margin: 5px 0;"] [
-                    Text $"{Array.length album.Metadata.Images} photos"
-                ]
-                time [_class "dt-published text-muted"; _style "font-size: 0.9em;"] [
-                    Text album.Metadata.Date
-                ]
+                
+                footer
             ]
     ]
 
@@ -784,4 +811,42 @@ let albumPageView (images:AlbumImage array) =
                         ]
                     ]
             ]
+    ]
+
+let albumPostView (album: Album) = 
+
+    let header = cardHeader album.Metadata.Date
+    let footer = albumCardFooter album.FileName album.Metadata.Tags
+
+    div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
+
+        header
+
+        div [ _class "card-body" ] [
+            h5 [_class "card-title"] [Text album.Metadata.Title]
+            
+            // Convert album to markdown with :::media block and render
+            let mediaItems = 
+                album.Metadata.Images 
+                |> Array.map (fun img -> 
+                    sprintf "- media_type: image\n  uri: %s\n  alt_text: %s\n  caption: %s\n  aspect: \"\"" 
+                        img.ImagePath img.AltText img.Description)
+                |> String.concat "\n"
+            let mediaBlock = sprintf ":::media\n%s\n:::media" mediaItems
+            
+            rawText (mediaBlock |> convertMdToHtml)
+            hr []
+            webmentionForm
+        ]
+
+        footer
+    ]
+
+let albumPostViewWithBacklink (albumPostView:XmlNode) = 
+    
+    let albumBacklink = feedBacklink "/media"
+
+    div [] [
+        albumPostView        
+        albumBacklink
     ]
