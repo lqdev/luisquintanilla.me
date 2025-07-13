@@ -46,7 +46,7 @@ try
     let outputDirs = [
         ("Posts", "_public/posts")
         ("Media/Albums", "_public/media")
-        ("Feed/Albums", "_public/feed/albums")
+        ("Feed/Media", "_public/feed/media")
         ("Main Feed", "_public/feed")
     ]
     

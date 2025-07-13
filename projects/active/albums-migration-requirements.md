@@ -176,8 +176,8 @@ let convertAlbumToMarkdown (album: Album) (existingContent: string) =
 
 Albums will follow established feed patterns with media-focused URLs:
 - **Individual album pages**: `/media/{filename}/` (changed from `/albums/`)
-- **Album RSS feed**: `/feed/albums/rss.xml` 
-- **Album HTML index**: `/feed/albums/index.html` (lists all albums, no pagination)
+- **Album RSS feed**: `/feed/media/rss.xml` 
+- **Album HTML index**: `/feed/media/index.html` (lists all albums, no pagination)
 - **Media index page**: `/media/` (lists all albums/media content)
 - **Integration with main feed aggregation** (album feeds included in main RSS)
 - **XML validation and proper channel structure**

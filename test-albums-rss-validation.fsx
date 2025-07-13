@@ -35,7 +35,7 @@ try
     
     // Test 2: Validate RSS feed file creation
     printfn "\n2. Testing RSS feed file generation..."
-    let rssFeedPath = Path.Combine("_public", "feed", "albums", "rss.xml")
+    let rssFeedPath = Path.Combine("_public", "feed", "media", "rss.xml")
     if File.Exists rssFeedPath then
         printfn "✅ RSS feed file created at %s" rssFeedPath
         
@@ -63,7 +63,7 @@ try
     
     // Test 3: Validate HTML index creation
     printfn "\n3. Testing HTML index generation..."
-    let htmlIndexPath = Path.Combine("_public", "feed", "albums", "index.html")
+    let htmlIndexPath = Path.Combine("_public", "feed", "media", "index.html")
     if File.Exists htmlIndexPath then
         printfn "✅ Album HTML index created at %s" htmlIndexPath
         let htmlContent = File.ReadAllText(htmlIndexPath)

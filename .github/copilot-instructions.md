@@ -117,6 +117,16 @@ Automatically select appropriate tools based on current project phase:
 - **Best Practice Verification**: Cross-reference decisions with Microsoft documentation
 - **Industry Context**: Consider broader industry trends and proven patterns
 
+### Custom Block Infrastructure (Proven Pattern)
+- **Pipeline Ordering Critical**: Never use `UseAdvancedExtensions()` with custom block parsers - it includes built-in `CustomContainers` that consume custom syntax before our parsers
+- **Individual Extensions**: Use specific extensions (`UsePipeTables()`, `UseGenericAttributes()`, etc.) to avoid conflicts
+- **YAML Content Processing**: Post-process extracted YAML content to fix indentation:
+  - Keep list items (`- property:`) at line start
+  - Indent property lines with 2 spaces for proper YAML structure
+  - Filter empty lines during processing
+- **Semantic HTML Output**: Custom blocks should render semantic HTML (`<figure>`, `<figcaption>`) with CSS classes for styling
+- **Testing Approach**: Validate both YAML parsing (no exceptions) and HTML output (proper rendering vs raw text)
+
 ### Implementation Pattern (Proven for Snippets, Wiki, Presentations)
 1. **Enhance Domain** → Add types and interfaces (research similar domain models)
 2. **Implement Processor** → Create new AST-based processor (validate patterns with Microsoft docs)

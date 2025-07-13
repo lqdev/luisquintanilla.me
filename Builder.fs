@@ -771,14 +771,19 @@ module Builder
             let saveDir = Path.Join(outputDir, "media", album.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            // Convert album content to HTML with :::media blocks
+            // Convert album content to HTML with :::media block (single block with YAML list)
             let albumContent = 
-                let mediaBlocks = 
+                let mediaItems = 
                     album.Metadata.Images 
-                    |> Array.map (fun img -> sprintf ":::media\ntype: image\nsrc: %s\nalt: %s\ncaption: %s\n:::" img.ImagePath img.AltText img.Description)
-                    |> String.concat "\n\n"
-                sprintf "# %s\n\n%s" album.Metadata.Title mediaBlocks
+                    |> Array.map (fun img -> 
+                        sprintf "- media_type: image\n  uri: %s\n  alt_text: %s\n  caption: %s\n  aspect: \"\"" 
+                            img.ImagePath img.AltText img.Description)
+                    |> String.concat "\n"
+                let mediaBlock = sprintf ":::media\n%s\n:::media" mediaItems
+                let finalContent = sprintf "# %s\n\n%s" album.Metadata.Title mediaBlock
+                finalContent
             
+            // Use standard markdown processing - custom blocks should be handled by pipeline
             let html = contentViewWithTitle album.Metadata.Title (albumContent |> convertMdToHtml)
             let albumView = generate html "defaultindex" $"{album.Metadata.Title} | Media | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
@@ -821,14 +826,14 @@ module Builder
             channelElement.Add(rssItems |> List.toArray)
             
             // Save RSS feed
-            let feedSaveDir = Path.Join(outputDir, "feed", "albums")
+            let feedSaveDir = Path.Join(outputDir, "feed", "media")
             Directory.CreateDirectory(feedSaveDir) |> ignore
             let rssContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
             File.WriteAllText(Path.Join(feedSaveDir, "rss.xml"), rssContent)
             
             // Generate HTML index for albums feed
             let albumsHtmlIndexContent = albumsPageView albums
-            File.WriteAllText(Path.Join(feedSaveDir, "index.html"), generate albumsHtmlIndexContent "defaultindex" "Albums Feed | Luis Quintanilla")
+            File.WriteAllText(Path.Join(feedSaveDir, "index.html"), generate albumsHtmlIndexContent "defaultindex" "Media Feed | Luis Quintanilla")
         
         // Return feed data for potential RSS generation
         feedData

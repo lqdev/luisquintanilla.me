@@ -414,7 +414,7 @@ module AlbumProcessor =
     
     /// Convert AlbumImage to :::media block markdown syntax
     let private convertImageToMediaBlock (image: AlbumImage) : string =
-        sprintf ":::media\ntype: image\nsrc: %s\nalt: %s\ncaption: %s\n:::" 
+        sprintf ":::media\nmedia_type: image\nuri: %s\nalt_text: %s\ncaption: %s\naspect: \"\"\n:::" 
             image.ImagePath image.AltText image.Description
     
     /// Convert album images to :::media blocks and combine with existing content
@@ -446,7 +446,8 @@ module AlbumProcessor =
             // Album rendering with IndieWeb h-entry microformat
             // Content will include :::media blocks converted from album images
             let contentWithMedia = convertAlbumToMarkdown album ""
-            sprintf "<article class=\"h-entry album\">%s</article>" contentWithMedia
+            // Return content that will be processed by calling code
+            contentWithMedia
         
         OutputPath = fun album ->
             sprintf "media/%s/index.html" album.FileName

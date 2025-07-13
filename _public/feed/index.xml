@@ -9,16 +9,16 @@
     <item>
       <title>Assorted links - Ubuntu 22.04 LTS, Bitwarden, DALLE-2, Emacs</title>
       <description>&lt;![CDATA[&lt;p&gt;Here's a few links I found in the interwebs today that I thought were worth sharing.&lt;/p&gt;
-&lt;h2 id="ubuntu-22.04-lts-released"&gt;Ubuntu 22.04 LTS Released&lt;/h2&gt;
+&lt;h2&gt;Ubuntu 22.04 LTS Released&lt;/h2&gt;
 &lt;p&gt;For my personal computing needs, Manjaro has been my default Linux distro. However, for hosting and cloud VMs I go back and forth between Debian and Ubuntu depending on which better supports the software I'm running. Canonical announced the release of the latest Ubuntu LTS version 22.04. Check out their &lt;a href="https://ubuntu.com/blog/ubuntu-22-04-lts-released"&gt;blog post&lt;/a&gt; for more details on what's new.&lt;/p&gt;
-&lt;h2 id="self-hosting-bitwarden-on-digitalocean"&gt;Self-hosting Bitwarden on DigitalOcean&lt;/h2&gt;
+&lt;h2&gt;Self-hosting Bitwarden on DigitalOcean&lt;/h2&gt;
 &lt;p&gt;When it comes to password managers, other than KeePass, my favorite it &lt;a href="https://bitwarden.com/"&gt;Bitwarden&lt;/a&gt;. It's open-source, built on .NET, has excellent features that get even better with the low-cost paid version, but most importantly provides you the option of self-hosting. If you're looking to self-host Bitwarden on DigitalOcean, make sure to check out the &lt;a href="https://bitwarden.com/blog/digitalocean-marketplace/"&gt;guide&lt;/a&gt; they just published.&lt;/p&gt;
-&lt;h2 id="how-dalle-2-actually-works"&gt;How DALLE-2 Actually Works&lt;/h2&gt;
+&lt;h2&gt;How DALLE-2 Actually Works&lt;/h2&gt;
 &lt;p&gt;A few weeks ago, OpenAI announced the release of &lt;a href="https://openai.com/dall-e-2/"&gt;DALLE-2&lt;/a&gt;. Open AI describes DALLE-2 as, &amp;quot;...a new AI system that can create realistic images and art from a description in natural language.&amp;quot; If you want to understand the details of how it works, you could read the 27 page research paper &lt;a href="https://arxiv.org/pdf/2204.06125.pdf"&gt;Hierarchical Text-Conditional
 Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an approachable guide into the inner workings of DALLE-2. If you're interested in that, check out their &lt;a href="https://www.assemblyai.com/blog/how-dall-e-2-actually-works/"&gt;blog post&lt;/a&gt; on the topic.&lt;/p&gt;
-&lt;h2 id="emacs-configuration-generator"&gt;Emacs Configuration Generator&lt;/h2&gt;
+&lt;h2&gt;Emacs Configuration Generator&lt;/h2&gt;
 &lt;p&gt;In my early days of using Emacs, I often found it difficult to customize it to my needs. Not only did I not know what was possible, but it also caused some anxiety because I didn't feel confident enough making major tweaks. If you're getting started with Emacs and aren't sure how to configure it, this neat &lt;a href="https://emacs.amodernist.com/"&gt;utility&lt;/a&gt; helps you generate a config file for Emacs.&lt;/p&gt;
-&lt;h2 id="postgresml"&gt;PostgresML&lt;/h2&gt;
+&lt;h2&gt;PostgresML&lt;/h2&gt;
 &lt;p&gt;If you're building machine learning applications, one of the main things you'll need is data. This data can reside in databases such as MySQL, SQL Server, and Postgres. Algorithms are applied to this data downstream using libraries written in languages like Python, R, and .NET. This not only means potentially moving the data from the database to another process but also using another library to train models. According to the project description on GitHub, &amp;quot;PostgresML is an end-to-end machine learning system. It enables you to train models and make online predictions using only SQL, without your data ever leaving your favorite database.&amp;quot; If that's something you're interested in, check out the project on &lt;a href="https://github.com/postgresml/postgresml"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/2022-04-21-assorted-links</link>
@@ -27,16 +27,16 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of March 10, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="blogs"&gt;Blogs&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Blogs&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/posts/install-ollama-vscode-devcontainer"&gt;Configure Ollama on Dev Containers and VS Code&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/posts/getting-started-ollama-windows"&gt;Getting started with Ollama on Windows&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/crate-finds-february-2024"&gt;Crate Finds - February 2024&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/windows-subsystem-for-android-end-of-support-2025"&gt;Microsoft to end its Android apps on Windows 11 subsystem in 2025&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/surprising-connection-after-hours-work-productivity-slack"&gt;The surprising connection between after-hours work and decreased productivity&lt;/a&gt;&lt;/li&gt;
@@ -61,11 +61,11 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of March 18, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/checking-in-strangers-luggage"&gt;When should I check in stranger's luggage?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/building-meta-genai-infrastructure"&gt;Building Meta’s GenAI Infrastructure&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/fast-inner-product-dnn-accelerators"&gt;Fast Inner-Product Algorithms and Architectures for Deep Neural Network Accelerators&lt;/a&gt;&lt;/li&gt;
@@ -90,7 +90,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of March 24, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/new-forums-page"&gt;New Forums Page&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/2024-03-18-weekly-post-summary"&gt;Week of March 18, 2024 - Post Summary&lt;/a&gt;&lt;/li&gt;
@@ -98,7 +98,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
 &lt;li&gt;&lt;a href="/feed/looking-for-discord-communities"&gt;Looking for Discord server / community recommendations&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/ai-generated-blogroll-opml"&gt;Use AI to generate a blogroll others can subscribe to&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/building-meta-genai-infrastructure"&gt;Building Meta’s GenAI Infrastructure&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/fast-inner-product-dnn-accelerators"&gt;Fast Inner-Product Algorithms and Architectures for Deep Neural Network Accelerators&lt;/a&gt;&lt;/li&gt;
@@ -130,11 +130,11 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of April 1, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/notebook-fantasy-chicano-batman-released"&gt;New Album - Notebook Fantasy from Chicano Batman&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/announcing-dbrx-llm"&gt;Announcing DBRX: A new standard for efficient open source LLMs&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -145,7 +145,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of April 07, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/notebook-fantasy-chicano-batman-released"&gt;New Album - Notebook Fantasy from Chicano Batman&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/better-offline-podroll"&gt;New podcast added to blogroll&lt;/a&gt;&lt;/li&gt;
@@ -154,7 +154,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
 &lt;li&gt;&lt;a href="/feed/world-wide-whack-tierra-whack-review"&gt;Thoughts on World Wide Whack&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/crate-finds-march-2024"&gt;Crate Finds - March 2024&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/llm-time-series-forecasting"&gt;Large Language Models Are Zero-Shot Time Series Forecasters&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/google-podcasts-gone-youtube-cant-replace-it-verge"&gt;Google Podcasts is gone — and so is my faith in Google&lt;/a&gt;&lt;/li&gt;
@@ -175,14 +175,14 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of April 14, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/slm-too-big"&gt;These models are too damn big!&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/enjoying-kexp-el-sonido"&gt;Enjoying El Sonido from KEXP&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/better-offline-podroll"&gt;New podcast (Better Offline) added to blogroll&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/2024-04-07-weekly-post-summary"&gt;Week of April 07, 2024 - Post Summary&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/llm-c-karpathy"&gt;LLM training in simple, raw C/CUDA &lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/google-deepmind-recurrent-gemma"&gt;RecurrentGemma - Open weights language model from Google DeepMind, based on Griffin.&lt;/a&gt;&lt;/li&gt;
@@ -204,11 +204,11 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of April 29, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/gha-publishing-workflow-fixed"&gt;GitHub Actions Publishing Workflow Fixed&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/pbs-retro-roku-channel"&gt;'PBS Retro' is coming to Roku as a FAST channel&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/google-jax-penzai"&gt;Google Penzai&lt;/a&gt;&lt;/li&gt;
@@ -232,7 +232,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of May 06, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/crate-finds-april-2024"&gt;Crate Finds - April 2024&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/2024-04-29-weekly-post-summary"&gt;Week of April 29, 2024 - Post Summary&lt;/a&gt;&lt;/li&gt;
@@ -244,13 +244,13 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of May 26, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/false-alarm-link-in-bio-x-twitter"&gt;False alarm - Link is in X bio&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/no-link-in-bio-x-twitter"&gt;X (Twitter) - No more link in bio?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/blogroll-discovery-implemented"&gt;Blogroll discovery enabled&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/rip-kabosu-doge"&gt;RIP Kabosu&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/indieweb-next-steps-durnell"&gt;The IndieWeb's Next Stage&lt;/a&gt;&lt;/li&gt;
@@ -263,7 +263,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of June 03, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/my-permadomain-rscottjones"&gt;My Permadomain&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/microblog-podcast-hosting"&gt;Micro.blog - Podcast hosting for $5&lt;/a&gt;&lt;/li&gt;
@@ -277,13 +277,13 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of July 21, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/crate-finds-june-2024"&gt;Crate Finds - June 2024&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/test-emacs-capture-note"&gt;Testing org-capture template for notes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/post-statistics-july-2024"&gt;Website Post Statistics - July 2024&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/facebook-zombie-internet-willison"&gt;Zombie Internet&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/test-emacs-capture-response-org"&gt;Test response using org capture templates&lt;/a&gt;&lt;/li&gt;
@@ -295,13 +295,13 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of July 28, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/2024-07-21-weekly-post-summary"&gt;Week of July 21, 2024 - Post Summary&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/crate-finds-june-2024"&gt;Crate Finds - June 2024&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/useful-emacs-commands-pt-1"&gt;Note to Self: Useful Emacs Commands Pt. 1&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/nyxt-emacs-hacks"&gt;Nyxt Emacs Hacks&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -312,11 +312,11 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of August 11, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/what-is-kick"&gt;What is Kick?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/mike-masnick-bluesky-board-of-directors"&gt;Bluesky Welcomes Mike Masnick to Board of Directors&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/blogroll-club-blog-directory"&gt;Blogroll Club - A blog directory&lt;/a&gt;&lt;/li&gt;
@@ -332,13 +332,13 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of September 15, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/crate-finds-august-2024"&gt;Crate Finds - August 2024&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/leadership-ascension-track-omegamart"&gt;Leadership Ascension Track (LAT)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/post-statistics-september-2024"&gt;Website Post Statistics - September 2024&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/andre-3000-listening-to-the-sun"&gt;Listening to the Sun by Andre 3000&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/cosmohedron-duncan-hatch"&gt;Cosmohedron by Duncan Hatch&lt;/a&gt;&lt;/li&gt;
@@ -350,11 +350,11 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of October 20, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="blogs"&gt;Blogs&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Blogs&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire"&gt;Build your own self-hosted live streaming application with Owncast and .NET Aspire&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/you-should-be-using-rss-reader-pluralistic"&gt;You should be using an RSS reader&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/chromakopia-tyler-the-creator"&gt;Chromakopia - Tyler The Creator&lt;/a&gt;&lt;/li&gt;
@@ -367,11 +367,11 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     <item>
       <title>Week of November 3, 2024 - Post Summary</title>
       <description>&lt;![CDATA[&lt;p&gt;Fairly active week on the website.&lt;/p&gt;
-&lt;h2 id="blogs"&gt;Blogs&lt;/h2&gt;
+&lt;h2&gt;Blogs&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/posts/digitize-analog-bookmarks-with-ai-dotnet"&gt;Digitize Analog Bookmarks using AI, .NET, and GitHub Models&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/post-statistics-october-2024"&gt;Website Post Statistics - October 2024&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/crate-finds-october-2024"&gt;Crate Finds - October 2024&lt;/a&gt;&lt;/li&gt;
@@ -379,7 +379,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
 &lt;li&gt;&lt;a href="/feed/spooky-season-2024-over"&gt;Only 365 more days until next halloween&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/st-chroma-chromakopia"&gt;St. Chroma is a great intro&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/spirit-box-flying-lotus"&gt;New Release: Spirit Box by Flying Lotus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/chromakopia-tyler-the-creator-released"&gt;Chromakopia by Tyler The Creator Released&lt;/a&gt;&lt;/li&gt;
@@ -395,14 +395,14 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     <item>
       <title>Week of November 10, 2024 - Post Summary</title>
       <description>&lt;![CDATA[&lt;p&gt;Started experimenting some more with posting photos this week.&lt;/p&gt;
-&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/2024-11-03-weekly-post-summary"&gt;Week of November 3, 2024 - Post Summary&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/nyc-sunrise-fall-2024"&gt;NYC Sunrise&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/netconf-bound-2024"&gt;.NET Conf 2024 Bound&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/finally-feels-like-fall"&gt;Finally starting to feel like fall&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/microsoft-research-focus-oct-28-2024"&gt;Microsoft Research Focus: Week of October 28, 2024&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/thinking-llms-instruction-following-thought-generation"&gt;Thinking LLMs: General Instruction Following with Thought Generation&lt;/a&gt;&lt;/li&gt;
@@ -417,12 +417,12 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of November 18, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/website-upgraded-dotnet-9"&gt;Upgraded to .NET 9&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/tyson-vs-paul"&gt;Mike Tyson vs Jake Paul&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/thundercat-chromakopia"&gt;Thundercat on Tyler's Chromakopia album?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/dotnetconf-2024-day-1-success"&gt;Day 1 of .NET Conf&lt;/a&gt;&lt;/li&gt;
@@ -436,14 +436,14 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of November 25, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/mastodon-working-again-v-4-3-1"&gt;Mastodon instance working again&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/2024-11-18-weekly-post-summary"&gt;Week of November 18, 2024 - Post Summary&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/using-domain-mastodon-discovery"&gt;Using my domain for discovery in Mastodon&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/mastodon-instance-supports-opengraph-creator-tag"&gt;Mastodon instance now supports OpenGraph creator tag&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/digital-minimalism-moral-duty-deep-questions"&gt;Digital minimalism: A moral duty?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/jimmy-gambler-psu"&gt;Jimmy The Gambler&lt;/a&gt;&lt;/li&gt;
@@ -456,16 +456,16 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of December 09, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="blogs"&gt;Blogs&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Blogs&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/posts/rss-opml-starter-packs"&gt;Starter Packs with OPML and RSS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/spotify-wrapped-2024"&gt;Spotify Wrapped 2024&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/spotify-wrapped-2024-podcast-notebook-lm"&gt;Spotify Wrapped 2024 AI Generated Podcast&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/how-i-turned-website-social-media-hub-newman"&gt;How I turned my blog into a social media hub&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -476,16 +476,16 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of December 15, 2024 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="blogs"&gt;Blogs&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Blogs&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/posts/rss-opml-starter-packs"&gt;Starter Packs with OPML and RSS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/antennapod-echo-2024"&gt;Antennapod Echo 2024&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/surrender-quantum-conscience"&gt;Surrender to the quantum conscience&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/sora-released"&gt;Sora is here&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -511,11 +511,11 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of January 5, 2025 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="blogs"&gt;Blogs&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Blogs&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/posts/listen-audiobooks-librivox-antennapod"&gt;Building a Reading Habit with Audiobooks, LibriVox, and AntennaPod&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/internet-archive-public-domain-2025"&gt;Welcome to the Public Domain in 2025&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/langchain-state-of-ai-2024"&gt;LangChain State of AI 2024 Report&lt;/a&gt;&lt;/li&gt;
@@ -527,12 +527,12 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of January 12, 2025 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="blogs"&gt;Blogs&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Blogs&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/posts/deploy-owncast-azure"&gt;Deploy your own Owncast server&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/posts/listen-audiobooks-librivox-antennapod"&gt;Building a Reading Habit with Audiobooks, LibriVox, and AntennaPod&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/2025-01-05-weekly-post-summary"&gt;Week of January 5, 2025 - Post Summary&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/attended-first-indieweb-hwc"&gt;Attended my first IndieWeb Homebrew Website Club&lt;/a&gt;&lt;/li&gt;
@@ -540,7 +540,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
 &lt;li&gt;&lt;a href="/feed/owncast-azure-container-apps-deployment"&gt;Got an Owncast instance deployed to Azure!&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/psu-nd-ncaaf-semifinal-2025"&gt;So glad I didn't watch the Penn State game&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/agents-huyen"&gt;Agents&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/kaggle-agents-whitepaper"&gt;Agents Whitepaper&lt;/a&gt;&lt;/li&gt;
@@ -553,14 +553,14 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of January 19, 2025 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/2025-01-12-weekly-post-summary"&gt;Week of January 12, 2025 - Post Summary&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/created-owncast-livestream-page"&gt;Embedded Owncast live stream into my website&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/how-do-you-watch-blueray-on-pc"&gt;How do you watch Blu-Ray on PC?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/spotify-address-missing-info"&gt;Why does Spotify need my full address?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/ai-subtitles-coming-vlc"&gt;AI Subtitles Are Coming to VLC&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/calm-tech-interview"&gt;The Future of Calm Technology with Amber Case&lt;/a&gt;&lt;/li&gt;
@@ -576,12 +576,12 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of February 2, 2025 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/owncast-simulcast-youtube"&gt;Simulcasting to Owncast and YouTube&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/tinkering-deepseek-r1-dotnet-github-models"&gt;Tinkering with DeepSeek R1, GitHub Models, and .NET on stream&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/bucees-wisconsin"&gt;Buc-ee's plans first Wisconsin travel center&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -592,12 +592,12 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of February 9, 2025 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/cdn-issue-fixed-redirects-working"&gt;Redirect URLs working again&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/post-statistics-jan-2025"&gt;Website Post Statistics - January 2025&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/bringing-pebble-back"&gt;Bringing Pebble Back&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/build-a-link-blog-xuanwo"&gt;Build a link blog&lt;/a&gt;&lt;/li&gt;
@@ -613,11 +613,11 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of March 2, 2025 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="blogs"&gt;Blogs&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Blogs&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/posts/fractures-unfamiliarity-circumvention-pursuit-good-time-robert-hunter"&gt;Fractures of Unfamiliarity &amp;amp; Circumvention in Pursuit of a Nice Time and the Meaning of Franklin's Tower&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/anthropic-claude-3-7-sonnet-code"&gt;Claude 3.7 Sonnet and Claude Code&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/inevitable-jcole-blog"&gt;The Algorithm - J. Cole has a blog?&lt;/a&gt;&lt;/li&gt;
@@ -635,7 +635,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of March 23, 2025 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/bringing-static-sites-fediverse-enhancements-implementations-maho"&gt;Bringing Static Sites to the Fediverse - Enhancements and Implementations&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/introducing-command-a-cohere"&gt;Introducing Command A&lt;/a&gt;&lt;/li&gt;
@@ -651,16 +651,16 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of May 12, 2025 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="blogs"&gt;Blogs&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Blogs&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/posts/vibe-specing-prompt-to-spec"&gt;Vibe-Specing - From concepts to specification&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/too-many-browser-tabs-shellsharks"&gt;Extreme web surfing&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/chicano-batman-album"&gt;Diving deeper into the Chicano Batman catalog&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/evolution-of-blogging-history-web"&gt;The Evolution of Blogging&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/zero-search-alibaba"&gt;ZeroSearch - Incentivize the Search Capability of LLMs without Searching&lt;/a&gt;&lt;/li&gt;
@@ -688,11 +688,11 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of May 26, 2025 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/attitude-copilot-agent"&gt;Copilot Agent is giving me attitude&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/pocket-shutting-down"&gt;Pocket shutting down&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -703,11 +703,11 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of June 29, 2025 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/crate-finds-may-2025"&gt;Crate Finds - May 2025&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/do-not-privatize-federal-land"&gt;Do not privatize federal land&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -718,14 +718,14 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     </item>
     <item>
       <title>Week of July 6, 2025 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2 id="notes"&gt;Notes&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/2025-06-29-weekly-post-summary"&gt;Week of June 29, 2025 - Post Summary&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/crate-finds-june-2025"&gt;Crate Finds - June 2025&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/crate-finds-may-2025"&gt;Crate Finds - May 2025&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/post-statistics-june-2025"&gt;Website Post Statistics - June 2025&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="responses"&gt;Responses&lt;/h2&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/feed/do-not-privatize-federal-land"&gt;Do not privatize federal land&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/feed/tumblr-wordpress-fediverse-integration-pause"&gt;Tumblr’s move to WordPress and fediverse integration is ‘on hold’&lt;/a&gt;&lt;/li&gt;
@@ -768,7 +768,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     <item>
       <title>AI abundance after scarcity cycles</title>
       <description>&lt;![CDATA[&lt;p&gt;While writing the post &lt;a href="/feed/rss-community-calendars-new-events"&gt;RSS for new event notifications&lt;/a&gt; I mentioned how the flow of getting new event notifications through RSS might work:&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
 &lt;p&gt;When a new event is added to the calendar, the RSS feed can be updated. The &lt;code&gt;channel&lt;/code&gt;property has the link to the shared calendar you can subscribe to and the individual events have &lt;em&gt;.ics&lt;/em&gt; files embedded in the &lt;code&gt;enclosure&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;I actually didn't know if that was possible until I looked at the &lt;a href="https://en.wikipedia.org/wiki/RSS_enclosure"&gt;RSS enclosure syntax&lt;/a&gt;. Based on that page, as long as you provide the URL to the &lt;em&gt;.ics&lt;/em&gt; file, length of the file, and the MIME type (text/calendar), you can link to your events inside enclosures. So it is possible.&lt;/p&gt;
@@ -789,7 +789,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
 &lt;p&gt;If someone wanted to subscribe to the feeds on your blogroll, they could just copy the links and add them to their RSS reader. However, as your blogroll grows, doing this in bulk can be tedious.&lt;/p&gt;
 &lt;p&gt;One way you can make it easier is using OPML files. Many RSS readers support importing feeds using OPML files.&lt;/p&gt;
 &lt;p&gt;You could go through the process of figuring out what OPML is, how you need to format the file, and then do the work of creating and populating the file. Or...you could use AI.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://github.com/lqdev/luisquintanilla.me/assets/11130940/2a24fd44-0ae4-46a1-bd55-68988927a33e" alt="Copilot chat being asked to generate OPML file" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/lqdev/luisquintanilla.me/assets/11130940/2a24fd44-0ae4-46a1-bd55-68988927a33e" class="img-fluid" alt="Copilot chat being asked to generate OPML file" /&gt;&lt;/p&gt;
 &lt;p&gt;In this example, I opened up Copilot, provided it a list of links to RSS feeds and asked it to generate an OPML file. You can take the outputs generated using AI, save them to a file, and add it to your website.&lt;/p&gt;
 &lt;p&gt;Now people who want to subscribe to the feeds on your blogroll can just load the OPML file into their RSS reader and all the feeds will be automatically added.&lt;/p&gt;
 ]]&gt;</description>
@@ -800,8 +800,8 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     <item>
       <title>ALMOST ready to receive Webmentions</title>
       <description>&lt;![CDATA[&lt;p&gt;Finally got a working prototype. A few days ago I added the &lt;a href="/snippets/webmentions-request-verification"&gt;request&lt;/a&gt; and &lt;a href="/snippets/webmentions-verification"&gt;webmention&lt;/a&gt; verification components.&lt;/p&gt;
-&lt;p&gt;I just finished creating the web API and Azure Table Storage components. Now I just need to run some additional tests and deploy it :slightly_smiling_face:&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://media.tenor.com/cWNpE2earJkAAAAd/chris-pratt-rubbing-hands.gif" alt="Chriss Pratt Rubbing Hands GIF" /&gt;&lt;/p&gt;
+&lt;p&gt;I just finished creating the web API and Azure Table Storage components. Now I just need to run some additional tests and deploy it 🙂&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.tenor.com/cWNpE2earJkAAAAd/chris-pratt-rubbing-hands.gif" class="img-fluid" alt="Chriss Pratt Rubbing Hands GIF" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/almost-ready-to-receive-webmentions</link>
       <guid>https://www.luisquintanilla.me/feed/almost-ready-to-receive-webmentions</guid>
@@ -810,9 +810,9 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     <item>
       <title>Newspapers, CDs, and MP3 players - Am I in 2006?</title>
       <description>&lt;![CDATA[&lt;p&gt;While flipping through a local (physical) newspaper, I came across an ad for a sale happening at a nearby record store.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/newspaper_ad.JPG" alt="Newpaper ad for a memorial day CD and vinyl sale" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/newspaper_ad.JPG" class="img-fluid" alt="Newpaper ad for a memorial day CD and vinyl sale" /&gt;&lt;/p&gt;
 &lt;p&gt;Having nothing planned, I decided to check it out and ended up with a nice haul of about 15 CDs and 2 DVDs.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/cds_mp3.JPG" alt="3 CDs on a wooden table with an portable MP3 player" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/cds_mp3.JPG" class="img-fluid" alt="3 CDs on a wooden table with an portable MP3 player" /&gt;&lt;/p&gt;
 &lt;p&gt;I fired up my &lt;a href="https://www.bestbuy.com/site/lg-8x-external-usb-double-layer-dvdrw-cd-rw-drive-black/5852919.p?skuId=5852919"&gt;portable CD/DVD drive&lt;/a&gt; to transfer my new purchases to my &lt;a href="https://www.fiio.com/m6"&gt;portable MP3 player&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Once finished, I popped one of the DVDs into the drive, made popcorn, and settled in. If I didn't know any better, this could easily be a scene from 2006.&lt;/p&gt;
 ]]&gt;</description>
@@ -823,12 +823,12 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     <item>
       <title>Antennapod Echo (Wrapped) 2023</title>
       <description>&lt;![CDATA[&lt;p&gt;This was a nice surprise to see when I opened up Antennapod the other day. Using my listening statistics, it was able to compile a yearly summary for me (locally).&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/antennapod-wrapped-1.png" alt="Antennapod Echo" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/antennapod-wrapped-2.png" alt="Antennapod Echo" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/antennapod-wrapped-1.png" class="img-fluid" alt="Antennapod Echo" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/antennapod-wrapped-2.png" class="img-fluid" alt="Antennapod Echo" /&gt;&lt;/p&gt;
 &lt;p&gt;Looks like I have a lot of catching up to do on the backlog.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/antennapod-wrapped-3.png" alt="Antennapod Echo" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/antennapod-wrapped-4.png" alt="Antennapod Echo" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/antennapod-wrapped-5.png" alt="Antennapod Echo" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/antennapod-wrapped-3.png" class="img-fluid" alt="Antennapod Echo" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/antennapod-wrapped-4.png" class="img-fluid" alt="Antennapod Echo" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/antennapod-wrapped-5.png" class="img-fluid" alt="Antennapod Echo" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/antennapod-echo-2023</link>
       <guid>https://www.luisquintanilla.me/feed/antennapod-echo-2023</guid>
@@ -837,8 +837,8 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
     <item>
       <title>Antennapod Echo 2024</title>
       <description>&lt;![CDATA[&lt;p&gt;That's a lot of podcasts!&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/antennapod-2024-1.png" alt="Screenshot of Antennapod Echo Podcast Hours Listened" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/antennapod-2024-2.png" alt="Screenshot of Antennapod Echo Podcast Addict" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/antennapod-2024-1.png" class="img-fluid" alt="Screenshot of Antennapod Echo Podcast Hours Listened" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/antennapod-2024-2.png" class="img-fluid" alt="Screenshot of Antennapod Echo Podcast Addict" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/antennapod-echo-2024</link>
       <guid>https://www.luisquintanilla.me/feed/antennapod-echo-2024</guid>
@@ -882,7 +882,7 @@ Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an appro
       <title>Apple M3 Announced</title>
       <description>&lt;![CDATA[&lt;p&gt;Apple unveiled their &lt;a href="https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/"&gt;M3 family of chips&lt;/a&gt; and new devices.&lt;/p&gt;
 &lt;p&gt;First off, The Verge always does a great job covering and condensing these events into a short video.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=gN8oCWGeRtI" title="Apple Scary Fast Event - The Verge"&gt;&lt;img src="http://img.youtube.com/vi/gN8oCWGeRtI/0.jpg" alt="Apple Scary Fast Event - The Verge" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=gN8oCWGeRtI" title="Apple Scary Fast Event - The Verge"&gt;&lt;img src="http://img.youtube.com/vi/gN8oCWGeRtI/0.jpg" class="img-fluid" alt="Apple Scary Fast Event - The Verge" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;My initial impressions of the anouncement, this is why Apple wins.&lt;/p&gt;
 &lt;p&gt;I'm excited by the Snapdragon announcement last week. However, as I mentioned in my &lt;a href="/posts/quick-thoughts-snapdragon-summit-2023"&gt;post&lt;/a&gt;, &amp;quot;the biggest miss from Qualcomm and Windows partners today was not having a lineup of devices ready for purchase&amp;quot;.&lt;/p&gt;
 &lt;p&gt;That wasn't the case for Apple. Not only did they announce their new chips but they also announced devices which will be available as late as the end of November.&lt;/p&gt;
@@ -923,7 +923,7 @@ You have the option of tracking updates at the national, state, zone, and county
     <item>
       <title>See you at FediForum June 2025</title>
       <description>&lt;![CDATA[&lt;p&gt;Super excited to be attending &lt;a href="https://fediforum.org/"&gt;FediForum&lt;/a&gt; in a few weeks!&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/fediforum-ticket.png" alt="Screenshot of Fediforum ticket showing name and event title" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/fediforum-ticket.png" class="img-fluid" alt="Screenshot of Fediforum ticket showing name and event title" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/attending-fediforum-2025</link>
       <guid>https://www.luisquintanilla.me/feed/attending-fediforum-2025</guid>
@@ -931,13 +931,13 @@ You have the option of tracking updates at the national, state, zone, and county
     </item>
     <item>
       <title>Copilot Agent is giving me attitude</title>
-      <description>&lt;![CDATA[&lt;blockquote&gt;
+      <description>&lt;![CDATA[&lt;blockquote class="blockquote"&gt;
 &lt;p&gt;(see your rules and project plan)&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Is that Copilot's way of saying, &amp;quot;Per my previous e-mail...&amp;quot;?&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/sassy-copilot-agent.png" alt="A conversation with Github Copilot Agent" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/sassy-copilot-agent.png" class="img-fluid" alt="A conversation with Github Copilot Agent" /&gt;&lt;/p&gt;
 &lt;p&gt;And then it rage quit.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/copilot-agent-quit.png" alt="Error message saying GitHub Copilot Agent exhausted token limit" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/copilot-agent-quit.png" class="img-fluid" alt="Error message saying GitHub Copilot Agent exhausted token limit" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/attitude-copilot-agent</link>
       <guid>https://www.luisquintanilla.me/feed/attitude-copilot-agent</guid>
@@ -945,7 +945,7 @@ You have the option of tracking updates at the national, state, zone, and county
     </item>
     <item>
       <title>Need to automate seasonal 'blue ckecks'</title>
-      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="/images/feed/july-checkmark.png" alt="Profile header image with alien emoji" /&gt;&lt;/p&gt;
+      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="/images/feed/july-checkmark.png" class="img-fluid" alt="Profile header image with alien emoji" /&gt;&lt;/p&gt;
 &lt;p&gt;I really need to automate my website updates. I had forgotten to update the &amp;quot;checkmark&amp;quot; (for lack of better words) for the month of July. Usually, I try to have an icon show up as my &amp;quot;blue check&amp;quot; (Twitter inspired) that is relevant for each month. July is &lt;a href="https://www.britannica.com/event/Roswell-incident"&gt;Roswell&lt;/a&gt; month mostly because I think I already used the sun emoji for one of the other summer months. I guess being in the US, the US flag would've made sense here, but somehow aliens seemed more fun. Anyway, I need to find a good way to automate this so it's not one of those things that happen when I remember. Since I just changed to the alien emoji, it means I probably will only have it up for a week. August is Tux month because of Linux (again, sun and aliens were already taken). Recommendations are appreciated. Though I'm excited for spooky season in September &amp;amp; October.&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/automate-website-updates</link>
@@ -955,7 +955,7 @@ You have the option of tracking updates at the national, state, zone, and county
     <item>
       <title>Ayaneo Slide</title>
       <description>&lt;![CDATA[&lt;p&gt;I NEED ONE!&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=G6Mhrb9heiI" title="AYANEO Slide Promo Video"&gt;&lt;img src="http://img.youtube.com/vi/G6Mhrb9heiI/0.jpg" alt="Ayaneo Slide Promo Video" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=G6Mhrb9heiI" title="AYANEO Slide Promo Video"&gt;&lt;img src="http://img.youtube.com/vi/G6Mhrb9heiI/0.jpg" class="img-fluid" alt="Ayaneo Slide Promo Video" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This gives me &lt;a href="https://en.wikipedia.org/wiki/Danger_Hiptop"&gt;Sidekick&lt;/a&gt; / &lt;a href="https://en.wikipedia.org/wiki/Mylo_(Sony)"&gt;Sony Mylo&lt;/a&gt; vibes. The only reason I wouldn't get it is battery life. I don't care for the gaming capabilities.&lt;/p&gt;
 &lt;p&gt;Throw in an ARM-based processor like the Snapdragon X Elite for all-day battery life, give me USB-C ports to attach a dongle to, and I'm sold.&lt;/p&gt;
 ]]&gt;</description>
@@ -990,7 +990,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;I haven't tracked traffic for the entire year but since October of last year the site has gotten roughly 5,000 visitors.&lt;/p&gt;
 &lt;p&gt;Taking all that into account, I've only had to pay $2.06 most of it being the storage I use for the site. In comparison, I was previously hosting my website through my domain provider in a shared server where it cost about $60!&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/166848883-8d6cfe2c-5ff3-468c-b95f-b0ecab69595a.png" alt="Azure portal billing cost" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/166848883-8d6cfe2c-5ff3-468c-b95f-b0ecab69595a.png" class="img-fluid" alt="Azure portal billing cost" /&gt;&lt;/p&gt;
 &lt;p&gt;If you're interested in how this site is built, check out the &lt;a href="/colophon"&gt;colophon&lt;/a&gt;.&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/azure-costs-website-hosting-2021</link>
@@ -1008,7 +1008,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>New AI generated phone wallpaper</title>
       <description>&lt;![CDATA[&lt;p&gt;I'm really liking my new phone wallpaper. Courtesy of DALL-E.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/bing-ai-pug-wallpaper.jpg" alt="pug in the utah desert on mushrooms opening his third eye and being beamed up by aliens" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/bing-ai-pug-wallpaper.jpg" class="img-fluid" alt="pug in the utah desert on mushrooms opening his third eye and being beamed up by aliens" /&gt;&lt;/p&gt;
 &lt;p&gt;In case anyone is interested in the prompt - &amp;quot;pug in the utah desert on mushrooms opening his third eye and being beamed up by aliens&amp;quot;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/bing-ai-phone-wallpaper</link>
@@ -1093,7 +1093,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Chip-making Chip Shortage</title>
       <description>&lt;![CDATA[&lt;p&gt;&lt;a href="https://9to5mac.com/2022/05/03/chips-for-chipmaking-machines/"&gt;Chips for chipmaking machines are affected by chip shortage, says TSMC and Intel - via 9to5Mac&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://res-5.cloudinary.com/hdwvnfa8d/image/upload/q_auto/v1/ghost-blog-images/Spider-Man-Pointing-Meme.jpg" alt="Spiderman meme pointing at each other" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://res-5.cloudinary.com/hdwvnfa8d/image/upload/q_auto/v1/ghost-blog-images/Spider-Man-Pointing-Meme.jpg" class="img-fluid" alt="Spiderman meme pointing at each other" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/chipmaking-chip-shortage</link>
       <guid>https://www.luisquintanilla.me/feed/chipmaking-chip-shortage</guid>
@@ -1103,7 +1103,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <title>Coffee with a Codex</title>
       <description>&lt;![CDATA[&lt;p&gt;Came accross this event series via &lt;a href="https://boffosocko.com/type/status/"&gt;Chris Aldrich's microblog&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Here's Chris' original post&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
 &lt;p&gt;Every Monday, I sit down with a cup of coffee and learn something interesting about history through old manuscripts. Join our friends Dot Porter (&lt;a href="https://twitter.com/leoba"&gt;@leoba&lt;/a&gt;) and the Schoenberg Institute for Manuscript Studies (&lt;a href="https://twitter.com/sims_mss"&gt;@sims_mss&lt;/a&gt;) at &lt;a href="https://schoenberginstitute.org/coffee-with-a-codex/"&gt;Coffee with a Codex&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Basically it's a virtual meeting where experts go over manuscripts on a variety of topics. I'll probably check out next week's event.&lt;/p&gt;
@@ -1122,7 +1122,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Given recent talking points of AI coming for our jobs and the accelerated rate of technological innovation, you could pluck these challenges from the time they were written and they'd still be relevant today. You could also place them 500 or 1000 years ago and they'd also be relevant which made me think of the &lt;a href="https://en.wikipedia.org/wiki/Lindy_effect"&gt;Lindy Effect&lt;/a&gt;. In short, it states that the longer a technology or idea continues to live, the higher the likelihood it will continue to exist into the future.&lt;/p&gt;
 &lt;p&gt;I found it funny though that while flipping through the book and reading about these timeless challenges and principles, I came across the opposite of that. One of my bookmarks was a Borders membership card. If you don't know or remember what Borders was, in a gist, it was one of the large bookstores which succumbed to disruption from e-commerce (i.e. Amazon)&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/borders-membership-card.jpg" alt="An image of a Borders member card" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/borders-membership-card.jpg" class="img-fluid" alt="An image of a Borders member card" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/covey-timeless-habits</link>
       <guid>https://www.luisquintanilla.me/feed/covey-timeless-habits</guid>
@@ -1350,7 +1350,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Do not feed or aggravate the gators</title>
       <description>&lt;![CDATA[&lt;p&gt;Mama says that alligators are ornery because they got all them teeth and no toothbrush.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/do-not-feed-aggravate-gators.png" alt="Sign saying do not feed or aggravate the gators" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/do-not-feed-aggravate-gators.png" class="img-fluid" alt="Sign saying do not feed or aggravate the gators" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/do-not-feed-aggravate-gators</link>
       <guid>https://www.luisquintanilla.me/feed/do-not-feed-aggravate-gators</guid>
@@ -1366,11 +1366,11 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/@thearchiveinbetween"&gt;The Archive in Between&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.youtube.com/@alternatebazaarart"&gt;Alternate Bazaar Art&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="the-archive-in-between"&gt;The Archive in Between&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=BYkMjaxxl_o" title="Welcome to Archives In Between YouTube Video"&gt;&lt;img src="http://img.youtube.com/vi/BYkMjaxxl_o/0.jpg" alt="Welcome to Archives In Between YouTube Video" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=iHZWbDgw0Vk" title="Fictional promo YouTube video for Seeing Stones National Monument from Archives in Between"&gt;&lt;img src="http://img.youtube.com/vi/iHZWbDgw0Vk/0.jpg" alt="Fictional promo YouTube video for Seeing Stones National Monument from Archives in Between" /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="alternate-bazaar-art"&gt;Alternate Bazaar Art&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=yx9Gdjrm6WA" title="YouTube Short video Blood in the Pizza made with digital art"&gt;&lt;img src="http://img.youtube.com/vi/yx9Gdjrm6WA/0.jpg" alt="YouTube Short video Blood in the Pizza made with digital art" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;The Archive in Between&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=BYkMjaxxl_o" title="Welcome to Archives In Between YouTube Video"&gt;&lt;img src="http://img.youtube.com/vi/BYkMjaxxl_o/0.jpg" class="img-fluid" alt="Welcome to Archives In Between YouTube Video" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=iHZWbDgw0Vk" title="Fictional promo YouTube video for Seeing Stones National Monument from Archives in Between"&gt;&lt;img src="http://img.youtube.com/vi/iHZWbDgw0Vk/0.jpg" class="img-fluid" alt="Fictional promo YouTube video for Seeing Stones National Monument from Archives in Between" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Alternate Bazaar Art&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=yx9Gdjrm6WA" title="YouTube Short video Blood in the Pizza made with digital art"&gt;&lt;img src="http://img.youtube.com/vi/yx9Gdjrm6WA/0.jpg" class="img-fluid" alt="YouTube Short video Blood in the Pizza made with digital art" /&gt;&lt;/a&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/down-the-weird-web</link>
       <guid>https://www.luisquintanilla.me/feed/down-the-weird-web</guid>
@@ -1387,8 +1387,8 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Eggpocalypse 2025</title>
       <description>&lt;![CDATA[&lt;p&gt;It's rough out there.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/eggs-limit.jpg" alt="Image of sign saying Limit 3 Eggs" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/empty-eggs.jpg" alt="Image of empty shelves in warehouse" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/eggs-limit.jpg" class="img-fluid" alt="Image of sign saying Limit 3 Eggs" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/empty-eggs.jpg" class="img-fluid" alt="Image of empty shelves in warehouse" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/eggpocalypse-feb-2025</link>
       <guid>https://www.luisquintanilla.me/feed/eggpocalypse-feb-2025</guid>
@@ -1424,7 +1424,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>PSA: Personal site not down</title>
       <description>&lt;![CDATA[&lt;p&gt;Just jumping on the bandwagon. A few online services are down at the moment 😬&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/135891253-c3857919-b6fa-4eca-a483-a03b22abe4de.png" alt="Web service outages on downdetector.com" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/135891253-c3857919-b6fa-4eca-a483-a03b22abe4de.png" class="img-fluid" alt="Web service outages on downdetector.com" /&gt;&lt;/p&gt;
 &lt;p&gt;Not to worry...the personal site is still chugging along 😌&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/fb-ig-personal-feed-up</link>
@@ -1435,10 +1435,10 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <title>The Fediverse beyond Mastodon</title>
       <description>&lt;![CDATA[&lt;p&gt;It's been great to see many old and new friends joining Mastodon and considering alternatives to online communities over the past few weeks. Selfishly my feed had been quiet since I started using it and self-hosting back in 2018 so it's nice to see more activity. As folks have started to settle in and get a better understanding of Mastodon, I'd like to point out that Mastodon is only one of many apps and services on the &lt;a href="https://fediverse.party/en/fediverse/"&gt;Fediverse&lt;/a&gt;. Now I won't try to explain the Fediverse but in general, it's the collection of applications and services that interoperate in a federated manner, Mastodon being one of them. If in general you like Mastodon and are looking for alternatives to services like Instagram, YouTube, SoundCloud, the Fediverse has a few options:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Instagram :arrow_right: &lt;a href="https://pixelfed.org/"&gt;Pixelfed&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;YouTube :arrow_right: &lt;a href="https://joinpeertube.org/"&gt;PeerTube&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;SoundCloud :arrow_right: &lt;a href="https://funkwhale.audio/"&gt;Funkwhale&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Twitch :arrow_right: &lt;a href="https://owncast.online/"&gt;Owncast&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Instagram ➡️ &lt;a href="https://pixelfed.org/"&gt;Pixelfed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;YouTube ➡️ &lt;a href="https://joinpeertube.org/"&gt;PeerTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;SoundCloud ➡️ &lt;a href="https://funkwhale.audio/"&gt;Funkwhale&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Twitch ➡️ &lt;a href="https://owncast.online/"&gt;Owncast&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;You can create an account for each of these services using different instances, just like Mastodon. You also have the option of self-hosting which I find amazing. However, because for the most part these services implement the ActivityPub protocol, it means federation extends beyond Mastodon. You can follow people on PixelFed, PeerTube, and many of these other services using your Mastodon account which means you don't have to create accounts for those services just to follow people. While I don't have experience with all of these services, I recommend checking them out. I especially like what Pixelfed, PeerTube and Owncast are doing but those are the main ones I have experience with.&lt;/p&gt;
 ]]&gt;</description>
@@ -1465,7 +1465,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;li&gt;Building the tools and processes to author and share content.&lt;/li&gt;
 &lt;li&gt;Owning my content. My website acts as the single source of truth.&lt;/li&gt;
 &lt;li&gt;Not requiring others to have or create accounts on individual platforms to access content.&lt;/li&gt;
-&lt;li&gt;Choosing how I author content. I'm sure this post is way over the 280 character limit and if there's a typo, I can just edit the post and republish the website :slightly_smiling_face:&lt;/li&gt;
+&lt;li&gt;Choosing how I author content. I'm sure this post is way over the 280 character limit and if there's a typo, I can just edit the post and republish the website 🙂&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Going forward, I plan to:&lt;/p&gt;
 &lt;ul&gt;
@@ -1482,7 +1482,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Finally starting to feel like fall</title>
       <description>&lt;![CDATA[&lt;p&gt;It's been unseasonably warm around these parts but this weekend it finally started to cool down. That meant hot cider and cider donuts straight from the source.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/finally-feels-like-fall.jpg" alt="A man playing the piano and woman singing under a canopy with a lake in the background" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/finally-feels-like-fall.jpg" class="img-fluid" alt="A man playing the piano and woman singing under a canopy with a lake in the background" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/finally-feels-like-fall</link>
       <guid>https://www.luisquintanilla.me/feed/finally-feels-like-fall</guid>
@@ -1491,7 +1491,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>First live stream using Owncast done</title>
       <description>&lt;![CDATA[&lt;p&gt;Earlier today I tested out my &lt;a href="/posts/deploy-owncast-azure/"&gt;self-hosted Owncast setup&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=3opjC7fEAJs" title="Video Thumbnail from live stream"&gt;&lt;img src="http://img.youtube.com/vi/3opjC7fEAJs/0.jpg" alt="Video Thumbnail from live stream" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=3opjC7fEAJs" title="Video Thumbnail from live stream"&gt;&lt;img src="http://img.youtube.com/vi/3opjC7fEAJs/0.jpg" class="img-fluid" alt="Video Thumbnail from live stream" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Overall, I think it went well considering I was using the built-in camera and mic on my laptop. Despite sharing my screen, using the browser, broadcasting and recording the stream, the laptop seemed to handle it just fine. I didn't get a chance to test writing and running code which is going to make up a bulk of the content on stream.&lt;/p&gt;
 &lt;p&gt;The flow on OBS is straightforward and simple. I might automate it either using my Stream Deck or just mapping hotkeys. It's simple enough that I only need to transition between a few scenes.&lt;/p&gt;
 &lt;p&gt;As far as hosting the recordings, the process of uploading to YouTube was straightforward. It took a little over 10 minutes, but that's something that I can just do in the background so not really worried about that. For the time being, I think I'll just use YouTube to host the videos and mark them as unlisted. No particular reason behind that other than I only want YouTube to serve as my video host. The main place I plan on showcasing and organizing videos is on my website.&lt;/p&gt;
@@ -1511,7 +1511,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <description>&lt;![CDATA[&lt;p&gt;I wasn't really planning on this, but here we are. I've been using &lt;a href="https://github.com/dylanaraps/neofetch"&gt;Neofetch&lt;/a&gt; on my PC to display system information whenever the terminal opens. However, in some cases, that would hang and it would take a while before I was able to use my terminal.&lt;/p&gt;
 &lt;p&gt;I then ran into &lt;a href="https://github.com/unxsh/nitch"&gt;Nitch&lt;/a&gt; which is simple and fast. However, it was missing the local and public IP information Neofetch provides out of the box. Nitch is written using the &lt;a href="https://nim-lang.org/"&gt;Nim&lt;/a&gt; programming language. Originally, I had planned on extending Nitch and I figured out the code I needed to write to support IP information. However, my program wouldn't build and I was unable to find any information online to unblock myself.&lt;/p&gt;
 &lt;p&gt;That's when I looked at the existing components in Nitch and found that it was basically just reading files from the &lt;code&gt;/proc&lt;/code&gt; and &lt;code&gt;/etc&lt;/code&gt; system directories. At that point, I decided to see if I could build my own utility using F#. A couple of hours later and the result was &lt;a href="/github/fitch"&gt;Fitch&lt;/a&gt;. This works well enough for my needs and in the future, I might publish it as a dotnet global tool to make it easy for others to use.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/fitch-display.png" alt="Screeenshot of command line running Fitch F# System Utility" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/fitch-display.png" class="img-fluid" alt="Screeenshot of command line running Fitch F# System Utility" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/fitch-fsharp-cli-v0</link>
       <guid>https://www.luisquintanilla.me/feed/fitch-fsharp-cli-v0</guid>
@@ -1522,15 +1522,15 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <description>&lt;![CDATA[&lt;p&gt;New drop from FlyLo. This feels like a new album coming. So far the theme is mystical.&lt;/p&gt;
 &lt;p&gt;The previous single, &lt;a href="/feed/new-flying-lotus-garmonbozia"&gt;Garmonbozia&lt;/a&gt;, was a reference to Twin Peaks.&lt;/p&gt;
 &lt;p&gt;Ingo Swann's website describes him as&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
 &lt;p&gt;...a pioneer of parapsychology and remote viewing, who worked with CIA and NASA, wrote books, and created art.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;The website invites visitors to,&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
 &lt;p&gt;explore his research on NHEs, UFOs, UAPs, and the planets.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Similarly, Wikipedia describes him as&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
 &lt;p&gt;an American psychic, artist, and author, whose claims of clairvoyance were investigated as a part of the Central Intelligence Agency’s Stargate Project. Swann is credited as the creator of the term “Remote Viewing,&amp;quot; a term which refers to the use of extrasensory perception to perceive distant persons, places, or events.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;I'm excited to discovery the mystery behind this new project from FlyLo.&lt;/p&gt;
@@ -1716,7 +1716,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     </item>
     <item>
       <title>i3-gaps Released</title>
-      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="https://i3wm.org/docs/gaps1920.png" alt="Screenshot of i3-gaps" /&gt;&lt;/p&gt;
+      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="https://i3wm.org/docs/gaps1920.png" class="img-fluid" alt="Screenshot of i3-gaps" /&gt;&lt;/p&gt;
 &lt;p&gt;Nice! &lt;a href="https://i3wm.org/docs/userguide.html#gaps"&gt;i3-gaps&lt;/a&gt; was recently merged into the main i3 codebase some  time ago and with the &lt;a href="https://github.com/i3/i3/blob/next/RELEASE-NOTES-4.22"&gt;4.22 release&lt;/a&gt; a few weeks ago, you can now use it with your existing i3 configuration. I've started tinkering with it and I like the way it makes my desktop look.&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/i3-gaps-released</link>
@@ -1765,10 +1765,10 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Over the next few months, I plan on creating artifacts like blog posts, newsletters, and websites using &lt;a href="https://sway.cloud.microsoft/"&gt;Microsoft Sway&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Bookmark the site &lt;a href="http://100sways.lqdev.tech"&gt;100sways.lqdev.tech&lt;/a&gt; and follow along!&lt;/p&gt;
 &lt;p&gt;Note: If you can't access the website, you can use the &lt;a href="https://sway.cloud.microsoft/aC19McbR3xcNo6s8"&gt;direct link (https://sway.cloud.microsoft/aC19McbR3xcNo6s8)&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="what-is-the-100-sways-project"&gt;What is the 100 Sways project?&lt;/h2&gt;
+&lt;h2&gt;What is the 100 Sways project?&lt;/h2&gt;
 &lt;p&gt;This project is an attempt to show how you might use Sway as a publishing platform for content like newsletters, blog posts, and websites.&lt;/p&gt;
 &lt;p&gt;This project was inspired by &lt;a href="https://jamesg.blog/"&gt;James'&lt;/a&gt; &lt;a href="https://jamesg.blog/2024/02/19/personal-website-ideas/"&gt;100 things you can do on your personal website post&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="motivations"&gt;Motivations&lt;/h2&gt;
+&lt;h2&gt;Motivations&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Learn more about Microsoft Sway&lt;/li&gt;
 &lt;li&gt;Show how you can make the most use out of apps and services already included with your Microsoft Account&lt;/li&gt;
@@ -1791,7 +1791,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     </item>
     <item>
       <title>Playing around with the Ivy Cliq+ 2</title>
-      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="https://s7d1.scene7.com/is/image/canon/4519C001_ivy-cliq-plus2-instant-camera-printer-plus-app-rose-gold_primary?fmt=webp-alpha&amp;amp;wid=800" alt="Image of Canon Ivy Cliq+ 2 camera and photo printer" /&gt;&lt;/p&gt;
+      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="https://s7d1.scene7.com/is/image/canon/4519C001_ivy-cliq-plus2-instant-camera-printer-plus-app-rose-gold_primary?fmt=webp-alpha&amp;amp;wid=800" class="img-fluid" alt="Image of Canon Ivy Cliq+ 2 camera and photo printer" /&gt;&lt;/p&gt;
 &lt;p&gt;I got my hands on an &lt;a href="https://www.usa.canon.com/shop/p/ivy-cliq-2-instant-camera-printer-app"&gt;Ivy Cliq+ 2&lt;/a&gt; earlier today and am really liking it.&lt;/p&gt;
 &lt;p&gt;It's really cool that it's both a point-and-shoot camera as well as a photo printer. The camera comes in handy if you want to capture something in the moment and print it out immediately. The printer is great for pictures you've taken on your phone or some other device. Even better, you can create collages, apply filters, and do all sorts of adjustments to images before printing.&lt;/p&gt;
 &lt;p&gt;If there's one thing I didn't like is that in order to set it up, it needed access to my exact location. Trying approximate location wasn't enough. It connects over Bluetooth, so you'd think that should be enough to pair. Not sure what it needs my EXACT location for.&lt;/p&gt;
@@ -1803,36 +1803,36 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Leadership Ascension Track (LAT)</title>
       <description>&lt;![CDATA[&lt;p&gt;Excerpts from the Omega Mart Leadership Ascension Track (LAT)&lt;/p&gt;
-&lt;h2 id="meeting-the-self"&gt;Meeting the self&lt;/h2&gt;
+&lt;h2&gt;Meeting the self&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Make a human pyramid with your high school guidance counselor and middle school crush.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="renouncing-the-body"&gt;Renouncing the body&lt;/h2&gt;
+&lt;h2&gt;Renouncing the body&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Contribute 14% of your net worth to Drampcorp.&lt;/li&gt;
 &lt;li&gt;Be nice to 77 dogs.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="understanding-nature"&gt;Understanding nature&lt;/h2&gt;
+&lt;h2&gt;Understanding nature&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Learn to suck venom out of a snake bite.&lt;/li&gt;
 &lt;li&gt;Befriend a snake.&lt;/li&gt;
 &lt;li&gt;Interview a rock and ghost write its memoir.&lt;/li&gt;
 &lt;li&gt;Spend a week in the desert, living off the land.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="harmonizing-with-the-essence"&gt;Harmonizing with the essence&lt;/h2&gt;
+&lt;h2&gt;Harmonizing with the essence&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Buy two cakes. Decorate and dedicate one of the cakes to the other. Stack the cakes. Leave them both on a neighbor's doorstep in a ding-dong-ditch scenario.&lt;/li&gt;
 &lt;li&gt;Swim to a whirlpool and dance within its rotating waves (hint: go with the flow).&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="moving-beyond"&gt;Moving beyond&lt;/h2&gt;
+&lt;h2&gt;Moving beyond&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Approach a stranger in a coffee shop, have them show you their laptop search history, find the second-most recent country they've searched and move there for 7 months.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="come-to-peace-with-the-infinite"&gt;Come to peace with the infinite&lt;/h2&gt;
+&lt;h2&gt;Come to peace with the infinite&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Use an infinity mirror to get ready for a night on the town.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="manifesting-the-self"&gt;Manifesting the self&lt;/h2&gt;
+&lt;h2&gt;Manifesting the self&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Take a childhood photo to the top of a mountain. Bury the photo and create a new peak.&lt;/li&gt;
 &lt;li&gt;One day a week, wake at dawn and meditate until sundown.&lt;/li&gt;
@@ -1957,7 +1957,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>New (LTE) Rotary Phone</title>
       <description>&lt;![CDATA[&lt;p&gt;Very cool!&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://yewtu.be/embed/uV1C-41tq64" title="New (LTE) Rotary Phone"&gt;&lt;img src="https://yewtu.be/vi/uV1C-41tq64/maxres.jpg" alt="New (LTE) Rotary Phone" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://yewtu.be/embed/uV1C-41tq64" title="New (LTE) Rotary Phone"&gt;&lt;img src="https://yewtu.be/vi/uV1C-41tq64/maxres.jpg" class="img-fluid" alt="New (LTE) Rotary Phone" /&gt;&lt;/a&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/lte-rotary-phone</link>
       <guid>https://www.luisquintanilla.me/feed/lte-rotary-phone</guid>
@@ -1986,7 +1986,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <description>&lt;![CDATA[&lt;p&gt;In version 4.3, &lt;a href="https://blog.joinmastodon.org/2024/10/mastodon-4.3/#:%7E:text=Helping%20writers%20and%20journalists"&gt;Mastodon introduced OpenGraph creator tags&lt;/a&gt; to link to an author's Fediverse account from within a post.&lt;/p&gt;
 &lt;p&gt;I had &lt;a href="/feed/added-fediverse-og-creator-tag/"&gt;implemented it on my website&lt;/a&gt; a while back. However, because my instance wasn't using a version that supported it, it didn't show up on my instance.&lt;/p&gt;
 &lt;p&gt;Since upgrading to 4.3.1, I can now see my posts making use of the creator tag feature.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/c8be21fd-daa8-40ef-b923-fd6c302ab1f3" alt="Screenshot of Mastodon Post with Author Profile Link" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/c8be21fd-daa8-40ef-b923-fd6c302ab1f3" class="img-fluid" alt="Screenshot of Mastodon Post with Author Profile Link" /&gt;&lt;/p&gt;
 &lt;p&gt;As you can see from the original post, implementing it was relatively trivial. Another win for open protocols and standards.&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/mastodon-instance-supports-opengraph-creator-tag</link>
@@ -2005,7 +2005,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <title>Removing avatars and headers in Mastodon</title>
       <description>&lt;![CDATA[&lt;p&gt;The next version of Mastodon can't come soon enough.&lt;/p&gt;
 &lt;p&gt;About 20GB of disk space on my instance are being taken up by media from remote users. And this is for a single user instance! I can't imagine how it must be on other instances with multiple accounts.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/mastodon-media-usage.png" alt="Command line displaying disk space used by Mastodon for media" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/mastodon-media-usage.png" class="img-fluid" alt="Command line displaying disk space used by Mastodon for media" /&gt;&lt;/p&gt;
 &lt;p&gt;A recent &lt;a href="https://github.com/mastodon/mastodon/pull/22149"&gt;PR&lt;/a&gt; should make things much better though by allowing you to remove these files.&lt;/p&gt;
 &lt;p&gt;The only thing you need to do is pass the &lt;code&gt;--prune-profiles&lt;/code&gt; flag to the &lt;code&gt;media remove&lt;/code&gt; CLI command.&lt;/p&gt;
 &lt;p&gt;The PR is already merged so hopefully that means it's coming the next release.&lt;/p&gt;
@@ -2017,7 +2017,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Downsides of untitled RSS items</title>
       <description>&lt;![CDATA[&lt;p&gt;Although titles are optional for RSS feed items and it's a common practice for microblog platforms like Mastodon to exclude them, it unfortunately means some clients like Elfeed don't know how to render those posts.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/mastodon-untitled-rss-items/elfeed-mastodon-rss.png" alt="Screenshot of elfeed displaying RSS items from Mastodon" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/mastodon-untitled-rss-items/elfeed-mastodon-rss.png" class="img-fluid" alt="Screenshot of elfeed displaying RSS items from Mastodon" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/mastodon-untitled-rss-items</link>
       <guid>https://www.luisquintanilla.me/feed/mastodon-untitled-rss-items</guid>
@@ -2045,7 +2045,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Success! Matrix migration complete</title>
       <description>&lt;![CDATA[&lt;p&gt;It only took 6 hours but I was able to get it done with a little help.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif" alt="Bender from Futurama happy dance" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif" class="img-fluid" alt="Bender from Futurama happy dance" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/matrix-migration-complete</link>
       <guid>https://www.luisquintanilla.me/feed/matrix-migration-complete</guid>
@@ -2120,7 +2120,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Site updated to .NET 6</title>
       <description>&lt;![CDATA[&lt;p&gt;That was easy. Site's been updated to .NET 6 and all it took was a one-line change.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/147173815-9703691c-26cd-481a-98e6-fa23a9ce9674.png" alt="GitHub PR diff .NET 6 update" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/147173815-9703691c-26cd-481a-98e6-fa23a9ce9674.png" class="img-fluid" alt="GitHub PR diff .NET 6 update" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/net6-website-update</link>
       <guid>https://www.luisquintanilla.me/feed/net6-website-update</guid>
@@ -2130,9 +2130,9 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <title>Configured GitHub Codespaces Dev Container with .NET 7</title>
       <description>&lt;![CDATA[&lt;p&gt;Soon after .NET 7 was released, I &lt;a href="/feed/net7-website-update"&gt;upgraded&lt;/a&gt; the static site generator I use as well as the GitHub Actions that build and publish my website. Having upgraded last year from .NET 6, the process was as smooth as I had expected with no code refactoring required.&lt;/p&gt;
 &lt;p&gt;When it comes to development environments, for quick status updates like the ones on my &lt;a href="/feed"&gt;feed&lt;/a&gt; or minor edits, I've been using &lt;a href="/feed/surface-duo-blogging-github-dev"&gt;github.dev&lt;/a&gt;. However, there's been times where I've needed to run and debug code to confirm that my changes work. This is where I hit some of the limitation of github.dev which means unless I set up a Codespace, I have to save my work and move offline to my PC. Codespaces are great, but given that Codespaces are nice to haves not a requirement for my workflow at this time, it didn't make sense for me to pay for them. That's why I was excited to learn that GitHub is providing up to &lt;a href="https://github.blog/2022-11-10-whats-new-with-codespaces-from-github-universe-2022/"&gt;60 hours per month of free Codespace usage&lt;/a&gt; to all developers. That's more than enough for me.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/net7-devcontainer-gh-codespaces/net7-gh-codespaces.png" alt="Blog post authored in GitHub Codespaces with integrated terminal open" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/net7-devcontainer-gh-codespaces/net7-gh-codespaces.png" class="img-fluid" alt="Blog post authored in GitHub Codespaces with integrated terminal open" /&gt;&lt;/p&gt;
 &lt;p&gt;By default, Codespace images come preinstalled with the .NET 6 SDK which makes sense considering it's the latest LTS. However, since my static site generator targets .NET 7, I had to configure my Codespace to use .NET 7. This was just as easy as upgrading to .NET 7. All I had to do was provide the .NET 7 SDK Docker image as part of my &lt;a href="https://github.com/lqdev/luisquintanilla.me/blob/main/.devcontainer.json"&gt;devcontainer.json&lt;/a&gt; configuration file. From there, Codespaces takes care of the rest. As a result, I can now run and debug my code all in one place without interrupting my workflow.&lt;/p&gt;
-&lt;p&gt;PS: This post was authored in GitHub Codespaces :slightly_smiling_face:&lt;/p&gt;
+&lt;p&gt;PS: This post was authored in GitHub Codespaces 🙂&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/net7-devcontainer-gh-codespaces</link>
       <guid>https://www.luisquintanilla.me/feed/net7-devcontainer-gh-codespaces</guid>
@@ -2156,7 +2156,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Website upgraded to .NET 8</title>
       <description>&lt;![CDATA[&lt;p&gt;Obligatory yearly website update post. When I built this website, I started on .NET 5. 3 years later and although my code has changed to add new features, I haven't had to make any code changes to account for a new version of .NET. I love that I can get all the benefits of the new version without having to do any rewrites.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/upgrade-dotnet-8.png" alt="GitHub PR showing upgrade to .NET 8" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/upgrade-dotnet-8.png" class="img-fluid" alt="GitHub PR showing upgrade to .NET 8" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/net8-website-update</link>
       <guid>https://www.luisquintanilla.me/feed/net8-website-update</guid>
@@ -2205,7 +2205,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     </item>
     <item>
       <title>Now where will I get my RSS fix?</title>
-      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="https://github.com/lqdev/luisquintanilla.me/assets/11130940/b50ebeaa-c38c-4c58-b70f-fb9b9a26a017" alt="Screenshot of message informing users NewsBlur is down for maintenance" /&gt;&lt;/p&gt;
+      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="https://github.com/lqdev/luisquintanilla.me/assets/11130940/b50ebeaa-c38c-4c58-b70f-fb9b9a26a017" class="img-fluid" alt="Screenshot of message informing users NewsBlur is down for maintenance" /&gt;&lt;/p&gt;
 &lt;p&gt;Good thing I have elfeed as my backup so I can use that in the meantime.&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/newsblur-maintenace-mode-022024</link>
@@ -2215,7 +2215,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>X (Twitter) - No more link in bio?</title>
       <description>&lt;![CDATA[&lt;p&gt;While making some updates to my X profile, I noticed the link displayed on my bio isn't the same one I configured in the form. Instead it's a t.co shortened link. I get I'm just a free user on the platform but that seems like an annoying change. I haven't found much details about the change, but I'd hope paying subscribers get the &amp;quot;perk&amp;quot; of having control over how the link on their bio displays.&lt;/p&gt;
-&lt;p&gt;&lt;img src="http://i0.kym-cdn.com/entries/icons/original/000/019/304/old.jpg" alt="Simpsons Old Man Yells at Cloud Meme" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://i0.kym-cdn.com/entries/icons/original/000/019/304/old.jpg" class="img-fluid" alt="Simpsons Old Man Yells at Cloud Meme" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/no-link-in-bio-x-twitter</link>
       <guid>https://www.luisquintanilla.me/feed/no-link-in-bio-x-twitter</guid>
@@ -2257,7 +2257,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>I'm on Bluesky</title>
       <description>&lt;![CDATA[&lt;p&gt;I'm now on Bluesky. Follow me at &lt;a href="https://bsky.app/profile/lqdev.me"&gt;@lqdev.me&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/bsky-profile.png" alt="Bluesky web app showing lqdev.me profile" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/bsky-profile.png" class="img-fluid" alt="Bluesky web app showing lqdev.me profile" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/now-on-bluesky</link>
       <guid>https://www.luisquintanilla.me/feed/now-on-bluesky</guid>
@@ -2277,7 +2277,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>NYC Sunrise</title>
       <description>&lt;![CDATA[&lt;p&gt;I was lucky to snap this picture the other day.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/nyc-sunrise.jpg" alt="Sun rising behind NYC skyline" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/nyc-sunrise.jpg" class="img-fluid" alt="Sun rising behind NYC skyline" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/nyc-sunrise-fall-2024</link>
       <guid>https://www.luisquintanilla.me/feed/nyc-sunrise-fall-2024</guid>
@@ -2296,15 +2296,15 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     </item>
     <item>
       <title>One more blog post for 2023?</title>
-      <description>&lt;![CDATA[&lt;p&gt;Update from &lt;a href="/feed/weblogging-rewind-2023"&gt;yesterday&lt;/a&gt;. 2023 is still not over. I think I can squeeze out at least one more post for the year :slightly_smiling_face:.&lt;/p&gt;
-&lt;h2 id="blog-post-counts"&gt;Blog post counts&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;p&gt;Update from &lt;a href="/feed/weblogging-rewind-2023"&gt;yesterday&lt;/a&gt;. 2023 is still not over. I think I can squeeze out at least one more post for the year 🙂.&lt;/p&gt;
+&lt;h2&gt;Blog post counts&lt;/h2&gt;
 &lt;p&gt;Year&lt;/p&gt;
 &lt;p&gt;Count&lt;/p&gt;
 &lt;p&gt;2023&lt;/p&gt;
 &lt;p&gt;7&lt;/p&gt;
 &lt;p&gt;2022&lt;/p&gt;
 &lt;p&gt;7&lt;/p&gt;
-&lt;h2 id="note-counts"&gt;Note counts&lt;/h2&gt;
+&lt;h2&gt;Note counts&lt;/h2&gt;
 &lt;p&gt;Year&lt;/p&gt;
 &lt;p&gt;Count&lt;/p&gt;
 &lt;p&gt;2023&lt;/p&gt;
@@ -2368,7 +2368,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;So how do you overcome these challenges? By using your domain.&lt;/p&gt;
 &lt;p&gt;A few months ago I wrote about &lt;a href="/posts/static-website-redirects"&gt;owning your links&lt;/a&gt;. The general concept of owning your links is, using your domain to redirect to other properties and profiles you own. For example, instead of telling people to visit my Twitter profile at &lt;em&gt;twitter.com/ljquintanilla&lt;/em&gt;, I can instead point them to &lt;em&gt;lqdev.me/twitter&lt;/em&gt;. Not only does my domain become the source of truth, but in general it's easier to remember compared to usernames and proprietary domains. Since my site is statically generated, I own my links by using &lt;a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta#attr-http-equiv"&gt;http-equiv meta tags&lt;/a&gt;. Although the only job for these pages is to redirect to the specified site, in the end they are still HTML pages. This means, I can embed any other HTML I want, including &lt;code&gt;rel=me&lt;/code&gt; links. By including the &lt;code&gt;rel=me&lt;/code&gt; link in the redirect page, you satisfy the requirements of applications like Mastodon because that's the page they'll land on before being redirected to the target site. As a result, I can verify my GitHub, Twitter, or any other online property I want with Mastodon using my own domain without having to make any changes or overcome any of the challenges imposed by those other platforms. What you end up with is something like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/own-your-links-domain-verification/mastodon-profile-verified-links.png" alt="Screenshot of lqdev profile verified links" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/own-your-links-domain-verification/mastodon-profile-verified-links.png" class="img-fluid" alt="Screenshot of lqdev profile verified links" /&gt;&lt;/p&gt;
 &lt;p&gt;Before signing off, I'll note that this isn't a perfect solution and technically anyone could do the same thing on their own domain in an attempt to impersonate you, so just be aware of that.&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/own-your-links-domain-verification</link>
@@ -2383,7 +2383,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;After spending about an hour on it today, I was able deploy and Owncast server to Azure Container Apps using the &lt;a href="https://learn.microsoft.com/en-us/azure/container-apps/vnet-custom?tabs=bash&amp;amp;pivots=azure-portal"&gt;virtual network environment setup tutorial&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The hardest part was figuring out that I needed to set up a virtual network in order to publicly expose multiple ports.&lt;/p&gt;
 &lt;p&gt;Once the server was up and running, configuring OBS was relatively easy as well.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/owncast-obs-azure-container-apps-deployment.png" alt="AI Generated image of two aliens enjoying a beer in the middle of the desert by a campfire on a starry night" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/owncast-obs-azure-container-apps-deployment.png" class="img-fluid" alt="AI Generated image of two aliens enjoying a beer in the middle of the desert by a campfire on a starry night" /&gt;&lt;/p&gt;
 &lt;p&gt;I'll try to put together a more detailed writeup so I remember what I did for next time as well as help others who may be interested in self-hosting their own livestream server.&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/owncast-azure-container-apps-deployment</link>
@@ -2467,7 +2467,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;At the end of last year, I &lt;a href="/posts/website-metrics-github-actions/"&gt;created an automated script to tally some basic stats about my posts&lt;/a&gt; on this site.&lt;/p&gt;
 &lt;p&gt;Last month, due to user error, it &lt;a href="/feed/post-statistics-gh-actions-working-almost/"&gt;triggered but failed to run susccessfully&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This month though, it ran as expected!&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://github.com/lqdev/luisquintanilla.me/assets/11130940/888121b7-5e0d-45ca-a688-b46039bdb45e" alt="Image of Successful GitHub Actions Workflow Run" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/lqdev/luisquintanilla.me/assets/11130940/888121b7-5e0d-45ca-a688-b46039bdb45e" class="img-fluid" alt="Image of Successful GitHub Actions Workflow Run" /&gt;&lt;/p&gt;
 &lt;p&gt;Some highlights:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;I'm posting more notes (short micro-blog style content). Through January, I'm already over 30% of total notes posted last year which is what I'm working towards.&lt;/li&gt;
@@ -2483,7 +2483,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <title>GitHub Actions workflow for post metrics almost works</title>
       <description>&lt;![CDATA[&lt;p&gt;A few days ago, I posted about a script I wrote. The &lt;a href="/posts/website-metrics-github-actions/"&gt;script computes computes post metrics on my website&lt;/a&gt;. That's what I used to author my &lt;a href="/feed/weblogging-rewind-2023-continued/"&gt;(We)blogging Rewind 2023&lt;/a&gt; posts. Because I want the script to run at periodic intervals, I automated the process using GitHub Actions.&lt;/p&gt;
 &lt;p&gt;The script is scheduled to run on the first of every month and I'm happy to report that it works! Kind of.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://github.com/lqdev/luisquintanilla.me/assets/11130940/bd413326-cc7b-44f7-a287-4580f1268cb2" alt="Image of an unsuccessful run of a GitHub Actions workflow" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/lqdev/luisquintanilla.me/assets/11130940/bd413326-cc7b-44f7-a287-4580f1268cb2" class="img-fluid" alt="Image of an unsuccessful run of a GitHub Actions workflow" /&gt;&lt;/p&gt;
 &lt;p&gt;The GitHub Action was successfully triggered at the defined interval. Unfortunately, the script failed due to a &lt;a href="https://github.com/lqdev/luisquintanilla.me/commit/1296c3f929e3ad2834a8b7963c9ed66421a4fb8a"&gt;user error which I've since fixed&lt;/a&gt;. Come February 1st, everything should work as expected though, so I'm happy about that.&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/post-statistics-gh-actions-working-almost</link>
@@ -2630,8 +2630,8 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     </item>
     <item>
       <title>Praying for OSU downfall</title>
-      <description>&lt;![CDATA[&lt;p&gt;Same... :pray:&lt;/p&gt;
-&lt;blockquote&gt;
+      <description>&lt;![CDATA[&lt;p&gt;Same... 🙏&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
 &lt;p&gt;Praying on Ohio State's downfall&lt;/p&gt;— Barstool Penn State (&lt;a href="https://twitter.com/PSUBarstool"&gt;@PSUBarstool&lt;/a&gt;) September 3, 2022&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Source: &lt;a href="https://twitter.com/PSUBarstool/status/1566230451378950144"&gt;https://twitter.com/PSUBarstool/status/1566230451378950144&lt;/a&gt;&lt;/p&gt;
@@ -2645,7 +2645,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <description>&lt;![CDATA[&lt;p&gt;Brain dumping a bunch of half-formed thoughts.&lt;/p&gt;
 &lt;p&gt;Over the past few days, I've been thinking about different forms of sharing content. With the &lt;a href="https://www.nytimes.com/2023/04/19/technology/personaltech/tiktok-twitter-facebook-social.html"&gt;shifts in social media towards smaller, more private communities&lt;/a&gt;, is it possible to get the best of feeds for sharing updates and information but in a smaller more intimate way?&lt;/p&gt;
 &lt;p&gt;Here's a few of the options I came up with:&lt;/p&gt;
-&lt;h2 id="journals"&gt;Journals&lt;/h2&gt;
+&lt;h2&gt;Journals&lt;/h2&gt;
 &lt;p&gt;Examples: &lt;a href="https://dayoneapp.com/guides/tips-and-tutorials/shared-journals/"&gt;Day One Shared Journals&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Pros
@@ -2662,7 +2662,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="e-mail"&gt;E-mail&lt;/h2&gt;
+&lt;h2&gt;E-mail&lt;/h2&gt;
 &lt;p&gt;Examples: Newsletters, Mailing lists&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Pros
@@ -2682,7 +2682,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="messaging-apps"&gt;Messaging Apps&lt;/h2&gt;
+&lt;h2&gt;Messaging Apps&lt;/h2&gt;
 &lt;p&gt;Examples: Discord, Matrix, IRC, Slack, Signal&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Pros
@@ -2699,7 +2699,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="private-blogs"&gt;Private blogs&lt;/h2&gt;
+&lt;h2&gt;Private blogs&lt;/h2&gt;
 &lt;p&gt;Examples: &lt;a href="https://wordpress.com/go/tutorials/private-blog-wordpress-com/"&gt;Private WordPress Blog&lt;/a&gt;, &lt;a href="https://havenweb.org/"&gt;Haven&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Pros
@@ -2715,7 +2715,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="fediverse"&gt;Fediverse&lt;/h2&gt;
+&lt;h2&gt;Fediverse&lt;/h2&gt;
 &lt;p&gt;Examples: Mastodon, PixelFed, PeerTube&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Pros
@@ -2731,7 +2731,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="p2p-social-media"&gt;P2P Social Media&lt;/h2&gt;
+&lt;h2&gt;P2P Social Media&lt;/h2&gt;
 &lt;p&gt;Examples: &lt;a href="https://scuttlebutt.nz/"&gt;ScuttleButt&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Pros
@@ -2749,7 +2749,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="forums"&gt;Forums&lt;/h2&gt;
+&lt;h2&gt;Forums&lt;/h2&gt;
 &lt;p&gt;Examples: &lt;a href="https://discourse.nixos.org/"&gt;NixOS Forum&lt;/a&gt;, &lt;a href="https://lemmy.world/"&gt;Lemmy&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Pros
@@ -2765,7 +2765,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="rss-feeds"&gt;RSS feeds&lt;/h2&gt;
+&lt;h2&gt;RSS feeds&lt;/h2&gt;
 &lt;p&gt;This is a variation on the private blog. Except instead of having a website that displays the posts, you just have an RSS feed.&lt;/p&gt;
 &lt;p&gt;Examples: &lt;a href="https://daverupert.com/2018/01/welcome-to-rss-club/"&gt;RSS-Only Club&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -2811,7 +2811,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <title>Penn State vs Ohio State</title>
       <description>&lt;![CDATA[&lt;p&gt;&lt;strong&gt;11:58&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Hoping for a good game.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://media.giphy.com/media/GCSIwtwqAMBTq/giphy.gif" alt="Michael Scott ready to get hurt again GIF" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/GCSIwtwqAMBTq/giphy.gif" class="img-fluid" alt="Michael Scott ready to get hurt again GIF" /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;12:22&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Defense is clutch. As always in big games, they'll have to work overtime just to keep the offense in the game.&lt;/p&gt;
@@ -2820,24 +2820,24 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Progress...at least there was no turnover on the last series.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;12:59&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://media.giphy.com/media/b6iVj3IM54Abm/giphy.gif" alt="Undetaker rising from dead GIF" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/b6iVj3IM54Abm/giphy.gif" class="img-fluid" alt="Undetaker rising from dead GIF" /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;13:16&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://media.giphy.com/media/y2i2oqWgzh5ioRp4Qa/giphy.gif" alt="Football player they had us in first half GIF" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/y2i2oqWgzh5ioRp4Qa/giphy.gif" class="img-fluid" alt="Football player they had us in first half GIF" /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;14:53&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://media.giphy.com/media/4bWWKmUnn5E4/giphy.gif" alt="Sweating GIF" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/4bWWKmUnn5E4/giphy.gif" class="img-fluid" alt="Sweating GIF" /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;15:09&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Going for it on 4th &amp;amp; 2 feels like that 4th &amp;amp; 5 from a few years ago.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;15:30&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Defense showed up today. Can't expect to win a game with 3 turnovers.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://media.giphy.com/media/WoQmhbWcr7LoODs8a4/giphy.gif" alt="Spongebob head out GIF" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/WoQmhbWcr7LoODs8a4/giphy.gif" class="img-fluid" alt="Spongebob head out GIF" /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;15:33&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;This is hard to watch.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://media.giphy.com/media/qgri3D9sTwCUGMcT8L/giphy.gif" alt="DJ Khaled Another One GIF" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/qgri3D9sTwCUGMcT8L/giphy.gif" class="img-fluid" alt="DJ Khaled Another One GIF" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/psu-osu-2022</link>
       <guid>https://www.luisquintanilla.me/feed/psu-osu-2022</guid>
@@ -2862,7 +2862,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Nasty KO - Ramirez vs. Benitez</title>
       <description>&lt;![CDATA[&lt;p&gt;Ramirez dominated most of the fight but that knockout was insane. Watching it live, it wasn't easy to see but in the replay, Ramirez exploded from the botttom and nearly took Benitez' head off. He wasn't out cold but he got his bell rung and just didn't make the count. Still, I hope he's okay. He took a beating the rest of the fight.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/shorts/GO3ogPThnIY" title="Ramirez vs. Benitez Knowckout"&gt;&lt;img src="https://i.ytimg.com/vi/GO3ogPThnIY/frame0.jpg" alt="Ramirez vs. Benitez Knowckout" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/shorts/GO3ogPThnIY" title="Ramirez vs. Benitez Knowckout"&gt;&lt;img src="https://i.ytimg.com/vi/GO3ogPThnIY/frame0.jpg" class="img-fluid" alt="Ramirez vs. Benitez Knowckout" /&gt;&lt;/a&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/ramirez-benitez-fight</link>
       <guid>https://www.luisquintanilla.me/feed/ramirez-benitez-fight</guid>
@@ -2891,7 +2891,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>RSS for new event notifications</title>
       <description>&lt;![CDATA[&lt;p&gt;After my post on &lt;a href="/feed/rss-community-calendars"&gt;Shared calendars and RSS&lt;/a&gt; I kept thinking about what else you can get out of sharing a calendar using RSS. What I didn't see immediately is the main use case of RSS, though I did mention it as a drawback.&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
 &lt;p&gt;The main drawbacks I see are that I can't get notifications or see it in my calendar.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Actually, with RSS, I &lt;em&gt;can&lt;/em&gt; get notifications when a new event has been added to the calendar. With iCal for example, when a new event is added to the calendar, it'll automatically be populated in my calendar client. However, I won't get a notification that a new event has been added. Conversely, with RSS, I won't see it in my calendar client but I will get a notification in my RSS reader.&lt;/p&gt;
@@ -2906,7 +2906,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <description>&lt;![CDATA[&lt;p&gt;I just came across a new use for RSS - shared calendars. Well, not exactly sharing calendars in RSS format. While I have seen calendars in RSS format as I'll mention later in this post, I think there's enough downsides that make this impractical. However, for discoverability, there's some RSS patterns that shared calendars could benefit from.&lt;/p&gt;
 &lt;p&gt;While reading a &lt;a href="https://doc.searls.com/2023/11/09/datepress/"&gt;recent post on Doc Searls' blog&lt;/a&gt; it got me thinking about using public calendars for sharing community events. By leveraging iCal or CalDav, this could be a good alternative to current solutions like Facebook Events or Meetup. It could also be a great way to foster interoperability. There's still the discoverability problem, but platforms like Meetup and Facebook Events could enable subscribing to shared public calendars.&lt;/p&gt;
 &lt;p&gt;This sent me down a search to see whether others were using shared calendars, similar to &lt;a href="https://bsquarebulletin.com/test-calendar/?r34icsym=202312"&gt;The Big Calendar&lt;/a&gt;. It was nice to see that Penn State has shared calendars for their various sports. That shouldn't be surprising. As a university, they already share their academic calendars. The part that I found surprising though was that RSS was one of the options.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/rss-community-calendars.png" alt="Penn State Subscription Calendar Subscriptions" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/rss-community-calendars.png" class="img-fluid" alt="Penn State Subscription Calendar Subscriptions" /&gt;&lt;/p&gt;
 &lt;p&gt;Downloading the RSS feed enabled me to import it into my feed reader and view it there. I'd prefer if instead of downloading the RSS feed as a file, they just provided the link so I could copy and paste it into my feed reader. However, it's still nice that just like podcasts and YouTube feeds, I can now also see Penn State athletic events in my feed.&lt;/p&gt;
 &lt;p&gt;I'm not sure what the benefit of subscribing to this feed via RSS as opposed to the calendar itself has. The main drawbacks I see are that I can't get notifications or see it in my calendar. I also don't know if changes and updates to events also propagate to the RSS feed. That's why I'd prefer to just subscribe to the calendar directly.&lt;/p&gt;
 &lt;p&gt;Going back to the broader topic of shared calendars and discoverability mentioned in the &lt;a href="https://bsquarebulletin.com/test-calendar/?r34icsym=202312"&gt;DataPress proposal&lt;/a&gt; for community calendars, you could imagine a solution similar to how websites can make their &lt;a href="https://blog.jim-nielsen.com/2021/automatically-discoverable-rss-feeds/"&gt;RSS feeds discoverable&lt;/a&gt;. As a calendar and community maintainer, you could post the link to your shared calendars on your website. As a community member, you'd just need to point your calendar client to the respective website's domain (i.e. gopsusports.com) and your client would automatically import the shared calendars. This is how shared calendars work today. The difference is, you don't need the exact link to the calendar, you just need the website domain. The calendar client is what handles the discovery and import process.&lt;/p&gt;
@@ -2929,7 +2929,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Podcast management with RSS and VLC</title>
       <description>&lt;![CDATA[&lt;p&gt;I've written before about how &lt;a href="/posts/rediscovering-rss-user-freedom.html"&gt;versatile the RSS protocol is for publishing and consuming content&lt;/a&gt;. Podcasts are one of the many media types that largely rely on RSS, making it easy to subscribe and manage using an RSS client of your choice. Like RSS, &lt;a href="https://www.videolan.org/vlc/"&gt;VLC&lt;/a&gt; is versatile in the type of media it can play. When you combine the two, you're able to stay updated on the latest episodes from your favorite podcasts using the RSS reader of your choice and use the episode's URL to stream the audio in VLC.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/140527726-6635cbf3-8082-45d1-9b51-a4e136168abf.png" alt=".NET Rocks podcast RSS feed and VLC playing" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/140527726-6635cbf3-8082-45d1-9b51-a4e136168abf.png" class="img-fluid" alt=".NET Rocks podcast RSS feed and VLC playing" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/rss-vlc-podcast-management</link>
       <guid>https://www.luisquintanilla.me/feed/rss-vlc-podcast-management</guid>
@@ -2941,7 +2941,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;While trying to install the Element Desktop client on my Spandragon X Elite Windows device, I quickly realized &lt;a href="https://github.com/element-hq/element-desktop/issues/650"&gt;you can't because of an issue with Electron&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;WSL is supported on ARM64 Windows devices. This means, it should also support GUI apps.&lt;/p&gt;
 &lt;p&gt;I decided to try and install the Element Desktop client for Linux in WSL and this was the result!&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/element-linux-wsl.png" alt="Screenshot of Element Desktop Login Screen" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/element-linux-wsl.png" class="img-fluid" alt="Screenshot of Element Desktop Login Screen" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/running-linux-gui-apps-windows-wsl-amazing</link>
       <guid>https://www.luisquintanilla.me/feed/running-linux-gui-apps-windows-wsl-amazing</guid>
@@ -3023,7 +3023,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Only 365 more days until next halloween</title>
       <description>&lt;![CDATA[&lt;p&gt;That's a wrap for spooky season. It was unseasonably warm so it hasn't really felt like fall.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/365-days-nightmare-before-christmas.jpg" alt="Nightmare Before Christmas Mayor Speaking Into Loudspeaker with Caption" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/365-days-nightmare-before-christmas.jpg" class="img-fluid" alt="Nightmare Before Christmas Mayor Speaking Into Loudspeaker with Caption" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/spooky-season-2024-over</link>
       <guid>https://www.luisquintanilla.me/feed/spooky-season-2024-over</guid>
@@ -3031,7 +3031,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     </item>
     <item>
       <title>Why does Spotify need my full address?</title>
-      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="/images/feed/spotify-missing-information.png" alt="Pop-up requesting address information in Spotify Android app" /&gt;&lt;/p&gt;
+      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="/images/feed/spotify-missing-information.png" class="img-fluid" alt="Pop-up requesting address information in Spotify Android app" /&gt;&lt;/p&gt;
 &lt;p&gt;Why?&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/spotify-address-missing-info</link>
@@ -3041,7 +3041,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Spotify Wrapped 2023</title>
       <description>&lt;![CDATA[&lt;p&gt;Kind of late, but here's my Spotify Wrapped for the year. No idea how Eslabon Armado snuck in there at the end. It'd be cool if I was also able to get data from my MP3 player which is where I mainly listen to music. Though the artists wouldn't change much.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-1.png" alt="Spotify Wrapped 2023 Summary" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-1.png" class="img-fluid" alt="Spotify Wrapped 2023 Summary" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/spotify-wrapped-2023</link>
       <guid>https://www.luisquintanilla.me/feed/spotify-wrapped-2023</guid>
@@ -3058,7 +3058,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;/ol&gt;
 &lt;p&gt;There's a reason I purposefully haven't linked Spotify to other accounts.&lt;/p&gt;
 &lt;p&gt;I know there's probably hundreds of worse ways my data is being used I don't know about. This one though was hard to miss and a sad reminder that often you don't learn about how your data is being used until after the fact. Cases like this are not really a big deal. So what if you know I was going through a &amp;quot;Witchy Jam Band Phsychedelic Rock&amp;quot; phase in September? Where it does matter though is when it involves more personal and sensitive data. Again, because we don't realize it until after the fact, it's not until then that we learn what we're giving up when we make the simple, often uninformed, decision to select &amp;quot;I Agree&amp;quot;.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://wrappedaipodcast.spotifycdn.com/bDEn3i-uWoItOTYMmcRcNGKBqZ18M9ygFTAY0X8YHXk.mp4" alt="AI Genereated Spotify Wrapped Podcast" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://wrappedaipodcast.spotifycdn.com/bDEn3i-uWoItOTYMmcRcNGKBqZ18M9ygFTAY0X8YHXk.mp4" class="img-fluid" alt="AI Genereated Spotify Wrapped Podcast" /&gt;&lt;/p&gt;
 &lt;!-- &lt;video controls="" autoplay="" name="media"&gt;&lt;source src="https://wrappedaipodcast.spotifycdn.com/bDEn3i-uWoItOTYMmcRcNGKBqZ18M9ygFTAY0X8YHXk.mp4" type="video/mp4"&gt;&lt;/video&gt; --&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/spotify-wrapped-2024-podcast-notebook-lm</link>
@@ -3069,10 +3069,10 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <title>Spotify Wrapped 2024</title>
       <description>&lt;![CDATA[&lt;p&gt;It's finally here!&lt;/p&gt;
 &lt;p&gt;I can't say I'm too surprised by the results.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-2024-0.png" alt="Spotify Wrapped Screenshot Summary of top artists, songs, and listening minutes" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-2024-0.png" class="img-fluid" alt="Spotify Wrapped Screenshot Summary of top artists, songs, and listening minutes" /&gt;&lt;/p&gt;
 &lt;p&gt;Compared to last year, I nearly doubled my listening minutes. Also, none of the artists from the &lt;a href="/feed/spotify-wrapped-2023"&gt;previous year&lt;/a&gt; made it onto this list. Although, I'm not sure how Buffalo Springfield worked its way into the list of top artists.&lt;/p&gt;
 &lt;p&gt;I love how my listening habits from September are described, &amp;quot;Witchy Jam Band Psychedelic Rock&amp;quot;.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-2024-1.png" alt="Spotify Wrapped Screenshot Listening Habits" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/spotify-wrapped-2024-1.png" class="img-fluid" alt="Spotify Wrapped Screenshot Listening Habits" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/spotify-wrapped-2024</link>
       <guid>https://www.luisquintanilla.me/feed/spotify-wrapped-2024</guid>
@@ -3094,7 +3094,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Okay. I think I got it. Utah like many of the Pac-12 teams is a passing team. Northwestern is in the &lt;a href="https://www.foxsports.com/articles/college-football/2023-college-football-defense-rankings-team-pass-and-rush-stats"&gt;top 25 passing defenses&lt;/a&gt;. So I guess this is the toughest defense they've faced?&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;22:01&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;7-7!&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://media.giphy.com/media/j6uK36y32LxQs/giphy.gif" alt="Jim Carrey GIF Dumb and Dumber with caption &amp;quot;So you're telling me there's a chance&amp;quot;" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/j6uK36y32LxQs/giphy.gif" class="img-fluid" alt="Jim Carrey GIF Dumb and Dumber with caption &amp;quot;So you're telling me there's a chance&amp;quot;" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;22:16&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Armchair quarterbacking, but at 44% 4th down conversions, I don't think you go for it on 4th and 2 in the middle of the field. No matter how well your defense is playing and going against a backup quarterback.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;22:25&lt;/strong&gt;&lt;/p&gt;
@@ -3110,16 +3110,16 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <title>St. Chroma is a great intro</title>
       <description>&lt;![CDATA[&lt;p&gt;I love the album overall but St. Chroma is a great intro that sets up the rest of the album.&lt;/p&gt;
 &lt;p&gt;Some of my favorite parts from the track&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
 &lt;p&gt;You are the light. It's not on you, it's in you. Don't you ever in your motherfucking life dim your light for nobody.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
 &lt;p&gt;P said I could do it too, and boy, did I believe him. I built a path to freedom 'cause them words that he said. Give a fuck about tradition, stop impressin' the dead&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
 &lt;p&gt;Don't you ever stop bein' who you are and dimmin' your light for none of these motherfuckers out here&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=hCcwCv3G1FQ" title="Album cover of Chromakopia - Tyler The Creator in a Mask"&gt;&lt;img src="http://img.youtube.com/vi/hCcwCv3G1FQ/0.jpg" alt="Album cover of Chromakopia - Tyler The Creator in a Mask" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=hCcwCv3G1FQ" title="Album cover of Chromakopia - Tyler The Creator in a Mask"&gt;&lt;img src="http://img.youtube.com/vi/hCcwCv3G1FQ/0.jpg" class="img-fluid" alt="Album cover of Chromakopia - Tyler The Creator in a Mask" /&gt;&lt;/a&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/st-chroma-chromakopia</link>
       <guid>https://www.luisquintanilla.me/feed/st-chroma-chromakopia</guid>
@@ -3127,7 +3127,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     </item>
     <item>
       <title>Stevenson vs. Harutyunyan</title>
-      <description>&lt;![CDATA[&lt;h2 id="scorecard-unofficial"&gt;Scorecard (Unofficial)&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Scorecard (Unofficial)&lt;/h2&gt;
 &lt;p&gt;Rd&lt;/p&gt;
 &lt;p&gt;1&lt;/p&gt;
 &lt;p&gt;2&lt;/p&gt;
@@ -3195,7 +3195,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Basically, if it has an RSS feed, I subscribe to it there.&lt;/p&gt;
 &lt;p&gt;Today I noticed I'm subscribed over 1000 feeds (1042 to be exact)!&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://media.giphy.com/media/YmQLj2KxaNz58g7Ofg/giphy.gif" alt="GIF Matthew McCounaghey on Wolf of Wall Street with a caption that says &amp;quot;You gotta pump those up, those are rookie numbers in this racket&amp;quot;" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/YmQLj2KxaNz58g7Ofg/giphy.gif" class="img-fluid" alt="GIF Matthew McCounaghey on Wolf of Wall Street with a caption that says &amp;quot;You gotta pump those up, those are rookie numbers in this racket&amp;quot;" /&gt;&lt;/p&gt;
 &lt;p&gt;Over 300 of them are personal blogs. This has taken a few years to curate. I remember my reader being empty when I first started. As I've read &lt;a href="https://peopleandblogs.com/"&gt;newsletters and personal blogs&lt;/a&gt;, I've followed things they've linked to which is where I find even more feeds to subscribe to, especially when &lt;a href="https://rknight.me/blog/please-expose-your-rss/"&gt;they're easy to find&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;There's some pruning that needs to happen at this point whether that's because of broken links or I just don't read those publications often. However, I find myself usually &lt;a href="/feed/simplifying-feed-publishing-workflow"&gt;checking in on personal blogs and newsletters on a daily basis&lt;/a&gt; so I think many of those will stay.&lt;/p&gt;
 ]]&gt;</description>
@@ -3218,7 +3218,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Blogging on the Surface Duo with github.dev</title>
       <description>&lt;![CDATA[&lt;p&gt;Lately I've been using github.dev to author posts and make light edits on this site. One use case where it's come extremely handy has been authoring content, specifically these microblog-like posts from my Surface Duo. Instead of opening the laptop, I can open up my Surface Duo and visit my site's repo through github.dev. When I orient the device in landscape mode I have one screen display the VS Code-like web environment while the other screen displays the keyboard. Snippets, version control, extensions, and themes all carry over making the experience consistent. Committing changes through the version control utilities immediately kicks off the GitHub Action to build and publish the site with the latest changes. Pairing the GitHub online editor environment with the Duo's dual-screen form factor showcases the productivity and convenience both of these products provide.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/139595618-a2f905dd-e3a0-4f34-8702-2350f548d8c7.png" alt="Microblogging on Surface Duo in github.dev" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/139595618-a2f905dd-e3a0-4f34-8702-2350f548d8c7.png" class="img-fluid" alt="Microblogging on Surface Duo in github.dev" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev</link>
       <guid>https://www.luisquintanilla.me/feed/surface-duo-blogging-github-dev</guid>
@@ -3260,7 +3260,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     </item>
     <item>
       <title>Surrender to the quantum conscience</title>
-      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="../images/feed/surrender-quantum-conscience.jpg" alt="Writing on railing &amp;quot;surrender to the quantum conscience&amp;quot;" /&gt;&lt;/p&gt;
+      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="../images/feed/surrender-quantum-conscience.jpg" class="img-fluid" alt="Writing on railing &amp;quot;surrender to the quantum conscience&amp;quot;" /&gt;&lt;/p&gt;
 &lt;p&gt;I'm trying.&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/surrender-quantum-conscience</link>
@@ -3269,9 +3269,9 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     </item>
     <item>
       <title>Teofimo vs. Claggett - June 29 2024</title>
-      <description>&lt;![CDATA[&lt;h2 id="ring-walk"&gt;Ring Walk&lt;/h2&gt;
+      <description>&lt;![CDATA[&lt;h2&gt;Ring Walk&lt;/h2&gt;
 &lt;p&gt;Didn't see Claggett's but Lopez ring walk was a little cringe.&lt;/p&gt;
-&lt;h2 id="scorecard-unofficial"&gt;Scorecard (Unofficial)&lt;/h2&gt;
+&lt;h2&gt;Scorecard (Unofficial)&lt;/h2&gt;
 &lt;p&gt;Round&lt;/p&gt;
 &lt;p&gt;1&lt;/p&gt;
 &lt;p&gt;2&lt;/p&gt;
@@ -3311,31 +3311,31 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;9&lt;/p&gt;
 &lt;p&gt;9&lt;/p&gt;
 &lt;p&gt;9&lt;/p&gt;
-&lt;h2 id="rd-1"&gt;Rd 1&lt;/h2&gt;
+&lt;h2&gt;Rd 1&lt;/h2&gt;
 &lt;p&gt;Claggett put more pressure but Lopez got in the better shots and looked in control even boxing off his back foot.&lt;/p&gt;
-&lt;h2 id="rd-2"&gt;Rd 2&lt;/h2&gt;
+&lt;h2&gt;Rd 2&lt;/h2&gt;
 &lt;p&gt;Claggett still putting in a lot of pressure but Teofimo still looks in control.&lt;/p&gt;
-&lt;h2 id="rd-3"&gt;Rd 3&lt;/h2&gt;
+&lt;h2&gt;Rd 3&lt;/h2&gt;
 &lt;p&gt;Teofimo still in control. Claggett has some damage to the face but still keeps going forward.&lt;/p&gt;
-&lt;h2 id="rd-4"&gt;Rd 4&lt;/h2&gt;
+&lt;h2&gt;Rd 4&lt;/h2&gt;
 &lt;p&gt;Some nasty shots from Teofimo but Claggett still keeps coming forward.&lt;/p&gt;
-&lt;h2 id="rd-5"&gt;Rd 5&lt;/h2&gt;
+&lt;h2&gt;Rd 5&lt;/h2&gt;
 &lt;p&gt;Solid back and forth&lt;/p&gt;
-&lt;h2 id="rd-6"&gt;Rd 6&lt;/h2&gt;
+&lt;h2&gt;Rd 6&lt;/h2&gt;
 &lt;p&gt;Claggett is solid. Making Teofimo work and he's got some wear on his face.&lt;/p&gt;
-&lt;h2 id="rd-7"&gt;Rd 7&lt;/h2&gt;
-&lt;p&gt;PC battery died :)&lt;/p&gt;
-&lt;h2 id="rd-8"&gt;Rd 8&lt;/h2&gt;
+&lt;h2&gt;Rd 7&lt;/h2&gt;
+&lt;p&gt;PC battery died 😃&lt;/p&gt;
+&lt;h2&gt;Rd 8&lt;/h2&gt;
 &lt;p&gt;Big uppercuts from Teofimo but Claggett keeps coming forward.&lt;/p&gt;
-&lt;h2 id="rd-9"&gt;Rd 9&lt;/h2&gt;
+&lt;h2&gt;Rd 9&lt;/h2&gt;
 &lt;p&gt;Claggett keeps coming forward and he landed some good shots.&lt;/p&gt;
-&lt;h2 id="rd-10"&gt;Rd 10&lt;/h2&gt;
+&lt;h2&gt;Rd 10&lt;/h2&gt;
 &lt;p&gt;Teofimo stole the round at the end. Not like he needed to. He got the better shots. Sad to see because Claggett is putting the pressure but not doing as much damage.&lt;/p&gt;
-&lt;h2 id="rd-11"&gt;Rd 11&lt;/h2&gt;
+&lt;h2&gt;Rd 11&lt;/h2&gt;
 &lt;p&gt;Much of the same. Claggett reguses to go away. Sadly, he hasn't done enough that if / when it goes the distance, he'll lose. He needs a knockout and it looks unlikely.&lt;/p&gt;
-&lt;h2 id="rd-12"&gt;Rd 12&lt;/h2&gt;
+&lt;h2&gt;Rd 12&lt;/h2&gt;
 &lt;p&gt;Teofimo still looked fresh in this one. Claggett still kept the pressure though&lt;/p&gt;
-&lt;h2 id="verdict"&gt;Verdict&lt;/h2&gt;
+&lt;h2&gt;Verdict&lt;/h2&gt;
 &lt;p&gt;I'd be surprised if Lopez didn't win. Claggett showed a lot of heart and made Teofimo uncomfortable. Sadly it wasn't enough though.&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/teofimo-claggett-fight</link>
@@ -3345,7 +3345,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>TOSDR: Terms of Service CliffNotes</title>
       <description>&lt;![CDATA[&lt;p&gt;I recently came accross the &lt;a href="https://tosdr.org/"&gt;Terms of Service, Didn't Read (TOSDR)&lt;/a&gt; website. Like most people, I'm guilty of clicking &amp;quot;I have read and agree to the terms of service&amp;quot; without actually doing so. TOSDR simplifies terms of service documents by highlighting the main points for many popular services. I'm not sure how maintenance and the frequency of that maintenance work. There's a rating systems which I also am not sure how it works. However, you are provided with the documents that were used to come up with the ratings and summaries, so you can look into it yourself. Overall, I think it's an incredibly useful tool to make sense of how your data is managed across these platforms.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/142041533-e79dc8f4-4ba2-42b3-bbfd-e2becab8f357.png" alt="Duck Duck Go and YouTube TOSDR service comparisons" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/142041533-e79dc8f4-4ba2-42b3-bbfd-e2becab8f357.png" class="img-fluid" alt="Duck Duck Go and YouTube TOSDR service comparisons" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/terms-of-service-cliffnotes-tosdr</link>
       <guid>https://www.luisquintanilla.me/feed/terms-of-service-cliffnotes-tosdr</guid>
@@ -3354,7 +3354,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Terrifier 2 - 100/10</title>
       <description>&lt;![CDATA[&lt;p&gt;&lt;a href="https://www.terrifier2themovie.com/home/"&gt;Terrifier 2&lt;/a&gt; did not disappoint. 100/10. Can't wait for Terrifier 3.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://media.tenor.com/029LgfMnsisAAAAM/applause-leonardo-dicaprio.gif" alt="Leo DiCaprio clapping" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.tenor.com/029LgfMnsisAAAAM/applause-leonardo-dicaprio.gif" class="img-fluid" alt="Leo DiCaprio clapping" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/terrifier-2-100-10</link>
       <guid>https://www.luisquintanilla.me/feed/terrifier-2-100-10</guid>
@@ -3363,7 +3363,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Terrifier 2</title>
       <description>&lt;![CDATA[&lt;p&gt;I know what I'm doing October 6th.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://yewtu.be/embed/6KkONLf_ZKU" title="Terrifier 2 Trailer"&gt;&lt;img src="https://yewtu.be/vi/6KkONLf_ZKU/maxres.jpg" alt="Terrifier 2" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://yewtu.be/embed/6KkONLf_ZKU" title="Terrifier 2 Trailer"&gt;&lt;img src="https://yewtu.be/vi/6KkONLf_ZKU/maxres.jpg" class="img-fluid" alt="Terrifier 2" /&gt;&lt;/a&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/terrifier-2-trailer</link>
       <guid>https://www.luisquintanilla.me/feed/terrifier-2-trailer</guid>
@@ -3411,8 +3411,8 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <description>&lt;![CDATA[&lt;p&gt;Some pictures from the Thee Sacred Souls concert I attended a few weeks ago.&lt;/p&gt;
 &lt;p&gt;I caught them in New York when the tour started, so it was nice to catch them at the end of the tour as well.&lt;/p&gt;
 &lt;p&gt;In both cases, they were great performances.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/thee-sacred-souls-2025-1.jpg" alt="A stage with Thee Sacred Souls band performing" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/thee-sacred-souls-2025-2.jpg" alt="Thee Sacred Souls members on stage embracing" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/thee-sacred-souls-2025-1.jpg" class="img-fluid" alt="A stage with Thee Sacred Souls band performing" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/thee-sacred-souls-2025-2.jpg" class="img-fluid" alt="Thee Sacred Souls members on stage embracing" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/thee-sacred-souls-2025</link>
       <guid>https://www.luisquintanilla.me/feed/thee-sacred-souls-2025</guid>
@@ -3429,7 +3429,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Today I Learned about Firefish</title>
       <description>&lt;![CDATA[&lt;p&gt;TIL about &lt;a href="https://joinfirefish.org/"&gt;Firefish&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/firefish-admin-user-page.png" alt="firefish.social admin page" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/firefish-admin-user-page.png" class="img-fluid" alt="firefish.social admin page" /&gt;&lt;/p&gt;
 &lt;p&gt;I like the look of it. It reminds me of Tumblr in many ways.&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/til-firefish</link>
@@ -3439,7 +3439,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>TIL: Firefox Task Manager</title>
       <description>&lt;![CDATA[&lt;p&gt;Today I learned about &lt;a href="https://support.mozilla.org/en-US/kb/task-manager-tabs-or-extensions-are-slowing-firefox"&gt;Firefox Task Manager&lt;/a&gt;. Typing &lt;code&gt;about:performance&lt;/code&gt; into the address bar brings up the task manager which lets you inspect the tabs and extensions consuming the most energy and resources.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/til-firefox-task-manager/firefox-task-manager.png" alt="Firefox Task Manager" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/til-firefox-task-manager/firefox-task-manager.png" class="img-fluid" alt="Firefox Task Manager" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/til-firefox-task-manager</link>
       <guid>https://www.luisquintanilla.me/feed/til-firefox-task-manager</guid>
@@ -3457,7 +3457,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <title>Tinkering with DeepSeek R1, GitHub Models, and .NET on stream</title>
       <description>&lt;![CDATA[&lt;p&gt;I saw that the &lt;a href="https://azure.microsoft.com/en-us/blog/deepseek-r1-is-now-available-on-azure-ai-foundry-and-github/"&gt;DeepSeek R1 model is now on GitHub Models and Azure AI Foundry&lt;/a&gt;, so I decided to start a stream and play around with it in the GitHub Models playground as well as a .NET application.&lt;/p&gt;
 &lt;p&gt;Here's the recording.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=8Z6iFALi8kM" title="YouTube Video Thumbnail Tinkering on Stream with DeepSeek R1, GitHub Models, and .NET"&gt;&lt;img src="http://img.youtube.com/vi/8Z6iFALi8kM/0.jpg" alt="YouTube Video Thumbnail Tinkering on Stream with DeepSeek R1, GitHub Models, .NET" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=8Z6iFALi8kM" title="YouTube Video Thumbnail Tinkering on Stream with DeepSeek R1, GitHub Models, and .NET"&gt;&lt;img src="http://img.youtube.com/vi/8Z6iFALi8kM/0.jpg" class="img-fluid" alt="YouTube Video Thumbnail Tinkering on Stream with DeepSeek R1, GitHub Models, .NET" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I rambled on stream since it's my stream of consciousness as I'm tinkering with these technologies.&lt;/p&gt;
 &lt;p&gt;If you're mainly interested in the code, here's the GitHub repo: &lt;a href="https://github.com/lqdev/DeepSeekDotnetSample"&gt;lqdev/DeepSeekDotnetSample&lt;/a&gt;&lt;/p&gt;
 ]]&gt;</description>
@@ -3468,7 +3468,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Extreme web surfing</title>
       <description>&lt;![CDATA[&lt;p&gt;This is what my browser looks like every time &lt;a href="https://shellsharks.com/"&gt;shellsharks&lt;/a&gt; drops one of their &lt;a href="https://shellsharks.com/scrolls/"&gt;scrolls&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/too-many-browser-tabs.png" alt="A lot of open browser tabs" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/too-many-browser-tabs.png" class="img-fluid" alt="A lot of open browser tabs" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/too-many-browser-tabs-shellsharks</link>
       <guid>https://www.luisquintanilla.me/feed/too-many-browser-tabs-shellsharks</guid>
@@ -3529,13 +3529,13 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Note to Self: Useful Emacs Commands Pt. 1</title>
       <description>&lt;![CDATA[&lt;p&gt;I still need to set up an org-capture template for snippets, so writing a note to myself to remember these commands I'll eventually want to come back to.&lt;/p&gt;
-&lt;h2 id="capture-elfeed-link"&gt;Capture elfeed link&lt;/h2&gt;
+&lt;h2&gt;Capture elfeed link&lt;/h2&gt;
 &lt;p&gt;In this custom function, &lt;code&gt;elfeed-show-yank&lt;/code&gt; extracts the link element in an elfeed entry. &lt;code&gt;org-capture&lt;/code&gt; then just invokes the org-capture template selection prompt. At this point, I can move forward with creating a response entry on the website and since the link to the entry I was viewing in elfeed is in the kill-ring, I can easily paste the URL while filling out the org-capture template.&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-lisp"&gt;(defun capture-elfeed-entry ()
   (elfeed-show-yank)
   (org-capture))
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="org-capture-contexts"&gt;Org capture contexts&lt;/h2&gt;
+&lt;h2&gt;Org capture contexts&lt;/h2&gt;
 &lt;p&gt;I recently found out, I can add filters to org-capture templates based on the mode I'm in Emacs. Here's an example:&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-lisp"&gt;(setq org-capture-templates-contexts
       '((&amp;quot;wrn&amp;quot; ((in-mode . &amp;quot;elfeed-show-mode&amp;quot;)))))
@@ -3565,7 +3565,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     </item>
     <item>
       <title>Vampire's Kiss (1988)</title>
-      <description>&lt;![CDATA[&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=PnoSxO_2ghQ" title="Vampire's Kiss Movie Trailer"&gt;&lt;img src="http://img.youtube.com/vi/PnoSxO_2ghQ/0.jpg" alt="Vampire's Kiss Movie Trailer" /&gt;&lt;/a&gt;&lt;/p&gt;
+      <description>&lt;![CDATA[&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=PnoSxO_2ghQ" title="Vampire's Kiss Movie Trailer"&gt;&lt;img src="http://img.youtube.com/vi/PnoSxO_2ghQ/0.jpg" class="img-fluid" alt="Vampire's Kiss Movie Trailer" /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I have no idea what I just watched, but I liked it. I thought Nicolas Cage making weird movies was a relatively recent thing, but I guess it goes way back to the 80s. I kept getting thrown off by his accent, which I only noticed about a quarter into the movie and even later into the movie sometimes it wasn't there. His descent and transformation into &amp;quot;Nosferatu&amp;quot; was interesting to watch. Mostly funny, but sometimes just weird and disturbing.&lt;/p&gt;
 &lt;p&gt;If you're interested, it's currently &lt;a href="https://tubitv.com/movies/674418/vampire-s-kiss"&gt;streaming for free on Tubi&lt;/a&gt;&lt;/p&gt;
 ]]&gt;</description>
@@ -3576,7 +3576,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Vertigo AI</title>
       <description>&lt;![CDATA[&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Vertigo_(film)"&gt;Vertigo&lt;/a&gt; is one of my all time favorite movies, so I was excited to learn about &lt;a href="http://www.chrispeters.com/vertigo-ai-experiment/"&gt;Vertigo AI&lt;/a&gt;. Vertigo AI is an experiment that trained a model on footage from the film Vertigo to produce its own original short film. There aren't many details on the AI aspects of it, but I suspect there's a Generative Adversarial Network (GAN) similar to &lt;a href="http://norman-ai.mit.edu/"&gt;Norman&lt;/a&gt; behind it. Check out the generated movie.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://yewtu.be/embed/zeCDqFCGN8Y" title="Vertigo AI"&gt;&lt;img src="https://yewtu.be/vi/zeCDqFCGN8Y/maxres.jpg" alt="Vertigo AI" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://yewtu.be/embed/zeCDqFCGN8Y" title="Vertigo AI"&gt;&lt;img src="https://yewtu.be/vi/zeCDqFCGN8Y/maxres.jpg" class="img-fluid" alt="Vertigo AI" /&gt;&lt;/a&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/vertigo-ai</link>
       <guid>https://www.luisquintanilla.me/feed/vertigo-ai</guid>
@@ -3604,7 +3604,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;10&lt;/p&gt;
 &lt;p&gt;openai.com&lt;/p&gt;
 &lt;p&gt;6&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.theverge.com"&gt;www.theverge.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;www.theverge.com&lt;/p&gt;
 &lt;p&gt;4&lt;/p&gt;
 &lt;p&gt;No surprise here given that AI was one of the top tags in my responses.&lt;/p&gt;
 &lt;p&gt;Updated script is here &lt;a href="/snippets/lqdev-me-website-post-metrics"&gt;stats.fsx&lt;/a&gt;.&lt;/p&gt;
@@ -3616,8 +3616,8 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>(We)blogging Rewind 2023</title>
       <description>&lt;![CDATA[&lt;p&gt;Inspired by &lt;a href="/feed/spotify-wrapped-2023"&gt;Spotify Wrapped&lt;/a&gt; and &lt;a href="/feed/antennapod-echo-2023"&gt;Antennapod Echo&lt;/a&gt;, I decided to look back at my activity on this website for 2023. Here is the &lt;a href="/snippets/lqdev-me-website-post-metrics"&gt;snippet&lt;/a&gt; I used to generate these metrics.&lt;/p&gt;
-&lt;h2 id="posts-by-year"&gt;Posts by Year&lt;/h2&gt;
-&lt;h3 id="blog"&gt;Blog&lt;/h3&gt;
+&lt;h2&gt;Posts by Year&lt;/h2&gt;
+&lt;h3&gt;Blog&lt;/h3&gt;
 &lt;p&gt;Blog posts are my more formal, long-form content. This year, I published less blog posts than last year.&lt;/p&gt;
 &lt;p&gt;Year&lt;/p&gt;
 &lt;p&gt;Count&lt;/p&gt;
@@ -3626,9 +3626,9 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;2022&lt;/p&gt;
 &lt;p&gt;7&lt;/p&gt;
 &lt;p&gt;Part of that includes me getting in my head about what these posts &amp;quot;should be&amp;quot;. Historically, they have been detailed technical posts related to a project I've worked on like &lt;a href="/posts/receive-webmentions-fsharp-az-functions-fsadvent"&gt;Accept Webmentions using F#, Azure Functions, and RSS&lt;/a&gt;. I haven't stopped experimenting and tinkering, but because they aren't end-to-end solutions, I don't think of them as &amp;quot;blog post worthy&amp;quot;. That doesn't mean though that learnings and growth haven't come from them. In more recent blog posts like &lt;a href="/posts/ai-1999-1899"&gt;AI like it's 1999 or 1899&lt;/a&gt; and &lt;a href="/posts/quick-thoughts-snapdragon-summit-2023"&gt;Quick thoughts about Snapdragon Summit 2023&lt;/a&gt;, I've started experimenting more with just posting. In 2024, I want to be more flexible in my posting and not worry too much about whether the blog posts are &amp;quot;good enough&amp;quot;.&lt;/p&gt;
-&lt;h3 id="microblog"&gt;Microblog&lt;/h3&gt;
+&lt;h3&gt;Microblog&lt;/h3&gt;
 &lt;p&gt;This site also contains a microblog feed, one for &lt;a href="/feed"&gt;notes&lt;/a&gt; and another for &lt;a href="/feed/responses"&gt;responses&lt;/a&gt;.&lt;/p&gt;
-&lt;h4 id="notes"&gt;Notes&lt;/h4&gt;
+&lt;h4&gt;Notes&lt;/h4&gt;
 &lt;p&gt;Notes tend to be original content that although can include links to external content, they are short-form and informal versions of blog posts. This post is an example of a note. This year, I posted less notes than last year.&lt;/p&gt;
 &lt;p&gt;Year&lt;/p&gt;
 &lt;p&gt;Count&lt;/p&gt;
@@ -3637,7 +3637,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;2022&lt;/p&gt;
 &lt;p&gt;36&lt;/p&gt;
 &lt;p&gt;Usually, when these notes start to get long, I turn them into blog posts. &lt;a href="/posts/quick-thoughts-snapdragon-summit-2023"&gt;Quick thoughts about Snapdragon Summit 2023&lt;/a&gt; is an example of that. However, I haven't set a criteria for what makes a note &amp;quot;long&amp;quot;. This post for example I think is getting to the &amp;quot;blog post&amp;quot; length. I can't tell you why though, it's just &amp;quot;vibes&amp;quot;. One of the benefits of starting with notes types of posts is that the frame of mind is more informal which lets me just write and post without thinking too much about what the post &amp;quot;should be&amp;quot;. In 2024, I want to continue using notes as the starting point for these types of posts. Maybe later in the future, I just merge them both.&lt;/p&gt;
-&lt;h4 id="responses"&gt;Responses&lt;/h4&gt;
+&lt;h4&gt;Responses&lt;/h4&gt;
 &lt;p&gt;Responses are reactions to content created / published by someone else. These can include bookmarks, replies, likes (star), and reposts (reshare). This year, I posted significantly more responses than last year.&lt;/p&gt;
 &lt;p&gt;Year&lt;/p&gt;
 &lt;p&gt;Count&lt;/p&gt;
@@ -3646,7 +3646,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;2022&lt;/p&gt;
 &lt;p&gt;146&lt;/p&gt;
 &lt;p&gt;I'm very happy with this, especially my bookmark use explained later. Not only am I happy because I'm actually making use of my website and the work I put in previous years that enabled me to publish all types of content but also because these responses create a log of my interactions with the internet over the years I can look back at.&lt;/p&gt;
-&lt;h2 id="responses-by-type"&gt;Responses by Type&lt;/h2&gt;
+&lt;h2&gt;Responses by Type&lt;/h2&gt;
 &lt;p&gt;Looking deeper into my responses and breaking them down by type, bookmarks take up the top spot with more than half of my responses being bookmarks. That makes sense since I'm usually bookmarking articles, papers, and other content I come across on the internet.&lt;/p&gt;
 &lt;p&gt;Type&lt;/p&gt;
 &lt;p&gt;Count&lt;/p&gt;
@@ -3667,7 +3667,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;When all these pieces come together, they provide me with distilled bits of information that are organized in a way that enable quick retrieval and action when needed.&lt;/p&gt;
 &lt;p&gt;Moving on to other posts. Since the post type is effectively just metadata, the line between reshare, star, and reply is often blurry. It's not as blurry with replies because I use that to draft replies / comments to other posts and content on the internet. My &lt;a href="/feed/tracy-durnell-20-blogging-anniversary"&gt;Tracy Durnell 20th anniversary of blogging&lt;/a&gt; post is an example of a reply. In these examples, the replies were directed at someone. However, for star and reshare, I'm still trying to understand where they fit in my flow. Today other than visually expressing the post type, the role these post types serve is webmentions. However, I'm not sure how many websites I create these post types for actually use webmentions. Maybe some analysis worth doing for 2025.&lt;/p&gt;
-&lt;h2 id="responses-by-tag-top-5"&gt;Responses by Tag (Top 5)&lt;/h2&gt;
+&lt;h2&gt;Responses by Tag (Top 5)&lt;/h2&gt;
 &lt;p&gt;AI and LLMs took the top spots which I think in general aligns with what was top of mind for everyone in 2023.&lt;/p&gt;
 &lt;p&gt;Tag&lt;/p&gt;
 &lt;p&gt;Count&lt;/p&gt;
@@ -3682,7 +3682,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;internet&lt;/p&gt;
 &lt;p&gt;17&lt;/p&gt;
 &lt;p&gt;Not much commentary here. Tags have helped me organize related content on my website. I do think that I get too high level with my tags and could do a better job of being more specific. Ultimately, there's no limit to the number of tags I can use so why not be liberal with it. The only self-imposed limitation I've placed on myself is the first 3 tags should be the most important because they're the ones that show up when my articles are automatically cross-posted to Mastodon.&lt;/p&gt;
-&lt;h2 id="conclusions"&gt;Conclusions&lt;/h2&gt;
+&lt;h2&gt;Conclusions&lt;/h2&gt;
 &lt;p&gt;Overall, I'm happy with my activity and heavy use of my own website this year. I plan to make even more use of the bookmark type of posts in 2024 and plan on posting more whether that's as a note or blog post, just posting is something I want to work towards.&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/weblogging-rewind-2023</link>
@@ -3694,9 +3694,9 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <description>&lt;![CDATA[&lt;p&gt;Success! I just partially implemented &lt;a href="https://www.w3.org/TR/webmention/"&gt;Webmentions&lt;/a&gt; for my website. Although I haven't figured out a good way to receive Webmentions yet, I'm able to send them. Fortunately most of the work was done, as detailed in the post &lt;a href="/posts/sending-webmentions-fsharp-fsadvent/"&gt;Sending Webmentions with F#&lt;/a&gt;. The rest was mainly a matter of adapting it to my static site generator.&lt;/p&gt;
 &lt;p&gt;Below is an example of a &lt;a href="https://www.luisquintanilla.me/feed/webmention-test-1/"&gt;post on my website&lt;/a&gt; being displayed in the &lt;a href="https://webmention.rocks/test/1"&gt;Webmention test suite website&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Source&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/190879250-4554750f-b435-4627-bad9-ecc3d96f9ed0.png" alt="Webmention on lqdev.me" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/190879250-4554750f-b435-4627-bad9-ecc3d96f9ed0.png" class="img-fluid" alt="Webmention on lqdev.me" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/190879274-f6566225-2173-4213-a3d0-eeb9fdc67df9.png" alt="Webmention displayed in webmention test suite" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/190879274-f6566225-2173-4213-a3d0-eeb9fdc67df9.png" class="img-fluid" alt="Webmention displayed in webmention test suite" /&gt;&lt;/p&gt;
 &lt;p&gt;What does this mean? It means I can comment on any website I want, regardless of whether they allow comments or not. As if that weren't enough, I have full ownership of my content as my website is the single source of truth. As a bonus, if the website I comment on supports receiving Webmentions, my post will be displayed on their website / articles as a comment. The next step is to handle deleted comments, but so far I'm happy with the progress.&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/webmentions-partially-implemented</link>
@@ -3762,7 +3762,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
       <title>What is Kick?</title>
       <description>&lt;![CDATA[&lt;p&gt;I'm oficially old. I had to look up what &lt;a href="https://kick.com/"&gt;Kick&lt;/a&gt; is.&lt;/p&gt;
 &lt;p&gt;In case you also didn't know, I'll save you some time.&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
 &lt;p&gt;Kick is a platform where you can watch and interact with live streamers from various categories, such as games, music, gambling and creative.&lt;/p&gt;
 &lt;/blockquote&gt;
 ]]&gt;</description>
@@ -3773,7 +3773,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>When Planets Mate</title>
       <description>&lt;![CDATA[&lt;p&gt;Found this interesting video by Chackram &amp;amp; Riley Thompson. My favorite part starts around the 7:15 mark.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://vimeo.com/340043225"&gt;&lt;img src="https://i.vimeocdn.com/video/788261540-f6e1a0bb577b65081153fc4b2af03b6addffa07a0551187165bc9e71003063d7-d?mw=1500&amp;amp;mh=844&amp;amp;q=70" alt="When Planets Mate Video by Chakram &amp;amp; Riley Thompson" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://vimeo.com/340043225"&gt;&lt;img src="https://i.vimeocdn.com/video/788261540-f6e1a0bb577b65081153fc4b2af03b6addffa07a0551187165bc9e71003063d7-d?mw=1500&amp;amp;mh=844&amp;amp;q=70" class="img-fluid" alt="When Planets Mate Video by Chakram &amp;amp; Riley Thompson" /&gt;&lt;/a&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/when-planets-mate</link>
       <guid>https://www.luisquintanilla.me/feed/when-planets-mate</guid>
@@ -3782,7 +3782,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Windows 11 upgrade</title>
       <description>&lt;![CDATA[&lt;p&gt;No Windows 11 upgrade for me. 😥&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/135946651-d4d9acee-5618-4846-85aa-8387077a4785.png" alt="PC doesn't meet windows 11 upgrade requirements message" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/135946651-d4d9acee-5618-4846-85aa-8387077a4785.png" class="img-fluid" alt="PC doesn't meet windows 11 upgrade requirements message" /&gt;&lt;/p&gt;
 &lt;p&gt;Just because I can't doesn't mean you can't though. Go and check if you're eligible at Windows Update&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Start &amp;gt; Settings &amp;gt; Update &amp;amp; Security &amp;gt; Windows Update&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;See &lt;a href="https://support.microsoft.com/windows/manage-updates-in-windows-643e9ea7-3cf6-7da6-a25c-95d4f7f099fe#WindowsVersion=Windows_10"&gt;Manage updates in Windows&lt;/a&gt; for more details.&lt;/p&gt;
@@ -3795,7 +3795,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>Reminiscing about Windows Phone</title>
       <description>&lt;![CDATA[&lt;p&gt;Found these while cleaning out some drawers 😢. Good times.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/feed/windows-phone-lumias.png" alt="Two Nokia Lumia Windows Phones" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/feed/windows-phone-lumias.png" class="img-fluid" alt="Two Nokia Lumia Windows Phones" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing</link>
       <guid>https://www.luisquintanilla.me/feed/windows-phone-lumia-reminiscing</guid>
@@ -3819,7 +3819,7 @@ To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
     <item>
       <title>World's Largest Smartphone Camera</title>
       <description>&lt;![CDATA[&lt;p&gt;Cries in Lumia 1020 &lt;span&gt;😢&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://yewtu.be/vi/lYPe4MsALk4/maxres.jpg" alt="Thumbnail Marques Brownlee World's Largest Smartphone Camera" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://yewtu.be/vi/lYPe4MsALk4/maxres.jpg" class="img-fluid" alt="Thumbnail Marques Brownlee World's Largest Smartphone Camera" /&gt;&lt;/p&gt;
 &lt;p&gt;Source: &lt;a href="https://yewtu.be/embed/lYPe4MsALk4"&gt;World's Largest Smartphone Camera | Marques Brownlee&lt;/a&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/feed/worlds-largest-smartphone-camera</link>

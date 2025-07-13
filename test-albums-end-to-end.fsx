@@ -36,8 +36,8 @@ try
     let expectedFiles = [
         ("Individual album page", Path.Combine("_public", "media", "fall-mountains", "index.html"))
         ("Media index page", Path.Combine("_public", "media", "index.html"))
-        ("Album RSS feed", Path.Combine("_public", "feed", "albums", "rss.xml"))
-        ("Album HTML index", Path.Combine("_public", "feed", "albums", "index.html"))
+        ("Album RSS feed", Path.Combine("_public", "feed", "media", "rss.xml"))
+        ("Album HTML index", Path.Combine("_public", "feed", "media", "index.html"))
     ]
     
     expectedFiles |> List.iter (fun (name, path) ->
@@ -71,7 +71,7 @@ try
     
     // Test 4: Verify RSS feed structure and content
     printfn "\n4. Verifying RSS feed structure..."
-    let rssPath = Path.Combine("_public", "feed", "albums", "rss.xml")
+    let rssPath = Path.Combine("_public", "feed", "media", "rss.xml")
     if File.Exists rssPath then
         let rssContent = File.ReadAllText(rssPath)
         printfn "   ✅ RSS feed generated"

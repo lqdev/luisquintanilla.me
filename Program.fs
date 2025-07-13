@@ -143,15 +143,10 @@ let main argv =
     let _ = buildBooks()
     ()
 
-    // Build Albums with feature flag support
-    if FeatureFlags.isEnabled FeatureFlags.Albums then
-        printfn "Building albums with AST-based processor (NEW_ALBUMS=true)"
-        let _ = buildAlbums()
-        ()
-    else
-        printfn "Skipping albums - NEW_ALBUMS feature flag disabled (albums infrastructure commented out)"
-        // Old album functions are commented out: buildAlbumPage, buildAlbumPages
-        // Albums currently disabled until NEW_ALBUMS=true
+    // Build Albums
+    printfn "Building albums with AST-based processor"
+    let _ = buildAlbums()
+    ()
 
     // Build reponses (TODO: Functions missing, need implementation)
     // buildResponsePage responses "Responses" "index"

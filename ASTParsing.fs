@@ -121,8 +121,17 @@ let private extractCustomBlocks (doc: MarkdownDocument) : Map<string, obj list> 
 let private createMarkdownPipeline () : MarkdownPipeline =
     MarkdownPipelineBuilder()
         .UseYamlFrontMatter()
-        .UseAdvancedExtensions()  // This includes UseCustomContainers()
-        .Build()
+        .UsePipeTables()
+        .UseTaskLists()
+        .UseDiagrams()
+        .UseMediaLinks()
+        .UseMathematics()
+        .UseEmojiAndSmiley()
+        .UseEmphasisExtras()
+        .UseBootstrap()
+        .UseFigures()
+        |> CustomBlocks.useCustomBlocks
+        |> fun builder -> builder.Build()
 
 /// Central document parsing function - single entry point for all content types
 /// This replaces the various individual parse functions with unified processing

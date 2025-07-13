@@ -59,7 +59,7 @@ let isEnabled contentType =
         | Posts -> true          // Posts migration complete - default to new processor
         | Notes -> true          // Notes migration complete - default to new processor
         | Responses -> true      // Responses migration complete - default to new processor
-        | _ -> false             // Other content types default to old processors
+        | Albums -> true         // Albums migration complete - default to new processor
     | _ -> parseBooleanFlag value
 
 /// Get all feature flags with their current status

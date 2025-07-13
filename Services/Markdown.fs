@@ -19,11 +19,11 @@ module MarkdownService
                 .UseMathematics()
                 .UseMediaLinks()
                 .UseEmojiAndSmiley()
-                .UseCustomContainers()
                 .UseEmphasisExtras()
                 .UseBootstrap()
                 .UseFigures()
-                .Build()        
+                |> CustomBlocks.useCustomBlocks
+                |> fun builder -> builder.Build()        
 
     let summarizePost (content:string) = 
         let doc = Markdown.Parse(content)

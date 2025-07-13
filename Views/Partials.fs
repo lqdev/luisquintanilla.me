@@ -743,20 +743,29 @@ let liveStreamPageView (stream:Livestream) =
         ]  
     ]
 
-let albumsPageView (images:Album array) = 
-    let albumGroups = images |> Array.chunkBySize 3
+let albumsPageView (albums:Album array) = 
     div [_class "mr-auto"] [
-        for group in albumGroups do
-            div [_class "row"; _style "margin-bottom:5px;"] [
-                for album in group do
-                    div [_class "col-md-4"] [
-                        div [_class "img-thumbnail"; _style "object-fit:cover;height:100%;"] [
-                            a [_href $"/media/{album.FileName}"; _target "blank"] [    
-                                img [_src album.Metadata.Images.[0].ImagePath; _style "object-fit:cover;object-position:50% 50%;"; attr "loading" "lazy"] 
-                                p [] [Text album.Metadata.Title]
-                            ]                                
-                        ]
+        for album in albums do
+            article [_class "album-card h-entry"; _style "margin-bottom: 20px; border: 1px solid #dee2e6; border-radius: 0.375rem; padding: 15px;"] [
+                h2 [] [
+                    a [_href $"/media/{album.FileName}"; _class "text-decoration-none"] [
+                        Text album.Metadata.Title
                     ]
+                ]
+                div [_class "album-preview"; _style "margin: 10px 0;"] [
+                    img [
+                        _src album.Metadata.Images.[0].ImagePath
+                        _alt album.Metadata.Images.[0].AltText
+                        _style "width: 100%; max-width: 300px; height: 200px; object-fit: cover; border-radius: 0.25rem;"
+                        attr "loading" "lazy"
+                    ]
+                ]
+                p [_class "text-muted"; _style "margin: 5px 0;"] [
+                    Text $"{Array.length album.Metadata.Images} photos"
+                ]
+                time [_class "dt-published text-muted"; _style "font-size: 0.9em;"] [
+                    Text album.Metadata.Date
+                ]
             ]
     ]
 

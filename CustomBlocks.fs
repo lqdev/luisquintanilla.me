@@ -5,6 +5,8 @@ open System.IO
 open Markdig
 open Markdig.Parsers
 open Markdig.Syntax
+open Markdig.Renderers
+open Markdig.Renderers.Html
 open YamlDotNet.Serialization
 open YamlDotNet.Serialization.NamingConventions
 
@@ -100,11 +102,14 @@ type CustomBlockParser(blockType: string, createBlock: BlockParser -> ContainerB
     inherit BlockParser()
     
     let startMarker = $":::{blockType}"
-    let endMarker = $":::{blockType}"
+    let endMarker = ":::"
     
     override this.TryOpen(processor) =
         let line = processor.Line.ToString().TrimStart()
+        if line.Contains(":::") then
+            printfn "TryOpen found fence line: [%s]" line
         if line.StartsWith(startMarker) then
+            printfn "Start marker matched for %s" blockType
             let block = createBlock this
             processor.NewBlocks.Push(block)
             BlockState.ContinueDiscard
@@ -126,7 +131,13 @@ type CustomBlockParser(blockType: string, createBlock: BlockParser -> ContainerB
             BlockState.BreakDiscard
         else
             // Continue collecting content - preserve original indentation
-            let originalLine = processor.Line.ToString()
+            let originalLine = 
+                // Try to preserve original indentation by accessing the full slice
+                let slice = processor.Line
+                if slice.Text <> null then
+                    slice.Text.Substring(slice.Start, slice.Length)
+                else
+                    slice.ToString()
             match block with
             | :? MediaBlock as mediaBlock ->
                 mediaBlock.RawContent <- mediaBlock.RawContent + originalLine + "\n"
@@ -155,7 +166,23 @@ type CustomBlockParser(blockType: string, createBlock: BlockParser -> ContainerB
             match block with
             | :? MediaBlock as mediaBlock ->
                 if not (String.IsNullOrWhiteSpace(mediaBlock.RawContent)) then
-                    let mediaItems = deserializer.Deserialize<MediaItem list>(mediaBlock.RawContent)
+                    // Fix indentation for YAML parsing (based on sample-script.fsx approach)
+                    let lines = mediaBlock.RawContent.Split([|'\n'|], StringSplitOptions.None)
+                    let fixedLines = 
+                        lines
+                        |> Array.filter (fun line -> not (String.IsNullOrWhiteSpace(line)))
+                        |> Array.map (fun line ->
+                            let trimmed = line.Trim()
+                            if trimmed.StartsWith("- ") then
+                                trimmed  // Keep list items at the beginning
+                            elif trimmed.Contains(":") && not (trimmed.StartsWith("- ")) then
+                                "  " + trimmed  // Indent properties with 2 spaces
+                            else
+                                trimmed
+                        )
+                    
+                    let cleanContent = String.concat "\n" fixedLines
+                    let mediaItems = deserializer.Deserialize<MediaItem list>(cleanContent)
                     mediaBlock.MediaItems <- mediaItems
             | :? ReviewBlock as reviewBlock ->
                 if not (String.IsNullOrWhiteSpace(reviewBlock.RawContent)) then
@@ -192,6 +219,110 @@ type VenueBlockParser() =
 /// Parser for :::rsvp blocks
 type RsvpBlockParser() =
     inherit CustomBlockParser("rsvp", fun parser -> RsvpBlock(parser) :> ContainerBlock)
+
+// HTML Renderers for custom blocks
+
+/// HTML utility functions
+module internal HtmlHelpers =
+    let escapeHtml (text: string) =
+        text.Replace("&", "&amp;")
+            .Replace("<", "&lt;")
+            .Replace(">", "&gt;")
+            .Replace("\"", "&quot;")
+            .Replace("'", "&#39;")
+    
+    let attribute name value =
+        sprintf """ %s="%s" """ name (escapeHtml value)
+    
+    let element tag attributes content =
+        sprintf "<%s%s>%s</%s>" tag attributes content tag
+    
+    let selfClosingElement tag attributes =
+        sprintf "<%s%s />" tag attributes
+
+/// HTML renderer for MediaBlock
+type MediaBlockHtmlRenderer() =
+    inherit HtmlObjectRenderer<MediaBlock>()
+    
+    override _.Write(renderer: HtmlRenderer, block: MediaBlock) : unit =
+        let renderMediaItem (item: MediaItem) =
+            let mediaElement =
+                match item.media_type.ToLower() with
+                | "image" ->
+                    HtmlHelpers.selfClosingElement "img" 
+                        (HtmlHelpers.attribute "src" item.uri + 
+                         HtmlHelpers.attribute "alt" item.alt_text +
+                         HtmlHelpers.attribute "class" "media-image")
+                | "video" ->
+                    HtmlHelpers.element "video" 
+                        (HtmlHelpers.attribute "src" item.uri + 
+                         HtmlHelpers.attribute "controls" "controls" +
+                         HtmlHelpers.attribute "class" "media-video")
+                        item.alt_text
+                | "audio" ->
+                    HtmlHelpers.element "audio"
+                        (HtmlHelpers.attribute "src" item.uri +
+                         HtmlHelpers.attribute "controls" "controls" +
+                         HtmlHelpers.attribute "class" "media-audio")
+                        item.alt_text
+                | _ ->
+                    HtmlHelpers.element "a"
+                        (HtmlHelpers.attribute "href" item.uri +
+                         HtmlHelpers.attribute "class" "media-link")
+                        item.alt_text
+            
+            let captionElement =
+                if not (String.IsNullOrWhiteSpace(item.caption)) then
+                    HtmlHelpers.element "figcaption" (HtmlHelpers.attribute "class" "media-caption") 
+                        (HtmlHelpers.escapeHtml item.caption)
+                else ""
+            
+            HtmlHelpers.element "figure" (HtmlHelpers.attribute "class" "custom-media-item")
+                (mediaElement + captionElement)
+        
+        let renderedItems = 
+            block.MediaItems 
+            |> List.map renderMediaItem 
+            |> String.concat "\n"
+        
+        let html = HtmlHelpers.element "div" (HtmlHelpers.attribute "class" "custom-media-block") renderedItems
+        renderer.Write(html: string) |> ignore
+
+/// HTML renderer for ReviewBlock  
+type ReviewBlockHtmlRenderer() =
+    inherit HtmlObjectRenderer<ReviewBlock>()
+    
+    override _.Write(renderer: HtmlRenderer, block: ReviewBlock) : unit =
+        match block.ReviewData with
+        | Some reviewData -> 
+            let html = sprintf "<div class=\"review-block\"><!-- Review: %s --></div>" (HtmlHelpers.escapeHtml reviewData.item_title)
+            renderer.Write(html: string) |> ignore
+        | None -> 
+            renderer.Write("<!-- Invalid review block -->" : string) |> ignore
+
+/// HTML renderer for VenueBlock
+type VenueBlockHtmlRenderer() =
+    inherit HtmlObjectRenderer<VenueBlock>()
+    
+    override _.Write(renderer: HtmlRenderer, block: VenueBlock) : unit =
+        match block.VenueData with
+        | Some venueData -> 
+            let html = sprintf "<div class=\"venue-block\"><!-- Venue: %s --></div>" (HtmlHelpers.escapeHtml venueData.venue_name)
+            renderer.Write(html: string) |> ignore
+        | None -> 
+            renderer.Write("<!-- Invalid venue block -->" : string) |> ignore
+
+/// HTML renderer for RsvpBlock
+type RsvpBlockHtmlRenderer() =
+    inherit HtmlObjectRenderer<RsvpBlock>()
+    
+    override _.Write(renderer: HtmlRenderer, block: RsvpBlock) : unit =
+        match block.RsvpData with
+        | Some rsvpData -> 
+            let html = sprintf "<div class=\"rsvp-block\"><!-- RSVP: %s --></div>" (HtmlHelpers.escapeHtml rsvpData.event_name)
+            renderer.Write(html: string) |> ignore
+        | None -> 
+            renderer.Write("<!-- Invalid RSVP block -->" : string) |> ignore
 
 // Extension utilities
 
@@ -315,8 +446,14 @@ type CustomBlockExtension() =
             pipeline.BlockParsers.Insert(0, RsvpBlockParser())
         
         member _.Setup(pipeline, renderer) =
-            // Renderer setup will be handled in BlockRenderers.fs
-            // For now, we just register the parsers
+            // Register HTML renderers for custom blocks
+            match renderer with
+            | :? Markdig.Renderers.HtmlRenderer as htmlRenderer ->
+                htmlRenderer.ObjectRenderers.Add(MediaBlockHtmlRenderer())
+                htmlRenderer.ObjectRenderers.Add(ReviewBlockHtmlRenderer())
+                htmlRenderer.ObjectRenderers.Add(VenueBlockHtmlRenderer())
+                htmlRenderer.ObjectRenderers.Add(RsvpBlockHtmlRenderer())
+            | _ -> ()
             ()
 
 /// Helper function to add custom block extension to a pipeline builder
