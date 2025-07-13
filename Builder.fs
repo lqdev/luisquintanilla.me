@@ -513,11 +513,11 @@ module Builder
         let processor = GenericBuilder.NoteProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor noteFiles
         
-        // Generate individual note pages
+        // Generate individual note pages at /notes/[slug]/
         feedData
         |> List.iter (fun item ->
             let note = item.Content
-            let saveDir = Path.Join(outputDir, "feed", note.FileName)
+            let saveDir = Path.Join(outputDir, "notes", note.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
             let html = feedPostView note |> feedPostViewWithBacklink
@@ -525,11 +525,11 @@ module Builder
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, noteView))
         
-        // Generate notes index page using existing feedView
+        // Generate notes index page at /notes/
         let notes = feedData |> List.map (fun item -> item.Content) |> List.toArray
         let sortedNotes = notes |> Array.sortByDescending(fun (x: Post) -> DateTime.Parse(x.Metadata.Date))
-        let notesIndexHtml = generate (feedView sortedNotes) "defaultindex" "Main Feed - Luis Quintanilla"
-        let indexSaveDir = Path.Join(outputDir, "feed")
+        let notesIndexHtml = generate (feedView sortedNotes) "defaultindex" "Notes - Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "notes")
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), notesIndexHtml)
         
@@ -546,11 +546,11 @@ module Builder
         let processor = GenericBuilder.ResponseProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor responseFiles
         
-        // Generate individual response pages
+        // Generate individual response pages at /responses/[slug]/
         feedData
         |> List.iter (fun item ->
             let response = item.Content
-            let saveDir = Path.Join(outputDir, "feed", response.FileName)
+            let saveDir = Path.Join(outputDir, "responses", response.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
             let html = responsePostView response |> reponsePostViewWithBacklink
@@ -558,13 +558,13 @@ module Builder
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, responseView))
         
-        // Generate responses index page
+        // Generate responses index page at /responses/
         let responses = feedData |> List.map (fun item -> item.Content) |> List.toArray
         let sortedResponses = responses |> Array.sortByDescending(fun (x: Response) -> DateTime.Parse(x.Metadata.DatePublished))
         
-        // Create HTML index page for responses feed
+        // Create HTML index page for responses
         let responsesIndexHtml = generate (responseView sortedResponses) "defaultindex" "Responses - Luis Quintanilla"
-        let responsesIndexSaveDir = Path.Join(outputDir, "feed", "responses")
+        let responsesIndexSaveDir = Path.Join(outputDir, "responses")
         Directory.CreateDirectory(responsesIndexSaveDir) |> ignore
         File.WriteAllText(Path.Join(responsesIndexSaveDir, "index.html"), responsesIndexHtml)
         
@@ -622,3 +622,38 @@ module Builder
                 Directory.CreateDirectory(saveDir) |> ignore
                 let saveFileName = Path.Join(saveDir, "index.html")
                 File.WriteAllText(saveFileName, redirectHtml))
+
+    // AST-based bookmark processing using GenericBuilder infrastructure
+    let buildBookmarks() = 
+        let bookmarkFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "bookmarks"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        let processor = GenericBuilder.BookmarkProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor bookmarkFiles
+        
+        // Generate individual bookmark pages at /bookmarks/[slug]/
+        feedData
+        |> List.iter (fun item ->
+            let bookmark = item.Content
+            let saveDir = Path.Join(outputDir, "bookmarks", bookmark.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            
+            let html = bookmarkPostView bookmark
+            let bookmarkView = generate html "defaultindex" bookmark.Metadata.Title
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, bookmarkView))
+        
+        // Generate bookmarks index page at /bookmarks/
+        let bookmarks = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        let sortedBookmarks = bookmarks |> Array.sortByDescending(fun (x: Bookmark) -> DateTime.Parse(x.Metadata.DatePublished))
+        
+        // Create HTML index page for bookmarks
+        let bookmarksIndexHtml = generate (bookmarkView sortedBookmarks) "defaultindex" "Bookmarks - Luis Quintanilla"
+        let bookmarksIndexSaveDir = Path.Join(outputDir, "bookmarks")
+        Directory.CreateDirectory(bookmarksIndexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(bookmarksIndexSaveDir, "index.html"), bookmarksIndexHtml)
+        
+        // Return feed data for unified RSS generation
+        feedData

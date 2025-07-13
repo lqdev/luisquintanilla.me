@@ -189,6 +189,9 @@ let parseAlbum (content: string) : Result<ParsedDocument<AlbumDetails>, ParseErr
 let parseResponse (content: string) : Result<ParsedDocument<ResponseDetails>, ParseError> =
     parseDocumentFromAst<ResponseDetails> content
 
+let parseBookmark (content: string) : Result<ParsedDocument<BookmarkDetails>, ParseError> =
+    parseDocumentFromAst<BookmarkDetails> content
+
 /// File-based parsing convenience functions
 let parsePostFromFile (filePath: string) : Result<ParsedDocument<PostDetails>, ParseError> =
     parseDocumentFromFile<PostDetails> filePath
@@ -210,3 +213,6 @@ let parseAlbumFromFile (filePath: string) : Result<ParsedDocument<AlbumDetails>,
 
 let parseResponseFromFile (filePath: string) : Result<ParsedDocument<ResponseDetails>, ParseError> =
     parseDocumentFromFile<ResponseDetails> filePath
+
+let parseBookmarkFromFile (filePath: string) : Result<ParsedDocument<BookmarkDetails>, ParseError> =
+    parseDocumentFromFile<BookmarkDetails> filePath

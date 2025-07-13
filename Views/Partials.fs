@@ -355,7 +355,7 @@ let snippetsView (snippets: Snippet array) =
         ul [] [
             for snippet in snippets do
                 li [] [
-                    a [ _href $"/snippets/{snippet.FileName}"] [ Text snippet.Metadata.Title ]
+                    a [ _href $"/resources/snippets/{snippet.FileName}"] [ Text snippet.Metadata.Title ]
                 ]
         ]
     ]
@@ -367,7 +367,7 @@ let wikisView (wikis: Wiki array) =
         ul [] [
             for wiki in wikis do
                 li [] [
-                    a [ _href $"/wiki/{wiki.FileName}"] [ Text wiki.Metadata.Title ]
+                    a [ _href $"/resources/wiki/{wiki.FileName}"] [ Text wiki.Metadata.Title ]
                 ]
         ]
     ]
@@ -687,7 +687,7 @@ let bookPostView (book: Book) =
             ]
             div [_class "col-md-8"] [
                 div [_class "card-body"] [
-                    a [_href $"/library/{book.FileName}"] [
+                    a [_href $"/reviews/{book.FileName}"] [
                         h5 [_class "card-title"] [Text book.Metadata.Title]
                     ]
                     p [_class "card-text"] [Text $"Author: {book.Metadata.Author}"]
@@ -711,7 +711,7 @@ let presentationsView (presentations: Presentation array) =
         ul [] [
             for presentation in presentations do
                 li [] [
-                    a [ _href $"/presentations/{presentation.FileName}"] [ Text presentation.Metadata.Title ]
+                    a [ _href $"/resources/presentations/{presentation.FileName}"] [ Text presentation.Metadata.Title ]
                 ]
         ]
     ]

@@ -507,6 +507,60 @@ module AlbumProcessor =
             Some item
     }
 
+/// Bookmark content processor for IndieWeb bookmarks
+module BookmarkProcessor =
+    let create() : ContentProcessor<Bookmark> = {
+        Parse = fun filePath ->
+            match parseBookmarkFromFile filePath with
+            | Ok parsedDoc -> 
+                match parsedDoc.Metadata with
+                | Some metadata -> 
+                    Some {
+                        FileName = Path.GetFileNameWithoutExtension(filePath)
+                        Metadata = metadata
+                        Content = parsedDoc.TextContent
+                    }
+                | None -> None
+            | Error _ -> None
+        
+        Render = fun bookmark ->
+            // Bookmark rendering with IndieWeb microformat support
+            sprintf "<article class=\"h-entry bookmark\"><a class=\"u-bookmark-of\" href=\"%s\">%s</a>%s</article>" 
+                bookmark.Metadata.BookmarkOf bookmark.Metadata.Title bookmark.Content
+        
+        OutputPath = fun bookmark ->
+            sprintf "bookmarks/%s.html" bookmark.FileName
+        
+        RenderCard = fun bookmark ->
+            let title = Html.escapeHtml bookmark.Metadata.Title
+            let bookmarkOf = Html.escapeHtml bookmark.Metadata.BookmarkOf
+            let description = Html.escapeHtml bookmark.Metadata.Description
+            let url = sprintf "/bookmarks/%s" bookmark.FileName
+            let date = bookmark.Metadata.DatePublished
+            
+            // IndieWeb microformat card for bookmarks
+            Html.element "article" (Html.attribute "class" "bookmark-card h-entry")
+                (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
+                 Html.element "div" (Html.attribute "class" "bookmark-target") 
+                    (sprintf "🔖 %s" (Html.element "a" (Html.attribute "href" bookmarkOf + Html.attribute "class" "u-bookmark-of") bookmarkOf)) +
+                 Html.element "div" (Html.attribute "class" "bookmark-description") description +
+                 Html.element "time" (Html.attribute "class" "dt-published") (Html.escapeHtml date))
+        
+        RenderRss = fun bookmark ->
+            // Create RSS item for bookmark
+            let url = sprintf "https://www.luisquintanilla.me/bookmarks/%s" bookmark.FileName
+            let description = sprintf "Bookmark: %s - %s" bookmark.Metadata.Description bookmark.Metadata.BookmarkOf
+            
+            let item = 
+                XElement(XName.Get "item",
+                    XElement(XName.Get "title", bookmark.Metadata.Title),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" description),
+                    XElement(XName.Get "link", url),
+                    XElement(XName.Get "guid", url),
+                    XElement(XName.Get "pubDate", bookmark.Metadata.DatePublished))
+            Some item
+    }
+
 /// Generic content processing pipeline
 module ContentPipeline =
     
@@ -663,56 +717,63 @@ module UnifiedFeeds =
                 Title = "Luis Quintanilla - Posts"
                 Link = "https://www.luisquintanilla.me/posts"
                 Description = "Blog posts by Luis Quintanilla"
-                OutputPath = "posts/feed/index.xml"
+                OutputPath = "posts/feed.xml"
                 ContentType = Some "posts"
             })
             ("notes", {
                 Title = "Luis Quintanilla - Notes"
-                Link = "https://www.luisquintanilla.me/feed"
+                Link = "https://www.luisquintanilla.me/notes"
                 Description = "Notes and micro-posts by Luis Quintanilla"
-                OutputPath = "feed/notes/index.xml"
+                OutputPath = "notes/feed.xml"
                 ContentType = Some "notes"
             })
             ("responses", {
                 Title = "Luis Quintanilla - Responses"
-                Link = "https://www.luisquintanilla.me/feed/responses"
+                Link = "https://www.luisquintanilla.me/responses"
                 Description = "IndieWeb responses by Luis Quintanilla"
-                OutputPath = "feed/responses/index.xml"
+                OutputPath = "responses/feed.xml"
                 ContentType = Some "responses"
+            })
+            ("bookmarks", {
+                Title = "Luis Quintanilla - Bookmarks"
+                Link = "https://www.luisquintanilla.me/bookmarks"
+                Description = "IndieWeb bookmarks by Luis Quintanilla"
+                OutputPath = "bookmarks/feed.xml"
+                ContentType = Some "bookmarks"
             })
             ("snippets", {
                 Title = "Luis Quintanilla - Snippets"
-                Link = "https://www.luisquintanilla.me/snippets"
+                Link = "https://www.luisquintanilla.me/resources/snippets"
                 Description = "Code snippets by Luis Quintanilla"
-                OutputPath = "snippets/feed/index.xml"
+                OutputPath = "resources/snippets/feed.xml"
                 ContentType = Some "snippets"
             })
             ("wiki", {
                 Title = "Luis Quintanilla - Wiki"
-                Link = "https://www.luisquintanilla.me/wiki"
+                Link = "https://www.luisquintanilla.me/resources/wiki"
                 Description = "Wiki articles by Luis Quintanilla"
-                OutputPath = "wiki/feed/index.xml"
+                OutputPath = "resources/wiki/feed.xml"
                 ContentType = Some "wiki"
             })
             ("presentations", {
                 Title = "Luis Quintanilla - Presentations"
-                Link = "https://www.luisquintanilla.me/presentations"
+                Link = "https://www.luisquintanilla.me/resources/presentations"
                 Description = "Presentations by Luis Quintanilla"
-                OutputPath = "presentations/feed/index.xml"
+                OutputPath = "resources/presentations/feed.xml"
                 ContentType = Some "presentations"
             })
             ("library", {
                 Title = "Luis Quintanilla - Library"
-                Link = "https://www.luisquintanilla.me/library"
+                Link = "https://www.luisquintanilla.me/resources/library"
                 Description = "Book reviews and library updates by Luis Quintanilla"
-                OutputPath = "library/feed/index.xml"
+                OutputPath = "resources/library/feed.xml"
                 ContentType = Some "library"
             })
             ("albums", {
                 Title = "Luis Quintanilla - Media"
                 Link = "https://www.luisquintanilla.me/media"
                 Description = "Photo albums and media by Luis Quintanilla"
-                OutputPath = "feed/media/index.xml"
+                OutputPath = "media/feed.xml"
                 ContentType = Some "albums"
             })
         ]
@@ -829,4 +890,16 @@ module UnifiedFeeds =
                 let date = match rssXml.Element(XName.Get "pubDate") with | null -> DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz") | e -> e.Value
                 let tags = rssXml.Elements(XName.Get "category") |> Seq.map (fun cat -> cat.Value) |> Seq.toArray
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "albums"; Tags = tags; RssXml = rssXml }
+            | None -> None)
+    
+    let convertBookmarksToUnified (feedDataList: FeedData<Bookmark> list) : UnifiedFeedItem list =
+        feedDataList |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let title = match rssXml.Element(XName.Get "title") with | null -> "Untitled" | e -> e.Value
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = match rssXml.Element(XName.Get "description") with | null -> "" | e -> e.Value
+                let date = match rssXml.Element(XName.Get "pubDate") with | null -> DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz") | e -> e.Value
+                let tags = rssXml.Elements(XName.Get "category") |> Seq.map (fun cat -> cat.Value) |> Seq.toArray
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml }
             | None -> None)

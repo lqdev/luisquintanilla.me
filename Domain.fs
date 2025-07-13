@@ -238,6 +238,22 @@ module Domain
         Content: string
     }
 
+    [<CLIMutable>]
+    type BookmarkDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="bookmark_of")>] BookmarkOf: string
+        [<YamlMember(Alias="description")>] Description: string
+        [<YamlMember(Alias="dt_published")>] DatePublished: string        
+        [<YamlMember(Alias="dt_updated")>] DateUpdated: string
+        [<YamlMember(Alias="tags")>] Tags: string array
+    }
+
+    type Bookmark = {
+        FileName: string
+        Metadata: BookmarkDetails
+        Content: string
+    }
+
     type TaggedPosts = { Posts:Post array; Notes:Post array; Responses:Response array }
 
     // ITaggable helper functions for unified tag processing

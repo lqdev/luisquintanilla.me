@@ -97,7 +97,7 @@ module Layouts
                             attr "aria-labelledby" "collectionDropdown"
                             ] [
                                 a [_class "dropdown-item"; _href "/radio"] [ Text "Radio" ]
-                                a [_class "dropdown-item"; _href "/library"] [ Text "Books" ]
+                                a [_class "dropdown-item"; _href "/reviews"] [ Text "Books" ]
                                 a [_class "dropdown-item"; _href "/tags"] [ Text "Tags" ]
                             ]
                     ]
@@ -119,9 +119,9 @@ module Layouts
                             _class "dropdown-menu"
                             attr "aria-labelledby" "kbDropdown"
                             ] [
-                                a [_class "dropdown-item"; _href "/snippets"] [ Text "Snippets" ]
-                                a [_class "dropdown-item"; _href "/wiki"] [ Text "Wiki" ]
-                                a [_class "dropdown-item"; _href "/presentations"] [ Text "Presentations" ]
+                                a [_class "dropdown-item"; _href "/resources/snippets"] [ Text "Snippets" ]
+                                a [_class "dropdown-item"; _href "/resources/wiki"] [ Text "Wiki" ]
+                                a [_class "dropdown-item"; _href "/resources/presentations"] [ Text "Presentations" ]
                         ]
                     ]
 
