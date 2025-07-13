@@ -712,6 +712,12 @@ module Builder
         let responses = feedData |> List.map (fun item -> item.Content) |> List.toArray
         let sortedResponses = responses |> Array.sortByDescending(fun (x: Response) -> DateTime.Parse(x.Metadata.DatePublished))
         
+        // Create HTML index page for responses feed
+        let responsesIndexHtml = generate (responseView sortedResponses) "defaultindex" "Responses - Luis Quintanilla"
+        let responsesIndexSaveDir = Path.Join(outputDir, "feed", "responses")
+        Directory.CreateDirectory(responsesIndexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(responsesIndexSaveDir, "index.html"), responsesIndexHtml)
+        
         // Generate RSS feed for responses
         let rssItems = feedData |> List.choose (fun item -> item.RssXml)
         if not (List.isEmpty rssItems) then
