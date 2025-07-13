@@ -99,7 +99,7 @@ let main argv =
     let wikisFeedData = buildWikis()
     let presentationsFeedData = buildPresentations()
     let booksFeedData = buildBooks()
-    let albumsFeedData = buildAlbums()
+    let mediaFeedData = buildMedia()
     
     // Convert to unified feed items
     let allUnifiedItems = [
@@ -110,7 +110,7 @@ let main argv =
         ("wiki", GenericBuilder.UnifiedFeeds.convertWikisToUnified wikisFeedData)
         ("presentations", GenericBuilder.UnifiedFeeds.convertPresentationsToUnified presentationsFeedData)
         ("library", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
-        ("albums", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified albumsFeedData)
+        ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
     ]
     
     // Generate unified feeds (fire-hose + type-specific)
@@ -160,9 +160,9 @@ let main argv =
     let _ = buildBooks()
     ()
 
-    // Build Albums
-    printfn "Building albums with AST-based processor"
-    let _ = buildAlbums()
+    // Build Media
+    printfn "Building media with AST-based processor"
+    let _ = buildMedia()
     ()
 
     // Build reponses (TODO: Functions missing, need implementation)

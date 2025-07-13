@@ -571,17 +571,17 @@ module Builder
         // Return feed data for unified RSS generation
         feedData
 
-    // AST-based album processing using GenericBuilder infrastructure
-    let buildAlbums() = 
-        let albumFiles = 
+    // AST-based media processing using GenericBuilder infrastructure
+    let buildMedia() = 
+        let mediaFiles = 
             Directory.GetFiles(Path.Join(srcDir, "media"))
             |> Array.filter (fun f -> f.EndsWith(".md"))
             |> Array.toList
         
         let processor = GenericBuilder.AlbumProcessor.create()
-        let feedData = GenericBuilder.buildContentWithFeeds processor albumFiles
+        let feedData = GenericBuilder.buildContentWithFeeds processor mediaFiles
         
-        // Generate individual album pages
+        // Generate individual media pages
         feedData
         |> List.iter (fun item ->
             let album = item.Content
