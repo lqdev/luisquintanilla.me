@@ -11,7 +11,7 @@ Machine learning is a subset of artificial intelligence.
 
 ## Resources
 
-- [Frameworks](/wiki/ml-frameworks)
+- [Frameworks](/resources/wiki/ml-frameworks)
 
 ## References
 

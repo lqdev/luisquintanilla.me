@@ -7,4 +7,4 @@ tags: ["github","blogging","azure","githubactions","cicd"]
 
 The website had been out of comission for a few days because my credentials had expired. I could still add posts and make updates. However, none of them were published to Azure. 
 
-Figuring out the right incantations wasn't straightforward, so [saving the fix](/wiki/github-actions-azure/) for future reference. 
+Figuring out the right incantations wasn't straightforward, so [saving the fix](/resources/wiki/github-actions-azure/) for future reference. 

@@ -12,7 +12,7 @@ I recently posted my [(We)blogging Rewind](/feed/weblogging-rewind-2023) and [(W
 
 ## The script
 
-This script loads the various posts on my website and computes aggregate metrics based on post types and their metadata. You can find the full script at [stats.fsx](/snippets/lqdev-me-website-post-metrics).
+This script loads the various posts on my website and computes aggregate metrics based on post types and their metadata. You can find the full script at [stats.fsx](/resources/snippets/lqdev-me-website-post-metrics).
 
 ### Loading files
 

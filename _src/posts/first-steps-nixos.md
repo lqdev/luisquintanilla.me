@@ -12,7 +12,7 @@ For the longest time, when using Linux distributions, I chose those that were De
 
 ## Declarative configuration
 
-One of the first things I did when I booted into my new NixOS installation was get familiar with the [configuration file](https://nixos.wiki/wiki/Overview_of_the_NixOS_Linux_distribution#Declarative_Configuration). The configuration file is authored using the [Nix programming language](https://nix.dev/tutorials/first-steps/nix-language) and it's the place where you configure your entire system, including services, packages, and desktop environments. The best way I can describe it is a Dockerfile for your desktop. If interested, you can find my [config file](/snippets/nixos-configuration/) on the scripts section of this website. 
+One of the first things I did when I booted into my new NixOS installation was get familiar with the [configuration file](https://nixos.wiki/wiki/Overview_of_the_NixOS_Linux_distribution#Declarative_Configuration). The configuration file is authored using the [Nix programming language](https://nix.dev/tutorials/first-steps/nix-language) and it's the place where you configure your entire system, including services, packages, and desktop environments. The best way I can describe it is a Dockerfile for your desktop. If interested, you can find my [config file](/resources/snippets/nixos-configuration/) on the scripts section of this website. 
 
 
 There's a few advantages to this approach:

@@ -37,6 +37,6 @@ Use `intel_gpu_top` and make sure that when you play video using tools like VLC 
 ## References
 
 - [Hardware Video Acceleration - Intel GPU](https://wiki.archlinux.org/title/Hardware_video_acceleration)
-- [Intel GPU Tools](/wiki/intel-gpu-tools)
+- [Intel GPU Tools](/resources/wiki/intel-gpu-tools)
 - [Sample MPV Conf](https://github.com/mpv-player/mpv/blob/master/etc/mpv.conf)
 - [MPV Configuration Files](https://mpv.io/manual/master/#configuration-files)

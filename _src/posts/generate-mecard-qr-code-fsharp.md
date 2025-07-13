@@ -22,7 +22,7 @@ An example might look like: `MECARD:N:Doe,John;TEL:13035551212;EMAIL:john.doe@ex
 
 ## Encoding text as a QR code using F#
 
-I'd written a [snippet](/snippets/qr-code-generator) a few years ago to help me generate the QR Codes for all accounts in [my contact page](/contact).
+I'd written a [snippet](/resources/snippets/qr-code-generator) a few years ago to help me generate the QR Codes for all accounts in [my contact page](/contact).
 
 The snippet is a F# Interactive script which uses [Net.Codecrete.QrCodeGenerator NuGet package](https://www.nuget.org/packages/Net.Codecrete.QrCodeGenerator) to encode text as a QR code and saves it to an SVG file. 
 

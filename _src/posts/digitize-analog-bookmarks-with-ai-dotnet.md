@@ -14,9 +14,9 @@ Although I have a [Nova Air 2 E-Note device](https://shop.boox.com/products/nova
 
 As I read books, especially non-fiction, I annotate them in various ways. Eventually, those annotations make their way into my library page.
 
-Here's an example of those annotations for [Building A Second Brain by Thiago Forte](/library/building-a-second-brain).
+Here's an example of those annotations for [Building A Second Brain by Thiago Forte](/reviews/building-a-second-brain).
 
-The process of transferring notes is manual and tedious. I don't always have the discipline to transfer them at periodic intervals and what ends up happening is, I get to the end of the book without transferring any notes. To make space for new books, I donate it or resell the ones I've read. If I didn't take the time to transfer those notes, they're gone. [Slow Productivity](/library/slow-productivity-newport) is an example of that.
+The process of transferring notes is manual and tedious. I don't always have the discipline to transfer them at periodic intervals and what ends up happening is, I get to the end of the book without transferring any notes. To make space for new books, I donate it or resell the ones I've read. If I didn't take the time to transfer those notes, they're gone. [Slow Productivity](/reviews/slow-productivity-newport) is an example of that.
 
 I want to find a better system that's low-maintenance for keeping more of these notes and retaining knowledge I've found valuable. 
 
@@ -72,7 +72,7 @@ IChatClient client =
 
 In the repo, I have a set of sample images containing annotations. These are the images I'll send to the AI model for processing. 
 
-The following is an sample from [The Creative Act by Rick Rubin](/library/creative-act-way-of-being-rubin).
+The following is an sample from [The Creative Act by Rick Rubin](/reviews/creative-act-way-of-being-rubin).
 
 ![An image of a book with pencil markings](https://github.com/lqdev/AIBookmarks/raw/main/data/creative-act-1.jpg)
 

@@ -19,4 +19,4 @@ I thought it'd be cool to see which domains I referenced most in my responses. H
 
 No surprise here given that AI was one of the top tags in my responses. 
 
-Updated script is here [stats.fsx](/snippets/lqdev-me-website-post-metrics).
+Updated script is here [stats.fsx](/resources/snippets/lqdev-me-website-post-metrics).

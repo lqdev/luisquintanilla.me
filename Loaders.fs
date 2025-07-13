@@ -82,18 +82,24 @@ module Loaders
     let loadRedirects () = 
         let (redirects:RedirectDetails array) = 
             [|
-                // ("https://twitter.com/ljquintanilla","twitter","Twitter")
-                // ("https://github.com/lqdev","github","GitHub")
-                // ("https://www.linkedin.com/in/lquintanilla01","linkedin","LinkedIn")
-                // ("https://matrix.to/#/@lqdev:matrix.lqdev.tech", "matrix","Matrix")
-                // ("https://toot.lqdev.tech/@lqdev", "mastodon","Mastodon")
-                // ("https://www.twitch.tv/lqdev1", "twitch","Twitch")
-                // ("https://www.youtube.com/channel/UCkA5fHdQ4cf3D1J19UNgV7A", "youtube","YouTube")
-                // ("https://bsky.app/profile/lqdev.me", "bluesky", "Bluesky")
+                // Legacy post redirects
                 ("/posts/client-credentials-authentication-csharp/","/2017/12/25/client-credentials-authentication-csharp","Client Credentials Auth")
                 ("/posts/alternatives-to-whatsapp","/2021/01/09/alternatives-to-whatsapp/","Alternatives to WhatsApp")
                 ("/posts/case-fsharp-machine-learning/","/2018/12/14/case-fsharp-machine-learning","The Case for Doing Machine Learning with F#")
                 ("/posts/mlnet-classification-fsharp/","/2018/06/13/mlnet-classification-fsharp/","Classification with F# ML.NET Models")
+                
+                // URL Alignment Phase 2: Content migrations
+                ("/snippets/", "/resources/snippets/", "Code Snippets")
+                ("/wiki/", "/resources/wiki/", "Knowledge Base")  
+                ("/presentations/", "/resources/presentations/", "Presentations")
+                ("/library/", "/reviews/", "Book Reviews")
+                
+                // URL Alignment Phase 2: Feed relocations
+                ("/feed/snippets.xml", "/resources/snippets/feed.xml", "Snippets Feed")
+                ("/feed/wiki.xml", "/resources/wiki/feed.xml", "Wiki Feed")
+                ("/feed/presentations.xml", "/resources/presentations/feed.xml", "Presentations Feed")
+                ("/feed/library.xml", "/reviews/feed.xml", "Reviews Feed")
+                ("/feed/albums.xml", "/media/feed.xml", "Media Feed")
             |]
 
         redirects

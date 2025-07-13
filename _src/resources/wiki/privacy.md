@@ -11,8 +11,8 @@ Privacy is the right of individuals to selectively disclose and share informatio
 
 ## Resources
 
-- [Privacy Guides](/wiki/privacy-guides)
-- [Alternative Frontends](/wiki/alternative-frontends)
+- [Privacy Guides](/resources/wiki/privacy-guides)
+- [Alternative Frontends](/resources/wiki/alternative-frontends)
 
 ## Podcasts
 

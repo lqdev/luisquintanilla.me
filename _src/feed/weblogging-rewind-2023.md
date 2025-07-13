@@ -5,7 +5,7 @@ published_date: "2023-12-23 02:28"
 tags: ["weblogging","quantifiedself","indieweb","stats","analytics","blog","blogging","internet","opensource","community","selfhost","fsharp","spotify","antennapod","microblog", "analytics","pkm","personalknowledgemanagement"]
 ---
 
-Inspired by [Spotify Wrapped](/feed/spotify-wrapped-2023) and [Antennapod Echo](/feed/antennapod-echo-2023), I decided to look back at my activity on this website for 2023. Here is the [snippet](/snippets/lqdev-me-website-post-metrics) I used to generate these metrics. 
+Inspired by [Spotify Wrapped](/feed/spotify-wrapped-2023) and [Antennapod Echo](/feed/antennapod-echo-2023), I decided to look back at my activity on this website for 2023. Here is the [snippet](/resources/snippets/lqdev-me-website-post-metrics) I used to generate these metrics. 
 
 ## Posts by Year
 

@@ -143,8 +143,8 @@ let main argv =
     buildLiveStreamsPage liveStreams
     buildLiveStreamPages liveStreams
 
-    // Redirects (TODO: Function missing, need implementation)
-    // buildRedirectPages redirects
+    // Build redirect pages for URL migration
+    buildRedirectPages redirects
 
     // Build Snippet Pages
     let _ = buildSnippets()

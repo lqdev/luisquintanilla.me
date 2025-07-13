@@ -9,4 +9,4 @@ Spent the day playing sysadmin and removed about 50GB worth of data from my Matr
 
 Anyway, if anyone is interested, here are some resources that have helped me in this process.
 
-[Matrix Synapse Server Administration](/wiki/matrix-synapse-admin)
+[Matrix Synapse Server Administration](/resources/wiki/matrix-synapse-admin)
