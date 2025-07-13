@@ -4,13 +4,15 @@
 
 This backlog drives the systematic architectural upgrade of the indieweb content management system, transforming from a collection of 20+ repetitive build functions to a unified, generic content processing system with custom block support.
 
-## 🎯 Current Status: Content Migration Phase Complete ✅
+## 🎯 Current Status: Critical Functionality Fix Required 🚨
 
 **Migration Progress**: 8/8 content types successfully migrated to AST-based GenericBuilder infrastructure
 - ✅ **Completed**: Snippets, Wiki, Presentations, Books, Posts, Notes, Responses, Albums
-- 🎯 **Next Phase**: Unified Feed System (ready to begin)
+- ✅ **Infrastructure**: Unified Feed System Complete
+- 🚨 **Critical Issue**: Presentation rendering broken - slideshows display as static content
+- 🎯 **Next Priority**: Phase 3.5 - Presentation Rendering Fix (restore reveal.js functionality)
 
-**Architecture Achievement**: All content types now unified under GenericBuilder pattern with custom block support. Feature flag migration pattern proven across 8 consecutive successful deployments. Ready for Phase 3 infrastructure consolidation.
+**Architecture Achievement**: All content types unified under GenericBuilder pattern with custom block support. Feature flag migration pattern proven across 8 consecutive successful deployments. **Critical regression**: Presentations need reveal.js slideshow restoration.
 
 ## High Priority (Critical Infrastructure)
 
@@ -225,28 +227,94 @@ This backlog drives the systematic architectural upgrade of the indieweb content
 
 ---
 
-### [ ] Phase 3: Unified Feed System
+### [✅] Phase 3: Unified Feed System - COMPLETE
 **Project**: Website Architecture Upgrade - Feed Consolidation  
 **Complexity**: Large  
-**Estimated Effort**: 1-2 weeks  
-**Dependencies**: All Content Types Migrated ✅ (NOW READY)
+**Completed**: 2025-07-13 (1 day - all 4 phases)  
+**Status**: ✅ Complete - Archived in `projects/archive/unified-feed-system.md`
 
-Replace multiple feed generation with unified system:
-- Remove individual feed functions (`buildFeedPage`, `buildFeedRssPage`, etc.)
-- Implement `buildMainFeeds(allData)` single-pass generation
-- Generate fire-hose and type-specific feeds automatically
-- Consolidate RSS and HTML feed generation
+**Achievements**:
+- ✅ Single `buildMainFeeds` call generates all feeds
+- ✅ Fire-hose feed includes all content types
+- ✅ Type-specific feeds generated automatically  
+- ✅ RSS and HTML feeds synchronized with 20-item optimization
+- ✅ Feed generation performance improved (single-pass processing)
+- ✅ All existing feed URLs preserved with zero breaking changes
+- ✅ RSS 2.0 compliance validated across 8 content types
 
-**Success Criteria**:
-- [ ] Single `buildMainFeeds` call generates all feeds
-- [ ] Fire-hose feed includes all content types
-- [ ] Type-specific feeds generated automatically
-- [ ] RSS and HTML feeds stay synchronized
-- [ ] Feed generation performance improved
+**Migration Strategy Success**:
+- Unified feed processing eliminates code duplication
+- 1129 items processed across 8 content types efficiently
+- Feed throughput: ~65.6 items/sec with 17.2s total processing
+- All legacy RSS functions removed and replaced with unified system
 
 ---
 
-## Low Priority (Code Cleanup & Optimization)
+## High Priority (Critical Functionality Fixes)
+
+### [ ] Phase 3.5: Presentation Rendering Fix
+**Project**: Website Architecture Upgrade - Presentation Slideshow Restoration  
+**Priority**: Critical  
+**Complexity**: Medium  
+**Estimated Effort**: 3-4 days  
+**Dependencies**: Unified Feed System Complete ✅
+
+**Problem**: Presentations are currently rendering as static markdown content instead of interactive reveal.js slideshows, causing significant functionality regression.
+
+**Root Cause**: Current GenericBuilder presentation processing uses `convertMdToHtml` instead of reveal.js integration, treating slideshow content as regular markdown.
+
+**Solution**: Implement `:::presentation` custom block system:
+- Create new `:::presentation` custom block type
+- Move YAML resources into presentation block metadata
+- Integrate with existing reveal.js infrastructure
+- Preserve slide separators (`---`) and reveal.js features
+- Ensure proper slideshow navigation, themes, and interactivity
+
+**Current vs Target**:
+```markdown
+<!-- Current (broken) -->
+---
+title: "Hello World!"
+resources: [...]
+---
+## Slide 1
+Content...
+---
+## Slide 2
+
+<!-- Target (working) -->
+---
+title: "Hello World!"
+---
+:::presentation
+resources:
+  - text: "Personal Site"
+    url: "https://luisquintanilla.me"
+## Slide 1
+Content...
+---
+## Slide 2
+:::
+```
+
+**Success Criteria**:
+- [ ] Presentations render as interactive reveal.js slideshows
+- [ ] Slide navigation works (arrow keys, click navigation)
+- [ ] Resources section displays properly
+- [ ] All existing presentations work without content changes
+- [ ] Integration with existing reveal.js themes and plugins
+- [ ] Presentation index page shows proper slideshow previews
+
+**Technical Requirements**:
+- [ ] Create PresentationBlock.fs for `:::presentation` custom block
+- [ ] Update GenericBuilder.PresentationProcessor to use custom blocks
+- [ ] Integrate reveal.js rendering pipeline with AST processing
+- [ ] Preserve existing reveal.js features (speaker notes, themes, etc.)
+- [ ] Test with all 3 existing presentations
+
+---
+
+## Medium Priority (Code Cleanup & Optimization)
 
 ### [ ] Phase 4: Legacy Code Removal
 **Project**: Website Architecture Upgrade - Cleanup  
