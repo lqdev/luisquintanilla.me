@@ -1,5 +1,5 @@
 ---
-post_type: "article" 
+post_type: "aFor your convenience, if any of the sources (including podcasts) I list below have RSS feeds, I've included them in my [AI Starter Pack](/collections/starter-packs/ai), which you can [download and import into your favorite RSS reader](/collections/starter-packs/ai/index.opml) (as long as it supports OPML file imports).ticle" 
 title: "How do I keep up with AI?"
 description: "Resources and ways I try to stay informed of the latest developments"
 published_date: "2025-05-27 19:44 -05:00"

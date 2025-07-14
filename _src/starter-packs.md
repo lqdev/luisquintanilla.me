@@ -11,4 +11,4 @@ By leveraging open standards like RSS and OPML, my goal is to:
 
 ## Packs
 
-- [AI](/feed/starter/ai)
+- [AI](/collections/starter-packs/ai)

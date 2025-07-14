@@ -28,10 +28,10 @@ More importantly, because RSS and OPML are open standards, you're not limited to
 
 If you're interested in what that might look like in practice, check out my "starter packs" which you can subscribe to using your RSS reader of choice and the provided OPML files. 
 
-- [Blogs](https://www.lqdev.me/feed/blogroll)
-- [Podcasts](https://www.lqdev.me/feed/podroll)
-- [YouTube](https://www.lqdev.me/feed/youtube)
-- [Forums](https://www.lqdev.me/feed/forums)
+- [Blogs](https://www.lqdev.me/collections/blogroll)
+- [Podcasts](https://www.lqdev.me/collections/podroll)
+- [YouTube](https://www.lqdev.me/collections/youtube)
+- [Forums](https://www.lqdev.me/collections/forums)
 
 I'm still working on similar collections for Mastodon and Bluesky but the same concept applies.  
 

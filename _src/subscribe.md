@@ -13,7 +13,7 @@ Feed URL: [https://www.lqdev.me/blog.rss](/blog.rss)
 Follow on NewsBlur
 </button></a>
 
-## [Microblog Feed](/feed/)
+## [Microblog Feed](/notes/)
 
 Microblog-like short posts containing different types of content such as notes, photos, and videos.
 
@@ -24,7 +24,7 @@ Feed URL: [https://www.lqdev.me/microblog.rss](/microblog.rss)
 Follow on NewsBlur
 </button></a>
 
-## [Response Feed](/feed/responses/)
+## [Response Feed](/responses/)
 
 Microblog-like short posts containing replies, reshares (repost), favorites (likes), and bookmarks.
 
