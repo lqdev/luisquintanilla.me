@@ -107,10 +107,15 @@ module Loaders
                 
                 // URL Alignment Phase 10: Collection reorganization
                 ("/feed/blogroll/", "/collections/blogroll/", "Blogroll")
-                ("/feed/starter/", "/starter-packs/", "Starter Packs")
+                ("/feed/starter/", "/collections/starter-packs/", "Starter Packs")
                 ("/feed/forums/", "/collections/forums/", "Forums")
                 ("/feed/podroll/", "/collections/podroll/", "Podroll")
                 ("/feed/youtube/", "/collections/youtube/", "YouTube")
+                
+                // URL Alignment Phase 10: Asset reorganization
+                ("/css/", "/assets/css/", "CSS Assets")
+                ("/js/", "/assets/js/", "JavaScript Assets")
+                ("/lib/", "/assets/lib/", "Library Assets")
             |]
 
         redirects

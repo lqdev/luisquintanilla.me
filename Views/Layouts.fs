@@ -169,11 +169,11 @@ module Layouts
         ]
     
     let styleSheets = [
-        link [_rel "stylesheet";_href "/css/bootstrap.min.css"] //4.6.0
-        link [_rel "stylesheet";_href "/css/bootstrap-icons-1.5.0/bootstrap-icons.css"]
-        link [_rel "stylesheet";_href "/css/highlight.github-dark-dimmed.min.css"] //11.8.0
-        link [_rel "stylesheet";_href "/css/main.css"]
-        link [_rel "stylesheet";_href "/css/customthemes.css"]
+        link [_rel "stylesheet";_href "/assets/css/bootstrap.min.css"] //4.6.0
+        link [_rel "stylesheet";_href "/assets/css/bootstrap-icons-1.5.0/bootstrap-icons.css"]
+        link [_rel "stylesheet";_href "/assets/css/highlight.github-dark-dimmed.min.css"] //11.8.0
+        link [_rel "stylesheet";_href "/assets/css/main.css"]
+        link [_rel "stylesheet";_href "/assets/css/customthemes.css"]
     ]
 
     let buildOpenGraphElements (pageTitle:string)= 
@@ -212,14 +212,14 @@ module Layouts
     ]
 
     let scripts = [
-        script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
-        script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
-        script [_src "/lib/highlight/highlight.min.js"] [] // 11.8.0
-        script [_src "/lib/highlight/highlight.fsharp.min.js"] [] // 11.8.0
-        script [_src "/lib/highlight/highlight.nix.min.js"] [] // 11.8.0
+        script [_src "/assets/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
+        script [_src "/assets/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
+        script [_src "/assets/lib/highlight/highlight.min.js"] [] // 11.8.0
+        script [_src "/assets/lib/highlight/highlight.fsharp.min.js"] [] // 11.8.0
+        script [_src "/assets/lib/highlight/highlight.nix.min.js"] [] // 11.8.0
 
 
-        script [_src "/js/main.js"] []    
+        script [_src "/assets/js/main.js"] []    
 
         script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] []
 
@@ -359,8 +359,8 @@ module Layouts
                 for sheet in styleSheets do
                     sheet
 
-                link [_rel "stylesheet"; _href "/lib/revealjs/dist/reveal.css"]
-                link [_rel "stylesheet"; _href "/lib/revealjs/dist/theme/black.css"]
+                link [_rel "stylesheet"; _href "/assets/lib/revealjs/dist/reveal.css"]
+                link [_rel "stylesheet"; _href "/assets/lib/revealjs/dist/theme/black.css"]
 
                 // Opengraph
                 let ogElements = buildOpenGraphElements pageTitle
@@ -395,8 +395,8 @@ module Layouts
                     scr
 
                 // Revealjs (As of 10/20/2021)
-                script [_src "/lib/revealjs/dist/reveal.js"] []
-                script [_src "/lib/revealjs/plugin/markdown/markdown.js"] []
+                script [_src "/assets/lib/revealjs/dist/reveal.js"] []
+                script [_src "/assets/lib/revealjs/plugin/markdown/markdown.js"] []
                 script [_type "application/javascript"] [
                     rawText """
                     Reveal.initialize({

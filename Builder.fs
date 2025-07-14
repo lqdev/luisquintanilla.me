@@ -29,28 +29,52 @@ module Builder
                 x.Delete())
 
     let copyStaticFiles () =
-        let directories = [
-            "css"
-            "js"
+        // Asset directories to copy to /assets/
+        let assetDirectories = [
+            ("css", "assets/css")
+            ("js", "assets/js") 
+            ("lib", "assets/lib")
+        ]
+
+        // Copy asset directories to /assets/
+        assetDirectories
+        |> List.iter(fun (srcPath, destPath) ->
+            let sourcePath = Path.Join(srcDir, srcPath)
+            let destPath = Path.Join(outputDir, destPath)
+            
+            if Directory.Exists(sourcePath) then
+                Directory.CreateDirectory(destPath) |> ignore
+                
+                // Copy all files recursively
+                Directory.GetFiles(sourcePath, "*", SearchOption.AllDirectories)
+                |> Array.iter(fun file ->
+                    let relativePath = Path.GetRelativePath(sourcePath, file)
+                    let destFile = Path.Join(destPath, relativePath)
+                    Directory.CreateDirectory(Path.GetDirectoryName(destFile)) |> ignore
+                    File.Copy(file, destFile, true))
+        )
+
+        // Copy other static directories at root level
+        let staticDirectories = [
             "assets/images"
-            "lib"
             ".well-known"
         ]
 
-        directories
-        |> List.map(fun x -> 
-            Directory.GetDirectories(Path.Join(srcDir,x),"*",SearchOption.AllDirectories)
-            |> List.ofArray
-            |> fun a -> a @ [x])
-        |> List.collect(fun x -> 
-                x
-                |> List.map(fun y -> y.Replace("_src" + Path.DirectorySeparatorChar.ToString(),"")))
-        |> List.map(fun (dir:string) -> Path.Join(srcDir,dir),Path.Join(outputDir,dir))
-        |> List.iter(fun (s,d) -> 
-            let saveDir = Directory.CreateDirectory(d)
+        staticDirectories
+        |> List.iter(fun dir ->
+            let sourcePath = Path.Join(srcDir, dir)
+            let destPath = Path.Join(outputDir, dir)
             
-            Directory.GetFiles(s)
-            |> Array.iter(fun file -> File.Copy(Path.GetFullPath(file),Path.Join(saveDir.FullName,Path.GetFileName(file)),true)))
+            if Directory.Exists(sourcePath) then
+                Directory.CreateDirectory(destPath) |> ignore
+                
+                Directory.GetFiles(sourcePath, "*", SearchOption.AllDirectories)
+                |> Array.iter(fun file ->
+                    let relativePath = Path.GetRelativePath(sourcePath, file)
+                    let destFile = Path.Join(destPath, relativePath)
+                    Directory.CreateDirectory(Path.GetDirectoryName(destFile)) |> ignore
+                    File.Copy(file, destFile, true))
+        )
         
         // Copy favicon & avatar
         File.Copy(Path.Join(srcDir,"favicon.ico"),Path.Join(outputDir,"favicon.ico"),true)
@@ -93,7 +117,7 @@ module Builder
 
         let starterContent = convertFileToHtml (Path.Join(srcDir,"starter-packs.md")) |> contentView
         let starterPage = generate starterContent "default" "Starter Packs - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","starter")
+        let saveDir = Path.Join(outputDir,"collections","starter-packs")
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), starterPage)
 
@@ -101,19 +125,19 @@ module Builder
         let blogRollContent = 
             links
             |> blogRollView
-
+            
         let blogRollPage = generate blogRollContent "default" "Blogroll - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","blogroll")
-        Directory.CreateDirectory(saveDir) |> ignore    
+        let saveDir = Path.Join(outputDir,"collections","blogroll")
+        Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), blogRollPage)
 
     let buildPodrollPage (links:Outline array) = 
         let podrollContent = 
             links
             |> podRollView
-
+            
         let podrollPage = generate podrollContent "default" "Podroll - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","podroll")
+        let saveDir = Path.Join(outputDir,"collections","podroll")
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), podrollPage)
 
@@ -121,9 +145,9 @@ module Builder
         let forumContent = 
             links
             |> forumsView
-
+            
         let forumsPage = generate forumContent "default" "Forums - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","forums")
+        let saveDir = Path.Join(outputDir,"collections","forums")
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), forumsPage)
 
@@ -133,7 +157,7 @@ module Builder
             |> youTubeFeedView
 
         let ytFeedPage = generate ytContent "default" "YouTube Channels - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","youtube")
+        let saveDir = Path.Join(outputDir,"collections","youtube")
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), ytFeedPage)
 
@@ -195,31 +219,32 @@ module Builder
 
     let buildBlogrollOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Blogroll" "https://www.luisquintanilla.me" links
-        let saveDir = Path.Join(outputDir,"feed","blogroll")
+        let saveDir = Path.Join(outputDir,"collections","blogroll")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
     let buildPodrollOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Podroll" "https://www.lqdev.me" links
-        let saveDir = Path.Join(outputDir,"feed","podroll")
+        let saveDir = Path.Join(outputDir,"collections","podroll")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
     let buildForumsOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Forums" "https://www.lqdev.me" links
-        let saveDir = Path.Join(outputDir,"feed","forums")
+        let saveDir = Path.Join(outputDir,"collections","forums")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
     let buildYouTubeOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla YouTube Channels" "https://www.lqdev.me" links
-        let saveDir = Path.Join(outputDir,"feed","youtube")
+        let saveDir = Path.Join(outputDir,"collections","youtube")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
     let buildAIStarterPackOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla AI Starter Pack" "https://www.lqdev.me" links
-        let saveDir = Path.Join(outputDir,"feed","starter","ai")
+        let saveDir = Path.Join(outputDir,"collections","starter-packs","ai")
+        Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
     
