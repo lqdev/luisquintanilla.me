@@ -53,6 +53,7 @@ let albumPostViewWithBacklink = ContentViews.albumPostViewWithBacklink
 // Collections (from CollectionViews)
 let recentPostsView = CollectionViews.recentPostsView
 let feedView = CollectionViews.feedView
+let notesView = CollectionViews.notesView
 let responseView = CollectionViews.responseView
 let bookmarkView = CollectionViews.bookmarkView
 let libraryView = CollectionViews.libraryView

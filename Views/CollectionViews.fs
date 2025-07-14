@@ -34,6 +34,12 @@ let feedView (posts: Post array) =
             feedPostView post
     ]
 
+let notesView (posts: Post array) =
+    div [ _class "d-grip gap-3" ] [
+        for post in posts do
+            notePostView post
+    ]
+
 let responseView (posts: Response array) =
     div [ _class "d-grip gap-3" ] [
         for post in posts do

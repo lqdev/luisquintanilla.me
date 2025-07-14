@@ -111,9 +111,6 @@ module Loaders
                 ("/feed/forums/", "/collections/forums/", "Forums")
                 ("/feed/podroll/", "/collections/podroll/", "Podroll")
                 ("/feed/youtube/", "/collections/youtube/", "YouTube")
-                
-                // Asset path migration
-                ("/images/", "/assets/images/", "Images")
             |]
 
         redirects

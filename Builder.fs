@@ -528,7 +528,7 @@ module Builder
         // Generate notes index page at /notes/
         let notes = feedData |> List.map (fun item -> item.Content) |> List.toArray
         let sortedNotes = notes |> Array.sortByDescending(fun (x: Post) -> DateTime.Parse(x.Metadata.Date))
-        let notesIndexHtml = generate (feedView sortedNotes) "defaultindex" "Notes - Luis Quintanilla"
+        let notesIndexHtml = generate (notesView sortedNotes) "defaultindex" "Notes - Luis Quintanilla"
         let indexSaveDir = Path.Join(outputDir, "notes")
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), notesIndexHtml)

@@ -47,7 +47,7 @@ The quickest way to get started with TiddlyWiki is to:
 1. Open the command palette (View > Command Palette).
 1. Enter into the text box *Live Preview: Start Server* and press *Enter*. The server should start.
 
-![lqdev TiddlyWiki Main Page](/images/tiddlywiki-vscode/lqdev-tiddlywiki.png)
+![lqdev TiddlyWiki Main Page](/assets/images/tiddlywiki-vscode/lqdev-tiddlywiki.png)
 
 At this point, you can use the TiddlyWiki interface to create and edit your wiki.
 
@@ -55,7 +55,7 @@ At this point, you can use the TiddlyWiki interface to create and edit your wiki
 
 Saving can be a bit tricky but it's not too bad. Use the checkmark in the side pane to save your changes. When there are unsaved changes, the checkmark turns red. 
 
-![TiddlyWiki Side Panel Red Checkmark Save Changes](/images/tiddlywiki-vscode/tiddlywiki-save-changes.png)
+![TiddlyWiki Side Panel Red Checkmark Save Changes](/assets/images/tiddlywiki-vscode/tiddlywiki-save-changes.png)
 
 To save your changes, overwrite the existing file or if you want, you can also save it to a file with a different name. I would recommend saving it to the same file because it's easier to manage. You don't want to end up with *index-version12341.html*. That being said, I don't know if there may be risks in overwriting the file. In my limited testing I had no issues overwriting the file, but I'd still tread lightly.
 

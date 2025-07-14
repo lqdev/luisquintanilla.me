@@ -101,7 +101,7 @@ In our shell we can enter the `pytest` command inside of our project directory a
 pytest
 ```
 
-![](/images/type-driven-development-scaling-safely-with-python/typedrivendevelopment1.png)
+![](/assets/images/type-driven-development-scaling-safely-with-python/typedrivendevelopment1.png)
 
 The results from `pytest` ensure that passing the expected parameters returns the expected output which is the sum of two numbers and passing in the wrong parameters such as those of type string return a `TypeError`. This gets us closer to where we want to be where we're able to test whether the functionality of our application does what it's supposed to. Like docstrings, there is additional work and time that needs to be accounted for when writing tests. However, this is a practice that should be taking place already and in the case of Python which does not provide the type checking or compilation is a way to if not ensure that our logic is sound, at least it provides us with an additional form of documentation and peace of mind that the code is being used accurately. 
 
@@ -132,7 +132,7 @@ mypy mainmypy.py
 
 The output is the following:
 
-![](/images/type-driven-development-scaling-safely-with-python/typedrivendevelopment2.png)
+![](/assets/images/type-driven-development-scaling-safely-with-python/typedrivendevelopment2.png)
 
 As we can see, without having to run our code, `mypy` checks the types and throws errors that we would not have found unless we ran our code. Therefore, we get both documentation by defining the types of parameters and outputs we expect which make it easier for individuals using or writing code to safely do so without having to write long, descriptive docstrings. With `mypy`, we enforce the good use of code by checking that the correct parameters are being passed in and the correct results are being returned prior to runtime making it safe to scale and write correct code most of the time. 
 
