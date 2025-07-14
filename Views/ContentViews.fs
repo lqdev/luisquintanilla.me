@@ -62,7 +62,21 @@ let bookmarkBodyView (post:Response) =
 // Individual content type views
 let feedPostView (post:Post) = 
     let header = cardHeader post.Metadata.Date
-    let footer = cardFooter post.FileName post.Metadata.Tags
+    let footer = cardFooter "posts" post.FileName post.Metadata.Tags
+
+    div [ _class "card rounded m-2 w-75 mx-auto" ] [
+        header
+        div [ _class "card-body" ] [
+            rawText post.Content
+            hr []
+            webmentionForm
+        ]
+        footer
+    ]
+
+let notePostView (post:Post) = 
+    let header = cardHeader post.Metadata.Date
+    let footer = cardFooter "notes" post.FileName post.Metadata.Tags
 
     div [ _class "card rounded m-2 w-75 mx-auto" ] [
         header
@@ -76,7 +90,7 @@ let feedPostView (post:Post) =
 
 let responsePostView (post: Response) = 
     let header = cardHeader post.Metadata.DatePublished
-    let footer = cardFooter post.FileName post.Metadata.Tags
+    let footer = cardFooter "responses" post.FileName post.Metadata.Tags
     let body = 
         match post.Metadata.ResponseType with
         | "reply" -> replyBodyView post
@@ -93,7 +107,7 @@ let responsePostView (post: Response) =
 
 let bookmarkPostView (bookmark: Bookmark) = 
     let header = cardHeader bookmark.Metadata.DatePublished
-    let footer = cardFooter bookmark.FileName bookmark.Metadata.Tags
+    let footer = cardFooter "bookmarks" bookmark.FileName bookmark.Metadata.Tags
     
     div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
         header
@@ -184,14 +198,21 @@ let liveStreamPageView (stream:Livestream) =
 
 // Content views with backlinks
 let feedPostViewWithBacklink (feedPostView:XmlNode) = 
-    let mainFeedBacklink = feedBacklink "/feed"
+    let mainFeedBacklink = feedBacklink "/posts"
     div [] [
         feedPostView        
         mainFeedBacklink
     ]
 
+let notePostViewWithBacklink (notePostView:XmlNode) = 
+    let notesBacklink = feedBacklink "/notes"
+    div [] [
+        notePostView        
+        notesBacklink
+    ]
+
 let reponsePostViewWithBacklink (responsePostView:XmlNode) = 
-    let responseBacklink = feedBacklink "/feed/responses"
+    let responseBacklink = feedBacklink "/responses"
     div [] [
         responsePostView
         responseBacklink

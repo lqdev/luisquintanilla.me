@@ -43,14 +43,14 @@ let cardHeader (date:string) =
         ] 
     ]    
 
-let cardFooter (fileName:string) (tags: string array)= 
+let cardFooter (contentType:string) (fileName:string) (tags: string array)= 
     let tagElements = 
         tags
         |> cleanTags
         |> Array.map(fun tag -> a [_href $"/tags/{tag}"; _class "p-category"] [Text $"#{tag}"])
 
     div [_class "card-footer"] [
-        let permalink = $"/feed/{fileName}/" 
+        let permalink = $"/{contentType}/{fileName}/" 
         Text "Permalink: " 
         a [_href permalink; _class "u-url"] [Text $"{permalink}"] 
         

@@ -433,7 +433,7 @@ module Builder
     // AST-based book processing using GenericBuilder infrastructure
     let buildBooks() = 
         let bookFiles = 
-            Directory.GetFiles(Path.Join(srcDir, "reviews"))
+            Directory.GetFiles(Path.Join(srcDir, "reviews", "library"))
             |> Array.filter (fun f -> f.EndsWith(".md"))
             |> Array.toList
         
@@ -520,7 +520,7 @@ module Builder
             let saveDir = Path.Join(outputDir, "notes", note.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = feedPostView note |> feedPostViewWithBacklink
+            let html = notePostView note |> notePostViewWithBacklink
             let noteView = generate html "defaultindex" note.Metadata.Title
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, noteView))

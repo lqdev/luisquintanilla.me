@@ -111,13 +111,16 @@ module Loaders
                 ("/feed/forums/", "/collections/forums/", "Forums")
                 ("/feed/podroll/", "/collections/podroll/", "Podroll")
                 ("/feed/youtube/", "/collections/youtube/", "YouTube")
+                
+                // Asset path migration
+                ("/images/", "/assets/images/", "Images")
             |]
 
         redirects
 
     let loadBooks (srcDir: string) = 
         let bookPaths = 
-            Directory.GetFiles(Path.Join(srcDir,"reviews"))
+            Directory.GetFiles(Path.Join(srcDir,"reviews", "library"))
 
         let books = bookPaths |> Array.map(parseBook)
 
