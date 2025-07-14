@@ -167,7 +167,7 @@ module Builder
             |> aiStarterPackFeedView
 
         let ytFeedPage = generate aiStarterPackContent "default" "AI Starter Pack - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","starter","ai")
+        let saveDir = Path.Join(outputDir,"collections","starter-packs","ai")
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), ytFeedPage)
 
