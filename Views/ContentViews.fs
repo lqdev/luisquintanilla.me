@@ -148,16 +148,22 @@ let albumPostView (album: Album) =
         div [ _class "card-body" ] [
             h5 [_class "card-title"] [Text album.Metadata.Title]
             
-            // Convert album to markdown with :::media block and render
-            let mediaItems = 
-                album.Metadata.Images 
-                |> Array.map (fun img -> 
-                    sprintf "- media_type: image\n  uri: %s\n  alt_text: %s\n  caption: %s\n  aspect: \"16:9\"" 
-                        img.ImagePath img.AltText img.Description)
-                |> String.concat "\n"
-            let mediaBlock = sprintf ":::media\n%s\n:::media" mediaItems
+            // Handle both legacy format (with Images) and new format (with :::media blocks)
+            if isNull album.Metadata.Images || Array.isEmpty album.Metadata.Images then
+                // New format - content already includes processed :::media blocks
+                div [] [rawText "<!-- Content will be processed by :::media blocks -->"]
+            else
+                // Legacy format - convert album to markdown with :::media block and render
+                let mediaItems = 
+                    album.Metadata.Images 
+                    |> Array.map (fun img -> 
+                        sprintf "- media_type: image\n  uri: %s\n  alt_text: %s\n  caption: %s\n  aspect: \"16:9\"" 
+                            img.ImagePath img.AltText img.Description)
+                    |> String.concat "\n"
+                let mediaBlock = sprintf ":::media\n%s\n:::media" mediaItems
+                
+                rawText (mediaBlock |> convertMdToHtml)
             
-            rawText (mediaBlock |> convertMdToHtml)
             hr []
             webmentionForm
         ]

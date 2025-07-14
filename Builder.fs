@@ -613,7 +613,8 @@ module Builder
             let saveDir = Path.Join(outputDir, "media", album.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = albumPostView album |> albumPostViewWithBacklink
+            let processedContent = processor.Render album |> convertMdToHtml
+            let html = contentViewWithTitle album.Metadata.Title processedContent
             let albumView = generate html "defaultindex" $"{album.Metadata.Title} | Media | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, albumView))

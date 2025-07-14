@@ -4,6 +4,7 @@ module Loaders
     open System.Text.Json
     open Domain
     open MarkdownService
+    open ASTParsing
 
     let loadPosts (srcDir: string) = 
         let postPaths = 

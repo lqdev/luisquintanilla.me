@@ -474,12 +474,14 @@ module AlbumProcessor =
             let title = Html.escapeHtml album.Metadata.Title
             let url = sprintf "/media/%s" album.FileName
             let date = album.Metadata.Date
-            let imageCount = Array.length album.Metadata.Images
+            let imageCount = 
+                if isNull album.Metadata.Images then 0
+                else Array.length album.Metadata.Images
             
             // Album card with first image and photo count
             let firstImageSrc = 
                 if imageCount > 0 then album.Metadata.Images.[0].ImagePath
-                else "/images/default-album.jpg"
+                else "/assets/images/default-album.jpg"
             
             Html.element "article" (Html.attribute "class" "album-card h-entry")
                 (Html.element "div" (Html.attribute "class" "album-thumbnail") 
@@ -494,7 +496,9 @@ module AlbumProcessor =
         RenderRss = fun album ->
             // Create RSS item for album with all images included
             let url = sprintf "https://www.luisquintanilla.me/media/%s" album.FileName
-            let imageCount = Array.length album.Metadata.Images
+            let imageCount = 
+                if isNull album.Metadata.Images then 0
+                else Array.length album.Metadata.Images
             let description = sprintf "Album containing %d photos" imageCount
             
             let item = 
