@@ -10,7 +10,7 @@ module Loaders
         let postPaths = 
             Directory.GetFiles(Path.Join(srcDir,"posts"))
         
-        let posts = postPaths |> Array.map(parsePost)
+        let posts = postPaths |> Array.map(MarkdownService.parsePost)
         
         posts
 

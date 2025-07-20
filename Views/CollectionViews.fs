@@ -109,11 +109,12 @@ let liveStreamsView (livestreams: Livestream array) =
 let albumsPageView (albums:Album array) = 
     div [ _class "d-grip gap-3" ] [
         for album in albums do
-            let header = ComponentViews.cardHeader album.Metadata.Date
-            let footer = ComponentViews.albumCardFooter album.FileName album.Metadata.Tags
+            let tags = if isNull album.Metadata.Tags then [||] else album.Metadata.Tags
+            let footer = ComponentViews.albumCardFooter album.FileName tags
+            // let header = ComponentViews.cardHeader album.Metadata.Date
             
             div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
-                header
+                // header
                 
                 div [ _class "card-body" ] [
                     h5 [_class "card-title"] [

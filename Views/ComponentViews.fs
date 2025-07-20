@@ -33,15 +33,27 @@ let seasonalCheckmarkEmoji =
 
 // Card components
 let cardHeader (date:string) =
-    let dt = DateTime.Parse(date)
-    div [_class "card-header u-author h-card"] [
-        img [_src "/avatar.png"; _height "32"; _width "32"; _class "d-inline-block align-top rounded-circle u-photo"; _style "margin-right:5px"; attr "loading" "lazy"]
-        a [ _href "/about"; _class "u-url p-name"] [Text "lqdev"]
-        seasonalCheckmarkEmoji
-        span [_class "float-right"] [
-            time [_class "dt-published"; _datetime date] [Text $"{dt.ToShortDateString()}"]
-        ] 
-    ]    
+    try
+        let dt = DateTime.Parse(date)
+        div [_class "card-header u-author h-card"] [
+            img [_src "/avatar.png"; _height "32"; _width "32"; _class "d-inline-block align-top rounded-circle u-photo"; _style "margin-right:5px"; attr "loading" "lazy"]
+            a [ _href "/about"; _class "u-url p-name"] [Text "lqdev"]
+            seasonalCheckmarkEmoji
+            span [_class "float-right"] [
+                time [_class "dt-published"; _datetime date] [Text $"{dt.ToShortDateString()}"]
+            ] 
+        ]    
+    with
+    | ex ->
+        printfn $"Error parsing date '{date}': {ex.Message}"
+        div [_class "card-header u-author h-card"] [
+            img [_src "/avatar.png"; _height "32"; _width "32"; _class "d-inline-block align-top rounded-circle u-photo"; _style "margin-right:5px"; attr "loading" "lazy"]
+            a [ _href "/about"; _class "u-url p-name"] [Text "lqdev"]
+            seasonalCheckmarkEmoji
+            span [_class "float-right"] [
+                time [_class "dt-published"; _datetime date] [Text date]
+            ] 
+        ]
 
 let cardFooter (contentType:string) (fileName:string) (tags: string array)= 
     let tagElements = 

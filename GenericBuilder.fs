@@ -7,6 +7,8 @@ open BlockRenderers
 open System.Xml.Linq
 open System
 open System.IO
+open Giraffe.ViewEngine
+open Giraffe.ViewEngine.HtmlElements
 
 /// Data structure for feed generation with both card and RSS item
 type FeedData<'T> = {
@@ -44,6 +46,22 @@ let buildContentWithFeeds<'T> (processor: ContentProcessor<'T>) (filePaths: stri
 
 /// Post content processor
 module PostProcessor =
+    // Helper to extract markdown content without frontmatter
+    let private extractContentWithoutFrontMatter (rawMarkdown: string) : string =
+        let lines = rawMarkdown.Split([|'\n'|], StringSplitOptions.None)
+        if lines.Length > 0 && lines.[0].Trim() = "---" then
+            // Find the closing ---
+            let closingIndex = 
+                lines 
+                |> Array.skip 1
+                |> Array.findIndex (fun line -> line.Trim() = "---")
+            // Return everything after the second ---
+            lines 
+            |> Array.skip (closingIndex + 2)
+            |> String.concat "\n"
+        else
+            rawMarkdown
+
     let create() : ContentProcessor<Post> = {
         Parse = fun filePath ->
             match parsePostFromFile filePath with
@@ -53,15 +71,15 @@ module PostProcessor =
                     Some {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
-                        Content = parsedDoc.TextContent  // Raw markdown content
+                        Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown  // Use raw markdown without frontmatter
                     }
                 | None -> None
             | Error _ -> None
         
         Render = fun post ->
-            // Convert markdown to HTML - will be handled by calling code
-            // This matches the pattern from existing processors
-            sprintf "<article>%s</article>" post.Content
+            // Return raw markdown content to be processed by the calling code
+            // The Builder will apply MarkdownService.convertMdToHtml to this content
+            post.Content
         
         OutputPath = fun post ->
             sprintf "posts/%s/index.html" post.FileName
@@ -111,8 +129,9 @@ module NoteProcessor =
             | Error _ -> None
         
         Render = fun note ->
-            // Convert markdown to HTML - will be handled by calling code
-            sprintf "<article class=\"note\">%s</article>" note.Content
+            // Return ViewEngine node rendered to HTML string
+            let viewNode = article [ _class "note" ] [ rawText note.Content ]
+            RenderView.AsString.xmlNode viewNode
         
         OutputPath = fun note ->
             sprintf "feed/%s/index.html" note.FileName
@@ -162,7 +181,8 @@ module SnippetProcessor =
             | Error _ -> None
         
         Render = fun snippet ->
-            sprintf "<article>%s</article>" snippet.Content
+            let viewNode = article [] [ rawText snippet.Content ]
+            RenderView.AsString.xmlNode viewNode
         
         OutputPath = fun snippet ->
             sprintf "snippets/%s.html" snippet.FileName
@@ -205,7 +225,8 @@ module WikiProcessor =
             | Error _ -> None
         
         Render = fun wiki ->
-            sprintf "<article>%s</article>" wiki.Content
+            let viewNode = article [] [ rawText wiki.Content ]
+            RenderView.AsString.xmlNode viewNode
         
         OutputPath = fun wiki ->
             sprintf "wiki/%s.html" wiki.FileName
@@ -323,7 +344,8 @@ module BookProcessor =
         
         Render = fun book ->
             // For now, return content as-is. Later integrate with existing Views.Generator
-            sprintf "<article>%s</article>" book.Content
+            let viewNode = article [] [ rawText book.Content ]
+            RenderView.AsString.xmlNode viewNode
         
         OutputPath = fun book ->
             sprintf "library/%s.html" book.FileName
@@ -391,8 +413,9 @@ module ResponseProcessor =
         
         Render = fun response ->
             // Response rendering with IndieWeb microformat support
-            sprintf "<article class=\"h-entry response response-%s\">%s</article>" 
-                (response.Metadata.ResponseType.ToLower()) response.Content
+            let responseClass = sprintf "h-entry response response-%s" (response.Metadata.ResponseType.ToLower())
+            let viewNode = article [ _class responseClass ] [ rawText response.Content ]
+            RenderView.AsString.xmlNode viewNode
         
         OutputPath = fun response ->
             sprintf "responses/%s.html" response.FileName
@@ -437,15 +460,9 @@ module AlbumProcessor =
     
     /// Convert album images to :::media blocks and combine with existing content
     let private convertAlbumToMarkdown (album: Album) (existingContent: string) : string =
-        let mediaBlocks = 
-            album.Metadata.Images
-            |> Array.map convertImageToMediaBlock
-            |> String.concat "\n\n"
-        
-        // Combine any existing markdown content with media blocks
-        match existingContent.Trim() with
-        | "" -> mediaBlocks
-        | content -> sprintf "%s\n\n%s" content mediaBlocks
+        // For new :::media block format, just return the existing content
+        // The AST parsing will handle :::media blocks automatically
+        existingContent
     
     let create() : ContentProcessor<Album> = {
         Parse = fun filePath ->
@@ -461,11 +478,12 @@ module AlbumProcessor =
             | Error _ -> None
         
         Render = fun album ->
-            // Album rendering with IndieWeb h-entry microformat
-            // Content will include :::media blocks converted from album images
-            let contentWithMedia = convertAlbumToMarkdown album ""
-            // Return content that will be processed by calling code
-            contentWithMedia
+            // For albums with :::media blocks, we need to re-read the file content
+            // since Album domain type doesn't store the content
+            let filePath = sprintf "_src/media/%s.md" album.FileName
+            match parseAlbumFromFile filePath with
+            | Ok parsedDoc -> parsedDoc.TextContent
+            | Error _ -> ""
         
         OutputPath = fun album ->
             sprintf "media/%s/index.html" album.FileName
@@ -529,8 +547,11 @@ module BookmarkProcessor =
         
         Render = fun bookmark ->
             // Bookmark rendering with IndieWeb microformat support
-            sprintf "<article class=\"h-entry bookmark\"><a class=\"u-bookmark-of\" href=\"%s\">%s</a>%s</article>" 
-                bookmark.Metadata.BookmarkOf bookmark.Metadata.Title bookmark.Content
+            let viewNode = article [ _class "h-entry bookmark" ] [
+                a [ _class "u-bookmark-of"; _href bookmark.Metadata.BookmarkOf ] [ str bookmark.Metadata.Title ]
+                rawText bookmark.Content
+            ]
+            RenderView.AsString.xmlNode viewNode
         
         OutputPath = fun bookmark ->
             sprintf "bookmarks/%s.html" bookmark.FileName

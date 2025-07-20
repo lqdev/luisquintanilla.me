@@ -1,21 +1,19 @@
 ---
-post_type: "photo"
+post_type: "media"
 title: Fall Mountains
-published_date: "2022-10-15 08:56 -05:00"      
+published_date: "2022-10-15 08:56 -05:00"
+tags: []
 ---
 
 :::media
-media_type: image
-uri: /assets/images/fall-mountains/sunrise.jpg
-alt_text: Sunrise at mountain summit with mist and fall foliage
-caption: Sunrise
-aspect: ""
-:::
-
+- url: "/assets/images/fall-mountains/sunrise.jpg"
+  alt: "Sunrise at mountain summit with mist and fall foliage"
+  mediaType: "image"
+  aspectRatio: "landscape"
+  caption: "Sunrise"
+- url: "/assets/images/fall-mountains/sunset.jpg"
+  alt: "Sunset at lake with mountains in the background"
+  mediaType: "image"
+  aspectRatio: "landscape"
+  caption: "Sunset"
 :::media
-media_type: image
-uri: /assets/images/fall-mountains/sunset.jpg
-alt_text: Sunset at lake with mountains in the background
-caption: Sunset
-aspect: ""
-:::

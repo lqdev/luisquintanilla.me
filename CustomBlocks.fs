@@ -1,3 +1,4 @@
+
 module CustomBlocks
 
 open System
@@ -10,7 +11,51 @@ open Markdig.Renderers.Html
 open YamlDotNet.Serialization
 open YamlDotNet.Serialization.NamingConventions
 
-// Custom block types for IndieWeb content
+// Data types for structured content within blocks
+[<CLIMutable>]
+type MediaItem = {
+    [<YamlDotNet.Serialization.YamlMember(Alias="mediaType")>]
+    media_type: string
+    [<YamlDotNet.Serialization.YamlMember(Alias="url")>]
+    uri: string
+    [<YamlDotNet.Serialization.YamlMember(Alias="alt")>]
+    alt_text: string
+    [<YamlDotNet.Serialization.YamlMember(Alias="caption")>]
+    caption: string
+    [<YamlDotNet.Serialization.YamlMember(Alias="aspectRatio")>]
+    aspect: string
+}
+
+[<CLIMutable>]
+type ReviewData = {
+    item_title: string
+    rating: float
+    max_rating: float
+    review_text: string
+    item_url: string option
+    review_date: string option
+}
+
+[<CLIMutable>]
+type VenueData = {
+    venue_name: string
+    venue_address: string
+    venue_city: string
+    venue_country: string
+    venue_url: string option
+    latitude: float option
+    longitude: float option
+}
+
+[<CLIMutable>]
+type RsvpData = {
+    event_name: string
+    event_url: string
+    event_date: string
+    rsvp_status: string  // "yes", "no", "maybe", "interested"
+    event_location: string option
+    notes: string option
+}
 
 /// Base interface for all custom blocks
 type ICustomBlock =
@@ -25,8 +70,6 @@ type MediaBlock(parser: BlockParser) =
     interface ICustomBlock with
         member _.BlockType = "media"
         member this.RawContent = this.RawContent
-
-/// Review block for :::review syntax  
 and ReviewBlock(parser: BlockParser) =
     inherit ContainerBlock(parser)
     member val ReviewData: ReviewData option = None with get, set
@@ -34,8 +77,6 @@ and ReviewBlock(parser: BlockParser) =
     interface ICustomBlock with
         member _.BlockType = "review"
         member this.RawContent = this.RawContent
-
-/// Venue block for :::venue syntax
 and VenueBlock(parser: BlockParser) =
     inherit ContainerBlock(parser)
     member val VenueData: VenueData option = None with get, set
@@ -43,8 +84,6 @@ and VenueBlock(parser: BlockParser) =
     interface ICustomBlock with
         member _.BlockType = "venue"
         member this.RawContent = this.RawContent
-
-/// RSVP block for :::rsvp syntax
 and RsvpBlock(parser: BlockParser) =
     inherit ContainerBlock(parser)
     member val RsvpData: RsvpData option = None with get, set
@@ -52,48 +91,6 @@ and RsvpBlock(parser: BlockParser) =
     interface ICustomBlock with
         member _.BlockType = "rsvp"
         member this.RawContent = this.RawContent
-
-// Data types for structured content within blocks
-
-/// Media item within :::media blocks
-and [<CLIMutable>] MediaItem = {
-    media_type: string
-    uri: string
-    alt_text: string
-    caption: string
-    aspect: string
-}
-
-/// Review data for :::review blocks  
-and [<CLIMutable>] ReviewData = {
-    item_title: string
-    rating: float
-    max_rating: float
-    review_text: string
-    item_url: string option
-    review_date: string option
-}
-
-/// Venue data for :::venue blocks
-and [<CLIMutable>] VenueData = {
-    venue_name: string
-    venue_address: string
-    venue_city: string
-    venue_country: string
-    venue_url: string option
-    latitude: float option
-    longitude: float option
-}
-
-/// RSVP data for :::rsvp blocks
-and [<CLIMutable>] RsvpData = {
-    event_name: string
-    event_url: string
-    event_date: string
-    rsvp_status: string  // "yes", "no", "maybe", "interested"
-    event_location: string option
-    notes: string option
-}
 
 // Block parsers implementing Markdig parser patterns
 
@@ -246,83 +243,53 @@ type MediaBlockHtmlRenderer() =
     
     override _.Write(renderer: HtmlRenderer, block: MediaBlock) : unit =
         let renderMediaItem (item: MediaItem) =
+            // Defensive: provide default values for all fields to avoid null refs
+            let mediaType = if isNull item.media_type then "image" else item.media_type
+            let uri = if isNull item.uri then "" else item.uri
+            let alt = if isNull item.alt_text then "" else item.alt_text
+            let caption = if isNull item.caption then "" else item.caption
+            let aspect = if isNull item.aspect then "" else item.aspect
+
             let mediaElement =
-                match item.media_type.ToLower() with
+                match mediaType.ToLower() with
                 | "image" ->
                     HtmlHelpers.selfClosingElement "img" 
-                        (HtmlHelpers.attribute "src" item.uri + 
-                         HtmlHelpers.attribute "alt" item.alt_text +
+                        (HtmlHelpers.attribute "src" uri + 
+                         HtmlHelpers.attribute "alt" alt +
                          HtmlHelpers.attribute "class" "media-image")
                 | "video" ->
                     HtmlHelpers.element "video" 
-                        (HtmlHelpers.attribute "src" item.uri + 
+                        (HtmlHelpers.attribute "src" uri + 
                          HtmlHelpers.attribute "controls" "controls" +
                          HtmlHelpers.attribute "class" "media-video")
-                        item.alt_text
+                        alt
                 | "audio" ->
                     HtmlHelpers.element "audio"
-                        (HtmlHelpers.attribute "src" item.uri +
+                        (HtmlHelpers.attribute "src" uri +
                          HtmlHelpers.attribute "controls" "controls" +
                          HtmlHelpers.attribute "class" "media-audio")
-                        item.alt_text
+                        alt
                 | _ ->
                     HtmlHelpers.element "a"
-                        (HtmlHelpers.attribute "href" item.uri +
+                        (HtmlHelpers.attribute "href" uri +
                          HtmlHelpers.attribute "class" "media-link")
-                        item.alt_text
-            
+                        alt
+
             let captionElement =
-                if not (String.IsNullOrWhiteSpace(item.caption)) then
+                if not (String.IsNullOrWhiteSpace(caption)) then
                     HtmlHelpers.element "figcaption" (HtmlHelpers.attribute "class" "media-caption") 
-                        (HtmlHelpers.escapeHtml item.caption)
+                        (HtmlHelpers.escapeHtml caption)
                 else ""
-            
+
             HtmlHelpers.element "figure" (HtmlHelpers.attribute "class" "custom-media-item")
                 (mediaElement + captionElement)
-        
+
         let renderedItems = 
             block.MediaItems 
             |> List.map renderMediaItem 
             |> String.concat "\n"
-        
         let html = HtmlHelpers.element "div" (HtmlHelpers.attribute "class" "custom-media-block") renderedItems
         renderer.Write(html: string) |> ignore
-
-/// HTML renderer for ReviewBlock  
-type ReviewBlockHtmlRenderer() =
-    inherit HtmlObjectRenderer<ReviewBlock>()
-    
-    override _.Write(renderer: HtmlRenderer, block: ReviewBlock) : unit =
-        match block.ReviewData with
-        | Some reviewData -> 
-            let html = sprintf "<div class=\"review-block\"><!-- Review: %s --></div>" (HtmlHelpers.escapeHtml reviewData.item_title)
-            renderer.Write(html: string) |> ignore
-        | None -> 
-            renderer.Write("<!-- Invalid review block -->" : string) |> ignore
-
-/// HTML renderer for VenueBlock
-type VenueBlockHtmlRenderer() =
-    inherit HtmlObjectRenderer<VenueBlock>()
-    
-    override _.Write(renderer: HtmlRenderer, block: VenueBlock) : unit =
-        match block.VenueData with
-        | Some venueData -> 
-            let html = sprintf "<div class=\"venue-block\"><!-- Venue: %s --></div>" (HtmlHelpers.escapeHtml venueData.venue_name)
-            renderer.Write(html: string) |> ignore
-        | None -> 
-            renderer.Write("<!-- Invalid venue block -->" : string) |> ignore
-
-/// HTML renderer for RsvpBlock
-type RsvpBlockHtmlRenderer() =
-    inherit HtmlObjectRenderer<RsvpBlock>()
-    
-    override _.Write(renderer: HtmlRenderer, block: RsvpBlock) : unit =
-        match block.RsvpData with
-        | Some rsvpData -> 
-            let html = sprintf "<div class=\"rsvp-block\"><!-- RSVP: %s --></div>" (HtmlHelpers.escapeHtml rsvpData.event_name)
-            renderer.Write(html: string) |> ignore
-        | None -> 
-            renderer.Write("<!-- Invalid RSVP block -->" : string) |> ignore
 
 // Extension utilities
 
@@ -438,23 +405,24 @@ let filterCustomBlocks (doc: MarkdownDocument) : MarkdownDocument =
 type CustomBlockExtension() =
     interface IMarkdownExtension with
         member _.Setup(pipeline) =
-            // Register all custom block parsers
-            // Insert at position 0 for priority parsing
+            // Add parsers in reverse order since they're inserted at index 0
             pipeline.BlockParsers.Insert(0, MediaBlockParser())
             pipeline.BlockParsers.Insert(0, ReviewBlockParser())
             pipeline.BlockParsers.Insert(0, VenueBlockParser())
             pipeline.BlockParsers.Insert(0, RsvpBlockParser())
-        
+            
         member _.Setup(pipeline, renderer) =
-            // Register HTML renderers for custom blocks
+            // Add renderers only for HTML renderer
             match renderer with
-            | :? Markdig.Renderers.HtmlRenderer as htmlRenderer ->
+            | :? HtmlRenderer as htmlRenderer ->
                 htmlRenderer.ObjectRenderers.Add(MediaBlockHtmlRenderer())
-                htmlRenderer.ObjectRenderers.Add(ReviewBlockHtmlRenderer())
-                htmlRenderer.ObjectRenderers.Add(VenueBlockHtmlRenderer())
-                htmlRenderer.ObjectRenderers.Add(RsvpBlockHtmlRenderer())
-            | _ -> ()
-            ()
+                // Add other renderers when implemented
+                // htmlRenderer.ObjectRenderers.Add(ReviewBlockHtmlRenderer())
+                // htmlRenderer.ObjectRenderers.Add(VenueBlockHtmlRenderer())
+                // htmlRenderer.ObjectRenderers.Add(RsvpBlockHtmlRenderer())
+            | _ -> 
+                // Other renderers (like text, normalize) don't need custom renderers
+                ()
 
 /// Helper function to add custom block extension to a pipeline builder
 let useCustomBlocks (pipelineBuilder: MarkdownPipelineBuilder) =

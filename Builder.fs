@@ -603,28 +603,41 @@ module Builder
             |> Array.filter (fun f -> f.EndsWith(".md"))
             |> Array.toList
         
-        let processor = GenericBuilder.AlbumProcessor.create()
+        let processor = GenericBuilder.PostProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor mediaFiles
         
         // Generate individual media pages
         feedData
         |> List.iter (fun item ->
-            let album = item.Content
-            let saveDir = Path.Join(outputDir, "media", album.FileName)
+            let post = item.Content
+            let saveDir = Path.Join(outputDir, "media", post.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
-            
-            let processedContent = processor.Render album |> convertMdToHtml
-            let html = contentViewWithTitle album.Metadata.Title processedContent
-            let albumView = generate html "defaultindex" $"{album.Metadata.Title} | Media | Luis Quintanilla"
+
+            // Use AST-based markdown processing for custom blocks
+            let rawContent = processor.Render post
+            let processedContent = MarkdownService.convertMdToHtml rawContent
+            let html = contentViewWithTitle post.Metadata.Title processedContent
+            let postView = generate html "defaultindex" $"{post.Metadata.Title} | Media | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
-            File.WriteAllText(saveFileName, albumView))
+            File.WriteAllText(saveFileName, postView))
         
         // Generate media index page
-        let albums = feedData |> List.map (fun item -> item.Content) |> List.toArray
-        let mediaIndexHtml = generate (albumsPageView albums) "defaultindex" "Media | Luis Quintanilla"
-        let indexSaveDir = Path.Join(outputDir, "media")
-        Directory.CreateDirectory(indexSaveDir) |> ignore
-        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), mediaIndexHtml)
+        let posts = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        try
+            // For now, use pagination view with single page
+            let mediaIndexHtml = generate (postPaginationView 1 1 posts) "defaultindex" "Media | Luis Quintanilla"
+            let indexSaveDir = Path.Join(outputDir, "media")
+            Directory.CreateDirectory(indexSaveDir) |> ignore
+            File.WriteAllText(Path.Join(indexSaveDir, "index.html"), mediaIndexHtml)
+        with
+        | ex -> 
+            printfn $"Error in albumsPageView: {ex.Message}"
+            printfn $"Stack trace: {ex.StackTrace}"
+            printfn $"Posts count: {posts.Length}"
+            for i in 0 .. posts.Length - 1 do
+                let post = posts.[i]
+                printfn $"Post {i}: FileName='{post.FileName}', Title='{post.Metadata.Title}', Tags='{post.Metadata.Tags}'"
+            reraise()
         
         // Return feed data for unified RSS generation
         feedData
