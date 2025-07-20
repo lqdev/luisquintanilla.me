@@ -1,5 +1,43 @@
 # Changelog
 
+## 2025-01-22 - Media Content & ViewEngine Architecture Upgrade ✅
+
+**Project**: Media Block Rendering Fix + ViewEngine Conversion  
+**Duration**: 2025-01-22 (1 session)  
+**Status**: Complete - Media content displays correctly with improved architecture
+
+### What Changed
+Fixed critical media content rendering issue where custom :::media blocks displayed raw YAML/markdown instead of rendered HTML, then upgraded the entire GenericBuilder to use type-safe Giraffe ViewEngine instead of sprintf string concatenation.
+
+### Technical Achievements  
+- **Root Cause Resolution**: Fixed PostProcessor to extract raw markdown content without frontmatter instead of pre-rendered HTML
+- **Custom Block Processing**: :::media blocks now process correctly through Markdig pipeline with proper YAML parsing
+- **ViewEngine Migration**: Converted all GenericBuilder Render functions from sprintf HTML strings to type-safe ViewEngine nodes
+- **Metadata Modernization**: Updated media post_type from "photo" to "media" for current conventions
+- **F# Compilation Fix**: Completely restructured CustomBlocks.fs with proper module declaration and type ordering
+- **Architecture Improvement**: Enhanced type safety and maintainability through ViewEngine integration
+
+### File Changes
+- **PostProcessor**: Fixed content extraction to return raw markdown for custom block processing
+- **CustomBlocks.fs**: Complete restructuring with proper F# compilation and single type definitions
+- **GenericBuilder.fs**: All Render functions converted to ViewEngine: `article [ _class "note" ] [ rawText note.Content ]`
+- **Program.fs**: Fixed type mismatch (convertPostsToUnified vs convertAlbumsToUnified for media)
+- **Media Content**: Updated post_type from "photo" to "media"
+
+### Validation Results
+- **✅ Media Blocks Rendering**: Custom blocks now display semantic HTML with proper figure/figcaption structure
+- **✅ Permalink Structure**: Correct URL structure (/media/fall-mountains/index.html)
+- **✅ ViewEngine Integration**: Clean, type-safe HTML generation throughout system
+- **✅ System Build**: All builds successful with "Start marker matched for media" debug confirmation
+- **✅ Content Processing**: 1129 items generated across 8 content types successfully
+
+### Architecture Impact
+**ViewEngine Adoption**: Establishes type-safe HTML generation as the standard throughout GenericBuilder, replacing error-prone sprintf string concatenation. This provides better maintainability, compile-time safety, and cleaner HTML output.
+
+**Custom Block Infrastructure Proven**: Media block processing validates the proven custom block pattern across all content types, enabling rich content with semantic HTML output.
+
+---
+
 ## 2025-01-22 - URL Alignment & Feed Discovery Optimization Complete ✅
 
 **Project**: URL Alignment - Phase 10 Final Implementation  

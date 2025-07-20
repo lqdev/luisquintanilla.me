@@ -225,6 +225,14 @@ Automatically select appropriate tools based on current project phase:
   - Filter empty lines during processing
 - **Semantic HTML Output**: Custom blocks should render semantic HTML (`<figure>`, `<figcaption>`) with CSS classes for styling
 - **Testing Approach**: Validate both YAML parsing (no exceptions) and HTML output (proper rendering vs raw text)
+- **Content Extraction Pattern**: PostProcessor should extract raw markdown without frontmatter for custom block processing through Markdig pipeline
+
+### ViewEngine Integration (Proven Pattern)
+- **Type-Safe HTML Generation**: Use Giraffe ViewEngine instead of sprintf string concatenation throughout GenericBuilder
+- **Render Function Pattern**: Convert `sprintf "<article>%s</article>" content` to `article [ _class "content" ] [ rawText content ]`
+- **HTML String Output**: Use `RenderView.AsString.xmlNode viewNode` to convert ViewEngine nodes to HTML strings
+- **Maintainability Benefits**: ViewEngine provides compile-time safety, cleaner code, and better refactoring support
+- **Architecture Consistency**: Apply ViewEngine pattern across all Render functions for uniform approach
 
 ### Implementation Pattern (Proven for Snippets, Wiki, Presentations)
 1. **Enhance Domain** → Add types and interfaces (research similar domain models)
