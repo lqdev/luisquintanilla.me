@@ -123,16 +123,24 @@ let albumsPageView (albums:Album array) =
                         ]
                     ]
                     div [_class "album-preview mb-3"] [
-                        img [
-                            _src album.Metadata.Images.[0].ImagePath
-                            _alt album.Metadata.Images.[0].AltText
-                            _class "img-fluid rounded"
-                            _style "max-height: 200px; width: 100%; object-fit: cover;"
-                            attr "loading" "lazy"
-                        ]
+                        if not (isNull album.Metadata.Images) && album.Metadata.Images.Length > 0 then
+                            img [
+                                _src album.Metadata.Images.[0].ImagePath
+                                _alt album.Metadata.Images.[0].AltText
+                                _class "img-fluid rounded"
+                                _style "max-height: 200px; width: 100%; object-fit: cover;"
+                                attr "loading" "lazy"
+                            ]
+                        else
+                            div [_class "placeholder-img"; _style "height: 200px; background-color: #f8f9fa; display: flex; align-items: center; justify-content: center;"] [
+                                Text "No preview available"
+                            ]
                     ]
                     p [_class "text-muted"] [
-                        Text $"{Array.length album.Metadata.Images} photos"
+                        if not (isNull album.Metadata.Images) then
+                            Text $"{Array.length album.Metadata.Images} photos"
+                        else
+                            Text "0 photos"
                     ]
                 ]
                 

@@ -110,7 +110,7 @@ let main argv =
         ("wiki", GenericBuilder.UnifiedFeeds.convertWikisToUnified wikisFeedData)
         ("presentations", GenericBuilder.UnifiedFeeds.convertPresentationsToUnified presentationsFeedData)
         ("library", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
-        ("media", GenericBuilder.UnifiedFeeds.convertPostsToUnified mediaFeedData)
+        ("albums", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
     ]
     
     // Generate unified feeds (fire-hose + type-specific)

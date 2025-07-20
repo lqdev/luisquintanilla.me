@@ -205,6 +205,7 @@ module Domain
     type Album = {
         FileName: string
         Metadata: AlbumDetails
+        Content: string
     }
     with
         interface ITaggable with

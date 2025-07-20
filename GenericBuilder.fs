@@ -146,10 +146,22 @@ module NoteProcessor =
             let url = sprintf "/feed/%s" note.FileName
             let date = note.Metadata.Date
             
-            Html.element "article" (Html.attribute "class" "note-card")
-                (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
-                 Html.element "p" "" description +
-                 Html.element "time" "" (Html.escapeHtml date))
+            // Include content excerpt like other processors
+            let contentExcerpt = 
+                if note.Content.Length > 200 then
+                    note.Content.Substring(0, 200) + "..."
+                else
+                    note.Content
+            
+            // Use ViewEngine for consistency with Render function
+            let viewNode = 
+                article [ _class "note-card" ] [
+                    h2 [] [ a [ _href url ] [ Text title ] ]
+                    p [ _class "description" ] [ Text description ]
+                    div [ _class "content-excerpt" ] [ Text contentExcerpt ]
+                    time [] [ Text date ]
+                ]
+            RenderView.AsString.xmlNode viewNode
         
         RenderRss = fun note ->
             // Create RSS item for note using existing pattern
@@ -453,6 +465,22 @@ module ResponseProcessor =
 /// Album content processor with :::media block conversion
 module AlbumProcessor =
     
+    /// Helper to extract markdown content without frontmatter
+    let private extractContentWithoutFrontMatter (rawMarkdown: string) : string =
+        let lines = rawMarkdown.Split([|'\n'|], StringSplitOptions.None)
+        if lines.Length > 0 && lines.[0].Trim() = "---" then
+            // Find the closing ---
+            let closingIndex = 
+                lines 
+                |> Array.skip 1
+                |> Array.findIndex (fun line -> line.Trim() = "---")
+            // Return everything after the second ---
+            lines 
+            |> Array.skip (closingIndex + 2)
+            |> String.concat "\n"
+        else
+            rawMarkdown
+    
     /// Convert AlbumImage to :::media block markdown syntax
     let private convertImageToMediaBlock (image: AlbumImage) : string =
         sprintf ":::media\nmedia_type: image\nuri: %s\nalt_text: %s\ncaption: %s\naspect: \"\"\n:::" 
@@ -473,23 +501,21 @@ module AlbumProcessor =
                     Some {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
+                        Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown  // Use raw markdown without frontmatter
                     }
                 | None -> None
             | Error _ -> None
         
         Render = fun album ->
-            // For albums with :::media blocks, we need to re-read the file content
-            // since Album domain type doesn't store the content
-            let filePath = sprintf "_src/media/%s.md" album.FileName
-            match parseAlbumFromFile filePath with
-            | Ok parsedDoc -> parsedDoc.TextContent
-            | Error _ -> ""
+            // Return raw markdown content to be processed by Builder.fs through MarkdownService
+            // This allows :::media blocks to be converted to proper HTML by custom block processors
+            album.Content
         
         OutputPath = fun album ->
             sprintf "media/%s/index.html" album.FileName
         
         RenderCard = fun album ->
-            let title = Html.escapeHtml album.Metadata.Title
+            let title = album.Metadata.Title
             let url = sprintf "/media/%s" album.FileName
             let date = album.Metadata.Date
             let imageCount = 
@@ -501,15 +527,21 @@ module AlbumProcessor =
                 if imageCount > 0 then album.Metadata.Images.[0].ImagePath
                 else "/assets/images/default-album.jpg"
             
-            Html.element "article" (Html.attribute "class" "album-card h-entry")
-                (Html.element "div" (Html.attribute "class" "album-thumbnail") 
-                    (Html.element "a" (Html.attribute "href" url) 
-                        (Html.element "img" (Html.attribute "src" firstImageSrc + Html.attribute "alt" title + Html.attribute "loading" "lazy") "")) +
-                 Html.element "div" (Html.attribute "class" "album-info") 
-                    (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
-                     Html.element "div" (Html.attribute "class" "album-meta") 
-                        (sprintf "%d photos" imageCount) +
-                     Html.element "time" (Html.attribute "class" "dt-published") (Html.escapeHtml date)))
+            // Use ViewEngine for consistency with other processors
+            let viewNode = 
+                article [ _class "album-card h-entry" ] [
+                    div [ _class "album-thumbnail" ] [
+                        a [ _href url ] [
+                            img [ _src firstImageSrc; _alt title; attr "loading" "lazy" ]
+                        ]
+                    ]
+                    div [ _class "album-info" ] [
+                        h2 [] [ a [ _href url ] [ Text title ] ]
+                        div [ _class "album-meta" ] [ Text (sprintf "%d photos" imageCount) ]
+                        time [ _class "dt-published" ] [ Text date ]
+                    ]
+                ]
+            RenderView.AsString.xmlNode viewNode
         
         RenderRss = fun album ->
             // Create RSS item for album with all images included
