@@ -111,36 +111,29 @@ let albumsPageView (albums:Album array) =
         for album in albums do
             let tags = if isNull album.Metadata.Tags then [||] else album.Metadata.Tags
             let footer = ComponentViews.albumCardFooter album.FileName tags
-            // let header = ComponentViews.cardHeader album.Metadata.Date
+            
+            // Process the album content through MarkdownService to render :::media blocks
+            let processedContent = 
+                try
+                    MarkdownService.convertMdToHtml album.Content
+                with
+                | ex -> 
+                    printfn "Warning: Failed to process media content for album %s: %s" album.FileName ex.Message
+                    "<p>Content processing failed</p>"
             
             div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
-                // header
-                
                 div [ _class "card-body" ] [
                     h5 [_class "card-title"] [
                         a [_href $"/media/{album.FileName}"; _class "text-decoration-none"] [
                             Text album.Metadata.Title
                         ]
                     ]
-                    div [_class "album-preview mb-3"] [
-                        if not (isNull album.Metadata.Images) && album.Metadata.Images.Length > 0 then
-                            img [
-                                _src album.Metadata.Images.[0].ImagePath
-                                _alt album.Metadata.Images.[0].AltText
-                                _class "img-fluid rounded"
-                                _style "max-height: 200px; width: 100%; object-fit: cover;"
-                                attr "loading" "lazy"
-                            ]
-                        else
-                            div [_class "placeholder-img"; _style "height: 200px; background-color: #f8f9fa; display: flex; align-items: center; justify-content: center;"] [
-                                Text "No preview available"
-                            ]
+                    div [_class "album-content mb-3"] [
+                        // Display the processed :::media blocks content
+                        rawText processedContent
                     ]
                     p [_class "text-muted"] [
-                        if not (isNull album.Metadata.Images) then
-                            Text $"{Array.length album.Metadata.Images} photos"
-                        else
-                            Text "0 photos"
+                        Text $"Permalink: /media/{album.FileName}/"
                     ]
                 ]
                 

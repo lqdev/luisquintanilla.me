@@ -518,27 +518,17 @@ module AlbumProcessor =
             let title = album.Metadata.Title
             let url = sprintf "/media/%s" album.FileName
             let date = album.Metadata.Date
-            let imageCount = 
-                if isNull album.Metadata.Images then 0
-                else Array.length album.Metadata.Images
             
-            // Album card with first image and photo count
-            let firstImageSrc = 
-                if imageCount > 0 then album.Metadata.Images.[0].ImagePath
-                else "/assets/images/default-album.jpg"
-            
-            // Use ViewEngine for consistency with other processors
+            // Simple card view - the actual rendering is handled by albumsPageView in Views/CollectionViews.fs
+            // This RenderCard is used for feed generation, the visual display uses albumsPageView
             let viewNode = 
                 article [ _class "album-card h-entry" ] [
-                    div [ _class "album-thumbnail" ] [
-                        a [ _href url ] [
-                            img [ _src firstImageSrc; _alt title; attr "loading" "lazy" ]
-                        ]
-                    ]
-                    div [ _class "album-info" ] [
-                        h2 [] [ a [ _href url ] [ Text title ] ]
-                        div [ _class "album-meta" ] [ Text (sprintf "%d photos" imageCount) ]
-                        time [ _class "dt-published" ] [ Text date ]
+                    h2 [] [ a [ _href url ] [ Text title ] ]
+                    p [ _class "content-preview" ] [ Text "Media content" ]
+                    time [ _class "dt-published" ] [ Text date ]
+                    div [ _class "album-meta" ] [
+                        Text "Permalink: "
+                        a [ _href url ] [ Text url ]
                     ]
                 ]
             RenderView.AsString.xmlNode viewNode
