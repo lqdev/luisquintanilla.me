@@ -6,6 +6,7 @@ cover: "https://microcosmpublishing.com/previews/unfuck-your-writing_lg.jpg"
 status: Read
 rating: 3.0
 source: https://microcosmpublishing.com/catalog/books/9262
+date_published: "10/21/2022 20:57 -05:00"
 ---
 
 ## Description

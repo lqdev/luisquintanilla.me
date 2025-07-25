@@ -17,4 +17,5 @@ resources:
     url: "https://docs.microsoft.com/azure/container-apps/"
   - text: "Spanish version of this talk"
     url: /presentations/mlnet-globalai-2022.html
+date: "01/26/2022 10:19 -05:00"
 ---

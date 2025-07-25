@@ -6,6 +6,7 @@ cover: "https://images2.penguinrandomhouse.com/cover/9781626569416"
 status: "Read"
 rating: 3.2
 source: "https://www.penguinrandomhouse.com/books/575739/eat-that-frog-by-brian-tracy/"
+date_published: "07/09/2024 21:05 -05:00"
 ---
 
 ## Description

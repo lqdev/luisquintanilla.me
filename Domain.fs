@@ -284,7 +284,7 @@ module Domain
             if String.IsNullOrEmpty(snippet.Metadata.Tags) then [||]
             else snippet.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
         let getSnippetTitle (snippet: Snippet) = snippet.Metadata.Title
-        let getSnippetDate (_: Snippet) = "" // Snippets don't have dates
+        let getSnippetDate (snippet: Snippet) = snippet.Metadata.CreatedDate
         let getSnippetFileName (snippet: Snippet) = snippet.FileName
         let getSnippetContentType (_: Snippet) = "snippet"
         

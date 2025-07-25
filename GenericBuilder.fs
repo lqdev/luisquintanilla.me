@@ -199,7 +199,7 @@ module NoteProcessor =
         
         RenderRss = fun note ->
             // Create RSS item for note using existing pattern
-            let url = sprintf "https://www.luisquintanilla.me/feed/%s" note.FileName
+            let url = sprintf "https://www.luisquintanilla.me/notes/%s" note.FileName
             let categories = 
                 if isNull note.Metadata.Tags then []
                 else note.Metadata.Tags |> Array.map (fun tag -> XElement(XName.Get "category", tag)) |> Array.toList
@@ -256,7 +256,7 @@ module SnippetProcessor =
         
         RenderRss = fun snippet ->
             // Create RSS item for snippet similar to post
-            let url = sprintf "https://www.luisquintanilla.me/snippets/%s" snippet.FileName
+            let url = sprintf "https://www.luisquintanilla.me/resources/snippets/%s" snippet.FileName
             let categories = 
                 if String.IsNullOrEmpty(snippet.Metadata.Tags) then []
                 else snippet.Metadata.Tags.Split(',') 
@@ -318,7 +318,7 @@ module WikiProcessor =
         
         RenderRss = fun wiki ->
             // Create RSS item for wiki similar to post
-            let url = sprintf "https://www.luisquintanilla.me/wiki/%s" wiki.FileName
+            let url = sprintf "https://www.luisquintanilla.me/resources/wiki/%s" wiki.FileName
             let categories = 
                 if String.IsNullOrEmpty(wiki.Metadata.Tags) then []
                 else wiki.Metadata.Tags.Split(',') 
@@ -410,7 +410,7 @@ module PresentationProcessor =
         
         RenderRss = fun presentation ->
             // Create RSS item for presentation
-            let url = sprintf "https://www.luisquintanilla.me/presentations/%s" presentation.FileName
+            let url = sprintf "https://www.luisquintanilla.me/resources/presentations/%s" presentation.FileName
             let categories = 
                 if String.IsNullOrEmpty(presentation.Metadata.Tags) then []
                 else presentation.Metadata.Tags.Split(',') 
@@ -426,6 +426,10 @@ module PresentationProcessor =
                     XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedContent),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
+            
+            // Add pubDate if date exists
+            if not (String.IsNullOrEmpty(presentation.Metadata.Date)) then
+                item.Add(XElement(XName.Get "pubDate", presentation.Metadata.Date))
             
             // Add categories if they exist
             if not (List.isEmpty categories) then
@@ -487,19 +491,18 @@ module BookProcessor =
         RenderRss = fun book ->
             // Create RSS item for book
             let url = sprintf "https://www.luisquintanilla.me/reviews/%s" book.FileName
-            let pubDate = 
-                if not (String.IsNullOrEmpty(book.Metadata.DatePublished)) then
-                    book.Metadata.DatePublished
-                else
-                    DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz")
             
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", sprintf "%s by %s" book.Metadata.Title book.Metadata.Author),
                     XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" (normalizeUrlsForRss book.Content "https://www.luisquintanilla.me")),
                     XElement(XName.Get "link", url),
-                    XElement(XName.Get "guid", url),
-                    XElement(XName.Get "pubDate", pubDate))
+                    XElement(XName.Get "guid", url))
+            
+            // Add pubDate if date exists
+            if not (String.IsNullOrEmpty(book.Metadata.DatePublished)) then
+                item.Add(XElement(XName.Get "pubDate", book.Metadata.DatePublished))
+                
             Some item
     }
 

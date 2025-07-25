@@ -6,6 +6,7 @@ cover: "https://s3.amazonaws.com/mcdbookimages/books/cover_images/000/000/224/re
 status: "Read"
 rating: "4.5"
 source: "https://www.mcdbooks.com/books/desert-oracle"
+date_published: "04/23/2024 22:03 -05:00"
 ---
 
 ## Description

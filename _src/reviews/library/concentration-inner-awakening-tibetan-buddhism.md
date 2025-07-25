@@ -6,6 +6,7 @@ cover: "https://prodimage.images-bn.com/pimages/9788196472900_p0_v1_s600x595.jpg
 status: "Read"
 rating: "2.7"
 source: "https://www.barnesandnoble.com/w/concentration-inner-awakening-fernand-schwarz/1144428894"
+date_published: "11/18/2024 17:54 -05:00"
 ---
 
 ## Description

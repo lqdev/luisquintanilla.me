@@ -6,6 +6,7 @@ cover: "https://covers.openlibrary.org/b/id/14418873-L.jpg"
 status: "Read"
 rating: "4"
 source: "https://openlibrary.org/works/OL28800590W/The_Internet_Con?edition=key%3A/books/OL39552949M"
+date_published: "09/28/2023 20:27 -05:00"
 ---
 
 ## Description

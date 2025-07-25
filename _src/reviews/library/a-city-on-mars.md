@@ -6,6 +6,7 @@ cover: "https://images3.penguinrandomhouse.com/cover/9781984881724"
 status: "Wishlist"
 rating: 
 source: "https://www.penguinrandomhouse.com/books/639449/a-city-on-mars-by-kelly-and-zach-weinersmith/"
+date_published: "01/16/2024 19:52 -05:00"
 ---
 
 ## Description

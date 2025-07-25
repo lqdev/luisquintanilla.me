@@ -6,6 +6,7 @@ cover: "https://images3.penguinrandomhouse.com/cover/9781400041916"
 status: "InProgress"
 rating: 
 source: "https://www.penguinrandomhouse.com/books/678714/notes-from-underground-by-fyodor-dostoevsky-translated-by-richard-pevear-and-larissa-volokhonsky-introduction-by-richard-pevear/"
+date_published: "03/31/2024 19:31 -05:00"
 ---
 
 ## Description

@@ -15,4 +15,5 @@ resources:
     url: "https://aka.ms/mlnet-roadmap"    
   - text: "Documentacion Azure Container Apps"
     url: "https://docs.microsoft.com/azure/container-apps/"
+date: "01/14/2022 10:10 -05:00"
 ---

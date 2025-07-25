@@ -6,6 +6,7 @@ cover: "https://covers.openlibrary.org/b/id/838922-L.jpg"
 status: "Read"
 rating: 4.75
 source: "https://openlibrary.org/works/OL3264349W/Mycelium_running?edition=key%3A/books/OL3401342M"
+date_published: "05/20/2023 22:10 -05:00"
 ---
 
 ## Description

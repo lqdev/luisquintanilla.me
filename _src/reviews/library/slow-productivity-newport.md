@@ -6,6 +6,7 @@ cover: https://images1.penguinrandomhouse.com/cover/9780593544853
 status: "Read"
 rating: 4.2
 source: "https://www.penguinrandomhouse.com/books/722732/slow-productivity-by-cal-newport/"
+date_published: "03/23/2024 12:42 -05:00"
 ---
 
 ## Description

@@ -6,6 +6,7 @@ cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodre
 status: "Read"
 rating: 4.1
 source: "https://www.chelseapumpkins.com/ahh-thats-what-i-call-horror"
+date_published: "06/18/2023 19:04 -05:00"
 ---
 
 ## Description

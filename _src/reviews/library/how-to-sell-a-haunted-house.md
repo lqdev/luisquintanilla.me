@@ -6,6 +6,7 @@ cover: "https://images4.penguinrandomhouse.com/cover/9780593201275"
 status: "InProgress"
 rating: 
 source: "https://www.penguinrandomhouse.com/books/658407/how-to-sell-a-haunted-house-by-grady-hendrix/"
+date_published: "01/16/2024 19:52 -05:00"
 ---
 
 ## Description

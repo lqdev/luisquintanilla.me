@@ -6,6 +6,7 @@ cover: "https://www.hachettebookgroup.com/wp-content/uploads/2023/10/97803068282
 status: "Read"
 rating: "4.6"
 source: "https://www.hachettebookgroup.com/titles/rainn-wilson/soul-boom/9780306828270/?lens=hachette-go"
+date_published: "11/18/2024 16:59 -05:00"
 ---
 
 ## Description

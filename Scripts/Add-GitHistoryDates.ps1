@@ -121,7 +121,9 @@ function Test-GitHistoryExtraction {
         "_src/resources/snippets/fsharp-data-rss-parser.md",
         "_src/resources/snippets/lqdev-me-website-post-metrics.md", 
         "_src/resources/wiki/devcontainers-configurations.md",
-        "_src/resources/snippets/create-matrix-user-cli.md"
+        "_src/resources/snippets/create-matrix-user-cli.md",
+        "_src/reviews/library/a-city-on-mars.md",
+        "_src/resources/presentations/mlnet-globalai-2022.md"
     )
     
     foreach ($filePath in $testFiles) {
@@ -184,6 +186,40 @@ function Process-Snippets {
     Write-Host "`nSnippets Summary: $processed processed, $skipped skipped" -ForegroundColor Blue
 }
 
+# Process all books
+function Process-Books {
+    $booksDir = "_src/reviews/library"
+    
+    if (-not (Test-Path $booksDir)) {
+        Write-Warning "Books directory not found: $booksDir"
+        return
+    }
+    
+    $bookFiles = Get-ChildItem $booksDir -Filter "*.md"
+    Write-Host "`nProcessing Books ($($bookFiles.Count) files):" -ForegroundColor Blue
+    
+    $processed = 0
+    $skipped = 0
+    
+    foreach ($file in $bookFiles) {
+        Write-Host "`nProcessing: $($file.Name)" -ForegroundColor White
+        
+        $creationDate = Get-FileCreationDate $file.FullName
+        if ($creationDate) {
+            if (Add-DateToFrontmatter $file.FullName $creationDate "date_published") {
+                $processed++
+            } else {
+                $skipped++
+            }
+        } else {
+            Write-Host "  No Git history found, skipping..." -ForegroundColor Yellow
+            $skipped++
+        }
+    }
+    
+    Write-Host "`nBooks Summary: $processed processed, $skipped skipped" -ForegroundColor Blue
+}
+
 # Process all wikis
 function Process-Wikis {
     $wikiDir = "_src/resources/wiki"
@@ -218,6 +254,40 @@ function Process-Wikis {
     Write-Host "`nWikis Summary: $processed processed, $skipped skipped" -ForegroundColor Blue
 }
 
+# Process all presentations
+function Process-Presentations {
+    $presentationDir = "_src/resources/presentations"
+    
+    if (-not (Test-Path $presentationDir)) {
+        Write-Warning "Presentations directory not found: $presentationDir"
+        return
+    }
+    
+    $presentationFiles = Get-ChildItem $presentationDir -Filter "*.md"
+    Write-Host "`nProcessing Presentations ($($presentationFiles.Count) files):" -ForegroundColor Blue
+    
+    $processed = 0
+    $skipped = 0
+    
+    foreach ($file in $presentationFiles) {
+        Write-Host "`nProcessing: $($file.Name)" -ForegroundColor White
+        
+        $creationDate = Get-FileCreationDate $file.FullName
+        if ($creationDate) {
+            if (Add-DateToFrontmatter $file.FullName $creationDate "date") {
+                $processed++
+            } else {
+                $skipped++
+            }
+        } else {
+            Write-Host "  No Git history found, skipping..." -ForegroundColor Yellow
+            $skipped++
+        }
+    }
+    
+    Write-Host "`nPresentations Summary: $processed processed, $skipped skipped" -ForegroundColor Blue
+}
+
 # Main execution
 Write-Host "Git History Date Enhancement Script" -ForegroundColor Magenta
 Write-Host "===================================" -ForegroundColor Magenta
@@ -232,6 +302,8 @@ if ($Test) {
     
     Process-Snippets
     Process-Wikis
+    Process-Books
+    Process-Presentations
     
     Write-Host "`nProcessing complete!" -ForegroundColor Magenta
     if ($DryRun) {

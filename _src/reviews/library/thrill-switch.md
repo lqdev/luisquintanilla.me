@@ -6,6 +6,7 @@ cover: "https://images.squarespace-cdn.com/content/v1/5875f6a815d5dba00bbed0ea/1
 status: "Read"
 rating: 4.2
 source: "https://www.timhawken.com/thrill-switch"
+date_published: "12/27/2023 14:08 -05:00"
 ---
 
 ## Description

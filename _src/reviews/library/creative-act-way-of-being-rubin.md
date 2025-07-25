@@ -6,6 +6,7 @@ cover: "https://images2.penguinrandomhouse.com/cover/9780593653425"
 status: "Read"
 rating: 4.75
 source: "https://www.penguinrandomhouse.com/books/717356/the-creative-act-by-rick-rubin/"
+date_published: "09/27/2024 07:40 -05:00"
 ---
 
 ## Description

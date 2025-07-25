@@ -6,6 +6,7 @@ cover: "https://covers.powells.com/9780192854582.jpg"
 status: "Read"
 rating: 4.8
 source: "http://anthonystevens.co.uk/jung.htm"
+date_published: "09/27/2024 07:47 -05:00"
 ---
 
 ## Description

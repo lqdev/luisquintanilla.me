@@ -6,6 +6,7 @@ cover: https://images2.penguinrandomhouse.com/cover/9780593135211
 status: Read
 rating: 5.0
 source: https://www.penguinrandomhouse.com/books/611060/project-hail-mary-by-andy-weir/
+date_published: "08/01/2024 20:12 -05:00"
 ---
 
 ## Description

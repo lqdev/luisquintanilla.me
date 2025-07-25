@@ -6,6 +6,7 @@ cover: https://www.hachettebookgroup.com/wp-content/uploads/2024/01/978145550968
 status: Read
 rating: 3.3
 source: https://www.hachettebookgroup.com/titles/alan-siegel/simple/9781455509683/?lens=twelve
+date_published: "07/14/2024 13:19 -05:00"
 ---
 
 ## Description

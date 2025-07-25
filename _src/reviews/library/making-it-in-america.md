@@ -6,6 +6,7 @@ cover: "https://images3.penguinrandomhouse.com/cover/9780593316887"
 status: InProgress
 rating: 
 source: "https://www.penguinrandomhouse.com/books/706867/making-it-in-america-by-rachel-slade/"
+date_published: "01/15/2024 15:23 -05:00"
 ---
 
 ## Description

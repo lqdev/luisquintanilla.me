@@ -6,6 +6,7 @@ cover: https://covers.openlibrary.org/b/id/12622152-M.jpg
 status: Read
 rating: 3.75
 source: "https://openlibrary.org/works/OL7477297W/Stand_by_for_Mars%21?edition=standard_ebooks%3Acarey-rockwell/stand-by-for-mars"
+date_published: "09/05/2022 16:52 -05:00"
 ---
 
 ## Description

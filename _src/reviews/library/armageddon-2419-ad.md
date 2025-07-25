@@ -6,6 +6,7 @@ cover: "https://covers.openlibrary.org/b/id/12621838-L.jpg"
 status: "Read"
 rating: 3.25
 source: "https://openlibrary.org/books/OL37044570M/Armageddon_2419_A.D."
+date_published: "01/22/2023 13:45 -05:00"
 ---
 
 ## Description

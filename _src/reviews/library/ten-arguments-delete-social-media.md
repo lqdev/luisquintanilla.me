@@ -6,6 +6,7 @@ cover: https://covers.openlibrary.org/b/id/12504011-M.jpg
 status: Read
 rating: 3.25
 source: https://openlibrary.org/works/OL19744680W/Ten_arguments_for_deleting_your_social_media_accounts_right_now
+date_published: "09/05/2022 16:52 -05:00"
 ---
 
 ## Description

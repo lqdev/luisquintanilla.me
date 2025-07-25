@@ -6,6 +6,7 @@ cover: "https://images4.penguinrandomhouse.com/cover/9781101986943"
 status: "Read"
 rating: 2.5
 source: "https://www.penguinrandomhouse.com/books/530536/agency-by-william-gibson/"
+date_published: "02/19/2024 15:19 -05:00"
 ---
 
 ## Description

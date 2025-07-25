@@ -6,6 +6,7 @@ cover: "https://www.hachettebookgroup.com/wp-content/uploads/2024/01/97803165920
 status: "Wishlist"
 rating: 
 source: "https://www.hachettebookgroup.com/titles/malcolm-harris/palo-alto/9780316592024/"
+date_published: "01/15/2024 15:42 -05:00"
 ---
 
 ## Description

@@ -6,6 +6,7 @@ cover: https://covers.openlibrary.org/b/id/12372866-M.jpg
 status: Read
 rating: 4.0
 source: https://openlibrary.org/works/OL26417584W/Building_a_Second_Brain
+date_published: "09/05/2022 18:19 -05:00"
 ---
 
 ## Description

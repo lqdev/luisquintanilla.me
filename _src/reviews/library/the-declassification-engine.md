@@ -6,6 +6,7 @@ cover: "https://images4.penguinrandomhouse.com/cover/9781101973677"
 status: "InProgress"
 rating: 
 source: "https://www.penguinrandomhouse.com/books/545793/the-declassification-engine-by-matthew-connelly/"
+date_published: "02/06/2024 18:52 -05:00"
 ---
 
 ## Description

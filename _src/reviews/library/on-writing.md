@@ -6,6 +6,7 @@ cover: "https://covers.openlibrary.org/b/id/11942411-M.jpg"
 status: InProgress
 rating: 
 source: "https://openlibrary.org/works/OL25000790W/On_Writing"
+date_published: "10/09/2022 19:10 -05:00"
 ---
 
 ## Description

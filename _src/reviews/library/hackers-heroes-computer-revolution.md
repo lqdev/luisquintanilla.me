@@ -6,6 +6,7 @@ cover: https://covers.openlibrary.org/b/id/10512955-M.jpg
 status: InProgress
 rating: 
 source: https://openlibrary.org/works/OL21177324W/Hackers
+date_published: "09/05/2022 18:19 -05:00"
 ---
 
 ## Description
