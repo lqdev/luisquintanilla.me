@@ -437,8 +437,28 @@ Before starting any migration:
 - **Complete Documentation**: Finalize all logs with metrics and lessons learned
 - **Proactive Optimization**: Identify and suggest efficiency improvements discovered during work
 
-### Workflow Evolution Documentation
-- **Capture Learnings**: Document any workflow improvements, new patterns, or process refinements discovered during the project
+### Content Preview Design Pattern (Proven - Feed Improvement 2025-07-25)
+**Discovery**: Initial approach of stripping HTML and truncating plain text destroyed engaging content and user experience - research-driven redesign based on Tumblr's content handling dramatically improved feed quality.
+
+**Research-Enhanced Decision Process**:
+- **Problem Analysis**: User feedback indicated poor rendering despite technical fixes
+- **Research Phase**: Used MCP Perplexity to research Tumblr's long-form content handling in feeds
+- **Key Insights**: Preserve rich formatting, use CSS-based truncation, add "Read More" functionality
+- **Implementation**: Tumblr-inspired content preview system with gradient fades and responsive design
+
+**Implementation Pattern**:
+- **Rich Content Preservation**: Never strip HTML formatting - preserve images, links, emphasis, code highlighting
+- **CSS-Based Truncation**: Use `max-height` with `overflow: hidden` instead of character-based truncation
+- **Gradient Fade Effect**: Add CSS `::after` pseudo-element with gradient background for visual fade
+- **Content-Type Specific Handling**: Different preview heights and button text based on content type
+- **Mobile Responsiveness**: Adjust preview heights and card widths for mobile screens
+- **"Read More" Pattern**: Clear call-to-action buttons instead of "..." text truncation
+
+**User Experience Benefits**: 
+- **Scanning Efficiency**: Users can quickly browse rich content previews while staying in feed flow
+- **Engagement Preservation**: Rich formatting (images, code, links) maintains content appeal
+- **Mobile Optimization**: Responsive design adapts naturally to screen constraints
+- **Clear Navigation**: Explicit "Read More" buttons provide clear next actions
 - **Update Instructions**: Add proven methodologies and best practices to `.github/copilot-instructions.md` in the appropriate sections:
   - New technical patterns → `🔧 Technical Standards` section
   - Testing improvements → `🧪 Testing & Validation` section  

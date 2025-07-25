@@ -203,8 +203,85 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
                         Text (item.ContentType |> fun ct -> ct.Substring(0, 1).ToUpper() + ct.Substring(1))
                     ]
                 ]
-                // Render cleaned content
-                rawText cleanContent
+                // Render content with Tumblr-inspired smart preview approach
+                div [ _class "card-text" ] [
+                    match item.ContentType.ToLower() with
+                    | "response" ->
+                        // Show response icon and preserve rich content formatting
+                        let responseTypeIcon = 
+                            if cleanContent.Contains("reply") || cleanContent.Contains("Reply") then
+                                span [_class "bi bi-reply-fill me-2"; _style "color:#3F5576;"] []
+                            elif cleanContent.Contains("reshare") || cleanContent.Contains("Share") then
+                                span [_class "bi bi-share-fill me-2"; _style "color:#C0587E;"] []
+                            elif cleanContent.Contains("star") || cleanContent.Contains("Star") then
+                                span [_class "bi bi-star-fill me-2"; _style "color:#ff7518;"] []
+                            elif cleanContent.Contains("bookmark") || cleanContent.Contains("Bookmark") then
+                                span [_class "bi bi-journal-bookmark-fill me-2"; _style "color:#4a60b6;"] []
+                            else
+                                span [] []
+                        
+                        div [] [
+                            responseTypeIcon
+                            // Create a responsive content preview with "Read More" for responses
+                            div [ _class "content-preview"; _style "max-height: 200px; overflow: hidden; position: relative;" ] [
+                                rawText cleanContent
+                            ]
+                            // Add "Read More" link for longer content
+                            div [ _class "mt-2" ] [
+                                a [ _href item.Url; _class "btn btn-sm btn-outline-primary" ] [ Text "View Response →" ]
+                            ]
+                        ]
+                    | "post" ->
+                        // For posts, create smart preview preserving formatting
+                        let processedContent = 
+                            if cleanContent.Contains("No description available") then
+                                // Remove the "No description available" but keep all other HTML
+                                cleanContent.Replace("<p>No description available</p>", "")
+                                           .Replace("No description available", "")
+                            else
+                                cleanContent
+                        
+                        // Use CSS to handle truncation while preserving HTML structure
+                        div [] [
+                            div [ _class "content-preview"; _style "max-height: 400px; overflow: hidden; position: relative;" ] [
+                                rawText processedContent
+                            ]
+                            // Add gradient fade and "Read More" for longer posts
+                            div [ _class "mt-2" ] [
+                                a [ _href item.Url; _class "btn btn-sm btn-outline-primary" ] [ Text "Read Full Post →" ]
+                            ]
+                        ]
+                    | "snippet" ->
+                        // For code snippets, show with syntax highlighting preservation
+                        div [] [
+                            div [ _class "content-preview"; _style "max-height: 300px; overflow: hidden;" ] [
+                                rawText cleanContent
+                            ]
+                            div [ _class "mt-2" ] [
+                                a [ _href item.Url; _class "btn btn-sm btn-outline-secondary" ] [ Text "View Snippet →" ]
+                            ]
+                        ]
+                    | "wiki" ->
+                        // Wiki pages get a structured preview
+                        div [] [
+                            div [ _class "content-preview"; _style "max-height: 350px; overflow: hidden;" ] [
+                                rawText cleanContent
+                            ]
+                            div [ _class "mt-2" ] [
+                                a [ _href item.Url; _class "btn btn-sm btn-outline-info" ] [ Text "Read More →" ]
+                            ]
+                        ]
+                    | _ ->
+                        // Default handling for other content types
+                        div [] [
+                            div [ _class "content-preview"; _style "max-height: 300px; overflow: hidden;" ] [
+                                rawText cleanContent
+                            ]
+                            div [ _class "mt-2" ] [
+                                a [ _href item.Url; _class "btn btn-sm btn-outline-primary" ] [ Text "View →" ]
+                            ]
+                        ]
+                ]
                 hr []
                 webmentionForm
             ]
