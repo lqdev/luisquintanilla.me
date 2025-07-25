@@ -161,16 +161,6 @@ let albumPageView (images:AlbumImage array) =
 
 // Unified feed view for aggregated content across all types
 let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
-    let stripCDATA (content: string) =
-        // Remove CDATA wrapper if present
-        let cleaned = content.Replace("<![CDATA[", "").Replace("]]>", "")
-        // Also remove the "See the original post at..." prefix that's common in RSS feeds
-        let lines = cleaned.Split([|'\n'|], StringSplitOptions.RemoveEmptyEntries)
-        if lines.Length > 0 && lines.[0].Contains("See the original post at") then
-            lines |> Array.skip 1 |> String.concat "\n"
-        else
-            cleaned
-    
     let getProperPermalink (contentType: string) (fileName: string) =
         match contentType with
         | "posts" -> $"/posts/{fileName}/"
@@ -187,7 +177,8 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
         let header = cardHeader item.Date
         let fileName = Path.GetFileNameWithoutExtension(item.Url)
         let properPermalink = getProperPermalink item.ContentType fileName
-        let cleanContent = stripCDATA item.Content
+        // Content is now clean HTML from CardHtml, no need for CDATA stripping
+        let cleanContent = item.Content
         
         // Create a custom footer with proper permalink
         let customFooter = 

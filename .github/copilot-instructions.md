@@ -108,7 +108,9 @@ As your coding partner, I follow this systematic workflow to deliver high-qualit
 ## 🔍 Research & Documentation Tools
 
 ### MCP Server Integration
-When working on projects, use these specialized tools based on task context:
+**Available MCP Servers**: Context7, DeepWiki, Microsoft Documentation, Perplexity, Playwright Browser, and others are available for external research and validation.
+
+**Usage Protocol**: When in doubt, need external assistance, or want to validate approaches, proactively use available MCP servers rather than making assumptions or providing incomplete information.
 
 #### **Library & Framework Research**
 - **Context7**: Use `mcp_context7_resolve-library-id` to find libraries, then `mcp_context7_get-library-docs` for current documentation
@@ -118,6 +120,9 @@ When working on projects, use these specialized tools based on task context:
 - **DeepWiki**: Use `mcp_deepwiki_ask_question` to analyze successful F# projects and learn from similar implementations
 - **Perplexity Research**: Use `mcp_perplexity-as_perplexity_research` for comprehensive technology comparisons and architectural analysis
 - **Perplexity Reasoning**: Use `mcp_perplexity-as_perplexity_reason` for complex architectural trade-off analysis
+
+#### **Browser Testing & Validation**
+- **Playwright**: Use `mcp_playwright_browser_*` tools for testing live website functionality, navigation, and content verification
 
 ### Context-Aware Tool Selection
 Automatically select appropriate tools based on current project phase:
