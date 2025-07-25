@@ -360,13 +360,13 @@ module BookProcessor =
             RenderView.AsString.xmlNode viewNode
         
         OutputPath = fun book ->
-            sprintf "library/%s.html" book.FileName
+            sprintf "reviews/%s.html" book.FileName
         
         RenderCard = fun book ->
             let title = Html.escapeHtml book.Metadata.Title
             let author = Html.escapeHtml book.Metadata.Author
             let status = Html.escapeHtml book.Metadata.Status
-            let url = sprintf "/library/%s" book.FileName
+            let url = sprintf "/reviews/%s" book.FileName
             
             // Display rating if available
             let ratingHtml = 
@@ -390,7 +390,7 @@ module BookProcessor =
         
         RenderRss = fun book ->
             // Create RSS item for book
-            let url = sprintf "https://www.luisquintanilla.me/library/%s" book.FileName
+            let url = sprintf "https://www.luisquintanilla.me/reviews/%s" book.FileName
             let pubDate = 
                 if not (String.IsNullOrEmpty(book.Metadata.DatePublished)) then
                     book.Metadata.DatePublished
@@ -795,12 +795,12 @@ module UnifiedFeeds =
                 OutputPath = "resources/presentations/feed.xml"
                 ContentType = Some "presentations"
             })
-            ("library", {
-                Title = "Luis Quintanilla - Library"
-                Link = "https://www.luisquintanilla.me/resources/library"
-                Description = "Book reviews and library updates by Luis Quintanilla"
-                OutputPath = "resources/library/feed.xml"
-                ContentType = Some "library"
+            ("reviews", {
+                Title = "Luis Quintanilla - Reviews"
+                Link = "https://www.luisquintanilla.me/reviews"
+                Description = "Book reviews by Luis Quintanilla"
+                OutputPath = "reviews/feed.xml"
+                ContentType = Some "reviews"
             })
             ("albums", {
                 Title = "Luis Quintanilla - Media"
@@ -910,7 +910,7 @@ module UnifiedFeeds =
                 let content = match rssXml.Element(XName.Get "description") with | null -> "" | e -> e.Value
                 let date = match rssXml.Element(XName.Get "pubDate") with | null -> DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz") | e -> e.Value
                 let tags = rssXml.Elements(XName.Get "category") |> Seq.map (fun cat -> cat.Value) |> Seq.toArray
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "library"; Tags = tags; RssXml = rssXml }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "reviews"; Tags = tags; RssXml = rssXml }
             | None -> None)
     
     let convertAlbumsToUnified (feedDataList: FeedData<Album> list) : UnifiedFeedItem list =

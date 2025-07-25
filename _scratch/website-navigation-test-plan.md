@@ -103,7 +103,7 @@ Based on `_public` directory structure:
 - [ ] `/uses/` - Uses page (tools/setup)
 - [ ] `/colophon/` - Site information
 - [ ] `/live/` - Live streaming
-- [ ] `/library/` - Library content
+- [ ] `/reviews/` - Book reviews (consolidated from library)
 - [ ] `/resources/` - Resource aggregation
 
 #### **Media & Assets**
@@ -201,9 +201,14 @@ Based on `_public` directory structure:
   - Main unified feed: `/feed/index.xml` ✅ (1129 items across 8 content types)  
   - Notes feed: `/feed/notes.xml` ✅  
   - Response feed: `/feed/responses/index.xml` ✅ **FIXED** (now contains proper RSS XML, not HTML redirect)  
+  - Reviews feed: `/reviews/feed.xml` ✅ **CONSOLIDATED** (moved from `/resources/library/feed.xml`)
 ✅ **AST-Based Content Processing**: All content renders as proper HTML (not raw markdown)  
 ✅ **URL Structure**: Clean, consistent URL patterns across all content types  
-✅ **Architecture**: GenericBuilder pattern working correctly for all content types
+✅ **Architecture**: GenericBuilder pattern working correctly for all content types  
+✅ **Feed Architecture Consolidation**: Library content properly consolidated into Reviews  
+  - Content URLs: `/reviews/[book-slug]` (consistent with navigation)  
+  - Feed location: `/reviews/feed.xml` (content-proximate pattern)  
+  - Feed metadata: Updated title/description to reflect "Reviews" terminology
 
 ## 🎯 Post-Testing Actions
 
