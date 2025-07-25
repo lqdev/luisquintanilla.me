@@ -389,6 +389,13 @@ Before starting any migration:
 - **Documentation Consolidation**: Moving completed work to archived sections while maintaining historical context improves current focus without losing institutional knowledge
 - **Cross-Project Integration**: URL alignment naturally absorbed IndieWeb compliance requirements, demonstrating value of holistic project planning over isolated feature development
 
+### RSS Feed Date Enhancement Learning (2025-07-25)
+- **Git History as Data Source**: PowerShell script using `git log --all --full-history --format="%aI" --reverse` provides reliable historical dates for retroactive content metadata enhancement
+- **Schema Evolution Handling**: Successful approach for addressing content that lacks date metadata due to schema changes over time - validates Git history as authoritative source
+- **Content-Appropriate Date Fields**: Different content types require different date semantics (created_date, last_updated_date, date_published, date) - systematic approach prevents confusion
+- **RSS Feed Date Accuracy**: Critical for RSS feed quality - historical dates provide proper timeline representation vs current date fallbacks that mislead subscribers
+- **Timezone Consistency**: Unified `-05:00` timezone specification across all content types improves feed standardization and user experience
+
 ## 🔄 Production Deployment Best Practices
 
 ### Feature Flag Removal

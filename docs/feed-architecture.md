@@ -2,7 +2,30 @@
 
 ## Overview
 
-The website implements a comprehensive RSS feed system providing multiple types of feeds for content discovery and syndication. All feeds follow RSS 2.0 specification with proper category metadata for filtering and organization.
+The website implements a comprehensive RSS feed system providing multiple types of feeds for content discovery and syndication. All feeds follow RSS 2.0 specification with proper category metadata for filtering and organization. **Historical date accuracy** ensures all feeds display creation/publication dates from Git history instead of current date fallbacks.
+
+## Feed Quality Standards
+
+### Date Accuracy (Enhanced 2025-07-25)
+All RSS feeds use historical dates extracted from Git history to ensure accurate timeline representation:
+
+- **pubDate Elements**: Every feed item includes proper `<pubDate>` with historical creation/publication dates
+- **Git History Integration**: Retroactive date extraction for content without metadata using `git log --all --full-history`
+- **Date Field Schema**: Content-appropriate date fields (created_date, last_updated_date, date_published, date)
+- **Timezone Consistency**: All dates formatted with `-05:00` timezone specification
+- **No Current Date Fallbacks**: Zero instances of `DateTime.Now` in RSS generation
+
+### Content Type Date Sources
+| Content Type | Date Field | Source | Range |
+|--------------|------------|--------|-------|
+| Snippets | `created_date` | Git history | 2022-2025 |
+| Wiki | `last_updated_date` | Git history | 2022-2025 |
+| Presentations | `date` | Git history | 2021-2022 |
+| Books/Reviews | `date_published` | Git history | 2022-2025 |
+| Posts | `date` | Frontmatter | Various |
+| Notes | `date` | Frontmatter | Various |
+| Responses | `date` | Frontmatter | Various |
+| Media | `date` | Frontmatter | Various |
 
 ## Feed Types
 
