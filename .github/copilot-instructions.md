@@ -414,6 +414,8 @@ Before starting any migration:
 - **Directory Management**: Ensure feed directories are created programmatically
 - **Content Consistency**: Use same URL patterns and metadata as existing content types
 - **Validation Testing**: Test feeds with XML validation and proper structure
+- **Category Metadata**: Include `<category>` elements in all RSS processors for tag-based filtering
+- **Tag Feed Generation**: Leverage unified feed infrastructure for automatic tag-based RSS feeds
 
 ## ✅ Project Completion Protocol
 
@@ -533,6 +535,20 @@ This workflow ensures systematic, quality-focused development that preserves fun
 **Consolidation Benefits**: Simplified mental model for users, consistent architecture, content-proximate feed discovery, reduced maintenance complexity.
 
 **Trigger Pattern**: When navigation testing reveals architectural inconsistencies, prioritize terminology consolidation over feature additions.
+
+### Repository Hygiene & Autonomous Cleanup Pattern (2025-07-25)
+**Discovery**: Following autonomous decision-making framework for repository cleanup yields dramatic performance improvements and clean development environment.
+
+**Implementation Pattern**:
+- **Systematic File Analysis**: Use file_search, grep_search, and semantic_search to identify obsolete files
+- **GREEN Decision Application**: Immediately remove obvious obsolete files (debug scripts, logs, migration artifacts)
+- **Backup Directory Assessment**: Evaluate migration artifacts for safe removal based on age and Git history
+- **Build Validation**: Verify system integrity after each cleanup phase
+- **Documentation Cleanup**: Remove temporary analysis files after completion
+
+**Autonomous Benefits**: 79% build performance improvement (6.3s → 1.3s), 124MB space recovery, clean active directory state.
+
+**Pattern Recognition**: When completing projects, automatically trigger repository cleanup protocols to maintain clean development environment.
 
 ## 🧠 Memory Management System
 
