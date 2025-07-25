@@ -203,83 +203,145 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
                         Text (item.ContentType |> fun ct -> ct.Substring(0, 1).ToUpper() + ct.Substring(1))
                     ]
                 ]
-                // Render content with Tumblr-inspired smart preview approach
+                // Smart content display with length-based logic
                 div [ _class "card-text" ] [
+                    let contentLength = cleanContent.Length
+                    let shouldTruncate = 
+                        match item.ContentType.ToLower() with
+                        | "response" -> contentLength > 300  // Responses: show full if under 300 chars
+                        | "post" -> contentLength > 800      // Posts: show full if under 800 chars  
+                        | "snippet" -> contentLength > 600   // Snippets: show full if under 600 chars
+                        | "notes" -> contentLength > 400     // Notes: show full if under 400 chars
+                        | _ -> contentLength > 500           // Others: show full if under 500 chars
+                    
                     match item.ContentType.ToLower() with
                     | "response" ->
-                        // Show response icon and preserve rich content formatting
-                        let responseTypeIcon = 
+                        // Clean up response content and show with icon
+                        let responseTypeIcon, cleanedContent = 
                             if cleanContent.Contains("reply") || cleanContent.Contains("Reply") then
-                                span [_class "bi bi-reply-fill me-2"; _style "color:#3F5576;"] []
+                                let cleaned = cleanContent.Replace("reply", "").Replace("Reply", "").Replace("<div class=\"response-type\">reply</div>", "").Replace("<div class=\"response-type\">Reply</div>", "")
+                                (span [_class "bi bi-reply-fill me-2"; _style "color:#3F5576;"] []), cleaned
                             elif cleanContent.Contains("reshare") || cleanContent.Contains("Share") then
-                                span [_class "bi bi-share-fill me-2"; _style "color:#C0587E;"] []
+                                let cleaned = cleanContent.Replace("reshare", "").Replace("Share", "").Replace("<div class=\"response-type\">reshare</div>", "").Replace("<div class=\"response-type\">Share</div>", "")
+                                (span [_class "bi bi-share-fill me-2"; _style "color:#C0587E;"] []), cleaned
                             elif cleanContent.Contains("star") || cleanContent.Contains("Star") then
-                                span [_class "bi bi-star-fill me-2"; _style "color:#ff7518;"] []
+                                let cleaned = cleanContent.Replace("star", "").Replace("Star", "").Replace("<div class=\"response-type\">star</div>", "").Replace("<div class=\"response-type\">Star</div>", "")
+                                (span [_class "bi bi-star-fill me-2"; _style "color:#ff7518;"] []), cleaned
                             elif cleanContent.Contains("bookmark") || cleanContent.Contains("Bookmark") then
-                                span [_class "bi bi-journal-bookmark-fill me-2"; _style "color:#4a60b6;"] []
+                                let cleaned = cleanContent.Replace("bookmark", "").Replace("Bookmark", "").Replace("<div class=\"response-type\">bookmark</div>", "").Replace("<div class=\"response-type\">Bookmark</div>", "")
+                                (span [_class "bi bi-journal-bookmark-fill me-2"; _style "color:#4a60b6;"] []), cleaned
                             else
-                                span [] []
+                                (span [] []), cleanContent
                         
                         div [] [
                             responseTypeIcon
-                            // Create a responsive content preview with "Read More" for responses
-                            div [ _class "content-preview"; _style "max-height: 200px; overflow: hidden; position: relative;" ] [
-                                rawText cleanContent
-                            ]
-                            // Add "Read More" link for longer content
-                            div [ _class "mt-2" ] [
-                                a [ _href item.Url; _class "btn btn-sm btn-outline-primary" ] [ Text "View Response →" ]
-                            ]
+                            if shouldTruncate then
+                                // Preview with read more
+                                div [ _class "content-preview"; _style "max-height: 200px; overflow: hidden; position: relative;" ] [
+                                    rawText cleanedContent
+                                ]
+                                div [ _class "mt-2" ] [
+                                    a [ _href properPermalink; _class "btn btn-sm btn-outline-primary" ] [ Text "Read More →" ]
+                                ]
+                            else
+                                // Show full content, no button needed
+                                div [] [
+                                    rawText cleanedContent
+                                ]
                         ]
                     | "post" ->
-                        // For posts, create smart preview preserving formatting
+                        // Better post handling - extract meaningful content 
                         let processedContent = 
                             if cleanContent.Contains("No description available") then
-                                // Remove the "No description available" but keep all other HTML
-                                cleanContent.Replace("<p>No description available</p>", "")
-                                           .Replace("No description available", "")
+                                // More aggressive cleaning of "No description available"
+                                let contentParts = cleanContent.Split([|"No description available"|], StringSplitOptions.RemoveEmptyEntries)
+                                let meaningfulContent = contentParts |> Array.filter (fun part -> 
+                                    not (String.IsNullOrWhiteSpace(part)) && 
+                                    not (part.Trim() = "<p></p>") &&
+                                    not (part.Trim() = "<p>") &&
+                                    not (part.Trim() = "</p>"))
+                                if meaningfulContent.Length > 0 then
+                                    String.concat "" meaningfulContent
+                                else
+                                    // Create a description from the title
+                                    $"<p>Read more about <strong>{item.Title}</strong></p>"
                             else
                                 cleanContent
                         
-                        // Use CSS to handle truncation while preserving HTML structure
                         div [] [
-                            div [ _class "content-preview"; _style "max-height: 400px; overflow: hidden; position: relative;" ] [
-                                rawText processedContent
-                            ]
-                            // Add gradient fade and "Read More" for longer posts
-                            div [ _class "mt-2" ] [
-                                a [ _href item.Url; _class "btn btn-sm btn-outline-primary" ] [ Text "Read Full Post →" ]
-                            ]
+                            if shouldTruncate then
+                                // Preview with read more
+                                div [ _class "content-preview"; _style "max-height: 400px; overflow: hidden; position: relative;" ] [
+                                    rawText processedContent
+                                ]
+                                div [ _class "mt-2" ] [
+                                    a [ _href properPermalink; _class "btn btn-sm btn-outline-primary" ] [ Text "Read More →" ]
+                                ]
+                            else
+                                // Show full content, no button needed
+                                div [] [
+                                    rawText processedContent
+                                ]
                         ]
                     | "snippet" ->
-                        // For code snippets, show with syntax highlighting preservation
+                        // Code snippets with syntax highlighting preservation
                         div [] [
-                            div [ _class "content-preview"; _style "max-height: 300px; overflow: hidden;" ] [
-                                rawText cleanContent
-                            ]
-                            div [ _class "mt-2" ] [
-                                a [ _href item.Url; _class "btn btn-sm btn-outline-secondary" ] [ Text "View Snippet →" ]
-                            ]
+                            if shouldTruncate then
+                                div [ _class "content-preview"; _style "max-height: 300px; overflow: hidden;" ] [
+                                    rawText cleanContent
+                                ]
+                                div [ _class "mt-2" ] [
+                                    a [ _href properPermalink; _class "btn btn-sm btn-outline-secondary" ] [ Text "Read More →" ]
+                                ]
+                            else
+                                div [] [
+                                    rawText cleanContent
+                                ]
+                        ]
+                    | "notes" ->
+                        // Notes - often shorter, show more content
+                        div [] [
+                            if shouldTruncate then
+                                div [ _class "content-preview"; _style "max-height: 250px; overflow: hidden;" ] [
+                                    rawText cleanContent
+                                ]
+                                div [ _class "mt-2" ] [
+                                    a [ _href properPermalink; _class "btn btn-sm btn-outline-info" ] [ Text "Read More →" ]
+                                ]
+                            else
+                                div [] [
+                                    rawText cleanContent
+                                ]
                         ]
                     | "wiki" ->
-                        // Wiki pages get a structured preview
+                        // Wiki pages - structured content
                         div [] [
-                            div [ _class "content-preview"; _style "max-height: 350px; overflow: hidden;" ] [
-                                rawText cleanContent
-                            ]
-                            div [ _class "mt-2" ] [
-                                a [ _href item.Url; _class "btn btn-sm btn-outline-info" ] [ Text "Read More →" ]
-                            ]
+                            if shouldTruncate then
+                                div [ _class "content-preview"; _style "max-height: 350px; overflow: hidden;" ] [
+                                    rawText cleanContent
+                                ]
+                                div [ _class "mt-2" ] [
+                                    a [ _href properPermalink; _class "btn btn-sm btn-outline-info" ] [ Text "Read More →" ]
+                                ]
+                            else
+                                div [] [
+                                    rawText cleanContent
+                                ]
                         ]
                     | _ ->
                         // Default handling for other content types
                         div [] [
-                            div [ _class "content-preview"; _style "max-height: 300px; overflow: hidden;" ] [
-                                rawText cleanContent
-                            ]
-                            div [ _class "mt-2" ] [
-                                a [ _href item.Url; _class "btn btn-sm btn-outline-primary" ] [ Text "View →" ]
-                            ]
+                            if shouldTruncate then
+                                div [ _class "content-preview"; _style "max-height: 300px; overflow: hidden;" ] [
+                                    rawText cleanContent
+                                ]
+                                div [ _class "mt-2" ] [
+                                    a [ _href properPermalink; _class "btn btn-sm btn-outline-primary" ] [ Text "Read More →" ]
+                                ]
+                            else
+                                div [] [
+                                    rawText cleanContent
+                                ]
                         ]
                 ]
                 hr []

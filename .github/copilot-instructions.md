@@ -446,6 +446,16 @@ Before starting any migration:
 - **Key Insights**: Preserve rich formatting, use CSS-based truncation, add "Read More" functionality
 - **Implementation**: Tumblr-inspired content preview system with gradient fades and responsive design
 
+**Smart Content Display Logic** (Refined):
+- **Length-Based Thresholds**: Different character limits by content type (responses: 300, posts: 800, snippets: 600, notes: 400)
+- **Full vs Preview Logic**: Show complete content for shorter posts, previews with "Read More" for longer ones
+- **No Redundant Buttons**: Only show "Read More" buttons when content is actually truncated
+- **Smart Description Handling**: Use content excerpts instead of "No description available" placeholders
+- **Correct Permalinks**: Use proper content-type-specific URLs for all "Read More" links
+- **Clean Response Display**: Remove response type text, show only icons with cleaned content
+- **Consistent Button Text**: All truncation buttons use "Read More →" for uniformity
+- **Date Only Display**: Show clean date format (MMM dd, yyyy) without time information
+
 **Implementation Pattern**:
 - **Rich Content Preservation**: Never strip HTML formatting - preserve images, links, emphasis, code highlighting
 - **CSS-Based Truncation**: Use `max-height` with `overflow: hidden` instead of character-based truncation
@@ -459,6 +469,7 @@ Before starting any migration:
 - **Engagement Preservation**: Rich formatting (images, code, links) maintains content appeal
 - **Mobile Optimization**: Responsive design adapts naturally to screen constraints
 - **Clear Navigation**: Explicit "Read More" buttons provide clear next actions
+- **Content Satisfaction**: Short content shown in full, longer content intelligently previewed
 - **Update Instructions**: Add proven methodologies and best practices to `.github/copilot-instructions.md` in the appropriate sections:
   - New technical patterns → `🔧 Technical Standards` section
   - Testing improvements → `🧪 Testing & Validation` section  
