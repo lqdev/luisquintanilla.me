@@ -161,9 +161,47 @@ let albumPageView (images:AlbumImage array) =
 
 // Unified feed view for aggregated content across all types
 let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
+    let stripCDATA (content: string) =
+        // Remove CDATA wrapper if present
+        let cleaned = content.Replace("<![CDATA[", "").Replace("]]>", "")
+        // Also remove the "See the original post at..." prefix that's common in RSS feeds
+        let lines = cleaned.Split([|'\n'|], StringSplitOptions.RemoveEmptyEntries)
+        if lines.Length > 0 && lines.[0].Contains("See the original post at") then
+            lines |> Array.skip 1 |> String.concat "\n"
+        else
+            cleaned
+    
+    let getProperPermalink (contentType: string) (fileName: string) =
+        match contentType with
+        | "posts" -> $"/posts/{fileName}/"
+        | "notes" -> $"/notes/{fileName}/"
+        | "responses" -> $"/responses/{fileName}/"
+        | "snippets" -> $"/resources/snippets/{fileName}/"
+        | "wiki" -> $"/resources/wiki/{fileName}/"
+        | "presentations" -> $"/resources/presentations/{fileName}/"
+        | "reviews" -> $"/reviews/{fileName}/"
+        | "media" -> $"/media/{fileName}/"
+        | _ -> $"/{contentType}/{fileName}/"
+    
     let renderUnifiedCard (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) =
         let header = cardHeader item.Date
-        let footer = cardFooter item.ContentType (Path.GetFileNameWithoutExtension(item.Url)) item.Tags
+        let fileName = Path.GetFileNameWithoutExtension(item.Url)
+        let properPermalink = getProperPermalink item.ContentType fileName
+        let cleanContent = stripCDATA item.Content
+        
+        // Create a custom footer with proper permalink
+        let customFooter = 
+            div [_class "card-footer"] [
+                Text "Permalink: " 
+                a [_href properPermalink; _class "u-url"] [Text properPermalink] 
+                
+                div [] [
+                    str "Tags: "
+                    for tag in item.Tags do
+                        a [_href $"/tags/{tag}"; _class "p-category"] [Text $"#{tag}"]
+                        Text " "
+                ]
+            ]
         
         div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
             header
@@ -174,12 +212,12 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
                         Text (item.ContentType |> fun ct -> ct.Substring(0, 1).ToUpper() + ct.Substring(1))
                     ]
                 ]
-                // Render content
-                rawText item.Content
+                // Render cleaned content
+                rawText cleanContent
                 hr []
                 webmentionForm
             ]
-            footer
+            customFooter
         ]
     
     div [ _class "d-grip gap-3" ] [
