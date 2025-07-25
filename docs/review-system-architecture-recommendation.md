@@ -2,7 +2,7 @@
 
 ## Strategic Insight: Books Are Reviews
 
-**Discovery**: Books in `_src/library/` are structured reviews, not generic content requiring review blocks to be added.
+**Discovery**: Books in `_src/reviews/` are structured reviews, not generic content requiring review blocks to be added.
 
 ## Current Books Structure Analysis
 

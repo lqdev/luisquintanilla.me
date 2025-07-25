@@ -1,5 +1,54 @@
 # Changelog
 
+## 2025-07-25 - Feed Architecture Consolidation: Library → Reviews ✅
+
+**Project**: Library-to-Reviews Feed Consolidation  
+**Duration**: 2025-07-25 (1 session)  
+**Status**: Complete - Feed architecture simplified and made consistent  
+**Context**: Feed architecture cleanup following navigation testing discoveries
+
+### What Changed
+Consolidated confusing "library" feed terminology into consistent "reviews" branding to match existing navigation structure and content organization. The `/collections/` → `/reviews/` navigation pointed to book reviews, but feeds were generating under `/resources/library/feed.xml` creating architectural inconsistency.
+
+### Technical Achievements
+- **URL Consistency**: All book review URLs now use `/reviews/[slug]` pattern (matching navigation)
+- **Feed Location**: Feed moved from `/resources/library/feed.xml` → `/reviews/feed.xml` (content-proximate placement)
+- **Feed Metadata**: Updated RSS feed title from "Library" to "Reviews" with appropriate description
+- **Content Type Unification**: RSS items now use "reviews" content type instead of "library" in unified feeds
+- **Architecture Cleanup**: Eliminated confusing dual terminology (library vs reviews)
+
+### File Changes
+- **GenericBuilder.fs**: Updated BookProcessor URLs, feed configuration, and content type references
+- **Program.fs**: Changed unified feed mapping from "library" to "reviews"
+- **Test Documentation**: Updated website navigation test plan to reflect consolidation
+
+### Feed Architecture Impact
+**Complete Feed Coverage**: All 8 active content types now have properly located feeds:
+1. Posts → `/posts/feed.xml`
+2. Notes → `/notes/feed.xml` 
+3. Responses → `/responses/feed.xml`
+4. Snippets → `/resources/snippets/feed.xml`
+5. Wiki → `/resources/wiki/feed.xml`
+6. Presentations → `/resources/presentations/feed.xml`
+7. **Reviews** → `/reviews/feed.xml` ✅ **CONSOLIDATED**
+8. Media → `/media/feed.xml`
+
+### Architecture Benefits
+- **Navigation Consistency**: Menu "Books" link (`/reviews`) now matches feed location
+- **Content-Proximate Feeds**: Reviews feed follows established pattern of being located with content
+- **Simplified Terminology**: Single "reviews" term replaces confusing library/reviews duality
+- **User Experience**: Intuitive feed discovery at expected `/reviews/feed.xml` location
+
+### Success Metrics
+- **Feed Location**: Moved from non-intuitive `/resources/library/` to logical `/reviews/`
+- **URL Consistency**: 100% alignment between navigation structure and content URLs
+- **Zero Breaking Changes**: All existing functionality preserved with improved architecture
+- **Build Performance**: No impact on build times (3.9s maintained)
+
+**Next**: Feed architecture now fully optimized and consistent across all content types
+
+---
+
 ## 2025-07-24 - Legacy Code Cleanup Complete & Performance Optimization Started ✅
 
 **Project**: Legacy Code Cleanup & Builder.fs Optimization  

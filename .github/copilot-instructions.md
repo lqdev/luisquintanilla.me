@@ -521,6 +521,19 @@ This workflow ensures systematic, quality-focused development that preserves fun
 
 **Partnership Impact**: Shifts from "what do you want?" to "here's what I recommend based on analysis" - enables flow state and reduces cognitive overhead for user while maintaining safety through structured decision framework.
 
+### Architectural Consolidation Pattern (2025-07-25)
+**Discovery**: Navigation testing revealed confusing dual terminology ("library" vs "reviews") creating user experience friction and architectural inconsistency.
+
+**Implementation Pattern**:
+- **Terminology Audit**: Identify where navigation, content URLs, and feed locations use different terms for same concept
+- **User Perspective Analysis**: Follow user journey from navigation menu to content to feeds - ensure consistency
+- **Content-Proximate Principle**: Place feeds with content (`/reviews/feed.xml` not `/resources/library/feed.xml`)
+- **Single Source of Truth**: Eliminate dual terminology in favor of user-facing navigation terms
+
+**Consolidation Benefits**: Simplified mental model for users, consistent architecture, content-proximate feed discovery, reduced maintenance complexity.
+
+**Trigger Pattern**: When navigation testing reveals architectural inconsistencies, prioritize terminology consolidation over feature additions.
+
 ## 🧠 Memory Management System
 
 ### Memory Hierarchy (Documentation as External Memory)
