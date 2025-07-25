@@ -28,7 +28,7 @@ let homeView (blog:Post) (microblog:Post) (response:Response) =
                 h2 [] [
                     str "Latest Microblog Note"
                 ]
-                a [_href $"/feed/{Path.GetFileNameWithoutExtension(microblog.FileName)}"] [Text microblog.Metadata.Title]                
+                a [_href $"/notes/{Path.GetFileNameWithoutExtension(microblog.FileName)}"] [Text microblog.Metadata.Title]                
             ]
         ]
         div [_class "row mx-auto p-2 text-center"] [
@@ -36,7 +36,7 @@ let homeView (blog:Post) (microblog:Post) (response:Response) =
                 h2 [] [
                     str "Latest Response"
                 ]
-                a [_href $"/feed/{Path.GetFileNameWithoutExtension(response.FileName)}"] [Text response.Metadata.Title]                
+                a [_href $"/responses/{Path.GetFileNameWithoutExtension(response.FileName)}"] [Text response.Metadata.Title]                
             ]
         ]
         div [_class "row mx-auto p-2 text-center"] [
