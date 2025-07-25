@@ -7,8 +7,6 @@ open Builder
 open GenericBuilder
 open WebmentionService
 open Domain
-open FeatureFlags
-open MigrationUtils
 
 [<EntryPoint>]
 let main argv =
@@ -62,19 +60,6 @@ let main argv =
     let forumLinks = loadForumsLinks ()
     let youTubeLinks = loadYouTubeLinks ()
     let aiStarterPackLinks = loadAIStarterPackLinks ()
-
-    // Feature Flag Status
-    printfn "=== Build Configuration ==="
-    FeatureFlags.printStatus()
-    match FeatureFlags.validateConfiguration() with
-    | Ok message -> printfn $"✅ {message}"
-    | Error error -> 
-        printfn $"❌ Feature flag error: {error}"
-        exit 1
-    
-    // Migration Progress
-    MigrationUtils.printMigrationProgress()
-    printfn ""
 
     // Build static pages
     buildHomePage posts feedNotes responses
