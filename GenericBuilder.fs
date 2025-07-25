@@ -632,20 +632,6 @@ module ContentPipeline =
             feedData
         else
             []
-    
-    /// Build main RSS feeds from all content types
-    let buildMainFeeds (allFeedData: FeedData<obj> list) (outputDirectory: string) =
-        let rssItems = 
-            allFeedData
-            |> List.choose (fun data -> data.RssXml)
-            |> List.take (min 20 allFeedData.Length)  // Latest 20 items or fewer
-        
-        // TODO: Generate main RSS feed XML using existing RssService
-        // TODO: Generate ATOM feed
-        // TODO: Generate JSON feed
-        
-        ()
-
 /// Unified feed system for consistent feed generation across all content types  
 module UnifiedFeeds =
     

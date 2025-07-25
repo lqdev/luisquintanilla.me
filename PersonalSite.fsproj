@@ -12,12 +12,9 @@
     <Compile Include="ASTParsing.fs" />
     <Compile Include="BlockRenderers.fs" />
     <Compile Include="GenericBuilder.fs" />
-    <Compile Include="FeatureFlags.fs" />
     <Compile Include="OutputComparison.fs" />
-    <Compile Include="MigrationUtils.fs" />
     <Compile Include="Services\Markdown.fs" />
     <Compile Include="Services\Tag.fs" />
-    <Compile Include="Services\Rss.fs" />    
     <Compile Include="Services\Opml.fs" />    
     <Compile Include="Services\Webmention.fs" /> 
     <Compile Include="Views\ComponentViews.fs" />
