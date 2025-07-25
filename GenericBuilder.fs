@@ -534,17 +534,13 @@ module ResponseProcessor =
         RenderCard = fun response ->
             let title = Html.escapeHtml response.Metadata.Title
             let targetUrl = Html.escapeHtml response.Metadata.TargetUrl
-            let responseType = Html.escapeHtml response.Metadata.ResponseType
             let url = sprintf "/responses/%s" response.FileName
-            let date = response.Metadata.DatePublished
             
-            // IndieWeb microformat card with response type indication
+            // Clean card content without response type or timestamp
             Html.element "article" (Html.attribute "class" "response-card h-entry")
-                (Html.element "div" (Html.attribute "class" "response-type") responseType +
-                 Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
+                (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
                  Html.element "div" (Html.attribute "class" "response-target") 
-                    (sprintf "→ %s" (Html.element "a" (Html.attribute "href" targetUrl) targetUrl)) +
-                 Html.element "time" (Html.attribute "class" "dt-published") (Html.escapeHtml date))
+                    (sprintf "→ %s" (Html.element "a" (Html.attribute "href" targetUrl) targetUrl)))
         
         RenderRss = fun response ->
             // Create RSS item for response

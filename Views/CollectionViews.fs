@@ -177,8 +177,30 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
         let header = cardHeader item.Date
         let fileName = Path.GetFileNameWithoutExtension(item.Url)
         let properPermalink = getProperPermalink item.ContentType fileName
+        
+        // Clean content function to remove "No description available" and other placeholder text
+        let cleanPlaceholderContent (content: string) =
+            if String.IsNullOrWhiteSpace(content) then
+                $"<p>Read more about <strong>{item.Title}</strong></p>"
+            else
+                let cleaned = 
+                    content
+                        .Replace("No description available", "")
+                        .Replace("<p></p>", "")
+                        .Replace("<p> </p>", "")
+                        .Trim()
+                
+                // Remove timestamp patterns like "2025-07-06 20:09" that appear in content
+                let timestampPattern = System.Text.RegularExpressions.Regex(@"^\s*\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}\s*$", System.Text.RegularExpressions.RegexOptions.Multiline)
+                let cleanedWithoutTimestamp = timestampPattern.Replace(cleaned, "").Trim()
+                
+                if String.IsNullOrWhiteSpace(cleanedWithoutTimestamp) || cleanedWithoutTimestamp = "<p></p>" then
+                    $"<p>Read more about <strong>{item.Title}</strong></p>"
+                else
+                    cleanedWithoutTimestamp
+        
         // Content is now clean HTML from CardHtml, no need for CDATA stripping
-        let cleanContent = item.Content
+        let cleanContent = cleanPlaceholderContent item.Content
         
         // Create a custom footer with proper permalink
         let customFooter = 
@@ -197,6 +219,11 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
         div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
             header
             div [ _class "card-body" ] [
+                // Title with proper permalink
+                h5 [ _class "card-title" ] [
+                    a [ _href properPermalink; _class "p-name" ] [ Text item.Title ]
+                ]
+                
                 // Add content type indicator
                 div [ _class "mb-2" ] [
                     span [ _class "badge badge-secondary" ] [ 
@@ -208,9 +235,9 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
                     let contentLength = cleanContent.Length
                     let shouldTruncate = 
                         match item.ContentType.ToLower() with
-                        | "response" -> contentLength > 300  // Responses: show full if under 300 chars
-                        | "post" -> contentLength > 800      // Posts: show full if under 800 chars  
-                        | "snippet" -> contentLength > 600   // Snippets: show full if under 600 chars
+                        | "response" -> contentLength > 600  // Responses: show full if under 600 chars
+                        | "post" -> contentLength > 800      // Posts: show full if under 800 chars (reduced for better UX)
+                        | "snippet" -> contentLength > 600   // Snippets: show full if under 600 chars  
                         | "notes" -> contentLength > 400     // Notes: show full if under 400 chars
                         | _ -> contentLength > 500           // Others: show full if under 500 chars
                     
@@ -222,19 +249,20 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
                         let responseType = if responseTypeMatch.Success then responseTypeMatch.Groups.[1].Value.Trim().ToLower() else ""
                         let cleanedContent = responseTypeRegex.Replace(cleanContent, "").Trim()
                         
+                        // Show bookmark icon for bookmarks, other response type icons for others
                         let responseTypeIcon = 
                             match responseType with
+                            | "bookmark" -> (span [_class "bi bi-journal-bookmark-fill me-2"; _style "color:#4a60b6;"] [])
                             | "reply" -> (span [_class "bi bi-reply-fill me-2"; _style "color:#3F5576;"] [])
                             | "reshare" | "share" -> (span [_class "bi bi-share-fill me-2"; _style "color:#C0587E;"] [])
                             | "star" | "like" -> (span [_class "bi bi-star-fill me-2"; _style "color:#ff7518;"] [])
-                            | "bookmark" -> (span [_class "bi bi-journal-bookmark-fill me-2"; _style "color:#4a60b6;"] [])
                             | _ -> (span [] [])
                         
                         div [] [
                             responseTypeIcon
                             if shouldTruncate then
                                 // Preview with read more
-                                div [ _class "content-preview"; _style "max-height: 200px; overflow: hidden; position: relative;" ] [
+                                div [ _class "content-preview"; _style "max-height: 400px; overflow: hidden; position: relative;" ] [
                                     rawText cleanedContent
                                 ]
                                 div [ _class "mt-2" ] [
@@ -247,29 +275,11 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
                                 ]
                         ]
                     | "post" ->
-                        // Better post handling - extract meaningful content 
-                        let processedContent = 
-                            if cleanContent.Contains("No description available") then
-                                // More aggressive cleaning of "No description available"
-                                let contentParts = cleanContent.Split([|"No description available"|], StringSplitOptions.RemoveEmptyEntries)
-                                let meaningfulContent = contentParts |> Array.filter (fun part -> 
-                                    not (String.IsNullOrWhiteSpace(part)) && 
-                                    not (part.Trim() = "<p></p>") &&
-                                    not (part.Trim() = "<p>") &&
-                                    not (part.Trim() = "</p>"))
-                                if meaningfulContent.Length > 0 then
-                                    String.concat "" meaningfulContent
-                                else
-                                    // Create a description from the title
-                                    $"<p>Read more about <strong>{item.Title}</strong></p>"
-                            else
-                                cleanContent
-                        
                         div [] [
                             if shouldTruncate then
                                 // Preview with read more
                                 div [ _class "content-preview"; _style "max-height: 400px; overflow: hidden; position: relative;" ] [
-                                    rawText processedContent
+                                    rawText cleanContent
                                 ]
                                 div [ _class "mt-2" ] [
                                     a [ _href properPermalink; _class "btn btn-sm btn-outline-primary" ] [ Text "Read More →" ]
@@ -277,7 +287,7 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
                             else
                                 // Show full content, no button needed
                                 div [] [
-                                    rawText processedContent
+                                    rawText cleanContent
                                 ]
                         ]
                     | "snippet" ->

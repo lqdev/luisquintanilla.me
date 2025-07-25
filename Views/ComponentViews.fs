@@ -40,7 +40,7 @@ let cardHeader (date:string) =
             a [ _href "/about"; _class "u-url p-name"] [Text "lqdev"]
             seasonalCheckmarkEmoji
             span [_class "float-right"] [
-                time [_class "dt-published"; _datetime date] [Text (dt.ToString("MMM dd, yyyy"))]
+                Text (dt.ToString("MMM dd, yyyy"))
             ] 
         ]    
     with
