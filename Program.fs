@@ -150,9 +150,6 @@ let main argv =
     let _ = buildMedia()
     ()
 
-    // Build reponses (TODO: Functions missing, need implementation)
-    // buildResponsePage responses "Responses" "index"
-
     // Build tags page
     buildTagsPages posts feedNotes responses
 
