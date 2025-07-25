@@ -2,6 +2,7 @@
 title: "QR Code Generator"
 language: "F#"
 tags: dotnet,f#,script
+created_date: "08/03/2022 20:07 -05:00"
 ---
 
 ## Description

@@ -2,6 +2,7 @@
 title: "NixOS Configuration"
 language: "nix"
 tags: nix,linux,configuration,nixos,os
+created_date: "08/22/2023 18:45 -05:00"
 ---
 
 ## Description

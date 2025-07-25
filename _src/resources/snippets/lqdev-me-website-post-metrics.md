@@ -2,6 +2,7 @@
 title: "lqdev.me Post Metrics"
 language: "F#"
 tags: analytics,website,blog,blogging,pkm,indieweb,dotnet,windows,linux,mac
+created_date: "12/23/2023 13:13 -05:00"
 ---
 
 ## Description

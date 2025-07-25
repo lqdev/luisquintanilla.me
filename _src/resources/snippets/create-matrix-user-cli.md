@@ -2,6 +2,7 @@
 title: "Create a new Matrix user using the CLI"
 language: "bash"
 tags: bash,linux,matrix,synapse,communication
+created_date: "08/31/2022 19:40 -05:00"
 ---
 
 ## Description

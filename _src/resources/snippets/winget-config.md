@@ -2,6 +2,7 @@
 title: "Winget Configuration"
 language: "Yaml"
 tags: windows,powershell ,yaml
+created_date: "01/14/2025 20:51 -05:00"
 ---
 
 ## Description

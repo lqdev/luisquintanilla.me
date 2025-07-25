@@ -117,6 +117,7 @@ module Domain
         [<YamlMember(Alias="title")>] Title: string
         [<YamlMember(Alias="language")>] Language: string        
         [<YamlMember(Alias="tags")>] Tags: string
+        [<YamlMember(Alias="created_date")>] CreatedDate: string
     }
 
     type Snippet = {
@@ -130,7 +131,9 @@ module Domain
                 if String.IsNullOrEmpty(this.Metadata.Tags) then [||]
                 else this.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
             member this.Title = this.Metadata.Title
-            member this.Date = "" // Snippets don't have dates
+            member this.Date = 
+                if String.IsNullOrEmpty(this.Metadata.CreatedDate) then ""
+                else this.Metadata.CreatedDate
             member this.FileName = this.FileName
             member this.ContentType = "snippet"
 
@@ -146,6 +149,17 @@ module Domain
         Metadata: WikiDetails
         Content: string
     }
+    with
+        interface ITaggable with
+            member this.Tags = 
+                if String.IsNullOrEmpty(this.Metadata.Tags) then [||]
+                else this.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+            member this.Title = this.Metadata.Title
+            member this.Date = 
+                if String.IsNullOrEmpty(this.Metadata.LastUpdatedDate) then ""
+                else this.Metadata.LastUpdatedDate
+            member this.FileName = this.FileName
+            member this.ContentType = "wiki"
 
     type OpmlMetadata = 
         {

@@ -273,6 +273,10 @@ module SnippetProcessor =
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
             
+            // Add pubDate if created_date exists
+            if not (String.IsNullOrEmpty(snippet.Metadata.CreatedDate)) then
+                item.Add(XElement(XName.Get "pubDate", snippet.Metadata.CreatedDate))
+            
             // Add categories if they exist
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
@@ -330,6 +334,10 @@ module WikiProcessor =
                     XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedContent),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
+            
+            // Add pubDate if last_updated_date exists
+            if not (String.IsNullOrEmpty(wiki.Metadata.LastUpdatedDate)) then
+                item.Add(XElement(XName.Get "pubDate", wiki.Metadata.LastUpdatedDate))
             
             // Add categories if they exist
             if not (List.isEmpty categories) then

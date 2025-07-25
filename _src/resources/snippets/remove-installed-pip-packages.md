@@ -2,6 +2,7 @@
 title: "Remove all installed Python packages with pip"
 language: "Bash"
 tags: python,pip,packages 
+created_date: "08/08/2024 10:26 -05:00"
 ---
 
 ## Description

@@ -2,6 +2,7 @@
 title: "OPML File Generator"
 language: "F#"
 tags: dotnet,fsharp,script
+created_date: "08/14/2022 13:45 -05:00"
 ---
 
 ## Description

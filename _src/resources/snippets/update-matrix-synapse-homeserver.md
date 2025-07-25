@@ -2,6 +2,7 @@
 title: "Upgrade Matrix Synapse homeserver"
 language: "bash"
 tags: matrix,synapse,homeserver,selfhost,python,internet,network
+created_date: "08/31/2022 19:40 -05:00"
 ---
 
 ## Description

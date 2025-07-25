@@ -2,6 +2,7 @@
 title: "Analyze RSS feeds with FSharp.Data XML Type Provider"
 language: "F#"
 tags: xml,dotnet,fsharp,typeprovider,rss
+created_date: "08/30/2022 12:50 -05:00"
 ---
 
 ## Description
