@@ -17,6 +17,28 @@ type FeedData<'T> = {
     RssXml: XElement option
 }
 
+/// URL normalization for RSS feeds to ensure absolute URLs
+let normalizeUrlsForRss (content: string) (baseUrl: string) =
+    let baseUrl = baseUrl.TrimEnd('/')
+    
+    // Normalize relative image src attributes
+    let imgPattern = @"src\s*=\s*""(/[^""]*)""|src\s*=\s*'(/[^']*)'"
+    let normalizedImages = 
+        System.Text.RegularExpressions.Regex.Replace(content, imgPattern, fun m ->
+            let quote = if m.Value.Contains("\"") then "\"" else "'"
+            let path = if m.Groups.[1].Success then m.Groups.[1].Value else m.Groups.[2].Value
+            sprintf "src=%s%s%s%s" quote baseUrl path quote)
+    
+    // Normalize relative link href attributes  
+    let linkPattern = @"href\s*=\s*""(/[^""]*)""|href\s*=\s*'(/[^']*)'"
+    let normalizedLinks =
+        System.Text.RegularExpressions.Regex.Replace(normalizedImages, linkPattern, fun m ->
+            let quote = if m.Value.Contains("\"") then "\"" else "'"
+            let path = if m.Groups.[1].Success then m.Groups.[1].Value else m.Groups.[2].Value
+            sprintf "href=%s%s%s%s" quote baseUrl path quote)
+    
+    normalizedLinks
+
 /// Generic content processor pattern for consistent content handling
 type ContentProcessor<'T> = {
     /// Parse content from file path to domain type
@@ -106,10 +128,13 @@ module PostProcessor =
                 if isNull post.Metadata.Tags then []
                 else post.Metadata.Tags |> Array.map (fun tag -> XElement(XName.Get "category", tag)) |> Array.toList
             
+            // Normalize URLs in content for RSS compatibility
+            let normalizedContent = normalizeUrlsForRss post.Content "https://www.luisquintanilla.me"
+            
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", post.Metadata.Title),
-                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" post.Content),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedContent),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url),
                     XElement(XName.Get "pubDate", post.Metadata.Date))
@@ -179,10 +204,13 @@ module NoteProcessor =
                 if isNull note.Metadata.Tags then []
                 else note.Metadata.Tags |> Array.map (fun tag -> XElement(XName.Get "category", tag)) |> Array.toList
             
+            // Normalize URLs in content for RSS compatibility
+            let normalizedContent = normalizeUrlsForRss note.Content "https://www.luisquintanilla.me"
+            
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", note.Metadata.Title),
-                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" note.Content),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedContent),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url),
                     XElement(XName.Get "pubDate", note.Metadata.Date))
@@ -235,10 +263,13 @@ module SnippetProcessor =
                      |> Array.map (fun tag -> XElement(XName.Get "category", tag.Trim())) 
                      |> Array.toList
             
+            // Normalize URLs in content for RSS compatibility
+            let normalizedContent = normalizeUrlsForRss snippet.Content "https://www.luisquintanilla.me"
+            
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", snippet.Metadata.Title),
-                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" snippet.Content),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedContent),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
             
@@ -290,10 +321,13 @@ module WikiProcessor =
                      |> Array.map (fun tag -> XElement(XName.Get "category", tag.Trim())) 
                      |> Array.toList
             
+            // Normalize URLs in content for RSS compatibility
+            let normalizedContent = normalizeUrlsForRss wiki.Content "https://www.luisquintanilla.me"
+            
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", wiki.Metadata.Title),
-                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" wiki.Content),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedContent),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
             
@@ -375,10 +409,13 @@ module PresentationProcessor =
                      |> Array.map (fun tag -> XElement(XName.Get "category", tag.Trim())) 
                      |> Array.toList
             
+            // Normalize URLs in content for RSS compatibility
+            let normalizedContent = normalizeUrlsForRss presentation.Content "https://www.luisquintanilla.me"
+            
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", presentation.Metadata.Title),
-                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" presentation.Content),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedContent),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
             
@@ -451,7 +488,7 @@ module BookProcessor =
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", sprintf "%s by %s" book.Metadata.Title book.Metadata.Author),
-                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" book.Content),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" (normalizeUrlsForRss book.Content "https://www.luisquintanilla.me")),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url),
                     XElement(XName.Get "pubDate", pubDate))
@@ -502,6 +539,10 @@ module ResponseProcessor =
             // Create RSS item for response
             let url = sprintf "https://www.luisquintanilla.me/responses/%s" response.FileName
             let description = sprintf "[%s] %s" response.Metadata.ResponseType response.Content
+            
+            // Normalize URLs in description for RSS compatibility
+            let normalizedDescription = normalizeUrlsForRss description "https://www.luisquintanilla.me"
+            
             let categories = 
                 if isNull response.Metadata.Tags then []
                 else response.Metadata.Tags |> Array.map (fun tag -> XElement(XName.Get "category", tag)) |> Array.toList
@@ -509,7 +550,7 @@ module ResponseProcessor =
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", response.Metadata.Title),
-                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" description),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedDescription),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url),
                     XElement(XName.Get "pubDate", response.Metadata.DatePublished))
@@ -599,6 +640,10 @@ module AlbumProcessor =
                 if isNull album.Metadata.Images then 0
                 else Array.length album.Metadata.Images
             let description = sprintf "Album containing %d photos" imageCount
+            
+            // Normalize URLs in description for RSS compatibility
+            let normalizedDescription = normalizeUrlsForRss description "https://www.luisquintanilla.me"
+            
             let categories = 
                 if isNull album.Metadata.Tags then []
                 else album.Metadata.Tags |> Array.map (fun tag -> XElement(XName.Get "category", tag)) |> Array.toList
@@ -606,7 +651,7 @@ module AlbumProcessor =
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", album.Metadata.Title),
-                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" description),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedDescription),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url),
                     XElement(XName.Get "pubDate", album.Metadata.Date))
@@ -665,10 +710,13 @@ module BookmarkProcessor =
             let url = sprintf "https://www.luisquintanilla.me/bookmarks/%s" bookmark.FileName
             let description = sprintf "Bookmark: %s - %s" bookmark.Metadata.Description bookmark.Metadata.BookmarkOf
             
+            // Normalize URLs in description for RSS compatibility
+            let normalizedDescription = normalizeUrlsForRss description "https://www.luisquintanilla.me"
+            
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", bookmark.Metadata.Title),
-                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" description),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedDescription),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url),
                     XElement(XName.Get "pubDate", bookmark.Metadata.DatePublished))
