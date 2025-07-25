@@ -29,6 +29,10 @@ At the end of the day, it was nice seeing everyone else's projects. My favorite 
       <link>https://www.luisquintanilla.me/posts/indieweb-create-day-2025-07</link>
       <guid>https://www.luisquintanilla.me/posts/indieweb-create-day-2025-07</guid>
       <pubDate>2025-07-06 20:09</pubDate>
+      <category>indieweb</category>
+      <category>iwc</category>
+      <category>community</category>
+      <category>website</category>
     </item>
     <item>
       <title>FediForum Day One Recap</title>
@@ -102,6 +106,11 @@ Looking forward to tomorrow's sessions!]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/fediforum-day-1-jun-2025</link>
       <guid>https://www.luisquintanilla.me/posts/fediforum-day-1-jun-2025</guid>
       <pubDate>2025-06-05 17:20 -05:00</pubDate>
+      <category>fediforum</category>
+      <category>socialweb</category>
+      <category>community</category>
+      <category>fediverse</category>
+      <category>openweb</category>
     </item>
     <item>
       <title>How do I keep up with AI?</title>
@@ -166,6 +175,15 @@ I've written more about RSS in [Rediscovering the RSS Protocol](/posts/rediscove
       <link>https://www.luisquintanilla.me/posts/how-i-keep-up-with-ai</link>
       <guid>https://www.luisquintanilla.me/posts/how-i-keep-up-with-ai</guid>
       <pubDate>2025-05-27 19:44 -05:00</pubDate>
+      <category>ai</category>
+      <category>rss</category>
+      <category>starterpack</category>
+      <category>newsletter</category>
+      <category>blog</category>
+      <category>opml</category>
+      <category>openweb</category>
+      <category>podcast</category>
+      <category>indieweb</category>
     </item>
     <item>
       <title>Vibe-Specing - From concepts to specification</title>
@@ -325,6 +343,11 @@ By building on the combined strengths of IPFS, DIDs, VCs, and semantic web techn
       <link>https://www.luisquintanilla.me/posts/vibe-specing-prompt-to-spec</link>
       <guid>https://www.luisquintanilla.me/posts/vibe-specing-prompt-to-spec</guid>
       <pubDate>2025-05-06 20:40</pubDate>
+      <category>dweb</category>
+      <category>standards</category>
+      <category>ai</category>
+      <category>decentralization</category>
+      <category>protocol</category>
     </item>
     <item>
       <title>Fractures of Unfamiliarity &amp; Circumvention in Pursuit of a Nice Time and the Meaning of Franklin's Tower</title>
@@ -724,6 +747,9 @@ soon to appear on [Hunter's] pages)
       <link>https://www.luisquintanilla.me/posts/fractures-unfamiliarity-circumvention-pursuit-good-time-robert-hunter</link>
       <guid>https://www.luisquintanilla.me/posts/fractures-unfamiliarity-circumvention-pursuit-good-time-robert-hunter</guid>
       <pubDate>2025-02-26 19:44</pubDate>
+      <category>music</category>
+      <category>essay</category>
+      <category>gratefuldead</category>
     </item>
     <item>
       <title>Llama's Turn On: Tuning In to AI's Quest for Higher Consciousness in MOOs</title>
@@ -1070,6 +1096,12 @@ Here's the transcript with some updates for formatting. In some turns, I took cr
       <link>https://www.luisquintanilla.me/posts/llama-turn-on-tuning-in-ai-quest-higher-consciousness-moo</link>
       <guid>https://www.luisquintanilla.me/posts/llama-turn-on-tuning-in-ai-quest-higher-consciousness-moo</guid>
       <pubDate>2025-02-11 20:36</pubDate>
+      <category>ai</category>
+      <category>MOO</category>
+      <category>consciousness</category>
+      <category>llama</category>
+      <category>vr</category>
+      <category>virtualreality</category>
     </item>
     <item>
       <title>Deploy your own Owncast server</title>
@@ -1203,6 +1235,12 @@ If all goes as expected, I'll start streaming more regularly. As mentioned, I wa
       <link>https://www.luisquintanilla.me/posts/deploy-owncast-azure</link>
       <guid>https://www.luisquintanilla.me/posts/deploy-owncast-azure</guid>
       <pubDate>2025-01-09 20:47 -05:00</pubDate>
+      <category>owncast</category>
+      <category>azure</category>
+      <category>selfhost</category>
+      <category>fediverse</category>
+      <category>obs</category>
+      <category>livestream</category>
     </item>
     <item>
       <title>Building a Reading Habit with Audiobooks, LibriVox, and AntennaPod</title>
@@ -1307,6 +1345,15 @@ Although AntennaPod wasn't designed for audiobook listening, thanks to the flexi
       <link>https://www.luisquintanilla.me/posts/listen-audiobooks-librivox-antennapod</link>
       <guid>https://www.luisquintanilla.me/posts/listen-audiobooks-librivox-antennapod</guid>
       <pubDate>2025-01-05 21:04 -05:00</pubDate>
+      <category>book</category>
+      <category>audiobook</category>
+      <category>rss</category>
+      <category>antennapod</category>
+      <category>librivox</category>
+      <category>android</category>
+      <category>podcast</category>
+      <category>publicdomain</category>
+      <category>opensource</category>
     </item>
     <item>
       <title>Weird, Inc. and 2025</title>
@@ -1386,6 +1433,15 @@ I wish them luck and success in what they're aiming to accomplish. I'm excited t
       <link>https://www.luisquintanilla.me/posts/weird-inc-2025</link>
       <guid>https://www.luisquintanilla.me/posts/weird-inc-2025</guid>
       <pubDate>2024-12-17 18:41</pubDate>
+      <category>weird</category>
+      <category>cms</category>
+      <category>munitown</category>
+      <category>2025</category>
+      <category>indieweb</category>
+      <category>posse</category>
+      <category>pesos</category>
+      <category>personalweb</category>
+      <category>internet</category>
     </item>
     <item>
       <title>Starter Packs with OPML and RSS</title>
@@ -1430,6 +1486,17 @@ If this is interesting to you, [Feedland](https://feedland.org/) might be a proj
       <link>https://www.luisquintanilla.me/posts/rss-opml-starter-packs</link>
       <guid>https://www.luisquintanilla.me/posts/rss-opml-starter-packs</guid>
       <pubDate>2024-12-08 19:40</pubDate>
+      <category>rss</category>
+      <category>opml</category>
+      <category>indieweb</category>
+      <category>starterpacks</category>
+      <category>community</category>
+      <category>bluesky</category>
+      <category>socialmedia</category>
+      <category>openweb</category>
+      <category>protocols</category>
+      <category>openstandards</category>
+      <category>feedland</category>
     </item>
     <item>
       <title>Digitize Analog Bookmarks using AI, .NET, and GitHub Models</title>
@@ -1643,6 +1710,15 @@ Happy coding!]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/digitize-analog-bookmarks-with-ai-dotnet</link>
       <guid>https://www.luisquintanilla.me/posts/digitize-analog-bookmarks-with-ai-dotnet</guid>
       <pubDate>2024-10-31 21:41 -05:00</pubDate>
+      <category>ai</category>
+      <category>dotnet</category>
+      <category>github</category>
+      <category>reading</category>
+      <category>bookmarks</category>
+      <category>analog</category>
+      <category>digital</category>
+      <category>reading</category>
+      <category>notes</category>
     </item>
     <item>
       <title>Build your own self-hosted live streaming application with Owncast and .NET Aspire</title>
@@ -1795,6 +1871,15 @@ If you use this sample as a starting point for your own live-streaming or self-h
       <link>https://www.luisquintanilla.me/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire</link>
       <guid>https://www.luisquintanilla.me/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire</guid>
       <pubDate>2024-10-20 14:01</pubDate>
+      <category>owncast</category>
+      <category>dotnet</category>
+      <category>indieweb</category>
+      <category>fediverse</category>
+      <category>aspire</category>
+      <category>livestreaming</category>
+      <category>twitch</category>
+      <category>youtube</category>
+      <category>blazor</category>
     </item>
     <item>
       <title>Configure Ollama on Dev Containers and VS Code</title>
@@ -1869,6 +1954,13 @@ In this post, I showed how you can configure Ollama with Dev Containers to use A
       <link>https://www.luisquintanilla.me/posts/install-ollama-vscode-devcontainer</link>
       <guid>https://www.luisquintanilla.me/posts/install-ollama-vscode-devcontainer</guid>
       <pubDate>2024-03-06 13:50</pubDate>
+      <category>ollama</category>
+      <category>vscode</category>
+      <category>devcontainer</category>
+      <category>ai</category>
+      <category>llm</category>
+      <category>opensource</category>
+      <category>development</category>
     </item>
     <item>
       <title>Getting started with Ollama on Windows</title>
@@ -1921,6 +2013,15 @@ In this post, I went over how you can quickly install Ollama to start using gene
       <link>https://www.luisquintanilla.me/posts/getting-started-ollama-windows</link>
       <guid>https://www.luisquintanilla.me/posts/getting-started-ollama-windows</guid>
       <pubDate>2024-03-05 10:32</pubDate>
+      <category>ai</category>
+      <category>ollama</category>
+      <category>windows</category>
+      <category>llm</category>
+      <category>opensource</category>
+      <category>llama</category>
+      <category>openai</category>
+      <category>generativeai</category>
+      <category>genai</category>
     </item>
     <item>
       <title>Setting up your Rust development environment using Dev Containers</title>
@@ -2028,6 +2129,15 @@ Dev Containers make it easy for you to configure full-featured development envir
       <link>https://www.luisquintanilla.me/posts/setting-up-rust-dev-env-devcontainers-vscode</link>
       <guid>https://www.luisquintanilla.me/posts/setting-up-rust-dev-env-devcontainers-vscode</guid>
       <pubDate>2024-01-31 21:05</pubDate>
+      <category>rust</category>
+      <category>vscode</category>
+      <category>devcontainers</category>
+      <category>codespaces</category>
+      <category>programming</category>
+      <category>technology</category>
+      <category>docker</category>
+      <category>containers</category>
+      <category>github</category>
     </item>
     <item>
       <title>POSSE to Mastodon using RSS and Azure Logic Apps</title>
@@ -2156,6 +2266,19 @@ By publishing content on your own website first, you're in full control of your 
       <link>https://www.luisquintanilla.me/posts/rss-to-mastodon-posse-azure-logic-apps</link>
       <guid>https://www.luisquintanilla.me/posts/rss-to-mastodon-posse-azure-logic-apps</guid>
       <pubDate>2023-12-24 16:40</pubDate>
+      <category>azure</category>
+      <category>mastodon</category>
+      <category>indieweb</category>
+      <category>logicapps</category>
+      <category>fediverse</category>
+      <category>posse</category>
+      <category>internet</category>
+      <category>web</category>
+      <category>blogging</category>
+      <category>blog</category>
+      <category>automation</category>
+      <category>programming</category>
+      <category>rss</category>
     </item>
     <item>
       <title>Computing website metrics using GitHub Actions</title>
@@ -2392,6 +2515,15 @@ If you have scripts that you run on a repo on a fairly regular basis, consider u
       <link>https://www.luisquintanilla.me/posts/website-metrics-github-actions</link>
       <guid>https://www.luisquintanilla.me/posts/website-metrics-github-actions</guid>
       <pubDate>2023-12-24 13:24</pubDate>
+      <category>github</category>
+      <category>cicd</category>
+      <category>website</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>web</category>
+      <category>internet</category>
+      <category>fsharp</category>
+      <category>dotnet</category>
     </item>
     <item>
       <title>Using Generative AI to produce Spotify Clips</title>
@@ -2709,6 +2841,23 @@ You can find an addendum to this post [here](/feed/genai-spotify-clips-instrumen
       <link>https://www.luisquintanilla.me/posts/generative-ai-spotify-clips</link>
       <guid>https://www.luisquintanilla.me/posts/generative-ai-spotify-clips</guid>
       <pubDate>2023-12-23 18:30</pubDate>
+      <category>ai</category>
+      <category>video</category>
+      <category>chicanobatman</category>
+      <category>generativeai</category>
+      <category>genai</category>
+      <category>spotify</category>
+      <category>google</category>
+      <category>microsoft</category>
+      <category>bing</category>
+      <category>copilot</category>
+      <category>dalle</category>
+      <category>image</category>
+      <category>prompt</category>
+      <category>projectidea</category>
+      <category>music</category>
+      <category>podcasts</category>
+      <category>llm</category>
     </item>
     <item>
       <title>AI like it's 1999 or 1899</title>
@@ -2773,6 +2922,11 @@ Translation: "In the meantime, I'll keep using AI like it's 1999. See you later!
       <link>https://www.luisquintanilla.me/posts/ai-1999-1899</link>
       <guid>https://www.luisquintanilla.me/posts/ai-1999-1899</guid>
       <pubDate>2023-12-15 08:56</pubDate>
+      <category>ai</category>
+      <category>communication</category>
+      <category>sms</category>
+      <category>retro</category>
+      <category>internet</category>
     </item>
     <item>
       <title>Quick thoughts about Snapdragon Summit 2023</title>
@@ -2813,6 +2967,12 @@ An addendum to this post can be found [here](/feed/snapdragon-summit-2023-addend
       <link>https://www.luisquintanilla.me/posts/quick-thoughts-snapdragon-summit-2023</link>
       <guid>https://www.luisquintanilla.me/posts/quick-thoughts-snapdragon-summit-2023</guid>
       <pubDate>2023-10-24 23:14</pubDate>
+      <category>arm</category>
+      <category>qualcomm</category>
+      <category>hardware</category>
+      <category>mobilecomputing</category>
+      <category>5g</category>
+      <category>ai</category>
     </item>
   </channel>
 </rss>

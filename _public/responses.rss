@@ -13,6 +13,10 @@
       <link>https://www.luisquintanilla.me/responses/tumblr-wordpress-fediverse-integration-pause</link>
       <guid>https://www.luisquintanilla.me/responses/tumblr-wordpress-fediverse-integration-pause</guid>
       <pubDate>2025-06-30 20:21</pubDate>
+      <category>tumblr</category>
+      <category>wordpress</category>
+      <category>fediverse</category>
+      <category>automattic</category>
     </item>
     <item>
       <title>Do not privatize federal land</title>
@@ -25,6 +29,9 @@
       <link>https://www.luisquintanilla.me/responses/do-not-privatize-federal-land</link>
       <guid>https://www.luisquintanilla.me/responses/do-not-privatize-federal-land</guid>
       <pubDate>2025-06-29 17:26</pubDate>
+      <category>bureaulandmanagement</category>
+      <category>uspol</category>
+      <category>land</category>
     </item>
     <item>
       <title>Self-Adapting Language Models (SEAL)</title>
@@ -42,6 +49,11 @@
       <link>https://www.luisquintanilla.me/responses/self-adapting-language-models-seal</link>
       <guid>https://www.luisquintanilla.me/responses/self-adapting-language-models-seal</guid>
       <pubDate>2025-06-16 20:33</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>llm</category>
+      <category>mit</category>
+      <category>research</category>
     </item>
     <item>
       <title>How we built our multi-agent research system - Anthropic</title>
@@ -141,6 +153,10 @@
       <link>https://www.luisquintanilla.me/responses/anthropic-how-we-built-multi-agent-system</link>
       <guid>https://www.luisquintanilla.me/responses/anthropic-how-we-built-multi-agent-system</guid>
       <pubDate>2025-06-16 17:39</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>anthropic</category>
+      <category>engineering</category>
     </item>
     <item>
       <title>MLS over ActivityPub Draft</title>
@@ -156,6 +172,10 @@ This specification is ready for review from both ActivityPub developers and secu
       <link>https://www.luisquintanilla.me/responses/mls-over-activitypub-draft</link>
       <guid>https://www.luisquintanilla.me/responses/mls-over-activitypub-draft</guid>
       <pubDate>2025-06-14 10:47</pubDate>
+      <category>protocol</category>
+      <category>socialweb</category>
+      <category>activitypub</category>
+      <category>w3c</category>
     </item>
     <item>
       <title>Faircamp - A static site generator for audio producers</title>
@@ -165,6 +185,15 @@ This specification is ready for review from both ActivityPub developers and secu
       <link>https://www.luisquintanilla.me/responses/faircamp-static-site-audio-producers</link>
       <guid>https://www.luisquintanilla.me/responses/faircamp-static-site-audio-producers</guid>
       <pubDate>2025-06-05 20:05</pubDate>
+      <category>faircamp</category>
+      <category>music</category>
+      <category>socialweb</category>
+      <category>indieweb</category>
+      <category>staticsite</category>
+      <category>technology</category>
+      <category>tools</category>
+      <category>openweb</category>
+      <category>opensource</category>
     </item>
     <item>
       <title>State-Of-The-Art Prompting For AI Agents</title>
@@ -173,6 +202,9 @@ This specification is ready for review from both ActivityPub developers and secu
       <link>https://www.luisquintanilla.me/responses/state-of-the-art-prompting-ai-agents-y-combinator</link>
       <guid>https://www.luisquintanilla.me/responses/state-of-the-art-prompting-ai-agents-y-combinator</guid>
       <pubDate>2025-06-03 20:23</pubDate>
+      <category>ai</category>
+      <category>agents</category>
+      <category>prompting</category>
     </item>
     <item>
       <title>Introducing ElevenLabs Conversational AI 2.0</title>
@@ -190,6 +222,9 @@ This specification is ready for review from both ActivityPub developers and secu
       <link>https://www.luisquintanilla.me/responses/elevenlabs-conversational-ai-2-0</link>
       <guid>https://www.luisquintanilla.me/responses/elevenlabs-conversational-ai-2-0</guid>
       <pubDate>2025-06-03 20:19</pubDate>
+      <category>ai</category>
+      <category>speech</category>
+      <category>elevenlabs</category>
     </item>
     <item>
       <title>The Darwin Gödel Machine - AI that improves itself by rewriting its own code</title>
@@ -204,6 +239,9 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <link>https://www.luisquintanilla.me/responses/sakana-ai-gwm</link>
       <guid>https://www.luisquintanilla.me/responses/sakana-ai-gwm</guid>
       <pubDate>2025-06-03 20:16</pubDate>
+      <category>ai</category>
+      <category>agent</category>
+      <category>sakana</category>
     </item>
     <item>
       <title>Resources List for the Personal Web</title>
@@ -214,6 +252,12 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <link>https://www.luisquintanilla.me/responses/resource-list-personal-web</link>
       <guid>https://www.luisquintanilla.me/responses/resource-list-personal-web</guid>
       <pubDate>2025-05-30 13:32</pubDate>
+      <category>32bitcafe</category>
+      <category>personalweb</category>
+      <category>indieweb</category>
+      <category>openweb</category>
+      <category>community</category>
+      <category>retro</category>
     </item>
     <item>
       <title>The stage has been set for the growth of small social media</title>
@@ -245,6 +289,9 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <link>https://www.luisquintanilla.me/responses/stage-set-growth-small-social-media-cheapskate</link>
       <guid>https://www.luisquintanilla.me/responses/stage-set-growth-small-social-media-cheapskate</guid>
       <pubDate>2025-05-26 18:14</pubDate>
+      <category>social</category>
+      <category>openweb</category>
+      <category>personalweb</category>
     </item>
     <item>
       <title>RSS is (not) dead (yet)</title>
@@ -256,6 +303,9 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <link>https://www.luisquintanilla.me/responses/rss-not-dead-yet-mcnamee</link>
       <guid>https://www.luisquintanilla.me/responses/rss-not-dead-yet-mcnamee</guid>
       <pubDate>2025-05-26 18:11</pubDate>
+      <category>rss</category>
+      <category>comic</category>
+      <category>art</category>
     </item>
     <item>
       <title>Pocket shutting down</title>
@@ -266,6 +316,9 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <link>https://www.luisquintanilla.me/responses/pocket-shutting-down</link>
       <guid>https://www.luisquintanilla.me/responses/pocket-shutting-down</guid>
       <pubDate>2025-05-22 20:21</pubDate>
+      <category>pocket</category>
+      <category>mozilla</category>
+      <category>bookmark</category>
     </item>
     <item>
       <title>Agent Network Protocol - The HTTP of the Agentic Web Era</title>
@@ -286,6 +339,9 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <link>https://www.luisquintanilla.me/responses/agent-network-protocol</link>
       <guid>https://www.luisquintanilla.me/responses/agent-network-protocol</guid>
       <pubDate>2025-05-17 10:56</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>protocol</category>
     </item>
     <item>
       <title>Chicago Dust Storm</title>
@@ -295,6 +351,9 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <link>https://www.luisquintanilla.me/responses/chicago-dust-storm</link>
       <guid>https://www.luisquintanilla.me/responses/chicago-dust-storm</guid>
       <pubDate>2025-05-16 19:49</pubDate>
+      <category>chicago</category>
+      <category>weather</category>
+      <category>duststorm</category>
     </item>
     <item>
       <title>Claude Artifacts</title>
@@ -303,6 +362,14 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <link>https://www.luisquintanilla.me/responses/claude-artifacts-reece</link>
       <guid>https://www.luisquintanilla.me/responses/claude-artifacts-reece</guid>
       <pubDate>2025-05-11 08:42</pubDate>
+      <category>claude</category>
+      <category>chatgpt</category>
+      <category>plaintext</category>
+      <category>ai</category>
+      <category>org</category>
+      <category>emacs</category>
+      <category>asciidoc</category>
+      <category>markdown</category>
     </item>
     <item>
       <title>Announcing Distributed.Press Social Inbox 1.0</title>
@@ -314,6 +381,11 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <link>https://www.luisquintanilla.me/responses/announcing-distributed-press-social-inbox</link>
       <guid>https://www.luisquintanilla.me/responses/announcing-distributed-press-social-inbox</guid>
       <pubDate>2025-05-10 20:47</pubDate>
+      <category>decentralization</category>
+      <category>indieweb</category>
+      <category>social</category>
+      <category>fediverse</category>
+      <category>dweb</category>
     </item>
     <item>
       <title>Discourse and the Fediverse</title>
@@ -324,6 +396,12 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <link>https://www.luisquintanilla.me/responses/discourse-fediverse</link>
       <guid>https://www.luisquintanilla.me/responses/discourse-fediverse</guid>
       <pubDate>2025-05-09 22:20</pubDate>
+      <category>discourse</category>
+      <category>fediverse</category>
+      <category>social</category>
+      <category>openweb</category>
+      <category>opensource</category>
+      <category>forum</category>
     </item>
     <item>
       <title>Bukmark Club</title>
@@ -334,6 +412,10 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <link>https://www.luisquintanilla.me/responses/bukmark-club</link>
       <guid>https://www.luisquintanilla.me/responses/bukmark-club</guid>
       <pubDate>2025-05-09 21:09</pubDate>
+      <category>bookmark</category>
+      <category>internet</category>
+      <category>web</category>
+      <category>community</category>
     </item>
     <item>
       <title>In Praise of Links</title>
@@ -347,6 +429,11 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <link>https://www.luisquintanilla.me/responses/in-praise-of-links-osteophage</link>
       <guid>https://www.luisquintanilla.me/responses/in-praise-of-links-osteophage</guid>
       <pubDate>2025-05-09 21:05</pubDate>
+      <category>openweb</category>
+      <category>internet</category>
+      <category>indieweb</category>
+      <category>decentralization</category>
+      <category>web</category>
     </item>
   </channel>
 </rss>

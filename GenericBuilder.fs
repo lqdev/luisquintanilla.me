@@ -102,6 +102,10 @@ module PostProcessor =
         RenderRss = fun post ->
             // Create RSS item for post using existing pattern
             let url = sprintf "https://www.luisquintanilla.me/posts/%s" post.FileName
+            let categories = 
+                if isNull post.Metadata.Tags then []
+                else post.Metadata.Tags |> Array.map (fun tag -> XElement(XName.Get "category", tag)) |> Array.toList
+            
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", post.Metadata.Title),
@@ -109,6 +113,11 @@ module PostProcessor =
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url),
                     XElement(XName.Get "pubDate", post.Metadata.Date))
+            
+            // Add categories if they exist
+            if not (List.isEmpty categories) then
+                item.Add(categories |> List.toArray)
+            
             Some item
     }
 
@@ -166,6 +175,10 @@ module NoteProcessor =
         RenderRss = fun note ->
             // Create RSS item for note using existing pattern
             let url = sprintf "https://www.luisquintanilla.me/feed/%s" note.FileName
+            let categories = 
+                if isNull note.Metadata.Tags then []
+                else note.Metadata.Tags |> Array.map (fun tag -> XElement(XName.Get "category", tag)) |> Array.toList
+            
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", note.Metadata.Title),
@@ -173,6 +186,11 @@ module NoteProcessor =
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url),
                     XElement(XName.Get "pubDate", note.Metadata.Date))
+            
+            // Add categories if they exist
+            if not (List.isEmpty categories) then
+                item.Add(categories |> List.toArray)
+            
             Some item
     }
 
@@ -211,12 +229,23 @@ module SnippetProcessor =
         RenderRss = fun snippet ->
             // Create RSS item for snippet similar to post
             let url = sprintf "https://www.luisquintanilla.me/snippets/%s" snippet.FileName
+            let categories = 
+                if String.IsNullOrEmpty(snippet.Metadata.Tags) then []
+                else snippet.Metadata.Tags.Split(',') 
+                     |> Array.map (fun tag -> XElement(XName.Get "category", tag.Trim())) 
+                     |> Array.toList
+            
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", snippet.Metadata.Title),
                     XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" snippet.Content),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
+            
+            // Add categories if they exist
+            if not (List.isEmpty categories) then
+                item.Add(categories |> List.toArray)
+                
             Some item
     }
 
@@ -255,12 +284,23 @@ module WikiProcessor =
         RenderRss = fun wiki ->
             // Create RSS item for wiki similar to post
             let url = sprintf "https://www.luisquintanilla.me/wiki/%s" wiki.FileName
+            let categories = 
+                if String.IsNullOrEmpty(wiki.Metadata.Tags) then []
+                else wiki.Metadata.Tags.Split(',') 
+                     |> Array.map (fun tag -> XElement(XName.Get "category", tag.Trim())) 
+                     |> Array.toList
+            
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", wiki.Metadata.Title),
                     XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" wiki.Content),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
+            
+            // Add categories if they exist
+            if not (List.isEmpty categories) then
+                item.Add(categories |> List.toArray)
+                
             Some item
     }
 
@@ -329,12 +369,23 @@ module PresentationProcessor =
         RenderRss = fun presentation ->
             // Create RSS item for presentation
             let url = sprintf "https://www.luisquintanilla.me/presentations/%s" presentation.FileName
+            let categories = 
+                if String.IsNullOrEmpty(presentation.Metadata.Tags) then []
+                else presentation.Metadata.Tags.Split(',') 
+                     |> Array.map (fun tag -> XElement(XName.Get "category", tag.Trim())) 
+                     |> Array.toList
+            
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", presentation.Metadata.Title),
                     XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" presentation.Content),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
+            
+            // Add categories if they exist
+            if not (List.isEmpty categories) then
+                item.Add(categories |> List.toArray)
+                
             Some item
     }
 
@@ -451,6 +502,9 @@ module ResponseProcessor =
             // Create RSS item for response
             let url = sprintf "https://www.luisquintanilla.me/responses/%s" response.FileName
             let description = sprintf "[%s] %s" response.Metadata.ResponseType response.Content
+            let categories = 
+                if isNull response.Metadata.Tags then []
+                else response.Metadata.Tags |> Array.map (fun tag -> XElement(XName.Get "category", tag)) |> Array.toList
             
             let item = 
                 XElement(XName.Get "item",
@@ -459,6 +513,11 @@ module ResponseProcessor =
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url),
                     XElement(XName.Get "pubDate", response.Metadata.DatePublished))
+            
+            // Add categories if they exist
+            if not (List.isEmpty categories) then
+                item.Add(categories |> List.toArray)
+                
             Some item
     }
 
@@ -540,6 +599,9 @@ module AlbumProcessor =
                 if isNull album.Metadata.Images then 0
                 else Array.length album.Metadata.Images
             let description = sprintf "Album containing %d photos" imageCount
+            let categories = 
+                if isNull album.Metadata.Tags then []
+                else album.Metadata.Tags |> Array.map (fun tag -> XElement(XName.Get "category", tag)) |> Array.toList
             
             let item = 
                 XElement(XName.Get "item",
@@ -548,6 +610,11 @@ module AlbumProcessor =
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url),
                     XElement(XName.Get "pubDate", album.Metadata.Date))
+            
+            // Add categories if they exist
+            if not (List.isEmpty categories) then
+                item.Add(categories |> List.toArray)
+                
             Some item
     }
 
@@ -802,12 +869,12 @@ module UnifiedFeeds =
                 OutputPath = "reviews/feed.xml"
                 ContentType = Some "reviews"
             })
-            ("albums", {
+            ("media", {
                 Title = "Luis Quintanilla - Media"
                 Link = "https://www.luisquintanilla.me/media"
                 Description = "Photo albums and media by Luis Quintanilla"
                 OutputPath = "media/feed.xml"
-                ContentType = Some "albums"
+                ContentType = Some "media"
             })
         ]
         
@@ -827,6 +894,48 @@ module UnifiedFeeds =
         )
         
         printfn "✅ Unified feeds generated: %d total items across %d content types" allUnifiedItems.Length (feedDataSets |> List.length)
+    
+    /// Generate RSS feeds for individual tags
+    let buildTagFeeds (feedDataSets: (string * (UnifiedFeedItem list)) list) (outputDirectory: string) =
+        // Flatten all feed items
+        let allUnifiedItems = 
+            feedDataSets
+            |> List.collect snd
+            |> List.sortByDescending (fun item -> DateTime.Parse(item.Date))
+        
+        // Extract all unique tags
+        let allTags = 
+            allUnifiedItems
+            |> List.collect (fun item -> item.Tags |> Array.toList)
+            |> List.distinct
+            |> List.sort
+        
+        printfn "Generating RSS feeds for %d tags..." allTags.Length
+        
+        // Generate RSS feed for each tag
+        allTags
+        |> List.iter (fun tag ->
+            let tagItems = 
+                allUnifiedItems
+                |> List.filter (fun item -> item.Tags |> Array.contains tag)
+                |> List.take (min 20 (allUnifiedItems |> List.filter (fun item -> item.Tags |> Array.contains tag) |> List.length))
+            
+            if not (List.isEmpty tagItems) then
+                let tagConfig = {
+                    Title = sprintf "Luis Quintanilla - %s" tag
+                    Link = sprintf "https://www.luisquintanilla.me/tags/%s" (tag.Trim().Replace("\"",""))
+                    Description = sprintf "All content tagged with '%s' by Luis Quintanilla" tag
+                    OutputPath = sprintf "tags/%s/feed.xml" (tag.Trim().Replace("\"",""))
+                    ContentType = None  // Tag feeds include all content types
+                }
+                
+                let tagFeed = generateRssFeed tagItems tagConfig
+                let feedDir = Path.Combine(outputDirectory, "tags", tag.Trim().Replace("\"",""))
+                Directory.CreateDirectory(feedDir) |> ignore
+                File.WriteAllText(Path.Combine(feedDir, "feed.xml"), tagFeed)
+        )
+        
+        printfn "✅ Tag RSS feeds generated for %d tags" allTags.Length
     
     /// Convert FeedData to UnifiedFeedItem - helper functions for each content type
     let convertPostsToUnified (feedDataList: FeedData<Post> list) : UnifiedFeedItem list =

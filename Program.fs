@@ -95,11 +95,14 @@ let main argv =
         ("wiki", GenericBuilder.UnifiedFeeds.convertWikisToUnified wikisFeedData)
         ("presentations", GenericBuilder.UnifiedFeeds.convertPresentationsToUnified presentationsFeedData)
         ("reviews", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
-        ("albums", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
+        ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
     ]
     
     // Generate unified feeds (fire-hose + type-specific)
     GenericBuilder.UnifiedFeeds.buildAllFeeds allUnifiedItems "_public"
+    
+    // Generate tag RSS feeds using unified feed data
+    GenericBuilder.UnifiedFeeds.buildTagFeeds allUnifiedItems "_public"
    
     // Build roll pages
     buildFeedsOpml feedLinks
