@@ -216,22 +216,19 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
                     
                     match item.ContentType.ToLower() with
                     | "response" ->
-                        // Clean up response content and show with icon
-                        let responseTypeIcon, cleanedContent = 
-                            if cleanContent.Contains("reply") || cleanContent.Contains("Reply") then
-                                let cleaned = cleanContent.Replace("reply", "").Replace("Reply", "").Replace("<div class=\"response-type\">reply</div>", "").Replace("<div class=\"response-type\">Reply</div>", "")
-                                (span [_class "bi bi-reply-fill me-2"; _style "color:#3F5576;"] []), cleaned
-                            elif cleanContent.Contains("reshare") || cleanContent.Contains("Share") then
-                                let cleaned = cleanContent.Replace("reshare", "").Replace("Share", "").Replace("<div class=\"response-type\">reshare</div>", "").Replace("<div class=\"response-type\">Share</div>", "")
-                                (span [_class "bi bi-share-fill me-2"; _style "color:#C0587E;"] []), cleaned
-                            elif cleanContent.Contains("star") || cleanContent.Contains("Star") then
-                                let cleaned = cleanContent.Replace("star", "").Replace("Star", "").Replace("<div class=\"response-type\">star</div>", "").Replace("<div class=\"response-type\">Star</div>", "")
-                                (span [_class "bi bi-star-fill me-2"; _style "color:#ff7518;"] []), cleaned
-                            elif cleanContent.Contains("bookmark") || cleanContent.Contains("Bookmark") then
-                                let cleaned = cleanContent.Replace("bookmark", "").Replace("Bookmark", "").Replace("<div class=\"response-type\">bookmark</div>", "").Replace("<div class=\"response-type\">Bookmark</div>", "")
-                                (span [_class "bi bi-journal-bookmark-fill me-2"; _style "color:#4a60b6;"] []), cleaned
-                            else
-                                (span [] []), cleanContent
+                        // Remove response-type div and determine icon from its content
+                        let responseTypeRegex = System.Text.RegularExpressions.Regex(@"<div\s+class=""response-type"">([^<]+)</div>")
+                        let responseTypeMatch = responseTypeRegex.Match(cleanContent)
+                        let responseType = if responseTypeMatch.Success then responseTypeMatch.Groups.[1].Value.Trim().ToLower() else ""
+                        let cleanedContent = responseTypeRegex.Replace(cleanContent, "").Trim()
+                        
+                        let responseTypeIcon = 
+                            match responseType with
+                            | "reply" -> (span [_class "bi bi-reply-fill me-2"; _style "color:#3F5576;"] [])
+                            | "reshare" | "share" -> (span [_class "bi bi-share-fill me-2"; _style "color:#C0587E;"] [])
+                            | "star" | "like" -> (span [_class "bi bi-star-fill me-2"; _style "color:#ff7518;"] [])
+                            | "bookmark" -> (span [_class "bi bi-journal-bookmark-fill me-2"; _style "color:#4a60b6;"] [])
+                            | _ -> (span [] [])
                         
                         div [] [
                             responseTypeIcon
