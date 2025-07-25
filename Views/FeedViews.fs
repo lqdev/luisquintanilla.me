@@ -29,7 +29,7 @@ let blogRollView (links:Outline array) =
         ]
         p [] [
             str "You can subscribe to any of the individual feeds in your preferred RSS reader using the RSS feed links below. Want to subscribe to all of them? Use the "
-            a [ _href "/feed/blogroll/index.opml"] [Text "OPML file"]
+            a [ _href "/collections/blogroll/index.opml"] [Text "OPML file"]
             str " if your RSS reader client supports "
             a [_href "http://opml.org/"] [Text "OPML."]
         ]        
@@ -48,7 +48,7 @@ let podRollView (links:Outline array) =
         ]
         p [] [
             str "You can subscribe to any of the individual feeds in your preferred RSS reader or podcast client using the RSS feed links below. Want to subscribe to all of them? Use the "
-            a [ _href "/feed/podroll/index.opml"] [Text "OPML file"]
+            a [ _href "/collections/podroll/index.opml"] [Text "OPML file"]
             str " if your RSS reader or podcast client supports "
             a [_href "http://opml.org/"] [Text "OPML."]
         ]
@@ -69,7 +69,7 @@ let forumsView (links:Outline array) =
         ]
         p [] [
             str "You can subscribe to any of the individual forums in your preferred RSS reader using the RSS feed links below. Want to subscribe to all of them? Use the "
-            a [ _href "/feed/forums/index.opml"] [Text "OPML file"]
+            a [ _href "/collections/forums/index.opml"] [Text "OPML file"]
             str " if your RSS reader or podcast client supports "
             a [_href "http://opml.org/"] [Text "OPML."]
         ]
@@ -92,7 +92,7 @@ let youTubeFeedView (links:Outline array) =
         ]
         p [] [
             str "You can subscribe to any of the individual channels in your preferred RSS reader using the RSS feed links below. Want to subscribe to all of them? Use the "
-            a [ _href "/feed/youtube/index.opml"] [Text "OPML file"]
+            a [ _href "/collections/youtube/index.opml"] [Text "OPML file"]
             str " if your RSS reader or podcast client supports "
             a [_href "http://opml.org/"] [Text "OPML."]
         ]
@@ -109,7 +109,7 @@ let aiStarterPackFeedView (links:Outline array) =
         ]
         p [] [
             str "You can subscribe to any of the individual feeds in your preferred RSS reader using the RSS feed links below. Want to subscribe to all of them? Use the "
-            a [ _href "/feed/starter/ai/index.opml"] [Text "OPML file"]
+            a [ _href "/collections/starter-packs/ai/index.opml"] [Text "OPML file"]
             str " if your RSS reader or podcast client supports "
             a [_href "http://opml.org/"] [Text "OPML."]
         ]

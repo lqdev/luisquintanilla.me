@@ -69,13 +69,6 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/posts/1"] [ Text "Blog" ]
                                 div [_class "dropdown-divider"] []
                                 a [_class "dropdown-item"; _href "/subscribe"] [ Text "Subscribe" ]
-                                div [_class "dropdown-divider"] []
-                                a [_class "dropdown-item"; _href "/feed/starter"] [Text "Starter Packs"]
-                                div [_class "dropdown-divider"] []
-                                a [_class "dropdown-item"; _href "/feed/blogroll"] [Text "Blogroll"]
-                                a [_class "dropdown-item"; _href "/feed/podroll"] [Text "Podroll"]
-                                a [_class "dropdown-item"; _href "/feed/forums"] [Text "Forums"]
-                                a [_class "dropdown-item"; _href "/feed/youtube"] [Text "YouTube"]
                         ]
                     ]
                     
@@ -99,6 +92,12 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/radio"] [ Text "Radio" ]
                                 a [_class "dropdown-item"; _href "/reviews"] [ Text "Books" ]
                                 a [_class "dropdown-item"; _href "/tags"] [ Text "Tags" ]
+                                div [_class "dropdown-divider"] []
+                                a [_class "dropdown-item"; _href "/collections/starter-packs"] [Text "Starter Packs"]
+                                a [_class "dropdown-item"; _href "/collections/blogroll"] [Text "Blogroll"]
+                                a [_class "dropdown-item"; _href "/collections/podroll"] [Text "Podroll"]
+                                a [_class "dropdown-item"; _href "/collections/forums"] [Text "Forums"]
+                                a [_class "dropdown-item"; _href "/collections/youtube"] [Text "YouTube"]
                             ]
                     ]
 
@@ -206,9 +205,9 @@ module Layouts
 
     let rollLinks = [
         link [_rel "feeds"; _type "text/xml" ; _title "Luis Quintanilla's Feeds"; _href "/feed/index.opml"]
-        link [_rel "blogroll"; _type "text/xml" ; _title "Luis Quintanilla's Blogroll"; _href "/feed/blogroll/index.opml"]
-        link [_rel "podroll"; _type "text/xml" ; _title "Luis Quintanilla's Podroll"; _href "/feed/podroll/index.opml"]
-        link [_rel "youtuberoll"; _type "text/xml" ; _title "Luis Quintanilla's YouTube Roll"; _href "/feed/youtube/index.opml"]
+        link [_rel "blogroll"; _type "text/xml" ; _title "Luis Quintanilla's Blogroll"; _href "/collections/blogroll/index.opml"]
+        link [_rel "podroll"; _type "text/xml" ; _title "Luis Quintanilla's Podroll"; _href "/collections/podroll/index.opml"]
+        link [_rel "youtuberoll"; _type "text/xml" ; _title "Luis Quintanilla's YouTube Roll"; _href "/collections/youtube/index.opml"]
     ]
 
     let scripts = [

@@ -153,4 +153,7 @@ let main argv =
     // Build tags page
     buildTagsPages posts feedNotes responses
 
+    // Build legacy RSS feed aliases for backward compatibility (at the very end)
+    buildLegacyRssFeedAliases ()
+
     0

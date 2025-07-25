@@ -178,6 +178,12 @@ Based on `_public` directory structure:
   - **Root Cause**: Incorrect URL generation in `Views/LayoutViews.fs` lines 31 & 39  
   - **Impact**: Production homepage was showing 404 errors for featured content links  
 
+✅ **CRITICAL BUG FIXED**: RSS Feed `/feed/responses/index.xml` was generating HTML redirect instead of XML RSS feed
+  - **Fixed**: `/feed/responses/index.xml` now contains proper RSS XML content (copied from `/responses/feed.xml`)
+  - **Root Cause**: Legacy RSS system pointing to wrong source path + redirect system generating HTML for XML files
+  - **Impact**: RSS readers and XML parsers were getting HTML instead of valid RSS feed
+  - **Solution**: Added legacy compatibility copy in `buildLegacyRssFeedAliases()` function
+
 *Minor discovery: RSS feeds are located at `/feed/*.xml` paths, not legacy `.rss` root paths. This is correct and consistent with the new architecture.*
 
 ### Successful Tests:
@@ -194,7 +200,7 @@ Based on `_public` directory structure:
 ✅ **RSS/XML Feeds**: All feeds are valid XML with proper RSS structure  
   - Main unified feed: `/feed/index.xml` ✅ (1129 items across 8 content types)  
   - Notes feed: `/feed/notes.xml` ✅  
-  - Response feed: `/feed/responses/index.xml` ✅  
+  - Response feed: `/feed/responses/index.xml` ✅ **FIXED** (now contains proper RSS XML, not HTML redirect)  
 ✅ **AST-Based Content Processing**: All content renders as proper HTML (not raw markdown)  
 ✅ **URL Structure**: Clean, consistent URL patterns across all content types  
 ✅ **Architecture**: GenericBuilder pattern working correctly for all content types
