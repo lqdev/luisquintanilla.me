@@ -103,6 +103,9 @@ let main argv =
     
     // Generate tag RSS feeds using unified feed data
     GenericBuilder.UnifiedFeeds.buildTagFeeds allUnifiedItems "_public"
+    
+    // Generate unified feed HTML page
+    buildUnifiedFeedPage allUnifiedItems
    
     // Build roll pages
     buildFeedsOpml feedLinks

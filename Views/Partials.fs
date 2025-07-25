@@ -63,6 +63,7 @@ let presentationsView = CollectionViews.presentationsView
 let liveStreamsView = CollectionViews.liveStreamsView
 let albumsPageView = CollectionViews.albumsPageView
 let albumPageView = CollectionViews.albumPageView
+let unifiedFeedView = CollectionViews.unifiedFeedView
 
 // Layout (from LayoutViews)
 let homeView = LayoutViews.homeView

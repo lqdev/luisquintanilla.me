@@ -704,6 +704,24 @@ module Builder
                 let saveFileName = Path.Join(saveDir, "index.html")
                 File.WriteAllText(saveFileName, redirectHtml))
 
+    // Build unified feed HTML page with all content types
+    let buildUnifiedFeedPage (allUnifiedItems: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
+        // Flatten all feed items and sort chronologically
+        let flattenedItems = 
+            allUnifiedItems
+            |> List.collect snd
+            |> List.sortByDescending (fun item -> DateTime.Parse(item.Date))
+            |> List.take (min 30 (allUnifiedItems |> List.collect snd |> List.length)) // Limit to 30 items
+            |> List.toArray
+        
+        // Generate the unified feed page
+        let unifiedFeedHtml = generate (unifiedFeedView flattenedItems) "defaultindex" "All Updates - Luis Quintanilla"
+        let feedIndexDir = Path.Join(outputDir, "feed")
+        Directory.CreateDirectory(feedIndexDir) |> ignore
+        File.WriteAllText(Path.Join(feedIndexDir, "index.html"), unifiedFeedHtml)
+        
+        printfn "✅ Unified feed page created at /feed/index.html with %d items" flattenedItems.Length
+
     // AST-based bookmark processing using GenericBuilder infrastructure
     let buildBookmarks() = 
         let bookmarkFiles = 

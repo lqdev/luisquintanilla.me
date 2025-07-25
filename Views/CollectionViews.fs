@@ -5,6 +5,7 @@ open System
 open System.IO
 open Domain
 open ContentViews
+open ComponentViews
 
 let recentPostsView (posts: Post array) =
     div [ _class "d-grip gap-3" ] [
@@ -156,4 +157,32 @@ let albumPageView (images:AlbumImage array) =
                         ]
                     ]
             ]
+    ]
+
+// Unified feed view for aggregated content across all types
+let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
+    let renderUnifiedCard (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) =
+        let header = cardHeader item.Date
+        let footer = cardFooter item.ContentType (Path.GetFileNameWithoutExtension(item.Url)) item.Tags
+        
+        div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
+            header
+            div [ _class "card-body" ] [
+                // Add content type indicator
+                div [ _class "mb-2" ] [
+                    span [ _class "badge badge-secondary" ] [ 
+                        Text (item.ContentType |> fun ct -> ct.Substring(0, 1).ToUpper() + ct.Substring(1))
+                    ]
+                ]
+                // Render content
+                rawText item.Content
+                hr []
+                webmentionForm
+            ]
+            footer
+        ]
+    
+    div [ _class "d-grip gap-3" ] [
+        for item in items do
+            renderUnifiedCard item
     ]
