@@ -113,7 +113,7 @@ module PostProcessor =
                     "No description available"
                 else 
                     Html.escapeHtml post.Metadata.Description
-            let url = sprintf "/posts/%s" post.FileName
+            let url = sprintf "/posts/%s/" post.FileName
             let date = post.Metadata.Date
             
             Html.element "article" (Html.attribute "class" "post-card")
@@ -176,7 +176,7 @@ module NoteProcessor =
                     "No description available"
                 else 
                     Html.escapeHtml note.Metadata.Description
-            let url = sprintf "/feed/%s" note.FileName
+            let url = sprintf "/notes/%s/" note.FileName
             let date = note.Metadata.Date
             
             // Include content excerpt like other processors
@@ -246,7 +246,7 @@ module SnippetProcessor =
         RenderCard = fun snippet ->
             let title = Html.escapeHtml snippet.Metadata.Title
             let excerpt = Html.escapeHtml (snippet.Content.Substring(0, min 150 snippet.Content.Length) + "...")
-            let url = sprintf "/snippets/%s" snippet.FileName
+            let url = sprintf "/resources/snippets/%s/" snippet.FileName
             
             Html.element "article" (Html.attribute "class" "snippet-card")
                 (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
@@ -308,7 +308,7 @@ module WikiProcessor =
         RenderCard = fun wiki ->
             let title = Html.escapeHtml wiki.Metadata.Title
             let excerpt = Html.escapeHtml (wiki.Content.Substring(0, min 150 wiki.Content.Length) + "...")
-            let url = sprintf "/wiki/%s" wiki.FileName
+            let url = sprintf "/resources/wiki/%s/" wiki.FileName
             
             Html.element "article" (Html.attribute "class" "wiki-card")
                 (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
@@ -388,7 +388,7 @@ module PresentationProcessor =
         RenderCard = fun presentation ->
             let title = Html.escapeHtml presentation.Metadata.Title
             let excerpt = Html.escapeHtml (presentation.Content.Substring(0, min 150 presentation.Content.Length) + "...")
-            let url = sprintf "/presentations/%s" presentation.FileName
+            let url = sprintf "/resources/presentations/%s/" presentation.FileName
             
             // Add resources display
             let resourcesHtml = 
@@ -464,7 +464,7 @@ module BookProcessor =
             let title = Html.escapeHtml book.Metadata.Title
             let author = Html.escapeHtml book.Metadata.Author
             let status = Html.escapeHtml book.Metadata.Status
-            let url = sprintf "/reviews/%s" book.FileName
+            let url = sprintf "/reviews/%s/" book.FileName
             
             // Display rating if available
             let ratingHtml = 
@@ -532,7 +532,7 @@ module ResponseProcessor =
         RenderCard = fun response ->
             let title = Html.escapeHtml response.Metadata.Title
             let targetUrl = Html.escapeHtml response.Metadata.TargetUrl
-            let url = sprintf "/responses/%s" response.FileName
+            let url = sprintf "/responses/%s/" response.FileName
             
             // Clean card content without response type or timestamp
             Html.element "article" (Html.attribute "class" "response-card h-entry")
@@ -621,7 +621,7 @@ module AlbumProcessor =
         
         RenderCard = fun album ->
             let title = album.Metadata.Title
-            let url = sprintf "/media/%s" album.FileName
+            let url = sprintf "/media/%s/" album.FileName
             let date = album.Metadata.Date
             
             // Simple card view - the actual rendering is handled by albumsPageView in Views/CollectionViews.fs
@@ -698,7 +698,7 @@ module BookmarkProcessor =
             let title = Html.escapeHtml bookmark.Metadata.Title
             let bookmarkOf = Html.escapeHtml bookmark.Metadata.BookmarkOf
             let description = Html.escapeHtml bookmark.Metadata.Description
-            let url = sprintf "/bookmarks/%s" bookmark.FileName
+            let url = sprintf "/bookmarks/%s/" bookmark.FileName
             let date = bookmark.Metadata.DatePublished
             
             // IndieWeb microformat card for bookmarks
