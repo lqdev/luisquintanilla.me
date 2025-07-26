@@ -32,7 +32,7 @@ let recentPostsView (posts: Post array) =
 let feedView (posts: Post array) =
     div [ _class "d-grip gap-3" ] [
         for post in posts do
-            div [ _class "mb-5 border-bottom pb-4" ] [
+            div [ _class "mb-5 post-separator pb-4" ] [
                 // Add content type indicator and date
                 div [ _class "mb-3" ] [
                     span [ _class "badge badge-light border" ] [ Text "Posts" ]
@@ -66,7 +66,7 @@ let feedView (posts: Post array) =
 let notesView (posts: Post array) =
     div [ _class "d-grip gap-3" ] [
         for post in posts do
-            div [ _class "mb-5 border-bottom pb-4" ] [
+            div [ _class "mb-5 post-separator pb-4" ] [
                 // Add content type indicator and date
                 div [ _class "mb-3" ] [
                     span [ _class "badge badge-light border" ] [ Text "Notes" ]
@@ -100,7 +100,7 @@ let notesView (posts: Post array) =
 let responseView (posts: Response array) =
     div [ _class "d-grip gap-3" ] [
         for post in posts do
-            div [ _class "mb-5 border-bottom pb-4" ] [
+            div [ _class "mb-5 post-separator pb-4" ] [
                 // Add content type indicator and date
                 div [ _class "mb-3" ] [
                     span [ _class "badge badge-light border" ] [ Text "Responses" ]
@@ -337,7 +337,7 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
         
         // Instead of creating a new card wrapper, just render the content directly
         // The RenderCard functions already generate proper article elements
-        div [ _class "mb-5 border-bottom pb-4 h-entry" ] [
+        div [ _class "mb-5 post-separator pb-4 h-entry" ] [
             // Add content type indicator above the article
             div [ _class "mb-3" ] [
                 span [ _class "badge badge-light border" ] [ 

@@ -95,3 +95,34 @@ p > img {
 .bi.me-2 {
   margin-right: 0.5rem !important;
 }
+
+/* Enhanced post separator styling */
+.post-separator {
+  border-bottom: 3px solid #e9ecef !important;
+  margin-bottom: 2rem !important;
+  padding-bottom: 1.5rem !important;
+  position: relative;
+}
+
+.post-separator::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #007bff, #6f42c1);
+  border-radius: 2px;
+}
+
+/* Dark mode support for post separator */
+@media (prefers-color-scheme: dark) {
+  .post-separator {
+    border-bottom-color: #495057 !important;
+  }
+  
+  .post-separator::after {
+    background: linear-gradient(90deg, #0d6efd, #6f42c1);
+  }
+}
