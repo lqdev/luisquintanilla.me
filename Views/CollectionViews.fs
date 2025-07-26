@@ -199,157 +199,66 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
                 else
                     cleanedWithoutTimestamp
         
-        // Content is now clean HTML from CardHtml, no need for CDATA stripping
-        let cleanContent = cleanPlaceholderContent item.Content
-        
-        // Create a custom footer with proper permalink
-        let customFooter = 
-            div [_class "card-footer"] [
-                Text "Permalink: " 
-                a [_href properPermalink; _class "u-url"] [Text properPermalink] 
+        // Function to extract content from RenderCard HTML structure
+        let extractContentFromCardHtml (html: string) =
+            // Remove article wrapper and extract just the content inside
+            let articlePattern = System.Text.RegularExpressions.Regex(@"<article[^>]*>(.*?)</article>", System.Text.RegularExpressions.RegexOptions.Singleline)
+            let articleMatch = articlePattern.Match(html)
+            
+            if articleMatch.Success then
+                let innerContent = articleMatch.Groups.[1].Value
                 
-                div [] [
+                // Remove H2 title elements (they're duplicated now)
+                let titlePattern = System.Text.RegularExpressions.Regex(@"<h2[^>]*>.*?</h2>", System.Text.RegularExpressions.RegexOptions.Singleline)
+                let contentWithoutTitle = titlePattern.Replace(innerContent, "").Trim()
+                
+                // If only whitespace left, provide fallback
+                if String.IsNullOrWhiteSpace(contentWithoutTitle) then
+                    $"<p>Read more about <strong>{item.Title}</strong></p>"
+                else
+                    contentWithoutTitle
+            else
+                // If not wrapped in article, try to remove any H2 titles
+                let titlePattern = System.Text.RegularExpressions.Regex(@"<h2[^>]*>.*?</h2>", System.Text.RegularExpressions.RegexOptions.Singleline)
+                let contentWithoutTitle = titlePattern.Replace(html, "").Trim()
+                
+                if String.IsNullOrWhiteSpace(contentWithoutTitle) then
+                    $"<p>Read more about <strong>{item.Title}</strong></p>"
+                else
+                    contentWithoutTitle
+        
+        // Content is now clean HTML from CardHtml, extract content without title duplication
+        let rawContent = extractContentFromCardHtml item.Content
+        let cleanContent = cleanPlaceholderContent rawContent
+        
+        // Instead of creating a new card wrapper, just render the content directly
+        // The RenderCard functions already generate proper article elements
+        div [ _class "mb-4 h-entry" ] [
+            // Add content type indicator above the article
+            div [ _class "mb-2" ] [
+                span [ _class "badge badge-secondary" ] [ 
+                    Text (item.ContentType |> fun ct -> ct.Substring(0, 1).ToUpper() + ct.Substring(1))
+                ]
+                Text " • "
+                Text (DateTime.Parse(item.Date).ToString("MMM dd, yyyy"))
+            ]
+            
+            // Render the original content directly - it's already a complete article
+            rawText item.Content
+            
+            // Add footer with permalink and tags
+            div [ _class "mt-3 pt-2 border-top text-muted small" ] [
+                Text "Permalink: " 
+                a [_href properPermalink; _class "u-url text-decoration-none"] [Text properPermalink] 
+                
+                div [ _class "mt-1" ] [
                     str "Tags: "
                     for tag in item.Tags do
-                        a [_href $"/tags/{tag}"; _class "p-category"] [Text $"#{tag}"]
-                        Text " "
+                        a [_href $"/tags/{tag}"; _class "p-category text-decoration-none me-2"] [Text $"#{tag}"]
                 ]
             ]
-        
-        div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
-            header
-            div [ _class "card-body" ] [
-                // Add content type indicator
-                div [ _class "mb-2" ] [
-                    span [ _class "badge badge-secondary" ] [ 
-                        Text (item.ContentType |> fun ct -> ct.Substring(0, 1).ToUpper() + ct.Substring(1))
-                    ]
-                ]
-                // Smart content display with length-based logic
-                div [ _class "card-text" ] [
-                    let contentLength = cleanContent.Length
-                    let shouldTruncate = 
-                        match item.ContentType.ToLower() with
-                        | "response" -> contentLength > 600  // Responses: show full if under 600 chars
-                        | "post" -> contentLength > 800      // Posts: show full if under 800 chars (reduced for better UX)
-                        | "snippet" -> contentLength > 600   // Snippets: show full if under 600 chars  
-                        | "notes" -> contentLength > 400     // Notes: show full if under 400 chars
-                        | _ -> contentLength > 500           // Others: show full if under 500 chars
-                    
-                    match item.ContentType.ToLower() with
-                    | "response" ->
-                        // Remove response-type div and determine icon from its content
-                        let responseTypeRegex = System.Text.RegularExpressions.Regex(@"<div\s+class=""response-type"">([^<]+)</div>")
-                        let responseTypeMatch = responseTypeRegex.Match(cleanContent)
-                        let responseType = if responseTypeMatch.Success then responseTypeMatch.Groups.[1].Value.Trim().ToLower() else ""
-                        let cleanedContent = responseTypeRegex.Replace(cleanContent, "").Trim()
-                        
-                        // Show bookmark icon for bookmarks, other response type icons for others
-                        let responseTypeIcon = 
-                            match responseType with
-                            | "bookmark" -> (span [_class "bi bi-journal-bookmark-fill me-2"; _style "color:#4a60b6;"] [])
-                            | "reply" -> (span [_class "bi bi-reply-fill me-2"; _style "color:#3F5576;"] [])
-                            | "reshare" | "share" -> (span [_class "bi bi-share-fill me-2"; _style "color:#C0587E;"] [])
-                            | "star" | "like" -> (span [_class "bi bi-star-fill me-2"; _style "color:#ff7518;"] [])
-                            | _ -> (span [] [])
-                        
-                        div [] [
-                            responseTypeIcon
-                            if shouldTruncate then
-                                // Preview with read more
-                                div [ _class "content-preview"; _style "max-height: 400px; overflow: hidden; position: relative;" ] [
-                                    rawText cleanedContent
-                                ]
-                                div [ _class "mt-2" ] [
-                                    a [ _href properPermalink; _class "btn btn-sm btn-outline-primary" ] [ Text "Read More →" ]
-                                ]
-                            else
-                                // Show full content, no button needed
-                                div [] [
-                                    rawText cleanedContent
-                                ]
-                        ]
-                    | "post" ->
-                        div [] [
-                            if shouldTruncate then
-                                // Preview with read more
-                                div [ _class "content-preview"; _style "max-height: 400px; overflow: hidden; position: relative;" ] [
-                                    rawText cleanContent
-                                ]
-                                div [ _class "mt-2" ] [
-                                    a [ _href properPermalink; _class "btn btn-sm btn-outline-primary" ] [ Text "Read More →" ]
-                                ]
-                            else
-                                // Show full content, no button needed
-                                div [] [
-                                    rawText cleanContent
-                                ]
-                        ]
-                    | "snippet" ->
-                        // Code snippets with syntax highlighting preservation
-                        div [] [
-                            if shouldTruncate then
-                                div [ _class "content-preview"; _style "max-height: 300px; overflow: hidden;" ] [
-                                    rawText cleanContent
-                                ]
-                                div [ _class "mt-2" ] [
-                                    a [ _href properPermalink; _class "btn btn-sm btn-outline-secondary" ] [ Text "Read More →" ]
-                                ]
-                            else
-                                div [] [
-                                    rawText cleanContent
-                                ]
-                        ]
-                    | "notes" ->
-                        // Notes - often shorter, show more content
-                        div [] [
-                            if shouldTruncate then
-                                div [ _class "content-preview"; _style "max-height: 250px; overflow: hidden;" ] [
-                                    rawText cleanContent
-                                ]
-                                div [ _class "mt-2" ] [
-                                    a [ _href properPermalink; _class "btn btn-sm btn-outline-info" ] [ Text "Read More →" ]
-                                ]
-                            else
-                                div [] [
-                                    rawText cleanContent
-                                ]
-                        ]
-                    | "wiki" ->
-                        // Wiki pages - structured content
-                        div [] [
-                            if shouldTruncate then
-                                div [ _class "content-preview"; _style "max-height: 350px; overflow: hidden;" ] [
-                                    rawText cleanContent
-                                ]
-                                div [ _class "mt-2" ] [
-                                    a [ _href properPermalink; _class "btn btn-sm btn-outline-info" ] [ Text "Read More →" ]
-                                ]
-                            else
-                                div [] [
-                                    rawText cleanContent
-                                ]
-                        ]
-                    | _ ->
-                        // Default handling for other content types
-                        div [] [
-                            if shouldTruncate then
-                                div [ _class "content-preview"; _style "max-height: 300px; overflow: hidden;" ] [
-                                    rawText cleanContent
-                                ]
-                                div [ _class "mt-2" ] [
-                                    a [ _href properPermalink; _class "btn btn-sm btn-outline-primary" ] [ Text "Read More →" ]
-                                ]
-                            else
-                                div [] [
-                                    rawText cleanContent
-                                ]
-                        ]
-                ]
-                hr []
-                webmentionForm
-            ]
-            customFooter
+            hr []
+            webmentionForm
         ]
     
     div [ _class "d-grip gap-3" ] [
