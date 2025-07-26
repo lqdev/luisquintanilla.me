@@ -33,7 +33,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                 button [ _class "filter-btn"; attr "data-filter" "snippets"; _type "button" ] [ Text "Snippets" ]
                 button [ _class "filter-btn"; attr "data-filter" "wiki"; _type "button" ] [ Text "Wiki" ]
                 button [ _class "filter-btn"; attr "data-filter" "presentations"; _type "button" ] [ Text "Presentations" ]
-                button [ _class "filter-btn"; attr "data-filter" "reviews"; _type "button" ] [ Text "Books" ]
+                button [ _class "filter-btn"; attr "data-filter" "reviews"; _type "button" ] [ Text "Reviews" ]
                 button [ _class "filter-btn"; attr "data-filter" "media"; _type "button" ] [ Text "Media" ]
             ]
         ]
