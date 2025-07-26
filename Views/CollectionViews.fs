@@ -350,6 +350,13 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
             // Render the original content directly - it's already a complete article
             rawText item.Content
             
+            // Add "Read More" button if not already present in content
+            let needsReadMoreButton = not (item.Content.Contains("Read More →"))
+            if needsReadMoreButton then
+                div [ _class "mt-2" ] [
+                    a [ _href properPermalink; _class "btn btn-outline-primary btn-sm" ] [ Text "Read More →" ]
+                ]
+            
             // Add footer with permalink and tags
             div [ _class "mt-3 pt-2 border-top text-muted small" ] [
                 Text "Permalink: " 

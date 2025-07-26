@@ -642,7 +642,7 @@ module AlbumProcessor =
                         if urlMatch.Success then
                             let imageUrl = urlMatch.Groups.[1].Value.Trim()
                             let altText = if altMatch.Success then altMatch.Groups.[1].Value else "Media preview"
-                            sprintf """<img src="%s" alt="%s" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;" />""" imageUrl altText
+                            sprintf """<img src="%s" alt="%s" class="img-fluid" />""" imageUrl altText
                         else
                             "Photo album"
                     else
@@ -654,6 +654,9 @@ module AlbumProcessor =
                 article [ _class "album-card h-entry" ] [
                     h2 [] [ a [ _href url ] [ Text title ] ]
                     div [ _class "content-preview" ] [ rawText contentPreview ]
+                    div [ _class "mt-2" ] [
+                        a [ _href url; _class "btn btn-outline-primary btn-sm" ] [ Text "Read More →" ]
+                    ]
                 ]
             RenderView.AsString.xmlNode viewNode
         
