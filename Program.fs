@@ -62,7 +62,7 @@ let main argv =
     let aiStarterPackLinks = loadAIStarterPackLinks ()
 
     // Build static pages
-    buildHomePage posts feedNotes responses
+    // buildHomePage posts feedNotes responses  // Traditional homepage - replaced by timeline
     buildAboutPage ()
     buildContactPage ()
     buildStarterPackPage ()
@@ -103,6 +103,9 @@ let main argv =
     
     // Generate tag RSS feeds using unified feed data
     GenericBuilder.UnifiedFeeds.buildTagFeeds allUnifiedItems "_public"
+    
+    // Build Timeline Homepage (Feed-as-Homepage Phase 3)
+    buildTimelineHomePage allUnifiedItems
     
     // Generate unified feed HTML page
     buildUnifiedFeedPage allUnifiedItems

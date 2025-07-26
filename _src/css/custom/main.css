@@ -16,6 +16,7 @@
 @import url('./layout.css');
 @import url('./navigation.css');
 @import url('./components.css');
+@import url('./timeline.css');
 
 /* Global body setup */
 body {

@@ -105,6 +105,22 @@ module Builder
         let homePage = generate (homeView recentBlog recentFeedPost recentResponsePost) "default" "Home - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"index.html"),homePage)
 
+    // New timeline homepage for Phase 3 - Feed-as-Homepage Interface
+    let buildTimelineHomePage (allUnifiedItems: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
+        // Flatten all feed items and sort chronologically (latest first)
+        let flattenedItems = 
+            allUnifiedItems
+            |> List.collect snd
+            |> List.sortByDescending (fun item -> DateTime.Parse(item.Date))
+            |> List.take (min 50 (allUnifiedItems |> List.collect snd |> List.length)) // Show more items on homepage
+            |> List.toArray
+        
+        // Generate the timeline homepage
+        let timelineHomePage = generate (timelineHomeView flattenedItems) "default" "Luis Quintanilla - Personal Website"
+        File.WriteAllText(Path.Join(outputDir,"index.html"), timelineHomePage)
+        
+        printfn "✅ Timeline homepage created with %d items across all content types" flattenedItems.Length
+
     let buildAboutPage () = 
 
         let aboutContent = convertFileToHtml (Path.Join(srcDir,"about.md")) |> contentView

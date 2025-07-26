@@ -1,0 +1,344 @@
+/* Timeline Homepage Styles - Desert Theme Integration */
+
+/* Timeline Container */
+.unified-timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+/* Timeline Header */
+.timeline-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.avatar-section img {
+  border: 3px solid var(--accent-color);
+  transition: transform 0.3s ease;
+}
+
+.avatar-section img:hover {
+  transform: scale(1.05);
+}
+
+.author-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.author-link:hover {
+  color: var(--hover-color);
+  text-decoration: underline;
+}
+
+.tagline {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin: var(--spacing-sm) 0 0 0;
+}
+
+/* Content Filters */
+.content-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+}
+
+.filter-btn {
+  background: var(--card-background);
+  border: 2px solid var(--border-color);
+  color: var(--text-color);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 0.9rem;
+  min-width: 80px;
+}
+
+.filter-btn:hover {
+  background: var(--hover-color);
+  border-color: var(--hover-color);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.filter-btn.active {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: white;
+}
+
+/* Timeline Content */
+.timeline-content {
+  margin-top: var(--spacing-xl);
+}
+
+/* Content Cards */
+.content-card {
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  margin-bottom: var(--spacing-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.content-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Header */
+.card-header {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.author-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-color);
+}
+
+.author-name {
+  font-weight: 600;
+  color: var(--text-color);
+  margin-right: var(--spacing-sm);
+}
+
+.publication-date {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.content-type-info {
+  display: flex;
+  align-items: center;
+}
+
+/* Content Type Badges with Desert Color Coding */
+.content-type-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.content-type-badge[data-type="posts"] {
+  background: #FF4500; /* Sunset Orange */
+}
+
+.content-type-badge[data-type="notes"] {
+  background: #DDA0DD; /* Cactus Flower */
+}
+
+.content-type-badge[data-type="responses"] {
+  background: #FF6347; /* Ocotillo Bloom */
+}
+
+.content-type-badge[data-type="snippets"] {
+  background: #9CAF88; /* Desert Sage */
+}
+
+.content-type-badge[data-type="wiki"] {
+  background: #8FBC8F; /* Palo Verde */
+}
+
+.content-type-badge[data-type="presentations"] {
+  background: #DAA520; /* Joshua Tree */
+}
+
+.content-type-badge[data-type="reviews"] {
+  background: #CD853F; /* Barrel Cactus */
+}
+
+.content-type-badge[data-type="media"] {
+  background: #DB7093; /* Cholla Pink */
+}
+
+/* Card Body */
+.card-body {
+  padding: var(--spacing-lg);
+}
+
+.card-title {
+  margin: 0 0 var(--spacing-md) 0;
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
+
+.title-link {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.title-link:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+.card-content {
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.card-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Card Footer */
+.card-footer {
+  padding: var(--spacing-md);
+  border-top: 1px solid var(--border-color);
+  background: var(--background-subtle);
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.permalink-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.permalink-link:hover {
+  color: var(--hover-color);
+  text-decoration: underline;
+}
+
+/* Tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.tag-link {
+  background: var(--tag-background);
+  color: var(--tag-text);
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.tag-link:hover {
+  background: var(--accent-color);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .unified-timeline {
+    padding: var(--spacing-md);
+  }
+  
+  .timeline-header {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .avatar-section img {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .content-filters {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .filter-btn {
+    min-width: 120px;
+  }
+  
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+  
+  .content-type-info {
+    align-self: flex-end;
+  }
+  
+  .card-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Filtering Animation States */
+.content-card.filtered-out {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+.content-card.filtered-in {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Loading States */
+.timeline-content.loading .content-card {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Empty State */
+.timeline-empty {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--text-muted);
+}
+
+.timeline-empty h3 {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-color);
+}
+
+/* Focus states for accessibility */
+.filter-btn:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.title-link:focus,
+.permalink-link:focus,
+.tag-link:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 1px;
+  border-radius: 3px;
+}

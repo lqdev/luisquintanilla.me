@@ -292,6 +292,7 @@ module Layouts
 
 
         script [_src "/assets/js/main.js"] []    
+        script [_src "/assets/js/timeline.js"] []
 
         script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] []
 

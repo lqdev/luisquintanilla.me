@@ -7,6 +7,109 @@ open Domain
 open ComponentViews
 open CollectionViews
 
+// New timeline homepage view for feed-as-homepage interface
+let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
+    div [ _class "h-feed unified-timeline" ] [
+        // Header with personal intro and content filters
+        header [ _class "timeline-header text-center p-4" ] [
+            div [ _class "avatar-section mb-3" ] [
+                img [ _src "/avatar.png"; _alt "Luis Quintanilla Avatar Image"; _class "rounded-circle"; _height "150"; _width "150" ]
+                div [ _class "mt-2" ] [
+                    h1 [ _class "p-name" ] [
+                        str "Hi, I'm "
+                        a [ _href "/about"; _class "author-link" ] [ Text "Luis" ]
+                        span [] [ Text " &#x1F44B;" ]
+                    ]
+                    p [ _class "tagline" ] [ Text "Latest updates from across the site" ]
+                ]
+            ]
+            
+            // Content type filters (will be styled as buttons in CSS)
+            div [ _class "content-filters mt-3"; _id "contentFilters" ] [
+                button [ _class "filter-btn active"; attr "data-filter" "all"; _type "button" ] [ Text "All" ]
+                button [ _class "filter-btn"; attr "data-filter" "posts"; _type "button" ] [ Text "Blog Posts" ]
+                button [ _class "filter-btn"; attr "data-filter" "notes"; _type "button" ] [ Text "Notes" ]
+                button [ _class "filter-btn"; attr "data-filter" "responses"; _type "button" ] [ Text "Responses" ]
+                button [ _class "filter-btn"; attr "data-filter" "snippets"; _type "button" ] [ Text "Snippets" ]
+                button [ _class "filter-btn"; attr "data-filter" "wiki"; _type "button" ] [ Text "Wiki" ]
+                button [ _class "filter-btn"; attr "data-filter" "presentations"; _type "button" ] [ Text "Presentations" ]
+                button [ _class "filter-btn"; attr "data-filter" "reviews"; _type "button" ] [ Text "Books" ]
+                button [ _class "filter-btn"; attr "data-filter" "media"; _type "button" ] [ Text "Media" ]
+            ]
+        ]
+        
+        // Timeline content area
+        main [ _class "timeline-content" ] [
+            // Render timeline cards with desert theme and content type data attributes
+            for item in items do
+                let fileName = Path.GetFileNameWithoutExtension(item.Url)
+                let getProperPermalink (contentType: string) (fileName: string) =
+                    match contentType with
+                    | "posts" -> $"/posts/{fileName}/"
+                    | "notes" -> $"/notes/{fileName}/"
+                    | "responses" -> $"/responses/{fileName}/"
+                    | "snippets" -> $"/resources/snippets/{fileName}/"
+                    | "wiki" -> $"/resources/wiki/{fileName}/"
+                    | "presentations" -> $"/resources/presentations/{fileName}/"
+                    | "reviews" -> $"/reviews/{fileName}/"
+                    | "media" -> $"/media/{fileName}/"
+                    | _ -> $"/{contentType}/{fileName}/"
+                
+                let properPermalink = getProperPermalink item.ContentType fileName
+                
+                // Content card with desert theme and filtering attributes
+                article [ 
+                    _class "h-entry content-card"
+                    attr "data-type" item.ContentType
+                    attr "data-date" item.Date
+                ] [
+                    header [ _class "card-header" ] [
+                        div [ _class "h-card author-info" ] [
+                            img [ _class "u-photo author-avatar"; _src "/avatar.png"; _alt "Luis Quintanilla" ]
+                            span [ _class "p-name author-name" ] [ Text "Luis Quintanilla" ]
+                            time [ _class "dt-published publication-date"; attr "datetime" item.Date ] [
+                                Text (DateTime.Parse(item.Date).ToString("MMM dd, yyyy"))
+                            ]
+                        ]
+                        div [ _class "content-type-info" ] [
+                            span [ _class "content-type-badge"; attr "data-type" item.ContentType ] [
+                                Text (match item.ContentType with
+                                      | "posts" -> "Blog Post"
+                                      | "notes" -> "Note"
+                                      | "responses" -> "Response"
+                                      | "snippets" -> "Snippet"
+                                      | "wiki" -> "Wiki"
+                                      | "presentations" -> "Presentation"
+                                      | "reviews" -> "Book Review"
+                                      | "media" -> "Media"
+                                      | _ -> item.ContentType)
+                            ]
+                        ]
+                    ]
+                    
+                    div [ _class "card-body" ] [
+                        h2 [ _class "p-name card-title" ] [
+                            a [ _class "u-url title-link"; _href properPermalink ] [ Text item.Title ]
+                        ]
+                        div [ _class "e-content card-content" ] [
+                            rawText item.Content
+                        ]
+                    ]
+                    
+                    footer [ _class "card-footer" ] [
+                        div [ _class "card-meta" ] [
+                            a [ _class "u-url permalink-link"; _href properPermalink ] [ Text "Read more →" ]
+                            if item.Tags.Length > 0 then
+                                div [ _class "p-category tags" ] [
+                                    for tag in item.Tags do
+                                        a [ _class "tag-link"; _href $"/tags/{tag}/" ] [ Text $"#{tag}" ]
+                                ]
+                        ]
+                    ]
+                ]
+        ]
+    ]
+
 let homeView (blog:Post) (microblog:Post) (response:Response) =
     div [ _class "mr-auto" ] [
         div [_class "row mx-auto p-2"] [

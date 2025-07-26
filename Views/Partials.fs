@@ -67,6 +67,7 @@ let unifiedFeedView = CollectionViews.unifiedFeedView
 
 // Layout (from LayoutViews)
 let homeView = LayoutViews.homeView
+let timelineHomeView = LayoutViews.timelineHomeView
 let contentView = LayoutViews.contentView
 let contentViewWithTitle = LayoutViews.contentViewWithTitle
 let liveStreamView = LayoutViews.liveStreamView
