@@ -58,6 +58,69 @@ function toggleMobileNav() {
     }
 }
 
+// Navigation Dropdown Management
+function toggleDropdown(dropdownId) {
+    const dropdown = document.getElementById(dropdownId);
+    const toggle = document.querySelector(`[data-target="${dropdownId}"]`);
+    
+    if (dropdown && toggle) {
+        const isOpen = dropdown.classList.contains('show');
+        
+        // Close all other dropdowns first
+        document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+            if (menu.id !== dropdownId) {
+                menu.classList.remove('show');
+                const otherToggle = document.querySelector(`[data-target="${menu.id}"]`);
+                if (otherToggle) {
+                    otherToggle.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
+        
+        // Toggle current dropdown
+        if (isOpen) {
+            dropdown.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+        } else {
+            dropdown.classList.add('show');
+            toggle.setAttribute('aria-expanded', 'true');
+        }
+    }
+}
+
+function setupDropdownListeners() {
+    // Collections dropdown
+    const collectionsToggle = document.querySelector('[data-target="collections-dropdown"]');
+    if (collectionsToggle) {
+        collectionsToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleDropdown('collections-dropdown');
+        });
+    }
+    
+    // Resources dropdown
+    const resourcesToggle = document.querySelector('[data-target="resources-dropdown"]');
+    if (resourcesToggle) {
+        resourcesToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleDropdown('resources-dropdown');
+        });
+    }
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-section.dropdown')) {
+            document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                menu.classList.remove('show');
+                const toggle = document.querySelector(`[data-target="${menu.id}"]`);
+                if (toggle) {
+                    toggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+    });
+}
+
 // Event Listeners Setup
 function setupEventListeners() {
     // Theme toggle
@@ -119,6 +182,7 @@ function setupEventListeners() {
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
+    setupDropdownListeners();
     initializeTheme();
 });
 
