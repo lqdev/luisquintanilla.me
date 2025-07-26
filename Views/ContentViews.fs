@@ -17,24 +17,13 @@ let replyBodyView (post:Response) =
     let timestampPattern = System.Text.RegularExpressions.Regex(@"^\s*\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}\s*$", System.Text.RegularExpressions.RegexOptions.Multiline)
     let cleanedContent = timestampPattern.Replace(cleanContent, "").Trim()
     
-    // Check if content should be truncated (600 char threshold)
-    let shouldTruncate = cleanedContent.Length > 600
-    
     div [ _class "card-body" ] [
         p [] [
             span [_class "bi bi-reply-fill"; _style "margin-right:5px;margin-left:5px;color:#3F5576;"] []
             a [_class "u-in-reply-to"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
         ]
         div [_class "e-content"] [
-            if shouldTruncate then
-                div [ _class "content-preview"; _style "max-height: 400px; overflow: hidden; position: relative;" ] [
-                    rawText cleanedContent
-                ]
-                div [ _class "mt-2" ] [
-                    a [ _href $"/responses/{post.FileName}/"; _class "btn btn-sm btn-outline-primary" ] [ Text "Read More →" ]
-                ]
-            else
-                rawText cleanedContent
+            rawText cleanedContent
         ]
         hr []
         webmentionForm
@@ -50,24 +39,13 @@ let reshareBodyView (post:Response) =
     let timestampPattern = System.Text.RegularExpressions.Regex(@"^\s*\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}\s*$", System.Text.RegularExpressions.RegexOptions.Multiline)
     let cleanedContent = timestampPattern.Replace(cleanContent, "").Trim()
     
-    // Check if content should be truncated (600 char threshold)
-    let shouldTruncate = cleanedContent.Length > 600
-    
     div [ _class "card-body" ] [
         p [] [
             span [_class "bi bi-share-fill"; _style "margin-right:5px;margin-left:5px;color:#C0587E;"] []
             a [_class "u-repost-of"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
         ]
         div [_class "e-content"] [
-            if shouldTruncate then
-                div [ _class "content-preview"; _style "max-height: 400px; overflow: hidden; position: relative;" ] [
-                    rawText cleanedContent
-                ]
-                div [ _class "mt-2" ] [
-                    a [ _href $"/responses/{post.FileName}/"; _class "btn btn-sm btn-outline-primary" ] [ Text "Read More →" ]
-                ]
-            else
-                rawText cleanedContent
+            rawText cleanedContent
         ]
         hr []
         webmentionForm
@@ -83,24 +61,13 @@ let starBodyView (post:Response) =
     let timestampPattern = System.Text.RegularExpressions.Regex(@"^\s*\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}\s*$", System.Text.RegularExpressions.RegexOptions.Multiline)
     let cleanedContent = timestampPattern.Replace(cleanContent, "").Trim()
     
-    // Check if content should be truncated (600 char threshold)
-    let shouldTruncate = cleanedContent.Length > 600
-    
     div [ _class "card-body" ] [
         p [] [
             span [_class "bi bi-star-fill"; _style "margin-right:5px;margin-left:5px;color:#ff7518;"] []
             a [_class "u-like-of"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
         ]
         div [_class "e-content"] [
-            if shouldTruncate then
-                div [ _class "content-preview"; _style "max-height: 400px; overflow: hidden; position: relative;" ] [
-                    rawText cleanedContent
-                ]
-                div [ _class "mt-2" ] [
-                    a [ _href $"/responses/{post.FileName}/"; _class "btn btn-sm btn-outline-primary" ] [ Text "Read More →" ]
-                ]
-            else
-                rawText cleanedContent
+            rawText cleanedContent
         ]
         hr []
         webmentionForm
@@ -116,24 +83,13 @@ let bookmarkBodyView (post:Response) =
     let timestampPattern = System.Text.RegularExpressions.Regex(@"^\s*\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}\s*$", System.Text.RegularExpressions.RegexOptions.Multiline)
     let cleanedContent = timestampPattern.Replace(cleanContent, "").Trim()
     
-    // Check if content should be truncated (600 char threshold)
-    let shouldTruncate = cleanedContent.Length > 600
-    
     div [ _class "card-body" ] [
         p [] [
             span [_class "bi bi-journal-bookmark-fill"; _style "margin-right:5px;margin-left:5px;color:#4a60b6;"] []
             a [_class "u-bookmark-of"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
         ]
         div [_class "e-content"] [
-            if shouldTruncate then
-                div [ _class "content-preview"; _style "max-height: 400px; overflow: hidden; position: relative;" ] [
-                    rawText cleanedContent
-                ]
-                div [ _class "mt-2" ] [
-                    a [ _href $"/responses/{post.FileName}/"; _class "btn btn-sm btn-outline-primary" ] [ Text "Read More →" ]
-                ]
-            else
-                rawText cleanedContent
+            rawText cleanedContent
         ]
         hr []
         webmentionForm
