@@ -1,0 +1,1111 @@
+/* Light theme variables */
+:root {
+    --background-color: #F4E7D3; /* Desert Sand */
+    --text-color: #4B6F44; /* Saguaro Green */
+    --button-background-color: #FF4500; /* Sunset Orange */
+    --button-hover-color: #DDA0DD; /* Cactus Flower */
+    --button-text-color: #FFFFFF; /* White */
+    --footer-link-color: #87CEEB; /* Sky Blue */
+    --sidebar-background-color: #4B6F44; /* Saguaro Green */
+    --sidebar-text-color: #F4E7D3; /* Desert Sand */
+    --content-heading-color: #FF4500; /* Sunset Orange */
+    --card-background-color: #FFFFFF; /* White */
+    --card-border-color: #4B6F44; /* Saguaro Green */
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+    --background-color: #2C3E50; /* Midnight Indigo */
+    --text-color: #BDC3C7; /* Desert Moonlight */
+    --button-background-color: #FF6347; /* Ocotillo Bloom */
+    --button-hover-color: #4B6F44; /* Cactus Green */
+    --button-text-color: #FFFFFF; /* White */
+    --footer-link-color: #BDC3C7; /* Desert Moonlight */
+    --sidebar-background-color: #2C3E50; /* Midnight Indigo */
+    --sidebar-text-color: #BDC3C7; /* Desert Moonlight */
+    --content-heading-color: #FF6347; /* Ocotillo Bloom */
+    --card-background-color: #34495E; /* Saguaro Shadow */
+    --card-border-color: #BDC3C7; /* Desert Moonlight */
+}
+
+/* Common button styles */
+.button-common {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-common:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Common card styles */
+.card-common {
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Common text alignment styles */
+.text-left {
+    text-align: left;
+}
+
+/* Common image styles */
+.image-common {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Common table styles */
+.table-common {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table-common th, .table-common td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border-color);
+}
+
+.table-common th {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+}
+
+.table-common tr:nth-child(even) {
+    background-color: var(--background-color);
+}
+
+/* Common blockquote styles */
+.blockquote-common {
+    background: var(--card-background-color);
+    border-left: 10px solid var(--card-border-color);
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+
+.blockquote-common:before {
+    color: var(--card-border-color);
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+
+.blockquote-common p {
+    display: inline;
+}
+
+/* Apply styles for card */
+.card {
+    padding: 20px;
+    margin: 20px 0;
+    position: relative; /* Ensure the card is positioned relative */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 1rem;
+}
+
+/* Apply styles for body */
+body {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 20px;
+    align-items: center;
+}
+
+/* Apply styles for sidebar */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: var(--sidebar-background-color);
+    color: var(--sidebar-text-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+#sidebar .sidebar-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sidebar .hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sidebar ul li {
+    margin-bottom: 10px;
+}
+
+#sidebar ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: var(--button-background-color);
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#sidebar ul li a:hover {
+    background-color: var(--button-hover-color);
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        position: fixed; /* Change to fixed to ensure it stays at the top */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        z-index: 1000; /* Ensure it stays above other content */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: var(--sidebar-background-color);
+    }
+
+    #sidebar .hamburger {
+        display: block;
+    }
+
+    #sidebar ul {
+        display: none;
+    }
+
+    #sidebar ul.show {
+        display: block;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+        padding-top: 60px; /* Adjust padding to account for the fixed sidebar */
+        background-color: var(--background-color);
+        color: var(--text-color);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #sidebar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: var(--sidebar-background-color);
+    }
+
+    #sidebar .hamburger {
+        display: block;
+    }
+
+    #sidebar ul {
+        display: none;
+    }
+
+    #sidebar ul.show {
+        display: block;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+        padding-top: 50px;
+        background-color: var(--background-color);
+        color: var(--text-color);
+    }
+}
+
+/* Apply styles for sidebar ul */
+#sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Apply styles for sidebar img */
+#sidebar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+/* Apply styles for sidebar h1 and h2 */
+#sidebar h2, #sidebar h3 {
+    font-size: 1.5em;
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* Apply styles for sidebar a */
+#sidebar a {
+    color: var(--text-color);
+    text-decoration: none;
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: var(--button-background-color);
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#sidebar a:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Apply styles for sidebar .links */
+#sidebar .links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+/* Apply styles for content */
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Override text-align for paragraphs within post-content */
+.post-content p {
+    text-align: left;
+}
+
+/* Apply styles for content h2 */
+main h1 {
+    color: var(--content-heading-color);
+    margin: 20px 0;
+}
+
+/* Apply styles for content h2, h3, h4, h5, h6 */
+main h2, main h3, main h4, main h5, main h6 {
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px; /* Ensure it doesn't exceed the max width of the post content */
+}
+
+/* Apply styles for content p */
+main p {
+    margin: 10px 0;
+}
+
+/* Apply styles for footer */
+footer {
+    text-align: center;
+    margin: 20px 0;
+    width: 100%; /* Ensure it takes full width */
+    max-width: 800px; /* Ensure it doesn't exceed the max width of the post content */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Apply styles for footer a */
+footer a {
+    color: var(--footer-link-color);
+}
+
+/* Common form styles */
+.form-common {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure it takes full width */
+    max-width: 800px; /* Ensure it doesn't exceed the max width of the post content */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-input-common {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--card-border-color);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-submit-common {
+    padding: 10px 20px;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-submit-common:hover {
+    background-color: var(--button-hover-color);
+}
+
+.form-row-common {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap; /* Ensure elements wrap if necessary */
+}
+
+/* Apply styles for footer form */
+footer form {
+    @extend .form-common;
+}
+
+/* Apply styles for footer form input[type="text"] */
+footer form input[type="text"] {
+    @extend .form-input-common;
+}
+
+/* Apply styles for footer form input[type="submit"] */
+footer form input[type="submit"] {
+    @extend .form-submit-common;
+}
+
+/* Apply styles for footer form .form-row */
+footer form .form-row {
+    @extend .form-row-common;
+}
+
+/* Apply styles for footer form h5 */
+footer form h5 {
+    margin-bottom: 20px;
+    color: var(--text-color);
+    font-size: 1.2em; /* Increase font size */
+    font-weight: bold; /* Make the text bold */
+}   
+
+/* Apply styles for footer form input[type="text"] */
+footer form input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--card-border-color);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Apply styles for footer form input[type="submit"] */
+footer form input[type="submit"] {
+    padding: 10px 20px;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+footer form input[type="submit"]:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Apply styles for footer form .form-row */
+footer form .form-row {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap; /* Ensure elements wrap if necessary */
+}
+
+/* Apply styles for footer form .form-row .w-75 */
+footer form .form-row .w-75 {
+    flex: 1;
+}
+
+/* Apply styles for footer form .form-row .col-auto */
+footer form .form-row .col-auto {
+    flex: 0;
+}
+
+/* Apply styles for footer form .form-row div */
+footer form .form-row div {
+    width: 100%; /* Ensure full width for each element */
+    margin-bottom: 10px; /* Add margin to ensure spacing */
+}
+
+/* Apply styles for toggle-theme-btn */
+#theme-toggle {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: var(--button-background-color);
+    color: var (--button-text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#theme-toggle:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Apply styles for card-content h2 */
+.card-content h2 {
+    text-align: center;
+}
+
+/* Apply styles for card-content */
+.card-content {
+    text-align: center;
+}
+
+/* Apply styles for card-footer */
+.card-footer {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column; /* Display elements in individual rows */
+    align-items: flex-start; /* Align elements to the left */
+}
+
+/* Apply styles for card-footer a */
+.card-footer a {
+    color: var(--footer-link-color);
+    text-decoration: none;
+}
+
+/* Apply styles for card-footer .tags */
+.card-footer .tags {
+    display: flex;
+    flex-wrap: wrap; /* Ensure tags wrap */
+    gap: 10px;
+}
+
+/* Apply styles for card-footer .tag */
+.card-footer .tag {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+    max-width: 100%; /* Ensure it does not exceed the container width */
+}
+
+/* Apply styles for media */
+.media {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+}
+
+/* Apply media queries for screens with max-width of 600px */
+@media (max-width: 600px) {
+    #sidebar, main {
+        padding: 10px;
+    }
+}
+
+/* Apply styles for button-container */
+#post-filters {
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Apply styles for button-container button */
+#post-filters button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+
+#post-filters button:hover {
+    background-color: var(--button-hover-color);
+    transform: scale(1.05);
+}
+
+/* Apply styles for back-to-top */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: none;
+}
+
+#back-to-top:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Apply styles for back-to-home button */
+#back-to-home {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+#back-to-home:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Apply styles for gallery */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Apply styles for gallery img */
+.gallery img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Apply styles for modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Apply styles for modal-content */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Apply styles for close */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Apply styles for fixed-top-right */
+.fixed-top-right {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
+/* Apply styles for post type overlay */
+.post-type-overlay {
+    position: absolute;
+    top: -10px; /* Ensure it is fully visible at the top */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1; /* Ensure it appears above other elements */
+}
+
+/* Ensure the card has enough padding to accommodate the overlay */
+.post.card {
+    padding-top: 20px; /* Adjust padding to ensure the overlay is not cut off */
+}
+
+/* Common link styles */
+.link-common {
+    color: var(--button-background-color);
+    text-decoration: none;
+    border-bottom: 2px solid var(--button-background-color);
+    transition: color 0.3s, border-bottom-color 0.3s;
+}
+
+.link-common:hover {
+    color: var(--button-hover-color);
+    border-bottom-color: var(--button-hover-color);
+}
+
+/* Style links to match the theme */
+a {
+    @extend .link-common;
+}
+
+/* Style for source-url */
+.source-url {
+    @extend .link-common;
+}
+
+/* Ensure text elements are flushed left */
+.card-body p, .card-body h2, .card-body h3, .card-body h4, .card-body h5, .card-body h6,
+.review-content p, .review-content ul, .review-content ol,
+.post-content p, .post-content ul, .post-content ol {
+    text-align: left;
+}
+
+/* Center code, images, and block quotes */
+.card-body pre, .card-body img, .card-body blockquote {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Ensure images fit inside the card-body without overflowing */
+.card-body img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Apply styles for tables */
+table {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border-color);
+}
+
+th {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+}
+
+tr:nth-child(even) {
+    background-color: var(--background-color);
+}
+
+/* Ensure text elements are flushed left */
+.card-body p, .card-body ul, .card-body ol {
+    text-align: left;
+}
+
+/* Center code, images, blockquotes, and tables */
+.card-body pre, .card-body img, .card-body blockquote {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Ensure images fit inside the card-body without overflowing */
+.card-body img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Ensure review content does not overflow */
+.review-content {
+    max-width: 100%;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+/* Ensure text elements are flushed left */
+.review-content p, .review-content ul, .review-content ol {
+    text-align: left;
+}
+
+/* Center code, images, blockquotes, and tables */
+.review-content pre, .review-content img, .review-content blockquote {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Ensure images fit inside the review-content without overflowing */
+.review-content img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Ensure code blocks fit inside the review-content without overflowing */
+.review-content pre {
+    display: block;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto; /* Add horizontal scroll if necessary */
+    margin: 10px 0;
+    text-align: left; /* Ensure the wrapper is centered */
+}
+
+.review-content pre code {
+    display: block;
+    white-space: pre; /* Preserve whitespace and indentation */
+    background-color: inherit; /* Inherit background color from pre */
+    border: none; /* Remove border from code */
+    padding: 0; /* Remove padding from code */
+}
+
+/* Ensure blockquotes fit inside the review-content without overflowing */
+.review-content blockquote {
+    background: var(--card-background-color);
+    border-left: 10px solid var(--card-border-color);
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+
+.review-content blockquote:before {
+    color: var(--card-border-color);
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+
+.review-content blockquote p {
+    display: inline;
+}
+
+.review-content th, .review-content td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border-color);
+}
+
+.review-content th {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+}
+
+.review-content tr:nth-child(even) {
+    background-color: var(--background-color);
+}
+
+/* Ensure review content does not overflow */
+.review-content {
+    max-width: 100%;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.rating-block {
+    display: inline-block;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    font-size: 1.2em;
+    text-align: center;
+    margin: 5px 0;
+    color: #333;
+}
+
+.rating-1 { background-color: #ffcccc; } /* Light Red */
+.rating-2 { background-color: #ffdab3; } /* Light Orange */
+.rating-3 { background-color: #ffffcc; } /* Light Yellow */
+.rating-4 { background-color: #d9f2d9; } /* Light Green */
+.rating-5 { background-color: #ccffcc; } /* Very Light Green */
+
+/* Ensure images fit inside the review-content without overflowing */
+.review-content img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Ensure code blocks fit inside the review-content without overflowing */
+.review-content pre {
+    display: block;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto; /* Add horizontal scroll if necessary */
+    margin: 10px 0;
+    text-align: left; /* Ensure the wrapper is centered */
+}
+
+.review-content pre code {
+    display: block;
+    white-space: pre; /* Preserve whitespace and indentation */
+    background-color: inherit; /* Inherit background color from pre */
+    border: none; /* Remove border from code */
+    padding: 0; /* Remove padding from code */
+}
+
+/* Ensure blockquotes fit inside the review-content without overflowing */
+.review-content blockquote {
+    background: var(--card-background-color);
+    border-left: 10px solid var(--card-border-color);
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+
+.review-content blockquote:before {
+    color: var(--card-border-color);
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+
+.review-content blockquote p {
+    display: inline;
+}
+
+.review-content th, .review-content td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border-color);
+}
+
+.review-content th {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+}
+
+.review-content tr:nth-child(even) {
+    background-color: var(--background-color);
+}
+
+/* Apply styles for post-content */
+.post-content {
+    max-width: 100%;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+/* Ensure text elements are flushed left */
+.post-content p, .post-content ul, .post-content ol {
+    text-align: left;
+}
+
+/* Center code, images, blockquotes, and tables */
+.post-content pre, .post-content img, .post-content blockquote {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Ensure images fit inside the post-content without overflowing */
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Ensure code blocks fit inside the post-content without overflowing */
+.post-content pre {
+    display: block;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto; /* Add horizontal scroll if necessary */
+    margin: 10px 0;
+    text-align: left; /* Ensure the wrapper is centered */
+}
+
+.post-content pre code {
+    display: block;
+    white-space: pre; /* Preserve whitespace and indentation */
+    background-color: inherit; /* Inherit background color from pre */
+    border: none; /* Remove border from code */
+    padding: 0; /* Remove padding from code */
+}
+
+/* Ensure blockquotes fit inside the post-content without overflowing */
+.post-content blockquote {
+    background: var(--card-background-color);
+    border-left: 10px solid var(--card-border-color);
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+
+.post-content blockquote:before {
+    color: var(--card-border-color);
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+
+.post-content blockquote p {
+    display: inline;
+}
+
+.post-content th, .post-content td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border-color);
+}
+
+.post-content th {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+}
+
+.post-content tr:nth-child(even) {
+    background-color: var(--background-color);
+}
+
+.card-body table, .review-content table, .post-content table {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-content th, .post-content th, .other-content th,
+.review-content td, .post-content td, .other-content td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border-color);
+}
+
+.review-content th, .post-content th, .other-content th {
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+}
+
+.review-content tr:nth-child(even), .post-content tr:nth-child(even), .other-content tr:nth-child(even) {
+    background-color: var(--background-color);
+}
+
+.main-content {
+    margin-left: 270px; /* Adjust margin to make space for the sidebar */
+    padding: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    width: calc(100% - 270px); /* Adjust width to account for the sidebar */
+    box-sizing: border-box;
+}
+
+audio, video {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    display: block;
+}
+
+.audio-description, .video-description {
+    margin-top: 10px;
+    text-align: left;
+}
+
+.audio-cover, .video-thumbnail {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding-top: 50px;
+    }
+}
