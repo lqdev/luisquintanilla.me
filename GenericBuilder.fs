@@ -624,16 +624,36 @@ module AlbumProcessor =
             let url = sprintf "/media/%s/" album.FileName
             let date = album.Metadata.Date
             
-            // Simple card view - the actual rendering is handled by albumsPageView in Views/CollectionViews.fs
-            // This RenderCard is used for feed generation, the visual display uses albumsPageView
+            // Extract first media item from the :::media block
+            let contentPreview = 
+                try
+                    // Parse the media block to extract the first media item
+                    let mediaBlockPattern = System.Text.RegularExpressions.Regex(@":::media\s*\n(.*?)\n:::media", System.Text.RegularExpressions.RegexOptions.Singleline)
+                    let mediaMatch = mediaBlockPattern.Match(album.Content)
+                    
+                    if mediaMatch.Success then
+                        let mediaContent = mediaMatch.Groups.[1].Value
+                        // Extract first URL from YAML-like structure
+                        let urlPattern = System.Text.RegularExpressions.Regex(@"url:\s*[""']?([^""'\n]+)[""']?")
+                        let urlMatch = urlPattern.Match(mediaContent)
+                        let altPattern = System.Text.RegularExpressions.Regex(@"alt:\s*[""']([^""']+)[""']")
+                        let altMatch = altPattern.Match(mediaContent)
+                        
+                        if urlMatch.Success then
+                            let imageUrl = urlMatch.Groups.[1].Value.Trim()
+                            let altText = if altMatch.Success then altMatch.Groups.[1].Value else "Media preview"
+                            sprintf """<img src="%s" alt="%s" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;" />""" imageUrl altText
+                        else
+                            "Photo album"
+                    else
+                        "Photo album"
+                with
+                | _ -> "Photo album"
+            
             let viewNode = 
                 article [ _class "album-card h-entry" ] [
                     h2 [] [ a [ _href url ] [ Text title ] ]
-                    p [ _class "content-preview" ] [ Text "Media content" ]
-                    div [ _class "album-meta" ] [
-                        Text "Permalink: "
-                        a [ _href url ] [ Text url ]
-                    ]
+                    div [ _class "content-preview" ] [ rawText contentPreview ]
                 ]
             RenderView.AsString.xmlNode viewNode
         

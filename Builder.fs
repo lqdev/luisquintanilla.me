@@ -663,22 +663,19 @@ module Builder
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, albumView))
         
-        // Generate media index page
-        let albums = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        // Generate media index page using unified feed view for consistency
         try
-            // Use albums page view for proper media display
-            let mediaIndexHtml = generate (albumsPageView albums) "defaultindex" "Media | Luis Quintanilla"
+            // Convert media feed data to unified format for consistent display
+            let unifiedMediaItems = GenericBuilder.UnifiedFeeds.convertAlbumsToUnified feedData |> List.toArray
+            let mediaIndexHtml = generate (unifiedFeedView unifiedMediaItems) "defaultindex" "Media | Luis Quintanilla"
             let indexSaveDir = Path.Join(outputDir, "media")
             Directory.CreateDirectory(indexSaveDir) |> ignore
             File.WriteAllText(Path.Join(indexSaveDir, "index.html"), mediaIndexHtml)
         with
         | ex -> 
-            printfn $"Error in albumsPageView: {ex.Message}"
+            printfn $"Error in media unified feed view: {ex.Message}"
             printfn $"Stack trace: {ex.StackTrace}"
-            printfn $"Albums count: {albums.Length}"
-            for i in 0 .. albums.Length - 1 do
-                let album = albums.[i]
-                printfn $"Album {i}: FileName='{album.FileName}', Title='{album.Metadata.Title}', Tags='{album.Metadata.Tags}'"
+            printfn $"Feed data count: {feedData.Length}"
             reraise()
         
         // Return feed data for unified RSS generation
