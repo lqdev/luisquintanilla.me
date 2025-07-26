@@ -219,11 +219,6 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
         div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
             header
             div [ _class "card-body" ] [
-                // Title with proper permalink
-                h5 [ _class "card-title" ] [
-                    a [ _href properPermalink; _class "p-name" ] [ Text item.Title ]
-                ]
-                
                 // Add content type indicator
                 div [ _class "mb-2" ] [
                     span [ _class "badge badge-secondary" ] [ 
