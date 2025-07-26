@@ -108,6 +108,11 @@ let responseView (posts: Response array) =
                     Text (DateTime.Parse(post.Metadata.DatePublished).ToString("MMM dd, yyyy"))
                 ]
                 
+                // Post title and content
+                h2 [] [
+                    a [_href $"/responses/{post.FileName}/"] [Text post.Metadata.Title]
+                ]
+                
                 // Response type icon and target URL
                 div [ _class "mb-2" ] [
                     let (icon, color) = 
@@ -120,11 +125,6 @@ let responseView (posts: Response array) =
                     
                     span [_class $"bi {icon}"; _style $"margin-right:5px;color:{color};"] []
                     a [_href post.Metadata.TargetUrl; _class "text-decoration-none"] [Text post.Metadata.TargetUrl]
-                ]
-                
-                // Post title and content
-                h2 [] [
-                    a [_href $"/responses/{post.FileName}/"] [Text post.Metadata.Title]
                 ]
                 div [] [
                     let cleanContent = 
