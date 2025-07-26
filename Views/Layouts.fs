@@ -2,6 +2,72 @@ module Layouts
 
     open Giraffe.ViewEngine
   
+    let desertNavigation = 
+        [
+            // Mobile toggle button (hidden on desktop)
+            button [
+                _class "mobile-toggle"
+                _id "mobile-nav-toggle"
+                attr "aria-label" "Toggle navigation menu"
+                attr "aria-expanded" "false"
+            ] [
+                div [_class "hamburger"] [
+                    span [] []
+                    span [] []
+                    span [] []
+                ]
+            ]
+            
+            // Navigation overlay for mobile
+            div [_class "nav-overlay"; _id "nav-overlay"] []
+            
+            // Always-visible navigation sidebar (desktop) / slide-out (mobile)
+            nav [_class "desert-nav"; _id "sidebar-menu"; attr "role" "navigation"; attr "aria-label" "Main navigation"] [
+                // Brand/Header
+                div [_class "nav-brand"] [
+                    a [_href "/"; _class "brand-text"] [
+                        img [_src "/avatar.png"; _alt "Luis Quintanilla avatar"; attr "loading" "lazy"]
+                        Text "Luis Quintanilla"
+                    ]
+                ]
+                
+                // Minimal Main Navigation Only
+                div [_class "nav-section"] [
+                    a [_class "nav-link"; _href "/about"] [
+                        tag "svg" [_class "nav-icon"; attr "viewBox" "0 0 16 16"; attr "fill" "currentColor"] [
+                            tag "path" [attr "d" "M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"] []
+                            tag "path" [attr "d" "m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"] []
+                        ]
+                        Text "About"
+                    ]
+                    a [_class "nav-link"; _href "/contact"] [
+                        tag "svg" [_class "nav-icon"; attr "viewBox" "0 0 16 16"; attr "fill" "currentColor"] [
+                            tag "path" [attr "d" "M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"] []
+                        ]
+                        Text "Contact"
+                    ]
+                    a [_class "nav-link"; _href "/subscribe"] [
+                        tag "svg" [_class "nav-icon"; attr "viewBox" "0 0 16 16"; attr "fill" "currentColor"] [
+                            tag "path" [attr "d" "M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"] []
+                        ]
+                        Text "Subscribe"
+                    ]
+                ]
+                
+                // Theme Toggle
+                div [_class "theme-toggle"] [
+                    button [
+                        _class "theme-toggle-btn"
+                        _id "theme-toggle"
+                        attr "aria-label" "Toggle dark mode"
+                    ] [
+                        span [_id "theme-toggle-icon"] [Text "☀️"]
+                        span [] [Text "Theme"]
+                    ]
+                ]
+            ]
+        ]
+    
     let defaultNavBar = 
         nav [_class "navbar navbar-expand-md navbar-dark fixed-top bg-dark"] [
             a [_class "navbar-brand"; _href "/"] [ 
@@ -295,10 +361,14 @@ module Layouts
                 title [] [Text pageTitle]
             ]
             body [] [
-                defaultNavBar
+                // Desert theme navigation
+                for navElement in desertNavigation do
+                    navElement
 
-                main [attr "role" "main"; _class "container"] [
-                    rawText content
+                main [attr "role" "main"; _class "main-content"; _id "main-content"] [
+                    div [_class "content-wrapper"] [
+                        rawText content
+                    ]
                 ]
 
                 for scr in scripts do
@@ -341,10 +411,14 @@ module Layouts
                 title [] [Text pageTitle]
             ]
             body [] [
-                defaultNavBar
+                // Desert theme navigation
+                for navElement in desertNavigation do
+                    navElement
 
-                main [attr "role" "main"; _class "container"] [
-                    rawText content
+                main [attr "role" "main"; _class "main-content"; _id "main-content"] [
+                    div [_class "content-wrapper"] [
+                        rawText content
+                    ]
                 ]
 
                 for scr in scripts do

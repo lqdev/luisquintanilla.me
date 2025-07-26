@@ -8,9 +8,14 @@
   /* Primary Colors - Desert Inspired */
   --desert-sand: #F4E7D3;           /* Background - warm, welcoming */
   --saguaro-green: #4B6F44;         /* Text & borders - natural, readable */
+  --saguaro-green-dark: #3A5535;    /* Darker variant for borders */
+  --saguaro-green-light: #5F8A58;   /* Lighter variant for accents */
   --sunset-orange: #FF4500;         /* Accent & buttons - energetic */
   --cactus-flower: #DDA0DD;         /* Hover states - delightful */
+  --cactus-bloom: #E6B3E6;          /* Lighter purple variant */
   --sky-blue: #87CEEB;              /* Links - friendly */
+  --desert-sage: #9CAF88;           /* Muted green for wiki */
+  --sunrise-pink: #FFB6C1;          /* Soft pink for presentations */
   
   /* Semantic Color Mapping */
   --background-color: var(--desert-sand);
