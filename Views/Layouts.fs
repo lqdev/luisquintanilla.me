@@ -168,11 +168,18 @@ module Layouts
         ]
     
     let styleSheets = [
-        link [_rel "stylesheet";_href "/assets/css/bootstrap.min.css"] //4.6.0
+        // Desert Theme CSS - Custom design system (Phase 1)
+        link [_rel "stylesheet";_href "/assets/css/custom/main.css"]
+        
+        // Keep essential external stylesheets
         link [_rel "stylesheet";_href "/assets/css/bootstrap-icons-1.5.0/bootstrap-icons.css"]
         link [_rel "stylesheet";_href "/assets/css/highlight.github-dark-dimmed.min.css"] //11.8.0
+        
+        // Preserve existing custom styles during transition
         link [_rel "stylesheet";_href "/assets/css/main.css"]
-        link [_rel "stylesheet";_href "/assets/css/customthemes.css"]
+        
+        // Note: Bootstrap removed in Phase 1 - replaced with desert theme CSS
+        // Note: customthemes.css removed - functionality integrated into custom CSS
     ]
 
     let buildOpenGraphElements (pageTitle:string)= 
