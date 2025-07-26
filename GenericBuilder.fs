@@ -118,8 +118,7 @@ module PostProcessor =
             
             Html.element "article" (Html.attribute "class" "post-card")
                 (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
-                 Html.element "p" "" description +
-                 Html.element "time" "" (Html.escapeHtml date))
+                 Html.element "p" "" description)
         
         RenderRss = fun post ->
             // Create RSS item for post using existing pattern
@@ -193,7 +192,6 @@ module NoteProcessor =
                     h2 [] [ a [ _href url ] [ Text title ] ]
                     p [ _class "description" ] [ Text description ]
                     div [ _class "content-excerpt" ] [ Text contentExcerpt ]
-                    time [] [ Text date ]
                 ]
             RenderView.AsString.xmlNode viewNode
         
@@ -632,7 +630,6 @@ module AlbumProcessor =
                 article [ _class "album-card h-entry" ] [
                     h2 [] [ a [ _href url ] [ Text title ] ]
                     p [ _class "content-preview" ] [ Text "Media content" ]
-                    time [ _class "dt-published" ] [ Text date ]
                     div [ _class "album-meta" ] [
                         Text "Permalink: "
                         a [ _href url ] [ Text url ]
@@ -709,8 +706,7 @@ module BookmarkProcessor =
                 (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
                  Html.element "div" (Html.attribute "class" "bookmark-target") 
                     (sprintf "🔖 %s" (Html.element "a" (Html.attribute "href" bookmarkOf + Html.attribute "class" "u-bookmark-of") bookmarkOf)) +
-                 Html.element "div" (Html.attribute "class" "bookmark-description") description +
-                 Html.element "time" (Html.attribute "class" "dt-published") (Html.escapeHtml date))
+                 Html.element "div" (Html.attribute "class" "bookmark-description") description)
         
         RenderRss = fun bookmark ->
             // Create RSS item for bookmark
