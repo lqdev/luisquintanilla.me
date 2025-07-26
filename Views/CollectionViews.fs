@@ -32,19 +32,123 @@ let recentPostsView (posts: Post array) =
 let feedView (posts: Post array) =
     div [ _class "d-grip gap-3" ] [
         for post in posts do
-            feedPostView post
+            div [ _class "mb-5 border-bottom pb-4" ] [
+                // Add content type indicator and date
+                div [ _class "mb-3" ] [
+                    span [ _class "badge badge-light border" ] [ Text "Posts" ]
+                    Text " • "
+                    Text (DateTime.Parse(post.Metadata.Date).ToString("MMM dd, yyyy"))
+                ]
+                
+                // Post title and content
+                h2 [] [
+                    a [_href $"/posts/{post.FileName}/"] [Text post.Metadata.Title]
+                ]
+                div [] [
+                    rawText post.Content
+                ]
+                
+                // Footer with permalink and tags
+                div [ _class "mt-3 pt-2 border-top text-muted small" ] [
+                    Text "Permalink: " 
+                    a [_href $"/posts/{post.FileName}/"; _class "text-decoration-none"] [Text $"/posts/{post.FileName}/"] 
+                    
+                    div [ _class "mt-1" ] [
+                        str "Tags: "
+                        let tags = if isNull post.Metadata.Tags then [||] else post.Metadata.Tags
+                        for tag in tags do
+                            a [_href $"/tags/{tag}"; _class "text-decoration-none me-2"] [Text $"#{tag}"]
+                    ]
+                ]
+            ]
     ]
 
 let notesView (posts: Post array) =
     div [ _class "d-grip gap-3" ] [
         for post in posts do
-            notePostView post
+            div [ _class "mb-5 border-bottom pb-4" ] [
+                // Add content type indicator and date
+                div [ _class "mb-3" ] [
+                    span [ _class "badge badge-light border" ] [ Text "Notes" ]
+                    Text " • "
+                    Text (DateTime.Parse(post.Metadata.Date).ToString("MMM dd, yyyy"))
+                ]
+                
+                // Post title and content
+                h2 [] [
+                    a [_href $"/notes/{post.FileName}/"] [Text post.Metadata.Title]
+                ]
+                div [] [
+                    rawText post.Content
+                ]
+                
+                // Footer with permalink and tags
+                div [ _class "mt-3 pt-2 border-top text-muted small" ] [
+                    Text "Permalink: " 
+                    a [_href $"/notes/{post.FileName}/"; _class "text-decoration-none"] [Text $"/notes/{post.FileName}/"] 
+                    
+                    div [ _class "mt-1" ] [
+                        str "Tags: "
+                        let tags = if isNull post.Metadata.Tags then [||] else post.Metadata.Tags
+                        for tag in tags do
+                            a [_href $"/tags/{tag}"; _class "text-decoration-none me-2"] [Text $"#{tag}"]
+                    ]
+                ]
+            ]
     ]
 
 let responseView (posts: Response array) =
     div [ _class "d-grip gap-3" ] [
         for post in posts do
-            responsePostView post
+            div [ _class "mb-5 border-bottom pb-4" ] [
+                // Add content type indicator and date
+                div [ _class "mb-3" ] [
+                    span [ _class "badge badge-light border" ] [ Text "Responses" ]
+                    Text " • "
+                    Text (DateTime.Parse(post.Metadata.DatePublished).ToString("MMM dd, yyyy"))
+                ]
+                
+                // Response type icon and target URL
+                div [ _class "mb-2" ] [
+                    let (icon, color) = 
+                        match post.Metadata.ResponseType with
+                        | "reply" -> ("bi-reply-fill", "#3F5576")
+                        | "reshare" -> ("bi-share-fill", "#C0587E")
+                        | "star" -> ("bi-star-fill", "#ff7518")
+                        | "bookmark" -> ("bi-journal-bookmark-fill", "#4a60b6")
+                        | _ -> ("bi-chat-dots", "#666")
+                    
+                    span [_class $"bi {icon}"; _style $"margin-right:5px;color:{color};"] []
+                    a [_href post.Metadata.TargetUrl; _class "text-decoration-none"] [Text post.Metadata.TargetUrl]
+                ]
+                
+                // Post title and content
+                h2 [] [
+                    a [_href $"/responses/{post.FileName}/"] [Text post.Metadata.Title]
+                ]
+                div [] [
+                    let cleanContent = 
+                        post.Content
+                            .Replace("No description available", "")
+                            .Replace("<p></p>", "")
+                    let timestampPattern = System.Text.RegularExpressions.Regex(@"^\s*\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}\s*$", System.Text.RegularExpressions.RegexOptions.Multiline)
+                    let cleanedContent = timestampPattern.Replace(cleanContent, "").Trim()
+                    rawText cleanedContent
+                ]
+                
+                // Footer with permalink and tags
+                div [ _class "mt-3 pt-2 border-top text-muted small" ] [
+                    Text "Permalink: " 
+                    a [_href $"/responses/{post.FileName}/"; _class "text-decoration-none"] [Text $"/responses/{post.FileName}/"] 
+                    
+                    div [ _class "mt-1" ] [
+                        str "Tags: "
+                        let tags = if isNull post.Metadata.Tags then [||] else post.Metadata.Tags
+                        for tag in tags do
+                            a [_href $"/tags/{tag}"; _class "text-decoration-none me-2"] [Text $"#{tag}"]
+                    ]
+                ]
+            ]
     ]    
 
 let bookmarkView (bookmarks: Bookmark array) =
@@ -233,10 +337,10 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
         
         // Instead of creating a new card wrapper, just render the content directly
         // The RenderCard functions already generate proper article elements
-        div [ _class "mb-4 h-entry" ] [
+        div [ _class "mb-5 border-bottom pb-4 h-entry" ] [
             // Add content type indicator above the article
-            div [ _class "mb-2" ] [
-                span [ _class "badge badge-secondary" ] [ 
+            div [ _class "mb-3" ] [
+                span [ _class "badge badge-light border" ] [ 
                     Text (item.ContentType |> fun ct -> ct.Substring(0, 1).ToUpper() + ct.Substring(1))
                 ]
                 Text " • "
@@ -257,8 +361,6 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
                         a [_href $"/tags/{tag}"; _class "p-category text-decoration-none me-2"] [Text $"#{tag}"]
                 ]
             ]
-            hr []
-            webmentionForm
         ]
     
     div [ _class "d-grip gap-3" ] [

@@ -25,8 +25,6 @@ let replyBodyView (post:Response) =
         div [_class "e-content"] [
             rawText cleanedContent
         ]
-        hr []
-        webmentionForm
     ]        
 
 let reshareBodyView (post:Response) = 
@@ -47,8 +45,6 @@ let reshareBodyView (post:Response) =
         div [_class "e-content"] [
             rawText cleanedContent
         ]
-        hr []
-        webmentionForm
     ]
 
 let starBodyView (post:Response) = 
@@ -69,8 +65,6 @@ let starBodyView (post:Response) =
         div [_class "e-content"] [
             rawText cleanedContent
         ]
-        hr []
-        webmentionForm
     ]
 
 let bookmarkBodyView (post:Response) = 
@@ -91,12 +85,35 @@ let bookmarkBodyView (post:Response) =
         div [_class "e-content"] [
             rawText cleanedContent
         ]
-        hr []
-        webmentionForm
     ]
 
 // Individual content type views
 let feedPostView (post:Post) = 
+    let header = cardHeader post.Metadata.Date
+    let footer = cardFooter "posts" post.FileName post.Metadata.Tags
+
+    div [ _class "card rounded m-2 w-75 mx-auto" ] [
+        header
+        div [ _class "card-body" ] [
+            rawText post.Content
+        ]
+        footer
+    ]
+
+let notePostView (post:Post) = 
+    let header = cardHeader post.Metadata.Date
+    let footer = cardFooter "notes" post.FileName post.Metadata.Tags
+
+    div [ _class "card rounded m-2 w-75 mx-auto" ] [
+        header
+        div [ _class "card-body" ] [
+            rawText post.Content
+        ]
+        footer
+    ]
+
+// Individual post views with webmention forms for standalone pages
+let individualFeedPostView (post:Post) = 
     let header = cardHeader post.Metadata.Date
     let footer = cardFooter "posts" post.FileName post.Metadata.Tags
 
@@ -110,7 +127,7 @@ let feedPostView (post:Post) =
         footer
     ]
 
-let notePostView (post:Post) = 
+let individualNotePostView (post:Post) = 
     let header = cardHeader post.Metadata.Date
     let footer = cardFooter "notes" post.FileName post.Metadata.Tags
 
@@ -200,8 +217,6 @@ let albumPostView (album: Album) =
                 
                 rawText (mediaBlock |> convertMdToHtml)
             
-            hr []
-            webmentionForm
         ]
         footer
     ]

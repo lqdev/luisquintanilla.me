@@ -587,7 +587,7 @@ module Builder
             let saveDir = Path.Join(outputDir, "notes", note.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = notePostView note |> notePostViewWithBacklink
+            let html = LayoutViews.notePostView note.Metadata.Title (note.Content |> convertMdToHtml)
             let noteView = generate html "defaultindex" note.Metadata.Title
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, noteView))
@@ -620,7 +620,7 @@ module Builder
             let saveDir = Path.Join(outputDir, "responses", response.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = responsePostView response |> reponsePostViewWithBacklink
+            let html = LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml)
             let responseView = generate html "defaultindex" response.Metadata.Title
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, responseView))

@@ -79,6 +79,22 @@ let blogPostView (title:string) (content:string) =
         rawText content
         hr []
         webmentionForm
+    ]
+
+let notePostView (title:string) (content:string) = 
+    div [ _class "mr-auto" ] [
+        h1 [] [Text title]
+        rawText content
+        hr []
+        webmentionForm
+    ]
+
+let responsePostView (title:string) (content:string) = 
+    div [ _class "mr-auto" ] [
+        h1 [] [Text title]
+        rawText content
+        hr []
+        webmentionForm
     ]    
 
 let postPaginationView (currentPage: int) (lastPage: int) (posts: Post array) =
