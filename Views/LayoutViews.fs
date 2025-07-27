@@ -133,6 +133,17 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
             if items.Length > 50 then
                 // Pass remaining items as JSON for JavaScript progressive loading
                 let remainingItems = items |> Array.skip 50
+                
+                // Proper JSON escaping function
+                let escapeJson (text: string) =
+                    text.Replace("\\", "\\\\")
+                        .Replace("\"", "\\\"")
+                        .Replace("\b", "\\b")
+                        .Replace("\f", "\\f")
+                        .Replace("\n", "\\n")
+                        .Replace("\r", "\\r")
+                        .Replace("\t", "\\t")
+                
                 let remainingItemsJson = 
                     remainingItems 
                     |> Array.map (fun item ->
@@ -148,13 +159,23 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                             | "media" -> $"/media/{fileName}/"
                             | _ -> $"/{contentType}/{fileName}/"
                         let properPermalink = getProperPermalink item.ContentType fileName
+                        
+                        // Clean and truncate content safely
+                        let safeContent = 
+                            let content = item.Content
+                            // Remove HTML tags for preview
+                            let withoutTags = System.Text.RegularExpressions.Regex.Replace(content, @"<[^>]+>", "")
+                            // Truncate to 300 characters for preview
+                            let truncated = if withoutTags.Length > 300 then withoutTags.Substring(0, 300) else withoutTags
+                            escapeJson truncated
+                        
                         sprintf """{"title":"%s","contentType":"%s","date":"%s","url":"%s","content":"%s","tags":[%s]}"""
-                            (item.Title.Replace("\"", "\\\"").Replace("\n", "\\n").Replace("\r", ""))
-                            item.ContentType
-                            item.Date
-                            (properPermalink.Replace("\"", "\\\""))
-                            (item.Content.Replace("\"", "\\\"").Replace("\n", "\\n").Replace("\r", "").Substring(0, min 200 item.Content.Length))
-                            (item.Tags |> Array.map (fun tag -> sprintf "\"%s\"" tag) |> String.concat ",")
+                            (escapeJson item.Title)
+                            (escapeJson item.ContentType)
+                            (escapeJson item.Date)
+                            (escapeJson properPermalink)
+                            safeContent
+                            (item.Tags |> Array.map (fun tag -> sprintf "\"%s\"" (escapeJson tag)) |> String.concat ",")
                     )
                     |> String.concat ","
                 
