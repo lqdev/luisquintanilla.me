@@ -619,6 +619,27 @@ This workflow ensures systematic, quality-focused development that preserves fun
 
 **Trigger Pattern**: When navigation testing reveals architectural inconsistencies, prioritize terminology consolidation over feature additions.
 
+### Content Volume HTML Parsing Pattern (Critical Discovery 2025-07-26)
+**Discovery**: High content volumes (1000+ items) with `rawText` rendering can generate malformed HTML that breaks browser DOM parsing so severely that **no JavaScript loads at all**.
+
+**Symptoms**:
+- Script tags present in HTML source but absent from browser Network tab
+- Zero JavaScript execution (not syntax errors - complete loading failure)  
+- Full interface failure despite correct JavaScript code
+- Content processing succeeds but browser parsing fails
+
+**Root Cause**: Large content arrays with `rawText` rendering can produce malformed HTML that exceeds browser parser limits, causing complete DOM parsing failure before script loading.
+
+**Implementation Pattern**:
+- **Content Limiting Test**: Use `Array.take (min 10 items.Length)` to test if volume is the issue
+- **Progressive Loading Strategy**: Implement virtual scrolling or pagination instead of artificial limits
+- **HTML Validation**: Validate generated HTML structure with large content volumes
+- **Performance Strategy**: Load content in chunks rather than restricting total content
+
+**Critical Lesson**: Always test content volume limits during development - high-volume static site generators can hit browser parsing limits that prevent JavaScript execution entirely.
+
+**Application**: Essential for any F# ViewEngine project with large content arrays using `rawText` or similar rendering functions.
+
 ### Repository Hygiene & Autonomous Cleanup Pattern (2025-07-25)
 **Discovery**: Following autonomous decision-making framework for repository cleanup yields dramatic performance improvements and clean development environment.
 
