@@ -100,8 +100,16 @@ body {
 
 /* Presentation container (preserve existing functionality) */
 .presentation-container {
-  height: 50vh;
-  width: 75vw
+  height: 60vh;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Ensure Reveal.js respects container bounds */
+.presentation-container .reveal {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 /* Image styling with desert theme */
