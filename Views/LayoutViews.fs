@@ -9,10 +9,8 @@ open CollectionViews
 
 // New timeline homepage view for feed-as-homepage interface
 let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
-    // Initial load: Show first 100 items (Performance optimization for large datasets)
-    // TODO: Implement progressive loading via JavaScript for remaining items
-    let initialItems = items |> Array.take (min 100 items.Length)
-    printfn "Debug: Showing %d items initially (%d total available)" initialItems.Length items.Length
+    // Load ALL items for proper content discovery (user requirement to remove artificial limits)
+    printfn "Debug: Showing all %d items in timeline interface" items.Length
     
     div [ _class "h-feed unified-timeline" ] [
         // Header with personal intro and content filters
@@ -45,7 +43,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
         // Timeline content area
         main [ _class "timeline-content" ] [
             // Render timeline cards with desert theme and content type data attributes
-            for item in initialItems do
+            for item in items do
                 let fileName = Path.GetFileNameWithoutExtension(item.Url)
                 let getProperPermalink (contentType: string) (fileName: string) =
                     match contentType with
