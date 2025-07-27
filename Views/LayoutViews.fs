@@ -268,29 +268,125 @@ let liveStreamView (title:string) =
         ] []
     ]
 
-let blogPostView (title:string) (content:string) = 
+let blogPostView (title:string) (content:string) (date:string) (fileName:string) = 
+    let publishDate = DateTime.Parse(date)
     div [ _class "mr-auto" ] [
-        h1 [] [Text title]
-        rawText content
-        hr []
-        webmentionForm
+        article [ _class "h-entry content-card individual-content" ] [
+            header [ _class "card-header" ] [
+                div [ _class "h-card author-info" ] [
+                    img [ _class "u-photo author-avatar"; _src "/avatar.png"; _alt "Luis Quintanilla" ]
+                    div [] [
+                        span [ _class "p-name author-name" ] [ Text "Luis Quintanilla" ]
+                        time [ _class "dt-published publication-date"; attr "datetime" date ] [
+                            Text (publishDate.ToString("MMMM d, yyyy"))
+                        ]
+                    ]
+                ]
+                div [ _class "content-type-info" ] [
+                    span [ _class "content-type-badge"; attr "data-type" "posts" ] [
+                        Text "Blog Post"
+                    ]
+                ]
+            ]
+            
+            div [ _class "card-body" ] [
+                h1 [ _class "p-name content-title" ] [ Text title ]
+                div [ _class "e-content" ] [
+                    rawText content
+                ]
+            ]
+            
+            footer [ _class "card-footer" ] [
+                div [ _class "permalink-section" ] [
+                    Text "Permalink: "
+                    a [ _class "u-url"; _href $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
+                        Text $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    ]
+                ]
+                webmentionForm
+            ]
+        ]
     ]
 
-let notePostView (title:string) (content:string) = 
+let notePostView (title:string) (content:string) (date:string) (fileName:string) = 
+    let publishDate = DateTime.Parse(date)
     div [ _class "mr-auto" ] [
-        h1 [] [Text title]
-        rawText content
-        hr []
-        webmentionForm
+        article [ _class "h-entry content-card individual-content" ] [
+            header [ _class "card-header" ] [
+                div [ _class "h-card author-info" ] [
+                    img [ _class "u-photo author-avatar"; _src "/avatar.png"; _alt "Luis Quintanilla" ]
+                    div [] [
+                        span [ _class "p-name author-name" ] [ Text "Luis Quintanilla" ]
+                        time [ _class "dt-published publication-date"; attr "datetime" date ] [
+                            Text (publishDate.ToString("MMMM d, yyyy"))
+                        ]
+                    ]
+                ]
+                div [ _class "content-type-info" ] [
+                    span [ _class "content-type-badge"; attr "data-type" "notes" ] [
+                        Text "Note"
+                    ]
+                ]
+            ]
+            
+            div [ _class "card-body" ] [
+                h1 [ _class "p-name content-title" ] [ Text title ]
+                div [ _class "e-content" ] [
+                    rawText content
+                ]
+            ]
+            
+            footer [ _class "card-footer" ] [
+                div [ _class "permalink-section" ] [
+                    Text "Permalink: "
+                    a [ _class "u-url"; _href $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
+                        Text $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    ]
+                ]
+                webmentionForm
+            ]
+        ]
     ]
 
-let responsePostView (title:string) (content:string) = 
+let responsePostView (title:string) (content:string) (date:string) (fileName:string) = 
+    let publishDate = DateTime.Parse(date)
     div [ _class "mr-auto" ] [
-        h1 [] [Text title]
-        rawText content
-        hr []
-        webmentionForm
-    ]    
+        article [ _class "h-entry content-card individual-content" ] [
+            header [ _class "card-header" ] [
+                div [ _class "h-card author-info" ] [
+                    img [ _class "u-photo author-avatar"; _src "/avatar.png"; _alt "Luis Quintanilla" ]
+                    div [] [
+                        span [ _class "p-name author-name" ] [ Text "Luis Quintanilla" ]
+                        time [ _class "dt-published publication-date"; attr "datetime" date ] [
+                            Text (publishDate.ToString("MMMM d, yyyy"))
+                        ]
+                    ]
+                ]
+                div [ _class "content-type-info" ] [
+                    span [ _class "content-type-badge"; attr "data-type" "responses" ] [
+                        Text "Response"
+                    ]
+                ]
+            ]
+            
+            div [ _class "card-body" ] [
+                h1 [ _class "p-name content-title" ] [ Text title ]
+                div [ _class "e-content" ] [
+                    rawText content
+                ]
+            ]
+            
+            footer [ _class "card-footer" ] [
+                div [ _class "permalink-section" ] [
+                    Text "Permalink: "
+                    a [ _class "u-url"; _href $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
+                        Text $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    ]
+                ]
+                webmentionForm
+            ]
+        ]
+    ]
 
 let postPaginationView (currentPage: int) (lastPage: int) (posts: Post array) =
     let nextPage = currentPage + 1

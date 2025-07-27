@@ -563,7 +563,7 @@ module Builder
             let saveDir = Path.Join(outputDir, "posts", post.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = blogPostView post.Metadata.Title (post.Content |> convertMdToHtml)
+            let html = blogPostView post.Metadata.Title (post.Content |> convertMdToHtml) post.Metadata.Date post.FileName
             let postView = generate html "defaultindex" $"{post.Metadata.Title} - Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, postView))
@@ -604,7 +604,7 @@ module Builder
             let saveDir = Path.Join(outputDir, "notes", note.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = LayoutViews.notePostView note.Metadata.Title (note.Content |> convertMdToHtml)
+            let html = LayoutViews.notePostView note.Metadata.Title (note.Content |> convertMdToHtml) note.Metadata.Date note.FileName
             let noteView = generate html "defaultindex" note.Metadata.Title
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, noteView))
@@ -637,7 +637,7 @@ module Builder
             let saveDir = Path.Join(outputDir, "responses", response.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml)
+            let html = LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName
             let responseView = generate html "defaultindex" response.Metadata.Title
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, responseView))

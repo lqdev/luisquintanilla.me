@@ -355,22 +355,33 @@ Your website has comprehensive IndieWeb compliance that **MUST be preserved** du
 - In-place filtering with smooth desert-inspired transitions preserving all IndieWeb semantic annotations
 - Theme-coherent timeline experience maintaining personal identity and complete microformats2 implementation across light/dark modes
 
-### Phase 4: Production Integration & Performance Validation (2-3 days)
-**Goal**: Complete integration with F# system and validate performance improvements while ensuring IndieWeb compliance
+### 🎯 **Phase 4: Individual Content Page Enhancement** (Current - 2025-07-26)
+**Status**: Active Implementation - Option A Selected
+
+**User Decision**: Proceeding with individual content page enhancement. Performance measurements deprioritized - custom CSS route confirmed as preferred approach without need for validation metrics.
+
+**Current Focus**: Apply desert theme and navigation consistency to individual content pages while preserving all IndieWeb functionality.
+
+**Implementation Strategy**:
+1. **Start with Blog Posts** (`/posts/` pages) - highest traffic content type
+2. **Apply Desert Theme Styling** while preserving all h-entry microformats2 markup
+3. **Navigation Consistency** across homepage ↔ individual content pages
+4. **Webmention Form Integration** with desert styling
+5. **IndieWeb Compliance** maintained throughout
 
 #### Tasks:
-1. **F# ViewEngine Integration**: Ensure custom CSS works seamlessly with ViewEngine HTML output and existing microformats2 markup
-2. **IndieWeb Standards Validation**: Verify all existing rel=me links, webmention endpoints, RSS autodiscovery links, and OpenGraph metadata remain functional
-3. **Content Type Page Optimization**: Apply new design system to individual content pages while preserving h-entry structure and webmention forms
-4. **Performance Measurement**: Validate 33% speed improvement claims from research without compromising semantic web features
-5. **Cross-Content Navigation**: Ensure consistent experience across all content types while maintaining microformats2 compliance
-6. **Feed & Metadata Integration**: Verify RSS feeds, OPML files, and all semantic web annotations work with new CSS system
+1. **F# ViewEngine Integration**: Apply desert theme to individual content pages while preserving microformats2 markup
+2. **IndieWeb Standards Preservation**: Maintain all existing rel=me links, webmention endpoints, RSS autodiscovery
+3. **Content Type Page Styling**: Apply desert design system to posts, notes, responses, reviews pages
+4. **Cross-Content Navigation**: Ensure consistent navigation experience across all content types
+5. **Webmention Form Integration**: Style webmention forms with desert theme while maintaining functionality
+6. **Feed & Metadata Integration**: Verify RSS feeds and semantic web annotations work with new CSS system
 
 #### Deliverables:
-- Complete integration with F# ViewEngine system maintaining all IndieWeb functionality
-- Measured performance improvements validating research claims with preserved semantic web compliance
-- Consistent design system across all content pages with maintained microformats2 markup
-- Verified RSS autodiscovery, webmentions, and rel=me functionality with optimized build and delivery system
+- Complete F# ViewEngine integration with desert theme across all content pages
+- Maintained IndieWeb functionality (webmentions, microformats2, RSS autodiscovery, rel=me)
+- Consistent desert design system across all content types
+- Preserved semantic HTML structure and accessibility standards
 
 ### Phase 5: Testing, Validation & Production Deployment (2-3 days)
 **Goal**: Comprehensive testing and production-ready deployment with full IndieWeb compliance validation
