@@ -65,12 +65,8 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                         attr "data-date" item.Date
                     ] [
                         header [ _class "card-header" ] [
-                            div [ _class "h-card author-info" ] [
-                                img [ _class "u-photo author-avatar"; _src "/avatar.png"; _alt "Luis Quintanilla" ]
-                                span [ _class "p-name author-name" ] [ Text "Luis Quintanilla" ]
-                                time [ _class "dt-published publication-date"; attr "datetime" item.Date ] [
-                                    Text (DateTime.Parse(item.Date).ToString("MMM dd, yyyy"))
-                                ]
+                            time [ _class "dt-published publication-date"; attr "datetime" item.Date ] [
+                                Text (DateTime.Parse(item.Date).ToString("MMM dd, yyyy"))
                             ]
                             div [ _class "content-type-info" ] [
                                 span [ _class "content-type-badge"; attr "data-type" item.ContentType ] [
@@ -275,14 +271,14 @@ let blogPostView (title:string) (content:string) (date:string) (fileName:string)
             header [ _class "post-header" ] [
                 h1 [ _class "p-name post-title" ] [ Text title ]
                 div [ _class "post-meta" ] [
-                    span [ _class "h-card author-info" ] [
-                        Text "By "
-                        span [ _class "p-name" ] [ Text "Luis Quintanilla" ]
-                    ]
-                    Text " • "
                     time [ _class "dt-published"; attr "datetime" date ] [
                         Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
+                ]
+                // Hidden IndieWeb author information for microformats compliance
+                div [ _class "u-author h-card microformat-hidden" ] [
+                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
                 ]
             ]
             
@@ -309,14 +305,14 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
             header [ _class "post-header" ] [
                 h1 [ _class "p-name post-title" ] [ Text title ]
                 div [ _class "post-meta" ] [
-                    span [ _class "h-card author-info" ] [
-                        Text "By "
-                        span [ _class "p-name" ] [ Text "Luis Quintanilla" ]
-                    ]
-                    Text " • "
                     time [ _class "dt-published"; attr "datetime" date ] [
                         Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
+                ]
+                // Hidden IndieWeb author information for microformats compliance
+                div [ _class "u-author h-card microformat-hidden" ] [
+                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
                 ]
             ]
             
@@ -343,14 +339,14 @@ let responsePostView (title:string) (content:string) (date:string) (fileName:str
             header [ _class "post-header" ] [
                 h1 [ _class "p-name post-title" ] [ Text title ]
                 div [ _class "post-meta" ] [
-                    span [ _class "h-card author-info" ] [
-                        Text "By "
-                        span [ _class "p-name" ] [ Text "Luis Quintanilla" ]
-                    ]
-                    Text " • "
                     time [ _class "dt-published"; attr "datetime" date ] [
                         Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
+                ]
+                // Hidden IndieWeb author information for microformats compliance
+                div [ _class "u-author h-card microformat-hidden" ] [
+                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
                 ]
             ]
             

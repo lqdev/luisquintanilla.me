@@ -104,28 +104,10 @@
   align-items: center;
 }
 
-.author-info {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-}
-
-.author-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 2px solid var(--accent-color);
-}
-
-.author-name {
-  font-weight: 600;
-  color: var(--text-color);
-  margin-right: var(--spacing-sm);
-}
-
 .publication-date {
   color: var(--text-muted);
   font-size: 0.9rem;
+  font-weight: 500;
 }
 
 .content-type-info {
@@ -523,4 +505,10 @@
   .post-header {
     padding-bottom: var(--spacing-md);
   }
+}
+
+/* Hidden content for IndieWeb microformats compliance */
+.microformat-hidden {
+  display: none !important;
+  visibility: hidden !important;
 }
