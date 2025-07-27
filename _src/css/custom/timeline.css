@@ -172,8 +172,12 @@
   background: #CD853F; /* Barrel Cactus */
 }
 
-.content-type-badge[data-type="media"] {
-  background: #DB7093; /* Cholla Pink */
+.content-type-badge[data-type="bookmarks"] {
+  background: #9CAF88; /* Desert Sage - same as snippets but bookmarks get separate filter */
+}
+
+.content-type-badge[data-type="streams"] {
+  background: #8FBC8F; /* Palo Verde */
 }
 
 /* Card Body */

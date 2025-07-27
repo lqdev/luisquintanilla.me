@@ -69,7 +69,8 @@
 }
 
 /* Dark theme (Desert Night) */
-[data-theme="dark"] {
+[data-theme="dark"],
+body[data-theme="dark"] {
   /* Primary Colors - Desert Night */
   --midnight-indigo: #2C3E50;       /* Background - sophisticated dark */
   --desert-moonlight: #BDC3C7;      /* Text - easy on eyes */

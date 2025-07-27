@@ -33,9 +33,11 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                 button [ _class "filter-btn"; attr "data-filter" "posts"; _type "button" ] [ Text "Blog Posts" ]
                 button [ _class "filter-btn"; attr "data-filter" "notes"; _type "button" ] [ Text "Notes" ]
                 button [ _class "filter-btn"; attr "data-filter" "responses"; _type "button" ] [ Text "Responses" ]
+                button [ _class "filter-btn"; attr "data-filter" "snippets"; _type "button" ] [ Text "Snippets" ]
+                button [ _class "filter-btn"; attr "data-filter" "wiki"; _type "button" ] [ Text "Wiki" ]
+                button [ _class "filter-btn"; attr "data-filter" "presentations"; _type "button" ] [ Text "Presentations" ]
+                button [ _class "filter-btn"; attr "data-filter" "reviews"; _type "button" ] [ Text "Books" ]
                 button [ _class "filter-btn"; attr "data-filter" "bookmarks"; _type "button" ] [ Text "Bookmarks" ]
-                button [ _class "filter-btn"; attr "data-filter" "reviews"; _type "button" ] [ Text "Reviews" ]
-                button [ _class "filter-btn"; attr "data-filter" "streams"; _type "button" ] [ Text "Streams" ]
                 button [ _class "filter-btn"; attr "data-filter" "media"; _type "button" ] [ Text "Media" ]
             ]
         ]
@@ -92,7 +94,15 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                             a [ _class "u-url title-link"; _href properPermalink ] [ Text item.Title ]
                         ]
                         div [ _class "e-content card-content" ] [
-                            rawText item.Content
+                            // Clean content to remove all nested article tags and prevent double nesting
+                            let cleanedContent = 
+                                let content = item.Content
+                                // Remove all article opening tags with any class
+                                let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
+                                // Remove all article closing tags
+                                let removeArticleEnd = removeArticleStart.Replace("</article>", "")
+                                removeArticleEnd
+                            rawText cleanedContent
                         ]
                     ]
                     

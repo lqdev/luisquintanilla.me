@@ -3,9 +3,10 @@
 
 // Theme Management
 function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const currentTheme = document.documentElement.getAttribute('data-theme') || document.body.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', newTheme);
+    document.body.setAttribute('data-theme', newTheme);
     
     const themeIcon = document.getElementById('theme-toggle-icon');
     if (themeIcon) {
@@ -16,7 +17,9 @@ function toggleTheme() {
 }
 
 function applyTheme(theme) {
+    // Apply theme to both documentElement and body for broader compatibility
     document.documentElement.setAttribute('data-theme', theme);
+    document.body.setAttribute('data-theme', theme);
     const themeIcon = document.getElementById('theme-toggle-icon');
     if (themeIcon) {
         themeIcon.innerHTML = theme === 'dark' ? '🌙' : '☀️';

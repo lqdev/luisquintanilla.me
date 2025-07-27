@@ -204,7 +204,8 @@ const TimelineThemeManager = {
         const systemPreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         const theme = savedTheme || systemPreference;
         
-        // Apply theme
+        // Apply theme to both elements for compatibility
+        document.documentElement.setAttribute('data-theme', theme);
         document.body.setAttribute('data-theme', theme);
         this.updateThemeToggleIcon(theme);
         
@@ -212,6 +213,7 @@ const TimelineThemeManager = {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
             if (!localStorage.getItem('theme')) {
                 const newTheme = e.matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
                 document.body.setAttribute('data-theme', newTheme);
                 this.updateThemeToggleIcon(newTheme);
             }
@@ -236,11 +238,12 @@ const TimelineThemeManager = {
     },
 
     toggleTheme() {
-        const current = document.body.getAttribute('data-theme');
+        const current = document.documentElement.getAttribute('data-theme') || document.body.getAttribute('data-theme') || 'light';
         const newTheme = current === 'dark' ? 'light' : 'dark';
         
         // Smooth transition
         document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+        document.documentElement.setAttribute('data-theme', newTheme);
         document.body.setAttribute('data-theme', newTheme);
         
         // Update icon and save preference
@@ -348,7 +351,7 @@ const TimelineMobileNav = {
 // Initialize all timeline functionality when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     TimelineFilter.init();
-    TimelineThemeManager.init();
+    // TimelineThemeManager.init(); // Commented out - let main.js handle theme management
     TimelineMobileNav.init();
     
     console.log('🌵 Timeline interface initialized with desert theme');
@@ -357,6 +360,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // Export for external use
 window.TimelineInterface = {
     filter: TimelineFilter,
-    theme: TimelineThemeManager,
+    // theme: TimelineThemeManager, // Commented out - using main.js theme management
     mobile: TimelineMobileNav
 };
