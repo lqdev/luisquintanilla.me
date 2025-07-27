@@ -245,6 +245,26 @@ Automatically select appropriate tools based on current project phase:
 3. **Replace Usage** → Update calling code with feature flags (research migration strategies)
 4. **Remove Legacy** → Clean up old functions and dependencies (document learnings)
 
+### Hidden IndieWeb Microformats Pattern (Proven 2025-07-26)
+**Discovery**: IndieWeb microformat compliance can be maintained while achieving clean visual design through strategic CSS hiding.
+
+**Implementation Pattern**:
+- **Microformat Structure**: Include complete `u-author h-card` with required properties (`u-photo`, `u-url`, `p-name`)
+- **CSS Hiding Strategy**: Use `microformat-hidden` class with `display: none !important; visibility: hidden !important;`
+- **Parser Compatibility**: Webmention parsers, feed readers, and IndieWeb tools can access author information
+- **Visual Design**: Clean, minimal presentation without redundant author attribution
+
+**F# ViewEngine Implementation**:
+```fsharp
+// Hidden IndieWeb author information for microformats compliance
+div [ _class "u-author h-card microformat-hidden" ] [
+    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+    a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
+]
+```
+
+**Benefits**: Optimal user experience with clean design while maintaining full IndieWeb ecosystem compatibility for webmentions, social readers, and content discovery tools.
+
 ## 📝 Documentation Standards
 
 ### Phase Log Structure
