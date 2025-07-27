@@ -433,6 +433,11 @@ module Layouts
                 for sheet in styleSheets do
                     sheet
 
+                // Reveal.js CSS for presentations
+                link [_rel "stylesheet"; _href "/lib/revealjs/dist/reveal.css"]
+                link [_rel "stylesheet"; _href "/lib/revealjs/dist/theme/black.css"]
+                link [_rel "stylesheet"; _href "/lib/revealjs/plugin/highlight/monokai.css"]
+
                 // Opengraph
                 let ogElements = buildOpenGraphElements pageTitle
 
@@ -467,6 +472,25 @@ module Layouts
 
                 for scr in scripts do
                     scr
+
+                // Conditionally load Reveal.js for presentations
+                script [_src "/lib/revealjs/dist/reveal.js"] []
+                script [_src "/lib/revealjs/plugin/markdown/markdown.js"] []
+                script [_src "/lib/revealjs/plugin/highlight/highlight.js"] []
+                script [_type "application/javascript"] [
+                    rawText """
+                    // Initialize Reveal.js when a presentation container is found on the page
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const presentationContainer = document.querySelector('.presentation-container');
+                        if (presentationContainer && typeof Reveal !== 'undefined') {
+                            Reveal.initialize({
+                                plugins: [RevealMarkdown, RevealHighlight],
+                                embedded: true
+                            });
+                        }
+                    });
+                    """
+                ]
 
             ]
             footerContent
@@ -509,10 +533,14 @@ module Layouts
                 title [] [Text pageTitle]
             ]
             body [] [
-                defaultNavBar
+                // Desert theme navigation (consistent with other content types)
+                for navElement in desertNavigation do
+                    navElement
 
-                main [attr "role" "main"; _class "container"] [
-                    rawText content
+                main [attr "role" "main"; _class "main-content"; _id "main-content"] [
+                    div [_class "content-wrapper"] [
+                        rawText content
+                    ]
                 ]
 
                 for scr in scripts do
@@ -525,7 +553,23 @@ module Layouts
                     rawText """
                     Reveal.initialize({
                         plugins: [ RevealMarkdown ],
-                        embedded: true
+                        embedded: true,
+                        width: 800,
+                        height: 600,
+                        minScale: 0.5,
+                        maxScale: 1.0,
+                        margin: 0.1,
+                        controls: true,
+                        progress: true,
+                        center: true,
+                        touch: true,
+                        loop: false,
+                        rtl: false,
+                        fragments: true,
+                        autoSlide: 0,
+                        keyboard: true,
+                        overview: true,
+                        disableLayout: false
                     });
                     """
                 ]   

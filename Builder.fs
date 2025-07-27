@@ -58,6 +58,7 @@ module Builder
         let staticDirectories = [
             "assets/images"
             ".well-known"
+            "lib"
         ]
 
         staticDirectories
@@ -435,7 +436,7 @@ module Builder
             let saveDir = Path.Join(outputDir, "resources", "snippets", snippet.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = contentViewWithTitle snippet.Metadata.Title (snippet.Content |> convertMdToHtml)
+            let html = snippetPageView snippet.Metadata.Title (snippet.Content |> convertMdToHtml) snippet.Metadata.CreatedDate snippet.FileName
             let snippetView = generate html "defaultindex" $"Snippet | {snippet.Metadata.Title} | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, snippetView))
@@ -467,7 +468,7 @@ module Builder
             let saveDir = Path.Join(outputDir, "resources", "wiki", wiki.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = contentViewWithTitle wiki.Metadata.Title (wiki.Content |> convertMdToHtml)
+            let html = wikiPageView wiki.Metadata.Title (wiki.Content |> convertMdToHtml) wiki.Metadata.LastUpdatedDate wiki.FileName
             let wikiView = generate html "defaultindex" $"{wiki.Metadata.Title} | Wiki | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, wikiView))
@@ -499,8 +500,9 @@ module Builder
             let saveDir = Path.Join(outputDir, "resources", "presentations", presentation.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            // Use proper reveal.js integration with presentationPageView and presentationLayout
-            let presentationView = generate (presentationPageView presentation) "presentation" $"{presentation.Metadata.Title} | Presentation | Luis Quintanilla"
+            // Use standard individual post layout like other content types
+            let html = LayoutViews.presentationPageView presentation
+            let presentationView = generate html "defaultindex" $"{presentation.Metadata.Title} | Presentation | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, presentationView))
         
@@ -531,7 +533,7 @@ module Builder
             let saveDir = Path.Join(outputDir, "reviews", book.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = contentViewWithTitle book.Metadata.Title (book.Content |> convertMdToHtml)
+            let html = reviewPageView book.Metadata.Title (book.Content |> convertMdToHtml) book.Metadata.DatePublished book.FileName
             let bookView = generate html "defaultindex" $"{book.Metadata.Title} | Reviews | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, bookView))

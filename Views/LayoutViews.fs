@@ -251,6 +251,162 @@ let contentViewWithTitle (title:string) (content:string) =
         rawText content
     ]    
 
+let snippetPageView (title:string) (content:string) (date:string) (fileName:string) = 
+    let publishDate = DateTime.Parse(date)
+    div [ _class "mr-auto" ] [
+        article [ _class "h-entry individual-post" ] [
+            header [ _class "post-header" ] [
+                h1 [ _class "p-name post-title" ] [ Text title ]
+                div [ _class "post-meta" ] [
+                    time [ _class "dt-published"; attr "datetime" date ] [
+                        Text (publishDate.ToString("MMMM d, yyyy"))
+                    ]
+                ]
+                // Hidden IndieWeb author information for microformats compliance
+                div [ _class "u-author h-card microformat-hidden" ] [
+                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
+                ]
+            ]
+            
+            div [ _class "e-content post-content" ] [
+                rawText content
+            ]
+            
+            footer [ _class "post-footer" ] [
+                div [ _class "permalink-info" ] [
+                    Text "Permalink: "
+                    a [ _class "u-url permalink-link"; _href $"/snippets/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
+                        Text $"/snippets/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    ]
+                ]
+                webmentionForm
+            ]
+        ]
+    ]
+
+let wikiPageView (title:string) (content:string) (date:string) (fileName:string) = 
+    let publishDate = DateTime.Parse(date)
+    div [ _class "mr-auto" ] [
+        article [ _class "h-entry individual-post" ] [
+            header [ _class "post-header" ] [
+                h1 [ _class "p-name post-title" ] [ Text title ]
+                div [ _class "post-meta" ] [
+                    time [ _class "dt-published"; attr "datetime" date ] [
+                        Text (publishDate.ToString("MMMM d, yyyy"))
+                    ]
+                ]
+                // Hidden IndieWeb author information for microformats compliance
+                div [ _class "u-author h-card microformat-hidden" ] [
+                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
+                ]
+            ]
+            
+            div [ _class "e-content post-content" ] [
+                rawText content
+            ]
+            
+            footer [ _class "post-footer" ] [
+                div [ _class "permalink-info" ] [
+                    Text "Permalink: "
+                    a [ _class "u-url permalink-link"; _href $"/wiki/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
+                        Text $"/wiki/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    ]
+                ]
+                webmentionForm
+            ]
+        ]
+    ]
+
+let reviewPageView (title:string) (content:string) (date:string) (fileName:string) = 
+    let publishDate = DateTime.Parse(date)
+    div [ _class "mr-auto" ] [
+        article [ _class "h-entry individual-post" ] [
+            header [ _class "post-header" ] [
+                h1 [ _class "p-name post-title" ] [ Text title ]
+                div [ _class "post-meta" ] [
+                    time [ _class "dt-published"; attr "datetime" date ] [
+                        Text (publishDate.ToString("MMMM d, yyyy"))
+                    ]
+                ]
+                // Hidden IndieWeb author information for microformats compliance
+                div [ _class "u-author h-card microformat-hidden" ] [
+                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
+                ]
+            ]
+            
+            div [ _class "e-content post-content" ] [
+                rawText content
+            ]
+            
+            footer [ _class "post-footer" ] [
+                div [ _class "permalink-info" ] [
+                    Text "Permalink: "
+                    a [ _class "u-url permalink-link"; _href $"/reviews/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
+                        Text $"/reviews/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    ]
+                ]
+                webmentionForm
+            ]
+        ]
+    ]
+
+let presentationPageView (presentation:Presentation) = 
+    let publishDate = DateTime.Parse(presentation.Metadata.Date)
+    div [ _class "mr-auto" ] [
+        article [ _class "h-entry individual-post" ] [
+            header [ _class "post-header" ] [
+                h1 [ _class "p-name post-title" ] [ Text presentation.Metadata.Title ]
+                div [ _class "post-meta" ] [
+                    time [ _class "dt-published"; attr "datetime" presentation.Metadata.Date ] [
+                        Text (publishDate.ToString("MMMM d, yyyy"))
+                    ]
+                ]
+                // Hidden IndieWeb author information for microformats compliance
+                div [ _class "u-author h-card microformat-hidden" ] [
+                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
+                ]
+            ]
+            
+            div [ _class "e-content post-content" ] [
+                // Embed Reveal.js presentation in the post content
+                div [ _class "presentation-container" ] [
+                    div [ _class "reveal" ] [
+                        div [ _class "slides" ] [
+                            section [ flag "data-markdown" ] [
+                                textarea [ flag "data-template" ] [
+                                    rawText presentation.Content
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+                
+                // Resources section as part of the content
+                hr []
+                h3 [] [Text "Resources"]
+                ul [] [
+                    for resource in presentation.Metadata.Resources do
+                        li [] [a [_href $"{resource.Url}"] [Text resource.Text]]
+                ]
+            ]
+            
+            footer [ _class "post-footer" ] [
+                div [ _class "permalink-info" ] [
+                    Text "Permalink: "
+                    a [ _class "u-url permalink-link"; _href $"/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/" ] [
+                        Text $"/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/"
+                    ]
+                ]
+                webmentionForm
+            ]
+        ]
+    ]
+
+
 let liveStreamView (title:string) = 
     div [ _class "mr-auto" ] [
         h1 [] [Text title]

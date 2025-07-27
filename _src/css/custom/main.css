@@ -101,12 +101,7 @@ body {
 /* Presentation container (preserve existing functionality) */
 .presentation-container {
   height: 50vh;
-  width: 75vw;
-  max-width: 100%;
-  margin: var(--spacing-lg) auto;
-  border-radius: var(--border-radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  width: 75vw
 }
 
 /* Image styling with desert theme */
@@ -161,11 +156,6 @@ video {
   .card.rounded.m-2.w-75.mx-auto {
     width: 95% !important;
     margin: var(--spacing-sm) !important;
-  }
-  
-  .presentation-container {
-    height: 40vh;
-    width: 95vw;
   }
 }
 

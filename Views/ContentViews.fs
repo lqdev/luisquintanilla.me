@@ -223,22 +223,50 @@ let albumPostView (album: Album) =
 
 let presentationPageView (presentation:Presentation) = 
     div [_class "presentation-container"] [
-        h2 [] [Text presentation.Metadata.Title]
-        div [ _class "reveal"] [
-            div [ _class "slides"] [
-                section [ flag "data-markdown"] [
-                    textarea [ flag "data-template" ] [
-                        rawText presentation.Content
+        // Hidden IndieWeb author information for microformats compliance
+        div [ _class "u-author h-card microformat-hidden" ] [
+            img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+            a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
+        ]
+        
+        article [ _class "h-entry presentation-article" ] [
+            header [ _class "presentation-header" ] [
+                h2 [ _class "p-name" ] [Text presentation.Metadata.Title]
+                div [ _class "presentation-meta" ] [
+                    time [ _class "dt-published"; attr "datetime" presentation.Metadata.Date ] [
+                        let publishDate = DateTime.Parse(presentation.Metadata.Date)
+                        Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
                 ]
             ]
+            
+            div [ _class "e-content presentation-content" ] [
+                div [ _class "reveal"] [
+                    div [ _class "slides"] [
+                        section [ flag "data-markdown"] [
+                            textarea [ flag "data-template" ] [
+                                rawText presentation.Content
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+            
+            footer [ _class "presentation-footer" ] [
+                hr []
+                div [ _class "permalink-info" ] [
+                    Text "Permalink: "
+                    a [ _class "u-url permalink-link"; _href $"/presentations/{presentation.FileName}/" ] [
+                        Text $"/presentations/{presentation.FileName}/"
+                    ]
+                ]
+                h3 [] [Text "Resources"]
+                ul [] [
+                    for resource in presentation.Metadata.Resources do
+                        li [] [a [_href $"{resource.Url}"] [Text resource.Text]]
+                ]
+            ]
         ]
-        hr []
-        h3 [] [Text "Resources"]
-        ul [] [
-            for resource in presentation.Metadata.Resources do
-                li [] [a [_href $"{resource.Url}"] [Text resource.Text]]
-        ]  
     ]
 
 let liveStreamPageView (stream:Livestream) = 
