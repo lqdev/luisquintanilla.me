@@ -687,6 +687,54 @@ let escapeJson (text: string) =
 
 **Benefits**: Handles any content volume while maintaining excellent performance and user experience on static sites.
 
+### External Library Integration Pattern (Proven 2025-07-27)
+**Discovery**: External JavaScript libraries (Reveal.js) integrate excellently with Phase 4A individual post pattern when using container-relative sizing and conditional loading.
+
+**Implementation Pattern**:
+- **Static Asset Strategy**: Copy library assets to public root (`/lib/`) not just under `/assets/lib/` for proper path resolution
+- **Container-Relative Sizing**: Use parent container dimensions (`width: 100%`) instead of viewport-based (`75vw`) for proper bounds
+- **Conditional Loading**: Detect library need via DOM elements (`document.querySelector()`) and load scripts only when required
+- **CSS Interference Minimization**: Use basic containment rules without complex overrides that conflict with library styling
+- **Layout Pattern Consistency**: External libraries work seamlessly with Phase 4A individual post patterns
+
+**F# Static Site Integration**:
+```fsharp
+// Builder.fs: Copy library assets to public root
+let staticDirectories = [
+    "assets/images"
+    ".well-known"
+    "lib"  // ← Enables /lib/library/ asset access
+]
+
+// Layouts.fs: Conditional script loading in layout
+script [_type "application/javascript"] [
+    rawText """
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.querySelector('.library-container');
+        if (container && typeof LibraryName !== 'undefined') {
+            LibraryName.initialize({ embedded: true });
+        }
+    });
+    """
+]
+```
+
+**CSS Container Pattern**:
+```css
+.library-container {
+  width: 100%;           /* Container-relative vs viewport-based */
+  max-width: 100%;      /* Containment guarantee */
+  overflow: hidden;     /* Overflow protection */
+}
+
+.library-container .library-wrapper {
+  width: 100% !important;   /* Force library to respect container */
+  height: 100% !important;  /* Force library to respect container */
+}
+```
+
+**Benefits**: External libraries enhance specialized content while maintaining architectural consistency, responsive design, and semantic web standards.
+
 ### Content Volume HTML Parsing Pattern (Critical Discovery 2025-07-26)
 **Discovery**: High content volumes (1000+ items) with `rawText` rendering can generate malformed HTML that breaks browser DOM parsing so severely that **no JavaScript loads at all**.
 
