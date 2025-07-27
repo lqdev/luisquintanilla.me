@@ -244,22 +244,6 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <category>sakana</category>
     </item>
     <item>
-      <title>Resources List for the Personal Web</title>
-      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
-&lt;p&gt;This list is to help guide and help those who are in every stage of their web-building journey on the personal web. This list is not meant to overwhelm you, but rather give you options and find tools, graphics, utilities, codes, and everything in between to help get you creating more on the independent web.&lt;/p&gt;
-&lt;/blockquote&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/resource-list-personal-web</link>
-      <guid>https://www.luisquintanilla.me/responses/resource-list-personal-web</guid>
-      <pubDate>2025-05-30 13:32</pubDate>
-      <category>32bitcafe</category>
-      <category>personalweb</category>
-      <category>indieweb</category>
-      <category>openweb</category>
-      <category>community</category>
-      <category>retro</category>
-    </item>
-    <item>
       <title>The stage has been set for the growth of small social media</title>
       <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
 &lt;p&gt;Last month during Meta's antitrust trial, Mark Zuckerberg admitted that his company's focus has changed radically from where it began...[his] testimony implies that Facebook (Meta) may no longer be as much of an option if we actually want to talk to each other on line. But, neither are many of the other large social media sites.&lt;/p&gt;
@@ -306,19 +290,6 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <category>rss</category>
       <category>comic</category>
       <category>art</category>
-    </item>
-    <item>
-      <title>Pocket shutting down</title>
-      <description>&lt;![CDATA[[bookmark] &lt;p&gt;I haven't used Pocket in a long time but sad to hear it's shutting down. It's great they're offering the option of letting you export your data and platforms like &lt;a href="https://www.manton.org/2025/05/22/with-pocket-shutting-down-ive.html"&gt;Micro.blog&lt;/a&gt; are making it easy to host that content on your own site (assuming you're using Micro.blog).&lt;/p&gt;
-&lt;p&gt;For bookmarking solutions, I've been using my website as well as messages-to-self on Element. What's on my website is the content that I really want to make sure I archive, whereas the messages to self I treat more as a read-it-later solution. Eventually, some of those make it to my website. I'm working on my mobile publishing flow to simplify my bookmarking process but overall, I'm happy with my current system.&lt;/p&gt;
-&lt;p&gt;This is also another great reminder why owning your content is important.&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/pocket-shutting-down</link>
-      <guid>https://www.luisquintanilla.me/responses/pocket-shutting-down</guid>
-      <pubDate>2025-05-22 20:21</pubDate>
-      <category>pocket</category>
-      <category>mozilla</category>
-      <category>bookmark</category>
     </item>
     <item>
       <title>Agent Network Protocol - The HTTP of the Agentic Web Era</title>
@@ -404,20 +375,6 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <category>forum</category>
     </item>
     <item>
-      <title>Bukmark Club</title>
-      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
-&lt;p&gt;The BUKMARK.CLUB is a collection of websites from across the Internet.&lt;/p&gt;
-&lt;/blockquote&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/bukmark-club</link>
-      <guid>https://www.luisquintanilla.me/responses/bukmark-club</guid>
-      <pubDate>2025-05-09 21:09</pubDate>
-      <category>bookmark</category>
-      <category>internet</category>
-      <category>web</category>
-      <category>community</category>
-    </item>
-    <item>
       <title>In Praise of Links</title>
       <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
 &lt;p&gt;Hyperlinks deserve more recognition in light of all the ways their value has been sidelined and denied.&lt;/p&gt;
@@ -434,6 +391,105 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <category>indieweb</category>
       <category>decentralization</category>
       <category>web</category>
+    </item>
+    <item>
+      <title>The Evolution of Blogging</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...around 1997, when Jorn Barger launched his website, titling it “The Robot Wisdom Weblog.” Barger’s plan was to curate his favorite links from around the web, and add bits of commentary to each one. In other words, he meant to keep a log of his web experience. Hence weblog.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In their earliest days, webloggers stood as gatekeepers to the web’s ever-growing well of content. Each day, these URL pioneers would post a few new links and sprinkle in their own commentary. Blogs acted as a signpost for web users, and following a few key blogs was enough to keep track of just about everything new on the web. Many began to look at the blogging community as a brand new type of media, one that often stood far closer to an impartial truth than traditional mediums would allow for.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;1999, Peter Merholz threw up his own weblog, and in the sidebar added the tagline: &amp;quot;I’ve decided to pronounce the word “weblog” as wee’- blog. Or “blog” for short.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In the beginning, most bloggers hand coded their sites, adding a new HTML page to their server each time they had a new entry, or just updating the homepage to include the newest links. But soon enough, tools showed up to help bloggers with the process.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...on the fringes, a new type of blog was emerging. The personal blog. These sites ditched the curated links and focused exclusively on commentary. Bloggers used their site to chronicle their personal journey, from the almost boring and banal to the weird and wonderful. This new type of blog was less an alternative media source and more akin to an online journal or diary. And these writers saw themselves not as gatekeepers to the web, but as sharers of their own identity.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;New tools soon caught up with this shifting perspective. The first of the bunch to do so was LiveJournal...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Blogger came next. And it would prove to be the most popular of the early blogging tools. The platform first launched in August of 1999, but picked up steam the following year when it introduced the concept of a permalink.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;These platforms made blogging open, in every sense of the word. Visitors were greeted with a single, open textarea on a free platform that was open to all to participate.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Blogger became the platform choice for a lot of writers out there. It certainly was for Mena Trott&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Trott had the feeling that platforms like Blogger did not go nearly far enough.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Trott wanted her own site to stand out from the crowd. To be quintessentially hers. Blogger wouldn’t let her do that. So together with her husband, a Perl programmer, she built Movable Type...And with that move, Trott ushered in a third generation of blogging.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Movable Type allowed users to set up their blog on their own server, and have complete control over its look and feel.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Blog (the noun and verb) became a word familiar not just to web geeks, but to everyone. Lots of imitators and innovators followed in the wake of Moveable Type. Open source platforms like WordPress rose to meet the rising demand. But for a long time, Moveable Type was the standard. It fed its community with a constant stream of new features that promoted openness and freedom.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Blogging, as a community and a practice, continues to be refined to this day thanks to the dedication of web users everywhere. But its sharpest point was made the day Mena Trott decided that &lt;strong&gt;a blog could be more than just some text on a page. It could be one of a kind.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/evolution-of-blogging-history-web</link>
+      <guid>https://www.luisquintanilla.me/responses/evolution-of-blogging-history-web</guid>
+      <pubDate>2025-05-09 20:54</pubDate>
+      <category>blogging</category>
+      <category>history</category>
+      <category>web</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>socialweb.network</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Your gateway to decentralized social networking protocols, resources, and community&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/socialweb-network</link>
+      <guid>https://www.luisquintanilla.me/responses/socialweb-network</guid>
+      <pubDate>2025-05-09 20:49</pubDate>
+      <category>fediverse</category>
+      <category>social</category>
+      <category>openweb</category>
+      <category>decentralized</category>
+      <category>community</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>Fediverse House 2025 Roundup</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;No Walls, Just Vibes at SXSW’s Fediverse House&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Fediverse House was SXSW’s first physical gathering dedicated entirely to the constellation of interoperable social platforms powered by protocols like ActivityPub and AT Protocol. (We know “Fediverse” isn’t quite accurate to describe the whole ecosystem; in this case, it was just a convenient, fun way to name the space.)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;It didn’t matter which platform you preferred or which protocol you were building on; everyone was focused on the singular goal of building a better internet.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...the real power move for creators is ownership and control of their work and livelihoods.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...identity portability is a radical shift, and...decentralization could lead to more humane social spaces.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dot-social.simplecast.com/"&gt;DotSocial Podcast&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://flipboard.video/c/fediverse.house/videos"&gt;Fediverse House PeerTube Channel&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/fediverse-house-2025-roundup</link>
+      <guid>https://www.luisquintanilla.me/responses/fediverse-house-2025-roundup</guid>
+      <pubDate>2025-05-09 20:36</pubDate>
+      <category>fediverse</category>
+      <category>conference</category>
+      <category>indieweb</category>
+      <category>openweb</category>
     </item>
   </channel>
 </rss>

@@ -1027,7 +1027,7 @@ module UnifiedFeeds =
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
                 let content = feedData.CardHtml  // Clean HTML instead of CDATA-wrapped RSS content
                 let date = feedData.Content.Metadata.Date
-                let tags = feedData.Content.Metadata.Tags
+                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "posts"; Tags = tags; RssXml = rssXml }
             | None -> None)
     
@@ -1040,12 +1040,14 @@ module UnifiedFeeds =
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
                 let content = feedData.CardHtml  // Clean HTML instead of CDATA-wrapped RSS content
                 let date = feedData.Content.Metadata.Date
-                let tags = feedData.Content.Metadata.Tags
+                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "notes"; Tags = tags; RssXml = rssXml }
             | None -> None)
     
     let convertResponsesToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
+        feedDataList 
+        |> List.filter (fun feedData -> feedData.Content.Metadata.ResponseType <> "bookmark") // Exclude bookmarks
+        |> List.choose (fun feedData ->
             match feedData.RssXml with
             | Some rssXml ->
                 // Use clean CardHtml instead of RSS description
@@ -1053,8 +1055,23 @@ module UnifiedFeeds =
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
                 let content = feedData.CardHtml  // Clean HTML instead of CDATA-wrapped RSS content
                 let date = feedData.Content.Metadata.DatePublished
-                let tags = feedData.Content.Metadata.Tags
+                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "responses"; Tags = tags; RssXml = rssXml }
+            | None -> None)
+    
+    let convertResponseBookmarksToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =
+        feedDataList 
+        |> List.filter (fun feedData -> feedData.Content.Metadata.ResponseType = "bookmark") // Only bookmarks
+        |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                // Use clean CardHtml instead of RSS description
+                let title = feedData.Content.Metadata.Title
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = feedData.CardHtml  // Clean HTML instead of CDATA-wrapped RSS content
+                let date = feedData.Content.Metadata.DatePublished
+                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml }
             | None -> None)
     
     let convertSnippetsToUnified (feedDataList: FeedData<Snippet> list) : UnifiedFeedItem list =

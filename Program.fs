@@ -91,6 +91,7 @@ let main argv =
         ("posts", GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData)
         ("notes", GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData)
         ("responses", GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData)
+        ("bookmarks", GenericBuilder.UnifiedFeeds.convertResponseBookmarksToUnified responsesFeedData)
         ("snippets", GenericBuilder.UnifiedFeeds.convertSnippetsToUnified snippetsFeedData)
         ("wiki", GenericBuilder.UnifiedFeeds.convertWikisToUnified wikisFeedData)
         ("presentations", GenericBuilder.UnifiedFeeds.convertPresentationsToUnified presentationsFeedData)

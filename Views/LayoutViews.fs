@@ -9,6 +9,11 @@ open CollectionViews
 
 // New timeline homepage view for feed-as-homepage interface
 let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
+    // Initial load: Show first 100 items (Performance optimization for large datasets)
+    // TODO: Implement progressive loading via JavaScript for remaining items
+    let initialItems = items |> Array.take (min 100 items.Length)
+    printfn "Debug: Showing %d items initially (%d total available)" initialItems.Length items.Length
+    
     div [ _class "h-feed unified-timeline" ] [
         // Header with personal intro and content filters
         header [ _class "timeline-header text-center p-4" ] [
@@ -30,10 +35,9 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                 button [ _class "filter-btn"; attr "data-filter" "posts"; _type "button" ] [ Text "Blog Posts" ]
                 button [ _class "filter-btn"; attr "data-filter" "notes"; _type "button" ] [ Text "Notes" ]
                 button [ _class "filter-btn"; attr "data-filter" "responses"; _type "button" ] [ Text "Responses" ]
-                button [ _class "filter-btn"; attr "data-filter" "snippets"; _type "button" ] [ Text "Snippets" ]
-                button [ _class "filter-btn"; attr "data-filter" "wiki"; _type "button" ] [ Text "Wiki" ]
-                button [ _class "filter-btn"; attr "data-filter" "presentations"; _type "button" ] [ Text "Presentations" ]
+                button [ _class "filter-btn"; attr "data-filter" "bookmarks"; _type "button" ] [ Text "Bookmarks" ]
                 button [ _class "filter-btn"; attr "data-filter" "reviews"; _type "button" ] [ Text "Reviews" ]
+                button [ _class "filter-btn"; attr "data-filter" "streams"; _type "button" ] [ Text "Streams" ]
                 button [ _class "filter-btn"; attr "data-filter" "media"; _type "button" ] [ Text "Media" ]
             ]
         ]
@@ -41,17 +45,16 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
         // Timeline content area
         main [ _class "timeline-content" ] [
             // Render timeline cards with desert theme and content type data attributes
-            for item in items do
+            for item in initialItems do
                 let fileName = Path.GetFileNameWithoutExtension(item.Url)
                 let getProperPermalink (contentType: string) (fileName: string) =
                     match contentType with
                     | "posts" -> $"/posts/{fileName}/"
                     | "notes" -> $"/notes/{fileName}/"
                     | "responses" -> $"/responses/{fileName}/"
-                    | "snippets" -> $"/resources/snippets/{fileName}/"
-                    | "wiki" -> $"/resources/wiki/{fileName}/"
-                    | "presentations" -> $"/resources/presentations/{fileName}/"
+                    | "bookmarks" -> $"/responses/{fileName}/"  // Bookmarks are responses but filtered separately
                     | "reviews" -> $"/reviews/{fileName}/"
+                    | "streams" -> $"/streams/{fileName}/"
                     | "media" -> $"/media/{fileName}/"
                     | _ -> $"/{contentType}/{fileName}/"
                 
@@ -77,10 +80,9 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                                       | "posts" -> "Blog Post"
                                       | "notes" -> "Note"
                                       | "responses" -> "Response"
-                                      | "snippets" -> "Snippet"
-                                      | "wiki" -> "Wiki"
-                                      | "presentations" -> "Presentation"
-                                      | "reviews" -> "Book Review"
+                                      | "bookmarks" -> "Bookmark"
+                                      | "reviews" -> "Review"
+                                      | "streams" -> "Stream Recording"
                                       | "media" -> "Media"
                                       | _ -> item.ContentType)
                             ]

@@ -107,13 +107,14 @@ module Builder
 
     // New timeline homepage for Phase 3 - Feed-as-Homepage Interface
     let buildTimelineHomePage (allUnifiedItems: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
-        // Flatten all feed items and sort chronologically (latest first)
+        // Flatten all feed items and sort chronologically (latest first) - ALL CONTENT DISPLAYED
         let flattenedItems = 
             allUnifiedItems
             |> List.collect snd
             |> List.sortByDescending (fun item -> DateTime.Parse(item.Date))
-            |> List.take (min 50 (allUnifiedItems |> List.collect snd |> List.length)) // Show more items on homepage
-            |> List.toArray
+            |> List.toArray // Remove artificial limit - show ALL content for proper discovery
+        
+        printfn "Debug: About to render %d items to timeline view" flattenedItems.Length
         
         // Generate the timeline homepage
         let timelineHomePage = generate (timelineHomeView flattenedItems) "default" "Luis Quintanilla - Personal Website"

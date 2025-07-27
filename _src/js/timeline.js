@@ -254,12 +254,16 @@ const TimelineThemeManager = {
     },
 
     updateThemeToggleIcon(theme) {
-        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggle = document.getElementById('theme-toggle-icon');
         if (themeToggle) {
             // Use proper emoji encoding to avoid corruption
             const icon = theme === 'dark' ? '\u{1F319}' : '\u{2600}\u{FE0F}'; // 🌙 : ☀️
             themeToggle.innerHTML = icon;
-            themeToggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+            
+            const themeButton = document.getElementById('theme-toggle');
+            if (themeButton) {
+                themeButton.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+            }
         }
     }
 };
