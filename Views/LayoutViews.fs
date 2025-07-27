@@ -33,10 +33,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                 button [ _class "filter-btn"; attr "data-filter" "posts"; _type "button" ] [ Text "Blog Posts" ]
                 button [ _class "filter-btn"; attr "data-filter" "notes"; _type "button" ] [ Text "Notes" ]
                 button [ _class "filter-btn"; attr "data-filter" "responses"; _type "button" ] [ Text "Responses" ]
-                button [ _class "filter-btn"; attr "data-filter" "snippets"; _type "button" ] [ Text "Snippets" ]
-                button [ _class "filter-btn"; attr "data-filter" "wiki"; _type "button" ] [ Text "Wiki" ]
-                button [ _class "filter-btn"; attr "data-filter" "presentations"; _type "button" ] [ Text "Presentations" ]
-                button [ _class "filter-btn"; attr "data-filter" "reviews"; _type "button" ] [ Text "Books" ]
+                button [ _class "filter-btn"; attr "data-filter" "reviews"; _type "button" ] [ Text "Reviews" ]
                 button [ _class "filter-btn"; attr "data-filter" "bookmarks"; _type "button" ] [ Text "Bookmarks" ]
                 button [ _class "filter-btn"; attr "data-filter" "media"; _type "button" ] [ Text "Media" ]
             ]
@@ -96,14 +93,17 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                         ]
                         div [ _class "e-content card-content" ] [
                             // Clean content to remove all nested article tags and prevent double nesting
+                            // Also remove duplicate h1/h2 titles that might already be in content
                             let cleanedContent = 
                                 let content = item.Content
                                 // Remove all article opening tags with any class
                                 let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
                                 // Remove all article closing tags
                                 let removeArticleEnd = removeArticleStart.Replace("</article>", "")
+                                // Remove duplicate h1/h2 titles (common source of duplication)
+                                let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h[12][^>]*>.*?</h[12]>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
                                 // Additional cleaning to prevent HTML parsing issues
-                                let safeCleaned = removeArticleEnd.Replace("&", "&amp;").Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
+                                let safeCleaned = removeTitles.Replace("&", "&amp;").Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
                                 safeCleaned
                             rawText cleanedContent
                         ]
