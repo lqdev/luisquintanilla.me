@@ -45,7 +45,8 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
         // Timeline content area
         main [ _class "timeline-content" ] [
             // Render timeline cards with desert theme and content type data attributes
-            for item in items do
+            // TEMPORARY: Limit to first 10 items to test script loading
+            for item in (items |> Array.take (min 10 items.Length)) do
                 let fileName = Path.GetFileNameWithoutExtension(item.Url)
                 let getProperPermalink (contentType: string) (fileName: string) =
                     match contentType with
@@ -101,7 +102,9 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                                 let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
                                 // Remove all article closing tags
                                 let removeArticleEnd = removeArticleStart.Replace("</article>", "")
-                                removeArticleEnd
+                                // Additional cleaning to prevent HTML parsing issues
+                                let safeCleaned = removeArticleEnd.Replace("&", "&amp;").Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
+                                safeCleaned
                             rawText cleanedContent
                         ]
                     ]

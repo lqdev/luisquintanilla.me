@@ -1,6 +1,12 @@
 // Timeline Content Filtering - Desert Theme Integration
 // Feed-as-Homepage Phase 3 Implementation
 
+// IMMEDIATE DEBUG - This should execute as soon as the script is parsed
+console.log('🚀 IMMEDIATE: timeline.js parsing started');
+console.log('🚀 IMMEDIATE: Current URL:', window.location.href);
+console.log('🚀 IMMEDIATE: Document exists:', !!document);
+console.log('🚀 IMMEDIATE: Window exists:', !!window);
+
 const TimelineFilter = {
     // Initialize filtering system
     init() {
@@ -348,18 +354,142 @@ const TimelineMobileNav = {
     }
 };
 
-// Initialize all timeline functionality when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    TimelineFilter.init();
-    // TimelineThemeManager.init(); // Commented out - let main.js handle theme management
-    TimelineMobileNav.init();
+// Navigation Dropdown Manager
+const TimelineDropdownNav = {
+    init() {
+        this.setupDropdownListeners();
+    },
+
+    toggleDropdown(dropdownId) {
+        const dropdown = document.getElementById(dropdownId);
+        const toggle = document.querySelector(`[data-target="${dropdownId}"]`);
+        
+        if (dropdown && toggle) {
+            const isOpen = dropdown.classList.contains('show');
+            
+            // Close all other dropdowns first
+            document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                if (menu.id !== dropdownId) {
+                    menu.classList.remove('show');
+                    const otherToggle = document.querySelector(`[data-target="${menu.id}"]`);
+                    if (otherToggle) {
+                        otherToggle.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+            
+            // Toggle current dropdown
+            if (isOpen) {
+                dropdown.classList.remove('show');
+                toggle.setAttribute('aria-expanded', 'false');
+            } else {
+                dropdown.classList.add('show');
+                toggle.setAttribute('aria-expanded', 'true');
+            }
+        }
+    },
+
+    setupDropdownListeners() {
+        // Collections dropdown
+        const collectionsToggle = document.querySelector('[data-target="collections-dropdown"]');
+        if (collectionsToggle) {
+            collectionsToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.toggleDropdown('collections-dropdown');
+            });
+        }
+        
+        // Resources dropdown
+        const resourcesToggle = document.querySelector('[data-target="resources-dropdown"]');
+        if (resourcesToggle) {
+            resourcesToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.toggleDropdown('resources-dropdown');
+            });
+        }
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-section.dropdown')) {
+                document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                    menu.classList.remove('show');
+                    const toggle = document.querySelector(`[data-target="${menu.id}"]`);
+                    if (toggle) {
+                        toggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+    }
+};
+
+// Debug: Script loaded
+console.log('🔧 timeline.js script loaded - BEFORE DOM checks');
+console.log('🔧 Document ready state:', document.readyState);
+console.log('🔧 DOM loaded:', document.readyState === 'complete');
+
+// More immediate debugging
+console.log('🚀 SCRIPT PARSING: About to set up DOM event listeners');
+
+try {
+    // Check if DOM is already loaded
+    if (document.readyState === 'loading') {
+        console.log('🔧 DOM still loading, adding DOMContentLoaded listener');
+        document.addEventListener('DOMContentLoaded', initializeTimeline);
+    } else {
+        console.log('🔧 DOM already loaded, initializing immediately');
+        initializeTimeline();
+    }
+} catch (scriptError) {
+    console.error('🚨 CRITICAL ERROR during script setup:', scriptError);
+    console.error('🚨 Script error stack:', scriptError.stack);
+}
+
+function initializeTimeline() {
+    console.log('🔧 DOMContentLoaded event fired or DOM ready');
+    console.log('🔧 Current readyState:', document.readyState);
     
-    console.log('🌵 Timeline interface initialized with desert theme');
-});
+    try {
+        // Always initialize theme management first (works on all pages)
+        console.log('🔧 Initializing theme manager...');
+        TimelineThemeManager.init();
+        console.log('✅ Theme manager initialized');
+        
+        // Only initialize timeline-specific features if timeline elements exist
+        const timelineElement = document.querySelector('.unified-timeline');
+        console.log('🔧 Timeline element found:', !!timelineElement);
+        
+        if (timelineElement) {
+            TimelineFilter.init();
+            console.log('🌵 Timeline filtering initialized');
+        }
+        
+        // Always initialize mobile navigation (works on all pages)
+        console.log('🔧 Initializing mobile nav...');
+        TimelineMobileNav.init();
+        console.log('✅ Mobile nav initialized');
+        
+        // Always initialize dropdown navigation (works on all pages)
+        console.log('🔧 Initializing dropdown nav...');
+        TimelineDropdownNav.init();
+        console.log('✅ Dropdown nav initialized');
+        
+        console.log('🌵 Timeline interface initialized with desert theme');
+        
+    } catch (error) {
+        console.error('❌ Error during timeline initialization:', error);
+        console.error('❌ Error stack:', error.stack);
+    }
+}
 
 // Export for external use
 window.TimelineInterface = {
     filter: TimelineFilter,
-    // theme: TimelineThemeManager, // Commented out - using main.js theme management
-    mobile: TimelineMobileNav
+    theme: TimelineThemeManager, // Theme management now handled by timeline.js
+    mobile: TimelineMobileNav,
+    dropdown: TimelineDropdownNav // Navigation dropdown management
 };
+
+// FINAL DEBUG - This should be the last thing executed
+console.log('🏁 SCRIPT END: timeline.js parsing completed successfully');
+console.log('🏁 TimelineInterface exported:', !!window.TimelineInterface);

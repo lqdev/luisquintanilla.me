@@ -334,8 +334,7 @@ module Layouts
         script [_src "/assets/lib/highlight/highlight.fsharp.min.js"] [] // 11.8.0
         script [_src "/assets/lib/highlight/highlight.nix.min.js"] [] // 11.8.0
 
-        // Include both main.js (theme toggle) and timeline.js (filtering) for full functionality
-        script [_src "/assets/js/main.js"] []
+        // Use only timeline.js (includes theme management + filtering + navigation)
         script [_src "/assets/js/timeline.js"] []
 
         script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] []
