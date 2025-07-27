@@ -619,6 +619,41 @@ This workflow ensures systematic, quality-focused development that preserves fun
 
 **Trigger Pattern**: When navigation testing reveals architectural inconsistencies, prioritize terminology consolidation over feature additions.
 
+### Progressive Loading Pattern (Proven 2025-07-26)
+**Discovery**: Successfully implemented static site progressive loading handling 1000+ content items without HTML parser failures.
+
+**Implementation Pattern**:
+- **Server-Side JSON Generation**: F# backend generates remaining content as properly escaped JSON
+- **Client-Side Progressive Loading**: JavaScript consumes JSON for chunked content rendering
+- **Safe Initial Load**: 50 items initially to prevent HTML parser overload
+- **Progressive Chunks**: 25-item chunks loaded via intersection observer + manual button
+- **Comprehensive JSON Escaping**: Handle all special characters (`\"`, `\n`, `\r`, `\t`, `\\`, etc.)
+- **Filter Integration**: Progressive content automatically respects current filter state
+
+**F# JSON Generation Pattern**:
+```fsharp
+let escapeJson (text: string) =
+    text.Replace("\\", "\\\\")
+        .Replace("\"", "\\\"")
+        .Replace("\n", "\\n")
+        .Replace("\r", "\\r")
+        .Replace("\t", "\\t")
+```
+
+**JavaScript Progressive Loader Pattern**:
+- **TimelineProgressiveLoader Class**: Manages state, intersection observer, content generation
+- **Intersection Observer**: Automatic loading at 80% scroll threshold
+- **Content Generation**: Use actual data from JSON, not placeholder content
+- **Animation System**: Staggered reveals (50ms delay) for smooth user experience
+
+**Critical Success Factors**:
+- Edit `_src/js/` files not `_public/` to prevent build overwrites
+- Comprehensive JSON escaping prevents parsing errors
+- Chunked loading prevents HTML parser failures while enabling full content access
+- Filter integration ensures progressive content respects user interface state
+
+**Benefits**: Handles any content volume while maintaining excellent performance and user experience on static sites.
+
 ### Content Volume HTML Parsing Pattern (Critical Discovery 2025-07-26)
 **Discovery**: High content volumes (1000+ items) with `rawText` rendering can generate malformed HTML that breaks browser DOM parsing so severely that **no JavaScript loads at all**.
 
