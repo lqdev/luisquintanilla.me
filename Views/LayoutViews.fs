@@ -271,35 +271,29 @@ let liveStreamView (title:string) =
 let blogPostView (title:string) (content:string) (date:string) (fileName:string) = 
     let publishDate = DateTime.Parse(date)
     div [ _class "mr-auto" ] [
-        article [ _class "h-entry content-card individual-content" ] [
-            header [ _class "card-header" ] [
-                div [ _class "h-card author-info" ] [
-                    img [ _class "u-photo author-avatar"; _src "/avatar.png"; _alt "Luis Quintanilla" ]
-                    div [] [
-                        span [ _class "p-name author-name" ] [ Text "Luis Quintanilla" ]
-                        time [ _class "dt-published publication-date"; attr "datetime" date ] [
-                            Text (publishDate.ToString("MMMM d, yyyy"))
-                        ]
+        article [ _class "h-entry individual-post" ] [
+            header [ _class "post-header" ] [
+                h1 [ _class "p-name post-title" ] [ Text title ]
+                div [ _class "post-meta" ] [
+                    span [ _class "h-card author-info" ] [
+                        Text "By "
+                        span [ _class "p-name" ] [ Text "Luis Quintanilla" ]
                     ]
-                ]
-                div [ _class "content-type-info" ] [
-                    span [ _class "content-type-badge"; attr "data-type" "posts" ] [
-                        Text "Blog Post"
+                    Text " • "
+                    time [ _class "dt-published"; attr "datetime" date ] [
+                        Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
                 ]
             ]
             
-            div [ _class "card-body" ] [
-                h1 [ _class "p-name content-title" ] [ Text title ]
-                div [ _class "e-content" ] [
-                    rawText content
-                ]
+            div [ _class "e-content post-content" ] [
+                rawText content
             ]
             
-            footer [ _class "card-footer" ] [
-                div [ _class "permalink-section" ] [
+            footer [ _class "post-footer" ] [
+                div [ _class "permalink-info" ] [
                     Text "Permalink: "
-                    a [ _class "u-url"; _href $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
+                    a [ _class "u-url permalink-link"; _href $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
                         Text $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                 ]
@@ -311,35 +305,29 @@ let blogPostView (title:string) (content:string) (date:string) (fileName:string)
 let notePostView (title:string) (content:string) (date:string) (fileName:string) = 
     let publishDate = DateTime.Parse(date)
     div [ _class "mr-auto" ] [
-        article [ _class "h-entry content-card individual-content" ] [
-            header [ _class "card-header" ] [
-                div [ _class "h-card author-info" ] [
-                    img [ _class "u-photo author-avatar"; _src "/avatar.png"; _alt "Luis Quintanilla" ]
-                    div [] [
-                        span [ _class "p-name author-name" ] [ Text "Luis Quintanilla" ]
-                        time [ _class "dt-published publication-date"; attr "datetime" date ] [
-                            Text (publishDate.ToString("MMMM d, yyyy"))
-                        ]
+        article [ _class "h-entry individual-post" ] [
+            header [ _class "post-header" ] [
+                h1 [ _class "p-name post-title" ] [ Text title ]
+                div [ _class "post-meta" ] [
+                    span [ _class "h-card author-info" ] [
+                        Text "By "
+                        span [ _class "p-name" ] [ Text "Luis Quintanilla" ]
                     ]
-                ]
-                div [ _class "content-type-info" ] [
-                    span [ _class "content-type-badge"; attr "data-type" "notes" ] [
-                        Text "Note"
+                    Text " • "
+                    time [ _class "dt-published"; attr "datetime" date ] [
+                        Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
                 ]
             ]
             
-            div [ _class "card-body" ] [
-                h1 [ _class "p-name content-title" ] [ Text title ]
-                div [ _class "e-content" ] [
-                    rawText content
-                ]
+            div [ _class "e-content post-content" ] [
+                rawText content
             ]
             
-            footer [ _class "card-footer" ] [
-                div [ _class "permalink-section" ] [
+            footer [ _class "post-footer" ] [
+                div [ _class "permalink-info" ] [
                     Text "Permalink: "
-                    a [ _class "u-url"; _href $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
+                    a [ _class "u-url permalink-link"; _href $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
                         Text $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                 ]
@@ -351,35 +339,29 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
 let responsePostView (title:string) (content:string) (date:string) (fileName:string) = 
     let publishDate = DateTime.Parse(date)
     div [ _class "mr-auto" ] [
-        article [ _class "h-entry content-card individual-content" ] [
-            header [ _class "card-header" ] [
-                div [ _class "h-card author-info" ] [
-                    img [ _class "u-photo author-avatar"; _src "/avatar.png"; _alt "Luis Quintanilla" ]
-                    div [] [
-                        span [ _class "p-name author-name" ] [ Text "Luis Quintanilla" ]
-                        time [ _class "dt-published publication-date"; attr "datetime" date ] [
-                            Text (publishDate.ToString("MMMM d, yyyy"))
-                        ]
+        article [ _class "h-entry individual-post" ] [
+            header [ _class "post-header" ] [
+                h1 [ _class "p-name post-title" ] [ Text title ]
+                div [ _class "post-meta" ] [
+                    span [ _class "h-card author-info" ] [
+                        Text "By "
+                        span [ _class "p-name" ] [ Text "Luis Quintanilla" ]
                     ]
-                ]
-                div [ _class "content-type-info" ] [
-                    span [ _class "content-type-badge"; attr "data-type" "responses" ] [
-                        Text "Response"
+                    Text " • "
+                    time [ _class "dt-published"; attr "datetime" date ] [
+                        Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
                 ]
             ]
             
-            div [ _class "card-body" ] [
-                h1 [ _class "p-name content-title" ] [ Text title ]
-                div [ _class "e-content" ] [
-                    rawText content
-                ]
+            div [ _class "e-content post-content" ] [
+                rawText content
             ]
             
-            footer [ _class "card-footer" ] [
-                div [ _class "permalink-section" ] [
+            footer [ _class "post-footer" ] [
+                div [ _class "permalink-info" ] [
                     Text "Permalink: "
-                    a [ _class "u-url"; _href $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
+                    a [ _class "u-url permalink-link"; _href $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
                         Text $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                 ]
