@@ -32,6 +32,7 @@ const TimelineFilter = {
 
     // Main content filtering function
     filterContent(contentType) {
+        // Get all content cards (both initial and progressively loaded)
         const cards = document.querySelectorAll('.content-card');
         let visibleCount = 0;
 
@@ -354,6 +355,306 @@ const TimelineMobileNav = {
     }
 };
 
+// Progressive Loading Manager - Handles chunked content loading for large content volumes
+const TimelineProgressiveLoader = {
+    // Configuration
+    config: {
+        chunkSize: 25,
+        loadThreshold: 0.8 // Trigger load when 80% of current content is visible
+    },
+    
+    // State
+    currentPage: 1,
+    totalItems: 0,
+    loadedItems: 50, // Start with 50 items already loaded
+    isLoading: false,
+    observer: null,
+    remainingContent: [], // Array to store remaining content from server
+    
+    init() {
+        this.setupProgressiveLoading();
+        this.loadRemainingContent();
+        this.setupIntersectionObserver();
+        this.setupLoadMoreButton();
+    },
+    
+    setupProgressiveLoading() {
+        // Get total items from data attribute
+        const progressiveContainer = document.getElementById('progressiveContent');
+        if (progressiveContainer) {
+            this.totalItems = parseInt(progressiveContainer.getAttribute('data-total-items')) || 0;
+            console.log(`📊 Progressive loader initialized: ${this.loadedItems}/${this.totalItems} items`);
+        }
+    },
+    
+    loadRemainingContent() {
+        // Load remaining content data from JSON script tag
+        const contentScript = document.getElementById('remainingContentData');
+        if (contentScript) {
+            try {
+                this.remainingContent = JSON.parse(contentScript.textContent);
+                console.log(`📦 Loaded ${this.remainingContent.length} remaining content items`);
+            } catch (error) {
+                console.error('❌ Error parsing remaining content data:', error);
+                this.remainingContent = [];
+            }
+        }
+    },
+    
+    setupIntersectionObserver() {
+        // Create intersection observer for automatic loading
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !this.isLoading && this.hasMoreContent()) {
+                    console.log('🔄 Intersection observer triggered - loading more content');
+                    this.loadMoreContent();
+                }
+            });
+        }, {
+            rootMargin: '100px', // Start loading 100px before the sentinel comes into view
+            threshold: 0.1
+        });
+        
+        // Observe the load more section
+        const loadMoreSection = document.getElementById('loadMoreSection');
+        if (loadMoreSection && this.hasMoreContent()) {
+            this.observer.observe(loadMoreSection);
+        }
+    },
+    
+    setupLoadMoreButton() {
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.loadMoreContent();
+            });
+        }
+    },
+    
+    async loadMoreContent() {
+        if (this.isLoading || !this.hasMoreContent()) {
+            return;
+        }
+        
+        this.isLoading = true;
+        this.updateLoadingState(true);
+        
+        try {
+            // Calculate items to load
+            const remainingItems = this.totalItems - this.loadedItems;
+            const itemsToLoad = Math.min(this.config.chunkSize, remainingItems);
+            
+            console.log(`📥 Loading ${itemsToLoad} more items (${this.loadedItems + itemsToLoad}/${this.totalItems})`);
+            
+            // Simulate loading delay for better UX
+            await new Promise(resolve => setTimeout(resolve, 300));
+            
+            // Generate new content cards
+            const newContent = this.generateContentChunk(itemsToLoad);
+            
+            // Add new content to progressive container
+            const progressiveContainer = document.getElementById('progressiveContent');
+            if (progressiveContainer) {
+                progressiveContainer.insertAdjacentHTML('beforeend', newContent);
+                
+                // Update state
+                this.loadedItems += itemsToLoad;
+                this.currentPage++;
+                
+                // Apply current filter to new content
+                const currentFilter = window.TimelineInterface?.filter?.getCurrentFilter() || 'all';
+                if (currentFilter !== 'all') {
+                    this.applyFilterToNewContent(currentFilter);
+                }
+                
+                // Smooth reveal of new content
+                this.animateNewContent();
+            }
+            
+            // Update UI state
+            this.updateLoadMoreButton();
+            this.updateProgressIndicator();
+            
+            console.log(`✅ Loaded ${itemsToLoad} items. Total loaded: ${this.loadedItems}/${this.totalItems}`);
+            
+        } catch (error) {
+            console.error('❌ Error loading more content:', error);
+        } finally {
+            this.isLoading = false;
+            this.updateLoadingState(false);
+        }
+    },
+    
+    generateContentChunk(itemCount) {
+        // Use actual remaining content instead of placeholder data
+        let html = '';
+        const startIndex = this.loadedItems - 50; // Offset for remaining content array
+        const endIndex = Math.min(startIndex + itemCount, this.remainingContent.length);
+        
+        for (let i = startIndex; i < endIndex; i++) {
+            const item = this.remainingContent[i];
+            if (!item) continue;
+            
+            // Format date
+            const date = new Date(item.date);
+            const formattedDate = date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+            
+            // Content type badge text
+            const contentTypeBadge = {
+                'posts': 'Blog Post',
+                'notes': 'Note',
+                'responses': 'Response',
+                'bookmarks': 'Bookmark',
+                'reviews': 'Review',
+                'streams': 'Stream Recording',
+                'media': 'Media'
+            }[item.contentType] || item.contentType;
+            
+            // Generate tags HTML
+            const tagsHtml = item.tags && item.tags.length > 0 
+                ? `<div class="p-category tags">
+                     ${item.tags.map(tag => `<a class="tag-link" href="/tags/${tag}/">#${tag}</a>`).join('')}
+                   </div>`
+                : '';
+            
+            html += `
+                <article class="h-entry content-card" data-type="${item.contentType}" data-date="${item.date}" style="opacity: 0; transform: translateY(20px);">
+                    <header class="card-header">
+                        <div class="h-card author-info">
+                            <img class="u-photo author-avatar" src="/avatar.png" alt="Luis Quintanilla">
+                            <span class="p-name author-name">Luis Quintanilla</span>
+                            <time class="dt-published publication-date" datetime="${item.date}">${formattedDate}</time>
+                        </div>
+                        <div class="content-type-info">
+                            <span class="content-type-badge" data-type="${item.contentType}">${contentTypeBadge}</span>
+                        </div>
+                    </header>
+                    <div class="card-body">
+                        <h2 class="p-name card-title">
+                            <a class="u-url title-link" href="${item.url}">${item.title}</a>
+                        </h2>
+                        <div class="e-content card-content">
+                            ${item.content}...
+                        </div>
+                    </div>
+                    <footer class="card-footer">
+                        <div class="card-meta">
+                            <a class="u-url permalink-link" href="${item.url}">Read more →</a>
+                            ${tagsHtml}
+                        </div>
+                    </footer>
+                </article>
+            `;
+        }
+        
+        return html;
+    },
+    
+    applyFilterToNewContent(filterType) {
+        // Apply current filter to newly loaded content
+        const newCards = document.querySelectorAll('.content-card[style*="opacity: 0"]');
+        newCards.forEach(card => {
+            const cardType = card.getAttribute('data-type');
+            const shouldShow = (filterType === 'all' || filterType === cardType);
+            
+            if (!shouldShow) {
+                card.style.display = 'none';
+                card.classList.add('filtered-out');
+            }
+        });
+    },
+    
+    animateNewContent() {
+        // Smooth reveal animation for new content
+        const newCards = document.querySelectorAll('.content-card[style*="opacity: 0"]');
+        newCards.forEach((card, index) => {
+            setTimeout(() => {
+                card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 50); // Stagger the animations
+        });
+    },
+    
+    updateLoadingState(isLoading) {
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        const loadingSpinner = document.getElementById('loadingIndicator');
+        
+        if (loadMoreBtn) {
+            loadMoreBtn.disabled = isLoading;
+            loadMoreBtn.textContent = isLoading ? 'Loading...' : 'Load More Posts';
+        }
+        
+        if (loadingSpinner) {
+            loadingSpinner.style.display = isLoading ? 'block' : 'none';
+        }
+    },
+    
+    updateLoadMoreButton() {
+        const loadMoreSection = document.getElementById('loadMoreSection');
+        
+        if (!this.hasMoreContent()) {
+            // Hide load more section when all content is loaded
+            if (loadMoreSection) {
+                loadMoreSection.style.display = 'none';
+            }
+            
+            // Stop observing
+            if (this.observer) {
+                this.observer.disconnect();
+            }
+            
+            console.log('🎉 All content loaded!');
+        }
+    },
+    
+    updateProgressIndicator() {
+        const progressBar = document.querySelector('.progress-bar');
+        if (progressBar) {
+            const percentage = (this.loadedItems / this.totalItems) * 100;
+            progressBar.style.width = `${percentage}%`;
+        }
+        
+        const progressText = document.querySelector('.progress-text');
+        if (progressText) {
+            progressText.textContent = `${this.loadedItems} of ${this.totalItems} items loaded`;
+        }
+    },
+    
+    hasMoreContent() {
+        return this.loadedItems < this.totalItems;
+    },
+    
+    // Reset loader state (useful for filter changes)
+    reset() {
+        this.currentPage = 1;
+        this.loadedItems = 50;
+        this.isLoading = false;
+        
+        // Clear progressive content
+        const progressiveContainer = document.getElementById('progressiveContent');
+        if (progressiveContainer) {
+            progressiveContainer.innerHTML = '';
+        }
+        
+        // Reset load more button
+        const loadMoreSection = document.getElementById('loadMoreSection');
+        if (loadMoreSection && this.hasMoreContent()) {
+            loadMoreSection.style.display = 'block';
+            if (this.observer) {
+                this.observer.observe(loadMoreSection);
+            }
+        }
+        
+        this.updateProgressIndicator();
+    }
+};
+
 // Navigation Dropdown Manager
 const TimelineDropdownNav = {
     init() {
@@ -461,7 +762,8 @@ function initializeTimeline() {
         
         if (timelineElement) {
             TimelineFilter.init();
-            console.log('🌵 Timeline filtering initialized');
+            TimelineProgressiveLoader.init();
+            console.log('🌵 Timeline filtering and progressive loading initialized');
         }
         
         // Always initialize mobile navigation (works on all pages)
@@ -487,7 +789,8 @@ window.TimelineInterface = {
     filter: TimelineFilter,
     theme: TimelineThemeManager, // Theme management now handled by timeline.js
     mobile: TimelineMobileNav,
-    dropdown: TimelineDropdownNav // Navigation dropdown management
+    dropdown: TimelineDropdownNav, // Navigation dropdown management
+    progressive: TimelineProgressiveLoader // Progressive loading management
 };
 
 // FINAL DEBUG - This should be the last thing executed

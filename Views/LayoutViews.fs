@@ -7,10 +7,10 @@ open Domain
 open ComponentViews
 open CollectionViews
 
-// New timeline homepage view for feed-as-homepage interface
+// New timeline homepage view for feed-as-homepage interface - Progressive Loading Implementation
 let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
-    // Load ALL items for proper content discovery (user requirement to remove artificial limits)
-    printfn "Debug: Showing all %d items in timeline interface" items.Length
+    // Research-backed progressive loading: Start with safe 50 items, load more on demand
+    printfn "Debug: Implementing progressive loading for %d total items (showing 50 initially)" items.Length
     
     div [ _class "h-feed unified-timeline" ] [
         // Header with personal intro and content filters
@@ -39,85 +39,143 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
             ]
         ]
         
-        // Timeline content area
+        // Timeline content area with progressive loading
         main [ _class "timeline-content" ] [
-            // Render timeline cards with desert theme and content type data attributes
-            // TEMPORARY: Limit to first 10 items to test script loading
-            for item in (items |> Array.take (min 10 items.Length)) do
-                let fileName = Path.GetFileNameWithoutExtension(item.Url)
-                let getProperPermalink (contentType: string) (fileName: string) =
-                    match contentType with
-                    | "posts" -> $"/posts/{fileName}/"
-                    | "notes" -> $"/notes/{fileName}/"
-                    | "responses" -> $"/responses/{fileName}/"
-                    | "bookmarks" -> $"/responses/{fileName}/"  // Bookmarks are responses but filtered separately
-                    | "reviews" -> $"/reviews/{fileName}/"
-                    | "streams" -> $"/streams/{fileName}/"
-                    | "media" -> $"/media/{fileName}/"
-                    | _ -> $"/{contentType}/{fileName}/"
-                
-                let properPermalink = getProperPermalink item.ContentType fileName
-                
-                // Content card with desert theme and filtering attributes
-                article [ 
-                    _class "h-entry content-card"
-                    attr "data-type" item.ContentType
-                    attr "data-date" item.Date
-                ] [
-                    header [ _class "card-header" ] [
-                        div [ _class "h-card author-info" ] [
-                            img [ _class "u-photo author-avatar"; _src "/avatar.png"; _alt "Luis Quintanilla" ]
-                            span [ _class "p-name author-name" ] [ Text "Luis Quintanilla" ]
-                            time [ _class "dt-published publication-date"; attr "datetime" item.Date ] [
-                                Text (DateTime.Parse(item.Date).ToString("MMM dd, yyyy"))
-                            ]
-                        ]
-                        div [ _class "content-type-info" ] [
-                            span [ _class "content-type-badge"; attr "data-type" item.ContentType ] [
-                                Text (match item.ContentType with
-                                      | "posts" -> "Blog Post"
-                                      | "notes" -> "Note"
-                                      | "responses" -> "Response"
-                                      | "bookmarks" -> "Bookmark"
-                                      | "reviews" -> "Review"
-                                      | "streams" -> "Stream Recording"
-                                      | "media" -> "Media"
-                                      | _ -> item.ContentType)
-                            ]
-                        ]
-                    ]
+            // Initial content batch (safe loading threshold based on content-volume-html-parsing-discovery.md)
+            div [ _class "initial-content"; _id "initialContent" ] [
+                for item in (items |> Array.take (min 50 items.Length)) do
+                    let fileName = Path.GetFileNameWithoutExtension(item.Url)
+                    let getProperPermalink (contentType: string) (fileName: string) =
+                        match contentType with
+                        | "posts" -> $"/posts/{fileName}/"
+                        | "notes" -> $"/notes/{fileName}/"
+                        | "responses" -> $"/responses/{fileName}/"
+                        | "bookmarks" -> $"/responses/{fileName}/"  // Bookmarks are responses but filtered separately
+                        | "reviews" -> $"/reviews/{fileName}/"
+                        | "streams" -> $"/streams/{fileName}/"
+                        | "media" -> $"/media/{fileName}/"
+                        | _ -> $"/{contentType}/{fileName}/"
                     
-                    div [ _class "card-body" ] [
-                        h2 [ _class "p-name card-title" ] [
-                            a [ _class "u-url title-link"; _href properPermalink ] [ Text item.Title ]
-                        ]
-                        div [ _class "e-content card-content" ] [
-                            // Clean content to remove all nested article tags and prevent double nesting
-                            // Also remove duplicate h1/h2 titles that might already be in content
-                            let cleanedContent = 
-                                let content = item.Content
-                                // Remove all article opening tags with any class
-                                let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
-                                // Remove all article closing tags
-                                let removeArticleEnd = removeArticleStart.Replace("</article>", "")
-                                // Remove duplicate h1/h2 titles (common source of duplication)
-                                let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h[12][^>]*>.*?</h[12]>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                                // Additional cleaning to prevent HTML parsing issues
-                                let safeCleaned = removeTitles.Replace("&", "&amp;").Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
-                                safeCleaned
-                            rawText cleanedContent
-                        ]
-                    ]
+                    let properPermalink = getProperPermalink item.ContentType fileName
                     
-                    footer [ _class "card-footer" ] [
-                        div [ _class "card-meta" ] [
-                            a [ _class "u-url permalink-link"; _href properPermalink ] [ Text "Read more →" ]
-                            if item.Tags.Length > 0 then
-                                div [ _class "p-category tags" ] [
-                                    for tag in item.Tags do
-                                        a [ _class "tag-link"; _href $"/tags/{tag}/" ] [ Text $"#{tag}" ]
+                    // Content card with desert theme and filtering attributes
+                    article [ 
+                        _class "h-entry content-card"
+                        attr "data-type" item.ContentType
+                        attr "data-date" item.Date
+                    ] [
+                        header [ _class "card-header" ] [
+                            div [ _class "h-card author-info" ] [
+                                img [ _class "u-photo author-avatar"; _src "/avatar.png"; _alt "Luis Quintanilla" ]
+                                span [ _class "p-name author-name" ] [ Text "Luis Quintanilla" ]
+                                time [ _class "dt-published publication-date"; attr "datetime" item.Date ] [
+                                    Text (DateTime.Parse(item.Date).ToString("MMM dd, yyyy"))
                                 ]
+                            ]
+                            div [ _class "content-type-info" ] [
+                                span [ _class "content-type-badge"; attr "data-type" item.ContentType ] [
+                                    Text (match item.ContentType with
+                                          | "posts" -> "Blog Post"
+                                          | "notes" -> "Note"
+                                          | "responses" -> "Response"
+                                          | "bookmarks" -> "Bookmark"
+                                          | "reviews" -> "Review"
+                                          | "streams" -> "Stream Recording"
+                                          | "media" -> "Media"
+                                          | _ -> item.ContentType)
+                                ]
+                            ]
                         ]
+                        
+                        div [ _class "card-body" ] [
+                            h2 [ _class "p-name card-title" ] [
+                                a [ _class "u-url title-link"; _href properPermalink ] [ Text item.Title ]
+                            ]
+                            div [ _class "e-content card-content" ] [
+                                // Clean content to remove all nested article tags and prevent double nesting
+                                // Also remove duplicate h1/h2 titles that might already be in content
+                                let cleanedContent = 
+                                    let content = item.Content
+                                    // Remove all article opening tags with any class
+                                    let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
+                                    // Remove all article closing tags
+                                    let removeArticleEnd = removeArticleStart.Replace("</article>", "")
+                                    // Remove duplicate h1/h2 titles (common source of duplication)
+                                    let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h[12][^>]*>.*?</h[12]>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+                                    // Additional cleaning to prevent HTML parsing issues
+                                    let safeCleaned = removeTitles.Replace("&", "&amp;").Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
+                                    safeCleaned
+                                rawText cleanedContent
+                            ]
+                        ]
+                        
+                        footer [ _class "card-footer" ] [
+                            div [ _class "card-meta" ] [
+                                a [ _class "u-url permalink-link"; _href properPermalink ] [ Text "Read more →" ]
+                                if item.Tags.Length > 0 then
+                                    div [ _class "p-category tags" ] [
+                                        for tag in item.Tags do
+                                            a [ _class "tag-link"; _href $"/tags/{tag}/" ] [ Text $"#{tag}" ]
+                                    ]
+                            ]
+                        ]
+                    ]
+            ]
+            
+            // Progressive loading container for additional content chunks
+            div [ 
+                _class "progressive-content"
+                _id "progressiveContent"
+                attr "data-total-items" (items.Length.ToString())
+            ] []
+            
+            // Progressive loading trigger - JavaScript will load remaining content chunks
+            if items.Length > 50 then
+                // Pass remaining items as JSON for JavaScript progressive loading
+                let remainingItems = items |> Array.skip 50
+                let remainingItemsJson = 
+                    remainingItems 
+                    |> Array.map (fun item ->
+                        let fileName = Path.GetFileNameWithoutExtension(item.Url)
+                        let getProperPermalink (contentType: string) (fileName: string) =
+                            match contentType with
+                            | "posts" -> $"/posts/{fileName}/"
+                            | "notes" -> $"/notes/{fileName}/"
+                            | "responses" -> $"/responses/{fileName}/"
+                            | "bookmarks" -> $"/responses/{fileName}/"
+                            | "reviews" -> $"/reviews/{fileName}/"
+                            | "streams" -> $"/streams/{fileName}/"
+                            | "media" -> $"/media/{fileName}/"
+                            | _ -> $"/{contentType}/{fileName}/"
+                        let properPermalink = getProperPermalink item.ContentType fileName
+                        sprintf """{"title":"%s","contentType":"%s","date":"%s","url":"%s","content":"%s","tags":[%s]}"""
+                            (item.Title.Replace("\"", "\\\"").Replace("\n", "\\n").Replace("\r", ""))
+                            item.ContentType
+                            item.Date
+                            (properPermalink.Replace("\"", "\\\""))
+                            (item.Content.Replace("\"", "\\\"").Replace("\n", "\\n").Replace("\r", "").Substring(0, min 200 item.Content.Length))
+                            (item.Tags |> Array.map (fun tag -> sprintf "\"%s\"" tag) |> String.concat ",")
+                    )
+                    |> String.concat ","
+                
+                script [ _type "application/json"; _id "remainingContentData" ] [
+                    rawText $"[{remainingItemsJson}]"
+                ]
+                
+                div [ _class "load-more-section"; _id "loadMoreSection" ] [
+                    button [ 
+                        _class "load-more-btn"
+                        _id "loadMoreBtn"
+                        _type "button"
+                        attr "data-total-items" (items.Length.ToString())
+                        attr "data-loaded-items" "50"
+                        attr "data-chunk-size" "25"
+                    ] [
+                        Text $"Load More ({items.Length - 50} items remaining)"
+                    ]
+                    div [ _class "loading-indicator hidden"; _id "loadingIndicator" ] [
+                        div [ _class "loading-spinner" ] []
+                        Text "Loading more content..."
                     ]
                 ]
         ]
