@@ -674,11 +674,10 @@ module Builder
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, albumView))
         
-        // Generate media index page using unified feed view for consistency
+        // Generate media index page using simple list view for consistency
         try
-            // Convert media feed data to unified format for consistent display
-            let unifiedMediaItems = GenericBuilder.UnifiedFeeds.convertAlbumsToUnified feedData |> List.toArray
-            let mediaIndexHtml = generate (unifiedFeedView unifiedMediaItems) "defaultindex" "Media | Luis Quintanilla"
+            let albums = feedData |> List.map (fun item -> item.Content) |> List.toArray
+            let mediaIndexHtml = generate (albumsPageView albums) "defaultindex" "Media | Luis Quintanilla"
             let indexSaveDir = Path.Join(outputDir, "media")
             Directory.CreateDirectory(indexSaveDir) |> ignore
             File.WriteAllText(Path.Join(indexSaveDir, "index.html"), mediaIndexHtml)

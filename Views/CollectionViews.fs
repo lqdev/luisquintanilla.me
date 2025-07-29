@@ -31,142 +31,44 @@ let recentPostsView (posts: Post array) =
 
 let feedView (posts: Post array) =
     div [ _class "d-grip gap-3" ] [
-        for post in posts do
-            div [ _class "mb-5 post-separator pb-4" ] [
-                // Add content type indicator and date
-                div [ _class "mb-3" ] [
-                    span [ _class "badge badge-light border" ] [ Text "Posts" ]
+        h2[] [Text "Posts"]
+        p [] [Text "Long-form articles and blog posts"]
+        ul [] [
+            for post in posts do
+                li [] [
+                    a [ _href $"/posts/{post.FileName}"] [ Text post.Metadata.Title ]
                     Text " • "
                     Text (DateTime.Parse(post.Metadata.Date).ToString("MMM dd, yyyy"))
                 ]
-                
-                // Post title and content with intelligent truncation
-                h2 [] [
-                    a [_href $"/posts/{post.FileName}/"] [Text post.Metadata.Title]
-                ]
-                div [] [
-                    // Intelligent content truncation based on research
-                    let wordCount = post.Content.Split([|' '; '\n'; '\r'|], StringSplitOptions.RemoveEmptyEntries).Length
-                    let shouldTruncate = wordCount > 100 // ~400 characters at 4 chars/word average
-                    
-                    if shouldTruncate then
-                        // Extract first 300 characters for preview
-                        let preview = 
-                            if post.Content.Length > 300 then
-                                post.Content.Substring(0, 300).Trim() + "..."
-                            else
-                                post.Content
-                        rawText preview
-                        div [ _class "mt-2" ] [
-                            a [ _href $"/posts/{post.FileName}/"; _class "btn btn-sm btn-outline-primary" ] [
-                                Text "Continue Reading →"
-                            ]
-                        ]
-                    else
-                        rawText post.Content
-                ]
-                
-                // Footer with permalink and tags
-                div [ _class "mt-3 pt-2 border-top text-muted small" ] [
-                    Text "Permalink: " 
-                    a [_href $"/posts/{post.FileName}/"; _class "text-decoration-none"] [Text $"/posts/{post.FileName}/"] 
-                    
-                    div [ _class "mt-1" ] [
-                        str "Tags: "
-                        let tags = if isNull post.Metadata.Tags then [||] else post.Metadata.Tags
-                        for tag in tags do
-                            a [_href $"/tags/{tag}"; _class "text-decoration-none me-2"] [Text $"#{tag}"]
-                    ]
-                ]
-            ]
+        ]
     ]
 
 let notesView (posts: Post array) =
     div [ _class "d-grip gap-3" ] [
-        for post in posts do
-            div [ _class "mb-5 post-separator pb-4" ] [
-                // Add content type indicator and date
-                div [ _class "mb-3" ] [
-                    span [ _class "badge badge-light border" ] [ Text "Notes" ]
+        h2[] [Text "Notes"]
+        p [] [Text "Personal notes and short-form thoughts"]
+        ul [] [
+            for post in posts do
+                li [] [
+                    a [ _href $"/notes/{post.FileName}"] [ Text post.Metadata.Title ]
                     Text " • "
                     Text (DateTime.Parse(post.Metadata.Date).ToString("MMM dd, yyyy"))
                 ]
-                
-                // Post title and content
-                h2 [] [
-                    a [_href $"/notes/{post.FileName}/"] [Text post.Metadata.Title]
-                ]
-                div [] [
-                    rawText post.Content
-                ]
-                
-                // Footer with permalink and tags
-                div [ _class "mt-3 pt-2 border-top text-muted small" ] [
-                    Text "Permalink: " 
-                    a [_href $"/notes/{post.FileName}/"; _class "text-decoration-none"] [Text $"/notes/{post.FileName}/"] 
-                    
-                    div [ _class "mt-1" ] [
-                        str "Tags: "
-                        let tags = if isNull post.Metadata.Tags then [||] else post.Metadata.Tags
-                        for tag in tags do
-                            a [_href $"/tags/{tag}"; _class "text-decoration-none me-2"] [Text $"#{tag}"]
-                    ]
-                ]
-            ]
+        ]
     ]
 
 let responseView (posts: Response array) =
     div [ _class "d-grip gap-3" ] [
-        for post in posts do
-            div [ _class "mb-5 post-separator pb-4" ] [
-                // Add content type indicator and date
-                div [ _class "mb-3" ] [
-                    span [ _class "badge badge-light border" ] [ Text "Responses" ]
+        h2[] [Text "Responses"]
+        p [] [Text "Replies, bookmarks, and reactions to other content"]
+        ul [] [
+            for post in posts do
+                li [] [
+                    a [ _href $"/responses/{post.FileName}"] [ Text post.Metadata.Title ]
                     Text " • "
                     Text (DateTime.Parse(post.Metadata.DatePublished).ToString("MMM dd, yyyy"))
                 ]
-                
-                // Post title and content
-                h2 [] [
-                    a [_href $"/responses/{post.FileName}/"] [Text post.Metadata.Title]
-                ]
-                
-                // Response type icon and target URL
-                div [ _class "mb-2" ] [
-                    let (icon, color) = 
-                        match post.Metadata.ResponseType with
-                        | "reply" -> ("bi-reply-fill", "#3F5576")
-                        | "reshare" -> ("bi-share-fill", "#C0587E")
-                        | "star" -> ("bi-star-fill", "#ff7518")
-                        | "bookmark" -> ("bi-journal-bookmark-fill", "#4a60b6")
-                        | _ -> ("bi-chat-dots", "#666")
-                    
-                    span [_class $"bi {icon}"; _style $"margin-right:5px;color:{color};"] []
-                    a [_href post.Metadata.TargetUrl; _class "text-decoration-none"] [Text post.Metadata.TargetUrl]
-                ]
-                div [] [
-                    let cleanContent = 
-                        post.Content
-                            .Replace("No description available", "")
-                            .Replace("<p></p>", "")
-                    let timestampPattern = System.Text.RegularExpressions.Regex(@"^\s*\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}\s*$", System.Text.RegularExpressions.RegexOptions.Multiline)
-                    let cleanedContent = timestampPattern.Replace(cleanContent, "").Trim()
-                    rawText cleanedContent
-                ]
-                
-                // Footer with permalink and tags
-                div [ _class "mt-3 pt-2 border-top text-muted small" ] [
-                    Text "Permalink: " 
-                    a [_href $"/responses/{post.FileName}/"; _class "text-decoration-none"] [Text $"/responses/{post.FileName}/"] 
-                    
-                    div [ _class "mt-1" ] [
-                        str "Tags: "
-                        let tags = if isNull post.Metadata.Tags then [||] else post.Metadata.Tags
-                        for tag in tags do
-                            a [_href $"/tags/{tag}"; _class "text-decoration-none me-2"] [Text $"#{tag}"]
-                    ]
-                ]
-            ]
+        ]
     ]    
 
 let bookmarkView (bookmarks: Bookmark array) =
@@ -184,23 +86,29 @@ let libraryView (books:Book array) =
 let snippetsView (snippets: Snippet array) = 
     div [ _class "d-grip gap-3" ] [
         h2[] [Text "Snippets"]
-        p [] [Text "List of code snippets"]
+        p [] [Text "Code snippets and scripts"]
         ul [] [
             for snippet in snippets do
                 li [] [
                     a [ _href $"/resources/snippets/{snippet.FileName}"] [ Text snippet.Metadata.Title ]
+                    if not (String.IsNullOrEmpty(snippet.Metadata.CreatedDate)) then
+                        Text " • "
+                        Text (DateTime.Parse(snippet.Metadata.CreatedDate).ToString("MMM dd, yyyy"))
                 ]
         ]
     ]
 
 let wikisView (wikis: Wiki array) = 
     div [ _class "d-grip gap-3" ] [
-        h2[] [Text "Wikis"]
-        p [] [Text "Personal wiki articles"]
+        h2[] [Text "Wiki"]
+        p [] [Text "Personal knowledge base and notes"]
         ul [] [
             for wiki in wikis do
                 li [] [
                     a [ _href $"/resources/wiki/{wiki.FileName}"] [ Text wiki.Metadata.Title ]
+                    if not (String.IsNullOrEmpty(wiki.Metadata.LastUpdatedDate)) then
+                        Text " • "
+                        Text (DateTime.Parse(wiki.Metadata.LastUpdatedDate).ToString("MMM dd, yyyy"))
                 ]
         ]
     ]
@@ -231,37 +139,17 @@ let liveStreamsView (livestreams: Livestream array) =
 
 let albumsPageView (albums:Album array) = 
     div [ _class "d-grip gap-3" ] [
-        for album in albums do
-            let tags = if isNull album.Metadata.Tags then [||] else album.Metadata.Tags
-            let footer = ComponentViews.albumCardFooter album.FileName tags
-            
-            // Process the album content through MarkdownService to render :::media blocks
-            let processedContent = 
-                try
-                    MarkdownService.convertMdToHtml album.Content
-                with
-                | ex -> 
-                    printfn "Warning: Failed to process media content for album %s: %s" album.FileName ex.Message
-                    "<p>Content processing failed</p>"
-            
-            div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
-                div [ _class "card-body" ] [
-                    h5 [_class "card-title"] [
-                        a [_href $"/media/{album.FileName}"; _class "text-decoration-none"] [
-                            Text album.Metadata.Title
-                        ]
-                    ]
-                    div [_class "album-content mb-3"] [
-                        // Display the processed :::media blocks content
-                        rawText processedContent
-                    ]
-                    p [_class "text-muted"] [
-                        Text $"Permalink: /media/{album.FileName}/"
-                    ]
+        h2[] [Text "Media"]
+        p [] [Text "Photo albums and media collections"]
+        ul [] [
+            for album in albums do
+                li [] [
+                    a [ _href $"/media/{album.FileName}"] [ Text album.Metadata.Title ]
+                    if not (String.IsNullOrEmpty(album.Metadata.Date)) then
+                        Text " • "
+                        Text (DateTime.Parse(album.Metadata.Date).ToString("MMM dd, yyyy"))
                 ]
-                
-                footer
-            ]
+        ]
     ]
 
 let albumPageView (images:AlbumImage array) = 
