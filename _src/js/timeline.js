@@ -539,7 +539,7 @@ const TimelineProgressiveLoader = {
                             <a class="u-url title-link" href="${item.url}">${item.title}</a>
                         </h2>
                         <div class="e-content card-content">
-                            ${item.content}...
+                            ${item.content}
                         </div>
                     </div>
                     <footer class="card-footer">

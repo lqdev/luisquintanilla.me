@@ -1022,10 +1022,10 @@ module UnifiedFeeds =
         feedDataList |> List.choose (fun feedData ->
             match feedData.RssXml with
             | Some rssXml ->
-                // Use clean CardHtml instead of RSS description
+                // Use full content instead of CardHtml for complete content display
                 let title = feedData.Content.Metadata.Title
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.CardHtml  // Clean HTML instead of CDATA-wrapped RSS content
+                let content = feedData.Content.Content  // Full raw content - will be processed by timeline view
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "posts"; Tags = tags; RssXml = rssXml }
@@ -1035,10 +1035,10 @@ module UnifiedFeeds =
         feedDataList |> List.choose (fun feedData ->
             match feedData.RssXml with
             | Some rssXml ->
-                // Use clean CardHtml instead of RSS description
+                // Use full content instead of CardHtml for complete content display
                 let title = feedData.Content.Metadata.Title
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.CardHtml  // Clean HTML instead of CDATA-wrapped RSS content
+                let content = feedData.Content.Content  // Full raw content - will be processed by timeline view
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "notes"; Tags = tags; RssXml = rssXml }
@@ -1050,10 +1050,10 @@ module UnifiedFeeds =
         |> List.choose (fun feedData ->
             match feedData.RssXml with
             | Some rssXml ->
-                // Use clean CardHtml instead of RSS description
+                // Use full content instead of CardHtml for complete content display
                 let title = feedData.Content.Metadata.Title
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.CardHtml  // Clean HTML instead of CDATA-wrapped RSS content
+                let content = feedData.Content.Content  // Full raw content - will be processed by timeline view
                 let date = feedData.Content.Metadata.DatePublished
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "responses"; Tags = tags; RssXml = rssXml }

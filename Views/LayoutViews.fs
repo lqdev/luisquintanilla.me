@@ -6,6 +6,7 @@ open System.IO
 open Domain
 open ComponentViews
 open CollectionViews
+open MarkdownService
 
 // New timeline homepage view for feed-as-homepage interface - Progressive Loading Implementation
 let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
@@ -88,10 +89,9 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                                 a [ _class "u-url title-link"; _href properPermalink ] [ Text item.Title ]
                             ]
                             div [ _class "e-content card-content" ] [
-                                // Clean content to remove all nested article tags and prevent double nesting
-                                // Also remove duplicate h1/h2 titles that might already be in content
+                                // Convert markdown content to HTML and clean it
                                 let cleanedContent = 
-                                    let content = item.Content
+                                    let content = convertMdToHtml item.Content  // Convert markdown to HTML first
                                     // Remove all article opening tags with any class
                                     let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
                                     // Remove all article closing tags
@@ -156,14 +156,15 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                             | _ -> $"/{contentType}/{fileName}/"
                         let properPermalink = getProperPermalink item.ContentType fileName
                         
-                        // Clean and truncate content safely
+                        // Clean content safely for JSON without truncation - full content display
                         let safeContent = 
-                            let content = item.Content
-                            // Remove HTML tags for preview
-                            let withoutTags = System.Text.RegularExpressions.Regex.Replace(content, @"<[^>]+>", "")
-                            // Truncate to 300 characters for preview
-                            let truncated = if withoutTags.Length > 300 then withoutTags.Substring(0, 300) else withoutTags
-                            escapeJson truncated
+                            let content = convertMdToHtml item.Content  // Convert markdown to HTML first
+                            // Clean content similar to initial loading to ensure consistency
+                            let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
+                            let removeArticleEnd = removeArticleStart.Replace("</article>", "")
+                            let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h[12][^>]*>.*?</h[12]>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+                            let safeCleaned = removeTitles.Replace("&", "&amp;").Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
+                            escapeJson safeCleaned
                         
                         sprintf """{"title":"%s","contentType":"%s","date":"%s","url":"%s","content":"%s","tags":[%s]}"""
                             (escapeJson item.Title)
