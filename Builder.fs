@@ -570,21 +570,13 @@ module Builder
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, postView))
         
-        // Generate post archive pages (paginated)
+        // Generate posts index page at /posts/ (no pagination - show all like notes/responses)
         let posts = feedData |> List.map (fun item -> item.Content) |> List.toArray
-        let postsPerPage = 10
-        
-        posts
-        |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
-        |> Array.chunkBySize postsPerPage
-        |> Array.iteri(fun i x -> 
-            let len = posts |> Array.chunkBySize postsPerPage |> Array.length
-            let currentPage = i + 1
-            let idx = string currentPage
-            let page = generate (postPaginationView currentPage len x) "defaultindex" $"Posts {idx} - Luis Quintanilla"
-            let dir = Directory.CreateDirectory(Path.Join(outputDir,"posts", idx))
-            let fileName = "index.html"
-            File.WriteAllText(Path.Join(dir.FullName,fileName), page))
+        let sortedPosts = posts |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
+        let postsIndexHtml = generate (feedView sortedPosts) "defaultindex" "Posts - Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "posts")
+        Directory.CreateDirectory(indexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), postsIndexHtml)
         
         // Return feed data for unified RSS generation
         feedData

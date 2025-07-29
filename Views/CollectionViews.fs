@@ -40,12 +40,30 @@ let feedView (posts: Post array) =
                     Text (DateTime.Parse(post.Metadata.Date).ToString("MMM dd, yyyy"))
                 ]
                 
-                // Post title and content
+                // Post title and content with intelligent truncation
                 h2 [] [
                     a [_href $"/posts/{post.FileName}/"] [Text post.Metadata.Title]
                 ]
                 div [] [
-                    rawText post.Content
+                    // Intelligent content truncation based on research
+                    let wordCount = post.Content.Split([|' '; '\n'; '\r'|], StringSplitOptions.RemoveEmptyEntries).Length
+                    let shouldTruncate = wordCount > 100 // ~400 characters at 4 chars/word average
+                    
+                    if shouldTruncate then
+                        // Extract first 300 characters for preview
+                        let preview = 
+                            if post.Content.Length > 300 then
+                                post.Content.Substring(0, 300).Trim() + "..."
+                            else
+                                post.Content
+                        rawText preview
+                        div [ _class "mt-2" ] [
+                            a [ _href $"/posts/{post.FileName}/"; _class "btn btn-sm btn-outline-primary" ] [
+                                Text "Continue Reading →"
+                            ]
+                        ]
+                    else
+                        rawText post.Content
                 ]
                 
                 // Footer with permalink and tags
