@@ -107,7 +107,6 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                         
                         footer [ _class "card-footer" ] [
                             div [ _class "card-meta" ] [
-                                a [ _class "u-url permalink-link"; _href properPermalink ] [ Text "Read more →" ]
                                 if item.Tags.Length > 0 then
                                     div [ _class "p-category tags" ] [
                                         for tag in item.Tags do

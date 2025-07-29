@@ -1065,10 +1065,9 @@ module UnifiedFeeds =
         |> List.choose (fun feedData ->
             match feedData.RssXml with
             | Some rssXml ->
-                // Use clean CardHtml instead of RSS description
                 let title = feedData.Content.Metadata.Title
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.CardHtml  // Clean HTML instead of CDATA-wrapped RSS content
+                let content = feedData.Content.Content  // Use full content instead of CardHtml
                 let date = feedData.Content.Metadata.DatePublished
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml }
@@ -1078,10 +1077,9 @@ module UnifiedFeeds =
         feedDataList |> List.choose (fun feedData ->
             match feedData.RssXml with
             | Some rssXml ->
-                // Use clean CardHtml instead of RSS description
                 let title = feedData.Content.Metadata.Title
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.CardHtml  // Clean HTML instead of CDATA-wrapped RSS content
+                let content = feedData.Content.Content  // Use full content instead of CardHtml
                 let date = feedData.Content.Metadata.CreatedDate
                 let tags = 
                     if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
@@ -1093,10 +1091,9 @@ module UnifiedFeeds =
         feedDataList |> List.choose (fun feedData ->
             match feedData.RssXml with
             | Some rssXml ->
-                // Use clean CardHtml instead of RSS description
                 let title = feedData.Content.Metadata.Title
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.CardHtml  // Clean HTML instead of CDATA-wrapped RSS content
+                let content = feedData.Content.Content  // Use full content instead of CardHtml
                 let date = feedData.Content.Metadata.LastUpdatedDate
                 let tags = 
                     if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
@@ -1108,10 +1105,9 @@ module UnifiedFeeds =
         feedDataList |> List.choose (fun feedData ->
             match feedData.RssXml with
             | Some rssXml ->
-                // Use clean CardHtml instead of RSS description
                 let title = feedData.Content.Metadata.Title
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.CardHtml  // Clean HTML instead of CDATA-wrapped RSS content
+                let content = feedData.Content.Content  // Use full content instead of CardHtml
                 let date = feedData.Content.Metadata.Date
                 let tags = 
                     if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
@@ -1136,10 +1132,9 @@ module UnifiedFeeds =
         feedDataList |> List.choose (fun feedData ->
             match feedData.RssXml with
             | Some rssXml ->
-                // Use clean CardHtml instead of RSS description
                 let title = feedData.Content.Metadata.Title
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.CardHtml  // Clean HTML instead of CDATA-wrapped RSS content
+                let content = feedData.Content.Content  // Use full content instead of CardHtml
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "media"; Tags = tags; RssXml = rssXml }
@@ -1149,10 +1144,9 @@ module UnifiedFeeds =
         feedDataList |> List.choose (fun feedData ->
             match feedData.RssXml with
             | Some rssXml ->
-                // Use clean CardHtml instead of RSS description
                 let title = feedData.Content.Metadata.Title
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.CardHtml  // Clean HTML instead of CDATA-wrapped RSS content
+                let content = feedData.Content.Content  // Use full content instead of CardHtml
                 let date = feedData.Content.Metadata.DatePublished
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml }

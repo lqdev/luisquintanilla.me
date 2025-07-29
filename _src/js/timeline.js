@@ -525,11 +525,7 @@ const TimelineProgressiveLoader = {
             html += `
                 <article class="h-entry content-card" data-type="${item.contentType}" data-date="${item.date}" style="opacity: 0; transform: translateY(20px);">
                     <header class="card-header">
-                        <div class="h-card author-info">
-                            <img class="u-photo author-avatar" src="/avatar.png" alt="Luis Quintanilla">
-                            <span class="p-name author-name">Luis Quintanilla</span>
-                            <time class="dt-published publication-date" datetime="${item.date}">${formattedDate}</time>
-                        </div>
+                        <time class="dt-published publication-date" datetime="${item.date}">${formattedDate}</time>
                         <div class="content-type-info">
                             <span class="content-type-badge" data-type="${item.contentType}">${contentTypeBadge}</span>
                         </div>
@@ -544,7 +540,6 @@ const TimelineProgressiveLoader = {
                     </div>
                     <footer class="card-footer">
                         <div class="card-meta">
-                            <a class="u-url permalink-link" href="${item.url}">Read more →</a>
                             ${tagsHtml}
                         </div>
                     </footer>
