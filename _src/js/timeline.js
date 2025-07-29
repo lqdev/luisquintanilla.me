@@ -72,6 +72,11 @@ const TimelineFilter = {
         
         // Announce change for screen readers
         this.announceFilterChange(contentType, visibleCount);
+        
+        // Dispatch filter change event for progressive loader
+        document.dispatchEvent(new CustomEvent('filterChanged', {
+            detail: { filterType: contentType, visibleCount: visibleCount }
+        }));
     },
 
     // Update active filter button
@@ -355,50 +360,60 @@ const TimelineMobileNav = {
     }
 };
 
-// Progressive Loading Manager - Handles chunked content loading for large content volumes
+// Progressive Loading Manager - Type-aware chunked content loading for stratified content
 const TimelineProgressiveLoader = {
     // Configuration
     config: {
-        chunkSize: 25,
+        chunkSize: 10,
         loadThreshold: 0.8 // Trigger load when 80% of current content is visible
     },
     
     // State
-    currentPage: 1,
-    totalItems: 0,
-    loadedItems: 50, // Start with 50 items already loaded
     isLoading: false,
     observer: null,
-    remainingContent: [], // Array to store remaining content from server
+    remainingContentByType: new Map(), // Map of contentType -> Array of items
+    loadedCountByType: new Map(), // Track how many items loaded per type
+    currentFilter: 'all', // Track current filter to load appropriate content
     
     init() {
-        this.setupProgressiveLoading();
-        this.loadRemainingContent();
+        this.loadRemainingContentByType();
         this.setupIntersectionObserver();
         this.setupLoadMoreButton();
+        this.setupFilterListener();
     },
     
-    setupProgressiveLoading() {
-        // Get total items from data attribute
-        const progressiveContainer = document.getElementById('progressiveContent');
-        if (progressiveContainer) {
-            this.totalItems = parseInt(progressiveContainer.getAttribute('data-total-items')) || 0;
-            console.log(`📊 Progressive loader initialized: ${this.loadedItems}/${this.totalItems} items`);
-        }
-    },
-    
-    loadRemainingContent() {
-        // Load remaining content data from JSON script tag
-        const contentScript = document.getElementById('remainingContentData');
-        if (contentScript) {
-            try {
-                this.remainingContent = JSON.parse(contentScript.textContent);
-                console.log(`📦 Loaded ${this.remainingContent.length} remaining content items`);
-            } catch (error) {
-                console.error('❌ Error parsing remaining content data:', error);
-                this.remainingContent = [];
+    loadRemainingContentByType() {
+        // Load content data for each content type from separate JSON script tags
+        const contentTypes = ['posts', 'notes', 'responses', 'bookmarks', 'reviews', 'media', 'snippets', 'wiki', 'presentations'];
+        
+        contentTypes.forEach(contentType => {
+            const contentScript = document.getElementById(`remainingContentData-${contentType}`);
+            if (contentScript) {
+                try {
+                    const contentItems = JSON.parse(contentScript.textContent);
+                    this.remainingContentByType.set(contentType, contentItems);
+                    this.loadedCountByType.set(contentType, 0);
+                    console.log(`� Loaded ${contentItems.length} remaining ${contentType} items`);
+                } catch (error) {
+                    console.error(`❌ Error parsing ${contentType} content data:`, error);
+                    this.remainingContentByType.set(contentType, []);
+                    this.loadedCountByType.set(contentType, 0);
+                }
             }
-        }
+        });
+        
+        // Calculate total remaining items
+        const totalRemaining = Array.from(this.remainingContentByType.values())
+            .reduce((sum, items) => sum + items.length, 0);
+        console.log(`� Progressive loader initialized with ${totalRemaining} total remaining items across ${this.remainingContentByType.size} content types`);
+    },
+    
+    setupFilterListener() {
+        // Listen for filter changes to update current filter
+        document.addEventListener('filterChanged', (event) => {
+            this.currentFilter = event.detail.filterType;
+            this.updateLoadMoreButton();
+        });
     },
     
     setupIntersectionObserver() {
@@ -441,32 +456,18 @@ const TimelineProgressiveLoader = {
         this.updateLoadingState(true);
         
         try {
-            // Calculate items to load
-            const remainingItems = this.totalItems - this.loadedItems;
-            const itemsToLoad = Math.min(this.config.chunkSize, remainingItems);
-            
-            console.log(`📥 Loading ${itemsToLoad} more items (${this.loadedItems + itemsToLoad}/${this.totalItems})`);
+            console.log(`📥 Loading more content for filter: ${this.currentFilter}`);
             
             // Simulate loading delay for better UX
             await new Promise(resolve => setTimeout(resolve, 300));
             
-            // Generate new content cards
-            const newContent = this.generateContentChunk(itemsToLoad);
+            // Generate new content cards based on current filter
+            const newContent = this.generateContentChunkByType();
             
             // Add new content to progressive container
             const progressiveContainer = document.getElementById('progressiveContent');
-            if (progressiveContainer) {
+            if (progressiveContainer && newContent) {
                 progressiveContainer.insertAdjacentHTML('beforeend', newContent);
-                
-                // Update state
-                this.loadedItems += itemsToLoad;
-                this.currentPage++;
-                
-                // Apply current filter to new content
-                const currentFilter = window.TimelineInterface?.filter?.getCurrentFilter() || 'all';
-                if (currentFilter !== 'all') {
-                    this.applyFilterToNewContent(currentFilter);
-                }
                 
                 // Smooth reveal of new content
                 this.animateNewContent();
@@ -474,9 +475,6 @@ const TimelineProgressiveLoader = {
             
             // Update UI state
             this.updateLoadMoreButton();
-            this.updateProgressIndicator();
-            
-            console.log(`✅ Loaded ${itemsToLoad} items. Total loaded: ${this.loadedItems}/${this.totalItems}`);
             
         } catch (error) {
             console.error('❌ Error loading more content:', error);
@@ -486,68 +484,149 @@ const TimelineProgressiveLoader = {
         }
     },
     
-    generateContentChunk(itemCount) {
-        // Use actual remaining content instead of placeholder data
+    generateContentChunkByType() {
         let html = '';
-        const startIndex = this.loadedItems - 50; // Offset for remaining content array
-        const endIndex = Math.min(startIndex + itemCount, this.remainingContent.length);
+        let itemsLoaded = 0;
         
-        for (let i = startIndex; i < endIndex; i++) {
-            const item = this.remainingContent[i];
-            if (!item) continue;
+        if (this.currentFilter === 'all') {
+            // Load from all content types, round-robin style to maintain diversity
+            const contentTypes = Array.from(this.remainingContentByType.keys());
+            const itemsPerType = Math.ceil(this.config.chunkSize / contentTypes.length);
             
-            // Format date
-            const date = new Date(item.date);
-            const formattedDate = date.toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'short', 
-                day: 'numeric' 
+            contentTypes.forEach(contentType => {
+                const items = this.remainingContentByType.get(contentType) || [];
+                const loadedCount = this.loadedCountByType.get(contentType) || 0;
+                const availableItems = items.slice(loadedCount, loadedCount + itemsPerType);
+                
+                availableItems.forEach(item => {
+                    if (itemsLoaded < this.config.chunkSize) {
+                        html += this.generateContentCard(item);
+                        itemsLoaded++;
+                    }
+                });
+                
+                // Update loaded count for this type
+                this.loadedCountByType.set(contentType, loadedCount + availableItems.length);
+            });
+        } else {
+            // Load only from the filtered content type
+            const items = this.remainingContentByType.get(this.currentFilter) || [];
+            const loadedCount = this.loadedCountByType.get(this.currentFilter) || 0;
+            const availableItems = items.slice(loadedCount, loadedCount + this.config.chunkSize);
+            
+            availableItems.forEach(item => {
+                html += this.generateContentCard(item);
+                itemsLoaded++;
             });
             
-            // Content type badge text
-            const contentTypeBadge = {
-                'posts': 'Blog Post',
-                'notes': 'Note',
-                'responses': 'Response',
-                'bookmarks': 'Bookmark',
-                'reviews': 'Review',
-                'streams': 'Stream Recording',
-                'media': 'Media'
-            }[item.contentType] || item.contentType;
-            
-            // Generate tags HTML
-            const tagsHtml = item.tags && item.tags.length > 0 
-                ? `<div class="p-category tags">
-                     ${item.tags.map(tag => `<a class="tag-link" href="/tags/${tag}/">#${tag}</a>`).join('')}
-                   </div>`
-                : '';
-            
-            html += `
-                <article class="h-entry content-card" data-type="${item.contentType}" data-date="${item.date}" style="opacity: 0; transform: translateY(20px);">
-                    <header class="card-header">
-                        <time class="dt-published publication-date" datetime="${item.date}">${formattedDate}</time>
-                        <div class="content-type-info">
-                            <span class="content-type-badge" data-type="${item.contentType}">${contentTypeBadge}</span>
-                        </div>
-                    </header>
-                    <div class="card-body">
-                        <h2 class="p-name card-title">
-                            <a class="u-url title-link" href="${item.url}">${item.title}</a>
-                        </h2>
-                        <div class="e-content card-content">
-                            ${item.content}
-                        </div>
-                    </div>
-                    <footer class="card-footer">
-                        <div class="card-meta">
-                            ${tagsHtml}
-                        </div>
-                    </footer>
-                </article>
-            `;
+            // Update loaded count for this type
+            this.loadedCountByType.set(this.currentFilter, loadedCount + availableItems.length);
         }
         
+        console.log(`✅ Generated ${itemsLoaded} content cards for filter: ${this.currentFilter}`);
         return html;
+    },
+    
+    generateContentCard(item) {
+        // Format date
+        const date = new Date(item.date);
+        const formattedDate = date.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'short', 
+            day: 'numeric' 
+        });
+        
+        // Content type badge text
+        const contentTypeBadge = {
+            'posts': 'Blog Post',
+            'notes': 'Note',
+            'responses': 'Response',
+            'bookmarks': 'Bookmark',
+            'reviews': 'Review',
+            'streams': 'Stream Recording',
+            'media': 'Media',
+            'snippets': 'Snippet',
+            'wiki': 'Wiki',
+            'presentations': 'Presentation'
+        }[item.contentType] || item.contentType;
+        
+        // Generate tags HTML
+        const tagsHtml = item.tags && item.tags.length > 0 
+            ? `<div class="p-category tags">
+                   ${item.tags.map(tag => `<a class="tag-link" href="/tags/${tag}/">#${tag}</a>`).join('')}
+               </div>`
+            : '';
+        
+        return `
+        <article class="h-entry content-card" data-type="${item.contentType}" data-date="${item.date}">
+            <header class="card-header">
+                <time class="dt-published publication-date" datetime="${item.date}">${formattedDate}</time>
+                <div class="content-type-info">
+                    <span class="content-type-badge" data-type="${item.contentType}">${contentTypeBadge}</span>
+                </div>
+            </header>
+            <div class="card-body">
+                <h2 class="p-name card-title">
+                    <a class="u-url title-link" href="${item.url}">${item.title}</a>
+                </h2>
+                <div class="e-content card-content">
+                    ${item.content}
+                </div>
+            </div>
+            <footer class="card-footer">
+                <div class="card-meta">
+                    ${tagsHtml}
+                </div>
+            </footer>
+        </article>`;
+    },
+    
+    hasMoreContent() {
+        if (this.currentFilter === 'all') {
+            // Check if any content type has remaining items
+            for (const [contentType, items] of this.remainingContentByType) {
+                const loadedCount = this.loadedCountByType.get(contentType) || 0;
+                if (loadedCount < items.length) {
+                    return true;
+                }
+            }
+            return false;
+        } else {
+            // Check specific content type
+            const items = this.remainingContentByType.get(this.currentFilter) || [];
+            const loadedCount = this.loadedCountByType.get(this.currentFilter) || 0;
+            return loadedCount < items.length;
+        }
+    },
+    
+    updateLoadMoreButton() {
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        if (!loadMoreBtn) return;
+        
+        const hasMore = this.hasMoreContent();
+        const totalRemaining = this.getRemainingItemCount();
+        
+        if (hasMore) {
+            loadMoreBtn.textContent = `Load More (${totalRemaining} items remaining)`;
+            loadMoreBtn.style.display = 'block';
+        } else {
+            loadMoreBtn.style.display = 'none';
+        }
+    },
+    
+    getRemainingItemCount() {
+        if (this.currentFilter === 'all') {
+            let total = 0;
+            for (const [contentType, items] of this.remainingContentByType) {
+                const loadedCount = this.loadedCountByType.get(contentType) || 0;
+                total += Math.max(0, items.length - loadedCount);
+            }
+            return total;
+        } else {
+            const items = this.remainingContentByType.get(this.currentFilter) || [];
+            const loadedCount = this.loadedCountByType.get(this.currentFilter) || 0;
+            return Math.max(0, items.length - loadedCount);
+        }
     },
     
     applyFilterToNewContent(filterType) {

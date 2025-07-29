@@ -8,6 +8,195 @@ open ComponentViews
 open CollectionViews
 open MarkdownService
 
+// New stratified timeline homepage view - takes 5 items from each content type initially
+// Progressive loading is content-type aware for better filtering experience
+let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) (remainingItemsByType: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
+    printfn "Debug: Stratified timeline view with %d initial items" initialItems.Length
+    
+    div [ _class "h-feed unified-timeline" ] [
+        // Header with personal intro and content filters
+        header [ _class "timeline-header text-center p-4" ] [
+            div [ _class "avatar-section mb-3" ] [
+                img [ _src "/avatar.png"; _alt "Luis Quintanilla Avatar Image"; _class "rounded-circle"; _height "150"; _width "150" ]
+                div [ _class "mt-2" ] [
+                    h1 [ _class "p-name" ] [
+                        str "Hi, I'm "
+                        a [ _href "/about"; _class "author-link" ] [ Text "Luis" ]
+                        span [] [ Text " &#x1F44B;" ]
+                    ]
+                    p [ _class "tagline" ] [ Text "Latest updates from across the site" ]
+                ]
+            ]
+            
+            // Content type filters (will be styled as buttons in CSS)
+            div [ _class "content-filters mt-3"; _id "contentFilters" ] [
+                button [ _class "filter-btn active"; attr "data-filter" "all"; _type "button" ] [ Text "All" ]
+                button [ _class "filter-btn"; attr "data-filter" "posts"; _type "button" ] [ Text "Blog Posts" ]
+                button [ _class "filter-btn"; attr "data-filter" "notes"; _type "button" ] [ Text "Notes" ]
+                button [ _class "filter-btn"; attr "data-filter" "responses"; _type "button" ] [ Text "Responses" ]
+                button [ _class "filter-btn"; attr "data-filter" "reviews"; _type "button" ] [ Text "Reviews" ]
+                button [ _class "filter-btn"; attr "data-filter" "bookmarks"; _type "button" ] [ Text "Bookmarks" ]
+                button [ _class "filter-btn"; attr "data-filter" "media"; _type "button" ] [ Text "Media" ]
+            ]
+        ]
+        
+        // Timeline content area with stratified loading
+        main [ _class "timeline-content" ] [
+            // Initial stratified content (5 items from each content type)
+            div [ _class "initial-content"; _id "initialContent" ] [
+                for item in initialItems do
+                    let fileName = Path.GetFileNameWithoutExtension(item.Url)
+                    let getProperPermalink (contentType: string) (fileName: string) =
+                        match contentType with
+                        | "posts" -> $"/posts/{fileName}/"
+                        | "notes" -> $"/notes/{fileName}/"
+                        | "responses" -> $"/responses/{fileName}/"
+                        | "bookmarks" -> $"/responses/{fileName}/"  // Bookmarks are responses but filtered separately
+                        | "reviews" -> $"/reviews/{fileName}/"
+                        | "streams" -> $"/streams/{fileName}/"
+                        | "media" -> $"/media/{fileName}/"
+                        | _ -> $"/{contentType}/{fileName}/"
+                    
+                    let properPermalink = getProperPermalink item.ContentType fileName
+                    
+                    // Content card with desert theme and filtering attributes
+                    article [ 
+                        _class "h-entry content-card"
+                        attr "data-type" item.ContentType
+                        attr "data-date" item.Date
+                    ] [
+                        header [ _class "card-header" ] [
+                            time [ _class "dt-published publication-date"; attr "datetime" item.Date ] [
+                                Text (DateTime.Parse(item.Date).ToString("MMM dd, yyyy"))
+                            ]
+                            div [ _class "content-type-info" ] [
+                                span [ _class "content-type-badge"; attr "data-type" item.ContentType ] [
+                                    Text (match item.ContentType with
+                                          | "posts" -> "Blog Post"
+                                          | "notes" -> "Note"
+                                          | "responses" -> "Response"
+                                          | "bookmarks" -> "Bookmark"
+                                          | "reviews" -> "Review"
+                                          | "streams" -> "Stream Recording"
+                                          | "media" -> "Media"
+                                          | _ -> item.ContentType)
+                                ]
+                            ]
+                        ]
+                        
+                        div [ _class "card-body" ] [
+                            h2 [ _class "p-name card-title" ] [
+                                a [ _class "u-url title-link"; _href properPermalink ] [ Text item.Title ]
+                            ]
+                            div [ _class "e-content card-content" ] [
+                                // Convert markdown content to HTML and clean it
+                                let cleanedContent = 
+                                    let content = convertMdToHtml item.Content  // Convert markdown to HTML first
+                                    // Remove all article opening tags with any class
+                                    let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
+                                    // Remove all article closing tags
+                                    let removeArticleEnd = removeArticleStart.Replace("</article>", "")
+                                    // Remove duplicate h1/h2 titles (common source of duplication)
+                                    let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h[12][^>]*>.*?</h[12]>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+                                    // Additional cleaning to prevent HTML parsing issues
+                                    let safeCleaned = removeTitles.Replace("&", "&amp;").Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
+                                    safeCleaned
+                                rawText cleanedContent
+                            ]
+                        ]
+                        
+                        footer [ _class "card-footer" ] [
+                            div [ _class "card-meta" ] [
+                                if item.Tags.Length > 0 then
+                                    div [ _class "p-category tags" ] [
+                                        for tag in item.Tags do
+                                            a [ _class "tag-link"; _href $"/tags/{tag}/" ] [ Text $"#{tag}" ]
+                                    ]
+                            ]
+                        ]
+                    ]
+            ]
+            
+            // Progressive loading container for additional content chunks per type
+            div [ 
+                _class "progressive-content"
+                _id "progressiveContent"
+            ] []
+            
+            // Type-aware progressive loading data and controls
+            if not remainingItemsByType.IsEmpty then
+                // Generate JSON data for each content type separately
+                for (contentType, items) in remainingItemsByType do
+                    if not items.IsEmpty then
+                        // Proper JSON escaping function
+                        let escapeJson (text: string) =
+                            text.Replace("\\", "\\\\")
+                                .Replace("\"", "\\\"")
+                                .Replace("\b", "\\b")
+                                .Replace("\f", "\\f")
+                                .Replace("\n", "\\n")
+                                .Replace("\r", "\\r")
+                                .Replace("\t", "\\t")
+                        
+                        let contentTypeItemsJson = 
+                            items 
+                            |> List.map (fun item ->
+                                let fileName = Path.GetFileNameWithoutExtension(item.Url)
+                                let getProperPermalink (contentType: string) (fileName: string) =
+                                    match contentType with
+                                    | "posts" -> $"/posts/{fileName}/"
+                                    | "notes" -> $"/notes/{fileName}/"
+                                    | "responses" -> $"/responses/{fileName}/"
+                                    | "bookmarks" -> $"/responses/{fileName}/"
+                                    | "reviews" -> $"/reviews/{fileName}/"
+                                    | "streams" -> $"/streams/{fileName}/"
+                                    | "media" -> $"/media/{fileName}/"
+                                    | _ -> $"/{contentType}/{fileName}/"
+                                let properPermalink = getProperPermalink item.ContentType fileName
+                                
+                                // Clean content safely for JSON without truncation - full content display
+                                let safeContent = 
+                                    let content = convertMdToHtml item.Content  // Convert markdown to HTML first
+                                    // Clean content similar to initial loading to ensure consistency
+                                    let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
+                                    let removeArticleEnd = removeArticleStart.Replace("</article>", "")
+                                    let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h[12][^>]*>.*?</h[12]>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+                                    let safeCleaned = removeTitles.Replace("&", "&amp;").Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
+                                    escapeJson safeCleaned
+                                
+                                sprintf """{"title":"%s","contentType":"%s","date":"%s","url":"%s","content":"%s","tags":[%s]}"""
+                                    (escapeJson item.Title)
+                                    (escapeJson item.ContentType)
+                                    (escapeJson item.Date)
+                                    (escapeJson properPermalink)
+                                    safeContent
+                                    (item.Tags |> Array.map (fun tag -> sprintf "\"%s\"" (escapeJson tag)) |> String.concat ",")
+                            )
+                            |> String.concat ","
+                        
+                        script [ _type "application/json"; _id $"remainingContentData-{contentType}" ] [
+                            rawText $"[{contentTypeItemsJson}]"
+                        ]
+                
+                // Progressive loading controls (JavaScript will handle type-specific loading)
+                div [ _class "load-more-section"; _id "loadMoreSection" ] [
+                    let totalRemaining = remainingItemsByType |> List.sumBy (fun (_, items) -> items.Length)
+                    button [ 
+                        _class "load-more-btn"
+                        _id "loadMoreBtn"
+                        _type "button"
+                        attr "data-chunk-size" "10"
+                    ] [
+                        Text $"Load More ({totalRemaining} items remaining)"
+                    ]
+                    div [ _class "loading-indicator hidden"; _id "loadingIndicator" ] [
+                        div [ _class "loading-spinner" ] []
+                        Text "Loading more content..."
+                    ]
+                ]
+        ]
+    ]
+
 // New timeline homepage view for feed-as-homepage interface - Progressive Loading Implementation
 let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
     // Research-backed progressive loading: Start with safe 50 items, load more on demand

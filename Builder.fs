@@ -108,20 +108,37 @@ module Builder
 
     // New timeline homepage for Phase 3 - Feed-as-Homepage Interface
     let buildTimelineHomePage (allUnifiedItems: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
-        // Flatten all feed items and sort chronologically (latest first) - ALL CONTENT DISPLAYED
-        let flattenedItems = 
+        // Content-type stratified sampling: Take first 5 items from each content type
+        // This ensures equal representation and better content discovery in initial load
+        let stratifiedInitialItems = 
             allUnifiedItems
-            |> List.collect snd
-            |> List.sortByDescending (fun item -> DateTime.Parse(item.Date))
-            |> List.toArray // Remove artificial limit - show ALL content for proper discovery
+            |> List.collect (fun (contentType, items) ->
+                items 
+                |> List.sortByDescending (fun item -> DateTime.Parse(item.Date))
+                |> List.take (min 5 items.Length) // Take top 5 from each content type
+            )
+            |> List.sortByDescending (fun item -> DateTime.Parse(item.Date)) // Sort mixed types chronologically
         
-        printfn "Debug: About to render %d items to timeline view" flattenedItems.Length
+        // Group remaining items by content type for type-aware progressive loading
+        let remainingItemsByType = 
+            allUnifiedItems
+            |> List.map (fun (contentType, items) ->
+                let sortedItems = items |> List.sortByDescending (fun item -> DateTime.Parse(item.Date))
+                let remainingItems = sortedItems |> List.skip (min 5 items.Length)
+                (contentType, remainingItems)
+            )
+            |> List.filter (fun (_, items) -> not items.IsEmpty)
         
-        // Generate the timeline homepage
-        let timelineHomePage = generate (timelineHomeView flattenedItems) "default" "Luis Quintanilla - Personal Website"
+        printfn "Debug: About to render timeline with %d initial items from stratified sampling" stratifiedInitialItems.Length
+        printfn "Debug: Remaining items by type: %s" 
+            (remainingItemsByType |> List.map (fun (t, items) -> $"{t}:{items.Length}") |> String.concat ", ")
+        
+        // Generate the timeline homepage with stratified approach
+        let timelineHomePage = generate (LayoutViews.timelineHomeViewStratified (stratifiedInitialItems |> List.toArray) remainingItemsByType) "default" "Luis Quintanilla - Personal Website"
         File.WriteAllText(Path.Join(outputDir,"index.html"), timelineHomePage)
         
-        printfn "✅ Timeline homepage created with %d items across all content types" flattenedItems.Length
+        let totalItems = allUnifiedItems |> List.sumBy (fun (_, items) -> items.Length)
+        printfn "✅ Timeline homepage created with %d initial items (stratified) from %d total items across all content types" stratifiedInitialItems.Length totalItems
 
     let buildAboutPage () = 
 
