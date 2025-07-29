@@ -549,11 +549,14 @@ const TimelineMobileNav = {
             mobileToggle.addEventListener('click', () => {
                 this.toggleMobileNav();
             });
+            console.log('📱 Mobile toggle event listener attached');
+        } else {
+            console.warn('⚠️ Mobile toggle button not found');
         }
     },
 
     setupOverlayClose() {
-        const overlay = document.getElementById('mobile-nav-overlay');
+        const overlay = document.getElementById('nav-overlay');
         if (overlay) {
             overlay.addEventListener('click', () => {
                 this.closeMobileNav();
@@ -568,39 +571,50 @@ const TimelineMobileNav = {
     },
 
     toggleMobileNav() {
-        const nav = document.querySelector('.desert-nav');
-        const overlay = document.getElementById('mobile-nav-overlay');
+        const nav = document.getElementById('sidebar-menu');
+        const overlay = document.getElementById('nav-overlay');
+        const toggle = document.getElementById('mobile-nav-toggle');
         
-        if (nav && overlay) {
-            const isOpen = nav.classList.contains('mobile-open');
+        if (nav && overlay && toggle) {
+            const isOpen = nav.classList.contains('active');
             
             if (isOpen) {
                 this.closeMobileNav();
             } else {
                 this.openMobileNav();
             }
+        } else {
+            console.warn('⚠️ Navigation elements not found for mobile toggle');
         }
     },
 
     openMobileNav() {
-        const nav = document.querySelector('.desert-nav');
-        const overlay = document.getElementById('mobile-nav-overlay');
+        const nav = document.getElementById('sidebar-menu');
+        const overlay = document.getElementById('nav-overlay');
+        const toggle = document.getElementById('mobile-nav-toggle');
         
-        if (nav && overlay) {
-            nav.classList.add('mobile-open');
+        if (nav && overlay && toggle) {
+            nav.classList.add('active');
             overlay.classList.add('active');
+            toggle.classList.add('active');
+            toggle.setAttribute('aria-expanded', 'true');
             document.body.style.overflow = 'hidden';
+            console.log('📱 Mobile navigation opened');
         }
     },
 
     closeMobileNav() {
-        const nav = document.querySelector('.desert-nav');
-        const overlay = document.getElementById('mobile-nav-overlay');
+        const nav = document.getElementById('sidebar-menu');
+        const overlay = document.getElementById('nav-overlay');
+        const toggle = document.getElementById('mobile-nav-toggle');
         
-        if (nav && overlay) {
-            nav.classList.remove('mobile-open');
+        if (nav && overlay && toggle) {
+            nav.classList.remove('active');
             overlay.classList.remove('active');
+            toggle.classList.remove('active');
+            toggle.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
+            console.log('📱 Mobile navigation closed');
         }
     }
 };

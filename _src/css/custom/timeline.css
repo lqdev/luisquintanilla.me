@@ -60,6 +60,58 @@
   min-width: 80px;
 }
 
+/* Mobile-optimized content filters */
+@media (max-width: 768px) {
+  .content-filters {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.5rem 0;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .content-filters::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .filter-btn {
+    flex-shrink: 0;
+    min-width: 70px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  
+  /* Add scroll indicators */
+  .content-filters::before,
+  .content-filters::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .content-filters::before {
+    left: 0;
+    background: linear-gradient(to right, var(--background-color), transparent);
+  }
+  
+  .content-filters::after {
+    right: 0;
+    background: linear-gradient(to left, var(--background-color), transparent);
+  }
+}
+
 .filter-btn:hover {
   background: var(--hover-color);
   border-color: var(--hover-color);
@@ -260,12 +312,52 @@
   }
   
   .content-filters {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.5rem 0;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .content-filters::-webkit-scrollbar {
+    display: none;
   }
   
   .filter-btn {
-    min-width: 120px;
+    flex-shrink: 0;
+    min-width: 70px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  
+  /* Add scroll indicators */
+  .content-filters::before,
+  .content-filters::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .content-filters::before {
+    left: 0;
+    background: linear-gradient(to right, var(--background-color), transparent);
+  }
+  
+  .content-filters::after {
+    right: 0;
+    background: linear-gradient(to left, var(--background-color), transparent);
   }
   
   .card-header {
