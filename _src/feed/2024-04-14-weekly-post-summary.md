@@ -10,7 +10,7 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 - [These models are too damn big!](/notes/slm-too-big)
 - [Enjoying El Sonido from KEXP](/notes/enjoying-kexp-el-sonido)
 - [New podcast (Better Offline) added to blogroll](/notes/better-offline-podroll)
-- [Week of April 07, 2024 - Post Summary](/notes/2024-04-07-weekly-post-summary//)
+- [Week of April 07, 2024 - Post Summary](/notes/2024-04-07-weekly-post-summary/)
     
 ## Responses
 
@@ -18,7 +18,7 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 - [RecurrentGemma - Open weights language model from Google DeepMind, based on Griffin.](/responses/google-deepmind-recurrent-gemma)
 - [Beeper was just acquired by Automattic](/responses/beeper-acquired-automattic)
 - [Hello OLMo: A truly open LLM](/responses/allen-ai-olmo-llm)
-- [Molly White's Blogroll](/collections/blogroll/-molly-white)
+- [Molly White's Blogroll](/responses/blogroll-molly-white/)
 - [ARAGOG: Advanced RAG Output Grading](/responses/aragog-advanced-rag-output-grading)
 - [Rock AlterLatino from Radio Bilingue](/responses/radio-bilingue-rock-alterlatino)
 - [Far Out Guides](/responses/far-out-guides-hiking-app)

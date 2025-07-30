@@ -15,4 +15,4 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 - [Thundercat on Tyler's Chromakopia album?](/responses/thundercat-chromakopia)
 - [Day 1 of .NET Conf](/responses/dotnetconf-2024-day-1-success)
 - [.NET Conf 2024 - Session Recordings](/responses/dotnet-conf-2024-session-playlist)
-- [Why YOU Should Make A Website](/notes/why-you-should-make-a-website-luvstarkei/)
+- [Why YOU Should Make A Website](/responses/why-you-should-make-a-website-luvstarkei/)

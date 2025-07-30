@@ -18,4 +18,4 @@ tags: ["weeklysummary","blogging","indieweb","website"]
 - [Nomic Embed Text V2: An Open Source, Multilingual, Mixture-of-Experts Embedding Model](/responses/nomic-embed-text-v2)
 - [s1: Simple test-time scaling](/responses/s1-simple-test-time-scaling)
 - [Unplatform](/responses/unplatform-indieweb)
-- [Your Site Is a Home](/notes/your-site-is-a-home-hamid/)
+- [Your Site Is a Home](/responses/your-site-is-a-home-hamid/)

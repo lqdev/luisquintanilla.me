@@ -10,7 +10,7 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 - [New Album - Notebook Fantasy from Chicano Batman](/notes/notebook-fantasy-chicano-batman-released)
 - [New podcast added to blogroll](/notes/better-offline-podroll)
 - [Website Post Statistics - April 2024](/notes/post-statistics-april-2024)
-- [Week of April 1, 2024 - Post Summary](/notes/2024-04-01-weekly-post-summary//)
+- [Week of April 1, 2024 - Post Summary](/notes/2024-04-01-weekly-post-summary/)
 - [Thoughts on World Wide Whack](/notes/world-wide-whack-tierra-whack-review/)
 - [Crate Finds - March 2024](/notes/crate-finds-march-2024)
 

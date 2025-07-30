@@ -17,7 +17,7 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 ## Responses
 
 - [The Evolution of Blogging](/responses/evolution-of-blogging-history-web)
-- [ZeroSearch - Incentivize the Search Capability of LLMs without Searching](/notes/zero-search-alibaba/)
+- [ZeroSearch - Incentivize the Search Capability of LLMs without Searching](/responses/zero-search-alibaba/)
 - [Introducing AutoRound](/responses/intel-autoround)
 - [Discourse and the Fediverse](/responses/discourse-fediverse)
 - [socialweb.network](/responses/socialweb-network)

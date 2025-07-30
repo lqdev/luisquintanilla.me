@@ -12,4 +12,4 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 - [Introducing Gemma 3](/responses/introducing-gemma-3)
 - [Mistral Small 3.1](/responses/mistral-small-3-1)
 - [Just pre-ordered by PebbleOS Core Time 2 smartwatch](/responses/preordered-pebbleos-watch)
-- [Simon Willison's AI-Generated Tools Colophon](/notes/willison-tools-colophon/)
+- [Simon Willison's AI-Generated Tools Colophon](/responses/willison-tools-colophon/)

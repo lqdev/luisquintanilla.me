@@ -9,4 +9,4 @@ tags: ["windows","android","wsa","pc"]
 
 > Microsoft is ending support for its Android subsystem in Windows 11 next year. The software giant first announced it was bringing Android apps to Windows 11 with Amazon’s Appstore nearly three years ago, but this Windows Subsystem for Android will now be deprecated starting March 5th, 2025.
 
-That's unfortunate considering the new lineup of ARM-based PCs expected later this year. It would've been nice to have a [mobile PC with 5G support](/notes/windows-12-mobile-concept/) that could run mobile apps for scenarios where there are no web / native PC apps. 
+That's unfortunate considering the new lineup of ARM-based PCs expected later this year. It would've been nice to have a [mobile PC with 5G support](/responses/windows-12-mobile-concept/) that could run mobile apps for scenarios where there are no web / native PC apps. 

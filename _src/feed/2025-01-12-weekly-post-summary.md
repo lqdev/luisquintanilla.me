@@ -22,4 +22,4 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 - [Agents](/responses/agents-huyen)
 - [Agents Whitepaper](/responses/kaggle-agents-whitepaper)
-- [A Year of Curiosity](/notes/year-of-curiosity/)
+- [A Year of Curiosity](/responses/year-of-curiosity/)

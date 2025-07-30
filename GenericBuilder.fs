@@ -969,6 +969,23 @@ module UnifiedFeeds =
         
         printfn "✅ Unified feeds generated: %d total items across %d content types" allUnifiedItems.Length (feedDataSets |> List.length)
     
+    /// Sanitize tag names for safe file system paths while preserving readability
+    let private sanitizeTagForPath (tag: string) =
+        tag.Trim()
+            .Replace("\"", "")       // Remove quotes
+            .Replace("#", "sharp")   // Replace # with "sharp" (f# -> fsharp, c# -> csharp)
+            .Replace(" ", "-")       // Replace spaces with hyphens
+            .Replace(".", "dot")     // Replace dots with "dot" (.net -> dotnet)
+            .Replace("/", "-")       // Replace slashes with hyphens
+            .Replace("\\", "-")      // Replace backslashes with hyphens
+            .Replace(":", "-")       // Replace colons with hyphens
+            .Replace("*", "star")    // Replace asterisks
+            .Replace("?", "q")       // Replace question marks
+            .Replace("<", "lt")      // Replace less than
+            .Replace(">", "gt")      // Replace greater than
+            .Replace("|", "pipe")    // Replace pipes
+            .ToLowerInvariant()      // Make lowercase for consistency
+
     /// Generate RSS feeds for individual tags
     let buildTagFeeds (feedDataSets: (string * (UnifiedFeedItem list)) list) (outputDirectory: string) =
         // Flatten all feed items
@@ -1001,16 +1018,17 @@ module UnifiedFeeds =
                     else item.Tags |> Array.contains tag) |> List.length))
             
             if not (List.isEmpty tagItems) then
+                let sanitizedTag = sanitizeTagForPath tag
                 let tagConfig = {
                     Title = sprintf "Luis Quintanilla - %s" tag
-                    Link = sprintf "https://www.luisquintanilla.me/tags/%s" (tag.Trim().Replace("\"",""))
+                    Link = sprintf "https://www.luisquintanilla.me/tags/%s" sanitizedTag
                     Description = sprintf "All content tagged with '%s' by Luis Quintanilla" tag
-                    OutputPath = sprintf "tags/%s/feed.xml" (tag.Trim().Replace("\"",""))
+                    OutputPath = sprintf "tags/%s/feed.xml" sanitizedTag
                     ContentType = None  // Tag feeds include all content types
                 }
                 
                 let tagFeed = generateRssFeed tagItems tagConfig
-                let feedDir = Path.Combine(outputDirectory, "tags", tag.Trim().Replace("\"",""))
+                let feedDir = Path.Combine(outputDirectory, "tags", sanitizedTag)
                 Directory.CreateDirectory(feedDir) |> ignore
                 File.WriteAllText(Path.Combine(feedDir, "feed.xml"), tagFeed)
         )

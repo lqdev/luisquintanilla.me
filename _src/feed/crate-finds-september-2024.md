@@ -12,6 +12,6 @@ This month had a mix of genres. Some of the ones I kept coming back to:
 - God is Love by Marvin Gaye
 - Save the Children by Marvin Gaye
 
-I listened to [the album What's Going On a few times throughout the month](/notes/marvin-gaye-whats-going-on/).
+I listened to [the album What's Going On a few times throughout the month](/responses/marvin-gaye-whats-going-on/).
 
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1EsdYKLwNkmwR8s6uRyjHZ?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>

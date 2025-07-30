@@ -16,6 +16,23 @@ module Builder
     let private srcDir = "_src"
     let private outputDir = "_public"
 
+    /// Sanitize tag names for safe file system paths while preserving readability
+    let private sanitizeTagForPath (tag: string) =
+        tag.Trim()
+            .Replace("\"", "")       // Remove quotes
+            .Replace("#", "sharp")   // Replace # with "sharp" (f# -> fsharp, c# -> csharp)
+            .Replace(" ", "-")       // Replace spaces with hyphens
+            .Replace(".", "dot")     // Replace dots with "dot" (.net -> dotnet)
+            .Replace("/", "-")       // Replace slashes with hyphens
+            .Replace("\\", "-")      // Replace backslashes with hyphens
+            .Replace(":", "-")       // Replace colons with hyphens
+            .Replace("*", "star")    // Replace asterisks
+            .Replace("?", "q")       // Replace question marks
+            .Replace("<", "lt")      // Replace less than
+            .Replace(">", "gt")      // Replace greater than
+            .Replace("|", "pipe")    // Replace pipes
+            .ToLowerInvariant()      // Make lowercase for consistency
+
     let rec cleanOutputDirectory (outputDir:string) = 
         if Directory.Exists(outputDir) then
             let dirInfo = DirectoryInfo(outputDir)
@@ -392,7 +409,8 @@ module Builder
 
         combinedTaggedPosts
         |> Array.iter(fun (tag,pc)-> 
-            let individualTagSaveDir = Path.Join(saveDir,tag.Trim().Replace("\"",""))
+            let sanitizedTag = sanitizeTagForPath tag
+            let individualTagSaveDir = Path.Join(saveDir, sanitizedTag)
             Directory.CreateDirectory(individualTagSaveDir) |> ignore
             let individualTagPage = generate (individualTagView tag pc.Posts pc.Notes pc.Responses) "default" $"{tag} - Tags - Luis Quintanilla"
             File.WriteAllText(Path.Join(individualTagSaveDir,"index.html"),individualTagPage)
