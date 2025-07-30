@@ -33,15 +33,24 @@ Systematically fix 200+ legacy `/feed/` URLs by implementing proper redirects an
 - **✅ 89% broken link reduction**: 996 → 107 broken links (from enhanced cross-reference fixing)
 - **✅ Collection navigation fixed**: `/blogroll` → `/collections/blogroll/`, `/podroll` → `/collections/podroll/`
 - **✅ Legacy .html links fixed**: 4 internal links updated with direct replacement
+- **✅ Absolute to relative conversion**: 38 domain links converted across 15 files (fixes 404s)
 - **✅ Redirect infrastructure working**: 50 redirect files generated for external legacy URLs
 - **✅ All `/feed/` content cross-references resolved**
 
-### **Remaining Issues (107 broken links)**
-1. **Collection Navigation Shortcuts**: `/blogroll`, `/podroll` → `/collections/[name]/`
-2. **Social Media Redirects**: `/github`, `/mastodon`, `/linkedin`, `/twitter`, `/youtube` (HTML redirects working but detected as broken)
-3. **Legacy .html Extensions**: Old post URLs with `.html` endings need redirects
-4. **Missing Assets**: QR codes and some image files
-5. **A few genuine 404s**: Content that may need creation or removal
+### **Key Strategy Insights**
+- **Direct Link Replacement**: More effective than redirects for internal links (performance + SEO benefits)
+- **Domain Mismatch Resolution**: Converting absolute domain links to relative fixes deployment/domain 404s
+- **Hybrid Approach**: Direct replacement for internal content + redirects for external legacy URLs
+
+### **Remaining Issues (Significantly Reduced)**
+1. **~~Collection Navigation Shortcuts~~**: ✅ **FIXED** - Direct links updated in source files
+2. **Social Media Redirects**: `/github`, `/mastodon`, `/linkedin`, `/twitter`, `/youtube` (HTML redirects working but detected as broken in analysis)
+3. **~~Legacy .html Extensions~~**: ✅ **FIXED** - Direct links updated for ML.NET and VLC posts
+4. **~~Domain Link 404s~~**: ✅ **FIXED** - 38 absolute domain links converted to relative  
+5. **Missing Assets**: QR codes and some image files
+6. **A few genuine 404s**: Content that may need creation or removal
+
+**Expected Result**: Broken link count should be significantly reduced from 107 to likely <30
 
 ### **Architecture Context**
 - **✅ WORKING**: Content-type based URLs (`/posts/`, `/notes/`, `/responses/`, `/reviews/`, `/resources/[type]/`)

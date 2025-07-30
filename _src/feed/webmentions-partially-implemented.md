@@ -7,7 +7,7 @@ tags: ["indieweb","webmentions","fsharp","website"]
 
 Success! I just partially implemented [Webmentions](https://www.w3.org/TR/webmention/) for my website. Although I haven't figured out a good way to receive Webmentions yet, I'm able to send them. Fortunately most of the work was done, as detailed in the post [Sending Webmentions with F#](/posts/sending-webmentions-fsharp-fsadvent/). The rest was mainly a matter of adapting it to my static site generator. 
 
-Below is an example of a [post on my website](https://www.luisquintanilla.me/feed/webmention-test-1/) being displayed in the [Webmention test suite website](https://webmention.rocks/test/1).
+Below is an example of a [post on my website](/feed/webmention-test-1/) being displayed in the [Webmention test suite website](https://webmention.rocks/test/1).
 
 **Source**
 

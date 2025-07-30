@@ -14,7 +14,7 @@ In the month of January, I wrote two long-form posts:
 
 Last year, I published about seven of them.
 
-As I tinker some more [live on stream](https://www.lqdev.me/feed/first-owncast-stream) and use blog posts as a more structured way to orgqanize my explorations, I expect this year to have a healthy number of longer-form blog posts. 
+As I tinker some more [live on stream](/feed/first-owncast-stream) and use blog posts as a more structured way to orgqanize my explorations, I expect this year to have a healthy number of longer-form blog posts. 
 
 Notes and responses are not too far behind either. Both of them are at 14 in January. That's about 10% and 5% the number of posts in both of those categories last year. I haven't been reposting things I'm reading as often, but I'd like to start doing that some more. 
 

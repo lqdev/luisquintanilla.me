@@ -6,7 +6,7 @@ I'm a big fan of RSS and have written about it in posts like [Rediscovering the 
 
 Long-form posts. Mainly around tech topics.
 
-Feed URL: [https://www.lqdev.me/blog.rss](/blog.rss)
+Feed URL: [/blog.rss](/blog.rss)
 
 <a href="http://www.newsblur.com/?url=https%3A%2F%2Fwww.lqdev.me%2Fblog.rss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
 <span class="bi bi-rss"></span>
@@ -17,7 +17,7 @@ Follow on NewsBlur
 
 Microblog-like short posts containing different types of content such as notes, photos, and videos.
 
-Feed URL: [https://www.lqdev.me/microblog.rss](/microblog.rss)
+Feed URL: [/microblog.rss](/microblog.rss)
 
 <a href="http://www.newsblur.com/?url=https%3A%2F%2Fwww.lqdev.me%2Fmicroblog.rss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
 <span class="bi bi-rss"></span>
@@ -28,7 +28,7 @@ Follow on NewsBlur
 
 Microblog-like short posts containing replies, reshares (repost), favorites (likes), and bookmarks.
 
-Feed URL: [https://www.lqdev.me/responses.rss](/responses.rss)
+Feed URL: [/responses.rss](/responses.rss)
 
 <a href="http://www.newsblur.com/?url=https%3A%2F%2Fwww.lqdev.me%2Fresponses.rss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
 <span class="bi bi-rss"></span>
@@ -39,7 +39,7 @@ Follow on NewsBlur
 
 RSS Feed for Mastodon posts.
 
-Feed URL: [https://www.lqdev.me/mastodon.rss](http://toot.lqdev.tech/@lqdev.rss)
+Feed URL: [/mastodon.rss](http://toot.lqdev.tech/@lqdev.rss)
 
 <a href="http://www.newsblur.com/?url=https%3A%2F%2Fwww.lqdev.me%2Fmastodon.rss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
 <span class="bi bi-rss"></span>
@@ -48,7 +48,7 @@ Follow on NewsBlur
 
 ## [Bluesky](/bluesky)
 
-Feed URL: [https://www.lqdev.me/bluesky.rss](/bluesky.rss)
+Feed URL: [/bluesky.rss](/bluesky.rss)
 
 <a href="http://www.newsblur.com/?url=https%3A%2F%2Fwww.lqdev.me%2Fbluesky.rss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
 <span class="bi bi-rss"></span>
@@ -59,7 +59,7 @@ Follow on NewsBlur
 
 Video posts on YouTube
 
-Feed URL: [https://www.lqdev.me/youtube.rss](/youtube.rss)
+Feed URL: [/youtube.rss](/youtube.rss)
 
 <a href="http://www.newsblur.com/?url=https%3A%2F%2Fwww.lqdev.me%2Fyoutube.rss"><button type="button" class="btn" style="background-color:darkorange;margin:5px;">
 <span class="bi bi-rss"></span>

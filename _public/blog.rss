@@ -1245,7 +1245,7 @@ If all goes as expected, I'll start streaming more regularly. As mentioned, I wa
     <item>
       <title>Building a Reading Habit with Audiobooks, LibriVox, and AntennaPod</title>
       <description>&lt;![CDATA[
-Last year, I was able to complete my goal of reading 12 books or roughly one book per month. I kept track of some of the books I read in my [library page](https://www.lqdev.me/reviews).
+Last year, I was able to complete my goal of reading 12 books or roughly one book per month. I kept track of some of the books I read in my [library page](/reviews).
 
 I enjoyed most of the books I read. However, despite hitting my goal and averaging a book a month, I didn't build up a habit which is what I would've preferred. Many of the books I read last year, I read them during long periods of uninterrupted time, such as cross-country flights. The topic of goal setting and measuring the right thing could be an entire post, but I'll leave that for another time. 
 
@@ -1415,7 +1415,7 @@ Speaking specifically about [Weird the product and what the team plans of shippi
 &gt; &lt;br&gt;
 &gt; Hence our commitment to both models, starting with the least laborious one [PESOS].  
 
-Personally, [I prefer POSSE](https://www.lqdev.me/posts/rss-to-mastodon-posse-azure-logic-apps/), but it's great to see that Weird plans on meeting people where they are.
+Personally, [I prefer POSSE](/posts/rss-to-mastodon-posse-azure-logic-apps/), but it's great to see that Weird plans on meeting people where they are.
 
 ### Late 2025
 
@@ -1468,10 +1468,10 @@ More importantly, because RSS and OPML are open standards, you're not limited to
 
 If you're interested in what that might look like in practice, check out my "starter packs" which you can subscribe to using your RSS reader of choice and the provided OPML files. 
 
-- [Blogs](https://www.lqdev.me/collections/blogroll)
-- [Podcasts](https://www.lqdev.me/collections/podroll)
-- [YouTube](https://www.lqdev.me/collections/youtube)
-- [Forums](https://www.lqdev.me/collections/forums)
+- [Blogs](/collections/blogroll)
+- [Podcasts](/collections/podroll)
+- [YouTube](/collections/youtube)
+- [Forums](/collections/forums)
 
 I'm still working on similar collections for Mastodon and Bluesky but the same concept applies.  
 
@@ -2199,7 +2199,7 @@ In the Logic app designer, search for *RSS* and add it as a trigger.
 
 Once the RSS trigger is added to your workflow, configure it as follows:
 
-- **The RSS feed URL**: The feed you want want to get posts from. In this case, I'm using my blog posts [feed](https://www.luisquintanilla.me/posts/index.xml). 
+- **The RSS feed URL**: The feed you want want to get posts from. In this case, I'm using my blog posts [feed](/posts/index.xml). 
 
     **TIP: The RSS feed can be ANY feed. So if you wanted to subscribe and repost items from your favorite blog or website, you can as well. Just note though that if you don't own the content it might not be something the author wants you doing and for websites that update multiple times a day, it might produce a lot of noise in your feed. Other than that though, subscribe and post away!**
 

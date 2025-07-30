@@ -29,11 +29,11 @@ Alternatively, use the [online radio playlist](/radio/OnlineRadioPlaylist.m3u) I
 ## MPV
 
 ```bash
-mpv --playlist=https://www.lqdev.me/radio/OnlineRadioPlaylist.m3u --player-operation-mode=pseudo-gui 
+mpv --playlist=/radio/OnlineRadioPlaylist.m3u --player-operation-mode=pseudo-gui 
 ```
 
 ## VLC
 
 ```bash
-vlc https://www.lqdev.me/radio/OnlineRadioPlaylist.m3u
+vlc /radio/OnlineRadioPlaylist.m3u
 ```

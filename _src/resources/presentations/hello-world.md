@@ -4,7 +4,7 @@ resources:
   - text: "Personal Site"
     url: "https://www.luisquintanilla.me"
   - text: "Contact"
-    url: "https://www.luisquintanilla.me/contact.html"
+    url: "/contact.html"
 date: "02/08/2021 21:45 -05:00"
 ---
 

@@ -6,7 +6,7 @@ published_date: "2025-01-05 21:04 -05:00"
 tags: ["book","audiobook","rss","antennapod","librivox","android","podcast","publicdomain","opensource"]
 ---
 
-Last year, I was able to complete my goal of reading 12 books or roughly one book per month. I kept track of some of the books I read in my [library page](https://www.lqdev.me/reviews).
+Last year, I was able to complete my goal of reading 12 books or roughly one book per month. I kept track of some of the books I read in my [library page](/reviews).
 
 I enjoyed most of the books I read. However, despite hitting my goal and averaging a book a month, I didn't build up a habit which is what I would've preferred. Many of the books I read last year, I read them during long periods of uninterrupted time, such as cross-country flights. The topic of goal setting and measuring the right thing could be an entire post, but I'll leave that for another time. 
 

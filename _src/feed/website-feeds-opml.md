@@ -20,12 +20,12 @@ The implementation ended up being:
 		<ownerId>https://www.luisquintanilla.me</ownerId>
 	  </head>
 	  <body>
-		<outline title="Blog" text="Blog" type="rss" htmlUrl="https://www.lqdev.me/posts/1" xmlUrl="https://www.lqdev.me/blog.rss" />
-		<outline title="Microblog" text="Microblog" type="rss" htmlUrl="https://www.lqdev.me/feed" xmlUrl="https://www.lqdev.me/microblog.rss" />
-		<outline title="Responses" text="Responses" type="rss" htmlUrl="https://www.lqdev.me/feed/responses" xmlUrl="https://www.lqdev.me/responses.rss" />
-		<outline title="Mastodon" text="Mastodon" type="rss" htmlUrl="https://www.lqdev.me/mastodon" xmlUrl="https://www.lqdev.me/mastodon.rss" />
-		<outline title="Bluesky" text="Bluesky" type="rss" htmlUrl="https://www.lqdev.me/bluesky" xmlUrl="https://www.lqdev.me/bluesky.rss" />
-		<outline title="YouTube" text="YouTube" type="rss" htmlUrl="https://www.lqdev.me/youtube" xmlUrl="https://www.lqdev.me/bluesky.rss" />
+		<outline title="Blog" text="Blog" type="rss" htmlUrl="/posts/1" xmlUrl="/blog.rss" />
+		<outline title="Microblog" text="Microblog" type="rss" htmlUrl="/feed" xmlUrl="/microblog.rss" />
+		<outline title="Responses" text="Responses" type="rss" htmlUrl="/feed/responses" xmlUrl="/responses.rss" />
+		<outline title="Mastodon" text="Mastodon" type="rss" htmlUrl="/mastodon" xmlUrl="/mastodon.rss" />
+		<outline title="Bluesky" text="Bluesky" type="rss" htmlUrl="/bluesky" xmlUrl="/bluesky.rss" />
+		<outline title="YouTube" text="YouTube" type="rss" htmlUrl="/youtube" xmlUrl="/bluesky.rss" />
 	  </body>
 	</opml>
 	```
