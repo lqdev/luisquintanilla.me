@@ -7,7 +7,7 @@ tags: ["sports","football"]
 
 College football is back!
 
-Penn State had a great win. Looking back at a [post from last year](/feed/psu-future-allar/), some of my thoughts around the upcoming class were right. Looking at the upcoming schedule it looks well spaced out and if they can stay healthy, they'll have a great season.
+Penn State had a great win. Looking back at a [post from last year](/notes/psu-future-allar), some of my thoughts around the upcoming class were right. Looking at the upcoming schedule it looks well spaced out and if they can stay healthy, they'll have a great season.
 
 Tough losses for LSU and Clemson. 
 

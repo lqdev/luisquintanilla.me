@@ -7,7 +7,7 @@ dt_updated: "2024-10-30 08:45 -05:00"
 tags: ["music","flyinglotus","spiritbox","newmusic","album"]
 ---
 
-He's back! A day after [Tyler](/feed/chromakopia-tyler-the-creator-released) too.
+He's back! A day after [Tyler](/responses/chromakopia-tyler-the-creator-released) too.
 
 I already loved Garmonbozia but Ajhussi is my favorite track. 
 

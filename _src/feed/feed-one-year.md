@@ -5,12 +5,12 @@ published_date: "09/29/2022 10:55"
 tags: ["microblog","blog","feed","rss","indieweb","openweb","internet"]
 ---
 
-It's been a year since I created this feed and [started posting](/feed/hello-world/) mainly on my website. Since then, I've:
+It's been a year since I created this feed and [started posting](/notes/hello-world) mainly on my website. Since then, I've:
 
-- Used a [shorter domain](/feed/lqdevme-redirect/) to redirect to my website domain.
+- Used a [shorter domain](/notes/lqdevme-redirect) to redirect to my website domain.
 - Created [VS Code snippets](/posts/automate-yaml-front-matter-vs-code-snippets/) to simplify metadata tagging.
-- Used [github.dev](/feed/surface-duo-blogging-github-dev/) as the main interface for authoring and editing posts. For longer posts, I use VS Code locally but for these smaller microblog-style posts, github.dev makes it really easy.
-- Syndicated posts to Twitter and [Mastodon](/feed/mastodon-posse-enabled/).
+- Used [github.dev](/notes/surface-duo-blogging-github-dev) as the main interface for authoring and editing posts. For longer posts, I use VS Code locally but for these smaller microblog-style posts, github.dev makes it really easy.
+- Syndicated posts to Twitter and [Mastodon](/notes/mastodon-posse-enabled).
 - Created a [response feed](/feed/responses) for interactions like replies, reshares (repost), and likes (favorites) with support for sending [Webmentions](/notes/webmentions-partially-implemented//). 
 - Created [RSS feeds](/subscribe) for each of my feeds.
 

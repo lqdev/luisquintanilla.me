@@ -38,7 +38,7 @@ Here's [a few notable literary works that entered the public domain in 2025](htt
 
 [AntennaPod](https://antennapod.org/) is an open-source podcast player for Android. 
 
-The app has a ton of great features, such as [Podcast Index](https://podcastindex.org/) support, subscribe via RSS directly,  OPML import and export, chapters, adjustable playback speed, and for the past few years, a personalized yearly summary which is computed locally on your device [(here's my summary from 2024)](/feed/antennapod-echo-2024).
+The app has a ton of great features, such as [Podcast Index](https://podcastindex.org/) support, subscribe via RSS directly,  OPML import and export, chapters, adjustable playback speed, and for the past few years, a personalized yearly summary which is computed locally on your device [(here's my summary from 2024)](/notes/antennapod-echo-2024).
 
 You can get AntennaPod from the Play Store or [F-Droid](https://f-droid.org/en/packages/de.danoeh.antennapod/)
 

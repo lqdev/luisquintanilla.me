@@ -5,7 +5,7 @@ published_date: "2025-04-07 08:38"
 tags: ["matrix","arm64","windows","element","winget","opensource","decentralization"]
 ---
 
-In a previous post, I talked about my [workaround for running Element Desktop on my ARM64 Windows device](/feed/running-linux-gui-apps-windows-wsl-amazing).
+In a previous post, I talked about my [workaround for running Element Desktop on my ARM64 Windows device](/notes/running-linux-gui-apps-windows-wsl-amazing).
 
 I'm happy that I no longer need that workaround. 
 

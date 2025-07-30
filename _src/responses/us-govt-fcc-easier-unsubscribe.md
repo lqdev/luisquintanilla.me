@@ -7,4 +7,4 @@ dt_updated: 2024-08-12 21:31 -05:00
 tags: ["regulation","fcc","subscriptions","uspol","government","us","darkpatterns"]
 ---
 
-Given my [recent experience unsubscribing from content](/feed/subscription-dark-patterns/), there's definitely room for improvement. 
+Given my [recent experience unsubscribing from content](/notes/subscription-dark-patterns), there's definitely room for improvement. 

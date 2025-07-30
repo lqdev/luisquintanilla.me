@@ -18,8 +18,8 @@ As I tinker some more [live on stream](https://www.lqdev.me/feed/first-owncast-s
 
 Notes and responses are not too far behind either. Both of them are at 14 in January. That's about 10% and 5% the number of posts in both of those categories last year. I haven't been reposting things I'm reading as often, but I'd like to start doing that some more. 
 
-Similar to long-form posts, as I [reflect on each stream and publish the recordings](/feed/tinkering-deepseek-r1-dotnet-github-models/), I expect at least one note every one or two weeks just for the stream.  
+Similar to long-form posts, as I [reflect on each stream and publish the recordings](/notes/tinkering-deepseek-r1-dotnet-github-models), I expect at least one note every one or two weeks just for the stream.  
 
 No surprise, tags on my posts continue to be related to AI. 
 
-This month I didn't really do the monthly [music playlist](/tags/cratefinds) kind of posts. If I were to quickly summarize the music on repeat this month, it'd be the [Andre 3000 album, New Blue Sun](/feed/andre-3000-listening-to-the-sun/). 
+This month I didn't really do the monthly [music playlist](/tags/cratefinds) kind of posts. If I were to quickly summarize the music on repeat this month, it'd be the [Andre 3000 album, New Blue Sun](/responses/andre-3000-listening-to-the-sun). 

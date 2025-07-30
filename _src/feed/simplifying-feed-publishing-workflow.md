@@ -16,7 +16,7 @@ flowchart TD
   E --> F["Publish the response"]
 ```
 
-The bottleneck I usually find is in the middle steps of creating a response file and capturing the relevant content. This usually happens as I'm reading the article. For a single file, it's not a big deal. Doing it for several can be time consuming, especially with the [number of feeds I subscribe to](/feed/subscribed-to-1042-feeds-newsblur).
+The bottleneck I usually find is in the middle steps of creating a response file and capturing the relevant content. This usually happens as I'm reading the article. For a single file, it's not a big deal. Doing it for several can be time consuming, especially with the [number of feeds I subscribe to](/notes/subscribed-to-1042-feeds-newsblur).
 
 There's a few things I think could help here:
 

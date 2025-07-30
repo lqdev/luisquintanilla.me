@@ -7,7 +7,7 @@ tags: ["profile","online","gravatar","website","web","comments","internet","auto
 
 I had known about [Gravatar](https://gravatar.com/) since its early days. I was under the (incorrect) impression that it could only be used to comment on blogs. I thought when you created an account, you added your name, e-mail, and image as part of your profile. Then, when you wanted to comment on blogs, instead of creating individual accounts or profiles, you could just reuse your Gravatar profile. That's partially true. However, I'm happy to report I was wrong and there's so much more. 
 
-While commenting on [Matt Mullenweg's Birthday Gift post](/feed/blog-posts-can-be-any-length-matt/), I didn't use a Gravatar profile. This prompted Matt to kindly respond via e-mail and suggest I check out Gravatar. I put it off for a few days. Eventually, I decided to check it out and I'm glad I did. Thanks [Matt](https://ma.tt)! 
+While commenting on [Matt Mullenweg's Birthday Gift post](/responses/blog-posts-can-be-any-length-matt), I didn't use a Gravatar profile. This prompted Matt to kindly respond via e-mail and suggest I check out Gravatar. I put it off for a few days. Eventually, I decided to check it out and I'm glad I did. Thanks [Matt](https://ma.tt)! 
 
 The signup process was simple. All I had to do was enter my e-mail address. This immediately sent me a confirmation e-mail which I then used to proceed with onboarding. 
 

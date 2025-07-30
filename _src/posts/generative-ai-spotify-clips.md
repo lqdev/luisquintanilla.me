@@ -46,7 +46,7 @@ Now that we know the general process, what does it actually look like in practic
 
 In the example shared by Google, they used a prompt to generate a script made up of a series of prompts. In the case of songs on Spotify, we can use that as context and the starting point for our script. From there, we can ask Copilot to compose scenes for the verses in the song. We can also make sure as these scenes are generated, that there is a smooth transition between them and the storytelling is consistent. 
 
-Let's take a look at what this might look like using the Chicano Batman song "A Hundred Dead and Loving Souls". Why that one? Just check out my [Spotify Wrapped](/feed/spotify-wrapped-2023). The general theme of that song is about the cycles of life experienced across millenia and generations. 
+Let's take a look at what this might look like using the Chicano Batman song "A Hundred Dead and Loving Souls". Why that one? Just check out my [Spotify Wrapped](/notes/spotify-wrapped-2023). The general theme of that song is about the cycles of life experienced across millenia and generations. 
 
 **Prompt**
 
@@ -315,4 +315,4 @@ For music videos, there's a human element to it both from the performers and the
 
 In this post I discussed how you might use Generative AI models like VideoPoet to generate short videos for Spotify Clips. Since I don't have acess to VideoPoet or other video generation models at this time, I decided to show practical image generation examples instead using models like DALL-E to illustrate the general concepts. It's not wihtout its challenges and there's a ton of improvements I can think of but it was a fun experiment regardless. What else would you use these Generative AI models for? 
 
-You can find an addendum to this post [here](/feed/genai-spotify-clips-instrumental).
+You can find an addendum to this post [here](/notes/genai-spotify-clips-instrumental).

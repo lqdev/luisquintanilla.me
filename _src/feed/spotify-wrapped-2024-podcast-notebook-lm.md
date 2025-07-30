@@ -5,7 +5,7 @@ published_date: "2024-12-05 09:02"
 tags: ["spotify","ai","spotifywrapped","google","notebooklm","privacy","podcast","generativeai","genai"]
 ---
 
-While looking at [Spotify Wrapped this year](/feed/spotify-wrapped-2024.md), I completely missed the AI-generated podcast that came along with it.
+While looking at [Spotify Wrapped this year](/notes/spotify-wrapped-2024), I completely missed the AI-generated podcast that came along with it.
 
 As cool as this is, **it should've been opt-in**. 
 

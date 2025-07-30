@@ -205,7 +205,7 @@ Some ways I see myself using this project:
 
 ## Conclusion
 
-Just for fun, Tyler released all of the lyrics to his [latest album](/feed/chromakopia-tyler-the-creator-released) as [images on X](https://twitter.com/tylerthecreator/status/1852105825650708651/photo/1). With a few tweaks, I was able to repurpose this solution to extract the text from them and that worked relatively well. 
+Just for fun, Tyler released all of the lyrics to his [latest album](/responses/chromakopia-tyler-the-creator-released) as [images on X](https://twitter.com/tylerthecreator/status/1852105825650708651/photo/1). With a few tweaks, I was able to repurpose this solution to extract the text from them and that worked relatively well. 
 
 Just with this simple solution, there's a ton of other applications I can think of in my daily life to help bridge my analog and digital lives. 
 

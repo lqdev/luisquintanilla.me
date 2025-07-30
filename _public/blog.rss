@@ -1277,7 +1277,7 @@ Here's [a few notable literary works that entered the public domain in 2025](htt
 
 [AntennaPod](https://antennapod.org/) is an open-source podcast player for Android. 
 
-The app has a ton of great features, such as [Podcast Index](https://podcastindex.org/) support, subscribe via RSS directly,  OPML import and export, chapters, adjustable playback speed, and for the past few years, a personalized yearly summary which is computed locally on your device [(here's my summary from 2024)](/feed/antennapod-echo-2024).
+The app has a ton of great features, such as [Podcast Index](https://podcastindex.org/) support, subscribe via RSS directly,  OPML import and export, chapters, adjustable playback speed, and for the past few years, a personalized yearly summary which is computed locally on your device [(here's my summary from 2024)](/notes/antennapod-echo-2024).
 
 You can get AntennaPod from the Play Store or [F-Droid](https://f-droid.org/en/packages/de.danoeh.antennapod/)
 
@@ -1700,7 +1700,7 @@ Some ways I see myself using this project:
 
 ## Conclusion
 
-Just for fun, Tyler released all of the lyrics to his [latest album](/feed/chromakopia-tyler-the-creator-released) as [images on X](https://twitter.com/tylerthecreator/status/1852105825650708651/photo/1). With a few tweaks, I was able to repurpose this solution to extract the text from them and that worked relatively well. 
+Just for fun, Tyler released all of the lyrics to his [latest album](/responses/chromakopia-tyler-the-creator-released) as [images on X](https://twitter.com/tylerthecreator/status/1852105825650708651/photo/1). With a few tweaks, I was able to repurpose this solution to extract the text from them and that worked relatively well. 
 
 Just with this simple solution, there's a ton of other applications I can think of in my daily life to help bridge my analog and digital lives. 
 
@@ -1965,7 +1965,7 @@ In this post, I showed how you can configure Ollama with Dev Containers to use A
     <item>
       <title>Getting started with Ollama on Windows</title>
       <description>&lt;![CDATA[
-Recently [Ollama announced support for Windows](/feed/ollama-windows-preview) in preview. In doing so, people who want to use AI models like Llama, Phi, and many others can do so locally on their PC. In this post, I'll go over how you can get started with Ollama on Windows. 
+Recently [Ollama announced support for Windows](/responses/ollama-windows-preview) in preview. In doing so, people who want to use AI models like Llama, Phi, and many others can do so locally on their PC. In this post, I'll go over how you can get started with Ollama on Windows. 
 
 ## Install Ollama
 
@@ -2568,7 +2568,7 @@ Now that we know the general process, what does it actually look like in practic
 
 In the example shared by Google, they used a prompt to generate a script made up of a series of prompts. In the case of songs on Spotify, we can use that as context and the starting point for our script. From there, we can ask Copilot to compose scenes for the verses in the song. We can also make sure as these scenes are generated, that there is a smooth transition between them and the storytelling is consistent. 
 
-Let's take a look at what this might look like using the Chicano Batman song "A Hundred Dead and Loving Souls". Why that one? Just check out my [Spotify Wrapped](/feed/spotify-wrapped-2023). The general theme of that song is about the cycles of life experienced across millenia and generations. 
+Let's take a look at what this might look like using the Chicano Batman song "A Hundred Dead and Loving Souls". Why that one? Just check out my [Spotify Wrapped](/notes/spotify-wrapped-2023). The general theme of that song is about the cycles of life experienced across millenia and generations. 
 
 **Prompt**
 
@@ -2837,7 +2837,7 @@ For music videos, there's a human element to it both from the performers and the
 
 In this post I discussed how you might use Generative AI models like VideoPoet to generate short videos for Spotify Clips. Since I don't have acess to VideoPoet or other video generation models at this time, I decided to show practical image generation examples instead using models like DALL-E to illustrate the general concepts. It's not wihtout its challenges and there's a ton of improvements I can think of but it was a fun experiment regardless. What else would you use these Generative AI models for? 
 
-You can find an addendum to this post [here](/feed/genai-spotify-clips-instrumental).]]&gt;</description>
+You can find an addendum to this post [here](/notes/genai-spotify-clips-instrumental).]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/generative-ai-spotify-clips</link>
       <guid>https://www.luisquintanilla.me/posts/generative-ai-spotify-clips</guid>
       <pubDate>2023-12-23 18:30</pubDate>
@@ -2864,7 +2864,7 @@ You can find an addendum to this post [here](/feed/genai-spotify-clips-instrumen
       <description>&lt;![CDATA[
 ## Introduction
 
-In an earlier note, I talked about the natural progression of technology which goes from [scarcity to abundance](/feed/ai-abundance-scarcity-cycle-repeats-rss-enclosure-use-case) over time and AI is no different. That was in the context of media on the internet and paying per minute with early cell phones. One of the original challenges with AI was context length and token limits. It's becoming less relevant as context sizes continue to increase. However, it's not like you can fit the entire Harry Potter series either. So you still need to cleverly manage your context size especially when using documents and chat history as part of that context. Historically, people have used abbreviations to compress messages either because of cost or medium constraints. That's what this post explores in the context of AI.
+In an earlier note, I talked about the natural progression of technology which goes from [scarcity to abundance](/notes/ai-abundance-scarcity-cycle-repeats-rss-enclosure-use-case) over time and AI is no different. That was in the context of media on the internet and paying per minute with early cell phones. One of the original challenges with AI was context length and token limits. It's becoming less relevant as context sizes continue to increase. However, it's not like you can fit the entire Harry Potter series either. So you still need to cleverly manage your context size especially when using documents and chat history as part of that context. Historically, people have used abbreviations to compress messages either because of cost or medium constraints. That's what this post explores in the context of AI.
 
 ## Compressing text like T9
 
@@ -2963,7 +2963,7 @@ Let's go 3 years into the future. What happens when virtual and augmented realit
 
 I'd say the biggest miss from Qualcomm and Windows partners today was not having a lineup of devices ready for purchase. That will come with time. Hopefully not too long after these announcements. I'm sure that Apple which has an announcement coming up on October 30th will have a response. The most important thing though is that now there's competition and as we enter this new era of AI and TRUE mobile computing, it'll lead to innovation. The next things that need to happen is operating systems like Windows need to ensure their existing applications work on these platforms and Linux needs to enable support for these chipsets. I'm so excited for the future of mobile computing and can't wait to be able to carry a device running Linux with always-on connectivity and all-day battery life in the form factor of a Surface Duo. 
 
-An addendum to this post can be found [here](/feed/snapdragon-summit-2023-addendum).]]&gt;</description>
+An addendum to this post can be found [here](/notes/snapdragon-summit-2023-addendum).]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/quick-thoughts-snapdragon-summit-2023</link>
       <guid>https://www.luisquintanilla.me/posts/quick-thoughts-snapdragon-summit-2023</guid>
       <pubDate>2023-10-24 23:14</pubDate>

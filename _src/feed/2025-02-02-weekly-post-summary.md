@@ -7,11 +7,11 @@ tags: ["weeklysummary","blogging","website","indieweb"]
     
 ## Notes
 
-- [Simulcasting to Owncast and YouTube](/feed/owncast-simulcast-youtube)
-- [Tinkering with DeepSeek R1, GitHub Models, and .NET on stream](/feed/tinkering-deepseek-r1-dotnet-github-models)
+- [Simulcasting to Owncast and YouTube](/notes/owncast-simulcast-youtube)
+- [Tinkering with DeepSeek R1, GitHub Models, and .NET on stream](/notes/tinkering-deepseek-r1-dotnet-github-models)
     
 ## Responses
 
-- [Buc-ee's plans first Wisconsin travel center](/feed/bucees-wisconsin)
+- [Buc-ee's plans first Wisconsin travel center](/responses/bucees-wisconsin)
         
     

@@ -5,7 +5,7 @@ published_date: "2023-11-12 10:37"
 tags: ["ai","internet","history","rss","openai","llm","gpt","opensource"]
 ---
 
-While writing the post [RSS for new event notifications](/feed/rss-community-calendars-new-events) I mentioned how the flow of getting new event notifications through RSS might work:
+While writing the post [RSS for new event notifications](/notes/rss-community-calendars-new-events) I mentioned how the flow of getting new event notifications through RSS might work:
 
 > When a new event is added to the calendar, the RSS feed can be updated. The `channel`property has the link to the shared calendar you can subscribe to and the individual events have *.ics* files embedded in the `enclosure`.
 

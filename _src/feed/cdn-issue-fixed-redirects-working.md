@@ -13,4 +13,4 @@ When I went in earlier today to fix the issue, I realized because of changes to 
 
 My site kept working fine, but that's because the migration was autmatically done by Azure. 
 
-What wasn't automatically migrated were my CDN rules which I'd set up to [simplify URLs](/feed/new-rss-feed-links) and [own my links](/feed/own-your-rss-links). 
+What wasn't automatically migrated were my CDN rules which I'd set up to [simplify URLs](/notes/new-rss-feed-links) and [own my links](/responses/own-your-rss-links). 

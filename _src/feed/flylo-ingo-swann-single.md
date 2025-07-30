@@ -7,7 +7,7 @@ tags: ["music","newrelease","flyinglotus","flylo","dance","cia","remoteviewing",
 
 New drop from FlyLo. This feels like a new album coming. So far the theme is mystical. 
 
-The previous single, [Garmonbozia](/feed/new-flying-lotus-garmonbozia), was a reference to Twin Peaks. 
+The previous single, [Garmonbozia](/responses/new-flying-lotus-garmonbozia), was a reference to Twin Peaks. 
 
 Ingo Swann's website describes him as
 

@@ -7,15 +7,15 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 ## Notes
 
-- [Mastodon instance working again](/feed/mastodon-working-again-v-4-3-1)
+- [Mastodon instance working again](/notes/mastodon-working-again-v-4-3-1)
 - [Week of November 18, 2024 - Post Summary](/notes/2024-11-18-weekly-post-summary/)
-- [Using my domain for discovery in Mastodon](/feed/using-domain-mastodon-discovery)
-- [Mastodon instance now supports OpenGraph creator tag](/feed/mastodon-instance-supports-opengraph-creator-tag)
+- [Using my domain for discovery in Mastodon](/notes/using-domain-mastodon-discovery)
+- [Mastodon instance now supports OpenGraph creator tag](/notes/mastodon-instance-supports-opengraph-creator-tag)
     
 ## Responses
 
-- [Digital minimalism: A moral duty?](/feed/digital-minimalism-moral-duty-deep-questions)
-- [Jimmy The Gambler](/feed/jimmy-gambler-psu)
-- [Implement ActivityPub on a static site series by maho.dev](/feed/implement-activitypub-static-site-series-maho)
+- [Digital minimalism: A moral duty?](/responses/digital-minimalism-moral-duty-deep-questions)
+- [Jimmy The Gambler](/responses/jimmy-gambler-psu)
+- [Implement ActivityPub on a static site series by maho.dev](/responses/implement-activitypub-static-site-series-maho)
         
     

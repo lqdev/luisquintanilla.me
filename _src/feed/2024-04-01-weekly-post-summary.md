@@ -7,8 +7,8 @@ tags: ["weeklysummary","blogging","website","indieweb"]
     
 ## Notes
 
-- [New Album - Notebook Fantasy from Chicano Batman](/feed/notebook-fantasy-chicano-batman-released)
+- [New Album - Notebook Fantasy from Chicano Batman](/notes/notebook-fantasy-chicano-batman-released)
     
 ## Responses
 
-- [Announcing DBRX: A new standard for efficient open source LLMs](/feed/announcing-dbrx-llm)
+- [Announcing DBRX: A new standard for efficient open source LLMs](/responses/announcing-dbrx-llm)

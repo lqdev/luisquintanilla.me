@@ -6,7 +6,7 @@ published_date: "2024-03-05 10:32"
 tags: ["ai","ollama","windows","llm","opensource","llama","openai","generativeai","genai"]
 ---
 
-Recently [Ollama announced support for Windows](/feed/ollama-windows-preview) in preview. In doing so, people who want to use AI models like Llama, Phi, and many others can do so locally on their PC. In this post, I'll go over how you can get started with Ollama on Windows. 
+Recently [Ollama announced support for Windows](/responses/ollama-windows-preview) in preview. In doing so, people who want to use AI models like Llama, Phi, and many others can do so locally on their PC. In this post, I'll go over how you can get started with Ollama on Windows. 
 
 ## Install Ollama
 

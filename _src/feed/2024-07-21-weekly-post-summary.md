@@ -7,11 +7,11 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 ## Notes
 
-- [Crate Finds - June 2024](/feed/crate-finds-june-2024)
-- [Testing org-capture template for notes](/feed/test-emacs-capture-note)
-- [Website Post Statistics - July 2024](/feed/post-statistics-july-2024)
+- [Crate Finds - June 2024](/notes/crate-finds-june-2024)
+- [Testing org-capture template for notes](/notes/test-emacs-capture-note)
+- [Website Post Statistics - July 2024](/notes/post-statistics-july-2024)
     
 ## Responses
 
-- [Zombie Internet](/feed/facebook-zombie-internet-willison)
-- [Test response using org capture templates](/feed/test-emacs-capture-response-org)
+- [Zombie Internet](/responses/facebook-zombie-internet-willison)
+- [Test response using org capture templates](/responses/test-emacs-capture-response-org)

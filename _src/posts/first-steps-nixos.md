@@ -8,7 +8,7 @@ tags: ["nixos","linux","os","nix","sysadmin","floss"]
 
 ## Introduction
 
-For the longest time, when using Linux distributions, I chose those that were Debian-based. I still do for servers. However, on the dekstop I switched to [Manjaro](https://manjaro.org/), which is Arch-based, about two years ago. Two years is a long time without distro-hopping, so I was long overdue. I've been following the [NixOS](https://nixos.org/) project for some time but since I was happy with my setup, I didn't consider making the switch. However, a month ago, I decided to [dip my toes](/feed/maybe-switching-nixos/). I installed NixOS on a flash drive and started tinkering with it. In this post, I'll provide some of my initial impressions and things I find appealing about the OS.
+For the longest time, when using Linux distributions, I chose those that were Debian-based. I still do for servers. However, on the dekstop I switched to [Manjaro](https://manjaro.org/), which is Arch-based, about two years ago. Two years is a long time without distro-hopping, so I was long overdue. I've been following the [NixOS](https://nixos.org/) project for some time but since I was happy with my setup, I didn't consider making the switch. However, a month ago, I decided to [dip my toes](/notes/maybe-switching-nixos). I installed NixOS on a flash drive and started tinkering with it. In this post, I'll provide some of my initial impressions and things I find appealing about the OS.
 
 ## Declarative configuration
 

@@ -9,4 +9,4 @@ tags: ["dumbphone","retro","technology","lightphone","minimalism","digitalminima
 
 ![GIF image with man signing into microphone with caption don't call it a comeback](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXVrN2kxamptbnZtdTVwZnM1ZndnOWFydnBlOTdja2FpMTI1cjdnZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6ZtfZp8ID54YUne0/giphy.gif)
 
-Between this article and [The Dumbphone Boom is Real](/feed/dumbphone-boom-real), I'm seeing more publications on the subject. Far from a comeback, but still cool to see. 
+Between this article and [The Dumbphone Boom is Real](/responses/dumbphone-boom-real), I'm seeing more publications on the subject. Far from a comeback, but still cool to see. 
