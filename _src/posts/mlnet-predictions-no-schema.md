@@ -8,7 +8,7 @@ tags: [dotnet, machine learning, mlnet, artificial intelligence]
 
 ## Introduction
 
-To make predictions with ML.NET models you often have to define schema classes for your model inputs and outputs. In previous posts I wrote how you can [use Netron to inspect an ML.NET model](inspect-mlnet-models-netron.html) to determine the name and types of your model inputs and outputs. If you have data samples of what your data input and output look like in JSON format, you can [automate the generation of model input and output classes by using Visual Studio's "Paste JSON as Classes" feature](vs-automate-mlnet-schema-generation.html). However, what if you want to make predictions without defining these classes? In this post I'll show how you can use the .NET DataFrame API to make predictions with ML.NET models without having to create model input and output classes. Code snippets are in F# but notebooks with complete [C#](https://github.com/lqdev/mlnet-noschema-predictions/blob/main/CSharp-NB.ipynb) & [F#](https://github.com/lqdev/mlnet-noschema-predictions/blob/main/FSharp-NB.ipynb) code can be found in the [mlnet-noschema-predictions repo](https://github.com/lqdev/mlnet-noschema-predictions) on GitHub.
+To make predictions with ML.NET models you often have to define schema classes for your model inputs and outputs. In previous posts I wrote how you can [use Netron to inspect an ML.NET model](/posts/inspect-mlnet-models-netron/) to determine the name and types of your model inputs and outputs. If you have data samples of what your data input and output look like in JSON format, you can [automate the generation of model input and output classes by using Visual Studio's "Paste JSON as Classes" feature](/posts/vs-automate-mlnet-schema-generation/). However, what if you want to make predictions without defining these classes? In this post I'll show how you can use the .NET DataFrame API to make predictions with ML.NET models without having to create model input and output classes. Code snippets are in F# but notebooks with complete [C#](https://github.com/lqdev/mlnet-noschema-predictions/blob/main/CSharp-NB.ipynb) & [F#](https://github.com/lqdev/mlnet-noschema-predictions/blob/main/FSharp-NB.ipynb) code can be found in the [mlnet-noschema-predictions repo](https://github.com/lqdev/mlnet-noschema-predictions) on GitHub.
 
 ## Install and reference packages
 
@@ -23,7 +23,7 @@ open Microsoft.Data.Analysis
 
 ## Initialize MLContext and load the model
 
-The `MLContext` is the entrypoint of ML.NET applications. Use it to load your model. The model used in this case categorizes sentiment as positive or negative. See the [use Netron to inspect an ML.NET model](inspect-mlnet-models-netron.html) blog post to learn more about the model.
+The `MLContext` is the entrypoint of ML.NET applications. Use it to load your model. The model used in this case categorizes sentiment as positive or negative. See the [use Netron to inspect an ML.NET model](/posts/inspect-mlnet-models-netron/) blog post to learn more about the model.
 
 ```fsharp
 let ctx = MLContext()

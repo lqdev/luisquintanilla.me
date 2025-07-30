@@ -10,7 +10,7 @@ The knowledge-base contains a collection of wiki articles, snippets, and library
 
 The [main feed](/feed/index.html) is like a microblog with content ordered in reverse chronological order. It collects in a single place snippets containing notes, photos, videos, and other types of content. The [replies feed](/feed/responses) contains replies and interactions with other pages and supports [Webmentions](https://www.w3.org/TR/webmention/). The feeds take inspiration from [IndieWeb posts](https://indieweb.org/posts).
 
-In addition to the feeds, there's also the [linkblog](/feed/linkblog) which acts as my bookmark / read-it-later service as I find interesting websites. The [blogroll](/blogroll) contains a collection of blogs I follow and the [podroll](/podroll) is a collection of podcasts I listen to. 
+In addition to the feeds, there's also the [linkblog](/feed/linkblog) which acts as my bookmark / read-it-later service as I find interesting websites. The [blogroll](/collections/blogroll/) contains a collection of blogs I follow and the [podroll](/collections/podroll/) is a collection of podcasts I listen to. 
 
 ## How this site is built
 
