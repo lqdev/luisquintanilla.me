@@ -11,7 +11,7 @@ It's been a year since I created this feed and [started posting](/feed/hello-wor
 - Created [VS Code snippets](/posts/automate-yaml-front-matter-vs-code-snippets/) to simplify metadata tagging.
 - Used [github.dev](/feed/surface-duo-blogging-github-dev/) as the main interface for authoring and editing posts. For longer posts, I use VS Code locally but for these smaller microblog-style posts, github.dev makes it really easy.
 - Syndicated posts to Twitter and [Mastodon](/feed/mastodon-posse-enabled/).
-- Created a [response feed](/feed/responses) for interactions like replies, reshares (repost), and likes (favorites) with support for sending [Webmentions](/feed/webmentions-partially-implemented/). 
+- Created a [response feed](/feed/responses) for interactions like replies, reshares (repost), and likes (favorites) with support for sending [Webmentions](/notes/webmentions-partially-implemented//). 
 - Created [RSS feeds](/subscribe) for each of my feeds.
 
 It hasn't happened overnight. Instead, it's been the result of small incremental efforts over time.

@@ -22,7 +22,7 @@ Or are they?
 
 As mentioned, starter packs are a collection of feeds that others can create, share, and subscribe to. 
 
-[Bluesky supports RSS](/feed/bluesky-rss-support), which means you could organize the feeds using an OPML file that you can share with others and others can subscribe to. The benefits of this is, you can continue to keep up with activity on Bluesky from the feed reader of your choice without being required to have an account on Bluesky. 
+[Bluesky supports RSS](/notes/bluesky-rss-support/), which means you could organize the feeds using an OPML file that you can share with others and others can subscribe to. The benefits of this is, you can continue to keep up with activity on Bluesky from the feed reader of your choice without being required to have an account on Bluesky. 
 
 More importantly, because RSS and OPML are open standards, you're not limited to building starter packs for Bluesky. You can create, share, and subscribe to starter packs for any platform that supports RSS. That includes blogs, podcasts, forums, YouTube, Mastodon, etc. [Manton seems to have something similar in mind](https://www.manton.org/2024/12/07/with-the-success.html) as a means of building on open standards that make it easy for Micro.blog to interop with various platforms. 
 

@@ -8,7 +8,7 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 ## Notes
 
 - [New Forums Page](/feed/new-forums-page)
-- [Week of March 18, 2024 - Post Summary](/feed/2024-03-18-weekly-post-summary)
+- [Week of March 18, 2024 - Post Summary](/notes/2024-03-18-weekly-post-summary//)
 - [New Era of Work - Windows / Surface Event Blog (March 21, 2024)](/feed/surface-event-mar-21-24-event-blog)
 - [Looking for Discord server / community recommendations](/feed/looking-for-discord-communities)
 - [Use AI to generate a blogroll others can subscribe to](/feed/ai-generated-blogroll-opml)

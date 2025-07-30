@@ -256,8 +256,8 @@ let presentationPageView (presentation:Presentation) =
                 hr []
                 div [ _class "permalink-info" ] [
                     Text "Permalink: "
-                    a [ _class "u-url permalink-link"; _href $"/presentations/{presentation.FileName}/" ] [
-                        Text $"/presentations/{presentation.FileName}/"
+                    a [ _class "u-url permalink-link"; _href $"/resources/presentations/{presentation.FileName}/" ] [
+                        Text $"/resources/presentations/{presentation.FileName}/"
                     ]
                 ]
                 h3 [] [Text "Resources"]

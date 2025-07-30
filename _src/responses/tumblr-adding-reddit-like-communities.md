@@ -11,4 +11,4 @@ tags: ["tumblr","reddit","communities","automattic","wordpress","activitypub","f
 
 > Communities are similar to subreddits or Facebook groups and had previously been in beta.
 
-Given recent announcements like [Tumblr replatforming on top of WordPress](/feed/shipping-wordpress-tumblr) and [WordPress adding support for ActivityPub](/feed/wordpress-activitypub-plugin), I could see communities becoming not only an alternative to Reddit, but also Lemmy in the Fediverse. 
+Given recent announcements like [Tumblr replatforming on top of WordPress](/notes/shipping-wordpress-tumblr/) and [WordPress adding support for ActivityPub](/responses/wordpress-activitypub-plugin/), I could see communities becoming not only an alternative to Reddit, but also Lemmy in the Fediverse. 

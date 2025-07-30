@@ -7,7 +7,7 @@ tags: ["indieweb","webmentions","community","fsharp","azurefunctions","azure"]
 
 It took me a while to get all the pieces working but I'm excited that my website now accepts [webmentions](https://www.w3.org/TR/webmention/)!
 
-A few months ago I implemented [sending webmentions](/feed/webmentions-partially-implemented).
+A few months ago I implemented [sending webmentions](/notes/webmentions-partially-implemented/).
 
 Accepting them was a bit tricky because there were a few design decisions I was optimizing for.
 

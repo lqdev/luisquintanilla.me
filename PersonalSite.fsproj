@@ -12,6 +12,7 @@
     <Compile Include="ASTParsing.fs" />
     <Compile Include="BlockRenderers.fs" />
     <Compile Include="GenericBuilder.fs" />
+    <Compile Include="Redirects.fs" />
     <Compile Include="OutputComparison.fs" />
     <Compile Include="Services\Markdown.fs" />
     <Compile Include="Services\Tag.fs" />

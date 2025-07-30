@@ -8,7 +8,7 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 ## Notes
 
 - [Mastodon instance working again](/feed/mastodon-working-again-v-4-3-1)
-- [Week of November 18, 2024 - Post Summary](/feed/2024-11-18-weekly-post-summary)
+- [Week of November 18, 2024 - Post Summary](/notes/2024-11-18-weekly-post-summary/)
 - [Using my domain for discovery in Mastodon](/feed/using-domain-mastodon-discovery)
 - [Mastodon instance now supports OpenGraph creator tag](/feed/mastodon-instance-supports-opengraph-creator-tag)
     

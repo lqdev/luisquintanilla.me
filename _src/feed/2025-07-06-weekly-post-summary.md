@@ -7,7 +7,7 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 ## Notes
 
-- [Week of June 29, 2025 - Post Summary](/feed/2025-06-29-weekly-post-summary)
+- [Week of June 29, 2025 - Post Summary](/notes/2025-06-29-weekly-post-summary/)
 - [Crate Finds - June 2025](/feed/crate-finds-june-2025)
 - [Crate Finds - May 2025](/feed/crate-finds-may-2025)
 - [Website Post Statistics - June 2025](/feed/post-statistics-june-2025)

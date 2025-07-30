@@ -21,7 +21,7 @@ They now:
 
 - [Made their service generally available](https://bsky.social/about/blog/02-06-2024-join-bluesky).
 - Have over [5 million users](https://bsky.app/profile/bsky.app/post/3klzrudt4uk2z). 
-- [Support RSS](/feed/bluesky-rss-support)
+- [Support RSS](/notes/bluesky-rss-support/)
 
 Now you can self-host your data. I'm excited. 
 

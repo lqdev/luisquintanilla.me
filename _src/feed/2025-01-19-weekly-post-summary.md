@@ -7,7 +7,7 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 ## Notes
 
-- [Week of January 12, 2025 - Post Summary](/feed/2025-01-12-weekly-post-summary)
+- [Week of January 12, 2025 - Post Summary](/notes/2025-01-12-weekly-post-summary/)
 - [Embedded Owncast live stream into my website](/feed/created-owncast-livestream-page)
 - [How do you watch Blu-Ray on PC?](/feed/how-do-you-watch-blueray-on-pc)
 - [Why does Spotify need my full address?](/feed/spotify-address-missing-info)

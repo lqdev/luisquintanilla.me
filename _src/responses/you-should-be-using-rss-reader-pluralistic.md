@@ -39,14 +39,14 @@ On this website, RSS plays an important role in a few areas.
 
 RSS is how I:
 
-- [Enable discovery of my own feeds](https://www.lqdev.me/feed/website-feeds-opml)
+- [Enable discovery of my own feeds](https://www.lqdev.me/notes/website-feeds-opml/)
 - [Enable visitors to subscribe and get the latest content](/subscribe)
 - [Syndicate posts to Mastodon](/posts/rss-to-mastodon-posse-azure-logic-apps).
-- [Enable feed discovery of websites I subscribe to](/feed/blogroll-discovery-implemented) through my:
-    - [Blogroll](/feed/blogroll)
-    - [Podroll (podcasts)](/feed/podroll)
-    - [YouTubeRoll?](/feed/youtube)
-    - [ForumRoll?](/feed/forums)
+- [Enable feed discovery of websites I subscribe to](/collections/blogroll/-discovery-implemented) through my:
+    - [Blogroll](/collections/blogroll/)
+    - [Podroll (podcasts)](/collections/podroll/)
+    - [YouTubeRoll?](/collections/youtube/)
+    - [ForumRoll?](/collections/forums/)
 
 So how can you get started?
 

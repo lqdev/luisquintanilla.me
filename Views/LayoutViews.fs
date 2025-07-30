@@ -52,6 +52,9 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                         | "notes" -> $"/notes/{fileName}/"
                         | "responses" -> $"/responses/{fileName}/"
                         | "bookmarks" -> $"/responses/{fileName}/"  // Bookmarks are responses but filtered separately
+                        | "snippets" -> $"/resources/snippets/{fileName}/"
+                        | "wiki" -> $"/resources/wiki/{fileName}/"
+                        | "presentations" -> $"/resources/presentations/{fileName}/"
                         | "reviews" -> $"/reviews/{fileName}/"
                         | "streams" -> $"/streams/{fileName}/"
                         | "media" -> $"/media/{fileName}/"
@@ -148,6 +151,9 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                                     | "notes" -> $"/notes/{fileName}/"
                                     | "responses" -> $"/responses/{fileName}/"
                                     | "bookmarks" -> $"/responses/{fileName}/"
+                                    | "snippets" -> $"/resources/snippets/{fileName}/"
+                                    | "wiki" -> $"/resources/wiki/{fileName}/"
+                                    | "presentations" -> $"/resources/presentations/{fileName}/"
                                     | "reviews" -> $"/reviews/{fileName}/"
                                     | "streams" -> $"/streams/{fileName}/"
                                     | "media" -> $"/media/{fileName}/"
@@ -241,6 +247,9 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                         | "notes" -> $"/notes/{fileName}/"
                         | "responses" -> $"/responses/{fileName}/"
                         | "bookmarks" -> $"/responses/{fileName}/"  // Bookmarks are responses but filtered separately
+                        | "snippets" -> $"/resources/snippets/{fileName}/"
+                        | "wiki" -> $"/resources/wiki/{fileName}/"
+                        | "presentations" -> $"/resources/presentations/{fileName}/"
                         | "reviews" -> $"/reviews/{fileName}/"
                         | "streams" -> $"/streams/{fileName}/"
                         | "media" -> $"/media/{fileName}/"
@@ -338,6 +347,9 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                             | "notes" -> $"/notes/{fileName}/"
                             | "responses" -> $"/responses/{fileName}/"
                             | "bookmarks" -> $"/responses/{fileName}/"
+                            | "snippets" -> $"/resources/snippets/{fileName}/"
+                            | "wiki" -> $"/resources/wiki/{fileName}/"
+                            | "presentations" -> $"/resources/presentations/{fileName}/"
                             | "reviews" -> $"/reviews/{fileName}/"
                             | "streams" -> $"/streams/{fileName}/"
                             | "media" -> $"/media/{fileName}/"
@@ -465,8 +477,8 @@ let snippetPageView (title:string) (content:string) (date:string) (fileName:stri
             footer [ _class "post-footer" ] [
                 div [ _class "permalink-info" ] [
                     Text "Permalink: "
-                    a [ _class "u-url permalink-link"; _href $"/snippets/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
-                        Text $"/snippets/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    a [ _class "u-url permalink-link"; _href $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
+                        Text $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                 ]
                 webmentionForm
@@ -499,8 +511,8 @@ let wikiPageView (title:string) (content:string) (date:string) (fileName:string)
             footer [ _class "post-footer" ] [
                 div [ _class "permalink-info" ] [
                     Text "Permalink: "
-                    a [ _class "u-url permalink-link"; _href $"/wiki/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
-                        Text $"/wiki/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    a [ _class "u-url permalink-link"; _href $"/resources/wiki/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
+                        Text $"/resources/wiki/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                 ]
                 webmentionForm
@@ -586,8 +598,8 @@ let presentationPageView (presentation:Presentation) =
             footer [ _class "post-footer" ] [
                 div [ _class "permalink-info" ] [
                     Text "Permalink: "
-                    a [ _class "u-url permalink-link"; _href $"/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/" ] [
-                        Text $"/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/"
+                    a [ _class "u-url permalink-link"; _href $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/" ] [
+                        Text $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/"
                     ]
                 ]
                 webmentionForm

@@ -7,6 +7,7 @@ open Builder
 open GenericBuilder
 open WebmentionService
 open Domain
+open PersonalSite.Redirects
 
 [<EntryPoint>]
 let main argv =
@@ -162,6 +163,10 @@ let main argv =
 
     // Build tags page
     buildTagsPages posts feedNotes responses
+
+    // Generate redirect pages for legacy URLs
+    printfn "Generating redirect pages for legacy URLs"
+    PersonalSite.Redirects.createRedirectPages outputDir
 
     // Build legacy RSS feed aliases for backward compatibility (at the very end)
     buildLegacyRssFeedAliases ()

@@ -9,7 +9,7 @@ Started experimenting some more with posting photos this week.
 
 ## Notes
 
-- [Week of November 3, 2024 - Post Summary](/feed/2024-11-03-weekly-post-summary)
+- [Week of November 3, 2024 - Post Summary](/notes/2024-11-03-weekly-post-summary/)
 - [NYC Sunrise](/feed/nyc-sunrise-fall-2024)
 - [.NET Conf 2024 Bound](/feed/netconf-bound-2024)
 - [Finally starting to feel like fall](/feed/finally-feels-like-fall)

@@ -9,7 +9,7 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 - [False alarm - Link is in X bio](/feed/false-alarm-link-in-bio-x-twitter)
 - [X (Twitter) - No more link in bio?](/feed/no-link-in-bio-x-twitter)
-- [Blogroll discovery enabled](/feed/blogroll-discovery-implemented)
+- [Blogroll discovery enabled](/collections/blogroll/-discovery-implemented)
 
 ## Responses
 

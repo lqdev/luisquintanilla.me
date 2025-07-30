@@ -15,6 +15,6 @@ tags: ["iphone","apple","podcasts","ios","ipados"]
 
 This is cool and great for accessibility. 
 
-I recently chose to [read the latest episode of Decoder](/feed/decoder-nilay-patel-why-websites-are-the-future) instead of listening to it. One of the advantages this also provided was that I could reference direct quotes in my post from the episode. 
+I recently chose to [read the latest episode of Decoder](/notes/decoder-nilay-patel-why-websites-are-the-future/) instead of listening to it. One of the advantages this also provided was that I could reference direct quotes in my post from the episode. 
 
 I could see Apple taking this further by making it easier to generate show notes / descriptions based on the episode using AI. 

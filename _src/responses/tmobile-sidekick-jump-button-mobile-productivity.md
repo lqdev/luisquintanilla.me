@@ -7,6 +7,6 @@ dt_updated: "2024-04-01 20:27 -05:00"
 tags: ["tmobile","nostalgia","sidekick","tmobile","phones","smartphones","productivity","mobile","cellphones","handhelds"]
 ---
 
-Bring back the Sidekick! [Ayaneo Slide](/feed/ayaneo-slide/) is probably the closest to this today. Would love to see a [smaller version of it running on Windows on ARM-based Snapdragon processors](/feed/windows-12-mobile-concept/). 
+Bring back the Sidekick! [Ayaneo Slide](/feed/ayaneo-slide/) is probably the closest to this today. Would love to see a [smaller version of it running on Windows on ARM-based Snapdragon processors](/notes/windows-12-mobile-concept//). 
 
 > Before the iPhone, before Android, before webOS, a revolutionary soap bar of a phone made it incredibly easy to get shit done. The Danger Hiptop, better known as the T-Mobile Sidekick, made the internet portable and affordable like no phone before. 

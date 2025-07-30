@@ -7,7 +7,7 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 ## Notes
 
-- [Week of July 21, 2024 - Post Summary](/feed/2024-07-21-weekly-post-summary)
+- [Week of July 21, 2024 - Post Summary](/notes/2024-07-21-weekly-post-summary/)
 - [Crate Finds - June 2024](/feed/crate-finds-june-2024)
 - [Note to Self: Useful Emacs Commands Pt. 1](/feed/useful-emacs-commands-pt-1)
             

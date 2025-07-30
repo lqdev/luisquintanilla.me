@@ -11,6 +11,6 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 ## Responses
 
-- [You should be using an RSS reader](/feed/you-should-be-using-rss-reader-pluralistic)
+- [You should be using an RSS reader](/notes/you-should-be-using-rss-reader-pluralistic/)
 - [Chromakopia - Tyler The Creator](/feed/chromakopia-tyler-the-creator)
     

@@ -9,4 +9,4 @@ tags: ["blogroll","indieweb","rss","blogging","web","internet","smallweb","commu
 
 Bookmarking for reference. 
 
-I'm already subscribed to many of these websites and publications. However, there's several new ones I found that I think will eventually make their rotation into my [blogroll](/feed/blogroll). 
+I'm already subscribed to many of these websites and publications. However, there's several new ones I found that I think will eventually make their rotation into my [blogroll](/collections/blogroll/). 

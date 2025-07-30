@@ -8,4 +8,4 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 ## Notes
 
 - [Crate Finds - April 2024](/feed/crate-finds-april-2024)
-- [Week of April 29, 2024 - Post Summary](/feed/2024-04-29-weekly-post-summary)
+- [Week of April 29, 2024 - Post Summary](/notes/2024-04-29-weekly-post-summary//)

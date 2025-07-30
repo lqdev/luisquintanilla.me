@@ -5,7 +5,7 @@ published_date: 2024-08-01 20:08 -05:00
 tags: ["rss","opml","indieweb","feeds","internet","protocols","webstandards","standards","web"]
 ---
 
-While thiking about implementing [`.well-known` for RSS feeds on my site](/feed/well-known-feeds/), I had another idea. Since that uses OPML anyways, I remembered recently [doing something similar for my blogroll](/feed/blogroll-discovery-implemented/).
+While thiking about implementing [`.well-known` for RSS feeds on my site](/notes/well-known-feeds//), I had another idea. Since that uses OPML anyways, I remembered recently [doing something similar for my blogroll](/collections/blogroll/-discovery-implemented/).
 
 The concept is the same, except instead of making my blogroll discoverable, I'm doing it for my feeds. At the end of the day, a blogroll is a collection of feeds, so it should just work for my own feeds. 
 

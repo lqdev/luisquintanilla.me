@@ -7,7 +7,7 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 ## Notes
 
-- [Upgraded to .NET 9](/feed/website-upgraded-dotnet-9)
+- [Upgraded to .NET 9](/notes/website-upgraded-dotnet-9/)
 - [Mike Tyson vs Jake Paul](/feed/tyson-vs-paul)
             
 ## Responses
@@ -15,4 +15,4 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 - [Thundercat on Tyler's Chromakopia album?](/feed/thundercat-chromakopia)
 - [Day 1 of .NET Conf](/feed/dotnetconf-2024-day-1-success)
 - [.NET Conf 2024 - Session Recordings](/feed/dotnet-conf-2024-session-playlist)
-- [Why YOU Should Make A Website](/feed/why-you-should-make-a-website-luvstarkei)
+- [Why YOU Should Make A Website](/notes/why-you-should-make-a-website-luvstarkei/)

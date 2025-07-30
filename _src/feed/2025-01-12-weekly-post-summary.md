@@ -12,7 +12,7 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 ## Notes
 
-- [Week of January 5, 2025 - Post Summary](/feed/2025-01-05-weekly-post-summary)
+- [Week of January 5, 2025 - Post Summary](/notes/2025-01-05-weekly-post-summary/)
 - [Attended my first IndieWeb Homebrew Website Club](/feed/attended-first-indieweb-hwc)
 - [Workaround for Azure CLI docker image azcopy issue in GitHub Actions](/feed/gh-actions-az-cli-docker-azcopy-workaround)
 - [Got an Owncast instance deployed to Azure!](/feed/owncast-azure-container-apps-deployment)
@@ -22,4 +22,4 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 - [Agents](/feed/agents-huyen)
 - [Agents Whitepaper](/feed/kaggle-agents-whitepaper)
-- [A Year of Curiosity](/feed/year-of-curiosity)
+- [A Year of Curiosity](/notes/year-of-curiosity/)

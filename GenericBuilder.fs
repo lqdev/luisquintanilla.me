@@ -167,7 +167,7 @@ module NoteProcessor =
             RenderView.AsString.xmlNode viewNode
         
         OutputPath = fun note ->
-            sprintf "feed/%s/index.html" note.FileName
+            sprintf "notes/%s/index.html" note.FileName
         
         RenderCard = fun note ->
             let title = Html.escapeHtml note.Metadata.Title

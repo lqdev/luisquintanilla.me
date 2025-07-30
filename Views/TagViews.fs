@@ -38,8 +38,8 @@ let allTagsView (tags: string array) =
 
 let individualTagView (tagName:string) (posts:Post array) (notes:Post array) (responses:Response array) = 
     let postLinks = tagPostLinkView posts "posts"
-    let noteLinks = tagPostLinkView notes "feed"
-    let responseLinks = tagResponseLinkView responses "feed"
+    let noteLinks = tagPostLinkView notes "notes"
+    let responseLinks = tagResponseLinkView responses "responses"
 
     div [ _class "mr-auto" ] [ 
         h2 [] [Text $"{tagName}"]

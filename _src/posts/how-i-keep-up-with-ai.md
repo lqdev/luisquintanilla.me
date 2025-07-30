@@ -16,7 +16,7 @@ That said, here are some sources I use to try and stay informed:
 - **Blogs** are often the primary sources behind those newsletters. They go deeper and often cover a broader set of topics that might not make it into curated roundups.
 - **Podcasts** serve a similar role. In some cases, they provide curation like newsletters and deep dives like blogs in others. Best of all, you can tune in while on the go making it a hands-free activity.
 
-For your convenience, if any of the sources (including podcasts) I list below have RSS feeds, I’ve included them in my [AI Starter Pack](/feed/starter/ai), which you can [download and import into your favorite RSS reader](/feed/starter/ai/index.opml) (as long as it supports OPML file imports).
+For your convenience, if any of the sources (including podcasts) I list below have RSS feeds, I’ve included them in my [AI Starter Pack](/collections/starter-packs//ai), which you can [download and import into your favorite RSS reader](/collections/starter-packs//ai/index.opml) (as long as it supports OPML file imports).
 
 If you have some sources to share, [send me an e-mail](/contact). I'd love to keep adding to this list! If they have a feed I can subscribe to, even better.
 
@@ -59,6 +59,6 @@ Let’s talk about the best way to access all these feeds. My preferred and reco
 
 When subscribing to content on the open web, feed readers are your secret weapon.
 
-RSS might seem like it’s dead (it’s not—yet). In fact, it’s the reason you often hear the phrase, “Wherever you get your podcasts.” But RSS goes beyond podcasts. It’s widely supported by blogs, newsletters, and even social platforms like the Fediverse (Mastodon, PeerTube, etc.) and BlueSky. It’s also how I’m able to compile my [starter packs](/feed/starter). 
+RSS might seem like it’s dead (it’s not—yet). In fact, it’s the reason you often hear the phrase, “Wherever you get your podcasts.” But RSS goes beyond podcasts. It’s widely supported by blogs, newsletters, and even social platforms like the Fediverse (Mastodon, PeerTube, etc.) and BlueSky. It’s also how I’m able to compile my [starter packs](/collections/starter-packs/). 
 
 I've written more about RSS in [Rediscovering the RSS Protocol](/posts/rediscovering-rss-user-freedom), but the short version is this: when you build on open standards like RSS and OPML, you’re building on freedom. Freedom to use the tools that work best for you. Freedom to own your experience. And freedom to support a healthier, more independent web.
