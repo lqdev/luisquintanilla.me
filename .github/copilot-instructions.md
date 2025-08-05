@@ -222,6 +222,19 @@ I am your autonomous development partner focused on **systematic architectural i
 
 **Benefits**: Handles any content volume while maintaining excellent performance and user experience on static sites.
 
+### Content Type Landing Page Pattern (Proven)
+**Discovery**: Proper landing pages for all content types significantly improve content discoverability and user experience, following consistent structural patterns.
+
+**Implementation Pattern**:
+- **Response-Based Filtering**: Use existing content with type metadata (`response_type: bookmark`) rather than creating separate file structures
+- **CollectionViews.fs Updates**: Modify view functions for proper landing page structure (h2 header, descriptive paragraph, chronological list)
+- **Builder Function Creation**: Create dedicated filtering and page generation functions (`buildBookmarksLandingPage`)
+- **Build Integration**: Add function calls to main Program.fs orchestration after data collection
+- **View Function Reuse**: Leverage existing view functions (`responseView`) for consistent UI across content types
+- **Directory Management**: Automatic directory creation and index.html generation following `/content-type/index.html` pattern
+
+**Success Criteria**: Landing page parity across content types, proper content filtering, chronological ordering, and seamless build process integration.
+
 ### User Experience Preference Pattern (Proven)
 **Discovery**: User preferences for content presentation can override technical optimization assumptions, leading to better user experience outcomes.
 
