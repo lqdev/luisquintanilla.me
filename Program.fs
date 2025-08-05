@@ -81,6 +81,10 @@ let main argv =
     let postsFeedData = buildPosts()
     let notesFeedData = buildNotes()
     let responsesFeedData = buildResponses()
+    
+    // Generate bookmarks landing page from bookmark responses
+    buildBookmarksLandingPage responsesFeedData
+    
     let snippetsFeedData = buildSnippets()
     let wikisFeedData = buildWikis()
     let presentationsFeedData = buildPresentations()

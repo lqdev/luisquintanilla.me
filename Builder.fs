@@ -684,6 +684,24 @@ module Builder
         // Return feed data for unified RSS generation
         feedData
 
+    // Generate bookmarks landing page from bookmark-type responses
+    let buildBookmarksLandingPage (responsesFeedData: GenericBuilder.FeedData<Response> list) =
+        // Filter for bookmark-type responses only
+        let bookmarkResponses = 
+            responsesFeedData 
+            |> List.map (fun item -> item.Content)
+            |> List.filter (fun response -> response.Metadata.ResponseType = "bookmark")
+            |> List.sortByDescending (fun response -> DateTime.Parse(response.Metadata.DatePublished))
+            |> List.toArray
+        
+        // Create the bookmarks landing page using responseView (which handles Response arrays)
+        let bookmarksLandingHtml = generate (responseView bookmarkResponses) "defaultindex" "Bookmarks - Luis Quintanilla"
+        let bookmarksIndexSaveDir = Path.Join(outputDir, "bookmarks")
+        Directory.CreateDirectory(bookmarksIndexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(bookmarksIndexSaveDir, "index.html"), bookmarksLandingHtml)
+        
+        printfn "✅ Bookmarks landing page created with %d bookmark responses" bookmarkResponses.Length
+
     // AST-based media processing using GenericBuilder infrastructure
     let buildMedia() = 
         let mediaFiles = 

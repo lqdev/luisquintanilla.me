@@ -73,8 +73,16 @@ let responseView (posts: Response array) =
 
 let bookmarkView (bookmarks: Bookmark array) =
     div [ _class "d-grip gap-3" ] [
-        for bookmark in bookmarks do
-            bookmarkPostView bookmark
+        h2[] [Text "Bookmarks"]
+        p [] [Text "Links to interesting articles, tools, and resources"]
+        ul [] [
+            for bookmark in bookmarks do
+                li [] [
+                    a [ _href $"/bookmarks/{bookmark.FileName}"] [ Text bookmark.Metadata.Title ]
+                    Text " • "
+                    Text (DateTime.Parse(bookmark.Metadata.DatePublished).ToString("MMM dd, yyyy"))
+                ]
+        ]
     ]
 
 let libraryView (books:Book array) = 
