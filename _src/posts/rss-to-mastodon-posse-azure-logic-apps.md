@@ -63,7 +63,7 @@ In the Logic app designer, search for *RSS* and add it as a trigger.
 
 Once the RSS trigger is added to your workflow, configure it as follows:
 
-- **The RSS feed URL**: The feed you want want to get posts from. In this case, I'm using my blog posts [feed](/posts/index.xml). 
+- **The RSS feed URL**: The feed you want want to get posts from. In this case, I'm using my blog posts [feed](/posts/feed.xml). 
 
     **TIP: The RSS feed can be ANY feed. So if you wanted to subscribe and repost items from your favorite blog or website, you can as well. Just note though that if you don't own the content it might not be something the author wants you doing and for websites that update multiple times a day, it might produce a lot of noise in your feed. Other than that though, subscribe and post away!**
 

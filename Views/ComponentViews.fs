@@ -55,11 +55,15 @@ let cardHeader (date:string) =
             ] 
         ]
 
+/// Sanitize tag names for URL usage while preserving display text
+let private sanitizeTagForUrl (tag: string) =
+    tag.Replace("#", "sharp").Replace("/", "-").Replace(" ", "-").Replace("\"", "")
+
 let cardFooter (contentType:string) (fileName:string) (tags: string array)= 
     let tagElements = 
         tags
         |> cleanTags
-        |> Array.map(fun tag -> a [_href $"/tags/{tag}"; _class "p-category"] [Text $"#{tag}"])
+        |> Array.map(fun tag -> a [_href $"/tags/{sanitizeTagForUrl tag}"; _class "p-category"] [Text $"#{tag}"])
 
     div [_class "card-footer"] [
         let permalink = $"/{contentType}/{fileName}/" 
@@ -78,7 +82,7 @@ let albumCardFooter (fileName:string) (tags: string array)=
     let tagElements = 
         tags
         |> cleanTags
-        |> Array.map(fun tag -> a [_href $"/tags/{tag}"; _class "p-category"] [Text $"#{tag}"])
+        |> Array.map(fun tag -> a [_href $"/tags/{sanitizeTagForUrl tag}"; _class "p-category"] [Text $"#{tag}"])
 
     div [_class "card-footer"] [
         let permalink = $"/media/{fileName}/" 

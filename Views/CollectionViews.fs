@@ -176,6 +176,7 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
         | "posts" -> $"/posts/{fileName}/"
         | "notes" -> $"/notes/{fileName}/"
         | "responses" -> $"/responses/{fileName}/"
+        | "bookmarks" -> $"/responses/{fileName}/"  // Bookmarks are responses but filtered separately
         | "snippets" -> $"/resources/snippets/{fileName}/"
         | "wiki" -> $"/resources/wiki/{fileName}/"
         | "presentations" -> $"/resources/presentations/{fileName}/"
@@ -271,7 +272,8 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
                 div [ _class "mt-1" ] [
                     str "Tags: "
                     for tag in item.Tags do
-                        a [_href $"/tags/{tag}"; _class "p-category text-decoration-none me-2"] [Text $"#{tag}"]
+                        let sanitizedTag = tag.Replace("#", "sharp").Replace("/", "-").Replace(" ", "-").Replace("\"", "")
+                        a [_href $"/tags/{sanitizedTag}"; _class "p-category text-decoration-none me-2"] [Text $"#{tag}"]
                 ]
             ]
         ]

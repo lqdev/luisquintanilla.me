@@ -10,7 +10,7 @@ tags: ["dotnet","fsharp","qrcode"]
 
 Today I learned about MeCard file formats for representing contact information while reading the post [Sharing contacts using QR Code without requiring a network connection](https://andregarzia.com/2023/10/sharing-contacts-using-qr-code.html) by Andre Garzia.
 
-Currently I host my [vCard](../vcard.vcf) on my site in a very similar way Andre describes in his post. I've also encoded it in [QR Code format](../images/contact/qr-vcard.svg) to make it easy to import and share.  
+Currently I host my [vCard](../vcard.vcf) on my site in a very similar way Andre describes in his post. I've also encoded it in [QR Code format](/assets/images/contact/qr-vcard.svg) to make it easy to import and share.  
 
 When I saw the MeCard format, I immediately liked how simple it was so I decided to see how difficult it'd be to write some code to generate a QR code for my own contact data.
 
@@ -51,4 +51,4 @@ Scanning the QR Code with a smartphone would then immediately recognize it as a 
 
 ## Conclusion
 
-Since I already had the code snippet to do this available, creating a MeCard was straightforward. I've since added my [MeCard](/mecard.txt) alongside by vCard. You can check out the corresponding [QR code](/images/contact/qr-mecard.svg) in my [contact](/contact) page.
+Since I already had the code snippet to do this available, creating a MeCard was straightforward. I've since added my [MeCard](/mecard.txt) alongside by vCard. You can check out the corresponding [QR code](/assets/images/contact/qr-mecard.svg) in my [contact](/contact) page.

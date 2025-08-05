@@ -27,7 +27,7 @@ This was interesting enough for me I even hosted a session on the topic, I think
 
 These are such a huge topic but for the purpose of this post, I'm lumping them together.
 
-[https://bounce-migrate.appspot.com/](Bounce) is one of the projects aiming to make portability easy. What's so interesting is they're making it easy to migrate across protocols. So if you're in one network like ATProto (Bluesky), migrating to the Fediverse should be relatively seamless with Bounce. 
+[https://bounce-migrate.appspot.com/](https://bounce.so) is one of the projects aiming to make portability easy. What's so interesting is they're making it easy to migrate across protocols. So if you're in one network like ATProto (Bluesky), migrating to the Fediverse should be relatively seamless with https://bounce.so. 
 
 Some great discussions that emerged on the topic as well include:
 
@@ -41,7 +41,7 @@ Talk of feeds was everywhere. I made a note to myself throughout the conference.
 > It's amazing how big the feeds theme is. Feed ownership, customization, and sharing. All powered by open protocols.
 
 - [Bonfire releases 1.0](https://bonfirenetworks.org/posts/bonfire_social_rc/) - Congrats to the Bonfire team on this milestone. I haven't tried Bonfire myself, but the Circles feature caught my attention. It made me reminiscent of Google+.
-- [Surf.Social is now in beta](surf.social) - As an avid user and curator of RSS feeds, I'd heard about Surf before but hadn't really looked into it. The beta release was announced at the conference and I quickly was able to sign up and download it. Kudos to the team on this milestone and thanks for being so responsive to my request to join the beta. I did almost no waiting in the waitlist. Once I have a chance to try it out and get familiar with it, I'll share some thoughts.
+- [Surf.Social is now in beta](https://https://surf.social) - As an avid user and curator of RSS feeds, I'd heard about Surf before but hadn't really looked into it. The beta release was announced at the conference and I quickly was able to sign up and download it. Kudos to the team on this milestone and thanks for being so responsive to my request to join the beta. I did almost no waiting in the waitlist. Once I have a chance to try it out and get familiar with it, I'll share some thoughts.
 - [Channels](https://home.channel.org/) from the folks at [Newsmast Foundation](https://www.newsmastfoundation.org/) looks like an interesting way to curate and customize feeds. 
 [Bring Your Own Timeline Algorithm](https://huggingface.co/spaces/mozilla-ai/byota) leverages semantic search to help you seamlessly leverage the power of algorithmic feeds but doing so under your control. Cool use of AI. 
 

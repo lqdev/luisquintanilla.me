@@ -8,6 +8,10 @@ open ComponentViews
 open CollectionViews
 open MarkdownService
 
+/// Sanitize tag names for URL usage while preserving display text
+let private sanitizeTagForUrl (tag: string) =
+    tag.Replace("#", "sharp").Replace("/", "-").Replace(" ", "-").Replace("\"", "")
+
 // New stratified timeline homepage view - takes 5 items from each content type initially
 // Progressive loading is content-type aware for better filtering experience
 let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) (remainingItemsByType: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
@@ -113,7 +117,7 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                                 if item.Tags.Length > 0 then
                                     div [ _class "p-category tags" ] [
                                         for tag in item.Tags do
-                                            a [ _class "tag-link"; _href $"/tags/{tag}/" ] [ Text $"#{tag}" ]
+                                            a [ _class "tag-link"; _href $"/tags/{sanitizeTagForUrl tag}/" ] [ Text $"#{tag}" ]
                                     ]
                             ]
                         ]
@@ -308,7 +312,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                                 if item.Tags.Length > 0 then
                                     div [ _class "p-category tags" ] [
                                         for tag in item.Tags do
-                                            a [ _class "tag-link"; _href $"/tags/{tag}/" ] [ Text $"#{tag}" ]
+                                            a [ _class "tag-link"; _href $"/tags/{sanitizeTagForUrl tag}/" ] [ Text $"#{tag}" ]
                                     ]
                             ]
                         ]

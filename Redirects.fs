@@ -57,9 +57,9 @@ let legacyFeedRedirects: Map<string, RedirectEntry> =
         "/feed/website-feeds-opml", createRedirect "/feed/website-feeds-opml" "/notes/website-feeds-opml/" Notes
         "/feed/website-upgraded-dotnet-9", createRedirect "/feed/website-upgraded-dotnet-9" "/notes/website-upgraded-dotnet-9/" Notes
         "/feed/welcome-to-fediverse-tips", createRedirect "/feed/welcome-to-fediverse-tips" "/notes/welcome-to-fediverse-tips/" Notes
-        "/feed/well-known-feeds", createRedirect "/feed/well-known-feeds" "/notes/well-known-feeds/" Notes
+        "/feed/well-known-feeds", createRedirect "/feed/well-known-feeds" "/responses/well-known-feeds/" Responses
         "/feed/what-is-kick", createRedirect "/feed/what-is-kick" "/notes/what-is-kick/" Notes
-        "/feed/marvin-gaye-whats-going-on", createRedirect "/feed/marvin-gaye-whats-going-on" "/notes/marvin-gaye-whats-going-on/" Notes
+        "/feed/marvin-gaye-whats-going-on", createRedirect "/feed/marvin-gaye-whats-going-on" "/responses/marvin-gaye-whats-going-on/" Responses
         
         // Response items (in /responses/)
         "/feed/1-percent-rule", createRedirect "/feed/1-percent-rule" "/responses/1-percent-rule/" Responses

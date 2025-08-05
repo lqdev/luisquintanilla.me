@@ -3,11 +3,15 @@ module TagViews
 open Giraffe.ViewEngine
 open Domain
 
+/// Sanitize tag names for URL usage while preserving display text
+let private sanitizeTagForUrl (tag: string) =
+    tag.Replace("#", "sharp").Replace("/", "-").Replace(" ", "-").Replace("\"", "")
+
 let tagLinkView (tags: string array) = 
     ul [] [
         for tag in tags do
             li [] [
-                a [_href $"/tags/{tag}"; _rel "tag"] [Text $"#{tag}"]
+                a [_href $"/tags/{sanitizeTagForUrl tag}"; _rel "tag"] [Text $"#{tag}"]
             ]
     ]
 

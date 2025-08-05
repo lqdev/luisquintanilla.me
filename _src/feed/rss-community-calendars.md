@@ -12,7 +12,7 @@ While reading a [recent post on Doc Searls' blog](https://doc.searls.com/2023/11
 This sent me down a search to see whether others were using shared calendars, similar to [The Big Calendar](https://bsquarebulletin.com/test-calendar/?r34icsym=202312). It was nice to see that Penn State has shared calendars for their various sports. That shouldn't be surprising. As a university, they already share their academic calendars. The part that I found surprising though was that RSS was one of the options. 
 
 ^^^
-![Penn State Subscription Calendar Subscriptions](/assets/images/notes/rss-community-calendars.png)
+![Penn State Subscription Calendar Subscriptions](/assets/images/feed/rss-community-calendars.png)
 ^^^ Source: *gopsusports.com*
 
 Downloading the RSS feed enabled me to import it into my feed reader and view it there. I'd prefer if instead of downloading the RSS feed as a file, they just provided the link so I could copy and paste it into my feed reader. However, it's still nice that just like podcasts and YouTube feeds, I can now also see Penn State athletic events in my feed. 
