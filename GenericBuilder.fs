@@ -875,7 +875,7 @@ module UnifiedFeeds =
             Title = "Luis Quintanilla - All Updates"
             Link = "https://www.luisquintanilla.me/feed"
             Description = "All content updates from Luis Quintanilla's website"
-            OutputPath = "feed/index.xml"
+            OutputPath = "feed/feed.xml"
             ContentType = None
         }
         
@@ -883,6 +883,9 @@ module UnifiedFeeds =
         let fireHoseFeed = generateRssFeed (allUnifiedItems |> List.take (min 20 allUnifiedItems.Length)) fireHoseConfig
         let fireHoseDir = Path.Combine(outputDirectory, "feed")
         Directory.CreateDirectory(fireHoseDir) |> ignore
+        File.WriteAllText(Path.Combine(fireHoseDir, "feed.xml"), fireHoseFeed)
+        
+        // Also create backward compatibility copy at old location
         File.WriteAllText(Path.Combine(fireHoseDir, "index.xml"), fireHoseFeed)
         
         // Type-specific feed configurations

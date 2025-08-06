@@ -1,5 +1,11 @@
 [
     {
+        "Title": "Everything",
+        "Type": "rss",
+        "HtmlUrl": "https://www.lqdev.me/feed",
+        "XmlUrl": "https://www.lqdev.me/all.rss"
+    },
+    {
         "Title": "Blog",
         "Type": "rss",
         "HtmlUrl": "https://www.lqdev.me/posts/1",

@@ -212,6 +212,15 @@ let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedI
             // Primary Feed Subscriptions
             h2 [] [ Text "Featured Feeds" ]
             
+            // Unified Feed (ALL content)
+            h3 [] [ a [ _href "/feed/" ] [ Text "Everything Feed" ] ]
+            p [] [ Text "All content updates in one feed - blog posts, notes, responses, bookmarks, and more." ]
+            p [] [ 
+                Text "Feed URL: "
+                a [ _href "/all.rss" ] [ Text "/all.rss" ]
+                Text " (20 most recent items, all content types)"
+            ]
+            
             // Blog Feed
             h3 [] [ a [ _href "/posts/1/" ] [ Text "Blog" ] ]
             p [] [ Text "Long-form posts. Mainly around tech topics." ]
