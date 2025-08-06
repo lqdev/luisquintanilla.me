@@ -314,15 +314,15 @@ dotnet run
 
 Once you have the model saved, use the Azure Portal to create an Azure Storage account.
 
-![Create Azure Storage Account](/images/deploy-machine-learning-mlnet-models-blazor-webassembly/deploy-machine-learning-mlnet-model-blazor-webassembly1.png)
+![Create Azure Storage Account](/assets/images/deploy-machine-learning-mlnet-models-blazor-webassembly/deploy-machine-learning-mlnet-model-blazor-webassembly1.png)
 
 Then, navigate to your newly created storage account resource and create a blob container called `models`.
 
-![Create Blob Container](/images/deploy-machine-learning-mlnet-models-blazor-webassembly/deploy-machine-learning-mlnet-model-blazor-webassembly2.png)
+![Create Blob Container](/assets/images/deploy-machine-learning-mlnet-models-blazor-webassembly/deploy-machine-learning-mlnet-model-blazor-webassembly2.png)
 
 Once your container is created, navigate to it and upload the *model.zip* file.
 
-![Upload Model](/images/deploy-machine-learning-mlnet-models-blazor-webassembly/deploy-machine-learning-mlnet-model-blazor-webassembly3.png)
+![Upload Model](/assets/images/deploy-machine-learning-mlnet-models-blazor-webassembly/deploy-machine-learning-mlnet-model-blazor-webassembly3.png)
 
 ## Create prediction web page
 
@@ -472,7 +472,7 @@ In the Azure Portal, navigate to the storage account resource where you are host
 
 Enable a static website for the storage account and set the index document name and error document path to *index.html*.
 
-![Enable Static Website](/images/deploy-machine-learning-mlnet-models-blazor-webassembly/deploy-machine-learning-mlnet-model-blazor-webassembly4.png)
+![Enable Static Website](/assets/images/deploy-machine-learning-mlnet-models-blazor-webassembly/deploy-machine-learning-mlnet-model-blazor-webassembly4.png)
 
 At this point, a new container called *$web* is created in your storage account. This is where all your site's static files will reside. Additionally, a primary endpoint is created. This is the URL you will use to access your application
 
@@ -480,7 +480,7 @@ At this point, a new container called *$web* is created in your storage account.
 
 The storage account has some default CORS settings. In order to download and use your model from your application, you'll have to configure them.
 
-![Configure CORS](/images/deploy-machine-learning-mlnet-models-blazor-webassembly/deploy-machine-learning-mlnet-model-blazor-webassembly5.png)
+![Configure CORS](/assets/images/deploy-machine-learning-mlnet-models-blazor-webassembly/deploy-machine-learning-mlnet-model-blazor-webassembly5.png)
 
 For "Allowed origins", enter your primary endpoint.
 
@@ -496,13 +496,13 @@ This generates all the files you'll need to host your web application as a stati
 
 To deploy your application, use Azure Storage Explorer to copy all of the files in the *dist* directory into the *$web* container of your Azure Storage Account.
 
-![Copy files into web container](/images/deploy-machine-learning-mlnet-models-blazor-webassembly/deploy-machine-learning-mlnet-model-blazor-webassembly6.png)
+![Copy files into web container](/assets/images/deploy-machine-learning-mlnet-models-blazor-webassembly/deploy-machine-learning-mlnet-model-blazor-webassembly6.png)
 
 ## Test the application
 
 In your browser, navigate to your static website's primary endpoint and select the Prediction page. Input data and click "Make prediction". The page should look as follows. 
 
-![Test the application](/images/deploy-machine-learning-mlnet-models-blazor-webassembly/deploy-machine-learning-mlnet-model-blazor-webassembly7.png)
+![Test the application](/assets/images/deploy-machine-learning-mlnet-models-blazor-webassembly/deploy-machine-learning-mlnet-model-blazor-webassembly7.png)
 
 **You may note that performance of Naive Bayes on this dataset is not the best so some of the predictions may not be as accurate. I am okay with this at the moment because this is a proof-of-concept to show how these technologies might work together. Perhaps using a better dataset may yield better results.**
 

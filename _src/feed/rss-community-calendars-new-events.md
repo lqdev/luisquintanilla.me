@@ -5,7 +5,7 @@ published_date: "2023-11-12 09:52"
 tags: ["rss","calendars","protocols","community"]
 ---
 
-After my post on [Shared calendars and RSS](/feed/rss-community-calendars) I kept thinking about what else you can get out of sharing a calendar using RSS. What I didn't see immediately is the main use case of RSS, though I did mention it as a drawback.
+After my post on [Shared calendars and RSS](/notes/rss-community-calendars) I kept thinking about what else you can get out of sharing a calendar using RSS. What I didn't see immediately is the main use case of RSS, though I did mention it as a drawback.
 
 > The main drawbacks I see are that I can't get notifications or see it in my calendar.
 

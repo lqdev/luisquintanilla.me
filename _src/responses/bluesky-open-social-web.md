@@ -21,11 +21,11 @@ They now:
 
 - [Made their service generally available](https://bsky.social/about/blog/02-06-2024-join-bluesky).
 - Have over [5 million users](https://bsky.app/profile/bsky.app/post/3klzrudt4uk2z). 
-- [Support RSS](/feed/bluesky-rss-support)
+- [Support RSS](/responses/bluesky-rss-support/)
 
 Now you can self-host your data. I'm excited. 
 
-The other piece of this that's interesting is their feature which enables you to [use your domain as a custom handle](https://bsky.social/about/blog/7-05-2023-namecheap). Not only is your identity portable, but also your data. I'd be interested to see how this works in practice given you can already do some of this on the Fediverse on platforms like Mastodon. Again, that portable identity component to me is crucial. That's one of the challenges with Mastodon today. While you can move instances, your identity changes and while most of your data comes with you, there's tihngs that still dont transfer over. The other part that I'd be interested in seeing is whether or not they can be efficient in the storage of federated data. One of the challenges with Mastodon is, your server quickly fills up because of data from other instances (when you federate). [It's gotten better](feed/mastodon-4-1-0-release), but this is an area I spend most of my time when maintaining my own self-hosted instance.
+The other piece of this that's interesting is their feature which enables you to [use your domain as a custom handle](https://bsky.social/about/blog/7-05-2023-namecheap). Not only is your identity portable, but also your data. I'd be interested to see how this works in practice given you can already do some of this on the Fediverse on platforms like Mastodon. ... identity component to me is crucial. That's one of the challenges with Mastodon today. While you can move instances, your identity changes and while most of your data comes with you, there's tihngs that still dont transfer over. The other part that I'd be interested in seeing is whether or not they can be efficient in the storage of federated data. One of the challenges with Mastodon is, your server quickly fills up because of data from other instances (when you federate). [It's gotten better](/notes/mastodon-4-1-0-release), but this is an area I spend most of my time when maintaining my own self-hosted instance.
 
 I'm excited to tinker and self-host my own data. Maybe I'll also [syndicate to Bluesky just like I do with Mastodon today](/posts/rss-to-mastodon-posse-azure-logic-apps). 
 

@@ -7,9 +7,9 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 ## Responses
 
-- [Bringing Static Sites to the Fediverse - Enhancements and Implementations](/feed/bringing-static-sites-fediverse-enhancements-implementations-maho)
-- [Introducing Command A](/feed/introducing-command-a-cohere)
-- [Introducing Gemma 3](/feed/introducing-gemma-3)
-- [Mistral Small 3.1](/feed/mistral-small-3-1)
-- [Just pre-ordered by PebbleOS Core Time 2 smartwatch](/feed/preordered-pebbleos-watch)
-- [Simon Willison's AI-Generated Tools Colophon](/feed/willison-tools-colophon)
+- [Bringing Static Sites to the Fediverse - Enhancements and Implementations](/responses/bringing-static-sites-fediverse-enhancements-implementations-maho)
+- [Introducing Command A](/responses/introducing-command-a-cohere)
+- [Introducing Gemma 3](/responses/introducing-gemma-3)
+- [Mistral Small 3.1](/responses/mistral-small-3-1)
+- [Just pre-ordered by PebbleOS Core Time 2 smartwatch](/responses/preordered-pebbleos-watch)
+- [Simon Willison's AI-Generated Tools Colophon](/responses/willison-tools-colophon/)

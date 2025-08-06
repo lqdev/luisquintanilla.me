@@ -38,4 +38,4 @@ Let's go 3 years into the future. What happens when virtual and augmented realit
 
 I'd say the biggest miss from Qualcomm and Windows partners today was not having a lineup of devices ready for purchase. That will come with time. Hopefully not too long after these announcements. I'm sure that Apple which has an announcement coming up on October 30th will have a response. The most important thing though is that now there's competition and as we enter this new era of AI and TRUE mobile computing, it'll lead to innovation. The next things that need to happen is operating systems like Windows need to ensure their existing applications work on these platforms and Linux needs to enable support for these chipsets. I'm so excited for the future of mobile computing and can't wait to be able to carry a device running Linux with always-on connectivity and all-day battery life in the form factor of a Surface Duo. 
 
-An addendum to this post can be found [here](/feed/snapdragon-summit-2023-addendum).
+An addendum to this post can be found [here](/notes/snapdragon-summit-2023-addendum).

@@ -4,8 +4,10 @@ open System
 open System.IO
 open Loaders
 open Builder
+open GenericBuilder
 open WebmentionService
 open Domain
+open PersonalSite.Redirects
 
 [<EntryPoint>]
 let main argv =
@@ -31,16 +33,29 @@ let main argv =
 
     // Data
     let posts = loadPosts(srcDir) 
-    let feedPosts = loadFeed (srcDir)
-    let presentations = loadPresentations (srcDir)
+    let feedNotes = 
+        // Load notes using new AST-based system
+        let noteFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "feed"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        let processor = GenericBuilder.NoteProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor noteFiles
+        feedData |> List.map (fun item -> item.Content) |> List.toArray
     let liveStreams = loadLiveStreams (srcDir)
     let feedLinks = loadFeedLinks (srcDir)
     let redirects = loadRedirects ()
-    let snippets = loadSnippets (srcDir)
-    let wikis = loadWikis (srcDir)
     let books = loadBooks (srcDir)
     let albums = loadAlbums (srcDir)
-    let responses = loadReponses (srcDir)
+    let responses = 
+        // Load responses using AST-based system
+        let responseFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "responses"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        let processor = GenericBuilder.ResponseProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor responseFiles
+        feedData |> List.map (fun item -> item.Content) |> List.toArray
     let blogrollLinks = loadBlogrollLinks ()
     let podrollLinks = loadPodrollLinks ()
     let forumLinks = loadForumsLinks ()
@@ -48,28 +63,57 @@ let main argv =
     let aiStarterPackLinks = loadAIStarterPackLinks ()
 
     // Build static pages
-    buildHomePage posts feedPosts responses
+    // buildHomePage posts feedNotes responses  // Traditional homepage - replaced by timeline
     buildAboutPage ()
     buildContactPage ()
     buildStarterPackPage ()
     buildIRLStackPage ()
     buildColophonPage ()
-    buildSubscribePage ()
     buildOnlineRadioPage ()
 
-    // Write Post / Archive Pages
-    buildPostPages posts
-    buildPostArchive posts
-
-    // Build Feeds
-    buildFeedPage feedPosts "Main Feed - Luis Quintanilla" "index"
-
-    // Build RSS pages
-    buildBlogRssFeed posts
-    buildFeedRssPage feedPosts "index"
+    // =============================================================================
+    // UNIFIED FEED SYSTEM - Collect all feed data and generate unified feeds
+    // =============================================================================
+    printfn "=== Unified Feed Generation ==="
     
-    // Build responses (star,repost,reply,bookmarks)
-    buildResponseFeedRssPage responses "index"
+    // Collect feed data from all content types
+    let postsFeedData = buildPosts()
+    let notesFeedData = buildNotes()
+    let responsesFeedData = buildResponses()
+    
+    // Generate bookmarks landing page from bookmark responses
+    buildBookmarksLandingPage responsesFeedData
+    
+    let snippetsFeedData = buildSnippets()
+    let wikisFeedData = buildWikis()
+    let presentationsFeedData = buildPresentations()
+    let booksFeedData = buildBooks()
+    let mediaFeedData = buildMedia()
+    
+    // Convert to unified feed items
+    let allUnifiedItems = [
+        ("posts", GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData)
+        ("notes", GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData)
+        ("responses", GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData)
+        ("bookmarks", GenericBuilder.UnifiedFeeds.convertResponseBookmarksToUnified responsesFeedData)
+        ("snippets", GenericBuilder.UnifiedFeeds.convertSnippetsToUnified snippetsFeedData)
+        ("wiki", GenericBuilder.UnifiedFeeds.convertWikisToUnified wikisFeedData)
+        ("presentations", GenericBuilder.UnifiedFeeds.convertPresentationsToUnified presentationsFeedData)
+        ("reviews", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
+        ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
+    ]
+    
+    // Generate unified feeds (fire-hose + type-specific)
+    GenericBuilder.UnifiedFeeds.buildAllFeeds allUnifiedItems "_public"
+    
+    // Generate tag RSS feeds using unified feed data
+    GenericBuilder.UnifiedFeeds.buildTagFeeds allUnifiedItems "_public"
+    
+    // Build Timeline Homepage (Feed-as-Homepage Phase 3)
+    buildTimelineHomePage allUnifiedItems
+    
+    // Generate unified feed HTML page
+    buildUnifiedFeedPage allUnifiedItems
    
     // Build roll pages
     buildFeedsOpml feedLinks
@@ -89,37 +133,45 @@ let main argv =
     buildEventPage ()
 
     // Build presentation pages
-    buildPresentationsPage presentations
-    buildPresentationPages presentations
+    printfn "Building presentations with AST-based processor"
+    let _ = buildPresentations()
+    ()
 
     // Build livestream pages
     buildLiveStreamPage ()
     buildLiveStreamsPage liveStreams
     buildLiveStreamPages liveStreams
 
-    // Redirects
+    // Build redirect pages for URL migration
     buildRedirectPages redirects
 
     // Build Snippet Pages
-    buildSnippetPage snippets
-    buildSnippetPages snippets
+    let _ = buildSnippets()
+    ()
 
-    // Build Wiki
-    buildWikiPage (wikis |> Array.sortBy(fun x -> x.Metadata.Title))
-    buildWikiPages wikis
+    // Build Wiki Pages  
+    printfn "Building wiki pages with AST-based processor"
+    let _ = buildWikis()
+    ()
 
-    // Build books
-    buildLibraryPage books
-    buildBookPages books
+    // Build Books
+    printfn "Building books with AST-based processor"
+    let _ = buildBooks()
+    ()
 
-    // Build gallery pages
-    buildAlbumPage albums
-    buildAlbumPages albums
-
-    // Build reponses
-    buildResponsePage responses "Responses" "index"
+    // Build Media
+    printfn "Building media with AST-based processor"
+    let _ = buildMedia()
+    ()
 
     // Build tags page
-    buildTagsPages posts feedPosts responses
+    buildTagsPages posts feedNotes responses
+
+    // Generate redirect pages for legacy URLs
+    printfn "Generating redirect pages for legacy URLs"
+    PersonalSite.Redirects.createRedirectPages outputDir
+
+    // Build legacy RSS feed aliases for backward compatibility (at the very end)
+    buildLegacyRssFeedAliases ()
 
     0

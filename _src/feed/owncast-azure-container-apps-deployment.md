@@ -17,6 +17,6 @@ The hardest part was figuring out that I needed to set up a virtual network in o
 
 Once the server was up and running, configuring OBS was relatively easy as well.
 
-![AI Generated image of two aliens enjoying a beer in the middle of the desert by a campfire on a starry night](/images/feed/owncast-obs-azure-container-apps-deployment.png)
+![AI Generated image of two aliens enjoying a beer in the middle of the desert by a campfire on a starry night](/assets/images/feed/owncast-obs-azure-container-apps-deployment.png)
 
 I'll try to put together a more detailed writeup so I remember what I did for next time as well as help others who may be interested in self-hosting their own livestream server. 

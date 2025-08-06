@@ -9,4 +9,4 @@ tags: ["podcast","privacy","osint"]
 
 > ...a farewell episode was released on November 20th, 2023 entitled “My Irish Exit”. It was finally officially confirmed that [The Privacy, Security, and OSINT Show with Michael Bazzell]...has reached an end.
 
-That's unfortunate. I really enjoyed listening to this show and even had it listed in my [podroll](/feed/podroll). The UNREDACTED magazine had great content as well. 
+That's unfortunate. I really enjoyed listening to this show and even had it listed in my [podroll](/collections/podroll/). The UNREDACTED magazine had great content as well. 

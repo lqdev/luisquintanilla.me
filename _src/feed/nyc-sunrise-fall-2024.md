@@ -7,4 +7,4 @@ tags: ["photo","sunrise","nyc","city"]
 
 I was lucky to snap this picture the other day. 
 
-![Sun rising behind NYC skyline](/images/feed/nyc-sunrise.jpg)
+![Sun rising behind NYC skyline](/assets/images/feed/nyc-sunrise.jpg)

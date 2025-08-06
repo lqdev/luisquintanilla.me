@@ -4,10 +4,13 @@
 		"prefix": "blankfeed",
 		"body": [
 			"---",
-			"post_type: \"\" ",
-			"title: \"\"",
-			"published_date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE\"",
-			"---"
+			"post_type: \"$1\" ",
+			"title: \"$2\"",
+			"published_date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
+			"tags: [\"$3\"]",
+			"---",
+			"",
+			"$0"
 		],
 		"description": "Generic feed post metadata"
 	},
@@ -17,11 +20,13 @@
 		"body": [
 			"---",
 			"post_type: \"article\" ",
-			"title: \"\"",
-			"description: \"\"",
-			"published_date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE\"",
-			"tags: []",
-			"---"
+			"title: \"$1\"",
+			"description: \"$2\"",
+			"published_date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
+			"tags: [\"$3\"]",
+			"---",
+			"",
+			"$0"
 		],
 		"description": "Blog post article metadata"
 	},	
@@ -31,10 +36,12 @@
 		"body": [
 			"---",
 			"post_type: \"note\" ",
-			"title: \"\"",
-			"published_date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE\"",
-			"tags: []",
-			"---"
+			"title: \"$1\"",
+			"published_date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
+			"tags: [\"$2\"]",
+			"---",
+			"",
+			"$0"
 		],
 		"description": "Note feed post metadata"
 	},
@@ -44,9 +51,12 @@
 		"body": [
 			"---",
 			"post_type: \"video\" ",
-			"title: \"\"",
-			"published_date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE\"",
-			"---"
+			"title: \"$1\"",
+			"published_date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
+			"tags: [\"$2\"]",
+			"---",
+			"",
+			"$0"
 		],
 		"description": "Video feed post metadata"
 	},
@@ -56,9 +66,12 @@
 		"body": [
 			"---",
 			"post_type: \"photo\" ",
-			"title: \"\"",
-			"published_date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE\"",
-			"---"
+			"title: \"$1\"",
+			"published_date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
+			"tags: [\"$2\"]",
+			"---",
+			"",
+			"$0"
 		],
 		"description": "Photo feed post metadata"
 	},
@@ -66,21 +79,25 @@
 		"scope": "markdown",
 		"prefix": "resource-link",
 		"body": [
-			"  - name: ",
-			"    url: "
+			"  - text: \"$1\"",
+			"    url: \"$2\""
 		],
-		"description": "Presentation resource link (name and url)"
+		"description": "Presentation resource link (text and url)"
 	},	
 	"Presentation metadata": {
 		"scope": "markdown",
 		"prefix": "presentation",
 		"body": [
 			"---",
-			"title: \"\" ",
+			"title: \"$1\" ",
+			"date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\"",
+			"tags: \"$2\"",
 			"resources:",
-			"  - name: ",
-			"    url: ",						
-			"---"
+			"  - text: \"$3\"",
+			"    url: \"$4\"",						
+			"---",
+			"",
+			"$0"
 		],
 		"description": "Presentation metadata"
 	},
@@ -89,17 +106,23 @@
 		"prefix": "snippet",
 		"body": [
 			"---",
-			"title: \"\"",
-			"language: \"\"",
-			"tags: ",
+			"title: \"$1\"",
+			"language: \"$2\"",
+			"tags: \"$3\"",
+			"created_date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
 			"---",
 			"",
 			"## Description",
 			"",
+			"$4",
+			"",
 			"## Usage",
 			"",
+			"$5",
+			"",
 			"## Snippet",
-			""		
+			"",
+			"$0"		
 		],
 		"description": "Snippet file"
 	},	
@@ -108,13 +131,14 @@
 		"prefix": "wiki",
 		"body": [
 			"---",
-			"post_type: \"wiki\" ",
-			"title: \"\"",
+			"title: \"$1\"",
 			"last_updated_date: \"$CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE\"",
-			"tags: ",
+			"tags: \"$2\"",
 			"---",
 			"",
-			"## Overview"
+			"## Overview",
+			"",
+			"$0"
 		],
 		"description": "Wiki article post"
 	},
@@ -123,23 +147,35 @@
 		"prefix": "book",
 		"body": [
 			"---",
-			"title: \"\"",
-			"author: \"\"",
-			"isbn: \"\"",
-			"cover: \"\"",
-			"status: \"\"",
-			"rating: \"\"",
-			"source: \"\"",
+			"title: \"$1\"",
+			"author: \"$2\"",
+			"isbn: \"$3\"",
+			"cover: \"$4\"",
+			"status: \"$5\"",
+			"rating: $6",
+			"source: \"$7\"",
+			"date_published: \"$CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
 			"---",
+			"",
 			"## Description",
+			"",
+			"$8",
 			"",
 			"## Review",
 			"",
+			"$9",
+			"",
 			"## Quotes",
+			"",
+			"$10",
 			"",
 			"## Notes",
 			"",
+			"$11",
+			"",
 			"## Bookmarks",
+			"",
+			"$0",
 			"",
 			"## Actions",
 			""
@@ -151,14 +187,15 @@
 		"prefix": "reply",
 		"body": [
 			"---",
-			"title: \"\"",
-			"targeturl: ",
-			"response_type: reply",
-			"dt_published: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE\"",
+			"title: \"$1\"",
+			"targeturl: \"$2\"",
+			"response_type: \"reply\"",
+			"dt_published: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
 			"dt_updated: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
-			"tags: []",
+			"tags: [\"$3\"]",
 			"---",
 			"",
+			"$0"
 		],
 		"description": "Reply post"
 	},
@@ -167,14 +204,15 @@
 		"prefix": "reshare",
 		"body": [
 			"---",
-			"title: \"\"",
-			"targeturl: ",
-			"response_type: reshare",
-			"dt_published: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE\"",
+			"title: \"$1\"",
+			"targeturl: \"$2\"",
+			"response_type: \"reshare\"",
+			"dt_published: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
 			"dt_updated: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
-			"tags: []",
+			"tags: [\"$3\"]",
 			"---",
 			"",
+			"$0"
 		],
 		"description": "Reshare post"
 	},
@@ -183,14 +221,15 @@
 		"prefix": "star",
 		"body": [
 			"---",
-			"title: \"\"",
-			"targeturl: ",
-			"response_type: star",
-			"dt_published: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE\"",
+			"title: \"$1\"",
+			"targeturl: \"$2\"",
+			"response_type: \"star\"",
+			"dt_published: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
 			"dt_updated: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
-			"tags: []",
+			"tags: [\"$3\"]",
 			"---",
 			"",
+			"$0"
 		],
 		"description": "Favorite post"
 	},
@@ -199,15 +238,77 @@
 		"prefix": "bookmark",
 		"body": [
 			"---",
-			"title: \"\"",
-			"targeturl: ",
-			"response_type: bookmark",
-			"dt_published: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE\"",
+			"title: \"$1\"",
+			"targeturl: \"$2\"",
+			"response_type: \"bookmark\"",
+			"dt_published: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
 			"dt_updated: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
-			"tags: []",
+			"tags: [\"$3\"]",
 			"---",
 			"",
+			"$0"
 		],
 		"description": "Bookmark post"
-	}	
+	},
+	"Review metadata": {
+		"scope": "markdown",
+		"prefix": "review",
+		"body": [
+			"---",
+			"title: \"$1\"",
+			"author: \"$2\"",
+			"isbn: \"$3\"",
+			"cover: \"$4\"",
+			"status: \"$5\"",
+			"rating: $6",
+			"source: \"$7\"",
+			"date_published: \"$CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
+			"---",
+			"",
+			"## Description",
+			"",
+			"$8",
+			"",
+			"## Review",
+			"",
+			"$0"
+		],
+		"description": "Review post for books and media"
+	},
+	"Album metadata": {
+		"scope": "markdown",
+		"prefix": "album",
+		"body": [
+			"---",
+			"post_type: \"album\"",
+			"title: \"$1\"",
+			"published_date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
+			"tags: [\"$2\"]",
+			"images:",
+			"  - imagepath: \"$3\"",
+			"    description: \"$4\"",
+			"    alttext: \"$5\"",
+			"---",
+			"",
+			"$0"
+		],
+		"description": "Album/Media post metadata"
+	},
+	"Livestream metadata": {
+		"scope": "markdown",
+		"prefix": "livestream",
+		"body": [
+			"---",
+			"title: \"$1\"",
+			"video_url: \"$2\"",
+			"published_date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
+			"resources:",
+			"  - text: \"$3\"",
+			"    url: \"$4\"",
+			"---",
+			"",
+			"$0"
+		],
+		"description": "Livestream post metadata"
+	}
 }

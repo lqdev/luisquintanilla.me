@@ -11,9 +11,9 @@ tags: ["weeklysummary","blogging","website","indieweb"]
     
 ## Notes
 
-- [Spotify Wrapped 2024](/feed/spotify-wrapped-2024)
-- [Spotify Wrapped 2024 AI Generated Podcast](/feed/spotify-wrapped-2024-podcast-notebook-lm)
+- [Spotify Wrapped 2024](/notes/spotify-wrapped-2024)
+- [Spotify Wrapped 2024 AI Generated Podcast](/notes/spotify-wrapped-2024-podcast-notebook-lm)
     
 ## Responses
 
-- [How I turned my blog into a social media hub](/feed/how-i-turned-website-social-media-hub-newman)
+- [How I turned my blog into a social media hub](/responses/how-i-turned-website-social-media-hub-newman)

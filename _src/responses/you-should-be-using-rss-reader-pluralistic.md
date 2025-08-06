@@ -33,20 +33,20 @@ Yes, you should!
 
 Great article by [Cory Doctorow](https://craphound.com/bio/). 
 
-I've written at length on my website as to [why I enjoy RSS](/posts/rediscovering-rss-user-freedom). My use goes back to the days of Google Reader. Like many, once that was disbanded, my consumption pretty much shifted to social media for a few years. After growing dissatisfaction with the limitations and lack of control over my feed, I started my journey back to RSS readers eventually landing on [NewsBlur](/feed/subscribed-to-1042-feeds-newsblur) and elfeed as my readers of choice. 
+I've written at length on my website as to [why I enjoy RSS](/posts/rediscovering-rss-user-freedom). My use goes back to the days of Google Reader. Like many, once that was disbanded, my consumption pretty much shifted to social media for a few years. After growing dissatisfaction with the limitations and lack of control over my feed, I started my journey back to RSS readers eventually landing on [NewsBlur](/notes/subscribed-to-1042-feeds-newsblur) and elfeed as my readers of choice. 
 
 On this website, RSS plays an important role in a few areas. 
 
 RSS is how I:
 
-- [Enable discovery of my own feeds](https://www.lqdev.me/feed/website-feeds-opml)
-- [Enable visitors to subscribe and get the latest content](/subscribe)
+- [Enable discovery of my own feeds](/notes/website-feeds-opml/)
+- [Enable visitors to subscribe and get the latest content](/feed)
 - [Syndicate posts to Mastodon](/posts/rss-to-mastodon-posse-azure-logic-apps).
-- [Enable feed discovery of websites I subscribe to](/feed/blogroll-discovery-implemented) through my:
-    - [Blogroll](/feed/blogroll)
-    - [Podroll (podcasts)](/feed/podroll)
-    - [YouTubeRoll?](/feed/youtube)
-    - [ForumRoll?](/feed/forums)
+- [Enable feed discovery of websites I subscribe to](/notes/blogroll-discovery-implemented/) through my:
+    - [Blogroll](/collections/blogroll/)
+    - [Podroll (podcasts)](/collections/podroll/)
+    - [YouTubeRoll?](/collections/youtube/)
+    - [ForumRoll?](/collections/forums/)
 
 So how can you get started?
 

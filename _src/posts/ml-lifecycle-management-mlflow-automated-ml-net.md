@@ -392,7 +392,7 @@ mlflow server
 
 Navigate to `http://localhost:5000` in your browser. This will load the MLFLow UI.
 
-![](/images/ml-lifecycle-management-mlflow-automated-ml-net/ml-lifecycle-management-mlflow-automated-ml-net-1.png)
+![](/assets/images/ml-lifecycle-management-mlflow-automated-ml-net/ml-lifecycle-management-mlflow-automated-ml-net-1.png)
 
 ### Train Model
 
@@ -423,11 +423,11 @@ Ran SdcaMaximumEntropyMulti in 0.39 with Log Loss 0.108
 
 Navigate to `http://localhost:5000` in your browser. You should then see the results of your experiment and runs there.
 
-![](/images/ml-lifecycle-management-mlflow-automated-ml-net/ml-lifecycle-management-mlflow-automated-ml-net-2.png)
+![](/assets/images/ml-lifecycle-management-mlflow-automated-ml-net/ml-lifecycle-management-mlflow-automated-ml-net-2.png)
 
 Inspecting the detailed view of the best run for that experiment would look like the image below:
 
-![](/images/ml-lifecycle-management-mlflow-automated-ml-net/ml-lifecycle-management-mlflow-automated-ml-net-3.png)
+![](/assets/images/ml-lifecycle-management-mlflow-automated-ml-net/ml-lifecycle-management-mlflow-automated-ml-net-3.png)
 
 You'll also notice that two directories were created inside the console application directory. On is an `MLModels` directory, inside of which a nested directory with the name of the experiment contains the trained model. Another called `mlruns`. In the `mlruns` directory are the results of the experiments logged in MLFlow.
 

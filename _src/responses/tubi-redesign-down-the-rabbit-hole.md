@@ -9,4 +9,4 @@ tags: ["tv","movies","tubi","streaming"]
 
 > Tubi says its new ‘turple’-forward brand identity is all about encouraging viewers to fall down rabbit holes to find exciting shows and movies to watch.
 
-I've often found [good content to watch on Tubi](/feed/streaming-fatigue-collecting-dvds). Sure, they're not the latest blockbusters but there are decades worth of movies out there. Just like today, not all movies that come out are good but there's still tons of great content. Sometimes, there's even [overlooked gems](/feed/dread-central-overlook-motel).  
+I've often found [good content to watch on Tubi](/responses/streaming-fatigue-collecting-dvds). Sure, they're not the latest blockbusters but there are decades worth of movies out there. Just like today, not all movies that come out are good but there's still tons of great content. Sometimes, there's even [overlooked gems](/responses/dread-central-overlook-motel).  

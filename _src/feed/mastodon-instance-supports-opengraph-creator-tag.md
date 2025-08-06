@@ -7,7 +7,7 @@ tags: ["mastodon","fediverse","opengraph","protocols","indieweb"]
 
 In version 4.3, [Mastodon introduced OpenGraph creator tags](https://blog.joinmastodon.org/2024/10/mastodon-4.3/#:~:text=Helping%20writers%20and%20journalists) to link to an author's Fediverse account from within a post. 
 
-I had [implemented it on my website](/feed/added-fediverse-og-creator-tag/) a while back. However, because my instance wasn't using a version that supported it, it didn't show up on my instance.
+I had [implemented it on my website](/notes/added-fediverse-og-creator-tag) a while back. However, because my instance wasn't using a version that supported it, it didn't show up on my instance.
 
 Since upgrading to 4.3.1, I can now see my posts making use of the creator tag feature.
 

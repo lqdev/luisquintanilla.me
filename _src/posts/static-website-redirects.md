@@ -30,4 +30,4 @@ For more information on creating redirects in HTML, see the article [how to redi
 
 ## Conclusion
 
-So far I've created redirect pages for most of my social media profiles. You can see samples in my [contact page](/contact.html). It's important to note that while this works for social profiles and any other properties you own on the internet, it could also be used in cases where you've changed the structure of your website and want to gracefully handle redirects for broken / updated links. Happy coding!
+So far I've created redirect pages for most of my social media profiles. You can see samples in my [contact page](/contact/). It's important to note that while this works for social profiles and any other properties you own on the internet, it could also be used in cases where you've changed the structure of your website and want to gracefully handle redirects for broken / updated links. Happy coding!

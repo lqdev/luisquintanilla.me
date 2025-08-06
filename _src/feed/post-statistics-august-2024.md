@@ -9,7 +9,7 @@ Finished July with more regular posting.
 
 Only 4 posts away from passing last year's response count.
 
-As mentioned on [another post](/feed/org-capture-functions-file-target/), I've been slowly working on transitioning authoring workflows to Emacs using org-capture templates.
+As mentioned on [another post](/notes/org-capture-functions-file-target), I've been slowly working on transitioning authoring workflows to Emacs using org-capture templates.
 
 This month, I want to work on making capturing content from Nyxt more seamless, especially since responses are the types of posts I use most. 
 

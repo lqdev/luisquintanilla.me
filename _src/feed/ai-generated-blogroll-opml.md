@@ -5,7 +5,7 @@ published_date: "2024-03-21 22:01"
 tags: ["blogroll","indieweb","ai","copilot","rss","openweb"]
 ---
 
-I've seen several posts about blogrolls recently across my feed. My own needs some updating, but you can find it [here](/feed/blogroll). I also [created one for podcasts](/feed/podroll) which I call a podroll. 
+I've seen several posts about blogrolls recently across my feed. My own needs some updating, but you can find it [here](/collections/blogroll/). I also [created one for podcasts](/collections/podroll/) which I call a podroll. 
 
 I've also seen posts about making the indie web easier. 
 

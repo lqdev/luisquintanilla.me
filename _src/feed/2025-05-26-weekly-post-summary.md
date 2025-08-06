@@ -7,9 +7,9 @@ tags: ["weeklysummary","blogging","website","indieweb"]
     
 ## Notes
 
-- [Copilot Agent is giving me attitude](/feed/attitude-copilot-agent)
+- [Copilot Agent is giving me attitude](/notes/attitude-copilot-agent)
     
 ## Responses
 
-- [Pocket shutting down](/feed/pocket-shutting-down)
+- [Pocket shutting down](/responses/pocket-shutting-down)
     

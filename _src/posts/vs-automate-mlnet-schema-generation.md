@@ -8,7 +8,7 @@ tags: [dotnet, machine learning, mlnet, artificial intelligence, tooling, visual
 
 ## Introduction
 
-When using ML.NET models to make predictions, you often have to define classes for the model's input and output schema. In a previous post, I showed how you can [use Netron to inspect ML.NET models](/posts/inspect-mlnet-models-netron.html) and manually define classes to represent the input and output schema for your model. That works for models that don't have a lot of features / columns. However, as the number of columns grows, it can become cumbersome to define these classes. Visual Studio has a feature that can help automate that process. Assuming you have a sample of your input and output data in JSON format, you can leverage a built-in feature "Paste JSON As Classes" to take the sample and convert it to a class. In this post, I'll show how to do that.
+When using ML.NET models to make predictions, you often have to define classes for the model's input and output schema. In a previous post, I showed how you can [use Netron to inspect ML.NET models](/posts/inspect-mlnet-models-netron/) and manually define classes to represent the input and output schema for your model. That works for models that don't have a lot of features / columns. However, as the number of columns grows, it can become cumbersome to define these classes. Visual Studio has a feature that can help automate that process. Assuming you have a sample of your input and output data in JSON format, you can leverage a built-in feature "Paste JSON As Classes" to take the sample and convert it to a class. In this post, I'll show how to do that.
 
 ## Prerequisites
 

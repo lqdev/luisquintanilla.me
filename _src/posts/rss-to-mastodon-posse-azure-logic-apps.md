@@ -8,7 +8,7 @@ tags: ["azure","mastodon","indieweb","logicapps","fediverse","posse","internet",
 
 ## Introduction
 
-[Over the past year, I've made this website the main place where I post content](/feed/weblogging-rewind-2023). The easiest way to [subscribe to content on my website](/subscribe) is through the various RSS feeds. However, I have accounts on other platforms like X (formerly Twitter), Bluesky, and Mastodon where I'd still like to repost my content to. Since the [changes to the Twitter API](https://techcrunch.com/2023/03/29/twitter-announces-new-api-with-only-free-basic-and-enterprise-levels/), the only place I cross-post to is Mastodon. The main reason behind it is, as of now, it's one of the few platforms that allows me to automate post creation via its REST APIs without restrictions. A large part of that is I self-host my own Mastodon instance but I assume there aren't as many restrictions when using other instances like mastodon.social. The way I automate posting is by setting up workflows using Azure Logic Apps. These workflows subscribe to my various RSS feeds and whenever a new post is published, they make an HTTP request to my Mastodon instance to create a new post. I've been doing this for some time but never got around to documenting it. This blog post goes into more details about how to set up these workflows.  
+[Over the past year, I've made this website the main place where I post content](/notes/weblogging-rewind-2023/). The easiest way to [subscribe to content on my website](/feed) is through the various RSS feeds. However, I have accounts on other platforms like X (formerly Twitter), Bluesky, and Mastodon where I'd still like to repost my content to. Since the [changes to the Twitter API](https://techcrunch.com/2023/03/29/twitter-announces-new-api-with-only-free-basic-and-enterprise-levels/), the only place I cross-post to is Mastodon. The main reason behind it is, as of now, it's one of the few platforms that allows me to automate post creation via its REST APIs without restrictions. A large part of that is I self-host my own Mastodon instance but I assume there aren't as many restrictions when using other instances like mastodon.social. The way I automate posting is by setting up workflows using Azure Logic Apps. These workflows subscribe to my various RSS feeds and whenever a new post is published, they make an HTTP request to my Mastodon instance to create a new post. I've been doing this for some time but never got around to documenting it. This blog post goes into more details about how to set up these workflows.  
 
 ## What is POSSE
 
@@ -63,7 +63,7 @@ In the Logic app designer, search for *RSS* and add it as a trigger.
 
 Once the RSS trigger is added to your workflow, configure it as follows:
 
-- **The RSS feed URL**: The feed you want want to get posts from. In this case, I'm using my blog posts [feed](https://www.luisquintanilla.me/posts/index.xml). 
+- **The RSS feed URL**: The feed you want want to get posts from. In this case, I'm using my blog posts [feed](/posts/feed.xml). 
 
     **TIP: The RSS feed can be ANY feed. So if you wanted to subscribe and repost items from your favorite blog or website, you can as well. Just note though that if you don't own the content it might not be something the author wants you doing and for websites that update multiple times a day, it might produce a lot of noise in your feed. Other than that though, subscribe and post away!**
 

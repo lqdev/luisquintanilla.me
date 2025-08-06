@@ -6,7 +6,7 @@ published_date: "2025-01-05 21:04 -05:00"
 tags: ["book","audiobook","rss","antennapod","librivox","android","podcast","publicdomain","opensource"]
 ---
 
-Last year, I was able to complete my goal of reading 12 books or roughly one book per month. I kept track of some of the books I read in my [library page](https://www.lqdev.me/library).
+Last year, I was able to complete my goal of reading 12 books or roughly one book per month. I kept track of some of the books I read in my [library page](/reviews).
 
 I enjoyed most of the books I read. However, despite hitting my goal and averaging a book a month, I didn't build up a habit which is what I would've preferred. Many of the books I read last year, I read them during long periods of uninterrupted time, such as cross-country flights. The topic of goal setting and measuring the right thing could be an entire post, but I'll leave that for another time. 
 
@@ -38,7 +38,7 @@ Here's [a few notable literary works that entered the public domain in 2025](htt
 
 [AntennaPod](https://antennapod.org/) is an open-source podcast player for Android. 
 
-The app has a ton of great features, such as [Podcast Index](https://podcastindex.org/) support, subscribe via RSS directly,  OPML import and export, chapters, adjustable playback speed, and for the past few years, a personalized yearly summary which is computed locally on your device [(here's my summary from 2024)](/feed/antennapod-echo-2024).
+The app has a ton of great features, such as [Podcast Index](https://podcastindex.org/) support, subscribe via RSS directly,  OPML import and export, chapters, adjustable playback speed, and for the past few years, a personalized yearly summary which is computed locally on your device [(here's my summary from 2024)](/notes/antennapod-echo-2024).
 
 You can get AntennaPod from the Play Store or [F-Droid](https://f-droid.org/en/packages/de.danoeh.antennapod/)
 
@@ -54,7 +54,7 @@ To subscribe to the LibriVox New Release feed:
 1. In AntennaPod, open up the hamburger menu and select **Add Podcast**.
 1. In the *Add Podcast* dialog, select **Add podcast by RSS address**.
 
-    ![AntennaPod Add Podcast Dialog](/images/listen-audiobooks-librivox-antennapod/add-podcast-antennapod.png)
+    ![AntennaPod Add Podcast Dialog](/assets/images/listen-audiobooks-librivox-antennapod/add-podcast-antennapod.png)
 
 1. Paste the LibriVox New Releases RSS feed URL into the text box and select **Confirm**. 
 
@@ -73,15 +73,15 @@ Subscribing to the new releases feed only notifies you when new books are added,
 1. In AntennaPod's Subscription screen, select **LibriVox's New Releases**.
 1. From the list of new releases, select the book you want to listen to. For example, "Room of One's Own" by Virginia Woolf.
 
-    ![AntennaPod New Releases Feed](/images/listen-audiobooks-librivox-antennapod/antennapod-librivox-new-releases.png)
+    ![AntennaPod New Releases Feed](/assets/images/listen-audiobooks-librivox-antennapod/antennapod-librivox-new-releases.png)
 
 1. In the audiobook's screen, select **Visit Website**. This will take you to the LibriVox audiobook's page in the browser.
 
-    ![AntennaPod Audiobook Screen](/images/listen-audiobooks-librivox-antennapod/antennapod-room-of-ones-own.png)
+    ![AntennaPod Audiobook Screen](/assets/images/listen-audiobooks-librivox-antennapod/antennapod-room-of-ones-own.png)
 
 1. In the LibriVox audiobook page, select the book's RSS Feed.
 
-    ![A Room of One's Own by Virginia Woolf LibriVox book page](/images/listen-audiobooks-librivox-antennapod/librivox-room-ones-own.png)
+    ![A Room of One's Own by Virginia Woolf LibriVox book page](/assets/images/listen-audiobooks-librivox-antennapod/librivox-room-ones-own.png)
 
 1. Copy the book's feed URL to your clipboard.
 1. In AntennaPod, open up the hamburger menu and select **Add Podcast**.

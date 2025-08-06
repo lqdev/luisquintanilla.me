@@ -5,7 +5,7 @@ published_date: "2023-12-23 02:28"
 tags: ["weblogging","quantifiedself","indieweb","stats","analytics","blog","blogging","internet","opensource","community","selfhost","fsharp","spotify","antennapod","microblog", "analytics","pkm","personalknowledgemanagement"]
 ---
 
-Inspired by [Spotify Wrapped](/feed/spotify-wrapped-2023) and [Antennapod Echo](/feed/antennapod-echo-2023), I decided to look back at my activity on this website for 2023. Here is the [snippet](/snippets/lqdev-me-website-post-metrics) I used to generate these metrics. 
+Inspired by [Spotify Wrapped](/notes/spotify-wrapped-2023) and [Antennapod Echo](/notes/antennapod-echo-2023), I decided to look back at my activity on this website for 2023. Here is the [snippet](/resources/snippets/lqdev-me-website-post-metrics) I used to generate these metrics. 
 
 ## Posts by Year
 
@@ -66,7 +66,7 @@ Let me start off with bookmarks. Bookmark style reponses on my website have slow
 
 When all these pieces come together, they provide me with distilled bits of information that are organized in a way that enable quick retrieval and action when needed.
 
-Moving on to other posts. Since the post type is effectively just metadata, the line between reshare, star, and reply is often blurry. It's not as blurry with replies because I use that to draft replies / comments to other posts and content on the internet. My [Tracy Durnell 20th anniversary of blogging](/feed/tracy-durnell-20-blogging-anniversary) post is an example of a reply. In these examples, the replies were directed at someone. However, for star and reshare, I'm still trying to understand where they fit in my flow. Today other than visually expressing the post type, the role these post types serve is webmentions. However, I'm not sure how many websites I create these post types for actually use webmentions. Maybe some analysis worth doing for 2025. 
+Moving on to other posts. Since the post type is effectively just metadata, the line between reshare, star, and reply is often blurry. It's not as blurry with replies because I use that to draft replies / comments to other posts and content on the internet. My [Tracy Durnell 20th anniversary of blogging](/responses/tracy-durnell-20-blogging-anniversary) post is an example of a reply. In these examples, the replies were directed at someone. However, for star and reshare, I'm still trying to understand where they fit in my flow. Today other than visually expressing the post type, the role these post types serve is webmentions. However, I'm not sure how many websites I create these post types for actually use webmentions. Maybe some analysis worth doing for 2025. 
 
 ## Responses by Tag (Top 5)
 

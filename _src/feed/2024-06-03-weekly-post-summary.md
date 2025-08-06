@@ -7,7 +7,7 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 ## Responses
 
-- [My Permadomain](/feed/my-permadomain-rscottjones)
-- [Micro.blog - Podcast hosting for $5](/feed/microblog-podcast-hosting)
-- [Reproducing GPT-2 (124M) in llm.c in 90 minutes for $20](/feed/repro-gpt-2-llm-c-90-min-20-dollars-karpathy)
-- [21 Years of WordPress](/feed/21-years-of-wordpress)
+- [My Permadomain](/responses/my-permadomain-rscottjones)
+- [Micro.blog - Podcast hosting for $5](/responses/microblog-podcast-hosting)
+- [Reproducing GPT-2 (124M) in llm.c in 90 minutes for $20](/responses/repro-gpt-2-llm-c-90-min-20-dollars-karpathy)
+- [21 Years of WordPress](/responses/21-years-of-wordpress)

@@ -7,14 +7,14 @@ tags: ["weeklysummary","blogging","website","indieweb"]
     
 ## Notes
 
-- [False alarm - Link is in X bio](/feed/false-alarm-link-in-bio-x-twitter)
-- [X (Twitter) - No more link in bio?](/feed/no-link-in-bio-x-twitter)
-- [Blogroll discovery enabled](/feed/blogroll-discovery-implemented)
+- [False alarm - Link is in X bio](/notes/false-alarm-link-in-bio-x-twitter)
+- [X (Twitter) - No more link in bio?](/notes/no-link-in-bio-x-twitter)
+- [Blogroll discovery enabled](/notes/blogroll-discovery-implemented/)
 
 ## Responses
 
-- [RIP Kabosu](/feed/rip-kabosu-doge)
-- [The IndieWeb's Next Stage](/feed/indieweb-next-steps-durnell)
-- [The Daylight DC1 is a $729 attempt to build a calmer computer](/feed/daylight-dc-1-tablet-computer)
+- [RIP Kabosu](/responses/rip-kabosu-doge)
+- [The IndieWeb's Next Stage](/responses/indieweb-next-steps-durnell)
+- [The Daylight DC1 is a $729 attempt to build a calmer computer](/responses/daylight-dc-1-tablet-computer)
         
     

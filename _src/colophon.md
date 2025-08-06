@@ -10,7 +10,7 @@ The knowledge-base contains a collection of wiki articles, snippets, and library
 
 The [main feed](/feed/index.html) is like a microblog with content ordered in reverse chronological order. It collects in a single place snippets containing notes, photos, videos, and other types of content. The [replies feed](/feed/responses) contains replies and interactions with other pages and supports [Webmentions](https://www.w3.org/TR/webmention/). The feeds take inspiration from [IndieWeb posts](https://indieweb.org/posts).
 
-In addition to the feeds, there's also the [linkblog](/feed/linkblog) which acts as my bookmark / read-it-later service as I find interesting websites. The [blogroll](/blogroll) contains a collection of blogs I follow and the [podroll](/podroll) is a collection of podcasts I listen to. 
+In addition to the feeds, there's also the [linkblog](/bookmarks/) which acts as my bookmark / read-it-later service as I find interesting websites. The [blogroll](/collections/blogroll/) contains a collection of blogs I follow and the [podroll](/collections/podroll/) is a collection of podcasts I listen to. 
 
 ## How this site is built
 
@@ -30,7 +30,7 @@ I built the generator for this website myself. It's a .NET 6 console application
 
 The main tool for developing the static site generator as well as to author posts is [Visual Studio Code](https://code.visualstudio.com/). It gives me the flexibility of a lightweight text editor for authoring with rich features like built-in [markdown preview](https://code.visualstudio.com/Docs/languages/markdown). At the same time, I can use the debugger and the [Ionide extension](https://ionide.io/Editors/Code/overview.html) for writing and debugging F# code.
 
-In cases when I want to quickly make updates, mainly to articles, I use [github.dev](https://github.com/github/dev). I get the same Visual Studio Code editing environment in the browser. Therefore I can [author and update content from anywhere](/feed/surface-duo-blogging-github-dev/).
+In cases when I want to quickly make updates, mainly to articles, I use [github.dev](https://github.com/github/dev). I get the same Visual Studio Code editing environment in the browser. Therefore I can [author and update content from anywhere](/notes/surface-duo-blogging-github-dev/).
 
 ### Publishing
 
@@ -57,7 +57,7 @@ The code is hosted on Azure. Specifically I use [Azure Static Web Apps](https://
 
 ### Syndication
 
-The main form of syndication for content on this site is RSS. I have [several feeds](/subscribe) that are generally organized based on the type of content. The RSS files are generated as part of the build process by the static site generator.
+The main form of syndication for content on this site is RSS. I have [several feeds](/feed) that are generally organized based on the type of content. The RSS files are generated as part of the build process by the static site generator.
 
 An additional syndication practice I follow for this site is [Publish (on your) Own Site, Syndicate Everywhere (POSSE)](https://indieweb.org/POSSE). I try to have my site be the single source of truth and home for my content. From there, I can share with other applications and services. I use [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/) for my main feed to automate syndication to Twitter and Mastodon. The Azure Logic App constantly polls the main feed's RSS for new changes. Then, it posts them on Twitter and Mastodon.
 

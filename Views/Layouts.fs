@@ -2,6 +2,115 @@ module Layouts
 
     open Giraffe.ViewEngine
   
+    let desertNavigation = 
+        [
+            // Mobile toggle button (hidden on desktop)
+            button [
+                _class "mobile-toggle"
+                _id "mobile-nav-toggle"
+                attr "aria-label" "Toggle navigation menu"
+                attr "aria-expanded" "false"
+            ] [
+                div [_class "hamburger"] [
+                    span [] []
+                    span [] []
+                    span [] []
+                ]
+            ]
+            
+            // Navigation overlay for mobile
+            div [_class "nav-overlay"; _id "nav-overlay"] []
+            
+            // Always-visible navigation sidebar (desktop) / slide-out (mobile)
+            nav [_class "desert-nav"; _id "sidebar-menu"; attr "role" "navigation"; attr "aria-label" "Main navigation"] [
+                // Brand/Header
+                div [_class "nav-brand"] [
+                    a [_href "/"; _class "brand-text"] [
+                        img [_src "/avatar.png"; _alt "Luis Quintanilla avatar"; attr "loading" "lazy"]
+                        Text "Luis Quintanilla"
+                    ]
+                ]
+                
+                // Minimal Main Navigation Only
+                div [_class "nav-section"] [
+                    a [_class "nav-link"; _href "/about"] [
+                        tag "svg" [_class "nav-icon"; attr "viewBox" "0 0 16 16"; attr "fill" "currentColor"] [
+                            tag "path" [attr "d" "M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"] []
+                            tag "path" [attr "d" "m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"] []
+                        ]
+                        Text "About"
+                    ]
+                    a [_class "nav-link"; _href "/contact"] [
+                        tag "svg" [_class "nav-icon"; attr "viewBox" "0 0 16 16"; attr "fill" "currentColor"] [
+                            tag "path" [attr "d" "M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"] []
+                        ]
+                        Text "Contact"
+                    ]
+                    a [_class "nav-link"; _href "/feed"] [
+                        tag "svg" [_class "nav-icon"; attr "viewBox" "0 0 16 16"; attr "fill" "currentColor"] [
+                            tag "path" [attr "d" "M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"] []
+                        ]
+                        Text "Subscribe"
+                    ]
+                ]
+
+                // Collections Dropdown
+                div [_class "nav-section dropdown"] [
+                    button [_class "nav-link dropdown-toggle"; attr "data-target" "collections-dropdown"] [
+                        tag "svg" [_class "nav-icon"; attr "viewBox" "0 0 16 16"; attr "fill" "currentColor"] [
+                            tag "path" [attr "d" "M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"] []
+                            tag "path" [attr "d" "M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"] []
+                        ]
+                        Text "Collections"
+                        tag "svg" [_class "dropdown-arrow"; attr "viewBox" "0 0 16 16"; attr "fill" "currentColor"] [
+                            tag "path" [attr "d" "M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"] []
+                        ]
+                    ]
+                    div [_class "dropdown-menu"; _id "collections-dropdown"] [
+                        a [_class "dropdown-item"; _href "/radio"] [Text "Radio"]
+                        a [_class "dropdown-item"; _href "/reviews"] [Text "Reviews"]
+                        a [_class "dropdown-item"; _href "/tags"] [Text "Tags"]
+                        div [_class "dropdown-divider"] []
+                        a [_class "dropdown-item"; _href "/collections/starter-packs"] [Text "Starter Packs"]
+                        a [_class "dropdown-item"; _href "/collections/blogroll"] [Text "Blogroll"]
+                        a [_class "dropdown-item"; _href "/collections/podroll"] [Text "Podroll"]
+                        a [_class "dropdown-item"; _href "/collections/forums"] [Text "Forums"]
+                        a [_class "dropdown-item"; _href "/collections/youtube"] [Text "YouTube"]
+                    ]
+                ]
+
+                // Resources Dropdown  
+                div [_class "nav-section dropdown"] [
+                    button [_class "nav-link dropdown-toggle"; attr "data-target" "resources-dropdown"] [
+                        tag "svg" [_class "nav-icon"; attr "viewBox" "0 0 16 16"; attr "fill" "currentColor"] [
+                            tag "path" [attr "d" "M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"] []
+                        ]
+                        Text "Resources"
+                        tag "svg" [_class "dropdown-arrow"; attr "viewBox" "0 0 16 16"; attr "fill" "currentColor"] [
+                            tag "path" [attr "d" "M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"] []
+                        ]
+                    ]
+                    div [_class "dropdown-menu"; _id "resources-dropdown"] [
+                        a [_class "dropdown-item"; _href "/resources/snippets"] [Text "Snippets"]
+                        a [_class "dropdown-item"; _href "/resources/wiki"] [Text "Wiki"]
+                        a [_class "dropdown-item"; _href "/resources/presentations"] [Text "Presentations"]
+                    ]
+                ]
+                
+                // Theme Toggle
+                div [_class "theme-toggle"] [
+                    button [
+                        _class "theme-toggle-btn"
+                        _id "theme-toggle"
+                        attr "aria-label" "Toggle dark mode"
+                    ] [
+                        span [_id "theme-toggle-icon"] [Text "☀️"]
+                        span [] [Text "Theme"]
+                    ]
+                ]
+            ]
+        ]
+    
     let defaultNavBar = 
         nav [_class "navbar navbar-expand-md navbar-dark fixed-top bg-dark"] [
             a [_class "navbar-brand"; _href "/"] [ 
@@ -68,14 +177,7 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/feed/responses"] [Text "Responses"]
                                 a [_class "dropdown-item"; _href "/posts/1"] [ Text "Blog" ]
                                 div [_class "dropdown-divider"] []
-                                a [_class "dropdown-item"; _href "/subscribe"] [ Text "Subscribe" ]
-                                div [_class "dropdown-divider"] []
-                                a [_class "dropdown-item"; _href "/feed/starter"] [Text "Starter Packs"]
-                                div [_class "dropdown-divider"] []
-                                a [_class "dropdown-item"; _href "/feed/blogroll"] [Text "Blogroll"]
-                                a [_class "dropdown-item"; _href "/feed/podroll"] [Text "Podroll"]
-                                a [_class "dropdown-item"; _href "/feed/forums"] [Text "Forums"]
-                                a [_class "dropdown-item"; _href "/feed/youtube"] [Text "YouTube"]
+                                a [_class "dropdown-item"; _href "/feed"] [ Text "Subscribe" ]
                         ]
                     ]
                     
@@ -97,8 +199,14 @@ module Layouts
                             attr "aria-labelledby" "collectionDropdown"
                             ] [
                                 a [_class "dropdown-item"; _href "/radio"] [ Text "Radio" ]
-                                a [_class "dropdown-item"; _href "/library"] [ Text "Books" ]
+                                a [_class "dropdown-item"; _href "/reviews"] [ Text "Books" ]
                                 a [_class "dropdown-item"; _href "/tags"] [ Text "Tags" ]
+                                div [_class "dropdown-divider"] []
+                                a [_class "dropdown-item"; _href "/collections/starter-packs"] [Text "Starter Packs"]
+                                a [_class "dropdown-item"; _href "/collections/blogroll"] [Text "Blogroll"]
+                                a [_class "dropdown-item"; _href "/collections/podroll"] [Text "Podroll"]
+                                a [_class "dropdown-item"; _href "/collections/forums"] [Text "Forums"]
+                                a [_class "dropdown-item"; _href "/collections/youtube"] [Text "YouTube"]
                             ]
                     ]
 
@@ -119,9 +227,9 @@ module Layouts
                             _class "dropdown-menu"
                             attr "aria-labelledby" "kbDropdown"
                             ] [
-                                a [_class "dropdown-item"; _href "/snippets"] [ Text "Snippets" ]
-                                a [_class "dropdown-item"; _href "/wiki"] [ Text "Wiki" ]
-                                a [_class "dropdown-item"; _href "/presentations"] [ Text "Presentations" ]
+                                a [_class "dropdown-item"; _href "/resources/snippets"] [ Text "Snippets" ]
+                                a [_class "dropdown-item"; _href "/resources/wiki"] [ Text "Wiki" ]
+                                a [_class "dropdown-item"; _href "/resources/presentations"] [ Text "Presentations" ]
                         ]
                     ]
 
@@ -153,7 +261,7 @@ module Layouts
 
                  ]
 
-                a [_href "/subscribe"] [
+                a [_href "/feed"] [
                     tag "svg" [
                         _class "bi bi-rss text-secondary" 
                         attr "fill" "currentColor"
@@ -169,11 +277,19 @@ module Layouts
         ]
     
     let styleSheets = [
-        link [_rel "stylesheet";_href "/css/bootstrap.min.css"] //4.6.0
-        link [_rel "stylesheet";_href "/css/bootstrap-icons-1.5.0/bootstrap-icons.css"]
-        link [_rel "stylesheet";_href "/css/highlight.github-dark-dimmed.min.css"] //11.8.0
-        link [_rel "stylesheet";_href "/css/main.css"]
-        link [_rel "stylesheet";_href "/css/customthemes.css"]
+        // Desert Theme CSS - Custom design system (Phase 1)
+        link [_rel "stylesheet";_href "/assets/css/custom/main.css"]
+        link [_rel "stylesheet";_href "/assets/css/custom/timeline.css"]  // Timeline styles for feed-as-homepage
+        
+        // Keep essential external stylesheets
+        link [_rel "stylesheet";_href "/assets/css/bootstrap-icons-1.5.0/bootstrap-icons.css"]
+        link [_rel "stylesheet";_href "/assets/css/highlight.github-dark-dimmed.min.css"] //11.8.0
+        
+        // Preserve existing custom styles during transition
+        link [_rel "stylesheet";_href "/assets/css/main.css"]
+        
+        // Note: Bootstrap removed in Phase 1 - replaced with desert theme CSS
+        // Note: customthemes.css removed - functionality integrated into custom CSS
     ]
 
     let buildOpenGraphElements (pageTitle:string)= 
@@ -206,20 +322,20 @@ module Layouts
 
     let rollLinks = [
         link [_rel "feeds"; _type "text/xml" ; _title "Luis Quintanilla's Feeds"; _href "/feed/index.opml"]
-        link [_rel "blogroll"; _type "text/xml" ; _title "Luis Quintanilla's Blogroll"; _href "/feed/blogroll/index.opml"]
-        link [_rel "podroll"; _type "text/xml" ; _title "Luis Quintanilla's Podroll"; _href "/feed/podroll/index.opml"]
-        link [_rel "youtuberoll"; _type "text/xml" ; _title "Luis Quintanilla's YouTube Roll"; _href "/feed/youtube/index.opml"]
+        link [_rel "blogroll"; _type "text/xml" ; _title "Luis Quintanilla's Blogroll"; _href "/collections/blogroll/index.opml"]
+        link [_rel "podroll"; _type "text/xml" ; _title "Luis Quintanilla's Podroll"; _href "/collections/podroll/index.opml"]
+        link [_rel "youtuberoll"; _type "text/xml" ; _title "Luis Quintanilla's YouTube Roll"; _href "/collections/youtube/index.opml"]
     ]
 
     let scripts = [
-        script [_src "/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
-        script [_src "/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
-        script [_src "/lib/highlight/highlight.min.js"] [] // 11.8.0
-        script [_src "/lib/highlight/highlight.fsharp.min.js"] [] // 11.8.0
-        script [_src "/lib/highlight/highlight.nix.min.js"] [] // 11.8.0
+        script [_src "/assets/lib/jquery/jquery.slim.min.js"] [] // 3.5.1
+        script [_src "/assets/lib/boostrap/bootstrap.min.js"] [] // 4.6.0
+        script [_src "/assets/lib/highlight/highlight.min.js"] [] // 11.8.0
+        script [_src "/assets/lib/highlight/highlight.fsharp.min.js"] [] // 11.8.0
+        script [_src "/assets/lib/highlight/highlight.nix.min.js"] [] // 11.8.0
 
-
-        script [_src "/js/main.js"] []    
+        // Use only timeline.js (includes theme management + filtering + navigation)
+        script [_src "/assets/js/timeline.js"] []
 
         script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] []
 
@@ -289,10 +405,14 @@ module Layouts
                 title [] [Text pageTitle]
             ]
             body [] [
-                defaultNavBar
+                // Desert theme navigation
+                for navElement in desertNavigation do
+                    navElement
 
-                main [attr "role" "main"; _class "container"] [
-                    rawText content
+                main [attr "role" "main"; _class "main-content"; _id "main-content"] [
+                    div [_class "content-wrapper"] [
+                        rawText content
+                    ]
                 ]
 
                 for scr in scripts do
@@ -312,6 +432,11 @@ module Layouts
                 // Stylesheets
                 for sheet in styleSheets do
                     sheet
+
+                // Reveal.js CSS for presentations
+                link [_rel "stylesheet"; _href "/lib/revealjs/dist/reveal.css"]
+                link [_rel "stylesheet"; _href "/lib/revealjs/dist/theme/black.css"]
+                link [_rel "stylesheet"; _href "/lib/revealjs/plugin/highlight/monokai.css"]
 
                 // Opengraph
                 let ogElements = buildOpenGraphElements pageTitle
@@ -335,14 +460,37 @@ module Layouts
                 title [] [Text pageTitle]
             ]
             body [] [
-                defaultNavBar
+                // Desert theme navigation
+                for navElement in desertNavigation do
+                    navElement
 
-                main [attr "role" "main"; _class "container"] [
-                    rawText content
+                main [attr "role" "main"; _class "main-content"; _id "main-content"] [
+                    div [_class "content-wrapper"] [
+                        rawText content
+                    ]
                 ]
 
                 for scr in scripts do
                     scr
+
+                // Conditionally load Reveal.js for presentations
+                script [_src "/lib/revealjs/dist/reveal.js"] []
+                script [_src "/lib/revealjs/plugin/markdown/markdown.js"] []
+                script [_src "/lib/revealjs/plugin/highlight/highlight.js"] []
+                script [_type "application/javascript"] [
+                    rawText """
+                    // Initialize Reveal.js when a presentation container is found on the page
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const presentationContainer = document.querySelector('.presentation-container');
+                        if (presentationContainer && typeof Reveal !== 'undefined') {
+                            Reveal.initialize({
+                                plugins: [RevealMarkdown, RevealHighlight],
+                                embedded: true
+                            });
+                        }
+                    });
+                    """
+                ]
 
             ]
             footerContent
@@ -359,8 +507,8 @@ module Layouts
                 for sheet in styleSheets do
                     sheet
 
-                link [_rel "stylesheet"; _href "/lib/revealjs/dist/reveal.css"]
-                link [_rel "stylesheet"; _href "/lib/revealjs/dist/theme/black.css"]
+                link [_rel "stylesheet"; _href "/assets/lib/revealjs/dist/reveal.css"]
+                link [_rel "stylesheet"; _href "/assets/lib/revealjs/dist/theme/black.css"]
 
                 // Opengraph
                 let ogElements = buildOpenGraphElements pageTitle
@@ -385,23 +533,43 @@ module Layouts
                 title [] [Text pageTitle]
             ]
             body [] [
-                defaultNavBar
+                // Desert theme navigation (consistent with other content types)
+                for navElement in desertNavigation do
+                    navElement
 
-                main [attr "role" "main"; _class "container"] [
-                    rawText content
+                main [attr "role" "main"; _class "main-content"; _id "main-content"] [
+                    div [_class "content-wrapper"] [
+                        rawText content
+                    ]
                 ]
 
                 for scr in scripts do
                     scr
 
                 // Revealjs (As of 10/20/2021)
-                script [_src "/lib/revealjs/dist/reveal.js"] []
-                script [_src "/lib/revealjs/plugin/markdown/markdown.js"] []
+                script [_src "/assets/lib/revealjs/dist/reveal.js"] []
+                script [_src "/assets/lib/revealjs/plugin/markdown/markdown.js"] []
                 script [_type "application/javascript"] [
                     rawText """
                     Reveal.initialize({
                         plugins: [ RevealMarkdown ],
-                        embedded: true
+                        embedded: true,
+                        width: 800,
+                        height: 600,
+                        minScale: 0.5,
+                        maxScale: 1.0,
+                        margin: 0.1,
+                        controls: true,
+                        progress: true,
+                        center: true,
+                        touch: true,
+                        loop: false,
+                        rtl: false,
+                        fragments: true,
+                        autoSlide: 0,
+                        keyboard: true,
+                        overview: true,
+                        disableLayout: false
                     });
                     """
                 ]   

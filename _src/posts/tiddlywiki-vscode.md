@@ -8,7 +8,7 @@ tags: [web,vscode,wiki,personalknowledgemanagement,git,website]
 
 ## Introduction
 
-A while back, I set up a knowledge base (KB) section on my website. As part of that knowledge base, I have a [wiki](/wiki) and [snippets](/snippets) section. As opposed to the [blog posts](/posts) which tend to be more long-form and have structure or the microblog-like posts on my [main](/feed) and [response](/feed/responses) feeds, the wiki and snippets section are intended to have self-contained blocks of information that are linked somehow but not a linear or chronological order. 
+A while back, I set up a knowledge base (KB) section on my website. As part of that knowledge base, I have a [wiki](/resources/wiki) and [snippets](/resources/snippets) section. As opposed to the [blog posts](/posts) which tend to be more long-form and have structure or the microblog-like posts on my [main](/notes) and [response](/responses) feeds, the wiki and snippets section are intended to have self-contained blocks of information that are linked somehow but not a linear or chronological order. 
 
 My current wiki and snippets solution was fairly basic. It was a series of documents authored in Markdown which then get converted to static HTML pages. The index pages for wiki articles and snippets contain links to each of those documents. While that's worked okay, I felt I was missing functionality when it came to linking between documents, tagging, and more importantly searching. 
 
@@ -47,7 +47,7 @@ The quickest way to get started with TiddlyWiki is to:
 1. Open the command palette (View > Command Palette).
 1. Enter into the text box *Live Preview: Start Server* and press *Enter*. The server should start.
 
-![lqdev TiddlyWiki Main Page](/images/tiddlywiki-vscode/lqdev-tiddlywiki.png)
+![lqdev TiddlyWiki Main Page](/assets/images/tiddlywiki-vscode/lqdev-tiddlywiki.png)
 
 At this point, you can use the TiddlyWiki interface to create and edit your wiki.
 
@@ -55,7 +55,7 @@ At this point, you can use the TiddlyWiki interface to create and edit your wiki
 
 Saving can be a bit tricky but it's not too bad. Use the checkmark in the side pane to save your changes. When there are unsaved changes, the checkmark turns red. 
 
-![TiddlyWiki Side Panel Red Checkmark Save Changes](/images/tiddlywiki-vscode/tiddlywiki-save-changes.png)
+![TiddlyWiki Side Panel Red Checkmark Save Changes](/assets/images/tiddlywiki-vscode/tiddlywiki-save-changes.png)
 
 To save your changes, overwrite the existing file or if you want, you can also save it to a file with a different name. I would recommend saving it to the same file because it's easier to manage. You don't want to end up with *index-version12341.html*. That being said, I don't know if there may be risks in overwriting the file. In my limited testing I had no issues overwriting the file, but I'd still tread lightly.
 

@@ -15,4 +15,4 @@ I like this suggestion. My rewrite has been ongoing but slow. I tried vibe-codin
 
 > I use different tools for writing and coding. I can write my blog posts on my iPad when I’m in the library or local pub and at that time, there’s no way for me to tinker with the tools or the website itself.
 
-Another great suggestion. A lot of my desire to rewrite stems from frictions in my current workflow as well as being able to support new and different post types. Back when I had my [Duo](/feed/surface-duo-blogging-github-dev/), I didn't mind the mobile VS Code authoring experience, but now that I'm back to a single screen device, not being able to publish from my phone creates a lot of friction. 
+Another great suggestion. A lot of my desire to rewrite stems from frictions in my current workflow as well as being able to support new and different post types. Back when I had my [Duo](/notes/surface-duo-blogging-github-dev), I didn't mind the mobile VS Code authoring experience, but now that I'm back to a single screen device, not being able to publish from my phone creates a lot of friction. 

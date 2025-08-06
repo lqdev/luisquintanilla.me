@@ -5,7 +5,7 @@ published_date: "2023-12-24 14:31"
 tags: ["weblogging","quantifiedself","indieweb","stats","analytics","blog","blogging","internet","opensource","community","selfhost","fsharp","spotify","antennapod","microblog", "analytics","pkm","personalknowledgemanagement"]
 ---
 
-Update from [yesterday](/feed/weblogging-rewind-2023). 2023 is still not over. I think I can squeeze out at least one more post for the year :slightly_smiling_face:.  
+Update from [yesterday](/notes/weblogging-rewind-2023/). 2023 is still not over. I think I can squeeze out at least one more post for the year :slightly_smiling_face:.  
 
 ## Blog post counts
 

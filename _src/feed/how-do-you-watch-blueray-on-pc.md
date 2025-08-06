@@ -5,7 +5,7 @@ published_date: "2025-01-14 18:55"
 tags: ["bluray","media","physicalmedia","vlc"]
 ---
 
-I have a preference for physical media. There's many reasons, some related to the sentiment of [owning vs. renting content](/feed/landlord-of-your-notes). Along the same lines, streaming services and service providers can change the terms of service and you have little to no control over it. [Westworld](https://en.wikipedia.org/wiki/Westworld_(TV_series)) is an example of that. One day, HBO decided to pull it from its streaming service and physical copies were the only way you could watch it.
+I have a preference for physical media. There's many reasons, some related to the sentiment of [owning vs. renting content](/responses/landlord-of-your-notes). Along the same lines, streaming services and service providers can change the terms of service and you have little to no control over it. [Westworld](https://en.wikipedia.org/wiki/Westworld_(TV_series)) is an example of that. One day, HBO decided to pull it from its streaming service and physical copies were the only way you could watch it.
 
 Anyway, on to my most recent experience trying to play a Blu-Ray disc on my PC. 
 

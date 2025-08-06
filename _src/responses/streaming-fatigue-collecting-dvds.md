@@ -36,4 +36,4 @@ Whenever I want variety, I just use one of the free streaming services like:
 - [Tubi](https://tubitv.com/)
 - YouTube
 
-Yes, there are ads but at least I'm not paying for it and I know that's part of the deal. There are a ton of good older (and sometimes original) TV shows and movies on those platforms to keep me entertained. The most recent ones being Stargate and [Vampire's Kiss](/feed/vampires-kiss-movie).
+Yes, there are ads but at least I'm not paying for it and I know that's part of the deal. There are a ton of good older (and sometimes original) TV shows and movies on those platforms to keep me entertained. The most recent ones being Stargate and [Vampire's Kiss](/notes/vampires-kiss-movie).

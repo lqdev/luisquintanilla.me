@@ -1,0 +1,125 @@
+/* CSS Custom Properties - Desert Theme System
+ * Research-validated color palette with accessibility compliance
+ * Supports light/dark modes with semantic naming
+ */
+
+/* Light theme (Desert Day) - Default */
+:root {
+  /* Primary Colors - Desert Inspired */
+  --desert-sand: #F4E7D3;           /* Background - warm, welcoming */
+  --saguaro-green: #4B6F44;         /* Text & borders - natural, readable */
+  --saguaro-green-dark: #3A5535;    /* Darker variant for borders */
+  --saguaro-green-light: #5F8A58;   /* Lighter variant for accents */
+  --sunset-orange: #FF4500;         /* Accent & buttons - energetic */
+  --cactus-flower: #DDA0DD;         /* Hover states - delightful */
+  --cactus-bloom: #E6B3E6;          /* Lighter purple variant */
+  --sky-blue: #87CEEB;              /* Links - friendly */
+  --desert-sage: #9CAF88;           /* Muted green for wiki */
+  --sunrise-pink: #FFB6C1;          /* Soft pink for presentations */
+  
+  /* Semantic Color Mapping */
+  --background-color: var(--desert-sand);
+  --text-color: var(--saguaro-green);
+  --accent-color: var(--sunset-orange);
+  --hover-color: var(--cactus-flower);
+  --link-color: var(--sky-blue);
+  
+  /* Component Colors */
+  --card-background: #FFFFFF;       /* Clean card contrast */
+  --card-border: var(--saguaro-green);
+  --button-background: var(--sunset-orange);
+  --button-text: #FFFFFF;
+  --button-hover: var(--cactus-flower);
+  
+  /* Sidebar Colors */
+  --sidebar-background: var(--saguaro-green);
+  --sidebar-text: var(--desert-sand);
+  
+  /* Typography Scale */
+  --font-family-base: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-family-mono: 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+  
+  /* Spacing Scale */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+  
+  /* Border Radius */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.15);
+  
+  /* Breakpoints */
+  --breakpoint-mobile: 768px;
+  --breakpoint-tablet: 992px;
+  --breakpoint-desktop: 1200px;
+}
+
+/* Dark theme (Desert Night) */
+[data-theme="dark"],
+body[data-theme="dark"] {
+  /* Primary Colors - Desert Night */
+  --midnight-indigo: #2C3E50;       /* Background - sophisticated dark */
+  --desert-moonlight: #BDC3C7;      /* Text - easy on eyes */
+  --ocotillo-bloom: #FF6347;        /* Accent - warm in darkness */
+  --cactus-green: #4B6F44;          /* Hover - subtle interactions */
+  --saguaro-shadow: #34495E;        /* Card background - depth */
+  
+  /* Semantic Color Mapping - Dark Mode */
+  --background-color: var(--midnight-indigo);
+  --text-color: var(--desert-moonlight);
+  --accent-color: var(--ocotillo-bloom);
+  --hover-color: var(--cactus-green);
+  --link-color: var(--desert-moonlight);
+  
+  /* Component Colors - Dark Mode */
+  --card-background: var(--saguaro-shadow);
+  --card-border: var(--desert-moonlight);
+  --button-background: var(--ocotillo-bloom);
+  --button-text: #FFFFFF;
+  --button-hover: var(--cactus-green);
+  
+  /* Sidebar Colors - Dark Mode */
+  --sidebar-background: var(--midnight-indigo);
+  --sidebar-text: var(--desert-moonlight);
+}
+
+/* System preference detection */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    /* Apply dark theme if no explicit light theme is set */
+    --background-color: var(--midnight-indigo, #2C3E50);
+    --text-color: var(--desert-moonlight, #BDC3C7);
+    --accent-color: var(--ocotillo-bloom, #FF6347);
+    --hover-color: var(--cactus-green, #4B6F44);
+    --link-color: var(--desert-moonlight, #BDC3C7);
+    --card-background: var(--saguaro-shadow, #34495E);
+    --card-border: var(--desert-moonlight, #BDC3C7);
+    --button-background: var(--ocotillo-bloom, #FF6347);
+    --button-hover: var(--cactus-green, #4B6F44);
+    --sidebar-background: var(--midnight-indigo, #2C3E50);
+    --sidebar-text: var(--desert-moonlight, #BDC3C7);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: none;
+    --transition-normal: none;
+    --transition-slow: none;
+  }
+}

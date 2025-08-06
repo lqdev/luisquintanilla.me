@@ -10,6 +10,14 @@ module Domain
         Content: string
     }
 
+    // Unified content interface for tag processing
+    type ITaggable = 
+        abstract member Tags: string array
+        abstract member Title: string
+        abstract member Date: string
+        abstract member FileName: string
+        abstract member ContentType: string
+
     [<CLIMutable>]
     type PostDetails = {
         [<YamlMember(Alias="post_type")>] PostType: string
@@ -24,6 +32,15 @@ module Domain
         Metadata: PostDetails
         Content: string
     }
+    with
+        interface ITaggable with
+            member this.Tags = 
+                if isNull this.Metadata.Tags then [||]
+                else this.Metadata.Tags
+            member this.Title = this.Metadata.Title
+            member this.Date = this.Metadata.Date
+            member this.FileName = this.FileName
+            member this.ContentType = "post"
 
     type Event = {
         Name: string
@@ -56,6 +73,8 @@ module Domain
     type PresentationDetails = {
         [<YamlMember(Alias="title")>] Title: string
         [<YamlMember(Alias="resources")>] Resources: PresentationResource array
+        [<YamlMember(Alias="tags")>] Tags: string
+        [<YamlMember(Alias="date")>] Date: string
     }
 
     type Presentation = {
@@ -63,6 +82,15 @@ module Domain
         Metadata: PresentationDetails
         Content: string
     }
+    with
+        interface ITaggable with
+            member this.Tags = 
+                if String.IsNullOrEmpty(this.Metadata.Tags) then [||]
+                else this.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+            member this.Title = this.Metadata.Title
+            member this.Date = this.Metadata.Date
+            member this.FileName = this.FileName
+            member this.ContentType = "presentation"
 
     [<CLIMutable>]
     type LivestreamResource = {
@@ -89,6 +117,7 @@ module Domain
         [<YamlMember(Alias="title")>] Title: string
         [<YamlMember(Alias="language")>] Language: string        
         [<YamlMember(Alias="tags")>] Tags: string
+        [<YamlMember(Alias="created_date")>] CreatedDate: string
     }
 
     type Snippet = {
@@ -96,6 +125,17 @@ module Domain
         Metadata: SnippetDetails
         Content: string
     }
+    with
+        interface ITaggable with
+            member this.Tags = 
+                if String.IsNullOrEmpty(this.Metadata.Tags) then [||]
+                else this.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+            member this.Title = this.Metadata.Title
+            member this.Date = 
+                if String.IsNullOrEmpty(this.Metadata.CreatedDate) then ""
+                else this.Metadata.CreatedDate
+            member this.FileName = this.FileName
+            member this.ContentType = "snippet"
 
     [<CLIMutable>]
     type WikiDetails = {
@@ -109,6 +149,17 @@ module Domain
         Metadata: WikiDetails
         Content: string
     }
+    with
+        interface ITaggable with
+            member this.Tags = 
+                if String.IsNullOrEmpty(this.Metadata.Tags) then [||]
+                else this.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+            member this.Title = this.Metadata.Title
+            member this.Date = 
+                if String.IsNullOrEmpty(this.Metadata.LastUpdatedDate) then ""
+                else this.Metadata.LastUpdatedDate
+            member this.FileName = this.FileName
+            member this.ContentType = "wiki"
 
     type OpmlMetadata = 
         {
@@ -133,6 +184,7 @@ module Domain
         [<YamlMember(Alias="status")>] Status: string
         [<YamlMember(Alias="rating")>] Rating: float
         [<YamlMember(Alias="source")>] Source: string
+        [<YamlMember(Alias="date_published")>] DatePublished: string
     }
 
     type Book = {
@@ -140,6 +192,13 @@ module Domain
         Metadata: BookDetails
         Content: string
     }
+    with
+        interface ITaggable with
+            member this.Tags = [||] // Books don't have explicit tags
+            member this.Title = this.Metadata.Title
+            member this.Date = this.Metadata.DatePublished
+            member this.FileName = this.FileName
+            member this.ContentType = "book"
 
     [<CLIMutable>]
     type AlbumImage = {
@@ -152,15 +211,25 @@ module Domain
     type AlbumDetails = {
         [<YamlMember(Alias="post_type")>] PostType: string
         [<YamlMember(Alias="title")>] Title: string
-        [<YamlMember(Alias="mainimage")>] MainImage: string
         [<YamlMember(Alias="published_date")>] Date: string
+        [<YamlMember(Alias="tags")>] Tags: string array
         [<YamlMember(Alias="images")>] Images: AlbumImage array                
     }
 
     type Album = {
         FileName: string
         Metadata: AlbumDetails
+        Content: string
     }
+    with
+        interface ITaggable with
+            member this.Tags = 
+                if isNull this.Metadata.Tags then [||]
+                else this.Metadata.Tags
+            member this.Title = this.Metadata.Title
+            member this.Date = this.Metadata.Date
+            member this.FileName = this.FileName
+            member this.ContentType = "album"
 
     type ResponseType = 
         | Reply
@@ -184,4 +253,81 @@ module Domain
         Content: string
     }
 
+    [<CLIMutable>]
+    type BookmarkDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="bookmark_of")>] BookmarkOf: string
+        [<YamlMember(Alias="description")>] Description: string
+        [<YamlMember(Alias="dt_published")>] DatePublished: string        
+        [<YamlMember(Alias="dt_updated")>] DateUpdated: string
+        [<YamlMember(Alias="tags")>] Tags: string array
+    }
+
+    type Bookmark = {
+        FileName: string
+        Metadata: BookmarkDetails
+        Content: string
+    }
+
     type TaggedPosts = { Posts:Post array; Notes:Post array; Responses:Response array }
+
+    // ITaggable helper functions for unified tag processing
+    module ITaggableHelpers =
+        
+        let getPostTags (post: Post) = post.Metadata.Tags
+        let getPostTitle (post: Post) = post.Metadata.Title
+        let getPostDate (post: Post) = post.Metadata.Date
+        let getPostFileName (post: Post) = post.FileName
+        let getPostContentType (_: Post) = "post"
+        
+        let getSnippetTags (snippet: Snippet) = 
+            if String.IsNullOrEmpty(snippet.Metadata.Tags) then [||]
+            else snippet.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+        let getSnippetTitle (snippet: Snippet) = snippet.Metadata.Title
+        let getSnippetDate (snippet: Snippet) = snippet.Metadata.CreatedDate
+        let getSnippetFileName (snippet: Snippet) = snippet.FileName
+        let getSnippetContentType (_: Snippet) = "snippet"
+        
+        let getWikiTags (wiki: Wiki) = 
+            if String.IsNullOrEmpty(wiki.Metadata.Tags) then [||]
+            else wiki.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+        let getWikiTitle (wiki: Wiki) = wiki.Metadata.Title
+        let getWikiDate (wiki: Wiki) = wiki.Metadata.LastUpdatedDate
+        let getWikiFileName (wiki: Wiki) = wiki.FileName
+        let getWikiContentType (_: Wiki) = "wiki"
+        
+        let getResponseTags (response: Response) = response.Metadata.Tags
+        let getResponseTitle (response: Response) = response.Metadata.Title
+        let getResponseDate (response: Response) = response.Metadata.DatePublished
+        let getResponseFileName (response: Response) = response.FileName
+        let getResponseContentType (_: Response) = "response"
+        
+        let getBookTags (_: Book) = [||] // Books don't have explicit tags
+        let getBookTitle (book: Book) = book.Metadata.Title
+        let getBookDate (book: Book) = book.Metadata.DatePublished
+        let getBookFileName (book: Book) = book.FileName
+        let getBookContentType (_: Book) = "book"
+        
+        // Generic function to work with any ITaggable-like object
+        let createTaggableRecord (tags: string array) (title: string) (date: string) (fileName: string) (contentType: string) =
+            { new ITaggable with
+                member _.Tags = tags
+                member _.Title = title
+                member _.Date = date
+                member _.FileName = fileName
+                member _.ContentType = contentType }
+        
+        let postAsTaggable (post: Post) = 
+            createTaggableRecord (getPostTags post) (getPostTitle post) (getPostDate post) (getPostFileName post) (getPostContentType post)
+            
+        let snippetAsTaggable (snippet: Snippet) = 
+            createTaggableRecord (getSnippetTags snippet) (getSnippetTitle snippet) (getSnippetDate snippet) (getSnippetFileName snippet) (getSnippetContentType snippet)
+            
+        let wikiAsTaggable (wiki: Wiki) = 
+            createTaggableRecord (getWikiTags wiki) (getWikiTitle wiki) (getWikiDate wiki) (getWikiFileName wiki) (getWikiContentType wiki)
+            
+        let responseAsTaggable (response: Response) = 
+            createTaggableRecord (getResponseTags response) (getResponseTitle response) (getResponseDate response) (getResponseFileName response) (getResponseContentType response)
+            
+        let bookAsTaggable (book: Book) = 
+            createTaggableRecord (getBookTags book) (getBookTitle book) (getBookDate book) (getBookFileName book) (getBookContentType book)

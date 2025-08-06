@@ -3,11 +3,12 @@ module Builder
     open System
     open System.Globalization
     open System.IO
+    open System.Linq
     open System.Text.Json
+    open System.Xml.Linq
     open Domain
     open MarkdownService
     open TagService
-    open RssService
     open OpmlService
     open ViewGenerator
     open PartialViews
@@ -15,40 +16,83 @@ module Builder
     let private srcDir = "_src"
     let private outputDir = "_public"
 
+    /// Sanitize tag names for safe file system paths while preserving readability
+    let private sanitizeTagForPath (tag: string) =
+        tag.Trim()
+            .Replace("\"", "")       // Remove quotes
+            .Replace("#", "sharp")   // Replace # with "sharp" (f# -> fsharp, c# -> csharp)
+            .Replace(" ", "-")       // Replace spaces with hyphens
+            .Replace(".", "dot")     // Replace dots with "dot" (.net -> dotnet)
+            .Replace("/", "-")       // Replace slashes with hyphens
+            .Replace("\\", "-")      // Replace backslashes with hyphens
+            .Replace(":", "-")       // Replace colons with hyphens
+            .Replace("*", "star")    // Replace asterisks
+            .Replace("?", "q")       // Replace question marks
+            .Replace("<", "lt")      // Replace less than
+            .Replace(">", "gt")      // Replace greater than
+            .Replace("|", "pipe")    // Replace pipes
+            .ToLowerInvariant()      // Make lowercase for consistency
+
     let rec cleanOutputDirectory (outputDir:string) = 
-        let dirInfo = DirectoryInfo(outputDir)
+        if Directory.Exists(outputDir) then
+            let dirInfo = DirectoryInfo(outputDir)
 
-        dirInfo.GetFiles()
-        |> Array.iter(fun x -> x.Delete())
+            dirInfo.GetFiles()
+            |> Array.iter(fun x -> x.Delete())
 
-        dirInfo.GetDirectories()
-        |> Array.iter(fun x -> 
-            cleanOutputDirectory x.FullName
-            x.Delete())
+            dirInfo.GetDirectories()
+            |> Array.iter(fun x -> 
+                cleanOutputDirectory x.FullName
+                x.Delete())
 
     let copyStaticFiles () =
-        let directories = [
-            "css"
-            "js"
-            "images"
-            "lib"
-            ".well-known"
+        // Asset directories to copy to /assets/
+        let assetDirectories = [
+            ("css", "assets/css")
+            ("js", "assets/js") 
+            ("lib", "assets/lib")
         ]
 
-        directories
-        |> List.map(fun x -> 
-            Directory.GetDirectories(Path.Join(srcDir,x),"*",SearchOption.AllDirectories)
-            |> List.ofArray
-            |> fun a -> a @ [x])
-        |> List.collect(fun x -> 
-                x
-                |> List.map(fun y -> y.Replace("_src" + Path.DirectorySeparatorChar.ToString(),"")))
-        |> List.map(fun (dir:string) -> Path.Join(srcDir,dir),Path.Join(outputDir,dir))
-        |> List.iter(fun (s,d) -> 
-            let saveDir = Directory.CreateDirectory(d)
+        // Copy asset directories to /assets/
+        assetDirectories
+        |> List.iter(fun (srcPath, destPath) ->
+            let sourcePath = Path.Join(srcDir, srcPath)
+            let destPath = Path.Join(outputDir, destPath)
             
-            Directory.GetFiles(s)
-            |> Array.iter(fun file -> File.Copy(Path.GetFullPath(file),Path.Join(saveDir.FullName,Path.GetFileName(file)),true)))
+            if Directory.Exists(sourcePath) then
+                Directory.CreateDirectory(destPath) |> ignore
+                
+                // Copy all files recursively
+                Directory.GetFiles(sourcePath, "*", SearchOption.AllDirectories)
+                |> Array.iter(fun file ->
+                    let relativePath = Path.GetRelativePath(sourcePath, file)
+                    let destFile = Path.Join(destPath, relativePath)
+                    Directory.CreateDirectory(Path.GetDirectoryName(destFile)) |> ignore
+                    File.Copy(file, destFile, true))
+        )
+
+        // Copy other static directories at root level
+        let staticDirectories = [
+            "assets/images"
+            ".well-known"
+            "lib"
+        ]
+
+        staticDirectories
+        |> List.iter(fun dir ->
+            let sourcePath = Path.Join(srcDir, dir)
+            let destPath = Path.Join(outputDir, dir)
+            
+            if Directory.Exists(sourcePath) then
+                Directory.CreateDirectory(destPath) |> ignore
+                
+                Directory.GetFiles(sourcePath, "*", SearchOption.AllDirectories)
+                |> Array.iter(fun file ->
+                    let relativePath = Path.GetRelativePath(sourcePath, file)
+                    let destFile = Path.Join(destPath, relativePath)
+                    Directory.CreateDirectory(Path.GetDirectoryName(destFile)) |> ignore
+                    File.Copy(file, destFile, true))
+        )
         
         // Copy favicon & avatar
         File.Copy(Path.Join(srcDir,"favicon.ico"),Path.Join(outputDir,"favicon.ico"),true)
@@ -79,6 +123,40 @@ module Builder
         let homePage = generate (homeView recentBlog recentFeedPost recentResponsePost) "default" "Home - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"index.html"),homePage)
 
+    // New timeline homepage for Phase 3 - Feed-as-Homepage Interface
+    let buildTimelineHomePage (allUnifiedItems: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
+        // Content-type stratified sampling: Take first 5 items from each content type
+        // This ensures equal representation and better content discovery in initial load
+        let stratifiedInitialItems = 
+            allUnifiedItems
+            |> List.collect (fun (contentType, items) ->
+                items 
+                |> List.sortByDescending (fun item -> DateTime.Parse(item.Date))
+                |> List.take (min 5 items.Length) // Take top 5 from each content type
+            )
+            |> List.sortByDescending (fun item -> DateTime.Parse(item.Date)) // Sort mixed types chronologically
+        
+        // Group remaining items by content type for type-aware progressive loading
+        let remainingItemsByType = 
+            allUnifiedItems
+            |> List.map (fun (contentType, items) ->
+                let sortedItems = items |> List.sortByDescending (fun item -> DateTime.Parse(item.Date))
+                let remainingItems = sortedItems |> List.skip (min 5 items.Length)
+                (contentType, remainingItems)
+            )
+            |> List.filter (fun (_, items) -> not items.IsEmpty)
+        
+        printfn "Debug: About to render timeline with %d initial items from stratified sampling" stratifiedInitialItems.Length
+        printfn "Debug: Remaining items by type: %s" 
+            (remainingItemsByType |> List.map (fun (t, items) -> $"{t}:{items.Length}") |> String.concat ", ")
+        
+        // Generate the timeline homepage with stratified approach
+        let timelineHomePage = generate (LayoutViews.timelineHomeViewStratified (stratifiedInitialItems |> List.toArray) remainingItemsByType) "default" "Luis Quintanilla - Personal Website"
+        File.WriteAllText(Path.Join(outputDir,"index.html"), timelineHomePage)
+        
+        let totalItems = allUnifiedItems |> List.sumBy (fun (_, items) -> items.Length)
+        printfn "✅ Timeline homepage created with %d initial items (stratified) from %d total items across all content types" stratifiedInitialItems.Length totalItems
+
     let buildAboutPage () = 
 
         let aboutContent = convertFileToHtml (Path.Join(srcDir,"about.md")) |> contentView
@@ -91,7 +169,7 @@ module Builder
 
         let starterContent = convertFileToHtml (Path.Join(srcDir,"starter-packs.md")) |> contentView
         let starterPage = generate starterContent "default" "Starter Packs - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","starter")
+        let saveDir = Path.Join(outputDir,"collections","starter-packs")
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), starterPage)
 
@@ -99,19 +177,19 @@ module Builder
         let blogRollContent = 
             links
             |> blogRollView
-
+            
         let blogRollPage = generate blogRollContent "default" "Blogroll - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","blogroll")
-        Directory.CreateDirectory(saveDir) |> ignore    
+        let saveDir = Path.Join(outputDir,"collections","blogroll")
+        Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), blogRollPage)
 
     let buildPodrollPage (links:Outline array) = 
         let podrollContent = 
             links
             |> podRollView
-
+            
         let podrollPage = generate podrollContent "default" "Podroll - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","podroll")
+        let saveDir = Path.Join(outputDir,"collections","podroll")
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), podrollPage)
 
@@ -119,9 +197,9 @@ module Builder
         let forumContent = 
             links
             |> forumsView
-
+            
         let forumsPage = generate forumContent "default" "Forums - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","forums")
+        let saveDir = Path.Join(outputDir,"collections","forums")
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), forumsPage)
 
@@ -131,7 +209,7 @@ module Builder
             |> youTubeFeedView
 
         let ytFeedPage = generate ytContent "default" "YouTube Channels - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","youtube")
+        let saveDir = Path.Join(outputDir,"collections","youtube")
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), ytFeedPage)
 
@@ -141,7 +219,7 @@ module Builder
             |> aiStarterPackFeedView
 
         let ytFeedPage = generate aiStarterPackContent "default" "AI Starter Pack - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"feed","starter","ai")
+        let saveDir = Path.Join(outputDir,"collections","starter-packs","ai")
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), ytFeedPage)
 
@@ -159,13 +237,6 @@ module Builder
         Directory.CreateDirectory(saveDir) |> ignore               
         File.WriteAllText(Path.Join(saveDir,"index.html"), colophonPage)        
 
-    let buildSubscribePage () = 
-        let subscribeContent = Path.Join(srcDir,"subscribe.md") |> convertFileToHtml |> contentView
-        let subscribePage = generate subscribeContent "default" "Subscribe - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"subscribe")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"), subscribePage)        
-    
     let buildContactPage () = 
         let contactContent = convertFileToHtml (Path.Join(srcDir,"contact.md")) |> contentView
         let contactPage = generate contactContent "default" "Contact - Luis Quintanilla"
@@ -185,37 +256,6 @@ module Builder
         // Write out page
         File.WriteAllText(Path.Join(saveDir,"index.html"), onlineRadioPage)        
 
-    let buildBlogRssFeed (posts: Post array) = 
-        let rssPage = 
-            posts
-            |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
-            |> generateBlogRss
-            |> string
-
-        let saveDir = Path.Join(outputDir,"posts")
-        File.WriteAllText(Path.Join(saveDir,"index.xml"), rssPage)  
-
-    let buildFeedRssPage (posts: Post array) (saveFileName:string)= 
-        let rssPage = 
-            posts
-            |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
-            |> generateMainFeedRss
-            |> string
-
-        let saveDir = Path.Join(outputDir,"feed")            
-        File.WriteAllText(Path.Join(saveDir,$"{saveFileName}.xml"), rssPage)  
-
-    let buildResponseFeedRssPage (posts: Response array) (saveFileName:string) = 
-
-        let rssPage = 
-            posts
-            |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.DatePublished))
-            |> generateReponseFeedRss
-            |> string
-
-        let saveDir = Path.Join(outputDir, "feed", "responses")
-        File.WriteAllText(Path.Join(saveDir,$"{saveFileName}.xml"), rssPage)
-
     let buildFeedsOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Feeds" "https://www.luisquintanilla.me" links
         let saveDir = Path.Join(outputDir,"feed")
@@ -224,67 +264,85 @@ module Builder
 
     let buildBlogrollOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Blogroll" "https://www.luisquintanilla.me" links
-        let saveDir = Path.Join(outputDir,"feed","blogroll")
+        let saveDir = Path.Join(outputDir,"collections","blogroll")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
     let buildPodrollOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Podroll" "https://www.lqdev.me" links
-        let saveDir = Path.Join(outputDir,"feed","podroll")
+        let saveDir = Path.Join(outputDir,"collections","podroll")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
     let buildForumsOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Forums" "https://www.lqdev.me" links
-        let saveDir = Path.Join(outputDir,"feed","forums")
+        let saveDir = Path.Join(outputDir,"collections","forums")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
     let buildYouTubeOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla YouTube Channels" "https://www.lqdev.me" links
-        let saveDir = Path.Join(outputDir,"feed","youtube")
+        let saveDir = Path.Join(outputDir,"collections","youtube")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
     let buildAIStarterPackOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla AI Starter Pack" "https://www.lqdev.me" links
-        let saveDir = Path.Join(outputDir,"feed","starter","ai")
+        let saveDir = Path.Join(outputDir,"collections","starter-packs","ai")
+        Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
-
-    let buildPostPages (posts:Post array) = 
-        let postPages = 
-            posts
-            |> Array.map(fun post -> 
-                let postTitle = post.Metadata.Title
-                let postContent = post.Content |> convertMdToHtml 
-                let postView = blogPostView postTitle postContent
-                post.FileName,generate postView "defaultindex" $"{post.Metadata.Title} - Luis Quintanilla")
+    
+    let buildLegacyRssFeedAliases () =
+        // Create legacy RSS feed aliases for backward compatibility
+        let sourceBlogFeed = Path.GetFullPath(Path.Join(outputDir, "posts", "feed.xml"))
+        let sourceMicroblogFeed = Path.GetFullPath(Path.Join(outputDir, "feed", "notes.xml"))
+        let sourceResponsesFeed = Path.GetFullPath(Path.Join(outputDir, "responses", "feed.xml"))
+        let sourceUnifiedFeed = Path.GetFullPath(Path.Join(outputDir, "feed", "feed.xml"))
         
-        let rootSaveDir = Path.Join(outputDir,"posts")
-        // Directory.CreateDirectory(saveDir) |> ignore
-        postPages
-        |> Array.iter(fun (fileName,html) ->
-            let saveDir = Path.Join(rootSaveDir,fileName)
-            Directory.CreateDirectory(saveDir) |> ignore
-            // let saveFileName = sprintf "%s.html" fileName
-            let savePath = Path.Join(saveDir,"index.html")
-            File.WriteAllText(savePath,html))
-
-    let buildPostArchive (posts:Post array) = 
-        let postsPerPage = 10
-
-        posts
-        |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
-        |> Array.chunkBySize postsPerPage
-        |> Array.iteri(fun i x -> 
-            let len = posts |> Array.chunkBySize postsPerPage |> Array.length
-            let currentPage = i + 1
-            let idx = string currentPage
-            let page = generate (postPaginationView currentPage len x) "defaultindex" $"Posts {idx} - Luis Quintanilla"
-            let dir = Directory.CreateDirectory(Path.Join(outputDir,"posts", idx))
-            let fileName = "index.html"
-            File.WriteAllText(Path.Join(dir.FullName,fileName), page))
+        let targetBlogRss = Path.GetFullPath(Path.Join(outputDir, "blog.rss"))
+        let targetMicroblogRss = Path.GetFullPath(Path.Join(outputDir, "microblog.rss"))
+        let targetResponsesRss = Path.GetFullPath(Path.Join(outputDir, "responses.rss"))
+        let targetAllRss = Path.GetFullPath(Path.Join(outputDir, "all.rss"))
+        
+        printfn "Building legacy RSS feed aliases..."
+        printfn "Looking for source files:"
+        printfn "  Blog: %s (exists: %b)" sourceBlogFeed (File.Exists(sourceBlogFeed))
+        printfn "  Microblog: %s (exists: %b)" sourceMicroblogFeed (File.Exists(sourceMicroblogFeed))
+        printfn "  Responses: %s (exists: %b)" sourceResponsesFeed (File.Exists(sourceResponsesFeed))
+        printfn "  Unified: %s (exists: %b)" sourceUnifiedFeed (File.Exists(sourceUnifiedFeed))
+        
+        // Copy feeds to legacy RSS locations
+        if File.Exists(sourceBlogFeed) then
+            File.Copy(sourceBlogFeed, targetBlogRss, true)
+            printfn "✅ Created blog.rss"
+        else
+            printfn "❌ Source blog feed not found: %s" sourceBlogFeed
+            
+        if File.Exists(sourceMicroblogFeed) then
+            File.Copy(sourceMicroblogFeed, targetMicroblogRss, true)
+            printfn "✅ Created microblog.rss"
+        else
+            printfn "❌ Source microblog feed not found: %s" sourceMicroblogFeed
+            
+        if File.Exists(sourceResponsesFeed) then
+            File.Copy(sourceResponsesFeed, targetResponsesRss, true)
+            printfn "✅ Created responses.rss"
+            
+            // Also copy to the legacy /feed/responses/index.xml location for backward compatibility
+            let legacyResponsesFeedDir = Path.GetFullPath(Path.Join(outputDir, "feed", "responses"))
+            Directory.CreateDirectory(legacyResponsesFeedDir) |> ignore
+            let legacyResponsesFeedPath = Path.Join(legacyResponsesFeedDir, "index.xml")
+            File.Copy(sourceResponsesFeed, legacyResponsesFeedPath, true)
+            printfn "✅ Created legacy responses feed at /feed/responses/index.xml"
+        else
+            printfn "❌ Source responses feed not found: %s" sourceResponsesFeed
+            
+        if File.Exists(sourceUnifiedFeed) then
+            File.Copy(sourceUnifiedFeed, targetAllRss, true)
+            printfn "✅ Created all.rss (unified feed alias)"
+        else
+            printfn "❌ Source unified feed not found: %s" sourceUnifiedFeed
     
     let buildTagsPages (posts: Post array) (notes: Post array) (responses: Response array) = 
 
@@ -353,7 +411,8 @@ module Builder
 
         combinedTaggedPosts
         |> Array.iter(fun (tag,pc)-> 
-            let individualTagSaveDir = Path.Join(saveDir,tag.Trim().Replace("\"",""))
+            let sanitizedTag = sanitizeTagForPath tag
+            let individualTagSaveDir = Path.Join(saveDir, sanitizedTag)
             Directory.CreateDirectory(individualTagSaveDir) |> ignore
             let individualTagPage = generate (individualTagView tag pc.Posts pc.Notes pc.Responses) "default" $"{tag} - Tags - Luis Quintanilla"
             File.WriteAllText(Path.Join(individualTagSaveDir,"index.html"),individualTagPage)
@@ -372,55 +431,6 @@ module Builder
 
     let filterFeedByPostType (posts: Post array) (postType: string) = 
         posts |> Array.filter(fun post -> post.Metadata.PostType = postType)
-
-    let buildFeedPage (posts:Post array) (feedTitle:string) (saveFileName:string) =
-        
-        // Convert post markdown to HTML
-        let parsedPosts = 
-            posts 
-            |> Array.map(fun post -> {post with Content = post.Content |> convertMdToHtml})
-            |> Array.sortByDescending(fun post -> DateTime.Parse(post.Metadata.Date))
-
-        // Generate aggregate feed
-        let feedPage = generate (feedView parsedPosts) "defaultindex" feedTitle
-        
-        // Create directories
-        let rootSaveDir = Path.Join(outputDir,"feed")
-        // Directory.CreateDirectory(saveDir) |> ignore
-
-        // Generate individual feed posts
-        let generatePost (post:Post) = 
-            let postView = feedPostView post |> feedPostViewWithBacklink
-            post.FileName,generate postView "defaultindex" post.Metadata.Title 
-
-        let writePost (fileName:string, html:string) = 
-            let saveDir = Path.Join(rootSaveDir,fileName)
-            Directory.CreateDirectory(saveDir) |> ignore
-            let savePath = Path.Join(saveDir,"index.html")
-            File.WriteAllText(savePath,html)
-
-        parsedPosts
-        |> Array.map(generatePost)
-        |> Array.iter(writePost)        
-    
-        // Save feed
-        File.WriteAllText(Path.Join(rootSaveDir, $"{saveFileName}.html"), feedPage)
-
-    let buildPresentationsPage (presentations: Presentation array) = 
-        let presentationPage = generate (presentationsView presentations) "defaultindex" "Presentations - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"presentations")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"),presentationPage)
-
-    let buildPresentationPages (presentations:Presentation array) = 
-        presentations
-        |> Array.iter(fun presentation ->
-            let rootSaveDir = Path.Join(outputDir,"presentations")
-            let html = presentationPageView presentation
-            let presentationView = generate  html "presentation" $"Presentation | {presentation.Metadata.Title} | Luis Quintanilla"
-            let saveDir = Path.Join(rootSaveDir,$"{presentation.FileName}")
-            Directory.CreateDirectory(saveDir) |> ignore
-            File.WriteAllText(Path.Join(saveDir,"index.html"),presentationView))
 
     let buildLiveStreamPage () = 
         let title = "Live Stream - Luis Quintanilla"
@@ -446,135 +456,365 @@ module Builder
             Directory.CreateDirectory(saveDir) |> ignore
             File.WriteAllText(Path.Join(saveDir,"index.html"),streamView))
 
-    let buildSnippetPage(snippets:Snippet array) = 
-        let snippetsPage = generate (snippetsView snippets) "defaultindex" "Snippets | Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"snippets")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"),snippetsPage)
-
-    let buildSnippetPages (snippets:Snippet array) = 
-        let rootSaveDir = Path.Join(outputDir,"snippets") 
+    // AST-based snippet processing using GenericBuilder infrastructure
+    let buildSnippets() = 
+        let snippetFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "resources", "snippets"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
         
-        snippets
-        |> Array.iter(fun snippet ->    
-            let saveDir = Path.Join(rootSaveDir,snippet.FileName)
-            Directory.CreateDirectory(saveDir) |> ignore
-            let html = 
-                contentViewWithTitle snippet.Metadata.Title (snippet.Content |> convertMdToHtml) 
-            let snippetView = generate  html "defaultindex" $"Snippet | {snippet.Metadata.Title} | Luis Quintanilla"
-            let saveFileName = Path.Join(saveDir,"index.html")
-            File.WriteAllText(saveFileName,snippetView))
-
-    let buildWikiPage(wikis:Wiki array) = 
-        let wikisPage = generate (wikisView wikis) "defaultindex" "Wiki | Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"wiki")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"),wikisPage)
-
-    let buildWikiPages (wikis:Wiki array) = 
-        let rootSaveDir = Path.Join(outputDir,"wiki") 
+        let processor = GenericBuilder.SnippetProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor snippetFiles
         
-        wikis
-        |> Array.iter(fun wiki ->    
-            let saveDir = Path.Join(rootSaveDir,wiki.FileName)
+        // Generate individual snippet pages
+        feedData
+        |> List.iter (fun item ->
+            let snippet = item.Content
+            let saveDir = Path.Join(outputDir, "resources", "snippets", snippet.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
-            let html = 
-                contentViewWithTitle wiki.Metadata.Title (wiki.Content |> convertMdToHtml)
-            let wikiView = generate  html "defaultindex" $"Wiki | {wiki.Metadata.Title} | Luis Quintanilla"
-            let saveFileName = Path.Join(saveDir,"index.html")
-            File.WriteAllText(saveFileName,wikiView))
-
-
-    let buildRedirectPages (redirectDetails: RedirectDetails array) =
-        redirectDetails
-        |> Array.iter(fun (target:string,source:string,title:string) -> 
-            let redirectPage = generateRedirect target title
-            let saveDir = Path.Join(outputDir,source)
-            Directory.CreateDirectory(saveDir) |> ignore
-            File.WriteAllText(Path.Join(saveDir,"index.html"), redirectPage)
-        )
-
-    let buildLibraryPage (books:Book array) = 
-        let saveDir = Path.Join(outputDir,"library")
-
-        Directory.CreateDirectory(saveDir) |> ignore
-
-        let html = books |> libraryView
-        
-        let libraryPage = generate html "defaultindex" $"Library | Luis Quintanilla"
-
-        File.WriteAllText(Path.Join(saveDir,"index.html"),libraryPage)
-
-
-    let buildBookPages (books:Book array) = 
-        let rootSaveDir = Path.Join(outputDir,"library")
-        
-        books
-        |> Array.iter(fun book -> 
-            let saveDir = Path.Join(rootSaveDir,book.FileName)
-            Directory.CreateDirectory(saveDir) |> ignore
-            let html = 
-                contentViewWithTitle book.Metadata.Title (book.Content |> convertMdToHtml)
-            let bookPage = generate  html "defaultindex" $"Book | {book.Metadata.Title} | Luis Quintanilla"
-            File.WriteAllText(Path.Join(saveDir,"index.html"),bookPage))
-
-    let buildAlbumPage (albums: Album array) = 
-        let saveDir = Path.Join(outputDir,"albums")
-
-        Directory.CreateDirectory(saveDir) |> ignore
-
-        let html = albums |> albumsPageView
-        
-        let albumPage = generate html "defaultindex" $"Albums | Luis Quintanilla"
-
-        File.WriteAllText(Path.Join(saveDir,"index.html"),albumPage)
-
-
-    let buildAlbumPages (albums: Album array) = 
-
-        let rootSaveDir = Path.Join(outputDir,"albums")
-
-        albums
-        |> Array.iter(fun album -> 
-            let saveDir = Path.Join(rootSaveDir,album.FileName)
-            Directory.CreateDirectory(saveDir) |> ignore
-                        
-            let albumPage = generate (albumPageView album.Metadata.Images) "default" $"Album | {album.Metadata.Title} | Luis Quintanilla"
             
-            File.WriteAllText(Path.Join(saveDir,"index.html"),albumPage))
-
-    let buildResponsePage (posts:Response array) (feedTitle:string) (saveFileName:string) =
+            let html = snippetPageView snippet.Metadata.Title (snippet.Content |> convertMdToHtml) snippet.Metadata.CreatedDate snippet.FileName
+            let snippetView = generate html "defaultindex" $"Snippet | {snippet.Metadata.Title} | Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, snippetView))
         
-        // Convert post markdown to HTML
-        let parsedPosts = 
-            posts 
-            |> Array.map(fun post -> {post with Content = post.Content |> convertMdToHtml})
-            |> Array.sortByDescending(fun post -> DateTime.Parse(post.Metadata.DatePublished))
-
-        // Generate aggregate feed
-        let responsePage = generate (responseView parsedPosts) "defaultindex" feedTitle
+        // Generate snippet index page using existing view for now
+        let snippets = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        let snippetIndexHtml = generate (snippetsView snippets) "defaultindex" "Snippets | Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "resources", "snippets")
+        Directory.CreateDirectory(indexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), snippetIndexHtml)
         
-        // Create directories
-        let rootSaveDir = Path.Join(outputDir,"feed")
-        // Directory.CreateDirectory(saveDir) |> ignore
+        // Return feed data for potential RSS generation
+        feedData
 
-        // Generate individual feed posts         
-
-        let generatePost (post:Response) = 
-            let postView = responsePostView post |> reponsePostViewWithBacklink
-            let postType = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(post.Metadata.ResponseType)
-            post.FileName,generate postView "defaultindex" $"{postType}: {post.Metadata.Title}"
-
-        let writePost (fileName:string,html:string) = 
-            let saveDir = Path.Join(rootSaveDir,fileName)
+    // AST-based wiki processing using GenericBuilder infrastructure  
+    let buildWikis() = 
+        let wikiFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "resources", "wiki"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        let processor = GenericBuilder.WikiProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor wikiFiles
+        
+        // Generate individual wiki pages
+        feedData
+        |> List.iter (fun item ->
+            let wiki = item.Content
+            let saveDir = Path.Join(outputDir, "resources", "wiki", wiki.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
-            let savePath = Path.Join(saveDir,"index.html")
-            File.WriteAllText(savePath,html)            
+            
+            let html = wikiPageView wiki.Metadata.Title (wiki.Content |> convertMdToHtml) wiki.Metadata.LastUpdatedDate wiki.FileName
+            let wikiView = generate html "defaultindex" $"{wiki.Metadata.Title} | Wiki | Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, wikiView))
+        
+        // Generate wiki index page using existing view
+        let wikis = feedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.sortBy(fun x -> x.Metadata.Title)
+        let wikiIndexHtml = generate (wikisView wikis) "defaultindex" "Wiki | Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "resources", "wiki")
+        Directory.CreateDirectory(indexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), wikiIndexHtml)
+        
+        // Return feed data for potential RSS generation
+        feedData
 
-        parsedPosts
-        |> Array.map(generatePost)
-        |> Array.map(writePost)
-        |> ignore
+    // AST-based presentation processing using GenericBuilder infrastructure
+    let buildPresentations() = 
+        let presentationFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "resources", "presentations"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        let processor = GenericBuilder.PresentationProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor presentationFiles
+        
+        // Generate individual presentation pages
+        feedData
+        |> List.iter (fun item ->
+            let presentation = item.Content
+            let saveDir = Path.Join(outputDir, "resources", "presentations", presentation.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            
+            // Use standard individual post layout like other content types
+            let html = LayoutViews.presentationPageView presentation
+            let presentationView = generate html "defaultindex" $"{presentation.Metadata.Title} | Presentation | Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, presentationView))
+        
+        // Generate presentation index page
+        let presentations = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        let presentationIndexHtml = generate (presentationsView presentations) "defaultindex" "Presentations | Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "resources", "presentations")
+        Directory.CreateDirectory(indexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), presentationIndexHtml)
+        
+        // Return feed data for unified RSS generation
+        feedData
 
-        // Save feed
-        File.WriteAllText(Path.Join(rootSaveDir, "responses", $"{saveFileName}.html"), responsePage)
+    // AST-based book processing using GenericBuilder infrastructure
+    let buildBooks() = 
+        let bookFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "reviews", "library"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        let processor = GenericBuilder.BookProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor bookFiles
+        
+        // Generate individual book pages
+        feedData
+        |> List.iter (fun item ->
+            let book = item.Content
+            let saveDir = Path.Join(outputDir, "reviews", book.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            
+            let html = reviewPageView book.Metadata.Title (book.Content |> convertMdToHtml) book.Metadata.DatePublished book.FileName
+            let bookView = generate html "defaultindex" $"{book.Metadata.Title} | Reviews | Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, bookView))
+        
+        // Generate reviews index page using existing libraryView (rename later)
+        let books = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        let reviewsIndexHtml = generate (libraryView books) "defaultindex" "Reviews | Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "reviews")
+        Directory.CreateDirectory(indexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), reviewsIndexHtml)
+        
+        // Return feed data for unified RSS generation
+        feedData
+
+    // AST-based post processing using GenericBuilder infrastructure
+    let buildPosts() = 
+        let postFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "posts"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        let processor = GenericBuilder.PostProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor postFiles
+        
+        // Generate individual post pages
+        feedData
+        |> List.iter (fun item ->
+            let post = item.Content
+            let saveDir = Path.Join(outputDir, "posts", post.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            
+            let html = blogPostView post.Metadata.Title (post.Content |> convertMdToHtml) post.Metadata.Date post.FileName
+            let postView = generate html "defaultindex" $"{post.Metadata.Title} - Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, postView))
+        
+        // Generate posts index page at /posts/ (no pagination - show all like notes/responses)
+        let posts = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        let sortedPosts = posts |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
+        let postsIndexHtml = generate (feedView sortedPosts) "defaultindex" "Posts - Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "posts")
+        Directory.CreateDirectory(indexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), postsIndexHtml)
+        
+        // Return feed data for unified RSS generation
+        feedData
+
+    // AST-based notes processing using GenericBuilder infrastructure
+    let buildNotes() = 
+        let noteFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "feed"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        let processor = GenericBuilder.NoteProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor noteFiles
+        
+        // Generate individual note pages at /notes/[slug]/
+        feedData
+        |> List.iter (fun item ->
+            let note = item.Content
+            let saveDir = Path.Join(outputDir, "notes", note.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            
+            let html = LayoutViews.notePostView note.Metadata.Title (note.Content |> convertMdToHtml) note.Metadata.Date note.FileName
+            let noteView = generate html "defaultindex" note.Metadata.Title
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, noteView))
+        
+        // Generate notes index page at /notes/
+        let notes = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        let sortedNotes = notes |> Array.sortByDescending(fun (x: Post) -> DateTime.Parse(x.Metadata.Date))
+        let notesIndexHtml = generate (notesView sortedNotes) "defaultindex" "Notes - Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "notes")
+        Directory.CreateDirectory(indexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), notesIndexHtml)
+        
+        // Return feed data for unified RSS generation
+        feedData
+
+    // AST-based responses processing using GenericBuilder infrastructure
+    let buildResponses() = 
+        let responseFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "responses"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        let processor = GenericBuilder.ResponseProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor responseFiles
+        
+        // Generate individual response pages at /responses/[slug]/
+        feedData
+        |> List.iter (fun item ->
+            let response = item.Content
+            let saveDir = Path.Join(outputDir, "responses", response.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            
+            let html = LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName
+            let responseView = generate html "defaultindex" response.Metadata.Title
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, responseView))
+        
+        // Generate responses index page at /responses/
+        let responses = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        let sortedResponses = responses |> Array.sortByDescending(fun (x: Response) -> DateTime.Parse(x.Metadata.DatePublished))
+        
+        // Create HTML index page for responses
+        let responsesIndexHtml = generate (responseView sortedResponses) "defaultindex" "Responses - Luis Quintanilla"
+        let responsesIndexSaveDir = Path.Join(outputDir, "responses")
+        Directory.CreateDirectory(responsesIndexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(responsesIndexSaveDir, "index.html"), responsesIndexHtml)
+        
+        // Return feed data for unified RSS generation
+        feedData
+
+    // Generate bookmarks landing page from bookmark-type responses
+    let buildBookmarksLandingPage (responsesFeedData: GenericBuilder.FeedData<Response> list) =
+        // Filter for bookmark-type responses only
+        let bookmarkResponses = 
+            responsesFeedData 
+            |> List.map (fun item -> item.Content)
+            |> List.filter (fun response -> response.Metadata.ResponseType = "bookmark")
+            |> List.sortByDescending (fun response -> DateTime.Parse(response.Metadata.DatePublished))
+            |> List.toArray
+        
+        // Create the bookmarks landing page using responseView (which handles Response arrays)
+        let bookmarksLandingHtml = generate (responseView bookmarkResponses) "defaultindex" "Bookmarks - Luis Quintanilla"
+        let bookmarksIndexSaveDir = Path.Join(outputDir, "bookmarks")
+        Directory.CreateDirectory(bookmarksIndexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(bookmarksIndexSaveDir, "index.html"), bookmarksLandingHtml)
+        
+        printfn "✅ Bookmarks landing page created with %d bookmark responses" bookmarkResponses.Length
+
+    // AST-based media processing using GenericBuilder infrastructure
+    let buildMedia() = 
+        let mediaFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "media"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        let processor = GenericBuilder.AlbumProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor mediaFiles
+        
+        // Generate individual media pages
+        feedData
+        |> List.iter (fun item ->
+            let album = item.Content
+            let saveDir = Path.Join(outputDir, "media", album.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+
+            // Use AST-based markdown processing for custom blocks
+            let rawContent = processor.Render album
+            let processedContent = MarkdownService.convertMdToHtml rawContent
+            let html = contentViewWithTitle album.Metadata.Title processedContent
+            let albumView = generate html "defaultindex" $"{album.Metadata.Title} | Media | Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, albumView))
+        
+        // Generate media index page using simple list view for consistency
+        try
+            let albums = feedData |> List.map (fun item -> item.Content) |> List.toArray
+            let mediaIndexHtml = generate (albumsPageView albums) "defaultindex" "Media | Luis Quintanilla"
+            let indexSaveDir = Path.Join(outputDir, "media")
+            Directory.CreateDirectory(indexSaveDir) |> ignore
+            File.WriteAllText(Path.Join(indexSaveDir, "index.html"), mediaIndexHtml)
+        with
+        | ex -> 
+            printfn $"Error in media unified feed view: {ex.Message}"
+            printfn $"Stack trace: {ex.StackTrace}"
+            printfn $"Feed data count: {feedData.Length}"
+            reraise()
+        
+        // Return feed data for unified RSS generation
+        feedData
+
+    // Build redirect pages for URL migration
+    let buildRedirectPages (redirects: RedirectDetails array) =
+        redirects
+        |> Array.iter (fun (sourceUrl, targetUrl, title) ->
+            let redirectHtml = ViewGenerator.generateRedirect targetUrl title
+            
+            // Handle different redirect types
+            if sourceUrl.EndsWith(".xml") || sourceUrl.EndsWith(".html") then
+                // File-level redirect - create the exact file
+                let saveFilePath = Path.Join(outputDir, sourceUrl.TrimStart('/'))
+                let dirPath = Path.GetDirectoryName(saveFilePath)
+                Directory.CreateDirectory(dirPath) |> ignore
+                File.WriteAllText(saveFilePath, redirectHtml)
+            else
+                // Directory-level redirect - create index.html in directory
+                let saveDir = Path.Join(outputDir, sourceUrl.TrimStart('/'))
+                Directory.CreateDirectory(saveDir) |> ignore
+                let saveFileName = Path.Join(saveDir, "index.html")
+                File.WriteAllText(saveFileName, redirectHtml))
+
+    // Build unified feed HTML page with all content types
+    let buildUnifiedFeedPage (allUnifiedItems: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
+        // Flatten all feed items and sort chronologically
+        let flattenedItems = 
+            allUnifiedItems
+            |> List.collect snd
+            |> List.sortByDescending (fun item -> DateTime.Parse(item.Date))
+            |> List.take (min 30 (allUnifiedItems |> List.collect snd |> List.length)) // Limit to 30 items
+            |> List.toArray
+        
+        // Generate the unified feed page
+        let unifiedFeedHtml = generate (enhancedSubscriptionHubView flattenedItems) "defaultindex" "Feeds & Content Discovery - Luis Quintanilla"
+        let feedIndexDir = Path.Join(outputDir, "feed")
+        Directory.CreateDirectory(feedIndexDir) |> ignore
+        File.WriteAllText(Path.Join(feedIndexDir, "index.html"), unifiedFeedHtml)
+        
+        printfn "✅ Unified feed page created at /feed/index.html with %d items" flattenedItems.Length
+
+    // AST-based bookmark processing using GenericBuilder infrastructure
+    let buildBookmarks() = 
+        let bookmarkFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "bookmarks"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        let processor = GenericBuilder.BookmarkProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor bookmarkFiles
+        
+        // Generate individual bookmark pages at /bookmarks/[slug]/
+        feedData
+        |> List.iter (fun item ->
+            let bookmark = item.Content
+            let saveDir = Path.Join(outputDir, "bookmarks", bookmark.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            
+            let html = bookmarkPostView bookmark
+            let bookmarkView = generate html "defaultindex" bookmark.Metadata.Title
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, bookmarkView))
+        
+        // Generate bookmarks index page at /bookmarks/
+        let bookmarks = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        let sortedBookmarks = bookmarks |> Array.sortByDescending(fun (x: Bookmark) -> DateTime.Parse(x.Metadata.DatePublished))
+        
+        // Create HTML index page for bookmarks
+        let bookmarksIndexHtml = generate (bookmarkView sortedBookmarks) "defaultindex" "Bookmarks - Luis Quintanilla"
+        let bookmarksIndexSaveDir = Path.Join(outputDir, "bookmarks")
+        Directory.CreateDirectory(bookmarksIndexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(bookmarksIndexSaveDir, "index.html"), bookmarksIndexHtml)
+        
+        // Return feed data for unified RSS generation
+        feedData

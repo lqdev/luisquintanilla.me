@@ -13,13 +13,13 @@ Using Minecraft and Mods, virtual representations of the real world can be built
 
 Minecraft is so hard to describe. Is it a game or is it an educational tool? At first I didn’t get it. I watched younger siblings play this game endlessly always finding ways to improve their worlds. Eventually it was bought by Microsoft and since then it has left the core experience relatively untouched. Instead of shelving it away, Microsoft has expanded across more platforms and loaded it with tons of new features such as an education edition and cross-platform play. In Minecraft I have seen individuals build houses, cities, and even rudimentary models of circuits using Redstone. Furthermore, because the project is programmable, individuals can build modifications also known as Mods to extend the default capabilities.
 
-![](/images/build-your-house-minecraft/buildyourhouseminecraft1.png)
+![](/assets/images/build-your-house-minecraft/buildyourhouseminecraft1.png)
 
 # Dynamic Mapping 
 
 A virtual world is great, but what about the real world? Can we model the real world? A few months ago I came across a project by the New York Public Library which generated topographically accurate Minecraft maps using historical map scans and Python scripts. Although the accuracy of historical maps may be questionable, we can only hope that mapping practices have advanced significantly since then and can provide more details and data. Regardless, this project demonstrates that it is possible to model the real world in a virtual environment given the appropriate data. 
 
-![](/images/build-your-house-minecraft/buildyourhouseminecraft2.png)
+![](/assets/images/build-your-house-minecraft/buildyourhouseminecraft2.png)
 
 # Project Malmo
 
@@ -27,7 +27,7 @@ Aside from having the obvious benefit of having a relatively accurate virtual mo
 
 While the benefits of Project Malmo aside from the pedagogical exercise may not be clearly evident, this project is extremely valuable. The cost not only in terms of price but also time to build physical autonomous bots can be high. If for some reason they were to break or malfunction during field tests it can be costly. Therefore a more effective solution might be to simulate the navigation and mobility of these physical autonomous agents in a real world scenario using virtual environments. 
 
-[![Project Malmo](/images/build-your-house-minecraft/buildyourhouseminecraft3.png)](http://www.youtube.com/watch?v=KkVj_ddseO8)
+[![Project Malmo](/assets/images/build-your-house-minecraft/buildyourhouseminecraft3.png)](http://www.youtube.com/watch?v=KkVj_ddseO8)
 
 # Manual Labor
 
@@ -35,7 +35,7 @@ Once trained, we just need to find or build the physical agents that will carry 
 
 The thought of a bot building a house is not too abstract. On March of 2017 several reports suggested that a home in Russia was built in under 24 hours using 3-D printing technologies. While the house had a predefined layout and the robotic arm that built it was limited in its mobility, such capabilities could be expanded with the aid of a trained model being executed by sophisticated physical autonomous agents such as those built by Boston Dynamics.
 
-![](/images/build-your-house-minecraft/buildyourhouseminecraft4.png)
+![](/assets/images/build-your-house-minecraft/buildyourhouseminecraft4.png)
 
 ###### Sources
 

@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - Responses</title>
+    <link>https://www.luisquintanilla.me/responses</link>
+    <description>IndieWeb responses by Luis Quintanilla</description>
+    <lastBuildDate>2025-06-30 20:21</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Tumblr’s move to WordPress and fediverse integration is ‘on hold’</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;That's unfortunate. Having Tumblr as your frontend for posting and curating feeds, with WordPress as the backend and integrated with decentralized networks like the Fediverse for distribution would've been amazing. It sounds like Tumblr is still strategic to Automattic and as more people move away from the centralized social platforms and towards their own corners of the internet, having these differente building blocks in place will be even more important.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/tumblr-wordpress-fediverse-integration-pause</link>
+      <guid>https://www.luisquintanilla.me/responses/tumblr-wordpress-fediverse-integration-pause</guid>
+      <pubDate>2025-06-30 20:21</pubDate>
+      <category>tumblr</category>
+      <category>wordpress</category>
+      <category>fediverse</category>
+      <category>automattic</category>
+    </item>
+    <item>
+      <title>Do not privatize federal land</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I’ve long advocated selling off some federal land...Most of this “public land” is never used by the public. Selling some of it would actually make it more accessible and useful to real people.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;How about no. If privatization means, John and Jane Doe can purchase some land for their homestead is one thing. We've tried that before by the way - &lt;a href="https://en.wikipedia.org/wiki/Homestead_Acts"&gt;Homestead Act&lt;/a&gt;. In reality, it means some private equity firm or hedge fund buying the land, building expensive and shoddy cookit-cutter condos, and &lt;a href="https://www.nar.realtor/magazine/real-estate-news/commercial/build-to-rent-homes"&gt;selling you a subscription for a roof over your head&lt;/a&gt;. I say condos because it's hot and there's not a lot of water in Vegas, so keeping those brand new AI data centers cool might be a problem.&lt;/p&gt;
+&lt;p&gt;Also, if you haven't seen that area that Alex highlights in his post, it seems like a deserted landscape. And yes, the terrain can be rough, but actually, it's a beautiful landscape that is best left undisturbed.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/do-not-privatize-federal-land</link>
+      <guid>https://www.luisquintanilla.me/responses/do-not-privatize-federal-land</guid>
+      <pubDate>2025-06-29 17:26</pubDate>
+      <category>bureaulandmanagement</category>
+      <category>uspol</category>
+      <category>land</category>
+    </item>
+    <item>
+      <title>Self-Adapting Language Models (SEAL)</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Large language models (LLMs) are powerful but static; they lack mechanisms to adapt their weights in response to new tasks, knowledge, or examples. &lt;strong&gt;We introduce Self-Adapting LLMs (SEAL) 🦭, a framework that enables LLMs to self-adapt by generating their own finetuning data and update directives.&lt;/strong&gt; Given a new input, the model produces a self-edit — a generation that may restructure the information in different ways, specify optimization hyperparameters, or invoke tools for data augmentation and gradient-based updates. Through supervised finetuning (SFT), these self-edits result in persistent weight updates, enabling lasting adaptation. To train the model to produce effective self-edits, we use a reinforcement learning loop, using the downstream performance of the updated model as the reward signal. Unlike prior approaches that rely on separate adaptation modules or auxiliary networks, SEAL directly uses the model's generation to parameterize and control its own adaptation process. Experiments on knowledge incorporation and few-shot generalization show that SEAL is a promising step toward language models capable of self-directed adaptation in response to new data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We demonstrate SEAL in two domains: (1) &lt;strong&gt;Knowledge Incorporation&lt;/strong&gt;, where the model integrates new factual information by generating logical implications as synthetic data, and (2) &lt;strong&gt;Few-Shot Learning&lt;/strong&gt;, where the model autonomously selects data augmentations and training hyperparameters to adapt to new abstract reasoning tasks.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/Continual-Intelligence"&gt;Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://arxiv.org/abs/2506.10943"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/self-adapting-language-models-seal</link>
+      <guid>https://www.luisquintanilla.me/responses/self-adapting-language-models-seal</guid>
+      <pubDate>2025-06-16 20:33</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>llm</category>
+      <category>mit</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>How we built our multi-agent research system - Anthropic</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Great article.&lt;/p&gt;
+&lt;p&gt;TLDR: These are largely engineering problems.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The journey of this multi-agent system from prototype to production taught us critical lessons about system architecture, tool design, and prompt engineering. A multi-agent system consists of multiple agents (&lt;strong&gt;LLMs autonomously using tools in a loop&lt;/strong&gt;) working together. Our Research feature involves an agent that plans a research process based on user queries, and then uses tools to create parallel agents that search for information simultaneously. Systems with multiple agents introduce new challenges in agent coordination, evaluation, and reliability.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Benefits of a multi-agent system&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The essence of search is compression: distilling insights from a vast corpus. &lt;strong&gt;Subagents facilitate compression by operating in parallel&lt;/strong&gt; with their own context windows, exploring different aspects of the question simultaneously before condensing the most important tokens for the lead research agent. Each subagent also provides &lt;strong&gt;separation of concerns&lt;/strong&gt;—distinct tools, prompts, and exploration trajectories—which reduces path dependency and enables thorough, independent investigations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Once intelligence reaches a threshold, multi-agent systems become a vital way to scale performance. For instance, although individual humans have become more intelligent in the last 100,000 years, human societies have become exponentially more capable in the information age because of our collective intelligence and ability to coordinate. Even generally-intelligent agents face limits when operating as individuals; &lt;strong&gt;groups of agents can accomplish far more&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our internal evaluations show that multi-agent research systems excel especially for breadth-first queries that involve pursuing multiple independent directions simultaneously.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Multi-agent systems work mainly because they help spend enough tokens to solve the problem...Multi-agent architectures effectively scale token usage for tasks that exceed the limits of single agents.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We’ve found that multi-agent systems excel at valuable tasks that involve heavy parallelization, information that exceeds single context windows, and interfacing with numerous complex tools.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Architecture overview&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our Research system uses a multi-agent architecture with an orchestrator-worker pattern, where a lead agent coordinates the process while delegating to specialized subagents that operate in parallel.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Traditional approaches using Retrieval Augmented Generation (RAG) use static retrieval. That is, they fetch some set of chunks that are most similar to an input query and use these chunks to generate a response. In contrast, our architecture uses a &lt;strong&gt;multi-step search that dynamically finds relevant information, adapts to new findings, and analyzes results to formulate high-quality answers&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Prompt engineering and evaluations for research agents&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Think like your agents.&lt;/strong&gt; To iterate on prompts, you must understand their effects. To help us do this, we built simulations using our Console with the exact prompts and tools from our system, then watched agents work step-by-step.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Teach the orchestrator how to delegate.&lt;/strong&gt; In our system, the lead agent decomposes queries into subtasks and describes them to subagents. Each subagent needs an &lt;strong&gt;objective&lt;/strong&gt;, an &lt;strong&gt;output format&lt;/strong&gt;, &lt;strong&gt;guidance on the tools and sources to use&lt;/strong&gt;, and &lt;strong&gt;clear task boundaries&lt;/strong&gt;. Without detailed task descriptions, agents duplicate work, leave gaps, or fail to find necessary information.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Scale effort to query complexity.&lt;/strong&gt; Agents struggle to judge appropriate effort for different tasks, so we embedded scaling rules in the prompts...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Tool design and selection are critical.&lt;/strong&gt; Agent-tool interfaces are as critical as human-computer interfaces. Using the right tool is efficient—often, it’s strictly necessary...Bad tool descriptions can send agents down completely wrong paths, so each tool needs a distinct purpose and a clear description.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Let agents improve themselves.&lt;/strong&gt;...When given a prompt and a failure mode, they are able to diagnose why the agent is failing and suggest improvements.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Start wide, then narrow down.&lt;/strong&gt; Search strategy should mirror expert human research: explore the landscape before drilling into specifics.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Guide the thinking process.&lt;/strong&gt;...Our testing showed that extended thinking improved instruction-following, reasoning, and efficiency. Subagents also plan, then use interleaved thinking after tool results to evaluate quality, identify gaps, and refine their next query. This makes subagents more effective in adapting to any task.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Parallel tool calling transforms speed and performance.&lt;/strong&gt;...For speed, we introduced two kinds of parallelization: (1) the lead agent spins up 3-5 subagents in parallel rather than serially; (2) the subagents use 3+ tools in parallel.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our prompting strategy focuses on instilling &lt;strong&gt;good heuristics rather than rigid rules&lt;/strong&gt;. We studied how skilled humans approach research tasks and encoded these strategies in our prompts—strategies like &lt;strong&gt;decomposing difficult questions into smaller tasks&lt;/strong&gt;, &lt;strong&gt;carefully evaluating the quality of sources&lt;/strong&gt;, &lt;strong&gt;adjusting search approaches based on new information&lt;/strong&gt;, and &lt;strong&gt;recognizing when to focus on depth (investigating one topic in detail) vs. breadth (exploring many topics in parallel)&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Effective evaluation of agents&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...evaluating multi-agent systems presents unique challenges...Because we don’t always know what the right steps are, we usually can't just check if agents followed the “correct” steps we prescribed in advance. Instead, we need flexible evaluation methods that judge whether agents achieved the right outcomes while also following a reasonable process.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Start evaluating immediately with small samples.&lt;/strong&gt;...it’s best to start with small-scale testing right away with a few examples, rather than delaying until you can build more thorough evals.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;LLM-as-judge evaluation scales when done well.&lt;/strong&gt;...We used an LLM judge that evaluated each output against criteria in a rubric: &lt;strong&gt;factual accuracy&lt;/strong&gt; (do claims match sources?), &lt;strong&gt;citation accuracy&lt;/strong&gt; (do the cited sources match the claims?), &lt;strong&gt;completeness&lt;/strong&gt; (are all requested aspects covered?), &lt;strong&gt;source quality&lt;/strong&gt; (did it use primary sources over lower-quality secondary sources?), and &lt;strong&gt;tool efficiency&lt;/strong&gt; (did it use the right tools a reasonable number of times?)...[we] found that a single LLM call with a single prompt outputting scores from 0.0-1.0 and a pass-fail grade was the most consistent and aligned with human judgements.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Human evaluation catches what automation misses.&lt;/strong&gt;...Adding source quality heuristics to our prompts helped resolve this issue. Even in a world of automated evaluations, manual testing remains essential.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;the best prompts for these agents are not just strict instructions, but &lt;strong&gt;frameworks for collaboration&lt;/strong&gt; that define the &lt;strong&gt;division of labor&lt;/strong&gt;, &lt;strong&gt;problem-solving approaches&lt;/strong&gt;, and &lt;strong&gt;effort budgets&lt;/strong&gt;. Getting this right relies on &lt;strong&gt;careful prompting and tool design&lt;/strong&gt;, &lt;strong&gt;solid heuristics&lt;/strong&gt;, &lt;strong&gt;observability&lt;/strong&gt;, and &lt;strong&gt;tight feedback loops&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Production reliability and engineering challenges&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Agents are stateful and errors compound.&lt;/strong&gt;...Agents can run for long periods of time, maintaining state across many tool calls. This means we need to &lt;strong&gt;durably execute code and handle errors along the way&lt;/strong&gt;. Without effective mitigations, minor system failures can be catastrophic for agents. When errors occur, we can't just restart from the beginning...We combine the adaptability of AI agents built on Claude with deterministic safeguards like retry logic and regular checkpoints.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Debugging benefits from new approaches&lt;/strong&gt;...Adding full production tracing let us diagnose why agents failed and fix issues systematically. Beyond standard observability, we monitor agent decision patterns and interaction structures—all without monitoring the contents of individual conversations, to maintain user privacy.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Deployment needs careful coordination&lt;/strong&gt;...we use rainbow deployments to avoid disrupting running agents, by gradually shifting traffic from old to new versions while keeping both running simultaneously.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Synchronous execution creates bottlenecks.&lt;/strong&gt; Currently, our lead agents execute subagents synchronously, waiting for each set of subagents to complete before proceeding. This simplifies coordination, but creates bottlenecks in the information flow between agents. Asynchronous execution would enable additional parallelism: agents working concurrently and creating new subagents when needed. But this asynchronicity adds challenges in result coordination, state consistency, and error propagation across the subagents. As models can handle longer and more complex research tasks, we expect the performance gains will justify the complexity.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;For all the reasons described in this post, the gap between prototype and production is often wider than anticipated.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Multi-agent research systems can operate reliably at scale with &lt;strong&gt;careful engineering&lt;/strong&gt;, &lt;strong&gt;comprehensive testing&lt;/strong&gt;, &lt;strong&gt;detail-oriented prompt and tool design&lt;/strong&gt;, &lt;strong&gt;robust operational practices&lt;/strong&gt;, and &lt;strong&gt;tight collaboration between research, product, and engineering teams&lt;/strong&gt; who have a strong understanding of current agent capabilities.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/anthropic-how-we-built-multi-agent-system</link>
+      <guid>https://www.luisquintanilla.me/responses/anthropic-how-we-built-multi-agent-system</guid>
+      <pubDate>2025-06-16 17:39</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>anthropic</category>
+      <category>engineering</category>
+    </item>
+    <item>
+      <title>MLS over ActivityPub Draft</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;a href="https://messaginglayersecurity.rocks/"&gt;Messaging Layer Security (MLS)&lt;/a&gt; is an IETF standard for end-to-end encrypted (E2EE) messaging. It lets people on laptops and phones communicate with each other in a secure way that no one in between can see.&lt;br /&gt;
+&lt;br&gt;
+MLS is designed to use pluggable lower-level protocols. This specification defines an envelope format for distributing MLS messages through the network, and an Activity Streams 2.0 profile for the packets of application data stored inside the messages.&lt;br /&gt;
+&lt;br&gt;
+This specification is ready for review from both ActivityPub developers and security analysts. It’s time to start making proof-of-concept implementations and testing interoperability.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Source: https://socialwebfoundation.org/2025/06/13/mls-over-activitypub-draft/&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/mls-over-activitypub-draft</link>
+      <guid>https://www.luisquintanilla.me/responses/mls-over-activitypub-draft</guid>
+      <pubDate>2025-06-14 10:47</pubDate>
+      <category>protocol</category>
+      <category>socialweb</category>
+      <category>activitypub</category>
+      <category>w3c</category>
+    </item>
+    <item>
+      <title>Faircamp - A static site generator for audio producers</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;This is such a cool project. Looks like it's super simple to get started with and it's packed with a ton of features so creators get to stay in their flow.&lt;/p&gt;
+&lt;p&gt;I also like how creators are showcased.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/faircamp-static-site-audio-producers</link>
+      <guid>https://www.luisquintanilla.me/responses/faircamp-static-site-audio-producers</guid>
+      <pubDate>2025-06-05 20:05</pubDate>
+      <category>faircamp</category>
+      <category>music</category>
+      <category>socialweb</category>
+      <category>indieweb</category>
+      <category>staticsite</category>
+      <category>technology</category>
+      <category>tools</category>
+      <category>openweb</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>State-Of-The-Art Prompting For AI Agents</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=DL82mGde6wo" title="YouTube Thumbnail for State-of-the-art prompting for ai agents"&gt;&lt;img src="http://img.youtube.com/vi/DL82mGde6wo/0.jpg" class="img-fluid" alt="YouTube Thumbnail for State-of-the-art prompting for ai agents" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/state-of-the-art-prompting-ai-agents-y-combinator</link>
+      <guid>https://www.luisquintanilla.me/responses/state-of-the-art-prompting-ai-agents-y-combinator</guid>
+      <pubDate>2025-06-03 20:23</pubDate>
+      <category>ai</category>
+      <category>agents</category>
+      <category>prompting</category>
+    </item>
+    <item>
+      <title>Introducing ElevenLabs Conversational AI 2.0</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Conversational AI 2.0 launches with advanced features and enterprise readiness.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Natural turn-taking to understand the flow of conversation.&lt;/li&gt;
+&lt;li&gt;Multilingual communication with integrated language detection&lt;/li&gt;
+&lt;li&gt;Integrated RAG: knowledgeable agents, minimum latency, maximum privacy&lt;/li&gt;
+&lt;li&gt;Multimodality&lt;/li&gt;
+&lt;li&gt;Batch calls&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/elevenlabs-conversational-ai-2-0</link>
+      <guid>https://www.luisquintanilla.me/responses/elevenlabs-conversational-ai-2-0</guid>
+      <pubDate>2025-06-03 20:19</pubDate>
+      <category>ai</category>
+      <category>speech</category>
+      <category>elevenlabs</category>
+    </item>
+    <item>
+      <title>The Darwin Gödel Machine - AI that improves itself by rewriting its own code</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A longstanding goal of AI research has been the creation of AI that can learn indefinitely. One tantalizing path toward that goal is an AI that improves itself by rewriting its own code, including any code responsible for learning. That idea, known as a Gödel Machine, proposed by Jürgen Schmidhuber decades ago, is a hypothetical self-improving AI. It optimally solves problems by recursively rewriting its own code when it can mathematically prove a better strategy, making it a key concept in meta-learning or “learning to learn.”&lt;br /&gt;
+&lt;br&gt;
+While the theoretical Gödel Machine promised provably beneficial self-modifications, its realization relied on an impractical assumption: that the AI could mathematically prove that a proposed change in its own code would yield a net improvement before adopting it. We, in collaboration with Jeff Clune’s lab at UBC, propose something more feasible: a system that harnesses the principles of open-ended algorithms like Darwinian evolution to search for improvements that empirically improve performance.&lt;/p&gt;
+&lt;p&gt;We call the result the Darwin Gödel Machine (full technical report). DGMs leverage foundation models to propose code improvements, and use recent innovations in open-ended algorithms to search for a growing library of diverse, high-quality AI agents. Our experiments show that DGMs improve themselves the more compute they are provided. In line with the clear trend that AI systems that rely on learning ultimately outperform those designed by hand, there is a potential that DGMs could soon outperform hand-designed AI systems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://arxiv.org/abs/2505.22954"&gt;Technical Report&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/sakana-ai-gwm</link>
+      <guid>https://www.luisquintanilla.me/responses/sakana-ai-gwm</guid>
+      <pubDate>2025-06-03 20:16</pubDate>
+      <category>ai</category>
+      <category>agent</category>
+      <category>sakana</category>
+    </item>
+    <item>
+      <title>The stage has been set for the growth of small social media</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Last month during Meta's antitrust trial, Mark Zuckerberg admitted that his company's focus has changed radically from where it began...[his] testimony implies that Facebook (Meta) may no longer be as much of an option if we actually want to talk to each other on line. But, neither are many of the other large social media sites.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...if companies allowed us to discover great new small blogs and small social media sites, many of us would decide to spend more time there. Then, companies would be less able to advertise to us on their own sites.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...we have been told by the mainstream media for well over a decade that small social media is dead. They say the same about small blogs, yet small blogs are actually more plentiful than ever, with over &lt;a href="https://firstsiteguide.com/blogging-stat"&gt;600 million blogs&lt;/a&gt; on the Internet and about 7 million new blog articles published each day.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;If you decide to create your own forum, do yourself a favor. The way to protect yourself and your users is by &lt;strong&gt;running your social media site at a domain that you own and on a server that you control&lt;/strong&gt;, and don't agree to hand over any of your rights to anyone for any reason.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I believe large corporate-run social media sites are vulnerable in a way they have not been for twenty years. Their users have reached a state of extreme dissatisfaction with their &amp;quot;enshittified&amp;quot; platforms, and they are looking for something, anything, better.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;But each of you who are reading these words can help end this situation by creating your own small social media site.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;All you need to start your own small site is a domain name, a server that you can buy, rent, or set up on an old computer, perhaps social media software (see above), patience, a willingness to work, and ideas for ways of notifying potential users of the existence of your site.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Run your new site as you and your users see fit, and make it far superior to Facebook, Twitter (X), Reddit, or any of the other major sites whose owners think you have no other options.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/stage-set-growth-small-social-media-cheapskate</link>
+      <guid>https://www.luisquintanilla.me/responses/stage-set-growth-small-social-media-cheapskate</guid>
+      <pubDate>2025-05-26 18:14</pubDate>
+      <category>social</category>
+      <category>openweb</category>
+      <category>personalweb</category>
+    </item>
+    <item>
+      <title>RSS is (not) dead (yet)</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Illustrating the history of RSS. Created in collaboration with &lt;a href="https://audmcname.com/alliaservice.com"&gt;A. Service&lt;/a&gt;, and debuted at VanCAF 2023&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src="https://audmcname.com/wp-content/uploads/rss/rss0.jpg" class="img-fluid" alt="Cover of Rss is not dead yet comic" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/rss-not-dead-yet-mcnamee</link>
+      <guid>https://www.luisquintanilla.me/responses/rss-not-dead-yet-mcnamee</guid>
+      <pubDate>2025-05-26 18:11</pubDate>
+      <category>rss</category>
+      <category>comic</category>
+      <category>art</category>
+    </item>
+    <item>
+      <title>Agent Network Protocol - The HTTP of the Agentic Web Era</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;&lt;a href="https://agent-network-protocol.com/blogs/posts/mcp-anp-comparison.html"&gt;Comparison of MCP and ANP: What Kind of Communication Protocol Do Agents Need?&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;MCP and ANP differ significantly in protocol architecture, identity authentication, and information organization.&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MCP is a typical Client-Server (CS) architecture, while &lt;strong&gt;ANP is a typical Peer-to-Peer (P2P) architecture&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;MCP's identity authentication is based on the OAuth standard, facilitating client access to current internet resources. &lt;strong&gt;ANP's identity authentication is based on the W3C DID standard&lt;/strong&gt;, focusing on cross-platform interoperability among agents, enabling seamless connectivity.&lt;/li&gt;
+&lt;li&gt;MCP organizes information using JSON-RPC technology, essentially API calls. &lt;strong&gt;ANP uses semantic web Linked-Data technology&lt;/strong&gt; to build a data network that is easily accessible and understandable by AI.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;ANP is agent-centric, where each agent has equal status, forming a decentralized agent collaboration network.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/agent-network-protocol</link>
+      <guid>https://www.luisquintanilla.me/responses/agent-network-protocol</guid>
+      <pubDate>2025-05-17 10:56</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>protocol</category>
+    </item>
+    <item>
+      <title>Chicago Dust Storm</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Never change Chicago.&lt;/p&gt;
+&lt;p&gt;What felt like the first week of good weather since forever ends with a dust storm.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/chicago-dust-storm</link>
+      <guid>https://www.luisquintanilla.me/responses/chicago-dust-storm</guid>
+      <pubDate>2025-05-16 19:49</pubDate>
+      <category>chicago</category>
+      <category>weather</category>
+      <category>duststorm</category>
+    </item>
+    <item>
+      <title>Claude Artifacts</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;💯💯💯. Artifacts are great. In ChatGPT when I find myself trying to format outputs as markdown, the UI gets confused and some of the content is rendered in markdown while the rest gets rendered as part of the UI which makes it unusable and hard to copy. The best way I've found to get around it is to ask it to format in org-mode or asciidoc. Claude Artifacts make this a non-issue. I also love that in addition to copying and downloading the artifact, you can also publish it as a URL.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/claude-artifacts-reece</link>
+      <guid>https://www.luisquintanilla.me/responses/claude-artifacts-reece</guid>
+      <pubDate>2025-05-11 08:42</pubDate>
+      <category>claude</category>
+      <category>chatgpt</category>
+      <category>plaintext</category>
+      <category>ai</category>
+      <category>org</category>
+      <category>emacs</category>
+      <category>asciidoc</category>
+      <category>markdown</category>
+    </item>
+    <item>
+      <title>Announcing Distributed.Press Social Inbox 1.0</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;I hadn't heard of &lt;a href="https://distributed.press/"&gt;Distributed Press&lt;/a&gt; and this is an older post (from 2023), but the idea is interesting.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Hypha and Sutty are thrilled to announce the release of the Social Inbox, a new feature of Distributed.Press that integrates a website’s comment section with federated social media platforms like Mastodon. With the Social Inbox enabled, websites obtain their own account on the Fediverse, allowing it to automatically send out new posts to followers at the time of publication. When other users reply to posts, you can approve them to be published to the site as comments. The Social Inbox allows readers to directly engage with your posts where they already are, and gives publishers the ability to incorporate public dialogue into their websites.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/announcing-distributed-press-social-inbox</link>
+      <guid>https://www.luisquintanilla.me/responses/announcing-distributed-press-social-inbox</guid>
+      <pubDate>2025-05-10 20:47</pubDate>
+      <category>decentralization</category>
+      <category>indieweb</category>
+      <category>social</category>
+      <category>fediverse</category>
+      <category>dweb</category>
+    </item>
+    <item>
+      <title>Discourse and the Fediverse</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Two years ago, we started working on a plugin that brings Discourse and the Fediverse closer together. Discourse communities are online spaces that facilitate open collaboration and communication. The Fediverse offers ways to expand the reach of Discourse communities and help them build bridges with people active in other spaces, all while keeping the conversation civil, meaningful and focused. This post will describe how the ActivityPub plugin works and how you can enable your Discourse community to connect with other communities or Fediverse users.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/discourse-fediverse</link>
+      <guid>https://www.luisquintanilla.me/responses/discourse-fediverse</guid>
+      <pubDate>2025-05-09 22:20</pubDate>
+      <category>discourse</category>
+      <category>fediverse</category>
+      <category>social</category>
+      <category>openweb</category>
+      <category>opensource</category>
+      <category>forum</category>
+    </item>
+    <item>
+      <title>In Praise of Links</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Hyperlinks deserve more recognition in light of all the ways their value has been sidelined and denied.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;To that end, I present a link compilation in praise of links. It includes things I agree with entirely and things I don't, spanning from the 2020s to the early 2000s, to supply a tapestry of perspectives, context, and examples on the value and importance of links. Links may have their downsides, challenges, and vulnerabilities, but my hope is that this compilation will (re)invigorate your appreciation for linking as a technology and a social practice, all the better to understand what's at stake when links are discarded and devalued.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/in-praise-of-links-osteophage</link>
+      <guid>https://www.luisquintanilla.me/responses/in-praise-of-links-osteophage</guid>
+      <pubDate>2025-05-09 21:05</pubDate>
+      <category>openweb</category>
+      <category>internet</category>
+      <category>indieweb</category>
+      <category>decentralization</category>
+      <category>web</category>
+    </item>
+    <item>
+      <title>The Evolution of Blogging</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...around 1997, when Jorn Barger launched his website, titling it “The Robot Wisdom Weblog.” Barger’s plan was to curate his favorite links from around the web, and add bits of commentary to each one. In other words, he meant to keep a log of his web experience. Hence weblog.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In their earliest days, webloggers stood as gatekeepers to the web’s ever-growing well of content. Each day, these URL pioneers would post a few new links and sprinkle in their own commentary. Blogs acted as a signpost for web users, and following a few key blogs was enough to keep track of just about everything new on the web. Many began to look at the blogging community as a brand new type of media, one that often stood far closer to an impartial truth than traditional mediums would allow for.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;1999, Peter Merholz threw up his own weblog, and in the sidebar added the tagline: &amp;quot;I’ve decided to pronounce the word “weblog” as wee’- blog. Or “blog” for short.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In the beginning, most bloggers hand coded their sites, adding a new HTML page to their server each time they had a new entry, or just updating the homepage to include the newest links. But soon enough, tools showed up to help bloggers with the process.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...on the fringes, a new type of blog was emerging. The personal blog. These sites ditched the curated links and focused exclusively on commentary. Bloggers used their site to chronicle their personal journey, from the almost boring and banal to the weird and wonderful. This new type of blog was less an alternative media source and more akin to an online journal or diary. And these writers saw themselves not as gatekeepers to the web, but as sharers of their own identity.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;New tools soon caught up with this shifting perspective. The first of the bunch to do so was LiveJournal...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Blogger came next. And it would prove to be the most popular of the early blogging tools. The platform first launched in August of 1999, but picked up steam the following year when it introduced the concept of a permalink.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;These platforms made blogging open, in every sense of the word. Visitors were greeted with a single, open textarea on a free platform that was open to all to participate.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Blogger became the platform choice for a lot of writers out there. It certainly was for Mena Trott&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Trott had the feeling that platforms like Blogger did not go nearly far enough.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Trott wanted her own site to stand out from the crowd. To be quintessentially hers. Blogger wouldn’t let her do that. So together with her husband, a Perl programmer, she built Movable Type...And with that move, Trott ushered in a third generation of blogging.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Movable Type allowed users to set up their blog on their own server, and have complete control over its look and feel.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Blog (the noun and verb) became a word familiar not just to web geeks, but to everyone. Lots of imitators and innovators followed in the wake of Moveable Type. Open source platforms like WordPress rose to meet the rising demand. But for a long time, Moveable Type was the standard. It fed its community with a constant stream of new features that promoted openness and freedom.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Blogging, as a community and a practice, continues to be refined to this day thanks to the dedication of web users everywhere. But its sharpest point was made the day Mena Trott decided that &lt;strong&gt;a blog could be more than just some text on a page. It could be one of a kind.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/evolution-of-blogging-history-web</link>
+      <guid>https://www.luisquintanilla.me/responses/evolution-of-blogging-history-web</guid>
+      <pubDate>2025-05-09 20:54</pubDate>
+      <category>blogging</category>
+      <category>history</category>
+      <category>web</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>socialweb.network</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Your gateway to decentralized social networking protocols, resources, and community&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/socialweb-network</link>
+      <guid>https://www.luisquintanilla.me/responses/socialweb-network</guid>
+      <pubDate>2025-05-09 20:49</pubDate>
+      <category>fediverse</category>
+      <category>social</category>
+      <category>openweb</category>
+      <category>decentralized</category>
+      <category>community</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>Fediverse House 2025 Roundup</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;No Walls, Just Vibes at SXSW’s Fediverse House&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Fediverse House was SXSW’s first physical gathering dedicated entirely to the constellation of interoperable social platforms powered by protocols like ActivityPub and AT Protocol. (We know “Fediverse” isn’t quite accurate to describe the whole ecosystem; in this case, it was just a convenient, fun way to name the space.)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;It didn’t matter which platform you preferred or which protocol you were building on; everyone was focused on the singular goal of building a better internet.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...the real power move for creators is ownership and control of their work and livelihoods.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...identity portability is a radical shift, and...decentralization could lead to more humane social spaces.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dot-social.simplecast.com/"&gt;DotSocial Podcast&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://flipboard.video/c/fediverse.house/videos"&gt;Fediverse House PeerTube Channel&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/fediverse-house-2025-roundup</link>
+      <guid>https://www.luisquintanilla.me/responses/fediverse-house-2025-roundup</guid>
+      <pubDate>2025-05-09 20:36</pubDate>
+      <category>fediverse</category>
+      <category>conference</category>
+      <category>indieweb</category>
+      <category>openweb</category>
+    </item>
+  </channel>
+</rss>

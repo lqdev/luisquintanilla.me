@@ -11,9 +11,9 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 ## Notes
 
-- [Antennapod Echo 2024](/feed/antennapod-echo-2024)
-- [Surrender to the quantum conscience](/feed/surrender-quantum-conscience)
+- [Antennapod Echo 2024](/notes/antennapod-echo-2024)
+- [Surrender to the quantum conscience](/notes/surrender-quantum-conscience)
     
 ## Responses
 
-- [Sora is here](/feed/sora-released)
+- [Sora is here](/responses/sora-released)

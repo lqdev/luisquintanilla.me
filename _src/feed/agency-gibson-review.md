@@ -7,4 +7,4 @@ tags: ["book","review","agency","scifi","future","nanotech","ai","gibson"]
 
 Just finished reading Agency by William Gibson. I was not a big fan. I posted my review with more details. 
 
-[Agency Review](/library/agency-gibson)
+[Agency Review](/reviews/agency-gibson)

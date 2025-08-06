@@ -9,7 +9,7 @@ tags: ["podcast","floss","twit","opensource"]
 
 > After 17 years and 761 episodes, FLOSS Weekly ended its run on the TWiT network yesterday.
 
-Nooo! So sad to hear that FLOSS Weekly is ending, especially after learning that [The Privacy, Security, and OSINT Show with Michael Bazzell ended as well](/feed/farewell-privacy-security-osint-podcast). 
+Nooo! So sad to hear that FLOSS Weekly is ending, especially after learning that [The Privacy, Security, and OSINT Show with Michael Bazzell ended as well](/responses/farewell-privacy-security-osint-podcast/). 
 
 At least there's some hope at the end of Doc's post which hints at it living on in some form.
 

@@ -9,7 +9,7 @@ Success!
 
 At the end of last year, I [created an automated script to tally some basic stats about my posts](/posts/website-metrics-github-actions/) on this site. 
 
-Last month, due to user error, it [triggered but failed to run susccessfully](/feed/post-statistics-gh-actions-working-almost/).
+Last month, due to user error, it [triggered but failed to run susccessfully](/notes/post-statistics-gh-actions-working-almost).
 
 This month though, it ran as expected! 
 

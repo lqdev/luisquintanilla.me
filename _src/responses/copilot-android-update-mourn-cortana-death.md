@@ -11,4 +11,4 @@ tags: ["cortana","copilot","ai","microsoft","virtualassistant","assistant","chat
 
 > It's a shame that Cortana never worked out for Microsoft. If things had lined up differently, we may have seen Copilot gain access to smart devices and commands like Gemini has with Google Assistant (though that setup isn't perfect). While Copilot has a place on a computer, I think an assistant on your smartphone needs to be able to do more day-to-day tasks.
 
-So many things were ahead of their time. I just want a [Windows Mobile PC (Windows Phone?) with an LLM-backed Cortana](/feed/windows-12-mobile-concept).
+So many things were ahead of their time. I just want a [Windows Mobile PC (Windows Phone?) with an LLM-backed Cortana](/responses/windows-12-mobile-concept/).

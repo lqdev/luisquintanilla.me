@@ -8,7 +8,7 @@ tags: ["ai","dalle","dumbphone"]
 I'm really liking my new phone wallpaper. Courtesy of DALL-E. 
 
 ^^^
-![pug in the utah desert on mushrooms opening his third eye and being beamed up by aliens](/images/feed/bing-ai-pug-wallpaper.jpg)
+![pug in the utah desert on mushrooms opening his third eye and being beamed up by aliens](/assets/images/feed/bing-ai-pug-wallpaper.jpg)
 ^^^Source:[**Bing Image Creator (DALL-E)**](https://bing.com/create)
 
 In case anyone is interested in the prompt - "pug in the utah desert on mushrooms opening his third eye and being beamed up by aliens"

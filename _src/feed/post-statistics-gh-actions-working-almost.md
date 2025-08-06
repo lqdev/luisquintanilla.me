@@ -5,7 +5,7 @@ published_date: "2024-01-03 00:26"
 tags: ["github","cicd","blogging","automation","githubactions","fsharp","cron"]
 ---
 
-A few days ago, I posted about a script I wrote. The [script computes computes post metrics on my website](/posts/website-metrics-github-actions/). That's what I used to author my [(We)blogging Rewind 2023](/feed/weblogging-rewind-2023-continued/) posts. Because I want the script to run at periodic intervals, I automated the process using GitHub Actions. 
+A few days ago, I posted about a script I wrote. The [script computes computes post metrics on my website](/posts/website-metrics-github-actions/). That's what I used to author my [(We)blogging Rewind 2023](/notes/weblogging-rewind-2023-continued/) posts. Because I want the script to run at periodic intervals, I automated the process using GitHub Actions. 
 
 The script is scheduled to run on the first of every month and I'm happy to report that it works! Kind of.
 

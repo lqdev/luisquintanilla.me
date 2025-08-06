@@ -11,5 +11,5 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 ## Responses
 
-- [Welcome to the Public Domain in 2025](/feed/internet-archive-public-domain-2025)
-- [LangChain State of AI 2024 Report](/feed/langchain-state-of-ai-2024)
+- [Welcome to the Public Domain in 2025](/responses/internet-archive-public-domain-2025)
+- [LangChain State of AI 2024 Report](/responses/langchain-state-of-ai-2024)

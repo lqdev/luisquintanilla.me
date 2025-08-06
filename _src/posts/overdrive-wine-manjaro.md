@@ -8,7 +8,7 @@ tags: [linux, books, audiobooks, manjaro]
 
 ## Introduction
 
-For the last few months, Manjaro has been the operating system I use as my daily driver for personal tasks. I still have my Surface Go tablet which runs Windows 10 that I use for tasks line syncing my Garmin watch and GPS. On one of the [posts in my feed](/feed/ipod-touch-discontinued.html), I briefly mentioned my audio solution for podcasts and audiobooks which mainly consists of a standalone MP3 player ([FiiO M6](https://fiio.com/m6)). 
+For the last few months, Manjaro has been the operating system I use as my daily driver for personal tasks. I still have my Surface Go tablet which runs Windows 10 that I use for tasks line syncing my Garmin watch and GPS. On one of the [posts in my feed](/notes/ipod-touch-discontinued), I briefly mentioned my audio solution for podcasts and audiobooks which mainly consists of a standalone MP3 player ([FiiO M6](https://fiio.com/m6)). 
 
 For podcasts, I manage them through my [NewsBlur RSS feed reader](https://newsblur.com/). When I want to download them for offline listening, I've written a .NET console app ([podnet](https://github.com/lqdev/podnet)) to manage that process for me. Audiobooks are a little trickier. Public domain works I get through [Librivox](https://librivox.org/). The limitation there though is that I'm only public domain works are available. Therefore if I want other audiobooks, I either have to purchase them (which has its own issues because of DRM) or borrow them from my local library. I prefer to borrow my books and audiobooks from the library. Not only am I supporting my local library but I also save money in the process. 
 

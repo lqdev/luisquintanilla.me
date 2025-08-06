@@ -21,6 +21,6 @@ I don't have analytics on my website, so I couldn't tell you who or how many peo
 
 And that's okay.
 
-When someone [links to content they found on my website and tags me](https://malici.ous.computer/@shellsharks/statuses/01JKGDJCE0WZYAWRB816J8JFG2) or [sends me an e-mail letting me know something on my website is broken](/feed/cdn-issue-fixed-redirects-working) is when I know there's at least one person.
+When someone [links to content they found on my website and tags me](https://malici.ous.computer/@shellsharks/statuses/01JKGDJCE0WZYAWRB816J8JFG2) or [sends me an e-mail letting me know something on my website is broken](/notes/cdn-issue-fixed-redirects-working) is when I know there's at least one person.
 
 Many of the content on here serves as a reminder of how I've solved problems for myself. The microposts and responses are observations that capture a moment in time. If the messages reach someone on the other end and either solve their problem or resonate with them, I'm happy that happens, but I see that as a bonus.
