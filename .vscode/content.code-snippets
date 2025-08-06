@@ -15,6 +15,14 @@
             "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE"            
         ]
     },
+    "DateTime with Timezone": {
+        "scope": "markdown",
+        "prefix": "datetime",
+        "description": "Adds current date and time with timezone",
+        "body": [
+            "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00"            
+        ]
+    },
     "YouTube": {
         "scope": "markdown",
         "prefix": "yt",
@@ -31,6 +39,32 @@
             "^^^",
             "![${1:Alt Text}](${2:URL})",
             "^^^ Source: *${3:Source}*"
+        ]
+    },
+    "Blockquote": {
+        "scope": "markdown",
+        "prefix": "quote",
+        "description": "Add blockquote formatting",
+        "body": [
+            "> ${1:Quote text}"
+        ]
+    },
+    "Code Block": {
+        "scope": "markdown",
+        "prefix": "code",
+        "description": "Add fenced code block",
+        "body": [
+            "```${1:language}",
+            "${2:code}",
+            "```"
+        ]
+    },
+    "Link": {
+        "scope": "markdown",
+        "prefix": "link",
+        "description": "Add markdown link",
+        "body": [
+            "[${1:Link Text}](${2:URL})"
         ]
     }    
 }
