@@ -12,7 +12,7 @@ I'm passionate about:
 - Community Building
 
 <a href="/contact"><button type="button" class="btn btn-dark">Get in touch!</button></a>
-<a href="/subscribe"><button type="button" class="btn btn-dark">Subscribe & follow</button></a>
+<a href="/feed"><button type="button" class="btn btn-dark">Subscribe & follow</button></a>
 
 ## What I use
 

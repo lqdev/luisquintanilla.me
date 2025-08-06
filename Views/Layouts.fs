@@ -46,7 +46,7 @@ module Layouts
                         ]
                         Text "Contact"
                     ]
-                    a [_class "nav-link"; _href "/subscribe"] [
+                    a [_class "nav-link"; _href "/feed"] [
                         tag "svg" [_class "nav-icon"; attr "viewBox" "0 0 16 16"; attr "fill" "currentColor"] [
                             tag "path" [attr "d" "M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"] []
                         ]
@@ -177,7 +177,7 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/feed/responses"] [Text "Responses"]
                                 a [_class "dropdown-item"; _href "/posts/1"] [ Text "Blog" ]
                                 div [_class "dropdown-divider"] []
-                                a [_class "dropdown-item"; _href "/subscribe"] [ Text "Subscribe" ]
+                                a [_class "dropdown-item"; _href "/feed"] [ Text "Subscribe" ]
                         ]
                     ]
                     
@@ -261,7 +261,7 @@ module Layouts
 
                  ]
 
-                a [_href "/subscribe"] [
+                a [_href "/feed"] [
                     tag "svg" [
                         _class "bi bi-rss text-secondary" 
                         attr "fill" "currentColor"

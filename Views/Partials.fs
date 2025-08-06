@@ -64,6 +64,7 @@ let liveStreamsView = CollectionViews.liveStreamsView
 let albumsPageView = CollectionViews.albumsPageView
 let albumPageView = CollectionViews.albumPageView
 let unifiedFeedView = CollectionViews.unifiedFeedView
+let enhancedSubscriptionHubView = CollectionViews.enhancedSubscriptionHubView
 
 // Layout (from LayoutViews)
 let homeView = LayoutViews.homeView

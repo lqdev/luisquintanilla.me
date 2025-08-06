@@ -69,7 +69,6 @@ let main argv =
     buildStarterPackPage ()
     buildIRLStackPage ()
     buildColophonPage ()
-    buildSubscribePage ()
     buildOnlineRadioPage ()
 
     // =============================================================================

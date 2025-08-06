@@ -88,6 +88,7 @@ let socialRedirects: Map<string, RedirectEntry> =
         "/youtube", createSocialRedirect "/youtube" "https://www.youtube.com/@lqdev"
         "/gravatar", createSocialRedirect "/gravatar" "/contact/"
         "/blogroll", createSocialRedirect "/blogroll" "/collections/blogroll/"
+        "/subscribe", createSocialRedirect "/subscribe" "/feed/"
         "/podroll", createSocialRedirect "/podroll" "/collections/podroll/"
     ]
 

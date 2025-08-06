@@ -40,7 +40,7 @@ On this website, RSS plays an important role in a few areas.
 RSS is how I:
 
 - [Enable discovery of my own feeds](/notes/website-feeds-opml/)
-- [Enable visitors to subscribe and get the latest content](/subscribe)
+- [Enable visitors to subscribe and get the latest content](/feed)
 - [Syndicate posts to Mastodon](/posts/rss-to-mastodon-posse-azure-logic-apps).
 - [Enable feed discovery of websites I subscribe to](/notes/blogroll-discovery-implemented/) through my:
     - [Blogroll](/collections/blogroll/)

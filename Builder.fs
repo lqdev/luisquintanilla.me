@@ -237,13 +237,6 @@ module Builder
         Directory.CreateDirectory(saveDir) |> ignore               
         File.WriteAllText(Path.Join(saveDir,"index.html"), colophonPage)        
 
-    let buildSubscribePage () = 
-        let subscribeContent = Path.Join(srcDir,"subscribe.md") |> convertFileToHtml |> contentView
-        let subscribePage = generate subscribeContent "default" "Subscribe - Luis Quintanilla"
-        let saveDir = Path.Join(outputDir,"subscribe")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"), subscribePage)        
-    
     let buildContactPage () = 
         let contactContent = convertFileToHtml (Path.Join(srcDir,"contact.md")) |> contentView
         let contactPage = generate contactContent "default" "Contact - Luis Quintanilla"
@@ -775,7 +768,7 @@ module Builder
             |> List.toArray
         
         // Generate the unified feed page
-        let unifiedFeedHtml = generate (unifiedFeedView flattenedItems) "defaultindex" "All Updates - Luis Quintanilla"
+        let unifiedFeedHtml = generate (enhancedSubscriptionHubView flattenedItems) "defaultindex" "Feeds & Content Discovery - Luis Quintanilla"
         let feedIndexDir = Path.Join(outputDir, "feed")
         Directory.CreateDirectory(feedIndexDir) |> ignore
         File.WriteAllText(Path.Join(feedIndexDir, "index.html"), unifiedFeedHtml)

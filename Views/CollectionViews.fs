@@ -177,6 +177,209 @@ let albumPageView (images:AlbumImage array) =
             ]
     ]
 
+// Enhanced subscription hub with content discovery
+let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
+    // Take recent 8-10 items for preview
+    let recentItems = items |> Array.take (min 10 items.Length)
+    
+    let getProperPermalink (contentType: string) (fileName: string) =
+        match contentType with
+        | "posts" -> $"/posts/{fileName}/"
+        | "notes" -> $"/notes/{fileName}/"
+        | "responses" -> $"/responses/{fileName}/"
+        | "bookmarks" -> $"/responses/{fileName}/"
+        | "snippets" -> $"/resources/snippets/{fileName}/"
+        | "wiki" -> $"/resources/wiki/{fileName}/"
+        | "presentations" -> $"/resources/presentations/{fileName}/"
+        | "reviews" -> $"/reviews/{fileName}/"
+        | "media" -> $"/media/{fileName}/"
+        | _ -> $"/{contentType}/{fileName}/"
+    
+    div [ _class "content-wrapper" ] [
+        div [ _class "mr-auto" ] [
+            // Header & Introduction
+            h2 [] [ Text "Feeds & Content Discovery" ]
+            p [] [
+                Text "I'm a big fan of RSS and have written about it in posts like "
+                a [ _href "/posts/rediscovering-rss-user-freedom" ] [ Text "Rediscovering the RSS Protocol" ]
+                Text ". Therefore, I've made it easy to subscribe to content on this site through various RSS feeds. You can also browse recent content below to get a sense of what I publish."
+            ]
+            p [] [
+                a [ _href "/feed/index.opml"; _class "btn btn-primary me-3" ] [ Text "📄 Download All Feeds (OPML)" ]
+                a [ _href "#recent-content"; _class "btn btn-outline-secondary" ] [ Text "📖 Browse Recent Posts ↓" ]
+            ]
+            
+            // Primary Feed Subscriptions
+            h2 [] [ Text "Featured Feeds" ]
+            
+            // Blog Feed
+            h3 [] [ a [ _href "/posts/1/" ] [ Text "Blog" ] ]
+            p [] [ Text "Long-form posts. Mainly around tech topics." ]
+            p [] [ 
+                Text "Feed URL: "
+                a [ _href "/blog.rss" ] [ Text "/blog.rss" ]
+            ]
+            
+            // Microblog Feed  
+            h3 [] [ a [ _href "/notes/" ] [ Text "Microblog Feed" ] ]
+            p [] [ Text "Microblog-like short posts containing different types of content such as notes, photos, and videos." ]
+            p [] [
+                Text "Feed URL: "
+                a [ _href "/microblog.rss" ] [ Text "/microblog.rss" ]
+            ]
+            
+            // Response Feed
+            h3 [] [ a [ _href "/responses/" ] [ Text "Response Feed" ] ]
+            p [] [ Text "Microblog-like short posts containing replies, reshares (repost), favorites (likes), and bookmarks." ]
+            p [] [
+                Text "Feed URL: "
+                a [ _href "/responses.rss" ] [ Text "/responses.rss" ]
+            ]
+            
+            // Recent Content Highlights
+            h2 [ _id "recent-content" ] [ Text "Recent Updates" ]
+            p [] [ Text "Get a taste of what you'll receive by subscribing:" ]
+            
+            // Simple list like other landing pages
+            ul [] [
+                for item in recentItems do
+                    let fileName = System.IO.Path.GetFileNameWithoutExtension(item.Url)
+                    let properPermalink = getProperPermalink item.ContentType fileName
+                    li [] [
+                        a [ _href properPermalink ] [ Text item.Title ]
+                        Text " • "
+                        Text (DateTime.Parse(item.Date).ToString("MMM dd, yyyy"))
+                    ]
+            ]
+            
+            // Additional Site Feeds
+            h2 [] [ Text "All Site Feeds" ]
+            p [] [ Text "Subscribe to specific content types:" ]
+            
+            // Bookmarks Feed
+            h3 [] [ a [ _href "/bookmarks/" ] [ Text "Bookmarks" ] ]
+            p [] [ Text "Links to interesting articles, tools, and resources I come across." ]
+            p [] [ 
+                Text "Feed URL: "
+                a [ _href "/responses.rss" ] [ Text "/responses.rss" ]
+                Text " (filter by bookmark type)"
+            ]
+            
+            // Media Feed  
+            h3 [] [ a [ _href "/media/" ] [ Text "Media" ] ]
+            p [] [ Text "Photo albums and media collections." ]
+            p [] [
+                Text "Feed URL: "
+                a [ _href "/microblog.rss" ] [ Text "/microblog.rss" ]
+                Text " (includes media posts)"
+            ]
+            
+            // Reviews Feed
+            h3 [] [ a [ _href "/reviews/" ] [ Text "Reviews" ] ]
+            p [] [ Text "Book reviews and other content critiques." ]
+            p [] [
+                Text "Feed URL: "
+                a [ _href "/microblog.rss" ] [ Text "/microblog.rss" ]
+                Text " (includes review posts)"
+            ]
+            
+            // Tags Information
+            h3 [] [ a [ _href "/tags/" ] [ Text "Individual Topic Feeds" ] ]
+            p [] [ Text "Every tag on this site has its own RSS feed. Browse " ]
+            a [ _href "/tags/" ] [ Text "all available tags" ]
+            p [] [ Text " and click on any tag to access its dedicated feed." ]
+            p [] [ 
+                Text "Example: "
+                a [ _href "/tags/rss/feed.xml" ] [ Text "/tags/rss/feed.xml" ]
+            ]
+            
+            // External Platform Feeds (Collapsible)
+            h2 [] [ Text "External Platform Feeds" ]
+            details [ _class "mb-4" ] [
+                summary [ _class "btn btn-outline-secondary" ] [ Text "View External Platform Feeds" ]
+                div [ _class "mt-3" ] [
+                    p [] [ Text "I also publish content on other platforms. These feeds help you follow my activity there:" ]
+                    
+                    h4 [] [ a [ _href "/mastodon" ] [ Text "Mastodon" ] ]
+                    p [] [ Text "RSS Feed for Mastodon posts." ]
+                    p [] [ 
+                        Text "Feed URL: "
+                        a [ _href "http://toot.lqdev.tech/@lqdev.rss" ] [ Text "/mastodon.rss" ]
+                    ]
+                    
+                    h4 [] [ a [ _href "/bluesky" ] [ Text "Bluesky" ] ]
+                    p [] [
+                        Text "Feed URL: "
+                        a [ _href "/bluesky.rss" ] [ Text "/bluesky.rss" ]
+                    ]
+                    
+                    h4 [] [ a [ _href "/youtube" ] [ Text "YouTube Channel" ] ]
+                    p [] [ Text "Video posts on YouTube" ]
+                    p [] [
+                        Text "Feed URL: "
+                        a [ _href "/youtube.rss" ] [ Text "/youtube.rss" ]
+                    ]
+                ]
+            ]
+            
+            // Getting Started with RSS
+            h2 [] [ Text "New to RSS?" ]
+            p [] [
+                Text "RSS (Really Simple Syndication) lets you follow websites and content creators without "
+                Text "relying on social media algorithms or email newsletters cluttering your inbox. "
+                Text "It works with everything from blogs and podcasts to YouTube channels, news sites, "
+                Text "newsletters, forums, and social platforms like Mastodon and Bluesky."
+            ]
+            
+            h3 [] [ Text "Quick Start Guide" ]
+            ol [] [
+                li [] [
+                    strong [] [ Text "Choose a Feed Reader: " ]
+                    Text "Popular options include "
+                    a [ _href "https://www.inoreader.com/" ] [ Text "Inoreader" ]
+                    Text ", "
+                    a [ _href "https://newsblur.com/" ] [ Text "NewsBlur" ]
+                    Text ", "
+                    a [ _href "https://netnewswire.com/" ] [ Text "NetNewsWire" ]
+                    Text " (Mac), or "
+                    a [ _href "https://feedly.com/" ] [ Text "Feedly" ]
+                    Text ". Most have free tiers to get started."
+                ]
+                li [] [
+                    strong [] [ Text "Subscribe to Feeds: " ]
+                    Text "Copy any feed URL from this page and paste it into your reader. "
+                    Text "Or use the OPML file above to subscribe to everything at once."
+                ]
+                li [] [
+                    strong [] [ Text "Start Reading: " ]
+                    Text "New posts appear in your feed reader automatically. "
+                    Text "Read what interests you, skip what doesn't - you're in complete control."
+                ]
+            ]
+            
+            // OPML Information
+            h3 [] [ Text "About OPML Files" ]
+            p [] [
+                Text "OPML (Outline Processor Markup Language) is like a playlist for RSS feeds. Instead of "
+                Text "adding feeds one by one, you can import an OPML file to subscribe to entire collections "
+                Text "with one click. That's why I provide an "
+                a [ _href "/feed/index.opml" ] [ Text "OPML file with all my feeds" ]
+                Text " and use it for my "
+                a [ _href "/collections/starter-packs/" ] [ Text "starter packs" ]
+                Text " - curated feed collections around specific topics."
+            ]
+            
+            p [] [
+                Text "Learn more: "
+                a [ _href "https://aboutfeeds.com/" ] [ Text "About Feeds" ]
+                Text " • "
+                a [ _href "/posts/rediscovering-rss-user-freedom" ] [ Text "Why I Use RSS" ]
+                Text " • "
+                a [ _href "/collections/starter-packs/" ] [ Text "Browse Starter Packs" ]
+            ]
+        ]
+    ]
+
 // Unified feed view for aggregated content across all types
 let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
     let getProperPermalink (contentType: string) (fileName: string) =

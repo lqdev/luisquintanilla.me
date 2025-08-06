@@ -50,7 +50,7 @@ As of the time of this writing these options include:
     - Cardano
     - Custom
 
-In addition to those integrations, you can also provide as many of your own custom links as you'd like. In my case, I've chosen to link to my [website](/) and [RSS feeds](/subscribe). The options are endless though.  
+In addition to those integrations, you can also provide as many of your own custom links as you'd like. In my case, I've chosen to link to my [website](/) and [RSS feeds](/feed). The options are endless though.  
 
 I don't have a [Linktree](https://linktr.ee/) profile so I can't objectively say how Gravatar compares to those offerings. At their core though, Gravatar and Linktree seem to address similar problems. 
 
