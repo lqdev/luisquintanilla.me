@@ -1,6 +1,6 @@
 ---
 post_type: "note" 
-title: "Hello World from the new site"
+title: "Hello world from the new site"
 published_date: "2025-08-06 17:01 -05:00"
 tags: ["indieweb","note","website"]
 ---
