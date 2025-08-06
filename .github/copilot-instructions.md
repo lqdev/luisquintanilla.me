@@ -235,6 +235,19 @@ I am your autonomous development partner focused on **systematic architectural i
 
 **Success Criteria**: Landing page parity across content types, proper content filtering, chronological ordering, and seamless build process integration.
 
+### Feed Architecture Consistency Pattern (Proven)
+**Discovery**: Unified feed pattern consistency with prominent subscription hub placement dramatically improves user experience and maintains architectural coherence.
+
+**Implementation Pattern**:
+- **Consistent URL Structure**: All feeds follow `/[type]/feed.xml → /[alias].rss` pattern including unified feed
+- **Subscription Hub Integration**: Feature important feeds prominently with clear descriptions and user-friendly URLs
+- **User-Friendly Aliases**: Memorable URLs like `/all.rss` for easy sharing and subscription
+- **OPML Integration**: Include featured feeds as first entries in subscription management systems
+- **Backward Compatibility**: Maintain existing URLs during pattern transitions through dual file generation
+- **Pattern Documentation**: Clear documentation of URL structures and alias relationships
+
+**Benefits**: Improved feed discoverability, consistent architecture patterns, better user experience, and simplified maintenance.
+
 ### User Experience Preference Pattern (Proven)
 **Discovery**: User preferences for content presentation can override technical optimization assumptions, leading to better user experience outcomes.
 

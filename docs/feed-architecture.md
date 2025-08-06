@@ -44,8 +44,17 @@ Each content type has a dedicated RSS feed located content-proximate to the cont
 | Media | `/media/feed.xml` | Photo albums and visual content |
 
 ### 2. Unified Feeds
-- **Main Feed**: `/feed/index.xml` - Fire-hose feed including all content types chronologically
-- **Individual RSS**: `/blog.rss`, `/microblog.rss`, `/responses.rss` - Legacy feed URLs with redirects
+- **Unified Feed**: `/feed/feed.xml` - Fire-hose feed including all content types chronologically
+- **User-Friendly Alias**: `/all.rss` - Easy-to-remember URL for unified feed subscription
+- **Legacy Support**: `/feed/index.xml` - Maintained for backward compatibility
+- **Individual Aliases**: `/blog.rss`, `/microblog.rss`, `/responses.rss` - Content-specific feed aliases
+
+**Pattern Consistency (Enhanced 2025-08-05)**:
+All feeds follow uniform URL structure `/[type]/feed.xml → /[alias].rss` for consistency:
+- Unified feed moved from `/feed/index.xml` to `/feed/feed.xml` following established pattern
+- Prominent subscription hub placement as "Everything Feed" for improved discoverability
+- OPML integration with unified feed as first entry in feeds.json
+- Backward compatibility maintained through dual file generation
 
 ### 3. Tag-Based Feeds
 **Implementation**: 2025-07-25  
@@ -113,7 +122,7 @@ All content pages include feed discovery metadata:
 <link rel="alternate" type="application/rss+xml" 
       title="Posts Feed" href="/posts/feed.xml">
 <link rel="alternate" type="application/rss+xml" 
-      title="Main Feed" href="/feed/index.xml">
+      title="Unified Feed" href="/feed/feed.xml">
 ```
 
 ### IndieWeb Compliance
@@ -122,6 +131,13 @@ All content pages include feed discovery metadata:
 - **Cool URIs**: Feed URLs follow W3C persistence principles
 
 ## Migration History
+
+### Unified Feed Pattern Consistency (2025-08-05)
+- **Problem**: Unified feed used `/feed/index.xml` breaking established `/[type]/feed.xml` pattern
+- **Solution**: Changed unified feed to `/feed/feed.xml` with user-friendly `/all.rss` alias
+- **Enhancement**: Prominent "Everything Feed" placement in subscription hub
+- **Implementation**: Dual file generation maintaining backward compatibility
+- **Result**: Consistent URL patterns across all 10 feed types + improved discoverability
 
 ### Tag RSS Feeds (2025-07-25)
 - **Problem**: Tags had HTML pages but no RSS feeds
@@ -145,7 +161,7 @@ All content pages include feed discovery metadata:
 
 ### RSS Reader Subscription
 Users can subscribe to:
-- **All Content**: `/feed/index.xml`
+- **All Content**: `/feed/feed.xml` or user-friendly `/all.rss`
 - **Specific Types**: `/posts/feed.xml`, `/notes/feed.xml`
 - **Specific Tags**: `/tags/fsharp/feed.xml`, `/tags/ai/feed.xml`
 
