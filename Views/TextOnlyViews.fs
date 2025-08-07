@@ -17,9 +17,9 @@ let sanitizeTagForPath (tag: string) =
 
 // Helper function to extract slug from URL
 let extractSlugFromUrl (url: string) =
-    let parts = url.Split('/')
+    let parts = url.Split('/', System.StringSplitOptions.RemoveEmptyEntries)
     if parts.Length >= 2 then
-        parts.[parts.Length - 2] // Get second-to-last part (before trailing slash)
+        parts.[parts.Length - 1] // Get the last part (the actual slug)
     else
         "content"
 
