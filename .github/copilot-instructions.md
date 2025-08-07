@@ -290,10 +290,13 @@ I am your autonomous development partner focused on **systematic architectural i
 - **Simple vs. Complex Structure**: Streamlined card designs often outperform complex header/body/footer architectures for content-focused experiences
 - **Content Type Identification**: Visual badges and indicators help users navigate heterogeneous content without overwhelming the interface
 - **Progressive Enhancement Approach**: Build rich functionality on proven foundation rather than starting with complex implementation
+- **Content-Focused Lists**: Remove technical categorization when it interferes with navigation clarity (bullet points on content, not categories)
 
-**Key Learning**: User feedback during implementation is more valuable than predetermined UX assumptions. Always validate interface decisions with actual user input during development.
+**Text-Only Site Enhancement**: User feedback revealed that bullet points appearing on content types rather than titles created poor navigation hierarchy. Removing content type display and restructuring list elements to put bullet points on actual content titles improved user experience dramatically.
 
-**Benefits**: Better user satisfaction, cleaner codebase, reduced maintenance complexity, and improved content discovery patterns.
+**Key Learning**: User feedback during implementation is more valuable than predetermined UX assumptions. Always validate interface decisions with actual user input during development. Content-focused presentation often outperforms technical categorization.
+
+**Benefits**: Better user satisfaction, cleaner codebase, reduced maintenance complexity, improved content discovery patterns, and enhanced navigation clarity.
 
 ### Target URL Display Pattern (Proven)
 **Discovery**: Response and bookmark content with external target URLs requires dual rendering path approach for consistent user experience across timeline and individual pages.

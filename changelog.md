@@ -1,5 +1,58 @@
 # Changelog
 
+## 2025-08-07 - Text-Only Site Homepage UX Fix ✅
+
+**Project**: Text-Only Site Bullet Point Structure Fix  
+**Duration**: 2025-08-07 (Single session)  
+**Status**: ✅ COMPLETE - Homepage bullet point hierarchy fixed for improved user experience  
+**Priority**: GREEN (User Experience Fix) → COMPLETE
+
+### What Changed
+Fixed bullet point structure on the text-only site homepage (`/text/index.html`) to improve content hierarchy and user experience. Bullet points now correctly appear on content titles instead of content types, and removed redundant content type information per user feedback.
+
+### Technical Implementation
+- **Structure Fix**: Modified `textOnlyHomepage` function in `TextOnlyViews.fs` to remove `<div class="content-type">` elements
+- **Visual Hierarchy**: Bullet points now appear on content titles (H3 elements) creating proper list structure
+- **Content Type Removal**: Eliminated redundant content type display ("notes", "posts", etc.) from homepage as requested
+- **Clean Metadata**: Maintained date and tag information below each title for context
+
+### User Experience Impact
+- **Improved Navigation**: Bullet points now logically indicate clickable content titles
+- **Cleaner Interface**: Removed technical categorization in favor of content-focused presentation
+- **Better Hierarchy**: Clear visual relationship between bullet points and actual content
+- **Accessibility Maintained**: Semantic HTML structure preserved for screen readers
+
+### Before/After Structure
+**Before (Problematic)**:
+```
+• notes
+  Hello world from the new site
+  August 6, 2025 | Tags: indieweb, note, website
+```
+
+**After (Fixed)**:
+```
+• Hello world from the new site
+  August 6, 2025 | Tags: indieweb, note, website
+```
+
+### Files Modified
+```
+~ Views/TextOnlyViews.fs       # Removed content-type div from homepage recent content list
+~ _public/text/index.html      # Regenerated with fixed bullet point structure
+```
+
+### Success Metrics
+- ✅ **Visual Hierarchy Fixed**: Bullet points now appear on content titles where expected
+- ✅ **Content Type Removed**: Redundant categorization eliminated as requested  
+- ✅ **Accessibility Preserved**: Semantic HTML structure maintained for universal access
+- ✅ **Build Success**: Site regenerated successfully with improved structure
+
+### Pattern Discovered
+**Text-Only Site UX Pattern**: User feedback during implementation reveals that content-focused presentation often outperforms technical categorization for accessibility-first interfaces. Clean, minimal structure enhances navigation while maintaining full functionality.
+
+---
+
 ## 2025-08-07 - Text-Only Site Phase 2 Enhancement Complete ✅
 
 **Project**: Text-Only Website Phase 2 - Enhanced Content Processing & User Experience  
