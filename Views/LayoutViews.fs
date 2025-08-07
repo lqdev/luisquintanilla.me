@@ -205,6 +205,18 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                     ]
                 ]
         ]
+        
+        // Back to top button for long content scrolling (UX best practice)
+        button [ 
+            _class "back-to-top"
+            _id "backToTopBtn"
+            _type "button"
+            _title "Back to top"
+            attr "aria-label" "Scroll back to top of page"
+        ] [
+            // Using simple up arrow for universal recognition
+            span [ _class "icon"; attr "aria-hidden" "true" ] [ Text "↑" ]
+        ]
     ]
 
 // New timeline homepage view for feed-as-homepage interface - Progressive Loading Implementation
@@ -400,6 +412,18 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                         Text "Loading more content..."
                     ]
                 ]
+        ]
+        
+        // Back to top button for long content scrolling (UX best practice)
+        button [ 
+            _class "back-to-top"
+            _id "backToTopBtn"
+            _type "button"
+            _title "Back to top"
+            attr "aria-label" "Scroll back to top of page"
+        ] [
+            // Using simple up arrow for universal recognition
+            span [ _class "icon"; attr "aria-hidden" "true" ] [ Text "↑" ]
         ]
     ]
 

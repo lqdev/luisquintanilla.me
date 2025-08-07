@@ -604,3 +604,75 @@
   display: none !important;
   visibility: hidden !important;
 }
+
+/* Back to Top Button - UX Best Practices Implementation */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background: var(--accent-color);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(10px);
+  
+  /* Ensure minimum touch target size for accessibility */
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.back-to-top:hover {
+  background: var(--hover-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+.back-to-top.visible {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.back-to-top .icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+/* Mobile optimizations for back to top button */
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: 1rem;
+    right: 1rem;
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transition: opacity 0.3s ease;
+  }
+  
+  .back-to-top:hover {
+    transform: none;
+  }
+}
