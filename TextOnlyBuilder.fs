@@ -5,6 +5,7 @@ open Domain
 open TextOnlyViews
 open GenericBuilder.UnifiedFeeds
 open Giraffe.ViewEngine
+open MarkdownService
 
 // Text-Only Site Generation Functions
 
@@ -88,8 +89,14 @@ let buildTextOnlyContentTypePages (outputDir: string) (unifiedContent: UnifiedFe
 
 let buildTextOnlyIndividualPages (outputDir: string) (unifiedContent: UnifiedFeedItem list) =
     for content in unifiedContent do
-        // For Phase 1, we'll create basic individual pages using the content from UnifiedFeedItem
-        let textContentPage = TextOnlyViews.textOnlyContentPage content content.Content |> RenderView.AsString.htmlDocument
+        // For responses and bookmarks, content.Content already contains the CardHtml with target URL
+        // For other content types, convert markdown to HTML
+        let htmlContent = 
+            if content.ContentType = "responses" || content.ContentType = "bookmarks" then
+                content.Content  // Already HTML with target URL display
+            else
+                MarkdownService.convertMdToHtml content.Content  // Convert markdown to HTML
+        let textContentPage = TextOnlyViews.textOnlyContentPage content htmlContent |> RenderView.AsString.htmlDocument
         let slug = TextOnlyViews.extractSlugFromUrl content.Url
         let outputPath = Path.Combine(outputDir, "text", "content", content.ContentType.ToLower(), slug, "index.html")
         

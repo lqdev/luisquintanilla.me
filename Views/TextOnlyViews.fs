@@ -154,10 +154,22 @@ let textOnlyContentTypePage (contentType: string) (content: UnifiedFeedItem list
 
 // Individual Content Page
 let textOnlyContentPage (content: UnifiedFeedItem) (htmlContent: string) =
-    // Enhanced HTML-to-text conversion preserving semantic structure (Phase 2)
+    // Debug: Check if this is the well-known-feeds response
+    if content.Url.Contains("well-known-feeds") then
+        printfn $"DEBUG: Processing well-known-feeds response"
+        printfn $"DEBUG: Original HTML content: {htmlContent.Substring(0, min 500 htmlContent.Length)}"
+    
+    // Enhanced HTML-to-text conversion preserving semantic structure and links (Phase 2)
     let plainTextContent = 
         let text = 
             htmlContent
+                // Handle HTML entities first to prevent double-encoding
+                .Replace("&nbsp;", " ")
+                .Replace("&amp;", "&")
+                .Replace("&lt;", "<")
+                .Replace("&gt;", ">")
+                .Replace("&quot;", "\"")
+                .Replace("&#39;", "'")
                 // Preserve heading structure with clear markers
                 .Replace("<h1>", "\n\n# ")
                 .Replace("</h1>", "\n")
@@ -202,17 +214,35 @@ let textOnlyContentPage (content: UnifiedFeedItem) (htmlContent: string) =
                 .Replace("<br>", "\n")
                 .Replace("<br/>", "\n")
                 .Replace("<br />", "\n")
-                // Handle HTML entities
-                .Replace("&nbsp;", " ")
-                .Replace("&amp;", "&")
-                .Replace("&lt;", "<")
-                .Replace("&gt;", ">")
-                .Replace("&quot;", "\"")
-                .Replace("&#39;", "'")
-        // Remove remaining HTML tags while preserving structure
-        let cleaned = System.Text.RegularExpressions.Regex.Replace(text, "<[^>]*>", "")
+                // Preserve div block structure
+                .Replace("<div>", "\n")
+                .Replace("</div>", "\n")
+        
+        // Process images to show alt text with link (before removing other HTML tags)
+        let imageProcessed = 
+            System.Text.RegularExpressions.Regex.Replace(text, 
+                @"<img[^>]*alt=[""']([^""']*)[""'][^>]*src=[""']([^""']*)[""'][^>]*>", 
+                fun m -> 
+                    let altText = m.Groups.[1].Value
+                    let src = m.Groups.[2].Value
+                    $"<a href=\"{src}\">Image: {altText}</a>")
+            |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, 
+                @"<img[^>]*src=[""']([^""']*)[""'][^>]*alt=[""']([^""']*)[""'][^>]*>", 
+                fun m -> 
+                    let src = m.Groups.[1].Value
+                    let altText = m.Groups.[2].Value
+                    $"<a href=\"{src}\">Image: {altText}</a>")
+            |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, 
+                @"<img[^>]*src=[""']([^""']*)[""'][^>]*>", 
+                fun m -> 
+                    let src = m.Groups.[1].Value
+                    $"<a href=\"{src}\">Image</a>")
+        
+        // Remove all HTML tags EXCEPT <a> tags which we want to preserve for accessibility
+        let linkPreserved = System.Text.RegularExpressions.Regex.Replace(imageProcessed, "<(?!/?a(?:\s[^>]*)?>)[^>]*>", "")
+        
         // Clean up extra whitespace while preserving intentional spacing
-        System.Text.RegularExpressions.Regex.Replace(cleaned, "\n{3,}", "\n\n").Trim()
+        System.Text.RegularExpressions.Regex.Replace(linkPreserved, "\n{3,}", "\n\n").Trim()
     
     let slug = extractSlugFromUrl content.Url
     let itemDate = parseItemDate content.Date
@@ -241,12 +271,12 @@ let textOnlyContentPage (content: UnifiedFeedItem) (htmlContent: string) =
                 a [_href content.Url] [Text "View Full Version"]
             ]
             
-            // Main content - preserve paragraph structure
+            // Main content - preserve paragraph structure and clickable links
             if not (System.String.IsNullOrWhiteSpace(plainTextContent)) then
                 let paragraphs = plainTextContent.Split([|"\n\n"|], System.StringSplitOptions.RemoveEmptyEntries)
                 for paragraph in paragraphs do
                     if not (System.String.IsNullOrWhiteSpace(paragraph)) then
-                        p [] [Text (paragraph.Trim())]
+                        p [] [rawText (paragraph.Trim())]  // Use rawText to preserve HTML links
             else
                 p [] [Text "Content not available in text format."]
         ]
