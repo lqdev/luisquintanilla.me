@@ -6,6 +6,15 @@ open Layouts
 open GenericBuilder.UnifiedFeeds
 open System
 
+// Helper function to sanitize tag names for URLs (matching TextOnlyBuilder)
+let sanitizeTagForPath (tag: string) =
+    let invalid = System.IO.Path.GetInvalidFileNameChars()
+    let sanitized = 
+        tag.ToCharArray()
+        |> Array.map (fun c -> if Array.contains c invalid then '-' else c)
+        |> System.String
+    sanitized.Replace("\"", "").Replace("'", "").Replace(" ", "-").ToLower()
+
 // Helper function to extract slug from URL
 let extractSlugFromUrl (url: string) =
     let parts = url.Split('/')
@@ -74,10 +83,12 @@ let textOnlyHomepage (recentContent: UnifiedFeedItem list) =
             
             h2 [] [Text "Quick Navigation"]
             ul [] [
-                li [] [a [_href "/text/browse/recent/"] [Text "All Recent Content"]]
-                li [] [a [_href "/text/browse/topics/"] [Text "Browse by Topic"]]
-                li [] [a [_href "/text/browse/archives/"] [Text "Archives by Date"]]
+                li [] [a [_href "/text/search/"] [Text "Search Content"]]
+                li [] [a [_href "/text/tags/"] [Text "Browse by Tags"]]
+                li [] [a [_href "/text/archive/"] [Text "Archives by Date"]]
+                li [] [a [_href "/text/content/"] [Text "All Content Types"]]
                 li [] [a [_href "/text/feeds/"] [Text "RSS Feeds"]]
+                li [] [a [_href "/text/help/"] [Text "Help & About"]]
                 li [] [a [_href "/"] [Text "Full Website (with graphics)"]]
             ]
         ]
@@ -144,21 +155,65 @@ let textOnlyContentTypePage (contentType: string) (content: UnifiedFeedItem list
 
 // Individual Content Page
 let textOnlyContentPage (content: UnifiedFeedItem) (htmlContent: string) =
-    // Convert HTML content to plain text (simple approach for Phase 1)
+    // Enhanced HTML-to-text conversion preserving semantic structure (Phase 2)
     let plainTextContent = 
         let text = 
             htmlContent
+                // Preserve heading structure with clear markers
+                .Replace("<h1>", "\n\n# ")
+                .Replace("</h1>", "\n")
+                .Replace("<h2>", "\n\n## ")
+                .Replace("</h2>", "\n")
+                .Replace("<h3>", "\n\n### ")
+                .Replace("</h3>", "\n")
+                .Replace("<h4>", "\n\n#### ")
+                .Replace("</h4>", "\n")
+                .Replace("<h5>", "\n\n##### ")
+                .Replace("</h5>", "\n")
+                .Replace("<h6>", "\n\n###### ")
+                .Replace("</h6>", "\n")
+                // Preserve list structures
+                .Replace("<ul>", "\n")
+                .Replace("</ul>", "\n")
+                .Replace("<ol>", "\n")
+                .Replace("</ol>", "\n")
+                .Replace("<li>", "\n• ")
+                .Replace("</li>", "")
+                // Preserve paragraph structure
                 .Replace("<p>", "\n\n")
                 .Replace("</p>", "")
+                // Preserve code blocks
+                .Replace("<pre>", "\n\n```\n")
+                .Replace("</pre>", "\n```\n")
+                .Replace("<code>", "`")
+                .Replace("</code>", "`")
+                // Preserve blockquotes
+                .Replace("<blockquote>", "\n\n> ")
+                .Replace("</blockquote>", "\n")
+                // Preserve emphasis
+                .Replace("<strong>", "**")
+                .Replace("</strong>", "**")
+                .Replace("<em>", "*")
+                .Replace("</em>", "*")
+                .Replace("<b>", "**")
+                .Replace("</b>", "**")
+                .Replace("<i>", "*")
+                .Replace("</i>", "*")
+                // Preserve line breaks
                 .Replace("<br>", "\n")
                 .Replace("<br/>", "\n")
                 .Replace("<br />", "\n")
+                // Handle HTML entities
                 .Replace("&nbsp;", " ")
                 .Replace("&amp;", "&")
                 .Replace("&lt;", "<")
                 .Replace("&gt;", ">")
                 .Replace("&quot;", "\"")
-        System.Text.RegularExpressions.Regex.Replace(text, "<[^>]*>", "").Trim()
+                .Replace("&#39;", "'")
+        // Remove remaining HTML tags while preserving structure
+        let cleaned = System.Text.RegularExpressions.Regex.Replace(text, "<[^>]*>", "")
+        // Clean up extra whitespace while preserving intentional spacing
+        System.Text.RegularExpressions.Regex.Replace(cleaned, "\n{3,}", "\n\n").Trim()
     
     let slug = extractSlugFromUrl content.Url
     let itemDate = parseItemDate content.Date
@@ -427,3 +482,259 @@ let textOnlyFeedsPage =
         ]
     
     textOnlyLayout "RSS Feeds" (RenderView.AsString.xmlNode contentHtml)
+
+// Tag Browsing Page
+let textOnlyTagPage (tag: string) (content: UnifiedFeedItem list) =
+    let taggedContent = 
+        content 
+        |> List.filter (fun item -> item.Tags |> Array.exists (fun t -> t.ToLower() = tag.ToLower()))
+        |> List.sortByDescending (fun item -> parseItemDate item.Date)
+    
+    let contentHtml =
+        div [] [
+            h1 [] [Text $"Content tagged with \"{tag}\""]
+            
+            p [] [
+                a [_href "/text/"] [Text "← Back to Home"]
+                Text " | "
+                a [_href "/text/tags/"] [Text "All Tags"]
+            ]
+            
+            if taggedContent.IsEmpty then
+                p [] [Text $"No content found with tag \"{tag}\"."]
+            else
+                p [] [Text $"Found {taggedContent.Length} items tagged with \"{tag}\"."]
+                
+                ul [_class "content-list"] [
+                    for item in taggedContent do
+                        let slug = extractSlugFromUrl item.Url
+                        let itemDate = parseItemDate item.Date
+                        li [] [
+                            h3 [] [
+                                a [_href $"/text/content/{item.ContentType.ToLower()}/{slug}/"] [
+                                    Text item.Title
+                                ]
+                            ]
+                            p [] [
+                                span [_class "content-type"] [Text item.ContentType]
+                                Text " • "
+                                time [attr "datetime" (itemDate.ToString("yyyy-MM-dd"))] [
+                                    Text (itemDate.ToString("MMMM d, yyyy"))
+                                ]
+                            ]
+                            if item.Tags.Length > 1 then
+                                p [] [
+                                    Text "Other tags: "
+                                    Text (item.Tags |> Array.filter (fun t -> t.ToLower() <> tag.ToLower()) |> String.concat ", ")
+                                ]
+                        ]
+                ]
+        ]
+    
+    textOnlyLayout $"Tag: {tag}" (RenderView.AsString.xmlNode contentHtml)
+
+// All Tags Page
+let textOnlyAllTagsPage (content: UnifiedFeedItem list) =
+    let allTags = 
+        content
+        |> List.collect (fun item -> item.Tags |> Array.toList)
+        |> List.groupBy (fun tag -> tag.ToLower())
+        |> List.map (fun (lowerTag, tags) -> (tags |> List.head, tags |> List.length))
+        |> List.sortByDescending snd
+    
+    let contentHtml =
+        div [] [
+            h1 [] [Text "All Tags"]
+            
+            p [] [
+                a [_href "/text/"] [Text "← Back to Home"]
+            ]
+            
+            p [] [Text $"Browse content by tags. Found {allTags.Length} unique tags."]
+            
+            div [_class "tag-cloud"] [
+                for (tag, count) in allTags do
+                    let sanitizedTag = sanitizeTagForPath tag
+                    p [] [
+                        a [_href $"/text/tags/{sanitizedTag}/"] [
+                            Text $"{tag} ({count})"
+                        ]
+                    ]
+            ]
+        ]
+    
+    textOnlyLayout "All Tags" (RenderView.AsString.xmlNode contentHtml)
+
+// Archive Page (by year/month)
+let textOnlyArchivePage (content: UnifiedFeedItem list) =
+    let archiveData = 
+        content
+        |> List.map (fun item -> (item, parseItemDate item.Date))
+        |> List.filter (fun (_, date) -> date <> DateTime.MinValue)
+        |> List.groupBy (fun (_, date) -> date.Year)
+        |> List.sortByDescending fst
+    
+    let contentHtml =
+        div [] [
+            h1 [] [Text "Content Archive"]
+            
+            p [] [
+                a [_href "/text/"] [Text "← Back to Home"]
+            ]
+            
+            p [] [Text "Browse content by publication date."]
+            
+            for (year, yearItems) in archiveData do
+                let monthGroups = 
+                    yearItems
+                    |> List.groupBy (fun (_, date) -> date.Month)
+                    |> List.sortByDescending fst
+                
+                div [] [
+                    h2 [] [Text (year.ToString())]
+                    ul [] [
+                        for (month, monthItems) in monthGroups do
+                            let monthName = DateTime(year, month, 1).ToString("MMMM")
+                            li [] [
+                                a [_href $"/text/archive/{year}/{month:D2}/"] [
+                                    Text $"{monthName} ({monthItems.Length} items)"
+                                ]
+                            ]
+                    ]
+                ]
+        ]
+    
+    textOnlyLayout "Archive" (RenderView.AsString.xmlNode contentHtml)
+
+// Monthly Archive Page
+let textOnlyMonthlyArchivePage (year: int) (month: int) (content: UnifiedFeedItem list) =
+    let monthlyContent = 
+        content
+        |> List.map (fun item -> (item, parseItemDate item.Date))
+        |> List.filter (fun (_, date) -> date.Year = year && date.Month = month)
+        |> List.sortByDescending (fun (_, date) -> date)
+        |> List.map fst
+    
+    let monthName = DateTime(year, month, 1).ToString("MMMM yyyy")
+    
+    let contentHtml =
+        div [] [
+            h1 [] [Text $"Archive: {monthName}"]
+            
+            p [] [
+                a [_href "/text/"] [Text "← Back to Home"]
+                Text " | "
+                a [_href "/text/archive/"] [Text "All Archives"]
+            ]
+            
+            if monthlyContent.IsEmpty then
+                p [] [Text $"No content found for {monthName}."]
+            else
+                p [] [Text $"Found {monthlyContent.Length} items from {monthName}."]
+                
+                ul [_class "content-list"] [
+                    for item in monthlyContent do
+                        let slug = extractSlugFromUrl item.Url
+                        let itemDate = parseItemDate item.Date
+                        li [] [
+                            h3 [] [
+                                a [_href $"/text/content/{item.ContentType.ToLower()}/{slug}/"] [
+                                    Text item.Title
+                                ]
+                            ]
+                            p [] [
+                                span [_class "content-type"] [Text item.ContentType]
+                                Text " • "
+                                time [attr "datetime" (itemDate.ToString("yyyy-MM-dd"))] [
+                                    Text (itemDate.ToString("MMMM d, yyyy"))
+                                ]
+                            ]
+                            if item.Tags.Length > 0 then
+                                p [] [
+                                    Text "Tags: "
+                                    Text (item.Tags |> String.concat ", ")
+                                ]
+                        ]
+                ]
+        ]
+    
+    textOnlyLayout $"{monthName} Archive" (RenderView.AsString.xmlNode contentHtml)
+
+// Basic Search Page
+let textOnlySearchPage (searchQuery: string option) (searchResults: UnifiedFeedItem list option) =
+    let contentHtml =
+        div [] [
+            h1 [] [Text "Search Content"]
+            
+            p [] [
+                a [_href "/text/"] [Text "← Back to Home"]
+            ]
+            
+            // Basic search form (works without JavaScript)
+            form [_action "/text/search/"; _method "GET"] [
+                label [_for "q"] [Text "Search for content:"]
+                br []
+                input [_type "text"; _id "q"; _name "q"; _placeholder "Enter search terms..."; 
+                       attr "value" (defaultArg searchQuery "")]
+                br []
+                input [_type "submit"; attr "value" "Search"]
+            ]
+            
+            match searchQuery with
+            | None -> 
+                div [] [
+                    h2 [] [Text "How to Search"]
+                    ul [] [
+                        li [] [Text "Enter keywords to search across all content"]
+                        li [] [Text "Search includes titles, content, and tags"]
+                        li [] [Text "Search is case-insensitive"]
+                        li [] [Text "Multiple words will find content containing all terms"]
+                    ]
+                ]
+            | Some query when System.String.IsNullOrWhiteSpace(query) ->
+                p [] [Text "Please enter a search term."]
+            | Some query ->
+                match searchResults with
+                | None | Some [] ->
+                    div [] [
+                        h2 [] [Text $"No results found for \"{query}\""]
+                        p [] [Text "Try different keywords or check your spelling."]
+                    ]
+                | Some results ->
+                    div [] [
+                        h2 [] [Text $"Search Results for \"{query}\""]
+                        p [] [Text $"Found {results.Length} results."]
+                        
+                        ul [_class "content-list"] [
+                            for item in results do
+                                let slug = extractSlugFromUrl item.Url
+                                let itemDate = parseItemDate item.Date
+                                li [] [
+                                    h3 [] [
+                                        a [_href $"/text/content/{item.ContentType.ToLower()}/{slug}/"] [
+                                            Text item.Title
+                                        ]
+                                    ]
+                                    p [] [
+                                        span [_class "content-type"] [Text item.ContentType]
+                                        Text " • "
+                                        time [attr "datetime" (itemDate.ToString("yyyy-MM-dd"))] [
+                                            Text (itemDate.ToString("MMMM d, yyyy"))
+                                        ]
+                                    ]
+                                    if item.Tags.Length > 0 then
+                                        p [] [
+                                            Text "Tags: "
+                                            Text (item.Tags |> String.concat ", ")
+                                        ]
+                                ]
+                        ]
+                    ]
+        ]
+    
+    let pageTitle = 
+        match searchQuery with
+        | Some query when not (System.String.IsNullOrWhiteSpace(query)) -> $"Search: {query}"
+        | _ -> "Search"
+    
+    textOnlyLayout pageTitle (RenderView.AsString.xmlNode contentHtml)

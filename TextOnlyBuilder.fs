@@ -102,11 +102,118 @@ let buildTextOnlyIndividualPages (outputDir: string) (unifiedContent: UnifiedFee
     
     printfn $"Generated {unifiedContent.Length} text-only individual content pages"
 
+// Phase 2 Enhancement Functions
+
+// Helper function to sanitize tag names for file system use
+let sanitizeTagForPath (tag: string) =
+    let invalid = System.IO.Path.GetInvalidFileNameChars()
+    let sanitized = 
+        tag.ToCharArray()
+        |> Array.map (fun c -> if Array.contains c invalid then '-' else c)
+        |> System.String
+    sanitized.Replace("\"", "").Replace("'", "").Replace(" ", "-").ToLower()
+
+let buildTextOnlyTagPages (outputDir: string) (unifiedContent: UnifiedFeedItem list) =
+    // Build all tags page
+    let textAllTagsPage = TextOnlyViews.textOnlyAllTagsPage unifiedContent |> RenderView.AsString.htmlDocument
+    let allTagsOutputPath = Path.Combine(outputDir, "text", "tags", "index.html")
+    
+    // Ensure directory exists
+    let dirPath = Path.GetDirectoryName(allTagsOutputPath)
+    if not (Directory.Exists(dirPath)) then
+        Directory.CreateDirectory(dirPath) |> ignore
+    
+    File.WriteAllText(allTagsOutputPath, textAllTagsPage)
+    printfn $"Generated text-only all tags page: {allTagsOutputPath}"
+    
+    // Build individual tag pages
+    let allTags = 
+        unifiedContent
+        |> List.collect (fun item -> item.Tags |> Array.toList)
+        |> List.distinct
+        |> List.filter (fun tag -> not (System.String.IsNullOrWhiteSpace(tag)))
+    
+    for tag in allTags do
+        let textTagPage = TextOnlyViews.textOnlyTagPage tag unifiedContent |> RenderView.AsString.htmlDocument
+        let sanitizedTag = sanitizeTagForPath tag
+        let tagOutputPath = Path.Combine(outputDir, "text", "tags", sanitizedTag, "index.html")
+        
+        // Ensure directory exists
+        let dirPath = Path.GetDirectoryName(tagOutputPath)
+        if not (Directory.Exists(dirPath)) then
+            Directory.CreateDirectory(dirPath) |> ignore
+        
+        File.WriteAllText(tagOutputPath, textTagPage)
+    
+    printfn $"Generated {allTags.Length} text-only tag pages"
+
+let buildTextOnlyArchivePages (outputDir: string) (unifiedContent: UnifiedFeedItem list) =
+    // Build main archive page
+    let textArchivePage = TextOnlyViews.textOnlyArchivePage unifiedContent |> RenderView.AsString.htmlDocument
+    let archiveOutputPath = Path.Combine(outputDir, "text", "archive", "index.html")
+    
+    // Ensure directory exists
+    let dirPath = Path.GetDirectoryName(archiveOutputPath)
+    if not (Directory.Exists(dirPath)) then
+        Directory.CreateDirectory(dirPath) |> ignore
+    
+    File.WriteAllText(archiveOutputPath, textArchivePage)
+    printfn $"Generated text-only main archive page: {archiveOutputPath}"
+    
+    // Build monthly archive pages
+    let monthlyArchives = 
+        unifiedContent
+        |> List.map (fun item -> (item, TextOnlyViews.parseItemDate item.Date))
+        |> List.filter (fun (_, date) -> date <> System.DateTime.MinValue)
+        |> List.groupBy (fun (_, date) -> (date.Year, date.Month))
+        |> List.map fst
+    
+    for (year, month) in monthlyArchives do
+        let textMonthlyArchivePage = TextOnlyViews.textOnlyMonthlyArchivePage year month unifiedContent |> RenderView.AsString.htmlDocument
+        let monthlyOutputPath = Path.Combine(outputDir, "text", "archive", year.ToString(), $"{month:D2}", "index.html")
+        
+        // Ensure directory exists
+        let dirPath = Path.GetDirectoryName(monthlyOutputPath)
+        if not (Directory.Exists(dirPath)) then
+            Directory.CreateDirectory(dirPath) |> ignore
+        
+        File.WriteAllText(monthlyOutputPath, textMonthlyArchivePage)
+    
+    printfn $"Generated {monthlyArchives.Length} text-only monthly archive pages"
+
+// Simple search function (Phase 2 - basic implementation)
+let performTextSearch (query: string) (unifiedContent: UnifiedFeedItem list) =
+    if System.String.IsNullOrWhiteSpace(query) then
+        []
+    else
+        let searchTerms = query.ToLower().Split([|' '|], System.StringSplitOptions.RemoveEmptyEntries)
+        
+        unifiedContent
+        |> List.filter (fun item ->
+            let tagText = String.concat " " item.Tags
+            let searchableText = $"{item.Title} {item.Content} {tagText}".ToLower()
+            searchTerms |> Array.forall (fun term -> searchableText.Contains(term))
+        )
+        |> List.sortByDescending (fun item -> TextOnlyViews.parseItemDate item.Date)
+
+let buildTextOnlySearchPage (outputDir: string) (unifiedContent: UnifiedFeedItem list) =
+    // Build basic search page (without query)
+    let textSearchPage = TextOnlyViews.textOnlySearchPage None None |> RenderView.AsString.htmlDocument
+    let searchOutputPath = Path.Combine(outputDir, "text", "search", "index.html")
+    
+    // Ensure directory exists
+    let dirPath = Path.GetDirectoryName(searchOutputPath)
+    if not (Directory.Exists(dirPath)) then
+        Directory.CreateDirectory(dirPath) |> ignore
+    
+    File.WriteAllText(searchOutputPath, textSearchPage)
+    printfn $"Generated text-only search page: {searchOutputPath}"
+
 // Main orchestration function for text-only site generation
 let buildTextOnlySite (outputDir: string) (unifiedContent: UnifiedFeedItem list) =
     printfn "Building text-only site..."
     
-    // Build all text-only pages
+    // Phase 1: Core pages
     buildTextOnlyHomepage outputDir unifiedContent
     buildTextOnlyAboutPage outputDir
     buildTextOnlyHelpPage outputDir
@@ -115,5 +222,11 @@ let buildTextOnlySite (outputDir: string) (unifiedContent: UnifiedFeedItem list)
     buildTextOnlyContentTypePages outputDir unifiedContent
     buildTextOnlyIndividualPages outputDir unifiedContent
     
+    // Phase 2: Enhanced features
+    buildTextOnlyTagPages outputDir unifiedContent
+    buildTextOnlyArchivePages outputDir unifiedContent
+    buildTextOnlySearchPage outputDir unifiedContent
+    
     printfn "Text-only site generation complete!"
+    printfn "Phase 2 enhancements included: Enhanced content processing, tag browsing, archive navigation, basic search"
     printfn "Access at: /text/ or configure text.lqdev.me subdomain redirect"
