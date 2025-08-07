@@ -8,6 +8,7 @@ open GenericBuilder
 open WebmentionService
 open Domain
 open PersonalSite.Redirects
+open TextOnlyBuilder
 
 [<EntryPoint>]
 let main argv =
@@ -173,5 +174,19 @@ let main argv =
 
     // Build legacy RSS feed aliases for backward compatibility (at the very end)
     buildLegacyRssFeedAliases ()
+
+    // =============================================================================
+    // TEXT-ONLY SITE GENERATION - Phase 1 Implementation
+    // =============================================================================
+    printfn "=== Text-Only Site Generation ==="
+    
+    // Prepare unified content for text-only site
+    let allUnifiedContent = 
+        allUnifiedItems
+        |> List.collect snd
+        |> List.sortByDescending (fun item -> item.Date)
+    
+    // Build text-only site
+    TextOnlyBuilder.buildTextOnlySite outputDir allUnifiedContent
 
     0

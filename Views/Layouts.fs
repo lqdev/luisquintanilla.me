@@ -503,6 +503,68 @@ module Layouts
         ]
 
 
+    // Text-Only Layout - Accessibility-First Universal Design
+    let textOnlyLayout (pageTitle:string) (content:string) =
+        html [_lang "en"] [
+            head [] [
+                meta [_charset "UTF-8"]
+                meta [_name "viewport"; _content "width=device-width, initial-scale=1"]
+                
+                // Minimal CSS for text-only experience (<5KB target)
+                link [_rel "stylesheet"; _href "/text/assets/text-only.css"]
+                
+                // Essential metadata
+                meta [_name "description"; _content "Text-only accessible version of Luis Quintanilla's website"]
+                meta [_name "robots"; _content "noindex, nofollow"]
+                
+                title [] [Text $"{pageTitle} - Text-Only Site"]
+            ]
+            body [] [
+                // Skip link for screen readers
+                a [_href "#main-content"; _class "skip-link"] [Text "Skip to main content"]
+                
+                // Text-only navigation header
+                header [attr "role" "banner"] [
+                    h1 [] [
+                        a [_href "/text/"] [Text "Luis Quintanilla"]
+                    ]
+                    p [] [Text "Text-Only Accessible Website"]
+                ]
+                
+                // Main navigation
+                nav [attr "role" "navigation"; attr "aria-label" "Main navigation"] [
+                    ul [] [
+                        li [] [a [_href "/text/"] [Text "Home"]]
+                        li [] [a [_href "/text/about/"] [Text "About"]]
+                        li [] [a [_href "/text/contact/"] [Text "Contact"]]
+                        li [] [a [_href "/text/content/"] [Text "All Content"]]
+                        li [] [a [_href "/text/browse/recent/"] [Text "Recent"]]
+                        li [] [a [_href "/text/browse/topics/"] [Text "Topics"]]
+                        li [] [a [_href "/text/feeds/"] [Text "RSS Feeds"]]
+                        li [] [a [_href "/text/help/"] [Text "Help"]]
+                    ]
+                ]
+                
+                // Main content
+                main [attr "role" "main"; _id "main-content"] [
+                    rawText content
+                ]
+                
+                // Simple footer with essential links
+                footer [attr "role" "contentinfo"] [
+                    hr []
+                    p [] [
+                        Text "Contact: "
+                        a [_href "mailto:lqdev@outlook.com"] [Text "lqdev@outlook.com"]
+                        Text " | "
+                        a [_href "/"] [Text "Full Site"]
+                        Text " | "
+                        a [_href "/text/accessibility/"] [Text "Accessibility"]
+                    ]
+                ]
+            ]
+        ]
+
     let presentationLayout (pageTitle:string) (content:string) =
         html [_lang "en"] [
             head [] [
