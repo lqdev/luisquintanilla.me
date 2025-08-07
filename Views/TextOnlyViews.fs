@@ -52,7 +52,6 @@ let textOnlyHomepage (recentContent: UnifiedFeedItem list) =
                         let slug = extractSlugFromUrl item.Url
                         let itemDate = parseItemDate item.Date
                         li [] [
-                            div [_class "content-type"] [Text item.ContentType]
                             h3 [] [
                                 a [_href $"/text/content/{item.ContentType.ToLower()}/{slug}/"] [
                                     Text item.Title
