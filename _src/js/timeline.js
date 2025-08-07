@@ -675,6 +675,101 @@ const TimelineDropdownNav = {
     }
 };
 
+// Back to Top Button Manager - UX Best Practices Implementation
+const BackToTopManager = {
+    button: null,
+    scrollThreshold: 200, // Pixels to scroll before showing button
+    
+    init() {
+        this.button = document.getElementById('backToTopBtn');
+        if (!this.button) {
+            console.warn('⚠️ Back to top button not found');
+            return;
+        }
+        
+        this.setupScrollListener();
+        this.setupClickHandler();
+        this.setupKeyboardNavigation();
+        console.log('✅ Back to top button initialized');
+    },
+    
+    setupScrollListener() {
+        // Throttle scroll events for performance
+        let scrollTimeout;
+        
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            
+            scrollTimeout = setTimeout(() => {
+                this.handleScroll();
+            }, 16); // ~60fps
+        }, { passive: true });
+    },
+    
+    handleScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > this.scrollThreshold) {
+            this.showButton();
+        } else {
+            this.hideButton();
+        }
+    },
+    
+    showButton() {
+        if (this.button && !this.button.classList.contains('visible')) {
+            this.button.classList.add('visible');
+        }
+    },
+    
+    hideButton() {
+        if (this.button && this.button.classList.contains('visible')) {
+            this.button.classList.remove('visible');
+        }
+    },
+    
+    setupClickHandler() {
+        this.button.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.scrollToTop();
+        });
+    },
+    
+    setupKeyboardNavigation() {
+        this.button.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.scrollToTop();
+            }
+        });
+    },
+    
+    scrollToTop() {
+        // Check if user prefers reduced motion
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        if (prefersReducedMotion) {
+            // Instant scroll for users with motion sensitivity
+            window.scrollTo(0, 0);
+        } else {
+            // Smooth scroll for other users
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Focus management for accessibility - focus on main content area
+        const timelineHeader = document.querySelector('.timeline-header h1');
+        if (timelineHeader) {
+            // Set focus to a logical element near the top
+            timelineHeader.focus();
+        }
+    }
+};
+
 // Initialize everything when DOM is ready
 function initializeTimeline() {
     console.log('🔧 DOMContentLoaded event fired or DOM ready');
@@ -700,6 +795,10 @@ function initializeTimeline() {
         console.log('🔧 Initializing dropdown nav...');
         TimelineDropdownNav.init();
         console.log('✅ Dropdown nav initialized');
+        
+        console.log('🔧 Initializing back to top button...');
+        BackToTopManager.init();
+        console.log('✅ Back to top button initialized');
         
         console.log('🌵 Timeline interface initialized with desert theme');
         
@@ -727,7 +826,8 @@ window.TimelineInterface = {
     theme: TimelineThemeManager,
     mobile: TimelineMobileNav,
     dropdown: TimelineDropdownNav,
-    progressive: TimelineProgressiveLoader
+    progressive: TimelineProgressiveLoader,
+    backToTop: BackToTopManager
 };
 
 console.log('🏁 Timeline.js loaded successfully - stratified version');
