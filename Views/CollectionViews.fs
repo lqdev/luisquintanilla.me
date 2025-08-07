@@ -213,7 +213,7 @@ let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedI
             h2 [] [ Text "Featured Feeds" ]
             
             // Unified Feed (ALL content)
-            h3 [] [ a [ _href "/feed/" ] [ Text "Everything Feed" ] ]
+            h3 [] [ a [ _href "/" ] [ Text "Everything Feed" ] ]
             p [] [ Text "All content updates in one feed - blog posts, notes, responses, bookmarks, and more." ]
             p [] [ 
                 Text "Feed URL: "
@@ -222,7 +222,7 @@ let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedI
             ]
             
             // Blog Feed
-            h3 [] [ a [ _href "/posts/1/" ] [ Text "Blog" ] ]
+            h3 [] [ a [ _href "/posts/" ] [ Text "Blog" ] ]
             p [] [ Text "Long-form posts. Mainly around tech topics." ]
             p [] [ 
                 Text "Feed URL: "
@@ -231,7 +231,7 @@ let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedI
             
             // Microblog Feed  
             h3 [] [ a [ _href "/notes/" ] [ Text "Microblog Feed" ] ]
-            p [] [ Text "Microblog-like short posts containing different types of content such as notes, photos, and videos." ]
+            p [] [ Text "Microblog-like short posts containing different types of content such as notes" ]
             p [] [
                 Text "Feed URL: "
                 a [ _href "/microblog.rss" ] [ Text "/microblog.rss" ]
@@ -239,7 +239,7 @@ let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedI
             
             // Response Feed
             h3 [] [ a [ _href "/responses/" ] [ Text "Response Feed" ] ]
-            p [] [ Text "Microblog-like short posts containing replies, reshares (repost), favorites (likes), and bookmarks." ]
+            p [] [ Text "Microblog-like short posts containing replies, reshares (repost), and favorites (likes)" ]
             p [] [
                 Text "Feed URL: "
                 a [ _href "/responses.rss" ] [ Text "/responses.rss" ]
@@ -270,7 +270,7 @@ let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedI
             p [] [ Text "Links to interesting articles, tools, and resources I come across." ]
             p [] [ 
                 Text "Feed URL: "
-                a [ _href "/responses.rss" ] [ Text "/responses.rss" ]
+                a [ _href "/bookmarks.rss" ] [ Text "/bookmarks.rss" ]
                 Text " (filter by bookmark type)"
             ]
             
@@ -279,7 +279,7 @@ let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedI
             p [] [ Text "Photo albums and media collections." ]
             p [] [
                 Text "Feed URL: "
-                a [ _href "/microblog.rss" ] [ Text "/microblog.rss" ]
+                a [ _href "/media.rss" ] [ Text "/media.rss" ]
                 Text " (includes media posts)"
             ]
             
@@ -288,7 +288,7 @@ let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedI
             p [] [ Text "Book reviews and other content critiques." ]
             p [] [
                 Text "Feed URL: "
-                a [ _href "/microblog.rss" ] [ Text "/microblog.rss" ]
+                a [ _href "/reviews.rss" ] [ Text "/reviews.rss" ]
                 Text " (includes review posts)"
             ]
             
@@ -345,9 +345,9 @@ let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedI
                 li [] [
                     strong [] [ Text "Choose a Feed Reader: " ]
                     Text "Popular options include "
-                    a [ _href "https://www.inoreader.com/" ] [ Text "Inoreader" ]
+                    a [ _href "https://newsblur.com/" ] [ Text "NewsBlur" ]                    
                     Text ", "
-                    a [ _href "https://newsblur.com/" ] [ Text "NewsBlur" ]
+                    a [ _href "https://www.inoreader.com/" ] [ Text "Inoreader" ]
                     Text ", "
                     a [ _href "https://netnewswire.com/" ] [ Text "NetNewsWire" ]
                     Text " (Mac), or "
