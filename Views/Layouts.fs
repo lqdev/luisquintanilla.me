@@ -31,8 +31,14 @@ module Layouts
                     ]
                 ]
                 
-                // Minimal Main Navigation Only
+                // Main Navigation with explicit Home button
                 div [_class "nav-section"] [
+                    a [_class "nav-link"; _href "/"] [
+                        tag "svg" [_class "nav-icon"; attr "viewBox" "0 0 16 16"; attr "fill" "currentColor"] [
+                            tag "path" [attr "d" "M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"] []
+                        ]
+                        Text "Home"
+                    ]
                     a [_class "nav-link"; _href "/about"] [
                         tag "svg" [_class "nav-icon"; attr "viewBox" "0 0 16 16"; attr "fill" "currentColor"] [
                             tag "path" [attr "d" "M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"] []
