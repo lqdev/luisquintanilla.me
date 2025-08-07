@@ -125,6 +125,17 @@
   border-left-color: var(--nav-active);
 }
 
+/* Home navigation link - slight visual priority for UX clarity */
+.desert-nav .nav-link[href="/"] {
+  font-weight: 600;
+  position: relative;
+}
+
+.desert-nav .nav-link[href="/"]:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-left-color: var(--nav-active);
+}
+
 /* Navigation icons */
 .nav-icon {
   width: 18px;
