@@ -296,6 +296,30 @@ I am your autonomous development partner focused on **systematic architectural i
 
 **Benefits**: Dramatic improvement in content creation efficiency, reduced metadata errors, consistent developer experience across all content types, and established patterns for future content type additions.
 
+### Explicit Home Navigation UX Pattern (Proven)
+**Discovery**: Research-backed explicit home navigation implementation dramatically improves navigation intuitiveness for mixed audiences while maintaining accessibility compliance and preserving existing brand navigation.
+
+**Implementation Pattern**:
+- **Dual Navigation Strategy**: Maintain existing brand/logo navigation while adding explicit home button to serve both technical and non-technical user preferences
+- **Visual Hierarchy Enhancement**: Use font-weight 600 and enhanced hover states for home navigation to provide subtle visual priority
+- **Icon Consistency**: Implement standard house icon (Bootstrap Icons) for universal recognition and semantic clarity
+- **Accessibility Integration**: Proper semantic HTML with ARIA labels, keyboard navigation support, and WCAG multiple pathway compliance
+- **Desert Theme Integration**: Seamless integration with existing navigation styling, color schemes, and responsive design patterns
+
+**Research Foundation**:
+- **Non-technical audiences**: 302% increase in homepage visits with explicit home buttons
+- **Technical audiences**: 30-42% improvement even when familiar with logo navigation conventions
+- **User preference distribution**: 72.32% of non-technical users prefer explicit home buttons vs 27.68% choosing logo navigation
+- **WCAG compliance**: Multiple navigation pathways requirement supports inclusive design and accessibility standards
+
+**Technical Components**:
+- **F# ViewEngine Implementation**: Home button with house icon added to `Views/Layouts.fs` navigation structure
+- **CSS Enhancement**: Specific styling for home navigation priority in `navigation.css` with enhanced hover states
+- **Responsive Design**: Maintains accessibility and visual hierarchy across desktop and mobile viewports
+- **Performance Impact**: Minimal overhead using existing icon system and CSS framework without additional dependencies
+
+**Benefits**: Enhanced navigation intuitiveness for timeline content exploration, improved accessibility compliance, better user experience for mixed technical audiences, and preserved brand navigation for users who prefer existing patterns.
+
 ### Back to Top Button UX Pattern (Proven)
 **Discovery**: Research-backed back to top button implementation following established UX guidelines with mobile optimization and accessibility compliance creates superior user experience for long-content interfaces.
 
