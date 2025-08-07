@@ -261,6 +261,23 @@ I am your autonomous development partner focused on **systematic architectural i
 
 **Benefits**: Better user satisfaction, cleaner codebase, reduced maintenance complexity, and improved content discovery patterns.
 
+### Target URL Display Pattern (Proven)
+**Discovery**: Response and bookmark content with external target URLs requires dual rendering path approach for consistent user experience across timeline and individual pages.
+
+**Implementation Pattern**:
+- **Timeline Cards**: Use `CardHtml` rendering from `ResponseProcessor.RenderCard` to include target URL display
+- **Individual Pages**: Update view functions (e.g., `responsePostView`) to accept and display target URL parameter
+- **Collection Pages**: Maintain simple title + date format for clean listing experience
+- **IndieWeb Compliance**: Include proper microformat markup (`u-bookmark-of`) for parser compatibility
+- **Visual Design**: Use link icons, arrow indicators, and `target="_blank"` for optimal user experience
+
+**Dual Rendering Discovery**: Different content views use separate rendering mechanisms:
+- Timeline: `GenericBuilder.convertResponsesToUnified` → `CardHtml`
+- Individual: `LayoutViews.responsePostView` → direct function call
+- Collections: `CollectionViews.responseView` → simple list format
+
+**Benefits**: Enhanced navigation capability, improved content discoverability, maintained IndieWeb standards, and zero content migration requirements.
+
 ### VS Code Snippets Development Workflow Pattern (Proven)
 **Discovery**: Aligning development tools with actual architecture structure prevents creation-time errors and ensures consistent metadata across all content types.
 

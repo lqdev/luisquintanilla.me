@@ -668,7 +668,7 @@ module Builder
             let saveDir = Path.Join(outputDir, "responses", response.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName
+            let html = LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName response.Metadata.TargetUrl
             let responseView = generate html "defaultindex" response.Metadata.Title
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, responseView))

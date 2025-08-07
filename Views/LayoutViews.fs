@@ -693,7 +693,7 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
         ]
     ]
 
-let responsePostView (title:string) (content:string) (date:string) (fileName:string) = 
+let responsePostView (title:string) (content:string) (date:string) (fileName:string) (targetUrl:string) = 
     let publishDate = DateTime.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -708,6 +708,17 @@ let responsePostView (title:string) (content:string) (date:string) (fileName:str
                 div [ _class "u-author h-card microformat-hidden" ] [
                     img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
                     a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
+                ]
+            ]
+            
+            // Target URL display for responses
+            div [ _class "response-target mb-3" ] [
+                p [] [
+                    span [ _class "bi bi-link-45deg"; _style "margin-right:5px;color:#6c757d;" ] []
+                    Text "→ "
+                    a [ _class "u-bookmark-of"; _href targetUrl; _target "_blank" ] [ 
+                        Text targetUrl 
+                    ]
                 ]
             ]
             

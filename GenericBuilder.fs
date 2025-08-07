@@ -521,9 +521,22 @@ module ResponseProcessor =
             | Error _ -> None
         
         Render = fun response ->
-            // Response rendering with IndieWeb microformat support
+            // Response rendering with IndieWeb microformat support and target URL
             let responseClass = sprintf "h-entry response response-%s" (response.Metadata.ResponseType.ToLower())
-            let viewNode = article [ _class responseClass ] [ rawText response.Content ]
+            let targetUrlDisplay = 
+                div [ _class "response-target mb-3" ] [
+                    p [] [
+                        span [ _class "bi bi-link-45deg"; _style "margin-right:5px;color:#6c757d;" ] []
+                        Text "→ "
+                        a [ _class "u-bookmark-of"; _href response.Metadata.TargetUrl; _target "_blank" ] [ 
+                            Text response.Metadata.TargetUrl 
+                        ]
+                    ]
+                ]
+            let viewNode = article [ _class responseClass ] [ 
+                targetUrlDisplay
+                div [ _class "e-content" ] [ rawText response.Content ]
+            ]
             RenderView.AsString.xmlNode viewNode
         
         OutputPath = fun response ->
@@ -534,11 +547,12 @@ module ResponseProcessor =
             let targetUrl = Html.escapeHtml response.Metadata.TargetUrl
             let url = sprintf "/responses/%s/" response.FileName
             
-            // Clean card content without response type or timestamp
+            // Include title, target URL, and content
             Html.element "article" (Html.attribute "class" "response-card h-entry")
                 (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
                  Html.element "div" (Html.attribute "class" "response-target") 
-                    (sprintf "→ %s" (Html.element "a" (Html.attribute "href" targetUrl) targetUrl)))
+                    (sprintf "→ %s" (Html.element "a" (Html.attribute "href" targetUrl) targetUrl)) +
+                 Html.element "div" (Html.attribute "class" "response-content") response.Content)
         
         RenderRss = fun response ->
             // Create RSS item for response
@@ -1071,10 +1085,10 @@ module UnifiedFeeds =
         |> List.choose (fun feedData ->
             match feedData.RssXml with
             | Some rssXml ->
-                // Use full content instead of CardHtml for complete content display
+                // Use CardHtml for responses to include target URL information
                 let title = feedData.Content.Metadata.Title
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Full raw content - will be processed by timeline view
+                let content = feedData.CardHtml  // Use CardHtml to include target URL display
                 let date = feedData.Content.Metadata.DatePublished
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "responses"; Tags = tags; RssXml = rssXml }
@@ -1088,7 +1102,7 @@ module UnifiedFeeds =
             | Some rssXml ->
                 let title = feedData.Content.Metadata.Title
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Use full content instead of CardHtml
+                let content = feedData.CardHtml  // Use CardHtml to include target URL display
                 let date = feedData.Content.Metadata.DatePublished
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml }
