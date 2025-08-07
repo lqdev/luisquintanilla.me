@@ -1,5 +1,73 @@
 # Changelog
 
+## 2025-08-07 - Text-Only Site URL Routing Fix ✅
+
+**Project**: Text-Only Site URL Generation and Content Routing Fix  
+**Duration**: 2025-08-07 (Single session)  
+**Status**: ✅ COMPLETE - URL generation fixed and content routing working correctly  
+**Priority**: GREEN (Critical Bug Fix) → COMPLETE
+
+### What Changed
+Fixed critical URL generation and content routing issue in the text-only site where links were incorrectly pointing to double content-type paths (e.g., `/text/content/notes/notes/`) and displaying wrong content. URLs now correctly extract slugs and route to proper individual content pages.
+
+### Issue Identified
+- **Wrong URLs**: Links generated `/text/content/notes/notes/` instead of `/text/content/notes/hello-world-new-site-2025-08/`
+- **Content Mismatch**: Clicking "Hello world from the new site" displayed "Archive 81 - so far so good!" content
+- **URL Extraction Bug**: `extractSlugFromUrl` function was returning content type instead of actual slug
+
+### Technical Fix
+- **Fixed URL Extraction**: Modified `extractSlugFromUrl` function in `TextOnlyViews.fs` to get last URL segment instead of second-to-last
+- **Proper Slug Generation**: URLs now correctly extract actual content slugs (e.g., `hello-world-new-site-2025-08`) 
+- **Content Routing**: Individual content pages now display correct content matching their URLs
+- **Directory Structure**: Eliminated duplicate content-type directories like `notes/notes/`
+
+### URL Structure Fixed
+**Before (Broken)**:
+```
+/text/content/notes/notes/index.html          # Wrong: double content type
+/text/content/posts/posts/index.html          # Wrong: double content type
+```
+
+**After (Fixed)**:
+```
+/text/content/notes/hello-world-new-site-2025-08/index.html     # Correct: proper slug
+/text/content/posts/indieweb-create-day-2025-07/index.html      # Correct: proper slug
+```
+
+### Code Change
+```fsharp
+// Before (Bug)
+let extractSlugFromUrl (url: string) =
+    let parts = url.Split('/')
+    if parts.Length >= 2 then
+        parts.[parts.Length - 2] // Get second-to-last part (before trailing slash)
+
+// After (Fix)  
+let extractSlugFromUrl (url: string) =
+    let parts = url.Split('/', System.StringSplitOptions.RemoveEmptyEntries)
+    if parts.Length >= 2 then
+        parts.[parts.Length - 1] // Get the last part (the actual slug)
+```
+
+### Files Modified
+```
+~ Views/TextOnlyViews.fs       # Fixed extractSlugFromUrl function
+~ _public/text/                # All 1,130 text-only pages regenerated with correct URLs
+```
+
+### Success Metrics
+- ✅ **URL Generation Fixed**: All links now use proper slugs instead of duplicate content types
+- ✅ **Content Routing Fixed**: Clicking content links displays correct matching content
+- ✅ **Directory Structure**: Proper `/content-type/slug/` structure without duplication
+- ✅ **User Experience**: Navigation works as expected with accurate content display
+
+### Pattern Discovered
+**Text-Only URL Extraction Pattern**: When processing URLs for text-only site generation, always use `Split` with `StringSplitOptions.RemoveEmptyEntries` and extract the final segment as the slug to avoid content-type duplication and ensure proper content routing.
+
+**Benefits**: Fixed critical navigation issue, improved user experience, and established robust URL processing for text-only site architecture.
+
+---
+
 ## 2025-08-07 - Text-Only Site Homepage UX Fix ✅
 
 **Project**: Text-Only Site Bullet Point Structure Fix  
