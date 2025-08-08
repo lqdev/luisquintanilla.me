@@ -152,120 +152,8 @@ let textOnlyContentTypePage (contentType: string) (content: UnifiedFeedItem list
     
     textOnlyLayout pageTitle (RenderView.AsString.xmlNode contentHtml)
 
-// Individual Content Page
+// Individual Content Page - Simplified to match main website pattern
 let textOnlyContentPage (content: UnifiedFeedItem) (htmlContent: string) =
-    // Debug: Check if this is the well-known-feeds response
-    if content.Url.Contains("well-known-feeds") then
-        printfn $"DEBUG: Processing well-known-feeds response"
-        printfn $"DEBUG: Original HTML content: {htmlContent.Substring(0, min 500 htmlContent.Length)}"
-    
-    // Enhanced HTML-to-text conversion preserving semantic structure and links (Phase 2)
-    let plainTextContent = 
-        let text = 
-            htmlContent
-                // Handle HTML entities first to prevent double-encoding
-                .Replace("&nbsp;", " ")
-                .Replace("&amp;", "&")
-                .Replace("&lt;", "<")
-                .Replace("&gt;", ">")
-                .Replace("&quot;", "\"")
-                .Replace("&#39;", "'")
-                // For individual content pages, skip h1/h2 conversion to avoid duplicate titles
-                // Only preserve lower-level headings as these add semantic structure
-                .Replace("<h1>", "\n\n")
-                .Replace("</h1>", "\n")
-                .Replace("<h2>", "\n\n")
-                .Replace("</h2>", "\n")
-                .Replace("<h3>", "\n\n### ")
-                .Replace("</h3>", "\n")
-                .Replace("<h4>", "\n\n#### ")
-                .Replace("</h4>", "\n")
-                .Replace("<h5>", "\n\n##### ")
-                .Replace("</h5>", "\n")
-                .Replace("<h6>", "\n\n###### ")
-                .Replace("</h6>", "\n")
-                // Preserve list structures
-                .Replace("<ul>", "\n")
-                .Replace("</ul>", "\n")
-                .Replace("<ol>", "\n")
-                .Replace("</ol>", "\n")
-                .Replace("<li>", "\n• ")
-                .Replace("</li>", "")
-                // Preserve paragraph structure
-                .Replace("<p>", "\n\n")
-                .Replace("</p>", "")
-                // Preserve code blocks
-                .Replace("<pre>", "\n\n```\n")
-                .Replace("</pre>", "\n```\n")
-                .Replace("<code>", "`")
-                .Replace("</code>", "`")
-                // Preserve blockquotes
-                .Replace("<blockquote>", "\n\n> ")
-                .Replace("</blockquote>", "\n")
-                // Preserve emphasis
-                .Replace("<strong>", "**")
-                .Replace("</strong>", "**")
-                .Replace("<em>", "*")
-                .Replace("</em>", "*")
-                .Replace("<b>", "**")
-                .Replace("</b>", "**")
-                .Replace("<i>", "*")
-                .Replace("</i>", "*")
-                // Preserve line breaks
-                .Replace("<br>", "\n")
-                .Replace("<br/>", "\n")
-                .Replace("<br />", "\n")
-                // Preserve div block structure
-                .Replace("<div>", "\n")
-                .Replace("</div>", "\n")
-        
-        // Process images to show alt text with link (before removing other HTML tags)
-        let imageProcessed = 
-            System.Text.RegularExpressions.Regex.Replace(text, 
-                @"<img[^>]*alt=[""']([^""']*)[""'][^>]*src=[""']([^""']*)[""'][^>]*>", 
-                fun m -> 
-                    let altText = m.Groups.[1].Value
-                    let src = m.Groups.[2].Value
-                    $"<a href=\"{src}\">Image: {altText}</a>")
-            |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, 
-                @"<img[^>]*src=[""']([^""']*)[""'][^>]*alt=[""']([^""']*)[""'][^>]*>", 
-                fun m -> 
-                    let src = m.Groups.[1].Value
-                    let altText = m.Groups.[2].Value
-                    $"<a href=\"{src}\">Image: {altText}</a>")
-            |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, 
-                @"<img[^>]*src=[""']([^""']*)[""'][^>]*>", 
-                fun m -> 
-                    let src = m.Groups.[1].Value
-                    $"<a href=\"{src}\">Image</a>")
-        
-        // For responses/bookmarks, remove redundant title links but preserve target URLs
-        // Pattern: Remove links that match the page title, but keep → arrow + target URL
-        let titleCleaned = 
-            if content.ContentType.ToLower() = "responses" || content.ContentType.ToLower() = "bookmarks" then
-                // Remove title links that duplicate the page title, but preserve target URLs with arrows
-                let titlePattern = System.Text.RegularExpressions.Regex.Escape(content.Title)
-                System.Text.RegularExpressions.Regex.Replace(imageProcessed, 
-                    $@"<a[^>]*href=[""'][^""']*[""'][^>]*>{titlePattern}</a>\s*", "")
-            else
-                imageProcessed
-        
-        // Remove all HTML tags EXCEPT <a> tags which we want to preserve for accessibility
-        let linkPreserved = System.Text.RegularExpressions.Regex.Replace(titleCleaned, "<(?!/?a(?:\s[^>]*)?>)[^>]*>", "")
-        
-        // Convert markdown-style formatting back to HTML for proper rendering with rawText
-        let markdownToHtml = 
-            linkPreserved
-                // Convert **text** to <strong>text</strong>
-                |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, @"\*\*([^*]+)\*\*", "<strong>$1</strong>")
-                // Convert *text* to <em>text</em> (but avoid interfering with ** patterns)
-                |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, @"(?<!\*)\*([^*]+)\*(?!\*)", "<em>$1</em>")
-                // Convert `code` to <code>code</code>
-                |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, @"`([^`]+)`", "<code>$1</code>")
-        
-        // Clean up extra whitespace while preserving intentional spacing
-        System.Text.RegularExpressions.Regex.Replace(markdownToHtml, "\n{3,}", "\n\n").Trim()
-    
     let slug = extractSlugFromUrl content.Url
     let itemDate = parseItemDate content.Date
     
@@ -293,14 +181,10 @@ let textOnlyContentPage (content: UnifiedFeedItem) (htmlContent: string) =
                 a [_href content.Url] [Text "View Full Version"]
             ]
             
-            // Main content - preserve paragraph structure and clickable links
-            if not (System.String.IsNullOrWhiteSpace(plainTextContent)) then
-                let paragraphs = plainTextContent.Split([|"\n\n"|], System.StringSplitOptions.RemoveEmptyEntries)
-                for paragraph in paragraphs do
-                    if not (System.String.IsNullOrWhiteSpace(paragraph)) then
-                        p [] [rawText (paragraph.Trim())]  // Use rawText to preserve HTML links
-            else
-                p [] [Text "Content not available in text format."]
+            // Simple content rendering - just like main site!
+            div [_class "content"] [
+                rawText htmlContent  // Same HTML content as main site
+            ]
         ]
     
     textOnlyLayout content.Title (RenderView.AsString.xmlNode contentHtml)
