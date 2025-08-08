@@ -72,7 +72,8 @@ let buildTextOnlyAllContentPage (outputDir: string) (unifiedContent: UnifiedFeed
 let buildTextOnlyContentTypePages (outputDir: string) (unifiedContent: UnifiedFeedItem list) =
     let contentTypes = [
         "posts"; "notes"; "responses"; "snippets"; 
-        "wiki"; "presentations"; "reviews"; "albums"
+        "wiki"; "presentations"; "reviews"; "albums";
+        "bookmarks"; "media"
     ]
     
     for contentType in contentTypes do

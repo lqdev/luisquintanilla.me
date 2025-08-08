@@ -73,11 +73,13 @@ let textOnlyHomepage (recentContent: UnifiedFeedItem list) =
                 li [] [a [_href "/text/content/posts/"] [Text "Blog Posts"]]
                 li [] [a [_href "/text/content/notes/"] [Text "Notes & Microblog"]]
                 li [] [a [_href "/text/content/responses/"] [Text "Responses & Bookmarks"]]
+                li [] [a [_href "/text/content/bookmarks/"] [Text "Bookmarks"]]
                 li [] [a [_href "/text/content/snippets/"] [Text "Code Snippets"]]
                 li [] [a [_href "/text/content/wiki/"] [Text "Wiki & Knowledge Base"]]
                 li [] [a [_href "/text/content/presentations/"] [Text "Presentations"]]
                 li [] [a [_href "/text/content/reviews/"] [Text "Book Reviews"]]
                 li [] [a [_href "/text/content/albums/"] [Text "Photo Albums"]]
+                li [] [a [_href "/text/content/media/"] [Text "Media & Files"]]
             ]
             
             h2 [] [Text "Quick Navigation"]
@@ -111,6 +113,8 @@ let textOnlyContentTypePage (contentType: string) (content: UnifiedFeedItem list
         | "presentations" -> "Presentations"
         | "reviews" -> "Book Reviews"
         | "albums" -> "Photo Albums"
+        | "bookmarks" -> "Bookmarks"
+        | "media" -> "Media & Files"
         | _ -> $"{contentType} Content"
     
     let contentHtml =
