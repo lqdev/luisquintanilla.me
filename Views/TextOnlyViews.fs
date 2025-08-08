@@ -170,10 +170,11 @@ let textOnlyContentPage (content: UnifiedFeedItem) (htmlContent: string) =
                 .Replace("&gt;", ">")
                 .Replace("&quot;", "\"")
                 .Replace("&#39;", "'")
-                // Preserve heading structure with clear markers
-                .Replace("<h1>", "\n\n# ")
+                // For individual content pages, skip h1/h2 conversion to avoid duplicate titles
+                // Only preserve lower-level headings as these add semantic structure
+                .Replace("<h1>", "\n\n")
                 .Replace("</h1>", "\n")
-                .Replace("<h2>", "\n\n## ")
+                .Replace("<h2>", "\n\n")
                 .Replace("</h2>", "\n")
                 .Replace("<h3>", "\n\n### ")
                 .Replace("</h3>", "\n")
@@ -238,8 +239,19 @@ let textOnlyContentPage (content: UnifiedFeedItem) (htmlContent: string) =
                     let src = m.Groups.[1].Value
                     $"<a href=\"{src}\">Image</a>")
         
+        // For responses/bookmarks, remove redundant title links but preserve target URLs
+        // Pattern: Remove links that match the page title, but keep → arrow + target URL
+        let titleCleaned = 
+            if content.ContentType.ToLower() = "responses" || content.ContentType.ToLower() = "bookmarks" then
+                // Remove title links that duplicate the page title, but preserve target URLs with arrows
+                let titlePattern = System.Text.RegularExpressions.Regex.Escape(content.Title)
+                System.Text.RegularExpressions.Regex.Replace(imageProcessed, 
+                    $@"<a[^>]*href=[""'][^""']*[""'][^>]*>{titlePattern}</a>\s*", "")
+            else
+                imageProcessed
+        
         // Remove all HTML tags EXCEPT <a> tags which we want to preserve for accessibility
-        let linkPreserved = System.Text.RegularExpressions.Regex.Replace(imageProcessed, "<(?!/?a(?:\s[^>]*)?>)[^>]*>", "")
+        let linkPreserved = System.Text.RegularExpressions.Regex.Replace(titleCleaned, "<(?!/?a(?:\s[^>]*)?>)[^>]*>", "")
         
         // Clean up extra whitespace while preserving intentional spacing
         System.Text.RegularExpressions.Regex.Replace(linkPreserved, "\n{3,}", "\n\n").Trim()
