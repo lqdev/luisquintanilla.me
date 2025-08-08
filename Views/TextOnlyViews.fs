@@ -253,8 +253,18 @@ let textOnlyContentPage (content: UnifiedFeedItem) (htmlContent: string) =
         // Remove all HTML tags EXCEPT <a> tags which we want to preserve for accessibility
         let linkPreserved = System.Text.RegularExpressions.Regex.Replace(titleCleaned, "<(?!/?a(?:\s[^>]*)?>)[^>]*>", "")
         
+        // Convert markdown-style formatting back to HTML for proper rendering with rawText
+        let markdownToHtml = 
+            linkPreserved
+                // Convert **text** to <strong>text</strong>
+                |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, @"\*\*([^*]+)\*\*", "<strong>$1</strong>")
+                // Convert *text* to <em>text</em> (but avoid interfering with ** patterns)
+                |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, @"(?<!\*)\*([^*]+)\*(?!\*)", "<em>$1</em>")
+                // Convert `code` to <code>code</code>
+                |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, @"`([^`]+)`", "<code>$1</code>")
+        
         // Clean up extra whitespace while preserving intentional spacing
-        System.Text.RegularExpressions.Regex.Replace(linkPreserved, "\n{3,}", "\n\n").Trim()
+        System.Text.RegularExpressions.Regex.Replace(markdownToHtml, "\n{3,}", "\n\n").Trim()
     
     let slug = extractSlugFromUrl content.Url
     let itemDate = parseItemDate content.Date

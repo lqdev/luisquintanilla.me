@@ -1,5 +1,57 @@
 # Changelog
 
+## 2025-08-07 - Text-Only Site Markdown Formatting Fix ✅
+
+**Project**: Text-Only Site Markdown Formatting Enhancement  
+**Duration**: 2025-08-07 (Single session)  
+**Status**: ✅ COMPLETE - Markdown formatting now properly rendered in text-only site  
+**Priority**: GREEN (Enhancement) → COMPLETE
+
+### What Changed
+Fixed markdown formatting rendering in text-only site where bold (`**text**`), italic (`*text*`), and code (`` `text` ``) formatting was appearing as literal text instead of being properly styled with HTML tags.
+
+### Issue Identified
+- **Bold Text**: `**Reputation**` appeared as literal asterisks instead of bold formatting
+- **Italic Text**: `*emphasized*` text showed asterisks instead of emphasis  
+- **Code Formatting**: `` `code` `` appeared as literal backticks instead of code styling
+- **Root Cause**: HTML-to-text conversion preserved markdown syntax, but `rawText` rendering prevented proper HTML formatting
+
+### Technical Fix
+- **Enhanced HTML Processing**: Added markdown-to-HTML conversion step in `textOnlyContentPage` function within `TextOnlyViews.fs`
+- **Regex Conversion**: Implemented proper regex patterns to convert:
+  - `**text**` → `<strong>text</strong>` for bold formatting
+  - `*text*` → `<em>text</em>` for italic formatting (avoiding interference with `**` patterns)
+  - `` `code` `` → `<code>code</code>` for inline code formatting
+- **Link Preservation**: Maintained existing functionality to preserve clickable links while enabling text formatting
+- **Proper Rendering**: Text formatting now renders correctly in browsers while maintaining accessibility compliance
+
+### User Experience Impact
+- **Enhanced Readability**: Text formatting now provides proper visual hierarchy and emphasis
+- **Maintained Accessibility**: Semantic HTML tags work correctly with screen readers and assistive technology
+- **Content Parity**: Text-only site now matches formatting quality of full site while maintaining performance benefits
+- **Universal Compatibility**: Formatting works across all device types including flip phones and basic browsers
+
+### Technical Implementation
+```fsharp
+// Convert markdown-style formatting back to HTML for proper rendering with rawText
+let markdownToHtml = 
+    linkPreserved
+        // Convert **text** to <strong>text</strong>
+        |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, @"\*\*([^*]+)\*\*", "<strong>$1</strong>")
+        // Convert *text* to <em>text</em> (but avoid interfering with ** patterns)
+        |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, @"(?<!\*)\*([^*]+)\*(?!\*)", "<em>$1</em>")
+        // Convert `code` to <code>code</code>
+        |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, @"`([^`]+)`", "<code>$1</code>")
+```
+
+### Validation Completed
+- ✅ Bold formatting working: `<strong>Reputation</strong>`
+- ✅ Italic formatting working: `<em>.well-known</em>`  
+- ✅ Code formatting working: `<code>MECARD:N:Doe,John;TEL:13035551212;EMAIL:john.doe@example.com;;</code>`
+- ✅ Links preserved and functional
+- ✅ Build validation successful
+- ✅ No regressions in existing functionality
+
 ## 2025-08-07 - Text-Only Site URL Routing Fix ✅
 
 **Project**: Text-Only Site URL Generation and Content Routing Fix  
