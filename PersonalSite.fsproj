@@ -28,6 +28,7 @@
     <Compile Include="Views\TextOnlyViews.fs" />
     <Compile Include="Views\Partials.fs" />
     <Compile Include="Views\Generator.fs" />
+    <Compile Include="SearchIndex.fs" />
     <Compile Include="Loaders.fs" />
     <Compile Include="TextOnlyBuilder.fs" />
     <Compile Include="Builder.fs" />

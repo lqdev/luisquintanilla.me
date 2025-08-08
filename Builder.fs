@@ -244,6 +244,13 @@ module Builder
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir, "index.html"), contactPage)
 
+    let buildSearchPage () = 
+        let searchContent = convertFileToHtml (Path.Join(srcDir,"search.md")) |> contentView
+        let searchPage = generate searchContent "default" "Search - Luis Quintanilla"
+        let saveDir = Path.Join(outputDir,"search")
+        Directory.CreateDirectory(saveDir) |> ignore
+        File.WriteAllText(Path.Join(saveDir, "index.html"), searchPage)
+
     let buildOnlineRadioPage () = 
         let onlineRadioContent = convertFileToHtml (Path.Join(srcDir,"radio.md")) |> contentView
         let onlineRadioPage = generate onlineRadioContent "default" "Online Radio - Luis Quintanilla"

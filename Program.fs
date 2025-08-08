@@ -67,6 +67,7 @@ let main argv =
     // buildHomePage posts feedNotes responses  // Traditional homepage - replaced by timeline
     buildAboutPage ()
     buildContactPage ()
+    buildSearchPage ()
     buildStarterPackPage ()
     buildIRLStackPage ()
     buildColophonPage ()
@@ -188,5 +189,16 @@ let main argv =
     
     // Build text-only site
     TextOnlyBuilder.buildTextOnlySite outputDir allUnifiedContent
+
+    // =============================================================================
+    // ENHANCED CONTENT DISCOVERY - Search Index Generation
+    // =============================================================================
+    printfn "=== Enhanced Content Discovery - Search Index Generation ==="
+    
+    // Generate search indexes for client-side search functionality
+    let searchIndexStats = SearchIndex.buildSearchIndexes outputDir allUnifiedContent
+    
+    printfn $"Enhanced content discovery indexes generated successfully!"
+    printfn $"Search functionality ready for client-side implementation"
 
     0
