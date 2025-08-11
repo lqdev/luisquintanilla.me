@@ -5,6 +5,36 @@ open Domain
 open Layouts
 open GenericBuilder.UnifiedFeeds
 open System
+open System.Text.RegularExpressions
+
+// Text-Only Content Processing
+module TextOnlyContentProcessor =
+    
+    // Replace only images with clickable text descriptions, keeping all other HTML
+    let replaceImagesWithText (content: string) =
+        if String.IsNullOrWhiteSpace(content) then ""
+        else
+            let mutable result = content
+            
+            // Replace images with alt text first (more specific pattern)
+            let imgWithAltPattern = @"<img[^>]*src\s*=\s*[""']([^""']*)[""'][^>]*alt\s*=\s*[""']([^""']*)[""'][^>]*/?>"
+            result <- Regex.Replace(result, imgWithAltPattern, fun m ->
+                let src = m.Groups.[1].Value
+                let alt = m.Groups.[2].Value
+                let description = if String.IsNullOrWhiteSpace(alt) then "Image" else alt
+                let fullUrl = if src.StartsWith("http") then src else $"https://www.luisquintanilla.me{src}"
+                $"""<a href="{fullUrl}" target="_blank">[Image: {description}]</a>"""
+            )
+            
+            // Handle images without alt text (catch remaining images)
+            let imgWithoutAltPattern = @"<img[^>]*src\s*=\s*[""']([^""']*)[""'][^>]*/?>"
+            result <- Regex.Replace(result, imgWithoutAltPattern, fun m ->
+                let src = m.Groups.[1].Value
+                let fullUrl = if src.StartsWith("http") then src else $"https://www.luisquintanilla.me{src}"
+                $"""<a href="{fullUrl}" target="_blank">[Image]</a>"""
+            )
+            
+            result
 
 // Helper function to sanitize tag names for URLs (matching TextOnlyBuilder)
 let sanitizeTagForPath (tag: string) =
@@ -185,9 +215,9 @@ let textOnlyContentPage (content: UnifiedFeedItem) (htmlContent: string) =
                 a [_href content.Url] [Text "View Full Version"]
             ]
             
-            // Simple content rendering - just like main site!
+            // Text-only content rendering with image replacement only
             div [_class "content"] [
-                rawText htmlContent  // Same HTML content as main site
+                rawText (TextOnlyContentProcessor.replaceImagesWithText htmlContent)
             ]
         ]
     
