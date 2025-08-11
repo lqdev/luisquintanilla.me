@@ -226,34 +226,6 @@ let buildTextOnlyArchivePages (outputDir: string) (unifiedContent: UnifiedFeedIt
     
     printfn $"Generated {monthlyArchives.Length} text-only monthly archive pages"
 
-// Simple search function (Phase 2 - basic implementation)
-let performTextSearch (query: string) (unifiedContent: UnifiedFeedItem list) =
-    if System.String.IsNullOrWhiteSpace(query) then
-        []
-    else
-        let searchTerms = query.ToLower().Split([|' '|], System.StringSplitOptions.RemoveEmptyEntries)
-        
-        unifiedContent
-        |> List.filter (fun item ->
-            let tagText = String.concat " " item.Tags
-            let searchableText = $"{item.Title} {item.Content} {tagText}".ToLower()
-            searchTerms |> Array.forall (fun term -> searchableText.Contains(term))
-        )
-        |> List.sortByDescending (fun item -> TextOnlyViews.parseItemDate item.Date)
-
-let buildTextOnlySearchPage (outputDir: string) (unifiedContent: UnifiedFeedItem list) =
-    // Build basic search page (without query)
-    let textSearchPage = TextOnlyViews.textOnlySearchPage None None |> RenderView.AsString.htmlDocument
-    let searchOutputPath = Path.Combine(outputDir, "text", "search", "index.html")
-    
-    // Ensure directory exists
-    let dirPath = Path.GetDirectoryName(searchOutputPath)
-    if not (Directory.Exists(dirPath)) then
-        Directory.CreateDirectory(dirPath) |> ignore
-    
-    File.WriteAllText(searchOutputPath, textSearchPage)
-    printfn $"Generated text-only search page: {searchOutputPath}"
-
 // Main orchestration function for text-only site generation
 let buildTextOnlySite (outputDir: string) (unifiedContent: UnifiedFeedItem list) =
     printfn "Building text-only site..."
@@ -272,8 +244,7 @@ let buildTextOnlySite (outputDir: string) (unifiedContent: UnifiedFeedItem list)
     // Phase 2: Enhanced features
     buildTextOnlyTagPages outputDir unifiedContent
     buildTextOnlyArchivePages outputDir unifiedContent
-    buildTextOnlySearchPage outputDir unifiedContent
     
     printfn "Text-only site generation complete!"
-    printfn "Phase 2 enhancements included: Enhanced content processing, tag browsing, archive navigation, basic search"
+    printfn "Phase 2 enhancements included: Enhanced content processing, tag browsing, archive navigation"
     printfn "Access at: /text/ or configure text.lqdev.me subdomain redirect"

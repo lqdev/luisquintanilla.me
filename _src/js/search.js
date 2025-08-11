@@ -255,9 +255,6 @@ class SearchManager {
         const highlightedTitle = this.highlightMatches(item.title, result.matches, 'title');
         const highlightedSummary = this.highlightMatches(item.summary, result.matches, 'summary');
         
-        // Content type badge
-        const contentTypeBadge = this.getContentTypeBadge(item.contentType);
-        
         // Format date
         const date = new Date(item.date);
         const formattedDate = date.toLocaleDateString('en-US', {
@@ -278,7 +275,6 @@ class SearchManager {
                         <a href="${item.url}">${highlightedTitle}</a>
                     </h2>
                     <div class="search-result-meta">
-                        ${contentTypeBadge}
                         <time datetime="${item.date}">${formattedDate}</time>
                         <span class="search-score" title="Relevance score">Score: ${score}</span>
                     </div>
@@ -319,24 +315,6 @@ class SearchManager {
         });
         
         return highlightedText;
-    }
-    
-    getContentTypeBadge(contentType) {
-        const badges = {
-            posts: { label: 'Post', class: 'badge-post' },
-            notes: { label: 'Note', class: 'badge-note' },
-            responses: { label: 'Response', class: 'badge-response' },
-            bookmarks: { label: 'Bookmark', class: 'badge-bookmark' },
-            wiki: { label: 'Wiki', class: 'badge-wiki' },
-            reviews: { label: 'Review', class: 'badge-review' },
-            snippets: { label: 'Snippet', class: 'badge-snippet' },
-            presentations: { label: 'Presentation', class: 'badge-presentation' },
-            albums: { label: 'Album', class: 'badge-album' },
-            media: { label: 'Media', class: 'badge-media' }
-        };
-        
-        const badge = badges[contentType] || { label: contentType, class: 'badge-default' };
-        return `<span class="content-type-badge ${badge.class}">${badge.label}</span>`;
     }
     
     clearResults() {

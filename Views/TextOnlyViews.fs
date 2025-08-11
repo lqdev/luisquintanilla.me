@@ -114,7 +114,6 @@ let textOnlyHomepage (recentContent: UnifiedFeedItem list) =
             
             h2 [] [Text "Quick Navigation"]
             ul [] [
-                li [] [a [_href "/text/search/"] [Text "Search Content"]]
                 li [] [a [_href "/text/tags/"] [Text "Browse by Tags"]]
                 li [] [a [_href "/text/archive/"] [Text "Archives by Date"]]
                 li [] [a [_href "/text/content/"] [Text "All Content Types"]]
@@ -951,82 +950,3 @@ let textOnlyAIStarterPackPage =
         ]
     
     textOnlyLayout "AI Starter Pack" (RenderView.AsString.xmlNode contentHtml)
-
-// Basic Search Page
-let textOnlySearchPage (searchQuery: string option) (searchResults: UnifiedFeedItem list option) =
-    let contentHtml =
-        div [] [
-            h1 [] [Text "Search Content"]
-            
-            p [] [
-                a [_href "/text/"] [Text "← Back to Home"]
-            ]
-            
-            // Basic search form (works without JavaScript)
-            form [_action "/text/search/"; _method "GET"] [
-                label [_for "q"] [Text "Search for content:"]
-                br []
-                input [_type "text"; _id "q"; _name "q"; _placeholder "Enter search terms..."; 
-                       attr "value" (defaultArg searchQuery "")]
-                br []
-                input [_type "submit"; attr "value" "Search"]
-            ]
-            
-            match searchQuery with
-            | None -> 
-                div [] [
-                    h2 [] [Text "How to Search"]
-                    ul [] [
-                        li [] [Text "Enter keywords to search across all content"]
-                        li [] [Text "Search includes titles, content, and tags"]
-                        li [] [Text "Search is case-insensitive"]
-                        li [] [Text "Multiple words will find content containing all terms"]
-                    ]
-                ]
-            | Some query when System.String.IsNullOrWhiteSpace(query) ->
-                p [] [Text "Please enter a search term."]
-            | Some query ->
-                match searchResults with
-                | None | Some [] ->
-                    div [] [
-                        h2 [] [Text $"No results found for \"{query}\""]
-                        p [] [Text "Try different keywords or check your spelling."]
-                    ]
-                | Some results ->
-                    div [] [
-                        h2 [] [Text $"Search Results for \"{query}\""]
-                        p [] [Text $"Found {results.Length} results."]
-                        
-                        ul [_class "content-list"] [
-                            for item in results do
-                                let slug = extractSlugFromUrl item.Url
-                                let itemDate = parseItemDate item.Date
-                                li [] [
-                                    h3 [] [
-                                        a [_href $"/text/content/{item.ContentType.ToLower()}/{slug}/"] [
-                                            Text item.Title
-                                        ]
-                                    ]
-                                    p [] [
-                                        span [_class "content-type"] [Text item.ContentType]
-                                        Text " • "
-                                        time [attr "datetime" (itemDate.ToString("yyyy-MM-dd"))] [
-                                            Text (itemDate.ToString("MMMM d, yyyy"))
-                                        ]
-                                    ]
-                                    if item.Tags.Length > 0 then
-                                        p [] [
-                                            Text "Tags: "
-                                            Text (item.Tags |> String.concat ", ")
-                                        ]
-                                ]
-                        ]
-                    ]
-        ]
-    
-    let pageTitle = 
-        match searchQuery with
-        | Some query when not (System.String.IsNullOrWhiteSpace(query)) -> $"Search: {query}"
-        | _ -> "Search"
-    
-    textOnlyLayout pageTitle (RenderView.AsString.xmlNode contentHtml)

@@ -395,12 +395,18 @@ let replaceImagesWithText (content: string) =
 - **Content Type Identification**: Visual badges and indicators help users navigate heterogeneous content without overwhelming the interface
 - **Progressive Enhancement Approach**: Build rich functionality on proven foundation rather than starting with complex implementation
 - **Content-Focused Lists**: Remove technical categorization when it interferes with navigation clarity (bullet points on content, not categories)
+- **Accessibility-First Feature Curation**: Text-only sites perform better with focused feature sets rather than feature parity with main sites
+- **Functional vs. Visual Elements**: Preserve functional components (filters) while removing redundant visual indicators that don't enhance content discovery
 
 **Text-Only Site Enhancement**: User feedback revealed that bullet points appearing on content types rather than titles created poor navigation hierarchy. Removing content type display and restructuring list elements to put bullet points on actual content titles improved user experience dramatically.
 
-**Key Learning**: User feedback during implementation is more valuable than predetermined UX assumptions. Always validate interface decisions with actual user input during development. Content-focused presentation often outperforms technical categorization.
+**Search Interface Optimization**: Content type badges in search results were identified as redundant visual elements that didn't enhance content discovery. Removing these badges while preserving filter functionality created cleaner, more focused search results that align with content-first design principles.
 
-**Benefits**: Better user satisfaction, cleaner codebase, reduced maintenance complexity, improved content discovery patterns, and enhanced navigation clarity.
+**Text-Only Search Removal**: Search functionality in accessibility-focused text-only sites was determined to be non-essential for target use cases (2G networks, flip phones, screen readers). Removing search entirely from text-only navigation created more focused, streamlined experience optimized for accessibility devices.
+
+**Key Learning**: User feedback during implementation is more valuable than predetermined UX assumptions. Always validate interface decisions with actual user input during development. Content-focused presentation often outperforms technical categorization. Accessibility sites benefit from feature curation rather than feature parity.
+
+**Benefits**: Better user satisfaction, cleaner codebase, reduced maintenance complexity, improved content discovery patterns, enhanced navigation clarity, and optimized accessibility compliance.
 
 ### Target URL Display Pattern (Proven)
 **Discovery**: Response and bookmark content with external target URLs requires dual rendering path approach for consistent user experience across timeline and individual pages.
