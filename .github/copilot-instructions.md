@@ -256,12 +256,20 @@ I am your autonomous development partner focused on **systematic architectural i
 - **Minimal CSS Strategy**: <5KB stylesheet with WCAG 2.1 AA compliance targeting universal device support
 - **URL Structure**: `/text/` subdirectory with clean hierarchy preserving all content type organization
 - **Enhanced Content Processing**: HTML-to-text conversion preserving semantic structure (headings, lists, code blocks, emphasis)
+- **True Text-Only Content**: Images converted to descriptive text with links to original files
 - **Comprehensive Browsing**: Tag system with sanitized paths, chronological archives, and search functionality
 - **Performance Targets**: <50KB pages optimized for 2G networks, flip phones, and low-end devices
 - **Build Integration**: Seamless addition to existing architecture with zero performance impact
 
+**Text-Only Content Processing Pattern**:
+- **Image Descriptions**: Convert `<img>` tags to `[Image: alt-text] (View image: URL)` format
+- **Alt Text Preservation**: Use alt attributes for meaningful descriptions, fallback to "[Image]" when missing
+- **Link Preservation**: Maintain all external links with URLs shown in parentheses
+- **Semantic Structure**: Convert headings to markdown format, preserve emphasis and lists
+- **HTML Cleanup**: Remove all remaining HTML tags for pure text output
+
 **Technical Components**:
-- **TextOnlyViews.fs**: Complete view module with 14+ functions covering all browsing patterns
+- **TextOnlyViews.fs**: Complete view module with 14+ functions covering all browsing patterns including `TextOnlyContentProcessor` module
 - **TextOnlyBuilder.fs**: Site generation orchestration with enhanced content processing
 - **Sanitized Path Handling**: `sanitizeTagForPath` function handling special characters in user-generated content
 - **Progressive Enhancement**: Form-based functionality with optional JavaScript enhancement
@@ -279,8 +287,9 @@ I am your autonomous development partner focused on **systematic architectural i
 - **Performance Excellence**: 7.6KB homepage, all pages under 50KB target
 - **Universal Compatibility**: 2G networks, flip phones, screen readers, assistive technology
 - **Build Efficiency**: Zero impact on existing build process with comprehensive feature addition
+- **True Text-Only**: Complete image-to-text conversion maintaining accessibility and file access
 
-**Benefits**: Complete universal access solution maintaining content parity, performance excellence, and user experience while providing comprehensive browsing functionality for accessibility-first scenarios.
+**Benefits**: Complete universal access solution maintaining content parity, performance excellence, and user experience while providing comprehensive browsing functionality for accessibility-first scenarios with true text-only content that's compatible with any device or assistive technology.
 
 ### Enhanced Content Discovery Pattern (Proven)
 **Discovery**: Complete client-side search implementation for F# static sites with accessibility compliance, fuzzy search capabilities, and seamless theme integration provides powerful content discovery without server dependencies.
