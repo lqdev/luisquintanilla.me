@@ -4,8 +4,57 @@
     <title>Luis Quintanilla - All Updates</title>
     <link>https://www.luisquintanilla.me/feed</link>
     <description>All content updates from Luis Quintanilla's website</description>
-    <lastBuildDate>2025-08-06 17:01 -05:00</lastBuildDate>
+    <lastBuildDate>2025-08-10 23:26</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>URL Town</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;Love to see projects like this.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;url.town doesn’t have any overly lofty ambitions; we’re just building our own directory of really nice websites. We’re not trying to fully recreate the original Yahoo! or DMOZ directories. We’re not aiming for some astronomical number of links. This is just one space on the web, tied to a community that loves to share neat things with one another. Quality matters much more than quantity. There’s no need to share everything just for the shake of sharing it; it’s much better to share things that are useful or interesting.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/url-town</link>
+      <guid>https://www.luisquintanilla.me/responses/url-town</guid>
+      <pubDate>2025-08-10 23:26</pubDate>
+      <category>indieweb</category>
+      <category>websites</category>
+      <category>directory</category>
+    </item>
+    <item>
+      <title>Test mobile post</title>
+      <description>&lt;![CDATA[&lt;p&gt;Testing date fix on mobile notes&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/notes/test-mobile-post</link>
+      <guid>https://www.luisquintanilla.me/notes/test-mobile-post</guid>
+      <pubDate>2025-08-10 21:44 -05:00</pubDate>
+      <category>test</category>
+      <category>mobile</category>
+    </item>
+    <item>
+      <title>BLM Lands Marked for Potential Sale (OnX)</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Sad to see what's happening with our public lands. Great to see folks staying vigilant and providing information of what's happening on the ground.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/blm-lands-marked-for-potential-sale-onx</link>
+      <guid>https://www.luisquintanilla.me/responses/blm-lands-marked-for-potential-sale-onx</guid>
+      <pubDate>2025-08-10 21:13</pubDate>
+      <category>onx</category>
+      <category>bureaulandmanagement</category>
+      <category>nature</category>
+    </item>
+    <item>
+      <title>Claude Code Emacs Integration</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Claude Code IDE for Emacs provides native integration with Claude Code CLI through the Model Context Protocol (MCP). Unlike simple terminal wrappers, this package creates a bidirectional bridge between Claude and Emacs, enabling Claude to understand and leverage Emacs’ powerful features—from LSP and project management to custom Elisp functions. This transforms Claude into a true Emacs-aware AI assistant that works within your existing workflow and can interact with your entire Emacs ecosystem.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/claude-code-emacs-integration</link>
+      <guid>https://www.luisquintanilla.me/responses/claude-code-emacs-integration</guid>
+      <pubDate>2025-08-10 20:17</pubDate>
+      <category>emacs</category>
+      <category>anthropic</category>
+      <category>ai</category>
+      <category>claudecode</category>
+    </item>
     <item>
       <title>Hello world from the new site</title>
       <description>&lt;![CDATA[&lt;p&gt;Posting from my brand new redesigned website.&lt;/p&gt;
@@ -444,92 +493,6 @@ Looking forward to tomorrow's sessions!]]&gt;</description>
       <category>community</category>
       <category>fediverse</category>
       <category>openweb</category>
-    </item>
-    <item>
-      <title>State-Of-The-Art Prompting For AI Agents</title>
-      <description>&lt;![CDATA[[reshare] &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=DL82mGde6wo" title="YouTube Thumbnail for State-of-the-art prompting for ai agents"&gt;&lt;img src="http://img.youtube.com/vi/DL82mGde6wo/0.jpg" class="img-fluid" alt="YouTube Thumbnail for State-of-the-art prompting for ai agents" /&gt;&lt;/a&gt;&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/state-of-the-art-prompting-ai-agents-y-combinator</link>
-      <guid>https://www.luisquintanilla.me/responses/state-of-the-art-prompting-ai-agents-y-combinator</guid>
-      <pubDate>2025-06-03 20:23</pubDate>
-      <category>ai</category>
-      <category>agents</category>
-      <category>prompting</category>
-    </item>
-    <item>
-      <title>Introducing ElevenLabs Conversational AI 2.0</title>
-      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Conversational AI 2.0 launches with advanced features and enterprise readiness.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Natural turn-taking to understand the flow of conversation.&lt;/li&gt;
-&lt;li&gt;Multilingual communication with integrated language detection&lt;/li&gt;
-&lt;li&gt;Integrated RAG: knowledgeable agents, minimum latency, maximum privacy&lt;/li&gt;
-&lt;li&gt;Multimodality&lt;/li&gt;
-&lt;li&gt;Batch calls&lt;/li&gt;
-&lt;/ul&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/elevenlabs-conversational-ai-2-0</link>
-      <guid>https://www.luisquintanilla.me/responses/elevenlabs-conversational-ai-2-0</guid>
-      <pubDate>2025-06-03 20:19</pubDate>
-      <category>ai</category>
-      <category>speech</category>
-      <category>elevenlabs</category>
-    </item>
-    <item>
-      <title>The Darwin Gödel Machine - AI that improves itself by rewriting its own code</title>
-      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
-&lt;p&gt;A longstanding goal of AI research has been the creation of AI that can learn indefinitely. One tantalizing path toward that goal is an AI that improves itself by rewriting its own code, including any code responsible for learning. That idea, known as a Gödel Machine, proposed by Jürgen Schmidhuber decades ago, is a hypothetical self-improving AI. It optimally solves problems by recursively rewriting its own code when it can mathematically prove a better strategy, making it a key concept in meta-learning or “learning to learn.”&lt;br /&gt;
-&lt;br&gt;
-While the theoretical Gödel Machine promised provably beneficial self-modifications, its realization relied on an impractical assumption: that the AI could mathematically prove that a proposed change in its own code would yield a net improvement before adopting it. We, in collaboration with Jeff Clune’s lab at UBC, propose something more feasible: a system that harnesses the principles of open-ended algorithms like Darwinian evolution to search for improvements that empirically improve performance.&lt;/p&gt;
-&lt;p&gt;We call the result the Darwin Gödel Machine (full technical report). DGMs leverage foundation models to propose code improvements, and use recent innovations in open-ended algorithms to search for a growing library of diverse, high-quality AI agents. Our experiments show that DGMs improve themselves the more compute they are provided. In line with the clear trend that AI systems that rely on learning ultimately outperform those designed by hand, there is a potential that DGMs could soon outperform hand-designed AI systems.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;a href="https://arxiv.org/abs/2505.22954"&gt;Technical Report&lt;/a&gt;&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/sakana-ai-gwm</link>
-      <guid>https://www.luisquintanilla.me/responses/sakana-ai-gwm</guid>
-      <pubDate>2025-06-03 20:16</pubDate>
-      <category>ai</category>
-      <category>agent</category>
-      <category>sakana</category>
-    </item>
-    <item>
-      <title>Tiny Experiments by Anne-Laure Le Cunff</title>
-      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;A transformative guide to rethinking our approach to goals, creativity, and life itself from a neuroscientist and entrepreneur, and the creator of the popular Ness Labs newsletter&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Life isn’t linear, and yet we constantly try to mold it around linear goals: four-year college degrees, ten-year career plans, thirty-year mortgages. What if instead we approached life as a giant playground for experimentation? Based on ancestral philosophy and the latest scientific research, Tiny Experiments provides a desperately needed reframing: Uncertainty can be a state of expanded possibility and a space for metamorphosis.&lt;br /&gt;
-&lt;br&gt;
-Neuroscientist and entrepreneur Anne-Laure Le Cunff reveals that all you need is an experimental mindset to turn challenges into self-discovery and doubt into opportunity. Readers will replace the old linear model of success with a circular model of growth in which goals are discovered, pursued, and adapted—not in a vacuum, but in conversation with the larger world.&lt;br /&gt;
-&lt;br&gt;
-Throughout the book, you will ask hard questions and design simple yet meaningful experiments to find the answers. You will learn how to break free from the invisible cognitive scripts that shape your life, how to harness the power of imperfection, and how to make smarter decisions when the path forward is unclear.&lt;br /&gt;
-&lt;br&gt;
-This is a guide to:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Discover your true ambitions through conducting tiny personal experiments&lt;/li&gt;
-&lt;li&gt;Dismantle harmful beliefs about success that have kept you stuck&lt;/li&gt;
-&lt;li&gt;Dare to make decisions true to your own aspirations&lt;/li&gt;
-&lt;li&gt;Stop trying to find your purpose and start living instead&lt;br /&gt;
-&lt;br&gt;
-Tiny Experiments offers not just practical tools to make sure our most vital work gets done, but a guide to reawakening our curiosity and drive in a noisy, busy, disaffected world, so that we can discover and pursue our most authentic ambitions while making a meaningful contribution.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;Review&lt;/h2&gt;
-&lt;p&gt;I really enjoyed this book and resonated with a lot of points.&lt;/p&gt;
-&lt;p&gt;Some of the ones that resonated the most with me include:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Outputs, not outcomes&lt;/strong&gt; - Focus on the output when setting goals. Create and focus on the now rather than being overwhelmed in trying to control the outcomes.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Metacognition&lt;/strong&gt; - Pause and take time to evaluate your thoughts and experiences about what went well, what didn't, and evaluate what the next steps are.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Dance with disruption&lt;/strong&gt; - I really enjoyed the parable this chapter started with and puts things into perspective. Our lives and the world are constantly shifting. Rather than trying to control it or label it, surrender and enjoy the ride.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Learning in public&lt;/strong&gt; - Let curiosity lead you. You don't have to be an expert. Learning in public frees you up to explore new ideas and also build community along the way.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I also appreciated Anne-Laure narrating her own book and being honest and vulnerable this was not something she was comfortable with at first. Regardless, I really enjoyed the narration and as an active reader of the blog provided another way to connect with the author.&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/reviews/tiny-experiments-le-cunff</link>
-      <guid>https://www.luisquintanilla.me/reviews/tiny-experiments-le-cunff</guid>
-      <pubDate>2025-05-30 14:04 -05:00</pubDate>
     </item>
   </channel>
 </rss>
