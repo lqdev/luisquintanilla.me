@@ -135,9 +135,6 @@ module IndexGenerator =
             |> List.map float
             |> List.average
         
-        printfn $"✅ Search index generated: {itemCount} items, {totalSize} bytes, avg {avgKeywords:F1} keywords per item"
-        printfn $"   Search index saved to: {indexPath}"
-        
         // Return metadata for potential use in build reporting
         {| ItemCount = itemCount; FileSizeBytes = totalSize; AverageKeywords = avgKeywords |}
 
@@ -184,25 +181,16 @@ module TagIndexGenerator =
         let tagCount = List.length tagIndex
         let totalSize = jsonContent.Length
         
-        printfn $"✅ Tag index generated: {tagCount} unique tags, {totalSize} bytes"
-        printfn $"   Tag index saved to: {tagIndexPath}"
-        
         {| TagCount = tagCount; FileSizeBytes = totalSize |}
 
 // Main orchestration function for search index generation
 let buildSearchIndexes (outputDir: string) (unifiedContent: UnifiedFeedItem list) =
-    printfn "Generating search indexes for enhanced content discovery..."
     
     // Generate main search index
     let searchStats = IndexGenerator.saveSearchIndex outputDir unifiedContent
     
     // Generate tag index for enhanced tag browsing
     let tagStats = TagIndexGenerator.saveTagIndex outputDir unifiedContent
-    
-    printfn $"Search index generation complete!"
-    printfn $"  Total content items indexed: {searchStats.ItemCount}"
-    printfn $"  Total unique tags indexed: {tagStats.TagCount}"
-    printfn $"  Combined index size: {searchStats.FileSizeBytes + tagStats.FileSizeBytes} bytes"
     
     // Return combined statistics
     {| 

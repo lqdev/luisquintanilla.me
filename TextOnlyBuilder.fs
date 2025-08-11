@@ -19,7 +19,6 @@ let buildTextOnlyHomepage (outputDir: string) (unifiedContent: UnifiedFeedItem l
         Directory.CreateDirectory(dirPath) |> ignore
     
     File.WriteAllText(outputPath, textHomepage)
-    printfn $"Generated text-only homepage: {outputPath}"
 
 let buildTextOnlyAboutPage (outputDir: string) =
     let textAboutPage = TextOnlyViews.textOnlyAboutPage |> RenderView.AsString.htmlDocument
@@ -31,7 +30,6 @@ let buildTextOnlyAboutPage (outputDir: string) =
         Directory.CreateDirectory(dirPath) |> ignore
     
     File.WriteAllText(outputPath, textAboutPage)
-    printfn $"Generated text-only about page: {outputPath}"
 
 let buildTextOnlyContactPage (outputDir: string) =
     let textContactPage = TextOnlyViews.textOnlyContactPage |> RenderView.AsString.htmlDocument
@@ -43,7 +41,6 @@ let buildTextOnlyContactPage (outputDir: string) =
         Directory.CreateDirectory(dirPath) |> ignore
     
     File.WriteAllText(outputPath, textContactPage)
-    printfn $"Generated text-only contact page: {outputPath}"
 
 let buildTextOnlyStarterPacksPages (outputDir: string) =
     // Main starter packs page
@@ -56,7 +53,6 @@ let buildTextOnlyStarterPacksPages (outputDir: string) =
         Directory.CreateDirectory(dirPath) |> ignore
     
     File.WriteAllText(starterPacksPath, starterPacksHtml)
-    printfn $"Generated text-only starter packs page: {starterPacksPath}"
     
     // AI starter pack page
     let aiStarterPackHtml = TextOnlyViews.textOnlyAIStarterPackPage |> RenderView.AsString.htmlDocument
@@ -68,7 +64,6 @@ let buildTextOnlyStarterPacksPages (outputDir: string) =
         Directory.CreateDirectory(aiDirPath) |> ignore
     
     File.WriteAllText(aiStarterPackPath, aiStarterPackHtml)
-    printfn $"Generated text-only AI starter pack page: {aiStarterPackPath}"
 
 let buildTextOnlyHelpPage (outputDir: string) =
     let textHelpPage = TextOnlyViews.textOnlyHelpPage |> RenderView.AsString.htmlDocument
@@ -80,7 +75,6 @@ let buildTextOnlyHelpPage (outputDir: string) =
         Directory.CreateDirectory(dirPath) |> ignore
     
     File.WriteAllText(outputPath, textHelpPage)
-    printfn $"Generated text-only help page: {outputPath}"
 
 let buildTextOnlyFeedsPage (outputDir: string) =
     let textFeedsPage = TextOnlyViews.textOnlyFeedsPage |> RenderView.AsString.htmlDocument
@@ -92,7 +86,6 @@ let buildTextOnlyFeedsPage (outputDir: string) =
         Directory.CreateDirectory(dirPath) |> ignore
     
     File.WriteAllText(outputPath, textFeedsPage)
-    printfn $"Generated text-only feeds page: {outputPath}"
 
 let buildTextOnlyAllContentPage (outputDir: string) (unifiedContent: UnifiedFeedItem list) =
     let textAllContentPage = TextOnlyViews.textOnlyAllContentPage unifiedContent |> RenderView.AsString.htmlDocument
@@ -104,7 +97,6 @@ let buildTextOnlyAllContentPage (outputDir: string) (unifiedContent: UnifiedFeed
         Directory.CreateDirectory(dirPath) |> ignore
     
     File.WriteAllText(outputPath, textAllContentPage)
-    printfn $"Generated text-only all content page: {outputPath}"
 
 let buildTextOnlyContentTypePages (outputDir: string) (unifiedContent: UnifiedFeedItem list) =
     let contentTypes = [
@@ -123,7 +115,6 @@ let buildTextOnlyContentTypePages (outputDir: string) (unifiedContent: UnifiedFe
             Directory.CreateDirectory(dirPath) |> ignore
         
         File.WriteAllText(outputPath, textContentTypePage)
-        printfn $"Generated text-only content type page: {outputPath}"
 
 let buildTextOnlyIndividualPages (outputDir: string) (unifiedContent: UnifiedFeedItem list) =
     for content in unifiedContent do
@@ -169,7 +160,6 @@ let buildTextOnlyTagPages (outputDir: string) (unifiedContent: UnifiedFeedItem l
         Directory.CreateDirectory(dirPath) |> ignore
     
     File.WriteAllText(allTagsOutputPath, textAllTagsPage)
-    printfn $"Generated text-only all tags page: {allTagsOutputPath}"
     
     // Build individual tag pages
     let allTags = 
@@ -203,7 +193,6 @@ let buildTextOnlyArchivePages (outputDir: string) (unifiedContent: UnifiedFeedIt
         Directory.CreateDirectory(dirPath) |> ignore
     
     File.WriteAllText(archiveOutputPath, textArchivePage)
-    printfn $"Generated text-only main archive page: {archiveOutputPath}"
     
     // Build monthly archive pages
     let monthlyArchives = 

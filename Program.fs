@@ -74,9 +74,8 @@ let main argv =
     buildOnlineRadioPage ()
 
     // =============================================================================
-    // UNIFIED FEED SYSTEM - Collect all feed data and generate unified feeds
+    // Unified Feed System - Collect all feed data and generate unified feeds
     // =============================================================================
-    printfn "=== Unified Feed Generation ==="
     
     // Collect feed data from all content types
     let postsFeedData = buildPosts()
@@ -135,7 +134,6 @@ let main argv =
     buildEventPage ()
 
     // Build presentation pages
-    printfn "Building presentations with AST-based processor"
     let _ = buildPresentations()
     ()
 
@@ -152,17 +150,14 @@ let main argv =
     ()
 
     // Build Wiki Pages  
-    printfn "Building wiki pages with AST-based processor"
     let _ = buildWikis()
     ()
 
     // Build Books
-    printfn "Building books with AST-based processor"
     let _ = buildBooks()
     ()
 
     // Build Media
-    printfn "Building media with AST-based processor"
     let _ = buildMedia()
     ()
 
@@ -170,16 +165,14 @@ let main argv =
     buildTagsPages posts feedNotes responses
 
     // Generate redirect pages for legacy URLs
-    printfn "Generating redirect pages for legacy URLs"
     PersonalSite.Redirects.createRedirectPages outputDir
 
     // Build legacy RSS feed aliases for backward compatibility (at the very end)
     buildLegacyRssFeedAliases ()
 
     // =============================================================================
-    // TEXT-ONLY SITE GENERATION - Phase 1 Implementation
+    // Text-Only Site Generation - Phase 1 Implementation
     // =============================================================================
-    printfn "=== Text-Only Site Generation ==="
     
     // Prepare unified content for text-only site
     let allUnifiedContent = 
@@ -191,14 +184,12 @@ let main argv =
     TextOnlyBuilder.buildTextOnlySite outputDir allUnifiedContent
 
     // =============================================================================
-    // ENHANCED CONTENT DISCOVERY - Search Index Generation
+    // Enhanced Content Discovery - Search Index Generation
     // =============================================================================
-    printfn "=== Enhanced Content Discovery - Search Index Generation ==="
     
     // Generate search indexes for client-side search functionality
     let searchIndexStats = SearchIndex.buildSearchIndexes outputDir allUnifiedContent
     
-    printfn $"Enhanced content discovery indexes generated successfully!"
-    printfn $"Search functionality ready for client-side implementation"
+    printfn $"✅ Search indexes generated: {searchIndexStats.SearchIndex.ItemCount} content items, {searchIndexStats.TagIndex.TagCount} tags"
 
     0

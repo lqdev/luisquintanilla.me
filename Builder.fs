@@ -146,10 +146,6 @@ module Builder
             )
             |> List.filter (fun (_, items) -> not items.IsEmpty)
         
-        printfn "Debug: About to render timeline with %d initial items from stratified sampling" stratifiedInitialItems.Length
-        printfn "Debug: Remaining items by type: %s" 
-            (remainingItemsByType |> List.map (fun (t, items) -> $"{t}:{items.Length}") |> String.concat ", ")
-        
         // Generate the timeline homepage with stratified approach
         let timelineHomePage = generate (LayoutViews.timelineHomeViewStratified (stratifiedInitialItems |> List.toArray) remainingItemsByType) "default" "Luis Quintanilla - Personal Website"
         File.WriteAllText(Path.Join(outputDir,"index.html"), timelineHomePage)
