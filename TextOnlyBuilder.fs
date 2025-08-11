@@ -33,6 +33,43 @@ let buildTextOnlyAboutPage (outputDir: string) =
     File.WriteAllText(outputPath, textAboutPage)
     printfn $"Generated text-only about page: {outputPath}"
 
+let buildTextOnlyContactPage (outputDir: string) =
+    let textContactPage = TextOnlyViews.textOnlyContactPage |> RenderView.AsString.htmlDocument
+    let outputPath = Path.Combine(outputDir, "text", "contact", "index.html")
+    
+    // Ensure directory exists
+    let dirPath = Path.GetDirectoryName(outputPath)
+    if not (Directory.Exists(dirPath)) then
+        Directory.CreateDirectory(dirPath) |> ignore
+    
+    File.WriteAllText(outputPath, textContactPage)
+    printfn $"Generated text-only contact page: {outputPath}"
+
+let buildTextOnlyStarterPacksPages (outputDir: string) =
+    // Main starter packs page
+    let starterPacksHtml = TextOnlyViews.textOnlyStarterPacksPage |> RenderView.AsString.htmlDocument
+    let starterPacksPath = Path.Combine(outputDir, "text", "collections", "starter-packs", "index.html")
+    
+    // Ensure directory exists
+    let dirPath = Path.GetDirectoryName(starterPacksPath)
+    if not (Directory.Exists(dirPath)) then
+        Directory.CreateDirectory(dirPath) |> ignore
+    
+    File.WriteAllText(starterPacksPath, starterPacksHtml)
+    printfn $"Generated text-only starter packs page: {starterPacksPath}"
+    
+    // AI starter pack page
+    let aiStarterPackHtml = TextOnlyViews.textOnlyAIStarterPackPage |> RenderView.AsString.htmlDocument
+    let aiStarterPackPath = Path.Combine(outputDir, "text", "collections", "starter-packs", "ai", "index.html")
+    
+    // Ensure directory exists
+    let aiDirPath = Path.GetDirectoryName(aiStarterPackPath)
+    if not (Directory.Exists(aiDirPath)) then
+        Directory.CreateDirectory(aiDirPath) |> ignore
+    
+    File.WriteAllText(aiStarterPackPath, aiStarterPackHtml)
+    printfn $"Generated text-only AI starter pack page: {aiStarterPackPath}"
+
 let buildTextOnlyHelpPage (outputDir: string) =
     let textHelpPage = TextOnlyViews.textOnlyHelpPage |> RenderView.AsString.htmlDocument
     let outputPath = Path.Combine(outputDir, "text", "help", "index.html")
@@ -224,8 +261,10 @@ let buildTextOnlySite (outputDir: string) (unifiedContent: UnifiedFeedItem list)
     // Phase 1: Core pages
     buildTextOnlyHomepage outputDir unifiedContent
     buildTextOnlyAboutPage outputDir
+    buildTextOnlyContactPage outputDir
     buildTextOnlyHelpPage outputDir
     buildTextOnlyFeedsPage outputDir
+    buildTextOnlyStarterPacksPages outputDir
     buildTextOnlyAllContentPage outputDir unifiedContent
     buildTextOnlyContentTypePages outputDir unifiedContent
     buildTextOnlyIndividualPages outputDir unifiedContent

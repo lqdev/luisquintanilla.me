@@ -339,6 +339,30 @@ let replaceImagesWithText (content: string) =
 
 **Benefits**: Perfect accessibility compliance with enhanced user experience, maintaining visual content access through intuitive clickable descriptions while ensuring universal compatibility across all devices and assistive technologies.
 
+### Text-Only Site Navigation Consistency Pattern (Proven)
+**Discovery**: Text-Only accessibility sites require careful navigation curation and path structure consistency to maintain optimal user experience while ensuring all main site functionality remains accessible.
+
+**Implementation Pattern**:
+- **Navigation Curation**: Remove inappropriate navigation items that don't align with accessibility-focused user needs (Recent/Topics links)
+- **Feature Parity Implementation**: Ensure all main site functionality has equivalent text-only implementation (contact pages, starter packs, collections)
+- **Path Structure Consistency**: All internal links must respect text-only site architecture (`/text/content/{contentType}/` for individual pages)
+- **URL Alignment**: External service URLs should match main site patterns for consistency (`/mastodon.rss` vs external URLs)
+- **Incremental Builder Integration**: New pages integrate seamlessly into existing `buildTextOnlySite` orchestration function
+
+**Technical Components**:
+- **View Function Pattern**: Each text-only page follows consistent F# ViewEngine pattern with semantic HTML and accessibility markup
+- **Builder Function Pattern**: Dedicated builder functions with proper directory creation and file writing
+- **Navigation Breadcrumbs**: Consistent "← Back to [Parent]" and "View Full [Page] Page" cross-navigation
+- **Content Processing**: Maintain text-only content processing for images and formatting while preserving functionality
+
+**Success Metrics**:
+- **Feature Completeness**: All main site functionality available in text-only version with zero information loss
+- **Navigation Clarity**: Streamlined, logical navigation structure optimized for accessibility users
+- **URL Consistency**: All internal links point to correct text-only site paths
+- **Performance Maintained**: <50KB page targets preserved across all new functionality
+
+**Benefits**: Complete accessibility site functionality parity, improved navigation clarity, consistent user experience across all content types, and maintained performance excellence for universal device compatibility.
+
 ### Enhanced Content Discovery Pattern (Proven)
 **Discovery**: Complete client-side search implementation for F# static sites with accessibility compliance, fuzzy search capabilities, and seamless theme integration provides powerful content discovery without server dependencies.
 

@@ -544,8 +544,6 @@ module Layouts
                         li [] [a [_href "/text/about/"] [Text "About"]]
                         li [] [a [_href "/text/contact/"] [Text "Contact"]]
                         li [] [a [_href "/text/content/"] [Text "All Content"]]
-                        li [] [a [_href "/text/browse/recent/"] [Text "Recent"]]
-                        li [] [a [_href "/text/browse/topics/"] [Text "Topics"]]
                         li [] [a [_href "/text/feeds/"] [Text "RSS Feeds"]]
                         li [] [a [_href "/text/help/"] [Text "Help"]]
                     ]
@@ -560,9 +558,6 @@ module Layouts
                 footer [attr "role" "contentinfo"] [
                     hr []
                     p [] [
-                        Text "Contact: "
-                        a [_href "mailto:lqdev@outlook.com"] [Text "lqdev@outlook.com"]
-                        Text " | "
                         a [_href "/"] [Text "Full Site"]
                         Text " | "
                         a [_href "/text/accessibility/"] [Text "Accessibility"]

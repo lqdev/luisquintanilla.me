@@ -302,6 +302,77 @@ let textOnlyAboutPage =
     
     textOnlyLayout "About" (RenderView.AsString.xmlNode contentHtml)
 
+// Contact Page
+let textOnlyContactPage =
+    let contentHtml =
+        div [] [
+            h1 [] [Text "Get in Touch"]
+            
+            p [] [
+                a [_href "/text/"] [Text "← Back to Home"]
+                Text " | "
+                a [_href "/contact"] [Text "View Full Contact Page"]
+            ]
+            
+            p [] [Text "Say hi on any of these platforms:"]
+            
+            h2 [] [Text "Primary Contact"]
+            ul [] [
+                li [] [
+                    Text "Email: "
+                    a [_href "mailto:contact@lqdev.me"] [Text "contact@lqdev.me"]
+                ]
+            ]
+            
+            h2 [] [Text "Social Platforms"]
+            ul [] [
+                li [] [
+                    Text "Mastodon: "
+                    a [_href "https://toot.lqdev.tech/@lqdev"] [Text "@lqdev@toot.lqdev.tech"]
+                ]
+                li [] [
+                    Text "LinkedIn: "
+                    a [_href "https://www.linkedin.com/in/lquintanilla01/"] [Text "lquintanilla01"]
+                ]
+                li [] [
+                    Text "GitHub: "
+                    a [_href "https://github.com/lqdev"] [Text "lqdev"]
+                ]
+                li [] [
+                    Text "X (formerly Twitter): "
+                    a [_href "https://twitter.com/ljquintanilla"] [Text "ljquintanilla"]
+                ]
+                li [] [
+                    Text "Bluesky: "
+                    a [_href "https://bsky.app/profile/lqdev.me"] [Text "@lqdev.me"]
+                ]
+                li [] [
+                    Text "Gravatar: "
+                    a [_href "https://gravatar.com/profiles/lqdev"] [Text "Profile"]
+                ]
+            ]
+            
+            h2 [] [Text "Digital Business Cards"]
+            ul [] [
+                li [] [
+                    Text "VCard: "
+                    a [_href "/vcard.vcf"] [Text "Download VCard"]
+                ]
+                li [] [
+                    Text "MeCard: "
+                    a [_href "/mecard.txt"] [Text "Download MeCard"]
+                ]
+            ]
+            
+            h2 [] [Text "Response Time"]
+            p [] [
+                Text "I typically respond to emails within 24-48 hours. "
+                Text "For urgent matters, Mastodon or LinkedIn may be faster."
+            ]
+        ]
+    
+    textOnlyLayout "Contact" (RenderView.AsString.xmlNode contentHtml)
+
 // Help Page
 let textOnlyHelpPage =
     let contentHtml =
@@ -384,69 +455,170 @@ let textOnlyHelpPage =
 let textOnlyFeedsPage =
     let contentHtml =
         div [] [
-            h1 [] [Text "RSS Feeds"]
+            h1 [] [Text "Feeds & Content Discovery"]
             
             p [] [
                 a [_href "/text/"] [Text "← Back to Home"]
+                Text " | "
+                a [_href "/feed"] [Text "View Full Feeds Page"]
             ]
             
             p [] [
                 Text "Subscribe to RSS feeds to stay updated with new content. "
-                Text "All feeds are available in standard RSS 2.0 format."
+                Text "All feeds are available in standard RSS 2.0 format. "
+                Text "You can also browse recent content on the homepage to get a sense of what I publish."
             ]
             
-            h2 [] [Text "Main Feeds"]
-            ul [] [
-                li [] [
-                    a [_href "/all.rss"] [Text "Everything Feed"]
-                    Text " - All content from all types"
-                ]
-                li [] [
-                    a [_href "/blog.rss"] [Text "Blog Posts"]
-                    Text " - Long-form articles and blog posts"
-                ]
-                li [] [
-                    a [_href "/microblog.rss"] [Text "Microblog"]
-                    Text " - Short notes and updates"
-                ]
-                li [] [
-                    a [_href "/responses.rss"] [Text "Responses"]
-                    Text " - Replies and bookmarks"
-                ]
-            ]
-            
-            h2 [] [Text "Specialized Feeds"]
-            ul [] [
-                li [] [
-                    a [_href "/snippets/feed.xml"] [Text "Code Snippets"]
-                    Text " - Programming examples and technical notes"
-                ]
-                li [] [
-                    a [_href "/wiki/feed.xml"] [Text "Wiki Updates"]
-                    Text " - Knowledge base articles"
-                ]
-                li [] [
-                    a [_href "/presentations/feed.xml"] [Text "Presentations"]
-                    Text " - Slides and presentation materials"
-                ]
-                li [] [
-                    a [_href "/reviews/feed.xml"] [Text "Book Reviews"]
-                    Text " - Reading recommendations"
-                ]
-            ]
-            
-            h2 [] [Text "How to Subscribe"]
             p [] [
-                Text "Copy any feed URL above and add it to your RSS reader. "
-                Text "Popular RSS readers include:"
+                a [_href "/feed/index.opml"] [Text "📄 Download All Feeds (OPML)"]
             ]
             
-            ul [] [
-                li [] [Text "Feedly (web-based)"]
-                li [] [Text "NewsBlur (web-based)"]
-                li [] [Text "NetNewsWire (Mac/iOS)"]
-                li [] [Text "FeedReader (Windows)"]
-                li [] [Text "Many email clients also support RSS"]
+            h2 [] [Text "Featured Feeds"]
+            
+            h3 [] [Text "Everything Feed"]
+            p [] [
+                Text "All content updates in one feed - blog posts, notes, responses, bookmarks, and more."
+            ]
+            p [] [
+                Text "Feed URL: "
+                a [_href "/all.rss"] [Text "/all.rss"]
+                Text " (20 most recent items, all content types)"
+            ]
+            
+            h3 [] [Text "Blog"]
+            p [] [Text "Long-form posts. Mainly around tech topics."]
+            p [] [
+                Text "Feed URL: "
+                a [_href "/blog.rss"] [Text "/blog.rss"]
+            ]
+            
+            h3 [] [Text "Microblog Feed"]
+            p [] [Text "Microblog-like short posts containing different types of content such as notes."]
+            p [] [
+                Text "Feed URL: "
+                a [_href "/microblog.rss"] [Text "/microblog.rss"]
+            ]
+            
+            h3 [] [Text "Response Feed"]
+            p [] [Text "Microblog-like short posts containing replies, reshares (repost), and favorites (likes)."]
+            p [] [
+                Text "Feed URL: "
+                a [_href "/responses.rss"] [Text "/responses.rss"]
+            ]
+            
+            h2 [] [Text "All Site Feeds"]
+            p [] [Text "Subscribe to specific content types:"]
+            
+            h3 [] [Text "Bookmarks"]
+            p [] [Text "Links to interesting articles, tools, and resources I come across."]
+            p [] [
+                Text "Feed URL: "
+                a [_href "/bookmarks.rss"] [Text "/bookmarks.rss"]
+                Text " (filter by bookmark type)"
+            ]
+            
+            h3 [] [Text "Media"]
+            p [] [Text "Photo albums and media collections."]
+            p [] [
+                Text "Feed URL: "
+                a [_href "/media.rss"] [Text "/media.rss"]
+                Text " (includes media posts)"
+            ]
+            
+            h3 [] [Text "Reviews"]
+            p [] [Text "Book reviews and other content critiques."]
+            p [] [
+                Text "Feed URL: "
+                a [_href "/reviews.rss"] [Text "/reviews.rss"]
+                Text " (includes review posts)"
+            ]
+            
+            h3 [] [Text "Individual Topic Feeds"]
+            p [] [
+                Text "Every tag on this site has its own RSS feed. Browse "
+                a [_href "/text/tags/"] [Text "all available tags"]
+                Text " and click on any tag to access its dedicated feed."
+            ]
+            p [] [
+                Text "Example: "
+                a [_href "/tags/rss/feed.xml"] [Text "/tags/rss/feed.xml"]
+            ]
+            
+            h2 [] [Text "External Platform Feeds"]
+            p [] [Text "I also publish content on other platforms. These feeds help you follow my activity there:"]
+            
+            h3 [] [Text "Mastodon"]
+            p [] [Text "RSS Feed for Mastodon posts."]
+            p [] [
+                Text "Feed URL: "
+                a [_href "/mastodon.rss"] [Text "/mastodon.rss"]
+            ]
+            
+            h3 [] [Text "Bluesky"]
+            p [] [
+                Text "Feed URL: "
+                a [_href "/bluesky.rss"] [Text "/bluesky.rss"]
+            ]
+            
+            h3 [] [Text "YouTube Channel"]
+            p [] [Text "Video posts on YouTube"]
+            p [] [
+                Text "Feed URL: "
+                a [_href "/youtube.rss"] [Text "/youtube.rss"]
+            ]
+            
+            h2 [] [Text "New to RSS?"]
+            p [] [
+                Text "RSS (Really Simple Syndication) lets you follow websites and content creators "
+                Text "without relying on social media algorithms or email newsletters cluttering your inbox. "
+                Text "It works with everything from blogs and podcasts to YouTube channels, news sites, "
+                Text "newsletters, forums, and social platforms like Mastodon and Bluesky."
+            ]
+            
+            h3 [] [Text "Quick Start Guide"]
+            ol [] [
+                li [] [
+                    strong [] [Text "Choose a Feed Reader: "]
+                    Text "Popular options include "
+                    a [_href "https://newsblur.com/"] [Text "NewsBlur"]
+                    Text ", "
+                    a [_href "https://www.inoreader.com/"] [Text "Inoreader"]
+                    Text ", "
+                    a [_href "https://netnewswire.com/"] [Text "NetNewsWire"]
+                    Text " (Mac), or "
+                    a [_href "https://feedly.com/"] [Text "Feedly"]
+                    Text ". Most have free tiers to get started."
+                ]
+                li [] [
+                    strong [] [Text "Subscribe to Feeds: "]
+                    Text "Copy any feed URL from this page and paste it into your reader. "
+                    Text "Or use the OPML file above to subscribe to everything at once."
+                ]
+                li [] [
+                    strong [] [Text "Start Reading: "]
+                    Text "New posts appear in your feed reader automatically. "
+                    Text "Read what interests you, skip what doesn't - you're in complete control."
+                ]
+            ]
+            
+            h3 [] [Text "About OPML Files"]
+            p [] [
+                Text "OPML (Outline Processor Markup Language) is like a playlist for RSS feeds. "
+                Text "Instead of adding feeds one by one, you can import an OPML file to subscribe to "
+                Text "entire collections with one click. That's why I provide an "
+                a [_href "/feed/index.opml"] [Text "OPML file with all my feeds"]
+                Text " and use it for my "
+                a [_href "/text/collections/starter-packs/"] [Text "starter packs"]
+                Text " - curated feed collections around specific topics."
+            ]
+            
+            p [] [
+                Text "Learn more: "
+                a [_href "https://aboutfeeds.com/"] [Text "About Feeds"]
+                Text " • "
+                a [_href "/text/content/posts/rediscovering-rss-user-freedom/"] [Text "Why I Use RSS"]
+                Text " • "
+                a [_href "/text/collections/starter-packs/"] [Text "Browse Starter Packs"]
             ]
         ]
     
@@ -628,6 +800,157 @@ let textOnlyMonthlyArchivePage (year: int) (month: int) (content: UnifiedFeedIte
         ]
     
     textOnlyLayout $"{monthName} Archive" (RenderView.AsString.xmlNode contentHtml)
+
+// Text-Only Starter Packs Pages
+let textOnlyStarterPacksPage =
+    let contentHtml =
+        div [] [
+            h1 [] [Text "Starter Packs"]
+            
+            p [] [
+                a [_href "/text/"] [Text "← Back to Home"]
+                Text " | "
+                a [_href "/collections/starter-packs"] [Text "View Full Starter Packs Page"]
+            ]
+            
+            p [] [Text "Welcome to my curated collection of RSS Starter Packs."]
+            
+            p [] [
+                Text "Inspired by "
+                a [_href "https://bsky.social/about/blog/06-26-2024-starter-packs"] [Text "BlueSky's Starter Pack feature"]
+                Text ", I've created a set of OPML bundles to help you discover and follow content across the open web. "
+                Text "Whether it's a newsletter, blog, podcast, YouTube channel, Fediverse instance, or BlueSky profile—"
+                Text "if it has an RSS feed and aligns with the topic, it's included."
+            ]
+            
+            p [] [Text "By leveraging open standards like RSS and OPML, my goal is to:"]
+            
+            ul [] [
+                li [] [Text "Make it easy and convenient for others to discover, explore, and subscribe to content using their own feed readers"]
+                li [] [
+                    Text "Promote the open web and open standards. When building on open standards, it doesn't matter what platform or software you use. "
+                    a [_href "/posts/rediscovering-rss-user-freedom"] [Text "Both publishers and subscribers have the freedom to choose"]
+                    Text "."
+                ]
+            ]
+            
+            h2 [] [Text "Available Packs"]
+            ul [] [
+                li [] [
+                    a [_href "/text/collections/starter-packs/ai/"] [Text "AI Starter Pack"]
+                    Text " - AI resources, news, and research feeds"
+                ]
+            ]
+        ]
+    
+    textOnlyLayout "Starter Packs" (RenderView.AsString.xmlNode contentHtml)
+
+let textOnlyAIStarterPackPage =
+    let contentHtml =
+        div [] [
+            h1 [] [Text "AI Starter Pack"]
+            
+            p [] [
+                a [_href "/text/collections/starter-packs/"] [Text "← Back to Starter Packs"]
+                Text " | "
+                a [_href "/collections/starter-packs/ai"] [Text "View Full AI Pack Page"]
+            ]
+            
+            p [] [Text "This is a list of AI resources I use to stay on top of AI news."]
+            
+            p [] [
+                Text "You can subscribe to any of the individual feeds in your preferred RSS reader using the RSS feed links below. "
+                Text "Want to subscribe to all of them? Use the "
+                a [_href "/collections/starter-packs/ai/index.opml"] [Text "OPML file"]
+                Text " if your RSS reader supports "
+                a [_href "http://opml.org/"] [Text "OPML"]
+                Text "."
+            ]
+            
+            h2 [] [Text "Included Feeds"]
+            ul [] [
+                li [] [
+                    strong [] [Text "Latent Space"]
+                    Text " - "
+                    a [_href "https://www.latent.space/"] [Text "Website"]
+                    Text " / "
+                    a [_href "https://www.latent.space/feed/"] [Text "RSS Feed"]
+                ]
+                li [] [
+                    strong [] [Text "OpenAI AI Blog"]
+                    Text " - "
+                    a [_href "https://openai.com/news/"] [Text "Website"]
+                    Text " / "
+                    a [_href "https://openai.com/news/rss.xml"] [Text "RSS Feed"]
+                ]
+                li [] [
+                    strong [] [Text "Google AI Blog"]
+                    Text " - "
+                    a [_href "https://blog.google/technology/ai/"] [Text "Website"]
+                    Text " / "
+                    a [_href "https://blog.google/technology/ai/rss/"] [Text "RSS Feed"]
+                ]
+                li [] [
+                    strong [] [Text "AWS Machine Learning Blog"]
+                    Text " - "
+                    a [_href "https://aws.amazon.com/blogs/machine-learning/"] [Text "Website"]
+                    Text " / "
+                    a [_href "https://aws.amazon.com/blogs/machine-learning/feed/"] [Text "RSS Feed"]
+                ]
+                li [] [
+                    strong [] [Text "Microsoft Research Blog"]
+                    Text " - "
+                    a [_href "https://www.microsoft.com/en-us/research/blog/"] [Text "Website"]
+                    Text " / "
+                    a [_href "https://www.microsoft.com/en-us/research/feed/"] [Text "RSS Feed"]
+                ]
+                li [] [
+                    strong [] [Text "Google Research Blog"]
+                    Text " - "
+                    a [_href "https://research.google/blog/"] [Text "Website"]
+                    Text " / "
+                    a [_href "https://research.google/blog/rss/"] [Text "RSS Feed"]
+                ]
+                li [] [
+                    strong [] [Text "Simon Willison's Weblog"]
+                    Text " - "
+                    a [_href "https://simonwillison.net/"] [Text "Website"]
+                    Text " / "
+                    a [_href "https://simonwillison.net/atom/everything/"] [Text "RSS Feed"]
+                ]
+                li [] [
+                    strong [] [Text "The AI Daily Brief"]
+                    Text " - "
+                    a [_href "https://www.podchaser.com/podcasts/the-ai-daily-brief-formerly-th-5260567"] [Text "Website"]
+                    Text " / "
+                    a [_href "https://anchor.fm/s/f7cac464/podcast/rss"] [Text "RSS Feed"]
+                ]
+                li [] [
+                    strong [] [Text "The TWIML AI Podcast"]
+                    Text " - "
+                    a [_href "https://twimlai.com/"] [Text "Website"]
+                    Text " / "
+                    a [_href "https://feeds.megaphone.fm/MLN2155636147"] [Text "RSS Feed"]
+                ]
+                li [] [
+                    strong [] [Text "Practical AI"]
+                    Text " - "
+                    a [_href "https://changelog.com/practicalai"] [Text "Website"]
+                    Text " / "
+                    a [_href "https://changelog.com/practicalai/feed"] [Text "RSS Feed"]
+                ]
+            ]
+            
+            h2 [] [Text "How to Use This Pack"]
+            p [] [Text "Option 1: Subscribe to individual feeds by clicking the RSS Feed links above."]
+            p [] [
+                Text "Option 2: Download the "
+                a [_href "/collections/starter-packs/ai/index.opml"] [Text "OPML file"]
+                Text " and import it into your RSS reader to subscribe to all feeds at once."
+            ]
+        ]
+    
+    textOnlyLayout "AI Starter Pack" (RenderView.AsString.xmlNode contentHtml)
 
 // Basic Search Page
 let textOnlySearchPage (searchQuery: string option) (searchResults: UnifiedFeedItem list option) =
