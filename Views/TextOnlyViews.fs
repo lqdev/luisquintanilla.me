@@ -340,13 +340,9 @@ let textOnlyAboutPage =
             
             h2 [] [Text "Contact"]
             p [] [
-                Text "Email: "
-                a [_href "mailto:lqdev@outlook.com"] [Text "lqdev@outlook.com"]
-            ]
-            
-            p [] [
-                Text "Mastodon: "
-                a [_href "https://toot.lqdev.tech/@lqdev"] [Text "@lqdev@toot.lqdev.tech"]
+                Text "Want to get in touch? Visit my "
+                a [_href "/text/contact"] [Text "contact page"]
+                Text " for all the ways to reach me."
             ]
         ]
     
