@@ -220,7 +220,6 @@ let createRedirectPages (outputDir: string) : unit =
             File.WriteAllText(targetPath, htmlContent)
             
             incr redirectsCreated
-            printfn "Created redirect: %s -> %s" source redirect.Target
             
         with
         | ex -> 

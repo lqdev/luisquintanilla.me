@@ -15,7 +15,6 @@ let private sanitizeTagForUrl (tag: string) =
 // New stratified timeline homepage view - takes 5 items from each content type initially
 // Progressive loading is content-type aware for better filtering experience
 let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) (remainingItemsByType: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
-    printfn "Debug: Stratified timeline view with %d initial items" initialItems.Length
     
     div [ _class "h-feed unified-timeline" ] [
         // Header with personal intro and content filters
@@ -222,7 +221,6 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
 // New timeline homepage view for feed-as-homepage interface - Progressive Loading Implementation
 let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
     // Research-backed progressive loading: Start with safe 50 items, load more on demand
-    printfn "Debug: Implementing progressive loading for %d total items (showing 50 initially)" items.Length
     
     div [ _class "h-feed unified-timeline" ] [
         // Header with personal intro and content filters

@@ -8,6 +8,7 @@ open GenericBuilder
 open WebmentionService
 open Domain
 open PersonalSite.Redirects
+open TextOnlyBuilder
 
 [<EntryPoint>]
 let main argv =
@@ -66,15 +67,15 @@ let main argv =
     // buildHomePage posts feedNotes responses  // Traditional homepage - replaced by timeline
     buildAboutPage ()
     buildContactPage ()
+    buildSearchPage ()
     buildStarterPackPage ()
     buildIRLStackPage ()
     buildColophonPage ()
     buildOnlineRadioPage ()
 
     // =============================================================================
-    // UNIFIED FEED SYSTEM - Collect all feed data and generate unified feeds
+    // Unified Feed System - Collect all feed data and generate unified feeds
     // =============================================================================
-    printfn "=== Unified Feed Generation ==="
     
     // Collect feed data from all content types
     let postsFeedData = buildPosts()
@@ -103,6 +104,12 @@ let main argv =
         ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
     ]
     
+    // Prepare unified content for text-only site and search indexes
+    let allUnifiedContent = 
+        allUnifiedItems
+        |> List.collect snd
+        |> List.sortByDescending (fun item -> item.Date)
+    
     // Generate unified feeds (fire-hose + type-specific)
     GenericBuilder.UnifiedFeeds.buildAllFeeds allUnifiedItems "_public"
     
@@ -114,6 +121,13 @@ let main argv =
     
     // Generate unified feed HTML page
     buildUnifiedFeedPage allUnifiedItems
+    
+    // =============================================================================
+    // Text-Only Site Generation - Phase 1 Implementation
+    // =============================================================================
+    
+    // Build text-only site
+    TextOnlyBuilder.buildTextOnlySite outputDir allUnifiedContent presentationsFeedData
    
     // Build roll pages
     buildFeedsOpml feedLinks
@@ -133,7 +147,6 @@ let main argv =
     buildEventPage ()
 
     // Build presentation pages
-    printfn "Building presentations with AST-based processor"
     let _ = buildPresentations()
     ()
 
@@ -150,17 +163,14 @@ let main argv =
     ()
 
     // Build Wiki Pages  
-    printfn "Building wiki pages with AST-based processor"
     let _ = buildWikis()
     ()
 
     // Build Books
-    printfn "Building books with AST-based processor"
     let _ = buildBooks()
     ()
 
     // Build Media
-    printfn "Building media with AST-based processor"
     let _ = buildMedia()
     ()
 
@@ -168,10 +178,18 @@ let main argv =
     buildTagsPages posts feedNotes responses
 
     // Generate redirect pages for legacy URLs
-    printfn "Generating redirect pages for legacy URLs"
     PersonalSite.Redirects.createRedirectPages outputDir
 
     // Build legacy RSS feed aliases for backward compatibility (at the very end)
     buildLegacyRssFeedAliases ()
+
+    // =============================================================================
+    // Enhanced Content Discovery - Search Index Generation
+    // =============================================================================
+    
+    // Generate search indexes for client-side search functionality
+    let searchIndexStats = SearchIndex.buildSearchIndexes outputDir allUnifiedContent
+    
+    printfn $"✅ Search indexes generated: {searchIndexStats.SearchIndex.ItemCount} content items, {searchIndexStats.TagIndex.TagCount} tags"
 
     0

@@ -25,9 +25,12 @@
     <Compile Include="Views\CollectionViews.fs" />
     <Compile Include="Views\LayoutViews.fs" />
     <Compile Include="Views\Layouts.fs" />
+    <Compile Include="Views\TextOnlyViews.fs" />
     <Compile Include="Views\Partials.fs" />
     <Compile Include="Views\Generator.fs" />
-    <Compile Include="Loaders.fs" />    
+    <Compile Include="SearchIndex.fs" />
+    <Compile Include="Loaders.fs" />
+    <Compile Include="TextOnlyBuilder.fs" />
     <Compile Include="Builder.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

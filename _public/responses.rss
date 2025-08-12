@@ -4,8 +4,19 @@
     <title>Luis Quintanilla - Responses</title>
     <link>https://www.luisquintanilla.me/responses</link>
     <description>IndieWeb responses by Luis Quintanilla</description>
-    <lastBuildDate>2025-06-30 20:21</lastBuildDate>
+    <lastBuildDate>2025-08-10 21:13</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>BLM Lands Marked for Potential Sale (OnX)</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Sad to see what's happening with our public lands. Great to see folks staying vigilant and providing information of what's happening on the ground.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/blm-lands-marked-for-potential-sale-onx</link>
+      <guid>https://www.luisquintanilla.me/responses/blm-lands-marked-for-potential-sale-onx</guid>
+      <pubDate>2025-08-10 21:13</pubDate>
+      <category>onx</category>
+      <category>bureaulandmanagement</category>
+      <category>nature</category>
+    </item>
     <item>
       <title>Tumblr’s move to WordPress and fediverse integration is ‘on hold’</title>
       <description>&lt;![CDATA[[reply] &lt;p&gt;That's unfortunate. Having Tumblr as your frontend for posting and curating feeds, with WordPress as the backend and integrated with decentralized networks like the Fediverse for distribution would've been amazing. It sounds like Tumblr is still strategic to Automattic and as more people move away from the centralized social platforms and towards their own corners of the internet, having these differente building blocks in place will be even more important.&lt;/p&gt;
@@ -460,36 +471,6 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <category>decentralized</category>
       <category>community</category>
       <category>indieweb</category>
-    </item>
-    <item>
-      <title>Fediverse House 2025 Roundup</title>
-      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
-&lt;p&gt;No Walls, Just Vibes at SXSW’s Fediverse House&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Fediverse House was SXSW’s first physical gathering dedicated entirely to the constellation of interoperable social platforms powered by protocols like ActivityPub and AT Protocol. (We know “Fediverse” isn’t quite accurate to describe the whole ecosystem; in this case, it was just a convenient, fun way to name the space.)&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;It didn’t matter which platform you preferred or which protocol you were building on; everyone was focused on the singular goal of building a better internet.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;...the real power move for creators is ownership and control of their work and livelihoods.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;...identity portability is a radical shift, and...decentralization could lead to more humane social spaces.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://dot-social.simplecast.com/"&gt;DotSocial Podcast&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://flipboard.video/c/fediverse.house/videos"&gt;Fediverse House PeerTube Channel&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/fediverse-house-2025-roundup</link>
-      <guid>https://www.luisquintanilla.me/responses/fediverse-house-2025-roundup</guid>
-      <pubDate>2025-05-09 20:36</pubDate>
-      <category>fediverse</category>
-      <category>conference</category>
-      <category>indieweb</category>
-      <category>openweb</category>
     </item>
   </channel>
 </rss>

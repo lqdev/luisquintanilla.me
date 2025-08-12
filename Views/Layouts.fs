@@ -52,6 +52,12 @@ module Layouts
                         ]
                         Text "Contact"
                     ]
+                    a [_class "nav-link"; _href "/search"] [
+                        tag "svg" [_class "nav-icon"; attr "viewBox" "0 0 16 16"; attr "fill" "currentColor"] [
+                            tag "path" [attr "d" "M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"] []
+                        ]
+                        Text "Search"
+                    ]
                     a [_class "nav-link"; _href "/feed"] [
                         tag "svg" [_class "nav-icon"; attr "viewBox" "0 0 16 16"; attr "fill" "currentColor"] [
                             tag "path" [attr "d" "M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"] []
@@ -502,6 +508,63 @@ module Layouts
             footerContent
         ]
 
+
+    // Text-Only Layout - Accessibility-First Universal Design
+    let textOnlyLayout (pageTitle:string) (content:string) =
+        html [_lang "en"] [
+            head [] [
+                meta [_charset "UTF-8"]
+                meta [_name "viewport"; _content "width=device-width, initial-scale=1"]
+                
+                // Minimal CSS for text-only experience (<5KB target)
+                link [_rel "stylesheet"; _href "/text/assets/text-only.css"]
+                
+                // Essential metadata
+                meta [_name "description"; _content "Text-only accessible version of Luis Quintanilla's website"]
+                meta [_name "robots"; _content "noindex, nofollow"]
+                
+                title [] [Text $"{pageTitle} - Text-Only Site"]
+            ]
+            body [] [
+                // Skip link for screen readers
+                a [_href "#main-content"; _class "skip-link"] [Text "Skip to main content"]
+                
+                // Text-only navigation header
+                header [attr "role" "banner"] [
+                    h1 [] [
+                        a [_href "/text/"] [Text "Luis Quintanilla"]
+                    ]
+                    p [] [Text "Text-Only Accessible Website"]
+                ]
+                
+                // Main navigation
+                nav [attr "role" "navigation"; attr "aria-label" "Main navigation"] [
+                    ul [] [
+                        li [] [a [_href "/text/"] [Text "Home"]]
+                        li [] [a [_href "/text/about/"] [Text "About"]]
+                        li [] [a [_href "/text/contact/"] [Text "Contact"]]
+                        li [] [a [_href "/text/content/"] [Text "All Content"]]
+                        li [] [a [_href "/text/feeds/"] [Text "RSS Feeds"]]
+                        li [] [a [_href "/text/help/"] [Text "Help"]]
+                    ]
+                ]
+                
+                // Main content
+                main [attr "role" "main"; _id "main-content"] [
+                    rawText content
+                ]
+                
+                // Simple footer with essential links
+                footer [attr "role" "contentinfo"] [
+                    hr []
+                    p [] [
+                        a [_href "/"] [Text "Full Site"]
+                        Text " | "
+                        a [_href "/text/accessibility/"] [Text "Accessibility"]
+                    ]
+                ]
+            ]
+        ]
 
     let presentationLayout (pageTitle:string) (content:string) =
         html [_lang "en"] [

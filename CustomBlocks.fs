@@ -103,10 +103,7 @@ type CustomBlockParser(blockType: string, createBlock: BlockParser -> ContainerB
     
     override this.TryOpen(processor) =
         let line = processor.Line.ToString().TrimStart()
-        if line.Contains(":::") then
-            printfn "TryOpen found fence line: [%s]" line
         if line.StartsWith(startMarker) then
-            printfn "Start marker matched for %s" blockType
             let block = createBlock this
             processor.NewBlocks.Push(block)
             BlockState.ContinueDiscard

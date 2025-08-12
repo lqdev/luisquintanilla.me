@@ -146,10 +146,6 @@ module Builder
             )
             |> List.filter (fun (_, items) -> not items.IsEmpty)
         
-        printfn "Debug: About to render timeline with %d initial items from stratified sampling" stratifiedInitialItems.Length
-        printfn "Debug: Remaining items by type: %s" 
-            (remainingItemsByType |> List.map (fun (t, items) -> $"{t}:{items.Length}") |> String.concat ", ")
-        
         // Generate the timeline homepage with stratified approach
         let timelineHomePage = generate (LayoutViews.timelineHomeViewStratified (stratifiedInitialItems |> List.toArray) remainingItemsByType) "default" "Luis Quintanilla - Personal Website"
         File.WriteAllText(Path.Join(outputDir,"index.html"), timelineHomePage)
@@ -243,6 +239,13 @@ module Builder
         let saveDir = Path.Join(outputDir,"contact")
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir, "index.html"), contactPage)
+
+    let buildSearchPage () = 
+        let searchContent = convertFileToHtml (Path.Join(srcDir,"search.md")) |> contentView
+        let searchPage = generate searchContent "default" "Search - Luis Quintanilla"
+        let saveDir = Path.Join(outputDir,"search")
+        Directory.CreateDirectory(saveDir) |> ignore
+        File.WriteAllText(Path.Join(saveDir, "index.html"), searchPage)
 
     let buildOnlineRadioPage () = 
         let onlineRadioContent = convertFileToHtml (Path.Join(srcDir,"radio.md")) |> contentView
