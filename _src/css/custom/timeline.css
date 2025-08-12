@@ -666,6 +666,27 @@
   }
 }
 
+/* Extra narrow screens - slightly right of center positioning */
+@media (max-width: 480px) {
+  .back-to-top {
+    /* Position slightly right of center to avoid content interference */
+    right: auto;
+    left: 60%;
+    transform: translateX(-50%) translateY(0);
+    bottom: 1rem;
+    /* Ensure adequate spacing from edges */
+    margin: 0 1rem;
+  }
+  
+  .back-to-top.visible {
+    transform: translateX(-50%) translateY(0);
+  }
+  
+  .back-to-top:hover {
+    transform: translateX(-50%) translateY(-2px);
+  }
+}
+
 /* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .back-to-top {
@@ -674,5 +695,16 @@
   
   .back-to-top:hover {
     transform: none;
+  }
+  
+  /* Override transforms for narrow screens when motion is reduced */
+  @media (max-width: 480px) {
+    .back-to-top:hover {
+      transform: translateX(-50%);
+    }
+    
+    .back-to-top.visible {
+      transform: translateX(-50%);
+    }
   }
 }
