@@ -234,7 +234,7 @@ let presentationPageView (presentation:Presentation) =
                 h2 [ _class "p-name" ] [Text presentation.Metadata.Title]
                 div [ _class "presentation-meta" ] [
                     time [ _class "dt-published"; attr "datetime" presentation.Metadata.Date ] [
-                        let publishDate = DateTime.Parse(presentation.Metadata.Date)
+                        let publishDate = DateTimeOffset.Parse(presentation.Metadata.Date)
                         Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
                 ]

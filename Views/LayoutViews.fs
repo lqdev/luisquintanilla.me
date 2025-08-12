@@ -73,7 +73,7 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                     ] [
                         header [ _class "card-header" ] [
                             time [ _class "dt-published publication-date"; attr "datetime" item.Date ] [
-                                Text (DateTime.Parse(item.Date).ToString("MMM dd, yyyy"))
+                                Text (DateTimeOffset.Parse(item.Date).ToString("MMM dd, yyyy"))
                             ]
                             div [ _class "content-type-info" ] [
                                 span [ _class "content-type-badge"; attr "data-type" item.ContentType ] [
@@ -279,7 +279,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                     ] [
                         header [ _class "card-header" ] [
                             time [ _class "dt-published publication-date"; attr "datetime" item.Date ] [
-                                Text (DateTime.Parse(item.Date).ToString("MMM dd, yyyy"))
+                                Text (DateTimeOffset.Parse(item.Date).ToString("MMM dd, yyyy"))
                             ]
                             div [ _class "content-type-info" ] [
                                 span [ _class "content-type-badge"; attr "data-type" item.ContentType ] [
@@ -479,7 +479,7 @@ let contentViewWithTitle (title:string) (content:string) =
     ]    
 
 let snippetPageView (title:string) (content:string) (date:string) (fileName:string) = 
-    let publishDate = DateTime.Parse(date)
+    let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
             header [ _class "post-header" ] [
@@ -513,7 +513,7 @@ let snippetPageView (title:string) (content:string) (date:string) (fileName:stri
     ]
 
 let wikiPageView (title:string) (content:string) (date:string) (fileName:string) = 
-    let publishDate = DateTime.Parse(date)
+    let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
             header [ _class "post-header" ] [
@@ -547,7 +547,7 @@ let wikiPageView (title:string) (content:string) (date:string) (fileName:string)
     ]
 
 let reviewPageView (title:string) (content:string) (date:string) (fileName:string) = 
-    let publishDate = DateTime.Parse(date)
+    let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
             header [ _class "post-header" ] [
@@ -581,7 +581,7 @@ let reviewPageView (title:string) (content:string) (date:string) (fileName:strin
     ]
 
 let presentationPageView (presentation:Presentation) = 
-    let publishDate = DateTime.Parse(presentation.Metadata.Date)
+    let publishDate = DateTimeOffset.Parse(presentation.Metadata.Date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
             header [ _class "post-header" ] [
@@ -648,7 +648,7 @@ let liveStreamView (title:string) =
     ]
 
 let blogPostView (title:string) (content:string) (date:string) (fileName:string) = 
-    let publishDate = DateTime.Parse(date)
+    let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
             header [ _class "post-header" ] [
@@ -682,7 +682,7 @@ let blogPostView (title:string) (content:string) (date:string) (fileName:string)
     ]
 
 let notePostView (title:string) (content:string) (date:string) (fileName:string) = 
-    let publishDate = DateTime.Parse(date)
+    let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
             header [ _class "post-header" ] [
@@ -716,7 +716,7 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
     ]
 
 let responsePostView (title:string) (content:string) (date:string) (fileName:string) (targetUrl:string) = 
-    let publishDate = DateTime.Parse(date)
+    let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
             header [ _class "post-header" ] [
@@ -839,7 +839,7 @@ let eventView (events: Event array) =
                 for event in events do
                     tr [] [
                         td [] [
-                            Text(DateTime.Parse(event.Date).ToString("f"))
+                            Text(DateTimeOffset.Parse(event.Date).ToString("f"))
                         ]
                         td [] [ Text event.Name ]
                         td [] [

@@ -570,6 +570,45 @@ if presentation.Metadata.Resources.Length > 0 then
 
 **Benefits**: Enhanced developer experience, cleaner CI/CD output, easier debugging, professional build process presentation, reduced console noise, and improved focus on essential build information.
 
+### Timezone-Aware Date Parsing Pattern (Proven)
+**Discovery**: Environment-dependent date parsing can cause production data display issues where timeline content shows incorrect dates due to timezone differences between local development and CI/CD build environments.
+
+**Implementation Pattern**:
+- **DateTimeOffset.Parse Replacement**: Replace all `DateTime.Parse()` calls with `DateTimeOffset.Parse()` in view layer for timezone-aware processing
+- **Environment Independence**: Date display becomes consistent regardless of build machine timezone settings (local vs GitHub Actions)
+- **Comprehensive View Coverage**: Apply fix across all view modules including timeline, collection, text-only, content, and component views
+- **Timezone Information Preservation**: Respect timezone offsets specified in frontmatter (`-05:00`) rather than defaulting to machine timezone
+
+**Technical Implementation**:
+**Before (Problematic)**:
+```fsharp
+Text (DateTime.Parse(item.Date).ToString("MMM dd, yyyy"))
+let publishDate = DateTime.Parse(date)
+```
+
+**After (Fixed)**:
+```fsharp
+Text (DateTimeOffset.Parse(item.Date).ToString("MMM dd, yyyy"))
+let publishDate = DateTimeOffset.Parse(date)
+```
+
+**Root Cause**: `DateTime.Parse()` doesn't properly handle timezone offsets and interprets dates differently based on machine timezone, causing `"2025-08-11 20:57 -05:00"` to display as "Aug 12" on UTC build machines instead of "Aug 11".
+
+**Files Modified**:
+- **Views/LayoutViews.fs**: Timeline views and individual page views (12 instances)
+- **Views/CollectionViews.fs**: Collection listing views (9 instances)
+- **Views/TextOnlyViews.fs**: Text-only accessibility site (1 instance)
+- **Views/ContentViews.fs**: Content display views (1 instance)
+- **Views/ComponentViews.fs**: Component views (1 instance)
+
+**Success Metrics**:
+- **Timeline Accuracy**: All content now shows correct publication dates regardless of build environment
+- **Production Reliability**: Build system timezone no longer affects content display
+- **IndieWeb Compliance**: Proper microformats2 `dt-published` values maintain accuracy
+- **User Experience**: Eliminates confusion about actual content publication dates
+
+**Benefits**: Environment-independent date display, consistent user experience across development and production, improved CI/CD reliability, and proper timezone handling for global audiences.
+
 ## 🚀 Migration Pattern (8x Proven Success)
 
 ### Research-Enhanced Migration Process

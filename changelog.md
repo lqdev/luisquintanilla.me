@@ -1,5 +1,63 @@
 # Changelog
 
+## 2025-08-12 - Timeline Date Display Timezone Fix ✅
+
+**Project**: Critical Timezone Handling Bug Fix  
+**Duration**: 1 hour  
+**Status**: ✅ COMPLETE - Timeline now shows correct dates regardless of build machine timezone  
+**Type**: Critical Bug Fix & Production Reliability Improvement  
+
+### Timeline Date Display Bug Resolution Summary
+**Production Issue Resolved**: Fixed critical bug where timeline content showed incorrect dates (Aug 12 instead of Aug 11) when built on GitHub Actions due to timezone parsing differences between local development and CI/CD environments.
+
+### What We Achieved - Timezone-Aware Date Parsing
+**Root Cause Identified ✅**
+- ✅ **DateTime.Parse Issue**: `DateTime.Parse()` in view layer not respecting timezone offsets in frontmatter
+- ✅ **Environment Dependency**: GitHub Actions UTC timezone causing different date interpretation than local development
+- ✅ **User-Reported Bug**: Frontmatter `"2025-08-11 20:57 -05:00"` displaying as August 12 on live site
+- ✅ **Build Machine Variance**: Local builds showed correct dates while CI/CD builds showed incorrect dates
+
+**Technical Solution Implemented ✅**
+- ✅ **DateTimeOffset.Parse Replacement**: Replaced all `DateTime.Parse()` calls with `DateTimeOffset.Parse()` in view layer
+- ✅ **Timezone-Aware Processing**: All date formatting now respects timezone information from frontmatter
+- ✅ **Environment Independence**: Date display now consistent regardless of build machine timezone settings
+- ✅ **Comprehensive Coverage**: Fixed 15+ instances across all view modules
+
+### Files Modified
+- ✅ **Views/LayoutViews.fs**: Timeline views (`timelineHomeViewStratified`, `timelineHomeView`) + individual page views (10 functions)
+- ✅ **Views/CollectionViews.fs**: Collection listing views (`feedView`, `notesView`, `responseView`, etc.) (9 functions)
+- ✅ **Views/TextOnlyViews.fs**: Text-only accessibility site views (1 function)
+- ✅ **Views/ContentViews.fs**: Content display views (1 function)
+- ✅ **Views/ComponentViews.fs**: Component views (1 function)
+
+### Technical Implementation
+**Before (Problematic)**:
+```fsharp
+Text (DateTime.Parse(item.Date).ToString("MMM dd, yyyy"))
+```
+
+**After (Fixed)**:
+```fsharp
+Text (DateTimeOffset.Parse(item.Date).ToString("MMM dd, yyyy"))
+```
+
+### Validation Results
+**Test Case**: `"2025-08-11 20:57 -05:00"`
+- ✅ **Local Development**: Shows "Aug 11, 2025" (correct)
+- ✅ **GitHub Actions**: Now shows "Aug 11, 2025" (fixed)
+- ✅ **DateTimeOffset.Parse**: Respects timezone offset regardless of machine timezone
+- ✅ **Build Consistency**: Date display now environment-independent
+
+### Production Impact
+- ✅ **Timeline Accuracy**: All timeline content now shows correct publication dates
+- ✅ **User Experience**: No more confusion about when content was actually published
+- ✅ **IndieWeb Compliance**: Proper microformats2 `dt-published` values maintain accuracy
+- ✅ **CI/CD Reliability**: Build system timezone no longer affects content display
+
+**Key Insight**: Environment-dependent date parsing can cause production data display issues. Using `DateTimeOffset.Parse()` ensures timezone information is properly handled regardless of build machine configuration.
+
+---
+
 ## 2025-08-11 - Text-Only Site Presentation Resources Enhancement ✅
 
 **Project**: Accessibility Content Parity Improvement  

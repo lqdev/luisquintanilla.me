@@ -4,8 +4,69 @@
     <title>Luis Quintanilla - All Updates</title>
     <link>https://www.luisquintanilla.me/feed</link>
     <description>All content updates from Luis Quintanilla's website</description>
-    <lastBuildDate>2025-08-10 23:26</lastBuildDate>
+    <lastBuildDate>2025-08-12 08:41</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Engineering for Slow Internet</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Does this webapp really need to be 20 MB? What all is being loaded that could be deferred until it is needed, or included in an “optional” add-on bundle? Is there a possibility of a “lite” version, for bandwidth-constrained users?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;While Antarctica is an edge case, this article illustrates some of the motivations behind my &lt;a href="https://www.luisquintanilla.me/text"&gt;text-first website&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;By trimming the excess not only do you get to the core of the app or website, but it also loads faster.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/engineering-for-slow-internet</link>
+      <guid>https://www.luisquintanilla.me/responses/engineering-for-slow-internet</guid>
+      <pubDate>2025-08-12 08:41</pubDate>
+      <category>slowweb</category>
+      <category>performance</category>
+      <category>internet</category>
+      <category>computing</category>
+    </item>
+    <item>
+      <title>Awesome Self-Hosted</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This is a list of Free Software network services and web applications which can be hosted on your own server(s).&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/awesome-self-hosted</link>
+      <guid>https://www.luisquintanilla.me/responses/awesome-self-hosted</guid>
+      <pubDate>2025-08-11 23:24</pubDate>
+      <category>selfhosting</category>
+      <category>opensource</category>
+      <category>FOSS</category>
+    </item>
+    <item>
+      <title>Stop saving everything</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;If your read-it-later list isn’t getting cleared weekly, perhaps it’s time to delete the lot.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Save from a mindset of abundance, rather than scarcity, and process the things you’ve saved each week (or month, at the most). If you are worried that something you deleted truly would have changed your life, just stop.&lt;/p&gt;
+&lt;p&gt;STOP.&lt;/p&gt;
+&lt;p&gt;You can’t read it all, do it all, be it all. Trust that those potentially life-changing ideas will come around again, when you are ready for them&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Good reminder. Lately I've been sending a lot of notes to myself with stuff to read but just haven't had the time to get to it. That said, the act of sending myself those notes is low friction that I don't feel FOMO when I don't get to read the articles and consume the media.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/stop-saving-everything</link>
+      <guid>https://www.luisquintanilla.me/responses/stop-saving-everything</guid>
+      <pubDate>2025-08-11 23:00</pubDate>
+      <category>pkm</category>
+      <category>productivity</category>
+      <category>notetaking</category>
+    </item>
+    <item>
+      <title>New text-first site and search are live</title>
+      <description>&lt;![CDATA[&lt;p&gt;Just iterated on another version of the website.&lt;/p&gt;
+&lt;p&gt;The major change is that there's now a text-first version of the website for minimal and resource-constrained environments over at &lt;a href="https://www.luisquintanilla.me/text"&gt;/text&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I've also added search functionality, which you can find at &lt;a href="https://www.luisquintanilla.me/search"&gt;/search&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/notes/new-text-first-site-and-search-are-live</link>
+      <guid>https://www.luisquintanilla.me/notes/new-text-first-site-and-search-are-live</guid>
+      <pubDate>2025-08-11 20:57 -05:00</pubDate>
+      <category>plaintext</category>
+      <category>indieweb</category>
+      <category>website</category>
+    </item>
     <item>
       <title>URL Town</title>
       <description>&lt;![CDATA[[bookmark] &lt;p&gt;Love to see projects like this.&lt;/p&gt;
@@ -363,136 +424,6 @@ At the end of the day, it was nice seeing everyone else's projects. My favorite 
       <category>music</category>
       <category>concert</category>
       <category>theesacredsouls</category>
-    </item>
-    <item>
-      <title>Local Artist Websites</title>
-      <description>&lt;![CDATA[&lt;p&gt;I saw these really cool murals around the neighborhood. The artists signed their work either with their name or Instagram handle. I don't use Instagram, so it was nice to see that some of them also had websites where I could follow their work.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.shawnimals.com/"&gt;Shawnimals&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://cydsmillie.com/"&gt;Cyd Smillie&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/notes/local-mural-artist-websites</link>
-      <guid>https://www.luisquintanilla.me/notes/local-mural-artist-websites</guid>
-      <pubDate>2025-06-14 10:57</pubDate>
-      <category>art</category>
-      <category>website</category>
-      <category>openweb</category>
-    </item>
-    <item>
-      <title>MLS over ActivityPub Draft</title>
-      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;a href="https://messaginglayersecurity.rocks/"&gt;Messaging Layer Security (MLS)&lt;/a&gt; is an IETF standard for end-to-end encrypted (E2EE) messaging. It lets people on laptops and phones communicate with each other in a secure way that no one in between can see.&lt;br /&gt;
-&lt;br&gt;
-MLS is designed to use pluggable lower-level protocols. This specification defines an envelope format for distributing MLS messages through the network, and an Activity Streams 2.0 profile for the packets of application data stored inside the messages.&lt;br /&gt;
-&lt;br&gt;
-This specification is ready for review from both ActivityPub developers and security analysts. It’s time to start making proof-of-concept implementations and testing interoperability.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Source: https://socialwebfoundation.org/2025/06/13/mls-over-activitypub-draft/&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/mls-over-activitypub-draft</link>
-      <guid>https://www.luisquintanilla.me/responses/mls-over-activitypub-draft</guid>
-      <pubDate>2025-06-14 10:47</pubDate>
-      <category>protocol</category>
-      <category>socialweb</category>
-      <category>activitypub</category>
-      <category>w3c</category>
-    </item>
-    <item>
-      <title>Faircamp - A static site generator for audio producers</title>
-      <description>&lt;![CDATA[[star] &lt;p&gt;This is such a cool project. Looks like it's super simple to get started with and it's packed with a ton of features so creators get to stay in their flow.&lt;/p&gt;
-&lt;p&gt;I also like how creators are showcased.&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/faircamp-static-site-audio-producers</link>
-      <guid>https://www.luisquintanilla.me/responses/faircamp-static-site-audio-producers</guid>
-      <pubDate>2025-06-05 20:05</pubDate>
-      <category>faircamp</category>
-      <category>music</category>
-      <category>socialweb</category>
-      <category>indieweb</category>
-      <category>staticsite</category>
-      <category>technology</category>
-      <category>tools</category>
-      <category>openweb</category>
-      <category>opensource</category>
-    </item>
-    <item>
-      <title>FediForum Day One Recap</title>
-      <description>&lt;![CDATA[
-Just wrapped up a successful first day of FediForum.
-
-The vibes and energy were high. Tons of great conversations and projects around the social web.
-
-A few emerging themes I noticed:
-
-- Identity
-- Portability / Interoperability
-- Feeds
-- Commerce
-
-Ian Forrester kicked us off with his Public Service &amp; The Fediverse keynote [(Slides)](https://docs.google.com/presentation/d/1HuQF_sI19zwByM793uvdl7BECneRmni_H9uOG-oFkdM/edit?slide=id.g420c517061_0_0#slide=id.g420c517061_0_0). 
-
-One of the ideas that struck a chord of public service integrated into the fediverse. More specifically the interest that sparked in me was that publishing and social shouldn't be two separate things. Following the POSSE principle from the IndieWeb. You publish on your own site and then it's syndicated elsewhere. 
-
-This was interesting enough for me I even hosted a session on the topic, I think it was called Tightening the Loop between CMS and the Fediverse. It was my first unconference, so I appreciated the way the agenda was built. Announce your topic, see whether there's interest, put it on the agenda, chat with fellow participants. Super easy.
-
-## Identity &amp; Portability
-
-These are such a huge topic but for the purpose of this post, I'm lumping them together.
-
-[https://bounce-migrate.appspot.com/](https://bounce.so) is one of the projects aiming to make portability easy. What's so interesting is they're making it easy to migrate across protocols. So if you're in one network like ATProto (Bluesky), migrating to the Fediverse should be relatively seamless with https://bounce.so. 
-
-Some great discussions that emerged on the topic as well include:
-
-- **Reputation** - How do you build a web of trust?
-- **Compartmentalization and Deduplication** - A single identity or multiple identities? When "following" someone, which of their feeds takes priority?
-
-## Feeds
-
-Talk of feeds was everywhere. I made a note to myself throughout the conference.
-
-&gt; It's amazing how big the feeds theme is. Feed ownership, customization, and sharing. All powered by open protocols.
-
-- [Bonfire releases 1.0](https://bonfirenetworks.org/posts/bonfire_social_rc/) - Congrats to the Bonfire team on this milestone. I haven't tried Bonfire myself, but the Circles feature caught my attention. It made me reminiscent of Google+.
-- [Surf.Social is now in beta](https://https://surf.social) - As an avid user and curator of RSS feeds, I'd heard about Surf before but hadn't really looked into it. The beta release was announced at the conference and I quickly was able to sign up and download it. Kudos to the team on this milestone and thanks for being so responsive to my request to join the beta. I did almost no waiting in the waitlist. Once I have a chance to try it out and get familiar with it, I'll share some thoughts.
-- [Channels](https://home.channel.org/) from the folks at [Newsmast Foundation](https://www.newsmastfoundation.org/) looks like an interesting way to curate and customize feeds. 
-[Bring Your Own Timeline Algorithm](https://huggingface.co/spaces/mozilla-ai/byota) leverages semantic search to help you seamlessly leverage the power of algorithmic feeds but doing so under your control. Cool use of AI. 
-
-There were a few unconference sessions on the topic as well. 
-
-## Commerce
-
-It was great to see folks talking about enabling creators to earn a living on open platforms and the social web. 
-
-I believe [Bandwagon.fm](https://bandwagon.fm/home) showed of an implementation of a payments and subscription system built on top of [Emmisary](https://emissary.dev/), a social web toolkit.
-
-## Additional Resources
-
-Here's a list of other links and projects I was exposed to during the conference.
-
-- [FediForum Advisory Board and Organizers](https://fediforum.org/people/)
-- [An Internet of Many Autonomous Communities](https://blog.rudyfraser.com/an-internet-of-many-autonomous-communities/)
-- [FediMeteo - Weather updates in your Fediverse Timeline](https://fedimeteo.com/)
-- [Public Interest Technology Group (PITG)](https://pitg.network/)
-- [Coalition for Content Provenance and Authenticity (C2PA)](https://c2pa.org/)
-- [A New Social](https://www.anew.social/)
-- [WeDistribute FediForum Live Coverage](https://wedistribute.org/2025/06/fediforum-june-2025/)
-- [BBC Human Values](https://bbc.github.io/humanvalues/)
-- [The Indie Beat Radio](https://theindiebeat.fm/)
-- [Tie Yourself to a Federated Mastodon](https://pluralistic.net/2024/11/02/ulysses-pact/#tie-yourself-to-a-federated-mast)
-- [The No Network Effect](https://snarfed.org/2013-04-13_the-no-network-effect)
-
-As always, Cory Doctorow was great way to close out the first day. I even learned a new term, tron-pilled. Which means as a creator of a platform, you're on the side of the users.  
-
-Looking forward to tomorrow's sessions!]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/fediforum-day-1-jun-2025</link>
-      <guid>https://www.luisquintanilla.me/posts/fediforum-day-1-jun-2025</guid>
-      <pubDate>2025-06-05 17:20 -05:00</pubDate>
-      <category>fediforum</category>
-      <category>socialweb</category>
-      <category>community</category>
-      <category>fediverse</category>
-      <category>openweb</category>
     </item>
   </channel>
 </rss>

@@ -34,7 +34,7 @@ let seasonalCheckmarkEmoji =
 // Card components
 let cardHeader (date:string) =
     try
-        let dt = DateTime.Parse(date)
+        let dt = DateTimeOffset.Parse(date)
         div [_class "card-header u-author h-card"] [
             img [_src "/avatar.png"; _height "32"; _width "32"; _class "d-inline-block align-top rounded-circle u-photo"; _style "margin-right:5px"; attr "loading" "lazy"]
             a [ _href "/about"; _class "u-url p-name"] [Text "lqdev"]
