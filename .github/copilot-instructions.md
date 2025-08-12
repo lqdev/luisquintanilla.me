@@ -680,6 +680,50 @@ let publishDate = DateTimeOffset.Parse(date)
 
 **Benefits**: Environment-independent date display, consistent user experience across development and production, improved CI/CD reliability, and proper timezone handling for global audiences.
 
+### Timeline URL Overflow Fix Pattern (Proven)
+**Discovery**: Long URLs in timeline cards can break responsive layout on smaller screens, causing horizontal scrolling and poor mobile user experience.
+
+**Implementation Pattern**:
+- **Comprehensive Word Breaking**: Apply `word-wrap: break-word`, `overflow-wrap: break-word`, and `word-break: break-word` to timeline card content
+- **Aggressive URL Handling**: Use `word-break: break-all` specifically for URL links to ensure proper wrapping on narrow screens
+- **Clean Visual Design**: Avoid decorative elements (borders, backgrounds) that could be confused with other content types
+- **Container Protection**: Add `overflow: hidden` to prevent any container overflow scenarios
+- **Responsive Coverage**: Ensure URL breaking works across all responsive breakpoints
+
+**Technical Components**:
+```css
+.card-content {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.card-content a,
+.response-target a,
+.response-content a {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all; /* More aggressive for URLs */
+  hyphens: none; /* Don't hyphenate URLs */
+}
+
+.response-target {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
+}
+```
+
+**Success Metrics**:
+- **Layout Integrity**: Timeline cards maintain proper bounds on all screen sizes
+- **URL Accessibility**: Long URLs wrap appropriately without losing readability
+- **Mobile UX**: Seamless timeline browsing restored on narrow viewports
+- **Visual Consistency**: Clean presentation maintaining design system coherence
+
+**Benefits**: Enhanced mobile UX, prevented horizontal scrolling, improved content accessibility across device types, and established reusable pattern for future URL display challenges.
+
 ## 🚀 Migration Pattern (8x Proven Success)
 
 ### Research-Enhanced Migration Process
