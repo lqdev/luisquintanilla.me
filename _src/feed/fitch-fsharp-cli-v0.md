@@ -11,4 +11,4 @@ I then ran into [Nitch](https://github.com/unxsh/nitch) which is simple and fast
 
 That's when I looked at the existing components in Nitch and found that it was basically just reading files from the `/proc` and `/etc` system directories. At that point, I decided to see if I could build my own utility using F#. A couple of hours later and the result was [Fitch](/github/fitch). This works well enough for my needs and in the future, I might publish it as a dotnet global tool to make it easy for others to use. 
 
-![Screeenshot of command line running Fitch F# System Utility](/assets/images/feed/fitch-display.png)
+![Screeenshot of command line running Fitch F# System Utility](/files/images/fitch-display.png)

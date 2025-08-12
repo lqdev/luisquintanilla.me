@@ -17,4 +17,4 @@ Gold.
 > <hr>
 > In many places we'll see that we can trade one of these (computation, communication, memory) for another (e.g. recomputation or Tensor Parallelism). Finding the right balance is key to scaling training.
 
-![Ultra-Scale Playbook Cheatsheet](https://nanotron-ultrascale-playbook.static.hf.space/dist/assets/images/ultra-cheatsheet.svg)
+![Ultra-Scale Playbook Cheatsheet](https://nanotron-ultrascale-playbook.static.hf.space/dist/files/images/ultra-cheatsheet.svg)

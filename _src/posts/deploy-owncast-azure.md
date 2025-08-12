@@ -85,7 +85,7 @@ Once your application deploys, make sure to change your admin password.
 
 1. In the portal, go to your container app resource and copy your application URL.
 
-    ![Screenshot of Azure Container Apps resource in Azure Portal highlighting Application URL](/assets/images/deploy-owncast-azure/portal-container-resource.png)
+    ![Screenshot of Azure Container Apps resource in Azure Portal highlighting Application URL](/files/images/portal-container-resource.png)
 
     Make sure to keek your application URL around since you'll also be using it when configuring OBS. 
 

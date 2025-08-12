@@ -9,15 +9,15 @@ As the summer comes to a close and I prepare to enter the fall semester, I am ge
 
 As part of the articles that I have read in praise of Emacs, one particular feature seemed to be a recurring theme – Org-Mode. Although I had heard about it, I never really understood what it was. Out of curiosity, I decided to try it out for myself and see what it had to offer. While taking notes in it seemed normal enough, it was the export functionality that truly rocked my world and made me realize how amazing this could be for note-taking. Traditionally a pen-and-paper note taker, one of the main reasons I dislike taking notes on my PC is the lack of continuity and organization. Although tools like OneNote of Evernote are extremely powerful, they were not exactly the best when it came to a semester’s worth of notes and although they could be made to have all of the notes for a semester on one page, this defeated the purpose of having different pages and notebooks. Enter Org-Mode. Again, while the process of taking notes is nothing special, the export capabilities are amazing. Furthermore, by default a table of contents is created with links so you can always find what you want when you want. Here are a few examples of what I mean.
 
-![](/assets/images/back-to-school-emacs-edition/backtoschoolemacsedition1.png)
+![](/files/images/backtoschoolemacsedition1.png)
 
 As it can be seen, other than * or + characters in front of titles and lists, there is nothing special in the terminal. This is how it looks like in HTML format
 
-![](/assets/images/back-to-school-emacs-edition/backtoschoolemacsedition2.png)
+![](/files/images/backtoschoolemacsedition2.png)
 
 Amazing! Not only do you get an organized set of notes, but you can see how this can easily contain a semester’s worth of notes in a single HTML file with main ideas being easily accessible via links. Now, maybe you don’t have an internet connection or prefer to put these notes on your tablet or phone. No problem. Just export it to a PDF.
 
-![](/assets/images/back-to-school-emacs-edition/backtoschoolemacsedition3.png)
+![](/files/images/backtoschoolemacsedition3.png)
 
 Magic!
 

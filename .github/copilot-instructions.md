@@ -525,6 +525,65 @@ if presentation.Metadata.Resources.Length > 0 then
 
 **Benefits**: Enhanced navigation intuitiveness for timeline content exploration, improved accessibility compliance, better user experience for mixed technical audiences, and preserved brand navigation for users who prefer existing patterns.
 
+### Blockquote Visibility Enhancement Pattern (Proven)
+**Discovery**: Blockquote styling in dark themes often suffers from poor visibility due to insufficient contrast, light font weights, and CSS specificity conflicts between theme systems and component-specific styles.
+
+**Implementation Pattern**:
+- **CSS Specificity Analysis**: Identify competing selectors (`.post-content blockquote` vs general `blockquote`) that override theme-specific enhancements
+- **Class-Based Targeting**: Target both element selectors (`blockquote`) and Bootstrap-style class selectors (`.blockquote`) for comprehensive coverage
+- **Container-Specific Selectors**: Use precise container targeting (`.response-content .blockquote`) based on actual HTML structure
+- **Theme Parity Approach**: Enhance both light and dark modes for consistent visual hierarchy and emphasis
+- **Important Declarations**: Use `!important` strategically to override Bootstrap and framework styles when necessary
+
+**Dark Theme Enhancement**:
+- **Font Weight**: Increase to `font-weight: 500` for better visibility against dark backgrounds
+- **Text Color**: Use `#E8E8E8` for enhanced contrast over default theme colors
+- **Background Contrast**: Apply `#3A4A5C` background for better separation from surrounding content
+- **Fallback Support**: Include `prefers-color-scheme: dark` media query for system theme detection
+
+**Light Theme Enhancement**:
+- **Font Weight**: Apply `font-weight: 500` for consistent emphasis with dark mode
+- **Text Color**: Use `#2C3E50` for stronger contrast than default gray text
+- **Background Subtle**: Apply `#F8F9FA` for gentle separation without overwhelming the design
+- **Theme Consistency**: Ensure blockquotes have equal visual prominence across all themes
+
+**Technical Implementation**:
+```css
+/* Enhanced blockquote base styling */
+.response-content .blockquote {
+  font-weight: 500;
+  color: #2C3E50; /* Light mode default */
+}
+
+/* Dark theme specific enhancements */
+[data-theme="dark"] .response-content .blockquote {
+  font-weight: 500 !important;
+  color: #E8E8E8 !important;
+  background: #3A4A5C !important;
+}
+
+/* Light theme explicit enhancements */
+[data-theme="light"] .response-content .blockquote {
+  font-weight: 500 !important;
+  color: #2C3E50 !important;
+  background: #F8F9FA !important;
+}
+```
+
+**Debugging Strategy**:
+- **DevTools Inspection**: Check computed styles to identify which selectors are actually applying
+- **HTML Structure Analysis**: Examine actual markup to determine correct targeting selectors
+- **Specificity Resolution**: Use browser DevTools to understand CSS cascade and override patterns
+- **Theme Testing**: Validate changes across both explicit theme selections and system preferences
+
+**Success Metrics**:
+- **Visual Consistency**: Blockquotes have equal prominence in both light and dark themes
+- **Readability Enhancement**: Improved contrast ratios for WCAG compliance
+- **CSS Specificity Resolution**: Styles apply correctly without framework conflicts
+- **Cross-Container Compatibility**: Works across different content containers (`.post-content`, `.response-content`)
+
+**Benefits**: Enhanced readability across all themes, consistent visual hierarchy, improved accessibility compliance, and robust CSS architecture that handles framework conflicts effectively.
+
 ### Back to Top Button UX Pattern (Proven)
 **Discovery**: Research-backed back to top button implementation following established UX guidelines with mobile optimization and accessibility compliance creates superior user experience for long-content interfaces.
 
@@ -537,11 +596,23 @@ if presentation.Metadata.Resources.Length > 0 then
 - **Progressive Enhancement**: Smooth scrolling with `prefers-reduced-motion` detection for accessibility
 - **Visual Integration**: Desert theme consistency with hover states and transitions matching existing design system
 
+**Mobile Responsiveness Enhancement (Proven)**:
+- **Standard Mobile (768px and below)**: Reduced size (48px) with right positioning for tablet/large mobile
+- **Narrow Screens (480px and below)**: Centered positioning at `left: 60%` to avoid content interference while maintaining thumb accessibility
+- **Transform Consistency**: Proper `translateX(-50%)` handling for centered positioning with hover effects
+- **Motion Sensitivity**: `prefers-reduced-motion` support with transform overrides for accessibility compliance
+
 **Technical Components**:
 - **CSS Implementation**: Fixed positioning with visibility transitions, mobile-responsive sizing, and accessibility focus states
 - **JavaScript Module**: `BackToTopManager` with scroll detection, click handling, and keyboard navigation support
 - **F# ViewEngine Integration**: Button element added to timeline view functions with proper semantic markup
 - **Desert Theme Integration**: Color variables and hover patterns consistent with existing aesthetic
+
+**Success Metrics**:
+- **Mobile UX**: Eliminated horizontal scrolling issues on narrow screens (375px iPhone SE tested)
+- **Accessibility Compliance**: Full WCAG 2.1 AA compliance with keyboard navigation and motion sensitivity
+- **User Experience**: Optimal thumb positioning for right-handed users while avoiding content interference
+- **Performance**: Zero impact on page load or scroll performance with throttled event handling
 
 **Benefits**: Enhanced navigation capability for 1000+ item timelines, improved mobile usability, full accessibility compliance, and seamless integration with existing design systems.
 
@@ -569,6 +640,89 @@ if presentation.Metadata.Resources.Length > 0 then
 - **Maintenance Efficiency**: Consistent logging patterns across all build components
 
 **Benefits**: Enhanced developer experience, cleaner CI/CD output, easier debugging, professional build process presentation, reduced console noise, and improved focus on essential build information.
+
+### Timezone-Aware Date Parsing Pattern (Proven)
+**Discovery**: Environment-dependent date parsing can cause production data display issues where timeline content shows incorrect dates due to timezone differences between local development and CI/CD build environments.
+
+**Implementation Pattern**:
+- **DateTimeOffset.Parse Replacement**: Replace all `DateTime.Parse()` calls with `DateTimeOffset.Parse()` in view layer for timezone-aware processing
+- **Environment Independence**: Date display becomes consistent regardless of build machine timezone settings (local vs GitHub Actions)
+- **Comprehensive View Coverage**: Apply fix across all view modules including timeline, collection, text-only, content, and component views
+- **Timezone Information Preservation**: Respect timezone offsets specified in frontmatter (`-05:00`) rather than defaulting to machine timezone
+
+**Technical Implementation**:
+**Before (Problematic)**:
+```fsharp
+Text (DateTime.Parse(item.Date).ToString("MMM dd, yyyy"))
+let publishDate = DateTime.Parse(date)
+```
+
+**After (Fixed)**:
+```fsharp
+Text (DateTimeOffset.Parse(item.Date).ToString("MMM dd, yyyy"))
+let publishDate = DateTimeOffset.Parse(date)
+```
+
+**Root Cause**: `DateTime.Parse()` doesn't properly handle timezone offsets and interprets dates differently based on machine timezone, causing `"2025-08-11 20:57 -05:00"` to display as "Aug 12" on UTC build machines instead of "Aug 11".
+
+**Files Modified**:
+- **Views/LayoutViews.fs**: Timeline views and individual page views (12 instances)
+- **Views/CollectionViews.fs**: Collection listing views (9 instances)
+- **Views/TextOnlyViews.fs**: Text-only accessibility site (1 instance)
+- **Views/ContentViews.fs**: Content display views (1 instance)
+- **Views/ComponentViews.fs**: Component views (1 instance)
+
+**Success Metrics**:
+- **Timeline Accuracy**: All content now shows correct publication dates regardless of build environment
+- **Production Reliability**: Build system timezone no longer affects content display
+- **IndieWeb Compliance**: Proper microformats2 `dt-published` values maintain accuracy
+- **User Experience**: Eliminates confusion about actual content publication dates
+
+**Benefits**: Environment-independent date display, consistent user experience across development and production, improved CI/CD reliability, and proper timezone handling for global audiences.
+
+### Timeline URL Overflow Fix Pattern (Proven)
+**Discovery**: Long URLs in timeline cards can break responsive layout on smaller screens, causing horizontal scrolling and poor mobile user experience.
+
+**Implementation Pattern**:
+- **Comprehensive Word Breaking**: Apply `word-wrap: break-word`, `overflow-wrap: break-word`, and `word-break: break-word` to timeline card content
+- **Aggressive URL Handling**: Use `word-break: break-all` specifically for URL links to ensure proper wrapping on narrow screens
+- **Clean Visual Design**: Avoid decorative elements (borders, backgrounds) that could be confused with other content types
+- **Container Protection**: Add `overflow: hidden` to prevent any container overflow scenarios
+- **Responsive Coverage**: Ensure URL breaking works across all responsive breakpoints
+
+**Technical Components**:
+```css
+.card-content {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.card-content a,
+.response-target a,
+.response-content a {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all; /* More aggressive for URLs */
+  hyphens: none; /* Don't hyphenate URLs */
+}
+
+.response-target {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
+}
+```
+
+**Success Metrics**:
+- **Layout Integrity**: Timeline cards maintain proper bounds on all screen sizes
+- **URL Accessibility**: Long URLs wrap appropriately without losing readability
+- **Mobile UX**: Seamless timeline browsing restored on narrow viewports
+- **Visual Consistency**: Clean presentation maintaining design system coherence
+
+**Benefits**: Enhanced mobile UX, prevented horizontal scrolling, improved content accessibility across device types, and established reusable pattern for future URL display challenges.
 
 ## 🚀 Migration Pattern (8x Proven Success)
 

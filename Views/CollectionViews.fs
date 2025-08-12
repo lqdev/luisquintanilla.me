@@ -38,7 +38,7 @@ let feedView (posts: Post array) =
                 li [] [
                     a [ _href $"/posts/{post.FileName}"] [ Text post.Metadata.Title ]
                     Text " • "
-                    Text (DateTime.Parse(post.Metadata.Date).ToString("MMM dd, yyyy"))
+                    Text (DateTimeOffset.Parse(post.Metadata.Date).ToString("MMM dd, yyyy"))
                 ]
         ]
     ]
@@ -52,7 +52,7 @@ let notesView (posts: Post array) =
                 li [] [
                     a [ _href $"/notes/{post.FileName}"] [ Text post.Metadata.Title ]
                     Text " • "
-                    Text (DateTime.Parse(post.Metadata.Date).ToString("MMM dd, yyyy"))
+                    Text (DateTimeOffset.Parse(post.Metadata.Date).ToString("MMM dd, yyyy"))
                 ]
         ]
     ]
@@ -66,7 +66,7 @@ let responseView (posts: Response array) =
                 li [] [
                     a [ _href $"/responses/{post.FileName}"] [ Text post.Metadata.Title ]
                     Text " • "
-                    Text (DateTime.Parse(post.Metadata.DatePublished).ToString("MMM dd, yyyy"))
+                    Text (DateTimeOffset.Parse(post.Metadata.DatePublished).ToString("MMM dd, yyyy"))
                 ]
         ]
     ]    
@@ -80,7 +80,7 @@ let bookmarkView (bookmarks: Bookmark array) =
                 li [] [
                     a [ _href $"/bookmarks/{bookmark.FileName}"] [ Text bookmark.Metadata.Title ]
                     Text " • "
-                    Text (DateTime.Parse(bookmark.Metadata.DatePublished).ToString("MMM dd, yyyy"))
+                    Text (DateTimeOffset.Parse(bookmark.Metadata.DatePublished).ToString("MMM dd, yyyy"))
                 ]
         ]
     ]
@@ -101,7 +101,7 @@ let snippetsView (snippets: Snippet array) =
                     a [ _href $"/resources/snippets/{snippet.FileName}"] [ Text snippet.Metadata.Title ]
                     if not (String.IsNullOrEmpty(snippet.Metadata.CreatedDate)) then
                         Text " • "
-                        Text (DateTime.Parse(snippet.Metadata.CreatedDate).ToString("MMM dd, yyyy"))
+                        Text (DateTimeOffset.Parse(snippet.Metadata.CreatedDate).ToString("MMM dd, yyyy"))
                 ]
         ]
     ]
@@ -116,7 +116,7 @@ let wikisView (wikis: Wiki array) =
                     a [ _href $"/resources/wiki/{wiki.FileName}"] [ Text wiki.Metadata.Title ]
                     if not (String.IsNullOrEmpty(wiki.Metadata.LastUpdatedDate)) then
                         Text " • "
-                        Text (DateTime.Parse(wiki.Metadata.LastUpdatedDate).ToString("MMM dd, yyyy"))
+                        Text (DateTimeOffset.Parse(wiki.Metadata.LastUpdatedDate).ToString("MMM dd, yyyy"))
                 ]
         ]
     ]
@@ -155,7 +155,7 @@ let albumsPageView (albums:Album array) =
                     a [ _href $"/media/{album.FileName}"] [ Text album.Metadata.Title ]
                     if not (String.IsNullOrEmpty(album.Metadata.Date)) then
                         Text " • "
-                        Text (DateTime.Parse(album.Metadata.Date).ToString("MMM dd, yyyy"))
+                        Text (DateTimeOffset.Parse(album.Metadata.Date).ToString("MMM dd, yyyy"))
                 ]
         ]
     ]
@@ -257,7 +257,7 @@ let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedI
                     li [] [
                         a [ _href properPermalink ] [ Text item.Title ]
                         Text " • "
-                        Text (DateTime.Parse(item.Date).ToString("MMM dd, yyyy"))
+                        Text (DateTimeOffset.Parse(item.Date).ToString("MMM dd, yyyy"))
                     ]
             ]
             
@@ -471,7 +471,7 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
                     Text (item.ContentType |> fun ct -> ct.Substring(0, 1).ToUpper() + ct.Substring(1))
                 ]
                 Text " • "
-                Text (DateTime.Parse(item.Date).ToString("MMM dd, yyyy"))
+                Text (DateTimeOffset.Parse(item.Date).ToString("MMM dd, yyyy"))
             ]
             
             // Render the original content directly - it's already a complete article

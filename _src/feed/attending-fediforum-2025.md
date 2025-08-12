@@ -7,4 +7,4 @@ tags: ["fediforum","openweb","conference","community"]
 
 Super excited to be attending [FediForum](https://fediforum.org/) in a few weeks!
 
-![Screenshot of Fediforum ticket showing name and event title](/assets/images/feed/fediforum-ticket.png)
+![Screenshot of Fediforum ticket showing name and event title](/files/images/fediforum-ticket.png)

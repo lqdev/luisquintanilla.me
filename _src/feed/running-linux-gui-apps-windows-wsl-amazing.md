@@ -13,4 +13,4 @@ WSL is supported on ARM64 Windows devices. This means, it should also support GU
 
 I decided to try and install the Element Desktop client for Linux in WSL and this was the result!
 
-![Screenshot of Element Desktop Login Screen](/assets/images/feed/element-linux-wsl.png)
+![Screenshot of Element Desktop Login Screen](/files/images/element-linux-wsl.png)

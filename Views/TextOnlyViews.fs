@@ -273,7 +273,7 @@ let textOnlyContentPage (content: UnifiedFeedItem) (htmlContent: string) =
 
 // Special presentation page with resources
 let textOnlyPresentationPage (presentation: Presentation) (htmlContent: string) =
-    let publishDate = DateTime.Parse(presentation.Metadata.Date)
+    let publishDate = DateTimeOffset.Parse(presentation.Metadata.Date)
     let slug = extractSlugFromUrl $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/"
     
     let contentHtml =
