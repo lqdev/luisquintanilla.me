@@ -7,9 +7,33 @@ open GenericBuilder.UnifiedFeeds
 open System
 open System.IO
 open System.Text.RegularExpressions
+open MarkdownService
 
 // Text-Only Content Processing
 module TextOnlyContentProcessor =
+    
+    // Helper function to load and process markdown files
+    let loadMarkdownContent (fileName: string) =
+        let filePath = Path.Join("_src", fileName)
+        if File.Exists(filePath) then
+            try
+                let content = File.ReadAllText(filePath)
+                // Remove YAML front matter if present
+                let content = 
+                    if content.StartsWith("---") then
+                        let lines = content.Split('\n')
+                        let endIndex = lines |> Array.skip 1 |> Array.findIndex (fun line -> line.Trim() = "---")
+                        String.Join("\n", lines |> Array.skip (endIndex + 2))
+                    else
+                        content
+                convertMdToHtml content
+            with
+            | ex -> 
+                printfn $"Error loading markdown from {filePath}: {ex.Message}"
+                $"<p>Content not available. Error: {ex.Message}</p>"
+        else
+            printfn $"Markdown file not found: {filePath}"
+            "<p>Content not available.</p>"
     
     // Replace only images with clickable text descriptions, keeping all other HTML
     let replaceImagesWithText (content: string) =
@@ -34,6 +58,30 @@ module TextOnlyContentProcessor =
                 let fullUrl = if src.StartsWith("http") then src else $"https://www.luisquintanilla.me{src}"
                 $"""<a href="{fullUrl}" target="_blank">[Image]</a>"""
             )
+            
+            result
+
+    // Convert certain internal links to text-only equivalents
+    let convertLinksToTextOnly (content: string) =
+        if String.IsNullOrWhiteSpace(content) then ""
+        else
+            let mutable result = content
+            
+            // Define mappings for internal pages that have text-only equivalents
+            let linkMappings = [
+                ("/uses", "/text/uses/")
+                ("/colophon", "/text/colophon/")
+                ("/contact", "/text/contact/")
+                ("/about", "/text/about/")
+                ("/feed", "/text/feeds/")
+            ]
+            
+            // Replace each mapping
+            for (originalPath, textOnlyPath) in linkMappings do
+                // Pattern to match href attributes with the original path
+                let pattern = $@"href\s*=\s*[""']{Regex.Escape(originalPath)}[""']"
+                let replacement = $"href=\"{textOnlyPath}\""
+                result <- Regex.Replace(result, pattern, replacement, RegexOptions.IgnoreCase)
             
             result
 
@@ -306,38 +354,23 @@ let textOnlyAllContentPage (content: UnifiedFeedItem list) =
 
 // About Page
 let textOnlyAboutPage =
+    let markdownHtml = TextOnlyContentProcessor.loadMarkdownContent "about.md"
+    let processedHtml = 
+        markdownHtml
+        |> TextOnlyContentProcessor.replaceImagesWithText 
+        |> TextOnlyContentProcessor.convertLinksToTextOnly
+    
     let contentHtml =
         div [] [
-            h1 [] [Text "About Luis Quintanilla"]
-            
             p [] [
                 a [_href "/text/"] [Text "← Back to Home"]
                 Text " | "
                 a [_href "/about"] [Text "View Full About Page"]
             ]
             
-            p [] [
-                Text "I'm Luis Quintanilla. I'm a technologist, developer, and content creator based out of the NYC area. "
-                Text "Currently at Microsoft working on Machine Learning for .NET."
-            ]
-            
-            h2 [] [Text "What I'm passionate about"]
-            ul [] [
-                li [] [Text "AI & Machine Learning"]
-                li [] [Text "Open Web"]
-                li [] [Text "Decentralized Web"]
-                li [] [Text "Open Source Software"]
-                li [] [Text "Internet of Things"]
-                li [] [Text "Community Building"]
-            ]
-            
-            h2 [] [Text "More Information"]
-            p [] [
-                Text "For a list of technologies, products, apps, and services I use in my day-to-day, check out my "
-                a [_href "/text/content/posts/uses/"] [Text "Uses page"]
-                Text ". For details on how this site is built, check out the "
-                a [_href "/text/content/posts/colophon/"] [Text "colophon"]
-                Text "."
+            // Rendered markdown content with text-only processing
+            div [_class "content"] [
+                rawText processedHtml
             ]
             
             h2 [] [Text "This Text-Only Site"]
@@ -363,64 +396,23 @@ let textOnlyAboutPage =
 
 // Contact Page
 let textOnlyContactPage =
+    let markdownHtml = TextOnlyContentProcessor.loadMarkdownContent "contact.md"
+    let processedHtml = 
+        markdownHtml
+        |> TextOnlyContentProcessor.replaceImagesWithText 
+        |> TextOnlyContentProcessor.convertLinksToTextOnly
+    
     let contentHtml =
         div [] [
-            h1 [] [Text "Get in Touch"]
-            
             p [] [
                 a [_href "/text/"] [Text "← Back to Home"]
                 Text " | "
                 a [_href "/contact"] [Text "View Full Contact Page"]
             ]
             
-            p [] [Text "Say hi on any of these platforms:"]
-            
-            h2 [] [Text "Primary Contact"]
-            ul [] [
-                li [] [
-                    Text "Email: "
-                    a [_href "mailto:contact@lqdev.me"] [Text "contact@lqdev.me"]
-                ]
-            ]
-            
-            h2 [] [Text "Social Platforms"]
-            ul [] [
-                li [] [
-                    Text "Mastodon: "
-                    a [_href "https://toot.lqdev.tech/@lqdev"] [Text "@lqdev@toot.lqdev.tech"]
-                ]
-                li [] [
-                    Text "LinkedIn: "
-                    a [_href "https://www.linkedin.com/in/lquintanilla01/"] [Text "lquintanilla01"]
-                ]
-                li [] [
-                    Text "GitHub: "
-                    a [_href "https://github.com/lqdev"] [Text "lqdev"]
-                ]
-                li [] [
-                    Text "X (formerly Twitter): "
-                    a [_href "https://twitter.com/ljquintanilla"] [Text "ljquintanilla"]
-                ]
-                li [] [
-                    Text "Bluesky: "
-                    a [_href "https://bsky.app/profile/lqdev.me"] [Text "@lqdev.me"]
-                ]
-                li [] [
-                    Text "Gravatar: "
-                    a [_href "https://gravatar.com/profiles/lqdev"] [Text "Profile"]
-                ]
-            ]
-            
-            h2 [] [Text "Digital Business Cards"]
-            ul [] [
-                li [] [
-                    Text "VCard: "
-                    a [_href "/vcard.vcf"] [Text "Download VCard"]
-                ]
-                li [] [
-                    Text "MeCard: "
-                    a [_href "/mecard.txt"] [Text "Download MeCard"]
-                ]
+            // Rendered markdown content with text-only processing
+            div [_class "content"] [
+                rawText processedHtml
             ]
             
             h2 [] [Text "Response Time"]
@@ -1010,3 +1002,51 @@ let textOnlyAIStarterPackPage =
         ]
     
     textOnlyLayout "AI Starter Pack" (RenderView.AsString.xmlNode contentHtml)
+
+// Uses Page
+let textOnlyUsesPage =
+    let markdownHtml = TextOnlyContentProcessor.loadMarkdownContent "uses.md"
+    let processedHtml = 
+        markdownHtml
+        |> TextOnlyContentProcessor.replaceImagesWithText 
+        |> TextOnlyContentProcessor.convertLinksToTextOnly
+    
+    let contentHtml =
+        div [] [
+            p [] [
+                a [_href "/text/"] [Text "← Back to Home"]
+                Text " | "
+                a [_href "/uses"] [Text "View Full Uses Page"]
+            ]
+            
+            // Rendered markdown content with text-only processing
+            div [_class "content"] [
+                rawText processedHtml
+            ]
+        ]
+    
+    textOnlyLayout "Uses" (RenderView.AsString.xmlNode contentHtml)
+
+// Colophon Page
+let textOnlyColophonPage =
+    let markdownHtml = TextOnlyContentProcessor.loadMarkdownContent "colophon.md"
+    let processedHtml = 
+        markdownHtml
+        |> TextOnlyContentProcessor.replaceImagesWithText 
+        |> TextOnlyContentProcessor.convertLinksToTextOnly
+    
+    let contentHtml =
+        div [] [
+            p [] [
+                a [_href "/text/"] [Text "← Back to Home"]
+                Text " | "
+                a [_href "/colophon"] [Text "View Full Colophon"]
+            ]
+            
+            // Rendered markdown content with text-only processing
+            div [_class "content"] [
+                rawText processedHtml
+            ]
+        ]
+    
+    textOnlyLayout "Colophon" (RenderView.AsString.xmlNode contentHtml)
