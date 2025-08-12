@@ -317,14 +317,27 @@ let textOnlyAboutPage =
             ]
             
             p [] [
-                Text "I'm a Program Manager on the .NET ML team at Microsoft working on ML.NET. "
-                Text "I'm passionate about democratizing AI through open source technologies and education."
+                Text "I'm Luis Quintanilla. I'm a technologist, developer, and content creator based out of the NYC area. "
+                Text "Currently at Microsoft working on Machine Learning for .NET."
             ]
             
-            h2 [] [Text "Background"]
+            h2 [] [Text "What I'm passionate about"]
+            ul [] [
+                li [] [Text "AI & Machine Learning"]
+                li [] [Text "Open Web"]
+                li [] [Text "Decentralized Web"]
+                li [] [Text "Open Source Software"]
+                li [] [Text "Internet of Things"]
+                li [] [Text "Community Building"]
+            ]
+            
+            h2 [] [Text "More Information"]
             p [] [
-                Text "I work on ML.NET, an open source machine learning framework for .NET developers. "
-                Text "I enjoy building tools and creating content that helps developers get started with AI and machine learning."
+                Text "For a list of technologies, products, apps, and services I use in my day-to-day, check out my "
+                a [_href "/text/content/posts/uses/"] [Text "Uses page"]
+                Text ". For details on how this site is built, check out the "
+                a [_href "/text/content/posts/colophon/"] [Text "colophon"]
+                Text "."
             ]
             
             h2 [] [Text "This Text-Only Site"]
