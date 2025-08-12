@@ -363,6 +363,64 @@ let replaceImagesWithText (content: string) =
 
 **Benefits**: Complete accessibility site functionality parity, improved navigation clarity, consistent user experience across all content types, and maintained performance excellence for universal device compatibility.
 
+### Text-Only Presentation Resources Pattern (Proven)
+**Discovery**: Text-only accessibility sites must maintain complete content parity with main sites for specialized content types like presentations, requiring enhanced builder architecture to preserve content-specific metadata during unified feed processing.
+
+**Implementation Pattern**:
+- **Specialized View Functions**: Create content-type-specific view functions (e.g., `textOnlyPresentationPage`) that handle specialized metadata like resources, materials, and links
+- **Enhanced Builder Architecture**: Modify text-only builders to accept original data structures alongside unified feed items to preserve full metadata
+- **Smart URL Matching**: Implement URL normalization to match unified feed URLs with original content URLs (handle domain prefixes, trailing slashes)
+- **Conditional Content Processing**: Use pattern matching to route specialized content types to appropriate view functions while maintaining generic processing for standard content
+- **Metadata Preservation**: Ensure specialized content fields (resources, materials, references) are fully rendered in accessibility-compliant format
+
+**Technical Components**:
+```fsharp
+// Enhanced builder function signature
+let buildTextOnlyIndividualPages (outputDir: string) (unifiedContent: UnifiedFeedItem list) (presentationsFeedData: FeedData<Presentation> list) =
+    for content in unifiedContent do
+        if content.ContentType = "presentations" then
+            // Find matching original data with full metadata
+            let presentationOpt = 
+                presentationsFeedData 
+                |> List.tryFind (fun feedData -> 
+                    let expectedPath = $"/resources/presentations/{Path.GetFileNameWithoutExtension(feedData.Content.FileName)}/"
+                    let actualPath = content.Url.Replace("https://www.luisquintanilla.me", "")
+                    let actualPathNormalized = if actualPath.EndsWith("/") then actualPath else actualPath + "/"
+                    expectedPath = actualPathNormalized)
+            
+            match presentationOpt with
+            | Some feedData -> 
+                // Use specialized view with full metadata
+                let textContentPage = TextOnlyViews.textOnlyPresentationPage feedData.Content htmlContent
+```
+
+**Resources Rendering Pattern**:
+```fsharp
+// Accessibility-compliant resources section
+if presentation.Metadata.Resources.Length > 0 then
+    hr []
+    h2 [] [Text "Resources"]
+    ul [] [
+        for resource in presentation.Metadata.Resources do
+            li [] [
+                a [_href resource.Url; _target "_blank"] [Text resource.Text]
+            ]
+    ]
+```
+
+**URL Normalization Solution**:
+- **Domain Handling**: Remove full domain prefixes from unified feed URLs to match relative paths
+- **Trailing Slash Normalization**: Ensure consistent path formatting between unified and original data
+- **Path Matching**: Use filename-based matching for reliable content identification
+
+**Success Metrics**:
+- **Content Parity**: 100% of presentation resources now accessible in text-only version
+- **Performance Maintained**: <50KB page targets preserved with enhanced functionality
+- **Universal Access**: All presentation materials accessible on 2G networks, flip phones, screen readers
+- **Zero Information Loss**: Complete feature parity between main site and text-only presentations
+
+**Benefits**: Enhanced accessibility compliance, complete content parity for specialized content types, maintained performance excellence, universal device compatibility, and scalable pattern for future content type enhancements.
+
 ### Enhanced Content Discovery Pattern (Proven)
 **Discovery**: Complete client-side search implementation for F# static sites with accessibility compliance, fuzzy search capabilities, and seamless theme integration provides powerful content discovery without server dependencies.
 

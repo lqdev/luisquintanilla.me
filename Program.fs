@@ -104,6 +104,12 @@ let main argv =
         ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
     ]
     
+    // Prepare unified content for text-only site and search indexes
+    let allUnifiedContent = 
+        allUnifiedItems
+        |> List.collect snd
+        |> List.sortByDescending (fun item -> item.Date)
+    
     // Generate unified feeds (fire-hose + type-specific)
     GenericBuilder.UnifiedFeeds.buildAllFeeds allUnifiedItems "_public"
     
@@ -115,6 +121,13 @@ let main argv =
     
     // Generate unified feed HTML page
     buildUnifiedFeedPage allUnifiedItems
+    
+    // =============================================================================
+    // Text-Only Site Generation - Phase 1 Implementation
+    // =============================================================================
+    
+    // Build text-only site
+    TextOnlyBuilder.buildTextOnlySite outputDir allUnifiedContent presentationsFeedData
    
     // Build roll pages
     buildFeedsOpml feedLinks
@@ -169,19 +182,6 @@ let main argv =
 
     // Build legacy RSS feed aliases for backward compatibility (at the very end)
     buildLegacyRssFeedAliases ()
-
-    // =============================================================================
-    // Text-Only Site Generation - Phase 1 Implementation
-    // =============================================================================
-    
-    // Prepare unified content for text-only site
-    let allUnifiedContent = 
-        allUnifiedItems
-        |> List.collect snd
-        |> List.sortByDescending (fun item -> item.Date)
-    
-    // Build text-only site
-    TextOnlyBuilder.buildTextOnlySite outputDir allUnifiedContent
 
     // =============================================================================
     // Enhanced Content Discovery - Search Index Generation

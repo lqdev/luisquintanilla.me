@@ -5,6 +5,7 @@ open Domain
 open Layouts
 open GenericBuilder.UnifiedFeeds
 open System
+open System.IO
 open System.Text.RegularExpressions
 
 // Text-Only Content Processing
@@ -221,6 +222,56 @@ let textOnlyContentPage (content: UnifiedFeedItem) (htmlContent: string) =
         ]
     
     textOnlyLayout content.Title (RenderView.AsString.xmlNode contentHtml)
+
+// Special presentation page with resources
+let textOnlyPresentationPage (presentation: Presentation) (htmlContent: string) =
+    let publishDate = DateTime.Parse(presentation.Metadata.Date)
+    let slug = extractSlugFromUrl $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/"
+    
+    let contentHtml =
+        div [] [
+            h1 [] [Text presentation.Metadata.Title]
+            
+            div [_class "content-meta"] [
+                div [_class "content-type"] [Text "presentations"]
+                time [attr "datetime" (publishDate.ToString("yyyy-MM-dd"))] [
+                    Text (publishDate.ToString("MMMM d, yyyy"))
+                ]
+                if not (String.IsNullOrEmpty(presentation.Metadata.Tags)) then
+                    let tags = presentation.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+                    if tags.Length > 0 then
+                        p [] [
+                            Text "Tags: "
+                            Text (String.concat ", " tags)
+                        ]
+            ]
+            
+            p [] [
+                a [_href "/text/"] [Text "← Home"]
+                Text " | "
+                a [_href "/text/content/presentations/"] [Text "← All Presentations"]
+                Text " | "
+                a [_href $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/"] [Text "View Full Version"]
+            ]
+            
+            // Text-only content rendering with image replacement only
+            div [_class "content"] [
+                rawText (TextOnlyContentProcessor.replaceImagesWithText htmlContent)
+            ]
+            
+            // Resources section - matching main site structure
+            if presentation.Metadata.Resources.Length > 0 then
+                hr []
+                h2 [] [Text "Resources"]
+                ul [] [
+                    for resource in presentation.Metadata.Resources do
+                        li [] [
+                            a [_href resource.Url; _target "_blank"] [Text resource.Text]
+                        ]
+                ]
+        ]
+    
+    textOnlyLayout presentation.Metadata.Title (RenderView.AsString.xmlNode contentHtml)
 
 // All Content Types Directory
 let textOnlyAllContentPage (content: UnifiedFeedItem list) =

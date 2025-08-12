@@ -3,6 +3,7 @@ module TextOnlyBuilder
 open System.IO
 open Domain
 open TextOnlyViews
+open GenericBuilder
 open GenericBuilder.UnifiedFeeds
 open Giraffe.ViewEngine
 open MarkdownService
@@ -116,25 +117,64 @@ let buildTextOnlyContentTypePages (outputDir: string) (unifiedContent: UnifiedFe
         
         File.WriteAllText(outputPath, textContentTypePage)
 
-let buildTextOnlyIndividualPages (outputDir: string) (unifiedContent: UnifiedFeedItem list) =
+let buildTextOnlyIndividualPages (outputDir: string) (unifiedContent: UnifiedFeedItem list) (presentationsFeedData: FeedData<Presentation> list) =
     for content in unifiedContent do
-        // For responses and bookmarks, content.Content already contains the CardHtml with target URL
-        // For other content types, convert markdown to HTML
-        let htmlContent = 
-            if content.ContentType = "responses" || content.ContentType = "bookmarks" then
-                content.Content  // Already HTML with target URL display
-            else
-                MarkdownService.convertMdToHtml content.Content  // Convert markdown to HTML
-        let textContentPage = TextOnlyViews.textOnlyContentPage content htmlContent |> RenderView.AsString.htmlDocument
-        let slug = TextOnlyViews.extractSlugFromUrl content.Url
-        let outputPath = Path.Combine(outputDir, "text", "content", content.ContentType.ToLower(), slug, "index.html")
-        
-        // Ensure directory exists
-        let dirPath = Path.GetDirectoryName(outputPath)
-        if not (Directory.Exists(dirPath)) then
-            Directory.CreateDirectory(dirPath) |> ignore
-        
-        File.WriteAllText(outputPath, textContentPage)
+        // Handle presentations specially to include resources
+        if content.ContentType = "presentations" then
+            // Find the matching presentation from the original data
+            let presentationOpt = 
+                presentationsFeedData 
+                |> List.tryFind (fun feedData -> 
+                    let expectedPath = $"/resources/presentations/{System.IO.Path.GetFileNameWithoutExtension(feedData.Content.FileName)}/"
+                    let actualPath = content.Url.Replace("https://www.luisquintanilla.me", "")
+                    let actualPathNormalized = if actualPath.EndsWith("/") then actualPath else actualPath + "/"
+                    expectedPath = actualPathNormalized)
+            
+            match presentationOpt with
+            | Some feedData ->
+                let presentation = feedData.Content
+                let htmlContent = MarkdownService.convertMdToHtml presentation.Content
+                let textContentPage = TextOnlyViews.textOnlyPresentationPage presentation htmlContent |> RenderView.AsString.htmlDocument
+                let slug = TextOnlyViews.extractSlugFromUrl content.Url
+                let outputPath = Path.Combine(outputDir, "text", "content", content.ContentType.ToLower(), slug, "index.html")
+                
+                // Ensure directory exists
+                let dirPath = Path.GetDirectoryName(outputPath)
+                if not (Directory.Exists(dirPath)) then
+                    Directory.CreateDirectory(dirPath) |> ignore
+                
+                File.WriteAllText(outputPath, textContentPage)
+            | None ->
+                // Fallback to regular processing if presentation not found
+                let htmlContent = MarkdownService.convertMdToHtml content.Content
+                let textContentPage = TextOnlyViews.textOnlyContentPage content htmlContent |> RenderView.AsString.htmlDocument
+                let slug = TextOnlyViews.extractSlugFromUrl content.Url
+                let outputPath = Path.Combine(outputDir, "text", "content", content.ContentType.ToLower(), slug, "index.html")
+                
+                // Ensure directory exists
+                let dirPath = Path.GetDirectoryName(outputPath)
+                if not (Directory.Exists(dirPath)) then
+                    Directory.CreateDirectory(dirPath) |> ignore
+                
+                File.WriteAllText(outputPath, textContentPage)
+        else
+            // For responses and bookmarks, content.Content already contains the CardHtml with target URL
+            // For other content types, convert markdown to HTML
+            let htmlContent = 
+                if content.ContentType = "responses" || content.ContentType = "bookmarks" then
+                    content.Content  // Already HTML with target URL display
+                else
+                    MarkdownService.convertMdToHtml content.Content  // Convert markdown to HTML
+            let textContentPage = TextOnlyViews.textOnlyContentPage content htmlContent |> RenderView.AsString.htmlDocument
+            let slug = TextOnlyViews.extractSlugFromUrl content.Url
+            let outputPath = Path.Combine(outputDir, "text", "content", content.ContentType.ToLower(), slug, "index.html")
+            
+            // Ensure directory exists
+            let dirPath = Path.GetDirectoryName(outputPath)
+            if not (Directory.Exists(dirPath)) then
+                Directory.CreateDirectory(dirPath) |> ignore
+            
+            File.WriteAllText(outputPath, textContentPage)
     
     printfn $"Generated {unifiedContent.Length} text-only individual content pages"
 
@@ -216,7 +256,7 @@ let buildTextOnlyArchivePages (outputDir: string) (unifiedContent: UnifiedFeedIt
     printfn $"Generated {monthlyArchives.Length} text-only monthly archive pages"
 
 // Main orchestration function for text-only site generation
-let buildTextOnlySite (outputDir: string) (unifiedContent: UnifiedFeedItem list) =
+let buildTextOnlySite (outputDir: string) (unifiedContent: UnifiedFeedItem list) (presentationsFeedData: FeedData<Presentation> list) =
     printfn "Building text-only site..."
     
     // Phase 1: Core pages
@@ -228,7 +268,7 @@ let buildTextOnlySite (outputDir: string) (unifiedContent: UnifiedFeedItem list)
     buildTextOnlyStarterPacksPages outputDir
     buildTextOnlyAllContentPage outputDir unifiedContent
     buildTextOnlyContentTypePages outputDir unifiedContent
-    buildTextOnlyIndividualPages outputDir unifiedContent
+    buildTextOnlyIndividualPages outputDir unifiedContent presentationsFeedData
     
     // Phase 2: Enhanced features
     buildTextOnlyTagPages outputDir unifiedContent

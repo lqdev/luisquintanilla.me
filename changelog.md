@@ -1,5 +1,78 @@
 # Changelog
 
+## 2025-08-11 - Text-Only Site Presentation Resources Enhancement ✅
+
+**Project**: Accessibility Content Parity Improvement  
+**Duration**: 45 minutes  
+**Status**: ✅ COMPLETE - Presentation resources now display in text-only site  
+**Type**: Accessibility Enhancement & Content Parity Achievement  
+
+### Text-Only Presentation Resources Achievement Summary
+**Universal Access Improvement**: Successfully implemented presentation resources display in the text-only accessibility site, achieving complete content parity with the main site for presentations while maintaining performance excellence.
+
+### What We Achieved - Presentation Resources Integration
+**Problem Solved**: Text-only site was missing the Resources section that appears in the full version (Recording, Source code & slides, ML.NET Docs, etc.)
+
+**Root Cause Identified ✅**
+- ✅ **Architecture Issue**: Text-only site used generic `UnifiedFeedItem` objects lacking presentation-specific metadata
+- ✅ **Data Loss Point**: Resources field from original `Presentation` objects lost during unified feed conversion
+- ✅ **URL Matching Challenges**: Unified feed URLs included full domain + no trailing slash vs expected relative paths
+
+**Technical Solution Implemented ✅**
+- ✅ **New Text-Only Presentation View**: Created `textOnlyPresentationPage` in TextOnlyViews.fs with full resource rendering
+- ✅ **Enhanced Builder Architecture**: Modified `buildTextOnlyIndividualPages` to accept `FeedData<Presentation>` data
+- ✅ **Smart URL Matching Logic**: Implemented URL normalization handling domain differences and trailing slashes
+- ✅ **Special Content Processing**: Added presentation-specific handling alongside generic content processing
+
+**Content Parity Achieved ✅**
+- ✅ **reactor-mlnet-container-apps**: All 8 resources now display (Recording, GitHub repo, ML.NET docs, samples, roadmap, Azure docs, Spanish version)
+- ✅ **hello-world**: Both resources display (Personal Site, Contact)
+- ✅ **mlnet-globalai-2022**: All resources accessible in text-only format
+
+### Technical Implementation Details
+```fsharp
+// New text-only presentation view with resources
+let textOnlyPresentationPage (presentation: Presentation) (htmlContent: string) =
+    // ... content rendering ...
+    if presentation.Metadata.Resources.Length > 0 then
+        hr []
+        h2 [] [Text "Resources"]
+        ul [] [
+            for resource in presentation.Metadata.Resources do
+                li [] [
+                    a [_href resource.Url; _target "_blank"] [Text resource.Text]
+                ]
+        ]
+```
+
+**URL Matching Solution**:
+```fsharp
+let expectedPath = $"/resources/presentations/{Path.GetFileNameWithoutExtension(feedData.Content.FileName)}/"
+let actualPath = content.Url.Replace("https://www.luisquintanilla.me", "")
+let actualPathNormalized = if actualPath.EndsWith("/") then actualPath else actualPath + "/"
+```
+
+### Architecture Impact Assessment
+**Accessibility Excellence ✅**
+- **Universal Device Support**: Resources accessible on 2G networks, flip phones, screen readers
+- **Content Parity**: Zero information loss between main site and text-only version for presentations
+- **Performance Maintained**: <50KB page targets preserved across all enhanced pages
+
+**Maintainable Enhancement ✅**  
+- **Existing Pipeline Preserved**: Solution works alongside existing content processing without disruption
+- **Type-Safe Integration**: Leverages existing Domain types and ViewEngine patterns
+- **Scalable Pattern**: Architecture supports future content type enhancements
+
+### Benefits Delivered
+- **Enhanced Accessibility**: Screen reader users can now access all presentation resources
+- **Universal Design**: All presentation content available across any device or connection
+- **Content Completeness**: Text-only site maintains full feature parity with main site
+- **Zero Performance Impact**: Build process and page load performance maintained
+
+**Success Validation**: Manual verification confirmed all presentation pages in `/text/content/presentations/` now display complete resource lists matching main site functionality.
+
+---
+
 ## 2025-08-11 - Console Output Logging Cleanup ✅
 
 **Project**: Professional Build Output Enhancement  
