@@ -24,8 +24,12 @@ jobs:
         run: dotnet build --no-restore
       - name: Generate website
         run: dotnet run
-      - name: Check total webpage size
-        run: du -sh ./_public
+      - name: Check website sizes
+        run: |
+          echo "🚀 TOTAL SITE SIZE: $(du -sh ./_public | cut -f1)"
+          echo "================================================"
+          chmod +x ./Scripts/check-site-sizes.sh
+          ./Scripts/check-site-sizes.sh
       - name: Upload to blob storage
         uses: azure/CLI@v1
         env: 
