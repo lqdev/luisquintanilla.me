@@ -7,6 +7,6 @@ tags: ["firefish","fediverse","socialmedia"]
 
 TIL about [Firefish](https://joinfirefish.org/).
 
-![firefish.social admin page](/assets/images/feed/firefish-admin-user-page.png)
+![firefish.social admin page](/files/images/firefish-admin-user-page.png)
 
 I like the look of it. It reminds me of Tumblr in many ways.

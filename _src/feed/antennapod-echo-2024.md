@@ -7,6 +7,6 @@ tags: ["podcasts","opensource","antennapod","stats"]
 
 That's a lot of podcasts!
 
-![Screenshot of Antennapod Echo Podcast Hours Listened](/assets/images/feed/antennapod-2024-1.png)
+![Screenshot of Antennapod Echo Podcast Hours Listened](/files/images/antennapod-2024-1.png)
 
-![Screenshot of Antennapod Echo Podcast Addict](/assets/images/feed/antennapod-2024-2.png)
+![Screenshot of Antennapod Echo Podcast Addict](/files/images/antennapod-2024-2.png)

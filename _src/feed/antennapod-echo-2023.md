@@ -7,14 +7,14 @@ tags: ["podcasts","opensource","antennapod","stats"]
 
 This was a nice surprise to see when I opened up Antennapod the other day. Using my listening statistics, it was able to compile a yearly summary for me (locally). 
 
-![Antennapod Echo](/assets/images/feed/antennapod-wrapped-1.png)
+![Antennapod Echo](/files/images/antennapod-wrapped-1.png)
 
-![Antennapod Echo](/assets/images/feed/antennapod-wrapped-2.png)
+![Antennapod Echo](/files/images/antennapod-wrapped-2.png)
 
 Looks like I have a lot of catching up to do on the backlog.
 
-![Antennapod Echo](/assets/images/feed/antennapod-wrapped-3.png)
+![Antennapod Echo](/files/images/antennapod-wrapped-3.png)
 
-![Antennapod Echo](/assets/images/feed/antennapod-wrapped-4.png)
+![Antennapod Echo](/files/images/antennapod-wrapped-4.png)
 
-![Antennapod Echo](/assets/images/feed/antennapod-wrapped-5.png)
+![Antennapod Echo](/files/images/antennapod-wrapped-5.png)

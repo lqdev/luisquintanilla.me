@@ -143,7 +143,7 @@ With that in mind, I set out to sketch out how I want to create and render media
 
 Overall, I'm happy with the end result. 
 
-![A screenshot of a website post containing an image and audio player](/assets/images/feed/indieweb-create-day-2025-07.png)
+![A screenshot of a website post containing an image and audio player](/files/images/indieweb-create-day-2025-07.png)
 
 For more details, you can check out the [repo](https://github.com/lqdev/indieweb-create-day-2025-07).
 
@@ -415,8 +415,8 @@ At the end of the day, it was nice seeing everyone else's projects. My favorite 
       <description>&lt;![CDATA[&lt;p&gt;Some pictures from the Thee Sacred Souls concert I attended a few weeks ago.&lt;/p&gt;
 &lt;p&gt;I caught them in New York when the tour started, so it was nice to catch them at the end of the tour as well.&lt;/p&gt;
 &lt;p&gt;In both cases, they were great performances.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.luisquintanilla.me/assets/images/feed/thee-sacred-souls-2025-1.jpg" class="img-fluid" alt="A stage with Thee Sacred Souls band performing" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.luisquintanilla.me/assets/images/feed/thee-sacred-souls-2025-2.jpg" class="img-fluid" alt="Thee Sacred Souls members on stage embracing" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.luisquintanilla.me/files/images/thee-sacred-souls-2025-1.jpg" class="img-fluid" alt="A stage with Thee Sacred Souls band performing" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.luisquintanilla.me/files/images/thee-sacred-souls-2025-2.jpg" class="img-fluid" alt="Thee Sacred Souls members on stage embracing" /&gt;&lt;/p&gt;
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/notes/thee-sacred-souls-2025</link>
       <guid>https://www.luisquintanilla.me/notes/thee-sacred-souls-2025</guid>

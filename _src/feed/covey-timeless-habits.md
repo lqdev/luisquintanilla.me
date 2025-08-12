@@ -16,4 +16,4 @@ Given recent talking points of AI coming for our jobs and the accelerated rate o
 
 I found it funny though that while flipping through the book and reading about these timeless challenges and principles, I came across the opposite of that. One of my bookmarks was a Borders membership card. If you don't know or remember what Borders was, in a gist, it was one of the large bookstores which succumbed to disruption from e-commerce (i.e. Amazon)
 
-![An image of a Borders member card](/assets/images/feed/borders-membership-card.jpg)
+![An image of a Borders member card](/files/images/borders-membership-card.jpg)

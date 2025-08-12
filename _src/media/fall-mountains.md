@@ -6,12 +6,12 @@ tags: []
 ---
 
 :::media
-- url: "/assets/images/fall-mountains/sunrise.jpg"
+- url: "/files/images/sunrise.jpg"
   alt: "Sunrise at mountain summit with mist and fall foliage"
   mediaType: "image"
   aspectRatio: "landscape"
   caption: "Sunrise"
-- url: "/assets/images/fall-mountains/sunset.jpg"
+- url: "/files/images/sunset.jpg"
   alt: "Sunset at lake with mountains in the background"
   mediaType: "image"
   aspectRatio: "landscape"

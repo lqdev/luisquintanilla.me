@@ -16,7 +16,7 @@ With that in mind, I set out to sketch out how I want to create and render media
 
 Overall, I'm happy with the end result. 
 
-![A screenshot of a website post containing an image and audio player](/assets/images/feed/indieweb-create-day-2025-07.png)
+![A screenshot of a website post containing an image and audio player](/files/images/indieweb-create-day-2025-07.png)
 
 For more details, you can check out the [repo](https://github.com/lqdev/indieweb-create-day-2025-07).
 
