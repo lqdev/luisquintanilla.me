@@ -239,10 +239,46 @@
 .card-content {
   color: var(--text-color);
   line-height: 1.6;
+  /* Ensure proper text wrapping for long content and URLs */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .card-content p:last-child {
   margin-bottom: 0;
+}
+
+/* Specific URL handling in timeline cards */
+.card-content a,
+.response-target a,
+.response-content a {
+  /* Allow long URLs to break appropriately */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all; /* More aggressive breaking for URLs */
+  hyphens: none; /* Don't hyphenate URLs */
+}
+
+/* Response target URL styling with proper overflow handling */
+.response-target {
+  margin: var(--spacing-sm) 0;
+  font-size: 0.9rem;
+  /* Ensure URLs don't overflow container */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+.response-target a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.response-target a:hover {
+  text-decoration: underline;
 }
 
 /* Card Footer */
