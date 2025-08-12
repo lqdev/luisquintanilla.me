@@ -525,6 +525,65 @@ if presentation.Metadata.Resources.Length > 0 then
 
 **Benefits**: Enhanced navigation intuitiveness for timeline content exploration, improved accessibility compliance, better user experience for mixed technical audiences, and preserved brand navigation for users who prefer existing patterns.
 
+### Blockquote Visibility Enhancement Pattern (Proven)
+**Discovery**: Blockquote styling in dark themes often suffers from poor visibility due to insufficient contrast, light font weights, and CSS specificity conflicts between theme systems and component-specific styles.
+
+**Implementation Pattern**:
+- **CSS Specificity Analysis**: Identify competing selectors (`.post-content blockquote` vs general `blockquote`) that override theme-specific enhancements
+- **Class-Based Targeting**: Target both element selectors (`blockquote`) and Bootstrap-style class selectors (`.blockquote`) for comprehensive coverage
+- **Container-Specific Selectors**: Use precise container targeting (`.response-content .blockquote`) based on actual HTML structure
+- **Theme Parity Approach**: Enhance both light and dark modes for consistent visual hierarchy and emphasis
+- **Important Declarations**: Use `!important` strategically to override Bootstrap and framework styles when necessary
+
+**Dark Theme Enhancement**:
+- **Font Weight**: Increase to `font-weight: 500` for better visibility against dark backgrounds
+- **Text Color**: Use `#E8E8E8` for enhanced contrast over default theme colors
+- **Background Contrast**: Apply `#3A4A5C` background for better separation from surrounding content
+- **Fallback Support**: Include `prefers-color-scheme: dark` media query for system theme detection
+
+**Light Theme Enhancement**:
+- **Font Weight**: Apply `font-weight: 500` for consistent emphasis with dark mode
+- **Text Color**: Use `#2C3E50` for stronger contrast than default gray text
+- **Background Subtle**: Apply `#F8F9FA` for gentle separation without overwhelming the design
+- **Theme Consistency**: Ensure blockquotes have equal visual prominence across all themes
+
+**Technical Implementation**:
+```css
+/* Enhanced blockquote base styling */
+.response-content .blockquote {
+  font-weight: 500;
+  color: #2C3E50; /* Light mode default */
+}
+
+/* Dark theme specific enhancements */
+[data-theme="dark"] .response-content .blockquote {
+  font-weight: 500 !important;
+  color: #E8E8E8 !important;
+  background: #3A4A5C !important;
+}
+
+/* Light theme explicit enhancements */
+[data-theme="light"] .response-content .blockquote {
+  font-weight: 500 !important;
+  color: #2C3E50 !important;
+  background: #F8F9FA !important;
+}
+```
+
+**Debugging Strategy**:
+- **DevTools Inspection**: Check computed styles to identify which selectors are actually applying
+- **HTML Structure Analysis**: Examine actual markup to determine correct targeting selectors
+- **Specificity Resolution**: Use browser DevTools to understand CSS cascade and override patterns
+- **Theme Testing**: Validate changes across both explicit theme selections and system preferences
+
+**Success Metrics**:
+- **Visual Consistency**: Blockquotes have equal prominence in both light and dark themes
+- **Readability Enhancement**: Improved contrast ratios for WCAG compliance
+- **CSS Specificity Resolution**: Styles apply correctly without framework conflicts
+- **Cross-Container Compatibility**: Works across different content containers (`.post-content`, `.response-content`)
+
+**Benefits**: Enhanced readability across all themes, consistent visual hierarchy, improved accessibility compliance, and robust CSS architecture that handles framework conflicts effectively.
+
 ### Back to Top Button UX Pattern (Proven)
 **Discovery**: Research-backed back to top button implementation following established UX guidelines with mobile optimization and accessibility compliance creates superior user experience for long-content interfaces.
 

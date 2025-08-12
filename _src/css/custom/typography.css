@@ -177,6 +177,21 @@ blockquote {
   border-radius: var(--border-radius-md);
   font-style: italic;
   color: var(--text-color);
+  font-weight: 400; /* Ensure normal weight for light theme */
+}
+
+/* Dark theme blockquote enhancement for better visibility */
+[data-theme="dark"] blockquote,
+body[data-theme="dark"] blockquote {
+  font-weight: 500; /* Slightly bolder for better contrast */
+  color: #E8E8E8; /* Brighter text for better readability */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) blockquote {
+    font-weight: 500;
+    color: #E8E8E8;
+  }
 }
 
 blockquote p:last-child {
@@ -190,6 +205,20 @@ blockquote cite {
   color: var(--text-color);
   opacity: 0.8;
   margin-top: var(--spacing-sm);
+}
+
+/* Dark theme cite enhancement */
+[data-theme="dark"] blockquote cite,
+body[data-theme="dark"] blockquote cite {
+  color: #D0D0D0; /* Brighter cite text in dark theme */
+  opacity: 0.9; /* Less opacity reduction for better visibility */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) blockquote cite {
+    color: #D0D0D0;
+    opacity: 0.9;
+  }
 }
 
 blockquote cite::before {

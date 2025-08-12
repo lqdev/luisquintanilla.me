@@ -501,13 +501,52 @@
   margin: var(--spacing-lg) 0;
 }
 
-.post-content blockquote {
+/* Enhanced blockquote visibility for both themes */
+.post-content blockquote,
+.post-content .blockquote,
+.response-content .blockquote {
   border-left: 4px solid var(--accent-color);
   padding: var(--spacing-md) var(--spacing-lg);
   margin: var(--spacing-lg) 0;
   background: var(--background-subtle);
   border-radius: 0 6px 6px 0;
   font-style: italic;
+  font-weight: 500; /* Enhanced weight for better visibility in light mode */
+  color: #2C3E50; /* Darker text for better contrast in light mode */
+}
+
+/* Dark theme blockquote enhancement for better visibility */
+[data-theme="dark"] .post-content blockquote,
+body[data-theme="dark"] .post-content blockquote,
+[data-theme="dark"] .post-content .blockquote,
+body[data-theme="dark"] .post-content .blockquote,
+[data-theme="dark"] .response-content .blockquote,
+body[data-theme="dark"] .response-content .blockquote {
+  font-weight: 500 !important; /* Slightly bolder for better contrast */
+  color: #E8E8E8 !important; /* Brighter text for better readability */
+  background: #3A4A5C !important; /* Slightly lighter background for better contrast */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .post-content blockquote,
+  :root:not([data-theme="light"]) .post-content .blockquote,
+  :root:not([data-theme="light"]) .response-content .blockquote {
+    font-weight: 500 !important;
+    color: #E8E8E8 !important;
+    background: #3A4A5C !important;
+  }
+}
+
+/* Light mode explicit enhancement */
+[data-theme="light"] .post-content blockquote,
+body[data-theme="light"] .post-content blockquote,
+[data-theme="light"] .post-content .blockquote,
+body[data-theme="light"] .post-content .blockquote,
+[data-theme="light"] .response-content .blockquote,
+body[data-theme="light"] .response-content .blockquote {
+  font-weight: 500 !important; /* Enhanced weight for better visibility */
+  color: #2C3E50 !important; /* Darker, more prominent text */
+  background: #F8F9FA !important; /* Subtle background for better separation */
 }
 
 .post-content code {
