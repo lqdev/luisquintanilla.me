@@ -93,7 +93,7 @@ One of the problems I've run into is cold-start. Since I scale my solution down 
 
 ## Next steps
 
-Overall I'm happy with my solution but there are 
+Overall I'm happy with my solution but there are a few improvements I'd like to make.
 
 - **Open-source the repo** - Currently I've kept the repo private since it was all AI generated. Since my system is already in production and processes were documented, I need to do a more thorough pass to make sure that no secrets or credentials are checked in or documented anywhere.
 - **Improve UX** - Discord limits modal fields to 5. Therefore, I'm playing around with the right balance between how much of the input should come from slash commands and how much should come from the modal.
