@@ -53,7 +53,7 @@ Eventually, I just accepted that it might never happen.
 
 One day, it eventually hit me. If the notes to self Element workflow worked so well, why not use a chat client as the frontend for publishing. At least have it serve as the capture system that would then format the content into a post that gets queued for publishing on GitHub. I'd seen [Benji do something similar with his micropub endpoint](https://github.com/benjifs/serverless-micropub). 
 
-While I could've used Element since that's my preferred platform, I've been contemplating no longer hosting my own Matrix server. So if I went through with this
+While I could've used Element since that's my preferred platform, I've been contemplating no longer hosting my own Matrix server. So if I went through with this, I'd want something that I didn't feel bad about investing the time on this solution if that chat client went away. 
 
 That then left me with Discord as the next best option. Primarily because of its support for bots as well as its cross-platform support across mobile and desktop. 
 
