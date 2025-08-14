@@ -83,7 +83,7 @@ The workflow for publishing
 
 1. [Bot creates a branch and PR in my repo](https://github.com/lqdev/luisquintanilla.me/pull/152) with the post content
 1. While logged into GitHub from my phone, if everything looks good, I merge the PR which kicks off my GitHub Actions workflow to build and publish the site including the new post. 
-1. Post displays on my website.
+1. Post [displays on my website](/media/test-media-post-from-mobile/).
 
 ## Challenges
 
