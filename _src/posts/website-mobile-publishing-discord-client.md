@@ -71,7 +71,7 @@ All-in-all, the solution had been staring at me in the face since I already had 
 
 ## Workflow
 
-The workflow for publishing 
+The workflow for publishing is as follows:
 
 1. Invoke the bot in Discord to capture my input using slash command `/post` and the respective post type.
 
