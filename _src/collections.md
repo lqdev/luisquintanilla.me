@@ -15,6 +15,9 @@ Podcasts I listen to and recommend. Audio content discovery for learning and ent
 ### [YouTube](/collections/youtube/)
 YouTube channels worth subscribing to. Video content for tutorials, insights, and inspiration.
 
+### [Forums](/collections/forums/)
+Discussion communities and forums for specialized topics and ongoing conversations.
+
 ## Topic Guides
 
 Curated collections focused on specific subjects and domains of interest.
@@ -22,23 +25,11 @@ Curated collections focused on specific subjects and domains of interest.
 ### [Starter Packs](/collections/starter-packs/)
 Community-driven resource collections for getting started in various technologies and topics.
 
-### [Forums](/collections/forums/)
-Discussion communities and forums for specialized topics and ongoing conversations.
-
-## Subscribe to Everything
-
-Want to follow all my recommendations? Use these consolidated feeds:
-
-- **[All Collections OPML](/feed/index.opml)** - Import all my feeds at once
-- **[Blog RSS](/blog.rss)** - My personal writing and thoughts
-- **[Microblog RSS](/microblog.rss)** - Quick updates and links
-- **[Response RSS](/responses.rss)** - Replies and interactions
-
 ## About Collections
 
-These collections follow the principles of the [IndieWeb](https://indieweb.org/) and traditional web discovery. Each collection:
+These collections follow some of the principles of the [IndieWeb](https://indieweb.org/) and traditional web discovery. Each collection:
 
-- Provides multiple subscription formats (RSS, OPML, JSON)
+- Provides multiple subscription formats (RSS and OPML)
 - Maintains human-readable pages for browsing
 - Links directly to source websites and feeds
 - Updates regularly with new discoveries
