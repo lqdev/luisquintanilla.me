@@ -4,8 +4,79 @@
     <title>Luis Quintanilla - All Updates</title>
     <link>https://www.luisquintanilla.me/feed</link>
     <description>All content updates from Luis Quintanilla's website</description>
-    <lastBuildDate>2025-08-18 18:36 -05:00</lastBuildDate>
+    <lastBuildDate>2025-08-18 19:31 -05:00</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Reflections on the social web</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The work of a product team, when working with new technology, is to abstract away as much of this complexity as possible, so that it feels friendly and approachable to new people.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;My strongest belief about the social web is that if we want it to succeed, we have to keep lowering the barrier to entry.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/reflections-on-social-web</link>
+      <guid>https://www.luisquintanilla.me/responses/reflections-on-social-web</guid>
+      <pubDate>2025-08-18 19:31 -05:00</pubDate>
+      <category>ghost</category>
+      <category>socialweb</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>Ghost 6.0</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In Ghost 6.0 we're introducing another new distribution channel: The social web. Now, millions of people can discover, follow, like and reply to your posts from any supported social web client - including Bluesky, Mastodon, Threads, Flipboard, Ghost, WordPress, Surf, WriteFreely, and many more.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Just as people can visit your Ghost website in any browser, subscribe with any feed reader, or receive newsletters in any email client, they can now follow your Ghost publication from any social web client.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Unlike closed platforms with restrictive algorithms, open web protocols create a direct connection between you and your subscribers which you have full control over.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;If you've been around on the web for while, and you can remember back that far... you might even call it the return of the blogosphere.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Love the introduction of social components to the Ghost platform. I'm so ready for the return of the blogosphere and the return to open protocols.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/ghost-6-changelog</link>
+      <guid>https://www.luisquintanilla.me/responses/ghost-6-changelog</guid>
+      <pubDate>2025-08-18 19:24 -05:00</pubDate>
+      <category>ghost</category>
+      <category>fediverse</category>
+      <category>socialweb</category>
+      <category>publishing</category>
+    </item>
+    <item>
+      <title>The newly redesigned Blogroll Club</title>
+      <description>&lt;![CDATA[[star] ]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/newly-redesigned-blogroll</link>
+      <guid>https://www.luisquintanilla.me/responses/newly-redesigned-blogroll</guid>
+      <pubDate>2025-08-18 19:21 -05:00</pubDate>
+      <category>blogrollclub</category>
+      <category>blogroll</category>
+      <category>indieweb</category>
+      <category>socialweb</category>
+    </item>
+    <item>
+      <title>FediCon 2025 Videos</title>
+      <description>&lt;![CDATA[[bookmark] ]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/fedicon-2025-videos</link>
+      <guid>https://www.luisquintanilla.me/responses/fedicon-2025-videos</guid>
+      <pubDate>2025-08-18 18:53 -05:00</pubDate>
+      <category>fediverse</category>
+      <category>fedicon2025</category>
+      <category>conference</category>
+    </item>
+    <item>
+      <title>HOPE 16 Conference Videos</title>
+      <description>&lt;![CDATA[[bookmark] ]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/hope-16-videos</link>
+      <guid>https://www.luisquintanilla.me/responses/hope-16-videos</guid>
+      <pubDate>2025-08-18 18:53 -05:00</pubDate>
+      <category>hope</category>
+      <category>hacker</category>
+      <category>conference</category>
+    </item>
     <item>
       <title>FediUrbanism — Johanna Botari — FediCon 2025</title>
       <description>&lt;![CDATA[[reshare] &lt;p&gt;I really enjoyed this talk by &lt;a href="https://cosocial.ca/@johannab"&gt;@johannab&lt;/a&gt; on the concept of FediUrbanism.&lt;/p&gt;
@@ -579,104 +650,6 @@ Overall I'm happy with my solution but there are a few improvements I'd like to 
       <category>indieweb</category>
       <category>note</category>
       <category>website</category>
-    </item>
-    <item>
-      <title>IndieWeb Create Day - July 2025</title>
-      <description>&lt;![CDATA[
-Since it was a holiday weekend in the U.S. that kind of snuck up on me, I found myself with nothing planned on a Saturday. So I chose to spend it creating stuff for my website with the IndieWeb community during [IndieWeb Create Day](https://events.indieweb.org/2025/07/indieweb-create-day-3q2PTCbGioi9).
-
-Over the last few months I've been overthinking my website redesign and while I've made several attempts at it, I've never been satisfied the outcome. I end up throwing away all the progress I've made and go back to the drawing board. 
-
-Yesterday, I decided to not let perfect be the enemy of good and the approach I took was creating just a simpler piece of functionality outside of my website. How I integrate it into my website is a future me problem. But I want to work from a place of creativity and complete freedom to think of what could be rather than what is. 
-
-With that in mind, I set out to sketch out how I want to create and render media (image, audio, video) posts. The approach I took used a combination of front-matter YAML and custom markdown media extensions. The front-matter YAML is something that I already use for my website and it's something that I want to continue using. However, in contrast to my current website, I like that the front-matter was kept simple and only includes a basic amount of information. The actual post content was handled by my custom markdown extension which leveraged YAML-like syntax to define media content. What's great about this is that it is composable so once I got one type of media working, the rest for the most part "just worked". I could even mix different media types within the same post with no additional work or code changes required. Once I had the skeleton, it was all about refactoring, documentation, adding finishing touches, and vibe-coding some CSS which Claude did a relatively good job with given the aesthetic I was going for. 
-
-Overall, I'm happy with the end result. 
-
-![A screenshot of a website post containing an image and audio player](/files/images/indieweb-create-day-2025-07.png)
-
-For more details, you can check out the [repo](https://github.com/lqdev/indieweb-create-day-2025-07).
-
-At some point, I want to be able to integrate these media posts into my static site generator but for the time being, there are other kinds of posts such as reviews, RSVPs, and other [post types](https://indieweb.org/posts#Types_of_Posts) that I want to design and eventually also support on my website. I liked the approach I took this time around because it gave me the freedom to explore posibilities rather than constrain my creativity to what I've already built. So I think I'll keep doing the same for subsequent post types. 
-
-At the end of the day, it was nice seeing everyone else's projects. My favorite one was Cy's recipe website. I want to be like them when I grow up 🙂.]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/indieweb-create-day-2025-07</link>
-      <guid>https://www.luisquintanilla.me/posts/indieweb-create-day-2025-07</guid>
-      <pubDate>2025-07-06 20:09</pubDate>
-      <category>indieweb</category>
-      <category>iwc</category>
-      <category>community</category>
-      <category>website</category>
-    </item>
-    <item>
-      <title>Week of July 6, 2025 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.luisquintanilla.me/notes/2025-06-29-weekly-post-summary/"&gt;Week of June 29, 2025 - Post Summary&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.luisquintanilla.me/notes/crate-finds-june-2025"&gt;Crate Finds - June 2025&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.luisquintanilla.me/notes/crate-finds-may-2025"&gt;Crate Finds - May 2025&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.luisquintanilla.me/notes/post-statistics-june-2025"&gt;Website Post Statistics - June 2025&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Responses&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.luisquintanilla.me/responses/do-not-privatize-federal-land"&gt;Do not privatize federal land&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.luisquintanilla.me/responses/tumblr-wordpress-fediverse-integration-pause"&gt;Tumblr’s move to WordPress and fediverse integration is ‘on hold’&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/notes/2025-07-06-weekly-post-summary</link>
-      <guid>https://www.luisquintanilla.me/notes/2025-07-06-weekly-post-summary</guid>
-      <pubDate>2025-07-06 14:48 -05:00</pubDate>
-      <category>weeklysummary</category>
-      <category>blogging</category>
-      <category>website</category>
-      <category>indieweb</category>
-    </item>
-    <item>
-      <title>Crate Finds - June 2025</title>
-      <description>&lt;![CDATA[&lt;p&gt;Playlist from June 2025.&lt;/p&gt;
-&lt;p&gt;Some of my favorites:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Claudia, Wilhelm R And Me by Roberto Musci&lt;/li&gt;
-&lt;li&gt;Journey in Satchidananda by Alice Coltrane and Pharoah Sanders&lt;/li&gt;
-&lt;li&gt;Little Sunflower by Dorothy Ashby&lt;/li&gt;
-&lt;/ul&gt;
-&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6ZhcCrMutGjgL80C22iN1u" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/notes/crate-finds-june-2025</link>
-      <guid>https://www.luisquintanilla.me/notes/crate-finds-june-2025</guid>
-      <pubDate>2025-07-01 20:00</pubDate>
-      <category>cratefinds</category>
-      <category>music</category>
-      <category>playlist</category>
-      <category>spotify</category>
-    </item>
-    <item>
-      <title>Website Post Statistics - June 2025</title>
-      <description>&lt;![CDATA[&lt;p&gt;I haven't published much this past month. Notes and responses are significantly down from last year.&lt;/p&gt;
-&lt;p&gt;That said, I'm happy that so far I've published seven long-form blog posts, which is how many I published all of last year.&lt;/p&gt;
-&lt;p&gt;I haven't spent as much time bookmarking and resharing content. Partially due to the fact that I'm still working on the redesign. So far &lt;a href="https://www.luisquintanilla.me/posts/vibe-specing-prompt-to-spec/"&gt;vibe-specing&lt;/a&gt; the redesign hasn't yielded good enough results. Maybe I need to break down my problem further. That experience on its own might make a good blog post.&lt;/p&gt;
-&lt;p&gt;Part of the challenge with the redesign is that I'm trying to find a balance between standardizing my front-matter YAML schemas so that I can simplify my code and just have a single function handle the parsing of the front-matter, while at the same time enabling custom rendering depending on the post type. I think in the end what I'll end up doing is having different schemas per post type and maybe refactoring some of my code to remove redundancies.&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/notes/post-statistics-june-2025</link>
-      <guid>https://www.luisquintanilla.me/notes/post-statistics-june-2025</guid>
-      <pubDate>2025-07-01 20:00</pubDate>
-      <category>githubactions</category>
-      <category>cicd</category>
-      <category>blogging</category>
-      <category>stats</category>
-      <category>github</category>
-    </item>
-    <item>
-      <title>Tumblr’s move to WordPress and fediverse integration is ‘on hold’</title>
-      <description>&lt;![CDATA[[reply] &lt;p&gt;That's unfortunate. Having Tumblr as your frontend for posting and curating feeds, with WordPress as the backend and integrated with decentralized networks like the Fediverse for distribution would've been amazing. It sounds like Tumblr is still strategic to Automattic and as more people move away from the centralized social platforms and towards their own corners of the internet, having these differente building blocks in place will be even more important.&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/tumblr-wordpress-fediverse-integration-pause</link>
-      <guid>https://www.luisquintanilla.me/responses/tumblr-wordpress-fediverse-integration-pause</guid>
-      <pubDate>2025-06-30 20:21</pubDate>
-      <category>tumblr</category>
-      <category>wordpress</category>
-      <category>fediverse</category>
-      <category>automattic</category>
     </item>
   </channel>
 </rss>

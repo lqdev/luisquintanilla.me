@@ -974,8 +974,17 @@ module UnifiedFeeds =
         |> List.iter (fun (contentType, config) ->
             let typeItems = 
                 allUnifiedItems 
-                |> List.filter (fun item -> item.ContentType = contentType)
-                |> List.take (min 20 (allUnifiedItems |> List.filter (fun item -> item.ContentType = contentType) |> List.length))
+                |> List.filter (fun item -> 
+                    if contentType = "responses" then
+                        // For responses feed, include all response subtypes
+                        ["star"; "reply"; "reshare"; "responses"] |> List.contains item.ContentType
+                    else
+                        item.ContentType = contentType)
+                |> List.take (min 20 (allUnifiedItems |> List.filter (fun item -> 
+                    if contentType = "responses" then
+                        ["star"; "reply"; "reshare"; "responses"] |> List.contains item.ContentType
+                    else
+                        item.ContentType = contentType) |> List.length))
             
             if not (List.isEmpty typeItems) then
                 let typeFeed = generateRssFeed typeItems config
@@ -1091,7 +1100,9 @@ module UnifiedFeeds =
                 let content = feedData.CardHtml  // Use CardHtml to include target URL display
                 let date = feedData.Content.Metadata.DatePublished
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "responses"; Tags = tags; RssXml = rssXml }
+                // Use specific response type instead of generic "responses"
+                let contentType = feedData.Content.Metadata.ResponseType
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = contentType; Tags = tags; RssXml = rssXml }
             | None -> None)
     
     let convertResponseBookmarksToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =

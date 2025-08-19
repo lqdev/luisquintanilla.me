@@ -35,7 +35,18 @@ const TimelineFilter = {
 
         cards.forEach(card => {
             const cardType = card.getAttribute('data-type');
-            const shouldShow = (contentType === 'all' || contentType === cardType);
+            
+            // Special handling for response types
+            let shouldShow = false;
+            if (contentType === 'all') {
+                shouldShow = true;
+            } else if (contentType === 'responses') {
+                // Show all response subtypes for "responses" filter
+                shouldShow = ['star', 'reply', 'reshare', 'responses'].includes(cardType);
+            } else {
+                // Exact match for other content types
+                shouldShow = (contentType === cardType);
+            }
             
             if (shouldShow) {
                 // Show card with smooth transition
@@ -398,7 +409,12 @@ const TimelineProgressiveLoader = {
             'media': 'Media',
             'snippets': 'Snippet',
             'wiki': 'Wiki',
-            'presentations': 'Presentation'
+            'presentations': 'Presentation',
+            // Specific response types
+            'star': 'Star',
+            'reply': 'Reply',
+            'reshare': 'Reshare',
+            'bookmark': 'Bookmark'
         }[item.contentType] || item.contentType;
         
         const tagsHtml = item.tags && item.tags.length > 0 
@@ -500,7 +516,18 @@ const TimelineProgressiveLoader = {
         const newCards = document.querySelectorAll('.content-card[style*="opacity: 0"]');
         newCards.forEach(card => {
             const cardType = card.getAttribute('data-type');
-            const shouldShow = (filterType === 'all' || filterType === cardType);
+            
+            // Special handling for response types
+            let shouldShow = false;
+            if (filterType === 'all') {
+                shouldShow = true;
+            } else if (filterType === 'responses') {
+                // Show all response subtypes for "responses" filter
+                shouldShow = ['star', 'reply', 'reshare', 'responses'].includes(cardType);
+            } else {
+                // Exact match for other content types
+                shouldShow = (filterType === cardType);
+            }
             
             if (!shouldShow) {
                 card.style.display = 'none';
