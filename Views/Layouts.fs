@@ -79,15 +79,17 @@ module Layouts
                         ]
                     ]
                     div [_class "dropdown-menu"; _id "collections-dropdown"] [
-                        a [_class "dropdown-item"; _href "/radio"] [Text "Radio"]
-                        a [_class "dropdown-item"; _href "/reviews"] [Text "Reviews"]
-                        a [_class "dropdown-item"; _href "/tags"] [Text "Tags"]
-                        div [_class "dropdown-divider"] []
-                        a [_class "dropdown-item"; _href "/collections/starter-packs"] [Text "Starter Packs"]
+                        // Rolls (Content-Type) with spacing
                         a [_class "dropdown-item"; _href "/collections/blogroll"] [Text "Blogroll"]
                         a [_class "dropdown-item"; _href "/collections/podroll"] [Text "Podroll"]
-                        a [_class "dropdown-item"; _href "/collections/forums"] [Text "Forums"]
                         a [_class "dropdown-item"; _href "/collections/youtube"] [Text "YouTube"]
+                        a [_class "dropdown-item"; _href "/collections/forums"] [Text "Forums"]
+                        div [_class "dropdown-divider"] []
+                        // Starter Packs as direct link (like Radio/Tags)
+                        a [_class "dropdown-item"; _href "/collections/starter-packs"] [Text "Starter Packs"]
+                        div [_class "dropdown-divider"] []
+                        a [_class "dropdown-item"; _href "/radio"] [Text "Radio"]
+                        a [_class "dropdown-item"; _href "/tags"] [Text "Tags"]
                     ]
                 ]
 

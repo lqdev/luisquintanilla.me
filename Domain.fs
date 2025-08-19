@@ -173,7 +173,67 @@ module Domain
             Type: string
             HtmlUrl: string
             XmlUrl: string
-        }    
+        }
+
+    // Collection organizational approach
+    type CollectionType = 
+        | MediumFocused of medium: string  // "blogs", "podcasts", "youtube", "forums"
+        | TopicFocused of topic: string    // "ai", "privacy", "fsharp", "indieweb"
+        | Other of category: string        // "tags", "radio", etc.
+
+    // Individual collection item (RSS feed source) - enhanced Outline
+    [<CLIMutable>]
+    type CollectionItem = {
+        [<YamlMember(Alias="Title")>] Title: string
+        [<YamlMember(Alias="Type")>] Type: string                 // "rss"
+        [<YamlMember(Alias="HtmlUrl")>] HtmlUrl: string
+        [<YamlMember(Alias="XmlUrl")>] XmlUrl: string
+        [<YamlMember(Alias="Description")>] Description: string option   // Enhanced metadata
+        [<YamlMember(Alias="Tags")>] Tags: string array option    // Topic tagging
+        [<YamlMember(Alias="Added")>] Added: string option // When added to collection
+    }
+
+    // Unified collection metadata
+    [<CLIMutable>]
+    type Collection = {
+        [<YamlMember(Alias="id")>] Id: string                    // "blogroll", "ai-starter-pack"
+        [<YamlMember(Alias="title")>] Title: string                 // "Blogroll", "AI Starter Pack"
+        [<YamlMember(Alias="description")>] Description: string           // User-facing description
+        [<YamlMember(Alias="collectionType")>] CollectionType: CollectionType
+        [<YamlMember(Alias="urlPath")>] UrlPath: string              // "/collections/blogroll/", "/collections/starter-packs/ai/"
+        [<YamlMember(Alias="dataFile")>] DataFile: string             // "blogroll.json", "ai-starter-pack.json"
+        [<YamlMember(Alias="tags")>] Tags: string array           // For cross-collection relationships
+        [<YamlMember(Alias="lastUpdated")>] LastUpdated: string
+        [<YamlMember(Alias="itemCount")>] ItemCount: int option        // Calculated during build
+    }
+
+    // Collection data structure
+    type CollectionData = {
+        Metadata: Collection
+        Items: CollectionItem array
+    }
+
+    // Collection paths for output generation
+    type CollectionPaths = {
+        HtmlPath: string        // "/collections/blogroll/index.html"
+        RssPath: string         // "/collections/blogroll/index.rss"
+        OpmlPath: string        // "/collections/blogroll/index.opml"
+        DataPath: string        // "/Data/blogroll.json"
+    }
+
+    // Navigation organization reflecting user mental models
+    type NavigationSection = {
+        Title: string                    // "Content Types", "Topic Guides"
+        Description: string              // Section explanation
+        Collections: Collection list     // Collections in this section
+        Icon: string option             // Navigation icon
+    }
+
+    type NavigationStructure = {
+        ContentTypes: NavigationSection      // Medium-focused collections
+        TopicGuides: NavigationSection       // Topic-focused collections
+        OtherCollections: NavigationSection  // Radio, Reviews, Tags
+    }    
 
     [<CLIMutable>]
     type BookDetails = {

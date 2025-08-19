@@ -57,15 +57,11 @@ let main argv =
         let processor = GenericBuilder.ResponseProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor responseFiles
         feedData |> List.map (fun item -> item.Content) |> List.toArray
-    let blogrollLinks = loadBlogrollLinks ()
-    let podrollLinks = loadPodrollLinks ()
-    let forumLinks = loadForumsLinks ()
-    let youTubeLinks = loadYouTubeLinks ()
-    let aiStarterPackLinks = loadAIStarterPackLinks ()
 
     // Build static pages
     // buildHomePage posts feedNotes responses  // Traditional homepage - replaced by timeline
     buildAboutPage ()
+    buildCollectionsPage ()
     buildContactPage ()
     buildSearchPage ()
     buildStarterPackPage ()
@@ -132,16 +128,10 @@ let main argv =
     // Build roll pages
     buildFeedsOpml feedLinks
     
-    buildBlogrollPage blogrollLinks
-    buildBlogrollOpml blogrollLinks
-    buildPodrollPage podrollLinks
-    buildPodrollOpml podrollLinks
-    buildForumsPage forumLinks
-    buildForumsOpml forumLinks
-    buildYouTubeChannelsPage youTubeLinks
-    buildYouTubeOpml youTubeLinks
-    buildAIStarterPackPage aiStarterPackLinks
-    buildAIStarterPackOpml aiStarterPackLinks
+    // =============================================================================
+    // Unified Collection System - Primary collection processing
+    // =============================================================================
+    buildUnifiedCollections ()
 
     // Build event page
     buildEventPage ()

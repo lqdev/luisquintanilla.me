@@ -4,8 +4,50 @@
     <title>Luis Quintanilla - Responses</title>
     <link>https://www.luisquintanilla.me/responses</link>
     <description>IndieWeb responses by Luis Quintanilla</description>
-    <lastBuildDate>2025-08-12 08:41</lastBuildDate>
+    <lastBuildDate>2025-08-18 18:36 -05:00</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>FediUrbanism — Johanna Botari — FediCon 2025</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;I really enjoyed this talk by &lt;a href="https://cosocial.ca/@johannab"&gt;@johannab&lt;/a&gt; on the concept of FediUrbanism.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://spectra.video/w/f7GBsBf3nAhF8WfTMWUEXm" title="Thumbnail of FediUrbanism Talk Recording"&gt;&lt;img src="https://spectra.video/lazy-static/previews/40a5e4bd-f8d7-438a-b35c-0c81e753ddbd.jpg" class="img-fluid" alt="Thumbnail of FediUrbanism Talk Recording" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/fediurbanism-fedicon-2025</link>
+      <guid>https://www.luisquintanilla.me/responses/fediurbanism-fedicon-2025</guid>
+      <pubDate>2025-08-18 18:36 -05:00</pubDate>
+      <category>fediurbanism</category>
+      <category>fedicon2025</category>
+      <category>fediverse</category>
+      <category>thirdspace</category>
+      <category>community</category>
+    </item>
+    <item>
+      <title>Introducing Gemma 3 270M</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we're adding a new, highly specialized tool to the Gemma 3 toolkit: Gemma 3 270M, a compact, 270-million parameter model designed from the ground up for task-specific fine-tuning with strong instruction-following and text structuring capabilities already trained in.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/introducing-gemma-3-270m</link>
+      <guid>https://www.luisquintanilla.me/responses/introducing-gemma-3-270m</guid>
+      <pubDate>2025-08-14 12:40</pubDate>
+      <category>ai</category>
+      <category>google</category>
+      <category>gemma</category>
+      <category>slm</category>
+      <category>genai</category>
+    </item>
+    <item>
+      <title>I Deleted My Second Brain</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I don’t build a second brain. I inhabit the first.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/i-deleted-my-second-brain</link>
+      <guid>https://www.luisquintanilla.me/responses/i-deleted-my-second-brain</guid>
+      <pubDate>2025-08-13 08:03</pubDate>
+      <category>pkm</category>
+      <category>notes</category>
+      <category>secondbrain</category>
+    </item>
     <item>
       <title>Engineering for Slow Internet</title>
       <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
@@ -387,56 +429,6 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <category>emacs</category>
       <category>asciidoc</category>
       <category>markdown</category>
-    </item>
-    <item>
-      <title>Announcing Distributed.Press Social Inbox 1.0</title>
-      <description>&lt;![CDATA[[reshare] &lt;p&gt;I hadn't heard of &lt;a href="https://distributed.press/"&gt;Distributed Press&lt;/a&gt; and this is an older post (from 2023), but the idea is interesting.&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Hypha and Sutty are thrilled to announce the release of the Social Inbox, a new feature of Distributed.Press that integrates a website’s comment section with federated social media platforms like Mastodon. With the Social Inbox enabled, websites obtain their own account on the Fediverse, allowing it to automatically send out new posts to followers at the time of publication. When other users reply to posts, you can approve them to be published to the site as comments. The Social Inbox allows readers to directly engage with your posts where they already are, and gives publishers the ability to incorporate public dialogue into their websites.&lt;/p&gt;
-&lt;/blockquote&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/announcing-distributed-press-social-inbox</link>
-      <guid>https://www.luisquintanilla.me/responses/announcing-distributed-press-social-inbox</guid>
-      <pubDate>2025-05-10 20:47</pubDate>
-      <category>decentralization</category>
-      <category>indieweb</category>
-      <category>social</category>
-      <category>fediverse</category>
-      <category>dweb</category>
-    </item>
-    <item>
-      <title>Discourse and the Fediverse</title>
-      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Two years ago, we started working on a plugin that brings Discourse and the Fediverse closer together. Discourse communities are online spaces that facilitate open collaboration and communication. The Fediverse offers ways to expand the reach of Discourse communities and help them build bridges with people active in other spaces, all while keeping the conversation civil, meaningful and focused. This post will describe how the ActivityPub plugin works and how you can enable your Discourse community to connect with other communities or Fediverse users.&lt;/p&gt;
-&lt;/blockquote&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/discourse-fediverse</link>
-      <guid>https://www.luisquintanilla.me/responses/discourse-fediverse</guid>
-      <pubDate>2025-05-09 22:20</pubDate>
-      <category>discourse</category>
-      <category>fediverse</category>
-      <category>social</category>
-      <category>openweb</category>
-      <category>opensource</category>
-      <category>forum</category>
-    </item>
-    <item>
-      <title>In Praise of Links</title>
-      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Hyperlinks deserve more recognition in light of all the ways their value has been sidelined and denied.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;To that end, I present a link compilation in praise of links. It includes things I agree with entirely and things I don't, spanning from the 2020s to the early 2000s, to supply a tapestry of perspectives, context, and examples on the value and importance of links. Links may have their downsides, challenges, and vulnerabilities, but my hope is that this compilation will (re)invigorate your appreciation for linking as a technology and a social practice, all the better to understand what's at stake when links are discarded and devalued.&lt;/p&gt;
-&lt;/blockquote&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/in-praise-of-links-osteophage</link>
-      <guid>https://www.luisquintanilla.me/responses/in-praise-of-links-osteophage</guid>
-      <pubDate>2025-05-09 21:05</pubDate>
-      <category>openweb</category>
-      <category>internet</category>
-      <category>indieweb</category>
-      <category>decentralization</category>
-      <category>web</category>
     </item>
   </channel>
 </rss>
