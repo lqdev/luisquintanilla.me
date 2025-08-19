@@ -4,8 +4,59 @@
     <title>Luis Quintanilla - Responses</title>
     <link>https://www.luisquintanilla.me/responses</link>
     <description>IndieWeb responses by Luis Quintanilla</description>
-    <lastBuildDate>2025-08-18 18:36 -05:00</lastBuildDate>
+    <lastBuildDate>2025-08-18 19:31 -05:00</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Reflections on the social web</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The work of a product team, when working with new technology, is to abstract away as much of this complexity as possible, so that it feels friendly and approachable to new people.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;My strongest belief about the social web is that if we want it to succeed, we have to keep lowering the barrier to entry.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/reflections-on-social-web</link>
+      <guid>https://www.luisquintanilla.me/responses/reflections-on-social-web</guid>
+      <pubDate>2025-08-18 19:31 -05:00</pubDate>
+      <category>ghost</category>
+      <category>socialweb</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>Ghost 6.0</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In Ghost 6.0 we're introducing another new distribution channel: The social web. Now, millions of people can discover, follow, like and reply to your posts from any supported social web client - including Bluesky, Mastodon, Threads, Flipboard, Ghost, WordPress, Surf, WriteFreely, and many more.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Just as people can visit your Ghost website in any browser, subscribe with any feed reader, or receive newsletters in any email client, they can now follow your Ghost publication from any social web client.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Unlike closed platforms with restrictive algorithms, open web protocols create a direct connection between you and your subscribers which you have full control over.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;If you've been around on the web for while, and you can remember back that far... you might even call it the return of the blogosphere.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Love the introduction of social components to the Ghost platform. I'm so ready for the return of the blogosphere and the return to open protocols.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/ghost-6-changelog</link>
+      <guid>https://www.luisquintanilla.me/responses/ghost-6-changelog</guid>
+      <pubDate>2025-08-18 19:24 -05:00</pubDate>
+      <category>ghost</category>
+      <category>fediverse</category>
+      <category>socialweb</category>
+      <category>publishing</category>
+    </item>
+    <item>
+      <title>The newly redesigned Blogroll Club</title>
+      <description>&lt;![CDATA[[star] ]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/newly-redesigned-blogroll</link>
+      <guid>https://www.luisquintanilla.me/responses/newly-redesigned-blogroll</guid>
+      <pubDate>2025-08-18 19:21 -05:00</pubDate>
+      <category>blogrollclub</category>
+      <category>blogroll</category>
+      <category>indieweb</category>
+      <category>socialweb</category>
+    </item>
     <item>
       <title>FediUrbanism — Johanna Botari — FediCon 2025</title>
       <description>&lt;![CDATA[[reshare] &lt;p&gt;I really enjoyed this talk by &lt;a href="https://cosocial.ca/@johannab"&gt;@johannab&lt;/a&gt; on the concept of FediUrbanism.&lt;/p&gt;
@@ -378,57 +429,6 @@ While the theoretical Gödel Machine promised provably beneficial self-modificat
       <category>rss</category>
       <category>comic</category>
       <category>art</category>
-    </item>
-    <item>
-      <title>Agent Network Protocol - The HTTP of the Agentic Web Era</title>
-      <description>&lt;![CDATA[[reshare] &lt;p&gt;&lt;a href="https://agent-network-protocol.com/blogs/posts/mcp-anp-comparison.html"&gt;Comparison of MCP and ANP: What Kind of Communication Protocol Do Agents Need?&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;MCP and ANP differ significantly in protocol architecture, identity authentication, and information organization.&lt;br /&gt;
-&lt;br&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;MCP is a typical Client-Server (CS) architecture, while &lt;strong&gt;ANP is a typical Peer-to-Peer (P2P) architecture&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;MCP's identity authentication is based on the OAuth standard, facilitating client access to current internet resources. &lt;strong&gt;ANP's identity authentication is based on the W3C DID standard&lt;/strong&gt;, focusing on cross-platform interoperability among agents, enabling seamless connectivity.&lt;/li&gt;
-&lt;li&gt;MCP organizes information using JSON-RPC technology, essentially API calls. &lt;strong&gt;ANP uses semantic web Linked-Data technology&lt;/strong&gt; to build a data network that is easily accessible and understandable by AI.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;ANP is agent-centric, where each agent has equal status, forming a decentralized agent collaboration network.&lt;/p&gt;
-&lt;/blockquote&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/agent-network-protocol</link>
-      <guid>https://www.luisquintanilla.me/responses/agent-network-protocol</guid>
-      <pubDate>2025-05-17 10:56</pubDate>
-      <category>agent</category>
-      <category>ai</category>
-      <category>protocol</category>
-    </item>
-    <item>
-      <title>Chicago Dust Storm</title>
-      <description>&lt;![CDATA[[reshare] &lt;p&gt;Never change Chicago.&lt;/p&gt;
-&lt;p&gt;What felt like the first week of good weather since forever ends with a dust storm.&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/chicago-dust-storm</link>
-      <guid>https://www.luisquintanilla.me/responses/chicago-dust-storm</guid>
-      <pubDate>2025-05-16 19:49</pubDate>
-      <category>chicago</category>
-      <category>weather</category>
-      <category>duststorm</category>
-    </item>
-    <item>
-      <title>Claude Artifacts</title>
-      <description>&lt;![CDATA[[reply] &lt;p&gt;💯💯💯. Artifacts are great. In ChatGPT when I find myself trying to format outputs as markdown, the UI gets confused and some of the content is rendered in markdown while the rest gets rendered as part of the UI which makes it unusable and hard to copy. The best way I've found to get around it is to ask it to format in org-mode or asciidoc. Claude Artifacts make this a non-issue. I also love that in addition to copying and downloading the artifact, you can also publish it as a URL.&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/claude-artifacts-reece</link>
-      <guid>https://www.luisquintanilla.me/responses/claude-artifacts-reece</guid>
-      <pubDate>2025-05-11 08:42</pubDate>
-      <category>claude</category>
-      <category>chatgpt</category>
-      <category>plaintext</category>
-      <category>ai</category>
-      <category>org</category>
-      <category>emacs</category>
-      <category>asciidoc</category>
-      <category>markdown</category>
     </item>
   </channel>
 </rss>

@@ -61,6 +61,8 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                         | "reviews" -> $"/reviews/{fileName}/"
                         | "streams" -> $"/streams/{fileName}/"
                         | "media" -> $"/media/{fileName}/"
+                        // Specific response types also route to /responses/
+                        | "star" | "reply" | "reshare" | "bookmark" -> $"/responses/{fileName}/"
                         | _ -> $"/{contentType}/{fileName}/"
                     
                     let properPermalink = getProperPermalink item.ContentType fileName
@@ -85,6 +87,11 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                                           | "reviews" -> "Review"
                                           | "streams" -> "Stream Recording"
                                           | "media" -> "Media"
+                                          // Specific response types
+                                          | "star" -> "Star"
+                                          | "reply" -> "Reply"
+                                          | "reshare" -> "Reshare"
+                                          | "bookmark" -> "Bookmark"
                                           | _ -> item.ContentType)
                                 ]
                             ]
@@ -267,6 +274,8 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                         | "reviews" -> $"/reviews/{fileName}/"
                         | "streams" -> $"/streams/{fileName}/"
                         | "media" -> $"/media/{fileName}/"
+                        // Specific response types also route to /responses/
+                        | "star" | "reply" | "reshare" | "bookmark" -> $"/responses/{fileName}/"
                         | _ -> $"/{contentType}/{fileName}/"
                     
                     let properPermalink = getProperPermalink item.ContentType fileName
@@ -291,6 +300,11 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                                           | "reviews" -> "Review"
                                           | "streams" -> "Stream Recording"
                                           | "media" -> "Media"
+                                          // Specific response types
+                                          | "star" -> "Star"
+                                          | "reply" -> "Reply"
+                                          | "reshare" -> "Reshare"
+                                          | "bookmark" -> "Bookmark"
                                           | _ -> item.ContentType)
                                 ]
                             ]
