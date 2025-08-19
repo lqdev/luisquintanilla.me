@@ -4,8 +4,458 @@
     <title>Luis Quintanilla - All Updates</title>
     <link>https://www.luisquintanilla.me/feed</link>
     <description>All content updates from Luis Quintanilla's website</description>
-    <lastBuildDate>2025-08-12 08:41</lastBuildDate>
+    <lastBuildDate>2025-08-18 18:36 -05:00</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>FediUrbanism — Johanna Botari — FediCon 2025</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;I really enjoyed this talk by &lt;a href="https://cosocial.ca/@johannab"&gt;@johannab&lt;/a&gt; on the concept of FediUrbanism.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://spectra.video/w/f7GBsBf3nAhF8WfTMWUEXm" title="Thumbnail of FediUrbanism Talk Recording"&gt;&lt;img src="https://spectra.video/lazy-static/previews/40a5e4bd-f8d7-438a-b35c-0c81e753ddbd.jpg" class="img-fluid" alt="Thumbnail of FediUrbanism Talk Recording" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/fediurbanism-fedicon-2025</link>
+      <guid>https://www.luisquintanilla.me/responses/fediurbanism-fedicon-2025</guid>
+      <pubDate>2025-08-18 18:36 -05:00</pubDate>
+      <category>fediurbanism</category>
+      <category>fedicon2025</category>
+      <category>fediverse</category>
+      <category>thirdspace</category>
+      <category>community</category>
+    </item>
+    <item>
+      <title>Deploy Owncast to Azure Container Apps with Persistent Storage</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;This guide shows how to deploy Owncast to Azure Container Apps with persistent storage and scale-to-zero capability to minimize costs.&lt;/p&gt;
+&lt;h2&gt;Prerequisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Azure CLI installed and logged in&lt;/li&gt;
+&lt;li&gt;An Azure subscription&lt;/li&gt;
+&lt;li&gt;A resource group created&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Step 1: Create Required Resources&lt;/h2&gt;
+&lt;h3&gt;Create Storage Account for Persistent Data&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;# Set variables (choose cheapest regions)
+RESOURCE_GROUP=&amp;quot;your-resource-group&amp;quot;
+LOCATION=&amp;quot;centralus&amp;quot;  # Often cheaper than eastus
+STORAGE_ACCOUNT=&amp;quot;owncaststorage$(date +%s)&amp;quot;  # Must be globally unique
+CONTAINER_APP_ENV=&amp;quot;owncast-env&amp;quot;
+CONTAINER_APP_NAME=&amp;quot;owncast-app&amp;quot;
+
+# Create MINIMAL cost storage account
+az storage account create \
+  --name $STORAGE_ACCOUNT \
+  --resource-group $RESOURCE_GROUP \
+  --location $LOCATION \
+  --sku Standard_LRS \
+  --kind StorageV2 \
+  --access-tier Cool \
+  --allow-blob-public-access false \
+  --https-only true \
+  --min-tls-version TLS1_2
+
+# Create file share with minimal provisioned size
+az storage share create \
+  --name &amp;quot;owncast-data&amp;quot; \
+  --account-name $STORAGE_ACCOUNT \
+  --quota 1  # Start with 1GB, scales automatically
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Create Container Apps Environment&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;# Create the Container Apps environment
+az containerapp env create \
+  --name $CONTAINER_APP_ENV \
+  --resource-group $RESOURCE_GROUP \
+  --location $LOCATION
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Step 2: Configure Storage Mount&lt;/h2&gt;
+&lt;p&gt;Get the storage account key and create the storage mount:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;# Get storage account key
+STORAGE_KEY=$(az storage account keys list \
+  --account-name $STORAGE_ACCOUNT \
+  --resource-group $RESOURCE_GROUP \
+  --query &amp;quot;[0].value&amp;quot; -o tsv)
+
+# Create storage mount in the environment
+az containerapp env storage set \
+  --name $CONTAINER_APP_ENV \
+  --resource-group $RESOURCE_GROUP \
+  --storage-name &amp;quot;owncast-storage&amp;quot; \
+  --azure-file-account-name $STORAGE_ACCOUNT \
+  --azure-file-account-key $STORAGE_KEY \
+  --azure-file-share-name &amp;quot;owncast-data&amp;quot; \
+  --access-mode ReadWrite
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Step 3: Deploy Owncast Container App&lt;/h2&gt;
+&lt;p&gt;Create the container app with persistent storage:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;az containerapp create \
+  --name $CONTAINER_APP_NAME \
+  --resource-group $RESOURCE_GROUP \
+  --environment $CONTAINER_APP_ENV \
+  --image &amp;quot;owncast/owncast:latest&amp;quot; \
+  --target-port 8080 \
+  --ingress external \
+  --min-replicas 0 \
+  --max-replicas 1 \
+  --cpu 0.5 \
+  --memory 1Gi \
+  --volume-mount &amp;quot;data:/app/data&amp;quot; \
+  --volume-name &amp;quot;data&amp;quot; \
+  --volume-storage-name &amp;quot;owncast-storage&amp;quot; \
+  --volume-storage-type AzureFile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Step 4: Configure Dual-Port Ingress (HTTP + RTMP)&lt;/h2&gt;
+&lt;p&gt;For Owncast to work properly, you need both HTTP (8080) and RTMP (1935) ports. This requires a &lt;strong&gt;Virtual Network (VNet)&lt;/strong&gt; integration:&lt;/p&gt;
+&lt;h3&gt;Create VNet and Subnet&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;# Create MINIMAL virtual network (smallest possible address space)
+az network vnet create \
+  --name &amp;quot;owncast-vnet&amp;quot; \
+  --resource-group $RESOURCE_GROUP \
+  --location $LOCATION \
+  --address-prefix &amp;quot;10.0.0.0/24&amp;quot;  # Smaller than default /16
+
+# Create minimal subnet
+az network vnet subnet create \
+  --name &amp;quot;container-apps-subnet&amp;quot; \
+  --resource-group $RESOURCE_GROUP \
+  --vnet-name &amp;quot;owncast-vnet&amp;quot; \
+  --address-prefix &amp;quot;10.0.0.0/27&amp;quot;  # Only 32 IPs instead of /23 (512 IPs)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Recreate Container Apps Environment with VNet&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;# Get subnet ID
+SUBNET_ID=$(az network vnet subnet show \
+  --name &amp;quot;container-apps-subnet&amp;quot; \
+  --vnet-name &amp;quot;owncast-vnet&amp;quot; \
+  --resource-group $RESOURCE_GROUP \
+  --query id -o tsv)
+
+# Delete existing environment and recreate with VNet
+az containerapp env delete \
+  --name $CONTAINER_APP_ENV \
+  --resource-group $RESOURCE_GROUP \
+  --yes
+
+# Create Container Apps environment with workload profiles DISABLED (cheapest option)
+az containerapp env create \
+  --name $CONTAINER_APP_ENV \
+  --resource-group $RESOURCE_GROUP \
+  --location $LOCATION \
+  --infrastructure-subnet-resource-id $SUBNET_ID \
+  --enable-workload-profiles false  # Forces consumption-only pricing
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Deploy Container App with MINIMAL Resources&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;az containerapp create \
+  --name $CONTAINER_APP_NAME \
+  --resource-group $RESOURCE_GROUP \
+  --environment $CONTAINER_APP_ENV \
+  --image &amp;quot;owncast/owncast:latest&amp;quot; \
+  --target-port 8080 \
+  --exposed-port 1935 \
+  --ingress external \
+  --transport auto \
+  --min-replicas 0 \
+  --max-replicas 1 \
+  --cpu 0.25 \
+  --memory 0.5Gi \
+  --volume-mount &amp;quot;data:/app/data&amp;quot; \
+  --volume-name &amp;quot;data&amp;quot; \
+  --volume-storage-name &amp;quot;owncast-storage&amp;quot; \
+  --volume-storage-type AzureFile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Cost-Optimized Resource Allocation:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CPU&lt;/strong&gt;: 0.25 cores (minimum allowed, sufficient for small streams)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Memory&lt;/strong&gt;: 0.5Gi (minimum allowed, will work for basic streaming)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scaling&lt;/strong&gt;: Aggressive scale-to-zero with max 1 replica&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Ultra Low-Cost Alternative YAML Configuration&lt;/h2&gt;
+&lt;p&gt;For maximum cost optimization, use this YAML approach with the smallest possible resource allocation:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-yaml"&gt;# owncast-minimal-cost.yaml
+properties:
+  managedEnvironmentId: /subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.App/managedEnvironments/{environment-name}
+  configuration:
+    ingress:
+      external: true
+      targetPort: 8080
+      additionalPortMappings:
+      - external: true
+        targetPort: 1935
+        exposedPort: 1935
+    secrets: []
+  template:
+    containers:
+    - image: owncast/owncast:latest
+      name: owncast
+      resources:
+        cpu: 0.25
+        memory: 0.5Gi
+      volumeMounts:
+      - mountPath: /app/data
+        volumeName: data
+      env:
+      - name: OWNCAST_RTMP_PORT
+        value: &amp;quot;1935&amp;quot;
+      - name: OWNCAST_WEBSERVER_PORT  
+        value: &amp;quot;8080&amp;quot;
+    scale:
+      minReplicas: 0
+      maxReplicas: 1
+      rules:
+      - name: &amp;quot;http-rule&amp;quot;
+        http:
+          metadata:
+            concurrentRequests: &amp;quot;10&amp;quot;  # Scale up quickly but keep minimal
+    volumes:
+    - name: data
+      storageType: AzureFile
+      storageName: owncast-storage
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Deploy with:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;az containerapp create \
+  --name $CONTAINER_APP_NAME \
+  --resource-group $RESOURCE_GROUP \
+  --yaml owncast-minimal-cost.yaml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Cost Optimization Features&lt;/h2&gt;
+&lt;h3&gt;Scale-to-Zero Configuration&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Min Replicas&lt;/strong&gt;: Set to 0 to completely scale down when not in use&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Max Replicas&lt;/strong&gt;: Set to 1 (Owncast doesn't need horizontal scaling)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scale Rules&lt;/strong&gt;: Container Apps will automatically scale up when requests arrive&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Resource Limits (Ultra Cost-Optimized)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CPU&lt;/strong&gt;: 0.25 cores (absolute minimum, sufficient for 1-2 viewer streams)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Memory&lt;/strong&gt;: 0.5Gi (minimum allowed by Azure Container Apps)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Storage&lt;/strong&gt;: Cool tier with 1GB initial quota (auto-scales as needed)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Network&lt;/strong&gt;: Minimal VNet addressing to reduce overhead&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;OBS Configuration&lt;/h2&gt;
+&lt;p&gt;After deployment, configure OBS for streaming:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Server Settings&lt;/strong&gt;: Use &lt;code&gt;rtmp://your-app-url:1935/live&lt;/code&gt; (note: &lt;code&gt;rtmp://&lt;/code&gt; not &lt;code&gt;https://&lt;/code&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Stream Key&lt;/strong&gt;: Use the key from Owncast admin panel (Configuration &amp;gt; Server Setup &amp;gt; Stream Keys)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Owncast Web Interface&lt;/strong&gt;: Access at &lt;code&gt;https://your-app-url&lt;/code&gt; (port 8080 is handled automatically by ingress)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Persistent Data&lt;/strong&gt;: All Owncast configuration, database, and uploaded files are stored in Azure Files and persist across container restarts and scale-to-zero events.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Cold Start&lt;/strong&gt;: When scaling from zero, there will be a brief cold start delay as the container initializes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;VNet Requirement&lt;/strong&gt;: For dual-port access (HTTP + RTMP), you &lt;strong&gt;must&lt;/strong&gt; use a Virtual Network integration. This is a requirement for exposing additional TCP ports in Azure Container Apps.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Security Configuration&lt;/strong&gt;: After deployment, immediately change the default admin credentials:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Navigate to &lt;code&gt;https://your-app-url/admin&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Default login: &lt;code&gt;admin&lt;/code&gt; / &lt;code&gt;abc123&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Go to Configuration &amp;gt; Server Setup and change the admin password&lt;/li&gt;
+&lt;li&gt;Create/copy stream keys from Configuration &amp;gt; Server Setup &amp;gt; Stream Keys tab&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Custom Domain&lt;/strong&gt;: You can configure a custom domain using:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;az containerapp hostname add \
+  --name $CONTAINER_APP_NAME \
+  --resource-group $RESOURCE_GROUP \
+  --hostname &amp;quot;your-domain.com&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;SSL Certificate&lt;/strong&gt;: Azure Container Apps provides automatic SSL certificates for custom domains.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Monitoring and Troubleshooting&lt;/h2&gt;
+&lt;p&gt;Check your deployment:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;# Get the URL
+az containerapp show \
+  --name $CONTAINER_APP_NAME \
+  --resource-group $RESOURCE_GROUP \
+  --query properties.configuration.ingress.fqdn
+
+# View logs
+az containerapp logs show \
+  --name $CONTAINER_APP_NAME \
+  --resource-group $RESOURCE_GROUP
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Cost Estimation (Ultra-Optimized)&lt;/h2&gt;
+&lt;p&gt;With these optimizations, your monthly costs should be:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;When Streaming (4 hours/month example):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Compute&lt;/strong&gt;: ~$0.50/month (0.25 CPU + 0.5Gi RAM × 4 hours)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Container Apps Environment&lt;/strong&gt;: ~$0.00 (consumption plan, no dedicated resources)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Networking&lt;/strong&gt;: ~$0.05/month (minimal VNet overhead)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;When Idle (Scale-to-Zero):&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Compute&lt;/strong&gt;: $0.00 (scaled to zero)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Environment&lt;/strong&gt;: $0.00 (consumption plan)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Always-On Costs:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Storage&lt;/strong&gt;: ~$0.05-0.10/month (1-2GB in Cool tier)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;VNet&lt;/strong&gt;: ~$0.00 (no gateways or dedicated resources)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Total Monthly Cost: ~$0.60-0.65/month&lt;/strong&gt; (assuming 4 hours of streaming)&lt;/p&gt;
+&lt;h3&gt;Performance Expectations at Minimal Resources:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;0.25 CPU + 0.5Gi RAM&lt;/strong&gt;: Suitable for 480p-720p streams with 1-5 concurrent viewers&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scale-up Path&lt;/strong&gt;: Monitor performance and increase to 0.5 CPU + 1Gi if needed&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cold Start&lt;/strong&gt;: ~10-15 seconds when scaling from zero (acceptable for personal streaming)&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/resources/snippets/owncast-optimized-azure-deployment-guide</link>
+      <guid>https://www.luisquintanilla.me/resources/snippets/owncast-optimized-azure-deployment-guide</guid>
+      <pubDate>2025-08-14 13:35 -05:00</pubDate>
+      <category>owncast</category>
+      <category>fediverse</category>
+      <category>azure</category>
+      <category>livestream</category>
+    </item>
+    <item>
+      <title>Introducing Gemma 3 270M</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we're adding a new, highly specialized tool to the Gemma 3 toolkit: Gemma 3 270M, a compact, 270-million parameter model designed from the ground up for task-specific fine-tuning with strong instruction-following and text structuring capabilities already trained in.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/introducing-gemma-3-270m</link>
+      <guid>https://www.luisquintanilla.me/responses/introducing-gemma-3-270m</guid>
+      <pubDate>2025-08-14 12:40</pubDate>
+      <category>ai</category>
+      <category>google</category>
+      <category>gemma</category>
+      <category>slm</category>
+      <category>genai</category>
+    </item>
+    <item>
+      <title>Mobile-First Static Site Publishing: Discord Bot Pipeline via Azure and GitHub</title>
+      <description>&lt;![CDATA[
+## The problem
+
+Ever since I published my [first note](/notes/hello-world)([microblog post](https://indieweb.org/note)) on my website, I've always wanted a way to quickly publish while on the go. Unfortunately, I never found a good solution. 
+
+Because my website is statically generated and the source is hosted on GitHub(check out the [colophon](/colophon) for more details), there is no backend for me to talk to. At the same time, I didn't want to build an entire backend to support my website because I want to keep things as lean and cost-efficient as possible. 
+
+Since my posts are just frontmatter and Markdown, I [use VS Code as my editor](/uses). For some time, back when I used to have a Surface Duo, I [authored posts from mobile using the github.dev experience](https://www.lqdev.me/notes/surface-duo-blogging-github-dev). On two screens, while not ideal, it was manageable. After switching devices (because sadly there were no more security updates on the Surface Duo) and upgrading to a dumbphone and later a single screen smartphone, that workflow wasn't feasible.
+
+At that point, what I resorted to was sending messages to myself via [Element](https://element.io/). The message would contain a link I wanted to check out later. Once I was on my laptop, I would check out the link and if I wanted to post about it on my website, I'd do so then. 
+
+That process, while it worked, wasn't necessarily scalable. In part that's a feature because I could spend more time digesting the content and writing a thoughtful article. However, it stopped me from sharing more in the moment and there were posts that were never authored or bookmarks that weren't captured because eventually that link got lost in the river of other links. 
+
+Basically what I wanted to replicate was the more instant posting that social media gives you, but do so on my own site. 
+
+That led me to doing some thinking and requirement gathering around the type of experience I wanted to have.
+
+## Requirements
+
+When it came to requirements for my solution, I was focused more on the workflow and experience rather on technical details. 
+
+Here is a list of those solution requirements:
+
+- Mobile is the primary publishing interface. Desktop publishing is a nice to have.
+- Be as low-friction as sharing a link via Element or posting on social media
+- Doesn't require implementing my own client or frontend
+- Doesn't require me to use existing micropub clients
+- Handles short-form and media posts supported by my website
+    - Notes
+    - Responses
+        - Repost
+        - Reply
+        - Like
+    - Bookmark
+    - Media
+        - Image
+        - Audio (not used as often but technically supported)
+        - Video (not used as often but technically supported)
+- Low-cost
+
+## The solution
+
+For years, I had been struggling with actually implementing this system. The main part that gave me pause was not implementing my own client or relying on existing micropub clients. 
+
+Eventually, I just accepted that it might never happen. 
+
+One day, it eventually hit me. If the notes to self Element workflow worked so well, why not use a chat client as the frontend for publishing. At least have it serve as the capture system that would then format the content into a post that gets queued for publishing on GitHub. I'd seen [Benji do something similar with his micropub endpoint](https://github.com/benjifs/serverless-micropub). 
+
+While I could've used Element since that's my preferred platform, I've been contemplating no longer hosting my own Matrix server. So if I went through with this, I'd want something that I didn't feel bad about investing the time on this solution if that chat client went away. 
+
+That then left me with Discord as the next best option. Primarily because of its support for bots as well as its cross-platform support across mobile and desktop. 
+
+In the end, the solution then ended up being fairly straightforward. 
+
+More importantly, with the help of AI, I wrote none of the code. 
+
+Using Copilot and Claude Sonnet 4, I was able to go from idea to deployment in 1-2 days. At that time the solution supported all of the posts except for media which I hadn't figured out what the best way of uploading media through Discord was. Figuring that out, implementing it, and deploying it took another day or two. 
+
+Since I wanted for my solution to be as low-cost as possible, serverless seemed like a good option. I only pay for compute when it's actually being used which can be infrequent in my case. I don't need the server running 24/7 or even to be powerful. However, I didn't want to write my system as an Azure Function. I wanted the flexibility of deploying on a shared VM or container. A VM though wasn't an option since it's running 24/7. Keeping all of that in mind, my choice was narrowed down to Azure Container Apps which gave me the characteristics I was looking for. Serverless containers. 
+
+Once that decision was made, I used Copilot again to figure out how to optimize my container image so that it's space and resource efficient. And while at it, I used Copilot again to figure out the right incantations to get the container deployed to Azure Container Apps. 
+
+All-in-all, the solution had been staring at me in the face since I already had a workflow that for the most part worked for me, it just needed some optimizations and with the help of AI, I was able to quickly build and deploy something I'd been ruminating over for years.  
+
+## Workflow
+
+The workflow for publishing is as follows:
+
+1. Invoke the bot in Discord to capture my input using slash command `/post` and the respective post type.
+
+    ![Using slash commands to invoke discord publishing bot](/files/images/invoke-discord-publishing-bot.png)
+
+1. Provide post details. For media posts, I can provide an attachment which gets uploaded to Azure Blob Storage.
+
+    ![A modal in discord with note post fields filled in](/files/images/discord-publishing-client-modal.png)
+
+1. [Bot creates a branch and PR in my repo](https://github.com/lqdev/luisquintanilla.me/pull/152) with the post content
+1. While logged into GitHub from my phone, if everything looks good, I merge the PR which kicks off my GitHub Actions workflow to build and publish the site including the new post. 
+1. Post [displays on my website](/media/test-media-post-from-mobile/).
+
+## Challenges
+
+The solution is not perfect. 
+
+One of the problems I've run into is cold-start. Since I scale my solution down to zero when it's not being used to save on costs, I suffer from the cold start problem. Therefore, when I first invoke the bot, it fails. I have to give it a few seconds and retry the invocation. It's usually about 5 seconds so it's not a huge issue but it does add some friction. 
+
+## Next steps
+
+Overall I'm happy with my solution but there are a few improvements I'd like to make.
+
+- **Open-source the repo** - Currently I've kept the repo private since it was all AI generated. Since my system is already in production and processes were documented, I need to do a more thorough pass to make sure that no secrets or credentials are checked in or documented anywhere.
+- **Improve UX** - Discord limits modal fields to 5. Therefore, I'm playing around with the right balance between how much of the input should come from slash commands and how much should come from the modal.
+- **Expand supported post types** - I'd like to expand the number of posts supported by my publishing client. Reviews are a good example of the type of post I'd like to support as well as RSVPs. [Reviews I already support](https://www.lqdev.me/reviews) on my website but RSVPs I don't yet. Also, I'd have to fix my Webmentions which are currently broken after [upgrading my website](/notes/hello-world-new-site-2025-08/). 
+- **Make it generator agnostic** - Currently this only works for my website. With a few tweaks and refactoring, I think I can get the project to a place where it should work with other popular static site generators. 
+- **One-click deployment** - Currently the solution is packaged up as a container so it can be deployed from anywhere. I want to make it even simpler to deploy. One click if possible. 
+
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/posts/website-mobile-publishing-discord-client</link>
+      <guid>https://www.luisquintanilla.me/posts/website-mobile-publishing-discord-client</guid>
+      <pubDate>2025-08-14 01:45 -05:00</pubDate>
+      <category>discord</category>
+      <category>azure</category>
+      <category>indieweb</category>
+      <category>mobile</category>
+      <category>microblogging</category>
+      <category>web</category>
+      <category>bot</category>
+      <category>aca</category>
+      <category>azurecontainerapps</category>
+    </item>
+    <item>
+      <title>I Deleted My Second Brain</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I don’t build a second brain. I inhabit the first.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/i-deleted-my-second-brain</link>
+      <guid>https://www.luisquintanilla.me/responses/i-deleted-my-second-brain</guid>
+      <pubDate>2025-08-13 08:03</pubDate>
+      <category>pkm</category>
+      <category>notes</category>
+      <category>secondbrain</category>
+    </item>
+    <item>
+      <title>Test media post from mobile</title>
+      <description>&lt;![CDATA[Album containing 0 photos]]&gt;</description>
+      <link>https://www.luisquintanilla.me/media/test-media-post-from-mobile</link>
+      <guid>https://www.luisquintanilla.me/media/test-media-post-from-mobile</guid>
+      <pubDate>2025-08-12 22:40 -05:00</pubDate>
+      <category>mobile</category>
+      <category>blog</category>
+      <category>indieweb</category>
+    </item>
     <item>
       <title>Engineering for Slow Internet</title>
       <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
@@ -227,203 +677,6 @@ At the end of the day, it was nice seeing everyone else's projects. My favorite 
       <category>wordpress</category>
       <category>fediverse</category>
       <category>automattic</category>
-    </item>
-    <item>
-      <title>Crate Finds - May 2025</title>
-      <description>&lt;![CDATA[&lt;p&gt;Better late than never. Here's the May 2025 drop.&lt;/p&gt;
-&lt;p&gt;Some of my favorites from last month:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Prayer to the Stars by Vianney Lopez, Sam Bottner&lt;/li&gt;
-&lt;li&gt;Diarabi by Viex Farka Toure, Khruangbin&lt;/li&gt;
-&lt;li&gt;Everything &amp;amp; Nothing, OHMA&lt;/li&gt;
-&lt;li&gt;Bloom, Deya Dova&lt;/li&gt;
-&lt;li&gt;Dance of the Seven Sisters, Deya Dova&lt;/li&gt;
-&lt;li&gt;Wisdom Eye by Alice Coltrane&lt;/li&gt;
-&lt;li&gt;Black Meditation by Shabaka&lt;/li&gt;
-&lt;/ul&gt;
-&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0ETG3ZcVXCPqgHN4xFQ8qN" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/notes/crate-finds-may-2025</link>
-      <guid>https://www.luisquintanilla.me/notes/crate-finds-may-2025</guid>
-      <pubDate>2025-06-29 18:00</pubDate>
-      <category>cratefinds</category>
-      <category>music</category>
-      <category>playlist</category>
-      <category>spotify</category>
-    </item>
-    <item>
-      <title>Do not privatize federal land</title>
-      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
-&lt;p&gt;I’ve long advocated selling off some federal land...Most of this “public land” is never used by the public. Selling some of it would actually make it more accessible and useful to real people.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;How about no. If privatization means, John and Jane Doe can purchase some land for their homestead is one thing. We've tried that before by the way - &lt;a href="https://en.wikipedia.org/wiki/Homestead_Acts"&gt;Homestead Act&lt;/a&gt;. In reality, it means some private equity firm or hedge fund buying the land, building expensive and shoddy cookit-cutter condos, and &lt;a href="https://www.nar.realtor/magazine/real-estate-news/commercial/build-to-rent-homes"&gt;selling you a subscription for a roof over your head&lt;/a&gt;. I say condos because it's hot and there's not a lot of water in Vegas, so keeping those brand new AI data centers cool might be a problem.&lt;/p&gt;
-&lt;p&gt;Also, if you haven't seen that area that Alex highlights in his post, it seems like a deserted landscape. And yes, the terrain can be rough, but actually, it's a beautiful landscape that is best left undisturbed.&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/do-not-privatize-federal-land</link>
-      <guid>https://www.luisquintanilla.me/responses/do-not-privatize-federal-land</guid>
-      <pubDate>2025-06-29 17:26</pubDate>
-      <category>bureaulandmanagement</category>
-      <category>uspol</category>
-      <category>land</category>
-    </item>
-    <item>
-      <title>Week of June 29, 2025 - Post Summary</title>
-      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.luisquintanilla.me/notes/crate-finds-may-2025"&gt;Crate Finds - May 2025&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Responses&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.luisquintanilla.me/responses/do-not-privatize-federal-land"&gt;Do not privatize federal land&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/notes/2025-06-29-weekly-post-summary</link>
-      <guid>https://www.luisquintanilla.me/notes/2025-06-29-weekly-post-summary</guid>
-      <pubDate>2025-06-29 14:00 -05:00</pubDate>
-      <category>weeklysummary</category>
-      <category>blogging</category>
-      <category>website</category>
-      <category>indieweb</category>
-    </item>
-    <item>
-      <title>Self-Adapting Language Models (SEAL)</title>
-      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Large language models (LLMs) are powerful but static; they lack mechanisms to adapt their weights in response to new tasks, knowledge, or examples. &lt;strong&gt;We introduce Self-Adapting LLMs (SEAL) 🦭, a framework that enables LLMs to self-adapt by generating their own finetuning data and update directives.&lt;/strong&gt; Given a new input, the model produces a self-edit — a generation that may restructure the information in different ways, specify optimization hyperparameters, or invoke tools for data augmentation and gradient-based updates. Through supervised finetuning (SFT), these self-edits result in persistent weight updates, enabling lasting adaptation. To train the model to produce effective self-edits, we use a reinforcement learning loop, using the downstream performance of the updated model as the reward signal. Unlike prior approaches that rely on separate adaptation modules or auxiliary networks, SEAL directly uses the model's generation to parameterize and control its own adaptation process. Experiments on knowledge incorporation and few-shot generalization show that SEAL is a promising step toward language models capable of self-directed adaptation in response to new data.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;We demonstrate SEAL in two domains: (1) &lt;strong&gt;Knowledge Incorporation&lt;/strong&gt;, where the model integrates new factual information by generating logical implications as synthetic data, and (2) &lt;strong&gt;Few-Shot Learning&lt;/strong&gt;, where the model autonomously selects data augmentations and training hyperparameters to adapt to new abstract reasoning tasks.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/Continual-Intelligence"&gt;Code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://arxiv.org/abs/2506.10943"&gt;Paper&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/self-adapting-language-models-seal</link>
-      <guid>https://www.luisquintanilla.me/responses/self-adapting-language-models-seal</guid>
-      <pubDate>2025-06-16 20:33</pubDate>
-      <category>agent</category>
-      <category>ai</category>
-      <category>llm</category>
-      <category>mit</category>
-      <category>research</category>
-    </item>
-    <item>
-      <title>How we built our multi-agent research system - Anthropic</title>
-      <description>&lt;![CDATA[[reshare] &lt;p&gt;Great article.&lt;/p&gt;
-&lt;p&gt;TLDR: These are largely engineering problems.&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;The journey of this multi-agent system from prototype to production taught us critical lessons about system architecture, tool design, and prompt engineering. A multi-agent system consists of multiple agents (&lt;strong&gt;LLMs autonomously using tools in a loop&lt;/strong&gt;) working together. Our Research feature involves an agent that plans a research process based on user queries, and then uses tools to create parallel agents that search for information simultaneously. Systems with multiple agents introduce new challenges in agent coordination, evaluation, and reliability.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;Benefits of a multi-agent system&lt;/h2&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;The essence of search is compression: distilling insights from a vast corpus. &lt;strong&gt;Subagents facilitate compression by operating in parallel&lt;/strong&gt; with their own context windows, exploring different aspects of the question simultaneously before condensing the most important tokens for the lead research agent. Each subagent also provides &lt;strong&gt;separation of concerns&lt;/strong&gt;—distinct tools, prompts, and exploration trajectories—which reduces path dependency and enables thorough, independent investigations.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Once intelligence reaches a threshold, multi-agent systems become a vital way to scale performance. For instance, although individual humans have become more intelligent in the last 100,000 years, human societies have become exponentially more capable in the information age because of our collective intelligence and ability to coordinate. Even generally-intelligent agents face limits when operating as individuals; &lt;strong&gt;groups of agents can accomplish far more&lt;/strong&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Our internal evaluations show that multi-agent research systems excel especially for breadth-first queries that involve pursuing multiple independent directions simultaneously.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Multi-agent systems work mainly because they help spend enough tokens to solve the problem...Multi-agent architectures effectively scale token usage for tasks that exceed the limits of single agents.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;We’ve found that multi-agent systems excel at valuable tasks that involve heavy parallelization, information that exceeds single context windows, and interfacing with numerous complex tools.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;Architecture overview&lt;/h2&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Our Research system uses a multi-agent architecture with an orchestrator-worker pattern, where a lead agent coordinates the process while delegating to specialized subagents that operate in parallel.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Traditional approaches using Retrieval Augmented Generation (RAG) use static retrieval. That is, they fetch some set of chunks that are most similar to an input query and use these chunks to generate a response. In contrast, our architecture uses a &lt;strong&gt;multi-step search that dynamically finds relevant information, adapts to new findings, and analyzes results to formulate high-quality answers&lt;/strong&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;Prompt engineering and evaluations for research agents&lt;/h2&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Think like your agents.&lt;/strong&gt; To iterate on prompts, you must understand their effects. To help us do this, we built simulations using our Console with the exact prompts and tools from our system, then watched agents work step-by-step.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Teach the orchestrator how to delegate.&lt;/strong&gt; In our system, the lead agent decomposes queries into subtasks and describes them to subagents. Each subagent needs an &lt;strong&gt;objective&lt;/strong&gt;, an &lt;strong&gt;output format&lt;/strong&gt;, &lt;strong&gt;guidance on the tools and sources to use&lt;/strong&gt;, and &lt;strong&gt;clear task boundaries&lt;/strong&gt;. Without detailed task descriptions, agents duplicate work, leave gaps, or fail to find necessary information.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Scale effort to query complexity.&lt;/strong&gt; Agents struggle to judge appropriate effort for different tasks, so we embedded scaling rules in the prompts...&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Tool design and selection are critical.&lt;/strong&gt; Agent-tool interfaces are as critical as human-computer interfaces. Using the right tool is efficient—often, it’s strictly necessary...Bad tool descriptions can send agents down completely wrong paths, so each tool needs a distinct purpose and a clear description.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Let agents improve themselves.&lt;/strong&gt;...When given a prompt and a failure mode, they are able to diagnose why the agent is failing and suggest improvements.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Start wide, then narrow down.&lt;/strong&gt; Search strategy should mirror expert human research: explore the landscape before drilling into specifics.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Guide the thinking process.&lt;/strong&gt;...Our testing showed that extended thinking improved instruction-following, reasoning, and efficiency. Subagents also plan, then use interleaved thinking after tool results to evaluate quality, identify gaps, and refine their next query. This makes subagents more effective in adapting to any task.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Parallel tool calling transforms speed and performance.&lt;/strong&gt;...For speed, we introduced two kinds of parallelization: (1) the lead agent spins up 3-5 subagents in parallel rather than serially; (2) the subagents use 3+ tools in parallel.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Our prompting strategy focuses on instilling &lt;strong&gt;good heuristics rather than rigid rules&lt;/strong&gt;. We studied how skilled humans approach research tasks and encoded these strategies in our prompts—strategies like &lt;strong&gt;decomposing difficult questions into smaller tasks&lt;/strong&gt;, &lt;strong&gt;carefully evaluating the quality of sources&lt;/strong&gt;, &lt;strong&gt;adjusting search approaches based on new information&lt;/strong&gt;, and &lt;strong&gt;recognizing when to focus on depth (investigating one topic in detail) vs. breadth (exploring many topics in parallel)&lt;/strong&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;Effective evaluation of agents&lt;/h2&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;...evaluating multi-agent systems presents unique challenges...Because we don’t always know what the right steps are, we usually can't just check if agents followed the “correct” steps we prescribed in advance. Instead, we need flexible evaluation methods that judge whether agents achieved the right outcomes while also following a reasonable process.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Start evaluating immediately with small samples.&lt;/strong&gt;...it’s best to start with small-scale testing right away with a few examples, rather than delaying until you can build more thorough evals.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;LLM-as-judge evaluation scales when done well.&lt;/strong&gt;...We used an LLM judge that evaluated each output against criteria in a rubric: &lt;strong&gt;factual accuracy&lt;/strong&gt; (do claims match sources?), &lt;strong&gt;citation accuracy&lt;/strong&gt; (do the cited sources match the claims?), &lt;strong&gt;completeness&lt;/strong&gt; (are all requested aspects covered?), &lt;strong&gt;source quality&lt;/strong&gt; (did it use primary sources over lower-quality secondary sources?), and &lt;strong&gt;tool efficiency&lt;/strong&gt; (did it use the right tools a reasonable number of times?)...[we] found that a single LLM call with a single prompt outputting scores from 0.0-1.0 and a pass-fail grade was the most consistent and aligned with human judgements.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Human evaluation catches what automation misses.&lt;/strong&gt;...Adding source quality heuristics to our prompts helped resolve this issue. Even in a world of automated evaluations, manual testing remains essential.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;the best prompts for these agents are not just strict instructions, but &lt;strong&gt;frameworks for collaboration&lt;/strong&gt; that define the &lt;strong&gt;division of labor&lt;/strong&gt;, &lt;strong&gt;problem-solving approaches&lt;/strong&gt;, and &lt;strong&gt;effort budgets&lt;/strong&gt;. Getting this right relies on &lt;strong&gt;careful prompting and tool design&lt;/strong&gt;, &lt;strong&gt;solid heuristics&lt;/strong&gt;, &lt;strong&gt;observability&lt;/strong&gt;, and &lt;strong&gt;tight feedback loops&lt;/strong&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;Production reliability and engineering challenges&lt;/h2&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Agents are stateful and errors compound.&lt;/strong&gt;...Agents can run for long periods of time, maintaining state across many tool calls. This means we need to &lt;strong&gt;durably execute code and handle errors along the way&lt;/strong&gt;. Without effective mitigations, minor system failures can be catastrophic for agents. When errors occur, we can't just restart from the beginning...We combine the adaptability of AI agents built on Claude with deterministic safeguards like retry logic and regular checkpoints.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Debugging benefits from new approaches&lt;/strong&gt;...Adding full production tracing let us diagnose why agents failed and fix issues systematically. Beyond standard observability, we monitor agent decision patterns and interaction structures—all without monitoring the contents of individual conversations, to maintain user privacy.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Deployment needs careful coordination&lt;/strong&gt;...we use rainbow deployments to avoid disrupting running agents, by gradually shifting traffic from old to new versions while keeping both running simultaneously.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;&lt;strong&gt;Synchronous execution creates bottlenecks.&lt;/strong&gt; Currently, our lead agents execute subagents synchronously, waiting for each set of subagents to complete before proceeding. This simplifies coordination, but creates bottlenecks in the information flow between agents. Asynchronous execution would enable additional parallelism: agents working concurrently and creating new subagents when needed. But this asynchronicity adds challenges in result coordination, state consistency, and error propagation across the subagents. As models can handle longer and more complex research tasks, we expect the performance gains will justify the complexity.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;For all the reasons described in this post, the gap between prototype and production is often wider than anticipated.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Multi-agent research systems can operate reliably at scale with &lt;strong&gt;careful engineering&lt;/strong&gt;, &lt;strong&gt;comprehensive testing&lt;/strong&gt;, &lt;strong&gt;detail-oriented prompt and tool design&lt;/strong&gt;, &lt;strong&gt;robust operational practices&lt;/strong&gt;, and &lt;strong&gt;tight collaboration between research, product, and engineering teams&lt;/strong&gt; who have a strong understanding of current agent capabilities.&lt;/p&gt;
-&lt;/blockquote&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/anthropic-how-we-built-multi-agent-system</link>
-      <guid>https://www.luisquintanilla.me/responses/anthropic-how-we-built-multi-agent-system</guid>
-      <pubDate>2025-06-16 17:39</pubDate>
-      <category>agent</category>
-      <category>ai</category>
-      <category>anthropic</category>
-      <category>engineering</category>
-    </item>
-    <item>
-      <title>Thee Sacred Souls 2025</title>
-      <description>&lt;![CDATA[&lt;p&gt;Some pictures from the Thee Sacred Souls concert I attended a few weeks ago.&lt;/p&gt;
-&lt;p&gt;I caught them in New York when the tour started, so it was nice to catch them at the end of the tour as well.&lt;/p&gt;
-&lt;p&gt;In both cases, they were great performances.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.luisquintanilla.me/files/images/thee-sacred-souls-2025-1.jpg" class="img-fluid" alt="A stage with Thee Sacred Souls band performing" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.luisquintanilla.me/files/images/thee-sacred-souls-2025-2.jpg" class="img-fluid" alt="Thee Sacred Souls members on stage embracing" /&gt;&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/notes/thee-sacred-souls-2025</link>
-      <guid>https://www.luisquintanilla.me/notes/thee-sacred-souls-2025</guid>
-      <pubDate>2025-06-14 12:30</pubDate>
-      <category>music</category>
-      <category>concert</category>
-      <category>theesacredsouls</category>
     </item>
   </channel>
 </rss>

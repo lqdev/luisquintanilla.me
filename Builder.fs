@@ -161,6 +161,14 @@ module Builder
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), aboutPage)
 
+    let buildCollectionsPage () = 
+
+        let collectionsContent = convertFileToHtml (Path.Join(srcDir,"collections.md")) |> contentView
+        let collectionsPage = generate collectionsContent "default" "Collections - Luis Quintanilla"
+        let saveDir = Path.Join(outputDir,"collections")
+        Directory.CreateDirectory(saveDir) |> ignore
+        File.WriteAllText(Path.Join(saveDir,"index.html"), collectionsPage)
+
     let buildStarterPackPage () = 
 
         let starterContent = convertFileToHtml (Path.Join(srcDir,"starter-packs.md")) |> contentView
@@ -295,6 +303,46 @@ module Builder
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
+
+    // =============================================================================
+    // Unified Collection Processing - New composable collection system
+    // =============================================================================
+    
+    let buildUnifiedCollections () = 
+        // Get all collections and their data
+        let collections = Collections.CollectionBuilder.buildCollections ()
+        
+        printfn "🔧 Building unified collections..."
+        
+        for (collection, data) in collections do
+            try
+                // Generate HTML page using the new system
+                let htmlContent = Collections.CollectionProcessor.generateCollectionPage data
+                let htmlPage = generate htmlContent "default" $"{collection.Title} - Luis Quintanilla"
+                
+                // Calculate paths
+                let paths = Collections.CollectionProcessor.getCollectionPaths collection
+                
+                // Ensure output directory exists
+                let outputPath = Path.Join(outputDir, Path.GetDirectoryName(paths.HtmlPath))
+                Directory.CreateDirectory(outputPath) |> ignore
+                
+                // Write HTML file
+                File.WriteAllText(Path.Join(outputDir, paths.HtmlPath), htmlPage)
+                
+                // Generate and write OPML file
+                let opmlContent = Collections.CollectionBuilder.generateCollectionOpmlContent data
+                File.WriteAllText(Path.Join(outputDir, paths.OpmlPath), opmlContent)
+                
+                // Generate and write RSS file
+                let rssContent = Collections.CollectionBuilder.generateCollectionRssContent data
+                File.WriteAllText(Path.Join(outputDir, paths.RssPath), rssContent)
+                
+                printfn "✅ Built collection: %s (%d items)" collection.Title (data.Items.Length)
+                
+            with
+            | ex -> 
+                printfn "❌ Error building collection %s: %s" collection.Title ex.Message
     
     let buildLegacyRssFeedAliases () =
         // Create legacy RSS feed aliases for backward compatibility
