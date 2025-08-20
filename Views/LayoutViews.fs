@@ -652,7 +652,7 @@ let liveStreamView (title:string) =
     div [ _class "mr-auto" ] [
         h1 [] [Text title]
         iframe [
-            _src "https://test-owncast2.jollybeach-ea688d6c.northcentralus.azurecontainerapps.io/embed/video"
+            _src "https://owncast-app.jollybeach-ea688d6c.northcentralus.azurecontainerapps.io/embed/video"
             _title "lqdev Live Stream"
             _height "350px"
             _width "550px"
