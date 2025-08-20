@@ -7,7 +7,14 @@ created_date: "2025-08-14 13:35 -05:00"
 
 ## Description 
 
-This guide shows how to deploy Owncast to Azure Container Apps with persistent storage and scale-to-zero capability to minimize costs.
+This guide shows how to deploy Owncast to Azure Container Apps with persistent storage, scale-to-zero capability, and proper SQLite compatibility to minimize costs while ensuring reliable operation.
+
+**Key Features:**
+- Ultra-cost-optimized configuration (~$0.60/month for 4 hours of streaming)
+- Full data persistence (users, chat, federation, configuration)
+- Scale-to-zero capability when not streaming  
+- SQLite + Azure Files compatibility fixes
+- RTMP + HTTP dual-port configuration for OBS Studio
 
 ## Prerequisites
 
@@ -173,12 +180,11 @@ az containerapp create \
 
 ## Ultra Low-Cost Alternative YAML Configuration
 
-For maximum cost optimization, use this YAML approach with the smallest possible resource allocation:
+For maximum cost optimization, use this YAML approach with the smallest possible resource allocation. This configuration includes critical SQLite compatibility fixes for Azure Files:
 
 ```yaml
-# owncast-minimal-cost.yaml
+# owncast-production-ready.yaml
 properties:
-  managedEnvironmentId: /subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.App/managedEnvironments/{environment-name}
   configuration:
     ingress:
       external: true
@@ -187,11 +193,12 @@ properties:
       - external: true
         targetPort: 1935
         exposedPort: 1935
+        transport: tcp
     secrets: []
   template:
     containers:
     - image: owncast/owncast:latest
-      name: owncast
+      name: owncast-app
       resources:
         cpu: 0.25
         memory: 0.5Gi
@@ -203,6 +210,16 @@ properties:
         value: "1935"
       - name: OWNCAST_WEBSERVER_PORT  
         value: "8080"
+      - name: OWNCAST_DATABASE_FILE
+        value: "/app/data/db/owncast.db"
+      - name: OWNCAST_DATABASE_JOURNAL_MODE
+        value: "DELETE"
+      - name: OWNCAST_LOG_DIRECTORY
+        value: "/app/data/logs"
+      - name: OWNCAST_DATA_DIRECTORY
+        value: "/app/data"
+      - name: OWNCAST_HLS_DIRECTORY
+        value: "/app/data/hls"
     scale:
       minReplicas: 0
       maxReplicas: 1
@@ -210,7 +227,7 @@ properties:
       - name: "http-rule"
         http:
           metadata:
-            concurrentRequests: "10"  # Scale up quickly but keep minimal
+            concurrentRequests: "10"
     volumes:
     - name: data
       storageType: AzureFile
@@ -222,8 +239,29 @@ Deploy with:
 az containerapp create \
   --name $CONTAINER_APP_NAME \
   --resource-group $RESOURCE_GROUP \
-  --yaml owncast-minimal-cost.yaml
+  --yaml owncast-production-ready.yaml
 ```
+
+## Critical Configuration Notes
+
+### SQLite + Azure Files Compatibility Fix
+
+**Important**: The default Owncast configuration can cause "database is locked" errors when using Azure Files storage due to SQLite's WAL (Write-Ahead Logging) mode being incompatible with network file systems. The configuration above includes these critical fixes:
+
+1. **Database Subdirectory**: `OWNCAST_DATABASE_FILE=/app/data/db/owncast.db` - Places database in a subdirectory which improves Azure Files compatibility
+2. **Journal Mode Override**: `OWNCAST_DATABASE_JOURNAL_MODE=DELETE` - Forces SQLite to use DELETE mode instead of WAL mode to prevent file locking issues
+3. **Full Data Mount**: Mounts entire `/app/data` directory for complete persistence of logs, database, and HLS content
+
+### What Gets Persisted
+With this configuration, the following data persists across container restarts:
+- **User accounts and chat history** (critical for community continuity)
+- **Stream keys and admin credentials** (prevents reconfiguration)  
+- **ActivityPub federation data** (maintains Mastodon/Fediverse followers)
+- **Server customization and branding** (logos, site name, descriptions)
+- **API tokens and webhook configurations** (third-party integrations)
+- **Complete logs and HLS video segments**
+
+**Without proper persistence, you would lose all users, followers, and configuration on every container restart.**
 
 ## Cost Optimization Features
 
@@ -246,13 +284,15 @@ After deployment, configure OBS for streaming:
 2. **Stream Key**: Use the key from Owncast admin panel (Configuration > Server Setup > Stream Keys)
 3. **Owncast Web Interface**: Access at `https://your-app-url` (port 8080 is handled automatically by ingress)
 
-1. **Persistent Data**: All Owncast configuration, database, and uploaded files are stored in Azure Files and persist across container restarts and scale-to-zero events.
+1. **Persistent Data**: All Owncast configuration, database, and uploaded files are stored in Azure Files and persist across container restarts and scale-to-zero events. **Critical**: Uses SQLite DELETE journal mode to prevent "database is locked" errors with Azure Files.
 
-2. **Cold Start**: When scaling from zero, there will be a brief cold start delay as the container initializes.
+2. **Cold Start**: When scaling from zero, there will be a 10-15 second cold start delay as the container initializes. This is normal and acceptable for personal streaming.
 
 3. **VNet Requirement**: For dual-port access (HTTP + RTMP), you **must** use a Virtual Network integration. This is a requirement for exposing additional TCP ports in Azure Container Apps.
 
-4. **Security Configuration**: After deployment, immediately change the default admin credentials:
+4. **Database Compatibility**: The configuration includes specific environment variables (`OWNCAST_DATABASE_JOURNAL_MODE=DELETE`) to ensure SQLite works properly with Azure Files network storage. Without these settings, you'll experience database crashes.
+
+5. **Security Configuration**: After deployment, immediately change the default admin credentials:
    - Navigate to `https://your-app-url/admin`
    - Default login: `admin` / `abc123`
    - Go to Configuration > Server Setup and change the admin password
@@ -278,11 +318,31 @@ az containerapp show \
   --resource-group $RESOURCE_GROUP \
   --query properties.configuration.ingress.fqdn
 
+# Test RTMP port connectivity (should return TcpTestSucceeded: True)
+Test-NetConnection -ComputerName "your-app-url" -Port 1935 -InformationLevel Detailed
+
+# Test web interface
+curl -I https://your-app-url/
+
 # View logs
 az containerapp logs show \
   --name $CONTAINER_APP_NAME \
   --resource-group $RESOURCE_GROUP
 ```
+
+### Common Issues and Solutions
+
+**Problem**: Container logs show "database is locked" errors and crashes
+**Solution**: Ensure you're using the configuration above with `OWNCAST_DATABASE_JOURNAL_MODE=DELETE` and database in a subdirectory
+
+**Problem**: OBS shows "Failed to connect to server"  
+**Solution**: Verify RTMP port 1935 is accessible using `Test-NetConnection` and ensure you're using VNet integration
+
+**Problem**: Admin panel won't load or shows errors
+**Solution**: Database persistence issues - check that the `/app/data` mount is working and SQLite journal mode is set correctly
+
+**Problem**: Container scales to zero but doesn't start properly
+**Solution**: Cold start delay is normal (10-15 seconds). If it doesn't start, check environment variable configuration
 
 ## Cost Estimation (Ultra-Optimized)
 
