@@ -8,3 +8,5 @@ tags: ["ai","consciousness","humanism"]
 ---
 
 > **We must build AI for people; not to be a person**
+
+💯💯💯💯💯
