@@ -2,7 +2,7 @@
 title: "The Llama 4 herd: The beginning of a new era of natively multimodal AI innovation"
 targeturl: https://ai.meta.com/blog/llama-4-multimodal-intelligence/
 response_type: reshare
-dt_published: "2025-04-08 08:30"
+dt_published: "2025-04-08 08:30 -05:00"
 dt_updated: "2025-04-08 08:30 -05:00"
 tags: ["llama","meta","ai","llm"]
 ---

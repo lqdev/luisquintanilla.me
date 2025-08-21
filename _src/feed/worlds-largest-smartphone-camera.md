@@ -1,7 +1,7 @@
 ---
 post_type: "photo" 
 title: "World's Largest Smartphone Camera"
-published_date: "07/07/2022 21:17"
+published_date: "07/07/2022 21:17 -05:00"
 tags: ["camera","tech","smartphone"]
 ---
 

@@ -2,7 +2,7 @@
 title: "ARAGOG: Advanced RAG Output Grading"
 targeturl: https://arxiv.org/abs/2404.01037
 response_type: reshare
-dt_published: "2024-04-09 00:32"
+dt_published: "2024-04-09 00:32 -05:00"
 dt_updated: "2024-04-09 00:32 -05:00"
 tags: ["rag","ai","research","llm","knowledge","retrieval","retrievalaugmentedgeneration"]
 ---

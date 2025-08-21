@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Timeless habits"
-published_date: "2023-11-12 14:05"
+published_date: "2023-11-12 14:05 -05:00"
 tags: ["books","reading","sevenhabits"]
 ---
 

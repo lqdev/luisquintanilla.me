@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Tinkering with DeepSeek R1, GitHub Models, and .NET on stream"
-published_date: "2025-01-29 19:59"
+published_date: "2025-01-29 19:59 -05:00"
 tags: ["deepseek","ai","dotnet","github","azure","livestream"]
 ---
 

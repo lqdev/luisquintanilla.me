@@ -2,7 +2,7 @@
 post_type: "article" 
 title: Serverless Machine Learning with ML.NET and Azure Functions
 tags: [serverless, azurefunctions, mlnet, machinelearning, dotnet, dotnetcore, csharp, microsoft, devops, artificialintelligence, ai]
-published_date: 2018-08-21 19:13:47
+published_date: 2018-08-21 19:13:47 -05:00
 ---
 
 ## Introduction

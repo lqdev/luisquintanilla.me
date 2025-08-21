@@ -2,7 +2,7 @@
 title: "Norvig AlphaCode Review"
 targeturl: https://github.com/norvig/pytudes/blob/main/ipynb/AlphaCode.ipynb
 response_type: bookmark
-dt_published: "2022-12-16 22:03"
+dt_published: "2022-12-16 22:03 -05:00"
 dt_updated: "2022-12-16 22:03 -05:00"
 ---
 

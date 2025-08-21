@@ -2,7 +2,7 @@
 title: "The Verge - Apple WWDC 2024 keynote in 18 minutes"
 targeturl: https://www.youtube.com/watch?v=sBXdyUA6A88
 response_type: reshare
-dt_published: "2024-06-11 20:05"
+dt_published: "2024-06-11 20:05 -05:00"
 dt_updated: "2024-06-11 20:05 -05:00"
 tags: ["apple","wwdc","keynote","wwdc2024","ai","ios","ipad","iphone","watchos","ipados","macos","visionos"]
 ---

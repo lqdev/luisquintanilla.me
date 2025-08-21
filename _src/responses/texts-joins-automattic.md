@@ -2,7 +2,7 @@
 title: "Texts Joins Automattic"
 targeturl: https://ma.tt/2023/10/texts-joins-automattic/
 response_type: star
-dt_published: "2023-10-24 17:13"
+dt_published: "2023-10-24 17:13 -05:00"
 dt_updated: "2023-10-24 17:13 -05:00"
 tags: ["messaging","interop","decentralization","opensource"]
 ---

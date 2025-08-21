@@ -2,7 +2,7 @@
 title: "Metadata-Curated Language-Image Pre-training (MetaCLIP) - Demystifying CLIP Data"
 targeturl: https://arxiv.org/abs/2309.16671
 response_type: bookmark
-dt_published: "2023-12-11 19:41"
+dt_published: "2023-12-11 19:41 -05:00"
 dt_updated: "2023-12-11 19:41 -05:00"
 tags: ["ai","opensource","clip"]
 ---

@@ -2,7 +2,7 @@
 title: "A New Social Web - Hello, Social Web"
 targeturl: https://www.anew.social/hello-social-web/
 response_type: reshare
-dt_published: "2024-12-17 19:39"
+dt_published: "2024-12-17 19:39 -05:00"
 dt_updated: "2024-12-17 19:39 -05:00"
 tags: ["anewsocial","fediverse","socialmedia","protocols","atproto","activitypub","socialweb","personalweb"]
 ---

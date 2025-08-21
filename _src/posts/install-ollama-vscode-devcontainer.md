@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "Configure Ollama on Dev Containers and VS Code"
 description: "Set up Ollama on your Dev Container development environments and get started using AI models locally in your projects"
-published_date: "2024-03-06 13:50"
+published_date: "2024-03-06 13:50 -05:00"
 tags: ["ollama","vscode","devcontainer","ai","llm","opensource","development"]
 ---
 

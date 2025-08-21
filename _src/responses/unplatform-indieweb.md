@@ -2,7 +2,7 @@
 title: "Unplatform"
 targeturl: https://unplatform.fromthesuperhighway.com/
 response_type: reshare
-dt_published: "2025-02-25 20:20"
+dt_published: "2025-02-25 20:20 -05:00"
 dt_updated: "2025-02-25 20:20 -05:00"
 tags: ["indieweb","socialmedia","personalweb"]
 ---

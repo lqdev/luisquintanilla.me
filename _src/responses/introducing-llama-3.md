@@ -2,7 +2,7 @@
 title: "Introducing Llama 3"
 targeturl: https://llama.meta.com/llama3/ 
 response_type: reshare
-dt_published: "2024-04-18 21:01"
+dt_published: "2024-04-18 21:01 -05:00"
 dt_updated: "2024-04-18 21:01 -05:00"
 tags: ["meta","ai","llama3","llama","llm"]
 ---

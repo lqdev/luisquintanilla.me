@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "TIL: VS Code Live Preview Extension"
-published_date: "09/03/2022 18:47"
+published_date: "09/03/2022 18:47 -05:00"
 tags: ["til","vscode","vs","extension","development","web"]
 ---
 

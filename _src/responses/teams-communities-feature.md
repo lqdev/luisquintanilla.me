@@ -2,7 +2,7 @@
 title: "Microsoft Teams adds free communities feature"
 targeturl: https://www.theverge.com/2022/12/7/23497938/microsoft-teams-communities-feature 
 response_type: reply
-dt_published: "2022-12-07 15:50"
+dt_published: "2022-12-07 15:50 -05:00"
 dt_updated: "2022-12-07 15:50 -05:00"
 ---
 

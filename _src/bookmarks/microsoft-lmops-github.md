@@ -2,7 +2,7 @@
 title: "LMOps - Enabling AI capabilities with LLMs and Generative AI models"
 targeturl: https://github.com/microsoft/LMOps
 response_type: bookmark
-dt_published: "2023-02-07 09:49"
+dt_published: "2023-02-07 09:49 -05:00"
 dt_updated: "2023-02-07 09:49 -05:00"
 ---
 

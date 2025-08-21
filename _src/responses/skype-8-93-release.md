@@ -2,7 +2,7 @@
 title: "Skype 8.93 Released"
 targeturl: https://answers.microsoft.com/skype/forum/all/release-notes-for-skype-893/6407f3c4-4037-4e6b-b93f-1953408cf9f3
 response_type: reshare
-dt_published: "2023-01-30 11:07"
+dt_published: "2023-01-30 11:07 -05:00"
 dt_updated: "2023-01-30 11:07 -05:00"
 ---
 

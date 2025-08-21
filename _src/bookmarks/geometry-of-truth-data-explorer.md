@@ -2,7 +2,7 @@
 title: "The Geometry of Truth: Dataexplorer"
 targeturl:  https://saprmarks.github.io/geometry-of-truth/dataexplorer/
 response_type: bookmark
-dt_published: "2023-12-11 20:19"
+dt_published: "2023-12-11 20:19 -05:00"
 dt_updated: "2023-12-11 20:19 -05:00"
 tags: ["ai","interpretability","llm"]
 ---

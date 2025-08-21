@@ -2,7 +2,7 @@
 title: "A Survey of AI Agent Protocols"
 targeturl: https://arxiv.org/abs/2504.16736
 response_type: bookmark
-dt_published: "2025-05-09 20:23"
+dt_published: "2025-05-09 20:23 -05:00"
 dt_updated: "2025-05-09 20:23 -05:00"
 tags: ["ai","agents","protocols","research"]
 ---

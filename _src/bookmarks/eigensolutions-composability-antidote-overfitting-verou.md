@@ -2,7 +2,7 @@
 title: "Eigensolutions: composability as the antidote to overfit "
 targeturl: https://lea.verou.me/blog/2023/eigensolutions/
 response_type: bookmark
-dt_published: "2023-12-21 22:38"
+dt_published: "2023-12-21 22:38 -05:00"
 dt_updated: "2023-12-21 22:38 -05:00"
 tags: ["design","product"]
 ---

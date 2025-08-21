@@ -2,7 +2,7 @@
 title: "Sampling for Text Generation"
 targeturl: https://huyenchip.com//2024/01/16/sampling.html
 response_type: bookmark
-dt_published: "2024-01-17 20:32"
+dt_published: "2024-01-17 20:32 -05:00"
 dt_updated: "2024-01-17 20:32 -05:00"
 tags: ["ai","generativeai","statistics","llm"]
 ---

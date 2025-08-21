@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Crate Finds - May 2025"
-published_date: "2025-06-29 18:00"
+published_date: "2025-06-29 18:00 -05:00"
 tags: ["cratefinds","music","playlist","spotify"]
 ---
 

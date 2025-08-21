@@ -2,7 +2,7 @@
 title: "From Deep Learning Foundations to Stable Diffusion"
 targeturl: https://www.fast.ai/posts/part2-2023.html 
 response_type: bookmark
-dt_published: "2023-04-04 21:35"
+dt_published: "2023-04-04 21:35 -05:00"
 dt_updated: "2023-04-04 21:35 -05:00"
 ---
 

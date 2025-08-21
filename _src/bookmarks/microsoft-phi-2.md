@@ -2,7 +2,7 @@
 title: "Phi-2: The surprising power of small language models"
 targeturl: https://www.microsoft.com/research/blog/phi-2-the-surprising-power-of-small-language-models/
 response_type: bookmark
-dt_published: "2023-12-12 19:00"
+dt_published: "2023-12-12 19:00 -05:00"
 dt_updated: "2023-12-12 19:00 -05:00"
 tags: ["ai","slm","llm"]
 ---

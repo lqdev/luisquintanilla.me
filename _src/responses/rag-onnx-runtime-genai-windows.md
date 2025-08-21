@@ -2,7 +2,7 @@
 title: "Running RAG with ONNX Runtime GenAI for On-Prem Windows"
 targeturl: https://devblogs.microsoft.com/ise/running-rag-onnxruntime-genai/
 response_type: reshare
-dt_published: "2025-05-02 15:19"
+dt_published: "2025-05-02 15:19 -05:00"
 dt_updated: "2025-05-02 15:19 -05:00"
 tags: ["onnxruntime","windows","dotnet"]
 ---

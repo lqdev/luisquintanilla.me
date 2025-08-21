@@ -2,7 +2,7 @@
 title: "FLOSS Weekly is now on Hackaday!"
 targeturl: https://hackaday.com/2023/12/20/floss-weekly-episode-762-spilling-the-tea/
 response_type: reshare
-dt_published: "2024-01-15 12:15"
+dt_published: "2024-01-15 12:15 -05:00"
 dt_updated: "2024-01-15 12:15 -05:00"
 tags: ["podcast","floss","hackaday","opensource","technology","internet"]
 ---

@@ -2,7 +2,7 @@
 title: "Gemma PyTorch"
 targeturl: https://github.com/google/gemma_pytorch
 response_type: reshare
-dt_published: "2024-03-04 21:29"
+dt_published: "2024-03-04 21:29 -05:00"
 dt_updated: "2024-03-04 21:29 -05:00"
 tags: ["google","gemma","pytorch","ai","llm"]
 ---

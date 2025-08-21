@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "New AI generated phone wallpaper"
-published_date: "2023-06-07 23:02"
+published_date: "2023-06-07 23:02 -05:00"
 tags: ["ai","dalle","dumbphone"]
 ---
 

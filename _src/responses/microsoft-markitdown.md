@@ -2,7 +2,7 @@
 title: "MarkItDown - Convert files to Markdown"
 targeturl: https://github.com/microsoft/markitdown
 response_type: reshare
-dt_published: "2024-12-18 21:43"
+dt_published: "2024-12-18 21:43 -05:00"
 dt_updated: "2024-12-18 21:43 -05:00"
 tags: ["markdown","etl","data","python","ai","microsoft"]
 ---

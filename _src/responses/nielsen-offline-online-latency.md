@@ -2,7 +2,7 @@
 title: "Offline Is Just Online With Extreme Latency"
 targeturl: https://blog.jim-nielsen.com/2023/offline-is-online-with-extreme-latency/
 response_type: reshare
-dt_published: "2023-04-20 11:00"
+dt_published: "2023-04-20 11:00 -05:00"
 dt_updated: "2023-04-20 11:00 -05:00"
 tags: ["web","offline"]
 ---

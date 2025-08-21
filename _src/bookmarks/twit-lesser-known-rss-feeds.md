@@ -2,7 +2,7 @@
 title: "TWiT's Lesser Known RSS Feeds"
 targeturl: https://twit.tv/posts/inside-twit/twits-lesser-known-rss-feeds
 response_type: bookmark
-dt_published: "2024-02-14 22:35"
+dt_published: "2024-02-14 22:35 -05:00"
 dt_updated: "2024-02-14 22:35 -05:00"
 tags: ["twit","rss","tech","news","community"]
 ---

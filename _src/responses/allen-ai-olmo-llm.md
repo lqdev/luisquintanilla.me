@@ -2,7 +2,7 @@
 title: "Hello OLMo: A truly open LLM"
 targeturl: https://blog.allenai.org/hello-olmo-a-truly-open-llm-43f7e7359222
 response_type: reshare
-dt_published: "2024-04-09 22:17"
+dt_published: "2024-04-09 22:17 -05:00"
 dt_updated: "2024-04-09 22:17 -05:00"
 tags: ["allenai","llm","opensource"]
 ---

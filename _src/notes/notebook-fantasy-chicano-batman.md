@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Notebook Fantasy - New Chicano Batman out March 29, 2024"
-published_date: "2024-01-24 20:23"
+published_date: "2024-01-24 20:23 -05:00"
 tags: ["music","chicanobatman","newmusic","album","newalbum"]
 ---
 

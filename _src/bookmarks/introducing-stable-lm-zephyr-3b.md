@@ -2,7 +2,7 @@
 title: "Introducing Stable LM Zephyr 3B"
 targeturl: https://stability.ai/news/stablelm-zephyr-3b-stability-llm
 response_type: bookmark
-dt_published: "2023-12-11 20:46"
+dt_published: "2023-12-11 20:46 -05:00"
 dt_updated: "2023-12-11 20:46 -05:00"
 tags: ["llm","ai","edge"]
 ---

@@ -2,7 +2,7 @@
 title: "In Praise of Links"
 targeturl: https://osteophage.neocities.org/writing/in-praise-of-links
 response_type: star
-dt_published: "2025-05-09 21:05"
+dt_published: "2025-05-09 21:05 -05:00"
 dt_updated: "2025-05-09 21:05 -05:00"
 tags: ["openweb","internet","indieweb","decentralization","web"]
 ---

@@ -2,7 +2,7 @@
 title: "MemGPT - Towards LLMs as Operating Systems"
 targeturl: https://memgpt.ai/
 response_type: bookmark
-dt_published: "2023-12-11 19:58"
+dt_published: "2023-12-11 19:58 -05:00"
 dt_updated: "2023-12-11 19:58 -05:00"
 tags: ["ai","os","llm"]
 ---

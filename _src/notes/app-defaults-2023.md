@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "App Defaults 2023"
-published_date: "2023-12-25 22:28"
+published_date: "2023-12-25 22:28 -05:00"
 tags: ["apps","appdefaults","edc"]
 ---
 

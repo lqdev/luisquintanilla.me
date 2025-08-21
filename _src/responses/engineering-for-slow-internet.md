@@ -2,7 +2,7 @@
 title: Engineering for Slow Internet
 targeturl: "https://brr.fyi/posts/engineering-for-slow-internet"
 response_type: reply
-dt_published: "2025-08-12 08:41"
+dt_published: "2025-08-12 08:41 -05:00"
 dt_updated: "2025-08-12 08:41 -05:00"
 tags: ["slowweb", "performance", "internet", "computing"]
 ---

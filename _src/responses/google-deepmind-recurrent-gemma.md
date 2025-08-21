@@ -2,7 +2,7 @@
 title: "RecurrentGemma - Open weights language model from Google DeepMind, based on Griffin."
 targeturl: https://github.com/google-deepmind/recurrentgemma
 response_type: reshare
-dt_published: "2024-04-10 21:57"
+dt_published: "2024-04-10 21:57 -05:00"
 dt_updated: "2024-04-10 21:57 -05:00"
 tags: ["ai","gemma","google","llm","opensource","slm","griffin","neuralnetwork"]
 ---

@@ -2,7 +2,7 @@
 title: "Apple Podcasts now includes transcripts"
 targeturl: https://www.theverge.com/2024/3/5/24091555/apple-podcasts-transcripts-ios-17-4-update
 response_type: reshare
-dt_published: "2024-03-05 20:52"
+dt_published: "2024-03-05 20:52 -05:00"
 dt_updated: "2024-03-05 20:52 -05:00"
 tags: ["iphone","apple","podcasts","ios","ipados"]
 ---

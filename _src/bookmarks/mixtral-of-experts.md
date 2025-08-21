@@ -2,7 +2,7 @@
 title: "Mixtral of experts"
 targeturl: https://mistral.ai/news/mixtral-of-experts/
 response_type: bookmark
-dt_published: "2023-12-11 18:50"
+dt_published: "2023-12-11 18:50 -05:00"
 dt_updated: "2023-12-11 18:50 -05:00"
 tags: ["ai","llm","opensource"]
 ---

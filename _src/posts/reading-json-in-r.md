@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: Reading Local JSON Files in R
-published_date: 2017-12-11 14:21:21
+published_date: 2017-12-11 14:21:21 -05:00
 tags: [R,programming]
 ---
 

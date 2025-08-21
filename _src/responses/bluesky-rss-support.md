@@ -2,7 +2,7 @@
 title: "Bluesky now supports RSS"
 targeturl: https://bsky.app/profile/bsky.app/post/3kh5rjl6bgu2i
 response_type: reshare
-dt_published: "2023-12-23 20:59"
+dt_published: "2023-12-23 20:59 -05:00"
 dt_updated: "2023-12-23 20:59 -05:00"
 tags: ["bluesky","rss","socialmedia"]
 ---

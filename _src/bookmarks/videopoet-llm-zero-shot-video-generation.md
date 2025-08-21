@@ -2,7 +2,7 @@
 title: "VideoPoet: A large language model for zero-shot video generation"
 targeturl: https://sites.research.google/videopoet/
 response_type: bookmark
-dt_published: "2023-12-23 19:06"
+dt_published: "2023-12-23 19:06 -05:00"
 dt_updated: "2023-12-23 19:06 -05:00"
 tags: ["ai","genai","videopoet","generativeai","google"]
 ---

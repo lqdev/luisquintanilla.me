@@ -2,7 +2,7 @@
 title: "Google’s Hugging Face deal puts ‘supercomputer’ power behind open-source AI"
 targeturl: https://www.theverge.com/2024/1/25/24050445/google-cloud-hugging-face-ai-developer-access
 response_type: reshare
-dt_published: "2024-01-25 21:23"
+dt_published: "2024-01-25 21:23 -05:00"
 dt_updated: "2024-01-25 21:23 -05:00"
 tags: ["google","huggingface","ai","cloud","llm","ml","developers"]
 ---

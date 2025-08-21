@@ -2,7 +2,7 @@
 title: "Where this flower blooms"
 targeturl: https://twitter.com/studiosipu/status/1723582194432794638/video/1 
 response_type: reshare
-dt_published: "2023-11-12 11:53"
+dt_published: "2023-11-12 11:53 -05:00"
 dt_updated: "2023-11-12 11:53 -05:00"
 tags: ["tedtalk","festival"]
 ---

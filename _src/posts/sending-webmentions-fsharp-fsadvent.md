@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "Sending Webmentions with F#"
 description: "Discover Webmention endpoint URLs and send Webmentions using F#"
-published_date: "12/13/2021 20:53"
+published_date: "12/13/2021 20:53 -05:00"
 tags: 
 ---
 

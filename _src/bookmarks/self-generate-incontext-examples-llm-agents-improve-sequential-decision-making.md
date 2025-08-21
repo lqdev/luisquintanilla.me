@@ -2,7 +2,7 @@
 title: "Self-Generated In-Context Examples Improve LLM Agents for Sequential Decision-Making Tasks"
 targeturl: https://arxiv.org/abs/2505.00234
 response_type: bookmark
-dt_published: "2025-05-05 19:50"
+dt_published: "2025-05-05 19:50 -05:00"
 dt_updated: "2025-05-05 19:50 -05:00"
 tags: ["ai","agents","planning","research"]
 ---

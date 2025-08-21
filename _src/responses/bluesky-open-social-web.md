@@ -2,7 +2,7 @@
 title: "Bluesky: An Open Social Web"
 targeturl: https://bsky.social/about/blog/02-22-2024-open-social-web 
 response_type: reshare
-dt_published: "2024-02-22 21:03"
+dt_published: "2024-02-22 21:03 -05:00"
 dt_updated: "2024-02-22 21:03 -05:00"
 tags: ["bluesky","socialmedia","web","internet","community"]
 ---

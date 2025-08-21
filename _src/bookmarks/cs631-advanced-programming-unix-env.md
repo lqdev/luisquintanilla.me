@@ -2,7 +2,7 @@
 title: "Advanced Programming in the UNIX Environment"
 targeturl: https://stevens.netmeister.org/631/ 
 response_type: bookmark
-dt_published: "2022-10-12 18:29"
+dt_published: "2022-10-12 18:29 -05:00"
 dt_updated: "2022-10-12 18:29 -05:00"
 ---
 

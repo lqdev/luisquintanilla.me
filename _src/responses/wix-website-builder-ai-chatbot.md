@@ -2,7 +2,7 @@
 title: "Wix’s new AI chatbot builds websites in seconds based on prompts"
 targeturl: https://www.theverge.com/2024/3/4/24090095/wix-ai-website-generator-chatbot
 response_type: reshare
-dt_published: "2024-03-04 23:15"
+dt_published: "2024-03-04 23:15 -05:00"
 dt_updated: "2024-03-04 23:15 -05:00"
 tags: ["wix","ai","websites","internet","web"]
 ---

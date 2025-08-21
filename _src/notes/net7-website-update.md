@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Upgraded website to .NET 7"
-published_date: "2022-11-11 09:59"
+published_date: "2022-11-11 09:59 -05:00"
 tags: ["dotnet","website","net7","upgrade"]
 ---
 

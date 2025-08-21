@@ -2,7 +2,7 @@
 title: "Salami Rose Joe Louis Live Band at Bandcamp - May 2023"
 targeturl: https://www.youtube.com/watch?v=VrnEQ3TqZGE
 response_type: star
-dt_published: "2024-02-22 22:38"
+dt_published: "2024-02-22 22:38 -05:00"
 dt_updated: "2024-02-22 22:38 -05:00"
 tags: ["brainfeeder","salamirosejoelouis","music","bandcamp"]
 ---

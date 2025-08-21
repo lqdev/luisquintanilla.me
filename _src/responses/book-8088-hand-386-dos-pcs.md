@@ -2,7 +2,7 @@
 title: "LGR review of the Book 8088 and Hand 386 Retro DOS PCs"
 targeturl: https://yewtu.be/watch?v=6bODiZ5bP84
 response_type: reshare
-dt_published: "2023-06-20 23:29"
+dt_published: "2023-06-20 23:29 -05:00"
 dt_updated: "2023-06-20 23:29 -05:00"
 tags: ["retrocomputing","review","dos","pcs"]
 ---

@@ -2,7 +2,7 @@
 title: "Meta Large Language Model Compiler: Foundation Models of Compiler Optimization"
 targeturl: https://huggingface.co/collections/facebook/llm-compiler-667c5b05557fe99a9edd25cb
 response_type: reshare
-dt_published: "2024-06-27 22:39"
+dt_published: "2024-06-27 22:39 -05:00"
 dt_updated: "2024-06-27 22:39 -05:00"
 tags: ["ai","compiler","meta","llm"]
 ---

@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: Setting Up A New Ubuntu PC
-published_date: 2017-12-09 12:49:19
+published_date: 2017-12-09 12:49:19 -05:00
 tags: [linux, ubuntu, java, sysadmin, emacs]
 ---
 

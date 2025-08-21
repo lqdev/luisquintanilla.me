@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Mindcage"
-published_date: "2024-01-18 21:42"
+published_date: "2024-01-18 21:42 -05:00"
 tags: ["movie","thriller","mystery"]
 ---
 

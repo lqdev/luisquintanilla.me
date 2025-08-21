@@ -2,7 +2,7 @@
 title: "Software²"
 targeturl: https://blog.minch.co/2022/11/15/software-squared.html 
 response_type: bookmark
-dt_published: "2023-09-17 12:54"
+dt_published: "2023-09-17 12:54 -05:00"
 dt_updated: "2023-09-17 12:54 -05:00"
 tags: ["ai","software","data"]
 ---

@@ -2,7 +2,7 @@
 title: "Llama 2 7B/13B are now available in Web LLM"
 targeturl: https://webllm.mlc.ai/
 response_type: bookmark
-dt_published: "2023-08-31 18:57"
+dt_published: "2023-08-31 18:57 -05:00"
 dt_updated: "2023-08-31 18:57 -05:00"
 tags: ["ai","webgpu","llama","llm"]
 ---

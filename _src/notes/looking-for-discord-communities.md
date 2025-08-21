@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Looking for Discord server / community recommendations"
-published_date: "2024-03-19 22:53"
+published_date: "2024-03-19 22:53 -05:00"
 tags: ["discord","community","recommendations","lazyweb"]
 ---
 

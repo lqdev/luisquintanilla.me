@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Private social media?"
-published_date: "2024-01-22 21:40"
+published_date: "2024-01-22 21:40 -05:00"
 tags: ["indieweb","website","community","private","privacy","blog","protocols","rss","forums","journal","e-mail","fediverse","messaging"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 post_type: "photo" 
 title: "Reminiscing about Windows Phone"
-published_date: "11/13/2021 21:00"
+published_date: "11/13/2021 21:00 -05:00"
 tags: ["windowsphone","lumia","nokia","windows","smartphone","phone"]
 ---
 

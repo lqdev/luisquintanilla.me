@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Terrifier 2 - 100/10"
-published_date: "10/09/2022 14:21"
+published_date: "10/09/2022 14:21 -05:00"
 tags: ["terrifier","horror","movie","art","terrifier2"]
 ---
 

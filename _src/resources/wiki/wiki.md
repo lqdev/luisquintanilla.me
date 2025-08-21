@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Wiki"
-last_updated_date: "08/25/2022 15:13"
+last_updated_date: "08/25/2022 15:13 -05:00"
 tags: education,information,wiki,index
 ---
 

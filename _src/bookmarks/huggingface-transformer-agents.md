@@ -2,7 +2,7 @@
 title: "Transformers Agent"
 targeturl: https://huggingface.co/docs/transformers/en/transformers_agents 
 response_type: bookmark
-dt_published: "2023-05-11 20:35"
+dt_published: "2023-05-11 20:35 -05:00"
 dt_updated: "2023-05-11 20:35 -05:00"
 tags: ["transformers","ai"]
 ---

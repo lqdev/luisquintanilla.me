@@ -2,7 +2,7 @@
 title: "Haves and Choices"
 targeturl: https://notes.jim-nielsen.com/#2024-10-30T2141
 response_type: reshare
-dt_published: "2024-11-01 09:37"
+dt_published: "2024-11-01 09:37 -05:00"
 dt_updated: "2024-11-01 09:37 -05:00"
 tags: ["life","thoughts"]
 ---

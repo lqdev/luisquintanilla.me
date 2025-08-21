@@ -2,7 +2,7 @@
 title: "Microsoft to end its Android apps on Windows 11 subsystem in 2025"
 targeturl: https://www.theverge.com/2024/3/5/24091370/microsoft-windows-11-android-apps-end-of-support
 response_type: reshare
-dt_published: "2024-03-05 20:47"
+dt_published: "2024-03-05 20:47 -05:00"
 dt_updated: "2024-03-05 20:47 -05:00"
 tags: ["windows","android","wsa","pc"]
 ---

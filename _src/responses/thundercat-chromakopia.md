@@ -2,7 +2,7 @@
 title: "Thundercat on Tyler's Chromakopia album?"
 targeturl: https://www.youtube.com/watch?v=KvR_QlXaAfU
 response_type: star
-dt_published: "2024-11-13 02:11"
+dt_published: "2024-11-13 02:11 -05:00"
 dt_updated: "2024-11-13 02:11 -05:00"
 tags: ["tylerthecreator","chromakopia","thundercat","music"]
 ---

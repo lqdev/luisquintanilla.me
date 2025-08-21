@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "TIL: Canonical HTML tags"
-published_date: "10/21/2021 21:31"
+published_date: "10/21/2021 21:31 -05:00"
 tags: ["html","til","canonical","web","w3c","standards"]
 ---
 

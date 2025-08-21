@@ -2,7 +2,7 @@
 title: "Consciousness is a Big Suitcase"
 targeturl: https://www.edge.org/conversation/marvin_minsky-consciousness-is-a-big-suitcase 
 response_type: bookmark
-dt_published: "2023-08-24 21:01"
+dt_published: "2023-08-24 21:01 -05:00"
 dt_updated: "2023-08-24 21:01 -05:00"
 tags: ["ai","consciousness","computerscience"]
 ---

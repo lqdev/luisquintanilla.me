@@ -2,7 +2,7 @@
 title: "Small Web"
 targeturl: https://www.jayeless.net/wiki/small-web.html
 response_type: bookmark
-dt_published: "2022-09-02 00:03"
+dt_published: "2022-09-02 00:03 -05:00"
 dt_updated: "2022-09-02 00:03 -05:00"
 ---
 

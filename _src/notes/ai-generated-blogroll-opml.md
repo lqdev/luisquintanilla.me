@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Use AI to generate a blogroll others can subscribe to"
-published_date: "2024-03-21 22:01"
+published_date: "2024-03-21 22:01 -05:00"
 tags: ["blogroll","indieweb","ai","copilot","rss","openweb"]
 ---
 

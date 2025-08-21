@@ -2,7 +2,7 @@
 title: "Sora is here"
 targeturl: https://openai.com/index/sora-is-here/
 response_type: reshare
-dt_published: "2024-12-09 21:34"
+dt_published: "2024-12-09 21:34 -05:00"
 dt_updated: "2024-12-09 21:34 -05:00"
 tags: ["sora","openai","ai"]
 ---

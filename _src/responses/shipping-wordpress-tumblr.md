@@ -2,7 +2,7 @@
 title: "Shipping Tumblr and WordPress"
 targeturl: https://automattic.com/2024/08/27/shipping-tumblr-and-wordpress/
 response_type: star
-dt_published: "2024-09-05 22:15"
+dt_published: "2024-09-05 22:15 -05:00"
 dt_updated: "2024-09-05 22:15 -05:00"
 tags: ["wordpress","tumblr","personalweb","blogging","indieweb","microblog","posse","smallweb","automattic"]
 ---

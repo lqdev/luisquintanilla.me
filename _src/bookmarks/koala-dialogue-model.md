@@ -2,7 +2,7 @@
 title: "Koala: A Dialogue Model for Academic Research"
 targeturl: https://bair.berkeley.edu/blog/2023/04/03/koala/ 
 response_type: bookmark
-dt_published: "2023-04-05 23:28"
+dt_published: "2023-04-05 23:28 -05:00"
 dt_updated: "2023-04-05 23:28 -05:00"
 tags: ["ai", "llm"]
 ---

@@ -2,7 +2,7 @@
 title: "Hands-on - Clicks for iPhone"
 targeturl: https://9to5mac.com/2024/01/12/clicks-iphone-hands-on/ 
 response_type: reply
-dt_published: "2024-01-15 16:45"
+dt_published: "2024-01-15 16:45 -05:00"
 dt_updated: "2024-01-15 16:45 -05:00"
 tags: ["smarphone","keyboard","iphone","featurephone"]
 ---

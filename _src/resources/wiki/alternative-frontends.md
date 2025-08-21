@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Alternative Frontends"
-last_updated_date: "08/25/2022 15:05"
+last_updated_date: "08/25/2022 15:05 -05:00"
 tags: technology, internet, socialmedia, opensource, privacy
 ---
 

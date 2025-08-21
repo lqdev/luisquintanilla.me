@@ -2,7 +2,7 @@
 title: "5 reasons why desktop Linux is finally growing in popularity"
 targeturl: https://www.zdnet.com/article/5-reasons-why-desktop-linux-is-finally-growing-in-popularity/
 response_type: reshare
-dt_published: "2024-03-07 21:27"
+dt_published: "2024-03-07 21:27 -05:00"
 dt_updated: "2024-03-07 21:27 -05:00"
 tags: ["linux","pc","desktop","desktop"]
 ---

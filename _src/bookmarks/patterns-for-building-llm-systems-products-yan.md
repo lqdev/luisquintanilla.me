@@ -2,7 +2,7 @@
 title: "Patterns for Building LLM-based Systems and Products"
 targeturl: https://eugeneyan.com/writing/llm-patterns/ 
 response_type: bookmark
-dt_published: "2023-08-16 22:20"
+dt_published: "2023-08-16 22:20 -05:00"
 dt_updated: "2023-08-16 22:20 -05:00"
 tags: ["ai","llm","designpatterns"]
 ---

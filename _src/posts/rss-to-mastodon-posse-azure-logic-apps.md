@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "POSSE to Mastodon using RSS and Azure Logic Apps"
 description: "This post documents my process for cross-posting content from my website to Mastodon using RSS and Azure Logic Apps"
-published_date: "2023-12-24 16:40"
+published_date: "2023-12-24 16:40 -05:00"
 tags: ["azure","mastodon","indieweb","logicapps","fediverse","posse","internet","web","blogging","blog","automation","programming","rss"]
 ---
 

@@ -2,7 +2,7 @@
 title: "How Discord Serves 15-Million Users on One Server"
 targeturl: https://blog.bytebytego.com/p/how-discord-serves-15-million-users
 response_type: reshare
-dt_published: "2024-01-17 20:40"
+dt_published: "2024-01-17 20:40 -05:00"
 dt_updated: "2024-01-17 20:40 -05:00"
 tags: ["beam","erlang","elixir","discord","scale","enterprise","chat","communities"]
 ---

@@ -2,7 +2,7 @@
 title: "Introducing Stable Video 3D: Quality Novel View Synthesis and 3D Generation from Single Images"
 targeturl: https://stability.ai/news/introducing-stable-video-3d
 response_type: reshare
-dt_published: "2024-03-18 21:29"
+dt_published: "2024-03-18 21:29 -05:00"
 dt_updated: "2024-03-18 21:29 -05:00"
 tags: ["stabilityai","ai","video","3d","computervision"]
 ---

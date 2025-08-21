@@ -2,7 +2,7 @@
 title: "Cool URIs don't change"
 targeturl: https://www.w3.org/Provider/Style/URI
 response_type: bookmark
-dt_published: "2024-01-13 10:23"
+dt_published: "2024-01-13 10:23 -05:00"
 dt_updated: "2024-01-13 10:23 -05:00"
 tags: ["url","http","standard","protocol","web","internet"]
 ---

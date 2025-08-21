@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Attended my first IndieWeb Homebrew Website Club"
-published_date: "2025-01-09 20:12"
+published_date: "2025-01-09 20:12 -05:00"
 tags: ["indieweb","community"]
 ---
 

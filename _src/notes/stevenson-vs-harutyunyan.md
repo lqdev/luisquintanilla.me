@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Stevenson vs. Harutyunyan"
-published_date: "2024-07-06 23:37"
+published_date: "2024-07-06 23:37 -05:00"
 tags: ["boxing","stevensonharutyunyan","toprank","stevenson","harutyunyan"]
 ---
 

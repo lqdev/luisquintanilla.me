@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: Blogging Tools
-published_date: 2018-11-18 00:07:36
+published_date: 2018-11-18 00:07:36 -05:00
 tags: [markdown,vscode,tools,development,blogging]
 ---
 

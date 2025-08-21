@@ -2,7 +2,7 @@
 title: "Microsoft Open-Sources Agricultural AI Toolkit FarmVibes.AI "
 targeturl: https://www.infoq.com/news/2022/12/microsoft-farmvibes/
 response_type: reshare
-dt_published: "2022-12-06 09:55"
+dt_published: "2022-12-06 09:55 -05:00"
 dt_updated: "2022-12-06 09:55 -05:00"
 ---
 

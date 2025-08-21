@@ -2,7 +2,7 @@
 title: "MM1: Methods, Analysis & Insights from Multimodal LLM Pre-training"
 targeturl: https://arxiv.org/abs/2403.09611
 response_type: bookmark
-dt_published: "2024-03-18 21:02"
+dt_published: "2024-03-18 21:02 -05:00"
 dt_updated: "2024-03-18 21:02 -05:00"
 tags: ["ai","mm1","llm","multimodal","apple"]
 ---

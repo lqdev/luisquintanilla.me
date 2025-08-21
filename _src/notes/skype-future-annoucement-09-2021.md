@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "The future of Skype"
-published_date: "10/01/2021 4:20 PM"
+published_date: "10/01/2021 4:20 PM -05:00"
 tags: ["skype","messaging","microsoft","roadmap"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Pandoc"
-last_updated_date: "04/25/2024 22:00"
+last_updated_date: "04/25/2024 22:00 -05:00"
 tags: pandoc, plaintext, docx, documents, word, org, emacs, utility, linux
 ---
 

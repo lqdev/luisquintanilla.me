@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Welcome to the Fediverse"
-published_date: "04/27/2022 13:04"
+published_date: "04/27/2022 13:04 -05:00"
 tags: ["fediverse","mastodon","twitter","socialmedia","decentralization"]
 ---
 

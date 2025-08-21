@@ -2,7 +2,7 @@
 title: "LangChain - OpenGPTs"
 targeturl: https://blog.langchain.dev/opengpts/
 response_type: bookmark
-dt_published: "2024-01-31 21:30"
+dt_published: "2024-01-31 21:30 -05:00"
 dt_updated: "2024-01-31 21:30 -05:00"
 tags: ["langchain","gpt","ai","opengpt","langgraph","messagegraph"]
 ---

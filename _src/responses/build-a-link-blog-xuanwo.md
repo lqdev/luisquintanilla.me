@@ -2,7 +2,7 @@
 title: "Build a link blog"
 targeturl: https://xuanwo.io/links/2025/01/link-blog/
 response_type: reshare
-dt_published: "2025-02-04 22:29"
+dt_published: "2025-02-04 22:29 -05:00"
 dt_updated: "2025-02-04 22:29 -05:00"
 tags: ["blogging","indieweb","linkblog","personalweb","openweb"]
 ---

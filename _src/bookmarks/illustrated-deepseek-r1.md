@@ -2,7 +2,7 @@
 title: "The Illustrated DeepSeek-R1"
 targeturl: https://newsletter.languagemodels.co/p/the-illustrated-deepseek-r1
 response_type: bookmark
-dt_published: "2025-02-03 20:20"
+dt_published: "2025-02-03 20:20 -05:00"
 dt_updated: "2025-02-03 20:20 -05:00"
 tags: ["deepseek","ai","visualization","generativeai","genai","llm","learning"]
 ---

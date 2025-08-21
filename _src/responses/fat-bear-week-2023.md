@@ -2,7 +2,7 @@
 title: "PSA: Fat Bear Week Oct 4-10 2023"
 targeturl: https://www.nps.gov/katm/learn/fat-bear-week.htm
 response_type: reshare
-dt_published: "2023-09-25 20:31"
+dt_published: "2023-09-25 20:31 -05:00"
 dt_updated: "2023-09-25 20:31 -05:00"
 tags: ["nature","bears","nps"]
 ---

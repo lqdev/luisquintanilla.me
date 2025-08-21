@@ -2,7 +2,7 @@
 title: "Kaz Nejatian (COO, Shopify): Why Shopify Elevated the Non-Manager Career Path and Ditched Meetings"
 targeturl: https://creatoreconomy.so/p/kaz-coo-shopify-craft-and-no-meetings 
 response_type: bookmark
-dt_published: "2023-07-12 20:20"
+dt_published: "2023-07-12 20:20 -05:00"
 dt_updated: "2023-07-12 20:20 -05:00"
 tags: ["career","productivity","product"]
 ---

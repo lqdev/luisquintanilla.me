@@ -2,7 +2,7 @@
 title: "promptbase"
 targeturl: https://github.com/microsoft/promptbase
 response_type: bookmark
-dt_published: "2023-12-12 19:13"
+dt_published: "2023-12-12 19:13 -05:00"
 dt_updated: "2023-12-12 19:13 -05:00"
 tags: ["ai","promptengineering"]
 ---

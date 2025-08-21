@@ -2,7 +2,7 @@
 title: "Bash One-Liners for LLMs"
 targeturl: https://justine.lol/oneliners/
 response_type: bookmark
-dt_published: "2023-12-12 19:21"
+dt_published: "2023-12-12 19:21 -05:00"
 dt_updated: "2023-12-12 19:21 -05:00"
 tags: ["llama","ai","llm","opensource"]
 ---

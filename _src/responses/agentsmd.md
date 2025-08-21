@@ -2,7 +2,7 @@
 title: Agents.md
 targeturl: "https://agents.md/"
 response_type: reshare
-dt_published: "2025-08-20 22:53"
+dt_published: "2025-08-20 22:53 -05:00"
 dt_updated: "2025-08-20 22:53 -05:00"
 tags: ["ai", "agents", "openai"]
 ---

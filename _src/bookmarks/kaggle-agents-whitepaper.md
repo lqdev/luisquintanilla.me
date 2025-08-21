@@ -2,7 +2,7 @@
 title: "Agents Whitepaper"
 targeturl: https://www.kaggle.com/whitepaper-agents
 response_type: bookmark
-dt_published: "2025-01-06 21:50"
+dt_published: "2025-01-06 21:50 -05:00"
 dt_updated: "2025-01-06 21:50 -05:00"
 tags: ["agents","ai","whitepaper"]
 ---

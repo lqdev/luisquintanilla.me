@@ -2,7 +2,7 @@
 title: "LeftoverLocals: Listening to LLM responses through leaked GPU local memory"
 targeturl: https://blog.trailofbits.com/2024/01/16/leftoverlocals-listening-to-llm-responses-through-leaked-gpu-local-memory/
 response_type: reshare
-dt_published: "2024-01-16 20:16"
+dt_published: "2024-01-16 20:16 -05:00"
 dt_updated: "2024-01-16 20:16 -05:00"
 tags: ["security","llm","ai"]
 ---

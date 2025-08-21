@@ -2,7 +2,7 @@
 title: "OpenMentions"
 targeturl: https://openmentions.com/
 response_type: reshare
-dt_published: "2024-01-16 20:21"
+dt_published: "2024-01-16 20:21 -05:00"
 dt_updated: "2024-01-16 20:21 -05:00"
 tags: ["webmentions","indieweb","activitypub","online"]
 ---

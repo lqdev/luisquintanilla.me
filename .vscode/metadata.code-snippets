@@ -90,7 +90,7 @@
 		"body": [
 			"---",
 			"title: \"$1\" ",
-			"date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\"",
+			"date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
 			"tags: \"$2\"",
 			"resources:",
 			"  - text: \"$3\"",
@@ -132,7 +132,7 @@
 		"body": [
 			"---",
 			"title: \"$1\"",
-			"last_updated_date: \"$CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE\"",
+			"last_updated_date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
 			"tags: \"$2\"",
 			"---",
 			"",

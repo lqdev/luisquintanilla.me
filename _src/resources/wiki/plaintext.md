@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Plain text"
-last_updated_date: "10/14/2023 12:56"
+last_updated_date: "10/14/2023 12:56 -05:00"
 tags: plaintext,productivity,email,notes,personalknowledgemanagement,pkm,wiki,calendar,finance,tools,databases,writing
 ---
 

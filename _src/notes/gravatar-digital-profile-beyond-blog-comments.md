@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Gravatar - Your digital profile beyond blog comments"
-published_date: "2024-01-15 11:18"
+published_date: "2024-01-15 11:18 -05:00"
 tags: ["profile","online","gravatar","website","web","comments","internet","automattic","wordpress","identity","linktree","indieweb","socialmedia","blog","bloggin"]
 ---
 

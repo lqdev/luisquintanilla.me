@@ -2,7 +2,7 @@
 title: "Stop renting space for your notes and start being your own landlord"
 targeturl: https://ellanew.com/ptpl/139-2025-01-13-be-the-landlord-of-your-notes
 response_type: reshare
-dt_published: "2025-01-13 21:54"
+dt_published: "2025-01-13 21:54 -05:00"
 dt_updated: "2025-01-13 21:54 -05:00"
 tags: ["localfirst","notetaking","pkm"]
 ---

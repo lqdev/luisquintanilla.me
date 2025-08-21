@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Spotify Wrapped 2024 AI Generated Podcast"
-published_date: "2024-12-05 09:02"
+published_date: "2024-12-05 09:02 -05:00"
 tags: ["spotify","ai","spotifywrapped","google","notebooklm","privacy","podcast","generativeai","genai"]
 ---
 

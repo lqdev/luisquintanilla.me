@@ -2,7 +2,7 @@
 title: "Intel launches new entry-level Core i3 N-series mobile CPUs"
 targeturl: https://www.windowscentral.com/hardware/computers-desktops/intel-core-i3-n-series-launch-ces-2023 
 response_type: reshare
-dt_published: "2023-01-04 00:28"
+dt_published: "2023-01-04 00:28 -05:00"
 dt_updated: "2023-01-04 00:28 -05:00"
 ---
 

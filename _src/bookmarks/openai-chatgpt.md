@@ -2,7 +2,7 @@
 title: "ChatGPT: Optimizing Language Models for Dialogue"
 targeturl: https://openai.com/blog/chatgpt/ 
 response_type: bookmark
-dt_published: "2022-12-01 11:12"
+dt_published: "2022-12-01 11:12 -05:00"
 dt_updated: "2022-12-01 11:12 -05:00"
 ---
 

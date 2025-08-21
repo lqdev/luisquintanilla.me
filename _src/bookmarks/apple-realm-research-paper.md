@@ -2,7 +2,7 @@
 title: "ReALM: Reference Resolution As Language Modeling"
 targeturl: https://arxiv.org/abs/2403.20329 
 response_type: bookmark
-dt_published: "2024-04-04 11:04"
+dt_published: "2024-04-04 11:04 -05:00"
 dt_updated: "2024-04-04 11:04 -05:00"
 tags: ["ai","research","apple","gpt"]
 ---

@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Neofetch"
-last_updated_date: "08/25/2022 15:19"
+last_updated_date: "08/25/2022 15:19 -05:00"
 tags: technology, linux, tools, terminal
 ---
 

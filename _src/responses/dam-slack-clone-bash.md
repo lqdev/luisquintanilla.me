@@ -2,7 +2,7 @@
 title: "A slack clone in 5 lines of bash"
 targeturl: https://the-dam.org/docs/explanations/suc.html
 response_type: reshare
-dt_published: "2023-07-12 22:07"
+dt_published: "2023-07-12 22:07 -05:00"
 dt_updated: "2023-07-12 22:07 -05:00"
 tags: ["linux","bash","communication"]
 ---

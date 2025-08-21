@@ -2,7 +2,7 @@
 title: "Levels of Complexity: RAG Applications"
 targeturl: https://jxnl.github.io/blog/writing/2024/02/28/levels-of-complexity-rag-applications/
 response_type: reshare
-dt_published: "2024-03-07 22:08"
+dt_published: "2024-03-07 22:08 -05:00"
 dt_updated: "2024-03-07 22:08 -05:00"
 tags: ["rag","ai","llm","architecture","app"]
 ---

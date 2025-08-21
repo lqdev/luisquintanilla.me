@@ -2,7 +2,7 @@
 title: "Observable 2.0 - Announcing Observable Framework"
 targeturl: https://observablehq.com/blog/observable-2-0
 response_type: reshare
-dt_published: "2024-02-15 20:48"
+dt_published: "2024-02-15 20:48 -05:00"
 dt_updated: "2024-02-15 20:48 -05:00"
 tags: ["data","analytics","observable"]
 ---

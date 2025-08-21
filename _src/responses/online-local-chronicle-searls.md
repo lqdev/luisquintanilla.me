@@ -2,7 +2,7 @@
 title: "The Online Local Chronicle"
 targeturl: https://doc.searls.com/2024/03/19/the-online-local-chronicle/
 response_type: reply
-dt_published: "2024-03-19 22:17"
+dt_published: "2024-03-19 22:17 -05:00"
 dt_updated: "2024-03-19 22:17 -05:00"
 tags: ["community","news","local","knowledgebase","information","web","opensource"]
 ---

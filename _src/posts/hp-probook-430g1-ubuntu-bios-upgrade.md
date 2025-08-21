@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: HP ProBook 430 G1 Ubuntu BIOS Upgrade
-published_date: 2017-12-09 12:57:12
+published_date: 2017-12-09 12:57:12 -05:00
 tags: [sysadmin,ubuntu,bios]
 ---
 

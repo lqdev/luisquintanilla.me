@@ -2,7 +2,7 @@
 title: "Shap-E: Generating Conditional 3D Implicit Functions"
 targeturl: https://arxiv.org/abs/2305.02463
 response_type: bookmark
-dt_published: "2023-06-01 22:41"
+dt_published: "2023-06-01 22:41 -05:00"
 dt_updated: "2023-06-01 22:41 -05:00"
 tags: ["ai","openai","3D"]
 ---

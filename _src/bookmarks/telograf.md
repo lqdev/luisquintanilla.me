@@ -2,7 +2,7 @@
 title: "TeLoGraF: Temporal Logic Planning via Graph-encoded Flow Matching"
 targeturl: https://arxiv.org/abs/2505.00562
 response_type: bookmark
-dt_published: "2025-05-05 20:03"
+dt_published: "2025-05-05 20:03 -05:00"
 dt_updated: "2025-05-05 20:03 -05:00"
 tags: ["ai","graphs","neuralnetworks","research"]
 ---

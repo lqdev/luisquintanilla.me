@@ -2,7 +2,7 @@
 title: "Attacking Machine Learning Systems"
 targeturl: https://www.schneier.com/blog/archives/2023/02/attacking-machine-learning-systems.html 
 response_type: reshare
-dt_published: "2023-02-07 10:54"
+dt_published: "2023-02-07 10:54 -05:00"
 dt_updated: "2023-02-07 10:54 -05:00"
 ---
 

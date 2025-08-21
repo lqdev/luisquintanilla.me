@@ -2,7 +2,7 @@
 title: "Eternal Tumblr"
 targeturl: https://newsletter.danhon.com/archive/s14e09-building-and-documentation-making-new/
 response_type: reply
-dt_published: "2023-01-25 19:26"
+dt_published: "2023-01-25 19:26 -05:00"
 dt_updated: "2023-01-25 19:26 -05:00"
 ---
 

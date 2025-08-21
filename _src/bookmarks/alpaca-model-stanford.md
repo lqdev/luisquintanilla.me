@@ -2,7 +2,7 @@
 title: "Alpaca: A Strong Open-Source Instruction-Following Model"
 targeturl: https://crfm.stanford.edu/2023/03/13/alpaca.html
 response_type: bookmark
-dt_published: "2023-03-14 11:06"
+dt_published: "2023-03-14 11:06 -05:00"
 dt_updated: "2023-03-14 11:06 -05:00"
 ---
 

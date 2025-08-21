@@ -2,7 +2,7 @@
 title: "Can LLMs learn from a single example?"
 targeturl: https://www.fast.ai/posts/2023-09-04-learning-jumps/
 response_type: bookmark
-dt_published: "2023-09-05 23:59"
+dt_published: "2023-09-05 23:59 -05:00"
 dt_updated: "2023-09-05 23:59 -05:00"
 tags: ["ai","llm","finetuning","fastai"]
 ---

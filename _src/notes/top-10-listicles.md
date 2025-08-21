@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Top 10 listicles"
-published_date: "10/24/2021 19:33"
+published_date: "10/24/2021 19:33 -05:00"
 tags: ["til","internet","listicles","wikipedia"]
 ---
 

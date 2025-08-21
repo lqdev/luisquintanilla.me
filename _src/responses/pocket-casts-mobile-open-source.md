@@ -2,7 +2,7 @@
 title: "Pocket Casts Mobile Apps Are Now Open Source"
 targeturl: https://blog.pocketcasts.com/2022/10/19/pocket-casts-mobile-apps-are-now-open-source/
 response_type: star
-dt_published: "2022-10-20 00:23"
+dt_published: "2022-10-20 00:23 -05:00"
 dt_updated: "2022-10-20 00:23 -05:00"
 ---
 

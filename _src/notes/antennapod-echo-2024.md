@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Antennapod Echo 2024"
-published_date: "2024-12-11 20:52"
+published_date: "2024-12-11 20:52 -05:00"
 tags: ["podcasts","opensource","antennapod","stats"]
 ---
 

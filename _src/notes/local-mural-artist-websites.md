@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Local Artist Websites"
-published_date: "2025-06-14 10:57"
+published_date: "2025-06-14 10:57 -05:00"
 tags: ["art","website","openweb"]
 ---
 

@@ -2,7 +2,7 @@
 title: "s1: Simple test-time scaling"
 targeturl: https://arxiv.org/abs/2501.19393
 response_type: bookmark
-dt_published: "2025-02-24 20:54"
+dt_published: "2025-02-24 20:54 -05:00"
 dt_updated: "2025-02-24 20:54 -05:00"
 tags: ["ai","research","s1"]
 ---

@@ -2,7 +2,7 @@
 title: "DOS_deck"
 targeturl: https://dosdeck.com/ 
 response_type: bookmark
-dt_published: "2023-12-08 07:36"
+dt_published: "2023-12-08 07:36 -05:00"
 dt_updated: "2023-12-08 07:36 -05:00"
 tags: ["gaming","dos","retro","web"]
 ---

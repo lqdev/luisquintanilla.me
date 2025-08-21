@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Commonplace Book"
-last_updated_date: "09/04/2022 20:25"
+last_updated_date: "09/04/2022 20:25 -05:00"
 tags: knowledgemanagement,commonplace,notetaking,information,technology,internet,books
 ---
 

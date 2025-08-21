@@ -2,7 +2,7 @@
 title: "Distilling step-by-step: Outperforming larger language models with less training data and smaller model sizes"
 targeturl: https://blog.research.google/2023/09/distilling-step-by-step-outperforming.html 
 response_type: bookmark
-dt_published: "2023-09-25 20:45"
+dt_published: "2023-09-25 20:45 -05:00"
 dt_updated: "2023-09-25 20:45 -05:00"
 tags: ["ai","llm","slm","optimization"]
 ---

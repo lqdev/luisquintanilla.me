@@ -2,7 +2,7 @@
 title: "Introducing Phi-3"
 targeturl: https://azure.microsoft.com/en-us/blog/introducing-phi-3-redefining-whats-possible-with-slms/
 response_type: reshare
-dt_published: "2024-04-23 22:47"
+dt_published: "2024-04-23 22:47 -05:00"
 dt_updated: "2024-04-23 22:47 -05:00"
 tags: ["microsoft","phi3","ai","slm","llm","genai"]
 ---

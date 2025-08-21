@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "New IndieWeb Wiki .NET Page"
-published_date: "2023-01-25 21:14"
+published_date: "2023-01-25 21:14 -05:00"
 tags: ["indieweb","wiki","dotnet","community"]
 ---
 

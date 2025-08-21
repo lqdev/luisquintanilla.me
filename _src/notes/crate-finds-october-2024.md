@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Crate Finds - October 2024"
-published_date: "2024-11-01 09:26"
+published_date: "2024-11-01 09:26 -05:00"
 tags: ["cratefinds","music","playlist","spotify"]
 ---
 

@@ -2,7 +2,7 @@
 title: "RSS Club"
 targeturl: https://daverupert.com/rss-club/
 response_type: bookmark
-dt_published: "2023-12-06 21:37"
+dt_published: "2023-12-06 21:37 -05:00"
 dt_updated: "2023-12-06 21:37 -05:00"
 tags: ["rss","community"]
 ---

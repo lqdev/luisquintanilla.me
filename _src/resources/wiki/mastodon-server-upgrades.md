@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Mastodon Server Upgrades"
-last_updated_date: "07/14/2024 03:16"
+last_updated_date: "07/14/2024 03:16 -05:00"
 tags: selfhost,socialmedia,mastodon,fediverse
 ---
 

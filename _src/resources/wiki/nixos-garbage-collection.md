@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Garbage Collections NixOS"
-last_updated_date: "03/10/2024 14:01"
+last_updated_date: "03/10/2024 14:01 -05:00"
 tags: nixos,system,os,linux
 ---
 

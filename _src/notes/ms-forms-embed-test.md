@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Microsoft Forms Test Embedding"
-published_date: "2023-01-30 11:46"
+published_date: "2023-01-30 11:46 -05:00"
 tags: ["forms","microsoft","polls","web","indieweb"]
 ---
 

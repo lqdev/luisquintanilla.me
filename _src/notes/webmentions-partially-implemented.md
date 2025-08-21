@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Webmentions (partially) implemented"
-published_date: "09/17/2022 19:59"
+published_date: "09/17/2022 19:59 -05:00"
 tags: ["indieweb","webmentions","fsharp","website"]
 ---
 

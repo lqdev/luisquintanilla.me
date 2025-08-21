@@ -2,7 +2,7 @@
 title: "Plato's Cave Regrets to Inform You It Will Be Raising Its Rent"
 targeturl: https://www.jwz.org/blog/2023/09/platos-cave-regrets-to-inform-you-it-will-be-raising-its-rent/ 
 response_type: reshare
-dt_published: "2023-09-07 21:25"
+dt_published: "2023-09-07 21:25 -05:00"
 dt_updated: "2023-09-07 21:25 -05:00"
 tags: ["simulation"]
 ---

@@ -2,7 +2,7 @@
 title: "LoRA: Low-Rank Adaptation of Large Language Models"
 targeturl: https://github.com/microsoft/LoRA
 response_type: bookmark
-dt_published: "2023-06-01 22:45"
+dt_published: "2023-06-01 22:45 -05:00"
 dt_updated: "2023-06-01 22:45 -05:00"
 tags: ["ai","finetune","llm"]
 ---

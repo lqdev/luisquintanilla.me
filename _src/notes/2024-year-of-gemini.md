@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "2024 - The year of Gemini?"
-published_date: "2023-12-30 00:34"
+published_date: "2023-12-30 00:34 -05:00"
 tags: ["gemini","protocols","smallweb","openweb","web","internet","gopher"]
 ---
 

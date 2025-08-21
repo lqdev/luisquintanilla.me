@@ -2,7 +2,7 @@
 title: "Tubi’s new redesign wants to push you down the rabbit hole"
 targeturl: https://www.theverge.com/2024/2/28/24085869/tubi-redesign-shows-movies-turple
 response_type: reshare
-dt_published: "2024-02-28 21:51"
+dt_published: "2024-02-28 21:51 -05:00"
 dt_updated: "2024-02-28 21:51 -05:00"
 tags: ["tv","movies","tubi","streaming"]
 ---

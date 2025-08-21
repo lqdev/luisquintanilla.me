@@ -2,7 +2,7 @@
 title: "Introducing Apple Intelligence"
 targeturl: https://www.apple.com/newsroom/2024/06/introducing-apple-intelligence-for-iphone-ipad-and-mac/
 response_type: reshare
-dt_published: "2024-06-11 20:16"
+dt_published: "2024-06-11 20:16 -05:00"
 dt_updated: "2024-06-11 20:16 -05:00"
 tags: ["ai","apple","appleintelligence",]
 ---

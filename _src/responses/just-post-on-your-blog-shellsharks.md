@@ -2,7 +2,7 @@
 title: "Just Put It On Your Blog"
 targeturl: https://shellsharks.com/just-put-it-on-your-blog
 response_type: star
-dt_published: "2025-05-05 19:57"
+dt_published: "2025-05-05 19:57 -05:00"
 dt_updated: "2025-05-05 19:57 -05:00"
 tags: ["blogging","indieweb","website"]
 ---

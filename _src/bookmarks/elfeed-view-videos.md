@@ -2,7 +2,7 @@
 title: "Using Elfeed to view videos"
 targeturl: https://medium.com/emacs/using-elfeed-to-view-videos-6dfc798e51e6 
 response_type: bookmark
-dt_published: "2022-12-02 21:58"
+dt_published: "2022-12-02 21:58 -05:00"
 dt_updated: "2022-12-02 21:58 -05:00"
 ---
 

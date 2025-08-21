@@ -2,7 +2,7 @@
 title: "Teaching with AI"
 targeturl: https://openai.com/blog/teaching-with-ai
 response_type: bookmark
-dt_published: "2023-09-01 18:32"
+dt_published: "2023-09-01 18:32 -05:00"
 dt_updated: "2023-09-01 18:32 -05:00"
 tags: ["ai","education","openai","guide"]
 ---

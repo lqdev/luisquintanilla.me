@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "Quick thoughts about Snapdragon Summit 2023"
 description: "I share some thoughts about the Oryon CPUs from Qualcomm which will enable true mobile computing,"
-published_date: "2023-10-24 23:14"
+published_date: "2023-10-24 23:14 -05:00"
 tags: ["arm","qualcomm","hardware","mobilecomputing","5g","ai"]
 ---
 

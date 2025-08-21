@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Matrix Synapse REALLY needs an Admin UI"
-published_date: "2023-06-11 21:32"
+published_date: "2023-06-11 21:32 -05:00"
 tags: ["matrix","selfhost","synapse","opensource","sysadmin","messaging"]
 ---
 

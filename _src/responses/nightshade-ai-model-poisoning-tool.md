@@ -2,7 +2,7 @@
 title: "NightShade"
 targeturl: https://nightshade.cs.uchicago.edu/
 response_type: reshare
-dt_published: "2024-01-23 20:57"
+dt_published: "2024-01-23 20:57 -05:00"
 dt_updated: "2024-01-23 20:57 -05:00"
 tags: ["research","tools","ai","generativeai","llm","computervision","cv"]
 ---

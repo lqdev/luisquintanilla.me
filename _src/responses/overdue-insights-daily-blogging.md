@@ -2,7 +2,7 @@
 title: "Overdue insights on daily blogging"
 targeturl: https://herbertlui.net/overdue-insights-on-daily-blogging/ 
 response_type: star
-dt_published: "2022-10-18 17:20"
+dt_published: "2022-10-18 17:20 -05:00"
 dt_updated: "2022-10-18 17:20 -05:00"
 ---
 

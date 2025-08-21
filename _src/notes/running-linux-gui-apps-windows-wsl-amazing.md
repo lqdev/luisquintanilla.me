@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Running Linux GUI Apps on Windows (WSLg) is amazing!"
-published_date: "2024-11-27 20:48"
+published_date: "2024-11-27 20:48 -05:00"
 tags: ["wsl","linux","windows","gui","element","matrix"]
 ---
 

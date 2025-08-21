@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "First Steps with NixOS"
 description: "My initial impressions of NixOS. TLDR - I really like it!"
-published_date: "2023-08-22 18:03"
+published_date: "2023-08-22 18:03 -05:00"
 tags: ["nixos","linux","os","nix","sysadmin","floss"]
 ---
 

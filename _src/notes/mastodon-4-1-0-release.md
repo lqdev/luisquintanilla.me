@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Mastodon 4.1.0 released"
-published_date: "2023-02-11 10:09"
+published_date: "2023-02-11 10:09 -05:00"
 tags: [mastodon,fediverse]
 ---
 

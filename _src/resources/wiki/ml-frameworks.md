@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Machine Learning Frameworks"
-last_updated_date: "08/26/2022 08:10"
+last_updated_date: "08/26/2022 08:10 -05:00"
 tags: technology,artificialintelligence,machinelearning,software
 ---
 

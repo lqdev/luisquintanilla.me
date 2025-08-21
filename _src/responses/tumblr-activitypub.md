@@ -2,7 +2,7 @@
 title: "Tumblr to add support for ActivityPub"
 targeturl: https://techcrunch.com/2022/11/21/tumblr-to-add-support-for-activitypub-the-social-protocol-powering-mastodon-and-other-apps/ 
 response_type: reshare
-dt_published: "2022-11-23 14:49"
+dt_published: "2022-11-23 14:49 -05:00"
 dt_updated: "2022-11-23 14:49 -05:00"
 ---
 

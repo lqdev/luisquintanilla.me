@@ -2,7 +2,7 @@
 title: "Mistral Small 3.1"
 targeturl: https://mistral.ai/fr/news/mistral-small-3-1
 response_type: reshare
-dt_published: "2025-03-18 20:31"
+dt_published: "2025-03-18 20:31 -05:00"
 dt_updated: "2025-03-18 20:31 -05:00"
 tags: ["mistral","ai","opensource"]
 ---

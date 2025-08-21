@@ -2,7 +2,7 @@
 title: "Implement ActivityPub on a static site series by maho.dev"
 targeturl: https://maho.dev/2024/02/a-guide-to-implement-activitypub-in-a-static-site-or-any-website/
 response_type: reshare
-dt_published: "2024-11-19 10:03"
+dt_published: "2024-11-19 10:03 -05:00"
 dt_updated: "2024-11-19 10:03 -05:00"
 tags: ["acvititypub","fediverse","staticsite","blogging","indieweb","openweb","personalweb","dotnet","internet"]
 ---

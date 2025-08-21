@@ -2,7 +2,7 @@
 title: "Resources List for the Personal Web"
 targeturl: https://discourse.32bit.cafe/t/resources-list-for-the-personal-web/49
 response_type: bookmark
-dt_published: "2025-05-30 13:32"
+dt_published: "2025-05-30 13:32 -05:00"
 dt_updated: "2025-05-30 13:32 -05:00"
 tags: ["32bitcafe","personalweb","indieweb","openweb","community","retro"]
 ---

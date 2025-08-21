@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Chip-making Chip Shortage"
-published_date: "05/03/2022 18:50"
+published_date: "05/03/2022 18:50 -05:00"
 tags: ["chip","pc","hardware","news"]
 ---
 

@@ -2,7 +2,7 @@
 title: "Testing Web Design Color Contrast"
 targeturl: https://web.dev/testing-web-design-color-contrast/
 response_type: bookmark
-dt_published: "2022-09-22 20:06"
+dt_published: "2022-09-22 20:06 -05:00"
 dt_updated: "2022-09-22 20:06 -05:00"
 ---
 

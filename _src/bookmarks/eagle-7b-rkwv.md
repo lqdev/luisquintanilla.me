@@ -2,7 +2,7 @@
 title: "Eagle 7B : Soaring past Transformers with 1 Trillion Tokens Across 100+ Languages (RWKV-v5)"
 targeturl: https://blog.rwkv.com/p/eagle-7b-soaring-past-transformers
 response_type: bookmark
-dt_published: "2024-01-29 20:27"
+dt_published: "2024-01-29 20:27 -05:00"
 dt_updated: "2024-01-29 20:27 -05:00"
 tags: ["ai","llm","rwkv","deeplearning","neuralnetwork"]
 ---

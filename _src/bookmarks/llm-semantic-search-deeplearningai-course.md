@@ -2,7 +2,7 @@
 title: "Large Language Models with Semantic Search"
 targeturl: https://www.deeplearning.ai/short-courses/large-language-models-semantic-search/
 response_type: bookmark
-dt_published: "2023-08-16 22:43"
+dt_published: "2023-08-16 22:43 -05:00"
 dt_updated: "2023-08-16 22:43 -05:00"
 tags: ["ai","llm","course","retrievalaugmentedgeneration"]
 ---

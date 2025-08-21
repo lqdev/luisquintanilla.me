@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "DevContainer configurations"
-last_updated_date: "06/29/2024 14:48"
+last_updated_date: "06/29/2024 14:48 -05:00"
 tags: devcontainer,vscode,codespaces,development,software,tech,programming,python,dotnet,csharp,fsharp,docker,git,debian
 ---
 

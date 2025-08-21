@@ -2,7 +2,7 @@
 title: "On Blogs"
 targeturl: https://doc.searls.com/2024/02/21/on-blogs/
 response_type: star
-dt_published: "2024-02-21 15:14"
+dt_published: "2024-02-21 15:14 -05:00"
 dt_updated: "2024-02-21 15:14 -05:00"
 tags: ["blogs","writing","newsletters","blogroll"]
 ---

@@ -2,7 +2,7 @@
 title: "SatCLIP - A Global, General-Purpose Geographic Location Encoder"
 targeturl: https://github.com/microsoft/satclip
 response_type: bookmark
-dt_published: "2023-12-08 07:40"
+dt_published: "2023-12-08 07:40 -05:00"
 dt_updated: "2023-12-08 07:40 -05:00"
 tags: ["ai","opensource"]
 ---

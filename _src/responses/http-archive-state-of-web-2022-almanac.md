@@ -2,7 +2,7 @@
 title: "HTTP Archive State of the Web 2022 Report"
 targeturl: https://almanac.httparchive.org/en/2022/ 
 response_type: reshare
-dt_published: "2022-10-18 09:20"
+dt_published: "2022-10-18 09:20 -05:00"
 dt_updated: "2022-10-18 09:20 -05:00"
 ---
 

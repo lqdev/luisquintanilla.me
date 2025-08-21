@@ -2,7 +2,7 @@
 title: "How to communicate effectively as a developer"
 targeturl: https://www.karlsutt.com/articles/communicating-effectively-as-a-developer/ 
 response_type: bookmark
-dt_published: "2022-10-28 20:57"
+dt_published: "2022-10-28 20:57 -05:00"
 dt_updated: "2022-10-28 20:57 -05:00"
 ---
 

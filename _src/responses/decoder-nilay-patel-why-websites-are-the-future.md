@@ -2,7 +2,7 @@
 title: "Guest host Hank Green makes Nilay Patel explain why websites have a future"
 targeturl: https://www.theverge.com/24087834/hank-green-decoder-podcast-google-youtube-web-media-platforms-distribution-future
 response_type: reshare
-dt_published: "2024-03-04 22:45"
+dt_published: "2024-03-04 22:45 -05:00"
 dt_updated: "2024-03-04 22:45 -05:00"
 tags: ["websites","internet","podcast","decoder","rss","platforms","blogs","technology"]
 ---

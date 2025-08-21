@@ -2,7 +2,7 @@
 title: "The Best Time to Own a Domain Was 20 Years Ago; The Second Best Time Is Today"
 targeturl: https://blog.jim-nielsen.com/2023/best-time-to-own-a-domain/
 response_type: star
-dt_published: "2023-01-25 10:29"
+dt_published: "2023-01-25 10:29 -05:00"
 dt_updated: "2023-01-25 10:29 -05:00"
 ---
 

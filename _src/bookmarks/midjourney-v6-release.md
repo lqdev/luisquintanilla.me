@@ -2,7 +2,7 @@
 title: "Midjourney v6"
 targeturl: https://mid-journey.ai/midjourney-v6-release/
 response_type: bookmark
-dt_published: "2023-12-22 08:57"
+dt_published: "2023-12-22 08:57 -05:00"
 dt_updated: "2023-12-22 08:57 -05:00"
 tags: ["computervision","ai","midjourney"]
 ---

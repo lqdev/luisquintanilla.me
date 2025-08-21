@@ -140,7 +140,7 @@ At some point, I want to be able to integrate these media posts into my static s
 At the end of the day, it was nice seeing everyone else's projects. My favorite one was Cy's recipe website. I want to be like them when I grow up 🙂.]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/indieweb-create-day-2025-07</link>
       <guid>https://www.luisquintanilla.me/posts/indieweb-create-day-2025-07</guid>
-      <pubDate>2025-07-06 20:09</pubDate>
+      <pubDate>2025-07-06 20:09 -05:00</pubDate>
       <category>indieweb</category>
       <category>iwc</category>
       <category>community</category>
@@ -454,7 +454,7 @@ By building on the combined strengths of IPFS, DIDs, VCs, and semantic web techn
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/vibe-specing-prompt-to-spec</link>
       <guid>https://www.luisquintanilla.me/posts/vibe-specing-prompt-to-spec</guid>
-      <pubDate>2025-05-06 20:40</pubDate>
+      <pubDate>2025-05-06 20:40 -05:00</pubDate>
       <category>dweb</category>
       <category>standards</category>
       <category>ai</category>
@@ -858,7 +858,7 @@ soon to appear on [Hunter's] pages)
 ```]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/fractures-unfamiliarity-circumvention-pursuit-good-time-robert-hunter</link>
       <guid>https://www.luisquintanilla.me/posts/fractures-unfamiliarity-circumvention-pursuit-good-time-robert-hunter</guid>
-      <pubDate>2025-02-26 19:44</pubDate>
+      <pubDate>2025-02-26 19:44 -05:00</pubDate>
       <category>music</category>
       <category>essay</category>
       <category>gratefuldead</category>
@@ -1207,7 +1207,7 @@ Here's the transcript with some updates for formatting. In some turns, I took cr
 &gt; Your journey has come full circle, and you have returned to the beginning, but with a newfound sense of understanding and appreciation for the mysteries of the universe and the secrets of the cosmos.  ]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/llama-turn-on-tuning-in-ai-quest-higher-consciousness-moo</link>
       <guid>https://www.luisquintanilla.me/posts/llama-turn-on-tuning-in-ai-quest-higher-consciousness-moo</guid>
-      <pubDate>2025-02-11 20:36</pubDate>
+      <pubDate>2025-02-11 20:36 -05:00</pubDate>
       <category>ai</category>
       <category>MOO</category>
       <category>consciousness</category>
@@ -1544,7 +1544,7 @@ I'm not sure yet what this looks like but making it easier to discover and build
 I wish them luck and success in what they're aiming to accomplish. I'm excited to see more projects like this sprouting to shake up the status-quo in our digital spaces. ]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/weird-inc-2025</link>
       <guid>https://www.luisquintanilla.me/posts/weird-inc-2025</guid>
-      <pubDate>2024-12-17 18:41</pubDate>
+      <pubDate>2024-12-17 18:41 -05:00</pubDate>
       <category>weird</category>
       <category>cms</category>
       <category>munitown</category>
@@ -1597,7 +1597,7 @@ Here are other "starter packs" you might consider subscribing to.
 If this is interesting to you, [Feedland](https://feedland.org/) might be a project worth checking out.  ]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/rss-opml-starter-packs</link>
       <guid>https://www.luisquintanilla.me/posts/rss-opml-starter-packs</guid>
-      <pubDate>2024-12-08 19:40</pubDate>
+      <pubDate>2024-12-08 19:40 -05:00</pubDate>
       <category>rss</category>
       <category>opml</category>
       <category>indieweb</category>
@@ -1982,7 +1982,7 @@ If you use this sample as a starting point for your own live-streaming or self-h
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire</link>
       <guid>https://www.luisquintanilla.me/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire</guid>
-      <pubDate>2024-10-20 14:01</pubDate>
+      <pubDate>2024-10-20 14:01 -05:00</pubDate>
       <category>owncast</category>
       <category>dotnet</category>
       <category>indieweb</category>
@@ -2065,7 +2065,7 @@ For more details, see the [Ollama model library](https://ollama.com/library).
 In this post, I showed how you can configure Ollama with Dev Containers to use AI models locally in your projects. In subsequent posts, I'll show how once the service is running, I use it as part of my authoring and publishing posts. You can see a preview of it in my [scripts directory](https://github.com/lqdev/luisquintanilla.me/blob/main/Scripts/ai.fsx). Happy coding! ]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/install-ollama-vscode-devcontainer</link>
       <guid>https://www.luisquintanilla.me/posts/install-ollama-vscode-devcontainer</guid>
-      <pubDate>2024-03-06 13:50</pubDate>
+      <pubDate>2024-03-06 13:50 -05:00</pubDate>
       <category>ollama</category>
       <category>vscode</category>
       <category>devcontainer</category>
@@ -2124,7 +2124,7 @@ Now that you have the model, it's time to use it. The easiest way to use the mod
 In this post, I went over how you can quickly install Ollama to start using generative AI models like Llama and Phi locally on your Windows PC. If you use Mac or Linux, you can perform similar steps as those outlined in this guide to get started on those operating systems. Happy coding! ]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/getting-started-ollama-windows</link>
       <guid>https://www.luisquintanilla.me/posts/getting-started-ollama-windows</guid>
-      <pubDate>2024-03-05 10:32</pubDate>
+      <pubDate>2024-03-05 10:32 -05:00</pubDate>
       <category>ai</category>
       <category>ollama</category>
       <category>windows</category>
@@ -2240,7 +2240,7 @@ Dev Containers make it easy for you to configure full-featured development envir
 - [Developing Inside a Container](https://code.visualstudio.com/docs/devcontainers/containers)]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/setting-up-rust-dev-env-devcontainers-vscode</link>
       <guid>https://www.luisquintanilla.me/posts/setting-up-rust-dev-env-devcontainers-vscode</guid>
-      <pubDate>2024-01-31 21:05</pubDate>
+      <pubDate>2024-01-31 21:05 -05:00</pubDate>
       <category>rust</category>
       <category>vscode</category>
       <category>devcontainers</category>
@@ -2377,7 +2377,7 @@ Once it's saved, click **Run trigger** which will kick off your trigger. If you 
 By publishing content on your own website first, you're in full control of your content. Regardless of which platforms come and go, you won't have to adjust to those changes because your content is not locked in to those platforms. However, that doesn't mean you can't also publish your content there. Using protocols like RSS make it easy to subscribe to updates on your website. Using REST APIs provided by the respective platforms, you can automate publishing these updates. To further automate and simplify this process, you can use services like Azure Logic Apps to make publishing to all places easy. ]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/rss-to-mastodon-posse-azure-logic-apps</link>
       <guid>https://www.luisquintanilla.me/posts/rss-to-mastodon-posse-azure-logic-apps</guid>
-      <pubDate>2023-12-24 16:40</pubDate>
+      <pubDate>2023-12-24 16:40 -05:00</pubDate>
       <category>azure</category>
       <category>mastodon</category>
       <category>indieweb</category>
@@ -2626,7 +2626,7 @@ The steps in the workflow file are the following:
 If you have scripts that you run on a repo on a fairly regular basis, consider using GitHub Actions to automate the execution of these scripts. Happy coding! ]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/website-metrics-github-actions</link>
       <guid>https://www.luisquintanilla.me/posts/website-metrics-github-actions</guid>
-      <pubDate>2023-12-24 13:24</pubDate>
+      <pubDate>2023-12-24 13:24 -05:00</pubDate>
       <category>github</category>
       <category>cicd</category>
       <category>website</category>
@@ -2952,7 +2952,7 @@ In this post I discussed how you might use Generative AI models like VideoPoet t
 You can find an addendum to this post [here](/notes/genai-spotify-clips-instrumental).]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/generative-ai-spotify-clips</link>
       <guid>https://www.luisquintanilla.me/posts/generative-ai-spotify-clips</guid>
-      <pubDate>2023-12-23 18:30</pubDate>
+      <pubDate>2023-12-23 18:30 -05:00</pubDate>
       <category>ai</category>
       <category>video</category>
       <category>chicanobatman</category>
@@ -3033,7 +3033,7 @@ Given that models like GPT and others have been trained on the entire internet, 
 Translation: "In the meantime, I'll keep using AI like it's 1999. See you later!" :slightly_smiling_face:]]&gt;</description>
       <link>https://www.luisquintanilla.me/posts/ai-1999-1899</link>
       <guid>https://www.luisquintanilla.me/posts/ai-1999-1899</guid>
-      <pubDate>2023-12-15 08:56</pubDate>
+      <pubDate>2023-12-15 08:56 -05:00</pubDate>
       <category>ai</category>
       <category>communication</category>
       <category>sms</category>

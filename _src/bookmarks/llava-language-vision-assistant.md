@@ -2,7 +2,7 @@
 title: "LLaVA: Large Language and Vision Assistant"
 targeturl: https://llava-vl.github.io/ 
 response_type: bookmark
-dt_published: "2023-04-18 21:34"
+dt_published: "2023-04-18 21:34 -05:00"
 dt_updated: "2023-04-18 21:34 -05:00"
 tags: ["ai","language","vision"]
 ---

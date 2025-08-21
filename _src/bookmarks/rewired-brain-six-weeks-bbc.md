@@ -2,7 +2,7 @@
 title: "How I rewired my brain in six weeks"
 targeturl: https://www.bbc.com/future/article/20230912-how-i-hacked-my-brain
 response_type: bookmark
-dt_published: "2023-09-25 20:42"
+dt_published: "2023-09-25 20:42 -05:00"
 dt_updated: "2023-09-25 20:42 -05:00"
 tags: ["neuroscience","habits","mindfulness","cognition"]
 ---

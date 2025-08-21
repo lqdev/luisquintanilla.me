@@ -2,7 +2,7 @@
 title: "About Feeds"
 targeturl: https://aboutfeeds.com/
 response_type: bookmark
-dt_published: "2023-08-24 21:21"
+dt_published: "2023-08-24 21:21 -05:00"
 dt_updated: "2023-08-24 21:21 -05:00"
 tags: ["rss","internet","blog","openweb","openstandards"]
 ---

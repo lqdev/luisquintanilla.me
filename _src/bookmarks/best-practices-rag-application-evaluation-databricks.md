@@ -2,7 +2,7 @@
 title: "Best Practices for LLM Evaluation of RAG Applications"
 targeturl: https://www.databricks.com/blog/LLM-auto-eval-best-practices-RAG
 response_type: bookmark
-dt_published: "2023-12-11 19:54"
+dt_published: "2023-12-11 19:54 -05:00"
 dt_updated: "2023-12-11 19:54 -05:00"
 tags: ["ai","rag","evaluation","llm"]
 ---

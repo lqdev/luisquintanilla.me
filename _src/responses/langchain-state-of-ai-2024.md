@@ -2,7 +2,7 @@
 title: "LangChain State of AI 2024 Report"
 targeturl: https://blog.langchain.dev/langchain-state-of-ai-2024/ 
 response_type: reshare
-dt_published: "2024-12-29 12:12"
+dt_published: "2024-12-29 12:12 -05:00"
 dt_updated: "2024-12-29 12:12 -05:00"
 tags: ["ai","2024","report","langchain","llm"]
 ---

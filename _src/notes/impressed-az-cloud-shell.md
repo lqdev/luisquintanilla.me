@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Impressed by Azure Cloud Shell"
-published_date: "2022-10-13 22:45"
+published_date: "2022-10-13 22:45 -05:00"
 tags: ["azure","cloud","tools","development"]
 ---
 

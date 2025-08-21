@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Apple M3 Announced"
-published_date: "2023-10-31 09:00"
+published_date: "2023-10-31 09:00 -05:00"
 tags: ["arm","apple","m3"]
 ---
 

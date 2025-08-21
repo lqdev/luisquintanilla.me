@@ -2,7 +2,7 @@
 title: "Introducing llamafile"
 targeturl: https://hacks.mozilla.org/2023/11/introducing-llamafile/
 response_type: bookmark
-dt_published: "2023-12-05 21:54"
+dt_published: "2023-12-05 21:54 -05:00"
 dt_updated: "2023-12-05 21:54 -05:00"
 tags: ["ai","llm","opensource"]
 ---

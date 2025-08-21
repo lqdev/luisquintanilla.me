@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Hardware Video Acceleration - Linux"
-last_updated_date: "12/11/2022 17:36"
+last_updated_date: "12/11/2022 17:36 -05:00"
 tags: performance, wiki, hardware, video, hardwareacceleration, linux, arch, manjaro
 ---
 

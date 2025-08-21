@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Website upgraded to .NET 8"
-published_date: "2023-11-16 01:27"
+published_date: "2023-11-16 01:27 -05:00"
 tags: ["dotnet","indieweb"]
 ---
 

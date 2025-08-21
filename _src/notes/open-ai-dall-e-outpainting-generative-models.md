@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Dall-E Outpainting and generative models"
-published_date: "08/31/2022 17:49"
+published_date: "08/31/2022 17:49 -05:00"
 tags: ["dalle","openai","genai","ai"]
 ---
 

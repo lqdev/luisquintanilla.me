@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Just added Fediverse Open Graph meta tag to my website"
-published_date: "2024-07-02 21:41"
+published_date: "2024-07-02 21:41 -05:00"
 tags: ["mastodon","fediverse","blogging","indieweb","blogs","news","journalism","openweb","distributedweb","smallweb","personalweb","opengraph","html"]
 ---
 

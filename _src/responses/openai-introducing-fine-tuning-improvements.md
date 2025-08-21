@@ -2,7 +2,7 @@
 title: "OpenAI - Introducing improvements to the fine-tuning API and expanding our custom models program"
 targeturl: https://openai.com/blog/introducing-improvements-to-the-fine-tuning-api-and-expanding-our-custom-models-program
 response_type: reshare
-dt_published: "2024-04-04 22:58"
+dt_published: "2024-04-04 22:58 -05:00"
 dt_updated: "2024-04-04 22:58 -05:00"
 tags: ["openai","finetuning","llm"]
 ---

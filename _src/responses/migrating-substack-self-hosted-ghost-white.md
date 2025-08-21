@@ -2,7 +2,7 @@
 title: "Migrating from Substack to self-hosted Ghost"
 targeturl: https://citationneeded.news/substack-to-self-hosted-ghost/ 
 response_type: reshare
-dt_published: "2024-01-14 16:11"
+dt_published: "2024-01-14 16:11 -05:00"
 dt_updated: "2024-01-14 16:11 -05:00"
 tags: ["substack","selfhost","indieweb","ghost"]
 ---

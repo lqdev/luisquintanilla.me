@@ -2,7 +2,7 @@
 title: "Next-Gen CPU Acceleration: AVX For Generative AI"
 targeturl: https://www.youtube.com/watch?v=bskEGP0r3hE
 response_type: bookmark
-dt_published: "2023-09-25 20:34"
+dt_published: "2023-09-25 20:34 -05:00"
 dt_updated: "2023-09-25 20:34 -05:00"
 tags: ["ai","hardware","hpc"]
 ---

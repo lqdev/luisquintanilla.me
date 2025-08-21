@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "TIL: Automaticc owns Tumblr"
-published_date: "2022-10-09 20:49"
+published_date: "2022-10-09 20:49 -05:00"
 tags: ["tumblr","automattic","til","socialmedia","blogging"]
 ---
 

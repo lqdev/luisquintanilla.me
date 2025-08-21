@@ -2,7 +2,7 @@
 title: "Open Source and Organization Workshop"
 targeturl: https://klemet.github.io/Workshop-Organization-EN/index.html
 response_type: bookmark
-dt_published: "2022-07-27 22:01"
+dt_published: "2022-07-27 22:01 -05:00"
 dt_updated: "2022-07-27 22:01 -05:00"
 ---
 

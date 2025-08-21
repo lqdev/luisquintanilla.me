@@ -2,7 +2,7 @@
 title: "The New Kings of Open Source AI (Oct 2023 Recap)"
 targeturl: https://www.latent.space/p/oct-2023
 response_type: bookmark
-dt_published: "2023-12-11 19:23"
+dt_published: "2023-12-11 19:23 -05:00"
 dt_updated: "2023-12-11 19:23 -05:00"
 tags: ["ai","opensource","newsletter"]
 ---

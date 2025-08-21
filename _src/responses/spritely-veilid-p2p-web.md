@@ -2,7 +2,7 @@
 title: "Spritely and Veilid: Exciting Projects Building the Peer-to-Peer Web"
 targeturl: https://www.eff.org/deeplinks/2023/12/meet-spritely-and-veilid
 response_type: reshare
-dt_published: "2023-12-19 11:47"
+dt_published: "2023-12-19 11:47 -05:00"
 dt_updated: "2023-12-19 11:47 -05:00"
 tags: ["p2p","veilid","spritely","openweb","web","internet","decentralization"]
 ---

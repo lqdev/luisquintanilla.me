@@ -2,7 +2,7 @@
 title: "How to Ditch Facebook Without Losing Your Friends"
 targeturl: https://www.eff.org/deeplinks/2022/09/how-ditch-facebook-without-losing-your-friends-or-family-customers-or-communities 
 response_type: bookmark
-dt_published: "2022-09-20 20:30"
+dt_published: "2022-09-20 20:30 -05:00"
 dt_updated: "2022-09-20 20:30 -05:00"
 ---
 

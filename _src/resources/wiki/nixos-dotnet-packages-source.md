@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Install .NET packages on NixOS from GitHub"
-last_updated_date: "12/17/2023 17:56"
+last_updated_date: "12/17/2023 17:56 -05:00"
 tags: dotnet,nixos,linux,sysadmin,
 ---
 

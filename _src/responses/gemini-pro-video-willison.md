@@ -2,7 +2,7 @@
 title: "The killer app of Gemini Pro 1.5 is video"
 targeturl: https://simonwillison.net/2024/Feb/21/gemini-pro-video/
 response_type: reshare
-dt_published: "2024-02-21 14:45"
+dt_published: "2024-02-21 14:45 -05:00"
 dt_updated: "2024-02-21 14:45 -05:00"
 tags: ["google","ai","gemini"]
 ---

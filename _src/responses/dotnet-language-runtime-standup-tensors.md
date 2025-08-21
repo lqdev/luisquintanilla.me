@@ -2,7 +2,7 @@
 title: "Languages & Runtime Community Standup - Tensors in .NET"
 targeturl: https://www.youtube.com/watch?v=VOEeNffChSg
 response_type: reshare
-dt_published: "2025-02-15 15:12"
+dt_published: "2025-02-15 15:12 -05:00"
 dt_updated: "2025-02-15 15:12 -05:00"
 tags: ["ai","tensor","dotnet","runtime"]
 ---

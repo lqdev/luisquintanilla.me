@@ -2,7 +2,7 @@
 title: "Open challenges in LLM research"
 targeturl: https://huyenchip.com/2023/08/16/llm-research-open-challenges.html
 response_type: bookmark
-dt_published: "2023-08-16 21:47"
+dt_published: "2023-08-16 21:47 -05:00"
 dt_updated: "2023-08-16 21:47 -05:00"
 tags: ["ai","llm","research"]
 ---

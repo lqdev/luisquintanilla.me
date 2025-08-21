@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "Site redirects in static websites"
 description: "Learn how to create redirects in your static website without a server and JavaScript"
-published_date: "07/31/2022 14:52"
+published_date: "07/31/2022 14:52 -05:00"
 tags: [http, web, staticweb, indieweb, html]
 ---
 

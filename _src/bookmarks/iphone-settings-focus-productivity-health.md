@@ -2,7 +2,7 @@
 title: "The Optimal iPhone Settings and Best Apps for Productivity, Focus, and Health"
 targeturl: https://betterhumans.pub/how-to-set-up-your-iphone-for-productivity-focus-and-your-own-longevity-bb27a68cc3d8
 response_type: bookmark
-dt_published: "2022-08-01 17:50"
+dt_published: "2022-08-01 17:50 -05:00"
 dt_updated: "2022-08-01 17:50 -05:00"
 ---
 

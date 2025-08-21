@@ -2,7 +2,7 @@
 title: "The Dumbphone Boom Is Real"
 targeturl: https://www.newyorker.com/culture/infinite-scroll/the-dumbphone-boom-is-real
 response_type: reshare
-dt_published: "2024-04-25 23:38"
+dt_published: "2024-04-25 23:38 -05:00"
 dt_updated: "2024-04-25 23:38 -05:00"
 tags: ["dumbphone","technology","culture","digitalminimalism","minimalism"]
 ---

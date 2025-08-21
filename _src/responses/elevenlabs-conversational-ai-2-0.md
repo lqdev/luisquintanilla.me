@@ -2,7 +2,7 @@
 title: "Introducing ElevenLabs Conversational AI 2.0"
 targeturl: https://elevenlabs.io/blog/conversational-ai-2-0
 response_type: reshare
-dt_published: "2025-06-03 20:19"
+dt_published: "2025-06-03 20:19 -05:00"
 dt_updated: "2025-06-03 20:19 -05:00"
 tags: ["ai","speech","elevenlabs"]
 ---

@@ -2,7 +2,7 @@
 title: "Patching the open web"
 targeturl: https://blog.jim-nielsen.com/2022/patching-open-web/#readlists
 response_type: reply
-dt_published: "2022-10-05 10:46"
+dt_published: "2022-10-05 10:46 -05:00"
 dt_updated: "10/05/2022 10:46 -05:00"
 ---
 

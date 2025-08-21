@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "GitHub Actions Publishing Workflow Fixed"
-published_date: "2024-04-23 22:51"
+published_date: "2024-04-23 22:51 -05:00"
 tags: ["github","blogging","azure","githubactions","cicd"]
 ---
 

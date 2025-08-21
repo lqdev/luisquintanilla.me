@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: The Case for .NET in the Classroom
-published_date: 2017-12-14 16:57:39
+published_date: 2017-12-14 16:57:39 -05:00
 tags: [.net, microsoft, thoughts,programming,development]
 ---
 

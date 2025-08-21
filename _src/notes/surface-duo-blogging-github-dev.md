@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Blogging on the Surface Duo with github.dev"
-published_date: "10/31/2021 13:51"
+published_date: "10/31/2021 13:51 -05:00"
 tags: ["surface","duo","blogging","github","surfaceduo","microsoft"]
 ---
 

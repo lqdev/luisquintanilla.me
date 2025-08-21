@@ -2,7 +2,7 @@
 title: "Resisting the urge to rewrite the website"
 targeturl: https://hamatti.org/posts/resisting-the-urge-to-rewrite-the-website/
 response_type: reshare
-dt_published: "2025-05-05 20:06"
+dt_published: "2025-05-05 20:06 -05:00"
 dt_updated: "2025-05-05 20:06 -05:00"
 tags: ["website","indieweb","blogging"]
 ---

@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "Accept Webmentions using F#, Azure Functions, and RSS"
 description: "Use F# and Azure Functions to engage in conversations on the open web by receiving Webmentions on your site."
-published_date: "2022-12-21 00:33"
+published_date: "2022-12-21 00:33 -05:00"
 tags: [fsharp,indieweb,protocol,internet,web,dotnet]
 ---
 

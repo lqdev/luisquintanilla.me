@@ -2,7 +2,7 @@
 title: "OnnxStream - Stable Diffusion XL 1.0 Base on a Raspberry Pi Zero 2"
 targeturl: https://github.com/vitoplantamura/OnnxStream/
 response_type: bookmark
-dt_published: "2023-12-11 20:11"
+dt_published: "2023-12-11 20:11 -05:00"
 dt_updated: "2023-12-11 20:11 -05:00"
 tags: ["ai","onnx"]
 ---

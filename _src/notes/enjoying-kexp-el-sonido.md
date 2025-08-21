@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Enjoying El Sonido from KEXP"
-published_date: "2024-04-08 23:36"
+published_date: "2024-04-08 23:36 -05:00"
 tags: ["radio","music","kexp","shows"]
 ---
 

@@ -2,7 +2,7 @@
 title: "NVIDIA Chat with RTX"
 targeturl: https://www.nvidia.com/ai-on-rtx/chat-with-rtx-generative-ai/
 response_type: reshare
-dt_published: "2024-02-13 21:08"
+dt_published: "2024-02-13 21:08 -05:00"
 dt_updated: "2024-02-13 21:08 -05:00"
 tags: ["nvidia","chat","ai","rag","chatbot","gpu","llm"]
 ---

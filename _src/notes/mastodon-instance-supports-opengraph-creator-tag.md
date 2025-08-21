@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Mastodon instance now supports OpenGraph creator tag"
-published_date: "2024-11-19 09:25"
+published_date: "2024-11-19 09:25 -05:00"
 tags: ["mastodon","fediverse","opengraph","protocols","indieweb"]
 ---
 

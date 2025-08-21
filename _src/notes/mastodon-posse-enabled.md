@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Mastodon POSSE enabled"
-published_date: "04/27/2022 21:29"
+published_date: "04/27/2022 21:29 -05:00"
 tags: ["mastodon","fediverse","posse","indieweb"]
 ---
 

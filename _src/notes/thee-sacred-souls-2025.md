@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Thee Sacred Souls 2025"
-published_date: "2025-06-14 12:30"
+published_date: "2025-06-14 12:30 -05:00"
 tags: ["music","concert","theesacredsouls"]
 ---
 

@@ -2,7 +2,7 @@
 title: "Nvidia reveals Blackwell B200 GPU"
 targeturl: https://www.theverge.com/2024/3/18/24105157/nvidia-blackwell-gpu-b200-ai
 response_type: reshare
-dt_published: "2024-03-18 21:09"
+dt_published: "2024-03-18 21:09 -05:00"
 dt_updated: "2024-03-18 21:09 -05:00"
 tags: ["ai","nvidia","gpu","hardware","pchardware","pc"]
 ---

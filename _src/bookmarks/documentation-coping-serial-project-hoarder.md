@@ -2,7 +2,7 @@
 title: "Coping strategies for the serial project hoarder"
 targeturl: https://simonwillison.net/2022/Nov/26/productivity/
 response_type: bookmark
-dt_published: "2022-11-29 10:00"
+dt_published: "2022-11-29 10:00 -05:00"
 dt_updated: "2022-11-29 10:00 -05:00"
 ---
 

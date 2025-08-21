@@ -2,7 +2,7 @@
 title: "Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models"
 targeturl: https://arxiv.org/abs/2402.19427
 response_type: bookmark
-dt_published: "2024-04-10 22:02"
+dt_published: "2024-04-10 22:02 -05:00"
 dt_updated: "2024-04-10 22:02 -05:00"
 tags: ["griffin","ai","research","architecture","rnn","attention","transformers","llm"]
 ---

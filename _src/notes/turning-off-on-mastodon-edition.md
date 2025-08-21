@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Have you tried turning it off and on again? - Mastodon edition"
-published_date: "2023-12-15 15:53"
+published_date: "2023-12-15 15:53 -05:00"
 tags: ["mastodon","sysadmin","selfhost","fediverse"]
 ---
 

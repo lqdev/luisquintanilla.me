@@ -2,7 +2,7 @@
 title: "Introducing deep research"
 targeturl: https://openai.com/index/introducing-deep-research/
 response_type: reshare
-dt_published: "2025-02-03 20:17"
+dt_published: "2025-02-03 20:17 -05:00"
 dt_updated: "2025-02-03 20:17 -05:00"
 tags: ["ai","openai","agent","research"]
 ---

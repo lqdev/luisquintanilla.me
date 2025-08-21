@@ -2,7 +2,7 @@
 title: "Pocket shutting down"
 targeturl: https://support.mozilla.org/en-US/kb/future-of-pocket
 response_type: bookmark
-dt_published: "2025-05-22 20:21"
+dt_published: "2025-05-22 20:21 -05:00"
 dt_updated: "2025-05-22 20:21 -05:00"
 tags: ["pocket","mozilla","bookmark"]
 ---

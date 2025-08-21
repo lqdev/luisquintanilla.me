@@ -2,7 +2,7 @@
 title: "Machine Learning for Games Course - HuggingFace"
 targeturl: https://huggingface.co/learn/ml-games-course/unit0/introduction
 response_type: bookmark
-dt_published: "2024-03-19 22:35"
+dt_published: "2024-03-19 22:35 -05:00"
 dt_updated: "2024-03-19 22:35 -05:00"
 tags: ["machinelearning","games","huggingface","course","ai","ml"]
 ---

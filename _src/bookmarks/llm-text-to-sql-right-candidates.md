@@ -2,7 +2,7 @@
 title: "Using LLM to select the right SQL Query from candidates"
 targeturl: https://arxiv.org/abs/2401.02115
 response_type: bookmark
-dt_published: "2024-04-10 21:59"
+dt_published: "2024-04-10 21:59 -05:00"
 dt_updated: "2024-04-10 21:59 -05:00"
 tags: ["ai","research","sql","llm"]
 ---

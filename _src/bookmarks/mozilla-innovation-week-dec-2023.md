@@ -2,7 +2,7 @@
 title: "Mozilla Innovation Week - Explore the Future of AI with Mozilla"
 targeturl: https://future.mozilla.org/innovation-week/
 response_type: bookmark
-dt_published: "2023-12-12 19:34"
+dt_published: "2023-12-12 19:34 -05:00"
 dt_updated: "2023-12-12 19:34 -05:00"
 tags: ["ai","opensource","mozilla"]
 ---

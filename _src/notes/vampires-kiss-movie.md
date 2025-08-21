@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Vampire's Kiss (1988)"
-published_date: "2024-02-24 22:04"
+published_date: "2024-02-24 22:04 -05:00"
 tags: ["movie","80s","horror","vampire"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Use Azure CDN from Verizon Premium for Regex URL redirects"
-published_date: "2022-12-21 15:09"
+published_date: "2022-12-21 15:09 -05:00"
 tags: ["azure","azurecdn","redirect","indieweb","selfhosting"]
 ---
 

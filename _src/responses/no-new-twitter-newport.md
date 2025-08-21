@@ -2,7 +2,7 @@
 title: "We Don’t Need a New Twitter"
 targeturl: https://www.newyorker.com/culture/cultural-comment/we-dont-need-a-new-twitter
 response_type: reshare
-dt_published: "2023-08-28 20:46"
+dt_published: "2023-08-28 20:46 -05:00"
 dt_updated: "2023-08-28 20:46 -05:00"
 tags: ["twitter","socialmedia","indieweb","internet","culture"]
 ---

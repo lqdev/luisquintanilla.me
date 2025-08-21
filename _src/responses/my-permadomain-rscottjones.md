@@ -2,7 +2,7 @@
 title: "My Permadomain"
 targeturl: https://rscottjones.com/my-permadomain/ 
 response_type: reply
-dt_published: "2024-05-30 21:41"
+dt_published: "2024-05-30 21:41 -05:00"
 dt_updated: "2024-05-30 21:41 -05:00"
 tags: ["domains","personalweb","permadomain","indieweb","projects","selfhosting","hosting","self-hosting"]
 ---

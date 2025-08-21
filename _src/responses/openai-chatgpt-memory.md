@@ -2,7 +2,7 @@
 title: "Memory and new controls for ChatGPT"
 targeturl: https://openai.com/blog/memory-and-new-controls-for-chatgpt
 response_type: reshare
-dt_published: "2024-02-13 21:00"
+dt_published: "2024-02-13 21:00 -05:00"
 dt_updated: "2024-02-13 21:00 -05:00"
 tags: ["openai","chatgpt","memory","ai","llm","gpt"]
 ---

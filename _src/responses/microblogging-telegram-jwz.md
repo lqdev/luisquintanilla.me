@@ -2,7 +2,7 @@
 title: "\"Microblogging\" prior art"
 targeturl: https://mastodon.social/@jwz/111583679963120813
 response_type: reshare
-dt_published: "2023-12-15 11:18"
+dt_published: "2023-12-15 11:18 -05:00"
 dt_updated: "2023-12-15 1:30 -05:00"
 tags: ["microblogging","telegram","meme"]
 ---

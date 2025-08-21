@@ -2,7 +2,7 @@
 title: "More than an OpenAI Wrapper: Perplexity Pivots to Open Source"
 targeturl: https://thenewstack.io/more-than-an-openai-wrapper-perplexity-pivots-to-open-source/
 response_type: reshare
-dt_published: "2024-01-13 09:43"
+dt_published: "2024-01-13 09:43 -05:00"
 dt_updated: "2024-01-13 09:43 -05:00"
 tags: ["ai","perplexity","opensource","search","llm"]
 ---

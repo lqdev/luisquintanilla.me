@@ -2,7 +2,7 @@
 title: "Indieweb Bookmark Post"
 targeturl: https://indieweb.org/bookmark
 response_type: bookmark
-dt_published: "2022-10-10 20:39"
+dt_published: "2022-10-10 20:39 -05:00"
 dt_updated: "2022-10-10 20:39 -05:00"
 ---
 

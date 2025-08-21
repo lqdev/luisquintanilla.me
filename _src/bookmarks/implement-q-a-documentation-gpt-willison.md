@@ -2,7 +2,7 @@
 title: "How to implement Q&A against your documentation with GPT3, embeddings and Datasette"
 targeturl: http://simonwillison.net/2023/Jan/13/semantic-search-answers/#atom-everything 
 response_type: bookmark
-dt_published: "2023-01-19 14:19"
+dt_published: "2023-01-19 14:19 -05:00"
 dt_updated: "2023-01-19 14:19 -05:00"
 ---
 

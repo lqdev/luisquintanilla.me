@@ -2,7 +2,7 @@
 title: "The direct influence of Twin Peaks on Zelda"
 targeturl: https://www.theverge.com/24078662/twin-peaks-zelda-links-awakening-influence
 response_type: reshare
-dt_published: "2024-02-24 12:14"
+dt_published: "2024-02-24 12:14 -05:00"
 dt_updated: "2024-02-24 12:14 -05:00"
 tags: ["twinpeaks","nintendo","zelda","tv","culture","gaming"]
 ---

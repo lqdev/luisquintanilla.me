@@ -2,7 +2,7 @@
 title: "Hacking the Planet (with Notcurses) - A Guide to TUIs and Character Graphics"
 targeturl: https://nick-black.com/htp-notcurses.pdf 
 response_type: bookmark
-dt_published: "2023-07-12 22:21"
+dt_published: "2023-07-12 22:21 -05:00"
 dt_updated: "2023-07-12 22:21 -05:00"
 tags: ["linux","terminal","tui"]
 ---

@@ -2,7 +2,7 @@
 title: "Darklang is going all-in on AI"
 targeturl: https://blog.darklang.com/gpt/ 
 response_type: reshare
-dt_published: "2023-03-28 22:24"
+dt_published: "2023-03-28 22:24 -05:00"
 dt_updated: "2023-03-28 22:24 -05:00"
 ---
 

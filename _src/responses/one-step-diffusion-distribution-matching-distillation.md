@@ -2,7 +2,7 @@
 title: "One-step Diffusion with Distribution Matching Distillation"
 targeturl: https://tianweiy.github.io/dmd/
 response_type: reshare
-dt_published: "2024-03-26 21:44"
+dt_published: "2024-03-26 21:44 -05:00"
 dt_updated: "2024-03-26 21:44 -05:00"
 tags: ["ai","genai","diffusion","dmd","stablediffusion","dalle"]
 ---

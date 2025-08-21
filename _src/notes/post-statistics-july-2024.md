@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Website Post Statistics - July 2024"
-published_date: "2024-07-18 18:26"
+published_date: "2024-07-18 18:26 -05:00"
 tags: ["githubactions","cicd","blogging","stats","github"]
 ---
 

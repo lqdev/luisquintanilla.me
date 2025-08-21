@@ -2,7 +2,7 @@
 title: "Each Facebook User is Monitored by Thousands of Companies"
 targeturl: https://themarkup.org/privacy/2024/01/17/each-facebook-user-is-monitored-by-thousands-of-companies-study-indicates
 response_type: reshare
-dt_published: "2024-01-17 20:09"
+dt_published: "2024-01-17 20:09 -05:00"
 dt_updated: "2024-01-17 20:09 -05:00"
 tags: ["socialmedia","privacy","facebook","meta","surveillance"]
 ---

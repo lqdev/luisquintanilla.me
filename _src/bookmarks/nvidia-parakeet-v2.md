@@ -2,7 +2,7 @@
 title: "Parakeet TDT 0.6B V2 (En)"
 targeturl: https://huggingface.co/nvidia/parakeet-tdt-0.6b-v2
 response_type: bookmark
-dt_published: "2025-05-09 20:43"
+dt_published: "2025-05-09 20:43 -05:00"
 dt_updated: "2025-05-09 20:43 -05:00"
 tags: ["nvidia","ai","transcription"]
 ---

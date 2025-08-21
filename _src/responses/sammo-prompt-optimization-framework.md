@@ -2,7 +2,7 @@
 title: "SAMMO: A general-purpose framework for prompt optimization"
 targeturl: https://www.microsoft.com/en-us/research/blog/sammo-a-general-purpose-framework-for-prompt-optimization/
 response_type: reshare
-dt_published: "2024-04-25 22:48"
+dt_published: "2024-04-25 22:48 -05:00"
 dt_updated: "2024-04-25 22:48 -05:00"
 tags: ["ai","microsoft","research","prompt","optimization","sammo"]
 ---

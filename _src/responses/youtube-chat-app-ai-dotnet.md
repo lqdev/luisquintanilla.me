@@ -2,7 +2,7 @@
 title: "Build a YouTube chat app with .NET"
 targeturl: https://jordanmatthiesen.me/programming/build-youtube-chatbot-dotnet/
 response_type: reshare
-dt_published: "2024-12-16 21:22"
+dt_published: "2024-12-16 21:22 -05:00"
 dt_updated: "2024-12-16 21:22 -05:00"
 tags: ["dotnet","ai","youtube","chat","microsoft.extensions.ai","openai"]
 ---

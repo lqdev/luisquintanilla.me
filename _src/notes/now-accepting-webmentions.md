@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Now accepting webmentions"
-published_date: "2022-12-18 22:41"
+published_date: "2022-12-18 22:41 -05:00"
 tags: ["indieweb","webmentions","community","fsharp","azurefunctions","azure"]
 ---
 

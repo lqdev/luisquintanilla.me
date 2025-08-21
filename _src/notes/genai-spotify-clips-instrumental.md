@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "What about instrumentals? AI Generated Spotify Clips Addendum"
-published_date: "2023-12-23 19:32"
+published_date: "2023-12-23 19:32 -05:00"
 tags: ["ai","genai","music","instrumental","spotify","generativeai","llm"]
 ---
 

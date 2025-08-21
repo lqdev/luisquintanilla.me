@@ -2,7 +2,7 @@
 title: "Mapping the Mind of a Large Language Model"
 targeturl: https://www.anthropic.com/research/mapping-mind-language-model
 response_type: reshare
-dt_published: "2024-06-11 21:03"
+dt_published: "2024-06-11 21:03 -05:00"
 dt_updated: "2024-06-11 21:03 -05:00"
 tags: ["ai","interpretability","anthropic","llm"]
 ---

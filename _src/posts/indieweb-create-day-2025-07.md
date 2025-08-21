@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "IndieWeb Create Day - July 2025"
 description: "A recap of my first IndieWeb Create Day"
-published_date: "2025-07-06 20:09"
+published_date: "2025-07-06 20:09 -05:00"
 tags: ["indieweb","iwc","community","website"]
 ---
 

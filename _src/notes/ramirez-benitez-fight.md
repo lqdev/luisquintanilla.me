@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Nasty KO - Ramirez vs. Benitez"
-published_date: "2024-06-29 23:23"
+published_date: "2024-06-29 23:23 -05:00"
 tags: ["boxing","teofimoclaggett","featherweight","ko","fighting","teofimo","claggett"]
 ---
 

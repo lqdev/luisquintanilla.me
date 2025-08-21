@@ -2,7 +2,7 @@
 title: "MLS over ActivityPub Draft"
 targeturl: https://swicg.github.io/activitypub-e2ee/mls
 response_type: reshare
-dt_published: "2025-06-14 10:47"
+dt_published: "2025-06-14 10:47 -05:00"
 dt_updated: "2025-06-14 10:47 -05:00"
 tags: ["protocol","socialweb","activitypub","w3c"]
 ---

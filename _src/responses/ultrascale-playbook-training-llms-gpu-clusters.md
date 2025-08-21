@@ -2,7 +2,7 @@
 title: "The Ultra-Scale Playbook: Training LLMs on GPU Clusters"
 targeturl: https://huggingface.co/spaces/nanotron/ultrascale-playbook
 response_type: reshare
-dt_published: "2025-02-19 22:03"
+dt_published: "2025-02-19 22:03 -05:00"
 dt_updated: "2025-02-19 22:03 -05:00"
 tags: ["ai","llm","training"]
 ---

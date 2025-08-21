@@ -2,7 +2,7 @@
 title: URL Town
 targeturl: "https://url.town/"
 response_type: bookmark
-dt_published: "2025-08-10 23:26"
+dt_published: "2025-08-10 23:26 -05:00"
 dt_updated: "2025-08-10 23:26 -05:00"
 tags: ["indieweb", "websites", "directory"]
 ---

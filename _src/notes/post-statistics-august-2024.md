@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Website Post Statistics - August 2024"
-published_date: "2024-08-01 20:19"
+published_date: "2024-08-01 20:19 -05:00"
 tags: ["githubactions","cicd","blogging","stats","github"]
 ---
 

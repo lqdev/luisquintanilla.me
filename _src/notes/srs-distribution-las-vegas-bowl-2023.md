@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Utah vs Northwestern SRS Distribution Las Vegas Bowl Thread"
-published_date: "2023-12-23 21:39"
+published_date: "2023-12-23 21:39 -05:00"
 tags: ["football","utah","northwestern","cfb","collegefootball"]
 ---
 

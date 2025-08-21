@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "X (Twitter) - No more link in bio?"
-published_date: "2024-05-26 15:48"
+published_date: "2024-05-26 15:48 -05:00"
 tags: ["x","twitter","website"]
 ---
 

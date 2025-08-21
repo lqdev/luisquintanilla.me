@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: The Case for Doing Machine Learning with F#
-published_date: 2018-12-14 23:34:50
+published_date: 2018-12-14 23:34:50 -05:00
 tags: [mlnet,machine learning,fsharp,dotnet,programming,python,ai,dotnetcore,artificial intelligence,fsadvent,artificialintelligence,machinelearning,data science,functional programming]
 ---
 

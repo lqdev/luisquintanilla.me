@@ -2,7 +2,7 @@
 title: "2023 in social media: the case for the fediverse"
 targeturl: https://www.theverge.com/23990974/social-media-2023-fediverse-mastodon-threads-activitypub
 response_type: reshare
-dt_published: "2023-12-19 09:26"
+dt_published: "2023-12-19 09:26 -05:00"
 dt_updated: "2023-12-19 09:26 -05:00"
 tags: ["fediverse","socialmedia","activitypub","internet","web","openweb","smallweb"]
 ---

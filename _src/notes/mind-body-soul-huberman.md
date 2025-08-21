@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Aligning mind, body, and soul"
-published_date: "2024-01-07 15:18"
+published_date: "2024-01-07 15:18 -05:00"
 tags: ["podcast","lifestyle","wellness","health"]
 ---
 

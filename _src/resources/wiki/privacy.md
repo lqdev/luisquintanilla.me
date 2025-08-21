@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Privacy"
-last_updated_date: "08/25/2022 15:18"
+last_updated_date: "08/25/2022 15:18 -05:00"
 tags: technology, privacy, index
 ---
 

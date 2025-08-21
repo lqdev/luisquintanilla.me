@@ -2,7 +2,7 @@
 title: "LangChain State of AI 2023"
 targeturl: https://blog.langchain.dev/langchain-state-of-ai-2023/
 response_type: bookmark
-dt_published: "2023-12-22 08:32"
+dt_published: "2023-12-22 08:32 -05:00"
 dt_updated: "2023-12-22 08:32 -05:00"
 tags: ["ai","llm","opensource","report"]
 ---

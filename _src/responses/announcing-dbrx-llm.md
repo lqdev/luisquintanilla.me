@@ -2,7 +2,7 @@
 title: "Announcing DBRX: A new standard for efficient open source LLMs"
 targeturl: https://www.databricks.com/blog/announcing-dbrx-new-standard-efficient-open-source-customizable-llms
 response_type: reshare
-dt_published: "2024-03-31 20:26"
+dt_published: "2024-03-31 20:26 -05:00"
 dt_updated: "2024-03-31 20:26 -05:00"
 tags: ["databricks","ai","llm","opensource"]
 ---

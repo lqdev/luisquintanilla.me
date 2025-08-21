@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Personal Feed - One Year In"
-published_date: "09/29/2022 10:55"
+published_date: "09/29/2022 10:55 -05:00"
 tags: ["microblog","blog","feed","rss","indieweb","openweb","internet"]
 ---
 

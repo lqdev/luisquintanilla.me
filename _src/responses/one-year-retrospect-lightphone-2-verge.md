@@ -2,7 +2,7 @@
 title: "One year with the Light Phone 2"
 targeturl: https://www.theverge.com/24140675/light-phone-2-one-year-retrospect 
 response_type: reply
-dt_published: "2024-04-28 20:43"
+dt_published: "2024-04-28 20:43 -05:00"
 dt_updated: "2024-04-28 20:43 -05:00"
 tags: ["dumbphone","retro","technology","lightphone","minimalism","digitalminimalism"]
 ---

@@ -2,7 +2,7 @@
 title: "Matrix Holiday Update"
 targeturl: https://matrix.org/blog/2022/12/25/the-matrix-holiday-update-2022
 response_type: star
-dt_published: "2022-12-27 21:34"
+dt_published: "2022-12-27 21:34 -05:00"
 dt_updated: "2022-12-27 21:34 -05:00"
 ---
 

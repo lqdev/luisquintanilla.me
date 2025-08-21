@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "PSA: Personal site not down"
-published_date: "10/04/2021 12:55 PM"
+published_date: "10/04/2021 12:55 PM -05:00"
 tags: ["indieweb","website","socialmedia","feed","personalwebsite"]
 ---
 

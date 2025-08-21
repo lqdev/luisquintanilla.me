@@ -2,7 +2,7 @@
 title: "Kaggle - State of Data Science and Machine Learning 2022"
 targeturl: https://www.kaggle.com/kaggle-survey-2022
 response_type: bookmark
-dt_published: "2022-10-14 13:59"
+dt_published: "2022-10-14 13:59 -05:00"
 dt_updated: "2022-10-14 13:59 -05:00"
 ---
 

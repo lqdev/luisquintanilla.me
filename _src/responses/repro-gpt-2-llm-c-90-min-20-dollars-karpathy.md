@@ -2,7 +2,7 @@
 title: "Reproducing GPT-2 (124M) in llm.c in 90 minutes for $20"
 targeturl: https://github.com/karpathy/llm.c/discussions/481
 response_type: reshare
-dt_published: "2024-05-28 20:33"
+dt_published: "2024-05-28 20:33 -05:00"
 dt_updated: "2024-05-28 20:33 -05:00"
 tags: ["ai","llm","gpt","gpt2","llmc","c","slm"]
 ---

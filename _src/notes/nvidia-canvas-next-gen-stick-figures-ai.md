@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Next gen stick figures using AI and NVIDIA Canvas"
-published_date: "10/19/2021 10:51 PM"
+published_date: "10/19/2021 10:51 PM -05:00"
 tags: ["nvidia","ai","genai","art"]
 ---
 

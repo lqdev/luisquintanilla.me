@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: Organizing F# Modules Into Separate Files
-published_date: 2018-06-05 20:56:52
+published_date: 2018-06-05 20:56:52 -05:00
 tags: [dotnet,fsharp,programming,development,functionalprogramming,dotnetcore]
 ---
 

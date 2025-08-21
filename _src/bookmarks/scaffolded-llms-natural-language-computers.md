@@ -2,7 +2,7 @@
 title: "Scaffolded LLMs as natural language computers"
 targeturl: https://www.beren.io/2023-04-11-Scaffolded-LLMs-natural-language-computers/
 response_type: bookmark
-dt_published: "2023-09-28 21:00"
+dt_published: "2023-09-28 21:00 -05:00"
 dt_updated: "2023-09-28 21:00 -05:00"
 tags: ["ai","llm","cpu"]
 ---

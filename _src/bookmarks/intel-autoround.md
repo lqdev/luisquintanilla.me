@@ -2,7 +2,7 @@
 title: "Introducing AutoRound"
 targeturl: https://huggingface.co/blog/autoround
 response_type: bookmark
-dt_published: "2025-05-09 20:45"
+dt_published: "2025-05-09 20:45 -05:00"
 dt_updated: "2025-05-09 20:45 -05:00"
 tags: ["quantization","intel","ai"]
 ---

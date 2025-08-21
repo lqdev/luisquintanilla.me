@@ -2,7 +2,7 @@
 title: "Solo - an AI website builder for solopreneurs"
 targeturl: https://blog.mozilla.org/en/mozilla/introducing-solo-ai-website-builder/
 response_type: bookmark
-dt_published: "2023-12-14 10:10"
+dt_published: "2023-12-14 10:10 -05:00"
 dt_updated: "2023-12-14 10:10 -05:00"
 tags: ["ai","mozilla","web","internet"]
 ---

@@ -2,7 +2,7 @@
 title: "Ghost is federating over ActivityPub"
 targeturl: https://activitypub.ghost.org/
 response_type: star
-dt_published: "2024-04-25 22:11"
+dt_published: "2024-04-25 22:11 -05:00"
 dt_updated: "2024-04-25 22:11 -05:00"
 tags: ["ghost","openweb","activitypub","fediverse","blogging","websites","indieweb"]
 ---

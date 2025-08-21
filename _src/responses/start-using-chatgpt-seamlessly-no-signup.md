@@ -2,7 +2,7 @@
 title: "Start using ChatGPT instantly"
 targeturl: https://openai.com/blog/start-using-chatgpt-instantly
 response_type: reshare
-dt_published: "2024-04-01 20:44"
+dt_published: "2024-04-01 20:44 -05:00"
 dt_updated: "2024-04-01 20:44 -05:00"
 tags: ["openai","chatgpt","ai","llm"]
 ---

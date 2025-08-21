@@ -2,7 +2,7 @@
 title: "Diffusion Models From Scratch"
 targeturl: https://www.tonyduan.com/diffusion/index.html 
 response_type: bookmark
-dt_published: "2024-03-17 21:03"
+dt_published: "2024-03-17 21:03 -05:00"
 dt_updated: "2024-03-17 21:03 -05:00"
 tags: ["diffusion","ai","concepts","models"]
 ---

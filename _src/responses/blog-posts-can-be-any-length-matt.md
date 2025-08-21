@@ -2,7 +2,7 @@
 title: "A blog post can be any length"
 targeturl: https://ma.tt/2024/01/birthday-gift/
 response_type: reply
-dt_published: "2024-01-07 22:37"
+dt_published: "2024-01-07 22:37 -05:00"
 dt_updated: "2024-01-07 22:37 -05:00"
 tags: ["writing","blog","web","internet"]
 ---

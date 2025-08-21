@@ -2,7 +2,7 @@
 title: "StatiCrypt: Protected Posts on a Static Site"
 targeturl: https://www.jayeless.net/2024/02/staticrypt.html
 response_type: star
-dt_published: "2024-02-17 12:27"
+dt_published: "2024-02-17 12:27 -05:00"
 dt_updated: "2024-02-17 12:27 -05:00"
 tags: ["staticsite","web","blogs","community","openweb","security","privacy"]
 ---

@@ -2,7 +2,7 @@
 title: "Subscribe Wherever You Get Your Content"
 targeturl: https://blog.jim-nielsen.com/2023/subscribe-wherever-you-get-your-content/ 
 response_type: star
-dt_published: "2023-01-11 10:43"
+dt_published: "2023-01-11 10:43 -05:00"
 dt_updated: "2023-01-11 10:43 -05:00"
 ---
 

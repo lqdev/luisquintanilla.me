@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Orange Bowl 2023 - the playoff game that never was"
-published_date: "2023-12-30 17:51"
+published_date: "2023-12-30 17:51 -05:00"
 tags: ["football","cfb","orangebowl","fsu","uga","collegefootball"]
 ---
 

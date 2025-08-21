@@ -2,7 +2,7 @@
 title: "Streaming services lost the plot"
 targeturl: https://www.jeffgeerling.com/blog/2022/streaming-services-lost-plot
 response_type: reply
-dt_published: "2022-10-13 15:06"
+dt_published: "2022-10-13 15:06 -05:00"
 dt_updated: "2022-10-13 15:06 -05:00"
 ---
 

@@ -2,7 +2,7 @@
 title: "Stable Diffusion 2.0 Release"
 targeturl: https://stability.ai/blog/stable-diffusion-v2-release
 response_type: bookmark
-dt_published: "2022-11-24 20:39"
+dt_published: "2022-11-24 20:39 -05:00"
 dt_updated: "2022-11-24 20:39 -05:00"
 ---
 

@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "How to listen to internet radio using VLC"
 description: "Use VLC to listen to internet radio streams"
-published_date: "12/28/2021 16:24"
+published_date: "12/28/2021 16:24 -05:00"
 tags: [vlc, open source, radio]
 ---
 

@@ -2,7 +2,7 @@
 title: "Own Your RSS Links"
 targeturl: https://heydingus.net/blog/2024/1/please-own-your-rss-links
 response_type: reply
-dt_published: "2024-01-07 15:48"
+dt_published: "2024-01-07 15:48 -05:00"
 dt_updated: "2024-01-07 15:48 -05:00"
 tags: ["rss","indieweb"]
 ---

@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Thoughts on World Wide Whack"
-published_date: "2024-04-02 22:43"
+published_date: "2024-04-02 22:43 -05:00"
 tags: ["music","newrelease","tierrawhack","worldwidewhack"]
 ---
 

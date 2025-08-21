@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "iPod Touch discontinued"
-published_date: "05/10/2022 12:27"
+published_date: "05/10/2022 12:27 -05:00"
 tags: ["apple","ipod","music","ipodtouch"]
 ---
 

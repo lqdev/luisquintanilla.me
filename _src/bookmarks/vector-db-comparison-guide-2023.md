@@ -2,7 +2,7 @@
 title: "Vector databases: A comparison and guide for 2023"
 targeturl: https://benchmark.vectorview.ai/vectordbs.html
 response_type: bookmark
-dt_published: "2023-12-11 20:05"
+dt_published: "2023-12-11 20:05 -05:00"
 dt_updated: "2023-12-11 20:05 -05:00"
 tags: ["vector","databases"]
 ---

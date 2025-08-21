@@ -2,7 +2,7 @@
 title: "Bluesky’s Stackable Approach to Moderation"
 targeturl: https://bsky.social/about/blog/03-12-2024-stackable-moderation
 response_type: reshare
-dt_published: "2024-03-15 20:53"
+dt_published: "2024-03-15 20:53 -05:00"
 dt_updated: "2024-03-15 20:53 -05:00"
 tags: ["moderation","community","bluesky","atprotocol","socialmedia","internet","web"]
 ---

@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: Machine Learning Lifecycle Management with ML.NET, Automated ML and MLFlow
-published_date: 2019-05-09 19:19:20
+published_date: 2019-05-09 19:19:20 -05:00
 tags: [machine-learning,artificial-intelligence,mlnet,dotnet,dotnetcore,automatedml]
 ---
 

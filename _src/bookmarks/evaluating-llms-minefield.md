@@ -2,7 +2,7 @@
 title: "Evaluating LLMs is a minefield"
 targeturl: https://www.cs.princeton.edu/~arvindn/talks/evaluating_llms_minefield/
 response_type: bookmark
-dt_published: "2023-12-11 20:08"
+dt_published: "2023-12-11 20:08 -05:00"
 dt_updated: "2023-12-11 20:08 -05:00"
 tags: ["ai","llms","evaluation"]
 ---

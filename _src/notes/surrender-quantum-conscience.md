@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Surrender to the quantum conscience"
-published_date: "2024-12-12 20:08"
+published_date: "2024-12-12 20:08 -05:00"
 tags: ["quantum","conscience","message"]
 ---
 

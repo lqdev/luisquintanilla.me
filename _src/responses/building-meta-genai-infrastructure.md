@@ -2,7 +2,7 @@
 title: "Building Meta’s GenAI Infrastructure"
 targeturl: https://engineering.fb.com/2024/03/12/data-center-engineering/building-metas-genai-infrastructure/
 response_type: reshare
-dt_published: "2024-03-17 21:14"
+dt_published: "2024-03-17 21:14 -05:00"
 dt_updated: "2024-03-17 21:14 -05:00"
 tags: ["meta","ai","infrastraucture","generativeai","genai","facebook"]
 ---

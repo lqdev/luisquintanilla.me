@@ -2,7 +2,7 @@
 title: "Goblin - Tumblr meets the Fediverse"
 targeturl: https://goblin.band/
 response_type: reshare
-dt_published: "2024-01-15 16:14"
+dt_published: "2024-01-15 16:14 -05:00"
 dt_updated: "2024-01-15 16:14 -05:00"
 tags: ["tumblr","fediverse","activitypub","automattic","firefish","socialmedia","opensource","community","decentralization","federation"]
 ---

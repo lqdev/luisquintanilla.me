@@ -2,7 +2,7 @@
 title: "The surprising connection between after-hours work and decreased productivity"
 targeturl: https://slack.com/blog/news/the-surprising-connection-between-after-hours-work-and-decreased-productivity
 response_type: reshare
-dt_published: "2024-03-07 21:14"
+dt_published: "2024-03-07 21:14 -05:00"
 dt_updated: "2024-03-07 21:14 -05:00"
 tags: ["slack","productivity","work"]
 ---

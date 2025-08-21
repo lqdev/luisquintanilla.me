@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Extreme web surfing"
-published_date: "2025-05-10 18:31"
+published_date: "2025-05-10 18:31 -05:00"
 tags: ["indieweb","web","community","surfing","openweb","blog"]
 ---
 

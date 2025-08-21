@@ -2,7 +2,7 @@
 title: "Introducing Journaling Suggestions for Day One"
 targeturl: https://dayoneapp.com/blog/introducing-journaling-suggestions/
 response_type: reshare
-dt_published: "2023-12-12 20:49"
+dt_published: "2023-12-12 20:49 -05:00"
 dt_updated: "2023-12-12 20:49 -05:00"
 tags: ["journaling","dayone"]
 ---

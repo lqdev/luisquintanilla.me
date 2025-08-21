@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Terry Carnation"
-published_date: "07/03/2022 22:04"
+published_date: "07/03/2022 22:04 -05:00"
 tags: ["podcast","terrycarnation","radiorental","darkair"]
 ---
 

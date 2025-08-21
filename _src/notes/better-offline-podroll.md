@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "New podcast (Better Offline) added to blogroll"
-published_date: "2024-04-07 16:50"
+published_date: "2024-04-07 16:50 -05:00"
 tags: ["podcast","podroll","betteroffline"]
 ---
 

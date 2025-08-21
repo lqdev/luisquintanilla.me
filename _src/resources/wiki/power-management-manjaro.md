@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Power Management Manjaro"
-last_updated_date: "12/11/2022 16:15"
+last_updated_date: "12/11/2022 16:15 -05:00"
 tags: manjaro, bash, powermanagement, tech, wiki, linux
 ---
 

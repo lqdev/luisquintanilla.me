@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Spotify Wrapped 2024"
-published_date: "2024-12-04 08:39"
+published_date: "2024-12-04 08:39 -05:00"
 tags: ["music","spotify","spotifywrapped","stats"]
 ---
 

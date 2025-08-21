@@ -2,7 +2,7 @@
 title: "Answer.AI - A new old kind of R&D lab"
 targeturl: https://www.answer.ai/posts/2023-12-12-launch.html
 response_type: bookmark
-dt_published: "2023-12-12 18:57"
+dt_published: "2023-12-12 18:57 -05:00"
 dt_updated: "2023-12-12 18:57 -05:00"
 tags: ["ai","research","vc"]
 ---

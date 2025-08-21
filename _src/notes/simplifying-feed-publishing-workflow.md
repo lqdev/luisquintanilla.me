@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "I need to optimize my response publishing workflow"
-published_date: "2024-01-17 20:47"
+published_date: "2024-01-17 20:47 -05:00"
 tags: ["workflow","publishing","blog","personalknowledgemanagement","pkm"]
 ---
 

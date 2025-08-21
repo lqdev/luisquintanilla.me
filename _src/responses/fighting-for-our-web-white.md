@@ -2,7 +2,7 @@
 title: "Fighting for our web - A talk from XOXO"
 targeturl: https://www.citationneeded.news/fighting-for-our-web/
 response_type: star
-dt_published: "2024-10-10 20:20"
+dt_published: "2024-10-10 20:20 -05:00"
 dt_updated: "2024-10-10 20:20 -05:00"
 tags: ["internet","indieweb","protocolsnotplatforms","humanweb","smallweb","web3.0"]
 ---

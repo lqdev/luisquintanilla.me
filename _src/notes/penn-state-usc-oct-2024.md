@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Penn State (33) vs. USC (30)"
-published_date: "2024-10-12 19:22"
+published_date: "2024-10-12 19:22 -05:00"
 tags: ["pennstate","usc","football","ncaaf","ncaa","psu"]
 ---
 

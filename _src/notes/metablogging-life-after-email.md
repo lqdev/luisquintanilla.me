@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Blog instead of e-mail?"
-published_date: "2023-06-18 21:20"
+published_date: "2023-06-18 21:20 -05:00"
 tags: ["blogging","email","communication"]
 ---
 

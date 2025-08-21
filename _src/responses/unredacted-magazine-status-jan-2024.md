@@ -2,7 +2,7 @@
 title: "UNREDACTED Magazine Status"
 targeturl: https://inteltechniques.com/blog/2024/01/05/unredacted-magazine-status/
 response_type: reshare
-dt_published: "2024-01-23 21:34"
+dt_published: "2024-01-23 21:34 -05:00"
 dt_updated: "2024-01-23 21:34 -05:00"
 tags: ["magazine","unredacted","osint"]
 ---

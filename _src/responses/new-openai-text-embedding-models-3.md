@@ -2,7 +2,7 @@
 title: "New OpenAI embedding models and API updates"
 targeturl: https://openai.com/blog/new-embedding-models-and-api-updates
 response_type: reshare
-dt_published: "2024-01-25 21:20"
+dt_published: "2024-01-25 21:20 -05:00"
 dt_updated: "2024-01-25 21:20 -05:00"
 tags: ["openai","llm","embedding","openai","gpt"]
 ---

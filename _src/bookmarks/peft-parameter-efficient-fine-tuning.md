@@ -2,7 +2,7 @@
 title: "PEFT: Parameter-Efficient Fine-Tuning of Billion-Scale Models on Low-Resource Hardware"
 targeturl: https://huggingface.co/blog/peft 
 response_type: bookmark
-dt_published: "2023-04-20 21:32"
+dt_published: "2023-04-20 21:32 -05:00"
 dt_updated: "2023-04-20 21:32 -05:00"
 tags: ["ai","finetuning"]
 ---

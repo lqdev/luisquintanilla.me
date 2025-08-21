@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Penn State future class looks promising"
-published_date: "2022-11-05 19:08"
+published_date: "2022-11-05 19:08 -05:00"
 tags: ["psu","football","college","ncaa","ncaafb","pennstate","collegefootball"]
 ---
 

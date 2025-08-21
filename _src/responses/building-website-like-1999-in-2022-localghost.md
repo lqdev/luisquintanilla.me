@@ -2,7 +2,7 @@
 title: "Building a website like it's 1999... in 2022"
 targeturl: https://localghost.dev/blog/building-a-website-like-it-s-1999-in-2022/
 response_type: reply
-dt_published: "2023-01-11 10:18"
+dt_published: "2023-01-11 10:18 -05:00"
 dt_updated: "2023-01-11 10:18 -05:00"
 ---
 

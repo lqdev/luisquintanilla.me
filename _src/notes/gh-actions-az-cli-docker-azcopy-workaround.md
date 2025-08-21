@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Workaround for Azure CLI docker image azcopy issue in GitHub Actions"
-published_date: "2025-01-10 21:12"
+published_date: "2025-01-10 21:12 -05:00"
 tags: ["azure","github","cicd"]
 ---
 

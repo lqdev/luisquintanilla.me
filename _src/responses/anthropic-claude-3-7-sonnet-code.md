@@ -2,7 +2,7 @@
 title: "Claude 3.7 Sonnet and Claude Code"
 targeturl: https://www.anthropic.com/news/claude-3-7-sonnet 
 response_type: reshare
-dt_published: "2025-02-24 20:43"
+dt_published: "2025-02-24 20:43 -05:00"
 dt_updated: "2025-02-24 20:43 -05:00"
 tags: ["ai","anthropic","claude"]
 ---

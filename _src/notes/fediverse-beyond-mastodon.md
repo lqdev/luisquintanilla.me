@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "The Fediverse beyond Mastodon"
-published_date: "2022-11-20 19:28"
+published_date: "2022-11-20 19:28 -05:00"
 tags: ["fediverse","mastodon","decentralization","owncast","peertube","pixelfed","funkwhale","alternatives"]
 ---
 

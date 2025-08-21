@@ -2,7 +2,7 @@
 title: "Zero-shot image-to-text generation with BLIP-2"
 targeturl: https://huggingface.co/blog/blip-2
 response_type: bookmark
-dt_published: "2023-02-15 14:04"
+dt_published: "2023-02-15 14:04 -05:00"
 dt_updated: "2023-02-15 14:04 -05:00"
 ---
 

@@ -2,7 +2,7 @@
 title: "Introducing Apple’s On-Device and Server Foundation Models"
 targeturl: https://machinelearning.apple.com/research/introducing-apple-foundation-models
 response_type: reshare
-dt_published: "2024-06-11 20:26"
+dt_published: "2024-06-11 20:26 -05:00"
 dt_updated: "2024-06-11 20:26 -05:00"
 tags: ["ai","apple","slm","edge","wwdc"]
 ---

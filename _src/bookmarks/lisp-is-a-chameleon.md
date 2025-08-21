@@ -2,7 +2,7 @@
 title: "Lisp is a chameleon"
 targeturl: http://www.paulgraham.com/chameleon.html
 response_type: bookmark
-dt_published: "2022-09-14 09:17"
+dt_published: "2022-09-14 09:17 -05:00"
 dt_updated: "2022-09-14 09:17 -05:00"
 ---
 

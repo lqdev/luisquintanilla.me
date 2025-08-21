@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Thinking of switching to NixOS"
-published_date: "2023-07-21 17:15"
+published_date: "2023-07-21 17:15 -05:00"
 tags: ["linux","nixos"]
 ---
 

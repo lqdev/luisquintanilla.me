@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Use your domain for verification everywhere"
-published_date: "2022-11-22 10:19"
+published_date: "2022-11-22 10:19 -05:00"
 tags: ["indieweb","ownyourlinks","internet","domain","identity","technology","ownership"]
 ---
 

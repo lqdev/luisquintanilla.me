@@ -2,7 +2,7 @@
 title: "Tiny Desk Premiere: Thee Sacred Souls"
 targeturl: https://www.npr.org/2024/01/26/1226810515/tiny-desk-concert-thee-sacred-souls
 response_type: reshare
-dt_published: "2024-01-31 19:50"
+dt_published: "2024-01-31 19:50 -05:00"
 dt_updated: "2024-01-31 19:50 -05:00"
 tags: ["theesacredsouls","music","concert","npr","tinydeskconcert"]
 ---

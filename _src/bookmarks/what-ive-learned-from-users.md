@@ -2,7 +2,7 @@
 title: "What I've Learned From Users"
 targeturl: http://paulgraham.com/users.html
 response_type: bookmark
-dt_published: "2022-09-20 21:21"
+dt_published: "2022-09-20 21:21 -05:00"
 dt_updated: "2022-09-20 21:21 -05:00"
 ---
 

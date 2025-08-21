@@ -2,7 +2,7 @@
 title: "Farewell to The Privacy, Security, and OSINT Show"
 targeturl: https://www.adamsdesk.com/posts/farewell-privacy-security-and-osint-show/
 response_type: reply
-dt_published: "2023-12-13 20:00"
+dt_published: "2023-12-13 20:00 -05:00"
 dt_updated: "2023-12-13 20:00 -05:00"
 tags: ["podcast","privacy","osint"]
 ---

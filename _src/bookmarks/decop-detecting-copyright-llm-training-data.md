@@ -2,7 +2,7 @@
 title: "DE-COP: Detecting Copyrighted Content in Language Models Training Data"
 targeturl: https://arxiv.org/abs/2402.09910
 response_type: bookmark
-dt_published: "2024-04-10 22:00"
+dt_published: "2024-04-10 22:00 -05:00"
 dt_updated: "2024-04-10 22:00 -05:00"
 tags: ["ai","copyright","research","llm","data"]
 ---

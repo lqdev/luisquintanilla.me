@@ -2,7 +2,7 @@
 title: "The top five RSS readers for keeping up with your news feeds"
 targeturl: https://www.theverge.com/24036427/rss-feed-reader-best
 response_type: reshare
-dt_published: "2024-01-22 20:49"
+dt_published: "2024-01-22 20:49 -05:00"
 dt_updated: "2024-01-22 20:49 -05:00"
 tags: ["rss","news","feeds","indieweb","protocols"]
 ---

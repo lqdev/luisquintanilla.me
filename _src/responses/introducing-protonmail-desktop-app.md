@@ -2,7 +2,7 @@
 title: "Introducing the Proton Mail desktop app "
 targeturl: https://proton.me/blog/proton-mail-desktop-app
 response_type: reshare
-dt_published: "2024-03-15 20:06"
+dt_published: "2024-03-15 20:06 -05:00"
 dt_updated: "2024-03-15 20:06 -05:00"
 tags: ["email","proton","desktop","app","privacy","security"]
 ---

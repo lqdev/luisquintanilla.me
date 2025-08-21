@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Time to try Anytype"
-published_date: "2024-01-06 11:45"
+published_date: "2024-01-06 11:45 -05:00"
 tags: ["pkm","personalknowledgemanagement","anytype","knowledge"]
 ---
 

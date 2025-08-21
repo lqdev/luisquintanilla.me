@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Copilot Agent is giving me attitude"
-published_date: "2025-05-22 21:14"
+published_date: "2025-05-22 21:14 -05:00"
 tags: ["github","copilot","agent","funny"]
 ---
 

@@ -2,7 +2,7 @@
 title: "BOOX Palma"
 targeturl: https://shop.boox.com/products/palma
 response_type: reshare
-dt_published: "2023-09-26 21:22"
+dt_published: "2023-09-26 21:22 -05:00"
 dt_updated: "2023-09-26 21:22 -05:00"
 tags: ["eink","ereader","mp3","minimalism","simplicity"]
 ---

@@ -2,7 +2,7 @@
 title: "Diffusion models from scratch, from a new theoretical perspective"
 targeturl: https://www.chenyang.co/diffusion.html
 response_type: bookmark
-dt_published: "2024-03-17 21:02"
+dt_published: "2024-03-17 21:02 -05:00"
 dt_updated: "2024-03-17 21:02 -05:00"
 tags: ["diffusion","ai","concepts","models"]
 ---

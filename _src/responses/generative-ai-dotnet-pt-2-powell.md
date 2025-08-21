@@ -2,7 +2,7 @@
 title: "Generative AI and .NET - Part 2 SDK"
 targeturl: https://www.aaron-powell.com/posts/2023-09-04-generative-ai-and-dotnet---part-2-sdk/
 response_type: reshare
-dt_published: "2023-09-06 09:29"
+dt_published: "2023-09-06 09:29 -05:00"
 dt_updated: "2023-09-06 09:29 -05:00"
 tags: ["ai","dotnet","generativeai","llm","azure"]
 ---

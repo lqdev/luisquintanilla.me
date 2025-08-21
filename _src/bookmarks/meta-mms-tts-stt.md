@@ -2,7 +2,7 @@
 title: "Massively Multilingual Speech (MMS)"
 targeturl: https://ai.facebook.com/blog/multilingual-model-speech-recognition/ 
 response_type: bookmark
-dt_published: "2023-05-22 23:43"
+dt_published: "2023-05-22 23:43 -05:00"
 dt_updated: "2023-05-22 23:43 -05:00"
 tags: ["ai","nlp","speech-to-text","text-to-speech"]
 ---

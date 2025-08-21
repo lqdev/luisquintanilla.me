@@ -2,7 +2,7 @@
 post_type: "article" 
 title: Proofread articles using Microsoft Edge's Immersive Reader and read aloud
 description: Improve your proofreading process by reading articles aloud using Immersive Reader in Microsoft Edge
-published_date: 2021-09-22 18:00:00
+published_date: 2021-09-22 18:00:00 -05:00
 tags: [writing, tools]
 ---
 

@@ -2,7 +2,7 @@
 title: "Tumblr’s ‘fediverse’ integration is still being worked on"
 targeturl: https://techcrunch.com/2023/12/11/tumblrs-fediverse-integration-is-still-being-worked-on-says-owner-and-automattic-ceo-matt-mullenweg/
 response_type: reshare
-dt_published: "2023-12-11 20:29"
+dt_published: "2023-12-11 20:29 -05:00"
 dt_updated: "2023-12-11 20:29 -05:00"
 tags: ["tumblr","socialmedia","fediverse"]
 ---

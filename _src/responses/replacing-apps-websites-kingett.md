@@ -2,7 +2,7 @@
 title: "Replacing apps with websites"
 targeturl: https://robertkingett.com/posts/6421/ 
 response_type: reply
-dt_published: "2024-01-09 09:37"
+dt_published: "2024-01-09 09:37 -05:00"
 dt_updated: "2024-01-09 09:37 -05:00"
 tags: ["apps","websites","internet","mobile"]
 ---

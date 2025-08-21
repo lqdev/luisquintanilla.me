@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "How do you watch Blu-Ray on PC?"
-published_date: "2025-01-14 18:55"
+published_date: "2025-01-14 18:55 -05:00"
 tags: ["bluray","media","physicalmedia","vlc"]
 ---
 

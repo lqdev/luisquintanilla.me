@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "i3-gaps Released"
-published_date: "2023-01-26 10:46"
+published_date: "2023-01-26 10:46 -05:00"
 tags: ["i3","windowmanager","linux","desktop"]
 ---
 
