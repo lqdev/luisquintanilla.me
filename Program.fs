@@ -87,7 +87,17 @@ let main argv =
     let booksFeedData = buildBooks()
     let mediaFeedData = buildMedia()
     
-    // Convert to unified feed items
+    // Convert to unified feed items - Timeline feed (main content)
+    let timelineFeedItems = [
+        ("posts", GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData)
+        ("notes", GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData)
+        ("responses", GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData)
+        ("bookmarks", GenericBuilder.UnifiedFeeds.convertResponseBookmarksToUnified responsesFeedData)
+        ("reviews", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
+        ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
+    ]
+    
+    // All unified items for RSS feeds and search (includes resources content)
     let allUnifiedItems = [
         ("posts", GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData)
         ("notes", GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData)
@@ -112,11 +122,11 @@ let main argv =
     // Generate tag RSS feeds using unified feed data
     GenericBuilder.UnifiedFeeds.buildTagFeeds allUnifiedItems "_public"
     
-    // Build Timeline Homepage (Feed-as-Homepage Phase 3)
-    buildTimelineHomePage allUnifiedItems
+    // Build Timeline Homepage (Feed-as-Homepage Phase 3) - Use timeline-specific content
+    buildTimelineHomePage timelineFeedItems
     
-    // Generate unified feed HTML page
-    buildUnifiedFeedPage allUnifiedItems
+    // Generate unified feed HTML page - Use timeline content for main feed page
+    buildUnifiedFeedPage timelineFeedItems
     
     // =============================================================================
     // Text-Only Site Generation - Phase 1 Implementation
