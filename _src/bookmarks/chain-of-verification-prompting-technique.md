@@ -2,7 +2,7 @@
 title: "Chain-of-Verification Reduces Hallucination in Large Language Models"
 targeturl: https://arxiv.org/abs/2309.11495 
 response_type: bookmark
-dt_published: "2023-10-14 21:09"
+dt_published: "2023-10-14 21:09 -05:00"
 dt_updated: "2023-10-14 21:09 -05:00"
 tags: ["ai","llm","promptengineering"]
 ---

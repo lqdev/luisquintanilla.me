@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: Read A Text File From a URL in .NET Core
-published_date: 2017-12-18 21:09:15
+published_date: 2017-12-18 21:09:15 -05:00
 tags: [.net,.net core,microsoft,programming]
 ---
 

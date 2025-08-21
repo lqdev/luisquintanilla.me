@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Clock Tables - Org Mode, Plain Text, and AI"
-published_date: "2024-07-09 22:07"
+published_date: "2024-07-09 22:07 -05:00"
 tags: ["emacs","orgmode","ai","plaintext","productivity","tools","technology","gnu","opensource","gtd","calendar","agenda","llm","openai"]
 ---
 

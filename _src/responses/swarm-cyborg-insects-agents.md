@@ -2,7 +2,7 @@
 title: "Swarm navigation of cyborg-insects in unknown obstructed soft terrain"
 targeturl: https://arxiv.org/abs/2403.17392
 response_type: reshare
-dt_published: "2025-01-15 21:02"
+dt_published: "2025-01-15 21:02 -05:00"
 dt_updated: "2025-01-15 21:02 -05:00"
 tags: ["robotics","ai","insects","agents"]
 ---

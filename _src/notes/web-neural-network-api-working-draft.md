@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Web Neural Network API - Working Draft"
-published_date: "10/24/2021 20:36"
+published_date: "10/24/2021 20:36 -05:00"
 tags: ["webnn","ai","neuralnetwork","w3c","standards","api","protocol"]
 ---
 

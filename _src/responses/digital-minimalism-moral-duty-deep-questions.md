@@ -2,7 +2,7 @@
 title: "Digital minimalism: A moral duty?"
 targeturl: https://www.youtube.com/watch?v=KK9ktzbBDPE
 response_type: reshare
-dt_published: "2024-11-19 09:56"
+dt_published: "2024-11-19 09:56 -05:00"
 dt_updated: "2024-11-19 09:56 -05:00"
 tags: ["digitalminimalism","postcast","deepquestions","philosophy","calnewport"]
 ---

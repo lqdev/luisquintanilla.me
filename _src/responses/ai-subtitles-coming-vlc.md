@@ -2,7 +2,7 @@
 title: "AI Subtitles Are Coming to VLC"
 targeturl: https://news.itsfoss.com/ai-subtitles-vlc/
 response_type: reshare
-dt_published: "2025-01-15 20:49"
+dt_published: "2025-01-15 20:49 -05:00"
 dt_updated: "2025-01-15 20:49 -05:00"
 tags: ["vlc","ai","opensource","local"]
 ---

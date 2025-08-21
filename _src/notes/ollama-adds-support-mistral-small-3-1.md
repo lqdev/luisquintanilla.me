@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Ollama Adds Mistral 3.1 Support"
-published_date: "2025-04-08 08:19"
+published_date: "2025-04-08 08:19 -05:00"
 tags: ["mistral","ollama","ai","llm"]
 ---
 

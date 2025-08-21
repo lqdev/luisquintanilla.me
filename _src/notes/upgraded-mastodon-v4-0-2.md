@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Upgraded to Mastodon v4.0.2"
-published_date: "2022-12-26 16:03"
+published_date: "2022-12-26 16:03 -05:00"
 tags: ["mastodon","selfhost","fediverse","upgade","sysadmin"]
 ---
 

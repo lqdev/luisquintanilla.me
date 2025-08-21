@@ -2,7 +2,7 @@
 title: "Noid by Tyler The Creator"
 targeturl: https://open.spotify.com/track/1tnZxHryc2wWtjUZC1LQw5
 response_type: reshare
-dt_published: "2024-10-21 20:15"
+dt_published: "2024-10-21 20:15 -05:00"
 dt_updated: "2024-10-21 20:15 -05:00"
 tags: ["music","chromakopia","tylerthecreator","noid","newmusic"]
 ---

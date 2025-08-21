@@ -2,7 +2,7 @@
 title: "Introducing the GPT Store"
 targeturl: https://openai.com/blog/introducing-the-gpt-store
 response_type: bookmark
-dt_published: "2024-01-11 10:01"
+dt_published: "2024-01-11 10:01 -05:00"
 dt_updated: "2024-01-11 10:01 -05:00"
 tags: ["openai","gpt","ai"]
 ---

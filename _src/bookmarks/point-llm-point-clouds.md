@@ -2,7 +2,7 @@
 title: "PointLLM: Empowering Large Language Models to Understand Point Clouds"
 targeturl: https://github.com/OpenRobotLab/PointLLM
 response_type: bookmark
-dt_published: "2023-09-17 12:52"
+dt_published: "2023-09-17 12:52 -05:00"
 dt_updated: "2023-09-17 12:52 -05:00"
 tags: ["ai","llm","generativeai","multimodal","research"]
 ---

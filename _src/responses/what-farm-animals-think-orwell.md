@@ -2,7 +2,7 @@
 title: "What are farm animals thinking?"
 targeturl: https://www.science.org/content/article/not-dumb-creatures-livestock-surprise-scientists-their-complex-emotional-minds
 response_type: reply
-dt_published: "2023-12-27 14:57"
+dt_published: "2023-12-27 14:57 -05:00"
 dt_updated: "2023-12-27 14:57 -05:00"
 tags: ["science","animals","farm","orwell","animallfarm","meme"]
 ---

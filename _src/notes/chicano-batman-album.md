@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Diving deeper into the Chicano Batman catalog"
-published_date: "2025-05-05 20:21"
+published_date: "2025-05-05 20:21 -05:00"
 tags: ["music","chicanobatman","indie"]
 ---
 

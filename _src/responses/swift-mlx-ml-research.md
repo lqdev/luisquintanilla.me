@@ -2,7 +2,7 @@
 title: "MLX Swift - On-device ML research with MLX and Swift"
 targeturl: https://www.swift.org/blog/mlx-swift/
 response_type: reshare
-dt_published: "2024-02-20 16:25"
+dt_published: "2024-02-20 16:25 -05:00"
 dt_updated: "2024-02-20 16:25 -05:00"
 tags: ["apple","mlx","swift","opensource","ml","ai"]
 ---

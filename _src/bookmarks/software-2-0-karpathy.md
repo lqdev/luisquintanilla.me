@@ -2,7 +2,7 @@
 title: "Software 2.0"
 targeturl: https://karpathy.medium.com/software-2-0-a64152b37c35 
 response_type: bookmark
-dt_published: "2023-02-23 10:14"
+dt_published: "2023-02-23 10:14 -05:00"
 dt_updated: "2023-02-23 10:14 -05:00"
 ---
 

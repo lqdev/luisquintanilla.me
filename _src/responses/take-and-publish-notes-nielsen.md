@@ -2,7 +2,7 @@
 title: "How I Take and Publish Notes"
 targeturl: https://blog.jim-nielsen.com/2023/how-i-take-and-publish-notes/
 response_type: reshare
-dt_published: "2023-12-05 21:42"
+dt_published: "2023-12-05 21:42 -05:00"
 dt_updated: "2023-12-05 21:42 -05:00"
 tags: ["blogging","notetaking"]
 ---

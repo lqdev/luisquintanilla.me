@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Coffee with a Codex"
-published_date: "10/19/2021 10:21 AM"
+published_date: "10/19/2021 10:21 AM -05:00"
 tags: ["event","learning","history"]
 ---
 

@@ -2,7 +2,7 @@
 title: "Do not privatize federal land"
 targeturl: https://marginalrevolution.com/marginalrevolution/2025/06/privatize-federal-land.html 
 response_type: reply
-dt_published: "2025-06-29 17:26"
+dt_published: "2025-06-29 17:26 -05:00"
 dt_updated: "2025-06-29 17:26 -05:00"
 tags: ["bureaulandmanagement","uspol","land"]
 ---

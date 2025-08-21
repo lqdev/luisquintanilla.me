@@ -2,7 +2,7 @@
 title: "Introducing Sudo for Windows"
 targeturl: https://devblogs.microsoft.com/commandline/introducing-sudo-for-windows/
 response_type: reshare
-dt_published: "2024-02-13 21:51"
+dt_published: "2024-02-13 21:51 -05:00"
 dt_updated: "2024-02-13 21:51 -05:00"
 tags: ["windows","sudo","system"]
 ---

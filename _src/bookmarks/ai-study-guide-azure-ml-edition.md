@@ -2,7 +2,7 @@
 title: "The AI Study Guide: Azure Machine Learning Edition"
 targeturl: https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/the-ai-study-guide-azure-machine-learning-edition/ba-p/4063656
 response_type: bookmark
-dt_published: "2024-02-21 15:18"
+dt_published: "2024-02-21 15:18 -05:00"
 dt_updated: "2024-02-21 15:18 -05:00"
 tags: ["azure","tutorial","machinelearning","ml","ai","azureml"]
 ---

@@ -2,7 +2,7 @@
 title: "Omakub - An Omakase Developer Setup for Ubuntu 24.04"
 targeturl: https://omakub.org/ 
 response_type: reshare
-dt_published: "2024-06-06 22:14"
+dt_published: "2024-06-06 22:14 -05:00"
 dt_updated: "2024-06-06 22:14 -05:00"
 tags: ["linux","developer","ubuntu","desktop","37signals"]
 ---

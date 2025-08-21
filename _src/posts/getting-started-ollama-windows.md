@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "Getting started with Ollama on Windows"
 description: "Start using Generative AI models like Llama and Phi locally on your Windows PC with Ollama"
-published_date: "2024-03-05 10:32"
+published_date: "2024-03-05 10:32 -05:00"
 tags: ["ai","ollama","windows","llm","opensource","llama","openai","generativeai","genai"]
 ---
 

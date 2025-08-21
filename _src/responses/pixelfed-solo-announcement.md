@@ -2,7 +2,7 @@
 title: "Announcement - Solo by Pixelfed"
 targeturl: https://mastodon.social/@pixelfed/110989967683252426
 response_type: reply
-dt_published: "2023-09-01 10:55"
+dt_published: "2023-09-01 10:55 -05:00"
 dt_updated: "2023-09-01 10:55 -05:00"
 tags: ["fediverse","pixelfed","photos","socialmedia"]
 ---

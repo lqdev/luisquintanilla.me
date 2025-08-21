@@ -2,7 +2,7 @@
 title: "Chromakopia - Tyler The Creator"
 targeturl: https://www.youtube.com/watch?v=gkZ4dLMH-B8
 response_type: star
-dt_published: "2024-10-18 09:28"
+dt_published: "2024-10-18 09:28 -05:00"
 dt_updated: "2024-10-18 09:28 -05:00"
 tags: ["music","tylerthecreator","chromakopia","newmusic"]
 ---

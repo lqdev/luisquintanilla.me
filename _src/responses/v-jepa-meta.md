@@ -2,7 +2,7 @@
 title: "V-JEPA: The next step toward Yann LeCun’s vision of advanced machine intelligence (AMI)"
 targeturl: https://ai.meta.com/blog/v-jepa-yann-lecun-ai-model-video-joint-embedding-predictive-architecture/
 response_type: reshare
-dt_published: "2024-02-15 20:20"
+dt_published: "2024-02-15 20:20 -05:00"
 dt_updated: "2024-02-15 20:20 -05:00"
 tags: ["meta","ai","ami","ml","opensource","multimodal"]
 ---

@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Owncast"
-last_updated_date: "01/30/2025 20:19"
+last_updated_date: "01/30/2025 20:19 -05:00"
 tags: owncast,fediverse,livestream
 ---
 

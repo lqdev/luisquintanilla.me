@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: Use .NET Interactive to run .NET code in Jupyter Notebooks on an Azure Machine Learning compute instance
-published_date: 2020-08-29 20:23:09
+published_date: 2020-08-29 20:23:09 -05:00
 tags: [dotnet, Jupyter Notebooks, dotnet Interactive, Azure Machine Learning, Azure, Programming, Development Tools]
 ---
 

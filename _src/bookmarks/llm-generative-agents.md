@@ -2,7 +2,7 @@
 title: "Generative Agents: Interactive Simulacra of Human Behavior"
 targeturl: https://arxiv.org/pdf/2304.03442.pdf 
 response_type: bookmark
-dt_published: "2023-04-11 11:21"
+dt_published: "2023-04-11 11:21 -05:00"
 dt_updated: "2023-04-11 11:21 -05:00"
 tags: ["ai","llm"]
 ---

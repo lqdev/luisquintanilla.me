@@ -2,7 +2,7 @@
 title: "FLOSS Weekly ended its run on the TWiT network"
 targeturl: https://doc.searls.com/2023/12/14/start-of-an-era/
 response_type: reply
-dt_published: "2023-12-14 21:10"
+dt_published: "2023-12-14 21:10 -05:00"
 dt_updated: "2023-12-14 21:10 -05:00"
 tags: ["podcast","floss","twit","opensource"]
 ---

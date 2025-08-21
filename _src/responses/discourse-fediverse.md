@@ -2,7 +2,7 @@
 title: "Discourse and the Fediverse"
 targeturl: https://blog.discourse.org/2025/04/discourse-and-the-fediverse/
 response_type: star
-dt_published: "2025-05-09 22:20"
+dt_published: "2025-05-09 22:20 -05:00"
 dt_updated: "2025-05-09 22:20 -05:00"
 tags: ["discourse","fediverse","social","openweb","opensource","forum"]
 ---

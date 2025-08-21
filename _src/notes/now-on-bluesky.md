@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "I'm on Bluesky"
-published_date: "2023-06-02 15:50"
+published_date: "2023-06-02 15:50 -05:00"
 tags: ["web","socialmedia","bluesky"]
 ---
 

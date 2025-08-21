@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Down the weird web"
-published_date: "2024-02-03 12:15"
+published_date: "2024-02-03 12:15 -05:00"
 tags: ["alternatebazaarart","archiveinbetween","art","ai","digital","web","internet","video","fiction"]
 ---
 

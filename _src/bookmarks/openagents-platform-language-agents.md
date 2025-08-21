@@ -2,7 +2,7 @@
 title: "OpenAgents: An Open Platform for Language Agents in the Wild"
 targeturl: https://arxiv.org/abs/2310.10634
 response_type: bookmark
-dt_published: "2023-12-11 19:39"
+dt_published: "2023-12-11 19:39 -05:00"
 dt_updated: "2023-12-11 19:39 -05:00"
 tags: ["ai","llm","agents"]
 ---

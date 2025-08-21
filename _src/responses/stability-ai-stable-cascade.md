@@ -2,7 +2,7 @@
 title: "Stable Cascade"
 targeturl: https://github.com/Stability-AI/StableCascade
 response_type: reshare
-dt_published: "2024-02-13 21:02"
+dt_published: "2024-02-13 21:02 -05:00"
 dt_updated: "2024-02-13 21:02 -05:00"
 tags: ["stabilityai","ai","stablediffusion"]
 ---

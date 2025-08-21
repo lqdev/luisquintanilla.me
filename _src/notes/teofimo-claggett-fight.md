@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Teofimo vs. Claggett - June 29 2024"
-published_date: "2024-06-29 23:48"
+published_date: "2024-06-29 23:48 -05:00"
 tags: ["boxing","teofimoclaggett","teofimo","clagget","toprank"]
 ---
 

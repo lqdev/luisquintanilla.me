@@ -2,7 +2,7 @@
 title: "The Internet Used To Be Fun"
 targeturl: https://projects.kwon.nyc/internet-is-fun/
 response_type: bookmark
-dt_published: "2024-04-25 22:56"
+dt_published: "2024-04-25 22:56 -05:00"
 dt_updated: "2024-04-25 22:56 -05:00"
 tags: ["internet","indieweb","personalweb","online","blogging","blogs"]
 ---

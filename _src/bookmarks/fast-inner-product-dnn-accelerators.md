@@ -2,7 +2,7 @@
 title: "Fast Inner-Product Algorithms and Architectures for Deep Neural Network Accelerators"
 targeturl: https://arxiv.org/abs/2311.12224
 response_type: bookmark
-dt_published: "2024-03-17 20:47"
+dt_published: "2024-03-17 20:47 -05:00"
 dt_updated: "2024-03-17 20:47 -05:00"
 tags: ["ai","math","acceleration","neuralnetworks","dnn"]
 ---

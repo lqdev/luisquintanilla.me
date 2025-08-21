@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "Install Manjaro RTL8821CE WiFi drivers"
 description: "Install RTL8821CE WiFi drivers on a fresh Manjaro XCFE install using AUR"
-published_date: "06/11/2022 15:48"
+published_date: "06/11/2022 15:48 -05:00"
 tags: [networking, manjaro, linux]
 ---
 

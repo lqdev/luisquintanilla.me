@@ -2,7 +2,7 @@
 title: "OpenAI Transformer Debugger"
 targeturl: https://github.com/openai/transformer-debugger
 response_type: reshare
-dt_published: "2024-03-17 21:05"
+dt_published: "2024-03-17 21:05 -05:00"
 dt_updated: "2024-03-17 21:05 -05:00"
 tags: ["openai","ai","transformer","debugger","tools"]
 ---

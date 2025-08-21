@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Running Waydroid on NixOS using X11"
-last_updated_date: "10/05/2023 22:25"
+last_updated_date: "10/05/2023 22:25 -05:00"
 tags: android,linux,nixos,x11,waydroid
 ---
 

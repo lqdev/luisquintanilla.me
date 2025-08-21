@@ -2,7 +2,7 @@
 title: "GGUF, the long way around"
 targeturl: https://vickiboykis.com/2024/02/28/gguf-the-long-way-around/
 response_type: reshare
-dt_published: "2024-02-29 21:49"
+dt_published: "2024-02-29 21:49 -05:00"
 dt_updated: "2024-02-29 21:49 -05:00"
 tags: ["ai","genai","gguf","llm","opensource"]
 ---

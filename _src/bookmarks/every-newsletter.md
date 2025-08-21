@@ -2,7 +2,7 @@
 title: "Every - Daily Newsletter"
 targeturl: https://every.to/ 
 response_type: bookmark
-dt_published: "2024-01-15 11:08"
+dt_published: "2024-01-15 11:08 -05:00"
 dt_updated: "2024-01-15 11:08 -05:00"
 tags: ["newsletter","technology","productivity","ai","essay","internet"]
 ---

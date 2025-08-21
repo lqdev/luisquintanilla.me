@@ -2,7 +2,7 @@
 title: "GPT-4 API general availability"
 targeturl: https://openai.com/blog/gpt-4-api-general-availability 
 response_type: reshare
-dt_published: "2023-07-06 22:08"
+dt_published: "2023-07-06 22:08 -05:00"
 dt_updated: "2023-07-06 22:08 -05:00"
 tags: ["openai","gpt4","llm","ai"]
 ---

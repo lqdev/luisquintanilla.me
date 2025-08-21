@@ -2,7 +2,7 @@
 title: "The text file that runs the internet"
 targeturl: https://www.theverge.com/24067997/robots-txt-ai-text-file-web-crawlers-spiders
 response_type: reshare
-dt_published: "2024-02-14 20:47"
+dt_published: "2024-02-14 20:47 -05:00"
 dt_updated: "2024-02-14 20:47 -05:00"
 tags: ["ai","internet","web"]
 ---

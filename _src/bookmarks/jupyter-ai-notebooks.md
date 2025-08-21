@@ -2,7 +2,7 @@
 title: "Jupyter AI Brings Generative AI to Notebooks"
 targeturl: https://www.infoq.com/news/2023/08/jupyter-ai-notebooks/ 
 response_type: bookmark
-dt_published: "2023-08-16 21:43"
+dt_published: "2023-08-16 21:43 -05:00"
 dt_updated: "2023-08-16 21:43 -05:00"
 tags: ["ai","notebooks","development"]
 ---

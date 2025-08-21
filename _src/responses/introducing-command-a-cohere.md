@@ -2,7 +2,7 @@
 title: "Introducing Command A"
 targeturl: https://cohere.com/blog/command-a
 response_type: reshare
-dt_published: "2025-03-18 20:45"
+dt_published: "2025-03-18 20:45 -05:00"
 dt_updated: "2025-03-18 20:45 -05:00"
 tags: ["cohere","ai","llm"]
 ---

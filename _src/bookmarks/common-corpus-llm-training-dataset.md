@@ -2,7 +2,7 @@
 title: "Releasing Common Corpus: the largest public domain dataset for training LLMs"
 targeturl: https://huggingface.co/blog/Pclanglais/common-corpus
 response_type: bookmark
-dt_published: "2024-03-20 22:12"
+dt_published: "2024-03-20 22:12 -05:00"
 dt_updated: "2024-03-20 22:12 -05:00"
 tags: ["ai","data","llm","huggingface","nlp"]
 ---

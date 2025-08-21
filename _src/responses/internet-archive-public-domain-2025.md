@@ -2,7 +2,7 @@
 title: "Welcome to the Public Domain in 2025"
 targeturl: https://blog.archive.org/2025/01/01/welcome-to-the-public-domain-in-2025/
 response_type: reshare
-dt_published: "2025-01-03 15:53"
+dt_published: "2025-01-03 15:53 -05:00"
 dt_updated: "2025-01-03 15:53 -05:00"
 tags: ["internetarchive","publicdomain"]
 ---

@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Eggpocalypse 2025"
-published_date: "2025-02-17 15:57"
+published_date: "2025-02-17 15:57 -05:00"
 tags: ["costco","eggs"]
 ---
 

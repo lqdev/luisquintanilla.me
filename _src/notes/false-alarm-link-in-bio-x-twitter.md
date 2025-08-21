@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "False alarm - Link is in X bio"
-published_date: "2024-05-26 17:00"
+published_date: "2024-05-26 17:00 -05:00"
 tags: ["x","twitter","website"]
 ---
 

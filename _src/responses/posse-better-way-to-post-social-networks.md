@@ -2,7 +2,7 @@
 title: "POSSE: A Better Way to Post on Social Networks"
 targeturl: https://www.theverge.com/2023/10/23/23928550/posse-posting-activitypub-standard-twitter-tumblr-mastodon 
 response_type: reshare
-dt_published: "2023-10-23 18:55"
+dt_published: "2023-10-23 18:55 -05:00"
 dt_updated: "2023-10-23 18:55 -05:00"
 tags: ["indieweb","posse","socialnetworks","internet","community"]
 ---

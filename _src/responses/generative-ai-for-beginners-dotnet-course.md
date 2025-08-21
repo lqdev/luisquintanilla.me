@@ -2,7 +2,7 @@
 title: "Generative AI for Beginners (.NET) is now available"
 targeturl: https://devblogs.microsoft.com/dotnet/announcing-generative-ai-for-beginners-dotnet/
 response_type: reshare
-dt_published: "2025-02-15 12:14"
+dt_published: "2025-02-15 12:14 -05:00"
 dt_updated: "2025-02-15 12:14 -05:00"
 tags: ["ai","dotnet","course","generativeai"]
 ---

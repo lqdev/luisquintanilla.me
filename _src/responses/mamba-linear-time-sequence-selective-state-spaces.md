@@ -2,7 +2,7 @@
 title: "Mamba: Linear-Time Sequence Modeling with Selective State Spaces"
 targeturl: https://arxiv.org/abs/2312.00752
 response_type: reshare
-dt_published: "2024-03-21 20:44"
+dt_published: "2024-03-21 20:44 -05:00"
 dt_updated: "2024-03-21 20:44 -05:00"
 tags: ["ai","models","mamba","llm","compute"]
 ---

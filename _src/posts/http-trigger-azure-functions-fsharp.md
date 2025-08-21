@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: Create an HTTP Trigger Azure Function using FSharp
-published_date: 2019-11-16 17:33:59
+published_date: 2019-11-16 17:33:59 -05:00
 tags: [fsharp,serverless,azure-functions,azure,dotnet,dotnet-core,functional-programming]
 ---
 

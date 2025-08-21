@@ -2,7 +2,7 @@
 title: "Reimagine the internet"
 targeturl: https://knightcolumbia.org/events/reimagine-the-internet
 response_type: bookmark
-dt_published: "2022-08-03 21:21"
+dt_published: "2022-08-03 21:21 -05:00"
 dt_updated: "2022-08-03 21:21 -05:00"
 ---
 

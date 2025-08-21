@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Today I Learned about Firefish"
-published_date: "2023-12-13 19:36"
+published_date: "2023-12-13 19:36 -05:00"
 tags: ["firefish","fediverse","socialmedia"]
 ---
 

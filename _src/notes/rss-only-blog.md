@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "RSS Only Blog"
-published_date: "2023-12-06 21:20"
+published_date: "2023-12-06 21:20 -05:00"
 tags: ["rss","blogs","social"]
 ---
 

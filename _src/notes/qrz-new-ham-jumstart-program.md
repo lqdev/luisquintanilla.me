@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "QRZ New Ham Jumpstart Program"
-published_date: "08/31/2022 21:20"
+published_date: "08/31/2022 21:20 -05:00"
 tags: ["radio","qrz","hamradio","fcc"]
 ---
 

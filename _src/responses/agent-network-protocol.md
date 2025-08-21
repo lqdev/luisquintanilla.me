@@ -2,7 +2,7 @@
 title: "Agent Network Protocol - The HTTP of the Agentic Web Era"
 targeturl: https://agent-network-protocol.com/
 response_type: reshare
-dt_published: "2025-05-17 10:56"
+dt_published: "2025-05-17 10:56 -05:00"
 dt_updated: "2025-05-17 10:56 -05:00"
 tags: ["agent","ai","protocol"]
 ---

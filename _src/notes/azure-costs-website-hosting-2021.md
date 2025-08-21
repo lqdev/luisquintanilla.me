@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "A year's worth of Azure hosting costs"
-published_date: "2022-05-04 20:36"
+published_date: "2022-05-04 20:36 -05:00"
 tags: ["azure","website","cost","hosting","selfhosting","cloud","indieweb"]
 ---
 

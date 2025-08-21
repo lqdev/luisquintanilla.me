@@ -2,7 +2,7 @@
 title: "Training great LLMs entirely from ground up in the wilderness as a startup"
 targeturl: https://www.yitay.net/blog/training-great-llms-entirely-from-ground-zero-in-the-wilderness
 response_type: reshare
-dt_published: "2024-03-07 21:10"
+dt_published: "2024-03-07 21:10 -05:00"
 dt_updated: "2024-03-07 21:10 -05:00"
 tags: ["llm","ai","startup","compute","gpu","training"]
 ---

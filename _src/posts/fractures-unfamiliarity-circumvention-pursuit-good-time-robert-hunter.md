@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "Fractures of Unfamiliarity & Circumvention in Pursuit of a Nice Time and the Meaning of Franklin's Tower"
 description: "Grateful Dead essays and the meaning of the song Franklin's Tower"
-published_date: "2025-02-26 19:44"
+published_date: "2025-02-26 19:44 -05:00"
 tags: ["music","essay","gratefuldead"]
 ---
 

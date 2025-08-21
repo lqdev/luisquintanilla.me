@@ -2,7 +2,7 @@
 title: "Introducing Gemma 3"
 targeturl: https://blog.google/technology/developers/gemma-3/
 response_type: reshare
-dt_published: "2025-03-18 20:55"
+dt_published: "2025-03-18 20:55 -05:00"
 dt_updated: "2025-03-18 20:55 -05:00"
 tags: ["gemma","google","ai"]
 ---

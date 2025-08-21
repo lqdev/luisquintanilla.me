@@ -2,7 +2,7 @@
 post_type: "article" 
 title: Inspect ML.NET models with Netron
 description: Use Netron to inspect the inputs, outputs, and operations that make up an ML.NET machine learning model.
-published_date: 2021-08-25 18:00:00
+published_date: 2021-08-25 18:00:00 -05:00
 tags: [dotnet, machine learning, mlnet, netron, artificial intelligence, tooling]
 ---
 

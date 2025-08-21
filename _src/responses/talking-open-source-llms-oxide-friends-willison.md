@@ -2,7 +2,7 @@
 title: "Talking about Open Source LLMs on Oxide and Friends"
 targeturl: https://simonwillison.net/2024/Jan/17/oxide-and-friends/
 response_type: reshare
-dt_published: "2024-01-17 20:03"
+dt_published: "2024-01-17 20:03 -05:00"
 dt_updated: "2024-01-17 20:03 -05:00"
 tags: ["ai","podcast","opensource","llm"]
 ---

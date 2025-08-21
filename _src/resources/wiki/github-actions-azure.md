@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "GitHub Actions for Azure"
-last_updated_date: "04/23/2024 23:04"
+last_updated_date: "04/23/2024 23:04 -05:00"
 tags: github, cicd, githubactions, azure
 ---
 

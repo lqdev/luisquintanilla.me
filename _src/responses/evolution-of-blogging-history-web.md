@@ -2,7 +2,7 @@
 title: "The Evolution of Blogging"
 targeturl: https://thehistoryoftheweb.com/the-evolution-of-blogging/
 response_type: star
-dt_published: "2025-05-09 20:54"
+dt_published: "2025-05-09 20:54 -05:00"
 dt_updated: "2025-05-09 20:54 -05:00"
 tags: ["blogging","history","web","internet"]
 ---

@@ -2,7 +2,7 @@
 title: "RIP Kabosu"
 targeturl: https://www.theverge.com/2024/5/24/24163865/doge-meme-shiba-inu-kabosu-dead-crypto
 response_type: reshare
-dt_published: "2024-05-25 19:55"
+dt_published: "2024-05-25 19:55 -05:00"
 dt_updated: "2024-05-25 19:55 -05:00"
 tags: ["shiba","doge","meme","dog"]
 ---

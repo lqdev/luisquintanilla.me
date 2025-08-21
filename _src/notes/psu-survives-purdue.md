@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "1-0 Penn State survives Purdue"
-published_date: "09/01/2022 23:18"
+published_date: "09/01/2022 23:18 -05:00"
 tags: ["pennstate","purdue","football","college","ncaafb","ncaa","collegefootball"]
 ---
 

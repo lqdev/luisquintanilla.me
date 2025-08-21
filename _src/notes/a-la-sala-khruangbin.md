@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "A La Sala by Khruangbin out April 5, 2024"
-published_date: "2024-01-20 21:07"
+published_date: "2024-01-20 21:07 -05:00"
 tags: ["music","newmusic","khruangbin","indie","album"]
 ---
 

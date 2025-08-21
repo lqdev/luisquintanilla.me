@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "Weird, Inc. and 2025"
 description: "A look at Weird, Inc and what their plans for the personal web in 2025"
-published_date: "2024-12-17 18:41"
+published_date: "2024-12-17 18:41 -05:00"
 tags: ["weird","cms","munitown","2025","indieweb","posse","pesos","personalweb","internet"]
 ---
 

@@ -2,7 +2,7 @@
 title: "Things Learned Blogging"
 targeturl: https://blog.jim-nielsen.com/2021/things-learned-blogging/ 
 response_type: reply
-dt_published: "2022-10-06 15:50"
+dt_published: "2022-10-06 15:50 -05:00"
 dt_updated: "10/06/2022 15:50 -05:00"
 ---
 

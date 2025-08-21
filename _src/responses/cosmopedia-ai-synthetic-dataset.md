@@ -2,7 +2,7 @@
 title: "Cosmopedia v0.1"
 targeturl: https://huggingface.co/datasets/HuggingFaceTB/cosmopedia
 response_type: reshare
-dt_published: "2024-02-20 16:50"
+dt_published: "2024-02-20 16:50 -05:00"
 dt_updated: "2024-02-20 16:50 -05:00"
 tags: ["cosmopedia","dataset","huggingface","mixtral","ai","genai","llm"]
 ---

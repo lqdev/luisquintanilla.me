@@ -2,7 +2,7 @@
 title: "Physical media week - Exploring the importance of discs and cartridges in an increasingly digital age"
 targeturl: https://www.theverge.com/entertainment/24054458/physical-media-preservation-discs-cartridges-digital
 response_type: reshare
-dt_published: "2024-02-27 12:21"
+dt_published: "2024-02-27 12:21 -05:00"
 dt_updated: "2024-02-27 12:21 -05:00"
 tags: ["media","verge","disc","dvd","cd","floppy","tech","technology"]
 ---

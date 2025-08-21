@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Do not feed or aggravate the gators"
-published_date: "2025-01-25 15:13"
+published_date: "2025-01-25 15:13 -05:00"
 tags: ["gators","bayou","swamp"]
 ---
 

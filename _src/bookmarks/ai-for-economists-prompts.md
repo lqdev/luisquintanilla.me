@@ -2,7 +2,7 @@
 title: "AI for economists - prompts and resources"
 targeturl: https://sites.google.com/view/lastunen/ai-for-economists 
 response_type: bookmark
-dt_published: "2024-01-15 16:49"
+dt_published: "2024-01-15 16:49 -05:00"
 dt_updated: "2024-01-15 16:49 -05:00"
 tags: ["ai","economy","promptengineering","llm","gpt"]
 ---

@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Early Radio History (U.S)"
-published_date: "10/29/2021 02:05"
+published_date: "10/29/2021 02:05 -05:00"
 tags: ["radio","communication","hamradion","history","unitedstates"]
 ---
 

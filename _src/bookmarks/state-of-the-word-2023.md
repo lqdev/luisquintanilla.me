@@ -2,7 +2,7 @@
 title: "State of the Word 2023"
 targeturl: https://wordpress.org/state-of-the-word/
 response_type: bookmark
-dt_published: "2023-12-12 19:17"
+dt_published: "2023-12-12 19:17 -05:00"
 dt_updated: "2023-12-12 19:17 -05:00"
 tags: ["wordpress","blogging","web","opensource","community"]
 ---

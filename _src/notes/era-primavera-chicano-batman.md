@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "New Single - Era Primavera (Chicano Batman)"
-published_date: "2024-02-28 22:23"
+published_date: "2024-02-28 22:23 -05:00"
 tags: ["music","newmusic","chicanobatman"]
 ---
 

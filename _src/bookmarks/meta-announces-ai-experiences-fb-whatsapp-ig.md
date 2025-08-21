@@ -2,7 +2,7 @@
 title: "Meta announces AI experiences in Facebook, Instagram, WhatsApp"
 targeturl: https://about.fb.com/news/2023/09/introducing-ai-powered-assistants-characters-and-creative-tools/
 response_type: bookmark
-dt_published: "2023-09-28 10:12"
+dt_published: "2023-09-28 10:12 -05:00"
 dt_updated: "2023-09-28 10:12 -05:00"
 tags: ["meta","ai","facebook"]
 ---

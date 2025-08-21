@@ -2,7 +2,7 @@
 title: "State of AI Report - 2023"
 targeturl: https://docs.google.com/presentation/d/156WpBF_rGvf4Ecg19oM1fyR51g4FAmHV3Zs0WLukrLQ/edit?usp=sharing
 response_type: bookmark
-dt_published: "2023-12-11 20:13"
+dt_published: "2023-12-11 20:13 -05:00"
 dt_updated: "2023-12-11 20:13 -05:00"
 tags: ["ai"]
 ---

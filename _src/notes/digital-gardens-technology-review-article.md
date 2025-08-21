@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Cultivating digital gardens"
-published_date: "10/03/2021 09:57 PM"
+published_date: "10/03/2021 09:57 PM -05:00"
 tags: ["indieweb","digitalgarden","website","internet"]
 ---
 

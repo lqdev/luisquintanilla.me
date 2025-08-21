@@ -2,7 +2,7 @@
 title: "Birthday Gift - I want you to blog"
 targeturl: https://ma.tt/2024/01/birthday-gift/
 response_type: reshare
-dt_published: "2024-01-03 00:16"
+dt_published: "2024-01-03 00:16 -05:00"
 dt_updated: "2024-01-03 00:16 -05:00"
 tags: ["blogging","wordpress","writing","community"]
 ---

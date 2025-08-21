@@ -2,7 +2,7 @@
 title: "1% Rule"
 targeturl: https://en.wikipedia.org/wiki/1%25_rule 
 response_type: bookmark
-dt_published: "2022-09-21 12:39"
+dt_published: "2022-09-21 12:39 -05:00"
 dt_updated: "2022-09-21 12:39 -05:00"
 ---
 

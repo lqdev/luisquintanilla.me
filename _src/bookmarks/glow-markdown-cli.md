@@ -2,7 +2,7 @@
 title: "Glow | GitHub"
 targeturl: https://github.com/charmbracelet/glow 
 response_type: bookmark
-dt_published: "2022-12-07 18:05"
+dt_published: "2022-12-07 18:05 -05:00"
 dt_updated: "2022-12-07 18:05 -05:00"
 ---
 

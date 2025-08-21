@@ -2,7 +2,7 @@
 title: "HuggingFace AI Agents Course"
 targeturl: https://huggingface.co/learn/agents-course/unit0/introduction
 response_type: bookmark
-dt_published: "2025-02-10 17:20"
+dt_published: "2025-02-10 17:20 -05:00"
 dt_updated: "2025-02-10 17:20 -05:00"
 tags: ["huggingface","ai","agents","course"]
 ---

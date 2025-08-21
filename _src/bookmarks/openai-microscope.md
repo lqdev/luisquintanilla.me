@@ -2,7 +2,7 @@
 title: "OpenAI Microscope"
 targeturl: https://openai.com/research/microscope
 response_type: bookmark
-dt_published: "2024-01-23 22:15"
+dt_published: "2024-01-23 22:15 -05:00"
 dt_updated: "2024-01-23 22:15 -05:00"
 tags: ["openai","interpretability","ai","generativeai","visualization"]
 ---

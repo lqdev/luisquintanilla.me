@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Blogroll discovery enabled"
-published_date: "2024-05-25 22:44"
+published_date: "2024-05-25 22:44 -05:00"
 tags: ["blogroll","opml","rss","indieweb","openweb","socialweb","personalweb"]
 ---
 

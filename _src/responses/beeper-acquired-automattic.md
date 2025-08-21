@@ -2,7 +2,7 @@
 title: "Beeper was just acquired by Automattic"
 targeturl: https://www.theverge.com/2024/4/9/24124179/beeper-app-automattic-acquisition-matrix-messaging
 response_type: reshare
-dt_published: "2024-04-09 22:06"
+dt_published: "2024-04-09 22:06 -05:00"
 dt_updated: "2024-04-09 22:06 -05:00"
 tags: ["beeper","messaging","automattic","matrix"]
 ---

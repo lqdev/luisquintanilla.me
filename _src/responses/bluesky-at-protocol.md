@@ -2,7 +2,7 @@
 title: "Bluesky - The Authenticated Transport (AT) Protocol"
 targeturl: https://blueskyweb.org/blog/10-18-2022-the-at-protocol 
 response_type: reshare
-dt_published: "2022-10-18 17:23"
+dt_published: "2022-10-18 17:23 -05:00"
 dt_updated: "2022-10-18 17:23 -05:00"
 ---
 

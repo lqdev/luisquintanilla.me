@@ -2,7 +2,7 @@
 title: "Aoudaghost, unveiling the lost economic hub of the Sahara"
 targeturl: https://wildmanlife.com/aoudaghost-economic-hub-of-the-sahara/
 response_type: reshare
-dt_published: "2023-12-12 19:45"
+dt_published: "2023-12-12 19:45 -05:00"
 dt_updated: "2023-12-12 19:45 -05:00"
 tags: ["travel","sahara"]
 ---

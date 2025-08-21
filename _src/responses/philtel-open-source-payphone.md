@@ -2,7 +2,7 @@
 title: "How open source is revitalizing the payphone"
 targeturl: https://opensource.com/article/22/11/open-source-payphone-philtel 
 response_type: reshare
-dt_published: "2022-11-30 10:04"
+dt_published: "2022-11-30 10:04 -05:00"
 dt_updated: "2022-11-30 10:04 -05:00"
 ---
 

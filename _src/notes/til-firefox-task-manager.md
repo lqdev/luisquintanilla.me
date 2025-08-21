@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "TIL: Firefox Task Manager"
-published_date: "2022-12-01 11:24"
+published_date: "2022-12-01 11:24 -05:00"
 tags: ["firefox","browser","tools","web","internet","opensource"]
 ---
 

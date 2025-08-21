@@ -2,7 +2,7 @@
 title: "Cory Doctorow: Interoperability Can Save the Open Web"
 targeturl: https://spectrum.ieee.org/doctorow-interoperability
 response_type: bookmark
-dt_published: "2023-09-06 00:09"
+dt_published: "2023-09-06 00:09 -05:00"
 dt_updated: "2023-09-06 00:09 -05:00"
 tags: ["openweb","interoperability","internet","opensource"]
 ---

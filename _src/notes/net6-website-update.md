@@ -1,7 +1,7 @@
 ---
 post_type: "note"
 title: "Site updated to .NET 6"
-published_date: "12/22/2021 20:27"
+published_date: "12/22/2021 20:27 -05:00"
 tags: ["dotnet","website","net6","upgrade","selfhost"]
 ---
 

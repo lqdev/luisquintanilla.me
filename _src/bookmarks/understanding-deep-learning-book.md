@@ -2,7 +2,7 @@
 title: "Understanding Deep Learning"
 targeturl: https://udlbook.github.io/udlbook/
 response_type: bookmark
-dt_published: "2023-10-14 21:35"
+dt_published: "2023-10-14 21:35 -05:00"
 dt_updated: "2023-10-14 21:35 -05:00"
 tags: ["book","deeplearning","ai"]
 ---

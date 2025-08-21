@@ -2,7 +2,7 @@
 title: "You should be using an RSS reader"
 targeturl: https://pluralistic.net/2024/10/16/keep-it-really-simple-stupid/#read-receipts-are-you-kidding-me-seriously-fuck-that-noise
 response_type: reply
-dt_published: "2024-10-18 08:54"
+dt_published: "2024-10-18 08:54 -05:00"
 dt_updated: "2024-10-18 08:54 -05:00"
 tags: ["rss","pluralistic","indieweb","protocols","openweb","freeweb","internet","smallweb"]
 ---

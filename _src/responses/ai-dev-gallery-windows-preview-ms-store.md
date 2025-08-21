@@ -2,7 +2,7 @@
 title: "AI Dev Gallery now in the Microsoft Store"
 targeturl: https://apps.microsoft.com/detail/9n9pn1mm3bd5
 response_type: reshare
-dt_published: "2025-02-15 12:02"
+dt_published: "2025-02-15 12:02 -05:00"
 dt_updated: "2025-02-15 12:02 -05:00"
 tags: ["ai","windows","dotnet","microsoft","onnx"]
 ---

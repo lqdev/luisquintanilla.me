@@ -2,7 +2,7 @@
 title: "To Everyone Who Asks For ‘Just A Little’ Of Your Time: Here’s What It Costs To Say Yes"
 targeturl: https://thoughtcatalog.com/ryan-holiday/2017/01/to-everyone-who-asks-for-just-a-little-of-your-time/
 response_type: bookmark
-dt_published: "2023-12-09 10:08"
+dt_published: "2023-12-09 10:08 -05:00"
 dt_updated: "2023-12-09 10:08 -05:00"
 tags: ["productivity","timemanagement"]
 ---

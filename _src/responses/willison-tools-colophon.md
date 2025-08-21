@@ -2,7 +2,7 @@
 title: "Simon Willison's AI-Generated Tools Colophon"
 targeturl: https://tools.simonwillison.net/colophon
 response_type: reshare
-dt_published: "2025-03-18 20:35"
+dt_published: "2025-03-18 20:35 -05:00"
 dt_updated: "2025-03-18 20:35 -05:00"
 tags: ["colophon","indieweb","ai","llm"]
 ---

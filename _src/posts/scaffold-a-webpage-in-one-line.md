@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: "Scaffolding A Web Page In One Line"
-published_date: 2018-03-10 16:07:00
+published_date: 2018-03-10 16:07:00 -05:00
 tags: [html,web development,development,tools,emmet]
 ---
 

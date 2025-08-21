@@ -2,7 +2,7 @@
 title: "Claude's Character"
 targeturl: https://www.anthropic.com/research/claude-character
 response_type: reshare
-dt_published: "2024-06-11 20:56"
+dt_published: "2024-06-11 20:56 -05:00"
 dt_updated: "2024-06-11 20:56 -05:00"
 tags: ["anthropic","claude","alignment","ai"]
 ---

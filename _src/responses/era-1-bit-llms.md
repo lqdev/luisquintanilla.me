@@ -2,7 +2,7 @@
 title: "The Era of 1-bit LLMs: All Large Language Models are in 1.58 Bits"
 targeturl: https://arxiv.org/abs/2402.17764
 response_type: reshare
-dt_published: "2024-02-28 22:03"
+dt_published: "2024-02-28 22:03 -05:00"
 dt_updated: "2024-02-28 22:03 -05:00"
 tags: ["llm","ai","bitnet","research"]
 ---

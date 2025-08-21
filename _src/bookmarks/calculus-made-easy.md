@@ -2,7 +2,7 @@
 title: "Calculus Made Easy"
 targeturl: https://calculusmadeeasy.org/
 response_type: bookmark
-dt_published: "2024-04-25 23:01"
+dt_published: "2024-04-25 23:01 -05:00"
 dt_updated: "2024-04-25 23:01 -05:00"
 tags: ["calculus","book","math"]
 ---

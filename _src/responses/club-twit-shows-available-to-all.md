@@ -2,7 +2,7 @@
 title: "Club TWiT Shows Now Open to Everyone!"
 targeturl: https://twit.tv/posts/inside-twit/club-shows-now-open-everyone
 response_type: reshare
-dt_published: "2024-02-14 22:37"
+dt_published: "2024-02-14 22:37 -05:00"
 dt_updated: "2024-02-14 22:37 -05:00"
 tags: ["twit","podcast","tech","community"]
 ---

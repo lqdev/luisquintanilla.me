@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Fury vs. Usyk"
-published_date: "2024-05-18 20:09"
+published_date: "2024-05-18 20:09 -05:00"
 tags: ["boxing","fury","usyk","heavyweight","championship"]
 ---
 

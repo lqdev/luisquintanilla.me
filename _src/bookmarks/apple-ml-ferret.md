@@ -2,7 +2,7 @@
 title: "Ferret: Refer and Ground Anything Anywhere at Any Granularity"
 targeturl: https://arxiv.org/abs/2310.07704
 response_type: bookmark
-dt_published: "2023-12-25 20:12"
+dt_published: "2023-12-25 20:12 -05:00"
 dt_updated: "2023-12-25 20:12 -05:00"
 tags: ["ai","ml","llm","mllm","largelanguagemodel","multimodal","multimodallargelanguagemodel","apple","opensource"]
 ---

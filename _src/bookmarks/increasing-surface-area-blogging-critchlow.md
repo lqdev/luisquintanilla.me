@@ -2,7 +2,7 @@
 title: "Increasing the surface area of blogging"
 targeturl: https://tomcritchlow.com/2022/04/21/new-rss/
 response_type: bookmark
-dt_published: "2023-08-24 21:25"
+dt_published: "2023-08-24 21:25 -05:00"
 dt_updated: "2023-08-24 21:25 -05:00"
 tags: ["rss","internet","blog","postcast","feeds","openweb","openstandards"]
 ---

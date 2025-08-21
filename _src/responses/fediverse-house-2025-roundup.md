@@ -2,7 +2,7 @@
 title: "Fediverse House 2025 Roundup"
 targeturl: https://about.flipboard.com/fediverse/fediverse-house-2025-roundup/
 response_type: star
-dt_published: "2025-05-09 20:36"
+dt_published: "2025-05-09 20:36 -05:00"
 dt_updated: "2025-05-09 20:36 -05:00"
 tags: ["fediverse","conference","indieweb","openweb"]
 ---

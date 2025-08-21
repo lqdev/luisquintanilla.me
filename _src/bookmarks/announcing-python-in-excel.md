@@ -2,7 +2,7 @@
 title: "Announcing Python in Excel"
 targeturl:  https://techcommunity.microsoft.com/t5/excel-blog/announcing-python-in-excel-combining-the-power-of-python-and-the/ba-p/3893439
 response_type: bookmark
-dt_published: "2023-08-22 17:38"
+dt_published: "2023-08-22 17:38 -05:00"
 dt_updated: "2023-08-22 17:38 -05:00"
 tags: ["python","excel","dataanalytics","ai"]
 ---

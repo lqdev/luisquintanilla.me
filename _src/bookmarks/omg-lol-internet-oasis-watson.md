@@ -2,7 +2,7 @@
 title: "omg.lol: an oasis on the internet"
 targeturl: https://blakewatson.com/journal/omg-lol-an-oasis-on-the-internet/
 response_type: bookmark
-dt_published: "2023-12-11 08:51"
+dt_published: "2023-12-11 08:51 -05:00"
 dt_updated: "2023-12-11 08:51 -05:00"
 tags: ["web","community"]
 ---

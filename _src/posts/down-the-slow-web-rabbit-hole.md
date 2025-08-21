@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "Down the Slow / Quiet Web Rabbit Hole"
 description: "Ramblings on a web surfing journey down the alternate web"
-published_date: "2023-09-23 23:36"
+published_date: "2023-09-23 23:36 -05:00"
 tags: ["blogs","indieweb","internet","slowweb","quietweb"]
 ---
 

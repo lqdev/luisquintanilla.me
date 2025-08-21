@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Growing ActivityPub adoption"
-published_date: "2023-12-18 20:28"
+published_date: "2023-12-18 20:28 -05:00"
 tags: ["activitypub","fediverse","openweb","protocols","internet","web"]
 ---
 

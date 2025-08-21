@@ -2,7 +2,7 @@
 title: "Against Waldenponding"
 targeturl: https://studio.ribbonfarm.com/p/against-waldenponding 
 response_type: bookmark
-dt_published: "2023-08-24 21:43"
+dt_published: "2023-08-24 21:43 -05:00"
 dt_updated: "2023-08-24 21:43 -05:00"
 tags: ["internet","society","technology"]
 ---

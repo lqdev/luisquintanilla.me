@@ -2,7 +2,7 @@
 title: "IPEX-LLM"
 targeturl: https://github.com/intel-analytics/ipex-llm
 response_type: reshare
-dt_published: "2024-04-04 11:05"
+dt_published: "2024-04-04 11:05 -05:00"
 dt_updated: "2024-04-04 11:05 -05:00"
 tags: ["intel","llm","pytorch","cpu","gpu"]
 ---

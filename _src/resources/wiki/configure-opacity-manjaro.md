@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Configure opacity - Manjaro"
-last_updated_date: "12/11/2022 18:56"
+last_updated_date: "12/11/2022 18:56 -05:00"
 tags: i3,wm,linux,manjaro,kitty,terminal,wiki,configuration,picom
 ---
 

@@ -2,7 +2,7 @@
 title: "GraphRAG: Unlocking LLM discovery on narrative private data "
 targeturl: https://www.microsoft.com/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/
 response_type: bookmark
-dt_published: "2024-02-13 21:50"
+dt_published: "2024-02-13 21:50 -05:00"
 dt_updated: "2024-02-13 21:50 -05:00"
 tags: ["research","ai","rag","llm","data","microsoft"]
 ---

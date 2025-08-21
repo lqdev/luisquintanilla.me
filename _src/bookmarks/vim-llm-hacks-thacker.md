@@ -2,7 +2,7 @@
 title: "vim + llm = 🔥"
 targeturl: http://josephthacker.com/ai/2023/09/18/vim-llm-hacks.html
 response_type: bookmark
-dt_published: "2023-09-25 20:39"
+dt_published: "2023-09-25 20:39 -05:00"
 dt_updated: "2023-09-25 20:39 -05:00"
 tags: ["vi","linux","llm","ai","softwaredevelopment"]
 ---

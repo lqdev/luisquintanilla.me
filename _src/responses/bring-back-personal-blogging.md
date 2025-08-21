@@ -2,7 +2,7 @@
 title: "Bring Back Personal Blogging"
 targeturl: https://www.theverge.com/23513418/bring-back-personal-blogging 
 response_type: star
-dt_published: "2023-01-03 22:20"
+dt_published: "2023-01-03 22:20 -05:00"
 dt_updated: "2023-01-03 22:20 -05:00"
 ---
 

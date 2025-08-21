@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Why does Spotify need my full address?"
-published_date: "2025-01-14 19:25"
+published_date: "2025-01-14 19:25 -05:00"
 tags: ["spotify","privacy"]
 ---
 

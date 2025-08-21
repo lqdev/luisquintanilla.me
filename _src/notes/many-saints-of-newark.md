@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "The Many Saints of Newark"
-published_date: "10/02/2021 08:19 PM"
+published_date: "10/02/2021 08:19 PM -05:00"
 tags: ["sopranos","movie","newjersey","newark","nj"]
 ---
 

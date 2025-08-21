@@ -2,7 +2,7 @@
 title: "Automattic is acquiring Texts and betting big on the future of messaging"
 targeturl: https://www.theverge.com/2023/10/24/23928685/automattic-texts-acquisition-universal-messaging
 response_type: reshare
-dt_published: "2023-10-24 09:16"
+dt_published: "2023-10-24 09:16 -05:00"
 dt_updated: "2023-10-24 09:16 -05:00"
 tags: ["messaging","interop","decentralization","opensource"]
 ---

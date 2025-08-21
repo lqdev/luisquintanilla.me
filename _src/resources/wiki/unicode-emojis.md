@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Unicode Emojis"
-last_updated_date: "09/03/2022 19:26"
+last_updated_date: "09/03/2022 19:26 -05:00"
 tags: technology, web, unicode, internet, opensource, emojis 
 ---
 

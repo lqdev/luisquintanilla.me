@@ -2,7 +2,7 @@
 title: "The Future of RSS is Textcasting"
 targeturl: https://kottke.org/23/11/the-future-of-rss-is-textcasting-1
 response_type: bookmark
-dt_published: "2023-12-11 18:40"
+dt_published: "2023-12-11 18:40 -05:00"
 dt_updated: "2023-12-11 18:40 -05:00"
 tags: ["rss","openweb","internet","socialmedia"]
 ---

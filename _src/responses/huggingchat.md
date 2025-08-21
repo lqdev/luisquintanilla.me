@@ -2,7 +2,7 @@
 title: "HuggingChat"
 targeturl: https://huggingface.co/chat/assistants
 response_type: reshare
-dt_published: "2024-02-21 14:38"
+dt_published: "2024-02-21 14:38 -05:00"
 dt_updated: "2024-02-21 14:38 -05:00"
 tags: ["huggingface","assistants","ai","chat","opensource"]
 ---

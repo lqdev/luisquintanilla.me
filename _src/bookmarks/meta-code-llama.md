@@ -2,7 +2,7 @@
 title: "Introducing Code Llama, a state-of-the-art large language model for coding"
 targeturl: https://ai.meta.com/blog/code-llama-large-language-model-coding/
 response_type: bookmark
-dt_published: "2023-08-24 12:43"
+dt_published: "2023-08-24 12:43 -05:00"
 dt_updated: "2023-08-24 12:43 -05:00"
 tags: ["ai","llm","llama","code","opensource","meta"]
 ---

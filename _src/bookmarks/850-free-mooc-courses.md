@@ -2,7 +2,7 @@
 title: "MOOC - 850+ Free Courses"
 targeturl: https://www.freecodecamp.org/news/new-online-courses/ 
 response_type: bookmark
-dt_published: "2022-09-14 09:14"
+dt_published: "2022-09-14 09:14 -05:00"
 dt_updated: "2022-09-14 09:14 -05:00"
 ---
 

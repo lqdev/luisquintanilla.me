@@ -2,7 +2,7 @@
 title: "Google Podcasts is gone — and so is my faith in Google"
 targeturl: https://www.theverge.com/2024/4/2/24118873/google-podcasts-shutdown-graveyard
 response_type: reply
-dt_published: "2024-04-02 22:54"
+dt_published: "2024-04-02 22:54 -05:00"
 dt_updated: "2024-04-02 22:54 -05:00"
 tags: ["google","podcasts","youtube","audio","opensource","rss"]
 ---

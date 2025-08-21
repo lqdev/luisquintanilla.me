@@ -2,7 +2,7 @@
 title: "T-Mobile Sidekick’s Jump button made mobile multitasking easy"
 targeturl: https://www.theverge.com/24115039/danger-hiptop-t-mobile-sidekick-jump-button
 response_type: reshare
-dt_published: "2024-04-01 20:27"
+dt_published: "2024-04-01 20:27 -05:00"
 dt_updated: "2024-04-01 20:27 -05:00"
 tags: ["tmobile","nostalgia","sidekick","tmobile","phones","smartphones","productivity","mobile","cellphones","handhelds"]
 ---

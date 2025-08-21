@@ -2,7 +2,7 @@
 title: "404 Media Now Has a Full Text RSS Feed"
 targeturl: https://www.404media.co/404-media-now-has-a-full-text-rss-feed/
 response_type: star
-dt_published: "2024-03-26 21:16"
+dt_published: "2024-03-26 21:16 -05:00"
 dt_updated: "2024-03-26 21:16 -05:00"
 tags: ["rss","404media","ghost","404","media","protocols","opensource","technology"]
 ---

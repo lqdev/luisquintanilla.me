@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Podcast management with RSS and VLC"
-published_date: "11/05/2021 10:27"
+published_date: "11/05/2021 10:27 -05:00"
 tags: ["rss","vlc","podcast","media","audio"]
 ---
 

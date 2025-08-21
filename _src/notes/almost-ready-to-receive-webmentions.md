@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "ALMOST ready to receive Webmentions"
-published_date: "2022-10-06 22:29"
+published_date: "2022-10-06 22:29 -05:00"
 tags: ["webmentions","indieweb","comments"]
 ---
 

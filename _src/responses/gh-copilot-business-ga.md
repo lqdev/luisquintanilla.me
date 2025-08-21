@@ -2,7 +2,7 @@
 title: "GitHub Copilot is generally available for businesses"
 targeturl: https://github.blog/2022-12-07-github-copilot-is-generally-available-for-businesses/
 response_type: reshare
-dt_published: "2022-12-07 17:59"
+dt_published: "2022-12-07 17:59 -05:00"
 dt_updated: "2022-12-07 17:59 -05:00"
 ---
 

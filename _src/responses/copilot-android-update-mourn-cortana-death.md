@@ -2,7 +2,7 @@
 title: "The latest Microsoft Copilot update on Android makes me mourn the death of Cortana"
 targeturl: https://www.windowscentral.com/software-apps/the-latest-microsoft-copilot-update-on-android-makes-me-mourn-the-death-of-cortana
 response_type: reply
-dt_published: "2024-02-27 21:04"
+dt_published: "2024-02-27 21:04 -05:00"
 dt_updated: "2024-02-27 21:04 -05:00"
 tags: ["cortana","copilot","ai","microsoft","virtualassistant","assistant","chatbot"]
 ---

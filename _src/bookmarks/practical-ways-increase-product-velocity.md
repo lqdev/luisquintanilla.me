@@ -2,7 +2,7 @@
 title: "Practical Ways To Increase Product Velocity"
 targeturl: https://staysaasy.com/management/2023/12/07/accelerating-product-velocity.html
 response_type: bookmark
-dt_published: "2023-12-09 10:03"
+dt_published: "2023-12-09 10:03 -05:00"
 dt_updated: "2023-12-09 10:03 -05:00"
 tags: ["product", "productivity"]
 ---

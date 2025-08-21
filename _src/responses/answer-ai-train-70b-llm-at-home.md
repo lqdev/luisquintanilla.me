@@ -2,7 +2,7 @@
 title: "You can now train a 70b language model at home"
 targeturl: https://www.answer.ai/posts/2024-03-06-fsdp-qlora.html
 response_type: reshare
-dt_published: "2024-03-08 12:13"
+dt_published: "2024-03-08 12:13 -05:00"
 dt_updated: "2024-03-08 12:13 -05:00"
 tags: ["ai","llm","qlora","gpu","nvidia","finetuning"]
 ---

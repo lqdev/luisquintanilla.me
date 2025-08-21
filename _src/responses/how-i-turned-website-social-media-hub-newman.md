@@ -2,7 +2,7 @@
 title: "How I turned my blog into a social media hub"
 targeturl: https://www.fastcompany.com/91235471/how-i-turned-my-blog-into-a-social-media-hub
 response_type: reshare
-dt_published: "2024-12-05 19:22"
+dt_published: "2024-12-05 19:22 -05:00"
 dt_updated: "2024-12-05 19:22 -05:00"
 tags: ["indieweb","social","microblog","blogging","internet","web","socialmedia"]
 ---

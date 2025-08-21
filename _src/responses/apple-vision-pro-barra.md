@@ -2,7 +2,7 @@
 title: "Apple Vision Pro Perspectives - Hugo Barra"
 targeturl: https://hugo.blog/2024/03/11/vision-pro/
 response_type: reshare
-dt_published: "2024-03-15 21:12"
+dt_published: "2024-03-15 21:12 -05:00"
 dt_updated: "2024-03-15 21:12 -05:00"
 tags: ["apple","visionpro","vr","ar"]
 ---

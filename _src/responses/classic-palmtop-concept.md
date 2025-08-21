@@ -2,7 +2,7 @@
 title: "Classic Palmtop"
 targeturl: https://www.artstation.com/artwork/aoDzL0
 response_type: reshare
-dt_published: "2023-12-22 09:28"
+dt_published: "2023-12-22 09:28 -05:00"
 dt_updated: "2023-12-22 09:28 -05:00"
 tags: ["concept","tech","cyberpunk"]
 ---

@@ -2,7 +2,7 @@
 title: "Remembering the 90's Video Store"
 targeturl: https://amerpie.lol/2024/04/21/in-the-prestreaming.html
 response_type: reply
-dt_published: "2024-04-25 22:31"
+dt_published: "2024-04-25 22:31 -05:00"
 dt_updated: "2024-04-25 22:31 -05:00"
 tags: ["nostalgia","90s","videos","blockbuster"]
 ---

@@ -2,7 +2,7 @@
 title: "Orca: Progressive Learning from Complex Explanation Traces of GPT-4"
 targeturl: https://arxiv.org/pdf/2306.02707.pdf
 response_type: bookmark
-dt_published: "2023-06-06 23:29"
+dt_published: "2023-06-06 23:29 -05:00"
 dt_updated: "2023-06-06 23:29 -05:00"
 tags: ["ai","finetuning","gpt"]
 ---

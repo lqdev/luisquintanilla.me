@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "College Football Week 1 Notes"
-published_date: "2023-09-06 00:17"
+published_date: "2023-09-06 00:17 -05:00"
 tags: ["sports","football"]
 ---
 

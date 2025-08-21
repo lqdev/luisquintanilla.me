@@ -2,7 +2,7 @@
 title: "Ultravox - An open, fast, and extensible multimodal LLM"
 targeturl: https://github.com/fixie-ai/ultravox
 response_type: reshare
-dt_published: "2024-06-11 20:51"
+dt_published: "2024-06-11 20:51 -05:00"
 dt_updated: "2024-06-11 20:51 -05:00"
 tags: ["ai","multimodal","llm"]
 ---

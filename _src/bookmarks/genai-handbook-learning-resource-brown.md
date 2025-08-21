@@ -2,7 +2,7 @@
 title: "Generative AI Handbook: A Roadmap for Learning Resources"
 targeturl: https://genai-handbook.github.io/
 response_type: bookmark
-dt_published: "2024-06-06 22:18"
+dt_published: "2024-06-06 22:18 -05:00"
 dt_updated: "2024-06-06 22:18 -05:00"
 tags: ["generativeai","genai","handbook","learning","resource"]
 ---

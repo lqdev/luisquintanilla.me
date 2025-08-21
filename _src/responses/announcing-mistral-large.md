@@ -2,7 +2,7 @@
 title: "Announcing Mistral Large"
 targeturl: https://mistral.ai/news/mistral-large/
 response_type: reshare
-dt_published: "2024-02-26 15:39"
+dt_published: "2024-02-26 15:39 -05:00"
 dt_updated: "2024-02-26 15:39 -05:00"
 tags: ["ai","mistral","llm","opensource","azure"]
 ---

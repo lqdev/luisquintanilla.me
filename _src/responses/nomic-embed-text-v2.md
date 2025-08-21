@@ -2,7 +2,7 @@
 title: "Nomic Embed Text V2: An Open Source, Multilingual, Mixture-of-Experts Embedding Model"
 targeturl: https://www.nomic.ai/blog/posts/nomic-embed-text-v2
 response_type: reshare
-dt_published: "2025-02-24 20:47"
+dt_published: "2025-02-24 20:47 -05:00"
 dt_updated: "2025-02-24 20:47 -05:00"
 tags: ["nomic","ai","embeddings"]
 ---

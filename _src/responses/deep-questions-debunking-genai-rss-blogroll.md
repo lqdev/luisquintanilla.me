@@ -2,7 +2,7 @@
 title: "Deep Questions - Debunking AI Model Capabilities / Distributed Webs of Trust"
 targeturl: https://www.youtube.com/watch?v=OvlfCW3Ec1g
 response_type: reply
-dt_published: "2024-06-24 20:40"
+dt_published: "2024-06-24 20:40 -05:00"
 dt_updated: "2024-06-24 20:40 -05:00"
 tags: ["ai","deepquestions","rss","calnewport","podcast","blogroll","opml","social","socialmedia","distributedweb"]
 ---

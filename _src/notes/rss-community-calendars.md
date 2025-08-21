@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Shared calendars and RSS"
-published_date: "2023-11-11 13:34"
+published_date: "2023-11-11 13:34 -05:00"
 tags: ["rss","calendars","protocols","community"]
 ---
 

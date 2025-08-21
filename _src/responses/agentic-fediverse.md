@@ -2,7 +2,7 @@
 title: "Agentic Fediverse"
 targeturl: https://github.com/muni-town/agentic-fediverse
 response_type: reshare
-dt_published: "2024-12-17 19:44"
+dt_published: "2024-12-17 19:44 -05:00"
 dt_updated: "2024-12-17 19:44 -05:00"
 tags: ["fediverse","munitown","agents","agentic","activitypub","protocols","socialweb"]
 ---

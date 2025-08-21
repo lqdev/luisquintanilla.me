@@ -2,7 +2,7 @@
 title: "From Deep Learning Foundations to Stable Diffusion"
 targeturl: https://www.fast.ai/posts/part2-2022-preview.html
 response_type: bookmark
-dt_published: "2022-10-19 23:52"
+dt_published: "2022-10-19 23:52 -05:00"
 dt_updated: "2022-10-19 23:52 -05:00"
 ---
 

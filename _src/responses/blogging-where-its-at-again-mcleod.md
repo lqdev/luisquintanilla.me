@@ -2,7 +2,7 @@
 title: "Blogging is where it's at, again"
 targeturl: https://chrismcleod.dev/blog/blogging-is-where-its-at-again/
 response_type: star
-dt_published: "2023-12-06 21:02"
+dt_published: "2023-12-06 21:02 -05:00"
 dt_updated: "2023-12-06 21:02 -05:00"
 tags: ["blogging","socialmedia","rss","community",]
 ---

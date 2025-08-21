@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Downsides of untitled RSS items"
-published_date: "2023-02-23 21:11"
+published_date: "2023-02-23 21:11 -05:00"
 tags: [mastodon,rss,emacs]
 ---
 

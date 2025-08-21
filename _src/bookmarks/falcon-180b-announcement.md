@@ -2,7 +2,7 @@
 title: "Spread Your Wings: Falcon 180B is here "
 targeturl: https://huggingface.co/blog/falcon-180b
 response_type: bookmark
-dt_published: "2023-09-12 10:35"
+dt_published: "2023-09-12 10:35 -05:00"
 dt_updated: "2023-09-12 10:35 -05:00"
 tags: ["ai","llm","opensource","huggingface"]
 ---

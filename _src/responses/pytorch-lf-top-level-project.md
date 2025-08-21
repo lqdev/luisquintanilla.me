@@ -2,7 +2,7 @@
 title: "PyTorch Joins Linux Foundation as Top Level Project"
 targeturl: https://pytorch.org/blog/PyTorchfoundation/
 response_type: reshare
-dt_published: "2022-10-20 01:07"
+dt_published: "2022-10-20 01:07 -05:00"
 dt_updated: "2022-10-20 01:07 -05:00"
 ---
 

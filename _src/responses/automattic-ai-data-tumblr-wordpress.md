@@ -2,7 +2,7 @@
 title: "Tumblr and WordPress to Sell Users’ Data to Train AI Tools"
 targeturl: https://www.404media.co/tumblr-and-wordpress-to-sell-users-data-to-train-ai-tools/
 response_type: reply
-dt_published: "2024-02-27 21:09"
+dt_published: "2024-02-27 21:09 -05:00"
 dt_updated: "2024-02-27 21:09 -05:00"
 tags: ["tumblr","automattic","wordpress","ai"]
 ---

@@ -2,7 +2,7 @@
 title: "Mistral 7B Model"
 targeturl: https://mistral.ai/
 response_type: bookmark
-dt_published: "2023-09-28 10:16"
+dt_published: "2023-09-28 10:16 -05:00"
 dt_updated: "2023-09-28 10:16 -05:00"
 tags: ["ai","llm","opensource"]
 ---

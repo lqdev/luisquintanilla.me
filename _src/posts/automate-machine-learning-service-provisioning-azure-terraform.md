@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: Automating Resource Provisioning for Machine Learning in Azure with Cognitive Services and Terraform
-published_date: 2019-01-05 22:58:39
+published_date: 2019-01-05 22:58:39 -05:00
 tags: [azure,cognitive services,terraform,machine learning,cloud]
 ---
 

@@ -2,7 +2,7 @@
 title: "ChatGPT Prompt Engineering for Developers"
 targeturl: https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/ 
 response_type: bookmark
-dt_published: "2023-05-11 20:29"
+dt_published: "2023-05-11 20:29 -05:00"
 dt_updated: "2023-05-11 20:29 -05:00"
 tags: ["ai","gpt","promptengineering"]
 ---

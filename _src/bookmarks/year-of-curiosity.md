@@ -2,7 +2,7 @@
 title: "A Year of Curiosity"
 targeturl: https://nesslabs.com/a-year-of-curiosity
 response_type: bookmark
-dt_published: "2025-01-08 21:27"
+dt_published: "2025-01-08 21:27 -05:00"
 dt_updated: "2025-01-08 21:27 -05:00"
 tags: ["innovation","exploration","curiosity","growth"]
 ---

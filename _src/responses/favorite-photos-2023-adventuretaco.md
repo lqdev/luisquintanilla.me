@@ -2,7 +2,7 @@
 title: "AdventureTaco - Favorite Photos 2023 Edition"
 targeturl: https://adventuretaco.com/favorite-photos-2023-edition/
 response_type: reshare
-dt_published: "2024-01-06 21:33"
+dt_published: "2024-01-06 21:33 -05:00"
 dt_updated: "2024-01-06 21:33 -05:00"
 tags: ["landscapes","photography","overlanding","adventure","photos","desert","mountain"]
 ---

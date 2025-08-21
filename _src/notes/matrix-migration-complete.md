@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Success! Matrix migration complete"
-published_date: "10/09/2021 12:23 AM"
+published_date: "10/09/2021 12:23 AM -05:00"
 tags: ["selfhost","matrix","messaging","opensource","element","synapse"]
 ---
 

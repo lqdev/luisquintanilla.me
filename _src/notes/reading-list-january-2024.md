@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Building up the reading backlog"
-published_date: "2024-01-16 20:36"
+published_date: "2024-01-16 20:36 -05:00"
 tags: ["books","reading","library"]
 ---
 

@@ -2,7 +2,7 @@
 title: "My AI Timelines Have Sped Up (Again)"
 targeturl: https://www.alexirpan.com/2024/01/10/ai-timelines-2024.html
 response_type: bookmark
-dt_published: "2024-01-11 10:07"
+dt_published: "2024-01-11 10:07 -05:00"
 dt_updated: "2024-01-11 10:07 -05:00"
 tags: ["ai","predictions","agi","data","llm","technology","ml","computervision"]
 ---

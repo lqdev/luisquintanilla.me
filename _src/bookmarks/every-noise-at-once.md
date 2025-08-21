@@ -2,7 +2,7 @@
 title: "Every Noise at Once"
 targeturl: https://everynoise.com/engenremap.html
 response_type: bookmark
-dt_published: "2024-02-13 21:19"
+dt_published: "2024-02-13 21:19 -05:00"
 dt_updated: "2024-02-13 21:19 -05:00"
 tags: ["music","genres","discovery","spotify"]
 ---

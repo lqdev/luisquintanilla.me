@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "New Forums Page"
-published_date: "2024-03-23 12:38"
+published_date: "2024-03-23 12:38 -05:00"
 tags: ["forums","community","rss","web","openweb","internet","indieweb"]
 ---
 

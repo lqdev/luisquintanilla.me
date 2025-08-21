@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "ATOM Weather Alerts"
-published_date: "04/27/2022 20:19"
+published_date: "04/27/2022 20:19 -05:00"
 tags: ["rss","atom","weather","alerts"]
 ---
 

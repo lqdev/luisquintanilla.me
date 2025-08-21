@@ -2,7 +2,7 @@
 title: "SPQA: The AI-based Architecture That’ll Replace Most Existing Software"
 targeturl: https://danielmiessler.com/blog/spqa-ai-architecture-replace-existing-software/
 response_type: bookmark
-dt_published: "2023-03-14 10:52"
+dt_published: "2023-03-14 10:52 -05:00"
 dt_updated: "2023-03-14 10:52 -05:00"
 ---
 

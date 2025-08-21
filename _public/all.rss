@@ -4,8 +4,51 @@
     <title>Luis Quintanilla - All Updates</title>
     <link>https://www.luisquintanilla.me/feed</link>
     <description>All content updates from Luis Quintanilla's website</description>
-    <lastBuildDate>2025-08-20 19:46 -05:00</lastBuildDate>
+    <lastBuildDate>2025-08-20 23:59 -05:00</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Omnineural 4B</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;OmniNeural-4B is the first multimodal AI model built natively for NPUs — handling text, images, and audio in one model.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/omnineural-4b</link>
+      <guid>https://www.luisquintanilla.me/responses/omnineural-4b</guid>
+      <pubDate>2025-08-20 23:59 -05:00</pubDate>
+      <category>ai</category>
+      <category>npu</category>
+      <category>multimodal</category>
+    </item>
+    <item>
+      <title>Agents.md</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A simple, open format for guiding coding agents&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Think of AGENTS.md as a README for agents: a dedicated, predictable place to provide the context and instructions to help AI coding agents work on your project.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/agentsmd</link>
+      <guid>https://www.luisquintanilla.me/responses/agentsmd</guid>
+      <pubDate>2025-08-20 22:53 -05:00</pubDate>
+      <category>ai</category>
+      <category>agents</category>
+      <category>openai</category>
+    </item>
+    <item>
+      <title>College football is back (2025)</title>
+      <description>&lt;![CDATA[&lt;p&gt;It's that time of the year again.&lt;/p&gt;
+&lt;p&gt;Week 1 is going to be nuts with a top 5 matchup and several top 10 games.&lt;/p&gt;
+&lt;p&gt;Looks like Penn State's schedule this year is going to be lighter than usual so they may have a shot at the title.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/notes/college-football-is-back-2025</link>
+      <guid>https://www.luisquintanilla.me/notes/college-football-is-back-2025</guid>
+      <pubDate>2025-08-20 21:54 -05:00</pubDate>
+      <category>football</category>
+      <category>ncaaf</category>
+      <category>psu</category>
+      <category>pennstate</category>
+    </item>
     <item>
       <title>Seemingly Conscious AI</title>
       <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
@@ -31,7 +74,7 @@
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/responses/reclaim-control</link>
       <guid>https://www.luisquintanilla.me/responses/reclaim-control</guid>
-      <pubDate>2025-08-19 21:41</pubDate>
+      <pubDate>2025-08-19 21:41 -05:00</pubDate>
       <category>digitalsovereignty</category>
       <category>reclaimcontrol</category>
     </item>
@@ -487,7 +530,7 @@ az containerapp logs show \
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/responses/introducing-gemma-3-270m</link>
       <guid>https://www.luisquintanilla.me/responses/introducing-gemma-3-270m</guid>
-      <pubDate>2025-08-14 12:40</pubDate>
+      <pubDate>2025-08-14 12:40 -05:00</pubDate>
       <category>ai</category>
       <category>google</category>
       <category>gemma</category>
@@ -614,7 +657,7 @@ Overall I'm happy with my solution but there are a few improvements I'd like to 
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/responses/i-deleted-my-second-brain</link>
       <guid>https://www.luisquintanilla.me/responses/i-deleted-my-second-brain</guid>
-      <pubDate>2025-08-13 08:03</pubDate>
+      <pubDate>2025-08-13 08:03 -05:00</pubDate>
       <category>pkm</category>
       <category>notes</category>
       <category>secondbrain</category>
@@ -639,7 +682,7 @@ Overall I'm happy with my solution but there are a few improvements I'd like to 
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/responses/engineering-for-slow-internet</link>
       <guid>https://www.luisquintanilla.me/responses/engineering-for-slow-internet</guid>
-      <pubDate>2025-08-12 08:41</pubDate>
+      <pubDate>2025-08-12 08:41 -05:00</pubDate>
       <category>slowweb</category>
       <category>performance</category>
       <category>internet</category>
@@ -653,7 +696,7 @@ Overall I'm happy with my solution but there are a few improvements I'd like to 
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/responses/awesome-self-hosted</link>
       <guid>https://www.luisquintanilla.me/responses/awesome-self-hosted</guid>
-      <pubDate>2025-08-11 23:24</pubDate>
+      <pubDate>2025-08-11 23:24 -05:00</pubDate>
       <category>selfhosting</category>
       <category>opensource</category>
       <category>FOSS</category>
@@ -672,47 +715,10 @@ Overall I'm happy with my solution but there are a few improvements I'd like to 
 ]]&gt;</description>
       <link>https://www.luisquintanilla.me/responses/stop-saving-everything</link>
       <guid>https://www.luisquintanilla.me/responses/stop-saving-everything</guid>
-      <pubDate>2025-08-11 23:00</pubDate>
+      <pubDate>2025-08-11 23:00 -05:00</pubDate>
       <category>pkm</category>
       <category>productivity</category>
       <category>notetaking</category>
-    </item>
-    <item>
-      <title>New text-first site and search are live</title>
-      <description>&lt;![CDATA[&lt;p&gt;Just iterated on another version of the website.&lt;/p&gt;
-&lt;p&gt;The major change is that there's now a text-first version of the website for minimal and resource-constrained environments over at &lt;a href="https://www.luisquintanilla.me/text"&gt;/text&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I've also added search functionality, which you can find at &lt;a href="https://www.luisquintanilla.me/search"&gt;/search&lt;/a&gt;&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/notes/new-text-first-site-and-search-are-live</link>
-      <guid>https://www.luisquintanilla.me/notes/new-text-first-site-and-search-are-live</guid>
-      <pubDate>2025-08-11 20:57 -05:00</pubDate>
-      <category>plaintext</category>
-      <category>indieweb</category>
-      <category>website</category>
-    </item>
-    <item>
-      <title>URL Town</title>
-      <description>&lt;![CDATA[[bookmark] &lt;p&gt;Love to see projects like this.&lt;/p&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;url.town doesn’t have any overly lofty ambitions; we’re just building our own directory of really nice websites. We’re not trying to fully recreate the original Yahoo! or DMOZ directories. We’re not aiming for some astronomical number of links. This is just one space on the web, tied to a community that loves to share neat things with one another. Quality matters much more than quantity. There’s no need to share everything just for the shake of sharing it; it’s much better to share things that are useful or interesting.&lt;/p&gt;
-&lt;/blockquote&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/url-town</link>
-      <guid>https://www.luisquintanilla.me/responses/url-town</guid>
-      <pubDate>2025-08-10 23:26</pubDate>
-      <category>indieweb</category>
-      <category>websites</category>
-      <category>directory</category>
-    </item>
-    <item>
-      <title>Test mobile post</title>
-      <description>&lt;![CDATA[&lt;p&gt;Testing date fix on mobile notes&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/notes/test-mobile-post</link>
-      <guid>https://www.luisquintanilla.me/notes/test-mobile-post</guid>
-      <pubDate>2025-08-10 21:44 -05:00</pubDate>
-      <category>test</category>
-      <category>mobile</category>
     </item>
   </channel>
 </rss>

@@ -2,7 +2,7 @@
 title: "Here’s how WhatsApp plans to interoperate with other messaging apps"
 targeturl: https://www.theverge.com/2024/2/6/24063705/whatsapp-interoperability-plans-eu-dma
 response_type: reshare
-dt_published: "2024-02-06 20:03"
+dt_published: "2024-02-06 20:03 -05:00"
 dt_updated: "2024-02-06 20:03 -05:00"
 tags: ["whatsapp","messaging","interoperability","signal"]
 ---

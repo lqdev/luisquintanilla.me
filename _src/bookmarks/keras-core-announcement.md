@@ -2,7 +2,7 @@
 title: "Introducing Keras Core: Keras for TensorFlow, JAX, and PyTorch."
 targeturl: https://keras.io/keras_core/announcement/
 response_type: bookmark
-dt_published: "2023-07-11 16:22"
+dt_published: "2023-07-11 16:22 -05:00"
 dt_updated: "2023-07-11 16:22 -05:00"
 tags: ["deeplearning","ai","keras","jax","tensorflow","pytorch"]
 ---

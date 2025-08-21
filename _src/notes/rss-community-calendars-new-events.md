@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "RSS for new event notifications"
-published_date: "2023-11-12 09:52"
+published_date: "2023-11-12 09:52 -05:00"
 tags: ["rss","calendars","protocols","community"]
 ---
 

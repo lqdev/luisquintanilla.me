@@ -2,7 +2,7 @@
 title: "Quanto: a PyTorch quantization toolkit "
 targeturl: https://huggingface.co/blog/quanto-introduction
 response_type: reshare
-dt_published: "2024-03-19 22:00"
+dt_published: "2024-03-19 22:00 -05:00"
 dt_updated: "2024-03-19 22:00 -05:00"
 tags: ["huggingface","quantization","pytorch","tools","ai"]
 ---

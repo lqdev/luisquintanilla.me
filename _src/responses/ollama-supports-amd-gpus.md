@@ -2,7 +2,7 @@
 title: "Ollama now supports AMD graphics cards"
 targeturl: https://ollama.com/blog/amd-preview
 response_type: reshare
-dt_published: "2024-03-17 20:43"
+dt_published: "2024-03-17 20:43 -05:00"
 dt_updated: "2024-03-17 20:43 -05:00"
 tags: ["ollama","gpu","amd","ai","llm","opensource"]
 ---

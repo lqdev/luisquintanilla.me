@@ -2,7 +2,7 @@
 title: "Set up Your Onion Service"
 targeturl: https://community.torproject.org/onion-services/setup/
 response_type: bookmark
-dt_published: "2023-09-06 00:14"
+dt_published: "2023-09-06 00:14 -05:00"
 dt_updated: "2023-09-06 00:14 -05:00"
 tags: ["tor","internet","privacy","guide"]
 ---

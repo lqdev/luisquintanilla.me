@@ -2,7 +2,7 @@
 title: "ZeroSearch - Incentivize the Search Capability of LLMs without Searching"
 targeturl: https://alibaba-nlp.github.io/ZeroSearch/
 response_type: bookmark
-dt_published: "2025-05-09 20:31"
+dt_published: "2025-05-09 20:31 -05:00"
 dt_updated: "2025-05-09 20:31 -05:00"
 tags: ["ai","search","llm","research"]
 ---

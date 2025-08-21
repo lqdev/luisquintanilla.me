@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "TOSDR: Terms of Service CliffNotes"
-published_date: "11/16/2021 13:10"
+published_date: "11/16/2021 13:10 -05:00"
 tags: ["tos","tools","tosdr"]
 ---
 

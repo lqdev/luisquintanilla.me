@@ -2,7 +2,7 @@
 title: "What a bunch of A-list celebs taught me about how to use my phone"
 targeturl: https://www.theverge.com/24084772/celebrities-no-phone-bieber-sheeran-cruise-cera-ipad
 response_type: star
-dt_published: "2024-02-28 10:24"
+dt_published: "2024-02-28 10:24 -05:00"
 dt_updated: "2024-02-28 10:24 -05:00"
 tags: ["technology","communication","phones","smartphones","dumbphones","email","celebrities"]
 ---

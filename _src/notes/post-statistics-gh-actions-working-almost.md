@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "GitHub Actions workflow for post metrics almost works"
-published_date: "2024-01-03 00:26"
+published_date: "2024-01-03 00:26 -05:00"
 tags: ["github","cicd","blogging","automation","githubactions","fsharp","cron"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Upgraded to Mastodon 4.2.0"
-published_date: "2023-09-24 20:31"
+published_date: "2023-09-24 20:31 -05:00"
 tags: ["mastodon","fediverse","sysadmin","socialmedia","decentralization","internet","web"]
 ---
 

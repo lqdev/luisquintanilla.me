@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Penn State vs Ohio State"
-published_date: "2022-10-29 11:58"
+published_date: "2022-10-29 11:58 -05:00"
 tags: ["psu","osu","pennstate","ohiostate","ncaafb","football","ncaa","collegefootball"]
 ---
 

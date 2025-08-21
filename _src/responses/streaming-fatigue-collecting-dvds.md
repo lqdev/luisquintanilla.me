@@ -2,7 +2,7 @@
 title: "My streaming fatigue got so bad I started collecting DVDs"
 targeturl: https://www.theverge.com/24044151/streaming-subscription-prices-dvd-collection
 response_type: reply
-dt_published: "2024-02-26 15:44"
+dt_published: "2024-02-26 15:44 -05:00"
 dt_updated: "2024-02-26 15:44 -05:00"
 tags: ["streaming","media","dvds","movies","tv","physicalmedia"]
 ---

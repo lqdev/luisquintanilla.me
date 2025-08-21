@@ -2,7 +2,7 @@
 title: "Short Long Form"
 targeturl: https://manuelmoreale.com/short-long-form
 response_type: reshare
-dt_published: "2025-01-20 21:21"
+dt_published: "2025-01-20 21:21 -05:00"
 dt_updated: "2025-01-20 21:21 -05:00"
 tags: ["instagram","posts","attention"]
 ---

@@ -2,7 +2,7 @@
 title: "Today’s smart homes: the hopes and the realities"
 targeturl: https://www.theverge.com/24080426/smart-home-tech-matter-pets-kitchen-hubs-how-to
 response_type: reshare
-dt_published: "2024-03-04 23:13"
+dt_published: "2024-03-04 23:13 -05:00"
 dt_updated: "2024-03-04 23:13 -05:00"
 tags: ["iot","verge","smarthome","technology"]
 ---

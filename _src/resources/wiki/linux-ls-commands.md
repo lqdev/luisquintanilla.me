@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Linux ls Commands"
-last_updated_date: "01/02/2023 15:22"
+last_updated_date: "01/02/2023 15:22 -05:00"
 tags: linux, commandline, cli, hardware, software
 ---
 

@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Subscribed to 1042 feeds on NewsBlur"
-published_date: "2024-01-17 21:06"
+published_date: "2024-01-17 21:06 -05:00"
 tags: ["rss","newsblur","indieweb","feeds"]
 ---
 

@@ -2,7 +2,7 @@
 title: "Tildeverse"
 targeturl: https://tildeverse.org/
 response_type: bookmark
-dt_published: "2023-07-12 22:25"
+dt_published: "2023-07-12 22:25 -05:00"
 dt_updated: "2023-07-12 22:25 -05:00"
 tags: ["linux","community","retrocomputing"]
 ---

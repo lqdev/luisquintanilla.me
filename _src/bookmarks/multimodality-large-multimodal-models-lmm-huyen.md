@@ -2,7 +2,7 @@
 title: "Multimodality and Large Multimodal Models (LMMs)"
 targeturl: https://huyenchip.com/2023/10/10/multimodal.html
 response_type: bookmark
-dt_published: "2023-10-14 18:51"
+dt_published: "2023-10-14 18:51 -05:00"
 dt_updated: "2023-10-14 18:51 -05:00"
 tags: ["ai","lmm"]
 ---

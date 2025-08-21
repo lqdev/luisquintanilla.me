@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Leadership Ascension Track (LAT)"
-published_date: "2024-09-15 08:59"
+published_date: "2024-09-15 08:59 -05:00"
 tags: ["meowwolf","omegamart","art","lasvegas","las","corporate","lat","leadershipascensiontrack","source","area15","leadership","fun","conspiracy"]
 ---
 

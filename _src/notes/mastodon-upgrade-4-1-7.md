@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Mastodon 4.1.7 feels snappy"
-published_date: "2023-09-09 16:44"
+published_date: "2023-09-09 16:44 -05:00"
 tags: ["mastodon","fediverse"]
 ---
 

@@ -2,7 +2,7 @@
 title: "Making space for a handmade web"
 targeturl: https://www.figma.com/blog/making-space-for-a-handmade-web/
 response_type: reshare
-dt_published: "2025-01-18 19:25"
+dt_published: "2025-01-18 19:25 -05:00"
 dt_updated: "2025-01-18 19:25 -05:00"
 tags: ["indieweb","personalweb","internet","websites","handmadeweb"]
 ---

@@ -2,7 +2,7 @@
 title: "Introducing Raspberry Pi 5"
 targeturl: https://www.raspberrypi.com/products/raspberry-pi-5/
 response_type: bookmark
-dt_published: "2023-09-28 10:10"
+dt_published: "2023-09-28 10:10 -05:00"
 dt_updated: "2023-09-28 10:10 -05:00"
 tags: ["raspberrypi","selfhosting"]
 ---

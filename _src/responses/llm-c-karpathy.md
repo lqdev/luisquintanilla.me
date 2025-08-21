@@ -2,7 +2,7 @@
 title: "LLM training in simple, raw C/CUDA "
 targeturl: https://github.com/karpathy/llm.c
 response_type: reshare
-dt_published: "2024-04-09 22:15"
+dt_published: "2024-04-09 22:15 -05:00"
 dt_updated: "2024-04-09 22:15 -05:00"
 tags: ["llm","gpt","c","programming","learning","tutorial"]
 ---

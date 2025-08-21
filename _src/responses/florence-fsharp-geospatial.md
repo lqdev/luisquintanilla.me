@@ -2,7 +2,7 @@
 title: "Geospatial is a function of your life "
 targeturl: https://dev.to/cognipla/geospatial-is-a-function-of-your-life-1924 
 response_type: star
-dt_published: "2022-12-06 10:43"
+dt_published: "2022-12-06 10:43 -05:00"
 dt_updated: "2022-12-06 10:43 -05:00"
 ---
 

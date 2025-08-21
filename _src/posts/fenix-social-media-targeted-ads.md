@@ -2,7 +2,7 @@
 post_type: "article" 
 title: Never change targeted ads
 description: A random observation on how fascinating and disturbing targeted ads can be
-published_date: 2021-06-22 17:40:00
+published_date: 2021-06-22 17:40:00 -05:00
 tags: [random, privacy, social media, ads]
 ---
 

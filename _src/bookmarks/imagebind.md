@@ -2,7 +2,7 @@
 title: "ImageBind: One Embedding Space To Bind Them All"
 targeturl: https://ai.facebook.com/blog/imagebind-six-modalities-binding-ai/ 
 response_type: bookmark
-dt_published: "2023-05-09 21:02"
+dt_published: "2023-05-09 21:02 -05:00"
 dt_updated: "2023-05-09 21:02 -05:00"
 tags: ["ai","embeddings"]
 ---

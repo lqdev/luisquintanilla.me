@@ -2,7 +2,7 @@
 title: "The history and legacy of Visual Basic"
 targeturl: https://retool.com/visual-basic/
 response_type: bookmark
-dt_published: "2023-09-12 10:33"
+dt_published: "2023-09-12 10:33 -05:00"
 dt_updated: "2023-09-12 10:33 -05:00"
 tags: ["visualbasic","windows"]
 ---

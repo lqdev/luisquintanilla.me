@@ -1,7 +1,7 @@
 ---
 post_type: "video" 
 title: "When Planets Mate"
-published_date: "09/29/2021 07:56 PM"
+published_date: "09/29/2021 07:56 PM -05:00"
 tags: ["indie","art","video","music"]
 ---
 

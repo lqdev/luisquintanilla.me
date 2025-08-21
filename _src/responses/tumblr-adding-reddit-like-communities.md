@@ -2,7 +2,7 @@
 title: "Tumblr adds Reddit-like ‘communities’"
 targeturl: https://www.theverge.com/2024/12/13/24320336/tumblr-communities-reddit-topics-groups
 response_type: reshare
-dt_published: "2024-12-16 22:00"
+dt_published: "2024-12-16 22:00 -05:00"
 dt_updated: "2024-12-16 22:00 -05:00"
 tags: ["tumblr","reddit","communities","automattic","wordpress","activitypub","fediverse","lemmy"]
 ---

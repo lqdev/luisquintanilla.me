@@ -2,7 +2,7 @@
 title: "AI and Mass Spying"
 targeturl: https://www.schneier.com/blog/archives/2023/12/ai-and-mass-spying.html
 response_type: bookmark
-dt_published: "2023-12-05 21:12"
+dt_published: "2023-12-05 21:12 -05:00"
 dt_updated: "2023-12-05 21:12 -05:00"
 tags: ["ai","privacy","internet","surveillance"]
 ---

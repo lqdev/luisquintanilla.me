@@ -2,7 +2,7 @@
 title: "Proton and Standard Notes are joining forces "
 targeturl: https://proton.me/blog/proton-standard-notes-join-forces
 response_type: reshare
-dt_published: "2024-04-10 22:35"
+dt_published: "2024-04-10 22:35 -05:00"
 dt_updated: "2024-04-10 22:35 -05:00"
 tags: ["proton","standardnotes","notetaking","security","privacy","email","notes"]
 ---

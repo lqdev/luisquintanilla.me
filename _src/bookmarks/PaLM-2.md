@@ -2,7 +2,7 @@
 title: "PaLM 2"
 targeturl: https://ai.google/discover/palm2 
 response_type: bookmark
-dt_published: "2023-05-11 20:39"
+dt_published: "2023-05-11 20:39 -05:00"
 dt_updated: "2023-05-11 20:39 -05:00"
 tags: ["ai"]
 ---

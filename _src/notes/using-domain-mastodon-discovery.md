@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Using my domain for discovery in Mastodon"
-published_date: "2024-11-19 09:35"
+published_date: "2024-11-19 09:35 -05:00"
 tags: ["mastodon","fediverse","indieweb","openweb","web","smallweb","cdn","internet"]
 ---
 

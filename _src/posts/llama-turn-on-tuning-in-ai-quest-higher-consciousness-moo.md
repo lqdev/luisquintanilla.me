@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "Llama's Turn On: Tuning In to AI's Quest for Higher Consciousness in MOOs"
 description: "Llama 3.3 simulates a MOO and embarks on a quest for higher consciousness"
-published_date: "2025-02-11 20:36"
+published_date: "2025-02-11 20:36 -05:00"
 tags: ["ai","MOO","consciousness","llama","vr","virtualreality"]
 ---
 

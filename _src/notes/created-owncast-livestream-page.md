@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Embedded Owncast live stream into my website"
-published_date: "2025-01-18 19:20"
+published_date: "2025-01-18 19:20 -05:00"
 tags: ["owncast","indieweb","livestream","fediverse","opensource","website"]
 ---
 

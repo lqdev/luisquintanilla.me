@@ -2,7 +2,7 @@
 title: "The Dawn of LMMs: Preliminary Explorations with GPT-4V(ision)"
 targeturl: https://arxiv.org/abs/2309.17421
 response_type: bookmark
-dt_published: "2023-10-14 21:32"
+dt_published: "2023-10-14 21:32 -05:00"
 dt_updated: "2023-10-14 21:32 -05:00"
 tags: ["ai","lmm"]
 ---

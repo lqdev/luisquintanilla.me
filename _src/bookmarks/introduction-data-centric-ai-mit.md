@@ -2,7 +2,7 @@
 title: "Introduction to Data-Centric AI"
 targeturl: https://dcai.csail.mit.edu/
 response_type: bookmark
-dt_published: "2023-02-23 10:25"
+dt_published: "2023-02-23 10:25 -05:00"
 dt_updated: "2023-02-23 10:25 -05:00"
 ---
 

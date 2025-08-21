@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "lqdev.me redirect"
-published_date: "10/22/2021 13:57"
+published_date: "10/22/2021 13:57 -05:00"
 tags: ["website","domain","redirect","ownyourlinks"]
 ---
 

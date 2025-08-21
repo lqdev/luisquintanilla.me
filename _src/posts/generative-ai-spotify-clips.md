@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "Using Generative AI to produce Spotify Clips"
 description: "In this blog post, I discuss how you might use Generative AI models like VideoPoet to generate short video clips like Spotify Clips. Using DALL-E as a proxy, I show the general workflow in practice for the song A Hundred Dead and Loving Souls by Chicano Batman"
-published_date: "2023-12-23 18:30"
+published_date: "2023-12-23 18:30 -05:00"
 tags: ["ai","video","chicanobatman","generativeai","genai","spotify","google","microsoft","bing","copilot","dalle","image","prompt","projectidea","music","podcasts","llm"]
 ---
 

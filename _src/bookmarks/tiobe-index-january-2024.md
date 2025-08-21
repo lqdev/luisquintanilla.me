@@ -2,7 +2,7 @@
 title: "TIOBE Index for January 2024"
 targeturl: https://www.tiobe.com/tiobe-index/
 response_type: bookmark
-dt_published: "2024-01-07 22:52"
+dt_published: "2024-01-07 22:52 -05:00"
 dt_updated: "2024-01-07 22:52 -05:00"
 tags: ["programming","dotnet","technology","fsharp","csharp","programminglanguages"]
 ---

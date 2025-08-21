@@ -2,7 +2,7 @@
 title: "New Album: Kamasi Washington - Fearless Movement"
 targeturl: https://kamasiwashington.ffm.to/fearlessmovement
 response_type: reshare
-dt_published: "2024-04-28 20:34"
+dt_published: "2024-04-28 20:34 -05:00"
 dt_updated: "2024-04-28 20:34 -05:00"
 tags: ["newmusic","kamasiwashington","jazz","album","music"]
 ---

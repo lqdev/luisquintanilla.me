@@ -2,7 +2,7 @@
 title: "Telepathic technical writing"
 targeturl: https://derw.substack.com/p/telepathic-technical-writing 
 response_type: star
-dt_published: "2022-11-21 10:29"
+dt_published: "2022-11-21 10:29 -05:00"
 dt_updated: "2022-11-21 10:29 -05:00"
 ---
 

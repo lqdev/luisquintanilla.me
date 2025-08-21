@@ -2,7 +2,7 @@
 title: "Long context prompting for Claude 2.1"
 targeturl: https://www.anthropic.com/index/claude-2-1-prompting
 response_type: bookmark
-dt_published: "2023-12-06 21:07"
+dt_published: "2023-12-06 21:07 -05:00"
 dt_updated: "2023-12-06 21:07 -05:00"
 tags: ["prompts","ai","llm"]
 ---

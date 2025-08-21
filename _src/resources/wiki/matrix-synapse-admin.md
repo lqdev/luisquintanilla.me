@@ -1,7 +1,7 @@
 ---
 post_type: "wiki" 
 title: "Matrix Synapse Server Administration"
-last_updated_date: "06/11/2023 21:13"
+last_updated_date: "06/11/2023 21:13 -05:00"
 tags: messaging,how-to,matrix,self-host,synapse,sql,python
 ---
 

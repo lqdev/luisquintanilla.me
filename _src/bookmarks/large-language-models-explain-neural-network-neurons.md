@@ -2,7 +2,7 @@
 title: "Language models can explain neurons in language models"
 targeturl: https://openaipublic.blob.core.windows.net/neuron-explainer/paper/index.html
 response_type: bookmark
-dt_published: "2023-05-09 20:59"
+dt_published: "2023-05-09 20:59 -05:00"
 dt_updated: "2023-05-09 20:59 -05:00"
 tags: ["ai","llm","deeplearning"]
 ---

@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "Build your own self-hosted live streaming application with Owncast and .NET Aspire"
 description: "This post shows how you can combine the powerful live-steaming features of Owncast with the app orchestration and tooling in .NET Aspire to create rich self-hosted live-steaming applications."
-published_date: "2024-10-20 14:01"
+published_date: "2024-10-20 14:01 -05:00"
 tags: ["owncast","dotnet","indieweb","fediverse","aspire","livestreaming","twitch","youtube","blazor"]
 ---
 

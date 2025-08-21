@@ -2,7 +2,7 @@
 title: "Rethinking trust in direct messages in the AI era"
 targeturl: https://www.microsoft.com/en-us/research/blog/rethinking-trust-in-direct-messages-in-the-ai-era/
 response_type: bookmark
-dt_published: "2023-09-06 00:05"
+dt_published: "2023-09-06 00:05 -05:00"
 dt_updated: "2023-09-06 00:05 -05:00"
 tags: ["security","ai","privacy","cryptography","communication","messaging","socialmedia","trust"]
 ---

@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Configured GitHub Codespaces Dev Container with .NET 7"
-published_date: "2022-11-21 11:28"
+published_date: "2022-11-21 11:28 -05:00"
 tags: ["dotnet","github","codespaces","development","devcontainer","website","internet"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "These models are too damn big!"
-published_date: "2024-04-08 23:43"
+published_date: "2024-04-08 23:43 -05:00"
 tags: ["ai","slm","huggingface","llm","opensource"]
 ---
 

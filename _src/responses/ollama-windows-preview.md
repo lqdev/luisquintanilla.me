@@ -2,7 +2,7 @@
 title: "Ollama - Windows Preview"
 targeturl: https://ollama.com/blog/windows-preview
 response_type: reshare
-dt_published: "2024-02-19 16:13"
+dt_published: "2024-02-19 16:13 -05:00"
 dt_updated: "2024-02-19 16:13 -05:00"
 tags: ["ollama","windows","llm","opensource","localmodels","ml","ai"]
 ---

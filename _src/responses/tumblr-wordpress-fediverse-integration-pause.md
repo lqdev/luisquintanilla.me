@@ -2,7 +2,7 @@
 title: "Tumblr’s move to WordPress and fediverse integration is ‘on hold’"
 targeturl: https://www.theverge.com/news/695124/tumblr-wordpress-automattic-fediverse-integration-on-hold-decoder
 response_type: reply
-dt_published: "2025-06-30 20:21"
+dt_published: "2025-06-30 20:21 -05:00"
 dt_updated: "2025-06-30 20:21 -05:00"
 tags: ["tumblr","wordpress","fediverse","automattic"]
 ---

@@ -2,7 +2,7 @@
 title: "Claude Artifacts"
 targeturl: https://www.manton.org/2025/05/10/openai-rolls-out-new-things.html 
 response_type: reply
-dt_published: "2025-05-11 08:42"
+dt_published: "2025-05-11 08:42 -05:00"
 dt_updated: "2025-05-11 08:42 -05:00"
 tags: ["claude","chatgpt","plaintext","ai","org","emacs","asciidoc","markdown"]
 ---

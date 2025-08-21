@@ -2,7 +2,7 @@
 title: "DALL·E 3"
 targeturl: https://openai.com/dall-e-3
 response_type: bookmark
-dt_published: "2023-09-22 10:18"
+dt_published: "2023-09-22 10:18 -05:00"
 dt_updated: "2023-09-22 10:18 -05:00"
 tags: ["dalle","ai","openai","images","llm","ml"]
 ---

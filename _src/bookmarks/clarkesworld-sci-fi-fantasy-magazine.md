@@ -2,7 +2,7 @@
 title: "Clarkesworld - Sci-fi and Fantasy Magazine"
 targeturl: https://clarkesworldmagazine.com/
 response_type: bookmark
-dt_published: "2024-01-15 15:00"
+dt_published: "2024-01-15 15:00 -05:00"
 dt_updated: "2024-01-15 15:00 -05:00"
 tags: ["magazine","scifi","fantasy","online","fiction","nonfiction","art"]
 ---

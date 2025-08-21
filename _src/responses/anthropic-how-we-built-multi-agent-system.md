@@ -2,7 +2,7 @@
 title: "How we built our multi-agent research system - Anthropic"
 targeturl: https://www.anthropic.com/engineering/built-multi-agent-research-system 
 response_type: reshare
-dt_published: "2025-06-16 17:39"
+dt_published: "2025-06-16 17:39 -05:00"
 dt_updated: "2025-06-16 20:30 -05:00"
 tags: ["agent","ai","anthropic","engineering"]
 ---

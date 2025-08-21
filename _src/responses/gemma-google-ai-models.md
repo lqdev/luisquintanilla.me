@@ -2,7 +2,7 @@
 title: "Gemma: Introducing new state-of-the-art open models"
 targeturl: https://blog.google/technology/developers/gemma-open-models/
 response_type: reshare
-dt_published: "2024-02-21 14:30"
+dt_published: "2024-02-21 14:30 -05:00"
 dt_updated: "2024-02-21 14:30 -05:00"
 tags: ["ai","opensource","google","model","llm"]
 ---

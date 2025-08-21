@@ -2,7 +2,7 @@
 title: "nanoGPT - The simplest, fastest repository for training/finetuning medium-sized GPTs."
 targeturl: https://github.com/karpathy/nanoGPT 
 response_type: bookmark
-dt_published: "2023-01-03 22:35"
+dt_published: "2023-01-03 22:35 -05:00"
 dt_updated: "2023-01-03 22:35 -05:00"
 ---
 

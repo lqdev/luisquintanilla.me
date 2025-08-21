@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "(We)blogging Rewind 2023"
-published_date: "2023-12-23 02:28"
+published_date: "2023-12-23 02:28 -05:00"
 tags: ["weblogging","quantifiedself","indieweb","stats","analytics","blog","blogging","internet","opensource","community","selfhost","fsharp","spotify","antennapod","microblog", "analytics","pkm","personalknowledgemanagement"]
 ---
 

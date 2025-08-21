@@ -2,7 +2,7 @@
 title: "Resources for navigating complex leadership work"
 targeturl: https://larahogan.me/blog/management-resource-library/
 response_type: bookmark
-dt_published: "2022-09-21 19:19"
+dt_published: "2022-09-21 19:19 -05:00"
 dt_updated: "2022-09-21 19:19 -05:00"
 ---
 

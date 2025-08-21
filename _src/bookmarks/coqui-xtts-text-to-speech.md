@@ -2,7 +2,7 @@
 title: "Coqui 🐸 XTTS"
 targeturl: https://huggingface.co/spaces/coqui/xtts
 response_type: bookmark
-dt_published: "2023-09-17 12:25"
+dt_published: "2023-09-17 12:25 -05:00"
 dt_updated: "2023-09-17 12:25 -05:00"
 tags: ["ai","generativeai","speech","huggingface","ml","tts","opensource"]
 ---

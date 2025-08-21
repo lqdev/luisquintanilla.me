@@ -2,7 +2,7 @@
 title: Stop saving everything
 targeturl: "https://ellanew.com/2025/08/11/ptpl-168-stop-saving-everything-start-reflecting"
 response_type: reshare
-dt_published: "2025-08-11 23:00"
+dt_published: "2025-08-11 23:00 -05:00"
 dt_updated: "2025-08-11 23:00 -05:00"
 tags: ["pkm", "productivity", "notetaking"]
 ---

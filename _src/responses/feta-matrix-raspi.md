@@ -2,7 +2,7 @@
 title: "Feta - Matrix Server Distribution"
 targeturl: https://www.feta.bz/
 response_type: star
-dt_published: "2022-11-16 22:29"
+dt_published: "2022-11-16 22:29 -05:00"
 dt_updated: "2022-11-16 22:29 -05:00"
 ---
 

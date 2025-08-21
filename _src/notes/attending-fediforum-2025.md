@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "See you at FediForum June 2025"
-published_date: "2025-05-16 19:44"
+published_date: "2025-05-16 19:44 -05:00"
 tags: ["fediforum","openweb","conference","community"]
 ---
 

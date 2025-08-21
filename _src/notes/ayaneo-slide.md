@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Ayaneo Slide"
-published_date: "2023-11-20 17:34"
+published_date: "2023-11-20 17:34 -05:00"
 tags: ["pc","handheld"]
 ---
 

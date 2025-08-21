@@ -2,7 +2,7 @@
 title: "21 Years of WordPress"
 targeturl: https://ma.tt/2024/05/wp21/
 response_type: reshare
-dt_published: "2024-05-27 21:05"
+dt_published: "2024-05-27 21:05 -05:00"
 dt_updated: "2024-05-27 21:05 -05:00"
 tags: ["wordpress","blogging","web","anniversary","opensource","openweb"]
 ---

@@ -1,7 +1,7 @@
 ---
 post_type: "video" 
 title: "New (LTE) Rotary Phone"
-published_date: "09/06/2022 19:37"
+published_date: "09/06/2022 19:37 -05:00"
 tags: ["project","phone","dumbphone"]
 ---
 

@@ -2,7 +2,7 @@
 title: Claude Code Emacs Integration
 targeturl: "https://github.com/manzaltu/claude-code-ide.el"
 response_type: bookmark
-dt_published: "2025-08-10 20:17"
+dt_published: "2025-08-10 20:17 -05:00"
 dt_updated: "2025-08-10 20:17 -05:00"
 tags: ["emacs", "anthropic", "ai", "claudecode"]
 ---

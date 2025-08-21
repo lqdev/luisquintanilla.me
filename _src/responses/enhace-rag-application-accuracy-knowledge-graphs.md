@@ -2,7 +2,7 @@
 title: "Enhancing RAG-based application accuracy by constructing and leveraging knowledge graphs"
 targeturl: https://blog.langchain.dev/enhancing-rag-based-applications-accuracy-by-constructing-and-leveraging-knowledge-graphs/
 response_type: reshare
-dt_published: "2024-03-17 21:29"
+dt_published: "2024-03-17 21:29 -05:00"
 dt_updated: "2024-03-17 21:29 -05:00"
 tags: ["knowledgegraph","rag","genai","langchain","generativeai","retrievalaugmentedgeneration","patterns","applicationpatterns"]
 ---

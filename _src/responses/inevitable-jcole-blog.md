@@ -2,7 +2,7 @@
 title: "The Algorithm - J. Cole has a blog?"
 targeturl: https://www.inevitable.live/algorithm/first-post
 response_type: reshare
-dt_published: "2025-02-25 21:34"
+dt_published: "2025-02-25 21:34 -05:00"
 dt_updated: "2025-02-25 21:34 -05:00"
 tags: ["music","blog","indieweb","creativity","art"]
 ---

@@ -2,7 +2,7 @@
 title: "The Darwin Gödel Machine - AI that improves itself by rewriting its own code"
 targeturl: https://sakana.ai/dgm/
 response_type: reshare
-dt_published: "2025-06-03 20:16"
+dt_published: "2025-06-03 20:16 -05:00"
 dt_updated: "2025-06-03 20:16 -05:00"
 tags: ["ai","agent","sakana"]
 ---

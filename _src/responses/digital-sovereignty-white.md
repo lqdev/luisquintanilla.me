@@ -2,7 +2,7 @@
 title: "Digital soverignity is more important than ever"
 targeturl: https://www.mollywhite.net/micro/entry/202501190959
 response_type: star
-dt_published: "2025-01-20 20:46"
+dt_published: "2025-01-20 20:46 -05:00"
 dt_updated: "2025-01-20 20:46 -05:00"
 tags: ["personalweb","digitalsoverignty","indieweb"]
 ---

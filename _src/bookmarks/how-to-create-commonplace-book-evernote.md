@@ -2,7 +2,7 @@
 title: "Taking Note: How to Create Commomplace with Evernote"
 targeturl: https://evernote.com/blog/how-to-create-commonplace-with-evernote/ 
 response_type: bookmark
-dt_published: "2022-09-04 20:18"
+dt_published: "2022-09-04 20:18 -05:00"
 dt_updated: "2022-09-04 20:18 -05:00"
 ---
 

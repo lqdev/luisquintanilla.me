@@ -2,7 +2,7 @@
 title: "Stable Code 3B - Coding on the Edge"
 targeturl: https://stability.ai/news/stable-code-2024-llm-code-completion-release
 response_type: bookmark
-dt_published: "2024-01-17 20:36"
+dt_published: "2024-01-17 20:36 -05:00"
 dt_updated: "2024-01-17 20:36 -05:00"
 tags: ["ai",stabilityai","code","software","softwaredevelopment","llm"]
 ---

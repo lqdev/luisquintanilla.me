@@ -2,7 +2,7 @@
 title: "SingSong - Generating musical accompaniments from singing"
 targeturl: https://arxiv.org/abs/2301.12662
 response_type: bookmark
-dt_published: "2024-01-17 19:39"
+dt_published: "2024-01-17 19:39 -05:00"
 dt_updated: "2024-01-17 19:39 -05:00"
 tags: ["ai","generativeai","music"]
 ---

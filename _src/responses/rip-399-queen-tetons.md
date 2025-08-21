@@ -2,7 +2,7 @@
 title: "R.I.P 399 - Queen of the Tetons"
 targeturl: https://apnews.com/article/famous-grizzly-399-killed-grand-teton-wyoming-3e13c4b5234926cbd799dbb3db1ffac8
 response_type: reshare
-dt_published: "2024-10-25 21:59"
+dt_published: "2024-10-25 21:59 -05:00"
 dt_updated: "2024-10-25 21:59 -05:00"
 tags: ["399","grandteton","grizzly","teton"]
 ---

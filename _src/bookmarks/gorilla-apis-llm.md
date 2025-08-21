@@ -2,7 +2,7 @@
 title: "Gorilla: Large Language Model Connected with Massive APIs"
 targeturl: https://gorilla.cs.berkeley.edu/ 
 response_type: bookmark
-dt_published: "2023-06-03 22:37"
+dt_published: "2023-06-03 22:37 -05:00"
 dt_updated: "2023-06-03 22:37 -05:00"
 tags: ["ai","opensource","llm"]
 ---

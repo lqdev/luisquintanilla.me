@@ -2,7 +2,7 @@
 title: "Google Penzai"
 targeturl: https://github.com/google-deepmind/penzai
 response_type: reshare
-dt_published: "2024-04-25 22:06"
+dt_published: "2024-04-25 22:06 -05:00"
 dt_updated: "2024-04-25 22:06 -05:00"
 tags: ["google","jax","ai","visualization"]
 ---

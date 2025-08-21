@@ -2,7 +2,7 @@
 title: "Algorithms for Modern Hardware"
 targeturl: https://en.algorithmica.org/hpc/
 response_type: bookmark
-dt_published: "2024-03-17 21:20"
+dt_published: "2024-03-17 21:20 -05:00"
 dt_updated: "2024-03-17 21:20 -05:00"
 tags: ["book","algorithms","hardware"]
 ---

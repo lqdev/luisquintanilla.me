@@ -2,7 +2,7 @@
 title: "MemoryCache - Augmenting Local AI with Browser Data"
 targeturl: https://future.mozilla.org/blog/introducing-memorycache/
 response_type: bookmark
-dt_published: "2023-12-12 19:37"
+dt_published: "2023-12-12 19:37 -05:00"
 dt_updated: "2023-12-12 19:37 -05:00"
 tags: ["ai","web","privacy","opensource"]
 ---

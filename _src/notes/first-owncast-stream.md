@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "First live stream using Owncast done"
-published_date: "2025-01-20 18:33"
+published_date: "2025-01-20 18:33 -05:00"
 tags: ["owncast", "livestream", "selfhost", "opensource", "fediverse", "video", "azure"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: "Automate YAML front-matter generation with custom Visual Studio Code snippets"
-published_date: "10/04/2021 19:58"
+published_date: "10/04/2021 19:58 -05:00"
 tags: [blogging,tooling,visual-studio,visual-studio-code,markdown,yaml]
 ---
 
@@ -62,7 +62,7 @@ Now that you've created the file, it's time to define your snippets.
         ---
         post_type: "article" 
         title: ""
-        published_date: "10/04/2021 18:58"
+        published_date: "10/04/2021 18:58 -05:00"
         tags: 
         ---
         ```

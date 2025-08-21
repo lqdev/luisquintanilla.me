@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "What is Kick?"
-published_date: "2024-08-05 21:30"
+published_date: "2024-08-05 21:30 -05:00"
 tags: ["livestream","video","app","web","internet"]
 ---
 

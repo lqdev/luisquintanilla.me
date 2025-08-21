@@ -2,7 +2,7 @@
 title: "Steering at the Frontier: Extending the Power of Prompting "
 targeturl: https://www.microsoft.com/research/blog/steering-at-the-frontier-extending-the-power-of-prompting/
 response_type: bookmark
-dt_published: "2023-12-12 19:14"
+dt_published: "2023-12-12 19:14 -05:00"
 dt_updated: "2023-12-12 19:14 -05:00"
 tags: ["ai","promptengineering"]
 ---

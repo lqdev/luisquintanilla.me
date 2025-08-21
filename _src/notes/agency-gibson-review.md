@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Book Review - Agency"
-published_date: "2024-03-02 23:44"
+published_date: "2024-03-02 23:44 -05:00"
 tags: ["book","review","agency","scifi","future","nanotech","ai","gibson"]
 ---
 

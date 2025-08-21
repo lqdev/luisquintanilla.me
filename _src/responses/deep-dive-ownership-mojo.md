@@ -2,7 +2,7 @@
 title: "Deep Dive into Ownership in Mojo"
 targeturl: https://www.modular.com/blog/deep-dive-into-ownership-in-mojo
 response_type: reshare
-dt_published: "2024-06-11 21:20"
+dt_published: "2024-06-11 21:20 -05:00"
 dt_updated: "2024-06-11 21:20 -05:00"
 tags: ["mojo","python","c","cpp","c++","pl","programming","programminglanguage"]
 ---

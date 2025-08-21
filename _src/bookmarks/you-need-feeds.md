@@ -2,7 +2,7 @@
 title: "You Need Feeds"
 targeturl: https://www.youneedfeeds.com/
 response_type: bookmark
-dt_published: "2023-11-11 17:49"
+dt_published: "2023-11-11 17:49 -05:00"
 dt_updated: "2023-11-11 17:49 -05:00"
 tags: ["rss","feeds","guides"]
 ---

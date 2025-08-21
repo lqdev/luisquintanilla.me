@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "St. Chroma is a great intro"
-published_date: "2024-11-01 22:28"
+published_date: "2024-11-01 22:28 -05:00"
 tags: ["chromakopia","tylerthecreator","music"]
 ---
 

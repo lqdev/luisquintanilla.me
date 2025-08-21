@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Simulcasting to Owncast and YouTube"
-published_date: "2025-01-30 20:25"
+published_date: "2025-01-30 20:25 -05:00"
 tags: ["owncast","obs","youtube","livestream","fediverse","opensource"]
 ---
 

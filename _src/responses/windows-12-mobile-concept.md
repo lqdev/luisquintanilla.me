@@ -2,7 +2,7 @@
 title: "Windows 12 Mobile - Concept"
 targeturl: https://www.windowscentral.com/phones/windows-phone/what-would-microsofts-windows-phone-look-like-in-2024-its-like-a-micro-pc-running-windows-12-in-your-pocket
 response_type: reply
-dt_published: "2024-02-21 14:59"
+dt_published: "2024-02-21 14:59 -05:00"
 dt_updated: "2024-02-21 14:59 -05:00"
 tags: ["windows","mobile","windowsphone","pc"]
 ---

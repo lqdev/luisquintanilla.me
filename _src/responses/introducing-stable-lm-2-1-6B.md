@@ -2,7 +2,7 @@
 title: "Introducing Stable LM 2 1.6B"
 targeturl: https://stability.ai/news/introducing-stable-lm-2
 response_type: reshare
-dt_published: "2024-01-23 09:36"
+dt_published: "2024-01-23 09:36 -05:00"
 dt_updated: "2024-01-23 09:36 -05:00"
 tags: ["ai","stabilityai","slm","llm","smalllanguagemodel"]
 ---

@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Quick Thoughts Snapdragon Summit 2023 Addendum"
-published_date: "2023-10-25 19:26"
+published_date: "2023-10-25 19:26 -05:00"
 tags: ["windows","qualcomm","windowsphone","mobilecomputing","arm","hardware","5g","ai"]
 ---
 

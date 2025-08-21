@@ -2,7 +2,7 @@
 title: "A Proposal for News Organization Mastodon Servers and More"
 targeturl: https://newsletter.danhon.com/archive/4230/ 
 response_type: star
-dt_published: "2022-10-28 21:07"
+dt_published: "2022-10-28 21:07 -05:00"
 dt_updated: "2022-10-28 21:07 -05:00"
 ---
 

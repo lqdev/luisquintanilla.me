@@ -2,7 +2,7 @@
 title: "Master the Art of the Product Manager 'No'"
 targeturl: https://letsnotdothat.com/
 response_type: star
-dt_published: "2025-02-03 20:26"
+dt_published: "2025-02-03 20:26 -05:00"
 dt_updated: "2025-02-03 20:26 -05:00"
 tags: ["fun","business","productmanager"]
 ---

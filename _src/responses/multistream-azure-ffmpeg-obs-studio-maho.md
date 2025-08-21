@@ -2,7 +2,7 @@
 title: "How to Multistream Using Azure, Azure VM, MonaServer 2, and FFmpeg with OBS Studio"
 targeturl: https://maho.dev/2025/02/how-to-multistream-using-azure-azure-vm-monaserver-2-and-ffmpeg-with-obs-studio/
 response_type: reshare
-dt_published: "2025-02-25 20:33"
+dt_published: "2025-02-25 20:33 -05:00"
 dt_updated: "2025-02-25 20:33 -05:00"
 tags: ["livestream","azure","obs"]
 ---

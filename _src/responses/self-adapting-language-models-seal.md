@@ -2,7 +2,7 @@
 title: "Self-Adapting Language Models (SEAL)"
 targeturl: https://jyopari.github.io/posts/seal
 response_type: reshare
-dt_published: "2025-06-16 20:33"
+dt_published: "2025-06-16 20:33 -05:00"
 dt_updated: "2025-06-16 20:33 -05:00"
 tags: ["agent","ai","llm","mit","research"]
 ---

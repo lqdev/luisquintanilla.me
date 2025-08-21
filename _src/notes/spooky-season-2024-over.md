@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Only 365 more days until next halloween"
-published_date: "2024-10-31 08:29"
+published_date: "2024-10-31 08:29 -05:00"
 tags: ["fall","spookyszn","halloween"]
 ---
 

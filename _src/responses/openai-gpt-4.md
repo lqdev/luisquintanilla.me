@@ -2,7 +2,7 @@
 title: "GPT-4"
 targeturl: https://openai.com/product/gpt-4
 response_type: reshare
-dt_published: "2023-03-14 13:59"
+dt_published: "2023-03-14 13:59 -05:00"
 dt_updated: "2023-03-14 13:59 -05:00"
 ---
 

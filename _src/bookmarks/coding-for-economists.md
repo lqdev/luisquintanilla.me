@@ -2,7 +2,7 @@
 title: "Coding for Economists"
 targeturl: https://aeturrell.github.io/coding-for-economists/intro.html  
 response_type: bookmark
-dt_published: "2022-09-08 19:22"
+dt_published: "2022-09-08 19:22 -05:00"
 dt_updated: "2022-09-08 19:22 -05:00"
 ---
 

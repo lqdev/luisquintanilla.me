@@ -2,7 +2,7 @@
 title: "Introducing Snowflake Arctic"
 targeturl: https://www.snowflake.com/blog/arctic-open-efficient-foundation-language-models-snowflake/ 
 response_type: reshare
-dt_published: "2024-04-25 23:34"
+dt_published: "2024-04-25 23:34 -05:00"
 dt_updated: "2024-04-25 23:34 -05:00"
 tags: ["snowflake","ai","llm","enterprise"]
 ---

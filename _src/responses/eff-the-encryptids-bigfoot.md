@@ -2,7 +2,7 @@
 title: "EFF Presents - The Encryptids - Bigfoot"
 targeturl: https://www.eff.org/deeplinks/2024/05/bigfoot
 response_type: star
-dt_published: "2024-06-11 21:12"
+dt_published: "2024-06-11 21:12 -05:00"
 dt_updated: "2024-06-11 21:12 -05:00"
 tags: ["eff","privacy","digitalrights","campaign"]
 ---

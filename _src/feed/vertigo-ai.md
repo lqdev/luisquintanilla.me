@@ -1,7 +1,7 @@
 ---
 post_type: "video" 
 title: "Vertigo AI"
-published_date: "12/28/2021 15:23"
+published_date: "12/28/2021 15:23 -05:00"
 tags: ["ai","vertigo","hitchcock","genai"]
 ---
 

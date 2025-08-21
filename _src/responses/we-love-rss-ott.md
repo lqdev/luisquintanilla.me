@@ -2,7 +2,7 @@
 title: "We ❤️ RSS"
 targeturl: https://matthiasott.com/notes/we-love-rss
 response_type: star
-dt_published: "2024-02-14 22:27"
+dt_published: "2024-02-14 22:27 -05:00"
 dt_updated: "2024-02-14 22:27 -05:00"
 tags: ["rss","web","internet","oss","openweb","indieweb"]
 ---

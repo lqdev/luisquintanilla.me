@@ -2,7 +2,7 @@
 title: "Introducing Würstchen: Fast Diffusion for Image Generation "
 targeturl: https://huggingface.co/blog/wuerstchen
 response_type: bookmark
-dt_published: "2023-09-17 12:15"
+dt_published: "2023-09-17 12:15 -05:00"
 dt_updated: "2023-09-17 12:15 -05:00"
 tags: ["ai","generativeai","imagegeneration","huggingface","diffusion","ml"]
 ---

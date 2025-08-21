@@ -2,7 +2,7 @@
 title: "Notion’s new calendar app is designed to keep your meetings organized"
 targeturl: https://www.theverge.com/2024/1/17/24041330/notion-calendar-app
 response_type: reshare
-dt_published: "2024-01-17 19:33"
+dt_published: "2024-01-17 19:33 -05:00"
 dt_updated: "2024-01-17 19:33 -05:00"
 tags: ["calendar","notion","productivity","gtd","software","app","pkm"]
 ---

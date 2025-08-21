@@ -2,7 +2,7 @@
 title: "The IndieWeb's Next Stage"
 targeturl: https://tracydurnell.com/2024/05/17/indieweb-next-stage/
 response_type: reply
-dt_published: "2024-05-25 21:54"
+dt_published: "2024-05-25 21:54 -05:00"
 dt_updated: "2024-05-25 21:54 -05:00"
 tags: ["indieweb","community","personalweb"]
 ---

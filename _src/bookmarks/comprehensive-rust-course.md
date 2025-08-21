@@ -2,7 +2,7 @@
 title: "Comprehensive Rust Course"
 targeturl: https://google.github.io/comprehensive-rust/ 
 response_type: bookmark
-dt_published: "2022-12-22 11:37"
+dt_published: "2022-12-22 11:37 -05:00"
 dt_updated: "2022-12-22 11:37 -05:00"
 ---
 

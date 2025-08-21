@@ -2,7 +2,7 @@
 title: "Micro.blog - Podcast hosting for $5"
 targeturl: https://www.manton.org/2024/05/29/podcast-hosting-for.html
 response_type: star
-dt_published: "2024-05-30 21:27"
+dt_published: "2024-05-30 21:27 -05:00"
 dt_updated: "2024-05-30 21:27 -05:00"
 tags: ["microblog","podcast","indieweb","hosting","blog","blogging"]
 ---

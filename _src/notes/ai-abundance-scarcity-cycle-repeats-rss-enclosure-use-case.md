@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "AI abundance after scarcity cycles"
-published_date: "2023-11-12 10:37"
+published_date: "2023-11-12 10:37 -05:00"
 tags: ["ai","internet","history","rss","openai","llm","gpt","opensource"]
 ---
 

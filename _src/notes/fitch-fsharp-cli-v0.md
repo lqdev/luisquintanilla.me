@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Fitch: CLI system information utility built with F#"
-published_date: "2022-12-25 20:10"
+published_date: "2022-12-25 20:10 -05:00"
 tags: ["dotnet","fsharp","linux","system","utilities","cli","fitch"]
 ---
 

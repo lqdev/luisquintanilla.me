@@ -2,7 +2,7 @@
 title: "fsharpConf 2023"
 targeturl: http://fsharpconf.com/ 
 response_type: reshare
-dt_published: "2023-06-26 13:02"
+dt_published: "2023-06-26 13:02 -05:00"
 dt_updated: "2023-06-26 13:02 -05:00"
 tags: ["fsharp","fsharpConf","dotnet","programming","community","opensource"]
 ---

@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Personal Site Stats - GoatCounter"
-published_date: "10/31/2021 11:57"
+published_date: "10/31/2021 11:57 -05:00"
 tags: ["analytics","web","goatcounter","indieweb","internet"]
 ---
 

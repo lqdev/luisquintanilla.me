@@ -2,7 +2,7 @@
 title: "Stable Diffusion 3 - Early Preview"
 targeturl: https://stability.ai/news/stable-diffusion-3
 response_type: reshare
-dt_published: "2024-02-22 20:59"
+dt_published: "2024-02-22 20:59 -05:00"
 dt_updated: "2024-02-22 20:59 -05:00"
 tags: ["stabilityai","ai","stablediffusion","imagegeneration","ml","image","genai","generativeai"]
 ---

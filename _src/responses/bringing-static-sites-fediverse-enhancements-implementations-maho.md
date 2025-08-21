@@ -2,7 +2,7 @@
 title: "Bringing Static Sites to the Fediverse - Enhancements and Implementations"
 targeturl: https://maho.dev/2025/03/a-guide-to-implementing-activitypub-in-a-static-site-or-any-website-q1-2025-updates/ 
 response_type: reshare
-dt_published: "2025-03-18 21:08"
+dt_published: "2025-03-18 21:08 -05:00"
 dt_updated: "2025-03-18 21:08 -05:00"
 tags: ["fediverse","indieweb","activitypub"]
 ---

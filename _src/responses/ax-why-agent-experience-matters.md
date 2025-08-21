@@ -2,7 +2,7 @@
 title: "Introducing AX: Why Agent Experience Matters"
 targeturl: https://biilmann.blog/articles/introducing-ax/
 response_type: reshare
-dt_published: "2025-03-05 21:49"
+dt_published: "2025-03-05 21:49 -05:00"
 dt_updated: "2025-03-05 21:49 -05:00"
 tags: ["ai","agents","ax"]
 ---

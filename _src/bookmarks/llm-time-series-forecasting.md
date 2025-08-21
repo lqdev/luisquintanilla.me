@@ -2,7 +2,7 @@
 title: "Large Language Models Are Zero-Shot Time Series Forecasters"
 targeturl: https://github.com/ngruver/llmtime
 response_type: bookmark
-dt_published: "2024-04-04 11:07"
+dt_published: "2024-04-04 11:07 -05:00"
 dt_updated: "2024-04-04 11:07 -05:00"
 tags: ["forecasting","llm","ai","research"]
 ---

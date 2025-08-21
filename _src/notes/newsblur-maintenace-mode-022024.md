@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Now where will I get my RSS fix?"
-published_date: "2024-02-25 14:18"
+published_date: "2024-02-25 14:18 -05:00"
 tags: ["newsblur","rss","maintenance","emacs","elfeed","news"]
 ---
 

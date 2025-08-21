@@ -2,7 +2,7 @@
 title: "The Vision Pro’s first killer app is the web, whether Apple likes it or not"
 targeturl: https://www.theverge.com/2024/1/20/24044343/apple-vision-pro-safari-killer-app
 response_type: reply
-dt_published: "2024-01-20 13:29"
+dt_published: "2024-01-20 13:29 -05:00"
 dt_updated: "2024-01-20 13:29 -05:00"
 tags: ["apple","safari","visionpro","web","browser","vr","xr","mr","ar","indieweb","openweb"]
 ---

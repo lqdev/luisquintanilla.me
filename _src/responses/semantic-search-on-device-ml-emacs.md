@@ -2,7 +2,7 @@
 title: "Semantic Search and On-Device ML in Emacs"
 targeturl: https://lepisma.xyz/2025/01/17/emacs-on-device-ml/index.html
 response_type: reshare
-dt_published: "2025-01-20 21:09"
+dt_published: "2025-01-20 21:09 -05:00"
 dt_updated: "2025-01-20 21:09 -05:00"
 tags: ["onnx","emacs","ai","ml"]
 ---

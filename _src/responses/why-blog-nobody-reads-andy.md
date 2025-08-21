@@ -2,7 +2,7 @@
 title: "Why Blog If Nobody Reads It?"
 targeturl: https://andysblog.uk/why-blog-if-nobody-reads-it/
 response_type: reshare
-dt_published: "2025-02-10 17:02"
+dt_published: "2025-02-10 17:02 -05:00"
 dt_updated: "2025-02-10 17:02 -05:00"
 tags: ["blogging","expression","creativity","writing"]
 ---

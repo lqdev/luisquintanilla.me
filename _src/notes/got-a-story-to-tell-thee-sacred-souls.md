@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "New Release: Got a Story to Tell by Thee Sacred Souls"
-published_date: "2024-10-10 21:10"
+published_date: "2024-10-10 21:10 -05:00"
 tags: ["music","newrelease","theesacredsouls","soul","rnb","oldies"]
 ---
 

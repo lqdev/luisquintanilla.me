@@ -2,7 +2,7 @@
 title: "Introducing Gemini"
 targeturl: https://blog.google/technology/ai/google-gemini-ai/
 response_type: bookmark
-dt_published: "2023-12-06 20:57"
+dt_published: "2023-12-06 20:57 -05:00"
 dt_updated: "2023-12-06 20:57 -05:00"
 tags: ["ai","lmm"]
 ---

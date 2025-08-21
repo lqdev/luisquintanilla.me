@@ -2,7 +2,7 @@
 title: "Getting Started With CUDA for Python Programmers"
 targeturl: https://www.youtube.com/watch?v=nOxKexn3iBo
 response_type: bookmark
-dt_published: "2024-01-29 20:23"
+dt_published: "2024-01-29 20:23 -05:00"
 dt_updated: "2024-01-29 20:23 -05:00"
 tags: ["gpu","cuda","python","programming"]
 ---

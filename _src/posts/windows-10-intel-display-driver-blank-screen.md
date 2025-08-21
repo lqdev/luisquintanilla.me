@@ -1,7 +1,7 @@
 ---
 post_type: "article" 
 title: Windows 10 Intel Display Driver Blank Screen Fix
-published_date: 2017-12-09 14:27:31
+published_date: 2017-12-09 14:27:31 -05:00
 tags: [sysadmin,drivers,pc issues]
 ---
 

@@ -2,7 +2,7 @@
 title: "Affirmations for bloggers"
 targeturl: https://ntietz.com/blog/blogging-affirmations/
 response_type: star
-dt_published: "2024-06-11 21:42"
+dt_published: "2024-06-11 21:42 -05:00"
 dt_updated: "2024-06-11 21:42 -05:00"
 tags: ["blogging","writing","personalweb","socialweb","indieweb"]
 ---

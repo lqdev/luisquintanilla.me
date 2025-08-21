@@ -2,7 +2,7 @@
 title: "LLM in a flash: Efficient Large Language Model Inference with Limited Memory"
 targeturl: https://arxiv.org/abs/2312.11514
 response_type: bookmark
-dt_published: "2023-12-20 18:30"
+dt_published: "2023-12-20 18:30 -05:00"
 dt_updated: "2023-12-20 18:30 -05:00"
 tags: ["llm","ai","hardware"]
 ---

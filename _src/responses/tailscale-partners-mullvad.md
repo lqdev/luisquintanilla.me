@@ -2,7 +2,7 @@
 title: "Tailscale has partnered with Mullvad"
 targeturl: https://mullvad.net/en/blog/2023/9/7/tailscale-has-partnered-with-mullvad/
 response_type: reshare
-dt_published: "2023-09-08 21:26"
+dt_published: "2023-09-08 21:26 -05:00"
 dt_updated: "2023-09-08 21:26 -05:00"
 tags: ["privacy","vpn","security"]
 ---

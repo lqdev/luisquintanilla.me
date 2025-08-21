@@ -2,7 +2,7 @@
 title: "WordPress ActivityPub Plugin"
 targeturl: https://wordpress.org/plugins/activitypub/ 
 response_type: reshare
-dt_published: "2023-09-17 12:32"
+dt_published: "2023-09-17 12:32 -05:00"
 dt_updated: "2023-09-17 12:32 -05:00"
 tags: ["wordpress","activitypub","fediverse","openweb","decentralization","internet","blogging","opensource"]
 ---

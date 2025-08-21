@@ -2,7 +2,7 @@
 title: "Cerebras-GPT: A Family of Open, Compute-efficient, Large Language Models"
 targeturl: https://www.cerebras.net/blog/cerebras-gpt-a-family-of-open-compute-efficient-large-language-models/ 
 response_type: bookmark
-dt_published: "2023-03-28 21:53"
+dt_published: "2023-03-28 21:53 -05:00"
 dt_updated: "2023-03-28 21:53 -05:00"
 ---
 

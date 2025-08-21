@@ -2,7 +2,7 @@
 title: "Reclaim Open 2023 Resources"
 targeturl: https://reclaimopen.com/
 response_type: bookmark
-dt_published: "2023-06-19 22:04"
+dt_published: "2023-06-19 22:04 -05:00"
 dt_updated: "2023-06-19 22:04 -05:00"
 tags: ["reclaimopen","opensource","openweb","edtech"]
 ---

@@ -2,7 +2,7 @@
 title: "We Need To Rewild The Internet"
 targeturl: https://www.noemamag.com/we-need-to-rewild-the-internet/
 response_type: reshare
-dt_published: "2024-04-25 23:11"
+dt_published: "2024-04-25 23:11 -05:00"
 dt_updated: "2024-04-25 23:11 -05:00"
 tags: ["internet","technology","openweb","personalweb","online"]
 ---

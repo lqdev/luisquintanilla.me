@@ -2,7 +2,7 @@
 title: "JRE - Now available wherever you get your podcasts"
 targeturl: https://joeroganexp.libsyn.com/rss
 response_type: reshare
-dt_published: "2024-02-26 18:29"
+dt_published: "2024-02-26 18:29 -05:00"
 dt_updated: "2024-02-26 18:29 -05:00"
 tags: ["rss","podcast","protocols","jre","joerogan","audio","spotify"]
 ---

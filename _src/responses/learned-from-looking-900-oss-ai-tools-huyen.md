@@ -2,7 +2,7 @@
 title: "What I learned from looking at 900 most popular open source AI tools"
 targeturl: https://huyenchip.com//2024/03/14/ai-oss.html
 response_type: reshare
-dt_published: "2024-03-14 22:13"
+dt_published: "2024-03-14 22:13 -05:00"
 dt_updated: "2024-03-14 22:13 -05:00"
 tags: ["ai", "tools", "analysis","openai","github"]
 ---

@@ -2,7 +2,7 @@
 title: "Day 1 of .NET Conf"
 targeturl: https://www.youtube.com/watch?v=hM4ifrqF_lQ
 response_type: reshare
-dt_published: "2024-11-13 01:47"
+dt_published: "2024-11-13 01:47 -05:00"
 dt_updated: "2024-11-13 01:47 -05:00"
 tags: ["dotnet","dotnetconf","dotnet9","net9","conference","ai","aspire","microsoft"]
 ---

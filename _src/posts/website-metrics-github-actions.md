@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "Computing website metrics using GitHub Actions"
 description: "A post detailing how I use GitHub Actions to automate computing aggregate annual metrics for various post types on my website"
-published_date: "2023-12-24 13:24"
+published_date: "2023-12-24 13:24 -05:00"
 tags: ["github","cicd","website","blog","blogging","web","internet","fsharp","dotnet"]
 ---
 

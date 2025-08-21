@@ -2,7 +2,7 @@
 title: "OpenAI Sora - Creating video from text"
 targeturl: https://openai.com/sora
 response_type: reshare
-dt_published: "2024-02-15 20:15"
+dt_published: "2024-02-15 20:15 -05:00"
 dt_updated: "2024-02-15 20:15 -05:00"
 tags: ["openai","multimodal","ai","texttovideo"]
 ---

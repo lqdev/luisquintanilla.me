@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Got an Owncast instance deployed to Azure!"
-published_date: "2025-01-07 19:52"
+published_date: "2025-01-07 19:52 -05:00"
 tags: ["owncast","livestream","azure","selfhost","fediverse","obs","containers","aca"]
 ---
 

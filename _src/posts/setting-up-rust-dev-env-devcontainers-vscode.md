@@ -2,7 +2,7 @@
 post_type: "article" 
 title: "Setting up your Rust development environment using Dev Containers"
 description: "Configure Dev Containers for full-featured development environments that can be used locally or in the cloud with Docker, VS Code, and GitHub Codespaces"
-published_date: "2024-01-31 21:05"
+published_date: "2024-01-31 21:05 -05:00"
 tags: ["rust","vscode","devcontainers","codespaces","programming","technology","docker","containers","github"]
 ---
 

@@ -2,7 +2,7 @@
 title: "Gen Z Leading Tumblr Revival"
 targeturl: https://www.fastcompany.com/91310237/the-tumblr-revival-is-real-and-gen-z-is-leading-the-charge
 response_type: reshare
-dt_published: "2025-04-08 06:05"
+dt_published: "2025-04-08 06:05 -05:00"
 dt_updated: "2025-04-08 06:05 -05:00"
 tags: ["tumblr","automattic","socialmedia","genz","activitypub","fediverse"]
 ---

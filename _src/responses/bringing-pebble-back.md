@@ -2,7 +2,7 @@
 title: "Bringing Pebble Back"
 targeturl: https://ericmigi.com/blog/why-were-bringing-pebble-back
 response_type: reshare
-dt_published: "2025-02-06 19:42"
+dt_published: "2025-02-06 19:42 -05:00"
 dt_updated: "2025-02-06 19:42 -05:00"
 tags: ["eink","pebble","smartwatch","google","opensource"]
 ---

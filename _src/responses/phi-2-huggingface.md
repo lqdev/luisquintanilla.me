@@ -2,7 +2,7 @@
 title: "Phi-2 now on HuggingFace"
 targeturl: https://huggingface.co/microsoft/phi-2
 response_type: reshare
-dt_published: "2023-12-20 18:37"
+dt_published: "2023-12-20 18:37 -05:00"
 dt_updated: "2023-12-20 18:37 -05:00"
 tags: ["opensource","ai","phi","languagemodel","smalllanguagemodel","huggingface","transformers","microsoft"]
 ---

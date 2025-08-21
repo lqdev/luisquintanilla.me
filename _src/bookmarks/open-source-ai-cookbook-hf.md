@@ -2,7 +2,7 @@
 title: "HuggingFace - Open Source AI Cookbook"
 targeturl: https://huggingface.co/learn/cookbook/index
 response_type: bookmark
-dt_published: "2024-02-16 22:36"
+dt_published: "2024-02-16 22:36 -05:00"
 dt_updated: "2024-02-16 22:36 -05:00"
 tags: ["ai","tutorial","huggingface","opensource","ml"]
 ---

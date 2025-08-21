@@ -2,7 +2,7 @@
 title: "Introducing Stable Audio 2.0"
 targeturl: https://stability.ai/news/stable-audio-2-0
 response_type: reshare
-dt_published: "2024-04-04 11:01"
+dt_published: "2024-04-04 11:01 -05:00"
 dt_updated: "2024-04-04 11:01 -05:00"
 tags: ["stabilityai","ai","audio","nlp"]
 ---

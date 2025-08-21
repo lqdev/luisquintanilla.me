@@ -2,7 +2,7 @@
 title: "Stable Diffusion 3: Research Paper"
 targeturl: https://stability.ai/news/stable-diffusion-3-research-paper
 response_type: reshare
-dt_published: "2024-03-05 12:55"
+dt_published: "2024-03-05 12:55 -05:00"
 dt_updated: "2024-03-05 12:55 -05:00"
 tags: ["stabilityai","stablediffusion","ai","generativeai","genai","images"]
 ---

@@ -2,7 +2,7 @@
 title: "Your Site Is a Home"
 targeturl: https://nazhamid.com/journal/your-site-is-a-home/
 response_type: star
-dt_published: "2025-02-25 20:49"
+dt_published: "2025-02-25 20:49 -05:00"
 dt_updated: "2025-02-25 20:49 -05:00"
 tags: ["personalweb","indieweb","socialmedia"]
 ---

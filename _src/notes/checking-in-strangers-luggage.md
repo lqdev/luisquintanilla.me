@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "When should I check in stranger's luggage?"
-published_date: "2024-03-11 17:57"
+published_date: "2024-03-11 17:57 -05:00"
 tags: ["question","airport","security","fun"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Install Element Desktop on Windows ARM64 Devices"
-published_date: "2025-04-07 08:38"
+published_date: "2025-04-07 08:38 -05:00"
 tags: ["matrix","arm64","windows","element","winget","opensource","decentralization"]
 ---
 

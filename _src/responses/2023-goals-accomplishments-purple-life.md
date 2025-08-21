@@ -2,7 +2,7 @@
 title: "A Purple Life - 2023 Goals and Accomplishments"
 targeturl: https://apurplelife.com/2023/12/19/2023-goals-accomplishments/
 response_type: reply
-dt_published: "2023-12-24 18:05"
+dt_published: "2023-12-24 18:05 -05:00"
 dt_updated: "2023-12-24 18:05 -05:00"
 tags: ["blogging","review","goals"]
 ---

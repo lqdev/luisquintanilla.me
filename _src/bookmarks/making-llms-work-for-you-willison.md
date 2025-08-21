@@ -2,7 +2,7 @@
 title: "Making Large Language Models Work For You"
 targeturl: https://simonwillison.net/2023/Aug/27/wordcamp-llms/ 
 response_type: bookmark
-dt_published: "2023-08-29 19:57"
+dt_published: "2023-08-29 19:57 -05:00"
 dt_updated: "2023-08-29 19:57 -05:00"
 tags: ["ai","llm","wordpress","presentation"]
 ---

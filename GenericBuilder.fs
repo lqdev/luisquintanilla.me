@@ -882,7 +882,7 @@ module UnifiedFeeds =
         let allUnifiedItems = 
             feedDataSets
             |> List.collect snd
-            |> List.sortByDescending (fun item -> DateTime.Parse(item.Date))
+            |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
         
         // Fire-hose feed configuration (all content types)
         let fireHoseConfig = {
@@ -1018,7 +1018,7 @@ module UnifiedFeeds =
         let allUnifiedItems = 
             feedDataSets
             |> List.collect snd
-            |> List.sortByDescending (fun item -> DateTime.Parse(item.Date))
+            |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
         
         // Extract all unique tags
         let allTags = 

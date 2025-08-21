@@ -2,7 +2,7 @@
 title: "Introducing Locate 3D"
 targeturl: https://locate3d.atmeta.com/
 response_type: bookmark
-dt_published: "2025-05-09 20:33"
+dt_published: "2025-05-09 20:33 -05:00"
 dt_updated: "2025-05-09 20:33 -05:00"
 tags: ["meta","ai","3d","research"]
 ---

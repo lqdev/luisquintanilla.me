@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "New RSS links"
-published_date: "2024-01-07 19:47"
+published_date: "2024-01-07 19:47 -05:00"
 tags: ["rss","indieweb","identity","social","posts"]
 ---
 

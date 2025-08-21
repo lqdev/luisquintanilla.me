@@ -2,7 +2,7 @@
 title: "Metablogging"
 targeturl: https://ideaspace.substack.com/p/metablogging
 response_type: bookmark
-dt_published: "2022-09-09 09:49"
+dt_published: "2022-09-09 09:49 -05:00"
 dt_updated: "2022-09-09 09:49 -05:00"
 ---
 

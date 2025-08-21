@@ -1,7 +1,7 @@
 ---
 post_type: "note" 
 title: "Skype Feature Request - Default Encrypted Conversations"
-published_date: "2023-01-30 17:25"
+published_date: "2023-01-30 17:25 -05:00"
 tags: [communication, messsaging, privacy, skype]
 ---
 
