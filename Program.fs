@@ -77,9 +77,10 @@ let main argv =
     let postsFeedData = buildPosts()
     let notesFeedData = buildNotes()
     let responsesFeedData = buildResponses()
+    let bookmarksFeedData = buildBookmarks()
     
-    // Generate bookmarks landing page from bookmark responses
-    buildBookmarksLandingPage responsesFeedData
+    // Create bookmarks landing page using the bookmarks data
+    buildBookmarksLandingPage bookmarksFeedData
     
     let snippetsFeedData = buildSnippets()
     let wikisFeedData = buildWikis()
@@ -92,7 +93,7 @@ let main argv =
         ("posts", GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData)
         ("notes", GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData)
         ("responses", GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData)
-        ("bookmarks", GenericBuilder.UnifiedFeeds.convertResponseBookmarksToUnified responsesFeedData)
+        ("bookmarks", GenericBuilder.UnifiedFeeds.convertBookmarkResponsesToUnified bookmarksFeedData)
         ("reviews", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
         ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
     ]
@@ -102,7 +103,7 @@ let main argv =
         ("posts", GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData)
         ("notes", GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData)
         ("responses", GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData)
-        ("bookmarks", GenericBuilder.UnifiedFeeds.convertResponseBookmarksToUnified responsesFeedData)
+        ("bookmarks", GenericBuilder.UnifiedFeeds.convertBookmarkResponsesToUnified bookmarksFeedData)
         ("snippets", GenericBuilder.UnifiedFeeds.convertSnippetsToUnified snippetsFeedData)
         ("wiki", GenericBuilder.UnifiedFeeds.convertWikisToUnified wikisFeedData)
         ("presentations", GenericBuilder.UnifiedFeeds.convertPresentationsToUnified presentationsFeedData)

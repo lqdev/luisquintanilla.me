@@ -56,6 +56,7 @@ let feedView = CollectionViews.feedView
 let notesView = CollectionViews.notesView
 let responseView = CollectionViews.responseView
 let bookmarkView = CollectionViews.bookmarkView
+let bookmarkResponseView = CollectionViews.bookmarkResponseView
 let libraryView = CollectionViews.libraryView
 let snippetsView = CollectionViews.snippetsView
 let wikisView = CollectionViews.wikisView

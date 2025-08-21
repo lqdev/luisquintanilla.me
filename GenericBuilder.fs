@@ -1197,3 +1197,18 @@ module UnifiedFeeds =
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml }
             | None -> None)
+
+    // Convert bookmark responses (Response objects with bookmark type) to unified feed
+    let convertBookmarkResponsesToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =
+        feedDataList 
+        |> List.filter (fun feedData -> feedData.Content.Metadata.ResponseType = "bookmark") // Include only bookmarks
+        |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let title = feedData.Content.Metadata.Title
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = feedData.CardHtml  // Use CardHtml to include target URL display
+                let date = feedData.Content.Metadata.DatePublished
+                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml }
+            | None -> None)
