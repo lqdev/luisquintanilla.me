@@ -545,22 +545,27 @@ const includeItem = ['star', 'reply', 'reshare', 'responses'].includes(cardType)
 **Benefits**: Enhanced navigation capability, improved content discoverability, maintained IndieWeb standards, and zero content migration requirements.
 
 ### VS Code Snippets Development Workflow Pattern (Proven)
-**Discovery**: Aligning development tools with actual architecture structure prevents creation-time errors and ensures consistent metadata across all content types.
+**Discovery**: Aligning development tools with actual architecture structure prevents creation-time errors and ensures consistent metadata across all content types. Timezone consistency in snippets prevents systematic timezone data issues during content creation.
 
 **Implementation Pattern**:
 - **Domain.fs First Approach**: All snippet metadata fields must exactly match type definitions in Domain.fs
-- **Timezone Consistency**: All date fields include proper timezone formatting (`-05:00`) for reliable parsing
+- **Timezone Consistency**: All date fields include proper timezone formatting (`-05:00`) for reliable parsing and chronological ordering
+- **Format Standardization**: Use consistent `YYYY-MM-DD HH:MM -05:00` format across all content types (presentations, wiki, responses, posts)
 - **Tag Format Alignment**: Use array syntax with placeholders (`["$1"]`) instead of empty arrays for better developer experience
 - **Numbered Placeholders**: Implement tab navigation with `$1`, `$2`, `$3` for efficient field completion
 - **Complete Content Coverage**: Create snippets for every content type in the architecture (17 content types)
 - **Content Helper Tools**: Include utility snippets for common markdown patterns (datetime, blockquote, code blocks, links)
+- **Proactive Consistency**: Update snippets immediately when architectural patterns change to prevent future content inconsistencies
 
 **Validation Requirements**:
 - Build validation after snippet changes to ensure no syntax errors
 - Field alignment verification against Domain.fs structure
 - Proper JSON syntax validation for VS Code compatibility
+- Timezone format consistency across all date fields
 
-**Benefits**: Dramatic improvement in content creation efficiency, reduced metadata errors, consistent developer experience across all content types, and established patterns for future content type additions.
+**Critical Learning**: When implementing system-wide timezone patterns, VS Code snippets must be updated simultaneously to prevent creation of new content without proper timezone information. This prevents recurring timezone parsing issues and ensures all future content follows established patterns.
+
+**Benefits**: Dramatic improvement in content creation efficiency, reduced metadata errors, consistent developer experience across all content types, prevention of systematic timezone data issues, and established patterns for future content type additions.
 
 ### Explicit Home Navigation UX Pattern (Proven)
 **Discovery**: Research-backed explicit home navigation implementation dramatically improves navigation intuitiveness for mixed audiences while maintaining accessibility compliance and preserving existing brand navigation.
