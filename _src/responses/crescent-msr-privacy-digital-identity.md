@@ -7,7 +7,7 @@ dt_updated: "2025-08-26 19:40 -05:00"
 tags: ["research","privacy","microsoft"]
 ---
 
-> Digital identities, the electronic credentials embedded in phone wallets, workplace logins, and other apps, are becoming ubiquitous. While they offer unprecedented convenience, they also create new privacy risks, particularly around tracking and surveillance. 
+> Digital identities, the electronic credentials embedded in phone wallets, workplace logins, and other apps, are becoming ubiquitous. While they offer unprecedented convenience, they also create new privacy risks, particularly around tracking and surveillance.  
 > <br>
 > One of these risks is linkability, the ability to associate one or more uses of a credential to a specific person. Currently, when people use their mobile driver’s license or log into various apps, hidden identifiers can link these separate activities together, building detailed profiles of user behavior.  
 > <br>
