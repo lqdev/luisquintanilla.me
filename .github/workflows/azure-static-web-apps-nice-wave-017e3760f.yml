@@ -54,6 +54,7 @@ jobs:
           app_location: "./_public" # App source code path
           api_location: "" # Api source code path - optional
           output_location: "." # Built app content directory - optional
+          skip_app_build: true # Skip build since we already built with F#
           ###### End of Repository/Build Configurations ######
       
       - name: Send Webmentions
