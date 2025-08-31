@@ -7,4 +7,4 @@ tags: ["gators","bayou","swamp"]
 
 Mama says that alligators are ornery because they got all them teeth and no toothbrush.
 
-![Sign saying do not feed or aggravate the gators](/files/images/do-not-feed-aggravate-gators.png)
+![Sign saying do not feed or aggravate the gators](/api/files/images/do-not-feed-aggravate-gators.png)

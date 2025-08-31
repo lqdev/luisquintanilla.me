@@ -10,7 +10,7 @@ published_date: 2017-12-25 19:28:48 -05:00
 
 For this writeup, I'm going to use the Spotify API. Spotify API supports different authorization flows. In this writeup, I will be using the client credentials authorization flow. Generally this works for server-to-server authentication. Because this does not allow users the ability to provide their own credentials, there is no access to endpoints that contain user data.
 
-![](/files/images/clientcredentialsflowdiagram.png)
+![](/api/files/images/clientcredentialsflowdiagram.png)
 
 # Create a new .NET Core Console Application
 

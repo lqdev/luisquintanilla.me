@@ -7,4 +7,4 @@ tags: ["windowsphone","lumia","nokia","windows","smartphone","phone"]
 
 Found these while cleaning out some drawers 😢. Good times.
 
-![Two Nokia Lumia Windows Phones](/files/images/windows-phone-lumias.png)
+![Two Nokia Lumia Windows Phones](/api/files/images/windows-phone-lumias.png)

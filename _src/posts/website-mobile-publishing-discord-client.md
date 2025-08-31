@@ -75,11 +75,11 @@ The workflow for publishing is as follows:
 
 1. Invoke the bot in Discord to capture my input using slash command `/post` and the respective post type.
 
-    ![Using slash commands to invoke discord publishing bot](/files/images/invoke-discord-publishing-bot.png)
+    ![Using slash commands to invoke discord publishing bot](/api/files/images/invoke-discord-publishing-bot.png)
 
 1. Provide post details. For media posts, I can provide an attachment which gets uploaded to Azure Blob Storage.
 
-    ![A modal in discord with note post fields filled in](/files/images/discord-publishing-client-modal.png)
+    ![A modal in discord with note post fields filled in](/api/files/images/discord-publishing-client-modal.png)
 
 1. [Bot creates a branch and PR in my repo](https://github.com/lqdev/luisquintanilla.me/pull/152) with the post content
 1. While logged into GitHub from my phone, if everything looks good, I merge the PR which kicks off my GitHub Actions workflow to build and publish the site including the new post. 

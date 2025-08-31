@@ -8,7 +8,7 @@ tags: ["windows", "windows10"]
 Lol. I would...if I could actually upgrade this PC to Windows 11.
 
 :::media
-- url: "/files/images/20250824_011142_1000002436.jpg"
+- url: "/api/files/images/20250824_011142_1000002436.jpg"
   alt: "Screenshot of Windows Upgrade Screen"
   mediaType: "image"
   aspectRatio: "landscape"

@@ -11,7 +11,7 @@ This post is part of the 2018 [FsAdvent](https://sergeytihon.com/tag/fsadvent/) 
 
 When searching for tools and languages to implement machine learning applications, there are numerous options to choose from each with their own set of advantages and disadvantages. Out of all, however, Python seems to be the most salient. Not only is it a popular language but also many of the tools available for machine learning are either implemented in Python or support it in some capacity whether it's native or through community libraries. Very rarely though is F# mentioned in these discussions despite having many of the features that make languages like Python so loved and extending them to empower users. In this writeup, I will do a short review of many of the advantages of Python such as succinctness, platform support, library availability as well as many others and compare it to F#'s capabilities.
 
-![2017 Top Languages](/files/images/case-fsharp-ml-0.PNG)
+![2017 Top Languages](/api/files/images/case-fsharp-ml-0.PNG)
 
 ## Python's Advantages
 
@@ -73,11 +73,11 @@ One way in which both Python and F# provide immediate feedback is via the comman
 
 ##### Python
 
-![](/files/images/case-fsharp-ml-1.png)
+![](/api/files/images/case-fsharp-ml-1.png)
 
 ##### FSharp
 
-![](/files/images/case-fsharp-ml-2.png)
+![](/api/files/images/case-fsharp-ml-2.png)
 
 As it can be seen, getting that immediate feedback makes it easier to see whether the code is behaving the way it should. Although useful, this environment is not ideal when experimenting and making tweaks to the code. Additionally, because of the lack of a graphical user interface, the navigation can be less than ideal. Fortunately there is a solution out there that provides the same level of interactivity along with a graphical user interface that allows for ad-hoc experimentation and re-running of code at different points in time which is essential when developing machine learning applications.
 
@@ -93,11 +93,11 @@ Jupyter Notebooks work with various languages which include but are not limited 
 
 ##### Python
 
-![](/files/images/case-fsharp-ml-3.png)
+![](/api/files/images/case-fsharp-ml-3.png)
 
 ##### FSharp
 
-![](/files/images/case-fsharp-ml-4.png)
+![](/api/files/images/case-fsharp-ml-4.png)
 
 ## Beyond Python
 

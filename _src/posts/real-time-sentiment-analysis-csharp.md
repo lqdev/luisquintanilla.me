@@ -120,7 +120,7 @@ private static void OnMatchedTweet(object sender, MatchedTweetReceivedEventArgs 
 
 Once we run the application, our console application should look something like this:
 
-![](/files/images/sentiment-analysis-1.png)
+![](/api/files/images/sentiment-analysis-1.png)
 
 
 ## Conclusion

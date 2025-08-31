@@ -7,4 +7,4 @@ tags: ["fall","spookyszn","halloween"]
 
 That's a wrap for spooky season. It was unseasonably warm so it hasn't really felt like fall.
 
-![Nightmare Before Christmas Mayor Speaking Into Loudspeaker with Caption](/files/images/365-days-nightmare-before-christmas.jpg)
+![Nightmare Before Christmas Mayor Speaking Into Loudspeaker with Caption](/api/files/images/365-days-nightmare-before-christmas.jpg)

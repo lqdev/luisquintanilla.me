@@ -11,6 +11,6 @@ I caught them in New York when the tour started, so it was nice to catch them at
 
 In both cases, they were great performances. 
 
-![A stage with Thee Sacred Souls band performing](/files/images/thee-sacred-souls-2025-1.jpg)
+![A stage with Thee Sacred Souls band performing](/api/files/images/thee-sacred-souls-2025-1.jpg)
 
-![Thee Sacred Souls members on stage embracing](/files/images/thee-sacred-souls-2025-2.jpg)
+![Thee Sacred Souls members on stage embracing](/api/files/images/thee-sacred-souls-2025-2.jpg)

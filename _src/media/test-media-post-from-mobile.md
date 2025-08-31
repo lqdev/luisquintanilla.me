@@ -8,7 +8,7 @@ tags: ["mobile", "blog", "indieweb"]
 Test media posting from mobile
 
 :::media
-- url: "/files/images/20250813_034035_1000002298.jpg"
+- url: "/api/files/images/20250813_034035_1000002298.jpg"
   alt: "Closeup image of a pink flower"
   mediaType: "image"
   aspectRatio: "landscape"
