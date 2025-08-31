@@ -2,6 +2,11 @@
   "trailingSlash": "auto",
   "routes": [
     {
+      "route": "/files/*",
+      "redirect": "https://www.lqdev.me/files/*",
+      "statusCode": 301
+    },
+    {
       "route": "/github",
       "redirect": "https://github.com/lqdev",
       "statusCode": 301
