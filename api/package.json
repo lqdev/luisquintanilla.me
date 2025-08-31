@@ -7,9 +7,6 @@
     "start": "func start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "@azure/functions": "^4.0.0"
-  },
   "engines": {
     "node": ">=18.0.0"
   },
