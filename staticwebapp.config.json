@@ -3,7 +3,7 @@
   "routes": [
     {
       "route": "/files/*",
-      "redirect": "https://www.lqdev.me/files/*",
+      "redirect": "https://luisquintanillame.blob.core.windows.net/files/*",
       "statusCode": 301
     },
     {
