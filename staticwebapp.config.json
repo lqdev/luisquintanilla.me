@@ -100,11 +100,6 @@
       "route": "/radio/playlist",
       "redirect": "/radio/OnlineRadioPlaylist.m3u",
       "statusCode": 301
-    },    
-    {
-      "route": "/posts/1",
-      "redirect": "/posts/",
-      "statusCode": 301
     },
     {
       "route": "/posts/1/",
