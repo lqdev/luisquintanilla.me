@@ -2,7 +2,7 @@
   "name": "azure-static-web-apps-files-redirect",
   "version": "1.0.0",
   "description": "Azure Functions API for wildcard file redirects in Azure Static Web Apps",
-  "main": "files.js",
+  "main": "files/index.js",
   "scripts": {
     "start": "func start",
     "test": "echo \"Error: no test specified\" && exit 1"
