@@ -4,102 +4,102 @@
     {
       "route": "/github",
       "redirect": "https://github.com/lqdev",
-      "statusCode": 307
+      "statusCode": 301
     },
     {
       "route": "/mastodon",
       "redirect": "https://toot.lqdev.tech/@lqdev",
-      "statusCode": 307
+      "statusCode": 301
     },
     {
       "route": "/linkedin",
       "redirect": "https://www.linkedin.com/in/lquintanilla01/",
-      "statusCode": 307
+      "statusCode": 301
     },
     {
       "route": "/twitter",
       "redirect": "https://twitter.com/ljquintanilla",
-      "statusCode": 307
+      "statusCode": 301
     },
     {
       "route": "/youtube",
       "redirect": "https://www.youtube.com/@lqdev",
-      "statusCode": 307
+      "statusCode": 301
     },
     {
       "route": "/gravatar",
       "redirect": "/contact/",
-      "statusCode": 307
+      "statusCode": 301
     },
     {
       "route": "/blogroll",
       "redirect": "/collections/blogroll/",
-      "statusCode": 307
+      "statusCode": 301
     },
     {
       "route": "/podroll",
       "redirect": "/collections/podroll/",
-      "statusCode": 307
+      "statusCode": 301
     },
     {
       "route": "/subscribe",
       "redirect": "/feed/",
-      "statusCode": 307
+      "statusCode": 301
     },
     {
       "route": "/all.rss",
       "redirect": "/feed/feed.xml",
-      "statusCode": 307
+      "statusCode": 301
     },
     {
       "route": "/blog.rss",
       "redirect": "/posts/feed.xml",
-      "statusCode": 307
+      "statusCode": 301
     },        
     {
       "route": "/microblog.rss",
       "redirect": "/notes/feed.xml",
-      "statusCode": 307
+      "statusCode": 301
     },
     {
       "route": "/responses.rss",
       "redirect": "/responses/feed.xml",
-      "statusCode": 307
+      "statusCode": 301
     },                
     {
       "route": "/reviews.rss",
       "redirect": "/reviews/feed.xml",
-      "statusCode": 307
+      "statusCode": 301
     },
     {
       "route": "/media.rss",
       "redirect": "/media/feed.xml",
-      "statusCode": 307
+      "statusCode": 301
     },             
     {
       "route": "/bookmarks.rss",
       "redirect": "/bookmarks/feed.xml",
-      "statusCode": 307
+      "statusCode": 301
     },
     {
       "route": "/mastodon.rss",
       "redirect": "https://toot.lqdev.tech/@lqdev.rss",
-      "statusCode": 307
+      "statusCode": 301
     },
     {
       "route": "/bluesky.rss",
       "redirect": "https://bsky.app/profile/did:plc:pme7qquljcdx6i4zyawoxypd/rss",
-      "statusCode": 307
+      "statusCode": 301
     },
     {
       "route": "/youtube.rss",
       "redirect": "https://youtube.com/feeds/videos.xml?channel_id=UCkA5fHdQ4cf3D1J19UNgV7A",
-      "statusCode": 307
+      "statusCode": 301
     },                        
     {
       "route": "/radio/playlist",
       "redirect": "/radio/OnlineRadioPlaylist.m3u",
-      "statusCode": 307
+      "statusCode": 301
     },    
     {
       "route": "/posts/1",
