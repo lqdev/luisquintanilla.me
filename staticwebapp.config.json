@@ -2,11 +2,6 @@
   "trailingSlash": "auto",
   "routes": [
     {
-      "route": "/files/*",
-      "redirect": "https://luisquintanillame.blob.core.windows.net/files/*",
-      "statusCode": 301
-    },
-    {
       "route": "/github",
       "redirect": "https://github.com/lqdev",
       "statusCode": 301
@@ -314,7 +309,7 @@
   ],
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/images/*.{png,jpg,gif,svg,webp}", "/css/*", "/js/*", "/lib/*", "/media/*", "/assets/*"]
+    "exclude": ["/images/*.{png,jpg,gif,svg,webp}", "/css/*", "/js/*", "/lib/*", "/media/*", "/assets/*", "/api/*"]
   },
   "globalHeaders": {
     "X-Content-Type-Options": "nosniff",

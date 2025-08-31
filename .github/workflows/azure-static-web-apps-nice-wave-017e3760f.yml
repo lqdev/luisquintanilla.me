@@ -52,9 +52,10 @@ jobs:
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "./_public" # App source code path
-          api_location: "" # Api source code path - optional
+          api_location: "./api" # Api source code path for Azure Functions
           output_location: "." # Built app content directory - optional
           skip_app_build: true # Skip build since we already built with F#
+          skip_api_build: false # Let Azure build the Node.js API
           ###### End of Repository/Build Configurations ######
       
       - name: Send Webmentions
