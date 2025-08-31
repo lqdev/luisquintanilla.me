@@ -23,12 +23,12 @@
     },
     {
       "route": "/youtube",
-      "redirect": "https://www.youtube.com/@lqdev",
+      "redirect": "https://www.youtube.com/@luisquintanilla2921",
       "statusCode": 301
     },
     {
       "route": "/gravatar",
-      "redirect": "/contact/",
+      "redirect": "https://gravatar.com/contactd7db6e1f14",
       "statusCode": 301
     },
     {
