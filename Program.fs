@@ -18,6 +18,13 @@ let main argv =
     // Prep work
     cleanOutputDirectory outputDir
     copyStaticFiles ()
+    
+    // Copy Azure Static Web Apps configuration
+    let configSourcePath = "staticwebapp.config.json"
+    let configTargetPath = Path.Join(outputDir, "staticwebapp.config.json")
+    if File.Exists(configSourcePath) then
+        File.Copy(configSourcePath, configTargetPath, true)
+        printfn "✅ Azure Static Web Apps configuration copied to output directory"
 
     //Create directories
     Path.Join(outputDir,"feed") |> Directory.CreateDirectory |> ignore
