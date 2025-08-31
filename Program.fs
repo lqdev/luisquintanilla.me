@@ -7,7 +7,6 @@ open Builder
 open GenericBuilder
 open WebmentionService
 open Domain
-open PersonalSite.Redirects
 open TextOnlyBuilder
 
 [<EntryPoint>]
@@ -45,7 +44,6 @@ let main argv =
         feedData |> List.map (fun item -> item.Content) |> List.toArray
     let liveStreams = loadLiveStreams (srcDir)
     let feedLinks = loadFeedLinks (srcDir)
-    let redirects = loadRedirects ()
     let books = loadBooks (srcDir)
     let albums = loadAlbums (srcDir)
     let responses = 
@@ -156,9 +154,6 @@ let main argv =
     buildLiveStreamsPage liveStreams
     buildLiveStreamPages liveStreams
 
-    // Build redirect pages for URL migration
-    buildRedirectPages redirects
-
     // Build Snippet Pages
     let _ = buildSnippets()
     ()
@@ -177,9 +172,6 @@ let main argv =
 
     // Build tags page
     buildTagsPages posts feedNotes responses
-
-    // Generate redirect pages for legacy URLs
-    PersonalSite.Redirects.createRedirectPages outputDir
 
     // Build legacy RSS feed aliases for backward compatibility (at the very end)
     buildLegacyRssFeedAliases ()

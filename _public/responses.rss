@@ -4,8 +4,48 @@
     <title>Luis Quintanilla - Responses</title>
     <link>https://www.luisquintanilla.me/responses</link>
     <description>IndieWeb responses by Luis Quintanilla</description>
-    <lastBuildDate>2025-08-20 23:59 -05:00</lastBuildDate>
+    <lastBuildDate>2025-08-26 19:40 -05:00</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Crescent library brings privacy to digital identity systems</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Digital identities, the electronic credentials embedded in phone wallets, workplace logins, and other apps, are becoming ubiquitous. While they offer unprecedented convenience, they also create new privacy risks, particularly around tracking and surveillance.&lt;br /&gt;
+&lt;br&gt;
+One of these risks is linkability, the ability to associate one or more uses of a credential to a specific person. Currently, when people use their mobile driver’s license or log into various apps, hidden identifiers can link these separate activities together, building detailed profiles of user behavior.&lt;br /&gt;
+&lt;br&gt;
+To address this, we have released &lt;a href="https://eprint.iacr.org/2024/2013"&gt;Crescent&lt;/a&gt;, a cryptographic library that adds unlinkability to widely used identity formats, protecting privacy. These include JSON Web Tokens (the authentication standard behind many app logins) and mobile driver’s licenses. Crescent also works without requiring the organizations that issue these credentials to update their systems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/microsoft/crescent-credentials"&gt;GitHub Repo&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/crescent-msr-privacy-digital-identity</link>
+      <guid>https://www.luisquintanilla.me/responses/crescent-msr-privacy-digital-identity</guid>
+      <pubDate>2025-08-26 19:40 -05:00</pubDate>
+      <category>research</category>
+      <category>privacy</category>
+      <category>microsoft</category>
+    </item>
+    <item>
+      <title>Small (web) is beautiful</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I dream of a web that fosters healthy conversations, together with personal and intellectual growth. The world is diverse and fascinating, and we can be information explorers together.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/small-web-is-beautiful</link>
+      <guid>https://www.luisquintanilla.me/responses/small-web-is-beautiful</guid>
+      <pubDate>2025-08-21 19:13 -05:00</pubDate>
+      <category>smallweb</category>
+      <category>indieweb</category>
+      <category>blogging</category>
+    </item>
+    <item>
+      <title>We're getting married!</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;Congrats!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/were-getting-married-reillys</link>
+      <guid>https://www.luisquintanilla.me/responses/were-getting-married-reillys</guid>
+      <pubDate>2025-08-21 18:47 -05:00</pubDate>
+      <category></category>
+    </item>
     <item>
       <title>Omnineural 4B</title>
       <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
@@ -358,55 +398,6 @@ This specification is ready for review from both ActivityPub developers and secu
       <category>socialweb</category>
       <category>activitypub</category>
       <category>w3c</category>
-    </item>
-    <item>
-      <title>Faircamp - A static site generator for audio producers</title>
-      <description>&lt;![CDATA[[star] &lt;p&gt;This is such a cool project. Looks like it's super simple to get started with and it's packed with a ton of features so creators get to stay in their flow.&lt;/p&gt;
-&lt;p&gt;I also like how creators are showcased.&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/faircamp-static-site-audio-producers</link>
-      <guid>https://www.luisquintanilla.me/responses/faircamp-static-site-audio-producers</guid>
-      <pubDate>2025-06-05 20:05 -05:00</pubDate>
-      <category>faircamp</category>
-      <category>music</category>
-      <category>socialweb</category>
-      <category>indieweb</category>
-      <category>staticsite</category>
-      <category>technology</category>
-      <category>tools</category>
-      <category>openweb</category>
-      <category>opensource</category>
-    </item>
-    <item>
-      <title>State-Of-The-Art Prompting For AI Agents</title>
-      <description>&lt;![CDATA[[reshare] &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=DL82mGde6wo" title="YouTube Thumbnail for State-of-the-art prompting for ai agents"&gt;&lt;img src="http://img.youtube.com/vi/DL82mGde6wo/0.jpg" class="img-fluid" alt="YouTube Thumbnail for State-of-the-art prompting for ai agents" /&gt;&lt;/a&gt;&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/state-of-the-art-prompting-ai-agents-y-combinator</link>
-      <guid>https://www.luisquintanilla.me/responses/state-of-the-art-prompting-ai-agents-y-combinator</guid>
-      <pubDate>2025-06-03 20:23 -05:00</pubDate>
-      <category>ai</category>
-      <category>agents</category>
-      <category>prompting</category>
-    </item>
-    <item>
-      <title>Introducing ElevenLabs Conversational AI 2.0</title>
-      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Conversational AI 2.0 launches with advanced features and enterprise readiness.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Natural turn-taking to understand the flow of conversation.&lt;/li&gt;
-&lt;li&gt;Multilingual communication with integrated language detection&lt;/li&gt;
-&lt;li&gt;Integrated RAG: knowledgeable agents, minimum latency, maximum privacy&lt;/li&gt;
-&lt;li&gt;Multimodality&lt;/li&gt;
-&lt;li&gt;Batch calls&lt;/li&gt;
-&lt;/ul&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/elevenlabs-conversational-ai-2-0</link>
-      <guid>https://www.luisquintanilla.me/responses/elevenlabs-conversational-ai-2-0</guid>
-      <pubDate>2025-06-03 20:19 -05:00</pubDate>
-      <category>ai</category>
-      <category>speech</category>
-      <category>elevenlabs</category>
     </item>
   </channel>
 </rss>

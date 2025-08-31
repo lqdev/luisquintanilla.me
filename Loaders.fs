@@ -80,47 +80,6 @@ module Loaders
     
         links
 
-    let loadRedirects () = 
-        let (redirects:RedirectDetails array) = 
-            [|
-                // Legacy post redirects
-                ("/posts/client-credentials-authentication-csharp/","/2017/12/25/client-credentials-authentication-csharp","Client Credentials Auth")
-                ("/posts/alternatives-to-whatsapp","/2021/01/09/alternatives-to-whatsapp/","Alternatives to WhatsApp")
-                ("/posts/case-fsharp-machine-learning/","/2018/12/14/case-fsharp-machine-learning","The Case for Doing Machine Learning with F#")
-                ("/posts/mlnet-classification-fsharp/","/2018/06/13/mlnet-classification-fsharp/","Classification with F# ML.NET Models")
-                
-                // URL Alignment Phase 10: Content migrations
-                ("/feed/responses/", "/responses/", "Responses")
-                ("/albums/", "/media/", "Media")
-                ("/snippets/", "/resources/snippets/", "Code Snippets")
-                ("/wiki/", "/resources/wiki/", "Knowledge Base")  
-                ("/library/", "/reviews/", "Book Reviews")
-                ("/presentations/", "/resources/presentations/", "Presentations")
-                
-                // URL Alignment Phase 10: Feed relocations
-                ("/feed/notes.xml", "/notes/feed.xml", "Notes Feed")
-                ("/feed/responses/index.xml", "/responses/feed.xml", "Responses Feed")
-                ("/feed/albums.xml", "/media/feed.xml", "Media Feed")
-                ("/feed/snippets.xml", "/resources/snippets/feed.xml", "Snippets Feed")
-                ("/feed/wiki.xml", "/resources/wiki/feed.xml", "Wiki Feed")
-                ("/feed/library.xml", "/reviews/feed.xml", "Reviews Feed")
-                ("/feed/presentations.xml", "/resources/presentations/feed.xml", "Presentations Feed")
-                
-                // URL Alignment Phase 10: Collection reorganization
-                ("/feed/blogroll/", "/collections/blogroll/", "Blogroll")
-                ("/feed/starter/", "/collections/starter-packs/", "Starter Packs")
-                ("/feed/forums/", "/collections/forums/", "Forums")
-                ("/feed/podroll/", "/collections/podroll/", "Podroll")
-                ("/feed/youtube/", "/collections/youtube/", "YouTube")
-                
-                // URL Alignment Phase 10: Asset reorganization
-                ("/css/", "/assets/css/", "CSS Assets")
-                ("/js/", "/assets/js/", "JavaScript Assets")
-                ("/lib/", "/assets/lib/", "Library Assets")
-            |]
-
-        redirects
-
     let loadBooks (srcDir: string) = 
         let bookPaths = 
             Directory.GetFiles(Path.Join(srcDir,"reviews", "library"))

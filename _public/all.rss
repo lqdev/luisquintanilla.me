@@ -4,8 +4,69 @@
     <title>Luis Quintanilla - All Updates</title>
     <link>https://www.luisquintanilla.me/feed</link>
     <description>All content updates from Luis Quintanilla's website</description>
-    <lastBuildDate>2025-08-20 23:59 -05:00</lastBuildDate>
+    <lastBuildDate>2025-08-26 19:40 -05:00</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>Crescent library brings privacy to digital identity systems</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Digital identities, the electronic credentials embedded in phone wallets, workplace logins, and other apps, are becoming ubiquitous. While they offer unprecedented convenience, they also create new privacy risks, particularly around tracking and surveillance.&lt;br /&gt;
+&lt;br&gt;
+One of these risks is linkability, the ability to associate one or more uses of a credential to a specific person. Currently, when people use their mobile driver’s license or log into various apps, hidden identifiers can link these separate activities together, building detailed profiles of user behavior.&lt;br /&gt;
+&lt;br&gt;
+To address this, we have released &lt;a href="https://eprint.iacr.org/2024/2013"&gt;Crescent&lt;/a&gt;, a cryptographic library that adds unlinkability to widely used identity formats, protecting privacy. These include JSON Web Tokens (the authentication standard behind many app logins) and mobile driver’s licenses. Crescent also works without requiring the organizations that issue these credentials to update their systems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/microsoft/crescent-credentials"&gt;GitHub Repo&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/crescent-msr-privacy-digital-identity</link>
+      <guid>https://www.luisquintanilla.me/responses/crescent-msr-privacy-digital-identity</guid>
+      <pubDate>2025-08-26 19:40 -05:00</pubDate>
+      <category>research</category>
+      <category>privacy</category>
+      <category>microsoft</category>
+    </item>
+    <item>
+      <title>Windows 11 upgrade?</title>
+      <description>&lt;![CDATA[Album containing 0 photos]]&gt;</description>
+      <link>https://www.luisquintanilla.me/media/windows-11-upgrade</link>
+      <guid>https://www.luisquintanilla.me/media/windows-11-upgrade</guid>
+      <pubDate>2025-08-23 20:11 -05:00</pubDate>
+      <category>windows</category>
+      <category>windows10</category>
+    </item>
+    <item>
+      <title>Webmentions are back</title>
+      <description>&lt;![CDATA[&lt;p&gt;Nice to see my GitHub Actions back to green after fixing my script to send webmentions.&lt;/p&gt;
+&lt;p&gt;Now to discover more amazing content I can link out to.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/notes/webmentions-are-back</link>
+      <guid>https://www.luisquintanilla.me/notes/webmentions-are-back</guid>
+      <pubDate>2025-08-21 19:15 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>webmention</category>
+      <category>socialweb</category>
+    </item>
+    <item>
+      <title>Small (web) is beautiful</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I dream of a web that fosters healthy conversations, together with personal and intellectual growth. The world is diverse and fascinating, and we can be information explorers together.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/small-web-is-beautiful</link>
+      <guid>https://www.luisquintanilla.me/responses/small-web-is-beautiful</guid>
+      <pubDate>2025-08-21 19:13 -05:00</pubDate>
+      <category>smallweb</category>
+      <category>indieweb</category>
+      <category>blogging</category>
+    </item>
+    <item>
+      <title>We're getting married!</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;Congrats!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.luisquintanilla.me/responses/were-getting-married-reillys</link>
+      <guid>https://www.luisquintanilla.me/responses/were-getting-married-reillys</guid>
+      <pubDate>2025-08-21 18:47 -05:00</pubDate>
+      <category></category>
+    </item>
     <item>
       <title>Omnineural 4B</title>
       <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
@@ -648,77 +709,6 @@ Overall I'm happy with my solution but there are a few improvements I'd like to 
       <category>bot</category>
       <category>aca</category>
       <category>azurecontainerapps</category>
-    </item>
-    <item>
-      <title>I Deleted My Second Brain</title>
-      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
-&lt;p&gt;I don’t build a second brain. I inhabit the first.&lt;/p&gt;
-&lt;/blockquote&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/i-deleted-my-second-brain</link>
-      <guid>https://www.luisquintanilla.me/responses/i-deleted-my-second-brain</guid>
-      <pubDate>2025-08-13 08:03 -05:00</pubDate>
-      <category>pkm</category>
-      <category>notes</category>
-      <category>secondbrain</category>
-    </item>
-    <item>
-      <title>Test media post from mobile</title>
-      <description>&lt;![CDATA[Album containing 0 photos]]&gt;</description>
-      <link>https://www.luisquintanilla.me/media/test-media-post-from-mobile</link>
-      <guid>https://www.luisquintanilla.me/media/test-media-post-from-mobile</guid>
-      <pubDate>2025-08-12 22:40 -05:00</pubDate>
-      <category>mobile</category>
-      <category>blog</category>
-      <category>indieweb</category>
-    </item>
-    <item>
-      <title>Engineering for Slow Internet</title>
-      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Does this webapp really need to be 20 MB? What all is being loaded that could be deferred until it is needed, or included in an “optional” add-on bundle? Is there a possibility of a “lite” version, for bandwidth-constrained users?&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;While Antarctica is an edge case, this article illustrates some of the motivations behind my &lt;a href="https://www.luisquintanilla.me/text"&gt;text-first website&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;By trimming the excess not only do you get to the core of the app or website, but it also loads faster.&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/engineering-for-slow-internet</link>
-      <guid>https://www.luisquintanilla.me/responses/engineering-for-slow-internet</guid>
-      <pubDate>2025-08-12 08:41 -05:00</pubDate>
-      <category>slowweb</category>
-      <category>performance</category>
-      <category>internet</category>
-      <category>computing</category>
-    </item>
-    <item>
-      <title>Awesome Self-Hosted</title>
-      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
-&lt;p&gt;This is a list of Free Software network services and web applications which can be hosted on your own server(s).&lt;/p&gt;
-&lt;/blockquote&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/awesome-self-hosted</link>
-      <guid>https://www.luisquintanilla.me/responses/awesome-self-hosted</guid>
-      <pubDate>2025-08-11 23:24 -05:00</pubDate>
-      <category>selfhosting</category>
-      <category>opensource</category>
-      <category>FOSS</category>
-    </item>
-    <item>
-      <title>Stop saving everything</title>
-      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
-&lt;p&gt;If your read-it-later list isn’t getting cleared weekly, perhaps it’s time to delete the lot.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Save from a mindset of abundance, rather than scarcity, and process the things you’ve saved each week (or month, at the most). If you are worried that something you deleted truly would have changed your life, just stop.&lt;/p&gt;
-&lt;p&gt;STOP.&lt;/p&gt;
-&lt;p&gt;You can’t read it all, do it all, be it all. Trust that those potentially life-changing ideas will come around again, when you are ready for them&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Good reminder. Lately I've been sending a lot of notes to myself with stuff to read but just haven't had the time to get to it. That said, the act of sending myself those notes is low friction that I don't feel FOMO when I don't get to read the articles and consume the media.&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.luisquintanilla.me/responses/stop-saving-everything</link>
-      <guid>https://www.luisquintanilla.me/responses/stop-saving-everything</guid>
-      <pubDate>2025-08-11 23:00 -05:00</pubDate>
-      <category>pkm</category>
-      <category>productivity</category>
-      <category>notetaking</category>
     </item>
   </channel>
 </rss>

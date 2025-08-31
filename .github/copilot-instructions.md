@@ -591,6 +591,49 @@ const includeItem = ['star', 'reply', 'reshare', 'responses'].includes(cardType)
 
 **Benefits**: Enhanced navigation intuitiveness for timeline content exploration, improved accessibility compliance, better user experience for mixed technical audiences, and preserved brand navigation for users who prefer existing patterns.
 
+### Azure Static Web Apps Native Redirect Pattern (Proven)
+**Discovery**: F# HTML redirect page generation is redundant when using Azure Static Web Apps, which provides superior server-level redirect capabilities with better performance, SEO benefits, and reduced build complexity.
+
+**Implementation Pattern**:
+- **Single Configuration File**: Use `staticwebapp.config.json` in project root with comprehensive redirect rules
+- **Server-Level Redirects**: Azure edge network handles redirects before HTML parsing for optimal performance
+- **Proper HTTP Status Codes**: Use 301 for permanent redirects (SEO) and 307 for temporary/social redirects (caching)
+- **Comprehensive Migration**: Convert all F# redirect logic to Azure native configuration format
+- **Build Process Cleanup**: Remove all redirect page generation code, functions, and dependencies
+
+**Azure Configuration Structure**:
+```json
+{
+  "trailingSlash": "auto",
+  "routes": [
+    {
+      "route": "/github",
+      "redirect": "https://github.com/lqdev",
+      "statusCode": 307
+    }
+  ],
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff"
+  }
+}
+```
+
+**F# Cleanup Pattern**:
+- **Module Removal**: Delete redirect-specific modules (`Redirects.fs`) entirely
+- **Function Cleanup**: Remove `buildRedirectPages()`, `generateRedirect()`, `redirectLayout()` functions
+- **Type Cleanup**: Remove `RedirectDetails` type definitions and loading functions
+- **Build Integration**: Remove redirect generation calls from main build orchestration
+- **Project File**: Remove module references from `.fsproj` file
+
+**Success Metrics**:
+- **Performance Enhancement**: Server-level redirects vs HTML meta-refresh for faster user experience
+- **SEO Improvement**: Proper HTTP status codes recognized by search engines
+- **Build Efficiency**: Elimination of redirect page generation reduces build time and complexity
+- **Global Performance**: Azure CDN edge network provides worldwide redirect optimization
+- **Codebase Cleanup**: Removal of 200+ lines of redirect-specific code improves maintainability
+
+**Benefits**: Superior redirect performance leveraging Azure's global infrastructure, proper SEO compliance with HTTP status codes, reduced build complexity and maintenance overhead, and cleaner F# codebase focused on core functionality.
+
 ### Blockquote Visibility Enhancement Pattern (Proven)
 **Discovery**: Blockquote styling in dark themes often suffers from poor visibility due to insufficient contrast, light font weights, and CSS specificity conflicts between theme systems and component-specific styles.
 

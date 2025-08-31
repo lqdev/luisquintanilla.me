@@ -797,26 +797,6 @@ module Builder
         // Return feed data for unified RSS generation
         feedData
 
-    // Build redirect pages for URL migration
-    let buildRedirectPages (redirects: RedirectDetails array) =
-        redirects
-        |> Array.iter (fun (sourceUrl, targetUrl, title) ->
-            let redirectHtml = ViewGenerator.generateRedirect targetUrl title
-            
-            // Handle different redirect types
-            if sourceUrl.EndsWith(".xml") || sourceUrl.EndsWith(".html") then
-                // File-level redirect - create the exact file
-                let saveFilePath = Path.Join(outputDir, sourceUrl.TrimStart('/'))
-                let dirPath = Path.GetDirectoryName(saveFilePath)
-                Directory.CreateDirectory(dirPath) |> ignore
-                File.WriteAllText(saveFilePath, redirectHtml)
-            else
-                // Directory-level redirect - create index.html in directory
-                let saveDir = Path.Join(outputDir, sourceUrl.TrimStart('/'))
-                Directory.CreateDirectory(saveDir) |> ignore
-                let saveFileName = Path.Join(saveDir, "index.html")
-                File.WriteAllText(saveFileName, redirectHtml))
-
     // Build unified feed HTML page with all content types
     let buildUnifiedFeedPage (allUnifiedItems: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
         // Flatten all feed items and sort chronologically

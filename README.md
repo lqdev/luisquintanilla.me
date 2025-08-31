@@ -25,7 +25,6 @@ This is a production-ready IndieWeb site built with F# featuring:
 - **CustomBlocks.fs** - Custom Markdig extensions (media, reviews, venues, RSVP blocks)
 - **BlockRenderers.fs** - HTML rendering for custom block types
 - **MediaTypes.fs** - Media type detection and handling
-- **Redirects.fs** - URL redirect management for site migrations
 - **OutputComparison.fs** - Build validation and output comparison utilities
 
 ### Views Architecture (Modular)

@@ -371,22 +371,6 @@ module Layouts
             a [_rel "me"; _href "mailto:lqdev@outlook.com"] []            
         ]
 
-    let redirectLayout (pageUrl:string) (pageTitle:string) = 
-        html [_lang "en"] [
-            head [] [
-                meta [
-                    attr "http-equiv" "refresh"
-                    _content $"0; url={pageUrl}"
-                ]
-
-                // Robots
-                meta [_name "robots"; _content "nosnippet"]
-                title [] [Text pageTitle]]
-            body [] []
-            
-            footerContent
-        ]
-
     let defaultLayout (pageTitle:string) (content:string) =
         html [_lang "en"] [
             head [] [
