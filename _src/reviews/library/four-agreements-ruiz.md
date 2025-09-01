@@ -6,7 +6,7 @@ cover: "https://covers.openlibrary.org/b/id/15101528-L.jpg"
 status: "Read"
 rating: "4.2
 source: "https://openlibrary.org/works/OL27203W/The_Four_Agreements?edition="
-date_published: "08/31/2025 19:08 -05:00"
+date_published: "08/30/2025 19:08 -05:00"
 ---
 
 ## Description
