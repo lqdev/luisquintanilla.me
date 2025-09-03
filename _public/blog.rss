@@ -78,11 +78,11 @@ The workflow for publishing is as follows:
 
 1. Invoke the bot in Discord to capture my input using slash command `/post` and the respective post type.
 
-    ![Using slash commands to invoke discord publishing bot](/files/images/invoke-discord-publishing-bot.png)
+    ![Using slash commands to invoke discord publishing bot](/api/files/images/invoke-discord-publishing-bot.png)
 
 1. Provide post details. For media posts, I can provide an attachment which gets uploaded to Azure Blob Storage.
 
-    ![A modal in discord with note post fields filled in](/files/images/discord-publishing-client-modal.png)
+    ![A modal in discord with note post fields filled in](/api/files/images/discord-publishing-client-modal.png)
 
 1. [Bot creates a branch and PR in my repo](https://github.com/lqdev/luisquintanilla.me/pull/152) with the post content
 1. While logged into GitHub from my phone, if everything looks good, I merge the PR which kicks off my GitHub Actions workflow to build and publish the site including the new post. 
@@ -131,7 +131,7 @@ With that in mind, I set out to sketch out how I want to create and render media
 
 Overall, I'm happy with the end result. 
 
-![A screenshot of a website post containing an image and audio player](/files/images/indieweb-create-day-2025-07.png)
+![A screenshot of a website post containing an image and audio player](/api/files/images/indieweb-create-day-2025-07.png)
 
 For more details, you can check out the [repo](https://github.com/lqdev/indieweb-create-day-2025-07).
 
@@ -1297,7 +1297,7 @@ Once your application deploys, make sure to change your admin password.
 
 1. In the portal, go to your container app resource and copy your application URL.
 
-    ![Screenshot of Azure Container Apps resource in Azure Portal highlighting Application URL](/files/images/portal-container-resource.png)
+    ![Screenshot of Azure Container Apps resource in Azure Portal highlighting Application URL](/api/files/images/portal-container-resource.png)
 
     Make sure to keek your application URL around since you'll also be using it when configuring OBS. 
 
@@ -1405,7 +1405,7 @@ To subscribe to the LibriVox New Release feed:
 1. In AntennaPod, open up the hamburger menu and select **Add Podcast**.
 1. In the *Add Podcast* dialog, select **Add podcast by RSS address**.
 
-    ![AntennaPod Add Podcast Dialog](/files/images/add-podcast-antennapod.png)
+    ![AntennaPod Add Podcast Dialog](/api/files/images/add-podcast-antennapod.png)
 
 1. Paste the LibriVox New Releases RSS feed URL into the text box and select **Confirm**. 
 
@@ -1424,15 +1424,15 @@ Subscribing to the new releases feed only notifies you when new books are added,
 1. In AntennaPod's Subscription screen, select **LibriVox's New Releases**.
 1. From the list of new releases, select the book you want to listen to. For example, "Room of One's Own" by Virginia Woolf.
 
-    ![AntennaPod New Releases Feed](/files/images/antennapod-librivox-new-releases.png)
+    ![AntennaPod New Releases Feed](/api/files/images/antennapod-librivox-new-releases.png)
 
 1. In the audiobook's screen, select **Visit Website**. This will take you to the LibriVox audiobook's page in the browser.
 
-    ![AntennaPod Audiobook Screen](/files/images/antennapod-room-of-ones-own.png)
+    ![AntennaPod Audiobook Screen](/api/files/images/antennapod-room-of-ones-own.png)
 
 1. In the LibriVox audiobook page, select the book's RSS Feed.
 
-    ![A Room of One's Own by Virginia Woolf LibriVox book page](/files/images/librivox-room-ones-own.png)
+    ![A Room of One's Own by Virginia Woolf LibriVox book page](/api/files/images/librivox-room-ones-own.png)
 
 1. Copy the book's feed URL to your clipboard.
 1. In AntennaPod, open up the hamburger menu and select **Add Podcast**.
@@ -2887,15 +2887,15 @@ For brevity, I'll only include some of the images generated:
 
 "The Sand"
 
-![AI genreated image of a grain of sand under a microscope and a car driving on a dusty road in a desert](/files/images/sand-car-dirt-road.jpg)
+![AI genreated image of a grain of sand under a microscope and a car driving on a dusty road in a desert](/api/files/images/sand-car-dirt-road.jpg)
 
 "The Sea"
 
-![AI generated image of a boy standing on a pier looking at a sea of dead fish and a sign that says “No diving”](/files/images/child-dock.jpg)
+![AI generated image of a boy standing on a pier looking at a sea of dead fish and a sign that says “No diving”](/api/files/images/child-dock.jpg)
 
 "The Root"
 
-![AI generated image of a father and a son playing in a garden with different plants and flowers”](/files/images/father-son-playing.jpg)
+![AI generated image of a father and a son playing in a garden with different plants and flowers”](/api/files/images/father-son-playing.jpg)
 
 The pencil art part was something I thought would look nice to illustrate this instead of digital art or photorealism. That was a personal choice though. 
 

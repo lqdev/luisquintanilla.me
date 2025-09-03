@@ -125,33 +125,37 @@ module Builder
 
     // New timeline homepage for Phase 3 - Feed-as-Homepage Interface
     let buildTimelineHomePage (allUnifiedItems: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
-        // Content-type stratified sampling: Take first 5 items from each content type
-        // This ensures equal representation and better content discovery in initial load
-        let stratifiedInitialItems = 
+        // True chronological approach: Take the most recent items across ALL content types
+        // This ensures proper chronological order instead of forcing representation from old content types
+        let allItemsFlattened = 
             allUnifiedItems
-            |> List.collect (fun (contentType, items) ->
-                items 
-                |> List.sortByDescending (fun item -> DateTime.Parse(item.Date))
-                |> List.take (min 5 items.Length) // Take top 5 from each content type
-            )
-            |> List.sortByDescending (fun item -> DateTime.Parse(item.Date)) // Sort mixed types chronologically
+            |> List.collect snd
+            |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
+        
+        let chronologicalInitialItems = 
+            allItemsFlattened
+            |> List.take (min 50 allItemsFlattened.Length) // Take top 50 most recent items regardless of type
         
         // Group remaining items by content type for type-aware progressive loading
         let remainingItemsByType = 
             allUnifiedItems
             |> List.map (fun (contentType, items) ->
-                let sortedItems = items |> List.sortByDescending (fun item -> DateTime.Parse(item.Date))
-                let remainingItems = sortedItems |> List.skip (min 5 items.Length)
+                let sortedItems = items |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
+                // Skip items that are already in the initial chronological load
+                let remainingItems = 
+                    sortedItems 
+                    |> List.filter (fun item -> 
+                        not (chronologicalInitialItems |> List.exists (fun initial -> initial.Url = item.Url)))
                 (contentType, remainingItems)
             )
             |> List.filter (fun (_, items) -> not items.IsEmpty)
         
-        // Generate the timeline homepage with stratified approach
-        let timelineHomePage = generate (LayoutViews.timelineHomeViewStratified (stratifiedInitialItems |> List.toArray) remainingItemsByType) "default" "Luis Quintanilla - Personal Website"
+        // Generate the timeline homepage with chronological approach
+        let timelineHomePage = generate (LayoutViews.timelineHomeViewStratified (chronologicalInitialItems |> List.toArray) remainingItemsByType) "default" "Luis Quintanilla - Personal Website"
         File.WriteAllText(Path.Join(outputDir,"index.html"), timelineHomePage)
         
         let totalItems = allUnifiedItems |> List.sumBy (fun (_, items) -> items.Length)
-        printfn "✅ Timeline homepage created with %d initial items (stratified) from %d total items across all content types" stratifiedInitialItems.Length totalItems
+        printfn "✅ Timeline homepage created with %d initial items (chronological) from %d total items across all content types" chronologicalInitialItems.Length totalItems
 
     let buildAboutPage () = 
 
