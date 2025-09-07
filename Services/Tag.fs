@@ -3,44 +3,75 @@ module TagService
     open Domain
 
     let processTagName (tag:string) = 
-        tag
-            .Replace(".net","dotnet")
-            .Replace(".","")
-            .Replace(' ', '-')
-            .Replace("c#","csharp")
-            .ToLower()
+        let processed = 
+            tag
+                .Replace(".net","dotnet")
+                .Replace(".","")
+                .Replace(' ', '-')
+                .Replace("c#","csharp")
+                .ToLower()
+                .Trim()
+        
+        // Return empty string as is - filtering happens at higher level
+        processed
 
     let cleanTags (tags:string array) = 
         try
-            tags |> Array.map(processTagName)
+            let processedTags =
+                tags 
+                |> Array.map(processTagName)
+                |> Array.filter(fun tag -> tag <> "" && tag <> null)
+            
+            // If no valid tags remain, assign "untagged"
+            if processedTags.Length = 0 then [|"untagged"|] else processedTags
         with
             | _ -> [|"untagged"|]
 
     let cleanPostTags (post:Post) = 
         try
-            post.Metadata.Tags |> Array.map(processTagName)
+            let processedTags =
+                post.Metadata.Tags 
+                |> Array.map(processTagName)
+                |> Array.filter(fun tag -> tag <> "" && tag <> null)
+            
+            // If no valid tags remain, assign "untagged"
+            if processedTags.Length = 0 then [|"untagged"|] else processedTags
         with
             | _ -> [|"untagged"|]
 
     let cleanResponseTags (post:Response) = 
         try
-            post.Metadata.Tags |> Array.map(processTagName)
+            let processedTags =
+                post.Metadata.Tags 
+                |> Array.map(processTagName)
+                |> Array.filter(fun tag -> tag <> "" && tag <> null)
+            
+            // If no valid tags remain, assign "untagged"
+            if processedTags.Length = 0 then [|"untagged"|] else processedTags
         with
             | _ -> [|"untagged"|]
 
     let getTagsFromPost (post:Post) = 
         try
-            post.Metadata.Tags 
-            |> Array.map(fun x -> 
-                processTagName x, post)
+            let processedTags =
+                post.Metadata.Tags 
+                |> Array.map(fun x -> processTagName x, post)
+                |> Array.filter(fun (tag, _) -> tag <> "" && tag <> null)
+            
+            // If no valid tags remain, assign "untagged"
+            if processedTags.Length = 0 then [|"untagged", post|] else processedTags
         with 
             | _ -> [|"untagged",post|]
 
     let getTagsFromResponse (post:Response) = 
         try
-            post.Metadata.Tags 
-            |> Array.map(fun x -> 
-                processTagName x, post)
+            let processedTags =
+                post.Metadata.Tags 
+                |> Array.map(fun x -> processTagName x, post)
+                |> Array.filter(fun (tag, _) -> tag <> "" && tag <> null)
+            
+            // If no valid tags remain, assign "untagged"
+            if processedTags.Length = 0 then [|"untagged", post|] else processedTags
         with 
             | _ -> [|"untagged",post|]
 

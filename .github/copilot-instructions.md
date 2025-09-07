@@ -693,6 +693,37 @@ const includeItem = ['star', 'reply', 'reshare', 'responses'].includes(cardType)
 
 **Benefits**: Enhanced readability across all themes, consistent visual hierarchy, improved accessibility compliance, and robust CSS architecture that handles framework conflicts effectively.
 
+### Untagged Content Discovery Pattern (Proven)
+**Discovery**: Tag systems require robust handling of empty tags and provide content management workflows for discovering untagged content that needs organization.
+
+**Implementation Pattern**:
+- **Automatic Untagged Assignment**: Assign "untagged" tag when content has empty tag arrays (`[]`) or arrays that become empty after filtering
+- **Empty Tag Filtering**: Remove empty strings, null values, and whitespace-only tags from all tag processing functions
+- **Fallback Mechanisms**: Provide "untagged" fallback in tag retrieval functions when no valid tags exist after processing
+- **Content Discovery Portal**: Create dedicated tag page (`/tags/untagged/`) for systematic content management workflow
+- **Cross-Content Type Support**: Apply untagged logic consistently across all content types (posts, notes, responses)
+
+**Technical Components**:
+```fsharp
+// Enhanced tag cleaning with untagged assignment
+let cleanTags (tags: string list) =
+    let cleaned = tags |> List.filter (fun tag -> not (String.IsNullOrWhiteSpace(tag)))
+    if cleaned.IsEmpty then ["untagged"] else cleaned
+
+// Fallback logic in tag retrieval
+let getTagsFromPost (post: Post) =
+    let tags = cleanPostTags post.Metadata.Tags
+    if tags.IsEmpty then [("untagged", 1)] else tags |> List.map (fun tag -> (tag, 1))
+```
+
+**Success Metrics**:
+- **Content Discovery**: All untagged content discoverable through dedicated landing page
+- **Content Management**: Clear workflow for systematic tagging of previously unorganized content
+- **System Reliability**: Robust handling of edge cases (empty strings, null values, whitespace)
+- **Zero Regression**: All existing tag functionality preserved during enhancement
+
+**Benefits**: Enhanced content organization capabilities, systematic content management workflow, improved tag system reliability, better long-term content maintenance, and clear discovery mechanism for content needing tags.
+
 ### Back to Top Button UX Pattern (Proven)
 **Discovery**: Research-backed back to top button implementation following established UX guidelines with mobile optimization and accessibility compliance creates superior user experience for long-content interfaces.
 
