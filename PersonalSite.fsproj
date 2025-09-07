@@ -12,12 +12,12 @@
     <Compile Include="MediaTypes.fs" />
     <Compile Include="ASTParsing.fs" />
     <Compile Include="BlockRenderers.fs" />
-    <Compile Include="GenericBuilder.fs" />
     <Compile Include="OutputComparison.fs" />
     <Compile Include="Services\Markdown.fs" />
     <Compile Include="Services\Tag.fs" />
     <Compile Include="Services\Opml.fs" />    
     <Compile Include="Services\Webmention.fs" /> 
+    <Compile Include="GenericBuilder.fs" />
     <Compile Include="Views\ComponentViews.fs" />
     <Compile Include="Views\TagViews.fs" />
     <Compile Include="Views\FeedViews.fs" />

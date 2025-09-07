@@ -481,7 +481,7 @@ module Builder
             items
             |> Array.filter (fun item -> item.Tags <> null && item.Tags.Length > 0)
             |> Array.collect (fun item -> 
-                item.Tags |> Array.map (fun tag -> (tag.Trim().ToLower(), item)))
+                item.Tags |> Array.map (fun tag -> (TagService.processTagName tag, item)))
             |> Array.groupBy fst
             |> Array.map (fun (tag, items) -> 
                 let sortedItems = items |> Array.map snd |> Array.sortByDescending (fun x -> DateTime.Parse(x.Date))
