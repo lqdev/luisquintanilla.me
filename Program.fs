@@ -7,6 +7,7 @@ open Builder
 open GenericBuilder
 open WebmentionService
 open Domain
+open TagService
 open TextOnlyBuilder
 
 [<EntryPoint>]
@@ -179,7 +180,24 @@ let main argv =
 
     // Build tags page - Use correct notes data source
     let notesFromFeedData = notesFeedData |> List.map (fun item -> item.Content) |> List.toArray
-    buildTagsPages posts notesFromFeedData responses
+    
+    // Feature flag for unified tag system testing
+    let useUnifiedTagSystem = true // Change to true to test enhanced unified system
+    
+    if useUnifiedTagSystem then
+        // Enhanced unified tag system supporting all content types
+        let allTaggableContent = [
+            ("posts", posts |> Array.map (fun p -> p :> ITaggable))
+            ("notes", notesFromFeedData |> Array.map (fun n -> n :> ITaggable))
+            ("responses", responses |> Array.map (fun r -> r :> ITaggable))
+            ("snippets", snippetsFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun s -> s :> ITaggable))
+            ("wikis", wikisFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun w -> w :> ITaggable))
+            ("presentations", presentationsFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun p -> p :> ITaggable))
+        ]
+        buildUnifiedTagsPages allTaggableContent
+    else
+        // Current production system (posts, notes, responses only)
+        buildTagsPages posts notesFromFeedData responses
 
     // Build legacy RSS feed aliases for backward compatibility (at the very end)
     buildLegacyRssFeedAliases ()

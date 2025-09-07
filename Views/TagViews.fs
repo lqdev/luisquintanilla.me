@@ -31,6 +31,21 @@ let tagResponseLinkView (responses: Response array) (prefix: string) =
             ]
     ]    
 
+/// Generic content link view using ITaggable interface
+let tagContentLinkView (content: ITaggable array) (prefix: string) (contentTypeName: string) = 
+    if content.Length > 0 then
+        [
+            h3 [] [Text contentTypeName]
+            ul [] [
+                for item in content do
+                    li [] [
+                        a [_href $"/{prefix}/{item.FileName}"] [Text item.Title]
+                    ]
+            ]
+        ]
+    else
+        []
+
 let allTagsView (tags: string array) = 
     let tagLinks = tagLinkView tags
     
@@ -57,4 +72,17 @@ let individualTagView (tagName:string) (posts:Post array) (notes:Post array) (re
 
         h3 [] [Text "Responses"]
         responseLinks
+    ]
+
+/// Enhanced unified tag view supporting all content types through ITaggable interface
+let individualTagViewUnified (tagName: string) (allTaggableContent: (ITaggable array * string * string) list) = 
+    let contentSections = 
+        allTaggableContent
+        |> List.collect (fun (content, prefix, displayName) ->
+            tagContentLinkView content prefix displayName)
+
+    div [ _class "mr-auto" ] [ 
+        h2 [] [Text $"{tagName}"]
+        p [] [Text $"A list of content tagged {tagName}"]
+        yield! contentSections
     ]

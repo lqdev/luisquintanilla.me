@@ -12,6 +12,7 @@ module Builder
     open OpmlService
     open ViewGenerator
     open PartialViews
+    open TagViews
     
     let private srcDir = "_src"
     let private outputDir = "_public"
@@ -478,7 +479,7 @@ module Builder
         // Process all tagged content using unified ITaggable interface
         let processTaggedContent (contentType: string) (items: ITaggable array) =
             items
-            |> Array.filter (fun item -> item.Tags.Length > 0)
+            |> Array.filter (fun item -> item.Tags <> null && item.Tags.Length > 0)
             |> Array.collect (fun item -> 
                 item.Tags |> Array.map (fun tag -> (tag.Trim().ToLower(), item)))
             |> Array.groupBy fst
@@ -519,18 +520,32 @@ module Builder
             let individualTagSaveDir = Path.Join(saveDir, sanitizedTag)
             Directory.CreateDirectory(individualTagSaveDir) |> ignore
             
-            // Convert ITaggable back to specific types for view compatibility
-            let contentMap = contentByType |> Array.fold (fun acc (contentType, items) -> Map.add contentType items acc) Map.empty
+            // Prepare content arrays with proper prefixes and display names
+            let taggedContentForView = 
+                contentByType
+                |> Array.map (fun (contentType, items) -> 
+                    let (prefix, displayName) = 
+                        match contentType with
+                        | "posts" -> ("posts", "Blogs")
+                        | "notes" -> ("notes", "Notes") 
+                        | "responses" -> ("responses", "Responses")
+                        | "snippets" -> ("snippets", "Snippets")
+                        | "wikis" -> ("wiki", "Wiki")
+                        | "presentations" -> ("resources/presentations", "Presentations")
+                        | "albums" -> ("media/albums", "Albums")
+                        | _ -> (contentType, contentType)
+                    (items, prefix, displayName))
+                |> Array.toList
             
-            // For now, use empty arrays for missing content types until we enhance the view
-            let posts = [||] // TODO: Extract Post objects from ITaggable
-            let notes = [||] // TODO: Extract Post objects from ITaggable (notes are Post types)
-            let responses = [||] // TODO: Extract Response objects from ITaggable
-            
-            // Use existing view with placeholder data for testing
-            let individualTagPage = generate (individualTagView tag posts notes responses) "default" $"{tag} - Tags - Luis Quintanilla"
-            File.WriteAllText(Path.Join(individualTagSaveDir,"index.html"),individualTagPage)
-        )
+            let individualTagPage = generate (individualTagViewUnified tag taggedContentForView) "default" $"{tag} - Tags - Luis Quintanilla"
+            File.WriteAllText(Path.Join(individualTagSaveDir, "index.html"), individualTagPage))
+
+        // Generate main tags index page
+        let allTagNames = groupedByTag |> Array.map fst
+        let tagPage = generate (allTagsView allTagNames) "default" "Tags - Luis Quintanilla"
+        File.WriteAllText(Path.Join(saveDir, "index.html"), tagPage)
+
+        printfn "✅ Unified tags pages created for %d tags across %d content types" allTagNames.Length contentArrays.Length
 
     let buildEventPage () = 
         let events =  

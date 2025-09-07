@@ -310,6 +310,13 @@ module Domain
         Metadata: ResponseDetails
         Content: string
     }
+    with
+        interface ITaggable with
+            member this.Tags = this.Metadata.Tags
+            member this.Title = this.Metadata.Title
+            member this.Date = this.Metadata.DatePublished
+            member this.FileName = this.FileName
+            member this.ContentType = "response"
 
     [<CLIMutable>]
     type BookmarkDetails = {
