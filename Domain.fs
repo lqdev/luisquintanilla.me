@@ -366,6 +366,21 @@ module Domain
         let getBookFileName (book: Book) = book.FileName
         let getBookContentType (_: Book) = "book"
         
+        let getPresentationTags (presentation: Presentation) = 
+            if String.IsNullOrEmpty(presentation.Metadata.Tags) then [||]
+            else presentation.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+        let getPresentationTitle (presentation: Presentation) = presentation.Metadata.Title
+        let getPresentationDate (presentation: Presentation) = presentation.Metadata.Date
+        let getPresentationFileName (presentation: Presentation) = presentation.FileName
+        let getPresentationContentType (_: Presentation) = "presentation"
+        
+        let getAlbumTags (album: Album) = 
+            if isNull album.Metadata.Tags then [||] else album.Metadata.Tags
+        let getAlbumTitle (album: Album) = album.Metadata.Title
+        let getAlbumDate (album: Album) = album.Metadata.Date
+        let getAlbumFileName (album: Album) = album.FileName
+        let getAlbumContentType (_: Album) = "album"
+        
         // Generic function to work with any ITaggable-like object
         let createTaggableRecord (tags: string array) (title: string) (date: string) (fileName: string) (contentType: string) =
             { new ITaggable with
@@ -389,3 +404,11 @@ module Domain
             
         let bookAsTaggable (book: Book) = 
             createTaggableRecord (getBookTags book) (getBookTitle book) (getBookDate book) (getBookFileName book) (getBookContentType book)
+            
+        let presentationAsTaggable (presentation: Presentation) = 
+            createTaggableRecord (getPresentationTags presentation) (getPresentationTitle presentation) (getPresentationDate presentation) (getPresentationFileName presentation) (getPresentationContentType presentation)
+            
+        let albumAsTaggable (album: Album) = 
+            createTaggableRecord (getAlbumTags album) (getAlbumTitle album) (getAlbumDate album) (getAlbumFileName album) (getAlbumContentType album)
+            
+        // Note: Notes are processed as Post types through NoteProcessor, so noteAsTaggable = postAsTaggable

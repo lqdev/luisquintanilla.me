@@ -177,8 +177,9 @@ let main argv =
     let _ = buildMedia()
     ()
 
-    // Build tags page
-    buildTagsPages posts feedNotes responses
+    // Build tags page - Use correct notes data source
+    let notesFromFeedData = notesFeedData |> List.map (fun item -> item.Content) |> List.toArray
+    buildTagsPages posts notesFromFeedData responses
 
     // Build legacy RSS feed aliases for backward compatibility (at the very end)
     buildLegacyRssFeedAliases ()

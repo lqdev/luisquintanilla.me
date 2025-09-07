@@ -473,6 +473,65 @@ module Builder
             File.WriteAllText(Path.Join(individualTagSaveDir,"index.html"),individualTagPage)
         )
 
+    /// Enhanced unified tag processing function supporting all ITaggable content types
+    let buildUnifiedTagsPages (contentArrays: (string * ITaggable array) list) = 
+        // Process all tagged content using unified ITaggable interface
+        let processTaggedContent (contentType: string) (items: ITaggable array) =
+            items
+            |> Array.filter (fun item -> item.Tags.Length > 0)
+            |> Array.collect (fun item -> 
+                item.Tags |> Array.map (fun tag -> (tag.Trim().ToLower(), item)))
+            |> Array.groupBy fst
+            |> Array.map (fun (tag, items) -> 
+                let sortedItems = items |> Array.map snd |> Array.sortByDescending (fun x -> DateTime.Parse(x.Date))
+                (tag, contentType, sortedItems))
+
+        // Process all content types
+        let allTaggedContent = 
+            contentArrays
+            |> List.collect (fun (contentType, items) -> 
+                processTaggedContent contentType items |> Array.toList)
+            |> List.toArray
+
+        // Group by tag name across all content types
+        let groupedByTag = 
+            allTaggedContent
+            |> Array.groupBy (fun (tag, _, _) -> tag)
+            |> Array.map (fun (tag, tagGroups) -> 
+                let contentByType = 
+                    tagGroups 
+                    |> Array.map (fun (_, contentType, items) -> (contentType, items))
+                    |> Array.groupBy fst
+                    |> Array.map (fun (contentType, groups) -> 
+                        let allItems = groups |> Array.collect snd
+                        (contentType, allItems))
+                (tag, contentByType))
+            |> Array.sortBy fst
+
+        // Create tag directory structure and generate pages
+        let saveDir = Path.Join(outputDir, "tags")
+        Directory.CreateDirectory(saveDir) |> ignore
+
+        // Generate individual tag pages for unified content
+        groupedByTag
+        |> Array.iter (fun (tag, contentByType) -> 
+            let sanitizedTag = sanitizeTagForPath tag
+            let individualTagSaveDir = Path.Join(saveDir, sanitizedTag)
+            Directory.CreateDirectory(individualTagSaveDir) |> ignore
+            
+            // Convert ITaggable back to specific types for view compatibility
+            let contentMap = contentByType |> Array.fold (fun acc (contentType, items) -> Map.add contentType items acc) Map.empty
+            
+            // For now, use empty arrays for missing content types until we enhance the view
+            let posts = [||] // TODO: Extract Post objects from ITaggable
+            let notes = [||] // TODO: Extract Post objects from ITaggable (notes are Post types)
+            let responses = [||] // TODO: Extract Response objects from ITaggable
+            
+            // Use existing view with placeholder data for testing
+            let individualTagPage = generate (individualTagView tag posts notes responses) "default" $"{tag} - Tags - Luis Quintanilla"
+            File.WriteAllText(Path.Join(individualTagSaveDir,"index.html"),individualTagPage)
+        )
+
     let buildEventPage () = 
         let events =  
             File.ReadAllText(Path.Join("Data","events.json"))
