@@ -2,18 +2,44 @@ module TagService
 
     open Domain
 
-    let processTagName (tag:string) = 
-        let processed = 
-            tag
-                .Replace(".net","dotnet")
-                .Replace(".","")
-                .Replace(' ', '-')
-                .Replace("c#","csharp")
-                .ToLower()
-                .Trim()
-        
-        // Return empty string as is - filtering happens at higher level
-        processed
+    let processTagName (tag: string) = 
+        if System.String.IsNullOrWhiteSpace(tag) then "untagged"
+        else
+            let processed = 
+                tag.ToLower().Trim()
+                // Technology-specific replacements (order matters!)
+                |> fun s -> s.Replace(".net core", "dotnet")
+                |> fun s -> s.Replace(".net framework", "dotnet-framework") 
+                |> fun s -> s.Replace(".net", "dotnet")
+                |> fun s -> s.Replace("asp.net", "aspnet")
+                |> fun s -> s.Replace("c#", "csharp")
+                |> fun s -> s.Replace("f#", "fsharp")
+                |> fun s -> s.Replace("node.js", "nodejs")
+                |> fun s -> s.Replace("next.js", "nextjs")
+                |> fun s -> s.Replace("vue.js", "vuejs")
+                // Special characters
+                |> fun s -> s.Replace("#", "sharp")
+                |> fun s -> s.Replace("++", "plus")
+                |> fun s -> s.Replace("@", "at")
+                |> fun s -> s.Replace("&", "and")
+                |> fun s -> s.Replace("%", "percent")
+                |> fun s -> s.Replace("$", "dollar")
+                // Space normalization
+                |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, @"\s+", " ")
+                |> fun s -> s.Replace(' ', '-')
+                |> fun s -> s.Replace('_', '-')
+                // URL-unsafe characters
+                |> fun s -> s.Replace("(", "").Replace(")", "")
+                |> fun s -> s.Replace("[", "").Replace("]", "")
+                |> fun s -> s.Replace("{", "").Replace("}", "")
+                |> fun s -> s.Replace(":", "").Replace(";", "")
+                |> fun s -> s.Replace(",", "").Replace("'", "").Replace("\"", "")
+                |> fun s -> s.Replace("?", "").Replace("!", "")
+                // Remove double hyphens and clean up
+                |> fun s -> s.Replace("--", "-")
+                |> fun s -> s.Trim('-').Trim()
+            
+            if System.String.IsNullOrWhiteSpace(processed) || processed = "-" then "untagged" else processed
 
     let cleanTags (tags:string array) = 
         try

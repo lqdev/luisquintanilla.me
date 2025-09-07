@@ -724,6 +724,59 @@ let getTagsFromPost (post: Post) =
 
 **Benefits**: Enhanced content organization capabilities, systematic content management workflow, improved tag system reliability, better long-term content maintenance, and clear discovery mechanism for content needing tags.
 
+### Unified Tag Processing Pattern (Proven)
+**Discovery**: Tag quality issues arise when multiple processing paths use different sanitization logic. Centralized tag processing through dedicated service modules ensures consistency across all content types and eliminates empty tags, technology normalization issues, and duplication.
+
+**Implementation Pattern**:
+- **Centralized Service Module**: Create `Services/Tag.fs` with comprehensive `processTagName` function handling all tag sanitization and normalization
+- **Technology Normalization**: Apply consistent technology tag transformations (`.net core` → `dotnet`, `c#` → `csharp`, `c++` → `cpp`)
+- **Special Character Handling**: Convert problematic characters (`#` → `sharp`, `++` → `plus`, `/` → `-`) for URL-safe tag paths
+- **Comprehensive Processing**: Handle empty strings, whitespace trimming, lowercase conversion, and duplicate prevention
+- **Cross-Module Integration**: Update all tag processing paths to use centralized service instead of local implementations
+- **Build Order Dependencies**: Ensure F# module compilation order places service modules before consumers
+
+**Root Cause Pattern**: Tag quality issues typically stem from inconsistent processing where different code paths (RSS generation, tag index creation, content processing) use different sanitization logic, leading to:
+- Empty "#" tags from unprocessed empty strings
+- Technology tag variations (`.net`, `.net core`, `dotnet`) not being normalized
+- Inconsistent URL-safe character conversion
+
+**Technical Implementation**:
+```fsharp
+// Services/Tag.fs - Centralized processing
+let processTagName (tag: string) =
+    if String.IsNullOrWhiteSpace(tag) then "untagged"
+    else
+        tag.Trim().ToLowerInvariant()
+        |> fun t -> t.Replace(".net core", "dotnet")
+        |> fun t -> t.Replace(".net", "dotnet")
+        |> fun t -> t.Replace("c#", "csharp")
+        |> fun t -> t.Replace("c++", "cpp")
+        |> fun t -> t.Replace("#", "sharp")
+        |> fun t -> t.Replace("++", "plus")
+        |> fun t -> t.Replace("/", "-")
+        |> fun t -> t.Replace(" ", "-")
+
+// Builder.fs - Update tag processing
+let processTaggedContent (contentType: string) (items: ITaggable array) =
+    items
+    |> Array.filter (fun item -> item.Tags <> null && item.Tags.Length > 0)
+    |> Array.collect (fun item -> 
+        item.Tags |> Array.map (fun tag -> (TagService.processTagName tag, item)))
+```
+
+**Module Dependencies Resolution**:
+- **Project File Order**: Place `Services/Tag.fs` before modules that reference it (`GenericBuilder.fs`, `Builder.fs`)
+- **Reference Pattern**: Use fully qualified `TagService.processTagName` calls throughout codebase
+- **Duplication Elimination**: Remove local `processTagName` functions in favor of centralized implementation
+
+**Success Metrics**:
+- **Tag Quality**: Elimination of empty "#" tags, proper technology normalization, consistent formatting
+- **Tag Count Optimization**: Reduction in total tag count through deduplication (1077 → 1068 tags)
+- **Architecture Consistency**: All tag processing paths use identical sanitization logic
+- **Code Maintainability**: Single source of truth for tag processing rules and normalization
+
+**Benefits**: Consistent tag quality across entire system, simplified maintenance through centralized processing, improved user experience with clean tag navigation, systematic approach to tag normalization, and foundation for future tag enhancement features.
+
 ### Back to Top Button UX Pattern (Proven)
 **Discovery**: Research-backed back to top button implementation following established UX guidelines with mobile optimization and accessibility compliance creates superior user experience for long-content interfaces.
 

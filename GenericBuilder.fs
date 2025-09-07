@@ -4,6 +4,7 @@ open Domain
 open ASTParsing
 open CustomBlocks
 open BlockRenderers
+open TagService
 open System.Xml.Linq
 open System
 open System.IO
@@ -800,7 +801,7 @@ module UnifiedFeeds =
         Tags: string array
         RssXml: XElement
     }
-    
+
     /// Feed configuration for different feed types
     type FeedConfiguration = {
         Title: string
@@ -834,10 +835,11 @@ module UnifiedFeeds =
                 | null -> DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz")
                 | dateElement -> dateElement.Value
             
-            // Extract tags from RSS categories
+            // Extract tags from RSS categories and apply sanitization
             let tags = 
                 rssXml.Elements(XName.Get "category")
-                |> Seq.map (fun cat -> cat.Value)
+                |> Seq.map (fun cat -> TagService.processTagName cat.Value)
+                |> Seq.filter (fun tag -> tag <> "untagged")  // Remove untagged from individual items
                 |> Seq.toArray
             
             Some {
