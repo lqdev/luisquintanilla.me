@@ -10,7 +10,7 @@ Trying something different with this iteration of playlists. Usually I embed the
 1. If you don't have Spotify, listening is limited
 2. I don't know this for a fact, but I assume it to be the case - there's some analytics and tracking Spotify gets by embedding their player on my site. Given I don't even track visitors on this site, it's not something I'm comfortable with. I've done it because it requires no work on my end to embed the playlist, but I know the bargain I am making.
 
-So to solve that, I've written a [script](https://github.com/lqdev/playlist-creator) which does a best effort to find the tracks on YouTube and provides those links alongsite this
+So to solve that, I've written a [script](https://github.com/lqdev/playlist-creator) which does a best effort to find the tracks on YouTube and provides those links alongside this
 
 These are the results from one of the generated artifacts:
 
