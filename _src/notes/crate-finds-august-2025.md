@@ -142,5 +142,6 @@ These are the results from one of the generated artifacts:
    - [Listen on YouTube](https://www.youtube.com/watch?v=yQvpDIE70wk)
    - [Backup: Listen on Spotify](https://open.spotify.com/track/4IIxBK0L8uj7viwxhmuSc4)
 
+---
 
-If you prefer, you can also listen to the playlist on Spotify, using the [following link](https://open.spotify.com/playlist/5CTCAnbYOoWS1sdYolrZAG).
+**Original Spotify Playlist:** [Listen on Spotify](https://open.spotify.com/playlist/5CTCAnbYOoWS1sdYolrZAG).
