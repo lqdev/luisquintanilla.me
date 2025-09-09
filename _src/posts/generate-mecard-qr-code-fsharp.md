@@ -45,7 +45,7 @@ MECARD:N:Doe,John;TEL:13035551212;EMAIL:john.doe@example.com;;
 
 The QR Code generated might look as follows:
 
-![MECARD QR CODE](/api/files/images/mecard.svg)
+![MECARD QR CODE](https://cdn.lqdev.tech/files/images/mecard.svg)
 
 Scanning the QR Code with a smartphone would then immediately recognize it as a contact and prompt you to save the contact information to your device.
 

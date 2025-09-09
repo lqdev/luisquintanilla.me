@@ -9,8 +9,8 @@ tags: ["github","copilot","agent","funny"]
 
 Is that Copilot's way of saying, "Per my previous e-mail..."?
 
-![A conversation with Github Copilot Agent](/api/files/images/sassy-copilot-agent.png)
+![A conversation with Github Copilot Agent](https://cdn.lqdev.tech/files/images/sassy-copilot-agent.png)
 
 And then it rage quit.
 
-![Error message saying GitHub Copilot Agent exhausted token limit](/api/files/images/copilot-agent-quit.png)
+![Error message saying GitHub Copilot Agent exhausted token limit](https://cdn.lqdev.tech/files/images/copilot-agent-quit.png)

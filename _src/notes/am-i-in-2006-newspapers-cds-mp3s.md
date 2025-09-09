@@ -7,11 +7,11 @@ tags: ["tech","media","retro","cds","dvds"]
 
 While flipping through a local (physical) newspaper, I came across an ad for a sale happening at a nearby record store. 
 
-![Newpaper ad for a memorial day CD and vinyl sale](/api/files/images/newspaper_ad.JPG)
+![Newpaper ad for a memorial day CD and vinyl sale](https://cdn.lqdev.tech/files/images/newspaper_ad.JPG)
 
 Having nothing planned, I decided to check it out and ended up with a nice haul of about 15 CDs and 2 DVDs. 
 
-![3 CDs on a wooden table with an portable MP3 player](/api/files/images/cds_mp3.JPG)
+![3 CDs on a wooden table with an portable MP3 player](https://cdn.lqdev.tech/files/images/cds_mp3.JPG)
 
 I fired up my [portable CD/DVD drive](https://www.bestbuy.com/site/lg-8x-external-usb-double-layer-dvdrw-cd-rw-drive-black/5852919.p?skuId=5852919) to transfer my new purchases to my [portable MP3 player](https://www.fiio.com/m6).
 

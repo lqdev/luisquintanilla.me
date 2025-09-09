@@ -7,4 +7,4 @@ tags: ["fall","autumn","seasons"]
 
 It's been unseasonably warm around these parts but this weekend it finally started to cool down. That meant hot cider and cider donuts straight from the source. 
 
-![A man playing the piano and woman singing under a canopy with a lake in the background](/api/files/images/finally-feels-like-fall.jpg)
+![A man playing the piano and woman singing under a canopy with a lake in the background](https://cdn.lqdev.tech/files/images/finally-feels-like-fall.jpg)

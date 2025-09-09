@@ -7,4 +7,4 @@ tags: ["music","stats","spotifywrapped"]
 
 Kind of late, but here's my Spotify Wrapped for the year. No idea how Eslabon Armado snuck in there at the end. It'd be cool if I was also able to get data from my MP3 player which is where I mainly listen to music. Though the artists wouldn't change much.
 
-![Spotify Wrapped 2023 Summary](/api/files/images/spotify-wrapped-1.png)
+![Spotify Wrapped 2023 Summary](https://cdn.lqdev.tech/files/images/spotify-wrapped-1.png)
