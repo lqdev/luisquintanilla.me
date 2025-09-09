@@ -5,6 +5,6 @@ published_date: "2024-12-12 20:08 -05:00"
 tags: ["quantum","conscience","message"]
 ---
 
-![Writing on railing "surrender to the quantum conscience"](/api/files/images/surrender-quantum-conscience.jpg)
+![Writing on railing "surrender to the quantum conscience"](https://cdn.lqdev.tech/files/images/surrender-quantum-conscience.jpg)
 
 I'm trying.

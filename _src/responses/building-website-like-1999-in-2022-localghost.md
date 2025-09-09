@@ -11,4 +11,4 @@ Now the only challenges for me are:
 1. Should the song on my website match my ringtone?
 2. Where do I place the flames GIF?
 
-![Flames GIF](/api/files/images/flames.gif)
+![Flames GIF](https://cdn.lqdev.tech/files/images/flames.gif)
