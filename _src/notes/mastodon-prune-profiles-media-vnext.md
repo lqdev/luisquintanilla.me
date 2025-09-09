@@ -9,7 +9,7 @@ The next version of Mastodon can't come soon enough.
 
 About 20GB of disk space on my instance are being taken up by media from remote users. And this is for a single user instance! I can't imagine how it must be on other instances with multiple accounts. 
 
-![Command line displaying disk space used by Mastodon for media](https://cdn.lqdev.tech/files/images/mastodon-media-usage.png)
+![Command line displaying disk space used by Mastodon for media](http://cdn.lqdev.tech/files/images/mastodon-media-usage.png)
 
 A recent [PR](https://github.com/mastodon/mastodon/pull/22149) should make things much better though by allowing you to remove these files. 
 

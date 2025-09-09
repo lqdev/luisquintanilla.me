@@ -152,7 +152,7 @@ To send a Webmention, you need to send an HTTP POST request with an `x-www-form-
 
 Let's use a redundant example to walk through the workflow. Pretend that you created or commented on a GitHub issue and added a link to one of my articles, [Sending Webmentions with F#](/posts/sending-webmentions-fsharp-fsadvent/) for example. You then wanted to notify me either to get my attention on that issue or just as an FYI. Now I say this is a redundant example because GitHub already has notifications. However, what this does illustrate are the cross-site capabilities of Webmentions. 
 
-![Image of GitHub Issue Post](https://cdn.lqdev.tech/files/images/send-gh-issue.png)
+![Image of GitHub Issue Post](http://cdn.lqdev.tech/files/images/send-gh-issue.png)
 
 At this point, if GitHub implemented Webmentions, it would automatically:
 
@@ -171,7 +171,7 @@ My current Webmention endpoint is *https://lqdevwebmentions.azurewebsites.net/ap
 
 Now that you have the Webmention endpoint, you could use any tool of your choice to create and send the HTTP POST request. I have made it simpler though and included a form on my website for each of my posts for this purpose. 
 
-![luisquintanilla.me send Webmention form](https://cdn.lqdev.tech/files/images/send-webmention-form.png)
+![luisquintanilla.me send Webmention form](http://cdn.lqdev.tech/files/images/send-webmention-form.png)
 
 The source code looks like the following:
 
@@ -195,7 +195,7 @@ The source code looks like the following:
 
 Now to send the webmention, navigate to the post you want to send a Webmention to. In this case, it's [Sending Webmentions with F#](/posts/sending-webmentions-fsharp-fsadvent/). Then, paste the link to the GitHub issue that contains the link to my site into the post's text box and hit "Send". 
 
-![luisquintanilla.me send Webmention form filled-in](https://cdn.lqdev.tech/files/images/send-webmention-form-populated.png)
+![luisquintanilla.me send Webmention form filled-in](http://cdn.lqdev.tech/files/images/send-webmention-form-populated.png)
 
 At that point, the request is sent to my Webmention service which receives and processes the request and responds with a message whether the request was successful or not. 
 
@@ -372,7 +372,7 @@ Inside my `Run` function, if the request and Webmention validation are successfu
 
 This is what the GitHub Webmention we sent looks like in the table.
 
-![Webmentions table on Azure Table Storage](https://cdn.lqdev.tech/files/images/webmentions-azure-table.png)
+![Webmentions table on Azure Table Storage](http://cdn.lqdev.tech/files/images/webmentions-azure-table.png)
 
 In this case, the `PartitionKey` is the target URL and `RowKey` is the source URL. The fact all other columns are set to false indicates this is an untagged mention with no special microformats annotations. Annotating your posts appropriately would set one or more of those columns to true. 
 
@@ -431,7 +431,7 @@ The RSS feed reader then fetches my Webmentions feed at regular intervals.
 
 This is what the GitHub post looks like in my RSS reader.
 
-![Webmentions table on Azure Table Storage](https://cdn.lqdev.tech/files/images/newsblur-webmentions-rss-feed.png)
+![Webmentions table on Azure Table Storage](http://cdn.lqdev.tech/files/images/newsblur-webmentions-rss-feed.png)
 
 That's all there is to it!
 

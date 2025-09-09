@@ -54,7 +54,7 @@ To subscribe to the LibriVox New Release feed:
 1. In AntennaPod, open up the hamburger menu and select **Add Podcast**.
 1. In the *Add Podcast* dialog, select **Add podcast by RSS address**.
 
-    ![AntennaPod Add Podcast Dialog](https://cdn.lqdev.tech/files/images/add-podcast-antennapod.png)
+    ![AntennaPod Add Podcast Dialog](http://cdn.lqdev.tech/files/images/add-podcast-antennapod.png)
 
 1. Paste the LibriVox New Releases RSS feed URL into the text box and select **Confirm**. 
 
@@ -73,15 +73,15 @@ Subscribing to the new releases feed only notifies you when new books are added,
 1. In AntennaPod's Subscription screen, select **LibriVox's New Releases**.
 1. From the list of new releases, select the book you want to listen to. For example, "Room of One's Own" by Virginia Woolf.
 
-    ![AntennaPod New Releases Feed](https://cdn.lqdev.tech/files/images/antennapod-librivox-new-releases.png)
+    ![AntennaPod New Releases Feed](http://cdn.lqdev.tech/files/images/antennapod-librivox-new-releases.png)
 
 1. In the audiobook's screen, select **Visit Website**. This will take you to the LibriVox audiobook's page in the browser.
 
-    ![AntennaPod Audiobook Screen](https://cdn.lqdev.tech/files/images/antennapod-room-of-ones-own.png)
+    ![AntennaPod Audiobook Screen](http://cdn.lqdev.tech/files/images/antennapod-room-of-ones-own.png)
 
 1. In the LibriVox audiobook page, select the book's RSS Feed.
 
-    ![A Room of One's Own by Virginia Woolf LibriVox book page](https://cdn.lqdev.tech/files/images/librivox-room-ones-own.png)
+    ![A Room of One's Own by Virginia Woolf LibriVox book page](http://cdn.lqdev.tech/files/images/librivox-room-ones-own.png)
 
 1. Copy the book's feed URL to your clipboard.
 1. In AntennaPod, open up the hamburger menu and select **Add Podcast**.

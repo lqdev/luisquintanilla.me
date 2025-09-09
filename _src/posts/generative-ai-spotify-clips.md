@@ -253,15 +253,15 @@ For brevity, I'll only include some of the images generated:
 
 "The Sand"
 
-![AI genreated image of a grain of sand under a microscope and a car driving on a dusty road in a desert](https://cdn.lqdev.tech/files/images/sand-car-dirt-road.jpg)
+![AI genreated image of a grain of sand under a microscope and a car driving on a dusty road in a desert](http://cdn.lqdev.tech/files/images/sand-car-dirt-road.jpg)
 
 "The Sea"
 
-![AI generated image of a boy standing on a pier looking at a sea of dead fish and a sign that says “No diving”](https://cdn.lqdev.tech/files/images/child-dock.jpg)
+![AI generated image of a boy standing on a pier looking at a sea of dead fish and a sign that says “No diving”](http://cdn.lqdev.tech/files/images/child-dock.jpg)
 
 "The Root"
 
-![AI generated image of a father and a son playing in a garden with different plants and flowers”](https://cdn.lqdev.tech/files/images/father-son-playing.jpg)
+![AI generated image of a father and a son playing in a garden with different plants and flowers”](http://cdn.lqdev.tech/files/images/father-son-playing.jpg)
 
 The pencil art part was something I thought would look nice to illustrate this instead of digital art or photorealism. That was a personal choice though. 
 

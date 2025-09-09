@@ -7,4 +7,4 @@ tags: ["web","socialmedia","bluesky"]
 
 I'm now on Bluesky. Follow me at [@lqdev.me](https://bsky.app/profile/lqdev.me)
 
-![Bluesky web app showing lqdev.me profile](https://cdn.lqdev.tech/files/images/bsky-profile.png)
+![Bluesky web app showing lqdev.me profile](http://cdn.lqdev.tech/files/images/bsky-profile.png)

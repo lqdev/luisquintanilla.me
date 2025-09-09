@@ -132,7 +132,7 @@ nav {
 
 After linking our `css` with the webpage as well as adding some content to the page, the result will look as follows. 
 
-![](https://cdn.lqdev.tech/files/images/scaffoldawebpageoneline1.png)
+![](http://cdn.lqdev.tech/files/images/scaffoldawebpageoneline1.png)
 
 
 ```html

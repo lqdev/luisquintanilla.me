@@ -120,7 +120,7 @@ private static void OnMatchedTweet(object sender, MatchedTweetReceivedEventArgs 
 
 Once we run the application, our console application should look something like this:
 
-![](https://cdn.lqdev.tech/files/images/sentiment-analysis-1.png)
+![](http://cdn.lqdev.tech/files/images/sentiment-analysis-1.png)
 
 
 ## Conclusion

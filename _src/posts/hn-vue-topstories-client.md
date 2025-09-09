@@ -237,7 +237,7 @@ Like our `Vue` instance, let's unpack what's happening here. The first parameter
 
 At this point, our application should be ready to run. You can either start the server with the following command `npm start`  and navigate to `http://localhost:3000` or open the `index.html` page in the browser of your choice. The result should look like the screenshot below:
 
-![](https://cdn.lqdev.tech/files/images/hnvueclient.png)
+![](http://cdn.lqdev.tech/files/images/hnvueclient.png)
 
 ## Conclusion
 
