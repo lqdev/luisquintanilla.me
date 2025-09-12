@@ -1,5 +1,8 @@
 {
   "trailingSlash": "auto",
+  "mimeTypes": {
+    ".json": "application/activity+json"
+  },
   "routes": [
     {
       "route": "/.well-known/webfinger",
