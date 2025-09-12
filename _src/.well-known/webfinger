@@ -1,16 +1,16 @@
 {
-  "subject": "acct:lqdev@www.lqdev.me",
-  "aliases": ["https://www.lqdev.me/@lqdev"],
+  "subject": "acct:lqdev@lqdev.me",
+  "aliases": ["https://lqdev.me/@lqdev"],
   "links": [
     {
       "rel": "self",
       "type": "application/activity+json", 
-      "href": "https://www.lqdev.me/@lqdev"
+      "href": "https://lqdev.me/@lqdev"
     },
     {
       "rel": "http://webfinger.net/rel/profile-page",
       "type": "text/html",
-      "href": "https://www.lqdev.me/"
+      "href": "https://lqdev.me/"
     }
   ]
 }

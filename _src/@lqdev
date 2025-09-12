@@ -1,39 +1,39 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://www.lqdev.me/@lqdev",
+  "id": "http://lqdev.me/@lqdev",
   "type": "Person",
   "preferredUsername": "lqdev",
   "name": "Luis Quintanilla",
   "summary": "AI whisperer wandering the shifting sands of the desert of the real . Semi-fluent in the language of machines, with an affinity for the F# dialect.",
-  "url": "https://www.lqdev.me/",
+  "url": "http://lqdev.me/",
   "discoverable": true,
   "memorial": false,
   "inbox": "https://your-inbox-service.com/api/inbox",
-  "outbox": "https://www.lqdev.me/social/outbox",
-  "followers": "https://www.lqdev.me/social/followers",
-  "following": "https://www.lqdev.me/social/following",
+  "outbox": "http://lqdev.me/social/outbox",
+  "followers": "http://lqdev.me/social/followers",
+  "following": "http://lqdev.me/social/following",
   "icon": {
     "type": "Image",
     "mediaType": "image/png",
-    "url": "https://www.lqdev.me/avatar.png"
+    "url": "http://lqdev.me/avatar.png"
   },
   "image": {
     "type": "Image", 
     "mediaType": "image/png",
-    "url": "https://www.lqdev.me/avatar.png"
+    "url": "http://lqdev.me/avatar.png"
   },
   "publicKey": {
     "@context": "https://w3id.org/security/v1",
     "@type": "Key",
-    "id": "https://www.lqdev.me/@lqdev#main-key",
-    "owner": "https://www.lqdev.me/@lqdev",
+    "id": "http://lqdev.me/@lqdev#main-key",
+    "owner": "http://lqdev.me/@lqdev",
     "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtUQDL71nPaOotaeEP7GH\nB20+/HuoG1Yb5hSz0S9DcpGW/v/NDYbU5EYoNjxXyHxu292ntmZuEbPhJttsC2T7\npeRa2Kkd6tY+zN7gocZmotx8gdy0W0dNhDlW5nZhDL3RpSwG+zUD24lZ9pEyYmtk\n20d5AyRUKQEq4AyGRdbMBK5pVDs0Dv9jufxfbob2QkHeRfud3W6kx5vlZPsA/x44\nyjy3m4NSxEE4Ksi6YDVWW8pF9Ms5/ZIh8W9GMlOU71LERnlxjRQ5e6y/uUXk4wag\nW70X9NUIsbLcsrST4zLAC7GHIly/Hxu9MCvxR0MCZpRy9g4RiI5Zg9xw/6+8lNem\nSQIDAQAB\n-----END PUBLIC KEY-----"
   },
   "attachment": [
     {
       "type": "PropertyValue",
       "name": "Website",
-      "value": "<a href=\"https://www.lqdev.me\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">lqdev.me</span><span class=\"invisible\"></span></a>"
+      "value": "<a href=\"http://lqdev.me\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">lqdev.me</span><span class=\"invisible\"></span></a>"
     },
     {
       "type": "PropertyValue", 
