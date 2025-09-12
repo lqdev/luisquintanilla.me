@@ -105,7 +105,7 @@ module Builder
         File.Copy(Path.Join(srcDir,"mecard.txt"),Path.Join(outputDir,"mecard.txt"),true)
 
         // Copy ActivityPub actor file
-        File.Copy(Path.Join(srcDir,"lqdev.json"),Path.Join(outputDir,"lqdev.json"),true)
+        File.Copy(Path.Join(srcDir,"lqdev.activitypub"),Path.Join(outputDir,"lqdev.activitypub"),true)
 
     let buildHomePage (blogPosts:Post array) (feedPosts:Post array) (responsePosts:Response array)= 
         let recentBlog = 

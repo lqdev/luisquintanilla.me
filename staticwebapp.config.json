@@ -1,22 +1,16 @@
 {
   "trailingSlash": "auto",
   "mimeTypes": {
-    ".json": "application/activity+json"
+    ".activitypub": "application/activity+json"
   },
   "routes": [
     {
       "route": "/.well-known/webfinger",
-      "rewrite": "/.well-known/webfinger.json",
-      "headers": {
-        "Content-Type": "application/activity+json"
-      }
+      "rewrite": "/.well-known/webfinger.activitypub"
     },
     {
       "route": "/@lqdev",
-      "rewrite": "/lqdev.json",
-      "headers": {
-        "Content-Type": "application/activity+json"
-      }
+      "rewrite": "/lqdev.activitypub"
     },    
     {
       "route": "/github",
