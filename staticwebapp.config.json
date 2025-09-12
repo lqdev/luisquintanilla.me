@@ -19,7 +19,13 @@
         "Cache-Control": "Cache-Control: public, max-age=3600, s-maxage=1800",
         "Access-Control-Allow-Origin": "*"
       }
-    },    
+    },
+    {
+      "route": "/social/notes/*",
+      "headers": {
+        "Content-Type": "application/activity+json"
+      }
+    },   
     {
       "route": "/github",
       "redirect": "https://github.com/lqdev",
