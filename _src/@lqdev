@@ -8,7 +8,7 @@
   "url": "https://www.lqdev.me/",
   "discoverable": true,
   "memorial": false,
-  "inbox": "https://your-inbox-service.com/api/inbox",
+  "inbox": "https://www.lqdev.me/api/inbox",
   "outbox": "https://www.lqdev.me/social/outbox",
   "followers": "https://www.lqdev.me/social/followers",
   "following": "https://www.lqdev.me/social/following",
