@@ -6,11 +6,17 @@
   "routes": [
     {
       "route": "/.well-known/webfinger",
-      "rewrite": "/.well-known/webfinger.activitypub"
+      "rewrite": "/.well-known/webfinger.activitypub",
+      "headers": {
+        "Cache-Control": "Cache-Control: no-cache, must-revalidate"
+      }
     },
     {
       "route": "/@lqdev",
-      "rewrite": "/lqdev.activitypub"
+      "rewrite": "/lqdev.activitypub",
+      "headers": {
+        "Cache-Control": "Cache-Control: public, max-age=3600, s-maxage=1800"
+      }
     },    
     {
       "route": "/github",
