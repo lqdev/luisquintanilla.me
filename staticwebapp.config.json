@@ -2,6 +2,18 @@
   "trailingSlash": "auto",
   "routes": [
     {
+      "route": "/.well-known/webfinger",
+      "headers": {
+        "Content-Type": "application/activity+json"
+      }
+    },
+    {
+      "route": "/@lqdev",
+      "headers": {
+        "Content-Type": "application/activity+json"
+      }
+    },    
+    {
       "route": "/github",
       "redirect": "https://github.com/lqdev",
       "statusCode": 301
