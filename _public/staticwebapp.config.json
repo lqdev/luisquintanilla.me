@@ -1,6 +1,29 @@
 {
   "trailingSlash": "auto",
+  "mimeTypes": {
+    ".activitypub": "application/activity+json"
+  },
   "routes": [
+    {
+      "route": "/.well-known/webfinger*",
+      "rewrite": "/.well-known/webfinger.activitypub",
+      "headers": {
+        "Cache-Control": "Cache-Control: no-cache, must-revalidate",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "route": "/@lqdev",
+      "rewrite": "/lqdev.activitypub",
+      "headers": {
+        "Cache-Control": "Cache-Control: public, max-age=3600, s-maxage=1800",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "route": "/social/notes/*",
+      "rewrite": "/social/notes/*.activitypub"
+    },   
     {
       "route": "/github",
       "redirect": "https://github.com/lqdev",

@@ -9,7 +9,7 @@
   "discoverable": true,
   "memorial": false,
   "inbox": "https://www.lqdev.me/api/inbox",
-  "outbox": "https://www.lqdev.me/social/outbox",
+  "outbox": "https://www.lqdev.me/social/outbox/index.activitypub",
   "followers": "https://www.lqdev.me/social/followers",
   "following": "https://www.lqdev.me/social/following",
   "icon": {
