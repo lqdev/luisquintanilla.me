@@ -8,14 +8,16 @@
       "route": "/.well-known/webfinger",
       "rewrite": "/.well-known/webfinger.activitypub",
       "headers": {
-        "Cache-Control": "Cache-Control: no-cache, must-revalidate"
+        "Cache-Control": "Cache-Control: no-cache, must-revalidate",
+        "Access-Control-Allow-Origin": "*"
       }
     },
     {
       "route": "/@lqdev",
       "rewrite": "/lqdev.activitypub",
       "headers": {
-        "Cache-Control": "Cache-Control: public, max-age=3600, s-maxage=1800"
+        "Cache-Control": "Cache-Control: public, max-age=3600, s-maxage=1800",
+        "Access-Control-Allow-Origin": "*"
       }
     },    
     {
