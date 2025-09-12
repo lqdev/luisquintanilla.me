@@ -454,7 +454,7 @@ let createConfigFromEnvironment () =
         SiteActorUri = 
             Environment.GetEnvironmentVariable("SITE_ACTOR_URI") 
             |> Option.ofObj 
-            |> Option.defaultValue "https://www.lqdev.me/@luis"
+            |> Option.defaultValue "https://www.lqdev.me/@lqdev"
         Domain = 
             Environment.GetEnvironmentVariable("DOMAIN") 
             |> Option.ofObj
@@ -487,9 +487,9 @@ let runExample () =
         RssPath = Path.Combine(baseDir, "_public", "feed", "feed.xml")
         StaticPath = Path.Combine(baseDir, "_public")
         AuthorUsername = "@lqdev@www.lqdev.me"  // Update with your actual Mastodon handle
-        SiteActorUri = "https://www.lqdev.me/@luis"
+        SiteActorUri = "https://www.lqdev.me/@lqdev"
         Domain = Some "https://www.lqdev.me"
-        AuthorUri = Some "https://www.lqdev.me/users/lqdev"  // Update with your actual profile
+        AuthorUri = Some "https://www.lqdev.me/"  // Update with your actual profile
         ContentTemplate = Some "{title}\n\n{tags}\n\n🔗 {link}"
         NotesPath = "socialweb/notes"
         OutboxPath = "socialweb/outbox"
