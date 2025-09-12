@@ -338,10 +338,10 @@ let convertRssToActivityPub (config: OutboxConfig) =
 let parseArgs (args: string array) =
     let mutable rssPath = ""
     let mutable staticPath = ""
-    let mutable authorUsername = "@lqdev@lqdev.me"
-    let mutable siteActorUri = "https://lqdev.me/@lqdev"
-    let mutable domain = "https://lqdev.me"
-    let mutable authorUri = "https://lqdev.me/"
+    let mutable authorUsername = "@lqdev@www.lqdev.me"
+    let mutable siteActorUri = "https://www.lqdev.me/@lqdev"
+    let mutable domain = "https://www.lqdev.me"
+    let mutable authorUri = "https://www.lqdev.me/"
     let mutable contentTemplate = "{title}\n\n{tags}\n\n🔗 {link}"
     let mutable notesPath = "social/notes"
     let mutable outboxPath = "social/outbox"
@@ -450,7 +450,7 @@ let createConfigFromEnvironment () =
         AuthorUsername = 
             Environment.GetEnvironmentVariable("AUTHOR_USERNAME") 
             |> Option.ofObj 
-            |> Option.defaultValue "@lqdev@lqdev.me"
+            |> Option.defaultValue "@lqdev@www.lqdev.me"
         SiteActorUri = 
             Environment.GetEnvironmentVariable("SITE_ACTOR_URI") 
             |> Option.ofObj 
@@ -486,10 +486,10 @@ let runExample () =
     let exampleConfig = {
         RssPath = Path.Combine(baseDir, "_public", "feed", "feed.xml")
         StaticPath = Path.Combine(baseDir, "_public")
-        AuthorUsername = "@lqdev@lqdev.me"  // Update with your actual Mastodon handle
-        SiteActorUri = "https://lqdev.me/@lqdev"
-        Domain = Some "https://lqdev.me"
-        AuthorUri = Some "https://lqdev.me/"  // Update with your actual profile
+        AuthorUsername = "@lqdev@www.lqdev.me"  // Update with your actual Mastodon handle
+        SiteActorUri = "https://www.lqdev.me/@lqdev"
+        Domain = Some "https://www.lqdev.me"
+        AuthorUri = Some "https://www.lqdev.me/"  // Update with your actual profile
         ContentTemplate = Some "{title}\n\n{tags}\n\n🔗 {link}"
         NotesPath = "socialweb/notes"
         OutboxPath = "socialweb/outbox"
