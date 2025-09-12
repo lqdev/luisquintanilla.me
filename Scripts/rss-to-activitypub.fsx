@@ -285,7 +285,7 @@ let saveActivityPubFiles (notes: ActivityPubNote array) (outbox: ActivityPubOutb
     // Save individual notes
     for note in notes do
         let noteJson = JsonSerializer.Serialize(note, jsonOptions)
-        let noteFile = Path.Combine(notesDir, note.Hash)
+        let noteFile = Path.Combine(notesDir, $"{note.Hash}.activitypub")
         File.WriteAllText(noteFile, noteJson)
     
     // Save outbox
