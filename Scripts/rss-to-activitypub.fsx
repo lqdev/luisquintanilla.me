@@ -216,7 +216,7 @@ let generateNote (item: {| Title: string; Link: string; Description: string; Con
     
     // Generate unique hash for note ID
     let noteHash = generateHash (item.Title + item.Link + item.PubDate)
-    let noteId = sprintf "%s/%s/%s" domain config.NotesPath noteHash
+    let noteId = sprintf "%s/%s/%s.activitypub" domain config.NotesPath noteHash
     
     // Convert tags to ActivityPub format
     let activityPubTags = convertTagsToActivityPub item.Tags domain config.AuthorUsername
