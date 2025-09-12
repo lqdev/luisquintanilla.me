@@ -5,7 +5,7 @@
   },
   "routes": [
     {
-      "route": "/.well-known/webfinger",
+      "route": "/.well-known/webfinger*",
       "rewrite": "/.well-known/webfinger.activitypub",
       "headers": {
         "Cache-Control": "Cache-Control: no-cache, must-revalidate",
