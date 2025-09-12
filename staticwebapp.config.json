@@ -21,13 +21,6 @@
       }
     },
     {
-      "route": "/social/notes/*",
-      "rewrite": "/social/notes/*.activitypub",
-      "headers": {
-        "Content-Type": "application/activity+json"
-      }
-    },   
-    {
       "route": "/github",
       "redirect": "https://github.com/lqdev",
       "statusCode": 301
