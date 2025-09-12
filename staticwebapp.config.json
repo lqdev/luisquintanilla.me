@@ -10,7 +10,7 @@
     },
     {
       "route": "/@lqdev",
-      "rewrite": "/@lqdev.json",
+      "rewrite": "/lqdev.json",
       "headers": {
         "Content-Type": "application/activity+json"
       }
