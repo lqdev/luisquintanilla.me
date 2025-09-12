@@ -310,14 +310,14 @@ module Layouts
         let ogElements = [
                 meta [_property "og:title"; _content pageTitle]
                 meta [_property "og:type"; _content "website"]
-                meta [_property "og:image"; _content "https://www.luisquintanilla.me/avatar.png"]
-                meta [_property "og:image:secure_url"; _content "https://www.luisquintanilla.me/avatar.png"]
+                meta [_property "og:image"; _content "https://www.lqdev.me/avatar.png"]
+                meta [_property "og:image:secure_url"; _content "https://www.lqdev.me/avatar.png"]
                 meta [_property "og:image:type"; _content "image/png"]
                 meta [_property "og:image:width"; _content "200"]
                 meta [_property "og:image:height"; _content "200"] 
                 meta [_property "og:site_name"; _content "Luis Quintanilla Personal Website"]
                 meta [_property "og:locale"; _content "en_US"]
-                meta [_property "twitter:image"; _content "https://www.luisquintanilla.me/avatar.png"]
+                meta [_property "twitter:image"; _content "https://www.lqdev.me/avatar.png"]
                 meta [_property "fediverse:creator"; _content "@lqdev@toot.lqdev.tech"]
             
         ]

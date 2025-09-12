@@ -123,13 +123,13 @@ module PostProcessor =
         
         RenderRss = fun post ->
             // Create RSS item for post using existing pattern
-            let url = sprintf "https://www.luisquintanilla.me/posts/%s" post.FileName
+            let url = sprintf "https://www.lqdev.me/posts/%s" post.FileName
             let categories = 
                 if isNull post.Metadata.Tags then []
                 else post.Metadata.Tags |> Array.map (fun tag -> XElement(XName.Get "category", tag)) |> Array.toList
             
             // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss post.Content "https://www.luisquintanilla.me"
+            let normalizedContent = normalizeUrlsForRss post.Content "https://www.lqdev.me"
             
             let item = 
                 XElement(XName.Get "item",
@@ -198,13 +198,13 @@ module NoteProcessor =
         
         RenderRss = fun note ->
             // Create RSS item for note using existing pattern
-            let url = sprintf "https://www.luisquintanilla.me/notes/%s" note.FileName
+            let url = sprintf "https://www.lqdev.me/notes/%s" note.FileName
             let categories = 
                 if isNull note.Metadata.Tags then []
                 else note.Metadata.Tags |> Array.map (fun tag -> XElement(XName.Get "category", tag)) |> Array.toList
             
             // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss note.Content "https://www.luisquintanilla.me"
+            let normalizedContent = normalizeUrlsForRss note.Content "https://www.lqdev.me"
             
             let item = 
                 XElement(XName.Get "item",
@@ -255,7 +255,7 @@ module SnippetProcessor =
         
         RenderRss = fun snippet ->
             // Create RSS item for snippet similar to post
-            let url = sprintf "https://www.luisquintanilla.me/resources/snippets/%s" snippet.FileName
+            let url = sprintf "https://www.lqdev.me/resources/snippets/%s" snippet.FileName
             let categories = 
                 if String.IsNullOrEmpty(snippet.Metadata.Tags) then []
                 else snippet.Metadata.Tags.Split(',') 
@@ -263,7 +263,7 @@ module SnippetProcessor =
                      |> Array.toList
             
             // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss snippet.Content "https://www.luisquintanilla.me"
+            let normalizedContent = normalizeUrlsForRss snippet.Content "https://www.lqdev.me"
             
             let item = 
                 XElement(XName.Get "item",
@@ -317,7 +317,7 @@ module WikiProcessor =
         
         RenderRss = fun wiki ->
             // Create RSS item for wiki similar to post
-            let url = sprintf "https://www.luisquintanilla.me/resources/wiki/%s" wiki.FileName
+            let url = sprintf "https://www.lqdev.me/resources/wiki/%s" wiki.FileName
             let categories = 
                 if String.IsNullOrEmpty(wiki.Metadata.Tags) then []
                 else wiki.Metadata.Tags.Split(',') 
@@ -325,7 +325,7 @@ module WikiProcessor =
                      |> Array.toList
             
             // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss wiki.Content "https://www.luisquintanilla.me"
+            let normalizedContent = normalizeUrlsForRss wiki.Content "https://www.lqdev.me"
             
             let item = 
                 XElement(XName.Get "item",
@@ -409,7 +409,7 @@ module PresentationProcessor =
         
         RenderRss = fun presentation ->
             // Create RSS item for presentation
-            let url = sprintf "https://www.luisquintanilla.me/resources/presentations/%s" presentation.FileName
+            let url = sprintf "https://www.lqdev.me/resources/presentations/%s" presentation.FileName
             let categories = 
                 if String.IsNullOrEmpty(presentation.Metadata.Tags) then []
                 else presentation.Metadata.Tags.Split(',') 
@@ -417,7 +417,7 @@ module PresentationProcessor =
                      |> Array.toList
             
             // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss presentation.Content "https://www.luisquintanilla.me"
+            let normalizedContent = normalizeUrlsForRss presentation.Content "https://www.lqdev.me"
             
             let item = 
                 XElement(XName.Get "item",
@@ -489,12 +489,12 @@ module BookProcessor =
         
         RenderRss = fun book ->
             // Create RSS item for book
-            let url = sprintf "https://www.luisquintanilla.me/reviews/%s" book.FileName
+            let url = sprintf "https://www.lqdev.me/reviews/%s" book.FileName
             
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", sprintf "%s by %s" book.Metadata.Title book.Metadata.Author),
-                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" (normalizeUrlsForRss book.Content "https://www.luisquintanilla.me")),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" (normalizeUrlsForRss book.Content "https://www.lqdev.me")),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
             
@@ -557,11 +557,11 @@ module ResponseProcessor =
         
         RenderRss = fun response ->
             // Create RSS item for response
-            let url = sprintf "https://www.luisquintanilla.me/responses/%s" response.FileName
+            let url = sprintf "https://www.lqdev.me/responses/%s" response.FileName
             let description = sprintf "[%s] %s" response.Metadata.ResponseType response.Content
             
             // Normalize URLs in description for RSS compatibility
-            let normalizedDescription = normalizeUrlsForRss description "https://www.luisquintanilla.me"
+            let normalizedDescription = normalizeUrlsForRss description "https://www.lqdev.me"
             
             let categories = 
                 if isNull response.Metadata.Tags then []
@@ -677,14 +677,14 @@ module AlbumProcessor =
         
         RenderRss = fun album ->
             // Create RSS item for album with all images included
-            let url = sprintf "https://www.luisquintanilla.me/media/%s" album.FileName
+            let url = sprintf "https://www.lqdev.me/media/%s" album.FileName
             let imageCount = 
                 if isNull album.Metadata.Images then 0
                 else Array.length album.Metadata.Images
             let description = sprintf "Album containing %d photos" imageCount
             
             // Normalize URLs in description for RSS compatibility
-            let normalizedDescription = normalizeUrlsForRss description "https://www.luisquintanilla.me"
+            let normalizedDescription = normalizeUrlsForRss description "https://www.lqdev.me"
             
             let categories = 
                 if isNull album.Metadata.Tags then []
@@ -748,11 +748,11 @@ module BookmarkProcessor =
         
         RenderRss = fun bookmark ->
             // Create RSS item for bookmark
-            let url = sprintf "https://www.luisquintanilla.me/bookmarks/%s" bookmark.FileName
+            let url = sprintf "https://www.lqdev.me/bookmarks/%s" bookmark.FileName
             let description = sprintf "Bookmark: %s - %s" bookmark.Metadata.Description bookmark.Metadata.BookmarkOf
             
             // Normalize URLs in description for RSS compatibility
-            let normalizedDescription = normalizeUrlsForRss description "https://www.luisquintanilla.me"
+            let normalizedDescription = normalizeUrlsForRss description "https://www.lqdev.me"
             
             let item = 
                 XElement(XName.Get "item",
@@ -889,7 +889,7 @@ module UnifiedFeeds =
         // Fire-hose feed configuration (all content types)
         let fireHoseConfig = {
             Title = "Luis Quintanilla - All Updates"
-            Link = "https://www.luisquintanilla.me/feed"
+            Link = "https://www.lqdev.me/feed"
             Description = "All content updates from Luis Quintanilla's website"
             OutputPath = "feed/feed.xml"
             ContentType = None
@@ -908,63 +908,63 @@ module UnifiedFeeds =
         let typeConfigurations = [
             ("posts", {
                 Title = "Luis Quintanilla - Posts"
-                Link = "https://www.luisquintanilla.me/posts"
+                Link = "https://www.lqdev.me/posts"
                 Description = "Blog posts by Luis Quintanilla"
                 OutputPath = "posts/feed.xml"
                 ContentType = Some "posts"
             })
             ("notes", {
                 Title = "Luis Quintanilla - Notes"
-                Link = "https://www.luisquintanilla.me/notes"
+                Link = "https://www.lqdev.me/notes"
                 Description = "Notes and micro-posts by Luis Quintanilla"
                 OutputPath = "notes/feed.xml"
                 ContentType = Some "notes"
             })
             ("responses", {
                 Title = "Luis Quintanilla - Responses"
-                Link = "https://www.luisquintanilla.me/responses"
+                Link = "https://www.lqdev.me/responses"
                 Description = "IndieWeb responses by Luis Quintanilla"
                 OutputPath = "responses/feed.xml"
                 ContentType = Some "responses"
             })
             ("bookmarks", {
                 Title = "Luis Quintanilla - Bookmarks"
-                Link = "https://www.luisquintanilla.me/bookmarks"
+                Link = "https://www.lqdev.me/bookmarks"
                 Description = "IndieWeb bookmarks by Luis Quintanilla"
                 OutputPath = "bookmarks/feed.xml"
                 ContentType = Some "bookmarks"
             })
             ("snippets", {
                 Title = "Luis Quintanilla - Snippets"
-                Link = "https://www.luisquintanilla.me/resources/snippets"
+                Link = "https://www.lqdev.me/resources/snippets"
                 Description = "Code snippets by Luis Quintanilla"
                 OutputPath = "resources/snippets/feed.xml"
                 ContentType = Some "snippets"
             })
             ("wiki", {
                 Title = "Luis Quintanilla - Wiki"
-                Link = "https://www.luisquintanilla.me/resources/wiki"
+                Link = "https://www.lqdev.me/resources/wiki"
                 Description = "Wiki articles by Luis Quintanilla"
                 OutputPath = "resources/wiki/feed.xml"
                 ContentType = Some "wiki"
             })
             ("presentations", {
                 Title = "Luis Quintanilla - Presentations"
-                Link = "https://www.luisquintanilla.me/resources/presentations"
+                Link = "https://www.lqdev.me/resources/presentations"
                 Description = "Presentations by Luis Quintanilla"
                 OutputPath = "resources/presentations/feed.xml"
                 ContentType = Some "presentations"
             })
             ("reviews", {
                 Title = "Luis Quintanilla - Reviews"
-                Link = "https://www.luisquintanilla.me/reviews"
+                Link = "https://www.lqdev.me/reviews"
                 Description = "Book reviews by Luis Quintanilla"
                 OutputPath = "reviews/feed.xml"
                 ContentType = Some "reviews"
             })
             ("media", {
                 Title = "Luis Quintanilla - Media"
-                Link = "https://www.luisquintanilla.me/media"
+                Link = "https://www.lqdev.me/media"
                 Description = "Photo albums and media by Luis Quintanilla"
                 OutputPath = "media/feed.xml"
                 ContentType = Some "media"
@@ -1049,7 +1049,7 @@ module UnifiedFeeds =
                 let sanitizedTag = sanitizeTagForPath tag
                 let tagConfig = {
                     Title = sprintf "Luis Quintanilla - %s" tag
-                    Link = sprintf "https://www.luisquintanilla.me/tags/%s" sanitizedTag
+                    Link = sprintf "https://www.lqdev.me/tags/%s" sanitizedTag
                     Description = sprintf "All content tagged with '%s' by Luis Quintanilla" tag
                     OutputPath = sprintf "tags/%s/feed.xml" sanitizedTag
                     ContentType = None  // Tag feeds include all content types

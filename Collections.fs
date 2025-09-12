@@ -123,7 +123,7 @@ module CollectionProcessor =
     <channel>
         <title>%s</title>
         <description>%s</description>
-        <link>https://www.luisquintanilla.me%s</link>
+        <link>https://www.lqdev.me%s</link>
     </channel>
 </rss>""" data.Metadata.Title data.Metadata.Description data.Metadata.UrlPath
     
@@ -143,7 +143,7 @@ module CollectionProcessor =
 <opml version="2.0">
     <head>
         <title>%s</title>
-        <ownerId>https://www.luisquintanilla.me</ownerId>
+        <ownerId>https://www.lqdev.me</ownerId>
     </head>
     <body>
 %s

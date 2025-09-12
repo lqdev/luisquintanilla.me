@@ -148,7 +148,7 @@ let buildTextOnlyIndividualPages (outputDir: string) (unifiedContent: UnifiedFee
                 presentationsFeedData 
                 |> List.tryFind (fun feedData -> 
                     let expectedPath = $"/resources/presentations/{System.IO.Path.GetFileNameWithoutExtension(feedData.Content.FileName)}/"
-                    let actualPath = content.Url.Replace("https://www.luisquintanilla.me", "")
+                    let actualPath = content.Url.Replace("https://www.lqdev.me", "")
                     let actualPathNormalized = if actualPath.EndsWith("/") then actualPath else actualPath + "/"
                     expectedPath = actualPathNormalized)
             

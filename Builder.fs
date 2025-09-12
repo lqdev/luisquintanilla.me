@@ -276,13 +276,13 @@ module Builder
         File.WriteAllText(Path.Join(saveDir,"index.html"), onlineRadioPage)        
 
     let buildFeedsOpml (links:Outline array) = 
-        let feed = buildOpmlFeed "Luis Quintanilla Feeds" "https://www.luisquintanilla.me" links
+        let feed = buildOpmlFeed "Luis Quintanilla Feeds" "https://www.lqdev.me" links
         let saveDir = Path.Join(outputDir,"feed")
         // File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
 
     let buildBlogrollOpml (links:Outline array) = 
-        let feed = buildOpmlFeed "Luis Quintanilla Blogroll" "https://www.luisquintanilla.me" links
+        let feed = buildOpmlFeed "Luis Quintanilla Blogroll" "https://www.lqdev.me" links
         let saveDir = Path.Join(outputDir,"collections","blogroll")
         File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
         File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())

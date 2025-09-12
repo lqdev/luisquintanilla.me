@@ -211,7 +211,7 @@ let generateStarterPackView (pack: StarterPack) =
 /// Generate OPML feed for a starter pack
 let generateStarterPackOpml (pack: StarterPack) =
     let metadata = pack.Config.Metadata
-    Builder.buildOpmlFeed metadata.Title "https://www.luisquintanilla.me" pack.Links
+    Builder.buildOpmlFeed metadata.Title "https://www.lqdev.me" pack.Links
 
 /// Generate the main starter packs index page
 let generateStarterPacksIndexView (registry: StarterPackRegistry) =

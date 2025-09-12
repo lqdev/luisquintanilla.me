@@ -47,7 +47,7 @@ module TextOnlyContentProcessor =
                 let src = m.Groups.[1].Value
                 let alt = m.Groups.[2].Value
                 let description = if String.IsNullOrWhiteSpace(alt) then "Image" else alt
-                let fullUrl = if src.StartsWith("http") then src else $"https://www.luisquintanilla.me{src}"
+                let fullUrl = if src.StartsWith("http") then src else $"https://www.lqdev.me{src}"
                 $"""<a href="{fullUrl}" target="_blank">[Image: {description}]</a>"""
             )
             
@@ -55,7 +55,7 @@ module TextOnlyContentProcessor =
             let imgWithoutAltPattern = @"<img[^>]*src\s*=\s*[""']([^""']*)[""'][^>]*/?>"
             result <- Regex.Replace(result, imgWithoutAltPattern, fun m ->
                 let src = m.Groups.[1].Value
-                let fullUrl = if src.StartsWith("http") then src else $"https://www.luisquintanilla.me{src}"
+                let fullUrl = if src.StartsWith("http") then src else $"https://www.lqdev.me{src}"
                 $"""<a href="{fullUrl}" target="_blank">[Image]</a>"""
             )
             
