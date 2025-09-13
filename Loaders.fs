@@ -100,7 +100,7 @@ module Loaders
     let loadFeed (srcDir: string) =
         // Load notes using AST-based system (same as Program.fs)
         let noteFiles = 
-            Directory.GetFiles(Path.Join(srcDir, "feed"))
+            Directory.GetFiles(Path.Join(srcDir, "notes"))
             |> Array.filter (fun f -> f.EndsWith(".md"))
             |> Array.toList
         let processor = GenericBuilder.NoteProcessor.create()

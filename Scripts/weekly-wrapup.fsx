@@ -62,7 +62,7 @@ let notesPartial (posts: Post array) =
         let postStrings = 
             posts
             |> Array.map(fun post -> 
-                $"- [{post.Metadata.Title}](/feed/{post.FileName})"
+                $"- [{post.Metadata.Title}](/notes/{post.FileName})"
             )
             |> fun x -> String.Join('\n',x)
 
@@ -81,7 +81,7 @@ let responsesPartial (posts: Response array) =
         let postStrings = 
             posts
             |> Array.map(fun post -> 
-                $"- [{post.Metadata.Title}](/feed/{post.FileName})"
+                $"- [{post.Metadata.Title}](/responses/{post.FileName})"
             )
             |> fun x -> String.Join('\n',x)
 
@@ -120,7 +120,7 @@ let currentDateString = currentDate.ToString("yyyy-MM-dd")
 // This is the root directory of the repo
 let rootDir = Directory.GetCurrentDirectory()
 
-let savePath = Path.Join($"{rootDir}","_src","feed")
+let savePath = Path.Join($"{rootDir}","_src","notes")
 let saveFileName = $"{currentDateString}-weekly-post-summary.md"
 
 File.WriteAllText(Path.Join(savePath,saveFileName),content)
