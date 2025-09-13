@@ -32,7 +32,7 @@ let generateActorProfile () =
         ``type`` = "Person"
         preferredUsername = "lqdev"
         name = "Luis Quintanilla"
-        summary = "Senior Program Manager at Microsoft working on .NET and AI. I enjoy building things with code."
+        summary = "AI whisperer wandering the shifting sands of the desert of the real . Semi-fluent in the language of machines, with an affinity for the F# dialect."
         url = websiteBaseUrl
         icon = {|
             ``type`` = "Image"
@@ -92,8 +92,8 @@ let convertRssToActivityPub () =
             rss.Channel.Items
             |> Array.take 20
             |> Array.map (fun item ->
-                // Generate hash from item content for consistent IDs
-                let contentForHash = $"{item.Title}{item.Description}{item.Link}"
+                // Generate hash from stable item identifiers for consistent IDs
+                let contentForHash = $"{item.Title}{item.Link}{item.PubDate}"
                 let noteHash = generateContentHash contentForHash
                 let noteId = $"{websiteBaseUrl}/activitypub/notes/{noteHash}"
                 let activityId = $"{websiteBaseUrl}/activitypub/outbox#{noteHash}"

@@ -1,0 +1,11 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "attributedTo": "https://www.lqdev.me/@lqdev",
+  "content": "<![CDATA[[reshare] <p>I haven't listened to the <a href=\"https://shownotes.scripting.com/scripting/2025/09/08/whyBloggingLostToTwitterAndOtherFolkSongs.html\">podcast</a> yet but there's a lot of good points.</p>\n<blockquote class=\"blockquote\">\n<p>Subscribing in feed readers required too many steps: copying URLs, menus, pasting, confirming.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>Blogging lost to Twitter because Twitter had one-click subscribe.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>Rebooting the blogosphere requires cooperation and a universal &quot;follow&quot; button.</p>\n</blockquote>\n]]>",
+  "id": "https://www.lqdev.me/activitypub/notes/8828242eb537b9a2a40cd2d1f429bebc",
+  "name": "Notes on why blogging lost to Twitter",
+  "published": "2025-09-12T21:16:00Z",
+  "tag": [],
+  "type": "Note",
+  "url": "https://www.lqdev.me/responses/notes-why-blogging-lost-twitter-winer"
+}

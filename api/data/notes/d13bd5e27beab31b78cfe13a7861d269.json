@@ -1,0 +1,11 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "attributedTo": "https://www.lqdev.me/@lqdev",
+  "content": "<![CDATA[[star] <p>A blast from the past. Can't believe this post is still available.</p>\n<p>Almost two decades later and it feels like we're still figuring out how to share and express ourselves online.</p>\n<blockquote class=\"blockquote\">\n<p>These are the reasons most people abandon their personal weblog or never start one. But we all come across interesting tidbits online every day that we want to remember and share - links, photos, videos, even that side-splitting IM session you had with your co-worker. A new blog format, called a &quot;tumblelog,&quot; is a no-hassle, no-writing-required way to share those bits and maintain a personal site with the least possible commitment.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>A new service called Tumblr can publish your tumblelog with minimal setup and for free.</p>\n</blockquote>\n]]>",
+  "id": "https://www.lqdev.me/activitypub/notes/d13bd5e27beab31b78cfe13a7861d269",
+  "name": "Geek To Live - Tumblelog",
+  "published": "2025-09-12T21:05:00Z",
+  "tag": [],
+  "type": "Note",
+  "url": "https://www.lqdev.me/responses/geek-to-live-tumblelog"
+}
