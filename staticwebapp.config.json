@@ -29,8 +29,8 @@
       "rewrite": "/api/following"
     },
     {
-      "route": "/activitypub/notes/{*notePath}",
-      "rewrite": "/api/notes/{notePath}"
+      "route": "/activitypub/notes/*",
+      "rewrite": "/api/notes"
     },
     {
       "route": "/github",
