@@ -21,4 +21,4 @@ date_published: "09/13/2025 14:03 -05:00"
 
 I'm happy my name is not Darren.
 
-What started as an [essay](https://emergencemagazine.org/essay/the-serviceberry/) expanded into book form. I like how Robin uses her experience workign with plants and nature and draws parallels to our society and way of life. We are not separate from nature and it has a lot of lessons we could learn from. 
+What started as an [essay](https://emergencemagazine.org/essay/the-serviceberry/) expanded into book form. I like how Robin uses her experience working with plants and nature and draws parallels to our society and way of life. We are not separate from nature and it has a lot of lessons we could learn from. 
