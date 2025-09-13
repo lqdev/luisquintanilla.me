@@ -9,7 +9,7 @@ tags: ["blog", "tumblr", "microblog"]
 
 A blast from the past. Can't believe this post is still available. 
 
-Almost two decades later and it feels like we're still figuring out how to express ourselves online.
+Almost two decades later and it feels like we're still figuring out how to share and express ourselves online.
 
 > These are the reasons most people abandon their personal weblog or never start one. But we all come across interesting tidbits online every day that we want to remember and share - links, photos, videos, even that side-splitting IM session you had with your co-worker. A new blog format, called a "tumblelog," is a no-hassle, no-writing-required way to share those bits and maintain a personal site with the least possible commitment.
 
