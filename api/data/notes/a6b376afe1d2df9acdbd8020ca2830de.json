@@ -1,0 +1,11 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "attributedTo": "https://www.lqdev.me/@lqdev",
+  "content": "<![CDATA[[bookmark] <blockquote class=\"blockquote\">\n<p>The open content licensing standard for the AI-first Internet</p>\n</blockquote>\n]]>",
+  "id": "https://www.lqdev.me/activitypub/notes/a6b376afe1d2df9acdbd8020ca2830de",
+  "name": "Real Simple Licensing",
+  "published": "2025-09-12T20:48:00Z",
+  "tag": [],
+  "type": "Note",
+  "url": "https://www.lqdev.me/responses/real-simple-licensing-open-standard"
+}

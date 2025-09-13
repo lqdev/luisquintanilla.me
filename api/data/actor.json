@@ -1,0 +1,31 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://w3id.org/security/v1"
+  ],
+  "followers": "https://www.lqdev.me/activitypub/followers",
+  "following": "https://www.lqdev.me/activitypub/following",
+  "icon": {
+    "mediaType": "image/jpeg",
+    "type": "Image",
+    "url": "https://www.lqdev.me/avatar.png"
+  },
+  "id": "https://www.lqdev.me/@lqdev",
+  "image": {
+    "mediaType": "image/jpeg",
+    "type": "Image",
+    "url": "https://www.lqdev.me/avatar.png"
+  },
+  "inbox": "https://www.lqdev.me/activitypub/inbox",
+  "name": "Luis Quintanilla",
+  "outbox": "https://www.lqdev.me/activitypub/outbox",
+  "preferredUsername": "lqdev",
+  "publicKey": {
+    "id": "https://www.lqdev.me/@lqdev#main-key",
+    "owner": "https://www.lqdev.me/@lqdev",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA...\n-----END PUBLIC KEY-----"
+  },
+  "summary": "AI whisperer wandering the shifting sands of the desert of the real . Semi-fluent in the language of machines, with an affinity for the F# dialect.",
+  "type": "Person",
+  "url": "https://www.lqdev.me"
+}

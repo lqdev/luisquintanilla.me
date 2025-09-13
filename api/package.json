@@ -1,7 +1,7 @@
 {
-  "name": "azure-static-web-apps-files-redirect",
+  "name": "azure-static-web-apps-api",
   "version": "1.0.0",
-  "description": "Azure Functions API for wildcard file redirects in Azure Static Web Apps",
+  "description": "Azure Functions API for file redirects and ActivityPub federation in Azure Static Web Apps",
   "main": "files/index.js",
   "scripts": {
     "start": "func start",
@@ -10,10 +10,15 @@
   "engines": {
     "node": ">=18.0.0"
   },
+  "dependencies": {
+    "rss-parser": "^3.13.0"
+  },
   "keywords": [
     "azure-functions",
     "azure-static-web-apps",
     "redirect",
+    "activitypub",
+    "federation",
     "blob-storage"
   ]
 }
