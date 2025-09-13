@@ -2,7 +2,7 @@
     This script loads all blog posts, notes, and responses and creates a markdown file with the contents.
 *)
 
-#r "../bin/Debug/net9.0/PersonalSite.dll"
+#r "../bin/Debug/net8.0/PersonalSite.dll"
 
 open System
 open System.IO
@@ -11,7 +11,7 @@ open Loaders
 
 let blogs = loadPosts "_src"
 let notes = loadFeed "_src"
-let responses = loadReponses"_src"
+let responses = loadReponses "_src"
 
 let filteredBlogs = 
     blogs
