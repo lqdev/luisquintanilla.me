@@ -11,4 +11,4 @@ tags: ["mastodon", "fediverse", "socialweb"]
 
 > Mastodon is bringing quote posts to mastodon.online and mastodon.social first, but will roll out the feature more broadly with the Mastodon 4.5 update.
 
-> t also worked on a technical [specification](https://codeberg.org/fediverse/fep/src/branch/main/fep/044f/fep-044f.md) for quote posting in the fediverse and hopes that other platforms will adopt it.
+> It also worked on a technical [specification](https://codeberg.org/fediverse/fep/src/branch/main/fep/044f/fep-044f.md) for quote posting in the fediverse and hopes that other platforms will adopt it.
