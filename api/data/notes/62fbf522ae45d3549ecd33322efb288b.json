@@ -2,7 +2,7 @@
   "@context": "https://www.w3.org/ns/activitystreams",
   "attributedTo": "https://www.lqdev.me/@lqdev",
   "content": "<![CDATA[[reshare] <p>As someone who subscribes to YouTube channels using RSS feeds, I found this incredibly useful.</p>\n<pre><code class=\"language-text\">https://www.youtube.com/feeds/videos.xml?playlist_id=UU&lt;channel id&gt;\n</code></pre>\n<blockquote class=\"blockquote\">\n<p>Notice the UU and look below what you can replace it with.</p>\n</blockquote>\n<pre><code class=\"language-text\">UU - all public uploads (same as the channel_id= url)\nUULF - all public videos\nUUMO - all member videos \nUULV - all live streams\nUUSH - all shorts\nUULP - popular videos\nUUPV - popular live streams\nUUPS - popular shorts\nUUMV - member live streams\nUUMS - member shorts\n</code></pre>\n]]>",
-  "id": "https://www.lqdev.me/activitypub/notes/016",
+  "id": "https://www.lqdev.me/activitypub/notes/62fbf522ae45d3549ecd33322efb288b",
   "name": "Filter YouTube RSS Feeds",
   "published": "2025-09-12T19:57:00Z",
   "tag": [],

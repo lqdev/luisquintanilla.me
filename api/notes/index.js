@@ -6,7 +6,7 @@ module.exports = async function (context, req) {
         // Extract note ID from route parameter
         const noteId = context.bindingData.notePath;
         
-        if (!noteId || !noteId.match(/^\d{3}$/)) {
+        if (!noteId || !noteId.match(/^[a-f0-9]{32}$/)) {
             context.res = {
                 status: 404,
                 headers: {

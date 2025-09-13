@@ -5,11 +5,19 @@ open System
 open System.IO
 open System.Text.Json
 open System.Text.Json.Serialization
+open System.Security.Cryptography
+open System.Text
 open FSharp.Data
 
 // Enhanced script to output to API data directory with /activitypub namespace
 let outputBaseDir = "api/data"
 let websiteBaseUrl = "https://www.lqdev.me"
+
+// Generate MD5 hash for content
+let generateContentHash (content: string) =
+    use md5 = MD5.Create()
+    let hash = md5.ComputeHash(Encoding.UTF8.GetBytes(content))
+    BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant()
 
 // Ensure output directories exist
 let ensureDirectoryExists path =
@@ -83,9 +91,12 @@ let convertRssToActivityPub () =
         let activities = 
             rss.Channel.Items
             |> Array.take 20
-            |> Array.mapi (fun i item ->
-                let noteId = $"{websiteBaseUrl}/activitypub/notes/{i:D3}"
-                let activityId = $"{websiteBaseUrl}/activitypub/outbox#{i:D3}"
+            |> Array.map (fun item ->
+                // Generate hash from item content for consistent IDs
+                let contentForHash = $"{item.Title}{item.Description}{item.Link}"
+                let noteHash = generateContentHash contentForHash
+                let noteId = $"{websiteBaseUrl}/activitypub/notes/{noteHash}"
+                let activityId = $"{websiteBaseUrl}/activitypub/outbox#{noteHash}"
                 
                 // Create individual note
                 let note = {|
@@ -105,7 +116,7 @@ let convertRssToActivityPub () =
                 let options = JsonSerializerOptions(WriteIndented = true)
                 options.Encoder <- System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
                 let noteJson = JsonSerializer.Serialize(note, options)
-                File.WriteAllText(Path.Combine(outputBaseDir, "notes", $"{i:D3}.json"), noteJson)
+                File.WriteAllText(Path.Combine(outputBaseDir, "notes", $"{noteHash}.json"), noteJson)
                 
                 // Create activity
                 {|
@@ -115,7 +126,7 @@ let convertRssToActivityPub () =
                     actor = $"{websiteBaseUrl}/@lqdev"
                     published = item.PubDate.ToString("yyyy-MM-ddTHH:mm:ssZ")
                     ``object`` = note
-                |})
+                |}, noteHash)
         
         // Create outbox collection
         let outbox = {|
@@ -123,15 +134,18 @@ let convertRssToActivityPub () =
             id = $"{websiteBaseUrl}/activitypub/outbox"
             ``type`` = "OrderedCollection"
             totalItems = activities.Length
-            orderedItems = activities
+            orderedItems = activities |> Array.map fst
         |}
         
         let options = JsonSerializerOptions(WriteIndented = true)
         options.Encoder <- System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
         let outboxJson = JsonSerializer.Serialize(outbox, options)
         File.WriteAllText(Path.Combine(outputBaseDir, "outbox.json"), outboxJson)
+        
+        let hashes = activities |> Array.map snd
+        let hashSample = hashes |> Array.take 3 |> String.concat ", "
         printfn $"✅ Generated outbox.json with {activities.Length} activities"
-        printfn $"✅ Generated {activities.Length} individual note files"
+        printfn $"✅ Generated {activities.Length} individual note files with hashes: {hashSample}..."
     with
     | ex -> 
         printfn $"❌ Error processing RSS feed: {ex.Message}"

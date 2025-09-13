@@ -2,7 +2,7 @@
   "@context": "https://www.w3.org/ns/activitystreams",
   "attributedTo": "https://www.lqdev.me/@lqdev",
   "content": "<![CDATA[[reply] <p><a href=\"https://xoxo.zone/@artlung/\">@artlung@xoxo.zone</a></p>\n<p>When I first started, I used Hexo.</p>\n<p>Then, I moved to Hugo.</p>\n<p>Ultimately though, I decided to roll my own.</p>\n<p>Currently my site's content and the generator live in the same <a href=\"https://github.com/lqdev/luisquintanilla.me\">repo</a>.</p>\n<p>While not up to date, my <a href=\"https://www.lqdev.me/colophon\">colophon</a> contains details of how my site is built. The <a href=\"https://github.com/lqdev/luisquintanilla.me/blob/main/README.md\">README</a> in the repo also contains more up to date information since the massive revamp I made last month (which I still need to write about). I think that revamp and decoupling of various components in my site would've been significantly harder had I not been in complete control of my codebase.</p>\n<p>Although I have to pay a maintenance toll by owning the code that generates my site, knowing the entire codebase also gives me freedom to experiment and explore.</p>\n]]>",
-  "id": "https://www.lqdev.me/activitypub/notes/002",
+  "id": "https://www.lqdev.me/activitypub/notes/24a5b31fa676a5cf2f22e69a4641c6e0",
   "name": "Which Static Site Generator (SSG) do I use?",
   "published": "2025-09-13T12:25:00Z",
   "tag": [],
