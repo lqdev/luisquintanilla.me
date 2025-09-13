@@ -1,0 +1,11 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "attributedTo": "https://www.lqdev.me/@lqdev",
+  "content": "<![CDATA[[star] <p>This is a banger</p>\n<p><a href=\"https://www.youtube.com/watch?v=GZUTc5ZPzrM\" title=\"Salmon Metal\"><img src=\"http://img.youtube.com/vi/GZUTc5ZPzrM/0.jpg\" class=\"img-fluid\" alt=\"Salmon Metal\" /></a></p>\n]]>",
+  "id": "https://www.lqdev.me/activitypub/notes/005",
+  "name": "Salmon Metal",
+  "published": "2025-09-13T08:41:00Z",
+  "tag": [],
+  "type": "Note",
+  "url": "https://www.lqdev.me/responses/salmon-metal-bear-national-park"
+}

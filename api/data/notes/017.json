@@ -1,0 +1,11 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "attributedTo": "https://www.lqdev.me/@lqdev",
+  "content": "<![CDATA[[reshare] <blockquote class=\"blockquote\">\n<p>Starting next week, youâ\u0080\u0099ll see an option to quote another user by selecting the repost â\u0080\u0094 or â\u0080\u009Cboostâ\u0080\u009D â\u0080\u0094 button, allowing you to add your thoughts to someone elseâ\u0080\u0099s post.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>Mastodon is bringing quote posts to mastodon.online and mastodon.social first, but will roll out the feature more broadly with the Mastodon 4.5 update.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>It also worked on a technical <a href=\"https://codeberg.org/fediverse/fep/src/branch/main/fep/044f/fep-044f.md\">specification</a> for quote posting in the fediverse and hopes that other platforms will adopt it.</p>\n</blockquote>\n]]>",
+  "id": "https://www.lqdev.me/activitypub/notes/017",
+  "name": "Mastodon Launching Quote Posts",
+  "published": "2025-09-12T19:51:00Z",
+  "tag": [],
+  "type": "Note",
+  "url": "https://www.lqdev.me/responses/masdoton-launches-quote-posts"
+}

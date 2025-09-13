@@ -1,0 +1,368 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "id": "https://www.lqdev.me/activitypub/outbox",
+  "orderedItems": [
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#000",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[<p>This game is wild!</p>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/000",
+        "name": "Tennessee vs. Georgia",
+        "published": "2025-09-13T17:58:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/notes/tennessee-georgia-2025"
+      },
+      "published": "2025-09-13T17:58:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#001",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[<h2>Description</h2>\n<blockquote class=\"blockquote\">\n<p>As Indigenous scientist and author of Braiding Sweetgrass Robin Wall Kimmerer harvests serviceberries alongside the birds, she considers the ethic of reciprocity that lies at the heart of the gift economy. How, she asks, can we learn from Indigenous wisdom and the plant world to reimagine what we value most? Our economy is rooted in scarcity, competition, and the hoarding of resources, and we have surrendered our values to a system that actively harms what we love. Meanwhile, the serviceberryâ\u0080\u0099s relationship with the natural world is an embodiment of reciprocity, interconnectedness, and gratitude. The tree distributes its wealthâ\u0080\u0094its abundance of sweet, juicy berriesâ\u0080\u0094to meet the needs of its natural community. And this distribution ensures its own survival. As Kimmerer explains, â\u0080\u009CServiceberries show us another model, one based upon reciprocity, where wealth comes from the quality of your relationships, not from the illusion of self-sufficiency.â\u0080\u009D<br />\n<br>\nAs Elizabeth Gilbert writes, Robin Wall Kimmerer is â\u0080\u009Ca great teacher, and her words are a hymn of love to the world.â\u0080\u009D The Serviceberry is an antidote to the broken relationships and misguided goals of our times, and a reminder that â\u0080\u009Choarding wonâ\u0080\u0099t save us, all flourishing is mutual.â\u0080\u009D<br />\n<br>\nRobin Wall Kimmerer is donating her advance payments from this book as a reciprocal gift, back to the land, for land protection, restoration, and justice.</p>\n</blockquote>\n<h2>Review</h2>\n<p>I'm happy my name is not Darren.</p>\n<p>What started as an <a href=\"https://emergencemagazine.org/essay/the-serviceberry/\">essay</a> expanded into book form. I like how Robin uses her experience working with plants and nature and draws parallels to our society and way of life. We are not separate from nature and it has a lot of lessons we could learn from.</p>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/001",
+        "name": "The Serviceberry by Robin Wall Kimerrer",
+        "published": "2025-09-13T14:03:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/reviews/serviceberry-robin-wall-kimerrer"
+      },
+      "published": "2025-09-13T14:03:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#002",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[[reply] <p><a href=\"https://xoxo.zone/@artlung/\">@artlung@xoxo.zone</a></p>\n<p>When I first started, I used Hexo.</p>\n<p>Then, I moved to Hugo.</p>\n<p>Ultimately though, I decided to roll my own.</p>\n<p>Currently my site's content and the generator live in the same <a href=\"https://github.com/lqdev/luisquintanilla.me\">repo</a>.</p>\n<p>While not up to date, my <a href=\"https://www.lqdev.me/colophon\">colophon</a> contains details of how my site is built. The <a href=\"https://github.com/lqdev/luisquintanilla.me/blob/main/README.md\">README</a> in the repo also contains more up to date information since the massive revamp I made last month (which I still need to write about). I think that revamp and decoupling of various components in my site would've been significantly harder had I not been in complete control of my codebase.</p>\n<p>Although I have to pay a maintenance toll by owning the code that generates my site, knowing the entire codebase also gives me freedom to experiment and explore.</p>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/002",
+        "name": "Which Static Site Generator (SSG) do I use?",
+        "published": "2025-09-13T12:25:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/responses/which-static-site-generator-use-reply-mastodon-joe"
+      },
+      "published": "2025-09-13T12:25:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#003",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[[star] <p>This is beautiful.</p>\n<p>What an amazing project.</p>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/003",
+        "name": "Breathing with the forest",
+        "published": "2025-09-13T09:21:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/responses/breathing-with-the-forest-emergence"
+      },
+      "published": "2025-09-13T09:21:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#004",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[Album containing 0 photos]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/004",
+        "name": "Lossless audio coming to Spotify",
+        "published": "2025-09-13T09:16:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/media/lossless-audio-coming-spotify"
+      },
+      "published": "2025-09-13T09:16:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#005",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[[star] <p>This is a banger</p>\n<p><a href=\"https://www.youtube.com/watch?v=GZUTc5ZPzrM\" title=\"Salmon Metal\"><img src=\"http://img.youtube.com/vi/GZUTc5ZPzrM/0.jpg\" class=\"img-fluid\" alt=\"Salmon Metal\" /></a></p>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/005",
+        "name": "Salmon Metal",
+        "published": "2025-09-13T08:41:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/responses/salmon-metal-bear-national-park"
+      },
+      "published": "2025-09-13T08:41:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#006",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[[reply] <p>You had me at Meow Wolf.</p>\n<p>This is a cool site. Thanks for sharing.</p>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/006",
+        "name": "PostHog",
+        "published": "2025-09-12T22:47:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/responses/posthog-meowwolf"
+      },
+      "published": "2025-09-12T22:47:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#007",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[[reshare] <p>If you get past the doom and gloom, this is a nice conversation with Ray Dalio on systems, team building, and mindfulness.</p>\n<p><a href=\"https://www.youtube.com/watch?v=49RT6SQ8n0Y\" title=\"Ray Dalio on Diary of a CEO\"><img src=\"http://img.youtube.com/vi/49RT6SQ8n0Y/0.jpg\" class=\"img-fluid\" alt=\"Ray Dalio on Diary of a CEO\" /></a></p>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/007",
+        "name": "Ray Dalio on Diary of a CEO",
+        "published": "2025-09-12T22:20:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/responses/ray-dalio-diary-of-a-ceo-podcast-2025"
+      },
+      "published": "2025-09-12T22:20:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#008",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[Album containing 0 photos]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/008",
+        "name": "Just ordered Internet Phone Book",
+        "published": "2025-09-12T21:50:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/media/just-ordered-internet-phone-book-issue-1"
+      },
+      "published": "2025-09-12T21:50:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#009",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[[reshare] <p>I haven't listened to the <a href=\"https://shownotes.scripting.com/scripting/2025/09/08/whyBloggingLostToTwitterAndOtherFolkSongs.html\">podcast</a> yet but there's a lot of good points.</p>\n<blockquote class=\"blockquote\">\n<p>Subscribing in feed readers required too many steps: copying URLs, menus, pasting, confirming.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>Blogging lost to Twitter because Twitter had one-click subscribe.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>Rebooting the blogosphere requires cooperation and a universal &quot;follow&quot; button.</p>\n</blockquote>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/009",
+        "name": "Notes on why blogging lost to Twitter",
+        "published": "2025-09-12T21:16:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/responses/notes-why-blogging-lost-twitter-winer"
+      },
+      "published": "2025-09-12T21:16:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#010",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[[star] <p>A blast from the past. Can't believe this post is still available.</p>\n<p>Almost two decades later and it feels like we're still figuring out how to share and express ourselves online.</p>\n<blockquote class=\"blockquote\">\n<p>These are the reasons most people abandon their personal weblog or never start one. But we all come across interesting tidbits online every day that we want to remember and share - links, photos, videos, even that side-splitting IM session you had with your co-worker. A new blog format, called a &quot;tumblelog,&quot; is a no-hassle, no-writing-required way to share those bits and maintain a personal site with the least possible commitment.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>A new service called Tumblr can publish your tumblelog with minimal setup and for free.</p>\n</blockquote>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/010",
+        "name": "Geek To Live - Tumblelog",
+        "published": "2025-09-12T21:05:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/responses/geek-to-live-tumblelog"
+      },
+      "published": "2025-09-12T21:05:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#011",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[[reshare] <blockquote class=\"blockquote\">\n<p>Make your voice heard beyond signing the petition by submitting a personal comment directly to the U.S. Forest Service during the public comment period, open until September 19, 2025.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>For nearly 25 years, the Roadless Rule protected nearly one-third of our federal forestlands from major logging operations and oil-and-gas drilling. While nearly half of U.S. federal forest lands are open to these industries, the areas protected by the Roadless Rule are home to massive old-growth carbon sinks, habitats for vulnerable fish and wildlife, migratory corridors for game species and millennia-old cultural landscapes for Indigenous communities. They are beloved destinations for climbers, hikers, mountain bikers, paddlers, backcountry skiers and more and act as critical sources of clean drinking water for over 60 million people in 33 states.But the U.S. Department of Agriculture wants to end the Roadless Ruleâ\u0080\u0099s protections across nearly 45 million acres of the National Forest System. Unless we act now, we will lose protections for precious backcountry forestlands. Add your voice and tell the Department of Agriculture to reverse course before itâ\u0080\u0099s too late.</p>\n</blockquote>\n<h2><a href=\"https://www.rei.com/action/network/campaign/roadless-rule\">Submit Your Comment</a></h2>\n<p><a href=\"https://www.fs.usda.gov/managing-land/planning/roadless\">Learn More</a></p>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/011",
+        "name": "Protect Backcountry U.S. Forests",
+        "published": "2025-09-12T20:55:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/responses/protect-backcountry-forests-roadless-rule-petition"
+      },
+      "published": "2025-09-12T20:55:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#012",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[[bookmark] <blockquote class=\"blockquote\">\n<p>The open content licensing standard for the AI-first Internet</p>\n</blockquote>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/012",
+        "name": "Real Simple Licensing",
+        "published": "2025-09-12T20:48:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/responses/real-simple-licensing-open-standard"
+      },
+      "published": "2025-09-12T20:48:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#013",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[[star] <p>ð\u009F\u0092¯ð\u009F\u0092¯ð\u009F\u0092¯</p>\n<blockquote class=\"blockquote\">\n<p>If we can go back to vinyl records and film cameras, we can go back to blogs and RSS feeds.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>Do we need permission from the masses before we do something that might bring us joy?</p>\n</blockquote>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/013",
+        "name": "No Rule Says We Have To Stay on Social Media",
+        "published": "2025-09-12T20:46:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/responses/no-rule-says-stay-on-social-media"
+      },
+      "published": "2025-09-12T20:46:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#014",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[[star] <blockquote class=\"blockquote\">\n<p>Sales of cassettes are up more than <a href=\"https://www.npr.org/2024/06/07/nx-s1-4976071/the-cassette-tape-is-making-a-comeback-thanks-to-a-family-run-company-in-missouri\">440 percent</a> over the past decade. Cassette players (think modernized Walkmans) are also back, with companies producing new versions of this decidedly retro tech.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>This â\u0080\u009Crevenge of analog,â\u0080\u009D...is motivated by a combination of factors, from the practical to the more prosaic, and, ultimately, a more mindful use of technology. This approach rejects a binary of good vs. bad tech, and instead seeks a via media â\u0080\u0094 a middle path â\u0080\u0094 with its daily use.</p>\n</blockquote>\n<p>Although I haven't done it as much with music, over the past few years I've been slowly rebuilding my analog media collection which includes movies and books. As the article mentions, part of that is ownership and actually owning the things I pay for. More importantly though, rather than scrolling through an endless catalog and never finding something to watch or read, I have a curated set of items to enjoy in a more mindful manner. If I feel the need to scroll through an endless catalog, there's always the library which has tons of media available. I find the library to be a heavily underutilized and almost forgotten community service we've all already paid for in some way, so why not use it.</p>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/014",
+        "name": "The Return of the Cassette Tape",
+        "published": "2025-09-12T20:32:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/responses/return-cassette-tape-analog-media-comeback"
+      },
+      "published": "2025-09-12T20:32:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#015",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[[reshare] <blockquote class=\"blockquote\">\n<p>Social media was built on the romance of authenticity. Early platforms sold themselves as conduits for genuine connection: stuff you wanted to see, like your friendâ\u0080\u0099s wedding and your cousinâ\u0080\u0099s dog.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>The feed no longer feels crowded with people but crowded with content. At this point, it has far less to do with people than with consumers and consumption.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>Whatever remains of genuine, human content is increasingly sidelined by algorithmic prioritization, receiving fewer interactions than the engineered content and AI slop optimized solely for clicks.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>While content proliferates, engagement is evaporating...People arenâ\u0080\u0099t connecting or conversing on social media like they used to; theyâ\u0080\u0099re just wading through slop, that is, low-effort, low-quality content produced at scale, often with AI, for engagement.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>Engagement is now about raw user attention â\u0080\u0093 time spent, impressions, scroll velocity â\u0080\u0093 and the net effect is an online world in which you are constantly being addressed but never truly spoken to.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>Social mediaâ\u0080\u0099s death rattle will not be a bang but a shrug.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>These networks once promised a single interface for the whole of online life...But now, the model is splintering, and users are drifting toward smaller, slower, more private spaces, like group chats, Discord servers and <a href=\"https://www.theverge.com/24063290/fediverse-explained-activitypub-social-media-open-protocol\">federated microblogs</a> â\u0080\u0094 a billion little gardens.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>Intentional, opt-in microâ\u0080\u0091communities are rising in their place â\u0080\u0094 like Patreon collectives and Substack newsletters â\u0080\u0094 where creators chase depth over scale, retention over virality. A writer with 10,000 devoted subscribers can potentially earn more and burn out less than one with a million passive followers on Instagram.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>These are the last days of social media, not because we lack content, but because the attention economy has neared its outer limit â\u0080\u0094 we have exhausted the capacity to care.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>Our offline reality is irrevocably shaped by our online world. Consider the worker who deletes or was never on LinkedIn, excluding themselves from professional networks that increasingly exist nowhere else</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>These platforms havenâ\u0080\u0099t just captured attention, theyâ\u0080\u0099ve enclosed the commons where social, economic and cultural capital are exchanged. But enclosure breeds resistance, and as exhaustion sets in, alternatives begin to emerge.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>...as social media collapses on itself, the future points to a quieter, more fractured, more human web, something that no longer promises to be everything, everywhere, for everyone.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>We can dream of a digital future where belonging is no longer measured by follower counts or engagement rates, but rather by the development of trust and the quality of conversation...None of this is about escaping the social internet, but about reclaiming its scale, pace, and purpose.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>The technical architecture of the next social web is already emerging through federated and distributed protocols like ActivityPub...But protocols alone wonâ\u0080\u0099t save us. The email protocol is decentralized, yet most email flows through a handful of corporate providers. We need to â\u0080\u009Crewild the internet,â\u0080\u009D as Maria Farrell and Robin Berjon mentioned in a Noema essay.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>Social media as we know it is dying, but weâ\u0080\u0099re not condemned to its ruins. We are capable of building better â\u0080\u0094 smaller, slower, more intentional, more accountable â\u0080\u0094 spaces for digital interaction, spaces where the metrics that matter arenâ\u0080\u0099t engagement and growth but understanding and connection, where algorithms serve the community rather than strip-mining it.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>The last days of social media might be the first days of something more human: a web that remembers why we came online in the first place â\u0080\u0094 not to be harvested but to be heard, not to go viral but to find our people, not to scroll but to connect. We built these systems, and we can certainly build better ones. The question is whether we will do this or whether we will continue to drown.</p>\n</blockquote>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/015",
+        "name": "The Last Days of Social Media",
+        "published": "2025-09-12T20:19:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/responses/last-days-social-media-noemag"
+      },
+      "published": "2025-09-12T20:19:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#016",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[[reshare] <p>As someone who subscribes to YouTube channels using RSS feeds, I found this incredibly useful.</p>\n<pre><code class=\"language-text\">https://www.youtube.com/feeds/videos.xml?playlist_id=UU&lt;channel id&gt;\n</code></pre>\n<blockquote class=\"blockquote\">\n<p>Notice the UU and look below what you can replace it with.</p>\n</blockquote>\n<pre><code class=\"language-text\">UU - all public uploads (same as the channel_id= url)\nUULF - all public videos\nUUMO - all member videos \nUULV - all live streams\nUUSH - all shorts\nUULP - popular videos\nUUPV - popular live streams\nUUPS - popular shorts\nUUMV - member live streams\nUUMS - member shorts\n</code></pre>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/016",
+        "name": "Filter YouTube RSS Feeds",
+        "published": "2025-09-12T19:57:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/responses/filter-youtube-video-rss-feed"
+      },
+      "published": "2025-09-12T19:57:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#017",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[[reshare] <blockquote class=\"blockquote\">\n<p>Starting next week, youâ\u0080\u0099ll see an option to quote another user by selecting the repost â\u0080\u0094 or â\u0080\u009Cboostâ\u0080\u009D â\u0080\u0094 button, allowing you to add your thoughts to someone elseâ\u0080\u0099s post.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>Mastodon is bringing quote posts to mastodon.online and mastodon.social first, but will roll out the feature more broadly with the Mastodon 4.5 update.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>It also worked on a technical <a href=\"https://codeberg.org/fediverse/fep/src/branch/main/fep/044f/fep-044f.md\">specification</a> for quote posting in the fediverse and hopes that other platforms will adopt it.</p>\n</blockquote>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/017",
+        "name": "Mastodon Launching Quote Posts",
+        "published": "2025-09-12T19:51:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/responses/masdoton-launches-quote-posts"
+      },
+      "published": "2025-09-12T19:51:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#018",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[Album containing 0 photos]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/018",
+        "name": "Urban Toy Story",
+        "published": "2025-09-12T08:29:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/media/toy-story-underpass"
+      },
+      "published": "2025-09-12T08:29:00Z",
+      "type": "Create"
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "actor": "https://www.lqdev.me/@lqdev",
+      "id": "https://www.lqdev.me/activitypub/outbox#019",
+      "object": {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "<![CDATA[[reshare] <p>Great post from <a href=\"https://blogtherapy.substack.com/about\">Alexandra</a>. Tons of great resources to explore as well.</p>\n<blockquote class=\"blockquote\">\n<p>...recently the indie web has been experiencing a revival, as more netizens look for connection outside the walled gardens created by tech giants.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>The kinds of posts and projects youâ\u0080\u0099ll find are creative, personal, experimental, and sometimes so intimate you feel like youâ\u0080\u0099re intruding. However, theyâ\u0080\u0099re not the kind of content that usually goes viral on TikTok. Thatâ\u0080\u0099s beside the point. The focus isnâ\u0080\u0099t on personal branding, growth or monetization, or â\u0080\u009Ccontentâ\u0080\u009D creation, but on freedom from those things. Instead of polished, 10-second snippets optimized for mass-appeal, engagement, and profit, these are largely slow-cooked projects made just for fun.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>Against a backdrop of accelerating enshittification and living chronically online â\u0080\u0094 especially since the COVID pandemic â\u0080\u0094 thereâ\u0080\u0099s growing interest in the slower, more intentional and connected experience the indie web promises.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>In different corners of the mainstream internet, younger users are talking about reclaiming their attention spans, trading in their smartphones, writing essays for fun, journaling, discovering long reads, reading fiction, and picking up hobbies like crocheting or scrapbooking.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>Discoverability can be a challenge...But what seems like a bug can really be a feature of the small web experience: the point is to explore.</p>\n</blockquote>\n<blockquote class=\"blockquote\">\n<p>In the greater context of the global internet, the small web will never completely replace big platforms or serve every need, nor should it. Social media is still the main source of news in many parts of the world, offering valuable tools for community-building, commerce, even activism. For their part, most indie web creators are happy to exist outside of the mainstream.</p>\n</blockquote>\n]]>",
+        "id": "https://www.lqdev.me/activitypub/notes/019",
+        "name": "The Internet's Hidden Creative Renaissance",
+        "published": "2025-09-12T07:55:00Z",
+        "tag": [],
+        "type": "Note",
+        "url": "https://www.lqdev.me/responses/internet-hidden-creative-rennaissance-indieweb"
+      },
+      "published": "2025-09-12T07:55:00Z",
+      "type": "Create"
+    }
+  ],
+  "totalItems": 20,
+  "type": "OrderedCollection"
+}

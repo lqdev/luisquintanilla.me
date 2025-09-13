@@ -1,0 +1,10 @@
+{
+  "links": [
+    {
+      "href": "https://www.lqdev.me/@lqdev",
+      "rel": "self",
+      "type": "application/activity+json"
+    }
+  ],
+  "subject": "acct:lqdev@www.lqdev.me"
+}

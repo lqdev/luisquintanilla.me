@@ -1,0 +1,11 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "attributedTo": "https://www.lqdev.me/@lqdev",
+  "content": "<![CDATA[[reshare] <p>If you get past the doom and gloom, this is a nice conversation with Ray Dalio on systems, team building, and mindfulness.</p>\n<p><a href=\"https://www.youtube.com/watch?v=49RT6SQ8n0Y\" title=\"Ray Dalio on Diary of a CEO\"><img src=\"http://img.youtube.com/vi/49RT6SQ8n0Y/0.jpg\" class=\"img-fluid\" alt=\"Ray Dalio on Diary of a CEO\" /></a></p>\n]]>",
+  "id": "https://www.lqdev.me/activitypub/notes/007",
+  "name": "Ray Dalio on Diary of a CEO",
+  "published": "2025-09-12T22:20:00Z",
+  "tag": [],
+  "type": "Note",
+  "url": "https://www.lqdev.me/responses/ray-dalio-diary-of-a-ceo-podcast-2025"
+}

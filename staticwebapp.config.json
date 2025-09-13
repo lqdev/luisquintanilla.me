@@ -5,20 +5,32 @@
   },
   "routes": [
     {
-      "route": "/.well-known/webfinger*",
-      "rewrite": "/.well-known/webfinger.activitypub",
-      "headers": {
-        "Cache-Control": "Cache-Control: no-cache, must-revalidate",
-        "Access-Control-Allow-Origin": "*"
-      }
+      "route": "/.well-known/webfinger",
+      "rewrite": "/api/webfinger"
     },
     {
       "route": "/@lqdev",
-      "rewrite": "/lqdev.activitypub",
-      "headers": {
-        "Cache-Control": "Cache-Control: public, max-age=3600, s-maxage=1800",
-        "Access-Control-Allow-Origin": "*"
-      }
+      "rewrite": "/api/actor"
+    },
+    {
+      "route": "/activitypub/outbox",
+      "rewrite": "/api/outbox"
+    },
+    {
+      "route": "/activitypub/inbox",
+      "rewrite": "/api/inbox"
+    },
+    {
+      "route": "/activitypub/followers",
+      "rewrite": "/api/followers"
+    },
+    {
+      "route": "/activitypub/following",
+      "rewrite": "/api/following"
+    },
+    {
+      "route": "/activitypub/notes/{*notePath}",
+      "rewrite": "/api/notes/{notePath}"
     },
     {
       "route": "/github",
