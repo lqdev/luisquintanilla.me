@@ -66,11 +66,17 @@ let generateActorProfile () =
 let generateWebFinger () =
     let webfinger = {|
         subject = "acct:lqdev@www.lqdev.me"
+        aliases = [| $"{websiteBaseUrl}/@lqdev" |]
         links = [|
             {|
                 rel = "self"
                 ``type`` = "application/activity+json"
                 href = $"{websiteBaseUrl}/@lqdev"
+            |}
+            {|
+                rel = "http://webfinger.net/rel/profile-page"
+                ``type`` = "text/html"
+                href = websiteBaseUrl
             |}
         |]
     |}
