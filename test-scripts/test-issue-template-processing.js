@@ -17,7 +17,11 @@ The workflow should:
 - Create a uniquely named file
 - Format the content correctly
 
-### Tags
+### Slug (Optional)
+
+custom-test-slug
+
+### Tags (Optional)
 
 github, automation, testing
 
@@ -47,11 +51,13 @@ function extractFormValue(body, label) {
 
 const title = extractFormValue(simulatedIssueBody, 'Title');
 const content = extractFormValue(simulatedIssueBody, 'Content');
-const tagsInput = extractFormValue(simulatedIssueBody, 'Tags');
+const customSlug = extractFormValue(simulatedIssueBody, 'Slug \\(Optional\\)');
+const tagsInput = extractFormValue(simulatedIssueBody, 'Tags \\(Optional\\)');
 
 console.log('📝 Extracted Fields:');
 console.log('Title:', title);
 console.log('Content length:', content.length, 'characters');
+console.log('Custom slug:', customSlug);
 console.log('Tags input:', tagsInput);
 console.log();
 
@@ -76,7 +82,25 @@ function generateSlug(title) {
   return slug;
 }
 
-const slug = generateSlug(title);
+function sanitizeSlug(slug) {
+  return slug.toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '') // Remove special chars
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single
+    .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+}
+
+// Use custom slug if provided, otherwise generate from title
+let slug;
+if (customSlug && customSlug.length > 0) {
+  slug = sanitizeSlug(customSlug);
+  // Ensure custom slug is valid
+  if (!slug || slug.length === 0) {
+    slug = generateSlug(title);
+  }
+} else {
+  slug = generateSlug(title);
+}
 
 // Process tags
 const tags = tagsInput ? 
@@ -108,6 +132,7 @@ const filename = `${slug}-${est.getFullYear()}-${String(est.getMonth() + 1).padS
 
 console.log('🔧 Generated Values:');
 console.log('Slug:', slug);
+console.log('Custom slug provided:', customSlug ? 'Yes' : 'No');
 console.log('Timestamp:', timestamp);
 console.log('Filename:', filename);
 console.log('Tags array:', JSON.stringify(tags));
@@ -124,3 +149,45 @@ console.log('📊 Content Statistics:');
 console.log('- Total content length:', fullContent.length, 'characters');
 console.log('- Frontmatter lines:', frontmatter.split('\n').length);
 console.log('- Content preview:', content.substring(0, 100) + '...');
+
+console.log('\n🧪 Testing fallback scenario (no custom slug)...\n');
+
+// Test scenario 2: No custom slug provided
+const fallbackIssueBody = `### Title
+
+Another Test Note
+
+### Content
+
+This is another test note without a custom slug.
+
+### Slug (Optional)
+
+_No response_
+
+### Tags (Optional)
+
+_No response_
+
+---`;
+
+const title2 = extractFormValue(fallbackIssueBody, 'Title');
+const customSlug2 = extractFormValue(fallbackIssueBody, 'Slug \\(Optional\\)');
+
+console.log('📝 Extracted Fields (Scenario 2):');
+console.log('Title:', title2);
+console.log('Custom slug:', customSlug2);
+
+// Generate slug for scenario 2
+let slug2;
+if (customSlug2 && customSlug2.length > 0) {
+  slug2 = sanitizeSlug(customSlug2);
+  if (!slug2 || slug2.length === 0) {
+    slug2 = generateSlug(title2);
+  }
+} else {
+  slug2 = generateSlug(title2);
+}
+
+console.log('Generated slug (fallback):', slug2);
+console.log('✅ Fallback test passed!');

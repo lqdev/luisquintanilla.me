@@ -38,9 +38,18 @@ body:
       required: true
 
   - type: input
+    id: slug
+    attributes:
+      label: Slug (Optional)
+      description: Custom URL slug for your note. If not provided, one will be generated from the title.
+      placeholder: "e.g., my-custom-slug (leave blank to auto-generate)"
+    validations:
+      required: false
+
+  - type: input
     id: tags
     attributes:
-      label: Tags
+      label: Tags (Optional)
       description: Comma-separated tags for categorizing your note
       placeholder: "e.g., tech, programming, thoughts"
     validations:

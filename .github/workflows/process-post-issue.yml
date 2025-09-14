@@ -50,10 +50,12 @@ jobs:
               
               const title = extractFormValue(issueBody, 'Title');
               const content = extractFormValue(issueBody, 'Content');
-              const tagsInput = extractFormValue(issueBody, 'Tags');
+              const customSlug = extractFormValue(issueBody, 'Slug \\(Optional\\)');
+              const tagsInput = extractFormValue(issueBody, 'Tags \\(Optional\\)');
               
               console.log('Extracted title:', title);
               console.log('Extracted content:', content);
+              console.log('Extracted custom slug:', customSlug);
               console.log('Extracted tags:', tagsInput);
               
               // Validate required fields
@@ -70,7 +72,7 @@ jobs:
                 throw new Error('Content must have at least 10 non-whitespace characters');
               }
               
-              // Generate slug from title
+              // Generate or use custom slug
               function generateSlug(title) {
                 let slug = title.toLowerCase()
                   .replace(/[^a-z0-9\s-]/g, '') // Remove special chars
@@ -91,8 +93,27 @@ jobs:
                 return slug;
               }
               
-              const slug = generateSlug(title);
-              console.log('Generated slug:', slug);
+              function sanitizeSlug(slug) {
+                return slug.toLowerCase()
+                  .replace(/[^a-z0-9\s-]/g, '') // Remove special chars
+                  .replace(/\s+/g, '-') // Replace spaces with hyphens
+                  .replace(/-+/g, '-') // Replace multiple hyphens with single
+                  .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+              }
+              
+              // Use custom slug if provided, otherwise generate from title
+              let slug;
+              if (customSlug && customSlug.length > 0) {
+                slug = sanitizeSlug(customSlug);
+                // Ensure custom slug is valid
+                if (!slug || slug.length === 0) {
+                  slug = generateSlug(title);
+                }
+              } else {
+                slug = generateSlug(title);
+              }
+              
+              console.log('Final slug:', slug);
               
               // Process tags
               const tags = tagsInput ? 
@@ -185,6 +206,7 @@ tags: [${tags.map(tag => `"${tag}"`).join(', ')}]
             ### Frontmatter Validation
             - ✅ Title: ${{ steps.create-content.outputs.title }}
             - ✅ Type: note
+            - ✅ Slug: ${{ steps.create-content.outputs.slug }}
             - ✅ Tags: ${{ steps.create-content.outputs.tags }}
             
             **Created via GitHub Issue Template #${{ github.event.issue.number }}**
