@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = async function (context, req) {
     try {
-        const outboxPath = path.join(__dirname, '../data/outbox.json');
+        const outboxPath = path.join(__dirname, '../data/outbox/index.json');
         const outboxData = await fs.readFile(outboxPath, 'utf8');
         
         context.res = {
