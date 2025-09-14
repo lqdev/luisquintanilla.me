@@ -26,103 +26,147 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const fs = require('fs');
-            const path = require('path');
-            
-            // Parse issue body to extract form data
-            const issueBody = context.payload.issue.body;
-            const issueNumber = context.payload.issue.number;
-            
-            console.log('Processing issue #' + issueNumber);
-            console.log('Issue body:', issueBody);
-            
-            // Extract form responses using regex patterns
-            function extractFormValue(body, label) {
-              // GitHub issue forms format: ### Label\n\nValue
-              const regex = new RegExp(`### ${label}\\s*\\n\\s*\\n([\\s\\S]*?)(?=\\n\\n###|\\n\\n---|\$)`, 'i');
-              const match = body.match(regex);
-              return match ? match[1].trim() : '';
-            }
-            
-            const title = extractFormValue(issueBody, 'Title');
-            const content = extractFormValue(issueBody, 'Content');
-            const tagsInput = extractFormValue(issueBody, 'Tags');
-            
-            console.log('Extracted title:', title);
-            console.log('Extracted content:', content);
-            console.log('Extracted tags:', tagsInput);
-            
-            // Validate required fields
-            if (!title || !content) {
-              throw new Error('Title and content are required');
-            }
-            
-            // Generate slug from title
-            function generateSlug(title) {
-              return title.toLowerCase()
-                .replace(/[^a-z0-9\s-]/g, '') // Remove special chars
-                .replace(/\s+/g, '-') // Replace spaces with hyphens
-                .replace(/-+/g, '-') // Replace multiple hyphens with single
-                .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
-            }
-            
-            const slug = generateSlug(title);
-            console.log('Generated slug:', slug);
-            
-            // Process tags
-            const tags = tagsInput ? 
-              tagsInput.split(',').map(tag => tag.trim().toLowerCase()).filter(tag => tag.length > 0) :
-              [];
-            
-            // Generate current timestamp in EST
-            const now = new Date();
-            const est = new Date(now.getTime() - (5 * 60 * 60 * 1000)); // EST is UTC-5
-            const timestamp = est.getFullYear() + '-' + 
-              String(est.getMonth() + 1).padStart(2, '0') + '-' + 
-              String(est.getDate()).padStart(2, '0') + ' ' +
-              String(est.getHours()).padStart(2, '0') + ':' + 
-              String(est.getMinutes()).padStart(2, '0') + ' -05:00';
-            
-            console.log('Generated timestamp:', timestamp);
-            
-            // Generate frontmatter
-            const frontmatter = `---
+            try {
+              const fs = require('fs');
+              const path = require('path');
+              
+              // Parse issue body to extract form data
+              const issueBody = context.payload.issue.body;
+              const issueNumber = context.payload.issue.number;
+              
+              console.log('Processing issue #' + issueNumber);
+              console.log('Issue body:', issueBody);
+              
+              // Extract form responses using regex patterns
+              function extractFormValue(body, label) {
+                // GitHub issue forms format: ### Label\n\nValue
+                const regex = new RegExp(`### ${label}\\s*\\n\\s*\\n([\\s\\S]*?)(?=\\n\\n###|\\n\\n---|\$)`, 'i');
+                const match = body.match(regex);
+                const value = match ? match[1].trim() : '';
+                
+                // Remove common artifacts from GitHub issue forms
+                return value.replace(/^_No response_$/i, '').trim();
+              }
+              
+              const title = extractFormValue(issueBody, 'Title');
+              const content = extractFormValue(issueBody, 'Content');
+              const tagsInput = extractFormValue(issueBody, 'Tags');
+              
+              console.log('Extracted title:', title);
+              console.log('Extracted content:', content);
+              console.log('Extracted tags:', tagsInput);
+              
+              // Validate required fields
+              if (!title || title.length === 0) {
+                throw new Error('Title is required and cannot be empty');
+              }
+              
+              if (!content || content.length === 0) {
+                throw new Error('Content is required and cannot be empty');
+              }
+              
+              // Validate content has substance (more than just whitespace)
+              if (content.replace(/\s/g, '').length < 10) {
+                throw new Error('Content must have at least 10 non-whitespace characters');
+              }
+              
+              // Generate slug from title
+              function generateSlug(title) {
+                let slug = title.toLowerCase()
+                  .replace(/[^a-z0-9\s-]/g, '') // Remove special chars
+                  .replace(/\s+/g, '-') // Replace spaces with hyphens
+                  .replace(/-+/g, '-') // Replace multiple hyphens with single
+                  .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+                  
+                // Ensure slug is not empty
+                if (!slug || slug.length === 0) {
+                  slug = 'untitled-note';
+                }
+                
+                // Truncate if too long
+                if (slug.length > 50) {
+                  slug = slug.substring(0, 50).replace(/-$/, '');
+                }
+                
+                return slug;
+              }
+              
+              const slug = generateSlug(title);
+              console.log('Generated slug:', slug);
+              
+              // Process tags
+              const tags = tagsInput ? 
+                tagsInput.split(',').map(tag => tag.trim().toLowerCase()).filter(tag => tag.length > 0) :
+                [];
+              
+              // Generate current timestamp in EST
+              const now = new Date();
+              const est = new Date(now.getTime() - (5 * 60 * 60 * 1000)); // EST is UTC-5
+              const timestamp = est.getFullYear() + '-' + 
+                String(est.getMonth() + 1).padStart(2, '0') + '-' + 
+                String(est.getDate()).padStart(2, '0') + ' ' +
+                String(est.getHours()).padStart(2, '0') + ':' + 
+                String(est.getMinutes()).padStart(2, '0') + ' -05:00';
+              
+              console.log('Generated timestamp:', timestamp);
+              
+              // Generate frontmatter
+              const frontmatter = `---
 title: ${title}
 post_type: note
 published_date: "${timestamp}"
 tags: [${tags.map(tag => `"${tag}"`).join(', ')}]
 ---`;
-            
-            // Combine frontmatter and content
-            const fullContent = frontmatter + '\n\n' + content;
-            
-            // Generate filename with timestamp to ensure uniqueness
-            const filename = `${slug}-${est.getFullYear()}-${String(est.getMonth() + 1).padStart(2, '0')}-${String(est.getDate()).padStart(2, '0')}.md`;
-            
-            console.log('Generated filename:', filename);
-            console.log('Full content:', fullContent);
-            
-            // Save outputs for next steps
-            core.setOutput('title', title);
-            core.setOutput('slug', slug);
-            core.setOutput('filename', filename);
-            core.setOutput('content', fullContent);
-            core.setOutput('tags', JSON.stringify(tags));
-            
-            return {
-              title,
-              slug,
-              filename,
-              content: fullContent,
-              tags
-            };
+              
+              // Combine frontmatter and content
+              const fullContent = frontmatter + '\n\n' + content;
+              
+              // Generate filename with timestamp to ensure uniqueness
+              const filename = `${slug}-${est.getFullYear()}-${String(est.getMonth() + 1).padStart(2, '0')}-${String(est.getDate()).padStart(2, '0')}.md`;
+              
+              console.log('Generated filename:', filename);
+              console.log('Full content:', fullContent);
+              
+              // Save outputs for next steps
+              core.setOutput('title', title);
+              core.setOutput('slug', slug);
+              core.setOutput('filename', filename);
+              core.setOutput('content', fullContent);
+              core.setOutput('tags', JSON.stringify(tags));
+              core.setOutput('success', 'true');
+              
+              return {
+                title,
+                slug,
+                filename,
+                content: fullContent,
+                tags
+              };
+              
+            } catch (error) {
+              console.error('Error processing issue:', error);
+              core.setOutput('success', 'false');
+              core.setOutput('error', error.message);
+              
+              // Comment on issue with error details
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.issue.number,
+                body: `❌ **Error processing post request**\n\n${error.message}\n\nPlease check your issue format and try again. The issue will remain open for you to edit and resubmit.`
+              });
+              
+              throw error;
+            }
             
       - name: Create content file
+        if: steps.create-content.outputs.success == 'true'
         run: |
           mkdir -p _src/notes
           echo '${{ steps.create-content.outputs.content }}' > "_src/notes/${{ steps.create-content.outputs.filename }}"
           
       - name: Create Pull Request
+        if: steps.create-content.outputs.success == 'true'
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -147,7 +191,8 @@ tags: [${tags.map(tag => `"${tag}"`).join(', ')}]
           branch: content/issue-${{ github.event.issue.number }}/note/${{ steps.create-content.outputs.slug }}
           delete-branch: true
           
-      - name: Close issue
+      - name: Close issue on success
+        if: steps.create-content.outputs.success == 'true'
         uses: actions/github-script@v7
         with:
           script: |
