@@ -1,5 +1,5 @@
 (*
-    This script loads all blog posts, notes, and responses and creates a markdown file with the contents.
+    This script loads all content types from the unified feed system and creates a comprehensive weekly markdown summary.
 *)
 
 #r "../bin/Debug/net9.0/PersonalSite.dll"
@@ -8,119 +8,146 @@ open System
 open System.IO
 open Domain
 open Loaders
+open Builder
+open GenericBuilder.UnifiedFeeds
 
-let blogs = loadPosts "_src"
-let notes = loadFeed "_src"
-let responses = loadReponses "_src"
+// Load all content types using the unified feed system
+let postsFeedData = buildPosts()
+let notesFeedData = buildNotes()
+let responsesFeedData = buildResponses()
+let bookmarksFeedData = buildBookmarks()
+let snippetsFeedData = buildSnippets()
+let wikisFeedData = buildWikis()
+let presentationsFeedData = buildPresentations()
+let booksFeedData = buildBooks()
+let mediaFeedData = buildMedia()
 
-let filteredBlogs = 
-    blogs
-    |> Array.filter(fun x -> 
-        let postDate = DateTime.Parse(x.Metadata.Date).Date
-        let dateFilter = DateTimeOffset(DateTime.Now - TimeSpan.FromDays(7)).Date
-        postDate >= dateFilter)
+// Convert to unified feed items
+let allUnifiedItems = [
+    ("posts", convertPostsToUnified postsFeedData)
+    ("notes", convertNotesToUnified notesFeedData)
+    ("responses", convertResponsesToUnified responsesFeedData)
+    ("bookmarks", convertBookmarkResponsesToUnified bookmarksFeedData)
+    ("snippets", convertSnippetsToUnified snippetsFeedData)
+    ("wiki", convertWikisToUnified wikisFeedData)
+    ("presentations", convertPresentationsToUnified presentationsFeedData)
+    ("reviews", convertBooksToUnified booksFeedData)
+    ("media", convertAlbumsToUnified mediaFeedData)
+]
 
-let filteredNotes = 
-    notes
-    |> Array.filter(fun x -> 
-        let postDate = DateTime.Parse(x.Metadata.Date).Date
-        let dateFilter = DateTimeOffset(DateTime.Now - TimeSpan.FromDays(7)).Date
-        postDate >= dateFilter)
+// Filter for the last 7 days with proper timezone handling
+let dateFilter = DateTimeOffset.Now.AddDays(-7.0).Date
 
-let filteredResponses = 
-    responses
-    |> Array.filter(fun x -> 
-    let postDate = DateTime.Parse(x.Metadata.DatePublished).Date
-    let dateFilter = DateTimeOffset(DateTime.Now - TimeSpan.FromDays(7)).Date
-    postDate >= dateFilter)
+let recentContent = 
+    allUnifiedItems
+    |> List.collect snd
+    |> List.filter (fun item -> 
+        try
+            let itemDate = DateTimeOffset.Parse(item.Date).Date
+            itemDate >= dateFilter
+        with
+        | _ -> false)
+    |> List.sortByDescending (fun item -> item.Date)
 
-let blogPartial (posts: Post array) = 
-    match posts with
-    | [||] -> 
-        "## Blogs\n"
-    | _ -> 
+// Helper function for string capitalization
+module String =
+    let capitalize (s: string) =
+        if String.IsNullOrEmpty(s) then s
+        else Char.ToUpper(s.[0]).ToString() + s.Substring(1).ToLower()
 
-        let postStrings = 
-            posts
-            |> Array.map(fun post -> 
-                $"- [{post.Metadata.Title}](/posts/{post.FileName})"
-            )
-            |> fun x -> String.Join('\n',x)
+// Group content by type and generate markdown sections
+let generateContentSection (contentType: string) (items: UnifiedFeedItem list) =
+    let sectionTitle = 
+        match contentType with
+        | "posts" -> "Posts"
+        | "notes" -> "Notes"
+        | "bookmarks" -> "Bookmarks"
+        | "snippets" -> "Snippets"
+        | "wiki" -> "Wiki"
+        | "presentations" -> "Presentations"
+        | "reviews" -> "Reviews"
+        | "media" -> "Media"
+        | "reply" -> "Replies"
+        | "reshare" -> "Reshares"
+        | "star" -> "Stars"
+        | _ -> contentType
 
-        $"""
-        ## Blogs
-
-        {postStrings}
-        """
-
-let notesPartial (posts: Post array) = 
-    match posts with
-    | [||] -> 
-        "## Notes\n"
-    | _ -> 
-
-        let postStrings = 
-            posts
-            |> Array.map(fun post -> 
-                $"- [{post.Metadata.Title}](/notes/{post.FileName})"
-            )
-            |> fun x -> String.Join('\n',x)
-
-        $"""
-        ## Notes
-
-        {postStrings}
-        """
-
-let responsesPartial (posts: Response array) = 
-    match posts with
-    | [||] -> 
-        "## Responses"
-    | _ -> 
-
-        let postStrings = 
-            posts
-            |> Array.map(fun post -> 
-                $"- [{post.Metadata.Title}](/responses/{post.FileName})"
-            )
-            |> fun x -> String.Join('\n',x)
-
-        $"""
-        ## Responses
-
-        {postStrings}
-        """
-
-let weeklyReviewPartial (title) (blogs:string) (notes:string) (responses:string) = 
-    let pubDate = DateTimeOffset(DateTime.Now.Subtract(TimeSpan(5,0,0)).Ticks,TimeSpan(-5,0,0)).ToString("yyyy-MM-dd HH:mm zzz")
+    let urlPrefix = 
+        match contentType with
+        | "posts" -> "/posts/"
+        | "notes" -> "/notes/"
+        | "bookmarks" -> "/responses/"  // bookmarks are stored as responses
+        | "snippets" -> "/resources/snippets/"
+        | "wiki" -> "/resources/wiki/"
+        | "presentations" -> "/resources/presentations/"
+        | "reviews" -> "/reviews/"
+        | "media" -> "/media/"
+        | "reply" | "reshare" | "star" -> "/responses/"
+        | _ -> sprintf "/%s/" contentType
     
-    $"""
-    ---
-    post_type: "note" 
-    title: "{title}"
-    published_date: "{pubDate}"
-    tags: ["weeklysummary","blogging","website","indieweb"]
-    ---
+    if items.IsEmpty then
+        sprintf "## %s\n\nNo %s this week.\n" sectionTitle (sectionTitle.ToLower())
+    else
+        let itemStrings = 
+            items
+            |> List.map (fun item -> 
+                let fileName = 
+                    if item.Url.Contains("/") then
+                        // Extract filename from URL
+                        let segments = item.Url.Split('/')
+                        let lastSegment = segments.[segments.Length - 1]
+                        if lastSegment = "" then segments.[segments.Length - 2] else lastSegment
+                    else item.Url
+                sprintf "- [%s](%s%s)" item.Title urlPrefix fileName
+            )
+            |> String.concat "\n"
 
-    {blogs}
+        sprintf "## %s\n\n%s\n" sectionTitle itemStrings
 
-    {notes}
+// Group recent content by type and sort types logically
+let groupedContent = 
+    recentContent
+    |> List.groupBy (fun item -> item.ContentType)
+    |> List.map (fun (contentType, items) -> (contentType, items |> List.sortByDescending (fun i -> i.Date)))
+    |> List.sortBy (fun (contentType, _) -> 
+        // Sort content types in logical order
+        match contentType with
+        | "posts" -> 1
+        | "notes" -> 2
+        | "bookmarks" -> 3
+        | "reply" -> 4
+        | "reshare" -> 5
+        | "star" -> 6
+        | "reviews" -> 7
+        | "snippets" -> 8
+        | "wiki" -> 9
+        | "presentations" -> 10
+        | "media" -> 11
+        | _ -> 99
+    )
 
-    {responses}
-    """
+// Generate all content sections
+let contentSections = 
+    groupedContent
+    |> List.map (fun (contentType, items) -> generateContentSection contentType items)
+    |> String.concat "\n"
+
+let weeklyReviewPartial (title: string) (contentSections: string) = 
+    let pubDate = DateTimeOffset.Now.ToString("yyyy-MM-dd HH:mm zzz")
+    sprintf "---\npost_type: \"note\"\ntitle: \"%s\"\npublished_date: \"%s\"\ntags: [\"weeklysummary\",\"blogging\",\"website\",\"indieweb\"]\n---\n\n%s" title pubDate contentSections
 
 let currentDate = DateTime.Now.Date
+let title = sprintf "Week of %s, %d - Post Summary" (currentDate.ToString("MMMM dd")) currentDate.Year
 
-let title = $"""Week of {currentDate.ToString("m")}, {currentDate.Year} - Post Summary"""
-
-let content = weeklyReviewPartial title (blogPartial filteredBlogs) (notesPartial filteredNotes) (responsesPartial filteredResponses)
+let content = weeklyReviewPartial title contentSections
 
 let currentDateString = currentDate.ToString("yyyy-MM-dd")
 
 // This is the root directory of the repo
 let rootDir = Directory.GetCurrentDirectory()
 
-let savePath = Path.Join($"{rootDir}","_src","notes")
-let saveFileName = $"{currentDateString}-weekly-post-summary.md"
+let savePath = Path.Join(rootDir,"_src","notes")
+let saveFileName = currentDateString + "-weekly-post-summary.md"
+let fullPath = Path.Join(savePath,saveFileName)
 
-File.WriteAllText(Path.Join(savePath,saveFileName),content)
+File.WriteAllText(fullPath,content)
