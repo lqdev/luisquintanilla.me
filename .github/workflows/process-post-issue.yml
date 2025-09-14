@@ -16,27 +16,17 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup .NET 9
+        uses: actions/setup-dotnet@v4
         with:
-          node-version: '20'
+          dotnet-version: '9.0.x'
           
-      - name: Parse issue and create content
-        id: create-content
+      - name: Parse issue and extract form data
+        id: extract-data
         uses: actions/github-script@v7
         with:
           script: |
             try {
-              const fs = require('fs');
-              const path = require('path');
-              
-              // Parse issue body to extract form data
-              const issueBody = context.payload.issue.body;
-              const issueNumber = context.payload.issue.number;
-              
-              console.log('Processing issue #' + issueNumber);
-              console.log('Issue body:', issueBody);
-              
               // Extract form responses using regex patterns
               function extractFormValue(body, label) {
                 // GitHub issue forms format: ### Label\n\nValue
@@ -48,6 +38,7 @@ jobs:
                 return value.replace(/^_No response_$/i, '').trim();
               }
               
+              const issueBody = context.payload.issue.body;
               const title = extractFormValue(issueBody, 'Title');
               const content = extractFormValue(issueBody, 'Content');
               const customSlug = extractFormValue(issueBody, 'Slug \\(Optional\\)');
@@ -58,163 +49,74 @@ jobs:
               console.log('Extracted custom slug:', customSlug);
               console.log('Extracted tags:', tagsInput);
               
-              // Validate required fields
-              if (!title || title.length === 0) {
-                throw new Error('Title is required and cannot be empty');
-              }
-              
-              if (!content || content.length === 0) {
-                throw new Error('Content is required and cannot be empty');
-              }
-              
-              // Validate content has substance (more than just whitespace)
-              if (content.replace(/\s/g, '').length < 10) {
-                throw new Error('Content must have at least 10 non-whitespace characters');
-              }
-              
-              // Generate or use custom slug
-              function generateSlug(title) {
-                let slug = title.toLowerCase()
-                  .replace(/[^a-z0-9\s-]/g, '') // Remove special chars
-                  .replace(/\s+/g, '-') // Replace spaces with hyphens
-                  .replace(/-+/g, '-') // Replace multiple hyphens with single
-                  .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
-                  
-                // Ensure slug is not empty
-                if (!slug || slug.length === 0) {
-                  slug = 'untitled-note';
-                }
-                
-                // Truncate if too long
-                if (slug.length > 50) {
-                  slug = slug.substring(0, 50).replace(/-$/, '');
-                }
-                
-                return slug;
-              }
-              
-              function sanitizeSlug(slug) {
-                return slug.toLowerCase()
-                  .replace(/[^a-z0-9\s-]/g, '') // Remove special chars
-                  .replace(/\s+/g, '-') // Replace spaces with hyphens
-                  .replace(/-+/g, '-') // Replace multiple hyphens with single
-                  .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
-              }
-              
-              // Use custom slug if provided, otherwise generate from title
-              let slug;
-              if (customSlug && customSlug.length > 0) {
-                slug = sanitizeSlug(customSlug);
-                // Ensure custom slug is valid
-                if (!slug || slug.length === 0) {
-                  slug = generateSlug(title);
-                }
-              } else {
-                slug = generateSlug(title);
-              }
-              
-              console.log('Final slug:', slug);
-              
-              // Process tags
-              const tags = tagsInput ? 
-                tagsInput.split(',').map(tag => tag.trim().toLowerCase()).filter(tag => tag.length > 0) :
-                [];
-              
-              // Generate current timestamp in EST
-              const now = new Date();
-              const est = new Date(now.getTime() - (5 * 60 * 60 * 1000)); // EST is UTC-5
-              const timestamp = est.getFullYear() + '-' + 
-                String(est.getMonth() + 1).padStart(2, '0') + '-' + 
-                String(est.getDate()).padStart(2, '0') + ' ' +
-                String(est.getHours()).padStart(2, '0') + ':' + 
-                String(est.getMinutes()).padStart(2, '0') + ' -05:00';
-              
-              console.log('Generated timestamp:', timestamp);
-              
-              // Generate frontmatter
-              const frontmatter = `---
-title: ${title}
-post_type: note
-published_date: "${timestamp}"
-tags: [${tags.map(tag => `"${tag}"`).join(', ')}]
----`;
-              
-              // Combine frontmatter and content
-              const fullContent = frontmatter + '\n\n' + content;
-              
-              // Generate filename with timestamp to ensure uniqueness
-              const filename = `${slug}-${est.getFullYear()}-${String(est.getMonth() + 1).padStart(2, '0')}-${String(est.getDate()).padStart(2, '0')}.md`;
-              
-              console.log('Generated filename:', filename);
-              console.log('Full content:', fullContent);
-              
-              // Save outputs for next steps
+              // Set outputs for F# script
               core.setOutput('title', title);
-              core.setOutput('slug', slug);
-              core.setOutput('filename', filename);
-              core.setOutput('content', fullContent);
-              core.setOutput('tags', JSON.stringify(tags));
-              core.setOutput('success', 'true');
-              
-              return {
-                title,
-                slug,
-                filename,
-                content: fullContent,
-                tags
-              };
+              core.setOutput('content', content);
+              core.setOutput('slug', customSlug || '');
+              core.setOutput('tags', tagsInput || '');
               
             } catch (error) {
-              console.error('Error processing issue:', error);
-              core.setOutput('success', 'false');
-              core.setOutput('error', error.message);
-              
-              // Comment on issue with error details
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.issue.number,
-                body: `❌ **Error processing post request**\n\n${error.message}\n\nPlease check your issue format and try again. The issue will remain open for you to edit and resubmit.`
-              });
-              
+              console.error('Error extracting issue data:', error);
               throw error;
             }
-            
-      - name: Create content file
-        if: steps.create-content.outputs.success == 'true'
+          
+      - name: Build F# project
+        run: dotnet build
+        
+      - name: Process issue with F# script
+        id: process-issue
         run: |
-          mkdir -p _src/notes
-          echo '${{ steps.create-content.outputs.content }}' > "_src/notes/${{ steps.create-content.outputs.filename }}"
+          # Escape quotes and newlines for shell
+          TITLE="${{ steps.extract-data.outputs.title }}"
+          CONTENT="${{ steps.extract-data.outputs.content }}"
+          SLUG="${{ steps.extract-data.outputs.slug }}"
+          TAGS="${{ steps.extract-data.outputs.tags }}"
+          
+          # Run F# script with extracted parameters
+          OUTPUT=$(dotnet fsi Scripts/process-github-issue.fsx -- "$TITLE" "$CONTENT" "$SLUG" "$TAGS" 2>&1)
+          EXIT_CODE=$?
+          
+          echo "Script output:"
+          echo "$OUTPUT"
+          
+          if [ $EXIT_CODE -eq 0 ]; then
+            echo "success=true" >> $GITHUB_OUTPUT
+            # Extract filename from output
+            FILENAME=$(echo "$OUTPUT" | grep "📁 File:" | sed 's/.*📁 File: _src\/notes\///' | sed 's/ .*//')
+            echo "filename=$FILENAME" >> $GITHUB_OUTPUT
+          else
+            echo "success=false" >> $GITHUB_OUTPUT
+            echo "error=$OUTPUT" >> $GITHUB_OUTPUT
+            exit 1
+          fi
           
       - name: Create Pull Request
-        if: steps.create-content.outputs.success == 'true'
+        if: steps.process-issue.outputs.success == 'true'
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Add note post: ${{ steps.create-content.outputs.title }}"
-          title: "Add note post: ${{ steps.create-content.outputs.title }}"
+          commit-message: "Add note post: ${{ steps.extract-data.outputs.title }}"
+          title: "Add note post: ${{ steps.extract-data.outputs.title }}"
           body: |
             ## New Note Post
             
-            **Title:** ${{ steps.create-content.outputs.title }}
+            **Title:** ${{ steps.extract-data.outputs.title }}
             **Type:** note
-            **File:** `_src/notes/${{ steps.create-content.outputs.filename }}`
-            
-            ### Content Preview
-            ${{ steps.create-content.outputs.content }}
+            **File:** `_src/notes/${{ steps.process-issue.outputs.filename }}`
             
             ### Frontmatter Validation
-            - ✅ Title: ${{ steps.create-content.outputs.title }}
+            - ✅ Title: ${{ steps.extract-data.outputs.title }}
             - ✅ Type: note
-            - ✅ Slug: ${{ steps.create-content.outputs.slug }}
-            - ✅ Tags: ${{ steps.create-content.outputs.tags }}
+            - ✅ Custom Slug: ${{ steps.extract-data.outputs.slug }}
+            - ✅ Tags: ${{ steps.extract-data.outputs.tags }}
             
             **Created via GitHub Issue Template #${{ github.event.issue.number }}**
-          branch: content/issue-${{ github.event.issue.number }}/note/${{ steps.create-content.outputs.slug }}
+            **Processed by F# script using .NET 9**
+          branch: content/issue-${{ github.event.issue.number }}/note/fsharp-processed
           delete-branch: true
           
       - name: Close issue on success
-        if: steps.create-content.outputs.success == 'true'
+        if: steps.process-issue.outputs.success == 'true'
         uses: actions/github-script@v7
         with:
           script: |
@@ -229,5 +131,17 @@ tags: [${tags.map(tag => `"${tag}"`).join(', ')}]
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.issue.number,
-              body: '🎉 Your note post has been processed! A pull request has been created with your content. You can track the progress in the pull requests tab.'
+              body: '🎉 Your note post has been processed using F# and .NET 9! A pull request has been created with your content. You can track the progress in the pull requests tab.'
+            });
+            
+      - name: Handle processing errors
+        if: steps.process-issue.outputs.success == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: `❌ **Error processing post request with F# script**\n\n${steps.process-issue.outputs.error}\n\nPlease check your issue format and try again. The issue will remain open for you to edit and resubmit.`
             });
