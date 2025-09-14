@@ -1,0 +1,166 @@
+name: Process Post Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  process-post:
+    # Only run if issue has "post" label
+    if: contains(github.event.issue.labels.*.name, 'post')
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Parse issue and create content
+        id: create-content
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            // Parse issue body to extract form data
+            const issueBody = context.payload.issue.body;
+            const issueNumber = context.payload.issue.number;
+            
+            console.log('Processing issue #' + issueNumber);
+            console.log('Issue body:', issueBody);
+            
+            // Extract form responses using regex patterns
+            function extractFormValue(body, label) {
+              // GitHub issue forms format: ### Label\n\nValue
+              const regex = new RegExp(`### ${label}\\s*\\n\\s*\\n([\\s\\S]*?)(?=\\n\\n###|\\n\\n---|\$)`, 'i');
+              const match = body.match(regex);
+              return match ? match[1].trim() : '';
+            }
+            
+            const title = extractFormValue(issueBody, 'Title');
+            const content = extractFormValue(issueBody, 'Content');
+            const tagsInput = extractFormValue(issueBody, 'Tags');
+            
+            console.log('Extracted title:', title);
+            console.log('Extracted content:', content);
+            console.log('Extracted tags:', tagsInput);
+            
+            // Validate required fields
+            if (!title || !content) {
+              throw new Error('Title and content are required');
+            }
+            
+            // Generate slug from title
+            function generateSlug(title) {
+              return title.toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '') // Remove special chars
+                .replace(/\s+/g, '-') // Replace spaces with hyphens
+                .replace(/-+/g, '-') // Replace multiple hyphens with single
+                .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+            }
+            
+            const slug = generateSlug(title);
+            console.log('Generated slug:', slug);
+            
+            // Process tags
+            const tags = tagsInput ? 
+              tagsInput.split(',').map(tag => tag.trim().toLowerCase()).filter(tag => tag.length > 0) :
+              [];
+            
+            // Generate current timestamp in EST
+            const now = new Date();
+            const est = new Date(now.getTime() - (5 * 60 * 60 * 1000)); // EST is UTC-5
+            const timestamp = est.getFullYear() + '-' + 
+              String(est.getMonth() + 1).padStart(2, '0') + '-' + 
+              String(est.getDate()).padStart(2, '0') + ' ' +
+              String(est.getHours()).padStart(2, '0') + ':' + 
+              String(est.getMinutes()).padStart(2, '0') + ' -05:00';
+            
+            console.log('Generated timestamp:', timestamp);
+            
+            // Generate frontmatter
+            const frontmatter = `---
+title: ${title}
+post_type: note
+published_date: "${timestamp}"
+tags: [${tags.map(tag => `"${tag}"`).join(', ')}]
+---`;
+            
+            // Combine frontmatter and content
+            const fullContent = frontmatter + '\n\n' + content;
+            
+            // Generate filename with timestamp to ensure uniqueness
+            const filename = `${slug}-${est.getFullYear()}-${String(est.getMonth() + 1).padStart(2, '0')}-${String(est.getDate()).padStart(2, '0')}.md`;
+            
+            console.log('Generated filename:', filename);
+            console.log('Full content:', fullContent);
+            
+            // Save outputs for next steps
+            core.setOutput('title', title);
+            core.setOutput('slug', slug);
+            core.setOutput('filename', filename);
+            core.setOutput('content', fullContent);
+            core.setOutput('tags', JSON.stringify(tags));
+            
+            return {
+              title,
+              slug,
+              filename,
+              content: fullContent,
+              tags
+            };
+            
+      - name: Create content file
+        run: |
+          mkdir -p _src/notes
+          echo '${{ steps.create-content.outputs.content }}' > "_src/notes/${{ steps.create-content.outputs.filename }}"
+          
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Add note post: ${{ steps.create-content.outputs.title }}"
+          title: "Add note post: ${{ steps.create-content.outputs.title }}"
+          body: |
+            ## New Note Post
+            
+            **Title:** ${{ steps.create-content.outputs.title }}
+            **Type:** note
+            **File:** `_src/notes/${{ steps.create-content.outputs.filename }}`
+            
+            ### Content Preview
+            ${{ steps.create-content.outputs.content }}
+            
+            ### Frontmatter Validation
+            - ✅ Title: ${{ steps.create-content.outputs.title }}
+            - ✅ Type: note
+            - ✅ Tags: ${{ steps.create-content.outputs.tags }}
+            
+            **Created via GitHub Issue Template #${{ github.event.issue.number }}**
+          branch: content/issue-${{ github.event.issue.number }}/note/${{ steps.create-content.outputs.slug }}
+          delete-branch: true
+          
+      - name: Close issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              state: 'closed'
+            });
+            
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: '🎉 Your note post has been processed! A pull request has been created with your content. You can track the progress in the pull requests tab.'
+            });
