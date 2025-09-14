@@ -2,6 +2,16 @@
 
 A modern F# static site generator implementing IndieWeb principles with unified content architecture, comprehensive RSS feeds, and progressive loading capabilities.
 
+## ✨ Quick Publishing
+
+**New**: You can now create note posts directly through GitHub Issues! 
+
+👉 [**Create a Note Post**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-note.yml) - Use our GitHub Issue Template for quick publishing
+
+📖 [**Publishing Guide**](docs/github-issue-posting-guide.md) - Complete documentation on how to use GitHub Issue Template posting
+
+This replaces the previous Discord-based publishing workflow with a native GitHub solution that provides better version control and review capabilities.
+
 ## 🏗️ Architecture Overview
 
 This is a production-ready IndieWeb site built with F# featuring:
