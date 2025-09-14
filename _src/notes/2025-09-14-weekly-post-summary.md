@@ -1,7 +1,7 @@
 ---
 post_type: "note"
 title: "Week of September 14, 2025 - Post Summary"
-published_date: "2025-09-14 13:39 +00:00"
+published_date: "2025-09-14 13:41 +00:00"
 tags: ["weeklysummary","blogging","website","indieweb"]
 ---
 
