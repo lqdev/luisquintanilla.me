@@ -1,18 +1,16 @@
 {
-  "aliases": [
-    "https://www.lqdev.me/@lqdev"
-  ],
+  "subject": "acct:lqdev@www.lqdev.me",
+  "aliases": ["https://www.lqdev.me/@lqdev"],
   "links": [
     {
-      "href": "https://www.lqdev.me/@lqdev",
       "rel": "self",
-      "type": "application/activity+json"
+      "type": "application/activity+json", 
+      "href": "https://www.lqdev.me/@lqdev"
     },
     {
-      "href": "https://www.lqdev.me",
       "rel": "http://webfinger.net/rel/profile-page",
-      "type": "text/html"
+      "type": "text/html",
+      "href": "https://www.lqdev.me/"
     }
-  ],
-  "subject": "acct:lqdev@www.lqdev.me"
+  ]
 }

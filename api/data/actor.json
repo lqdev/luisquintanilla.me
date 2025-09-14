@@ -1,31 +1,44 @@
 {
-  "@context": [
-    "https://www.w3.org/ns/activitystreams",
-    "https://w3id.org/security/v1"
-  ],
-  "followers": "https://www.lqdev.me/activitypub/followers",
-  "following": "https://www.lqdev.me/activitypub/following",
-  "icon": {
-    "mediaType": "image/jpeg",
-    "type": "Image",
-    "url": "https://www.lqdev.me/avatar.png"
-  },
+  "@context": "https://www.w3.org/ns/activitystreams",
   "id": "https://www.lqdev.me/@lqdev",
-  "image": {
-    "mediaType": "image/jpeg",
+  "type": "Person",
+  "preferredUsername": "lqdev",
+  "name": "Luis Quintanilla",
+  "summary": "AI whisperer wandering the shifting sands of the desert of the real . Semi-fluent in the language of machines, with an affinity for the F# dialect.",
+  "url": "https://www.lqdev.me/",
+  "discoverable": true,
+  "memorial": false,
+  "icon": {
     "type": "Image",
+    "mediaType": "image/png",
     "url": "https://www.lqdev.me/avatar.png"
   },
-  "inbox": "https://www.lqdev.me/activitypub/inbox",
-  "name": "Luis Quintanilla",
-  "outbox": "https://www.lqdev.me/activitypub/outbox",
-  "preferredUsername": "lqdev",
-  "publicKey": {
-    "id": "https://www.lqdev.me/@lqdev#main-key",
-    "owner": "https://www.lqdev.me/@lqdev",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA...\n-----END PUBLIC KEY-----"
+  "image": {
+    "type": "Image",
+    "mediaType": "image/png",
+    "url": "https://www.lqdev.me/avatar.png"
   },
-  "summary": "AI whisperer wandering the shifting sands of the desert of the real . Semi-fluent in the language of machines, with an affinity for the F# dialect.",
-  "type": "Person",
-  "url": "https://www.lqdev.me"
+  "publicKey": {
+    "@context": "https://w3id.org/security/v1",
+    "@type": "Key",
+    "id": "http://www.lqdev.me/@lqdev#main-key",
+    "owner": "http://www.lqdev.me/@lqdev",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtUQDL71nPaOotaeEP7GH\nB20+/HuoG1Yb5hSz0S9DcpGW/v/NDYbU5EYoNjxXyHxu292ntmZuEbPhJttsC2T7\npeRa2Kkd6tY+zN7gocZmotx8gdy0W0dNhDlW5nZhDL3RpSwG+zUD24lZ9pEyYmtk\n20d5AyRUKQEq4AyGRdbMBK5pVDs0Dv9jufxfbob2QkHeRfud3W6kx5vlZPsA/x44\nyjy3m4NSxEE4Ksi6YDVWW8pF9Ms5/ZIh8W9GMlOU71LERnlxjRQ5e6y/uUXk4wag\nW70X9NUIsbLcsrST4zLAC7GHIly/Hxu9MCvxR0MCZpRy9g4RiI5Zg9xw/6+8lNem\nSQIDAQAB\n-----END PUBLIC KEY-----"
+  },
+  "attachment": [
+    {
+      "type": "PropertyValue",
+      "name": "Website",
+      "value": "<a href=\"https://www.lqdev.me\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">lqdev.me</span><span class=\"invisible\"></span></a>"
+    },
+    {
+      "type": "PropertyValue",
+      "name": "GitHub",
+      "value": "<a href=\"https://github.com/lqdev\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">github.com/lqdev</span><span class=\"invisible\"></span></a>"
+    }
+  ],
+  "inbox": "https://www.lqdev.me/activitypub/inbox",
+  "outbox": "https://www.lqdev.me/activitypub/outbox",
+  "followers": "https://www.lqdev.me/activitypub/followers",
+  "following": "https://www.lqdev.me/activitypub/following"
 }

@@ -216,7 +216,7 @@ let generateNote (item: {| Title: string; Link: string; Description: string; Con
     
     // Generate unique hash for note ID
     let noteHash = generateHash (item.Title + item.Link + item.PubDate)
-    let noteId = sprintf "%s/%s/%s.activitypub" domain config.NotesPath noteHash
+    let noteId = sprintf "%s/activitypub/notes/%s" domain noteHash
     
     // Convert tags to ActivityPub format
     let activityPubTags = convertTagsToActivityPub item.Tags domain config.AuthorUsername
@@ -285,7 +285,7 @@ let saveActivityPubFiles (notes: ActivityPubNote array) (outbox: ActivityPubOutb
     // Save individual notes
     for note in notes do
         let noteJson = JsonSerializer.Serialize(note, jsonOptions)
-        let noteFile = Path.Combine(notesDir, $"{note.Hash}.activitypub")
+        let noteFile = Path.Combine(notesDir, $"{note.Hash}.json")
         File.WriteAllText(noteFile, noteJson)
     
     // Save outbox
@@ -298,6 +298,101 @@ let saveActivityPubFiles (notes: ActivityPubNote array) (outbox: ActivityPubOutb
     printfn "   📁 Notes: %s" notesDir
     printfn "   📁 Outbox: %s" outboxFile
 
+/// Clean up existing ActivityPub data directory for fresh start
+let cleanupDataDirectory (config: OutboxConfig) =
+    try
+        let dataPath = config.StaticPath
+        if Directory.Exists(dataPath) then
+            printfn "🧹 Cleaning up existing data directory..."
+            
+            // Clean notes directory
+            let notesDir = Path.Combine(dataPath, config.NotesPath)
+            if Directory.Exists(notesDir) then
+                Directory.GetFiles(notesDir, "*.json") |> Array.iter File.Delete
+                printfn "   ✅ Cleaned notes directory"
+            
+            // Clean outbox directory  
+            let outboxDir = Path.Combine(dataPath, config.OutboxPath)
+            if Directory.Exists(outboxDir) then
+                Directory.GetFiles(outboxDir, "*.json") |> Array.iter File.Delete
+                printfn "   ✅ Cleaned outbox directory"
+            
+            // Clean root data files (actor.json, webfinger.json, etc.)
+            [ "actor.json"; "webfinger.json"; "outbox.json"; "followers.json"; "following.json"; "posts.json" ]
+            |> List.iter (fun filename ->
+                let filePath = Path.Combine(dataPath, filename)
+                if File.Exists(filePath) then File.Delete(filePath))
+            printfn "   ✅ Cleaned root data files"
+            
+            printfn "🎯 Data directory cleanup complete!"
+        else
+            printfn "📁 Data directory doesn't exist yet, will create fresh"
+    with
+    | ex -> printfn "⚠️  Warning during cleanup: %s" ex.Message
+
+/// Generate actor.json from source @lqdev file
+let generateActorFromSource (config: OutboxConfig) =
+    try
+        // Look for the source actor file in common locations
+        let sourceActorPath = 
+            [ "_src/@lqdev"; "Downloads/@lqdev"; "@lqdev"; "C:\\Users\\lqdev\\Downloads\\@lqdev" ]
+            |> List.tryFind File.Exists
+        
+        match sourceActorPath with
+        | Some actorPath ->
+            let sourceContent = File.ReadAllText(actorPath)
+            // Parse the JSON to fix the URLs
+            let actorData = JsonSerializer.Deserialize<JsonElement>(sourceContent)
+            
+            // Create a mutable dictionary to modify the actor data
+            let actorDict = new Dictionary<string, obj>()
+            
+            // Copy all existing properties
+            for prop in actorData.EnumerateObject() do
+                if prop.Name <> "inbox" && prop.Name <> "outbox" && prop.Name <> "followers" && prop.Name <> "following" then
+                    actorDict.[prop.Name] <- prop.Value
+            
+            // Fix the URLs to match staticwebapp.config.json routes
+            let domain = config.Domain |> Option.defaultValue "https://www.lqdev.me"
+            actorDict.["inbox"] <- $"{domain}/activitypub/inbox"
+            actorDict.["outbox"] <- $"{domain}/activitypub/outbox"
+            actorDict.["followers"] <- $"{domain}/activitypub/followers"
+            actorDict.["following"] <- $"{domain}/activitypub/following"
+            
+            // Serialize back to JSON
+            let jsonOptions = JsonSerializerOptions(WriteIndented = true)
+            jsonOptions.Encoder <- System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            let fixedContent = JsonSerializer.Serialize(actorDict, jsonOptions)
+            
+            let actorFile = Path.Combine(config.StaticPath, "actor.json")
+            File.WriteAllText(actorFile, fixedContent)
+            printfn "✅ Generated actor.json from %s (URLs fixed for staticwebapp.config.json)" actorPath
+        | None ->
+            printfn "⚠️  Source actor file not found, skipping actor generation"
+            printfn "   Looked for: _src/@lqdev, Downloads/@lqdev, @lqdev, C:\\Users\\lqdev\\Downloads\\@lqdev"
+    with
+    | ex -> printfn "❌ Error generating actor.json: %s" ex.Message
+
+/// Generate webfinger.json from source webfinger.activitypub file  
+let generateWebfingerFromSource (config: OutboxConfig) =
+    try
+        // Look for the source webfinger file
+        let sourceWebfingerPath = 
+            [ "_src/.well-known/webfinger.activitypub"; ".well-known/webfinger.activitypub"; "webfinger.activitypub" ]
+            |> List.tryFind File.Exists
+        
+        match sourceWebfingerPath with
+        | Some webfingerPath ->
+            let sourceContent = File.ReadAllText(webfingerPath)
+            let webfingerFile = Path.Combine(config.StaticPath, "webfinger.json")
+            File.WriteAllText(webfingerFile, sourceContent)
+            printfn "✅ Generated webfinger.json from %s" webfingerPath
+        | None ->
+            printfn "⚠️  Source webfinger file not found, skipping webfinger generation"
+            printfn "   Looked for: _src/.well-known/webfinger.activitypub, .well-known/webfinger.activitypub, webfinger.activitypub"
+    with
+    | ex -> printfn "❌ Error generating webfinger.json: %s" ex.Message
+
 /// Main conversion function
 let convertRssToActivityPub (config: OutboxConfig) =
     try
@@ -306,6 +401,9 @@ let convertRssToActivityPub (config: OutboxConfig) =
         printfn "   📁 Output: %s" config.StaticPath
         printfn "   👤 Author: %s" config.AuthorUsername
         printfn "   🌐 Actor: %s" config.SiteActorUri
+        
+        // Clean up existing data for fresh start
+        cleanupDataDirectory config
         
         // Parse RSS feed
         let (summary, rssItems) = parseRssItems config.RssPath
@@ -324,7 +422,11 @@ let convertRssToActivityPub (config: OutboxConfig) =
         // Generate outbox
         let outbox = generateOutbox createActivities summary config
         
-        // Save all files
+        // Generate actor and webfinger files
+        generateActorFromSource config
+        generateWebfingerFromSource config
+        
+        // Save all ActivityPub files
         saveActivityPubFiles notes outbox config
         
         printfn "✅ RSS to ActivityPub conversion completed successfully!"
@@ -415,7 +517,7 @@ let parseArgs (args: string array) =
     
     let finalStaticPath = 
         if String.IsNullOrEmpty(staticPath) then
-            Path.Combine(baseDir, "_public")
+            Path.Combine(baseDir, "api", "data")
         else staticPath
     
     {
@@ -441,12 +543,12 @@ let createConfigFromEnvironment () =
     {
         RssPath = 
             Environment.GetEnvironmentVariable("RSS_PATH") 
-            |> Option.ofObj 
+            |> Option.ofObj
             |> Option.defaultValue (Path.Combine(baseDir, "_public", "feed", "feed.xml"))
         StaticPath = 
             Environment.GetEnvironmentVariable("STATIC_PATH") 
-            |> Option.ofObj 
-            |> Option.defaultValue (Path.Combine(baseDir, "_public"))
+            |> Option.ofObj
+            |> Option.defaultValue (Path.Combine(baseDir, "api", "data"))
         AuthorUsername = 
             Environment.GetEnvironmentVariable("AUTHOR_USERNAME") 
             |> Option.ofObj 
@@ -485,14 +587,14 @@ let runExample () =
     
     let exampleConfig = {
         RssPath = Path.Combine(baseDir, "_public", "feed", "feed.xml")
-        StaticPath = Path.Combine(baseDir, "_public")
+        StaticPath = Path.Combine(baseDir, "api", "data")
         AuthorUsername = "@lqdev@www.lqdev.me"  // Update with your actual Mastodon handle
         SiteActorUri = "https://www.lqdev.me/@lqdev"
         Domain = Some "https://www.lqdev.me"
         AuthorUri = Some "https://www.lqdev.me/"  // Update with your actual profile
         ContentTemplate = Some "{title}\n\n{tags}\n\n🔗 {link}"
-        NotesPath = "socialweb/notes"
-        OutboxPath = "socialweb/outbox"
+        NotesPath = "notes"
+        OutboxPath = "outbox"
     }
     
     convertRssToActivityPub exampleConfig

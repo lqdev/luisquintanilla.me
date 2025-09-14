@@ -20,6 +20,7 @@ module.exports = async function (context, req) {
         // Read webfinger data
         const webfingerPath = path.join(__dirname, '../data/webfinger.json');
         const webfingerData = await fs.readFile(webfingerPath, 'utf8');
+        const parsedWebfinger = JSON.parse(webfingerData);
         
         context.res = {
             status: 200,
@@ -28,7 +29,7 @@ module.exports = async function (context, req) {
                 'Access-Control-Allow-Origin': '*',
                 'Cache-Control': 'public, max-age=3600'
             },
-            body: webfingerData
+            body: parsedWebfinger
         };
     } catch (error) {
         context.log.error(`WebFinger error: ${error.message}`);

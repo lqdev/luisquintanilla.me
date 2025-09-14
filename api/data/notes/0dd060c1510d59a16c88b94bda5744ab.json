@@ -1,0 +1,36 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "id": "https://www.lqdev.me/activitypub/notes/0dd060c1510d59a16c88b94bda5744ab",
+  "type": "Note",
+  "content": "FediCon 2025 Videos\n\n#fediverse #fedicon2025 #conference\n\n\uD83D\uDD17 https://www.lqdev.me/responses/fedicon-2025-videos",
+  "url": "https://www.lqdev.me/responses/fedicon-2025-videos",
+  "attributedTo": "https://www.lqdev.me/@lqdev",
+  "to": [
+    "https://www.w3.org/ns/activitystreams#Public"
+  ],
+  "cc": [],
+  "published": "2025-08-18T18:53:00-05:00",
+  "tag": [
+    {
+      "type": "Mention",
+      "href": "https://www.lqdev.me/users/lqdev",
+      "name": "@lqdev@www.lqdev.me"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://www.lqdev.me/tags/fediverse",
+      "name": "#fediverse"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://www.lqdev.me/tags/fedicon2025",
+      "name": "#fedicon2025"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://www.lqdev.me/tags/conference",
+      "name": "#conference"
+    }
+  ],
+  "hash": "0dd060c1510d59a16c88b94bda5744ab"
+}

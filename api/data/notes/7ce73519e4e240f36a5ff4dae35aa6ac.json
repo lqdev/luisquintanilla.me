@@ -1,0 +1,31 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "id": "https://www.lqdev.me/activitypub/notes/7ce73519e4e240f36a5ff4dae35aa6ac",
+  "type": "Note",
+  "content": "The mistake music teachers make\n\n#music #language\n\n\uD83D\uDD17 https://www.lqdev.me/responses/mistake-music-teachers-make-ted-talk",
+  "url": "https://www.lqdev.me/responses/mistake-music-teachers-make-ted-talk",
+  "attributedTo": "https://www.lqdev.me/@lqdev",
+  "to": [
+    "https://www.w3.org/ns/activitystreams#Public"
+  ],
+  "cc": [],
+  "published": "2025-09-11T15:48:00-05:00",
+  "tag": [
+    {
+      "type": "Mention",
+      "href": "https://www.lqdev.me/users/lqdev",
+      "name": "@lqdev@www.lqdev.me"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://www.lqdev.me/tags/music",
+      "name": "#music"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://www.lqdev.me/tags/language",
+      "name": "#language"
+    }
+  ],
+  "hash": "7ce73519e4e240f36a5ff4dae35aa6ac"
+}
