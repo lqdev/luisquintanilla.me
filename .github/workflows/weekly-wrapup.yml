@@ -39,7 +39,14 @@ jobs:
       - name: Check for changes
         id: git-check
         run: |
-          git diff --exit-code _src/notes/ || echo "changes=true" >> $GITHUB_OUTPUT
+          # Check for changes to tracked files AND new untracked files in _src/notes/
+          if [[ $(git status --porcelain _src/notes/ | wc -l) -gt 0 ]]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "Found changes in _src/notes/ directory:"
+            git status --porcelain _src/notes/
+          else
+            echo "No changes found in _src/notes/ directory"
+          fi
       
       - name: Get current date
         if: steps.git-check.outputs.changes == 'true'
