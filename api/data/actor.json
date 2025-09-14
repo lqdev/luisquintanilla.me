@@ -1,5 +1,8 @@
 {
-  "@context": "https://www.w3.org/ns/activitystreams",
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://w3id.org/security/v1"
+  ],
   "id": "https://www.lqdev.me/@lqdev",
   "type": "Person",
   "preferredUsername": "lqdev",
@@ -19,7 +22,6 @@
     "url": "https://www.lqdev.me/avatar.png"
   },
   "publicKey": {
-    "@context": "https://w3id.org/security/v1",
     "@type": "Key",
     "id": "https://www.lqdev.me/@lqdev#main-key",
     "owner": "https://www.lqdev.me/@lqdev",
