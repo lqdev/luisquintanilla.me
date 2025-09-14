@@ -1,6 +1,6 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://www.lqdev.me/activitypub/notes/447eb65520e3b047ca220e1a481a1f5e",
+  "id": "https://www.lqdev.me/api/activitypub/notes/447eb65520e3b047ca220e1a481a1f5e",
   "type": "Note",
   "content": "The Opt Out Project\n\n#optout #alternative #tech\n\n\uD83D\uDD17 https://www.lqdev.me/responses/out-out-project",
   "url": "https://www.lqdev.me/responses/out-out-project",

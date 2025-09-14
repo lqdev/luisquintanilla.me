@@ -1,6 +1,6 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://www.lqdev.me/activitypub/notes/fdcca2160611dde38eccb5dd920c1ef3",
+  "id": "https://www.lqdev.me/api/activitypub/notes/fdcca2160611dde38eccb5dd920c1ef3",
   "type": "Note",
   "content": "Small (web) is beautiful\n\n#smallweb #indieweb #blogging\n\n\uD83D\uDD17 https://www.lqdev.me/responses/small-web-is-beautiful",
   "url": "https://www.lqdev.me/responses/small-web-is-beautiful",

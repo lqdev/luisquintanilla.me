@@ -1,6 +1,6 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://www.lqdev.me/activitypub/notes/11f6c95b53b09107d4ec09cf71fb4626",
+  "id": "https://www.lqdev.me/api/activitypub/notes/11f6c95b53b09107d4ec09cf71fb4626",
   "type": "Note",
   "content": "Webmentions are back\n\n#indieweb #webmention #socialweb\n\n\uD83D\uDD17 https://www.lqdev.me/notes/webmentions-are-back",
   "url": "https://www.lqdev.me/notes/webmentions-are-back",

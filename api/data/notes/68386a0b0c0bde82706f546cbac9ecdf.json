@@ -1,6 +1,6 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://www.lqdev.me/activitypub/notes/68386a0b0c0bde82706f546cbac9ecdf",
+  "id": "https://www.lqdev.me/api/activitypub/notes/68386a0b0c0bde82706f546cbac9ecdf",
   "type": "Note",
   "content": "Ghost 6.0\n\n#ghost #fediverse #socialweb #publishing\n\n\uD83D\uDD17 https://www.lqdev.me/responses/ghost-6-changelog",
   "url": "https://www.lqdev.me/responses/ghost-6-changelog",

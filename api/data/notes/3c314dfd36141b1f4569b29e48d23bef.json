@@ -1,6 +1,6 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://www.lqdev.me/activitypub/notes/3c314dfd36141b1f4569b29e48d23bef",
+  "id": "https://www.lqdev.me/api/activitypub/notes/3c314dfd36141b1f4569b29e48d23bef",
   "type": "Note",
   "content": "The Four Agreements by Don Miguel Ruiz\n\n\n\n\uD83D\uDD17 https://www.lqdev.me/reviews/four-agreements-ruiz",
   "url": "https://www.lqdev.me/reviews/four-agreements-ruiz",

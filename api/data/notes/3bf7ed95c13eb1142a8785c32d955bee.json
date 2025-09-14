@@ -1,6 +1,6 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://www.lqdev.me/activitypub/notes/3bf7ed95c13eb1142a8785c32d955bee",
+  "id": "https://www.lqdev.me/api/activitypub/notes/3bf7ed95c13eb1142a8785c32d955bee",
   "type": "Note",
   "content": "Miami vs. Notre Dame (2025)\n\n#ncaaf #miami #notredame\n\n\uD83D\uDD17 https://www.lqdev.me/notes/miami-vs-notre-dame-2025",
   "url": "https://www.lqdev.me/notes/miami-vs-notre-dame-2025",

@@ -1,6 +1,6 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://www.lqdev.me/activitypub/notes/91b5fd31da6eee1baa9b2a7a9f90dc6c",
+  "id": "https://www.lqdev.me/api/activitypub/notes/91b5fd31da6eee1baa9b2a7a9f90dc6c",
   "type": "Note",
   "content": "Agents.md\n\n#ai #agents #openai\n\n\uD83D\uDD17 https://www.lqdev.me/responses/agentsmd",
   "url": "https://www.lqdev.me/responses/agentsmd",
