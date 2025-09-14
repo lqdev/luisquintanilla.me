@@ -6,27 +6,57 @@
   "routes": [
     {
       "route": "/.well-known/webfinger",
-      "rewrite": "/api/webfinger"
+      "rewrite": "/api/webfinger",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Accept, Content-Type"
+      }
     },
     {
       "route": "/@lqdev",
-      "rewrite": "/api/actor"
+      "rewrite": "/api/actor",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Accept, Content-Type"
+      }
     },
     {
       "route": "/activitypub/outbox",
-      "rewrite": "/api/outbox"
+      "rewrite": "/api/outbox",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Accept, Content-Type"
+      }
     },
     {
       "route": "/activitypub/inbox",
-      "rewrite": "/api/inbox"
+      "rewrite": "/api/inbox",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Accept, Content-Type"
+      }
     },
     {
       "route": "/activitypub/followers",
-      "rewrite": "/api/followers"
+      "rewrite": "/api/followers",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Accept, Content-Type"
+      }
     },
     {
       "route": "/activitypub/following",
-      "rewrite": "/api/following"
+      "rewrite": "/api/following",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Accept, Content-Type"
+      }
     },
     {
       "route": "/github",

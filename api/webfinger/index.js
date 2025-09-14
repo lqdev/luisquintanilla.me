@@ -27,6 +27,8 @@ module.exports = async function (context, req) {
             headers: {
                 'Content-Type': 'application/jrd+json',
                 'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+                'Access-Control-Allow-Headers': 'Accept, Content-Type',
                 'Cache-Control': 'public, max-age=3600'
             },
             body: parsedWebfinger
