@@ -347,10 +347,21 @@ let generateActorFromSource (config: OutboxConfig) =
             // Create a mutable dictionary to modify the actor data
             let actorDict = new Dictionary<string, obj>()
             
-            // Copy all existing properties
+            // Copy all existing properties and fix URLs
             for prop in actorData.EnumerateObject() do
-                if prop.Name <> "inbox" && prop.Name <> "outbox" && prop.Name <> "followers" && prop.Name <> "following" then
+                if prop.Name <> "inbox" && prop.Name <> "outbox" && prop.Name <> "followers" && prop.Name <> "following" && prop.Name <> "publicKey" then
                     actorDict.[prop.Name] <- prop.Value
+                elif prop.Name = "publicKey" then
+                    // Fix publicKey URLs to use https://
+                    let publicKeyDict = new Dictionary<string, obj>()
+                    for pkProp in prop.Value.EnumerateObject() do
+                        if pkProp.Name = "id" || pkProp.Name = "owner" then
+                            let value = pkProp.Value.GetString()
+                            let fixedValue = value.Replace("http://www.lqdev.me", "https://www.lqdev.me")
+                            publicKeyDict.[pkProp.Name] <- fixedValue
+                        else
+                            publicKeyDict.[pkProp.Name] <- pkProp.Value
+                    actorDict.[prop.Name] <- publicKeyDict
             
             // Fix the URLs to match staticwebapp.config.json routes
             let domain = config.Domain |> Option.defaultValue "https://www.lqdev.me"
