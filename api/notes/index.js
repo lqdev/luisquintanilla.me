@@ -4,11 +4,7 @@ const path = require('path');
 module.exports = async function (context, req) {
     try {
         // Extract note ID from route parameter
-        const noteId = context.bindingData.path;
-        
-        // Debug logging
-        context.log.info(`Received path: "${noteId}"`);
-        context.log.info(`Path type: ${typeof noteId}`);
+        const noteId = context.bindingData.noteId;
         
         if (!noteId || !noteId.match(/^[a-f0-9]{32}$/)) {
             context.res = {
@@ -22,10 +18,6 @@ module.exports = async function (context, req) {
         }
 
         const notePath = path.join(__dirname, `../data/notes/${noteId}.json`);
-        
-        // Debug logging
-        context.log.info(`Looking for file: "${notePath}"`);
-        context.log.info(`File exists check: ${await fs.access(notePath).then(() => true).catch(() => false)}`);
         
         try {
             const noteData = await fs.readFile(notePath, 'utf8');

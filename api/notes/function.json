@@ -6,7 +6,7 @@
       "direction": "in",
       "name": "req",
       "methods": ["get"],
-      "route": "notes/{*path}"
+      "route": "activitypub/notes/{noteId:regex(^[a-f0-9]{{32}}$)}"
     },
     {
       "type": "http",
