@@ -5,6 +5,7 @@ module.exports = async function (context, req) {
     try {
         const actorPath = path.join(__dirname, '../data/actor.json');
         const actorData = await fs.readFile(actorPath, 'utf8');
+        const parsedActor = JSON.parse(actorData);
         
         context.res = {
             status: 200,
@@ -13,7 +14,7 @@ module.exports = async function (context, req) {
                 'Access-Control-Allow-Origin': '*',
                 'Cache-Control': 'public, max-age=3600'
             },
-            body: actorData
+            body: parsedActor
         };
     } catch (error) {
         context.log.error(`Actor error: ${error.message}`);

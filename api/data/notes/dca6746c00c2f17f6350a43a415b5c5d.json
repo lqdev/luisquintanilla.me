@@ -1,0 +1,41 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "id": "https://www.lqdev.me/activitypub/notes/dca6746c00c2f17f6350a43a415b5c5d",
+  "type": "Note",
+  "content": "College football is back (2025)\n\n#football #ncaaf #psu #pennstate\n\n\uD83D\uDD17 https://www.lqdev.me/notes/college-football-is-back-2025",
+  "url": "https://www.lqdev.me/notes/college-football-is-back-2025",
+  "attributedTo": "https://www.lqdev.me/@lqdev",
+  "to": [
+    "https://www.w3.org/ns/activitystreams#Public"
+  ],
+  "cc": [],
+  "published": "2025-08-20T21:54:00-05:00",
+  "tag": [
+    {
+      "type": "Mention",
+      "href": "https://www.lqdev.me/users/lqdev",
+      "name": "@lqdev@www.lqdev.me"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://www.lqdev.me/tags/football",
+      "name": "#football"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://www.lqdev.me/tags/ncaaf",
+      "name": "#ncaaf"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://www.lqdev.me/tags/psu",
+      "name": "#psu"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://www.lqdev.me/tags/pennstate",
+      "name": "#pennstate"
+    }
+  ],
+  "hash": "dca6746c00c2f17f6350a43a415b5c5d"
+}

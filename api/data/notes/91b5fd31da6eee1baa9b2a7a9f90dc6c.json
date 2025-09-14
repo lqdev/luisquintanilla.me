@@ -1,0 +1,36 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "id": "https://www.lqdev.me/activitypub/notes/91b5fd31da6eee1baa9b2a7a9f90dc6c",
+  "type": "Note",
+  "content": "Agents.md\n\n#ai #agents #openai\n\n\uD83D\uDD17 https://www.lqdev.me/responses/agentsmd",
+  "url": "https://www.lqdev.me/responses/agentsmd",
+  "attributedTo": "https://www.lqdev.me/@lqdev",
+  "to": [
+    "https://www.w3.org/ns/activitystreams#Public"
+  ],
+  "cc": [],
+  "published": "2025-08-20T22:53:00-05:00",
+  "tag": [
+    {
+      "type": "Mention",
+      "href": "https://www.lqdev.me/users/lqdev",
+      "name": "@lqdev@www.lqdev.me"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://www.lqdev.me/tags/ai",
+      "name": "#ai"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://www.lqdev.me/tags/agents",
+      "name": "#agents"
+    },
+    {
+      "type": "Hashtag",
+      "href": "https://www.lqdev.me/tags/openai",
+      "name": "#openai"
+    }
+  ],
+  "hash": "91b5fd31da6eee1baa9b2a7a9f90dc6c"
+}

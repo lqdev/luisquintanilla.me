@@ -21,6 +21,7 @@ module.exports = async function (context, req) {
         
         try {
             const noteData = await fs.readFile(notePath, 'utf8');
+            const parsedNote = JSON.parse(noteData);
             
             context.res = {
                 status: 200,
@@ -29,7 +30,7 @@ module.exports = async function (context, req) {
                     'Access-Control-Allow-Origin': '*',
                     'Cache-Control': 'public, max-age=3600'
                 },
-                body: noteData
+                body: parsedNote
             };
         } catch (fileError) {
             context.res = {
