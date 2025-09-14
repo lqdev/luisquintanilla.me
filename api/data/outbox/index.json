@@ -17,7 +17,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/7ce73519e4e240f36a5ff4dae35aa6ac",
+        "id": "https://www.lqdev.me/api/activitypub/notes/7ce73519e4e240f36a5ff4dae35aa6ac",
         "type": "Note",
         "content": "The mistake music teachers make\n\n#music #language\n\n\uD83D\uDD17 https://www.lqdev.me/responses/mistake-music-teachers-make-ted-talk",
         "url": "https://www.lqdev.me/responses/mistake-music-teachers-make-ted-talk",
@@ -59,7 +59,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/01ee93e755f32320f60d483f0c37b688",
+        "id": "https://www.lqdev.me/api/activitypub/notes/01ee93e755f32320f60d483f0c37b688",
         "type": "Note",
         "content": "Crate Finds - August 2025\n\n#cratefinds #music #playlist #spotify\n\n\uD83D\uDD17 https://www.lqdev.me/notes/crate-finds-august-2025",
         "url": "https://www.lqdev.me/notes/crate-finds-august-2025",
@@ -111,7 +111,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/5c9f0df5f941de4bdb923ca9be7c02ba",
+        "id": "https://www.lqdev.me/api/activitypub/notes/5c9f0df5f941de4bdb923ca9be7c02ba",
         "type": "Note",
         "content": "Arizona State vs Mississippi State (2025)\n\n#ncaaf #football #asu #msu\n\n\uD83D\uDD17 https://www.lqdev.me/notes/arizona-state-vs-mississippi-state-2025",
         "url": "https://www.lqdev.me/notes/arizona-state-vs-mississippi-state-2025",
@@ -163,7 +163,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/3bf7ed95c13eb1142a8785c32d955bee",
+        "id": "https://www.lqdev.me/api/activitypub/notes/3bf7ed95c13eb1142a8785c32d955bee",
         "type": "Note",
         "content": "Miami vs. Notre Dame (2025)\n\n#ncaaf #miami #notredame\n\n\uD83D\uDD17 https://www.lqdev.me/notes/miami-vs-notre-dame-2025",
         "url": "https://www.lqdev.me/notes/miami-vs-notre-dame-2025",
@@ -210,7 +210,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/3c314dfd36141b1f4569b29e48d23bef",
+        "id": "https://www.lqdev.me/api/activitypub/notes/3c314dfd36141b1f4569b29e48d23bef",
         "type": "Note",
         "content": "The Four Agreements by Don Miguel Ruiz\n\n\n\n\uD83D\uDD17 https://www.lqdev.me/reviews/four-agreements-ruiz",
         "url": "https://www.lqdev.me/reviews/four-agreements-ruiz",
@@ -242,7 +242,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/8be7af3fc96bbe4097a21af8709543e2",
+        "id": "https://www.lqdev.me/api/activitypub/notes/8be7af3fc96bbe4097a21af8709543e2",
         "type": "Note",
         "content": "Crescent library brings privacy to digital identity systems\n\n#research #privacy #microsoft\n\n\uD83D\uDD17 https://www.lqdev.me/responses/crescent-msr-privacy-digital-identity",
         "url": "https://www.lqdev.me/responses/crescent-msr-privacy-digital-identity",
@@ -289,7 +289,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/0039e1b5971468bc630233622e467db6",
+        "id": "https://www.lqdev.me/api/activitypub/notes/0039e1b5971468bc630233622e467db6",
         "type": "Note",
         "content": "Windows 11 upgrade?\n\n#windows #windows10\n\n\uD83D\uDD17 https://www.lqdev.me/media/windows-11-upgrade",
         "url": "https://www.lqdev.me/media/windows-11-upgrade",
@@ -331,7 +331,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/11f6c95b53b09107d4ec09cf71fb4626",
+        "id": "https://www.lqdev.me/api/activitypub/notes/11f6c95b53b09107d4ec09cf71fb4626",
         "type": "Note",
         "content": "Webmentions are back\n\n#indieweb #webmention #socialweb\n\n\uD83D\uDD17 https://www.lqdev.me/notes/webmentions-are-back",
         "url": "https://www.lqdev.me/notes/webmentions-are-back",
@@ -378,7 +378,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/fdcca2160611dde38eccb5dd920c1ef3",
+        "id": "https://www.lqdev.me/api/activitypub/notes/fdcca2160611dde38eccb5dd920c1ef3",
         "type": "Note",
         "content": "Small (web) is beautiful\n\n#smallweb #indieweb #blogging\n\n\uD83D\uDD17 https://www.lqdev.me/responses/small-web-is-beautiful",
         "url": "https://www.lqdev.me/responses/small-web-is-beautiful",
@@ -425,7 +425,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/262613863e2954ab765b50f56478e379",
+        "id": "https://www.lqdev.me/api/activitypub/notes/262613863e2954ab765b50f56478e379",
         "type": "Note",
         "content": "We\u0027re getting married!\n\n\n\n\uD83D\uDD17 https://www.lqdev.me/responses/were-getting-married-reillys",
         "url": "https://www.lqdev.me/responses/were-getting-married-reillys",
@@ -457,7 +457,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/c4193215e445fd5f91e221b16d550829",
+        "id": "https://www.lqdev.me/api/activitypub/notes/c4193215e445fd5f91e221b16d550829",
         "type": "Note",
         "content": "Omnineural 4B\n\n#ai #npu #multimodal\n\n\uD83D\uDD17 https://www.lqdev.me/responses/omnineural-4b",
         "url": "https://www.lqdev.me/responses/omnineural-4b",
@@ -504,7 +504,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/91b5fd31da6eee1baa9b2a7a9f90dc6c",
+        "id": "https://www.lqdev.me/api/activitypub/notes/91b5fd31da6eee1baa9b2a7a9f90dc6c",
         "type": "Note",
         "content": "Agents.md\n\n#ai #agents #openai\n\n\uD83D\uDD17 https://www.lqdev.me/responses/agentsmd",
         "url": "https://www.lqdev.me/responses/agentsmd",
@@ -551,7 +551,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/dca6746c00c2f17f6350a43a415b5c5d",
+        "id": "https://www.lqdev.me/api/activitypub/notes/dca6746c00c2f17f6350a43a415b5c5d",
         "type": "Note",
         "content": "College football is back (2025)\n\n#football #ncaaf #psu #pennstate\n\n\uD83D\uDD17 https://www.lqdev.me/notes/college-football-is-back-2025",
         "url": "https://www.lqdev.me/notes/college-football-is-back-2025",
@@ -603,7 +603,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/431fade59300d212932d8d1aabcf7a63",
+        "id": "https://www.lqdev.me/api/activitypub/notes/431fade59300d212932d8d1aabcf7a63",
         "type": "Note",
         "content": "Seemingly Conscious AI\n\n#ai #consciousness #humanism\n\n\uD83D\uDD17 https://www.lqdev.me/responses/seemingly-conscious-ai",
         "url": "https://www.lqdev.me/responses/seemingly-conscious-ai",
@@ -650,7 +650,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/b878ce4d651ad2e52b659f39acc83699",
+        "id": "https://www.lqdev.me/api/activitypub/notes/b878ce4d651ad2e52b659f39acc83699",
         "type": "Note",
         "content": "Reclaim Control\n\n#digitalsovereignty #reclaimcontrol\n\n\uD83D\uDD17 https://www.lqdev.me/responses/reclaim-control",
         "url": "https://www.lqdev.me/responses/reclaim-control",
@@ -692,7 +692,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/447eb65520e3b047ca220e1a481a1f5e",
+        "id": "https://www.lqdev.me/api/activitypub/notes/447eb65520e3b047ca220e1a481a1f5e",
         "type": "Note",
         "content": "The Opt Out Project\n\n#optout #alternative #tech\n\n\uD83D\uDD17 https://www.lqdev.me/responses/out-out-project",
         "url": "https://www.lqdev.me/responses/out-out-project",
@@ -739,7 +739,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/428ba3a6b2ef060b4c030106259fcfc6",
+        "id": "https://www.lqdev.me/api/activitypub/notes/428ba3a6b2ef060b4c030106259fcfc6",
         "type": "Note",
         "content": "Reflections on the social web\n\n#ghost #socialweb #indieweb\n\n\uD83D\uDD17 https://www.lqdev.me/responses/reflections-on-social-web",
         "url": "https://www.lqdev.me/responses/reflections-on-social-web",
@@ -786,7 +786,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/68386a0b0c0bde82706f546cbac9ecdf",
+        "id": "https://www.lqdev.me/api/activitypub/notes/68386a0b0c0bde82706f546cbac9ecdf",
         "type": "Note",
         "content": "Ghost 6.0\n\n#ghost #fediverse #socialweb #publishing\n\n\uD83D\uDD17 https://www.lqdev.me/responses/ghost-6-changelog",
         "url": "https://www.lqdev.me/responses/ghost-6-changelog",
@@ -838,7 +838,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/dd6248b0c86c239c913c5730a8b38d6d",
+        "id": "https://www.lqdev.me/api/activitypub/notes/dd6248b0c86c239c913c5730a8b38d6d",
         "type": "Note",
         "content": "The newly redesigned Blogroll Club\n\n#blogrollclub #blogroll #indieweb #socialweb\n\n\uD83D\uDD17 https://www.lqdev.me/responses/newly-redesigned-blogroll",
         "url": "https://www.lqdev.me/responses/newly-redesigned-blogroll",
@@ -890,7 +890,7 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/activitypub/notes/0dd060c1510d59a16c88b94bda5744ab",
+        "id": "https://www.lqdev.me/api/activitypub/notes/0dd060c1510d59a16c88b94bda5744ab",
         "type": "Note",
         "content": "FediCon 2025 Videos\n\n#fediverse #fedicon2025 #conference\n\n\uD83D\uDD17 https://www.lqdev.me/responses/fedicon-2025-videos",
         "url": "https://www.lqdev.me/responses/fedicon-2025-videos",

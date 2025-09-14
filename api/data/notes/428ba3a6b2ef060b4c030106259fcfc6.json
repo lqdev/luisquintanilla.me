@@ -1,6 +1,6 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://www.lqdev.me/activitypub/notes/428ba3a6b2ef060b4c030106259fcfc6",
+  "id": "https://www.lqdev.me/api/activitypub/notes/428ba3a6b2ef060b4c030106259fcfc6",
   "type": "Note",
   "content": "Reflections on the social web\n\n#ghost #socialweb #indieweb\n\n\uD83D\uDD17 https://www.lqdev.me/responses/reflections-on-social-web",
   "url": "https://www.lqdev.me/responses/reflections-on-social-web",

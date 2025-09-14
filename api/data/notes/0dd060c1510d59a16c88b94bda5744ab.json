@@ -1,6 +1,6 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://www.lqdev.me/activitypub/notes/0dd060c1510d59a16c88b94bda5744ab",
+  "id": "https://www.lqdev.me/api/activitypub/notes/0dd060c1510d59a16c88b94bda5744ab",
   "type": "Note",
   "content": "FediCon 2025 Videos\n\n#fediverse #fedicon2025 #conference\n\n\uD83D\uDD17 https://www.lqdev.me/responses/fedicon-2025-videos",
   "url": "https://www.lqdev.me/responses/fedicon-2025-videos",

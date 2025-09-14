@@ -1,6 +1,6 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://www.lqdev.me/activitypub/notes/0039e1b5971468bc630233622e467db6",
+  "id": "https://www.lqdev.me/api/activitypub/notes/0039e1b5971468bc630233622e467db6",
   "type": "Note",
   "content": "Windows 11 upgrade?\n\n#windows #windows10\n\n\uD83D\uDD17 https://www.lqdev.me/media/windows-11-upgrade",
   "url": "https://www.lqdev.me/media/windows-11-upgrade",

@@ -29,10 +29,6 @@
       "rewrite": "/api/following"
     },
     {
-      "route": "/activitypub/notes/*",
-      "rewrite": "/api/notes/*"
-    },
-    {
       "route": "/github",
       "redirect": "https://github.com/lqdev",
       "statusCode": 301

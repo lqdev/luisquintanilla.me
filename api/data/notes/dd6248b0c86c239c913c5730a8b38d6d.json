@@ -1,6 +1,6 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://www.lqdev.me/activitypub/notes/dd6248b0c86c239c913c5730a8b38d6d",
+  "id": "https://www.lqdev.me/api/activitypub/notes/dd6248b0c86c239c913c5730a8b38d6d",
   "type": "Note",
   "content": "The newly redesigned Blogroll Club\n\n#blogrollclub #blogroll #indieweb #socialweb\n\n\uD83D\uDD17 https://www.lqdev.me/responses/newly-redesigned-blogroll",
   "url": "https://www.lqdev.me/responses/newly-redesigned-blogroll",

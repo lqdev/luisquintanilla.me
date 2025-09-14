@@ -1,6 +1,6 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://www.lqdev.me/activitypub/notes/c4193215e445fd5f91e221b16d550829",
+  "id": "https://www.lqdev.me/api/activitypub/notes/c4193215e445fd5f91e221b16d550829",
   "type": "Note",
   "content": "Omnineural 4B\n\n#ai #npu #multimodal\n\n\uD83D\uDD17 https://www.lqdev.me/responses/omnineural-4b",
   "url": "https://www.lqdev.me/responses/omnineural-4b",

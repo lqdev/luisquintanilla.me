@@ -1,6 +1,6 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://www.lqdev.me/activitypub/notes/8be7af3fc96bbe4097a21af8709543e2",
+  "id": "https://www.lqdev.me/api/activitypub/notes/8be7af3fc96bbe4097a21af8709543e2",
   "type": "Note",
   "content": "Crescent library brings privacy to digital identity systems\n\n#research #privacy #microsoft\n\n\uD83D\uDD17 https://www.lqdev.me/responses/crescent-msr-privacy-digital-identity",
   "url": "https://www.lqdev.me/responses/crescent-msr-privacy-digital-identity",

@@ -1,6 +1,6 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://www.lqdev.me/activitypub/notes/7ce73519e4e240f36a5ff4dae35aa6ac",
+  "id": "https://www.lqdev.me/api/activitypub/notes/7ce73519e4e240f36a5ff4dae35aa6ac",
   "type": "Note",
   "content": "The mistake music teachers make\n\n#music #language\n\n\uD83D\uDD17 https://www.lqdev.me/responses/mistake-music-teachers-make-ted-talk",
   "url": "https://www.lqdev.me/responses/mistake-music-teachers-make-ted-talk",
