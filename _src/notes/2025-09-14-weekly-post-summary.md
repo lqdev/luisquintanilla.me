@@ -1,12 +1,13 @@
 ---
 post_type: "note"
 title: "Week of September 14, 2025 - Post Summary"
-published_date: "2025-09-14 13:41 +00:00"
+published_date: "2025-09-14 15:20 +00:00"
 tags: ["weeklysummary","blogging","website","indieweb"]
 ---
 
 ## Notes
 
+- [Week of September 14, 2025 - Post Summary](/notes/2025-09-14-weekly-post-summary)
 - [Crawford vs. Canelo](/notes/crawford-canelo-2025)
 - [Tennessee vs. Georgia](/notes/tennessee-georgia-2025)
 - [Crate Finds - August 2025](/notes/crate-finds-august-2025)
