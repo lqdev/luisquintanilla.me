@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = async function (context, req) {
     try {
         // Extract note ID from route parameter
-        const noteId = context.bindingData.notePath;
+        const noteId = context.bindingData.path;
         
         if (!noteId || !noteId.match(/^[a-f0-9]{32}$/)) {
             context.res = {

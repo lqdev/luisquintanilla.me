@@ -30,7 +30,7 @@
     },
     {
       "route": "/activitypub/notes/*",
-      "rewrite": "/api/notes"
+      "rewrite": "/api/notes/*"
     },
     {
       "route": "/github",
