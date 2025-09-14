@@ -1,0 +1,71 @@
+name: 📝 Post a Note
+description: Create a new note post for the website
+title: "[Note] "
+labels: ["post", "note"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Create a New Note Post
+        
+        Use this form to create a quick note post that will automatically generate a pull request with a properly formatted markdown file.
+        
+        **Note**: This will create a new note post in the `_src/notes/` directory and generate a PR for review.
+
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: The title of your note post
+      placeholder: "e.g., Thoughts on the latest tech news"
+    validations:
+      required: true
+
+  - type: textarea
+    id: content
+    attributes:
+      label: Content
+      description: The main content of your note (supports Markdown)
+      placeholder: |
+        Write your note content here. You can use Markdown formatting.
+        
+        - Lists are supported
+        - **Bold** and *italic* text
+        - [Links](https://example.com)
+        - Code blocks and other Markdown features
+      render: markdown
+    validations:
+      required: true
+
+  - type: input
+    id: slug
+    attributes:
+      label: Slug (Optional)
+      description: Custom URL slug for your note. If not provided, one will be generated from the title.
+      placeholder: "e.g., my-custom-slug (leave blank to auto-generate)"
+    validations:
+      required: false
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags (Optional)
+      description: Comma-separated tags for categorizing your note
+      placeholder: "e.g., tech, programming, thoughts"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        **What happens next?**
+        
+        1. 🤖 A GitHub Action will process this issue
+        2. 📄 Generate a properly formatted markdown file in `_src/notes/`
+        3. 🔀 Create a pull request with your content
+        4. ✅ The issue will be closed automatically
+        5. 🚀 After PR review and merge, your note will be live on the website
+        
+        The generated content will include proper frontmatter with title, publication date, post type, and tags.
