@@ -33,7 +33,7 @@ body:
         - **Bold** and *italic* text
         - [Links](https://example.com)
         - Code blocks and other Markdown features
-      render: markdown
+      render: text
     validations:
       required: true
 
