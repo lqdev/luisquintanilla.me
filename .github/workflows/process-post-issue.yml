@@ -65,16 +65,25 @@ jobs:
         
       - name: Process issue with F# script
         id: process-issue
+        env:
+          ISSUE_TITLE: ${{ steps.extract-data.outputs.title }}
+          ISSUE_CONTENT: ${{ steps.extract-data.outputs.content }}
+          ISSUE_SLUG: ${{ steps.extract-data.outputs.slug }}
+          ISSUE_TAGS: ${{ steps.extract-data.outputs.tags }}
         run: |
-          # Escape quotes and newlines for shell
-          TITLE="${{ steps.extract-data.outputs.title }}"
-          CONTENT="${{ steps.extract-data.outputs.content }}"
-          SLUG="${{ steps.extract-data.outputs.slug }}"
-          TAGS="${{ steps.extract-data.outputs.tags }}"
+          # Use environment variables to avoid shell escaping issues
+          # Create temporary files for safe parameter passing
+          echo "$ISSUE_TITLE" > /tmp/title.txt
+          echo "$ISSUE_CONTENT" > /tmp/content.txt
+          echo "$ISSUE_SLUG" > /tmp/slug.txt
+          echo "$ISSUE_TAGS" > /tmp/tags.txt
           
-          # Run F# script with extracted parameters
-          OUTPUT=$(dotnet fsi Scripts/process-github-issue.fsx -- "$TITLE" "$CONTENT" "$SLUG" "$TAGS" 2>&1)
+          # Run F# script with file-based parameters
+          OUTPUT=$(dotnet fsi Scripts/process-github-issue.fsx -- "$(cat /tmp/title.txt)" "$(cat /tmp/content.txt)" "$(cat /tmp/slug.txt)" "$(cat /tmp/tags.txt)" 2>&1)
           EXIT_CODE=$?
+          
+          # Clean up temporary files
+          rm -f /tmp/title.txt /tmp/content.txt /tmp/slug.txt /tmp/tags.txt
           
           echo "Script output:"
           echo "$OUTPUT"
