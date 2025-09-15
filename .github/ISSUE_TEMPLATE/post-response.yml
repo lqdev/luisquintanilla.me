@@ -1,0 +1,93 @@
+name: 💬 Post a Response
+description: Create a new response post (reply, reshare, or star) for the website
+title: "[Response] "
+labels: ["post", "response"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Create a New Response Post
+        
+        Use this form to create a response post (reply, reshare, or star) that will automatically generate a pull request with a properly formatted markdown file.
+        
+        **Note**: This will create a new response post in the `_src/responses/` directory and generate a PR for review.
+
+  - type: dropdown
+    id: response_type
+    attributes:
+      label: Response Type
+      description: Select the type of response you want to create
+      options:
+        - reply
+        - reshare
+        - star
+    validations:
+      required: true
+
+  - type: input
+    id: target_url
+    attributes:
+      label: Target URL
+      description: The URL you are responding to
+      placeholder: "https://example.com/some-post"
+    validations:
+      required: true
+
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: The title of your response post
+      placeholder: "e.g., Great insights on this topic"
+    validations:
+      required: true
+
+  - type: textarea
+    id: content
+    attributes:
+      label: Content (Optional)
+      description: Your response content (supports Markdown). Leave blank for stars/likes with no additional commentary.
+      placeholder: |
+        Write your response content here. You can use Markdown formatting.
+        
+        - Lists are supported
+        - **Bold** and *italic* text
+        - [Links](https://example.com)
+        - Code blocks and other Markdown features
+        
+        Note: For "star" responses, you can leave this blank if you just want to favorite/like without commentary.
+    validations:
+      required: false
+
+  - type: input
+    id: slug
+    attributes:
+      label: Slug (Optional)
+      description: Custom URL slug for your response. If not provided, one will be generated from the title.
+      placeholder: "e.g., my-custom-slug (leave blank to auto-generate)"
+    validations:
+      required: false
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags (Optional)
+      description: Comma-separated tags for categorizing your response
+      placeholder: "e.g., webdev, indieweb, reply"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        **What happens next?**
+        
+        1. 🤖 A GitHub Action will process this issue
+        2. 📄 Generate a properly formatted markdown file in `_src/responses/`
+        3. 🔀 Create a pull request with your content
+        4. ✅ The issue will be closed automatically
+        5. 🚀 After PR review and merge, your response will be live on the website
+        
+        The generated content will include proper IndieWeb microformats and frontmatter with response type, target URL, publication date, and tags.

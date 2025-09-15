@@ -1,0 +1,168 @@
+name: Process Response Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  process-response:
+    # Only run if issue has "response" label AND issue author is @lqdev
+    if: contains(github.event.issue.labels.*.name, 'response') && github.event.issue.user.login == 'lqdev'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup .NET 9
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+          
+      - name: Parse issue and extract form data
+        id: extract-data
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              // Extract form responses using regex patterns
+              function extractFormValue(body, label) {
+                // GitHub issue forms format: ### Label\n\nValue
+                const regex = new RegExp(`### ${label}\\s*\\n\\s*\\n([\\s\\S]*?)(?=\\n\\n###|\\n\\n---|\$)`, 'i');
+                const match = body.match(regex);
+                const value = match ? match[1].trim() : '';
+                
+                // Remove common artifacts from GitHub issue forms
+                return value.replace(/^_No response_$/i, '').trim();
+              }
+              
+              const issueBody = context.payload.issue.body;
+              const responseType = extractFormValue(issueBody, 'Response Type');
+              const targetUrl = extractFormValue(issueBody, 'Target URL');
+              const title = extractFormValue(issueBody, 'Title');
+              const content = extractFormValue(issueBody, 'Content \\(Optional\\)');
+              const customSlug = extractFormValue(issueBody, 'Slug \\(Optional\\)');
+              const tagsInput = extractFormValue(issueBody, 'Tags \\(Optional\\)');
+              
+              console.log('Extracted response type:', responseType);
+              console.log('Extracted target URL:', targetUrl);
+              console.log('Extracted title:', title);
+              console.log('Extracted content:', content);
+              console.log('Extracted custom slug:', customSlug);
+              console.log('Extracted tags:', tagsInput);
+              
+              // Set outputs for F# script
+              core.setOutput('response_type', responseType);
+              core.setOutput('target_url', targetUrl);
+              core.setOutput('title', title);
+              core.setOutput('content', content);
+              core.setOutput('slug', customSlug || '');
+              core.setOutput('tags', tagsInput || '');
+              
+            } catch (error) {
+              console.error('Error extracting issue data:', error);
+              throw error;
+            }
+          
+      - name: Build F# project
+        run: dotnet build
+        
+      - name: Process issue with F# script
+        id: process-issue
+        env:
+          ISSUE_RESPONSE_TYPE: ${{ steps.extract-data.outputs.response_type }}
+          ISSUE_TARGET_URL: ${{ steps.extract-data.outputs.target_url }}
+          ISSUE_TITLE: ${{ steps.extract-data.outputs.title }}
+          ISSUE_CONTENT: ${{ steps.extract-data.outputs.content }}
+          ISSUE_SLUG: ${{ steps.extract-data.outputs.slug }}
+          ISSUE_TAGS: ${{ steps.extract-data.outputs.tags }}
+        run: |
+          # Use environment variables to avoid shell escaping issues
+          # Create temporary files for safe parameter passing
+          echo "$ISSUE_RESPONSE_TYPE" > /tmp/response_type.txt
+          echo "$ISSUE_TARGET_URL" > /tmp/target_url.txt
+          echo "$ISSUE_TITLE" > /tmp/title.txt
+          echo "$ISSUE_CONTENT" > /tmp/content.txt
+          echo "$ISSUE_SLUG" > /tmp/slug.txt
+          echo "$ISSUE_TAGS" > /tmp/tags.txt
+          
+          # Run F# script with file-based parameters
+          OUTPUT=$(dotnet fsi Scripts/process-response-issue.fsx -- "$(cat /tmp/response_type.txt)" "$(cat /tmp/target_url.txt)" "$(cat /tmp/title.txt)" "$(cat /tmp/content.txt)" "$(cat /tmp/slug.txt)" "$(cat /tmp/tags.txt)" 2>&1)
+          EXIT_CODE=$?
+          
+          # Clean up temporary files
+          rm -f /tmp/response_type.txt /tmp/target_url.txt /tmp/title.txt /tmp/content.txt /tmp/slug.txt /tmp/tags.txt
+          
+          echo "Script output:"
+          echo "$OUTPUT"
+          
+          if [ $EXIT_CODE -eq 0 ]; then
+            echo "success=true" >> $GITHUB_OUTPUT
+            # Extract filename from output
+            FILENAME=$(echo "$OUTPUT" | grep "📁 File:" | sed 's/.*📁 File: _src\/responses\///' | sed 's/ .*//')
+            echo "filename=$FILENAME" >> $GITHUB_OUTPUT
+          else
+            echo "success=false" >> $GITHUB_OUTPUT
+            echo "error=$OUTPUT" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          
+      - name: Create Pull Request
+        if: steps.process-issue.outputs.success == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Add ${{ steps.extract-data.outputs.response_type }} response: ${{ steps.extract-data.outputs.title }}"
+          title: "Add ${{ steps.extract-data.outputs.response_type }} response: ${{ steps.extract-data.outputs.title }}"
+          body: |
+            ## New Response Post
+            
+            **Title:** ${{ steps.extract-data.outputs.title }}
+            **Type:** ${{ steps.extract-data.outputs.response_type }}
+            **Target URL:** ${{ steps.extract-data.outputs.target_url }}
+            **File:** `_src/responses/${{ steps.process-issue.outputs.filename }}`
+            
+            ### Frontmatter Validation
+            - ✅ Title: ${{ steps.extract-data.outputs.title }}
+            - ✅ Response Type: ${{ steps.extract-data.outputs.response_type }}
+            - ✅ Target URL: ${{ steps.extract-data.outputs.target_url }}
+            - ✅ Custom Slug: ${{ steps.extract-data.outputs.slug }}
+            - ✅ Tags: ${{ steps.extract-data.outputs.tags }}
+            
+            **Created via GitHub Issue Template #${{ github.event.issue.number }}**
+            **Processed by F# script using .NET 9**
+          branch: content/issue-${{ github.event.issue.number }}/response/fsharp-processed
+          delete-branch: true
+          
+      - name: Close issue on success
+        if: steps.process-issue.outputs.success == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              state: 'closed'
+            });
+            
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: '🎉 Your ${{ steps.extract-data.outputs.response_type }} response post has been processed using F# and .NET 9! A pull request has been created with your content. You can track the progress in the pull requests tab.'
+            });
+            
+      - name: Handle processing errors
+        if: steps.process-issue.outputs.success == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: `❌ **Error processing response request with F# script**\n\n${steps.process-issue.outputs.error}\n\nPlease check your issue format and try again. The issue will remain open for you to edit and resubmit.`
+            });
