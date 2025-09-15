@@ -26,27 +26,8 @@ let rawContent = args.[1]
 let customSlug = if args.Length > 2 && not (String.IsNullOrWhiteSpace(args.[2])) then Some(args.[2]) else None
 let tagsInput = if args.Length > 3 && not (String.IsNullOrWhiteSpace(args.[3])) then Some(args.[3]) else None
 
-// Process content to remove markdown codeblock wrapping if present
-let content = 
-    let trimmed = rawContent.Trim()
-    if trimmed.StartsWith("```markdown") && trimmed.EndsWith("```") then
-        // Remove markdown codeblock wrapper
-        let lines = trimmed.Split('\n')
-        if lines.Length >= 3 then
-            // Remove first and last lines (```markdown and ```)
-            lines.[1..lines.Length-2] |> String.concat "\n"
-        else
-            trimmed
-    elif trimmed.StartsWith("```") && trimmed.EndsWith("```") then
-        // Remove generic codeblock wrapper
-        let lines = trimmed.Split('\n')
-        if lines.Length >= 3 then
-            // Remove first and last lines (``` and ```)
-            lines.[1..lines.Length-2] |> String.concat "\n"
-        else
-            trimmed
-    else
-        rawContent
+// Use content directly - user is responsible for proper markdown formatting
+let content = rawContent.Trim()
 
 // Validate required fields
 if String.IsNullOrWhiteSpace(title) then
