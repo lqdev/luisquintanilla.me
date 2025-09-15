@@ -31,7 +31,8 @@ let unwrapCodeBlock (content: string) =
     let trimmed = content.Trim()
     
     // Check if content is wrapped in code blocks (```text, ```markdown, or just ```)
-    let codeBlockPattern = @"^```(?:text|markdown)?\s*\n([\s\S]*?)\n```$"
+    // Use greedy matching and ensure we match the last ``` at the end of string
+    let codeBlockPattern = @"^```(?:text|markdown)?\s*\n([\s\S]*)\n```$"
     let match' = Regex.Match(trimmed, codeBlockPattern, RegexOptions.Multiline)
     
     if match'.Success then
