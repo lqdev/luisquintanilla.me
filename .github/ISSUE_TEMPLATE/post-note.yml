@@ -1,7 +1,7 @@
 name: 📝 Post a Note
 description: Create a new note post for the website
 title: "[Note] "
-labels: ["post", "note"]
+labels: ["note"]
 body:
   - type: markdown
     attributes:
