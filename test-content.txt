@@ -1,3 +1,0 @@
-```markdown
-This is my post
-```
