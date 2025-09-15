@@ -2,7 +2,7 @@
 <rss version="2.0">
   <channel>
     <title>Luis Quintanilla - Posts</title>
-    <link>https://www.luisquintanilla.me/posts</link>
+    <link>https://www.lqdev.me/posts</link>
     <description>Blog posts by Luis Quintanilla</description>
     <lastBuildDate>2025-08-14 01:45 -05:00</lastBuildDate>
     <language>en</language>
@@ -78,11 +78,11 @@ The workflow for publishing is as follows:
 
 1. Invoke the bot in Discord to capture my input using slash command `/post` and the respective post type.
 
-    ![Using slash commands to invoke discord publishing bot](/api/files/images/invoke-discord-publishing-bot.png)
+    ![Using slash commands to invoke discord publishing bot](http://cdn.lqdev.tech/files/images/invoke-discord-publishing-bot.png)
 
 1. Provide post details. For media posts, I can provide an attachment which gets uploaded to Azure Blob Storage.
 
-    ![A modal in discord with note post fields filled in](/api/files/images/discord-publishing-client-modal.png)
+    ![A modal in discord with note post fields filled in](http://cdn.lqdev.tech/files/images/discord-publishing-client-modal.png)
 
 1. [Bot creates a branch and PR in my repo](https://github.com/lqdev/luisquintanilla.me/pull/152) with the post content
 1. While logged into GitHub from my phone, if everything looks good, I merge the PR which kicks off my GitHub Actions workflow to build and publish the site including the new post. 
@@ -105,8 +105,8 @@ Overall I'm happy with my solution but there are a few improvements I'd like to 
 - **One-click deployment** - Currently the solution is packaged up as a container so it can be deployed from anywhere. I want to make it even simpler to deploy. One click if possible. 
 
 ]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/website-mobile-publishing-discord-client</link>
-      <guid>https://www.luisquintanilla.me/posts/website-mobile-publishing-discord-client</guid>
+      <link>https://www.lqdev.me/posts/website-mobile-publishing-discord-client</link>
+      <guid>https://www.lqdev.me/posts/website-mobile-publishing-discord-client</guid>
       <pubDate>2025-08-14 01:45 -05:00</pubDate>
       <category>discord</category>
       <category>azure</category>
@@ -131,15 +131,15 @@ With that in mind, I set out to sketch out how I want to create and render media
 
 Overall, I'm happy with the end result. 
 
-![A screenshot of a website post containing an image and audio player](/api/files/images/indieweb-create-day-2025-07.png)
+![A screenshot of a website post containing an image and audio player](http://cdn.lqdev.tech/files/images/indieweb-create-day-2025-07.png)
 
 For more details, you can check out the [repo](https://github.com/lqdev/indieweb-create-day-2025-07).
 
 At some point, I want to be able to integrate these media posts into my static site generator but for the time being, there are other kinds of posts such as reviews, RSVPs, and other [post types](https://indieweb.org/posts#Types_of_Posts) that I want to design and eventually also support on my website. I liked the approach I took this time around because it gave me the freedom to explore posibilities rather than constrain my creativity to what I've already built. So I think I'll keep doing the same for subsequent post types. 
 
 At the end of the day, it was nice seeing everyone else's projects. My favorite one was Cy's recipe website. I want to be like them when I grow up 🙂.]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/indieweb-create-day-2025-07</link>
-      <guid>https://www.luisquintanilla.me/posts/indieweb-create-day-2025-07</guid>
+      <link>https://www.lqdev.me/posts/indieweb-create-day-2025-07</link>
+      <guid>https://www.lqdev.me/posts/indieweb-create-day-2025-07</guid>
       <pubDate>2025-07-06 20:09 -05:00</pubDate>
       <category>indieweb</category>
       <category>iwc</category>
@@ -215,8 +215,8 @@ Here's a list of other links and projects I was exposed to during the conference
 As always, Cory Doctorow was great way to close out the first day. I even learned a new term, tron-pilled. Which means as a creator of a platform, you're on the side of the users.  
 
 Looking forward to tomorrow's sessions!]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/fediforum-day-1-jun-2025</link>
-      <guid>https://www.luisquintanilla.me/posts/fediforum-day-1-jun-2025</guid>
+      <link>https://www.lqdev.me/posts/fediforum-day-1-jun-2025</link>
+      <guid>https://www.lqdev.me/posts/fediforum-day-1-jun-2025</guid>
       <pubDate>2025-06-05 17:20 -05:00</pubDate>
       <category>fediforum</category>
       <category>socialweb</category>
@@ -284,8 +284,8 @@ RSS might seem like it’s dead (it’s not—yet). In fact, it’s the reason y
 
 I've written more about RSS in [Rediscovering the RSS Protocol](/posts/rediscovering-rss-user-freedom), but the short version is this: when you build on open standards like RSS and OPML, you’re building on freedom. Freedom to use the tools that work best for you. Freedom to own your experience. And freedom to support a healthier, more independent web.
 ]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/how-i-keep-up-with-ai</link>
-      <guid>https://www.luisquintanilla.me/posts/how-i-keep-up-with-ai</guid>
+      <link>https://www.lqdev.me/posts/how-i-keep-up-with-ai</link>
+      <guid>https://www.lqdev.me/posts/how-i-keep-up-with-ai</guid>
       <pubDate>2025-05-27 19:44 -05:00</pubDate>
       <category>ai</category>
       <category>rss</category>
@@ -452,8 +452,8 @@ Moving from concept to implementation will require:
 
 By building on the combined strengths of IPFS, DIDs, VCs, and semantic web technologies, IPKS creates a framework for distributed knowledge that balances openness with trust, flexibility with verification, and collaboration with governance.
 ]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/vibe-specing-prompt-to-spec</link>
-      <guid>https://www.luisquintanilla.me/posts/vibe-specing-prompt-to-spec</guid>
+      <link>https://www.lqdev.me/posts/vibe-specing-prompt-to-spec</link>
+      <guid>https://www.lqdev.me/posts/vibe-specing-prompt-to-spec</guid>
       <pubDate>2025-05-06 20:40 -05:00</pubDate>
       <category>dweb</category>
       <category>standards</category>
@@ -856,8 +856,8 @@ With less reluctance than an attested breeze
 (from the Collected Sonnets of Cosmo Nitram,
 soon to appear on [Hunter's] pages)
 ```]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/fractures-unfamiliarity-circumvention-pursuit-good-time-robert-hunter</link>
-      <guid>https://www.luisquintanilla.me/posts/fractures-unfamiliarity-circumvention-pursuit-good-time-robert-hunter</guid>
+      <link>https://www.lqdev.me/posts/fractures-unfamiliarity-circumvention-pursuit-good-time-robert-hunter</link>
+      <guid>https://www.lqdev.me/posts/fractures-unfamiliarity-circumvention-pursuit-good-time-robert-hunter</guid>
       <pubDate>2025-02-26 19:44 -05:00</pubDate>
       <category>music</category>
       <category>essay</category>
@@ -1205,8 +1205,8 @@ Here's the transcript with some updates for formatting. In some turns, I took cr
 &gt; You have used your gifts and abilities to nurture and cultivate the potential within yourself and the world, and you have become a source of wisdom, love, and compassion in the world.  
 &gt; &lt;br&gt;
 &gt; Your journey has come full circle, and you have returned to the beginning, but with a newfound sense of understanding and appreciation for the mysteries of the universe and the secrets of the cosmos.  ]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/llama-turn-on-tuning-in-ai-quest-higher-consciousness-moo</link>
-      <guid>https://www.luisquintanilla.me/posts/llama-turn-on-tuning-in-ai-quest-higher-consciousness-moo</guid>
+      <link>https://www.lqdev.me/posts/llama-turn-on-tuning-in-ai-quest-higher-consciousness-moo</link>
+      <guid>https://www.lqdev.me/posts/llama-turn-on-tuning-in-ai-quest-higher-consciousness-moo</guid>
       <pubDate>2025-02-11 20:36 -05:00</pubDate>
       <category>ai</category>
       <category>MOO</category>
@@ -1297,7 +1297,7 @@ Once your application deploys, make sure to change your admin password.
 
 1. In the portal, go to your container app resource and copy your application URL.
 
-    ![Screenshot of Azure Container Apps resource in Azure Portal highlighting Application URL](/api/files/images/portal-container-resource.png)
+    ![Screenshot of Azure Container Apps resource in Azure Portal highlighting Application URL](http://cdn.lqdev.tech/files/images/portal-container-resource.png)
 
     Make sure to keek your application URL around since you'll also be using it when configuring OBS. 
 
@@ -1344,8 +1344,8 @@ My plan in the next couple of weeks is to:
 1. Evaluate what the costs are for this solution and whethere it's sustainable.
 
 If all goes as expected, I'll start streaming more regularly. As mentioned, I want to keep my costs down and video hosting is expensive, so I'll use YouTube to post recordings. I'll also keep backups though in case any of those videos get taken down, I can always have a local copy still available. ]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/deploy-owncast-azure</link>
-      <guid>https://www.luisquintanilla.me/posts/deploy-owncast-azure</guid>
+      <link>https://www.lqdev.me/posts/deploy-owncast-azure</link>
+      <guid>https://www.lqdev.me/posts/deploy-owncast-azure</guid>
       <pubDate>2025-01-09 20:47 -05:00</pubDate>
       <category>owncast</category>
       <category>azure</category>
@@ -1405,7 +1405,7 @@ To subscribe to the LibriVox New Release feed:
 1. In AntennaPod, open up the hamburger menu and select **Add Podcast**.
 1. In the *Add Podcast* dialog, select **Add podcast by RSS address**.
 
-    ![AntennaPod Add Podcast Dialog](/api/files/images/add-podcast-antennapod.png)
+    ![AntennaPod Add Podcast Dialog](http://cdn.lqdev.tech/files/images/add-podcast-antennapod.png)
 
 1. Paste the LibriVox New Releases RSS feed URL into the text box and select **Confirm**. 
 
@@ -1424,15 +1424,15 @@ Subscribing to the new releases feed only notifies you when new books are added,
 1. In AntennaPod's Subscription screen, select **LibriVox's New Releases**.
 1. From the list of new releases, select the book you want to listen to. For example, "Room of One's Own" by Virginia Woolf.
 
-    ![AntennaPod New Releases Feed](/api/files/images/antennapod-librivox-new-releases.png)
+    ![AntennaPod New Releases Feed](http://cdn.lqdev.tech/files/images/antennapod-librivox-new-releases.png)
 
 1. In the audiobook's screen, select **Visit Website**. This will take you to the LibriVox audiobook's page in the browser.
 
-    ![AntennaPod Audiobook Screen](/api/files/images/antennapod-room-of-ones-own.png)
+    ![AntennaPod Audiobook Screen](http://cdn.lqdev.tech/files/images/antennapod-room-of-ones-own.png)
 
 1. In the LibriVox audiobook page, select the book's RSS Feed.
 
-    ![A Room of One's Own by Virginia Woolf LibriVox book page](/api/files/images/librivox-room-ones-own.png)
+    ![A Room of One's Own by Virginia Woolf LibriVox book page](http://cdn.lqdev.tech/files/images/librivox-room-ones-own.png)
 
 1. Copy the book's feed URL to your clipboard.
 1. In AntennaPod, open up the hamburger menu and select **Add Podcast**.
@@ -1454,8 +1454,8 @@ The process works the same for other books but you'll have to use LibriVox as th
 ## Conclusion 
 
 Although AntennaPod wasn't designed for audiobook listening, thanks to the flexibility of RSS feeds and the thankless work of the LibriVox community, you can easily listen to audiobooks for free on your mobile device. I plan on testing out this setup and seeing whether it helps keep my reading habit on track.]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/listen-audiobooks-librivox-antennapod</link>
-      <guid>https://www.luisquintanilla.me/posts/listen-audiobooks-librivox-antennapod</guid>
+      <link>https://www.lqdev.me/posts/listen-audiobooks-librivox-antennapod</link>
+      <guid>https://www.lqdev.me/posts/listen-audiobooks-librivox-antennapod</guid>
       <pubDate>2025-01-05 21:04 -05:00</pubDate>
       <category>book</category>
       <category>audiobook</category>
@@ -1542,8 +1542,8 @@ I'm not sure yet what this looks like but making it easier to discover and build
 ## Conclusion
 
 I wish them luck and success in what they're aiming to accomplish. I'm excited to see more projects like this sprouting to shake up the status-quo in our digital spaces. ]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/weird-inc-2025</link>
-      <guid>https://www.luisquintanilla.me/posts/weird-inc-2025</guid>
+      <link>https://www.lqdev.me/posts/weird-inc-2025</link>
+      <guid>https://www.lqdev.me/posts/weird-inc-2025</guid>
       <pubDate>2024-12-17 18:41 -05:00</pubDate>
       <category>weird</category>
       <category>cms</category>
@@ -1595,8 +1595,8 @@ Here are other "starter packs" you might consider subscribing to.
 - [Blogroll Club](https://blogroll.club/faq/)
 
 If this is interesting to you, [Feedland](https://feedland.org/) might be a project worth checking out.  ]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/rss-opml-starter-packs</link>
-      <guid>https://www.luisquintanilla.me/posts/rss-opml-starter-packs</guid>
+      <link>https://www.lqdev.me/posts/rss-opml-starter-packs</link>
+      <guid>https://www.lqdev.me/posts/rss-opml-starter-packs</guid>
       <pubDate>2024-12-08 19:40 -05:00</pubDate>
       <category>rss</category>
       <category>opml</category>
@@ -1819,8 +1819,8 @@ Just with this simple solution, there's a ton of other applications I can think 
 What other use cases do you see yourself using something like this for? [Let me know](/contact).
 
 Happy coding!]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/digitize-analog-bookmarks-with-ai-dotnet</link>
-      <guid>https://www.luisquintanilla.me/posts/digitize-analog-bookmarks-with-ai-dotnet</guid>
+      <link>https://www.lqdev.me/posts/digitize-analog-bookmarks-with-ai-dotnet</link>
+      <guid>https://www.lqdev.me/posts/digitize-analog-bookmarks-with-ai-dotnet</guid>
       <pubDate>2024-10-31 21:41 -05:00</pubDate>
       <category>ai</category>
       <category>dotnet</category>
@@ -1980,8 +1980,8 @@ In this post, I showed how you can combine the powerful live-steaming features o
 
 If you use this sample as a starting point for your own live-streaming or self-hosting explorations, [send me a message](/contact). I'd love to hear about it.  
 ]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire</link>
-      <guid>https://www.luisquintanilla.me/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire</guid>
+      <link>https://www.lqdev.me/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire</link>
+      <guid>https://www.lqdev.me/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire</guid>
       <pubDate>2024-10-20 14:01 -05:00</pubDate>
       <category>owncast</category>
       <category>dotnet</category>
@@ -2063,8 +2063,8 @@ For more details, see the [Ollama model library](https://ollama.com/library).
 ## Conclusion
 
 In this post, I showed how you can configure Ollama with Dev Containers to use AI models locally in your projects. In subsequent posts, I'll show how once the service is running, I use it as part of my authoring and publishing posts. You can see a preview of it in my [scripts directory](https://github.com/lqdev/luisquintanilla.me/blob/main/Scripts/ai.fsx). Happy coding! ]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/install-ollama-vscode-devcontainer</link>
-      <guid>https://www.luisquintanilla.me/posts/install-ollama-vscode-devcontainer</guid>
+      <link>https://www.lqdev.me/posts/install-ollama-vscode-devcontainer</link>
+      <guid>https://www.lqdev.me/posts/install-ollama-vscode-devcontainer</guid>
       <pubDate>2024-03-06 13:50 -05:00</pubDate>
       <category>ollama</category>
       <category>vscode</category>
@@ -2122,8 +2122,8 @@ Now that you have the model, it's time to use it. The easiest way to use the mod
 ## Conclusion
 
 In this post, I went over how you can quickly install Ollama to start using generative AI models like Llama and Phi locally on your Windows PC. If you use Mac or Linux, you can perform similar steps as those outlined in this guide to get started on those operating systems. Happy coding! ]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/getting-started-ollama-windows</link>
-      <guid>https://www.luisquintanilla.me/posts/getting-started-ollama-windows</guid>
+      <link>https://www.lqdev.me/posts/getting-started-ollama-windows</link>
+      <guid>https://www.lqdev.me/posts/getting-started-ollama-windows</guid>
       <pubDate>2024-03-05 10:32 -05:00</pubDate>
       <category>ai</category>
       <category>ollama</category>
@@ -2238,8 +2238,8 @@ Dev Containers make it easy for you to configure full-featured development envir
 - [Rust in Visual Studio Code](https://code.visualstudio.com/docs/languages/rust)
 - [Rust by Example](https://doc.rust-lang.org/rust-by-example/index.html)
 - [Developing Inside a Container](https://code.visualstudio.com/docs/devcontainers/containers)]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/setting-up-rust-dev-env-devcontainers-vscode</link>
-      <guid>https://www.luisquintanilla.me/posts/setting-up-rust-dev-env-devcontainers-vscode</guid>
+      <link>https://www.lqdev.me/posts/setting-up-rust-dev-env-devcontainers-vscode</link>
+      <guid>https://www.lqdev.me/posts/setting-up-rust-dev-env-devcontainers-vscode</guid>
       <pubDate>2024-01-31 21:05 -05:00</pubDate>
       <category>rust</category>
       <category>vscode</category>
@@ -2375,8 +2375,8 @@ Once it's saved, click **Run trigger** which will kick off your trigger. If you 
 ## Conclusion
 
 By publishing content on your own website first, you're in full control of your content. Regardless of which platforms come and go, you won't have to adjust to those changes because your content is not locked in to those platforms. However, that doesn't mean you can't also publish your content there. Using protocols like RSS make it easy to subscribe to updates on your website. Using REST APIs provided by the respective platforms, you can automate publishing these updates. To further automate and simplify this process, you can use services like Azure Logic Apps to make publishing to all places easy. ]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/rss-to-mastodon-posse-azure-logic-apps</link>
-      <guid>https://www.luisquintanilla.me/posts/rss-to-mastodon-posse-azure-logic-apps</guid>
+      <link>https://www.lqdev.me/posts/rss-to-mastodon-posse-azure-logic-apps</link>
+      <guid>https://www.lqdev.me/posts/rss-to-mastodon-posse-azure-logic-apps</guid>
       <pubDate>2023-12-24 16:40 -05:00</pubDate>
       <category>azure</category>
       <category>mastodon</category>
@@ -2624,8 +2624,8 @@ The steps in the workflow file are the following:
 ## Conclusion
 
 If you have scripts that you run on a repo on a fairly regular basis, consider using GitHub Actions to automate the execution of these scripts. Happy coding! ]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/website-metrics-github-actions</link>
-      <guid>https://www.luisquintanilla.me/posts/website-metrics-github-actions</guid>
+      <link>https://www.lqdev.me/posts/website-metrics-github-actions</link>
+      <guid>https://www.lqdev.me/posts/website-metrics-github-actions</guid>
       <pubDate>2023-12-24 13:24 -05:00</pubDate>
       <category>github</category>
       <category>cicd</category>
@@ -2887,15 +2887,15 @@ For brevity, I'll only include some of the images generated:
 
 "The Sand"
 
-![AI genreated image of a grain of sand under a microscope and a car driving on a dusty road in a desert](/api/files/images/sand-car-dirt-road.jpg)
+![AI genreated image of a grain of sand under a microscope and a car driving on a dusty road in a desert](http://cdn.lqdev.tech/files/images/sand-car-dirt-road.jpg)
 
 "The Sea"
 
-![AI generated image of a boy standing on a pier looking at a sea of dead fish and a sign that says “No diving”](/api/files/images/child-dock.jpg)
+![AI generated image of a boy standing on a pier looking at a sea of dead fish and a sign that says “No diving”](http://cdn.lqdev.tech/files/images/child-dock.jpg)
 
 "The Root"
 
-![AI generated image of a father and a son playing in a garden with different plants and flowers”](/api/files/images/father-son-playing.jpg)
+![AI generated image of a father and a son playing in a garden with different plants and flowers”](http://cdn.lqdev.tech/files/images/father-son-playing.jpg)
 
 The pencil art part was something I thought would look nice to illustrate this instead of digital art or photorealism. That was a personal choice though. 
 
@@ -2950,8 +2950,8 @@ For music videos, there's a human element to it both from the performers and the
 In this post I discussed how you might use Generative AI models like VideoPoet to generate short videos for Spotify Clips. Since I don't have acess to VideoPoet or other video generation models at this time, I decided to show practical image generation examples instead using models like DALL-E to illustrate the general concepts. It's not wihtout its challenges and there's a ton of improvements I can think of but it was a fun experiment regardless. What else would you use these Generative AI models for? 
 
 You can find an addendum to this post [here](/notes/genai-spotify-clips-instrumental).]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/generative-ai-spotify-clips</link>
-      <guid>https://www.luisquintanilla.me/posts/generative-ai-spotify-clips</guid>
+      <link>https://www.lqdev.me/posts/generative-ai-spotify-clips</link>
+      <guid>https://www.lqdev.me/posts/generative-ai-spotify-clips</guid>
       <pubDate>2023-12-23 18:30 -05:00</pubDate>
       <category>ai</category>
       <category>video</category>
@@ -3031,8 +3031,8 @@ Given that models like GPT and others have been trained on the entire internet, 
 "n d mntm, il kp usng AI lk its 1999. c u l8r!"
 
 Translation: "In the meantime, I'll keep using AI like it's 1999. See you later!" :slightly_smiling_face:]]&gt;</description>
-      <link>https://www.luisquintanilla.me/posts/ai-1999-1899</link>
-      <guid>https://www.luisquintanilla.me/posts/ai-1999-1899</guid>
+      <link>https://www.lqdev.me/posts/ai-1999-1899</link>
+      <guid>https://www.lqdev.me/posts/ai-1999-1899</guid>
       <pubDate>2023-12-15 08:56 -05:00</pubDate>
       <category>ai</category>
       <category>communication</category>
