@@ -116,5 +116,10 @@ printfn "🔗 Slug: %s" finalSlug
 printfn "📅 Date: %s" timestamp
 printfn "🏷️  Tags: %s" (if tags.Length = 0 then "none" else String.concat ", " tags)
 printfn ""
-printfn "📄 Content preview:"
+printfn "📄 Generated markdown file content:"
+printfn "==========================================="
 printfn "%s" fullContent
+printfn "==========================================="
+printfn ""
+printfn "💾 File has been persisted to: %s" (Path.GetFullPath(filePath))
+printfn "📊 File size: %d bytes" (FileInfo(filePath).Length)
