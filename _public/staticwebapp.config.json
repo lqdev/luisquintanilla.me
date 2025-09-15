@@ -5,25 +5,59 @@
   },
   "routes": [
     {
-      "route": "/.well-known/webfinger*",
-      "rewrite": "/.well-known/webfinger.activitypub",
+      "route": "/.well-known/webfinger",
+      "rewrite": "/api/webfinger",
       "headers": {
-        "Cache-Control": "Cache-Control: no-cache, must-revalidate",
-        "Access-Control-Allow-Origin": "*"
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Accept, Content-Type"
       }
     },
     {
       "route": "/@lqdev",
-      "rewrite": "/lqdev.activitypub",
+      "rewrite": "/api/actor",
       "headers": {
-        "Cache-Control": "Cache-Control: public, max-age=3600, s-maxage=1800",
-        "Access-Control-Allow-Origin": "*"
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Accept, Content-Type"
       }
     },
     {
-      "route": "/social/notes/*",
-      "rewrite": "/social/notes/*.activitypub"
-    },   
+      "route": "/activitypub/outbox",
+      "rewrite": "/api/outbox",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Accept, Content-Type"
+      }
+    },
+    {
+      "route": "/activitypub/inbox",
+      "rewrite": "/api/inbox",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Accept, Content-Type"
+      }
+    },
+    {
+      "route": "/activitypub/followers",
+      "rewrite": "/api/followers",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Accept, Content-Type"
+      }
+    },
+    {
+      "route": "/activitypub/following",
+      "rewrite": "/api/following",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Accept, Content-Type"
+      }
+    },
     {
       "route": "/github",
       "redirect": "https://github.com/lqdev",

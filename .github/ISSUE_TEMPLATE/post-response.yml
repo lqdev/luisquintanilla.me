@@ -1,7 +1,7 @@
 name: 💬 Post a Response
 description: Create a new response post (reply, reshare, or star) for the website
 title: "[Response] "
-labels: ["post", "response"]
+labels: ["response"]
 body:
   - type: markdown
     attributes:
