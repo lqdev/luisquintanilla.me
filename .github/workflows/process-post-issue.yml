@@ -6,8 +6,8 @@ on:
 
 jobs:
   process-post:
-    # Only run if issue has "post" label
-    if: contains(github.event.issue.labels.*.name, 'post')
+    # Only run if issue has "post" label AND issue author is @lqdev
+    if: contains(github.event.issue.labels.*.name, 'post') && github.event.issue.user.login == 'lqdev'
     runs-on: ubuntu-latest
     
     steps:

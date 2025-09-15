@@ -22,9 +22,31 @@ if args.Length < 2 then
     exit 1
 
 let title = args.[0]
-let content = args.[1]
+let rawContent = args.[1]
 let customSlug = if args.Length > 2 && not (String.IsNullOrWhiteSpace(args.[2])) then Some(args.[2]) else None
 let tagsInput = if args.Length > 3 && not (String.IsNullOrWhiteSpace(args.[3])) then Some(args.[3]) else None
+
+// Process content to remove markdown codeblock wrapping if present
+let content = 
+    let trimmed = rawContent.Trim()
+    if trimmed.StartsWith("```markdown") && trimmed.EndsWith("```") then
+        // Remove markdown codeblock wrapper
+        let lines = trimmed.Split('\n')
+        if lines.Length >= 3 then
+            // Remove first and last lines (```markdown and ```)
+            lines.[1..lines.Length-2] |> String.concat "\n"
+        else
+            trimmed
+    elif trimmed.StartsWith("```") && trimmed.EndsWith("```") then
+        // Remove generic codeblock wrapper
+        let lines = trimmed.Split('\n')
+        if lines.Length >= 3 then
+            // Remove first and last lines (``` and ```)
+            lines.[1..lines.Length-2] |> String.concat "\n"
+        else
+            trimmed
+    else
+        rawContent
 
 // Validate required fields
 if String.IsNullOrWhiteSpace(title) then
@@ -90,8 +112,11 @@ published_date: "%s"
 tags: %s
 ---""" (title.Replace("\"", "\\\"")) timestamp tagsString
 
-// Generate filename with date for uniqueness
-let filename = sprintf "%s-%s.md" finalSlug (now.ToString("yyyy-MM-dd"))
+// Generate filename - only append date when no custom slug provided
+let filename = 
+    match customSlug with
+    | Some _ -> sprintf "%s.md" finalSlug  // Use slug as-is when custom slug provided
+    | None -> sprintf "%s-%s.md" finalSlug (now.ToString("yyyy-MM-dd"))  // Append date when no custom slug
 
 // Combine frontmatter and content
 let fullContent = sprintf "%s\n\n%s" frontmatter content
