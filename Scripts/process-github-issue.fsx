@@ -22,28 +22,9 @@ if args.Length < 2 then
     exit 1
 
 let title = args.[0]
-let rawContent = args.[1]
+let content = args.[1].Trim()
 let customSlug = if args.Length > 2 && not (String.IsNullOrWhiteSpace(args.[2])) then Some(args.[2]) else None
 let tagsInput = if args.Length > 3 && not (String.IsNullOrWhiteSpace(args.[3])) then Some(args.[3]) else None
-
-// Function to unwrap content from code blocks
-let unwrapCodeBlock (content: string) =
-    let trimmed = content.Trim()
-    
-    // Check if content is wrapped in code blocks (```text, ```markdown, or just ```)
-    // Use greedy matching and ensure we match the last ``` at the end of string
-    let codeBlockPattern = @"^```(?:text|markdown)?\s*\n([\s\S]*)\n```$"
-    let match' = Regex.Match(trimmed, codeBlockPattern, RegexOptions.Multiline)
-    
-    if match'.Success then
-        // Extract the inner content from the code block
-        match'.Groups.[1].Value
-    else
-        // No code block wrapping, return content as-is
-        trimmed
-
-// Process the content to unwrap any code block formatting
-let content = unwrapCodeBlock rawContent
 
 // Validate required fields
 if String.IsNullOrWhiteSpace(title) then
@@ -135,5 +116,10 @@ printfn "🔗 Slug: %s" finalSlug
 printfn "📅 Date: %s" timestamp
 printfn "🏷️  Tags: %s" (if tags.Length = 0 then "none" else String.concat ", " tags)
 printfn ""
-printfn "📄 Content preview:"
+printfn "📄 Generated markdown file content:"
+printfn "==========================================="
 printfn "%s" fullContent
+printfn "==========================================="
+printfn ""
+printfn "💾 File has been persisted to: %s" (Path.GetFullPath(filePath))
+printfn "📊 File size: %d bytes" (FileInfo(filePath).Length)
