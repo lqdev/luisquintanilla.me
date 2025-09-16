@@ -107,8 +107,8 @@ let parseAllMediaAttachments (content: string) =
     
     // 4. Parse plain GitHub attachment URLs (common for videos)
     let githubAttachmentPattern = @"https://github\.com/user-attachments/assets/[a-zA-Z0-9\-]+"
-    let plainUrlMatches = Regex.Matches(content, githubAttachmentPattern)
-    for m in plainUrlMatches do
+    let plainGithubMatches = Regex.Matches(content, githubAttachmentPattern)
+    for m in plainGithubMatches do
         let url = m.Value.Trim()
         // Skip if already found in other formats
         if not (attachments |> Seq.exists (fun (existingUrl, _) -> existingUrl = url)) then
@@ -120,76 +120,33 @@ let parseAllMediaAttachments (content: string) =
                 | _ -> "media"
             attachments.Add((url, finalAltText))
     
+    // 5. Parse other plain URLs that might be media files
+    let plainUrlPattern = @"https?://[^\s<>""')\]]+"
+    let plainUrlMatches = Regex.Matches(content, plainUrlPattern)
+    for m in plainUrlMatches do
+        let url = m.Value.Trim()
+        // Skip if already found in other formats
+        if not (attachments |> Seq.exists (fun (existingUrl, _) -> existingUrl = url)) then
+            // Only include URLs that look like they could be media files
+            let lowerUrl = url.ToLowerInvariant()
+            if lowerUrl.Contains(".jpg") || lowerUrl.Contains(".jpeg") || lowerUrl.Contains(".png") || 
+               lowerUrl.Contains(".gif") || lowerUrl.Contains(".webp") || lowerUrl.Contains(".mp4") || 
+               lowerUrl.Contains(".webm") || lowerUrl.Contains(".mov") || lowerUrl.Contains(".mp3") || 
+               lowerUrl.Contains(".wav") || lowerUrl.Contains(".ogg") then
+                let finalAltText = 
+                    try
+                        let uri = Uri(url)
+                        Path.GetFileNameWithoutExtension(uri.LocalPath)
+                    with
+                    | _ -> "media"
+                attachments.Add((url, finalAltText))
+    
     attachments |> Seq.toArray
 
-// Function to detect media type using HTTP HEAD request when extension is ambiguous
+// Function to detect media type - simplified to avoid network timeouts
 let detectMediaTypeFromUrl (url: string) =
-    async {
-        try
-            // First try basic extension detection
-            let basicType = MediaTypes.MediaTypeHelpers.detectMediaTypeFromUri url
-            if basicType <> MediaTypes.MediaType.Unknown && basicType <> MediaTypes.MediaType.Link then
-                return basicType
-            else
-                // Special handling for GitHub attachment URLs that typically don't have extensions
-                if url.Contains("github.com/user-attachments/assets/") then
-                    // For GitHub attachment URLs, try HTTP HEAD request to follow redirect and get the actual file URL
-                    try
-                        use client = new HttpClient()
-                        client.Timeout <- TimeSpan.FromSeconds(10.0)
-                        
-                        use! response = client.SendAsync(new HttpRequestMessage(HttpMethod.Head, url)) |> Async.AwaitTask
-                        
-                        if response.IsSuccessStatusCode then
-                            // Check if we got redirected and can detect type from final URL
-                            let finalUrl = response.RequestMessage.RequestUri.ToString()
-                            let finalUrlType = MediaTypes.MediaTypeHelpers.detectMediaTypeFromUri finalUrl
-                            if finalUrlType <> MediaTypes.MediaType.Unknown && finalUrlType <> MediaTypes.MediaType.Link then
-                                return finalUrlType
-                            else
-                                // Fallback to Content-Type header
-                                if response.Content.Headers.ContentType <> null then
-                                    let contentType = response.Content.Headers.ContentType.MediaType.ToLower()
-                                    if contentType.StartsWith("image/") then
-                                        return MediaTypes.MediaType.Image
-                                    elif contentType.StartsWith("video/") then
-                                        return MediaTypes.MediaType.Video
-                                    elif contentType.StartsWith("audio/") then
-                                        return MediaTypes.MediaType.Audio
-                                    else
-                                        return MediaTypes.MediaType.Unknown
-                                else
-                                    return MediaTypes.MediaType.Unknown
-                        else
-                            return MediaTypes.MediaType.Unknown
-                    with
-                    | _ -> 
-                        // If HTTP detection fails for GitHub URLs, assume they could be any media type
-                        // and let the user-specified media type guide us
-                        return MediaTypes.MediaType.Unknown
-                else
-                    // For other URLs, try HTTP detection
-                    use client = new HttpClient()
-                    client.Timeout <- TimeSpan.FromSeconds(10.0)
-                    use! response = client.SendAsync(new HttpRequestMessage(HttpMethod.Head, url)) |> Async.AwaitTask
-                    
-                    if response.IsSuccessStatusCode && response.Content.Headers.ContentType <> null then
-                        let contentType = response.Content.Headers.ContentType.MediaType.ToLower()
-                        if contentType.StartsWith("image/") then
-                            return MediaTypes.MediaType.Image
-                        elif contentType.StartsWith("video/") then
-                            return MediaTypes.MediaType.Video
-                        elif contentType.StartsWith("audio/") then
-                            return MediaTypes.MediaType.Audio
-                        else
-                            return MediaTypes.MediaType.Unknown
-                    else
-                        return MediaTypes.MediaType.Unknown
-        with
-        | _ -> 
-            // Fallback to basic detection if HTTP request fails
-            return MediaTypes.MediaTypeHelpers.detectMediaTypeFromUri url
-    }
+    // Use only extension-based detection to avoid network calls
+    MediaTypes.MediaTypeHelpers.detectMediaTypeFromUri url
 
 // Extract all media attachments and clean content
 let mediaAttachments = parseAllMediaAttachments contentWithAttachments
@@ -202,6 +159,9 @@ cleanContent <- Regex.Replace(cleanContent, @"!\[([^\]]*)\]\(([^)]+)\)", "")
 cleanContent <- Regex.Replace(cleanContent, @"<img[^>]*>", "")
 // Remove plain GitHub attachment URLs
 cleanContent <- Regex.Replace(cleanContent, @"https://github\.com/user-attachments/assets/[a-zA-Z0-9\-]+", "")
+// Remove other media URLs that were detected as attachments
+for (url, _) in mediaAttachments do
+    cleanContent <- cleanContent.Replace(url, "")
 cleanContent <- cleanContent.Trim()
 
 // Validate that we have at least one media attachment
@@ -219,17 +179,31 @@ for (url, altText) in mediaAttachments do
         exit 1
     
     // Detect actual media type for each URL
-    let detectedType = detectMediaTypeFromUrl url |> Async.RunSynchronously
+    let detectedType = detectMediaTypeFromUrl url
     
     // For GitHub attachment URLs where we can't determine the type definitively,
-    // use intelligent defaults or allow mixed types
+    // make intelligent guesses based on context and patterns
     let finalType = 
-        if detectedType = MediaTypes.MediaType.Unknown && url.Contains("github.com/user-attachments/assets/") then
+        if (detectedType = MediaTypes.MediaType.Unknown || detectedType = MediaTypes.MediaType.Link) && url.Contains("github.com/user-attachments/assets/") then
+            // For GitHub attachment URLs, try to determine type from attachment patterns
+            // Look for clues in the original content to see how this URL was referenced
+            let isReferencedAsMarkdownImage = contentWithAttachments.Contains($"![") && contentWithAttachments.Contains(url) && contentWithAttachments.Contains($"]({url})")
+            let isPlainUrl = not isReferencedAsMarkdownImage && contentWithAttachments.Contains(url)
+            
             match mediaType with
             | "image" -> MediaTypes.MediaType.Image
-            | "video" -> MediaTypes.MediaType.Video
+            | "video" -> MediaTypes.MediaType.Video  
             | "audio" -> MediaTypes.MediaType.Audio
-            | "mixed" -> MediaTypes.MediaType.Image // Default assumption for unknown GitHub attachments
+            | "mixed" -> 
+                // For mixed media, be smarter about detection
+                if isReferencedAsMarkdownImage then
+                    MediaTypes.MediaType.Image
+                elif isPlainUrl then
+                    // Plain URLs in GitHub issues are often videos/non-image content
+                    MediaTypes.MediaType.Video
+                else
+                    // Default fallback for unknown mixed media
+                    MediaTypes.MediaType.Image
             | _ -> detectedType
         else
             detectedType

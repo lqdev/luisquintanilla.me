@@ -507,22 +507,20 @@ jobs:
               }
               
               const issueBody = context.payload.issue.body;
-              const mediaType = extractFormValue(issueBody, 'Media Type');
               const title = extractFormValue(issueBody, 'Title');
               const content = extractFormValue(issueBody, 'Content and Attachments');
               const orientation = extractFormValue(issueBody, 'Orientation \\(Optional\\)');
               const customSlug = extractFormValue(issueBody, 'Slug \\(Optional\\)');
               const tagsInput = extractFormValue(issueBody, 'Tags \\(Optional\\)');
               
-              console.log('Extracted media type:', mediaType);
               console.log('Extracted title:', title);
               console.log('Extracted content:', content);
               console.log('Extracted orientation:', orientation);
               console.log('Extracted custom slug:', customSlug);
               console.log('Extracted tags:', tagsInput);
               
-              // Set outputs for F# script
-              core.setOutput('media_type', mediaType);
+              // Set outputs for F# script (media type will be automatically detected)
+              core.setOutput('media_type', 'mixed'); // Default to mixed for auto-detection
               core.setOutput('title', title);
               core.setOutput('content', content);
               core.setOutput('orientation', orientation || '');
@@ -582,20 +580,20 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Add ${{ steps.extract-data.outputs.media_type }} media: ${{ steps.extract-data.outputs.title }}"
-          title: "Add ${{ steps.extract-data.outputs.media_type }} media: ${{ steps.extract-data.outputs.title }}"
+          commit-message: "Add media post: ${{ steps.extract-data.outputs.title }}"
+          title: "Add media post: ${{ steps.extract-data.outputs.title }}"
           body: |
             ## New Media Post
             
             **Title:** ${{ steps.extract-data.outputs.title }}
-            **Type:** ${{ steps.extract-data.outputs.media_type }}
+            **Type:** auto-detected
             **Content:** ${{ steps.extract-data.outputs.content }}
             **Orientation:** ${{ steps.extract-data.outputs.orientation }}
             **File:** `_src/media/${{ steps.process-issue.outputs.filename }}`
             
             ### Frontmatter Validation
             - ✅ Title: ${{ steps.extract-data.outputs.title }}
-            - ✅ Media Type: ${{ steps.extract-data.outputs.media_type }}
+            - ✅ Media Type: auto-detected from attachments
             - ✅ Content with Attachments: ${{ steps.extract-data.outputs.content }}
             - ✅ Orientation: ${{ steps.extract-data.outputs.orientation }}
             - ✅ Custom Slug: ${{ steps.extract-data.outputs.slug }}
@@ -622,7 +620,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.issue.number,
-              body: '🎉 Your ${{ steps.extract-data.outputs.media_type }} media post has been processed using F# and .NET 9! A pull request has been created with your content. You can track the progress in the pull requests tab.'
+              body: '🎉 Your media post has been processed using F# and .NET 9! A pull request has been created with your content. Media types have been automatically detected from your attachments. You can track the progress in the pull requests tab.'
             });
             
       - name: Handle processing errors

@@ -11,19 +11,8 @@ body:
         Use this form to create a media post that will automatically generate a pull request with a properly formatted markdown file.
         
         **Note**: This will create a new media post in the `_src/media/` directory and generate a PR for review.
-
-  - type: dropdown
-    id: media_type
-    attributes:
-      label: Media Type
-      description: Select the type of media you are posting
-      options:
-        - image
-        - video
-        - audio
-        - mixed
-    validations:
-      required: true
+        
+        **Media Type Detection**: The system will automatically detect media types (image, video, audio) based on file extensions and content patterns. You can mix different media types in the same post.
 
   - type: input
     id: title
