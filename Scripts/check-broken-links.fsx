@@ -3,7 +3,6 @@
 // Usage: dotnet fsi Scripts/check-broken-links.fsx
 
 #r "nuget: System.Net.Http"
-#r "nuget: FSharp.Data"
 
 open System
 open System.IO
@@ -12,10 +11,17 @@ open System.Text.RegularExpressions
 open System.Threading.Tasks
 open System.Collections.Generic
 
-// Configuration
+// Configuration  
 let baseUrl = "https://www.lqdev.me"
 let srcDirectory = "_src"
 let httpTimeout = TimeSpan.FromSeconds(10.0)
+
+// Add verbose logging for debugging
+let verboseLogging = Environment.GetEnvironmentVariable("VERBOSE_LOGGING") = "true"
+
+let logVerbose (message: string) =
+    if verboseLogging then
+        printfn "🔍 DEBUG: %s" message
 let maxConcurrentRequests = 10
 
 // Types for organizing results
@@ -74,74 +80,63 @@ let classifyAndResolveLink (url: string) : LinkType * string =
         // Skip fragments, mailto, etc.
         (Absolute url, url)
 
-// Check if URL is accessible using HEAD request
-let checkUrlAsync (url: string) : Task<bool * int option * string option> = 
-    task {
-        try
-            if url.StartsWith("mailto:") || url.StartsWith("#") || url.StartsWith("javascript:") then
-                return (true, None, None) // Skip non-HTTP links
-            
+// Check if URL is accessible using HEAD request (synchronous for simplicity)
+let checkUrl (url: string) : bool * int option * string option =
+    logVerbose $"Checking URL: %s{url}"
+    try
+        if url.StartsWith("mailto:") || url.StartsWith("#") || url.StartsWith("javascript:") then
+            logVerbose $"Skipping non-HTTP link: %s{url}"
+            (true, None, None) // Skip non-HTTP links
+        else
             use requestMessage = new HttpRequestMessage(HttpMethod.Head, url)
-            use! response = httpClient.SendAsync(requestMessage)
+            use response = httpClient.SendAsync(requestMessage).Result
             let statusCode = int response.StatusCode
             let isWorking = response.IsSuccessStatusCode
-            return (isWorking, Some statusCode, None)
-        with
-        | :? TaskCanceledException ->
-            return (false, None, Some "Request timeout")
-        | :? HttpRequestException as ex ->
-            return (false, None, Some ex.Message)
-        | ex ->
-            return (false, None, Some ex.Message)
-    }
+            logVerbose $"URL %s{url} -> HTTP %d{statusCode} (Working: %b{isWorking})"
+            (isWorking, Some statusCode, None)
+    with
+    | :? AggregateException as aggEx ->
+        let innerMessage = 
+            match aggEx.InnerException with
+            | :? TaskCanceledException -> "Request timeout"
+            | :? HttpRequestException as httpEx -> httpEx.Message
+            | _ -> aggEx.Message
+        logVerbose $"URL %s{url} failed: %s{innerMessage}"
+        (false, None, Some innerMessage)
+    | ex ->
+        logVerbose $"URL %s{url} failed with exception: %s{ex.Message}"
+        (false, None, Some ex.Message)
 
-// Process a single markdown file
-let processMarkdownFile (filePath: string) : Task<LinkResult list> =
-    task {
-        try
-            let content = File.ReadAllText(filePath)
-            let links = extractLinksFromContent filePath content
-            
-            let! results = 
-                links
-                |> List.map (fun (lineNum, linkText, url) ->
-                    task {
-                        let (linkType, resolvedUrl) = classifyAndResolveLink url
-                        let! (isWorking, statusCode, errorMessage) = checkUrlAsync resolvedUrl
-                        
-                        return {
-                            File = filePath
-                            LineNumber = lineNum
-                            LinkText = linkText
-                            Url = url
-                            LinkType = linkType
-                            IsWorking = isWorking
-                            StatusCode = statusCode
-                            ErrorMessage = errorMessage
-                        }
-                    })
-                |> List.toArray
-                |> Task.WhenAll
-            
-            return Array.toList results
-        with
-        | ex ->
-            printfn "Error processing file %s: %s" filePath ex.Message
-            return []
-    }
-
-// Semaphore for controlling concurrent requests
-let semaphore = new Threading.SemaphoreSlim(maxConcurrentRequests, maxConcurrentRequests)
-
-// Process files with concurrency control
-let processFileWithSemaphore (filePath: string) : Task<LinkResult list> =
-    task {
-        do! semaphore.WaitAsync()
-        try
-            return! processMarkdownFile filePath
-        finally
-            semaphore.Release() |> ignore
-    }
+// Process a single markdown file (synchronous for simplicity)
+let processMarkdownFile (filePath: string) : LinkResult list =
+    try
+        let content = File.ReadAllText(filePath)
+        let links = extractLinksFromContent filePath content
+        
+        printfn "  Processing %s (%d links)" (filePath.Replace("_src/", "")) links.Length
+        
+        let results = 
+            links
+            |> List.map (fun (lineNum, linkText, url) ->
+                let (linkType, resolvedUrl) = classifyAndResolveLink url
+                let (isWorking, statusCode, errorMessage) = checkUrl resolvedUrl
+                
+                {
+                    File = filePath
+                    LineNumber = lineNum
+                    LinkText = linkText
+                    Url = url
+                    LinkType = linkType
+                    IsWorking = isWorking
+                    StatusCode = statusCode
+                    ErrorMessage = errorMessage
+                })
+        
+        results
+    with
+    | ex ->
+        printfn "  ❌ Error processing file %s: %s" filePath ex.Message
+        []
 
 // Find all markdown files in the _src directory
 let findMarkdownFiles (directory: string) : string list =
@@ -149,7 +144,7 @@ let findMarkdownFiles (directory: string) : string list =
         Directory.GetFiles(directory, "*.md", SearchOption.AllDirectories)
         |> Array.toList
     else
-        printfn "Directory %s does not exist" directory
+        printfn "❌ Directory %s does not exist" directory
         []
 
 // Generate broken links report
@@ -252,41 +247,40 @@ let generateReport (results: LinkResult list) : unit =
         printfn "🎉 No broken links found!"
 
 // Main execution
-let main () : Task<unit> =
-    task {
-        printfn "🔍 Starting broken link checker..."
-        printfn "📂 Scanning directory: %s" srcDirectory
-        printfn "🌐 Base URL for relative links: %s" baseUrl
-        printfn "⏱️  HTTP timeout: %A" httpTimeout
-        printfn "🔄 Max concurrent requests: %d" maxConcurrentRequests
-        printfn ""
-        
-        let markdownFiles = findMarkdownFiles srcDirectory
-        printfn "📄 Found %d markdown files" markdownFiles.Length
-        printfn ""
-        
-        if markdownFiles.Length > 0 then
-            printfn "🚀 Processing files..."
-            
-            let! allResults = 
-                markdownFiles
-                |> List.map processFileWithSemaphore
-                |> List.toArray
-                |> Task.WhenAll
-            
-            let results = allResults |> Array.concat |> Array.toList
-            generateReport results
-        else
-            printfn "❌ No markdown files found in %s" srcDirectory
-    }
+printfn "🔍 Starting broken link checker..."
+printfn "📂 Scanning directory: %s" srcDirectory
+printfn "🌐 Base URL for relative links: %s" baseUrl
+printfn "⏱️  HTTP timeout: %A" httpTimeout
+printfn "🔧 Verbose logging: %b" verboseLogging
+printfn "🌐 Environment: %s" (Environment.GetEnvironmentVariable("GITHUB_ACTIONS") |> function null -> "Local" | _ -> "GitHub Actions")
+printfn ""
 
-// Run the main function
-main().Wait()
+logVerbose "Script configuration loaded successfully"
+
+let markdownFiles = findMarkdownFiles srcDirectory
+printfn "📄 Found %d markdown files" markdownFiles.Length
+
+if verboseLogging && markdownFiles.Length > 0 then
+    printfn "📋 Files to process:"
+    markdownFiles |> List.take (min 10 markdownFiles.Length) |> List.iter (fun f -> printfn "   - %s" (f.Replace(srcDirectory + "/", "")))
+    if markdownFiles.Length > 10 then printfn "   ... and %d more files" (markdownFiles.Length - 10)
+
+printfn ""
+
+if markdownFiles.Length > 0 then
+    printfn "🚀 Processing files..."
+    
+    let allResults = 
+        markdownFiles
+        |> List.collect processMarkdownFile
+    
+    generateReport allResults
+else
+    printfn "❌ No markdown files found in %s" srcDirectory
 
 // Cleanup
 httpClient.Dispose()
 httpClientHandler.Dispose()
-semaphore.Dispose()
 
 printfn ""
 printfn "✅ Broken link checker completed!"
