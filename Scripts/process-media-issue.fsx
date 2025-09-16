@@ -11,6 +11,8 @@
 open System
 open System.IO
 open System.Text.RegularExpressions
+open System.Net.Http
+open System.Threading.Tasks
 
 // Get command line arguments
 let args = fsi.CommandLineArgs |> Array.skip 1
@@ -34,10 +36,11 @@ if String.IsNullOrWhiteSpace(mediaType) then
     printfn "❌ Error: Media type is required and cannot be empty"
     exit 1
 
-// Validate media type
-let validMediaTypes = ["image"; "video"; "audio"]
+// Validate media type (allow mixed types for automatic detection)
+let validMediaTypes = ["image"; "video"; "audio"; "mixed"]
 if not (List.contains mediaType validMediaTypes) then
     printfn "❌ Error: Media type must be one of: %s" (String.concat ", " validMediaTypes)
+    printfn "Use 'mixed' to allow different media types in the same post"
     exit 1
 
 if String.IsNullOrWhiteSpace(title) then
@@ -48,16 +51,19 @@ if String.IsNullOrWhiteSpace(contentWithAttachments) then
     printfn "❌ Error: Content with attachments is required and cannot be empty"
     exit 1
 
-// Parse markdown images from content using regex
-// Pattern: ![alt-text](URL) or ![](URL)
-let parseMarkdownImages (content: string) =
-    let imagePattern = @"!\[([^\]]*)\]\(([^)]+)\)"
-    let matches = Regex.Matches(content, imagePattern)
+open System.Net.Http
+open System.Threading.Tasks
+
+// Enhanced function to parse all media attachment formats from GitHub issues
+let parseAllMediaAttachments (content: string) =
+    let attachments = ResizeArray<string * string>()
     
-    [| for m in matches do
+    // 1. Parse markdown images: ![alt-text](URL)
+    let markdownPattern = @"!\[([^\]]*)\]\(([^)]+)\)"
+    let markdownMatches = Regex.Matches(content, markdownPattern)
+    for m in markdownMatches do
         let altText = m.Groups.[1].Value.Trim()
         let url = m.Groups.[2].Value.Trim()
-        // Use filename as alt text if alt text is empty
         let finalAltText = 
             if String.IsNullOrWhiteSpace(altText) then 
                 try
@@ -66,27 +72,199 @@ let parseMarkdownImages (content: string) =
                 with
                 | _ -> "media"
             else altText
-        (url, finalAltText) |]
+        attachments.Add((url, finalAltText))
+    
+    // 2. Parse HTML img tags: <img alt="..." src="...">
+    let htmlImgPattern = @"<img[^>]*\salt\s*=\s*[""']([^""']*)[""'][^>]*\ssrc\s*=\s*[""']([^""']*)[""'][^>]*/?>"
+    let htmlMatches = Regex.Matches(content, htmlImgPattern)
+    for m in htmlMatches do
+        let altText = m.Groups.[1].Value.Trim()
+        let url = m.Groups.[2].Value.Trim()
+        let finalAltText = 
+            if String.IsNullOrWhiteSpace(altText) then 
+                try
+                    let uri = Uri(url)
+                    Path.GetFileNameWithoutExtension(uri.LocalPath)
+                with
+                | _ -> "media"
+            else altText
+        attachments.Add((url, finalAltText))
+    
+    // 3. Parse HTML img tags without alt attribute: <img src="...">
+    let htmlImgNoAltPattern = @"<img[^>]*\ssrc\s*=\s*[""']([^""']*)[""'][^>]*/?>"
+    let htmlNoAltMatches = Regex.Matches(content, htmlImgNoAltPattern)
+    for m in htmlNoAltMatches do
+        let url = m.Groups.[1].Value.Trim()
+        // Skip if already found with alt attribute
+        if not (attachments |> Seq.exists (fun (existingUrl, _) -> existingUrl = url)) then
+            let finalAltText = 
+                try
+                    let uri = Uri(url)
+                    Path.GetFileNameWithoutExtension(uri.LocalPath)
+                with
+                | _ -> "media"
+            attachments.Add((url, finalAltText))
+    
+    // 4. Parse plain GitHub attachment URLs (common for videos)
+    let githubAttachmentPattern = @"https://github\.com/user-attachments/assets/[a-zA-Z0-9\-]+"
+    let plainUrlMatches = Regex.Matches(content, githubAttachmentPattern)
+    for m in plainUrlMatches do
+        let url = m.Value.Trim()
+        // Skip if already found in other formats
+        if not (attachments |> Seq.exists (fun (existingUrl, _) -> existingUrl = url)) then
+            let finalAltText = 
+                try
+                    let uri = Uri(url)
+                    Path.GetFileNameWithoutExtension(uri.LocalPath)
+                with
+                | _ -> "media"
+            attachments.Add((url, finalAltText))
+    
+    attachments |> Seq.toArray
 
-// Extract images and clean content
-let imageAttachments = parseMarkdownImages contentWithAttachments
-let cleanContent = Regex.Replace(contentWithAttachments, @"!\[([^\]]*)\]\(([^)]+)\)", "").Trim()
+// Function to detect media type using HTTP HEAD request when extension is ambiguous
+let detectMediaTypeFromUrl (url: string) =
+    async {
+        try
+            // First try basic extension detection
+            let basicType = MediaTypes.MediaTypeHelpers.detectMediaTypeFromUri url
+            if basicType <> MediaTypes.MediaType.Unknown && basicType <> MediaTypes.MediaType.Link then
+                return basicType
+            else
+                // Special handling for GitHub attachment URLs that typically don't have extensions
+                if url.Contains("github.com/user-attachments/assets/") then
+                    // For GitHub attachment URLs, try HTTP HEAD request to follow redirect and get the actual file URL
+                    try
+                        use client = new HttpClient()
+                        client.Timeout <- TimeSpan.FromSeconds(10.0)
+                        
+                        use! response = client.SendAsync(new HttpRequestMessage(HttpMethod.Head, url)) |> Async.AwaitTask
+                        
+                        if response.IsSuccessStatusCode then
+                            // Check if we got redirected and can detect type from final URL
+                            let finalUrl = response.RequestMessage.RequestUri.ToString()
+                            let finalUrlType = MediaTypes.MediaTypeHelpers.detectMediaTypeFromUri finalUrl
+                            if finalUrlType <> MediaTypes.MediaType.Unknown && finalUrlType <> MediaTypes.MediaType.Link then
+                                return finalUrlType
+                            else
+                                // Fallback to Content-Type header
+                                if response.Content.Headers.ContentType <> null then
+                                    let contentType = response.Content.Headers.ContentType.MediaType.ToLower()
+                                    if contentType.StartsWith("image/") then
+                                        return MediaTypes.MediaType.Image
+                                    elif contentType.StartsWith("video/") then
+                                        return MediaTypes.MediaType.Video
+                                    elif contentType.StartsWith("audio/") then
+                                        return MediaTypes.MediaType.Audio
+                                    else
+                                        return MediaTypes.MediaType.Unknown
+                                else
+                                    return MediaTypes.MediaType.Unknown
+                        else
+                            return MediaTypes.MediaType.Unknown
+                    with
+                    | _ -> 
+                        // If HTTP detection fails for GitHub URLs, assume they could be any media type
+                        // and let the user-specified media type guide us
+                        return MediaTypes.MediaType.Unknown
+                else
+                    // For other URLs, try HTTP detection
+                    use client = new HttpClient()
+                    client.Timeout <- TimeSpan.FromSeconds(10.0)
+                    use! response = client.SendAsync(new HttpRequestMessage(HttpMethod.Head, url)) |> Async.AwaitTask
+                    
+                    if response.IsSuccessStatusCode && response.Content.Headers.ContentType <> null then
+                        let contentType = response.Content.Headers.ContentType.MediaType.ToLower()
+                        if contentType.StartsWith("image/") then
+                            return MediaTypes.MediaType.Image
+                        elif contentType.StartsWith("video/") then
+                            return MediaTypes.MediaType.Video
+                        elif contentType.StartsWith("audio/") then
+                            return MediaTypes.MediaType.Audio
+                        else
+                            return MediaTypes.MediaType.Unknown
+                    else
+                        return MediaTypes.MediaType.Unknown
+        with
+        | _ -> 
+            // Fallback to basic detection if HTTP request fails
+            return MediaTypes.MediaTypeHelpers.detectMediaTypeFromUri url
+    }
 
-// Validate that we have at least one image attachment
-if imageAttachments.Length = 0 then
+// Extract all media attachments and clean content
+let mediaAttachments = parseAllMediaAttachments contentWithAttachments
+
+// Clean content by removing all detected attachment patterns
+let mutable cleanContent = contentWithAttachments
+// Remove markdown images
+cleanContent <- Regex.Replace(cleanContent, @"!\[([^\]]*)\]\(([^)]+)\)", "")
+// Remove HTML img tags
+cleanContent <- Regex.Replace(cleanContent, @"<img[^>]*>", "")
+// Remove plain GitHub attachment URLs
+cleanContent <- Regex.Replace(cleanContent, @"https://github\.com/user-attachments/assets/[a-zA-Z0-9\-]+", "")
+cleanContent <- cleanContent.Trim()
+
+// Validate that we have at least one media attachment
+if mediaAttachments.Length = 0 then
     printfn "❌ Error: No media attachments found. Please drag and drop media files into the content field."
     exit 1
 
-// Validate URLs
+// Validate URLs and detect actual media types
 let urlPattern = @"^https?://.+"
-for (url, _) in imageAttachments do
+let validatedAttachments = ResizeArray<string * string * MediaTypes.MediaType>()
+
+for (url, altText) in mediaAttachments do
     if not (Regex.IsMatch(url, urlPattern)) then
         printfn "❌ Error: Invalid attachment URL: %s" url
         exit 1
+    
+    // Detect actual media type for each URL
+    let detectedType = detectMediaTypeFromUrl url |> Async.RunSynchronously
+    
+    // For GitHub attachment URLs where we can't determine the type definitively,
+    // use intelligent defaults or allow mixed types
+    let finalType = 
+        if detectedType = MediaTypes.MediaType.Unknown && url.Contains("github.com/user-attachments/assets/") then
+            match mediaType with
+            | "image" -> MediaTypes.MediaType.Image
+            | "video" -> MediaTypes.MediaType.Video
+            | "audio" -> MediaTypes.MediaType.Audio
+            | "mixed" -> MediaTypes.MediaType.Image // Default assumption for unknown GitHub attachments
+            | _ -> detectedType
+        else
+            detectedType
+    
+    validatedAttachments.Add((url, altText, finalType))
 
-printfn "📁 Found %d media attachment(s)" imageAttachments.Length
-for (url, alt) in imageAttachments do
-    printfn "  - %s (alt: %s)" url alt
+printfn "📁 Found %d media attachment(s)" validatedAttachments.Count
+for (url, alt, finalType) in validatedAttachments do
+    printfn "  - %s (alt: %s, type: %A)" url alt finalType
+
+// Only validate compatibility for specific media types (not mixed)
+let incompatibleAttachments = 
+    if mediaType = "mixed" then
+        [] // Allow any media types for mixed posts
+    else
+        validatedAttachments 
+        |> Seq.filter (fun (url, _, detectedType) -> 
+            // Skip validation for GitHub attachment URLs where we used user-specified type
+            if url.Contains("github.com/user-attachments/assets/") then
+                false
+            else
+                let compatibleTypes = 
+                    match mediaType with
+                    | "image" -> [MediaTypes.MediaType.Image]
+                    | "video" -> [MediaTypes.MediaType.Video]
+                    | "audio" -> [MediaTypes.MediaType.Audio]
+                    | _ -> [MediaTypes.MediaType.Image; MediaTypes.MediaType.Video; MediaTypes.MediaType.Audio]
+                not (List.contains detectedType compatibleTypes))
+        |> Seq.toList
+
+if not incompatibleAttachments.IsEmpty then
+    printfn "❌ Error: Some attachments don't match the specified media type '%s':" mediaType
+    for (url, _, detectedType) in incompatibleAttachments do
+        printfn "  - %s (detected as %A)" url detectedType
+    exit 1
 
 // Slug generation and sanitization functions
 let sanitizeSlug (slug: string) =
@@ -144,12 +322,19 @@ let aspectRatio =
     | Some value -> value
     | None -> "landscape" // Default to landscape if not specified
 
-// Create the :::media::: block with attachments using their alt text as captions
-let generateMediaItem (url: string, altText: string) =
+// Create the :::media::: block with attachments using their detected types and alt text as captions
+let generateMediaItem (url: string, altText: string, detectedType: MediaTypes.MediaType) =
+    let mediaTypeString = 
+        match detectedType with
+        | MediaTypes.MediaType.Image -> "image"
+        | MediaTypes.MediaType.Video -> "video"
+        | MediaTypes.MediaType.Audio -> "audio"
+        | _ -> "image" // Default fallback
+    
     sprintf "- url: \"%s\"\n  mediaType: \"%s\"\n  aspectRatio: \"%s\"\n  caption: \"%s\"" 
-        url mediaType aspectRatio (altText.Replace("\"", "\\\""))
+        url mediaTypeString aspectRatio (altText.Replace("\"", "\\\""))
 
-let mediaItems = imageAttachments |> Array.map generateMediaItem |> String.concat "\n"
+let mediaItems = validatedAttachments |> Seq.map generateMediaItem |> String.concat "\n"
 let mediaBlock = sprintf ":::media\n%s\n:::media" mediaItems
 
 // Generate filename
@@ -182,7 +367,7 @@ printfn "📐 Aspect Ratio: %s" aspectRatio
 printfn "🔗 Slug: %s" finalSlug
 printfn "📅 Date: %s" timestamp
 printfn "🏷️  Tags: %s" (if tags.Length = 0 then "none" else String.concat ", " tags)
-printfn "📊 Attachments: %d" imageAttachments.Length
+printfn "📊 Attachments: %d" validatedAttachments.Count
 printfn ""
 printfn "📄 Generated markdown file content:"
 printfn "==========================================="
