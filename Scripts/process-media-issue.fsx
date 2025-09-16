@@ -2,7 +2,8 @@
     Process GitHub Issue Template for Media Creation
     
     This script processes GitHub issue template data to create a media post.
-    Usage: dotnet fsi process-media-issue.fsx -- "media_type" "title" "attachment_url" "caption" "orientation" "optional-slug" "optional,tags"
+    It parses markdown images from GitHub's attachment format and creates media blocks.
+    Usage: dotnet fsi process-media-issue.fsx -- "media_type" "title" "content_with_attachments" "orientation" "optional-slug" "optional,tags"
 *)
 
 #r "../bin/Debug/net9.0/PersonalSite.dll"
@@ -15,20 +16,18 @@ open System.Text.RegularExpressions
 let args = fsi.CommandLineArgs |> Array.skip 1
 
 // Validate arguments
-if args.Length < 4 then
+if args.Length < 3 then
     printfn "❌ Error: Missing required arguments"
-    printfn "Usage: dotnet fsi process-media-issue.fsx -- \"media_type\" \"title\" \"attachment_urls\" \"content\" \"caption\" \"orientation\" \"optional-slug\" \"optional,tags\""
-    printfn "Example: dotnet fsi process-media-issue.fsx -- \"image\" \"Beautiful Sunset\" \"https://github.com/user/repo/assets/123/sunset.jpg\" \"Beautiful day at the beach\" \"Golden hour at the beach\" \"landscape\" \"sunset-photo\" \"photography,nature\""
+    printfn "Usage: dotnet fsi process-media-issue.fsx -- \"media_type\" \"title\" \"content_with_attachments\" \"orientation\" \"optional-slug\" \"optional,tags\""
+    printfn "Example: dotnet fsi process-media-issue.fsx -- \"image\" \"Beautiful Sunset\" \"Here's my photo: ![sunset](https://github.com/user/repo/assets/123/sunset.jpg)\" \"landscape\" \"sunset-photo\" \"photography,nature\""
     exit 1
 
 let mediaType = args.[0]
 let title = args.[1]
-let attachmentUrls = args.[2]
-let content = if args.Length > 3 then args.[3].Trim() else ""
-let caption = if args.Length > 4 then args.[4].Trim() else ""
-let orientation = if args.Length > 5 && not (String.IsNullOrWhiteSpace(args.[5])) then Some(args.[5]) else None
-let customSlug = if args.Length > 6 && not (String.IsNullOrWhiteSpace(args.[6])) then Some(args.[6]) else None
-let tagsInput = if args.Length > 7 && not (String.IsNullOrWhiteSpace(args.[7])) then Some(args.[7]) else None
+let contentWithAttachments = args.[2]
+let orientation = if args.Length > 3 && not (String.IsNullOrWhiteSpace(args.[3])) then Some(args.[3]) else None
+let customSlug = if args.Length > 4 && not (String.IsNullOrWhiteSpace(args.[4])) then Some(args.[4]) else None
+let tagsInput = if args.Length > 5 && not (String.IsNullOrWhiteSpace(args.[5])) then Some(args.[5]) else None
 
 // Validate required fields
 if String.IsNullOrWhiteSpace(mediaType) then
@@ -45,28 +44,49 @@ if String.IsNullOrWhiteSpace(title) then
     printfn "❌ Error: Title is required and cannot be empty"
     exit 1
 
-if String.IsNullOrWhiteSpace(attachmentUrls) then
-    printfn "❌ Error: Attachment URL(s) is required and cannot be empty"
+if String.IsNullOrWhiteSpace(contentWithAttachments) then
+    printfn "❌ Error: Content with attachments is required and cannot be empty"
     exit 1
 
-// Parse multiple attachment URLs (newline or comma separated)
-let parseAttachmentUrls (input: string) =
-    input.Split([|'\n'; '\r'; ','; ';'|], StringSplitOptions.RemoveEmptyEntries)
-    |> Array.map (fun url -> url.Trim())
-    |> Array.filter (fun url -> not (String.IsNullOrWhiteSpace(url)))
+// Parse markdown images from content using regex
+// Pattern: ![alt-text](URL) or ![](URL)
+let parseMarkdownImages (content: string) =
+    let imagePattern = @"!\[([^\]]*)\]\(([^)]+)\)"
+    let matches = Regex.Matches(content, imagePattern)
+    
+    [| for m in matches do
+        let altText = m.Groups.[1].Value.Trim()
+        let url = m.Groups.[2].Value.Trim()
+        // Use filename as alt text if alt text is empty
+        let finalAltText = 
+            if String.IsNullOrWhiteSpace(altText) then 
+                try
+                    let uri = Uri(url)
+                    Path.GetFileNameWithoutExtension(uri.LocalPath)
+                with
+                | _ -> "media"
+            else altText
+        (url, finalAltText) |]
 
-let attachmentUrlList = parseAttachmentUrls attachmentUrls
+// Extract images and clean content
+let imageAttachments = parseMarkdownImages contentWithAttachments
+let cleanContent = Regex.Replace(contentWithAttachments, @"!\[([^\]]*)\]\(([^)]+)\)", "").Trim()
 
-if attachmentUrlList.Length = 0 then
-    printfn "❌ Error: No valid attachment URLs found"
+// Validate that we have at least one image attachment
+if imageAttachments.Length = 0 then
+    printfn "❌ Error: No media attachments found. Please drag and drop media files into the content field."
     exit 1
 
-// Validate URL formats for all attachments
+// Validate URLs
 let urlPattern = @"^https?://.+"
-for url in attachmentUrlList do
+for (url, _) in imageAttachments do
     if not (Regex.IsMatch(url, urlPattern)) then
-        printfn "❌ Error: All attachment URLs must be valid HTTP/HTTPS URLs. Invalid: %s" url
+        printfn "❌ Error: Invalid attachment URL: %s" url
         exit 1
+
+printfn "📁 Found %d media attachment(s)" imageAttachments.Length
+for (url, alt) in imageAttachments do
+    printfn "  - %s (alt: %s)" url alt
 
 // Slug generation and sanitization functions
 let sanitizeSlug (slug: string) =
@@ -124,16 +144,12 @@ let aspectRatio =
     | Some value -> value
     | None -> "landscape" // Default to landscape if not specified
 
-// Create the :::media::: block with multiple attachments
-let generateMediaItem (url: string) =
-    let captionField = 
-        if String.IsNullOrWhiteSpace(caption) then ""
-        else sprintf "\n  caption: \"%s\"" (caption.Replace("\"", "\\\""))
-    
-    sprintf "- url: \"%s\"\n  mediaType: \"%s\"\n  aspectRatio: \"%s\"%s" url mediaType aspectRatio captionField
+// Create the :::media::: block with attachments using their alt text as captions
+let generateMediaItem (url: string, altText: string) =
+    sprintf "- url: \"%s\"\n  mediaType: \"%s\"\n  aspectRatio: \"%s\"\n  caption: \"%s\"" 
+        url mediaType aspectRatio (altText.Replace("\"", "\\\""))
 
-let mediaItems = attachmentUrlList |> Array.map generateMediaItem |> String.concat "\n"
-
+let mediaItems = imageAttachments |> Array.map generateMediaItem |> String.concat "\n"
 let mediaBlock = sprintf ":::media\n%s\n:::media" mediaItems
 
 // Generate filename
@@ -142,8 +158,8 @@ let filename = sprintf "%s.md" finalSlug
 // Combine frontmatter, content, and media block
 let fullContent = 
     let contentSection = 
-        if String.IsNullOrWhiteSpace(content) then ""
-        else sprintf "\n\n%s" content
+        if String.IsNullOrWhiteSpace(cleanContent) then ""
+        else sprintf "\n\n%s" cleanContent
     
     sprintf "%s%s\n\n%s" frontmatter contentSection mediaBlock
 
@@ -161,14 +177,12 @@ printfn "✅ Media post created successfully!"
 printfn "📁 File: %s" filePath
 printfn "🏷️  Title: %s" title
 printfn "📸 Media Type: %s" mediaType
-printfn "🔗 URLs: %s" (String.concat ", " attachmentUrlList)
-printfn "📄 Content: %s" (if String.IsNullOrWhiteSpace(content) then "none" else "included")
+printfn "📄 Content: %s" (if String.IsNullOrWhiteSpace(cleanContent) then "none" else "included")
 printfn "📐 Aspect Ratio: %s" aspectRatio
-printfn "💬 Caption: %s" (if String.IsNullOrWhiteSpace(caption) then "none" else caption)
 printfn "🔗 Slug: %s" finalSlug
 printfn "📅 Date: %s" timestamp
 printfn "🏷️  Tags: %s" (if tags.Length = 0 then "none" else String.concat ", " tags)
-printfn "📊 Attachments: %d" attachmentUrlList.Length
+printfn "📊 Attachments: %d" imageAttachments.Length
 printfn ""
 printfn "📄 Generated markdown file content:"
 printfn "==========================================="

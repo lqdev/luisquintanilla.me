@@ -34,50 +34,29 @@ body:
       required: true
 
   - type: textarea
-    id: attachment
-    attributes:
-      label: Attachment(s)
-      description: Attach your media file(s) here. After uploading, copy the URL(s) that GitHub generates. For multiple files, put each URL on a new line.
-      placeholder: |
-        1. Click the attachment area below
-        2. Upload your media file(s) (image, video, or audio)
-        3. GitHub will generate URLs like: https://github.com/user/repo/assets/...
-        4. Copy those URLs and paste them here (one per line for multiple files)
-        
-        Single file example:
-        https://github.com/lqdev/luisquintanilla.me/assets/11130940/example-file.jpg
-        
-        Multiple files example:
-        https://github.com/lqdev/luisquintanilla.me/assets/11130940/image1.jpg
-        https://github.com/lqdev/luisquintanilla.me/assets/11130940/image2.jpg
-    validations:
-      required: true
-
-  - type: textarea
     id: content
     attributes:
-      label: Content (Optional)
-      description: Additional content or description for your media post (supports Markdown). This will appear above the media.
+      label: Content and Attachments
+      description: Write your media post content here. You can drag and drop images, videos, or audio files directly into this field. GitHub will automatically generate markdown for attachments.
       placeholder: |
         Write your media post content here. You can use Markdown formatting.
         
-        - Lists are supported
-        - **Bold** and *italic* text
-        - [Links](https://example.com)
-        - Code blocks and other Markdown features
+        - Drag and drop media files directly into this field
+        - GitHub will automatically create ![filename](URL) markdown for attachments
+        - You can add text, lists, links, and other markdown content
+        - **Bold** and *italic* text are supported
+        - [Links](https://example.com) work normally
         
-        Note: You can leave this blank for media-only posts.
+        Example with attachments:
+        Here's my latest photo from the trip:
+        
+        ![Beautiful sunset](https://github.com/user/repo/assets/12345/sunset.jpg)
+        
+        And here's a video of the waves:
+        
+        ![Ocean waves video](https://github.com/user/repo/assets/12345/waves.mp4)
     validations:
-      required: false
-
-  - type: input
-    id: caption
-    attributes:
-      label: Caption (Optional)
-      description: A caption or description for your media (appears in the media block)
-      placeholder: "e.g., Enjoying the golden hour at the beach"
-    validations:
-      required: false
+      required: true
 
   - type: dropdown
     id: orientation

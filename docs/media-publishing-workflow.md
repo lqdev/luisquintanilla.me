@@ -1,6 +1,6 @@
 # Media Publishing Workflow
 
-This document explains how to use the GitHub Issue Forms workflow to publish media posts (images, videos, audio) to your website.
+This document explains how to use the GitHub Issue Forms workflow to publish media posts (images, videos, audio) to your website using GitHub's built-in attachment functionality.
 
 ## How to Create a Media Post
 
@@ -10,81 +10,100 @@ This document explains how to use the GitHub Issue Forms workflow to publish med
 4. **Fill out the form**:
    - **Media Type**: Select image, video, or audio (required)
    - **Title**: A descriptive title for your media post (required)
-   - **Attachment(s)**: Upload your media file(s) and paste the generated URL(s) (required)
-   - **Content**: Additional content or description for your media post (optional)
-   - **Caption**: A caption or description for your media (optional)
+   - **Content and Attachments**: Write your content and drag/drop media files directly into this field (required)
    - **Orientation**: Select landscape or portrait aspect ratio (optional)
    - **Slug**: Custom URL slug (optional - auto-generated if not provided)
    - **Tags**: Comma-separated tags (optional)
 
 5. **Submit Issue**: The workflow will automatically:
-   - Validate your input and media type
+   - Parse markdown images from your content
+   - Extract alt text as captions for each media item
    - Generate a properly formatted markdown file with :::media::: block
-   - Create a pull request with your content
+   - Create a pull request for review
    - Close the issue automatically
 
-## Attachment Upload Process
+## Content and Attachment Process
 
-The attachment field supports both single and multiple files:
+The enhanced workflow uses GitHub's built-in attachment functionality:
 
-### Single File
-1. **Click the attachment area** in the issue form
-2. **Upload your media file** (image, video, or audio)
-3. **GitHub generates a URL** like: `https://github.com/user/repo/assets/123/filename.ext`
-4. **Copy and paste that URL** into the attachment field
+### How It Works
+1. **Write your content** in the "Content and Attachments" field using normal markdown
+2. **Drag and drop media files** directly into the text area
+3. **GitHub automatically generates** markdown like `![alt-text](URL)` for each file
+4. **Mix text and media** naturally - write content, add attachments, add more content
+5. **Alt text becomes captions** - the alt text you provide becomes the caption for each media item
 
-### Multiple Files
-1. **Upload multiple files** to the attachment area
-2. **GitHub generates multiple URLs**
-3. **Copy all URLs and paste them** into the attachment field (one per line)
+### Example Content Format
+```markdown
+Here's my latest photo from the hiking trip:
 
-**Example attachment URLs:**
-- Single: `https://github.com/lqdev/luisquintanilla.me/assets/11130940/sunset.jpg`
-- Multiple:
-  ```
-  https://github.com/lqdev/luisquintanilla.me/assets/11130940/sunrise.jpg
-  https://github.com/lqdev/luisquintanilla.me/assets/11130940/sunset.jpg
-  ```
+![Beautiful mountain sunrise](https://github.com/user/repo/assets/12345/sunrise.jpg)
+
+The sunrise was absolutely incredible. Here's another view:
+
+![Valley view from summit](https://github.com/user/repo/assets/12345/valley.jpg)
+
+What an amazing experience!
+```
+
+This automatically becomes:
+- **Content**: "Here's my latest photo... What an amazing experience!" (with images removed)
+- **Media Block**: Two media items with captions "Beautiful mountain sunrise" and "Valley view from summit"
+
+### Advantages of This Approach
+- **Natural workflow**: Just like commenting on GitHub issues
+- **No manual URL copying**: GitHub handles the URLs automatically
+- **Individual captions**: Each image can have its own descriptive alt text
+- **Mixed content**: Combine text and media naturally
+- **Filename fallback**: If alt text is empty, uses filename as caption
 
 ## Generated File Format
 
 The workflow creates files in `_src/media/` with proper frontmatter and custom media blocks:
 
-### Full Example (with content and multiple attachments)
+### Single Media Example
+```markdown
+---
+title: "Beautiful Sunset"
+post_type: media
+published_date: "2025-09-15 20:30 -05:00"
+tags: ["photography","nature"]
+---
+
+Here's my sunset photo from the beach trip:
+
+:::media
+- url: "https://github.com/user/repo/assets/12345/sunset.jpg"
+  mediaType: "image"
+  aspectRatio: "landscape"
+  caption: "Golden hour at the beach"
+:::media
+```
+
+### Multiple Media Example
 ```markdown
 ---
 title: "Mountain Views"
 post_type: media
 published_date: "2025-09-15 20:30 -05:00"
-tags: ["photography","nature","travel"]
+tags: ["photography","nature"]
 ---
 
-Beautiful mountain photography from my hiking trip.
+Here are my photos from the mountain trip:
+
+The sunrise was absolutely incredible.
+
+And the sunset was equally beautiful.
 
 :::media
-- url: "https://cdn.lqdev.tech/files/images/sunrise.jpg"
+- url: "https://github.com/user/repo/assets/12345/sunrise.jpg"
   mediaType: "image"
   aspectRatio: "landscape"
-  caption: "Mountain scenery"
-- url: "https://cdn.lqdev.tech/files/images/sunset.jpg"
+  caption: "Sunrise at the summit"
+- url: "https://github.com/user/repo/assets/12345/sunset.jpg"
   mediaType: "image"
   aspectRatio: "landscape"
-  caption: "Mountain scenery"
-:::media
-```
-
-### Minimal Example (required fields only)
-```markdown
----
-title: "Test Video"
-post_type: media
-published_date: "2025-09-15 20:30 -05:00"
----
-
-:::media
-- url: "https://cdn.lqdev.tech/files/videos/test.mp4"
-  mediaType: "video"
-  aspectRatio: "landscape"
+  caption: "Evening sunset view"
 :::media
 ```
 
@@ -110,17 +129,18 @@ The workflow supports three types of media:
 ## Features
 
 - ✅ **Media Type Validation**: Ensures only valid media types (image, video, audio)
-- ✅ **URL Validation**: Checks for proper HTTP/HTTPS URLs
-- ✅ **Multiple Attachments**: Supports multiple media files in a single post
-- ✅ **Content Field**: Allows additional markdown content above the media
+- ✅ **GitHub Attachment Integration**: Uses native drag-and-drop functionality
+- ✅ **Automatic Caption Extraction**: Alt text becomes captions automatically
+- ✅ **Multiple Media Support**: Supports multiple media files in a single post
+- ✅ **Content Mixing**: Natural integration of text and media content
 - ✅ **Custom Media Blocks**: Generates :::media::: blocks for proper rendering
 - ✅ **Auto Slug Generation**: Creates URL-friendly slugs from titles
-- ✅ **Optional Fields**: Gracefully handles missing caption, content, and orientation
+- ✅ **Optional Field Handling**: Gracefully handles missing orientation and fields
 - ✅ **Tag Processing**: Handles comma-separated tags with deduplication
 - ✅ **Timezone Aware**: Generates proper EST timestamps
 - ✅ **Error Handling**: Clear error messages for invalid input
 - ✅ **Pull Request Workflow**: Review changes before publishing
-- ✅ **Consolidated Processing**: Uses single workflow to avoid dual triggering
+- ✅ **Consolidated Architecture**: Integrates seamlessly with existing workflows
 
 ## Field Reference
 
@@ -128,9 +148,7 @@ The workflow supports three types of media:
 |-------|------|----------|-------------|---------|
 | Media Type | Dropdown | Yes | Type of media content | `image`, `video`, `audio` |
 | Title | Text | Yes | Descriptive title for the post | `"Beautiful Mountain View"` |
-| Attachment(s) | Textarea | Yes | GitHub-generated URL(s) after upload | Single: `https://github.com/.../image.jpg`<br>Multiple: One URL per line |
-| Content | Textarea | No | Additional content above media | `"Beautiful day at the beach"` |
-| Caption | Text | No | Description or caption text | `"Taken during my hiking trip"` |
+| Content and Attachments | Textarea | Yes | Content with drag-and-drop media | Text with `![alt](URL)` images |
 | Orientation | Dropdown | No | Aspect ratio for display | `landscape`, `portrait` |
 | Slug | Text | No | Custom URL slug | `mountain-view` |
 | Tags | Text | No | Comma-separated tags | `photography, nature, hiking` |
@@ -138,10 +156,10 @@ The workflow supports three types of media:
 ## Default Behaviors
 
 - **Orientation**: Defaults to `landscape` if not specified
-- **Caption**: Omitted from output if empty
+- **Caption**: Uses alt text from markdown images, filename as fallback
 - **Slug**: Auto-generated from title if not provided
 - **Tags**: Empty array if not provided
-- **Aspect Ratio**: Uses orientation value or defaults to landscape
+- **Content Processing**: Images are extracted and moved to :::media::: block
 
 ## Troubleshooting
 
@@ -150,23 +168,19 @@ The workflow supports three types of media:
 **❌ "Media type must be one of: image, video, audio"**
 - Solution: Select a valid media type from the dropdown
 
-**❌ "Attachment URL(s) is required and cannot be empty"**
-- Solution: Ensure you've uploaded files and copied the GitHub-generated URLs
-- For multiple files, put each URL on a new line
-
-**❌ "No valid attachment URLs found"**
-- Solution: Check that URLs are properly formatted and separated (one per line)
-- Ensure URLs start with `http://` or `https://`
-
-**❌ "All attachment URLs must be valid HTTP/HTTPS URLs"**
-- Solution: Verify each URL is complete and properly formatted
-- Check that you've copied the complete GitHub-generated URLs
+**❌ "No media attachments found"**
+- Solution: Drag and drop media files into the content field
+- Ensure files generate `![alt-text](URL)` markdown format
 
 **❌ "Title is required and cannot be empty"**
 - Solution: Provide a descriptive title for your media post
 
-**❌ "Missing required arguments"**
-- Solution: Fill out all required fields (Media Type, Title, Attachment)
+**❌ "Content with attachments is required"**
+- Solution: Add content and at least one media attachment
+
+**❌ "Invalid attachment URL"**
+- Solution: Ensure dragged files generate proper GitHub URLs
+- Check that URLs start with `http://` or `https://`
 
 ### Workflow Issues
 
@@ -177,29 +191,27 @@ The workflow supports three types of media:
 
 **Pull request not created:**
 - Check the F# script execution in GitHub Actions logs
-- Verify all required fields were filled correctly
-- Ensure attachment URL is accessible
+- Verify media attachments were properly formatted as markdown images
+- Ensure at least one media attachment is present
 
-### File Upload Tips
+### Content Tips
 
-1. **File Size**: Keep media files reasonable size for web use
-2. **Format Support**: Use common web formats (JPG, MP4, MP3)
-3. **URL Copying**: Make sure to copy the complete GitHub-generated URL
-4. **External URLs**: Can use external CDN URLs if preferred
+1. **File Uploads**: Drag and drop files directly into the content textarea
+2. **Alt Text**: Provide descriptive alt text for better captions
+3. **Mixed Content**: Combine text and media naturally
+4. **Format Support**: Use common web formats (JPG, MP4, MP3)
 
 ## Testing
 
 The workflow includes a comprehensive test suite (`Scripts/test-media-workflow.sh`) that validates:
 
-- ✅ Image posts with full metadata and content
-- ✅ Video posts with minimal fields
-- ✅ Audio posts with custom orientation and content
-- ✅ Multiple attachments support
-- ✅ Error handling for invalid media types
-- ✅ Error handling for missing arguments
-- ✅ Proper :::media::: block generation
-- ✅ Content field support
-- ✅ Frontmatter format validation
+- ✅ Single image with markdown content and alt text captions
+- ✅ Multiple images with individual captions
+- ✅ Video posts with minimal content
+- ✅ Error handling for missing attachments
+- ✅ Filename fallback for missing alt text
+- ✅ Markdown image parsing and content cleanup
+- ✅ GitHub attachment format compatibility
 
 Run tests locally:
 ```bash
@@ -215,12 +227,21 @@ Run tests locally:
 3. **Workflow Integration**: `process-content-issue.yml` (process-media job)
 4. **Test Suite**: `Scripts/test-media-workflow.sh`
 
+### Markdown Image Processing
+
+The workflow parses markdown images using regex pattern `!\[([^\]]*)\]\(([^)]+)\)`:
+- Extracts URL and alt text from each `![alt-text](URL)` occurrence
+- Uses alt text as caption, filename as fallback if alt text is empty
+- Removes image markdown from content text
+- Generates individual media items in :::media::: block
+
 ### Generated Output
 
-The workflow transforms form input into structured markdown with:
+The workflow transforms GitHub's native attachment format into structured markdown with:
 - Standard frontmatter following existing media patterns
-- Custom :::media::: blocks with proper metadata
+- Custom :::media::: blocks with proper metadata and individual captions
+- Clean content with images moved to dedicated media section
 - URL-safe filenames and directory structure
 - Timezone-aware timestamps in EST (-05:00)
 
-This implementation follows the proven pattern established by the bookmark (#259→#260) and response (#249→#250) publishing workflows while being specifically optimized for media content requirements.
+This implementation leverages GitHub's built-in attachment functionality while providing media-specific optimizations and maintaining compatibility with the existing domain model and build system.
