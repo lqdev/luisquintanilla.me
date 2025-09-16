@@ -7,14 +7,6 @@ tags: ["media","audio","video","image"]
 
 This post contains different kind of media
 
-
-
-
-
-Maybe some audio
-
-https://ia800400.us.archive.org/30/items/Boot_Sounds_Compilation/Windows%2095%20-%20Boot.flac
-
 :::media
 - url: "https://github.com/user-attachments/assets/18a1df8b-8242-4e69-aa11-28e8d60f1cc0"
   mediaType: "image"
