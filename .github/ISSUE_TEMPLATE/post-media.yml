@@ -21,6 +21,7 @@ body:
         - image
         - video
         - audio
+        - mixed
     validations:
       required: true
 
