@@ -62,7 +62,8 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                         | "streams" -> $"/streams/{fileName}/"
                         | "media" -> $"/media/{fileName}/"
                         // Specific response types also route to /responses/
-                        | "star" | "reply" | "reshare" | "bookmark" -> $"/bookmarks/{fileName}/"
+                        | "star" | "reply" | "reshare" -> $"/responses/{fileName}/"
+                        | "bookmark" -> $"/bookmarks/{fileName}/"
                         | _ -> $"/{contentType}/{fileName}/"
                     
                     let properPermalink = getProperPermalink item.ContentType fileName
@@ -275,7 +276,8 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                         | "streams" -> $"/streams/{fileName}/"
                         | "media" -> $"/media/{fileName}/"
                         // Specific response types also route to /responses/
-                        | "star" | "reply" | "reshare" | "bookmark" -> $"/bookmarks/{fileName}/"
+                        | "star" | "reply" | "reshare" -> $"/responses/{fileName}/"
+                        | "bookmark" -> $"/bookmarks/{fileName}/"
                         | _ -> $"/{contentType}/{fileName}/"
                     
                     let properPermalink = getProperPermalink item.ContentType fileName
