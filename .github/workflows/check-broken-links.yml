@@ -1,3 +1,4 @@
+---
 name: Check Broken Links
 
 on:
@@ -10,44 +11,45 @@ on:
 jobs:
   check-broken-links:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+
       - name: Setup .NET 9
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
-          
+
       - name: Build F# project
         run: dotnet build
-        
+
       - name: Run broken link checker
         id: check-links
         run: |
           # Run the broken link checker and capture output
           OUTPUT=$(dotnet fsi Scripts/check-broken-links.fsx 2>&1)
           EXIT_CODE=$?
-          
+
           echo "Broken link checker output:"
           echo "$OUTPUT"
-          
+
           # Extract broken link count from output
-          BROKEN_COUNT=$(echo "$OUTPUT" | grep "Broken links:" | sed 's/.*Broken links: //')
-          
+          BROKEN_COUNT=$(echo "$OUTPUT" | \
+            grep "Broken links:" | sed 's/.*Broken links: //')
+
           if [ -z "$BROKEN_COUNT" ]; then
             BROKEN_COUNT=0
           fi
-          
+
           echo "broken_count=$BROKEN_COUNT" >> $GITHUB_OUTPUT
-          
+
           # Save the full output for issue creation
           echo "$OUTPUT" > /tmp/link_check_results.txt
           echo "results_file=/tmp/link_check_results.txt" >> $GITHUB_OUTPUT
-          
+
           exit $EXIT_CODE
-          
+
       - name: Create GitHub issue for broken links
         if: steps.check-links.outputs.broken_count > 0
         uses: actions/github-script@v7
@@ -56,21 +58,30 @@ jobs:
           script: |
             const fs = require('fs');
             const resultsFile = '${{ steps.check-links.outputs.results_file }}';
-            
+
             // Read the full results
             const fullOutput = fs.readFileSync(resultsFile, 'utf8');
-            
+
             // Extract the GitHub issue format section
-            const issueStartIndex = fullOutput.indexOf('=== GITHUB ISSUE FORMAT ===');
+            const issueStartIndex = fullOutput.indexOf(
+              '=== GITHUB ISSUE FORMAT ===');
             let issueBody = '';
-            
+
             if (issueStartIndex !== -1) {
-              issueBody = fullOutput.substring(issueStartIndex + '=== GITHUB ISSUE FORMAT ==='.length).trim();
+              issueBody = fullOutput.substring(
+                issueStartIndex + '=== GITHUB ISSUE FORMAT ==='.length
+              ).trim();
             } else {
               // Fallback if the format section is not found
-              issueBody = `## Broken Links Found\n\nThe automated link checker found ${{ steps.check-links.outputs.broken_count }} broken links.\n\n\`\`\`\n${fullOutput}\n\`\`\``;
+              issueBody = `## Broken Links Found
+
+            The automated link checker found ${{ steps.check-links.outputs.broken_count }} broken links.
+
+            \`\`\`
+            ${fullOutput}
+            \`\`\``;
             }
-            
+
             // Create the issue
             const issue = await github.rest.issues.create({
               owner: context.repo.owner,
@@ -79,14 +90,14 @@ jobs:
               body: issueBody,
               labels: ['maintenance', 'broken-links']
             });
-            
+
             console.log(`Created issue #${issue.data.number} for broken links`);
-            
+
       - name: Add comment if no broken links
         if: steps.check-links.outputs.broken_count == 0
         run: |
-          echo "🎉 No broken links found! All ${{ steps.check-links.outputs.total_count }} links are working correctly."
-          
+          echo "🎉 No broken links found! All links are working correctly."
+
       - name: Clean up temporary files
         if: always()
         run: |
