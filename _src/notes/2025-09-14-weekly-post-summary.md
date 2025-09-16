@@ -13,7 +13,7 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 ## Bookmarks
 
-- [Real Simple Licensing](/responses/real-simple-licensing-open-standard)
+- [Real Simple Licensing](/bookmarks/real-simple-licensing-open-standard)
 
 ## Replies
 
