@@ -18,7 +18,7 @@ echo
 
 # Test 1: Valid image with all fields
 echo "🧪 Test 1: Image with all fields"
-OUTPUT=$(dotnet fsi Scripts/process-media-issue.fsx -- "image" "Beautiful Sunset" "https://cdn.lqdev.tech/files/images/sunset.jpg" "Golden hour at the beach" "landscape" "sunset-photo" "photography,nature,travel" 2>&1)
+OUTPUT=$(dotnet fsi Scripts/process-media-issue.fsx -- "image" "Beautiful Sunset" "https://cdn.lqdev.tech/files/images/sunset.jpg" "A wonderful day at the beach with perfect lighting." "Golden hour at the beach" "landscape" "sunset-photo" "photography,nature,travel" 2>&1)
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -eq 0 ]; then
@@ -58,7 +58,7 @@ echo
 
 # Test 2: Video with minimal fields
 echo "🧪 Test 2: Video with minimal fields"
-OUTPUT=$(dotnet fsi Scripts/process-media-issue.fsx -- "video" "Test Video" "https://cdn.lqdev.tech/files/videos/test.mp4" "" "" "" "" 2>&1)
+OUTPUT=$(dotnet fsi Scripts/process-media-issue.fsx -- "video" "Test Video" "https://cdn.lqdev.tech/files/videos/test.mp4" "" "" "" "" "" 2>&1)
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -eq 0 ]; then
@@ -99,7 +99,7 @@ echo
 
 # Test 3: Audio with portrait orientation
 echo "🧪 Test 3: Audio with portrait orientation"
-OUTPUT=$(dotnet fsi Scripts/process-media-issue.fsx -- "audio" "Podcast Episode" "https://cdn.lqdev.tech/files/audio/episode.mp3" "Latest episode" "portrait" "" "podcast,audio" 2>&1)
+OUTPUT=$(dotnet fsi Scripts/process-media-issue.fsx -- "audio" "Podcast Episode" "https://cdn.lqdev.tech/files/audio/episode.mp3" "Latest episode discussing technology trends." "Latest episode" "portrait" "" "podcast,audio" 2>&1)
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -eq 0 ]; then
@@ -132,7 +132,7 @@ echo
 
 # Test 4: Error case - invalid media type
 echo "🧪 Test 4: Invalid media type error handling"
-OUTPUT=$(dotnet fsi Scripts/process-media-issue.fsx -- "document" "Test" "https://example.com" "" "" "" "" 2>&1)
+OUTPUT=$(dotnet fsi Scripts/process-media-issue.fsx -- "document" "Test" "https://example.com" "" "" "" "" "" 2>&1)
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -ne 0 ]; then
@@ -170,16 +170,53 @@ else
 fi
 echo
 
+# Test 6: Multiple attachments
+echo "🧪 Test 6: Multiple attachments"
+MULTI_URLS="https://cdn.lqdev.tech/files/images/sunrise.jpg
+https://cdn.lqdev.tech/files/images/sunset.jpg"
+OUTPUT=$(dotnet fsi Scripts/process-media-issue.fsx -- "image" "Mountain Views" "$MULTI_URLS" "Beautiful mountain photography" "Mountain scenery" "landscape" "mountain-views" "photography,nature" 2>&1)
+EXIT_CODE=$?
+
+if [ $EXIT_CODE -eq 0 ]; then
+    echo "✅ Test 6 passed"
+    if [ -f "_src/media/mountain-views.md" ]; then
+        echo "✅ File created successfully"
+        if grep -q "url: \"https://cdn.lqdev.tech/files/images/sunrise.jpg\"" "_src/media/mountain-views.md" && grep -q "url: \"https://cdn.lqdev.tech/files/images/sunset.jpg\"" "_src/media/mountain-views.md"; then
+            echo "✅ Multiple attachments processed correctly"
+        else
+            echo "❌ Multiple attachments not processed correctly"
+            exit 1
+        fi
+        if grep -q "Beautiful mountain photography" "_src/media/mountain-views.md"; then
+            echo "✅ Content included correctly"
+        else
+            echo "❌ Content not included"
+            exit 1
+        fi
+        rm "_src/media/mountain-views.md"
+    else
+        echo "❌ File not created"
+        exit 1
+    fi
+else
+    echo "❌ Test 6 failed with exit code $EXIT_CODE"
+    echo "$OUTPUT"
+    exit 1
+fi
+echo
+
 echo "🎉 All tests passed!"
 echo "✅ Media publishing workflow is working correctly"
 echo ""
 echo "📋 Summary:"
-echo "- ✅ Image posts with full metadata"
+echo "- ✅ Image posts with full metadata and content"
 echo "- ✅ Video posts with minimal fields"
-echo "- ✅ Audio posts with custom orientation"
+echo "- ✅ Audio posts with custom orientation and content"
 echo "- ✅ Error handling for invalid media types"
 echo "- ✅ Error handling for missing arguments"
+echo "- ✅ Multiple attachments support"
 echo "- ✅ Proper :::media::: block generation"
+echo "- ✅ Content field support"
 echo "- ✅ Frontmatter format matching existing files"
 echo "- ✅ Slug generation and sanitization"
 echo "- ✅ Tag processing and validation"

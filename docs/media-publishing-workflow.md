@@ -10,7 +10,8 @@ This document explains how to use the GitHub Issue Forms workflow to publish med
 4. **Fill out the form**:
    - **Media Type**: Select image, video, or audio (required)
    - **Title**: A descriptive title for your media post (required)
-   - **Attachment**: Upload your media file and paste the generated URL (required)
+   - **Attachment(s)**: Upload your media file(s) and paste the generated URL(s) (required)
+   - **Content**: Additional content or description for your media post (optional)
    - **Caption**: A caption or description for your media (optional)
    - **Orientation**: Select landscape or portrait aspect ratio (optional)
    - **Slug**: Custom URL slug (optional - auto-generated if not provided)
@@ -24,36 +25,51 @@ This document explains how to use the GitHub Issue Forms workflow to publish med
 
 ## Attachment Upload Process
 
-The attachment field requires a specific process:
+The attachment field supports both single and multiple files:
 
+### Single File
 1. **Click the attachment area** in the issue form
 2. **Upload your media file** (image, video, or audio)
 3. **GitHub generates a URL** like: `https://github.com/user/repo/assets/123/filename.ext`
 4. **Copy and paste that URL** into the attachment field
 
+### Multiple Files
+1. **Upload multiple files** to the attachment area
+2. **GitHub generates multiple URLs**
+3. **Copy all URLs and paste them** into the attachment field (one per line)
+
 **Example attachment URLs:**
-- Images: `https://github.com/lqdev/luisquintanilla.me/assets/11130940/sunset.jpg`
-- Videos: `https://cdn.lqdev.tech/files/videos/demo.mp4`
-- Audio: `https://cdn.lqdev.tech/files/audio/podcast.mp3`
+- Single: `https://github.com/lqdev/luisquintanilla.me/assets/11130940/sunset.jpg`
+- Multiple:
+  ```
+  https://github.com/lqdev/luisquintanilla.me/assets/11130940/sunrise.jpg
+  https://github.com/lqdev/luisquintanilla.me/assets/11130940/sunset.jpg
+  ```
 
 ## Generated File Format
 
 The workflow creates files in `_src/media/` with proper frontmatter and custom media blocks:
 
-### Full Example (with all fields)
+### Full Example (with content and multiple attachments)
 ```markdown
 ---
-title: "Beautiful Sunset"
+title: "Mountain Views"
 post_type: media
 published_date: "2025-09-15 20:30 -05:00"
 tags: ["photography","nature","travel"]
 ---
 
+Beautiful mountain photography from my hiking trip.
+
 :::media
+- url: "https://cdn.lqdev.tech/files/images/sunrise.jpg"
+  mediaType: "image"
+  aspectRatio: "landscape"
+  caption: "Mountain scenery"
 - url: "https://cdn.lqdev.tech/files/images/sunset.jpg"
   mediaType: "image"
   aspectRatio: "landscape"
-  caption: "Golden hour at the beach"
+  caption: "Mountain scenery"
 :::media
 ```
 
@@ -95,9 +111,11 @@ The workflow supports three types of media:
 
 - ✅ **Media Type Validation**: Ensures only valid media types (image, video, audio)
 - ✅ **URL Validation**: Checks for proper HTTP/HTTPS URLs
+- ✅ **Multiple Attachments**: Supports multiple media files in a single post
+- ✅ **Content Field**: Allows additional markdown content above the media
 - ✅ **Custom Media Blocks**: Generates :::media::: blocks for proper rendering
 - ✅ **Auto Slug Generation**: Creates URL-friendly slugs from titles
-- ✅ **Optional Fields**: Gracefully handles missing caption and orientation
+- ✅ **Optional Fields**: Gracefully handles missing caption, content, and orientation
 - ✅ **Tag Processing**: Handles comma-separated tags with deduplication
 - ✅ **Timezone Aware**: Generates proper EST timestamps
 - ✅ **Error Handling**: Clear error messages for invalid input
@@ -110,7 +128,8 @@ The workflow supports three types of media:
 |-------|------|----------|-------------|---------|
 | Media Type | Dropdown | Yes | Type of media content | `image`, `video`, `audio` |
 | Title | Text | Yes | Descriptive title for the post | `"Beautiful Mountain View"` |
-| Attachment | Textarea | Yes | GitHub-generated URL after upload | `https://github.com/.../image.jpg` |
+| Attachment(s) | Textarea | Yes | GitHub-generated URL(s) after upload | Single: `https://github.com/.../image.jpg`<br>Multiple: One URL per line |
+| Content | Textarea | No | Additional content above media | `"Beautiful day at the beach"` |
 | Caption | Text | No | Description or caption text | `"Taken during my hiking trip"` |
 | Orientation | Dropdown | No | Aspect ratio for display | `landscape`, `portrait` |
 | Slug | Text | No | Custom URL slug | `mountain-view` |
@@ -131,9 +150,17 @@ The workflow supports three types of media:
 **❌ "Media type must be one of: image, video, audio"**
 - Solution: Select a valid media type from the dropdown
 
-**❌ "Attachment URL must be a valid HTTP/HTTPS URL"**
-- Solution: Ensure you've uploaded a file and copied the GitHub-generated URL
-- Check that the URL starts with `http://` or `https://`
+**❌ "Attachment URL(s) is required and cannot be empty"**
+- Solution: Ensure you've uploaded files and copied the GitHub-generated URLs
+- For multiple files, put each URL on a new line
+
+**❌ "No valid attachment URLs found"**
+- Solution: Check that URLs are properly formatted and separated (one per line)
+- Ensure URLs start with `http://` or `https://`
+
+**❌ "All attachment URLs must be valid HTTP/HTTPS URLs"**
+- Solution: Verify each URL is complete and properly formatted
+- Check that you've copied the complete GitHub-generated URLs
 
 **❌ "Title is required and cannot be empty"**
 - Solution: Provide a descriptive title for your media post
@@ -164,12 +191,14 @@ The workflow supports three types of media:
 
 The workflow includes a comprehensive test suite (`Scripts/test-media-workflow.sh`) that validates:
 
-- ✅ Image posts with full metadata
+- ✅ Image posts with full metadata and content
 - ✅ Video posts with minimal fields
-- ✅ Audio posts with custom orientation
+- ✅ Audio posts with custom orientation and content
+- ✅ Multiple attachments support
 - ✅ Error handling for invalid media types
 - ✅ Error handling for missing arguments
 - ✅ Proper :::media::: block generation
+- ✅ Content field support
 - ✅ Frontmatter format validation
 
 Run tests locally:

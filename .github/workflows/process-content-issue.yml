@@ -509,7 +509,8 @@ jobs:
               const issueBody = context.payload.issue.body;
               const mediaType = extractFormValue(issueBody, 'Media Type');
               const title = extractFormValue(issueBody, 'Title');
-              const attachment = extractFormValue(issueBody, 'Attachment');
+              const attachment = extractFormValue(issueBody, 'Attachment\\(s\\)');
+              const content = extractFormValue(issueBody, 'Content \\(Optional\\)');
               const caption = extractFormValue(issueBody, 'Caption \\(Optional\\)');
               const orientation = extractFormValue(issueBody, 'Orientation \\(Optional\\)');
               const customSlug = extractFormValue(issueBody, 'Slug \\(Optional\\)');
@@ -518,6 +519,7 @@ jobs:
               console.log('Extracted media type:', mediaType);
               console.log('Extracted title:', title);
               console.log('Extracted attachment:', attachment);
+              console.log('Extracted content:', content);
               console.log('Extracted caption:', caption);
               console.log('Extracted orientation:', orientation);
               console.log('Extracted custom slug:', customSlug);
@@ -527,6 +529,7 @@ jobs:
               core.setOutput('media_type', mediaType);
               core.setOutput('title', title);
               core.setOutput('attachment', attachment);
+              core.setOutput('content', content);
               core.setOutput('caption', caption);
               core.setOutput('orientation', orientation || '');
               core.setOutput('slug', customSlug || '');
@@ -546,6 +549,7 @@ jobs:
           ISSUE_MEDIA_TYPE: ${{ steps.extract-data.outputs.media_type }}
           ISSUE_TITLE: ${{ steps.extract-data.outputs.title }}
           ISSUE_ATTACHMENT: ${{ steps.extract-data.outputs.attachment }}
+          ISSUE_CONTENT: ${{ steps.extract-data.outputs.content }}
           ISSUE_CAPTION: ${{ steps.extract-data.outputs.caption }}
           ISSUE_ORIENTATION: ${{ steps.extract-data.outputs.orientation }}
           ISSUE_SLUG: ${{ steps.extract-data.outputs.slug }}
@@ -556,17 +560,18 @@ jobs:
           echo "$ISSUE_MEDIA_TYPE" > /tmp/media_type.txt
           echo "$ISSUE_TITLE" > /tmp/title.txt
           echo "$ISSUE_ATTACHMENT" > /tmp/attachment.txt
+          echo "$ISSUE_CONTENT" > /tmp/content.txt
           echo "$ISSUE_CAPTION" > /tmp/caption.txt
           echo "$ISSUE_ORIENTATION" > /tmp/orientation.txt
           echo "$ISSUE_SLUG" > /tmp/slug.txt
           echo "$ISSUE_TAGS" > /tmp/tags.txt
           
           # Run F# script with file-based parameters
-          OUTPUT=$(dotnet fsi Scripts/process-media-issue.fsx -- "$(cat /tmp/media_type.txt)" "$(cat /tmp/title.txt)" "$(cat /tmp/attachment.txt)" "$(cat /tmp/caption.txt)" "$(cat /tmp/orientation.txt)" "$(cat /tmp/slug.txt)" "$(cat /tmp/tags.txt)" 2>&1)
+          OUTPUT=$(dotnet fsi Scripts/process-media-issue.fsx -- "$(cat /tmp/media_type.txt)" "$(cat /tmp/title.txt)" "$(cat /tmp/attachment.txt)" "$(cat /tmp/content.txt)" "$(cat /tmp/caption.txt)" "$(cat /tmp/orientation.txt)" "$(cat /tmp/slug.txt)" "$(cat /tmp/tags.txt)" 2>&1)
           EXIT_CODE=$?
           
           # Clean up temporary files
-          rm -f /tmp/media_type.txt /tmp/title.txt /tmp/attachment.txt /tmp/caption.txt /tmp/orientation.txt /tmp/slug.txt /tmp/tags.txt
+          rm -f /tmp/media_type.txt /tmp/title.txt /tmp/attachment.txt /tmp/content.txt /tmp/caption.txt /tmp/orientation.txt /tmp/slug.txt /tmp/tags.txt
           
           echo "Script output:"
           echo "$OUTPUT"
@@ -594,7 +599,8 @@ jobs:
             
             **Title:** ${{ steps.extract-data.outputs.title }}
             **Type:** ${{ steps.extract-data.outputs.media_type }}
-            **Attachment:** ${{ steps.extract-data.outputs.attachment }}
+            **Attachment(s):** ${{ steps.extract-data.outputs.attachment }}
+            **Content:** ${{ steps.extract-data.outputs.content }}
             **Caption:** ${{ steps.extract-data.outputs.caption }}
             **Orientation:** ${{ steps.extract-data.outputs.orientation }}
             **File:** `_src/media/${{ steps.process-issue.outputs.filename }}`
@@ -602,7 +608,8 @@ jobs:
             ### Frontmatter Validation
             - ✅ Title: ${{ steps.extract-data.outputs.title }}
             - ✅ Media Type: ${{ steps.extract-data.outputs.media_type }}
-            - ✅ Attachment URL: ${{ steps.extract-data.outputs.attachment }}
+            - ✅ Attachment URL(s): ${{ steps.extract-data.outputs.attachment }}
+            - ✅ Content: ${{ steps.extract-data.outputs.content }}
             - ✅ Caption: ${{ steps.extract-data.outputs.caption }}
             - ✅ Orientation: ${{ steps.extract-data.outputs.orientation }}
             - ✅ Custom Slug: ${{ steps.extract-data.outputs.slug }}
