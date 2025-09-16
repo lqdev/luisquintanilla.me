@@ -27,27 +27,33 @@ jobs:
       - name: Run broken link checker
         id: check-links
         run: |
-          # Run the broken link checker and capture output
-          OUTPUT=$(dotnet fsi Scripts/check-broken-links.fsx 2>&1)
-          EXIT_CODE=$?
-
-          echo "Broken link checker output:"
-          echo "$OUTPUT"
-
-          # Extract broken link count from output
-          BROKEN_COUNT=$(echo "$OUTPUT" | \
-            grep "Broken links:" | sed 's/.*Broken links: //')
-
-          if [ -z "$BROKEN_COUNT" ]; then
-            BROKEN_COUNT=0
+          echo "🔍 Running broken link checker..."
+          echo "📋 Output will be captured for analysis"
+          
+          # Run the F# script directly and capture both stdout and stderr
+          if dotnet fsi Scripts/check-broken-links.fsx > link_check_output.txt 2>&1; then
+            echo "✅ Link checker completed successfully"
+            EXIT_CODE=0
+          else
+            echo "❌ Link checker failed with errors"
+            EXIT_CODE=1
           fi
-
+          
+          # Display the output for debugging
+          echo ""
+          echo "=== BROKEN LINK CHECKER OUTPUT ==="
+          cat link_check_output.txt
+          echo "=== END OUTPUT ==="
+          echo ""
+          
+          # Extract broken link count from output
+          BROKEN_COUNT=$(grep "Broken links:" link_check_output.txt | sed 's/.*Broken links: //' || echo "0")
+          
+          echo "📊 Analysis: Found $BROKEN_COUNT broken links"
           echo "broken_count=$BROKEN_COUNT" >> $GITHUB_OUTPUT
-
-          # Save the full output for issue creation
-          echo "$OUTPUT" > /tmp/link_check_results.txt
-          echo "results_file=/tmp/link_check_results.txt" >> $GITHUB_OUTPUT
-
+          echo "results_file=link_check_output.txt" >> $GITHUB_OUTPUT
+          
+          # Exit with the original exit code
           exit $EXIT_CODE
 
       - name: Create GitHub issue for broken links
@@ -101,4 +107,4 @@ jobs:
       - name: Clean up temporary files
         if: always()
         run: |
-          rm -f /tmp/link_check_results.txt
+          rm -f link_check_output.txt
