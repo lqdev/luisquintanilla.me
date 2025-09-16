@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - gopher</title>
+    <link>https://www.lqdev.me/tags/gopher</link>
+    <description>All content tagged with 'gopher' by Luis Quintanilla</description>
+    <lastBuildDate>2023-12-30 00:34 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>2024 - The year of Gemini?</title>
+      <description>&lt;![CDATA[&lt;p&gt;If 2023 was the year of AI and the Fediverse, is 2024 the year of Gemini?&lt;/p&gt;
+&lt;p&gt;I've been seeing a few posts about Gemini cross my feed reader which is more than I'm used to seeing. These include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://hackaday.com/2023/12/29/the-gopher-revival-is-upon-us/"&gt;The Gopher Revival Is Upon Us&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zserge.com/posts/small-web/"&gt;Poor Man's Web&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Gemini is weird in a fun way.&lt;/p&gt;
+&lt;p&gt;Since content is text-based, using terminal clients like &lt;a href="https://thelambdalab.xyz/elpher/"&gt;Elpher&lt;/a&gt; and &lt;a href="https://github.com/makew0rld/amfora"&gt;Amfora&lt;/a&gt; make it easy to browse pages (capsules) and blogs (gemlogs).&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/2024-year-of-gemini</link>
+      <guid>https://www.lqdev.me/notes/2024-year-of-gemini</guid>
+      <pubDate>2023-12-30 00:34 -05:00</pubDate>
+      <category>gemini</category>
+      <category>protocols</category>
+      <category>smallweb</category>
+      <category>openweb</category>
+      <category>web</category>
+      <category>internet</category>
+      <category>gopher</category>
+    </item>
+  </channel>
+</rss>

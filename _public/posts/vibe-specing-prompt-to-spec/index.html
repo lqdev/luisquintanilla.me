@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link rel="stylesheet" href="/assets/css/custom/main.css"><link rel="stylesheet" href="/assets/css/custom/timeline.css"><link rel="stylesheet" href="/assets/css/bootstrap-icons-1.5.0/bootstrap-icons.css"><link rel="stylesheet" href="/assets/css/highlight.github-dark-dimmed.min.css"><link rel="stylesheet" href="/assets/css/main.css"><link rel="stylesheet" href="/lib/revealjs/dist/reveal.css"><link rel="stylesheet" href="/lib/revealjs/dist/theme/black.css"><link rel="stylesheet" href="/lib/revealjs/plugin/highlight/monokai.css"><meta property="og:title" content="Vibe-Specing - From concepts to specification - Luis Quintanilla"><meta property="og:type" content="website"><meta property="og:image" content="https://www.lqdev.me/avatar.png"><meta property="og:image:secure_url" content="https://www.lqdev.me/avatar.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="200"><meta property="og:image:height" content="200"><meta property="og:site_name" content="Luis Quintanilla Personal Website"><meta property="og:locale" content="en_US"><meta property="twitter:image" content="https://www.lqdev.me/avatar.png"><meta property="fediverse:creator" content="@lqdev@toot.lqdev.tech"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Blog RSS Feed" href="/blog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Microblog RSS Feed" href="/microblog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Response RSS Feed" href="/responses.rss"><link rel="webmention" title="Luis Quintanilla Webmention Endpoint" href="https://webmentions.lqdev.tech/api/inbox"><link rel="feeds" type="text/xml" title="Luis Quintanilla&#39;s Feeds" href="/feed/index.opml"><link rel="blogroll" type="text/xml" title="Luis Quintanilla&#39;s Blogroll" href="/collections/blogroll/index.opml"><link rel="podroll" type="text/xml" title="Luis Quintanilla&#39;s Podroll" href="/collections/podroll/index.opml"><link rel="youtuberoll" type="text/xml" title="Luis Quintanilla&#39;s YouTube Roll" href="/collections/youtube/index.opml"><meta name="robots" content="nosnippet"><title>Vibe-Specing - From concepts to specification - Luis Quintanilla</title></head><body><button class="mobile-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"><div class="hamburger"><span></span><span></span><span></span></div></button><div class="nav-overlay" id="nav-overlay"></div><nav class="desert-nav" id="sidebar-menu" role="navigation" aria-label="Main navigation"><div class="nav-brand"><a href="/" class="brand-text"><img src="/avatar.png" alt="Luis Quintanilla avatar" loading="lazy">Luis Quintanilla</a></div><div class="nav-section"><a class="nav-link" href="/"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"></path></svg>Home</a><a class="nav-link" href="/about"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path></svg>About</a><a class="nav-link" href="/contact"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"></path></svg>Contact</a><a class="nav-link" href="/search"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path></svg>Search</a><a class="nav-link" href="/feed"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"></path></svg>Subscribe</a></div><div class="nav-section dropdown"><button class="nav-link dropdown-toggle" data-target="collections-dropdown"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"></path><path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"></path></svg>Collections<svg class="dropdown-arrow" viewBox="0 0 16 16" fill="currentColor"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path></svg></button><div class="dropdown-menu" id="collections-dropdown"><a class="dropdown-item" href="/collections/blogroll">Blogroll</a><a class="dropdown-item" href="/collections/podroll">Podroll</a><a class="dropdown-item" href="/collections/youtube">YouTube</a><a class="dropdown-item" href="/collections/forums">Forums</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/collections/starter-packs">Starter Packs</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/radio">Radio</a><a class="dropdown-item" href="/tags">Tags</a></div></div><div class="nav-section dropdown"><button class="nav-link dropdown-toggle" data-target="resources-dropdown"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"></path></svg>Resources<svg class="dropdown-arrow" viewBox="0 0 16 16" fill="currentColor"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path></svg></button><div class="dropdown-menu" id="resources-dropdown"><a class="dropdown-item" href="/resources/snippets">Snippets</a><a class="dropdown-item" href="/resources/wiki">Wiki</a><a class="dropdown-item" href="/resources/presentations">Presentations</a></div></div><div class="theme-toggle"><button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark mode"><span id="theme-toggle-icon">☀️</span><span>Theme</span></button></div></nav><main role="main" class="main-content" id="main-content"><div class="content-wrapper"><div class="mr-auto"><article class="h-entry individual-post"><header class="post-header"><h1 class="p-name post-title">Vibe-Specing - From concepts to specification</h1><div class="post-meta"><time class="dt-published" datetime="2025-05-06 20:40 -05:00">May 6, 2025</time></div><div class="u-author h-card microformat-hidden"><img src="/avatar.png" class="u-photo" alt="Luis Quintanilla" /><a href="/about" class="u-url p-name">Luis Quintanilla</a></div></header><div class="e-content post-content"><h2>Introduction</h2>
+<p>Code generation is a common use case for AI. What about the design process that comes before implementation? Personally, I've found that AI excels not just at coding, but also helping formalize abstract ideas into concrete specifications. This post explores how I used AI-assisted design to transform a collection of loosely related concepts into a technical specification for a new system made up of those concepts.</p>
+<h2>Specifications</h2>
+<p>Generally, I've had mixed success with vibe-coding (the practice of describing what you want in natural language and having AI generate the corresponding code). However, it's something that I'm constantly working on getting better at. Also, with tooling integrations like MCP, I can ground responses and supplement my prompts using external data.</p>
+<p>What I find myself being more successful with is using AI to explore ideas and then formalizing those ideas into a specification. Even in the case of vibe-coding, what you're doing with your prompts is building a specification in real-time.</p>
+<p>I'd like to think that eventually I'll get to the vibe-coding part but before diving straight into the code, I'd like to spend time in the design phase. Personally, this is also the part that I find the most fun because you can throw wild things at the wall. It's not until you implement them that you actually validate whether some of those wild ideas are practical. But I find the design phase a ton of fun.</p>
+<p>The result of my latest vibe-specing adventure is what I'm calling the <a href="https://github.com/lqdev/IPKS">InterPlanetary Knowledge System (IPKS)</a>.</p>
+<h2>From concept to specification</h2>
+<p>Lately, I've been thinking a lot about knowledge. Some concepts that have been in my head are those of <strong>non-linear publishing</strong> (creating content that can be accessed in any order with multiple entry points, like wikis or hypertext) and <strong>distributed cognition</strong> (the idea that human knowledge and cognitive processes extend beyond the individual mind to include interactions with other people, tools, and environments).
+Related to those concepts, I've also been thinking about how <strong>digital gardens</strong> (personal knowledge bases that blend note-taking, blogging, and knowledge management in a non-linear format) and <strong>Zettelkasten</strong> (a method of note-taking where ideas are captured as atomic notes with unique identifiers and explicit connections) are ways to capture and organize knowledge.</p>
+<p>One other thing that I'm amazed by is the powerful concept of a <strong>hyperlink</strong> and how it makes the web open, decentralized, and interoperable. When paired with the <strong>semantic web</strong> (an extension of the web that provides a common framework for data to be shared across applications and enterprises), you have yourself a decentralized knowledgebase containing a lot of the world's knowledge.</p>
+<p>At some point, IPFS (InterPlanetary File System, a protocol designed to create a permanent and decentralized method of storing and sharing files) joined this pool of concepts I had in my head.</p>
+<p>These were all interesting concepts individually, but I knew there were connections but couldn't cohesively bring them together. That's where AI-assisted specification design came in.</p>
+<p>Below is a summary of the collaborative design interaction with Claude Sonnet 3.7 (with web search) that eventually led to the generation of the IPKS specifications. I haven't combed through them in great detail, but what they're proposing seems plausible.</p>
+<p>Overall, I'm fascinated by this interaction. Whether or not IPKS ever becomes a reality, the process of using AI to transform abstract concepts into concrete specifications seems like a valuable and fun design approach that I'll continue to refine and include as part of my vibe-coding sessions.</p>
+<hr />
+<h2>Initial Exploration: IPFS and Knowledge Management</h2>
+<p>Our conversation began with exploring IPFS (InterPlanetary File System) and its fundamental capabilities as a content-addressed, distributed file system. We recognized that while IPFS excels at storing and retrieving files in a decentralized manner, it needed extensions to support knowledge representation, trust, and semantics.</p>
+<p>Key insights from this stage:</p>
+<ul>
+<li>IPFS provides an excellent foundation with content addressing through CIDs</li>
+<li>Content addressing enables verification but doesn't inherently provide meaning</li>
+<li>Moving from document-centric to idea-centric systems requires additional layers</li>
+</ul>
+<h2>Knowledge Management Concepts</h2>
+<p>We explored established knowledge management approaches, particularly:</p>
+<h3>Zettelkasten</h3>
+<p>The Zettelkasten method contributed these important principles:</p>
+<ul>
+<li>Atomic units of knowledge (one idea per note)</li>
+<li>Explicit connections between ideas</li>
+<li>Unique identifiers for each knowledge unit</li>
+<li>Emergent structure through relationship networks</li>
+</ul>
+<h3>Digital Gardens</h3>
+<p>The Digital Garden concept provided these insights:</p>
+<ul>
+<li>Knowledge in various stages of development</li>
+<li>Non-linear organization prioritizing connections</li>
+<li>Evolution of ideas over time</li>
+<li>Public visibility of work-in-progress thinking</li>
+</ul>
+<p>These personal knowledge management approaches helped us envision how similar principles could work at scale in a distributed system.</p>
+<h2>The &quot;K&quot; in IPKS</h2>
+<p>When we proposed replacing &quot;IPFS&quot; with &quot;IPKS&quot; (changing File → Knowledge), we recognized the need to define what makes knowledge different from files. This led to identifying several key requirements:</p>
+<ol>
+<li><strong>Semantic meaning</strong> - Knowledge needs explicit relationships and context</li>
+<li><strong>Provenance and trust</strong> - Knowledge requires verifiable sources and expertise</li>
+<li><strong>Evolution</strong> - Knowledge changes over time while maintaining continuity</li>
+<li><strong>Governance</strong> - Knowledge exists in various trust and privacy contexts</li>
+</ol>
+<p>These requirements shaped the layered architecture of the specifications.</p>
+<h2>Distributed Cognition and Non-Linear Publishing</h2>
+<p>Our discussions about distributed cognition highlighted how thinking processes extend beyond individual minds to include:</p>
+<ul>
+<li>Interactions with other people</li>
+<li>Cultural artifacts and tools</li>
+<li>Physical and digital environments</li>
+<li>Social and technological systems</li>
+</ul>
+<p>This concept directly influenced the IPKS design by emphasizing:</p>
+<ul>
+<li>Knowledge as a collective, distributed resource</li>
+<li>The need for attribution and expertise verification</li>
+<li>The value of connecting knowledge across boundaries</li>
+<li>The role of tools in extending human cognition</li>
+</ul>
+<p>Similarly, non-linear publishing concepts shaped how we approached knowledge relationships and navigation in IPKS, moving away from sequential formats toward interconnected networks of information.</p>
+<h2>Web3 Technologies Integration</h2>
+<p>Our exploration of complementary technologies led to incorporating:</p>
+<h3>Decentralized Identifiers (DIDs)</h3>
+<p>DIDs provided the framework for:</p>
+<ul>
+<li>Self-sovereign identity for knowledge contributors</li>
+<li>Cryptographic verification of authorship</li>
+<li>Persistent identification across systems</li>
+<li>Privacy-preserving selective disclosure</li>
+</ul>
+<h3>Verifiable Credentials (VCs)</h3>
+<p>Verifiable Credentials offered mechanisms for:</p>
+<ul>
+<li>Expertise validation without central authorities</li>
+<li>Domain-specific qualification verification</li>
+<li>Credential-based access control</li>
+<li>Trust frameworks for knowledge contributors</li>
+</ul>
+<h3>Semantic Web (RDF/OWL)</h3>
+<p>Semantic Web standards influenced:</p>
+<ul>
+<li>Relationship types between knowledge nodes</li>
+<li>Ontologies for domain knowledge representation</li>
+<li>Query patterns for knowledge discovery</li>
+<li>Interoperability with existing knowledge systems</li>
+</ul>
+<h2>Business Context: Supply Chain Example</h2>
+<p>Our conversation about supply chain management provided a concrete use case that helped ground the specifications in practical application. This example demonstrated how IPKS could address real-world challenges:</p>
+<ul>
+<li><strong>Material Provenance</strong>: Using DIDs and verifiable credentials to establish trusted material sources</li>
+<li><strong>Cross-Organization Collaboration</strong>: Enabling knowledge sharing while respecting organizational boundaries</li>
+<li><strong>Regulatory Compliance</strong>: Creating verifiable documentation of compliance requirements</li>
+<li><strong>Expertise Validation</strong>: Ensuring contributors have appropriate qualifications for their roles</li>
+<li><strong>Selective Disclosure</strong>: Balancing transparency with competitive confidentiality</li>
+</ul>
+<p>This business context helped shape the Access Control &amp; Privacy specification in particular, highlighting the need for nuanced governance models.</p>
+<h2>Technical Implementation Considerations</h2>
+<p>As we moved from abstract concepts to specifications, several technical considerations emerged:</p>
+<ol>
+<li><p><strong>Building on IPLD</strong>: Recognizing that InterPlanetary Linked Data (IPLD) already provided foundational components for structured, linked data in content-addressed systems</p>
+</li>
+<li><p><strong>Modular Specification Design</strong>: Choosing to create multiple specifications rather than a monolithic standard to enable incremental implementation and adoption</p>
+</li>
+<li><p><strong>Backward Compatibility</strong>: Ensuring IPKS could work with existing IPFS/IPLD infrastructure</p>
+</li>
+<li><p><strong>Extensibility</strong>: Designing for future enhancements like AI integration, advanced semantic capabilities, and cross-domain knowledge mapping</p>
+</li>
+</ol>
+<h2>The Path Forward</h2>
+<p>The IPKS specifications represent a synthesis of our conceptual exploration, grounded in:</p>
+<ul>
+<li>Established knowledge management practices</li>
+<li>Decentralized web technologies</li>
+<li>Real-world business requirements</li>
+<li>Technical feasibility considerations</li>
+</ul>
+<p>Moving from concept to implementation will require:</p>
+<ol>
+<li>Reference implementations of the core specifications</li>
+<li>Developer tools and libraries to simplify adoption</li>
+<li>Domain-specific extensions for particular use cases</li>
+<li>Community building around open standards</li>
+</ol>
+<p>By building on the combined strengths of IPFS, DIDs, VCs, and semantic web technologies, IPKS creates a framework for distributed knowledge that balances openness with trust, flexibility with verification, and collaboration with governance.</p>
+</div><footer class="post-footer"><div class="permalink-info">Permalink: <a class="u-url permalink-link" href="/posts/vibe-specing-prompt-to-spec/">/posts/vibe-specing-prompt-to-spec/</a></div><div><script type="application/javascript">window.onload = function() { document.getElementById('webmention-target').value = window.location.href }</script><form action="https://webmentions.lqdev.tech/api/inbox" method="POST" enctype="application/x-www-form-urlencoded"><h5 class="text-center">Send me a <a href="/contact">message</a> or <a href="https://indieweb.org/webmentions">webmention</a></h5><div class="form-row justify-content-center"><div class="w-75"><input type="url" class="form-control" name="source" placeholder="Your URL (webmention source)" required /></div><div class="col-auto"><input type="submit" class="btn btn-primary" value="Send" /></div><input type="hidden" readonly name="target" id="webmention-target" /></div></form></div></footer></article></div></div></main><script src="/assets/lib/jquery/jquery.slim.min.js"></script><script src="/assets/lib/boostrap/bootstrap.min.js"></script><script src="/assets/lib/highlight/highlight.min.js"></script><script src="/assets/lib/highlight/highlight.fsharp.min.js"></script><script src="/assets/lib/highlight/highlight.nix.min.js"></script><script src="/assets/js/timeline.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script type="application/javascript">mermaid.initialize({startOnLoad:true});</script><script type="application/javascript">hljs.initHighlightingOnLoad();</script><script src="/lib/revealjs/dist/reveal.js"></script><script src="/lib/revealjs/plugin/markdown/markdown.js"></script><script src="/lib/revealjs/plugin/highlight/highlight.js"></script><script type="application/javascript">
+                    // Initialize Reveal.js when a presentation container is found on the page
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const presentationContainer = document.querySelector('.presentation-container');
+                        if (presentationContainer && typeof Reveal !== 'undefined') {
+                            Reveal.initialize({
+                                plugins: [RevealMarkdown, RevealHighlight],
+                                embedded: true
+                            });
+                        }
+                    });
+                    </script></body><footer><a rel="me" href="https://toot.lqdev.tech/@lqdev"></a><a rel="me" href="https://github.com/lqdev"></a><a rel="me" href="https://twitter.com/ljquintanilla"></a><a rel="me" href="https://www.linkedin.com/in/lquintanilla01/"></a><a rel="me" href="mailto:lqdev@outlook.com"></a></footer></html>

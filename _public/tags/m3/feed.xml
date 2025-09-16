@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - m3</title>
+    <link>https://www.lqdev.me/tags/m3</link>
+    <description>All content tagged with 'm3' by Luis Quintanilla</description>
+    <lastBuildDate>2023-10-31 09:00 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Apple M3 Announced</title>
+      <description>&lt;![CDATA[&lt;p&gt;Apple unveiled their &lt;a href="https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/"&gt;M3 family of chips&lt;/a&gt; and new devices.&lt;/p&gt;
+&lt;p&gt;First off, The Verge always does a great job covering and condensing these events into a short video.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=gN8oCWGeRtI" title="Apple Scary Fast Event - The Verge"&gt;&lt;img src="http://img.youtube.com/vi/gN8oCWGeRtI/0.jpg" class="img-fluid" alt="Apple Scary Fast Event - The Verge" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;My initial impressions of the anouncement, this is why Apple wins.&lt;/p&gt;
+&lt;p&gt;I'm excited by the Snapdragon announcement last week. However, as I mentioned in my &lt;a href="https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023"&gt;post&lt;/a&gt;, &amp;quot;the biggest miss from Qualcomm and Windows partners today was not having a lineup of devices ready for purchase&amp;quot;.&lt;/p&gt;
+&lt;p&gt;That wasn't the case for Apple. Not only did they announce their new chips but they also announced devices which will be available as late as the end of November.&lt;/p&gt;
+&lt;p&gt;I understand Apple owns the entire process so they can align their chip and device announcements. However, Qualcomm brought out many partners on stage. Unless I missed it, I don't remember seeing any PC announcements that would be ready for purchase within the next 2-3 months.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/apple-m3-scary-fast</link>
+      <guid>https://www.lqdev.me/notes/apple-m3-scary-fast</guid>
+      <pubDate>2023-10-31 09:00 -05:00</pubDate>
+      <category>arm</category>
+      <category>apple</category>
+      <category>m3</category>
+    </item>
+  </channel>
+</rss>

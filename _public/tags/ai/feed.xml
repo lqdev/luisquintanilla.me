@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - ai</title>
+    <link>https://www.lqdev.me/tags/ai</link>
+    <description>All content tagged with 'ai' by Luis Quintanilla</description>
+    <lastBuildDate>2025-09-15 19:48 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>How people use ChatGPT</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Despite the rapid adoption of LLM chatbots, little is known about how they are used. We document the growth of ChatGPT’s consumer product from its launch in November 2022 through July 2025, when it had been adopted by around 10% of the world’s adult population. Early adopters were disproportionately male but the gender gap has narrowed dramatically, and we find higher growth rates in lower-income countries. Using a privacy-preserving automated pipeline, we classify usage patterns within a representative sample of ChatGPT conversations. We find steady growth in work-related messages but even faster growth in non-work-related messages, which have grown from 53% to more than 70% of all usage. Work usage is more common for educated users in highly-paid professional occupations. We classify messages by conversation topic and find that “Practical Guidance,” “Seeking Information,” and “Writing” are the three most common topics and collectively account for nearly 80% of all conversations. Writing dominates work-related tasks, highlighting chatbots’ unique ability to generate digital outputs compared to traditional search engines. Computer programming and self-expression both represent relatively small shares of use. Overall, we find that ChatGPT provides economic value through decision support, which is especially important in knowledge-intensive jobs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.nber.org/system/files/working_papers/w34255/w34255.pdf"&gt;PDF&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/how-people-use-chatgpt-national-bureau-economic-research</link>
+      <guid>https://www.lqdev.me/bookmarks/how-people-use-chatgpt-national-bureau-economic-research</guid>
+      <pubDate>2025-09-15 19:48 -05:00</pubDate>
+      <category>ai</category>
+      <category>openai</category>
+      <category>research</category>
+      <category>chatgpt</category>
+      <category>economics</category>
+    </item>
+    <item>
+      <title>Copilot, add new features. But first, coffee</title>
+      <description>&lt;![CDATA[&lt;p&gt;Something I've tried to make a habit of on a weekly basis is compiling a post which aggregates all posts on my website from the past week. Because right now it's not fully automated and I haven't been posting as much, there are gaps.&lt;/p&gt;
+&lt;p&gt;The process is fairly straightforward. I run a script that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Collects all of the previous week's posts&lt;/li&gt;
+&lt;li&gt;Drafts a note with links to all the posts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then, I publish the post.&lt;/p&gt;
+&lt;p&gt;Given this is mostly automated, I decided it was something I could just create a GitHub Action to do the post generation and publishing on my behalf.&lt;/p&gt;
+&lt;p&gt;However, there were some issues with the original file generation and formatting that were annoying, but easy enough to fix manually so I never invested time in fixing them.&lt;/p&gt;
+&lt;p&gt;This morning, I created a few issues describing the features and improvements I wanted to make. Worth noting, I did this from my phone.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/lqdev/luisquintanilla.me/issues/213"&gt;#213&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/lqdev/luisquintanilla.me/issues/215"&gt;#215&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Rather than working on them though, I assigned them to GitHub Coding Agent and stepped out to grab coffee.&lt;/p&gt;
+&lt;p&gt;The agent worked on solutions in the background and by the time I got back, I had working solutions. They weren't perfect but with no input from me, it got 90-95% of it right. The rest were minor refinements.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/copilot-add-new-features-but-first-coffee</link>
+      <guid>https://www.lqdev.me/notes/copilot-add-new-features-but-first-coffee</guid>
+      <pubDate>9/14/2025 10:31 PM -05:00</pubDate>
+      <category>github</category>
+      <category>copilot</category>
+      <category>ai</category>
+      <category>indieweb</category>
+      <category>blogging</category>
+      <category>githubactions</category>
+    </item>
+    <item>
+      <title>Real Simple Licensing</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The open content licensing standard for the AI-first Internet&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/real-simple-licensing-open-standard</link>
+      <guid>https://www.lqdev.me/bookmarks/real-simple-licensing-open-standard</guid>
+      <pubDate>2025-09-12 20:48 -05:00</pubDate>
+      <category>rsl</category>
+      <category>ai</category>
+      <category>licensing</category>
+      <category>openstandard</category>
+    </item>
+    <item>
+      <title>Omnineural 4B</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;OmniNeural-4B is the first multimodal AI model built natively for NPUs — handling text, images, and audio in one model.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/omnineural-4b</link>
+      <guid>https://www.lqdev.me/responses/omnineural-4b</guid>
+      <pubDate>2025-08-20 23:59 -05:00</pubDate>
+      <category>ai</category>
+      <category>npu</category>
+      <category>multimodal</category>
+    </item>
+    <item>
+      <title>Agents.md</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A simple, open format for guiding coding agents&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Think of AGENTS.md as a README for agents: a dedicated, predictable place to provide the context and instructions to help AI coding agents work on your project.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/agentsmd</link>
+      <guid>https://www.lqdev.me/responses/agentsmd</guid>
+      <pubDate>2025-08-20 22:53 -05:00</pubDate>
+      <category>ai</category>
+      <category>agents</category>
+      <category>openai</category>
+    </item>
+    <item>
+      <title>Seemingly Conscious AI</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;We must build AI for people; not to be a person&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;💯💯💯💯💯&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/seemingly-conscious-ai</link>
+      <guid>https://www.lqdev.me/responses/seemingly-conscious-ai</guid>
+      <pubDate>2025-08-20 19:46 -05:00</pubDate>
+      <category>ai</category>
+      <category>consciousness</category>
+      <category>humanism</category>
+    </item>
+    <item>
+      <title>Introducing Gemma 3 270M</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we're adding a new, highly specialized tool to the Gemma 3 toolkit: Gemma 3 270M, a compact, 270-million parameter model designed from the ground up for task-specific fine-tuning with strong instruction-following and text structuring capabilities already trained in.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-gemma-3-270m</link>
+      <guid>https://www.lqdev.me/responses/introducing-gemma-3-270m</guid>
+      <pubDate>2025-08-14 12:40 -05:00</pubDate>
+      <category>ai</category>
+      <category>google</category>
+      <category>gemma</category>
+      <category>slm</category>
+      <category>genai</category>
+    </item>
+    <item>
+      <title>Claude Code Emacs Integration</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Claude Code IDE for Emacs provides native integration with Claude Code CLI through the Model Context Protocol (MCP). Unlike simple terminal wrappers, this package creates a bidirectional bridge between Claude and Emacs, enabling Claude to understand and leverage Emacs’ powerful features—from LSP and project management to custom Elisp functions. This transforms Claude into a true Emacs-aware AI assistant that works within your existing workflow and can interact with your entire Emacs ecosystem.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/claude-code-emacs-integration</link>
+      <guid>https://www.lqdev.me/bookmarks/claude-code-emacs-integration</guid>
+      <pubDate>2025-08-10 20:17 -05:00</pubDate>
+      <category>emacs</category>
+      <category>anthropic</category>
+      <category>ai</category>
+      <category>claudecode</category>
+    </item>
+    <item>
+      <title>Self-Adapting Language Models (SEAL)</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Large language models (LLMs) are powerful but static; they lack mechanisms to adapt their weights in response to new tasks, knowledge, or examples. &lt;strong&gt;We introduce Self-Adapting LLMs (SEAL) 🦭, a framework that enables LLMs to self-adapt by generating their own finetuning data and update directives.&lt;/strong&gt; Given a new input, the model produces a self-edit — a generation that may restructure the information in different ways, specify optimization hyperparameters, or invoke tools for data augmentation and gradient-based updates. Through supervised finetuning (SFT), these self-edits result in persistent weight updates, enabling lasting adaptation. To train the model to produce effective self-edits, we use a reinforcement learning loop, using the downstream performance of the updated model as the reward signal. Unlike prior approaches that rely on separate adaptation modules or auxiliary networks, SEAL directly uses the model's generation to parameterize and control its own adaptation process. Experiments on knowledge incorporation and few-shot generalization show that SEAL is a promising step toward language models capable of self-directed adaptation in response to new data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We demonstrate SEAL in two domains: (1) &lt;strong&gt;Knowledge Incorporation&lt;/strong&gt;, where the model integrates new factual information by generating logical implications as synthetic data, and (2) &lt;strong&gt;Few-Shot Learning&lt;/strong&gt;, where the model autonomously selects data augmentations and training hyperparameters to adapt to new abstract reasoning tasks.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/Continual-Intelligence"&gt;Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://arxiv.org/abs/2506.10943"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/self-adapting-language-models-seal</link>
+      <guid>https://www.lqdev.me/responses/self-adapting-language-models-seal</guid>
+      <pubDate>2025-06-16 20:33 -05:00</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>llm</category>
+      <category>mit</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>How we built our multi-agent research system - Anthropic</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Great article.&lt;/p&gt;
+&lt;p&gt;TLDR: These are largely engineering problems.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The journey of this multi-agent system from prototype to production taught us critical lessons about system architecture, tool design, and prompt engineering. A multi-agent system consists of multiple agents (&lt;strong&gt;LLMs autonomously using tools in a loop&lt;/strong&gt;) working together. Our Research feature involves an agent that plans a research process based on user queries, and then uses tools to create parallel agents that search for information simultaneously. Systems with multiple agents introduce new challenges in agent coordination, evaluation, and reliability.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Benefits of a multi-agent system&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The essence of search is compression: distilling insights from a vast corpus. &lt;strong&gt;Subagents facilitate compression by operating in parallel&lt;/strong&gt; with their own context windows, exploring different aspects of the question simultaneously before condensing the most important tokens for the lead research agent. Each subagent also provides &lt;strong&gt;separation of concerns&lt;/strong&gt;—distinct tools, prompts, and exploration trajectories—which reduces path dependency and enables thorough, independent investigations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Once intelligence reaches a threshold, multi-agent systems become a vital way to scale performance. For instance, although individual humans have become more intelligent in the last 100,000 years, human societies have become exponentially more capable in the information age because of our collective intelligence and ability to coordinate. Even generally-intelligent agents face limits when operating as individuals; &lt;strong&gt;groups of agents can accomplish far more&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our internal evaluations show that multi-agent research systems excel especially for breadth-first queries that involve pursuing multiple independent directions simultaneously.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Multi-agent systems work mainly because they help spend enough tokens to solve the problem...Multi-agent architectures effectively scale token usage for tasks that exceed the limits of single agents.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We’ve found that multi-agent systems excel at valuable tasks that involve heavy parallelization, information that exceeds single context windows, and interfacing with numerous complex tools.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Architecture overview&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our Research system uses a multi-agent architecture with an orchestrator-worker pattern, where a lead agent coordinates the process while delegating to specialized subagents that operate in parallel.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Traditional approaches using Retrieval Augmented Generation (RAG) use static retrieval. That is, they fetch some set of chunks that are most similar to an input query and use these chunks to generate a response. In contrast, our architecture uses a &lt;strong&gt;multi-step search that dynamically finds relevant information, adapts to new findings, and analyzes results to formulate high-quality answers&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Prompt engineering and evaluations for research agents&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Think like your agents.&lt;/strong&gt; To iterate on prompts, you must understand their effects. To help us do this, we built simulations using our Console with the exact prompts and tools from our system, then watched agents work step-by-step.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Teach the orchestrator how to delegate.&lt;/strong&gt; In our system, the lead agent decomposes queries into subtasks and describes them to subagents. Each subagent needs an &lt;strong&gt;objective&lt;/strong&gt;, an &lt;strong&gt;output format&lt;/strong&gt;, &lt;strong&gt;guidance on the tools and sources to use&lt;/strong&gt;, and &lt;strong&gt;clear task boundaries&lt;/strong&gt;. Without detailed task descriptions, agents duplicate work, leave gaps, or fail to find necessary information.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Scale effort to query complexity.&lt;/strong&gt; Agents struggle to judge appropriate effort for different tasks, so we embedded scaling rules in the prompts...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Tool design and selection are critical.&lt;/strong&gt; Agent-tool interfaces are as critical as human-computer interfaces. Using the right tool is efficient—often, it’s strictly necessary...Bad tool descriptions can send agents down completely wrong paths, so each tool needs a distinct purpose and a clear description.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Let agents improve themselves.&lt;/strong&gt;...When given a prompt and a failure mode, they are able to diagnose why the agent is failing and suggest improvements.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Start wide, then narrow down.&lt;/strong&gt; Search strategy should mirror expert human research: explore the landscape before drilling into specifics.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Guide the thinking process.&lt;/strong&gt;...Our testing showed that extended thinking improved instruction-following, reasoning, and efficiency. Subagents also plan, then use interleaved thinking after tool results to evaluate quality, identify gaps, and refine their next query. This makes subagents more effective in adapting to any task.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Parallel tool calling transforms speed and performance.&lt;/strong&gt;...For speed, we introduced two kinds of parallelization: (1) the lead agent spins up 3-5 subagents in parallel rather than serially; (2) the subagents use 3+ tools in parallel.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our prompting strategy focuses on instilling &lt;strong&gt;good heuristics rather than rigid rules&lt;/strong&gt;. We studied how skilled humans approach research tasks and encoded these strategies in our prompts—strategies like &lt;strong&gt;decomposing difficult questions into smaller tasks&lt;/strong&gt;, &lt;strong&gt;carefully evaluating the quality of sources&lt;/strong&gt;, &lt;strong&gt;adjusting search approaches based on new information&lt;/strong&gt;, and &lt;strong&gt;recognizing when to focus on depth (investigating one topic in detail) vs. breadth (exploring many topics in parallel)&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Effective evaluation of agents&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...evaluating multi-agent systems presents unique challenges...Because we don’t always know what the right steps are, we usually can't just check if agents followed the “correct” steps we prescribed in advance. Instead, we need flexible evaluation methods that judge whether agents achieved the right outcomes while also following a reasonable process.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Start evaluating immediately with small samples.&lt;/strong&gt;...it’s best to start with small-scale testing right away with a few examples, rather than delaying until you can build more thorough evals.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;LLM-as-judge evaluation scales when done well.&lt;/strong&gt;...We used an LLM judge that evaluated each output against criteria in a rubric: &lt;strong&gt;factual accuracy&lt;/strong&gt; (do claims match sources?), &lt;strong&gt;citation accuracy&lt;/strong&gt; (do the cited sources match the claims?), &lt;strong&gt;completeness&lt;/strong&gt; (are all requested aspects covered?), &lt;strong&gt;source quality&lt;/strong&gt; (did it use primary sources over lower-quality secondary sources?), and &lt;strong&gt;tool efficiency&lt;/strong&gt; (did it use the right tools a reasonable number of times?)...[we] found that a single LLM call with a single prompt outputting scores from 0.0-1.0 and a pass-fail grade was the most consistent and aligned with human judgements.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Human evaluation catches what automation misses.&lt;/strong&gt;...Adding source quality heuristics to our prompts helped resolve this issue. Even in a world of automated evaluations, manual testing remains essential.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;the best prompts for these agents are not just strict instructions, but &lt;strong&gt;frameworks for collaboration&lt;/strong&gt; that define the &lt;strong&gt;division of labor&lt;/strong&gt;, &lt;strong&gt;problem-solving approaches&lt;/strong&gt;, and &lt;strong&gt;effort budgets&lt;/strong&gt;. Getting this right relies on &lt;strong&gt;careful prompting and tool design&lt;/strong&gt;, &lt;strong&gt;solid heuristics&lt;/strong&gt;, &lt;strong&gt;observability&lt;/strong&gt;, and &lt;strong&gt;tight feedback loops&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Production reliability and engineering challenges&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Agents are stateful and errors compound.&lt;/strong&gt;...Agents can run for long periods of time, maintaining state across many tool calls. This means we need to &lt;strong&gt;durably execute code and handle errors along the way&lt;/strong&gt;. Without effective mitigations, minor system failures can be catastrophic for agents. When errors occur, we can't just restart from the beginning...We combine the adaptability of AI agents built on Claude with deterministic safeguards like retry logic and regular checkpoints.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Debugging benefits from new approaches&lt;/strong&gt;...Adding full production tracing let us diagnose why agents failed and fix issues systematically. Beyond standard observability, we monitor agent decision patterns and interaction structures—all without monitoring the contents of individual conversations, to maintain user privacy.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Deployment needs careful coordination&lt;/strong&gt;...we use rainbow deployments to avoid disrupting running agents, by gradually shifting traffic from old to new versions while keeping both running simultaneously.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Synchronous execution creates bottlenecks.&lt;/strong&gt; Currently, our lead agents execute subagents synchronously, waiting for each set of subagents to complete before proceeding. This simplifies coordination, but creates bottlenecks in the information flow between agents. Asynchronous execution would enable additional parallelism: agents working concurrently and creating new subagents when needed. But this asynchronicity adds challenges in result coordination, state consistency, and error propagation across the subagents. As models can handle longer and more complex research tasks, we expect the performance gains will justify the complexity.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;For all the reasons described in this post, the gap between prototype and production is often wider than anticipated.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Multi-agent research systems can operate reliably at scale with &lt;strong&gt;careful engineering&lt;/strong&gt;, &lt;strong&gt;comprehensive testing&lt;/strong&gt;, &lt;strong&gt;detail-oriented prompt and tool design&lt;/strong&gt;, &lt;strong&gt;robust operational practices&lt;/strong&gt;, and &lt;strong&gt;tight collaboration between research, product, and engineering teams&lt;/strong&gt; who have a strong understanding of current agent capabilities.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/anthropic-how-we-built-multi-agent-system</link>
+      <guid>https://www.lqdev.me/responses/anthropic-how-we-built-multi-agent-system</guid>
+      <pubDate>2025-06-16 17:39 -05:00</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>anthropic</category>
+      <category>engineering</category>
+    </item>
+    <item>
+      <title>State-Of-The-Art Prompting For AI Agents</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=DL82mGde6wo" title="YouTube Thumbnail for State-of-the-art prompting for ai agents"&gt;&lt;img src="http://img.youtube.com/vi/DL82mGde6wo/0.jpg" class="img-fluid" alt="YouTube Thumbnail for State-of-the-art prompting for ai agents" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/state-of-the-art-prompting-ai-agents-y-combinator</link>
+      <guid>https://www.lqdev.me/responses/state-of-the-art-prompting-ai-agents-y-combinator</guid>
+      <pubDate>2025-06-03 20:23 -05:00</pubDate>
+      <category>ai</category>
+      <category>agents</category>
+      <category>prompting</category>
+    </item>
+    <item>
+      <title>Introducing ElevenLabs Conversational AI 2.0</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Conversational AI 2.0 launches with advanced features and enterprise readiness.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Natural turn-taking to understand the flow of conversation.&lt;/li&gt;
+&lt;li&gt;Multilingual communication with integrated language detection&lt;/li&gt;
+&lt;li&gt;Integrated RAG: knowledgeable agents, minimum latency, maximum privacy&lt;/li&gt;
+&lt;li&gt;Multimodality&lt;/li&gt;
+&lt;li&gt;Batch calls&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/elevenlabs-conversational-ai-2-0</link>
+      <guid>https://www.lqdev.me/responses/elevenlabs-conversational-ai-2-0</guid>
+      <pubDate>2025-06-03 20:19 -05:00</pubDate>
+      <category>ai</category>
+      <category>speech</category>
+      <category>elevenlabs</category>
+    </item>
+    <item>
+      <title>The Darwin Gödel Machine - AI that improves itself by rewriting its own code</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A longstanding goal of AI research has been the creation of AI that can learn indefinitely. One tantalizing path toward that goal is an AI that improves itself by rewriting its own code, including any code responsible for learning. That idea, known as a Gödel Machine, proposed by Jürgen Schmidhuber decades ago, is a hypothetical self-improving AI. It optimally solves problems by recursively rewriting its own code when it can mathematically prove a better strategy, making it a key concept in meta-learning or “learning to learn.”&lt;br /&gt;
+&lt;br&gt;
+While the theoretical Gödel Machine promised provably beneficial self-modifications, its realization relied on an impractical assumption: that the AI could mathematically prove that a proposed change in its own code would yield a net improvement before adopting it. We, in collaboration with Jeff Clune’s lab at UBC, propose something more feasible: a system that harnesses the principles of open-ended algorithms like Darwinian evolution to search for improvements that empirically improve performance.&lt;/p&gt;
+&lt;p&gt;We call the result the Darwin Gödel Machine (full technical report). DGMs leverage foundation models to propose code improvements, and use recent innovations in open-ended algorithms to search for a growing library of diverse, high-quality AI agents. Our experiments show that DGMs improve themselves the more compute they are provided. In line with the clear trend that AI systems that rely on learning ultimately outperform those designed by hand, there is a potential that DGMs could soon outperform hand-designed AI systems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://arxiv.org/abs/2505.22954"&gt;Technical Report&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/sakana-ai-gwm</link>
+      <guid>https://www.lqdev.me/responses/sakana-ai-gwm</guid>
+      <pubDate>2025-06-03 20:16 -05:00</pubDate>
+      <category>ai</category>
+      <category>agent</category>
+      <category>sakana</category>
+    </item>
+    <item>
+      <title>How do I keep up with AI?</title>
+      <description>&lt;![CDATA[
+This question comes up a lot in conversations. The short answer? I don’t. There’s just too much happening, too fast, for anyone to stay on top of everything.
+
+While I enjoy sharing links and recommendations, I realized that a blog post might be more helpful. It gives folks a single place they can bookmark, share, and come back to on their own time, rather than having to dig through message threads where things inevitably get lost.
+
+That said, here are some sources I use to try and stay informed:
+
+- **Newsletters** are great for curated content. They highlight the top stories and help filter through the noise.
+- **Blogs** are often the primary sources behind those newsletters. They go deeper and often cover a broader set of topics that might not make it into curated roundups.
+- **Podcasts** serve a similar role. In some cases, they provide curation like newsletters and deep dives like blogs in others. Best of all, you can tune in while on the go making it a hands-free activity.
+
+For your convenience, if any of the sources (including podcasts) I list below have RSS feeds, I’ve included them in my [AI Starter Pack](/collections/starter-packs//ai), which you can [download and import into your favorite RSS reader](/collections/starter-packs//ai/index.opml) (as long as it supports OPML file imports).
+
+If you have some sources to share, [send me an e-mail](/contact). I'd love to keep adding to this list! If they have a feed I can subscribe to, even better.
+
+## Newsletters
+
+- [AlphaSignal](https://alphasignal.ai/)
+- [The Batch](https://www.deeplearning.ai/the-batch/)
+- [Latent Space](https://www.latent.space/)
+- [TLDR AI](https://tldr.tech/ai)
+
+## Blogs
+
+I pride myself on being able to track down an RSS feed on just about any website, even if it’s buried or not immediately visible. Unfortunately, I haven't found a feed URL for either OpenAI or Anthropic which is annoying. 
+
+**OpenAI and Anthropic, if you could do everyone a favor and drop a link, that would be great.** 
+
+UPDATE: Thanks to [@m2vh@mastodontech.de](https://toot.lqdev.tech/@m2vh@mastodontech.de) for sharing the OpenAI news feed. 
+
+I know I could use one of those web-page-to-RSS converters, but I'd much rather have an official link directly from the source.
+
+- [OpenAI](https://openai.com/news/)
+- [Anthropic](https://www.anthropic.com/news)
+- [Google AI Blog](https://blog.google/technology/ai/)
+- [AWS Machine Learning Blog](https://aws.amazon.com/blogs/machine-learning/)
+- [Microsoft Research](https://www.microsoft.com/en-us/research/blog/)
+- [Google Research](https://research.google/blog/)
+- [Simon Willison](https://simonwillison.net/)
+
+## Podcasts
+
+- [AI Daily Brief](https://www.podchaser.com/podcasts/the-ai-daily-brief-formerly-th-5260567)
+- [TWIML AI Podcast](https://twimlai.com/)
+- [Practical AI](https://changelog.com/practicalai)
+
+## Subscribing to feeds
+
+Now that I’ve got you here...
+
+Let’s talk about the best way to access all these feeds. My preferred and recommended approach is using a feed reader.
+
+When subscribing to content on the open web, feed readers are your secret weapon.
+
+RSS might seem like it’s dead (it’s not—yet). In fact, it’s the reason you often hear the phrase, “Wherever you get your podcasts.” But RSS goes beyond podcasts. It’s widely supported by blogs, newsletters, and even social platforms like the Fediverse (Mastodon, PeerTube, etc.) and BlueSky. It’s also how I’m able to compile my [starter packs](/collections/starter-packs/). 
+
+I've written more about RSS in [Rediscovering the RSS Protocol](/posts/rediscovering-rss-user-freedom), but the short version is this: when you build on open standards like RSS and OPML, you’re building on freedom. Freedom to use the tools that work best for you. Freedom to own your experience. And freedom to support a healthier, more independent web.
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/how-i-keep-up-with-ai</link>
+      <guid>https://www.lqdev.me/posts/how-i-keep-up-with-ai</guid>
+      <pubDate>2025-05-27 19:44 -05:00</pubDate>
+      <category>ai</category>
+      <category>rss</category>
+      <category>starterpack</category>
+      <category>newsletter</category>
+      <category>blog</category>
+      <category>opml</category>
+      <category>openweb</category>
+      <category>podcast</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>Agent Network Protocol - The HTTP of the Agentic Web Era</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;&lt;a href="https://agent-network-protocol.com/blogs/posts/mcp-anp-comparison.html"&gt;Comparison of MCP and ANP: What Kind of Communication Protocol Do Agents Need?&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;MCP and ANP differ significantly in protocol architecture, identity authentication, and information organization.&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MCP is a typical Client-Server (CS) architecture, while &lt;strong&gt;ANP is a typical Peer-to-Peer (P2P) architecture&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;MCP's identity authentication is based on the OAuth standard, facilitating client access to current internet resources. &lt;strong&gt;ANP's identity authentication is based on the W3C DID standard&lt;/strong&gt;, focusing on cross-platform interoperability among agents, enabling seamless connectivity.&lt;/li&gt;
+&lt;li&gt;MCP organizes information using JSON-RPC technology, essentially API calls. &lt;strong&gt;ANP uses semantic web Linked-Data technology&lt;/strong&gt; to build a data network that is easily accessible and understandable by AI.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;ANP is agent-centric, where each agent has equal status, forming a decentralized agent collaboration network.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/agent-network-protocol</link>
+      <guid>https://www.lqdev.me/responses/agent-network-protocol</guid>
+      <pubDate>2025-05-17 10:56 -05:00</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>protocol</category>
+    </item>
+    <item>
+      <title>Claude Artifacts</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;💯💯💯. Artifacts are great. In ChatGPT when I find myself trying to format outputs as markdown, the UI gets confused and some of the content is rendered in markdown while the rest gets rendered as part of the UI which makes it unusable and hard to copy. The best way I've found to get around it is to ask it to format in org-mode or asciidoc. Claude Artifacts make this a non-issue. I also love that in addition to copying and downloading the artifact, you can also publish it as a URL.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/claude-artifacts-reece</link>
+      <guid>https://www.lqdev.me/responses/claude-artifacts-reece</guid>
+      <pubDate>2025-05-11 08:42 -05:00</pubDate>
+      <category>claude</category>
+      <category>chatgpt</category>
+      <category>plaintext</category>
+      <category>ai</category>
+      <category>org</category>
+      <category>emacs</category>
+      <category>asciidoc</category>
+      <category>markdown</category>
+    </item>
+    <item>
+      <title>Introducing AutoRound</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;As large language models (LLMs) and vision-language models (VLMs) continue to grow in size and complexity, deploying them efficiently becomes increasingly challenging. Quantization offers a solution by reducing model size and inference latency. Intel's AutoRound emerges as a cutting-edge quantization tool that balances accuracy, efficiency, and compatibility.&lt;br /&gt;
+&lt;br&gt;
+AutoRound is a weight-only post-training quantization (PTQ) method developed by Intel. It uses signed gradient descent to jointly optimize weight rounding and clipping ranges, enabling accurate low-bit quantization (e.g., INT2 - INT8) with minimal accuracy loss in most scenarios. For example, at INT2, it outperforms popular baselines by up to 2.1x higher in relative accuracy.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://arxiv.org/abs/2309.05516"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/intel/auto-round"&gt;Repo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/intel-autoround</link>
+      <guid>https://www.lqdev.me/bookmarks/intel-autoround</guid>
+      <pubDate>2025-05-09 20:45 -05:00</pubDate>
+      <category>quantization</category>
+      <category>intel</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>Parakeet TDT 0.6B V2 (En)</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;parakeet-tdt-0.6b-v2 is a 600-million-parameter automatic speech recognition (ASR) model designed for high-quality English transcription, featuring support for punctuation, capitalization, and accurate timestamp prediction.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This XL variant of the FastConformer [1] architecture integrates the TDT [2] decoder and is trained with full attention, enabling efficient transcription of audio segments up to 24 minutes in a single pass.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/nvidia-parakeet-v2</link>
+      <guid>https://www.lqdev.me/bookmarks/nvidia-parakeet-v2</guid>
+      <pubDate>2025-05-09 20:43 -05:00</pubDate>
+      <category>nvidia</category>
+      <category>ai</category>
+      <category>transcription</category>
+    </item>
+    <item>
+      <title>Introducing Locate 3D</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Locate 3D transforms how AI understands physical space, delivering &lt;strong&gt;state-of-the-art object localization in complex 3D environments&lt;/strong&gt;.&lt;br /&gt;
+&lt;br&gt;
+Operating directly on standard sensor data, Locate 3D brings spatial intelligence to robotics and augmented reality applications in real-world settings.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://ai.meta.com/research/publications/locate-3d-real-world-object-localization-via-self-supervised-learning-in-3d/"&gt;Paper&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We present Locate 3D, a model for localizing objects in 3D scenes from referring expressions like “the small coffee table between the sofa and the lamp.” Locate 3D sets a new state-of-the-art on standard referential grounding benchmarks and showcases robust generalization capabilities. Notably, Locate 3D operates directly on sensor observation streams (posed RGB-D frames), enabling real-world deployment on robots and AR devices. Key to our approach is 3D-JEPA, a novel self-supervised learning (SSL) algorithm applicable to sensor point clouds. It takes as input a 3D pointcloud featurized using 2D foundation models (CLIP, DINO). Subsequently, masked prediction in latent space is employed as a pretext task to aid the self-supervised learning of contextualized pointcloud features. Once trained, the 3D-JEPA encoder is finetuned alongside a language-conditioned decoder to jointly predict 3D masks and bounding boxes. Additionally, we introduce Locate 3D Dataset, a new dataset for 3D referential grounding, spanning multiple capture setups with over 130K annotations. This enables a systematic study of generalization capabilities as well as a stronger model.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/meta-locate3d</link>
+      <guid>https://www.lqdev.me/bookmarks/meta-locate3d</guid>
+      <pubDate>2025-05-09 20:33 -05:00</pubDate>
+      <category>meta</category>
+      <category>ai</category>
+      <category>3d</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>ZeroSearch - Incentivize the Search Capability of LLMs without Searching</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Effective information searching is essential for enhancing the reasoning and generation capabilities of large language models (LLMs). Recent research has explored using reinforcement learning (RL) to improve LLMs' search capabilities by interacting with live search engines in real-world environments. While these approaches show promising results, they face two major challenges: (1) &lt;strong&gt;Uncontrolled Document Quality&lt;/strong&gt;: The quality of documents returned by search engines is often unpredictable, introducing noise and instability into the training process. (2) &lt;strong&gt;Prohibitively High API Costs&lt;/strong&gt;: RL training requires frequent rollouts, potentially involving hundreds of thousands of search requests, which incur substantial API expenses and severely constrain scalability. To address these challenges, we introduce &lt;strong&gt;ZeroSearch&lt;/strong&gt;, a reinforcement learning framework that &lt;strong&gt;enhances the search capabilities of LLMs without interacting with real search engines&lt;/strong&gt;. Our approach begins with lightweight supervised fine-tuning to transform the LLM into a retrieval module capable of generating both relevant and noisy documents in response to a query. During RL training, we employ a curriculum-based rollout strategy that incrementally degrades the quality of generated documents, progressively eliciting the model’s reasoning ability by exposing it to increasingly challenging retrieval scenarios. Extensive experiments demonstrate that &lt;strong&gt;ZeroSearch effectively incentivizes the search capabilities of LLMs using a 3B LLM as the retrieval module&lt;/strong&gt;. Remarkably, &lt;strong&gt;a 7B retrieval module achieves comparable performance to the real search engine, while a 14B retrieval module even surpasses it&lt;/strong&gt;. Furthermore, it generalizes well across both base and instruction-tuned models of varying sizes and is compatible with a wide range of RL algorithms.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/zero-search-alibaba</link>
+      <guid>https://www.lqdev.me/bookmarks/zero-search-alibaba</guid>
+      <pubDate>2025-05-09 20:31 -05:00</pubDate>
+      <category>ai</category>
+      <category>search</category>
+      <category>llm</category>
+      <category>research</category>
+    </item>
+  </channel>
+</rss>

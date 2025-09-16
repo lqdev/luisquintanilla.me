@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link rel="stylesheet" href="/assets/css/custom/main.css"><link rel="stylesheet" href="/assets/css/custom/timeline.css"><link rel="stylesheet" href="/assets/css/bootstrap-icons-1.5.0/bootstrap-icons.css"><link rel="stylesheet" href="/assets/css/highlight.github-dark-dimmed.min.css"><link rel="stylesheet" href="/assets/css/main.css"><link rel="stylesheet" href="/lib/revealjs/dist/reveal.css"><link rel="stylesheet" href="/lib/revealjs/dist/theme/black.css"><link rel="stylesheet" href="/lib/revealjs/plugin/highlight/monokai.css"><meta property="og:title" content="Crate Finds - Fall 2023"><meta property="og:type" content="website"><meta property="og:image" content="https://www.lqdev.me/avatar.png"><meta property="og:image:secure_url" content="https://www.lqdev.me/avatar.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="200"><meta property="og:image:height" content="200"><meta property="og:site_name" content="Luis Quintanilla Personal Website"><meta property="og:locale" content="en_US"><meta property="twitter:image" content="https://www.lqdev.me/avatar.png"><meta property="fediverse:creator" content="@lqdev@toot.lqdev.tech"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Blog RSS Feed" href="/blog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Microblog RSS Feed" href="/microblog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Response RSS Feed" href="/responses.rss"><link rel="webmention" title="Luis Quintanilla Webmention Endpoint" href="https://webmentions.lqdev.tech/api/inbox"><link rel="feeds" type="text/xml" title="Luis Quintanilla&#39;s Feeds" href="/feed/index.opml"><link rel="blogroll" type="text/xml" title="Luis Quintanilla&#39;s Blogroll" href="/collections/blogroll/index.opml"><link rel="podroll" type="text/xml" title="Luis Quintanilla&#39;s Podroll" href="/collections/podroll/index.opml"><link rel="youtuberoll" type="text/xml" title="Luis Quintanilla&#39;s YouTube Roll" href="/collections/youtube/index.opml"><meta name="robots" content="nosnippet"><title>Crate Finds - Fall 2023</title></head><body><button class="mobile-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"><div class="hamburger"><span></span><span></span><span></span></div></button><div class="nav-overlay" id="nav-overlay"></div><nav class="desert-nav" id="sidebar-menu" role="navigation" aria-label="Main navigation"><div class="nav-brand"><a href="/" class="brand-text"><img src="/avatar.png" alt="Luis Quintanilla avatar" loading="lazy">Luis Quintanilla</a></div><div class="nav-section"><a class="nav-link" href="/"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"></path></svg>Home</a><a class="nav-link" href="/about"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path></svg>About</a><a class="nav-link" href="/contact"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"></path></svg>Contact</a><a class="nav-link" href="/search"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path></svg>Search</a><a class="nav-link" href="/feed"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"></path></svg>Subscribe</a></div><div class="nav-section dropdown"><button class="nav-link dropdown-toggle" data-target="collections-dropdown"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"></path><path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"></path></svg>Collections<svg class="dropdown-arrow" viewBox="0 0 16 16" fill="currentColor"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path></svg></button><div class="dropdown-menu" id="collections-dropdown"><a class="dropdown-item" href="/collections/blogroll">Blogroll</a><a class="dropdown-item" href="/collections/podroll">Podroll</a><a class="dropdown-item" href="/collections/youtube">YouTube</a><a class="dropdown-item" href="/collections/forums">Forums</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/collections/starter-packs">Starter Packs</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/radio">Radio</a><a class="dropdown-item" href="/tags">Tags</a></div></div><div class="nav-section dropdown"><button class="nav-link dropdown-toggle" data-target="resources-dropdown"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"></path></svg>Resources<svg class="dropdown-arrow" viewBox="0 0 16 16" fill="currentColor"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path></svg></button><div class="dropdown-menu" id="resources-dropdown"><a class="dropdown-item" href="/resources/snippets">Snippets</a><a class="dropdown-item" href="/resources/wiki">Wiki</a><a class="dropdown-item" href="/resources/presentations">Presentations</a></div></div><div class="theme-toggle"><button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark mode"><span id="theme-toggle-icon">☀️</span><span>Theme</span></button></div></nav><main role="main" class="main-content" id="main-content"><div class="content-wrapper"><div class="mr-auto"><article class="h-entry individual-post"><header class="post-header"><h1 class="p-name post-title">Crate Finds - Fall 2023</h1><div class="post-meta"><time class="dt-published" datetime="2023-12-17 14:59 -05:00">December 17, 2023</time></div><div class="u-author h-card microformat-hidden"><img src="/avatar.png" class="u-photo" alt="Luis Quintanilla" /><a href="/about" class="u-url p-name">Luis Quintanilla</a></div></header><div class="e-content post-content"><p>Trying something new out I'm calling Crate Finds. I'm using it as a means to look back at either new music I came across or music I'm listening to at various points in time. Kind of like Spotify Wrapped, but less stats and aggregates and more point-in-time snapshots without the granuliarity of scrobbler services like Last.fm.</p>
+<p>This is the first drop from Fall 2023.</p>
+<h2>Tracks</h2>
+<ol>
+<li><p><strong>Look at My Soul</strong> by Adrian Quesada, Black Pumas, Kam Franklin</p>
+<ul>
+<li>Album: <em>Look at My Soul: The Latin Shade of Texas Soul</em></li>
+<li>Duration: 3:28</li>
+<li><a href="https://www.youtube.com/watch?v=b6EMKRI6yKM">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/6nwXXl9CBzNI4W5q7kGfaZ">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>Joey</strong> by Adrian Quesada, Paul and the Tall Trees</p>
+<ul>
+<li>Album: <em>Look at My Soul: The Latin Shade of Texas Soul</em></li>
+<li>Duration: 4:02</li>
+<li><a href="https://www.youtube.com/watch?v=ZJQyrgrzS-I">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/2fouybdsmbzzh0Lm01qlB6">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>100 High Street</strong> by Earl Sweatshirt, The Alchemist</p>
+<ul>
+<li>Album: <em>VOIR DIRE</em></li>
+<li>Duration: 1:34</li>
+<li><a href="https://www.youtube.com/watch?v=dxBQqTDqFEs">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/13cI0USnl3puOPCBRFK6Xp">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>Will I See You Again?</strong> by Thee Sacred Souls</p>
+<ul>
+<li>Album: <em>Will I See You Again?</em></li>
+<li>Duration: 4:00</li>
+<li><a href="https://www.youtube.com/watch?v=IGgb10A_2c8">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/4R5GN0mBvb6jkRj3Zvyhkl">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>Change</strong> by Sugar Candy Mountain</p>
+<ul>
+<li>Album: <em>666</em></li>
+<li>Duration: 1:50</li>
+<li><a href="https://www.youtube.com/watch?v=vOn2BdT8ak8">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/2SBhqtl2duBbSiovSFiL5s">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>Cactus Dream</strong> by Sugar Candy Mountain</p>
+<ul>
+<li>Album: <em>Mystic Hits</em></li>
+<li>Duration: 1:17</li>
+<li><a href="https://www.youtube.com/watch?v=pXsQaMK5GxQ">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/5bZskIwc9s1dRC28ZlPCqB">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>It's Our Love</strong> by Thee Sacred Souls</p>
+<ul>
+<li>Album: <em>Will I See You Again?</em></li>
+<li>Duration: 3:47</li>
+<li><a href="https://www.youtube.com/watch?v=lzCT9gl2kOk">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/4A6zEXlSk7xIIqDh92iZ26">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>Can I Call You Rose?</strong> by Thee Sacred Souls</p>
+<ul>
+<li>Album: <em>Thee Sacred Souls</em></li>
+<li>Duration: 3:10</li>
+<li><a href="https://www.youtube.com/watch?v=zF3PKGftlj4">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/6IAuH3hgTRpUUdmOGubXGS">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>What's His Name</strong> by Joey Quinones, Thee Sinseers</p>
+<ul>
+<li>Album: <em>What's His Name</em></li>
+<li>Duration: 3:03</li>
+<li><a href="https://www.youtube.com/watch?v=_ijwTXfwGO8">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/5dImMTUYHlfHPyfPckpZTZ">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>In The Meantime</strong> by The Altons</p>
+</li>
+</ol>
+<ul>
+<li>Album: <em>In The Meantime</em></li>
+<li>Duration: 5:32</li>
+<li><a href="https://www.youtube.com/watch?v=Di2AYO8u07M">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/1C1Yv7JbZAsR56gJtEhuhS">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="11">
+<li><strong>A Rose Blooms in Chaos</strong> by Davishmar</li>
+</ol>
+<ul>
+<li>Album: <em>A Rose Blooms in Chaos</em></li>
+<li>Duration: 1:56</li>
+<li><a href="https://www.youtube.com/watch?v=L3XrWoSC2n0">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/7fuKPn33GxRh62aC8n71M3">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="12">
+<li><strong>Witches</strong> by Alice Phoebe Lou</li>
+</ol>
+<ul>
+<li>Album: <em>Witches</em></li>
+<li>Duration: 3:15</li>
+<li><a href="https://www.youtube.com/watch?v=JuklRMZj7CA">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/5BBK1WoaiD3b3sJ2UysLuM">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="13">
+<li><strong>Amor</strong> by Alta Elegancia, DannyLux</li>
+</ol>
+<ul>
+<li>Album: <em>Amor</em></li>
+<li>Duration: 4:41</li>
+<li><a href="https://www.youtube.com/watch?v=qWJMm0MaF8A">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/0QLthYlRZYAP9iRs9cjmzD">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="14">
+<li><strong>Jugaste y Sufrí</strong> by Eslabon Armado, DannyLux</li>
+</ol>
+<ul>
+<li>Album: <em>Corta Venas</em></li>
+<li>Duration: 4:35</li>
+<li><a href="https://www.youtube.com/watch?v=CULF9lXH87w">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/3NqBxTOMCJ3zW9CIP51td4">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="15">
+<li><strong>LAGUNAS</strong> by Peso Pluma, Jasiel Nuñez</li>
+</ol>
+<ul>
+<li>Album: <em>GÉNESIS</em></li>
+<li>Duration: 3:51</li>
+<li><a href="https://www.youtube.com/watch?v=3MGSHO8V61Y">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/3HOKxuTDmNVmIlCIpBiD8m">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="16">
+<li><strong>Takis</strong> by É Arenas</li>
+</ol>
+<ul>
+<li>Album: <em>LA</em></li>
+<li>Duration: 3:11</li>
+<li><a href="https://www.youtube.com/watch?v=_d48e2cLQBM">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/74FRLu92OTTvh8vNvhSKF6">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="17">
+<li><strong>Tell Me I'm Dreaming</strong> by Los Yesterdays</li>
+</ol>
+<ul>
+<li>Album: <em>Tell Me I'm Dreaming</em></li>
+<li>Duration: 2:26</li>
+<li><a href="https://www.youtube.com/watch?v=AGG8spAx2Vc">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/5PhJzrQHH5LoOSpqGNtbah">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="18">
+<li><strong>Hell N Back</strong> by Bakar</li>
+</ol>
+<ul>
+<li>Album: <em>Hell N Back</em></li>
+<li>Duration: 3:33</li>
+<li><a href="https://www.youtube.com/watch?v=BdrNvQ4YCng">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/3NRql0A1Ef4RCvT473iqgD">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="19">
+<li><strong>Velocirapture (The Serpent Flew)</strong> by Particle Kid, Mickey Raphael, Sean Ono Lennon</li>
+</ol>
+<ul>
+<li>Album: <em>Time Capsule</em></li>
+<li>Duration: 5:45</li>
+<li><a href="https://www.youtube.com/watch?v=GAbzu-1PrnQ">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/1dQ1MoNwZVmssxwqWF2aQh">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="20">
+<li><strong>Propaganda</strong> by Salami Rose Joe Louis, Brijean</li>
+</ol>
+<ul>
+<li>Album: <em>Akousmatikous / Propaganda</em></li>
+<li>Duration: 2:32</li>
+<li><a href="https://www.youtube.com/watch?v=3LyRmYU99G8">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/018bxhRLe8si8PVYiPgnvY">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="21">
+<li><strong>Akousmatikous</strong> by Salami Rose Joe Louis, Soccer96</li>
+</ol>
+<ul>
+<li>Album: <em>Akousmatikous / Propaganda</em></li>
+<li>Duration: 5:45</li>
+<li><a href="https://www.youtube.com/watch?v=iAW4Sp6fitY">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/6asdwZnekIys3Phf8leM5G">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="22">
+<li><strong>Smokestack Lightnin'</strong> by Howlin' Wolf</li>
+</ol>
+<ul>
+<li>Album: <em>Moanin' In The Moonlight</em></li>
+<li>Duration: 3:08</li>
+<li><a href="https://www.youtube.com/watch?v=VMUt8KdDtTY">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/2HUZVffVPXvqnrml0gXggp">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="23">
+<li><strong>San Tropez</strong> by Pink Floyd</li>
+</ol>
+<ul>
+<li>Album: <em>Meddle</em></li>
+<li>Duration: 3:43</li>
+<li><a href="https://www.youtube.com/watch?v=mjNYO-OI2Fo">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/3kbUFmLV5SHVQonfOpNgkd">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="24">
+<li><strong>Running Away</strong> by Thee Sacred Souls</li>
+</ol>
+<ul>
+<li>Album: <em>Running Away</em></li>
+<li>Duration: 3:15</li>
+<li><a href="https://www.youtube.com/watch?v=SiQg9PZB67Y">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/34VDj911PQh8B1BXYoOMLq">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="25">
+<li><strong>NEON LIGHT</strong> by Bardo</li>
+</ol>
+<ul>
+<li>Album: <em>EVERYWHERE REMINDS ME OF SPACE</em></li>
+<li>Duration: 3:58</li>
+<li><a href="https://www.youtube.com/watch?v=3Zrarjr9eS4">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/3qQPA9M0ZC6bs3q2kW8NRw">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="26">
+<li><strong>Polaroid Weekend</strong> by Bardo</li>
+</ol>
+<ul>
+<li>Album: <em>Polaroid Weekend</em></li>
+<li>Duration: 3:40</li>
+<li><a href="https://www.youtube.com/watch?v=IlhgajtGth8">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/3GmEZg8puDjU3CuW5cU5A8">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="27">
+<li><strong>Rose Gold</strong> by Jason Joshua &amp; The Beholders, Jason Joshua</li>
+</ol>
+<ul>
+<li>Album: <em>Alegría Y Tristeza</em></li>
+<li>Duration: 5:10</li>
+<li><a href="https://www.youtube.com/watch?v=sIl-t8rEvzo">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/1qXqUyVNrd2ymu7PQ6xoiC">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="28">
+<li><strong>Dragonfly</strong> by Dana and Alden</li>
+</ol>
+<ul>
+<li>Album: <em>Quiet Music for Young People</em></li>
+<li>Duration: 5:57</li>
+<li><a href="https://www.youtube.com/watch?v=y_16OUXA6D8">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/3uyAmrmQS6GDm0XllcMGMK">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="29">
+<li><strong>IJ</strong> by Sam Gendel</li>
+</ol>
+<ul>
+<li>Album: <em>IJ</em></li>
+<li>Duration: 2:30</li>
+<li><a href="https://www.youtube.com/watch?v=G0CqHxDG74k">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/4H0A9h9wDV3eB9JZ3xmxWl">Backup: Listen on Spotify</a></li>
+</ul>
+<hr />
+<p><strong>Original Spotify Playlist:</strong> <a href="https://open.spotify.com/playlist/23TDgK6Duz53KFMo02Vh25">Listen on Spotify</a></p>
+</div><footer class="post-footer"><div class="permalink-info">Permalink: <a class="u-url permalink-link" href="/notes/crate-finds-fall-2023/">/notes/crate-finds-fall-2023/</a></div><div><script type="application/javascript">window.onload = function() { document.getElementById('webmention-target').value = window.location.href }</script><form action="https://webmentions.lqdev.tech/api/inbox" method="POST" enctype="application/x-www-form-urlencoded"><h5 class="text-center">Send me a <a href="/contact">message</a> or <a href="https://indieweb.org/webmentions">webmention</a></h5><div class="form-row justify-content-center"><div class="w-75"><input type="url" class="form-control" name="source" placeholder="Your URL (webmention source)" required /></div><div class="col-auto"><input type="submit" class="btn btn-primary" value="Send" /></div><input type="hidden" readonly name="target" id="webmention-target" /></div></form></div></footer></article></div></div></main><script src="/assets/lib/jquery/jquery.slim.min.js"></script><script src="/assets/lib/boostrap/bootstrap.min.js"></script><script src="/assets/lib/highlight/highlight.min.js"></script><script src="/assets/lib/highlight/highlight.fsharp.min.js"></script><script src="/assets/lib/highlight/highlight.nix.min.js"></script><script src="/assets/js/timeline.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script type="application/javascript">mermaid.initialize({startOnLoad:true});</script><script type="application/javascript">hljs.initHighlightingOnLoad();</script><script src="/lib/revealjs/dist/reveal.js"></script><script src="/lib/revealjs/plugin/markdown/markdown.js"></script><script src="/lib/revealjs/plugin/highlight/highlight.js"></script><script type="application/javascript">
+                    // Initialize Reveal.js when a presentation container is found on the page
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const presentationContainer = document.querySelector('.presentation-container');
+                        if (presentationContainer && typeof Reveal !== 'undefined') {
+                            Reveal.initialize({
+                                plugins: [RevealMarkdown, RevealHighlight],
+                                embedded: true
+                            });
+                        }
+                    });
+                    </script></body><footer><a rel="me" href="https://toot.lqdev.tech/@lqdev"></a><a rel="me" href="https://github.com/lqdev"></a><a rel="me" href="https://twitter.com/ljquintanilla"></a><a rel="me" href="https://www.linkedin.com/in/lquintanilla01/"></a><a rel="me" href="mailto:lqdev@outlook.com"></a></footer></html>

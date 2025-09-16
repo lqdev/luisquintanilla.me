@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - commonplace</title>
+    <link>https://www.lqdev.me/tags/commonplace</link>
+    <description>All content tagged with 'commonplace' by Luis Quintanilla</description>
+    <lastBuildDate>09/04/2022 20:25 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Commonplace Book</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;A way to store notes and knowledge discovered and learned. This can include quotes from books, articles, courses, and any other sources of information.&lt;/p&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Commonplace_book"&gt;Commonplace Book&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://evernote.com/blog/how-to-create-commonplace-with-evernote/"&gt;Taking Note: How To Create a Commonplace with Evernote&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://medium.com/read-smart/what-is-a-commonplace-book-db392bda730c"&gt;What is a commonplace book?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://stevenberlinjohnson.com/the-glass-box-and-the-commonplace-book-639b16c4f3bb"&gt;The Glass Box and The Commonplace Book&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/commonplace-book</link>
+      <guid>https://www.lqdev.me/resources/wiki/commonplace-book</guid>
+      <pubDate>09/04/2022 20:25 -05:00</pubDate>
+      <category>knowledgemanagement</category>
+      <category>commonplace</category>
+      <category>notetaking</category>
+      <category>information</category>
+      <category>technology</category>
+      <category>internet</category>
+      <category>books</category>
+    </item>
+  </channel>
+</rss>

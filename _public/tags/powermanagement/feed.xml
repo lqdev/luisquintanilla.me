@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - powermanagement</title>
+    <link>https://www.lqdev.me/tags/powermanagement</link>
+    <description>All content tagged with 'powermanagement' by Luis Quintanilla</description>
+    <lastBuildDate>12/11/2022 16:15 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Power Management Manjaro</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The following shows how you can optimize your computer using Powertop to generate runing recommendations and apply those optimizations at boot using an rc-local service.&lt;/p&gt;
+&lt;h2&gt;Powertop&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Install powertop&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo pacman -S powertop
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Run powertop report (on battery power)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo powertop -r
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After a few seconds, a file called &lt;em&gt;powertop.html&lt;/em&gt; is created.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Open the &lt;em&gt;powertop.html&lt;/em&gt; file in your browser and inspect the &lt;strong&gt;Tuning&lt;/strong&gt; tab for tuning recommendations.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Configure rc-local service&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Create &lt;em&gt;rc.local&lt;/em&gt; file in &lt;code&gt;/etc&lt;/code&gt; directory with the following content&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;#!/bin/sh -e
+
+echo &amp;quot;Hello World&amp;quot;
+
+# Insert powertop optimization scripts here. 
+
+exit 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Create &lt;em&gt;rc-local.service&lt;/em&gt; file in &lt;code&gt;/etc/systemd/system&lt;/code&gt; directory with the following content&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=/etc/rc.local Compatibility
+ConditionPathExists=/etc/rc.local
+
+[Service]
+Type=oneshot
+ExecStart=/etc/rc.local
+TimeoutSec=0
+StandardOutput=tty
+RemainAfterExit=yes
+SysVStartPriority=99
+
+[Install]
+WantedBy=multi-user.target
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Enable and start rc-local service&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo systemctl enable rc-local
+sudo systemctl start rc-local
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Confirm that the service has successfully started&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo systemctl status rc-local
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.org/title/Powertop"&gt;Arch Wiki - Powertop&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/power-management-manjaro</link>
+      <guid>https://www.lqdev.me/resources/wiki/power-management-manjaro</guid>
+      <pubDate>12/11/2022 16:15 -05:00</pubDate>
+      <category>manjaro</category>
+      <category>bash</category>
+      <category>powermanagement</category>
+      <category>tech</category>
+      <category>wiki</category>
+      <category>linux</category>
+    </item>
+  </channel>
+</rss>

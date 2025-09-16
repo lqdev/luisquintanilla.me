@@ -1,0 +1,1927 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - music</title>
+    <link>https://www.lqdev.me/tags/music</link>
+    <description>All content tagged with 'music' by Luis Quintanilla</description>
+    <lastBuildDate>2025-09-13 09:16 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Lossless audio coming to Spotify</title>
+      <description>&lt;![CDATA[Album containing 0 photos]]&gt;</description>
+      <link>https://www.lqdev.me/media/lossless-audio-coming-spotify</link>
+      <guid>https://www.lqdev.me/media/lossless-audio-coming-spotify</guid>
+      <pubDate>2025-09-13 09:16 -05:00</pubDate>
+      <category>music</category>
+      <category>spotify</category>
+    </item>
+    <item>
+      <title>Salmon Metal</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;This is a banger&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=GZUTc5ZPzrM" title="Salmon Metal"&gt;&lt;img src="http://img.youtube.com/vi/GZUTc5ZPzrM/0.jpg" class="img-fluid" alt="Salmon Metal" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/salmon-metal-bear-national-park</link>
+      <guid>https://www.lqdev.me/responses/salmon-metal-bear-national-park</guid>
+      <pubDate>2025-09-13 08:41 -05:00</pubDate>
+      <category>bear</category>
+      <category>metal</category>
+      <category>music</category>
+      <category>nationalpark</category>
+      <category>nature</category>
+    </item>
+    <item>
+      <title>The Return of the Cassette Tape</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Sales of cassettes are up more than &lt;a href="https://www.npr.org/2024/06/07/nx-s1-4976071/the-cassette-tape-is-making-a-comeback-thanks-to-a-family-run-company-in-missouri"&gt;440 percent&lt;/a&gt; over the past decade. Cassette players (think modernized Walkmans) are also back, with companies producing new versions of this decidedly retro tech.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This “revenge of analog,”...is motivated by a combination of factors, from the practical to the more prosaic, and, ultimately, a more mindful use of technology. This approach rejects a binary of good vs. bad tech, and instead seeks a via media — a middle path — with its daily use.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Although I haven't done it as much with music, over the past few years I've been slowly rebuilding my analog media collection which includes movies and books. As the article mentions, part of that is ownership and actually owning the things I pay for. More importantly though, rather than scrolling through an endless catalog and never finding something to watch or read, I have a curated set of items to enjoy in a more mindful manner. If I feel the need to scroll through an endless catalog, there's always the library which has tons of media available. I find the library to be a heavily underutilized and almost forgotten community service we've all already paid for in some way, so why not use it.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/return-cassette-tape-analog-media-comeback</link>
+      <guid>https://www.lqdev.me/responses/return-cassette-tape-analog-media-comeback</guid>
+      <pubDate>2025-09-12 20:32 -05:00</pubDate>
+      <category>media</category>
+      <category>music</category>
+      <category>analog</category>
+      <category>retro</category>
+      <category>vintage</category>
+    </item>
+    <item>
+      <title>The mistake music teachers make</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;I like this analogy.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=Uc_bPtUltDU" title="The mistake music teachers make"&gt;&lt;img src="http://img.youtube.com/vi/Uc_bPtUltDU/0.jpg" class="img-fluid" alt="The mistake music teachers make" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/mistake-music-teachers-make-ted-talk</link>
+      <guid>https://www.lqdev.me/responses/mistake-music-teachers-make-ted-talk</guid>
+      <pubDate>2025-09-11 15:48 -05:00</pubDate>
+      <category>music</category>
+      <category>language</category>
+    </item>
+    <item>
+      <title>Crate Finds - August 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;Trying something different with this iteration of playlists. Usually I embed the Spotify playlist directly into the post. I don't like this for several reasons:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;If you don't have Spotify, listening is limited&lt;/li&gt;
+&lt;li&gt;I don't know this for a fact, but I assume it to be the case - there's some analytics and tracking Spotify gets by embedding their player on my site. Given I don't even track visitors on this site, it's not something I'm comfortable with. I've done it because it requires no work on my end to embed the playlist, but I know the bargain I am making.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So to solve that, I've written a &lt;a href="https://github.com/lqdev/playlist-creator"&gt;script&lt;/a&gt; which does a best effort to find the tracks on YouTube and provides those links alongside this&lt;/p&gt;
+&lt;p&gt;These are the results from one of the generated artifacts:&lt;/p&gt;
+&lt;h2&gt;Tracks&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Reaching Out - (Original Mix)&lt;/strong&gt; by Diinch&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Reaching Out EP&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:41&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=s4kGu7FWrvs"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1xnlRaG9WOHGQWSkG1sX4I"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Melodía del Río&lt;/strong&gt; by Ruben Gonzalez&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Introducing&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:42&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Z8C76TDpb00"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4NRcWinZz7Kq1ErQPaMIqY"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Calico&lt;/strong&gt; by 1tbsp&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;kanashī&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:51&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=wpQbl2Wwiq4"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2lJM9fK3zYQRXVXOTauwhZ"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Nu Hope&lt;/strong&gt; by Neggy Gemmy&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Body Work&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:38&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=yeKBoW4sDPI"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0iIh8chjXYKQMhqO0b1hGu"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Controller - Instrumental&lt;/strong&gt; by Channel Tres&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Controller&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:28&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=IvjzcwKj1uk"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/7fAVWCjPLL4WV1a4htyL0Z"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Volos&lt;/strong&gt; by Benyayer, Dark Sky&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Volos&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 6:51&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=KwVNKYx2z5Q"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3HIfT3TlQpNQJApZnJIk7F"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Heart Made Of Glass&lt;/strong&gt; by Eli &amp;amp; Fur&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Dreamscapes&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:50&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=I1t6B5eBDYo"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/49oh846SsD8V9Zj7eQF4gb"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Forbidden Fruits - Handbook's Remix&lt;/strong&gt; by Edamame, Handbook&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Anywhere People&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:14&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=vQ90og5ffFo"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5wHjchEV7pPBWvffyNUJSM"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Ulu&lt;/strong&gt; by Belief, Boom Bip, Stella Mozgawa&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Belief&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:26&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=-qCLR-MatN4"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1w6Z2eLAHMMaMOrHtCRcKA"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Let Her Know&lt;/strong&gt; by CMYK, James Blake&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;CMYK 002&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:07&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=tPgK9NIQrT8"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0dX9DhvCHFTwnF4sgUSSVD"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="11"&gt;
+&lt;li&gt;&lt;strong&gt;The Wrap Around&lt;/strong&gt; by Dam Swindle&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;The Wrap Around&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 7:11&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=RmHWcP3f-7c"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6rltsJM5CMrpuG1lZkoGBJ"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="12"&gt;
+&lt;li&gt;&lt;strong&gt;887 - Structure&lt;/strong&gt; by Banco De Gaia&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Last Train to Lhasa (Special Edition)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 14:17&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=MDTmaW9qatQ"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3SlM5bKvhyHKQBJEi6AoAV"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="13"&gt;
+&lt;li&gt;&lt;strong&gt;Summer Sun&lt;/strong&gt; by Common Saints&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Summer Sun&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:49&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=ApSZDlw9diI"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/7JHFdL1Tt1JcCpt3pPY2Ok"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="14"&gt;
+&lt;li&gt;&lt;strong&gt;Secret Song&lt;/strong&gt; by Common Saints&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Idol Eyes&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:21&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=gCGqj991qN4"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3usIpncQ0ZQ6ZNgpBAWyAV"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="15"&gt;
+&lt;li&gt;&lt;strong&gt;Space&lt;/strong&gt; by Cellomano&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Unwinding&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 6:19&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=bbkaZc2b7UE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0ECvHoLfBSOL182Ojgigch"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="16"&gt;
+&lt;li&gt;&lt;strong&gt;Step Out Of The Light&lt;/strong&gt; by Bruno Pernadas&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Private Reasons&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 9:15&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Ou1yQ1S7a0E"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/303Il86VraD7v8f0x2dWGB"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="17"&gt;
+&lt;li&gt;&lt;strong&gt;By Hook or by Crook&lt;/strong&gt; by Jessica Pratt&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Here in the Pitch&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:27&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=jVoViv23BdE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6KMUBFHS4ad118X0HcR42T"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="18"&gt;
+&lt;li&gt;&lt;strong&gt;Asphalt Homeland&lt;/strong&gt; by Ghost Funk Orchestra, Golden Rules&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Asphalt Homeland&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:01&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=OxLHmmvbonA"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4ieVyUVpSZz1GBKuU22PtU"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="19"&gt;
+&lt;li&gt;&lt;strong&gt;Earth&lt;/strong&gt; by Joe Henderson, Alice Coltrane&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;The Elements&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 13:13&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=UpZJ_LQ4CFg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5tR80sypNbMyWIbDfiBBXh"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="20"&gt;
+&lt;li&gt;&lt;strong&gt;Equanimity&lt;/strong&gt; by Ancient Infinity Orchestra&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;River of Light&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 8:33&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=NSNlD74PYwg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5WrlP1k0g65VibfU62NWnu"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="21"&gt;
+&lt;li&gt;&lt;strong&gt;Love Is Everywhere&lt;/strong&gt; by Pharoah Sanders&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Wisdom Through Music&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:18&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=yQvpDIE70wk"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4IIxBK0L8uj7viwxhmuSc4"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Original Spotify Playlist:&lt;/strong&gt; &lt;a href="https://open.spotify.com/playlist/5CTCAnbYOoWS1sdYolrZAG"&gt;Listen on Spotify&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/crate-finds-august-2025</link>
+      <guid>https://www.lqdev.me/notes/crate-finds-august-2025</guid>
+      <pubDate>2025-09-07 18:59 -05:00</pubDate>
+      <category>cratefinds</category>
+      <category>music</category>
+      <category>playlist</category>
+      <category>spotify</category>
+    </item>
+    <item>
+      <title>Crate Finds - June 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;Playlist from June 2025.&lt;/p&gt;
+&lt;p&gt;Some of my favorites:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Claudia, Wilhelm R And Me by Roberto Musci&lt;/li&gt;
+&lt;li&gt;Journey in Satchidananda by Alice Coltrane and Pharoah Sanders&lt;/li&gt;
+&lt;li&gt;Little Sunflower by Dorothy Ashby&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Tracks&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Claudia, Wilhelm R And Me&lt;/strong&gt; by Roberto Musci&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Tower of Silence&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:57&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=g6-Wf79K_zE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4jR8SmpJ76qsD1TlaD6TIY"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Eternal Loop&lt;/strong&gt; by Sam Gendel&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Fresh Bread&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:44&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=4IVquk6qCK8"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5accXvV8qKql1dvAq5Qg6K"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Are These My Memories?&lt;/strong&gt; by Steve Hiett&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Girls In The Grass&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:55&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=G0LULLBZxi8"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1NPf5FCRtTxNlm5XGhkKhw"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Daddy's Gonna Tell You No Lie&lt;/strong&gt; by Red Hot Org, Laraaji, Kronos Quartet, Sun Ra&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Outer Spaceways Incorporated - Kronos Quartet &amp;amp; Friends Meet Sun Ra&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:35&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=a87qKeEy1JM"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/25w1nwtRPI5ozR13AH7E5O"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Journey In Satchidananda&lt;/strong&gt; by Alice Coltrane, Pharoah Sanders&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Journey in Satchidananda&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 6:36&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=TQtEFdyhgdE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2gG3ivmsfylVXLyIJvLXyN"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Little Sunflower&lt;/strong&gt; by Dorothy Ashby&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Afro-Harping&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:45&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=PtU7I59BbK4"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3A6e928yOFJ0MhlG7xrFDW"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Time's A Wastin&lt;/strong&gt; by Erykah Badu&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Mama's Gun&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 6:40&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=apHvjAXjTgI"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6q8fYYujrQxXckq1tTtqqi"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Freedom Flight&lt;/strong&gt; by Shuggie Otis&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Freedom Flight&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 12:56&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=xkpvklUQpOo"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/7xPlEpRGFkI7AcsqSMCLbM"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Pretty Darlin'&lt;/strong&gt; by Eric Relph&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Pretty Darlin&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:14&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=9jqRD_jVXpI"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/43ADCg1ppa4P7at2oJ3RFC"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Josephine&lt;/strong&gt; by Caoilfhionn Rose&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Constellation&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:40&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=lalaVN6oI8Q"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2BigkQQGvgUdj5moWxXuti"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="11"&gt;
+&lt;li&gt;&lt;strong&gt;May Ninth&lt;/strong&gt; by Khruangbin&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;A LA SALA&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:12&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=sTcHbELHYCk"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5yVGW2o9LXaiiS4I3HUM3k"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="12"&gt;
+&lt;li&gt;&lt;strong&gt;Dream Puppy&lt;/strong&gt; by The Sweet Enoughs&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Marshmallow&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:39&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=k2D7txqmPaQ"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0JuXNcbA4jqJgDzIO90f1D"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="13"&gt;
+&lt;li&gt;&lt;strong&gt;Crystal Blue Persuasion&lt;/strong&gt; by Tommy James &amp;amp; The Shondells&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Crimson &amp;amp; Clover&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:02&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=oDN7nukZRnw"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0aD8W0ChzDgEKpB1zsJ8zv"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="14"&gt;
+&lt;li&gt;&lt;strong&gt;Witchoo&lt;/strong&gt; by Durand Jones &amp;amp; The Indications, Durand Jones, Aaron Frazer&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Private Space&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:42&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=d7vTtnevlO4"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6W9rbkBueZQrwuzO24GHZ2"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="15"&gt;
+&lt;li&gt;&lt;strong&gt;Poly Blue&lt;/strong&gt; by Jessica Pratt&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Quiet Signs&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:43&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=7mBq_4D1s6A"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3cW2MmZW1GjdFbBfezcOZI"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="16"&gt;
+&lt;li&gt;&lt;strong&gt;Mona Lisa Overdrive&lt;/strong&gt; by Juno Reactor&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;The Matrix Reloaded: The Album&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 10:08&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=QQsf8wRiEoc"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6m7mgnkUOpQGzvaqdIeyye"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="17"&gt;
+&lt;li&gt;&lt;strong&gt;Documents&lt;/strong&gt; by Slick Rick, Nas&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;VICTORY&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:49&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=cb8U6atGJp8"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2GZIuPFHBY7yanCa7pzxak"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Original Spotify Playlist:&lt;/strong&gt; &lt;a href="https://open.spotify.com/playlist/6ZhcCrMutGjgL80C22iN1u"&gt;Listen on Spotify&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/crate-finds-june-2025</link>
+      <guid>https://www.lqdev.me/notes/crate-finds-june-2025</guid>
+      <pubDate>2025-07-01 20:00 -05:00</pubDate>
+      <category>cratefinds</category>
+      <category>music</category>
+      <category>playlist</category>
+      <category>spotify</category>
+    </item>
+    <item>
+      <title>Crate Finds - May 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;Better late than never. Here's the May 2025 drop.&lt;/p&gt;
+&lt;p&gt;Some of my favorites from last month:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Prayer to the Stars by Vianney Lopez, Sam Bottner&lt;/li&gt;
+&lt;li&gt;Diarabi by Viex Farka Toure, Khruangbin&lt;/li&gt;
+&lt;li&gt;Everything &amp;amp; Nothing, OHMA&lt;/li&gt;
+&lt;li&gt;Bloom, Deya Dova&lt;/li&gt;
+&lt;li&gt;Dance of the Seven Sisters, Deya Dova&lt;/li&gt;
+&lt;li&gt;Wisdom Eye by Alice Coltrane&lt;/li&gt;
+&lt;li&gt;Black Meditation by Shabaka&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Tracks&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;La Casita Blanca - Rebajada&lt;/strong&gt; by Bilo Alban, Hector Manito Bonilla&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;El Órgano Electrónico de Bilo Albán&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:02&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=krROlxz2zdk"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5NYBlbcxkmoYeJ2FlTZd7y"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Cumbia Disco Energy&lt;/strong&gt; by Sonido Gallo Negro, Polymarchs&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Cumbia Disco Energy&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:57&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=x_GyD5u6Hdg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4I4JOjfW35xlyEgjiyswGJ"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;El Mercado De Los Brujos&lt;/strong&gt; by Sonido Gallo Negro&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Cumbia Salvaje&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:31&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=1dWcw0PzJeU"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2gJbmtM85cCnHlBveHgDbP"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Cumbia Triste&lt;/strong&gt; by Sonido Gallo Negro, Grupo Kual?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Paganismo&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:51&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=iVkVY-M-LkI"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2NagSRAuRKhczwC1hUhtB1"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Mulberry Jam&lt;/strong&gt; by Allah-Las&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Mulberry Jam (Peaking Lights Dub)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:17&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=l9t4GrJN5nE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5deHYI0KDEXkQsDkUui5m7"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Sozin&lt;/strong&gt; by Pedro Mizutani, Skinshape&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Sozin&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:28&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Y98TjNVi4Os"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/7hFx498UBDaX0RafWpscWd"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;TTT&lt;/strong&gt; by Bluestaeb, Melodiesinfonie, S. Fidelity, douniah&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;TTT&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:21&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=DojEuMupecc"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6gDDaGM8zIscNdtbWESvWl"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Selenge&lt;/strong&gt; by Céline Dessberg&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Selenge&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:21&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=qL-k42eT10g"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/47yngLaqEr3z1lnk7ok0OV"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Spring Has Sprung&lt;/strong&gt; by СОЮЗ, Asha Puthli, Sven Wunder&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Spring Has Sprung&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:08&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Zw91r5pgYTI"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6ljB4xE0PBnOoj769PJgdE"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Voyage&lt;/strong&gt; by anaiis, Grupo Cosmo, Sessa&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;anaiis &amp;amp; Grupo Cosmo&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:46&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=FBKYgMa-DjQ"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4eutFav6aAuoLyCMlVsmPa"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="11"&gt;
+&lt;li&gt;&lt;strong&gt;Toda Cor&lt;/strong&gt; by anaiis, Grupo Cosmo, Luedji Luna&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;anaiis &amp;amp; Grupo Cosmo&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:51&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=jNgnUoOU0Eg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2rxfuico35HgTvoD28LJ4B"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="12"&gt;
+&lt;li&gt;&lt;strong&gt;São Só Palavras&lt;/strong&gt; by Nyron Higor, alici, Bruno Berle&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Nyron Higor&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 1:30&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=VxejWXqaVT8"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/10A2t3li8EQvr27lmJDIqy"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="13"&gt;
+&lt;li&gt;&lt;strong&gt;Conversations&lt;/strong&gt; by Carlos Niño &amp;amp; Friends, André 3000, Nate Mercereau, Cavana Lee, Mia Doi Todd&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;(I'm just) Chillin', on Fire&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:36&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Lo5wmBhvwA8"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/69dsbTG8YZWb7jxalOJalg"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="14"&gt;
+&lt;li&gt;&lt;strong&gt;Together Is A Beautiful Place To Be - Nala Sinephro Remix&lt;/strong&gt; by Nubya Garcia, Nala Sinephro&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;SOURCE ⧺ WE MOVE&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:27&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=DrN-kqMOgc4"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4Wt7ZGzelNDUZCCZxgLsuK"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="15"&gt;
+&lt;li&gt;&lt;strong&gt;Space 5&lt;/strong&gt; by Nala Sinephro&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Space 1.8&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:00&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=1ujTycpT9To"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5qQiAyGH1zJtCwPDRvs1wa"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="16"&gt;
+&lt;li&gt;&lt;strong&gt;Sun&lt;/strong&gt; by Skinshape&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Umoja&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:41&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=qVAckPZ0ZBo"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/7ISuVR7cR4kjxwkF5sUTy3"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="17"&gt;
+&lt;li&gt;&lt;strong&gt;The Touch of You&lt;/strong&gt; by The Equatics&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Doin It!!!!&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:36&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Z6_qvBO9pHw"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4BPQA11N0hEYYH043S1fMT"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="18"&gt;
+&lt;li&gt;&lt;strong&gt;manos ajenas (touch you every day)&lt;/strong&gt; by Dos Santos&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Logos&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:34&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=WVYAHfbvajs"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/71JFbeVEheDu3YwhOOxIPh"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="19"&gt;
+&lt;li&gt;&lt;strong&gt;Prayer to the Stars&lt;/strong&gt; by Vianney Lopez, Sam Bottner&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Ceremonia&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:26&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=H7naazaSSfM"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1o6DRTTUzcVlOwXWYKaNEG"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="20"&gt;
+&lt;li&gt;&lt;strong&gt;Moving Through&lt;/strong&gt; by Alexa Sunshine Rose, Aimée Ringle&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Come Receive&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:40&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=TgKucJ5J4DY"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/45Ml50QGvuH8oBXPjegYNE"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="21"&gt;
+&lt;li&gt;&lt;strong&gt;Bloom&lt;/strong&gt; by Deya Dova&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;The Jasmani Garden&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:03&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Km0gKVOkO28"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5thytQyWjWecUJY5FLFIy6"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="22"&gt;
+&lt;li&gt;&lt;strong&gt;Turquoise Galaxy&lt;/strong&gt; by Yussef Dayes&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Black Classical Music&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:11&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=a9ImOdvh7LE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/443JNQpv6lz4wxnHZKV7wH"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="23"&gt;
+&lt;li&gt;&lt;strong&gt;Dive into the Medicine Within&lt;/strong&gt; by Vianney Lopez&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Spirit Medicine&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:17&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=XKJX7Aye-Eg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5o9138EZOCpr5N7RiLkL0N"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="24"&gt;
+&lt;li&gt;&lt;strong&gt;Fingerprints&lt;/strong&gt; by Hiatus Kaiyote&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Choose Your Weapon&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:16&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=YUmSu_54478"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3c7N2fCFB4JVKGF8cWfteh"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="25"&gt;
+&lt;li&gt;&lt;strong&gt;La Puerta&lt;/strong&gt; by Los Tres Ases&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Epoca De Oro&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:56&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=qCD1c7DZ4Nc"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/7410XFJdR47lachsg3fkth"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="26"&gt;
+&lt;li&gt;&lt;strong&gt;Dónde Estás&lt;/strong&gt; by Los Tres Caballeros&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Los Tres Caballeros&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:49&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=MibydTowH1A"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0G35JrHAh7E6KtVC11eDv4"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="27"&gt;
+&lt;li&gt;&lt;strong&gt;Sabra Dios&lt;/strong&gt; by Los Tres Ases&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Tríos Del Mundo : 40 Éxitos&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:06&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=5hwu19JLSTE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/7fcXNUtZSgh9VrKW58Bjuz"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="28"&gt;
+&lt;li&gt;&lt;strong&gt;Lovesong&lt;/strong&gt; by Common Saints&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Idol Eyes&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 9:17&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=DPMt6w1RaDI"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1J7uPqs46vgRZZ5ZhiPG3Y"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="29"&gt;
+&lt;li&gt;&lt;strong&gt;Sweetie&lt;/strong&gt; by Kokoroko&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Sweetie&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:04&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=VDrS1qrHllE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5rffvBl5fCAGCW6hdTZ3q9"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="30"&gt;
+&lt;li&gt;&lt;strong&gt;Carta Ao Tom 74&lt;/strong&gt; by Vinícius de Moraes, Toquinho, Quarteto Em Cy&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;20 Grandes Sucessos De Vinicius De Moreas&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:41&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=snL61YwwLCw"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3pemsJqLI0GXY9tlQDn8yS"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="31"&gt;
+&lt;li&gt;&lt;strong&gt;Iceland&lt;/strong&gt; by Daniel Lanois&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Flesh And Machine&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:38&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=DvWa62aQLhg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5i6DI0TPO8sYfCvOUhakve"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="32"&gt;
+&lt;li&gt;&lt;strong&gt;Água&lt;/strong&gt; by Zeep&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Nina Miranda &amp;amp; Chris Franck Present: Zeep&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:36&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=eijfKVG0aGk"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4mULUGzxNVz5O10Fwzs4pf"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="33"&gt;
+&lt;li&gt;&lt;strong&gt;Diarabi&lt;/strong&gt; by Vieux Farka Touré, Khruangbin&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Ali&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:01&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=NnE73tTRPmg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/36huM0UOR9A17TYAape2Xg"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="34"&gt;
+&lt;li&gt;&lt;strong&gt;Wisdom Eye&lt;/strong&gt; by Alice Coltrane&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Eternity&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:10&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=shOfu810phM"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0XLH43dcYq2pOe7COx8gPT"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="35"&gt;
+&lt;li&gt;&lt;strong&gt;Black meditation&lt;/strong&gt; by Shabaka&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Afrikan Culture&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:58&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=TSCagxxGMM0"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0OK7oUUtjtUAVNxgXFtqsw"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="36"&gt;
+&lt;li&gt;&lt;strong&gt;Everything &amp;amp; Nothing&lt;/strong&gt; by OHMA&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Between All Things&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:06&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=kKe-4yF3Luo"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1FabTpuGnm8TkCRYZHzb4J"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="37"&gt;
+&lt;li&gt;&lt;strong&gt;Take It Slow&lt;/strong&gt; by Ayla Nereo&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;By the Light of the Dark Moon&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:06&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Zq-Jj0ReW1g"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/50i9oISMvbtdQyvgDJ0Wi1"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="38"&gt;
+&lt;li&gt;&lt;strong&gt;Dance of the Seven Sisters&lt;/strong&gt; by Deya Dova&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;The Jasmani Garden&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:38&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=HiKWBM4JSOw"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1yI7aULDqSfW4zfjTV0xOK"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="39"&gt;
+&lt;li&gt;&lt;strong&gt;Little Star&lt;/strong&gt; by Little Whale, Danit&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Movement of the Dawn&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:05&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=ljvUMVgznms"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3hibbtCtdisq4r4cj3Bxnb"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Original Spotify Playlist:&lt;/strong&gt; &lt;a href="https://open.spotify.com/playlist/0ETG3ZcVXCPqgHN4xFQ8qN"&gt;Listen on Spotify&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/crate-finds-may-2025</link>
+      <guid>https://www.lqdev.me/notes/crate-finds-may-2025</guid>
+      <pubDate>2025-06-29 18:00 -05:00</pubDate>
+      <category>cratefinds</category>
+      <category>music</category>
+      <category>playlist</category>
+      <category>spotify</category>
+    </item>
+    <item>
+      <title>Thee Sacred Souls 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;Some pictures from the Thee Sacred Souls concert I attended a few weeks ago.&lt;/p&gt;
+&lt;p&gt;I caught them in New York when the tour started, so it was nice to catch them at the end of the tour as well.&lt;/p&gt;
+&lt;p&gt;In both cases, they were great performances.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/thee-sacred-souls-2025-1.jpg" class="img-fluid" alt="A stage with Thee Sacred Souls band performing" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/thee-sacred-souls-2025-2.jpg" class="img-fluid" alt="Thee Sacred Souls members on stage embracing" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/thee-sacred-souls-2025</link>
+      <guid>https://www.lqdev.me/notes/thee-sacred-souls-2025</guid>
+      <pubDate>2025-06-14 12:30 -05:00</pubDate>
+      <category>music</category>
+      <category>concert</category>
+      <category>theesacredsouls</category>
+    </item>
+    <item>
+      <title>Faircamp - A static site generator for audio producers</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;This is such a cool project. Looks like it's super simple to get started with and it's packed with a ton of features so creators get to stay in their flow.&lt;/p&gt;
+&lt;p&gt;I also like how creators are showcased.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/faircamp-static-site-audio-producers</link>
+      <guid>https://www.lqdev.me/responses/faircamp-static-site-audio-producers</guid>
+      <pubDate>2025-06-05 20:05 -05:00</pubDate>
+      <category>faircamp</category>
+      <category>music</category>
+      <category>socialweb</category>
+      <category>indieweb</category>
+      <category>staticsite</category>
+      <category>technology</category>
+      <category>tools</category>
+      <category>openweb</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>Diving deeper into the Chicano Batman catalog</title>
+      <description>&lt;![CDATA[&lt;p&gt;I find it amazing how you could've heard a song before but on rare occasions, you actually get to really listen to the song. That's been happening to me with this album from Chicano Batman. I've written before about how much I enjoy A Hundred Dead and Loving Souls. Lately though, I've been really into Itotiani, La Samoana, and Soniatl. The instrumentals are amazing. Wild to think this album is now 15 years old.&lt;/p&gt;
+&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/6tN9jametp8Y1xtraYzYNe?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/chicano-batman-album</link>
+      <guid>https://www.lqdev.me/notes/chicano-batman-album</guid>
+      <pubDate>2025-05-05 20:21 -05:00</pubDate>
+      <category>music</category>
+      <category>chicanobatman</category>
+      <category>indie</category>
+    </item>
+    <item>
+      <title>Crate Finds - April 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;April 2025 drop.&lt;/p&gt;
+&lt;p&gt;SAULT, Cleo Sol (SAULT singer), and Little Simz were on repeat.&lt;/p&gt;
+&lt;h2&gt;Tracks&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Pray for Me&lt;/strong&gt; by SAULT&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Pray for Me&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 7:14&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=zJjxezSphyk"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1S6gu4i6gcetXwUxoaVp7p"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Can't Keep My Plants Alive&lt;/strong&gt; by alici&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Can't Keep My Plants Alive&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:06&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=VCqh-ynWlyw"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6qDUAf9atOfPpg9fuMs6eq"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Jumpstart&lt;/strong&gt; by TYSON&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Jumpstart&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:51&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=pxD9CGauw5Q"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3S69GNVT2d5lXh7ClybMCV"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Now It's Your Turn To Sing&lt;/strong&gt; by Lizette &amp;amp; Quevin&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Grow Forever b/w Now It’s Your Turn To Sing&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:13&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Rxl71ekKqGg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3jpPmN7EUYiTIwxh1zNBpj"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;I'll Be Loving You&lt;/strong&gt; by Yellow Days&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;I'll Be Loving You&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:06&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=8bRMomparts"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1LqUHH9yacnl8xMBO3dx4d"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;care to care (feat. Plumm)&lt;/strong&gt; by Marysia Osu, Plumm&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;harp, beats &amp;amp; dreams&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:03&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=hYoNEPWZOxk"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1mGflD3p4slUT3RC60XzxR"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;23&lt;/strong&gt; by Cleo Sol&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Mother&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:06&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=6IdLgRpa3W0"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1JVEM4C04VPAU9JTnKthNk"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;I Let A Song Go Out Of My Heart&lt;/strong&gt; by Duke Ellington&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;The Duke: The Columbia Years (1927-1962)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:07&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=qMDQIYeHJv4"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6d4JosbF1HCdaK8nRheFGF"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Things Ain't What They Used to Be&lt;/strong&gt; by Duke Ellington&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;The Duke: The Columbia Years (1927-1962)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:57&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=pOePGV9Utrk"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3ynA4sTnRLEP7QfVQmxlgL"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;B.P.E&lt;/strong&gt; by anaiis, Grupo Cosmo&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;anaiis &amp;amp; Grupo Cosmo&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:40&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=zgqNK3vdU3Y"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0AvHKpI768IrIR6QC6Irue"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="11"&gt;
+&lt;li&gt;&lt;strong&gt;Point and Kill&lt;/strong&gt; by Little Simz, Obongjayar&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Sometimes I Might Be Introvert&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:05&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=tvY31eN3gtE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/52y4KhkcAbYcogFg2u7UVP"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="12"&gt;
+&lt;li&gt;&lt;strong&gt;Woman&lt;/strong&gt; by Little Simz, Cleo Sol&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Sometimes I Might Be Introvert&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:29&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=zHGf6tmnLYE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/60GM1mA58L7SYD1bLQXBho"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="13"&gt;
+&lt;li&gt;&lt;strong&gt;One&lt;/strong&gt; by Cleo Sol&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;One&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:33&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=geojyCFYqGk"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1BMlDJRb0MtjhliYhlofhw"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="14"&gt;
+&lt;li&gt;&lt;strong&gt;Two Lands&lt;/strong&gt; by Azamiah&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Two Lands&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:46&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=TdLGg7P4gR8"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/13lvtKJ8pkuAI3kqy0bneW"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="15"&gt;
+&lt;li&gt;&lt;strong&gt;Let Dust Settle&lt;/strong&gt; by Azamiah&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Two Lands&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:45&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=un8J4yuB8xE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2fwbrucqkOdToyPAWQ32Kn"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="16"&gt;
+&lt;li&gt;&lt;strong&gt;My Lonely Heart&lt;/strong&gt; by Azamiah&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Two Lands&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:13&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=NyJp0X3WBJQ"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2FXvq70lmBaCDNHaHonPWU"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="17"&gt;
+&lt;li&gt;&lt;strong&gt;Om Gam Mantra&lt;/strong&gt; by Chantress Seba, Malte Marten&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Om Gam Mantra&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 7:15&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=bOSWJTu5Prw"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6LsBb1KHz9IHD6vE2H0zBy"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="18"&gt;
+&lt;li&gt;&lt;strong&gt;Sandusky&lt;/strong&gt; by Uncle Tupelo&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;March 16-20, 1992&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:43&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=R_vJ0fmBfBA"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0rib9hiYy1NWL0w8BUYgmd"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="19"&gt;
+&lt;li&gt;&lt;strong&gt;Ra Heset - Live&lt;/strong&gt; by Chantress Seba&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Light Healing (Live Sessions)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:01&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Rs1PiMg2zFM"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6XmckpsGFokHumT6mBfjZd"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="20"&gt;
+&lt;li&gt;&lt;strong&gt;Musiquita - Lagartijeando Remix&lt;/strong&gt; by Cyma, Loli Cosmica, Cuervo Cuervo, Lagartijeando&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Musiquita&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:25&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=kpbR2GdQMUY"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0amNUVF2MXUQYcc8sVEpU6"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="21"&gt;
+&lt;li&gt;&lt;strong&gt;Free&lt;/strong&gt; by Little Simz&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Free&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:35&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=goChcI7lH0o"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/05i0gnCc4Tj9Rshavrirfh"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="22"&gt;
+&lt;li&gt;&lt;strong&gt;Chivalry Is Not Dead - Salami Rose Joe Louis Remix&lt;/strong&gt; by Hiatus Kaiyote, Salami Rose Joe Louis&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Mood Variant (The Remixes)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:36&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=8Aoos3XEcSQ"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6SRkxN8rS8dGc5McHVJql8"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="23"&gt;
+&lt;li&gt;&lt;strong&gt;Opening Night&lt;/strong&gt; by Jessica Pratt&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Quiet Signs&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 1:39&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=8ArXj4YlSmo"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6dhwJhlBb5bNIxIrvYUPSW"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="24"&gt;
+&lt;li&gt;&lt;strong&gt;Shakedown Street - 2013 Remaster&lt;/strong&gt; by Grateful Dead&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Shakedown Street&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:00&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=-_T2_XSYcQM"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1lNRVjK8MukRZpeurYssIx"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Original Spotify Playlist:&lt;/strong&gt; &lt;a href="https://open.spotify.com/playlist/4xaMGKfJVa5DMpp6S3i7N8"&gt;Listen on Spotify&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/crate-finds-april-2025</link>
+      <guid>https://www.lqdev.me/notes/crate-finds-april-2025</guid>
+      <pubDate>2025-05-02 13:35 -05:00</pubDate>
+      <category>cratefinds</category>
+      <category>music</category>
+      <category>playlist</category>
+      <category>spotify</category>
+    </item>
+    <item>
+      <title>Crate Finds - February 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;February's drop.&lt;/p&gt;
+&lt;p&gt;I've been listening to a lot of Andre 3000 and stumbled upon Carlos Nino and Friends.&lt;/p&gt;
+&lt;h2&gt;Tracks&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Procession: Opening&lt;/strong&gt; by Deantoni Parks, Hanna Benn, Leo Abrahams&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Procession: Opening&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 11:46&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=LS-C8uq1s5c"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4ViFm97jcQZyET84bGCByF"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;We Love You So Much&lt;/strong&gt; by Carlos Niño, Nate Mercereau, Idris Ackamoor&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Free, Dancing. . .&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 6:58&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=UsO_pY3fPOw"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/18OHTk5Gdivo8rbPUI8Vod"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Astral Traveling&lt;/strong&gt; by Pharoah Sanders&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Thembi&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:50&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=T4nAGtdkU88"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/55X66sKArUevBeGD7buroR"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Celesta&lt;/strong&gt; by Azamiah&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;In Phases&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:09&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=FcwuVtwnHqo"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/43zrSh64eLYs8fpHbT20LJ"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Monologue II&lt;/strong&gt; by Azamiah&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;In Phases&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 1:13&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=kcHPsDtsywg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5D2j45CvKWlWxI48ptgVO9"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Night Woman&lt;/strong&gt; by Azamiah&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;In Phases&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:49&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=njsb1fCWd1c"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3vFGCRlv0yHAwhJUH61YDC"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Solace&lt;/strong&gt; by Azamiah&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;In Phases&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 0:58&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Ta8ys2lRH-w"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/7oqm7wpNm8CLNGS1Rn5may"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Baba Yaga&lt;/strong&gt; by Daedelus&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;The Light Brigade&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 1:33&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=_NArkGZ-JlY"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4Uox2dpggddq1318AO3zkA"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Real Vital Organs&lt;/strong&gt; by Carlos Niño &amp;amp; Friends, Jamael Dean&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Placenta&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:57&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=txh0usk-8PM"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2ZXqOul7QA2rwy0nnBmzNY"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;This “I” was not&lt;/strong&gt; by Carlos Niño &amp;amp; Friends, Ariel Kalma, Annelise&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Placenta&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:37&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=J9bzvNEx3Bg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4SlVPmffFSXjTnZxyQzAU8"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="11"&gt;
+&lt;li&gt;&lt;strong&gt;Birthworkers Magic, and how we get hear . . .&lt;/strong&gt; by Carlos Niño &amp;amp; Friends, Maia Mălăncuș, André 3000, Jesse Peterson&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Placenta&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 7:21&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=yzL9642XYNg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2OGItJWEIK3SGBy6lFbq9h"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="12"&gt;
+&lt;li&gt;&lt;strong&gt;Placenta, Nourishment, New Home, The Galaxy&lt;/strong&gt; by Carlos Niño &amp;amp; Friends, Haize Hawke, Surya Botofasina, Aaron Shaw, Devin Daniels, Tiffany de Leon, Michael Bolger, Michael Alvidrez, Jesse Peterson, Annelise, Moss&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Placenta&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 9:03&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=0JARgjeEAMU"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3nI7C6LzQz7JwBwFuFBZjS"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="13"&gt;
+&lt;li&gt;&lt;strong&gt;Carla's Beads&lt;/strong&gt; by Carlos Niño &amp;amp; Friends, Iasos&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Placenta&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 1:51&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=dw4ksXWBj_4"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6Kacnqg7UYA858wnkAGwaH"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="14"&gt;
+&lt;li&gt;&lt;strong&gt;“Play Kerri Chandler’s RAIN”&lt;/strong&gt; by Carlos Niño &amp;amp; Friends, Surya Botofasina, Nate Mercereau, Cavana Lee&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Placenta&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 17:32&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=7YqDiXNK66g"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2R8Yc2D6W7Q243sxUVvVun"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="15"&gt;
+&lt;li&gt;&lt;strong&gt;Thanking the Earth&lt;/strong&gt; by Carlos Niño &amp;amp; Friends, Sam Gendel, Nate Mercereau&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;More Energy Fields, Current&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:20&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=aVr_YYDUJx0"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6YjJpKGCIbtZsFbdVYYskQ"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="16"&gt;
+&lt;li&gt;&lt;strong&gt;Salon Winds&lt;/strong&gt; by Carlos Niño &amp;amp; Friends, Jamael Dean, Jamire Williams, Nate Mercereau, Aaron Shaw&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;More Energy Fields, Current&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 7:23&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=cQ5BiFqBJjE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/38ZzyDsamk3YtkDRTLRaeY"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="17"&gt;
+&lt;li&gt;&lt;strong&gt;Togetherness&lt;/strong&gt; by Carlos Niño &amp;amp; Friends, Jamael Dean, Devin Daniels&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;More Energy Fields, Current&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:57&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=q01DCtVkS1o"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2MH63c9RvkeP8HSbvxm6Hz"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="18"&gt;
+&lt;li&gt;&lt;strong&gt;Arm fell asleep&lt;/strong&gt; by Salami Rose Joe Louis&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Inside&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:48&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=jvRzTxSTRBk"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1mtT9Uz2utNGIYVkS4MGVl"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="19"&gt;
+&lt;li&gt;&lt;strong&gt;Inside&lt;/strong&gt; by Salami Rose Joe Louis&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Inside&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:09&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Le0ji4veU74"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0JgQrMZtYntcnG6hMamhBK"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="20"&gt;
+&lt;li&gt;&lt;strong&gt;Cuvier's&lt;/strong&gt; by Gonubie&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Signals At Both Ears&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:56&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=M1DsgQGhbMg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6GNoolbQbcOkkI86O4mMue"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="21"&gt;
+&lt;li&gt;&lt;strong&gt;Intro Eternity&lt;/strong&gt; by Miguel Atwood-Ferguson&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Library Selection&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:22&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=UzfeGdFrutQ"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/47NeRM7gya02eKGjPOmQuY"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="22"&gt;
+&lt;li&gt;&lt;strong&gt;Indian Food&lt;/strong&gt; by Dumbo Gets Mad&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Quantum Leap&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:33&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=23GiDfWuCfM"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0fDFzVTG8c2fW9EM5f1RHM"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="23"&gt;
+&lt;li&gt;&lt;strong&gt;Saudade Love&lt;/strong&gt; by Sugar Candy Mountain&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Mystic Hits&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:12&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=dnNYNK2LJ88"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0qduuUbXv99FwUwqK9uofG"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="24"&gt;
+&lt;li&gt;&lt;strong&gt;Forest Pulse&lt;/strong&gt; by Carlos Niño, Carlos Niño &amp;amp; Friends, Laraaji, Photay&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Bliss On Dear Oneness&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:57&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=ldUr3dVSH2w"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3jwUrFVYkuHOGtESqE6uid"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="25"&gt;
+&lt;li&gt;&lt;strong&gt;Clouds&lt;/strong&gt; by Resavoir&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Resavoir&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 1:11&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=JunIVJ-xPtQ"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3NTIFheCgQoKWXTRfTuEil"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="26"&gt;
+&lt;li&gt;&lt;strong&gt;Escalator&lt;/strong&gt; by Resavoir, Sen Morimoto&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Resavoir&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:05&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Ikq7WzL3hfg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1V111TwVtXocBxKaANz1TY"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="27"&gt;
+&lt;li&gt;&lt;strong&gt;Other Side Of The Game&lt;/strong&gt; by Erykah Badu&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Baduizm&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 6:33&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=3qpyDUfMq-8"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6s4xndGKUhW0xXPYvFlwcL"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="28"&gt;
+&lt;li&gt;&lt;strong&gt;Next Lifetime&lt;/strong&gt; by Erykah Badu&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Baduizm&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 6:26&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=07uSAIcXFmg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6sIMSl1n3KDPr03Fw8mujd"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="29"&gt;
+&lt;li&gt;&lt;strong&gt;Certainly&lt;/strong&gt; by Erykah Badu&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Baduizm&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:43&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=SWf6M467OsQ"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3WgutPPpDfVHYgwPGXKFY1"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Original Spotify Playlist:&lt;/strong&gt; &lt;a href="https://open.spotify.com/playlist/4zpzvhZWVOvmq0ZdbrKh8H"&gt;Listen on Spotify&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/crate-finds-february-2025</link>
+      <guid>https://www.lqdev.me/notes/crate-finds-february-2025</guid>
+      <pubDate>2025-03-02 13:35 -05:00</pubDate>
+      <category>cratefinds</category>
+      <category>music</category>
+      <category>playlist</category>
+      <category>spotify</category>
+    </item>
+    <item>
+      <title>Fractures of Unfamiliarity &amp; Circumvention in Pursuit of a Nice Time and the Meaning of Franklin's Tower</title>
+      <description>&lt;![CDATA[
+The past few days, I've had the song Franklin's Tower by The Grateful Dead on repeat. I found some of the lyrics could be taken at face value but others didn't make sense to me. Since I assumed there was a deeper meaning, I decided to look for interpretations and ran into this [article by David Dodd on the official Grateful Dead website](https://www.dead.net/features/greatest-stories-ever-told/greatest-stories-ever-told-franklins-tower).  
+
+This led me to two amazing essays:
+
+- [The Fractals of Familiarity and Innovation: Robert Hunter and the Grateful Dead concert experience](https://web.archive.org/web/20240604001611/http://artsites.ucsc.edu/gdead/agdl/jurgen.html) by Jurgen Fauth
+- [Fractures of Unfamiliarity &amp; Circumvention in Pursuit of a Nice Time](https://web.archive.org/web/20160519052524/http://artsites.ucsc.edu/GDead/agdl/fauthrep.html) by Robert Hunter
+
+Hunter's essay is a response to Fauth's. Also, in Hunter's essay you begrudgingly get a detailed breakdown of the lyrics of Franklin's Tower. I'll note how amazing it is that both of these individuals took the time to write these lengthy essays clearly exposing their ideas and points of view on the subject.  
+
+Both of those articles were difficult to find because sadly the pages no longer exist in the website that had posted them. 
+
+After some digging though, I was able to find them on the Internet Archive. So for the sake of preservation, I'll post both of them here in full form. 
+
+## The Fractals of Familiarity and Innovation: Robert Hunter and the Grateful Dead concert experience
+
+```text
+Robert Hunter has been the primary lyricist for the Grateful Dead ever since he mailed "St. Stephen," "China Cat Sunflower," and "Alligator" to the band from New Mexico in 1967. Born in 1941, Hunter grew up in California and studied drama for a year at the University of Connecticut, before he spent half a year with the National Guard and later signed up for the same psychedelic research that led Ken Kesey to write One Flew Over The Cuckoo's Nest. His songwriting collaboration with Jerry Garcia and, occasionally, other members of the Grateful Dead yielded such classic Dead tunes as "Truckin'," "Touch of Grey," and "Dark Star". Hunter's lyrics emblazon thousands of tie-dyed t-shirts and skeleton-adorned bumper stickers. Other work of Hunter's includes lyrics for Zero and Bob Dylan as well as a translation of Rainer Maria Rilke's Duino Elegies and volumes of poetry, most recently Sentinel.
+When analyzing song lyrics, certain basic differences from poetry have to be understood and observed. When comparing popular song lyrics to contemporary or classic poetry, it is difficult not to miss a striking difference in quality--song lyrics generally tend to be outspoken and trite where poetry clouds itself in ambiguity and complex imagery. Bill Flanagan argues that:
+
+"Rock &amp; roll musicians are strange artists. Their code of manners dictates that they not appear to take themselves very seriously, while the best of their work contains all the passion, imagination, and craft of legitimate art. The intelligent rock musician is put in the position of working as hard as a poet or painter, while being expected to accept his gifts with the self- deprecating shrug of the idiot savant." (Flanagan, ix)
+However, the majority of rock lyricists aims at an audience which is supposed to recognize a song instantly during the few weeks it is played heavy-rotation on FM radio and then forget it as soon as possible. Rock lyrics tend to make a point quickly and to make sure that it is understood. Therefore, they reach for clichéd imagery and blatant statements of emotions that traditional poetry would have tended to skillfully embed in high-flung imagery, a tendency which can lead to examples as inane as the ones parodied in Donald Barthelme's "How I Write My Songs."
+One of the reasons, however, why such a direct comparison of lyrics and poetry is not fair is not only to be found in the consumer culture pressures that surround the pop music industry, but in the fact that popular music lyrics are not meant to be read at all. Obviously, the text has to be read within the framework of the music it was written for. This holds especially true for Robert Hunter's lyrics, because the unique nature of the music of the Grateful Dead adds layers of meaning to the text and vice versa. A further point I decided to take into consideration is that the Grateful Dead are not successful as a recording band that scores top ten hits (with the notable exception of the 1987 "Touch of Grey"); their studio albums are usually do not fulfill expectations. The strength of the band is unquestionably the live concert--the Grateful Dead have been the number one grossing touring band over the last couple of years, outdoing the likes of Madonna and Paul McCartney, without releasing a new studio album since Built to Last in 1989. This means that the usual way Hunter lyrics are being perceived is at a concert. Therefore, everything that happens at a Grateful Dead concert should be taken into account when reading the lyrics. In this paper, I will try to show how the Grateful Dead concert experience and the lyrics of Robert Hunter's songs interweave and complement each other, mutually adding significance and "meaning" to one another.
+
+One model on how to understand the mutually reinforcing structure of a rock concert can be abstracted from Erika Fischer-Lichte's The Semiotics of Theater. Of course, according to Fischer-Lichte's definition, a concert does not constitute theater; however, her theories can give valuable ideas for a way of looking at the experience of a concert. According to Fischer-Lichte, every sign that is given during the performance can be assigned to a group or system, and the sum of all used and received signs that either correspond or oppose each other in meaning allow an overall interpretation or understanding of the performance. The fourteen sign systems Fischer-Lichte enumerates are: sound, music, linguistic signs, paralinguistic signs, mimics, gestures, proxemic signs, mask, hair, costume, stage conception, stage decoration, props, and lighting. These all make sense in a rock concert environment, especially in more theatrical performances as they became common with stadium bands during the 1970s. An additional system of significance would be the song selection and order, which might be considered a subgroup of the music or linguistic groups. Audience participation should be included, as well. Unless a lot of spoken text is involved, the paralinguistics can not be considered significant, since the loudness, pitch, etc. of a song are inherent in the music and therefore do not justify a group of their own. Props are rare in rock concerts, as well, although some performers have been known to turn their instruments into significant objects, such as Liberace or Prince.
+
+The uniqueness of a Grateful Dead concert lies in the emphasis on certain sign systems over others. While obviously almost every rock concert relies heavily and primarily on the music and the linguistical signs (which are, after all, our objects of interest), the Dead emphasize them more than usual by cutting down on the others--the stage decoration is colorful yet unobtrusive, there is no dancing or hardly any movement by the band members other than what is necessary to play the instruments, the clothing of the band is purely functional and they stopped conversing with the audience years ago. The lighting, designed by Candance Brightman since 1972, is not self-conscious but supports the music:
+
+"Brightman's lighting is extraordinarily sensitive to subtleties in the band's interactions, shunning bombastic effects for a vivid focusing of attention that is as much a part of the jam as the music itself" (Shenk 28).
+Furthermore, it includes the audience by
+"[breaking] down the barriers between the Dead and its fans by lighting the band so they can still see the audience, or by lighting the audience itself" (Shenk 29).
+An important point to note is that none of the sign systems function to enhance the star status of the band-- everything is focused on the music and the relation to the audience. The absence of proxemic signs, mask, hair, props, and costumes is significant in that it enhances the emphasis on the music and the lyrics while taking away from the special status of the band members.
+
+The order of songs, though, is of exceptional importance during a Grateful Dead show. Traditionally, since about 1977, the show is split into a first and a second set, where the first set is characterized by more conventional songs that are played without too much improvised jamming; the length of the songs stays within reasonable limits as well. The second set, in contrast, features many improvised jams that stretch the songs easily out to fifteen, twenty minutes. At some point in the second set, Mickey Hart and Bill Kreutzman (percussion &amp; drums) will take over and play an extend drum solo while everyone else leaves the stage. Before they are finished, the other band members return, and Hart and Kreutzman leave the stage. What follows is an extended, beatless jam of exploratory sounds known as "Space." Bob Bralove, in the liner notes to Infrared Roses, describes it like this:
+
+"Somewhere in the middle of the second set of every Grateful Dead show the band turns a corner. They enter a musical environment without walls or structure. The song form is abandoned, and the very elements of music may be called into question. The only mandate is to explore new territory. It is an environment where rhythm, tone, color, melody, and harmony can be explored without rules or predetermination, a musical adventure where composition and performance are one."
+After "Space," the band will play three or four more songs, commonly ending with a high- energy song like "Good Lovin'" or "Sugar Magnolia," and come back for a one-song encore. This pattern forms a relatively firm structure in which highly unstable elements are put--the music is always improvised, and not one song has been played twice the same way, and the actual list of songs played always varies, to the point where not even the band members know what they will play before they go on stage.
+
+This is of high importance because the underlying structural principle will become evident in Hunter's lyrics, as well. Since certain songs are usually played in the first set and others in the second set, it seems reasonable to group them according to this differentiation and begin by taking a closer look at the first set songs.
+
+"Jack Straw" is a classic first set song--out of the 424 times it had been played between 1971 and 1992, DeadBase lists only 41 second-set appearances. The song appears to be a narrative of a criminal character who drifts through the American wilderness, jumping trains and digging graves while eagles circle high above. It seems to be rooted deeply in an American tradition of fireside songs. The same holds true for "Dire Wolf," a bitter story of death and gambling, precisely set in time and space:
+
+In the timbers of Fennario
+the wolves are running 'round
+The winter was so hard and cold
+froze ten feet 'neath the ground (1-4)
+The narrative features virtually no metaphors or similes; everything seems to happen at face value--a complicated search for meaning or "interpretation" is unnecessary. Again, the song is closer to traditional American music than love songs heard on the radio. It is direct yet not necessarily blatant or trite since the subject matter is uncommon for contemporary American rock lyrics.
+
+The Grateful Dead classic "Truckin'" features some opaque references, yet the song is obviously trying to capture the vicissitudes of a life on the road as the band members have experienced it. Some lines, like "Busted--down on Bourbon Street" (37) refer to commonly known incidents (in this case the band's drug bust in New Orleans); others like "What in the world ever became of sweet Jane?" (25) are probably in-jokes that aren't meant for a broad audience to grasp.
+
+Even more clearly an American song in the best tradition of folk singers like Woody Guthrie or Phil Ochs is "Cumberland Blues," a song depicting the plight of a mine worker. Hunter's eye in describing his topic was so sharp that he heard of an actual Cumberland miner wondering "what the guy who wrote this song would've thought if he'd ever known something like the Grateful Dead was gonna do it." He considers this the best compliment he ever received for a lyric (Hunter 52), obviously because it certifies an authenticity he aimed for.
+
+It seems that first set songs commonly share a genuine American topic (the open road, the wilderness, unions, etc.) and often sketch a narrative world including characters and situations. Instead of propagating emotions, as rock lyrics often seem to, they focus on fictional events that often involve gamblers, cowboys, drunkards, and outlaws. The imagery and "lyrical" makeup of the songs tends to be simple so as to give a definitive, discernable "meaning."
+
+An investigation of second set songs quickly shows that they are of a different character. "China Cat Sunflower," a typical second-set song since the early eighties, may serve as a prime example: the lyrics refuse any narrative or symbolic reading, the words simply are. Hunter acknowledges the non-rational nature of the song with his tongue-in-cheek remark: "Nobody ever asked me the meaning of this song. People seem to know exactly what I'm talking about. It's good that a few things in this world are clear to all of us" (Hunter 35).
+
+Nonsensical as they may be, the lyrics bear a close resemblance to the dreamy, colorful playfulness of Lennon/McCartney's "Lucy in the Sky with Diamonds"--
+
+Picture yourself in a boat on a river,
+With tangerine trees and marmalade skies
+Somebody calls you, you answer quite slowly,
+A girl with kaleidoscope eyes.
+Cellophane flowers of yellow and green,
+Towering over your head.
+Look for the girl with the sun in her eyes,
+And she's gone.
+Lucy in the sky with diamonds (1-9)
+In the surrealistic, candy-colored playfulness of both songs, the words are not meant to "mean" anything; the usual tools of interpretation have to fail here. As Hunter says, "I like a diamond here, a ruby there, a rose, certain kinds of buildings, vehicles, gems. These things are all real, and the word evokes the thing. That's what we're working with, evocation." (Gans 26). His concern is not merely narrative or mood anymore, but evocation and association, something much closer to poetry than to the common clichés of pop lyrics.
+"Crazy Fingers" is another example for this approach to songwriting--it is content with letting its verses set a mood without making any "sense." Hunter calls it a "collection of haiku- style verses, mostly seventeen syllables, some more successful than others, with no connecting link other than similarity of mood" (Hunter 45). Some of the imagery is indeed not very original; the "Deep Sea of Love" (7) can surely be encountered elsewhere. Nonetheless, certain paradoxical images (like "Recall the days that still are to come" (3)) and the overall disjunctive structure of the text make for a strange, unlikely song that refuses to be "understood" on any intellectual level. It can only be described in its emotional impact, the longing and bittersweet reminiscing it evokes in a unique way.
+
+Similar points can be made for "Eyes of the World"-- it is interesting to note that the lyrics seem to make sense, yet on any "objective" level, they do not. Traditional analysis of the text may or may not yield satisfactory results by assigning connotations and significance to, say, the "redeemer"(22) , the mile-long wings (7) or the "eyes of the world" themselves; fact is that the inherent instability of the lyrics, fueled again by interior contradictions like "...the seeds that were silent / all burst into bloom and decay," (26-27) will not allow for a final, reductive interpretation. It is clear that Hunter does not aim to communicate "meaning" at all; he says, "I'd really prefer not to get into tearing apart the symbology of my songs [ . . . ] and I'll tell you why: symbols are evocative, and if there were a more definite way to say things, you'd say them that way. A symbol, by it's very nature, can pull in many, many shades of meaning, depending on the emotional tone with which you engage the piece" (Gans 23).
+
+The lyrics of songs commonly played as encore or to close the second set are often more direct (as "Sugar Magnolia") or soothing lullabies ("Brokedown Palace").
+
+The course of a Grateful Dead concert, then, can be said to describe an arc that ranges from traditional, narrative lyrics that concur with conventional playing to outrageous flights of fancy in the second set, correspondingly in the musical jams as well as in the ambiguity-laden, irrational, highly evocative lyrics. The strangeness climaxes during the purely instrumental "Space," during which the band is at its most exploratory. The last songs and the encore return the audience to a festive or pensive mood. However, the function of the lyrics during a Grateful Dead concert is more than to simply underline the music--the linguistic signs are not present to emphasize what is happening in the music. Instead, there seems to be a strange interplay between familiarity and newness, and it is at this edge of the well-known and the innovative that the Grateful Dead draw energy. Audience response is a valuable key to this aspect of the music and the lyrics.
+
+Experience and my subjective impression suggests that the audience at a Grateful Dead show is usually more responsive and alert than audiences at other rock concerts, but since there is no data to prove or argue this point, it can not be made in a meaningful way. What is observable and obvious, though, are the immense cheers and shouts that erupt at certain points in the concert, namely when the band returns from a long stretch of interpretation to the melody (and therefore, mostly, the lyrics), and at certain catchphrases within the lyrics that have gathered almost mystical meaning over the years. Both phenomena need to be looked at more closely.
+
+In the improvisational style of the Grateful Dead ("jazz syntax with a rock lexicon," as David Gans calls it (ix)), melody as one of the markers signifying a song is subject to sudden change-- at its best, the band composes on the stage, making up new elements on the go; the process of creating becomes visible to the audience. Part of the philosophy that allows this approach is that mistakes are possible, probable, and excusable-- "on a bad night, they bore you to tears, but a good night makes it all worth it." (Gans iix) The initial melody of the song, however, is not variable, and it is always safe to predict the band's return to it after a period of jamming that is so utterly unpredictable in direction, style, and length that not even the band itself can foresee what will happen: "I can't predict what the band is going to do at any given moment" (Jerry Garcia quoted in Gans 59).
+
+Since the lyrics will be sung only once the proper, initial melody has returned, the counter argument is mostly true, also--when the melody returns, so will the lyrics. The audience cheers at these points because the return of the melody and therefore the lyrics means a return to the familiar, to the predictable and understandable after long forays into the unknown.
+
+While this holds true for virtually any return to the preestablished, well-worn structural elements of the song, certain catchphrases within Hunter's lyrics seem to yield an especially enthusiastic response by the audience. A good example for this is "If you get confused, listen to the music play" (20) from "Franklin's Tower", a line that taken by itself offers guidance to a perplexed listener. Yet it is embedded within a song that is as obscure as a lot of second set- lyrics; "Franklin's Tower" is evocative yet of undeterminable meaning. The above-mentioned catchphrase-line is almost hidden within the song and has to be read out of context to prompt the joyful response it usually gets.
+
+More obvious examples of the embedded catchphrase are to be found in first-set songs like "Loose Lucy," a rare Hunter love song, where the audience chooses to take the chorus out of context by applying it to the band itself: "Singing: Yeah, yeah, yeah, yeah / singing: Thank you / for a real good time" (7-9). Here, the function seems to be that of a mutual pat on the back; the cheers represent the subculture of Deadheads and the Grateful Dead acknowledging each other's faithfulness--it is here that it becomes manifest that the "Dead made a mystical pact with their fans, vowing to carry the psychedelic torch as long as they can play their music" (Lee 290). Whether Hunter had such an opportunity for unique bonding in mind when he wrote the lines remains undetermined, yet the authors of Skeleton Key could not but remark on Hunter's "knack for coining aphorisms that yield hard-won truths after hundreds of hearings" (150). The most famous example is certainly the oft-quoted "Lately it occurs to me / what a long, strange trip it's been" (23-24) from "Truckin'," a line that paradoxically admits to the uniqueness of the experience by being its most clichéd example.
+
+It seems that a lot of these phrases took on the meaning for the Deadhead community that they did because they were obvious and understandable. On a paradigmatic level, it should be surprising that a band that is so directly associated with a certain lifestyle and a set of beliefs as the Grateful Dead hardly convey any "messages" at all in their lyrics. It can be safely assumed that one would generally expect a "hippie band" with all the unavoidable stereotypes, to be much more blatant about their convictions. Yet, as the above analysis already shows, Hunter usually confines himself to a narratives of traditional American adventures in the broadest sense and more abstract, lyrical, and image-laden texts that only yield "meaning" by association and evocation.
+
+However, there are lines hidden within his lyrics that have taken on very charged connotations exactly because they seem to be more outspoken and direct, and a philosophy can be attributed to them. All these lines have turned into catchphrases as well, cheered at concerts and printed on countless t-shirts and bumper stickers.
+
+"Scarlet Begonias," a song commonly played to open the second set yet at least somewhat narrative in that it has a narrator and a female character, yields two instances of embedded catchphrases-- "Once in a while / you get shown the light / in the strangest of places / if you look at it right" (31-34) and "Strangers stop strangers / just to shake their hand" (46-47). The philosophies that can be abstracted from these lines by reading them out of context include the search for truth in unlikely places, maybe in the tradition of the "angel-headed hipsters" (2) who roam the urban wasteland in Ginsberg's "Howl," and a proclamation of unsolicited friendliness and openness that the stock and trade of the hippiedom the Grateful Dead supposedly stand for. All this is abstracted again from the less direct context the lines originally appear in; the Deadhead community seems to have taken what it could and abandoned the quirky senselessness of "The wind in the willows played tea for two / The sky was yellow and the sun was blue" (44- 45). The argument could be made that the aphoristic lines are not only cheered at because of what they mean and imply, but simply for the fact that they mean at all. They are familiar lines within an ambiguous lyrical world that refuses to be reduced to a discernable, single interpretation. The catchphrases are familiar lines within a familiar yet, to the rational mind, unyielding lyrical world. "Scarlet Begonias" refuses to be understood as a whole, so the audience jumps at those four lines that seem to make sense. The catchphrases, then, are to the rest of the lyrics what the melody is to the improvisational jam--they mark the return to an understandable, well-known, and familiar touchstone before the next journey into newness and obscurity.
+
+This phenomenon can probably be best understood when looking at what is generally considered the prime example of the Grateful Dead's efforts, "Dark Star":
+
+" "Dark Star" is the kernel of wide open possibility at the core of the Dead's repertoire, the essential seed promising unlimited intergalactic space journeys at the speed of total mindwarp: "Shall we go,/ you and I/while we can?" It is the most exploratory of Dead tunes and it is the trippiest, the one where the acidic whistle of the dark interstices is heard most starkly, where you might turn any corner and step off into the void. It is the Dead's spirit of musical adventure at its strangest, wildest, most vehement, weirdest, dreamiest, and the place where the leading wave of the Dead's music is most often audible being created in mid-air." (Jim Powell quoted in Shenk 51)
+Interestingly, "Dark Star" was the first song that Hunter wrote together with the Grateful Dead in 1967. The lyrics are extremely short, considering that a full-fledged "Dark Star" can easily last half an hour. The song is made up by two verses that are usually separated by minutes and minutes of intense jamming. A close reading reveals Hunter's technique of juxtaposing the abstract and the concrete in a single image, parataxis, and contradiction in full bloom. "Searchlight casting / for faults in the / clouds of delusion" (7-9) is such a tricky image, suggestion that the speaker has a very clear sense of what he is talking about, yet again, the song cannot be said to "mean" anything in any traditional sense, and not even the tedium of a symbolic reading will yield any "meaning." However, the verse beginning "Shall we go..." which precedes the next drawn out jam insinuates that the speaker understands, and invites the reader along through the "transitive nightfall / of diamonds" (14-15). The drawn-out jam that usually follows can be understood as exactly the "transitive nightfall / of diamonds," the lyrics then talking about the music, a kind of meta-lyric. After seemingly endless improvisation, the text and melody returns with "Mirror shatters" (16), an event cheered by the audience as it means the return to a familiar signpost.
+It has been argued that "Dark Star" draws its power from the violation of norms and the constant impossibility of assigning meaning:
+
+" ['Dark Star' leads] to a transcendent mysticism because the music, continually violating norms and expectations, avoid a clear marking or denotation of a signified. What is left is a state of ambiguity in which the listener is enticed into closer attention of momentary detail." (Skaggs, quoted in Shenk 64)
+I would argue that the overwhelming power of "Dark Star" and, in a broader sense, the overall effect of a Grateful Dead show, does not entirely rely on the elusiveness of its signs, be it musically or linguistically, but on the tension it creates between the familiar and the new. The Deadhead community as a whole exists because of the familiar aspects of the Dead. The fascination of the band grows largely out of the relationships between the improvised and the structured that are increasingly complex to the point of becoming fractal.
+The model that I would suggest for the intricacies of a Grateful Dead show and the rich relationships that exist between the lyrics and the music is that of fractals, self-containing geometrical structures like the Mandelbrot set. The outside of the Gingerbread man are the ordered regions, where a number can easily be assigned to the function, z (n+1)=z(n)2+c, while the black inside of the Gingerbread man stands for total, absolute chaos, unstructuredness. The edge where those two areas meet is characterized by intense, bizarre beauty and recurring images of the bigger picture that recede--like a Russian doll, the Gingerbread man contains images of himself, infinitely, just as a Grateful Dead concert contains recurring patterns of familiarity and innovation on a receding scale. The overall structure of the concert is firm, or almost firm--there are always exceptions, yet the pattern of first and second set, drums, space, and encore are set. This structure is filled with actual songs every night; the choice of songs varies, yet the songs are generally well-known and familiar.
+
+The way they are going to be played on any given night, however, is uncertain and actually unpredictable--no improvisational jam that opens in preconceived places within the song will be the same, yet it can be assumed it will be at a given place. The lyrics, joining the return to the melody, are firm and part of a preconceived pattern within a song. They will not be changed or tampered with. However, the firm and unchanging lyrics have shown themselves to be unsteady and undecidable due to their ambiguous and contradictory character. This is only true, again, for the most part, since the lyrics do contain embedded catchphrases that possess a heightened familiarity within the song. The audience will recognize and appreciate these moments of predictability and profound understanding as a community before the jam wanders off into unknown directions again, possibly into the far reaches of musical exploration in "Dark Star" or to the completely strange and wordless "Space," which can be considered the climax of unfamiliarity within the development of the concert. After the purely instrumental excesses of "Space," the return of rhythm, harmony, melody, then lyrics, and finally understandable and rational lyrics is greeted by enthusiastically by the audience which is pleased to be gently returned to a sensical universe where exploration and rediscovery, departure and return, ambiguity and blatantness co-exist and fuel each other. Hunter's lyrics are allowed to be reasonably narrative and plain-old weird at given times; the music always corresponds to or counter-accentuates the words, both live off each other in an organic and healthy way. Standing on their own, the lyrics to "Dark Star" might seem interesting and lyrical yet pointless; in union with the music, they gather as many meanings as the listener can assign to them:
+
+[Jerry Garcia:] "Dark Star" has meant, while I'm playing it, almost as many things as I can sit here and imagine, so all I can do is talk about 'Dark Star' as a playing experience. [Charles] REICH: Well, yeah, talk about it a little. [Jerry Garcia:] I can't. It talks about itself. [Charles] REICH: Each time it comes out in a different way? [Jerry Garcia:] Yeah, pretty much. There are certain structural poles which we have kind of set up in it, and those periodically we do away with. (Garcia 85)
+
+The music of the Grateful Dead and the lyrics of Robert Hunter open up spaces within the work of art they form together that make textual interpretation of the lyrics futile. The lyrics function not as an absolute that is stated, but as a tool for semiosis--at every concert, they can and do mean something different according to how the variable parts in the music change. Every time a song is performed, a different set of potential meanings that are inherent in the piece will be actualized for a different audience. Various parts of the concert experience are firm, others are variable, and as I tried to illustrate using the Mandelbrot set, the firm parts contain further movable aspects, and vice versa. The resulting multi-media, multi-sign system artifact can shine in infinite variations. The result is one of an ever-changing, fluctuating whole that contains familiar parts while never completely yielding to reason. This amorphous, continuously self- altering gestalt that is a thirty-year process --the seams show, there are parts that are completely opaque and others that we have known for decades, and it always changes: "It stumbles, then it creeps, then it flies with one wing and then it flies with one wing and bumps into trees and shit" (Garcia 76). Deadhead sociologist Rebecca Adams puts it this way: "People say Deadheads are throwbacks. I think they are pioneers. They recognize that reality is subjective--there is no right way--and have been cognizant of these multiple realities for a lot longer than most other people. This is post-modernism. It's the cutting edge" (quoted in Shenk xiii). Robert Hunter's lyrics are a vital part of this experience, providing the mind-searching music with an incessantly fascinating imagery that both underscores and counter-points its meaning by not meaning anything at all.
+
+Works Cited
+Barthelme, Donald. "How I Write My Songs." Sixty Stories. New York: Putnam, 1981. 418-423.
+Bralove, Bob. Liner Notes. Grateful Dead. Infrared Roses. Grateful Dead Records, 40149-2, 1991.
+Flanagan, Bill. Written in My Soul: Rock's Greatest Songwriters Talk About Creating Their Music. Chicago: Contemporary, 1986.
+Fischer-Lichte, Erika. The Semiotics of Theater. Indianapolis: Indiana UP, 1992.
+Gans, David. Conversations with the Dead: The Grateful Dead Interview Book. New York: Citadel 1991.
+Garcia, Jerry, Charles Reich, and Jann Wenner. Garcia: A Signpost to New Space. San Francisco: Straight Arrow, 1972.
+Hunter, Robert. A Box of Rain: Lyrics 1965-1994. New York: Penguin, 1993.
+Scott, John W., Mike Dolgushkin, and Stu Nixon, eds. DeadBase VII: The Complete Guide to Grateful Dead Song Lists. Hanover, NH: 1993.
+Lee, Martin A. and Bruce Shlain. Acid Dreams: The Complete Social History of LSD: The CIA, the Sixties, and Beyond. New York: Grove Weidenfeld, 1992.
+Lennon, John and Paul McCartney. "Lucy in the Sky With Diamonds." The Beatles. Sgt. Pepper's Lonely Hearts Club Band. EMI, CDP 7464422, 1967.
+Shenk, David and Steve Silberman. Skeleton Key: A Dictionary for Deadheads. New York: Bantam, 1994.
+Skaggs, S. "The Transitive Nightfall of Diamonds: Eco and the Aesthetics of Transcendence." University of Louisville, Kentucky. Presented at the Conference of the Semiotic Society of America, St. Louis, Missouri, 1993.
+```
+
+## Fractures of Unfamiliarity &amp; Circumvention in Pursuit of a Nice Time
+
+```text
+Dear Jurgen,
+
+meaning is not an irreducible Ur-language. A good lyric is allusion, illusion, subterfuge and collusion. A poor lyric is information about its own paucity of resource. That doesn't mean the latter cannot be a great song. There is nothing inherently better about a dumb song than one which calls attention to the intelligence of its writer. It's a matter of taste, but meaning is often a subterfuge to distract the listener's attention from a writer's lack of multiple resources. This is often true of blatant "message" songs.
+How does a song mean?
+As long as allusions can be codified, the semiotician is content, knowing that "meaning" is a case-sensitive term with scant referentiality outside implementation of primitive needs. When the semiotician suspects allusiveness without corresponding exact reference, he charges the poet with nonsense. Nonsense is a loaded word, the meaning of which is unclear. If it is understood as "intentional multi-referentiality without predetermined hierarchy" rather than "meaningless blather" one would find no fault with the term. But it isn't, so the charge of "nonsense" and "meaninglessness" levied by a scholarly and plausible source, does much to put people off exploring further.
+"The repair sad mutthead forkbender orange in the how are you, did they?" is nonsense without reference, hence not allusive. Had it discernible rhythm, it might be termed 'rhythm allusive' but my example lacks even that. The only way on earth such a sentence would likely get written is as an example of a null allusive set. Bingo! An allusion! To Set Theory! The exception that proves the rule.
+
+
+How does a song mean?
+The meaning(s), or lack thereof, ascribed by others to an example of lyric work are not part of the work. The interpretations are separate "works". The manner in which an audience receives the work, what they, collectively and individually, make of it, can indeed provide potential data for the allusiveness (referentiality)of future lyrics, gainsaid, but cannot be ascribed as a characteristic of the particular work, per se, with validity without "insider information" which is, in any case, no part of the song. That way lies true nonsense, even unto deconstruction. Yet the little bugger of a jingle persists and seems to move hearts. Why? Is there something which semiotics, by its nature and presuppositions, must exclude from the sphere of "meaningfulness" due to the limited nature of its tools?
+
+How does semiotics mean?
+Since the concluding remark of your essay stated that the Grateful Dead songs are "meaningless" I choose to reply by explicating one of your examples: "Franklin's Tower." I do this reluctantly because I feel that a straightforward statement of my original intent robs the listener of personal associations and replaces them with my own. I may know where they come from, but I don't know where they've been. My allusions are, admittedly, often not immediately accessible to those whose literary resources are broadly different than my own, but I wouldn't want my listeners' trust to be shaken by an acceptance of the category "meaningless" attached to a bundle of justified signifiers whose sources happen to escape the scope of simplistic reference.
+
+How does the song go?
+FRANKLIN'S TOWER
+
+In another time's forgotten space
+your eyes looked through your mother's face
+Wildflower seed on the sand and stone
+may the four winds blow you safely home
+
+4x: Roll away... the dew
+
+You ask me where the four winds dwell
+In Franklin's tower there hangs a bell
+It can ring, turn night to day
+Ring like fire when you lose your way
+
+Roll away... the dew . . .
+
+God help the child who rings that bell
+It may have one good ring left, you can't tell
+One watch by night, one watch by day
+If you get confused just listen to the music play
+
+Roll away... the dew . . .
+
+Some come to laugh their past away
+Some come to make it just one more day
+Whichever way your pleasure tends
+if you plant ice, you're gonna harvest wind
+
+Roll away... the dew . . .
+
+In Franklin's Tower the four winds sleep
+Like four lean hounds the lighthouse keep
+Wildflower seed in the sand and wind
+May the four winds blow you home again
+
+4x: Roll away... the dew
+You better roll away the dew
+---------------------------------
+What's it about?
+EXPLICATION:
+In another time's forgotten space
+your eyes looked through your mother's face
+Wildflower seed on the sand and stone
+may the four winds blow you safely home.
+
+&lt;surface intent&gt;
+[You have your mother's eyes, child,
+the very shape, color and intensity
+of the eyes that looked through
+her face so long ago. Borne on the
+varied winds of chance and change,
+like a dandelion seed, you may find
+yourself deposited on barren soil.
+My wish for you is that the forces
+that brought you there may sweep
+you up again and bear you to fertile ground.]
+
+&lt;deeper intent&gt;
+"In another time's forgotten space
+your eyes looked through your mother's face."
+[Relative immortality of the human
+species is realized through reproduction.
+Dominant traits inherited from an ancestor,
+the lyric suggests, share more than mere
+similarity with those of the forebear,
+but are an identity, endlessly reproducible.
+In other words, when someone says
+"You have your mother's eyes"
+they are not speaking in simile
+nor would it be incorrect to say
+that "your mother has your eyes,"
+if, in fact, possessiveness is
+an appropriate term in the context.
+Poetic license will assume it is,
+if only for the sake of moving on
+to the next couplet.]
+
+You ask me where the four winds dwell
+In Franklin's tower there hangs a bell
+It can ring, turn night to day
+Ring like fire when you lose your way
+
+[note that this song appeared in 1975,
+the year after my son was born and the
+year before the American Bicentennial.
+Both facts are entirely relevant. The
+allusion to the Liberty Bell and the
+situation of the Philadelphia Congress
+in the hometown of Ben Franklin has not
+gone unnoticed by other commentators.
+This song is a birthday wish both for
+my son and for my country, each young
+and subject to the winds of vicissitude.
+Individual and collective freedom,
+liberty, conscience, all that is conjured
+by those concepts, is suggested
+in the image of the tolling bell.]
+
+God help the child who rings that bell
+It may have one good ring left, you can't tell
+One watch by night, one watch by day
+If you get confused just listen to the music play
+
+[The Bell, rung once, cracked and could not
+be safely rung again. From an actual bell,
+it therefore became a symbol of the
+potential to ring. The single toll, signaling
+birth, can now be heard only in its
+reverberations in our history and ideals.
+Some have had to bear those ideals in
+difficult circumstances (war, the Great
+Depression and general benightedness)
+others have had the more enviable task
+of keeping watch (eternal vigilance)
+during periods of conscious and dynamic
+change: the full light of day. The sixties,
+the writer assumes, were such a time.
+You can't tell if ringing that bell
+a second time would destroy it in
+the act of producing another mighty
+peal and it might be foolish, if courageous,
+to try. Perhaps the "music"of
+the original ideals symbolized by
+the first and only toll should be taken
+to heart and implemented, rather than
+obviated by a new source of ideation
+(communism, anarchy, religion based
+governmental apparatus. etc.) To resolve
+this confusion, pay attention to the
+original inspiration (the Constitution,
+the Bill of Rights, collectively.
+Individually, maintain awareness of
+conscience and one's own early ideals.]
+
+Some come to laugh their past away
+Some come to make it just one more day
+Whichever way your pleasure tends
+if you plant ice, you're gonna harvest wind
+
+[This verse scarcely needs commentary
+in light of the above remarks. The precursor
+to the 1st couplet is "I Come for to Sing" as
+performed, possibly written, by Pete Seegar.
+The 2cnd couplet source is the biblical
+"Who sows wind reaps the hurricane."]
+
+In Franklin's Tower the four winds sleep
+Like four lean hounds the lighthouse keep
+Wildflower seed in the sand and wind
+May the four winds blow you home again
+
+[We assume a bell tower for the great bell.
+By the trope of simile, we see the bell tower
+(the day watch) turned to a lighthouse
+and the four winds become sleeping hounds,
+(the night watch) worn out by the events
+of such a metaphorical day as related
+by e.e.cummings in his familiar lyric
+"All in Green Went My Love Riding"
+(Poem 6 from TULIPS AND CHIMNEYS)
+"four lean hounds crouched low
+and smiling . . ." By the use of quotative
+allusion the lyric attempts to borrow
+some of the emotive spark of cumming's
+poem, providing a kind of "link button"
+into a different but complementary space.
+Allusion here functions as a sort of
+shorthand cross-patch into a series
+of metaphoric events which, with
+a double-clutch shift of simile,
+access a downloadable description of
+the kind of day it's been for a 'wildflower
+seed' in its adventures in the wind.
+There may be some objection to the
+elastic interchangeability of the similes
+of hounds and winds in this set of couplets,
+but the test of the allusion, as I see it,
+is whether or not the appropriate emotions
+are evoked to lead to satisfying closure
+and an opening door on other possibilities.]
+
+[Now to the real stretch: "Roll away the dew."
+The line is appropriated from a fairly
+well known sea chantey whose chorus goes:
+"Roll away the morning dew
+and sweet the winds shall blow."
+As surely everyone knows by now,
+Bonnie Dobson's song "Morning Dew"
+(made famous by Garcia's singing of it)
+is set in the aftermath of nuclear war.
+Reason he can't "walk you out
+in the morning dew, my honey"
+is because of fallout, though Garcia
+has wisely dropped the verse
+containing this denouement, allowing
+the song a heightened romantic mystery,
+achieved through open-ended ambiguity.
+For generations now alive,
+the nuclear specter personifies
+the forces which most threaten our
+attempt at Jeffersonian democracy.
+With the song's sub-allusion to
+"Roll away the Stone," an anthem
+of joyous Eastertide resurrection,
+a resultant combination message
+of dire necessity (as in the final:
+you've got to roll away the dew)
+and promise of renewal, in case
+resolution is effected, are enjoined.
+Should this hyper-allusive train
+of thought become too confusing
+to process, the invitation to just
+"listen to the music play"
+acknowledges both the melody
+and performance context of the lyric
+and the metaphoric bell described above.]
+
+Well, now that you know what I meant by it,
+it's no great shakes is it? Mystery gone,
+the magician's trick told, the gluttony
+for "meaning" temporarily satisfied,
+one can now take issue with my intent
+and avoid the song itself, substituting
+the assignable significance for the music.
+
+Attempts by language to overdetermine language are doomed out the door, so I content myself with providing these clues for threading the maze of "Franklin's Tower" and as a grudging key to my methods. I feel that much of what you've said in your essay is rich, correct and thought provoking and appreciate your accurate estimation of the concert context as adjunct to the lyric, and vice versa. The contextual sub-meaning (the way the song manifests itself in concert) is certainly a factor which occasionally determines certain choices in subsequent material. Too much of that would be a striving after sameness of effect, though (even if it does all sound the same to an uninitiated ear.)
+
+Oh, one other thing: you labeled "what a long, strange trip it's been" as "cliched." Aren't you putting the cart before the horse? "Truckin'" was the originating vehicle of the phrase, which had not, to my knowledge, been coined before. The fact that it has entered the catchphrase banks of the language in a ubiquitous way may render subsequent usage cliched, but surely not the invention itself, unless all widely adopted phrases are deemed trite by virtue of their durability. You also mentioned that the "What in the world ever became of Sweet Jane?/She's lost her sparkle, you know she isn't the same" verse was probably an in-joke not meant for a broad audience to grasp. The intention was a parody of the '40's warning-style of singing commercial, specifically "Poor Millicent, poor Millicent/ She ne-ver used Pep-so-dent/ Her smile grew dim/ And she lost her vim / So folks don't be like Millicent / Use Pep-so-dent! " I'm sure that the allusiveness, not that entirely outre in the '60's, is well lost here in the '90's. So, it's perhaps an in-joke, but not one meant for private consumption. Just a bit of black humor that fails to fire and emerges, instead, as an enigma. I guess the question here is whether an allusion must be blatantly perceivable as such in order to avoid the uncharitable label of "nonsense."
+
+Thank you for taking my work seriously enough to spend considerable effort in explicating it according to your lights.
+
+Robert Hunter 3/4/96
+
+p.s.
+Disorient slow quill to provide
+Dense unsingable margin
+Dispersing in tonal cluster under
+A lilac roof of chintz Vermeers
+Incorporate chance nomenclature
+Corresponding to a netting of wind
+Revolving in unintentional resolve
+Interrogating with no question mark
+Non-circular limited clock of the day
+Before rude lingual enforcement
+Immerses momentos of dux redux
+More given to flux than flight in Shank's aviary
+Where no one spits in the beer of slumber
+With less reluctance than an attested breeze
+
+(from the Collected Sonnets of Cosmo Nitram,
+soon to appear on [Hunter's] pages)
+```]]&gt;</description>
+      <link>https://www.lqdev.me/posts/fractures-unfamiliarity-circumvention-pursuit-good-time-robert-hunter</link>
+      <guid>https://www.lqdev.me/posts/fractures-unfamiliarity-circumvention-pursuit-good-time-robert-hunter</guid>
+      <pubDate>2025-02-26 19:44 -05:00</pubDate>
+      <category>music</category>
+      <category>essay</category>
+      <category>gratefuldead</category>
+    </item>
+    <item>
+      <title>The Algorithm - J. Cole has a blog?</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This is just a place for me to share. I been wanting a lil blog for years. Somewhere to post random shit I fuck with where the audience is way smaller than it is on the social media platforms. Finally pulled the trigger, bare with us as we still developing this page and the layout.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is cool!&lt;/p&gt;
+&lt;p&gt;I ran into this while reading the post &lt;a href="https://herbertlui.net/blogging-for-smaller-audiences-and-deeper-connections/"&gt;Blogging for smaller audiences and deeper connections&lt;/a&gt; by &lt;a href="https://herbertlui.net/"&gt;Herbert Lui&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Looking at &lt;a href="https://www.inevitable.live/algorithm"&gt;other posts&lt;/a&gt;, it looks like he or at least someone is actively posting.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/inevitable-jcole-blog</link>
+      <guid>https://www.lqdev.me/responses/inevitable-jcole-blog</guid>
+      <pubDate>2025-02-25 21:34 -05:00</pubDate>
+      <category>music</category>
+      <category>blog</category>
+      <category>indieweb</category>
+      <category>creativity</category>
+      <category>art</category>
+    </item>
+    <item>
+      <title>Spotify Wrapped 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;It's finally here!&lt;/p&gt;
+&lt;p&gt;I can't say I'm too surprised by the results.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/spotify-wrapped-2024-0.png" class="img-fluid" alt="Spotify Wrapped Screenshot Summary of top artists, songs, and listening minutes" /&gt;&lt;/p&gt;
+&lt;p&gt;Compared to last year, I nearly doubled my listening minutes. Also, none of the artists from the &lt;a href="https://www.lqdev.me/notes/spotify-wrapped-2023"&gt;previous year&lt;/a&gt; made it onto this list. Although, I'm not sure how Buffalo Springfield worked its way into the list of top artists.&lt;/p&gt;
+&lt;p&gt;I love how my listening habits from September are described, &amp;quot;Witchy Jam Band Psychedelic Rock&amp;quot;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/spotify-wrapped-2024-1.png" class="img-fluid" alt="Spotify Wrapped Screenshot Listening Habits" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/spotify-wrapped-2024</link>
+      <guid>https://www.lqdev.me/notes/spotify-wrapped-2024</guid>
+      <pubDate>2024-12-04 08:39 -05:00</pubDate>
+      <category>music</category>
+      <category>spotify</category>
+      <category>spotifywrapped</category>
+      <category>stats</category>
+    </item>
+    <item>
+      <title>Thundercat on Tyler's Chromakopia album?</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;Love this new &amp;quot;making of&amp;quot; video. I was surprised to learn Thundercat is on the new album. I didn't catch which track it's on, but will be listening for it.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=KvR_QlXaAfU" title="Mask Is Off Video Thumbnail"&gt;&lt;img src="http://img.youtube.com/vi/KvR_QlXaAfU/0.jpg" class="img-fluid" alt="Mask Is Off Video Thumbnail" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/thundercat-chromakopia</link>
+      <guid>https://www.lqdev.me/responses/thundercat-chromakopia</guid>
+      <pubDate>2024-11-13 02:11 -05:00</pubDate>
+      <category>tylerthecreator</category>
+      <category>chromakopia</category>
+      <category>thundercat</category>
+      <category>music</category>
+    </item>
+    <item>
+      <title>St. Chroma is a great intro</title>
+      <description>&lt;![CDATA[&lt;p&gt;I love the album overall but St. Chroma is a great intro that sets up the rest of the album.&lt;/p&gt;
+&lt;p&gt;Some of my favorite parts from the track&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;You are the light. It's not on you, it's in you. Don't you ever in your motherfucking life dim your light for nobody.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;P said I could do it too, and boy, did I believe him. I built a path to freedom 'cause them words that he said. Give a fuck about tradition, stop impressin' the dead&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Don't you ever stop bein' who you are and dimmin' your light for none of these motherfuckers out here&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=hCcwCv3G1FQ" title="Album cover of Chromakopia - Tyler The Creator in a Mask"&gt;&lt;img src="http://img.youtube.com/vi/hCcwCv3G1FQ/0.jpg" class="img-fluid" alt="Album cover of Chromakopia - Tyler The Creator in a Mask" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/st-chroma-chromakopia</link>
+      <guid>https://www.lqdev.me/notes/st-chroma-chromakopia</guid>
+      <pubDate>2024-11-01 22:28 -05:00</pubDate>
+      <category>chromakopia</category>
+      <category>tylerthecreator</category>
+      <category>music</category>
+    </item>
+    <item>
+      <title>Crate Finds - October 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;Lots of music released this month&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/chromakopia-tyler-the-creator-released"&gt;Chromakopia by Tyler The Creator&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/spirit-box-flying-lotus"&gt;Spirit Box by Flying Lotus&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Both amazing albums I've now listed to multiple times from beginning to end.&lt;/p&gt;
+&lt;p&gt;That said, the Crate Finds this month are light and can best be summarized as my favorite songs from &lt;a href="https://www.lqdev.me/notes/got-a-story-to-tell-thee-sacred-souls"&gt;Got A Story to Tell by Thee Sacred Souls&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Tracks&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Ingo Swann&lt;/strong&gt; by Flying Lotus&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Ingo Swann&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:37&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=cOhMiBlmjQo"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0MorRE2kwzea56XwkFMUYE"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Lucid Girl&lt;/strong&gt; by Thee Sacred Souls&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Got a Story to Tell&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:24&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=zABTJnZbRoA"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5TdnxXaZIqJjASZaJQrW2e"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Price I'll Pay&lt;/strong&gt; by Thee Sacred Souls&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Got a Story to Tell&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:59&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=LNpH8RQODus"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3qbDVLxZSDfkWodxfuoX4X"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Live For You&lt;/strong&gt; by Thee Sacred Souls&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Got a Story to Tell&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:30&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Y-Lohj-j-b8"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2cgHekIPyuKxEEcV72tuy4"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;On My Mind&lt;/strong&gt; by Thee Sacred Souls&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Got a Story to Tell&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:26&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=eqdn-Ko4Euc"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4zZjO9ofbsBIKoFE7QMYzT"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Waiting on the Right Time&lt;/strong&gt; by Thee Sacred Souls&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Got a Story to Tell&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:39&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=c8TPemx1_pE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0WRdWdAsq97tmWHvSoCQYl"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;I'm So Glad I Found You, Baby&lt;/strong&gt; by Thee Sacred Souls&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Got a Story to Tell&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:24&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=rlRQ2ugqRmY"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/7uXG1GZTzpkHVUzwbArSXn"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Original Spotify Playlist:&lt;/strong&gt; &lt;a href="https://open.spotify.com/playlist/18ZVcs71usQpBjaYO7XEA0"&gt;Listen on Spotify&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/crate-finds-october-2024</link>
+      <guid>https://www.lqdev.me/notes/crate-finds-october-2024</guid>
+      <pubDate>2024-11-01 09:26 -05:00</pubDate>
+      <category>cratefinds</category>
+      <category>music</category>
+      <category>playlist</category>
+      <category>spotify</category>
+    </item>
+    <item>
+      <title>New Release: Spirit Box by Flying Lotus</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;He's back! A day after &lt;a href="https://www.lqdev.me/responses/chromakopia-tyler-the-creator-released"&gt;Tyler&lt;/a&gt; too.&lt;/p&gt;
+&lt;p&gt;I already loved Garmonbozia but Ajhussi is my favorite track.&lt;/p&gt;
+&lt;p&gt;Although on this album you hear some of the early FlyLo sound, it still feels new and fresh.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/playlist?list=OLAK5uy_kQDB4vsLJy0bmjuYsCXKa-eMO-W33na2w" title="Flying Lotus Spirit Box Album Playlist Thumbnail"&gt;&lt;img src="http://img.youtube.com/vi/E-BbWldXfJk/0.jpg" class="img-fluid" alt="Flying Lotus Spirit Box Album Playlist Thumbnail" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/spirit-box-flying-lotus</link>
+      <guid>https://www.lqdev.me/responses/spirit-box-flying-lotus</guid>
+      <pubDate>2024-10-30 08:45 -05:00</pubDate>
+      <category>music</category>
+      <category>flyinglotus</category>
+      <category>spiritbox</category>
+      <category>newmusic</category>
+      <category>album</category>
+    </item>
+    <item>
+      <title>Chromakopia by Tyler The Creator Released</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;I did a first pass earlier today and I generally enjoyed this new album from Tyler.&lt;/p&gt;
+&lt;p&gt;Like many previous albums, it's highly introspective. I loved the instrumentals as well.&lt;/p&gt;
+&lt;p&gt;Some first impressions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Track 10 is not a double track as it's generally been the case of his previous albums.&lt;/li&gt;
+&lt;li&gt;&amp;quot;Like Him&amp;quot; adds a new contrasting dimension to Tyler's relationship with his father.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I'll need some more time to digest it and read through the lyrics but overall, great album.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=hCcwCv3G1FQ&amp;amp;list=OLAK5uy_nt1Nw4wT6I7VlzNknxTiIz3hfED0ttO8Q" title="Tyler The Creator Chromakopia Playlist Thumbnail"&gt;&lt;img src="http://img.youtube.com/vi/hCcwCv3G1FQ/0.jpg" class="img-fluid" alt="Tyler The Creator Chromakopia Playlist Thumbnail" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/chromakopia-tyler-the-creator-released</link>
+      <guid>https://www.lqdev.me/responses/chromakopia-tyler-the-creator-released</guid>
+      <pubDate>2024-10-28 19:59 -05:00</pubDate>
+      <category>chromakopia</category>
+      <category>music</category>
+      <category>tylerthecreator</category>
+      <category>newmusic</category>
+      <category>album</category>
+      <category>rap</category>
+      <category>hiphop</category>
+    </item>
+  </channel>
+</rss>

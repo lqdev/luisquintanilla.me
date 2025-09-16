@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - azurecdn</title>
+    <link>https://www.lqdev.me/tags/azurecdn</link>
+    <description>All content tagged with 'azurecdn' by Luis Quintanilla</description>
+    <lastBuildDate>2022-12-21 15:09 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Use Azure CDN from Verizon Premium for Regex URL redirects</title>
+      <description>&lt;![CDATA[&lt;p&gt;Well, that's time that I'm never going to get back.&lt;/p&gt;
+&lt;p&gt;Imagine that you wanted to redirect a URL,&lt;/p&gt;
+&lt;p&gt;From: &lt;code&gt;https://mydomain/github/repo-name&lt;/code&gt;&lt;br /&gt;
+To: &lt;code&gt;https://github.com/username/repo-name&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;You could use regular expressions to parse out the &lt;code&gt;repo-name&lt;/code&gt; part of the URL path from the source URL to the destination URL. This is what it might look like using something like NGINX.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;location ~ ^/github/(.*) {
+     return 307 https://github.com/yourGHusername/$1;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Unless I wasn't looking at the right documentation, it's not obvious that the rules engine for most Azure CDN plans don't support this feature, except for the &lt;a href="https://learn.microsoft.com/azure/cdn/cdn-verizon-premium-rules-engine-reference-features"&gt;Verizon Premium&lt;/a&gt;. While the standard rules engine supports wildcards for source URLs, lack of regular expresssions support means there's no way to parameterize the values of the destination URL. If this is something  you need, make sure to use the Verizon Premium plan.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/azure-cdn-regex-url-redirect</link>
+      <guid>https://www.lqdev.me/notes/azure-cdn-regex-url-redirect</guid>
+      <pubDate>2022-12-21 15:09 -05:00</pubDate>
+      <category>azure</category>
+      <category>azurecdn</category>
+      <category>redirect</category>
+      <category>indieweb</category>
+      <category>selfhosting</category>
+    </item>
+  </channel>
+</rss>

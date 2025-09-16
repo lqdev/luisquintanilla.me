@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - html</title>
+    <link>https://www.lqdev.me/tags/html</link>
+    <description>All content tagged with 'html' by Luis Quintanilla</description>
+    <lastBuildDate>2024-07-02 21:41 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Just added Fediverse Open Graph meta tag to my website</title>
+      <description>&lt;![CDATA[&lt;p&gt;I learned from &lt;a href="https://matthiasott.com/notes/highlighting-blogging-on-mastodon"&gt;Matthias Ott&lt;/a&gt; that Mastodon created a new Open Graph meta tag which displays a direct link to the website owner's Fediverse (Mastodon, Pixelfed, Threads, etc...) profile as part of the URL preview card on the Mastodon web and mobile apps.&lt;/p&gt;
+&lt;p&gt;I just added support for it on my website.&lt;/p&gt;
+&lt;p&gt;All I had to do was add the following tag to my site.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;meta property=&amp;quot;fediverse:creator&amp;quot; content=&amp;quot;@lqdev@toot.lqdev.tech&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I'm not running the nightly version of Mastodon on my instance, but if anyone on an instance where this is already supported like mastodon.social can verify and let me know it's working, it's much appreciated.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/added-fediverse-og-creator-tag</link>
+      <guid>https://www.lqdev.me/notes/added-fediverse-og-creator-tag</guid>
+      <pubDate>2024-07-02 21:41 -05:00</pubDate>
+      <category>mastodon</category>
+      <category>fediverse</category>
+      <category>blogging</category>
+      <category>indieweb</category>
+      <category>blogs</category>
+      <category>news</category>
+      <category>journalism</category>
+      <category>openweb</category>
+      <category>distributedweb</category>
+      <category>smallweb</category>
+      <category>personalweb</category>
+      <category>opengraph</category>
+      <category>html</category>
+    </item>
+    <item>
+      <title>Site redirects in static websites</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+I recently came across the concept of [owning your links](https://indieweb.org/own_your_links) on the IndieWeb wiki and right away it made lots of sense to me. The main idea behind owning your links is using your domain as the source of truth and using it to redirect to your content on various other platforms you own. For example, when sharing my Twitter profile, instead of saying, "Go to https://twitter.com/ljquintanilla", I can instead point people to [http://lqdev.me/twitter](http://lqdev.me/twitter)". The link on my domain ultimately redirects to Twitter, but the main entrypoint is my website. There's various ways to handle redirects, but in most cases it's done on the server side. For static websites, if you're hosting them in GitHub Pages, Netlify, or Azure Blob Storage, you don't have a server. Therefore configuring redirects can be a challenge. In this post, I'll go through how you can configure redirects for your static website without a server or JavaScript. 
+
+## Create redirect page
+
+Depending on which generator you use to create your static website, how you create your  redirect pages will differ. However, the end result should look like the the following:
+
+```html
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv="refresh" content="0;REDIRECT-TARGET-URL"&gt;
+    &lt;/head&gt;
+&lt;/html&gt;
+```
+
+The only thing you need to perform the redirect is add a `meta` tag to the endpoint you want to handle the redirect. If I wanted to redirect to Twitter, I might create an HTML page at `http://lqdev.me/twitter` on my website. Setting the `http-equiv` attribute to `refresh` instructs the browser to refresh the page. Then, you use the `content` attribute to define your redirect target and how long you want to wait before redirecting the user. In the snippet above, the number `0` indicates you want to wait 0 seconds before redirecting your users and the `REDIRECT-TARGET-URL` is where you want to redirect to. This could be your Twitter profile, YouTube channel, or anywhere else. Wherever you want to redirect to, you place it in the `content` attribute. 
+
+It's important to note that the redirect happens automatically which takes control away from the user causing potential accesibility issues. Until now, I haven't found a better way of doing this that doesn't require JavaScript. For more information, see the [web content accessibility guidelines](https://www.w3.org/WAI/standards-guidelines/wcag/).
+
+For more information on creating redirects in HTML, see the article [how to redirect a web page in HTML](https://www.w3docs.com/snippets/html/how-to-redirect-a-web-page-in-html.html).
+
+## Conclusion
+
+So far I've created redirect pages for most of my social media profiles. You can see samples in my [contact page](/contact/). It's important to note that while this works for social profiles and any other properties you own on the internet, it could also be used in cases where you've changed the structure of your website and want to gracefully handle redirects for broken / updated links. Happy coding!]]&gt;</description>
+      <link>https://www.lqdev.me/posts/static-website-redirects</link>
+      <guid>https://www.lqdev.me/posts/static-website-redirects</guid>
+      <pubDate>07/31/2022 14:52 -05:00</pubDate>
+      <category>http</category>
+      <category>web</category>
+      <category>staticweb</category>
+      <category>indieweb</category>
+      <category>html</category>
+    </item>
+    <item>
+      <title>Super simple captcha</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+I've been thinking about implementing webmentions on this site. According to the spec, "Webmention is a simple way to notify any URL when you mention it on your site. From the receiver's perspective, it's a way to request notifications when other sites mention it". I won't get into the technical details of webmentions in this post, but the simplest way to implement webmentions is to have a text input box on your site for each of your articles, kind of like a comment box. When someone wants to mention your post on their site, they can use the text input box on your site to add the URL from their site where they mention your post. When the user submits the webmention, there's some endpoint that listens for webmention submissions and processes them accordingly. If you're interested in learning more about webmentions, you can check out the following resources:
+
+- [Webmentions spec](https://www.w3.org/TR/webmention/)
+- [Webmention Rocks](https://webmention.rocks/)
+- [Sending Your First Webmention - IndieWebCamp Düsseldorf 2019](https://yewtu.be/watch?v=ZOlkS6xP2Zk)
+
+While it's great that you can mention and comment on other people's content from your site, like comments, writing a script to submit spam is relatively simple. Therefore, I want to create some sort of [CAPTCHA](https://en.wikipedia.org/wiki/CAPTCHA) challenge as an initial form of validation to prevent spam. At the same time, I don't want to have any external dependencies. In this post, I'll show how I went about implementing a captcha-like solution with zero dependencies to prevent spam submissions. 
+
+## Simple captcha
+
+The solution I came up with asks the users to add the day of the month (1-31) to a random number between 1-100. While not entirely foolproof, it's "complex" enough that it's not the same thing every time. 
+
+Below is what the implementation looks like. 
+
+![Captcha implementation asking for date](https://user-images.githubusercontent.com/11130940/138604591-dfe4c301-78fe-4338-a751-799b420a1791.png)
+
+The HTML markup for the webpage looks like the following:
+
+```html
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Super Simple Captcha&lt;/title&gt;
+    &lt;script src="main.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload="setQuery()"&gt;
+    &lt;div&gt;
+        &lt;span id="query"&gt;&lt;/span&gt;
+        &lt;input type="text" id="answerInput"&gt;
+        &lt;button onclick="displayResult()"&gt;Submit&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;h3 id="result"&gt;&lt;/h3&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+```
+
+When the `body` element of the page loads, it invokes the `setQuery` function, which displays the challenge the user is supposed to solve in the `query` span element. 
+
+The user then submits their answer via the `answerInput` text input box. 
+
+The answer is then checked by invoking the `displayResult` function. The `displayResult` function checks the user's answer against the expected answer. If the answer is correct, the text "OK" is displayed on the page's `result` H3 element. Otherwise, the text "Try again" displays on the webpage.
+
+All of the code that handles this logic is in the `main.js` file.
+
+```javascript
+let date = new Date()
+let day = date.getDate() // Day of the month
+let randomNumber = Math.floor(Math.random() * 100) + 1
+let answer = day + randomNumber // Expected answer
+
+let setQuery = () =&gt; {
+    let element = document.getElementById('query');
+    element.innerText = `Enter the sum of ${day} + ${randomNumber}`;    
+}
+
+let checkAnswer = () =&gt; {
+    let userAnswer = parseInt(document.getElementById("answerInput").value);
+    return answer === userAnswer
+}
+
+let displayResult = () =&gt; {
+    let result = checkAnswer() ? "OK" : "Try again" // Ternary function to check if answer is correct
+    document.getElementById("result").innerText = result;
+}
+```
+
+That's all there is to it!
+
+## Conclusion
+
+In this post, I showed how to implement a dependency-free solution to present a challenge to users submitting comments / webmentions to your site. Although the solution isn't foolproof, it's just complex enough any spammers would have to work a little harder. Happy coding!  ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/super-simple-captcha</link>
+      <guid>https://www.lqdev.me/posts/super-simple-captcha</guid>
+      <pubDate>10/24/2021 13:00 -05:00</pubDate>
+      <category>web development</category>
+      <category>html</category>
+      <category>javascript</category>
+      <category>webmentions</category>
+    </item>
+    <item>
+      <title>TIL: Canonical HTML tags</title>
+      <description>&lt;![CDATA[&lt;p&gt;Today I learned about canonical URLs. While looking into how I can syndicate content from this site, specifically longer form blog posts on other sites like dev.to, I came across canonical tags.&lt;/p&gt;
+&lt;p&gt;Basically they're a way of telling the internet, specifically search engines, what version of your content is the main copy or single-source of truth.&lt;/p&gt;
+&lt;p&gt;Currently I've configured my site so it's not indexed or crawled. However, for sites I don't own I don't have the same level of control. Check out the &lt;a href="https://moz.com/learn/seo/canonicalization"&gt;canonicalization&lt;/a&gt; and &lt;a href="https://moz.com/blog/rel-canonical"&gt;SEO best practices for canonical URLs&lt;/a&gt; articles from Moz if you're interested in learning more.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/rel-canonical-tags</link>
+      <guid>https://www.lqdev.me/notes/rel-canonical-tags</guid>
+      <pubDate>10/21/2021 21:31 -05:00</pubDate>
+      <category>html</category>
+      <category>til</category>
+      <category>canonical</category>
+      <category>web</category>
+      <category>w3c</category>
+      <category>standards</category>
+    </item>
+    <item>
+      <title>Scaffolding A Web Page In One Line</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+A few months ago, I saw VS Code released an update that had [Emmet](https://www.emmet.io/) abbreviations built in. At the time, I saw a demo and it looked like an interesting tool but I knew very little about it. This past week, while practicing `css` and scaffolding a blog-like web page for practice I decided to give Emmet a try. After reading some of the documentation and trying it out, within five minutes I was able to replicate what I had done manually with one line of "code". The entire process is described below. 
+
+## What We'll Build
+
+Displayed below is the scaffold of the webpage I built. As it can be seen, in the `body` element there is a `nav` element and four `div` elements that will contain our articles and their metadata.
+
+```html
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;link rel="stylesheet" href=""&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li class="nav-item"&gt;&lt;/li&gt;
+            &lt;li class="nav-item"&gt;&lt;/li&gt;
+            &lt;li class="nav-item"&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+    &lt;div&gt;
+        &lt;div class="article"&gt;
+            &lt;h2 class="article-title"&gt;&lt;/h2&gt;
+            &lt;h6 class="article-date"&gt;&lt;/h6&gt;
+            &lt;p class="article-description"&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;div class="article"&gt;
+            &lt;h2 class="article-title"&gt;&lt;/h2&gt;
+            &lt;h6 class="article-date"&gt;&lt;/h6&gt;
+            &lt;p class="article-description"&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;div class="article"&gt;
+            &lt;h2 class="article-title"&gt;&lt;/h2&gt;
+            &lt;h6 class="article-date"&gt;&lt;/h6&gt;
+            &lt;p class="article-description"&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;div class="article"&gt;
+            &lt;h2 class="article-title"&gt;&lt;/h2&gt;
+            &lt;h6 class="article-date"&gt;&lt;/h6&gt;
+            &lt;p class="article-description"&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+```
+
+## How We'll Build It
+
+The `hmtl` above can be programatically built using the abbreviation below.
+
+```text
+html&gt;(head&gt;title+link)+(body&gt;(nav&gt;ul&gt;li.nav-item*3)+(div&gt;div.article&gt;h2.article-title+h6.article-date+p.article-description)*4
+```
+
+To break down some of the things that are going on here, we can start with the syntax. The `&gt;` character denotes that the item on the left is the parent of the item(s) on the right. Similarly, the `+` character is used to describe siblings. Similar to math operations, parentheses evaluate what's inside them. Elements themselves can contain additional data such as class names and ids. This data can be appended to the element name just like `css` with `.` for classes and `#` for ids. 
+
+With that knowledge, we can see that we have an `html` root element with `head` and `body` children. The `head` element has a `title` and `link` child elements. The `body` element has a `nav` element with a `ul` child which contains three `li` elements. The `nav` element has a `div` sibling which contains four `div` children that serve as the containers for our articles and their metadata.  
+
+## Adding some style
+
+To help visualize what the page looks like we can add some `css`. 
+
+```css
+* {
+    margin: 0;
+}
+
+nav {
+    padding: 0;
+    background-color: black;
+    color: white;
+}
+
+.nav-item {
+    margin: 20px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.nav-item:hover {
+    opacity: 0.7;
+}
+
+.article {
+    display: block;
+    margin: 20px;
+    padding-left: 5px;
+    background-color: lightgray;
+    border: black solid 2px;
+}
+
+.article-title {
+    display: block;
+    font-family: serif;
+    font-size: 30px;
+    text-decoration: underline;
+    display: inline;
+}
+
+.article-date {
+    font-size: 20px;
+    font-family: fantasy;
+    float: right;
+    margin-right: 5px;
+}
+
+.article-description {
+    display: block;
+    font-size: 18px;
+    font-family: sans-serif;
+    margin-top: 5px;
+}
+```
+
+## Result
+
+After linking our `css` with the webpage as well as adding some content to the page, the result will look as follows. 
+
+![](http://cdn.lqdev.tech/files/images/scaffoldawebpageoneline1.png)
+
+
+```html
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;link rel="stylesheet" type="text/css" href="main.css"/&gt;
+        &lt;title&gt;HTML CSS Practice&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li class="nav-item"&gt;Home&lt;/li&gt;
+                &lt;li class="nav-item"&gt;About&lt;/li&gt;
+                &lt;li class="nav-item"&gt;Contact&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+        &lt;div&gt;
+            &lt;div class="article"&gt;
+                &lt;h2 class="article-title"&gt;Hello World&lt;/h2&gt;
+                &lt;h6 class="article-date"&gt;January 8, 2017&lt;/h6&gt;
+                &lt;p class="article-description"&gt;This is a short description of my program. There are more things than this.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="article"&gt;
+                &lt;h2 class="article-title"&gt;Second Post&lt;/h2&gt;
+                &lt;h6 class="article-date"&gt;February 8, 2017&lt;/h6&gt;
+                &lt;p class="article-description"&gt;I think that I got my feet wet a little bit. Maybe there are other things that I can write about&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="article"&gt;
+                &lt;h2 class="article-title"&gt;Third Post&lt;/h2&gt;
+                &lt;h6 class="article-date"&gt;March 8, 2017&lt;/h6&gt;
+                &lt;p class="article-description"&gt;This is the third go around. I think I got pretty good at this design stuff.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="article"&gt;
+                &lt;h2 class="article-title"&gt;Fourth Post&lt;/h2&gt;
+                &lt;h6 class="article-date"&gt;June 8, 2017&lt;/h6&gt;
+                &lt;p class="article-description"&gt;I really like my description of the things that are happening here and there is another post on the way very soon.&lt;/p&gt;
+            &lt;/div&gt;                        
+        &lt;/div&gt;
+    &lt;/body&gt;    
+&lt;/html&gt;
+```
+
+###### Sources
+[Emmet](https://www.emmet.io/)
+
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/scaffold-a-webpage-in-one-line</link>
+      <guid>https://www.lqdev.me/posts/scaffold-a-webpage-in-one-line</guid>
+      <pubDate>2018-03-10 16:07:00 -05:00</pubDate>
+      <category>html</category>
+      <category>web development</category>
+      <category>development</category>
+      <category>tools</category>
+      <category>emmet</category>
+    </item>
+  </channel>
+</rss>

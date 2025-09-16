@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - photos</title>
+    <link>https://www.lqdev.me/tags/photos</link>
+    <description>All content tagged with 'photos' by Luis Quintanilla</description>
+    <lastBuildDate>2024-08-13 22:29 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Playing around with the Ivy Cliq+ 2</title>
+      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="https://s7d1.scene7.com/is/image/canon/4519C001_ivy-cliq-plus2-instant-camera-printer-plus-app-rose-gold_primary?fmt=webp-alpha&amp;amp;wid=800" class="img-fluid" alt="Image of Canon Ivy Cliq+ 2 camera and photo printer" /&gt;&lt;/p&gt;
+&lt;p&gt;I got my hands on an &lt;a href="https://www.usa.canon.com/shop/p/ivy-cliq-2-instant-camera-printer-app"&gt;Ivy Cliq+ 2&lt;/a&gt; earlier today and am really liking it.&lt;/p&gt;
+&lt;p&gt;It's really cool that it's both a point-and-shoot camera as well as a photo printer. The camera comes in handy if you want to capture something in the moment and print it out immediately. The printer is great for pictures you've taken on your phone or some other device. Even better, you can create collages, apply filters, and do all sorts of adjustments to images before printing.&lt;/p&gt;
+&lt;p&gt;If there's one thing I didn't like is that in order to set it up, it needed access to my exact location. Trying approximate location wasn't enough. It connects over Bluetooth, so you'd think that should be enough to pair. Not sure what it needs my EXACT location for.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/ivy-cliq-2-camera-photo-printer</link>
+      <guid>https://www.lqdev.me/notes/ivy-cliq-2-camera-photo-printer</guid>
+      <pubDate>2024-08-13 22:29 -05:00</pubDate>
+      <category>analog</category>
+      <category>camera</category>
+      <category>photos</category>
+      <category>journal</category>
+      <category>memory</category>
+    </item>
+    <item>
+      <title>Ente - Private cloud storage for photos, videos, etc.</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Store, share, and rediscover your memories with absolute privacy&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/ente-private-media-cloud-storage</link>
+      <guid>https://www.lqdev.me/bookmarks/ente-private-media-cloud-storage</guid>
+      <pubDate>2024-03-02 15:49 -05:00</pubDate>
+      <category>e2ee</category>
+      <category>photos</category>
+      <category>cloud</category>
+      <category>storage</category>
+      <category>product</category>
+    </item>
+    <item>
+      <title>AdventureTaco - Favorite Photos 2023 Edition</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;&lt;img src="https://live.staticflickr.com/65535/53444961109_ca25a7de02_h.jpg" class="img-fluid" alt="A Toyota Tacoma Driving on a dirt road towards mountains in the background" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/favorite-photos-2023-adventuretaco</link>
+      <guid>https://www.lqdev.me/responses/favorite-photos-2023-adventuretaco</guid>
+      <pubDate>2024-01-06 21:33 -05:00</pubDate>
+      <category>landscapes</category>
+      <category>photography</category>
+      <category>overlanding</category>
+      <category>adventure</category>
+      <category>photos</category>
+      <category>desert</category>
+      <category>mountain</category>
+    </item>
+    <item>
+      <title>Announcement - Solo by Pixelfed</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Solo by Pixelfed&lt;/p&gt;
+&lt;p&gt;We've been secretly building a single user federated photo sharing server (based on Pixelfed), with minimal setup, and built-in import&lt;/p&gt;
+&lt;p&gt;Solo is simple, download the code, drag your photos to the media directory and open your browser&lt;/p&gt;
+&lt;p&gt;So simple, yet super smart, Solo won't get in your way, but it will impress&lt;/p&gt;
+&lt;p&gt;Launching Oct 2023&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Very excited about this!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/pixelfed-solo-announcement</link>
+      <guid>https://www.lqdev.me/responses/pixelfed-solo-announcement</guid>
+      <pubDate>2023-09-01 10:55 -05:00</pubDate>
+      <category>fediverse</category>
+      <category>pixelfed</category>
+      <category>photos</category>
+      <category>socialmedia</category>
+    </item>
+  </channel>
+</rss>

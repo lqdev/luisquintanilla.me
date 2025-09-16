@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - developers</title>
+    <link>https://www.lqdev.me/tags/developers</link>
+    <description>All content tagged with 'developers' by Luis Quintanilla</description>
+    <lastBuildDate>2024-01-25 21:23 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Google’s Hugging Face deal puts ‘supercomputer’ power behind open-source AI</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Google Cloud’s new partnership with AI model repository Hugging Face is letting developers build, train, and deploy AI models without needing to pay for a Google Cloud subscription. Now, outside developers using Hugging Face’s platform will have “cost-effective” access to Google’s tensor processing units (TPU) and GPU supercomputers, which will include thousands of Nvidia’s in-demand and export-restricted H100s.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Google said that Hugging Face users can begin using the AI app-building platform Vertex AI and the Kubernetes engine that helps train and fine-tune models “in the first half of 2024.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.googlecloudpresscorner.com/2024-01-25-Google-Cloud-and-Hugging-Face-Announce-Strategic-Partnership-to-Accelerate-Generative-AI-and-ML-Development"&gt;Press Release&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/google-cloud-huggingface-deal</link>
+      <guid>https://www.lqdev.me/responses/google-cloud-huggingface-deal</guid>
+      <pubDate>2024-01-25 21:23 -05:00</pubDate>
+      <category>google</category>
+      <category>huggingface</category>
+      <category>ai</category>
+      <category>cloud</category>
+      <category>llm</category>
+      <category>ml</category>
+      <category>developers</category>
+    </item>
+    <item>
+      <title>Copilot for Docs</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Whether you’re learning a new library or API or you’ve been using it for years, it can feel like the documentation gets in your way more than it helps. Maybe the tutorials are too basic, or the reference manual is too sketchy, or the relevant information is split across multiple pages full of irrelevant details.&lt;/p&gt;
+&lt;p&gt;We’re exploring a way to get you the information you need, faster. By surfacing the most relevant content for questions with tailored summaries that help connect the dots, Copilot for docs saves developers from scouring reams of documentation.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/copilot-docs</link>
+      <guid>https://www.lqdev.me/bookmarks/copilot-docs</guid>
+      <pubDate>2023-05-11 20:32 -05:00</pubDate>
+      <category>ai</category>
+      <category>documentation</category>
+      <category>developers</category>
+    </item>
+  </channel>
+</rss>

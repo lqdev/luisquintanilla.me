@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Install OverDrive Media Console on Manjaro - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Install OverDrive Media Console on Manjaro</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2022-05-12">May 12, 2022</time><p>Tags: linux, books, audiobooks, manjaro</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/overdrive-wine-manjaro">View Full Version</a></p><div class="content"><h2>Introduction</h2>
+<p>For the last few months, Manjaro has been the operating system I use as my daily driver for personal tasks. I still have my Surface Go tablet which runs Windows 10 that I use for tasks line syncing my Garmin watch and GPS. On one of the <a href="/notes/ipod-touch-discontinued">posts in my feed</a>, I briefly mentioned my audio solution for podcasts and audiobooks which mainly consists of a standalone MP3 player (<a href="https://fiio.com/m6">FiiO M6</a>).</p>
+<p>For podcasts, I manage them through my <a href="https://newsblur.com/">NewsBlur RSS feed reader</a>. When I want to download them for offline listening, I've written a .NET console app (<a href="https://github.com/lqdev/podnet">podnet</a>) to manage that process for me. Audiobooks are a little trickier. Public domain works I get through <a href="https://librivox.org/">Librivox</a>. The limitation there though is that I'm only public domain works are available. Therefore if I want other audiobooks, I either have to purchase them (which has its own issues because of DRM) or borrow them from my local library. I prefer to borrow my books and audiobooks from the library. Not only am I supporting my local library but I also save money in the process.</p>
+<p>Many libraries including my own manage digital assets through <a href="https://www.overdrive.com/">OverDrive</a>. OverDrive offers a variety of ways for transferring books and audiobooks to your devices. Linux however is not one of those solutions. Until February 2022, OverDrive provided a Windows desktop application (OverDrive Media Console) for managing books and audiobooks. Although there is no Linux desktop application, Linux has Wine. <a href="https://www.winehq.org/">Wine</a> according to their website is &quot;...a compatibility layer capable of running Windows applications on several POSIX-compliant operating systems, such as Linux, macOS, &amp; BSD.&quot;.</p>
+<p>In this post, I'll show how you can use Wine to install OverDrive Media Console on a PC running the Manjaro Linux distribution.</p>
+<h2>Install Wine</h2>
+<p>In order to install OverDrive Media Console, you'll need to install Wine. To do so:</p>
+<ol>
+<li><p>Open the terminal.</p>
+</li>
+<li><p>Install Wine and all its dependencies with the following command:</p>
+<pre><code class="language-bash">sudo pacman -S wine winetricks wine-mono wine_gecko
+</code></pre>
+</li>
+</ol>
+<h2>Install OverDrive Media Console</h2>
+<p>The next step is to install the OverDrive Media Console application for Windows desktop.</p>
+<ol>
+<li><p>Download the latest version of <a href="https://www.overdrive.com/apps/overdrive./">OverDrive Media Console for Windows Desktop application</a>. This should be a Microsoft Installer file with the <code>.msi</code> extension. Note that as of February 2022, the desktop application is <a href="https://help.overdrive.com/en-us/0733.html?tocpath=Home%7CGet%20help%20with%20the%20OverDrive%20app%7CWindows%20(desktop)%7C_____7">no longer available for install</a>.</p>
+</li>
+<li><p>Open the terminal and use Wine to install OverDrive Media Console with the following command:</p>
+<pre><code class="language-bash">wine msiexec /i ODMediaConsoleSetup.msi
+</code></pre>
+<p>Update the name of the <code>.msi</code> file as needed.</p>
+</li>
+</ol>
+<h2>Run OverDrive Media Console</h2>
+<p>Once the installation is complete, OverDrive Media Console should be in your list of applications. Run it as you would any other app.</p>
+<p><a href="https://user-images.githubusercontent.com/11130940/167964715-bb8bfb21-5f72-4a86-9fb0-33c9d1fe9eae.png" target="_blank">[Image: OverDrive Media Console running on Manjaro Linux]</a></p>
+<p>Here's a guide for information on getting started with <a href="https://help.overdrive.com/en-us/categories/getting-started.htm">OverDrive</a>.</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

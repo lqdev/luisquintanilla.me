@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - chat</title>
+    <link>https://www.lqdev.me/tags/chat</link>
+    <description>All content tagged with 'chat' by Luis Quintanilla</description>
+    <lastBuildDate>2024-12-16 21:22 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Build a YouTube chat app with .NET</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Great post from &lt;a href="https://jordanmatthiesen.me/"&gt;jordanmatthiesen.me&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Recently on a trip for a tech conference I created a YouTube chat app using .NET and AI. This is part of my exploration into creating a larger app for chatting about .NET AI development (leveraging docs, presentations, and sample code my team has been working on at Microsoft).&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/youtube-chat-app-ai-dotnet</link>
+      <guid>https://www.lqdev.me/responses/youtube-chat-app-ai-dotnet</guid>
+      <pubDate>2024-12-16 21:22 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>ai</category>
+      <category>youtube</category>
+      <category>chat</category>
+      <category>microsoft.extensions.ai</category>
+      <category>openai</category>
+    </item>
+    <item>
+      <title>HuggingChat</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The goal of this app is to showcase that it is now possible to build an open source alternative to ChatGPT.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/huggingface/chat-ui"&gt;GitHub repo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/huggingface/text-generation-inference"&gt;Text Generation Inference&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/huggingchat</link>
+      <guid>https://www.lqdev.me/responses/huggingchat</guid>
+      <pubDate>2024-02-21 14:38 -05:00</pubDate>
+      <category>huggingface</category>
+      <category>assistants</category>
+      <category>ai</category>
+      <category>chat</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>NVIDIA Chat with RTX</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Chat With RTX is a demo app that lets you personalize a GPT large language model (LLM) connected to your own content—docs, notes, videos, or other data. Leveraging retrieval-augmented generation (RAG), TensorRT-LLM, and RTX acceleration, you can query a custom chatbot to quickly get contextually relevant answers. And because it all runs locally on your Windows RTX PC or workstation, you’ll get fast and secure results.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/nvidia-chat-rtx</link>
+      <guid>https://www.lqdev.me/responses/nvidia-chat-rtx</guid>
+      <pubDate>2024-02-13 21:08 -05:00</pubDate>
+      <category>nvidia</category>
+      <category>chat</category>
+      <category>ai</category>
+      <category>rag</category>
+      <category>chatbot</category>
+      <category>gpu</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>How Discord Serves 15-Million Users on One Server</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In early summer 2022, the Discord operations team noticed unusually high activity on their dashboards. They thought it was a bot attack, but it was legitimate traffic from MidJourney - a new, fast-growing community for generating AI images from text prompts.
+&lt;br&gt;
+To use MidJourney, you need a Discord account. Most MidJourney users join one main Discord server. This server grew so quickly that it soon hit Discord’s old limit of around 1 million users per server.
+&lt;br&gt;
+This is the story of how the Discord team creatively solved this challenge.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Discord’s real-time messaging backend is built with Elixir. Elixir runs on the BEAM virtual machine. BEAM was created for Erlang - a language optimized for large real-time systems requiring rock-solid reliability and uptime.
+&lt;br&gt;
+A key capability BEAM provides is extremely lightweight parallel processes. This enables a single server to efficiently run tens or hundreds of thousands of processes concurrently.
+&lt;br&gt;
+Elixir brings friendlier, Ruby-inspired syntax to the battle-tested foundation of BEAM. Combined they make it much easier to program massively scalable, fault-tolerant systems.
+&lt;br&gt;
+So by leveraging BEAM's lightweight processes, the Elixir code powering Discord can &amp;quot;fan out&amp;quot; messages to hundreds of thousands of users around the world concurrently. However, limits emerge as communities grow larger.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/how-discord-serves-15-million-users-using-one-server</link>
+      <guid>https://www.lqdev.me/responses/how-discord-serves-15-million-users-using-one-server</guid>
+      <pubDate>2024-01-17 20:40 -05:00</pubDate>
+      <category>beam</category>
+      <category>erlang</category>
+      <category>elixir</category>
+      <category>discord</category>
+      <category>scale</category>
+      <category>enterprise</category>
+      <category>chat</category>
+      <category>communities</category>
+    </item>
+  </channel>
+</rss>

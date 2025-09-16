@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - learning</title>
+    <link>https://www.lqdev.me/tags/learning</link>
+    <description>All content tagged with 'learning' by Luis Quintanilla</description>
+    <lastBuildDate>2025-02-03 20:20 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>The Illustrated DeepSeek-R1</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Just like most existing LLMs, DeepSeek-R1 generates one token at a time, except it excels at solving math and reasoning problems because it is able to spend more time processing a problem through the process of generating thinking tokens that explain its chain of thought.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fed7fd8c3-7654-497c-a8e2-1f2e7930992e_3302x1438.png" class="img-fluid" alt="DeepSeek R1 Training Recipe" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/illustrated-deepseek-r1</link>
+      <guid>https://www.lqdev.me/bookmarks/illustrated-deepseek-r1</guid>
+      <pubDate>2025-02-03 20:20 -05:00</pubDate>
+      <category>deepseek</category>
+      <category>ai</category>
+      <category>visualization</category>
+      <category>generativeai</category>
+      <category>genai</category>
+      <category>llm</category>
+      <category>learning</category>
+    </item>
+    <item>
+      <title>Transformer Explainer: Interactive Learning of Text-Generative Models</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Transformers have revolutionized machine learning, yet their inner workings remain opaque to many. We present Transformer Explainer, an interactive visualization tool designed for non-experts to learn about Transformers through the GPT-2 model. Our tool helps users understand complex Transformer concepts by integrating a model overview and enabling smooth transitions across abstraction levels of mathematical operations and model structures. It runs a live GPT-2 instance locally in the user's browser, empowering users to experiment with their own input and observe in real-time how the internal components and parameters of the Transformer work together to predict the next tokens. Our tool requires no installation or special hardware, broadening the public's education access to modern generative AI techniques. Our open-sourced tool is available at this https URL. A video demo is available at this https URL.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://poloclub.github.io/transformer-explainer/"&gt;Tool&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://youtu.be/ECR4oAwocjs"&gt;Video&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/transformer-explainer-interactive-learning-text-generative-models</link>
+      <guid>https://www.lqdev.me/bookmarks/transformer-explainer-interactive-learning-text-generative-models</guid>
+      <pubDate>2024-08-14 21:51 -05:00</pubDate>
+      <category>ai</category>
+      <category>transformer</category>
+      <category>neuralnetwork</category>
+      <category>learning</category>
+      <category>gpt</category>
+    </item>
+    <item>
+      <title>Generative AI Handbook: A Roadmap for Learning Resources</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This document aims to serve as a handbook for learning the key concepts underlying modern artificial intelligence systems. Given the speed of recent development in AI, there really isn’t a good textbook-style source for getting up-to-speed on the latest-and-greatest innovations in LLMs or other generative models, yet there is an abundance of great explainer resources (blog posts, videos, etc.) for these topics scattered across the internet. My goal is to organize the “best” of these resources into a textbook-style presentation, which can serve as a roadmap for filling in the prerequisites towards individual AI-related learning goals. My hope is that this will be a “living document”, to be updated as new innovations and paradigms inevitably emerge, and ideally also a document that can benefit from community input and contribution. This guide is aimed at those with a technical background of some kind, who are interested in diving into AI either out of curiosity or for a potential career. I’ll assume that you have some experience with coding and high-school level math, but otherwise will provide pointers for filling in any other prerequisites.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/genai-handbook-learning-resource-brown</link>
+      <guid>https://www.lqdev.me/bookmarks/genai-handbook-learning-resource-brown</guid>
+      <pubDate>2024-06-06 22:18 -05:00</pubDate>
+      <category>generativeai</category>
+      <category>genai</category>
+      <category>handbook</category>
+      <category>learning</category>
+      <category>resource</category>
+    </item>
+    <item>
+      <title>LLM training in simple, raw C/CUDA </title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;LLM training in simple, pure C/CUDA. There is no need for 245MB of PyTorch or 107MB of cPython. For example, training GPT-2 (CPU, fp32) is ~1,000 lines of clean code in a single file. It compiles and runs instantly, and exactly matches the PyTorch reference implementation. I chose GPT-2 as the first working example because it is the grand-daddy of LLMs, the first time the modern stack was put together.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/llm-c-karpathy</link>
+      <guid>https://www.lqdev.me/responses/llm-c-karpathy</guid>
+      <pubDate>2024-04-09 22:15 -05:00</pubDate>
+      <category>llm</category>
+      <category>gpt</category>
+      <category>c</category>
+      <category>programming</category>
+      <category>learning</category>
+      <category>tutorial</category>
+    </item>
+    <item>
+      <title>Coffee with a Codex</title>
+      <description>&lt;![CDATA[&lt;p&gt;Came accross this event series via &lt;a href="https://boffosocko.com/type/status/"&gt;Chris Aldrich's microblog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Here's Chris' original post&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Every Monday, I sit down with a cup of coffee and learn something interesting about history through old manuscripts. Join our friends Dot Porter (&lt;a href="https://twitter.com/leoba"&gt;@leoba&lt;/a&gt;) and the Schoenberg Institute for Manuscript Studies (&lt;a href="https://twitter.com/sims_mss"&gt;@sims_mss&lt;/a&gt;) at &lt;a href="https://schoenberginstitute.org/coffee-with-a-codex/"&gt;Coffee with a Codex&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Basically it's a virtual meeting where experts go over manuscripts on a variety of topics. I'll probably check out next week's event.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/coffee-with-codex</link>
+      <guid>https://www.lqdev.me/notes/coffee-with-codex</guid>
+      <pubDate>10/19/2021 10:21 AM -05:00</pubDate>
+      <category>event</category>
+      <category>learning</category>
+      <category>history</category>
+    </item>
+  </channel>
+</rss>

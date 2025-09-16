@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+    <head>
+        <title>YouTube Channels</title>
+        <ownerId>https://www.lqdev.me</ownerId>
+    </head>
+    <body>
+        <outline title="3Blue1Brown" type="rss" htmlUrl="https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw" />
+        <outline title="DistroTube" type="rss" htmlUrl="https://www.youtube.com/channel/UCVls1GmFKf6WlTraIb_IaJg" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg" />
+        <outline title="dotnet" type="rss" htmlUrl="https://www.youtube.com/channel/UCvtT19MZW8dq5Wwfu6B0oxw" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCvtT19MZW8dq5Wwfu6B0oxw" />
+        <outline title="Dread Central" type="rss" htmlUrl="https://www.youtube.com/channel/UCd1cLnwL83Xh-zAq5yGc7qw" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCd1cLnwL83Xh-zAq5yGc7qw" />
+        <outline title="Matrix.org" type="rss" htmlUrl="https://www.youtube.com/channel/UCVFkW-chclhuyYRbmmfwt6w" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCVFkW-chclhuyYRbmmfwt6w" />
+        <outline title="Microsoft Reactor" type="rss" htmlUrl="https://www.youtube.com/channel/UCkm6luGCS3hD25jcEhvRMIA" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCkm6luGCS3hD25jcEhvRMIA" />
+        <outline title="Microsoft Research" type="rss" htmlUrl="https://www.youtube.com/channel/UCCb9_Kn8F_Opb3UCGm-lILQ" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCCb9_Kn8F_Opb3UCGm-lILQ" />
+        <outline title="MrBallen" type="rss" htmlUrl="https://www.youtube.com/channel/UCtPrkXdtCM5DACLufB9jbsA" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCtPrkXdtCM5DACLufB9jbsA" />
+        <outline title="Pack Hacker" type="rss" htmlUrl="https://www.youtube.com/channel/UC_rI3y1DzDULTr-UIvshiwg" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC_rI3y1DzDULTr-UIvshiwg" />
+        <outline title="Retro Dodo" type="rss" htmlUrl="https://www.youtube.com/channel/UCRg2tBkpKYDxOKtX3GvLZcQ" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCRg2tBkpKYDxOKtX3GvLZcQ" />
+        <outline title="Retro Game Corps" type="rss" htmlUrl="https://www.youtube.com/channel/UCoZQiN0o7f36H7PaW4fVhFw" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCoZQiN0o7f36H7PaW4fVhFw" />
+        <outline title="Techlore" type="rss" htmlUrl="https://www.youtube.com/channel/UCs6KfncB4OV6Vug4o_bzijg" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCs6KfncB4OV6Vug4o_bzijg" />
+        <outline title="Townsends" type="rss" htmlUrl="https://www.youtube.com/channel/UCxr2d4As312LulcajAkKJYw" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCxr2d4As312LulcajAkKJYw" />
+        <outline title="TWiT" type="rss" htmlUrl="https://www.youtube.com/channel/UCwY9B5_8QDGP8niZhBtTh8w" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCwY9B5_8QDGP8niZhBtTh8w" />
+        <outline title="Two Minute Papers" type="rss" htmlUrl="https://www.youtube.com/channel/UCbfYPyITQ-7l4upoX8nvctg" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg" />
+        <outline title="Windows Weekly" type="rss" htmlUrl="https://www.youtube.com/channel/UC1WHdBv9P5tYEGfy-btvYfA" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC1WHdBv9P5tYEGfy-btvYfA" />
+    </body>
+</opml>

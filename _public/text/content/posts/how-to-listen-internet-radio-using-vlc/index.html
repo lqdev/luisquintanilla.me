@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>How to listen to internet radio using VLC - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>How to listen to internet radio using VLC</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2021-12-28">December 28, 2021</time><p>Tags: vlc, open source, radio</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/how-to-listen-internet-radio-using-vlc">View Full Version</a></p><div class="content"><h2>Introduction</h2>
+<p>Music streaming services like Spotify generally do a good job of making recommendations based on your music tastes. By applying algorithms to your listening history, they're able to provide you with a listening experience tailored to you. When it comes to music discovery though, it can be difficult to find new music so you often end up listening to music that sounds very similar. Internet radio can help expose you to music you otherwise wouldn't normally listen to. Radio stations like those on <a href="https://somafm.com/">SomaFM</a> provide a wide variety of high quality music channels. There's other online radio stations out there, many which provide a built-in audio player. As I've written in previous posts though (<a href="/posts/how-to-watch-twitch-using-vlc/">How to watch Twitch streams using VLC</a> &amp; <a href="/notes/rss-vlc-podcast-management">Podcast management with RSS &amp; VLC</a>), VLC is a versatile tool. As a result, it's no surprise you can also use it to listen to online radio streams. This post is mostly a note to myself, but I encourage you to try it as well.</p>
+<h2>Prerequisites</h2>
+<ul>
+<li><a href="https://www.videolan.org/index.html">VLC</a></li>
+</ul>
+<p>The commands below were run on Linux. Since VLC is cross-platform, the same commands should work on those platforms as well.</p>
+<h2>Listen to internet radio</h2>
+<p>The first thing you'll need is the URL of the stream you want to listen to. Usually it's provided on the station's website. You can also browse through <a href="https://www.radio-browser.info/">RadioBrowser</a> to find a station and its stream URL.</p>
+<p>Once you have the URL, in the terminal, enter the following command:</p>
+<pre><code class="language-bash">vlc &lt;STREAM-URL&gt;
+</code></pre>
+<p>Replace <code>&lt;STREAM-URL&gt;</code> with the address of your stream.</p>
+<p>After a few seconds, VLC launches and your stream should start playing.</p>
+<p>If you prefer to stream audio without VLC's visual interface, use the following command.</p>
+<pre><code class="language-bash">cvlc &lt;STREAM-URL&gt;
+</code></pre>
+<p>Note that without the UI you won't have access to any playback controls.</p>
+<p>Happy listening!</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - nlp</title>
+    <link>https://www.lqdev.me/tags/nlp</link>
+    <description>All content tagged with 'nlp' by Luis Quintanilla</description>
+    <lastBuildDate>2024-04-04 11:01 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Introducing Stable Audio 2.0</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Stable Audio 2.0 sets a new standard in AI-generated audio, producing high-quality, full tracks with coherent musical structure up to three minutes in length at 44.1kHz stereo.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The new model introduces audio-to-audio generation by allowing users to upload and transform samples using natural language prompts.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Stable Audio 2.0 was exclusively trained on a licensed dataset from the AudioSparx music library, honoring opt-out requests and ensuring fair compensation for creators.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-stable-audio-2-0</link>
+      <guid>https://www.lqdev.me/responses/introducing-stable-audio-2-0</guid>
+      <pubDate>2024-04-04 11:01 -05:00</pubDate>
+      <category>stabilityai</category>
+      <category>ai</category>
+      <category>audio</category>
+      <category>nlp</category>
+    </item>
+    <item>
+      <title>Releasing Common Corpus: the largest public domain dataset for training LLMs</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We announce today the release of Common Corpus on HuggingFace:&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Common Corpus is the largest public domain dataset released for training LLMs.&lt;/li&gt;
+&lt;li&gt;Common Corpus includes 500 billion words from a wide diversity of cultural heritage initiatives.&lt;/li&gt;
+&lt;li&gt;Common Corpus is multilingual and the largest corpus to date in English, French, Dutch, Spanish, German and Italian.&lt;/li&gt;
+&lt;li&gt;Common Corpus shows it is possible to train fully open LLMs on sources without copyright concerns.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/common-corpus-llm-training-dataset</link>
+      <guid>https://www.lqdev.me/bookmarks/common-corpus-llm-training-dataset</guid>
+      <pubDate>2024-03-20 22:12 -05:00</pubDate>
+      <category>ai</category>
+      <category>data</category>
+      <category>llm</category>
+      <category>huggingface</category>
+      <category>nlp</category>
+    </item>
+    <item>
+      <title>Massively Multilingual Speech (MMS)</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The Massively Multilingual Speech (MMS) project expands speech technology from about 100 languages to over 1,000 by building a single multilingual speech recognition model supporting over 1,100 languages (more than 10 times as many as before), language identification models able to identify over 4,000 languages (40 times more than before), pretrained models supporting over 1,400 languages, and text-to-speech models for over 1,100 languages. Our goal is to make it easier for people to access information and to use devices in their preferred language.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://research.facebook.com/publications/scaling-speech-technology-to-1000-languages/"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/facebookresearch/fairseq/tree/main/examples/mms"&gt;Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/meta-mms-tts-stt</link>
+      <guid>https://www.lqdev.me/bookmarks/meta-mms-tts-stt</guid>
+      <pubDate>2023-05-22 23:43 -05:00</pubDate>
+      <category>ai</category>
+      <category>nlp</category>
+      <category>speech-to-text</category>
+      <category>text-to-speech</category>
+    </item>
+    <item>
+      <title>Transcribing Podcasts with Microsoft Speech API</title>
+      <description>&lt;![CDATA[
+
+# Introduction
+
+I enjoy listening to podcasts in a wide range of topics that include but are not limited to politics, software development, history, comedy and true crime. While some of the more entertainment related podcasts are best enjoyed through audio, those that are related to software development or other type of hands-on topics would benefit greatly from having a transcript. Having a transcript allows me to go back after having listened to an interesting discussion and look directly at the content I am interested in without having to listen to the podcast again. This however is not always feasible given that it costs both time and money to produce a transcript. Fortunately, there are tools out there such as Google Cloud Speech and Microsoft Speech API which allow users to convert speech to text. For this writeup, I will be focusing on the Microsoft Speech API. Because podcasts tend to be long-form, I will be using the C# client library because it allows for long audio (greater than 15 seconds) to be transcribed. The purpose of this exercise is to create a console application that takes audio segments, converts them to text and stores the results in a text file with the goal of evaluating how well the Microsoft Speech API works. The source code for the console application can be found on [GitHub](https://github.com/lqdev/PodcastsBingSpeechAPIDemo)
+
+## Prerequisites
+
+- [Visual Studio Community](https://www.visualstudio.com/vs/community/)
+- [Windows Subsystem for Linux (Ubuntu)](https://www.microsoft.com/store/productId/9NBLGGH4MSV6)
+- [ffmpeg](https://ffmpeg.org/)
+
+## Install/Enable Windows Subsystem for Linux
+1. Open Powershell as Administrator and input
+```powershell
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+```
+2. Restart your computer
+3. Open the Microsoft Store and install [Ubuntu](https://www.microsoft.com/store/productId/9NBLGGH4MSV6) Linux distribution
+4. Once installed, click `Launch`
+5. Create your LINUX user account (Keep in mind that this is not the same as your Windows account therefore it can be different).
+
+## Install ffmpeg
+
+Once Ubuntu is installed on your computer and you have created your LINUX user account, it's time to install `ffmpeg`. This will allow us to convert our file from `mp3` which is usually the format podcasts are in to `wav` which is the format accepted by the Microsoft Speech API
+
+```bash
+sudo apt install -y ffmpeg
+```
+
+## Get Bing Speech API Key
+
+In order to use the Microsoft Speech API, an API key is required. This can be obtained using the following steps.
+
+1. Navigate to the [Azure Cognitive Services](https://azure.microsoft.com/en-us/try/cognitive-services/) page.
+2. Select the `Speech` tab
+3. Click `Get API Key` and follow the instructions
+4. Once you have an API key, make sure to store it somewhere like a text file in your computer for future use.
+
+# File Prep
+
+Before transcribing the files, they need to be converted to `wav` format if they are not already in it. In order to ease processing, they should be split into segments as opposed to having the API process an entire multi megabyte file. To do all this, inside the Ubuntu shell, first navigate to your `Documents` folder and create a new directory for the project.
+
+```bash
+cd /mnt/c/Users/&lt;USERNAME&gt;/Documents
+mkdir testspeechapi
+```
+
+`USERNAME` is your Windows user name. This can be found by typing the following command into the Windows `CMD` prompt
+
+```bash
+echo %USERNAME%
+```
+
+## Download Audio Files
+
+One of the podcasts I listen to is [Talk Python To Me](https://talkpython.fm/) by [Michael Kennedy](https://twitter.com/mkennedy). For the purpose of this exercise, aside from having great content, all of the episodes are transcribed and a link is provided to the `mp3` file. 
+
+The file I will be using is from episode [#149](https://talkpython.fm/episodes/show/149/4-python-web-frameworks-compared), but it can easily be any of the episodes.
+
+In the Ubuntu shell, download the file into the `testspeechapi` directory that was recently created using `wget`.
+
+```bash
+wget https://talkpython.fm/episodes/download/149/4-python-web-frameworks-compared.mp3 -O originalinput.mp3
+```
+
+## Download Transcripts
+
+The transcripts can be found in GitHub at this [link](https://github.com/mikeckennedy/talk-python-transcripts/tree/master/transcripts). The original transcript will allow me to compare it to the output of the Microsoft Speech API and evaluate the accuracy.
+
+We can download this file into the `testspeechapi` directory just like the audio file
+
+```bash
+wget https://raw.githubusercontent.com/mikeckennedy/talk-python-transcripts/master/transcripts/149.txt -O originaltranscript.txt
+```
+
+## Convert MP3 to WAV
+
+Now that we have both the original audio file and transcript, it's time to convert the format from `mp3` to `wav`. To do this, we can use `ffmpeg`. In the Ubuntu shell, enter the following command.
+
+```bash
+ffmpeg -i originalinput.mp3 -f wav originalinput.wav
+```
+
+## Create Audio Segments
+
+Once we have the proper format, it's time to make the files more manageable for processing. This can be done by splitting them up into equal segments using `ffmpeg`. In this case I'll be splitting it up into sixty second segments and storing them into a directory called `input` with the name `filexxxx.wav`. The `%04d` indicates that there will be 4 digits in the file name. Inside the Ubuntu shell and `testspeechapi` directory enter the following commands.
+
+```bash
+mkdir input
+ffmpeg -i originalinput.wav -f segment -segment_time 60 -c copy input/file%04d.wav
+```
+
+# Building The Console Application
+
+To get started building the console application, we can leverage the [Cognitive-Speech-STT-ServiceLibrary](https://github.com/Azure-Samples/Cognitive-Speech-STT-ServiceLibrary) sample program.
+
+## Download The Sample Program
+
+The first step will be to clone the sample program from GitHub onto your computer. In the Windows `CMD` prompt navigate to the `testspeechapi` folder and enter the following command.
+
+```bash
+git clone https://github.com/Azure-Samples/Cognitive-Speech-STT-ServiceLibrary
+```
+
+Once the project is on your computer, open the directory and launch the `SpeechClient.sln` solution in the `sample` directory
+
+When the solution launches, open the `Program.cs` file and begin making modifications.
+
+## Reading Files
+
+To read files, we can create a function that will return the list of files in the specified directory.
+
+```csharp
+private static string[] GetFiles(string directory)
+{
+    string[] files = Directory.GetFiles(directory);
+    return files;
+}
+```
+
+## Process Files
+
+Once we have the list of files, we can then process each file individually using the `Run` method. To do so, we need to make a slight modification to our `Main` method so that it iterates over each file and calls the `Run` method on it. To store the responses from the API, we'll also need a `StringBuilder` object which is declared at the top of our `Program.cs` file.
+
+```csharp
+finalResponse = new StringBuilder();
+string[] files = GetFiles(args[0]);
+foreach(var file in files)
+{
+    p.Run(file,"en-us",LongDictationUrl,args[1]).Wait();
+    Console.WriteLine("File {0} processed",file);
+}
+```
+
+## Transcribe Audio
+
+The `Run` method can be left intact. However, the `Run` method uses the `OnRecognitionResult` method to handle the result of API responses. In the `OnRecognitionResult` method, we can remove almost everything that is originally there and replace it. The response from the API returns various results of potential phrases as well as a confidence value. Generally, most of the phrases are alike and the first value is good enough for our purposes. The code for this part will take the response from the API, append it to a `StringBuilder` object and return when completed.
+
+```csharp
+public Task OnRecognitionResult(RecognitionResult args)
+{
+
+    var response = args;
+
+    if(response.Phrases != null)
+    {
+	finalResponse.Append(response.Phrases[0].DisplayText);
+	finalResponse.Append("\n");
+    }
+
+    return CompletedTask;
+}
+```
+
+## Output Transcribed Speech
+
+When all the audio files have been processed, we can save the final output to a text file in the `testspeechapi` directory. This can be done with the `SaveOutput` function to which we pass in a file name and the `StringBuilder` object that captured responses from the API.
+
+```csharp
+private static void SaveOutput(string filename,StringBuilder content)
+{
+    StreamWriter writer = new StreamWriter(filename);
+    writer.Write(content.ToString());
+    writer.Close();
+}
+```
+
+`SaveOutput` can then be called from our `Main` method like so.
+
+```csharp
+string username = Environment.GetEnvironmentVariable("USERNAME", EnvironmentVariableTarget.Process);
+SaveOutput(String.Format(@"C:\\Users\\{0}\\Documents\\testspeechapi\\apitranscript.txt",username), finalResponse);
+```
+
+The final `Main` method should look similar to the code below
+
+```csharp
+public static void Main(string[] args)
+{
+    // Send a speech recognition request for the audio.
+    finalResponse = new StringBuilder();
+
+    string[] files = GetFiles(args[0]);
+
+    var p = new Program();
+
+    foreach (var file in files)
+    {
+	p.Run(file, "en-us", LongDictationUrl, args[1]).Wait();
+	Console.WriteLine("File {0} processed", file);
+    }
+
+    string username = Environment.GetEnvironmentVariable("USERNAME", EnvironmentVariableTarget.Process);
+
+    SaveOutput(String.Format(@"C:\\Users\\{0}\\Documents\\testspeechapi\\apitranscript.txt",username), finalResponse);
+}
+```
+
+# Output
+
+The program will save the output of the `StringBuilder` object `finalResponse` to the file `apitranscript.txt`.
+
+Prior to running the program it needs to be built. In Visual Studio change the Solutions Configurations option from `Debug` to `Release` and build the application.
+
+To run the program, navigate to the `C:\Users\%USERNAME%\Documents\testspeechapi\Cognitive-Speech-STT-ServiceLibrary\sample\SpeechClientSample\bin\Release` directory in the Windows `CMD` prompt and enter the following command and pass in the `input` directory where all the audio segments are stored and your API Key.
+
+```bash
+SpeechClientSample.exe C:\\Users\\%USERNAME%\\Documents\\testspeechapi\\input &lt;YOUR-API-KEY&gt;
+```
+This process may take a while due to the number of files being processed, so be patient.
+
+## Sample Output
+
+Original
+
+&gt; Are you considering getting into web programming? Choosing a web framework like Pyramid, Flask, or Django can be daunting. It would be great to see them all build out the same application and compare the results side-by-side. That's why when I heard what Nicholas Hunt-Walker was up to, I had to have him on the podcast. He and I chat about four web frameworks compared. He built a data-driven web app with Flask, Tornado, Pyramid, and Django and then put it all together in a presentation. We're going to dive into that right now. This is Talk Python To Me, Episode 149, recorded January 30th, 2018. Welcome to Talk Python to Me, a weekly podcast on Python, the language, the libraries, the ecosystem, and the personalities. This is your host, Michael Kennedy, follow me on Twitter where I'm @mkennedy. Keep up with the show and listen to past episodes at talkpython.fm, and follow the show on Twitter via @talkpython. Nick, welcome to Talk Python.
+
+API Response
+
+&gt; Are you considering getting into web programming cheese in the web framework like plaster. Django can be daunting. It would be great to see them. Although that the same application and compare the results side by side. That's Why? When I heard. But Nicholas Hunt. Walker was up to, I had him on the podcast. He night chat about 4 web frameworks, compared he built a data driven web app with last tornado. Peermade Angangueo and then put it all together in a presentation. We have dive into that right now. This is talk by the to me, I was 149 recorded January 30th 2018. Welcome to talk python to me a weekly podcast on Python Language the library ecosystem in the personalities. Did you host Michael Kennedy? Follow me on Twitter where I'm at in Kennedy keep up with the show in the past episodes at talk python. Damn info, the show on Twitter via at Popeyes on. Nick Welcome to talk by phone.
+
+# Conclusion
+
+In this writeup, I converted an `mp3` podcast file to `wav` format and split it into sixty second segments using `ffmpeg`. The segments were then processed by a console application which uses the Microsoft Speech API to convert speech to text and the results were saved to a text file. When compared to the original transcript, the result produced by the API is inconsistent and at times incomprehensible. This does not mean that overall the API is unusable or inaccurate as many things could have contributed to the inaccuracy. However, the results were not as good as I would have hoped for.
+
+###### Sources
+- [Windows Subsystem for Linux Install Instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+- [Microsoft Speech API](https://docs.microsoft.com/en-us/azure/cognitive-services/speech/home)
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/transcribing-podcasts-microsoft-speech-api</link>
+      <guid>https://www.lqdev.me/posts/transcribing-podcasts-microsoft-speech-api</guid>
+      <pubDate>2018-02-11 20:34:37 -05:00</pubDate>
+      <category>azure</category>
+      <category>csharp</category>
+      <category>apis</category>
+      <category>nlp</category>
+      <category>machine-learning</category>
+      <category>artificial-intelligence</category>
+      <category>microsoft</category>
+    </item>
+    <item>
+      <title>Real-Time Sentiment Analysis with C#</title>
+      <description>&lt;![CDATA[
+###### This is strictly for use with the .NET Framework. With Mono it might be able to work on other platforms. `SimpleNetNlp` does not currently work with .NET Core/Standard
+
+In this project, I will demonstate how to perform sentiment analysis on tweets using various C# libraries.
+
+## Dependencies
+
+- TweetInviAPI
+- SimpleNetNlp
+- SimpleNetNlp.Models.LexParser
+- SimpleNetNlP.Models.Sentiment
+
+## Create Console Application
+
+In Visual Studio, Click File &gt; New &gt; New Project &gt; Console Application
+
+All of the code below will be placed in the `Program` class.
+
+## Creating A Stream
+
+### Authenticate
+
+Thanks to the `Tweetinvi` library, the authentication with the Twitter API is a breeze. Assuming that an application has been registered at [http://apps.twitter.com](http://apps.twitter.com), the `SetUserCredentials` method can be used and the `Consumer Key`, `Consumer Secret`,`Access Token` and `Access Token Secret` can be passed into it. This type of global authentication makes it easy to perform authenticated calls throughout the entire application.
+
+```csharp
+Auth.SetUserCredentials("consumer-key","consumer-secret","access-token","access-token-secret");
+```
+
+### Build Stream
+
+Like the authentication, creating a stream is seamless.
+
+We can create a stream by calling the `CreateFilteredStream` method.
+
+```csharp
+var stream = Stream.CreateFilteredStream();
+```
+
+We can then add conditions to filter on using the `AddTrack` method. In this case, I will be filtering for cryptocurrencies, ether, bitcoin, and litecoin.
+
+```csharp
+stream.AddTrack("cryptocurrencies");
+stream.AddTrack("bitcoin");
+stream.AddTrack("ether");
+stream.AddTrack("Litecoin");
+```
+
+Additionally, we can filter by language. In my case, I will only be filtering on English. This can be done by using the `AddTweetLanguageFilter` method.
+
+```csharp
+stream.AddTweetLanguageFilter("en");
+```
+
+Once we have all the filters set up, we need to handle what will happen when a matching tweet is detected. This will be handled by an `EventHandler` called `MatchingTweetReceived`.
+
+```csharp
+stream.MatchingTweetReceived += OnMatchedTweet;
+```
+
+`MatchingTweetReceived` will be bound to the `OnMatchedTweet` method which I created.
+
+```csharp
+private static void OnMatchedTweet(object sender, MatchedTweetReceivedEventArgs args)
+{
+  //Do Stuff
+}
+```
+
+The logic inside of this method will perform sentiment analysis and output the sentiment as well as the full text of the tweet.
+
+## Data Cleaning
+
+Tweets can contain many non-ascii characters. Therefore, we need to sanitize it as best as possible so that it can be processed by the sentiment analyzer. To help with that, I used regular expresions to replace non-ascii characters inside of the `sanitize` method.
+
+```csharp
+private static string sanitize(string raw)
+{
+  return Regex.Replace(raw, @"(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ").ToString();
+}
+```
+
+## Sentiment Analysis
+
+In order to perform sentiment analysis, we will be using the `SimpleNetNlp` library. This library is built on top of the Stanford CoreNLP library. In order to get the sentiment of a piece of text, we need to create a `Sentence` object which takes a string as a parameter and then get the `Sentiment` property. In our case, the parameter that will be used to instantiate a new `Sentence` object will be the sanitized text of a tweet.
+
+```csharp
+var sanitized = sanitize(args.Tweet.FullText);
+string sentence = new Sentence(sanitized);
+```
+
+The code above will be placed inside of the `OnMatchedTweet` method.
+
+## Produce Output
+
+Now that we have everything set up, we can just output to the console the sentiment and raw text of the tweet. To do that, we can place the code below inside the `OnMatchedTweet` method.
+
+```csharp
+Console.WriteLine(sentence.Sentiment + "|" + args.Tweet);
+```
+
+The final `OnMatchedTweet` method looks as follows:
+
+```csharp
+private static void OnMatchedTweet(object sender, MatchedTweetReceivedEventArgs args)
+{
+    var sanitized = sanitize(args.Tweet.FullText); //Sanitize Tweet
+    var sentence = new Sentence(sanitized); //Get Sentiment
+
+    //Output Tweet and Sentiment
+    Console.WriteLine(sentence.Sentiment + "|" + args.Tweet);
+}
+```
+## Run
+
+Once we run the application, our console application should look something like this:
+
+![](http://cdn.lqdev.tech/files/images/sentiment-analysis-1.png)
+
+
+## Conclusion
+
+C# is not always the first language that comes to mind when doing analytics and machine learning. However, tasks such as sentiment analysis can be trivially performed thanks to libraries such as `Tweetinvi` and `SimpleNetNlp`. In its current state, this application is not very useful because it just outputs to the console sentiments and the respective tweets. In order to make it more useful, we can collect and aggregate the data someplace for more robust analysis. 
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/real-time-sentiment-analysis-csharp</link>
+      <guid>https://www.lqdev.me/posts/real-time-sentiment-analysis-csharp</guid>
+      <pubDate>2018-01-18 03:41:47 -05:00</pubDate>
+      <category>data analysis</category>
+      <category>sentiment analysis</category>
+      <category>nlp</category>
+      <category>machine learning</category>
+      <category>csharp</category>
+      <category>c#</category>
+      <category>twitter</category>
+      <category>api</category>
+      <category>.net</category>
+      <category>dotnet</category>
+    </item>
+  </channel>
+</rss>

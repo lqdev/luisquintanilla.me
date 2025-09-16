@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - jami</title>
+    <link>https://www.lqdev.me/tags/jami</link>
+    <description>All content tagged with 'jami' by Luis Quintanilla</description>
+    <lastBuildDate>11/19/2021 10:37 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>New Jami username</title>
+      <description>&lt;![CDATA[&lt;p&gt;I got a reminder on the importance of backups last night. New Jami username is lqdev1. Fortunately I wasn't as active on there so not a big deal to lose my original username.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/new-jami-username</link>
+      <guid>https://www.lqdev.me/notes/new-jami-username</guid>
+      <pubDate>11/19/2021 10:37 -05:00</pubDate>
+      <category>jami</category>
+      <category>messaging</category>
+      <category>opensource</category>
+      <category>gnu</category>
+    </item>
+  </channel>
+</rss>

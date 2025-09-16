@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - peertube</title>
+    <link>https://www.lqdev.me/tags/peertube</link>
+    <description>All content tagged with 'peertube' by Luis Quintanilla</description>
+    <lastBuildDate>2023-12-05 21:51 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>PeerTube v6 is out</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The sixth major version is being released today and we are very proud !&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Protect your videos with passwords !&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Video storyboard : preview what’s coming !&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Upload a new version of your video !&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Get chapters in your videos !&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Stress tests, performance and config recommandations&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;…and there’s always more !&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/peertube-v6-released</link>
+      <guid>https://www.lqdev.me/bookmarks/peertube-v6-released</guid>
+      <pubDate>2023-12-05 21:51 -05:00</pubDate>
+      <category>fediverse</category>
+      <category>peertube</category>
+      <category>video</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>The Fediverse beyond Mastodon</title>
+      <description>&lt;![CDATA[&lt;p&gt;It's been great to see many old and new friends joining Mastodon and considering alternatives to online communities over the past few weeks. Selfishly my feed had been quiet since I started using it and self-hosting back in 2018 so it's nice to see more activity. As folks have started to settle in and get a better understanding of Mastodon, I'd like to point out that Mastodon is only one of many apps and services on the &lt;a href="https://fediverse.party/en/fediverse/"&gt;Fediverse&lt;/a&gt;. Now I won't try to explain the Fediverse but in general, it's the collection of applications and services that interoperate in a federated manner, Mastodon being one of them. If in general you like Mastodon and are looking for alternatives to services like Instagram, YouTube, SoundCloud, the Fediverse has a few options:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Instagram ➡️ &lt;a href="https://pixelfed.org/"&gt;Pixelfed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;YouTube ➡️ &lt;a href="https://joinpeertube.org/"&gt;PeerTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;SoundCloud ➡️ &lt;a href="https://funkwhale.audio/"&gt;Funkwhale&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Twitch ➡️ &lt;a href="https://owncast.online/"&gt;Owncast&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can create an account for each of these services using different instances, just like Mastodon. You also have the option of self-hosting which I find amazing. However, because for the most part these services implement the ActivityPub protocol, it means federation extends beyond Mastodon. You can follow people on PixelFed, PeerTube, and many of these other services using your Mastodon account which means you don't have to create accounts for those services just to follow people. While I don't have experience with all of these services, I recommend checking them out. I especially like what Pixelfed, PeerTube and Owncast are doing but those are the main ones I have experience with.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/fediverse-beyond-mastodon</link>
+      <guid>https://www.lqdev.me/notes/fediverse-beyond-mastodon</guid>
+      <pubDate>2022-11-20 19:28 -05:00</pubDate>
+      <category>fediverse</category>
+      <category>mastodon</category>
+      <category>decentralization</category>
+      <category>owncast</category>
+      <category>peertube</category>
+      <category>pixelfed</category>
+      <category>funkwhale</category>
+      <category>alternatives</category>
+    </item>
+  </channel>
+</rss>

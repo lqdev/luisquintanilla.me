@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Use .NET Interactive to run .NET code in Jupyter Notebooks on an Azure Machine Learning compute instance - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Use .NET Interactive to run .NET code in Jupyter Notebooks on an Azure Machine Learning compute instance</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2020-08-30">August 30, 2020</time><p>Tags: dotnet, Jupyter Notebooks, dotnet Interactive, Azure Machine Learning, Azure, Programming, Development Tools</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance">View Full Version</a></p><div class="content"><h1>Introduction</h1>
+<p>In this post, I'll go over how you can run .NET code in Jupyter Notebooks using .NET Interactive and Azure Machine Learning compute instances.</p>
+<p><a href="https://jupyter.org/">Jupyter Notebooks</a> are an graphical interactive computing environment used in disciplines like data science and education. When it comes to prototyping or learning scenarios, they can help users see near real-time what their code is doing. The interactive computing protocol used by Jupyter Notebooks is extensible and as a result, you're able to run a variety of languages inside of this environment via kernels. Kernels are processes that take the input from the user, execute the code, and return the output for display and further processing. Using <a href="https://github.com/dotnet/interactive">.NET Interactive</a>, a .NET Core global tool, that among its many features provides a kernel for Jupyter Notebooks to run .NET (C#/F#) and PowerShell code.</p>
+<p>Although you can install and run Jupyter Notebooks on your local computer, services like <a href="https://docs.microsoft.com/azure/machine-learning/">Azure Machine Learning</a> provide single VMs known as compute instances which have Jupyter Notebooks as well as many popular data science libraries and development tools like Docker preinstalled. Therefore, installing .NET Interactive on one of these VMs is a seamless experience. Additionally, Azure Machine Learning gives you the ability to share computing resources with teams of various sizes.</p>
+<p>Let's get started!</p>
+<h2>Prerequisites</h2>
+<ul>
+<li><a href="https://azure.microsoft.com/free/">Azure account</a>. If you don't have one, create one.</li>
+</ul>
+<h2>Create Azure Machine Learning workspace</h2>
+<p>A workspace organizes all of you Azure Machine Learning resources and assets such as compute instances in a single place. In order to use Azure Machine Learning, you have to create a workspace.</p>
+<p>There's multiple ways to create a workspace. For this writeup, I use the Azure Portal.</p>
+<p>Navigate to <a href="https://portal.azure.com">portal.azure.com</a></p>
+<p>In the portal, select <strong>Create a resource</strong>.</p>
+<p><a href="https://user-images.githubusercontent.com/11130940/91647989-d79d6380-ea2f-11ea-9d97-cc265c79801f.png" target="_blank">[Image: Create new resource Azure Portal]</a></p>
+<p>From the resource list, select <strong>AI + Machine Learning &gt; Machine Learning</strong></p>
+<p><a href="https://user-images.githubusercontent.com/11130940/91647999-01ef2100-ea30-11ea-954a-3c3280a9cbca.png" target="_blank">[Image: Create Azure Machine Learning Resource]</a></p>
+<p>Fill in the form and select <strong>Review + create</strong>.</p>
+<p><a href="https://user-images.githubusercontent.com/11130940/91648065-07993680-ea31-11ea-9273-c28b4ec4bf7c.png" target="_blank">[Image: Create Azure Machine Learning workspace]</a></p>
+<p>Review your information before creating the workspace and select <strong>Create</strong>. Deployment takes a few minutes. As part of your workspace deployment, additional Azure resources are created such as Azure Container Registry, Azure Storage account, Azure Application Insights, and Azure KeyVault.</p>
+<p>For more information on workspaces, see the <a href="https://docs.microsoft.com/azure/machine-learning/concept-workspace">Azure Machine Learning workspace documentation</a>.</p>
+<h2>Create an Azure Machine Learning compute instance</h2>
+<p>As mentioned earlier, an Azure Machine Learning compute instance is a single VM that comes with a variety of development tools and libraries commonly used for data science and machine learning workflows preinstalled.</p>
+<p>Navigate to <a href="https://ml.azure.com">Azure Machine Learning studio</a>. The studio is a web interface for managing your Azure Machine Learning resources such as data, experiments, models, and compute.</p>
+<p>In studio, select <strong>Create new &gt; Compute instance</strong> to create a new compute instance.</p>
+<p><a href="https://user-images.githubusercontent.com/11130940/91648186-73c86a00-ea32-11ea-9986-205306fe76b0.png" target="_blank">[Image: Create new Azure Machine Learning compute instance]</a></p>
+<p>Provide a name for your instance and select <strong>Create</strong>. You can also customize the size of your VM and whether you want it to be GPU enabled. In this case, I just selected the preselected option.</p>
+<p><a href="https://user-images.githubusercontent.com/11130940/91648251-1c76c980-ea33-11ea-91de-818e1f63767c.png" target="_blank">[Image: Provision Azure Machine Learning compute instance]</a></p>
+<p>Once your compute instance is provisioned, select the <strong>Jupyter</strong> link to launch Jupyter Notebooks.</p>
+<p><a href="https://user-images.githubusercontent.com/11130940/91648307-f271d700-ea33-11ea-9b80-57e44f0bcdf5.png" target="_blank">[Image: Launch Jupyter Notebooks]</a></p>
+<p>For more information on compute instances, see the <a href="https://docs.microsoft.com/azure/machine-learning/concept-compute-instance">Azure Machine Learning compute instance documentation</a>.</p>
+<h2>Install the .NET Core 3.1 SDK</h2>
+<p>At the time of this writing, the image used by compute instances is Ubuntu 16.04. Therefore, we'll be installing the Linux version of the .NET Core SDK.</p>
+<p>Inside the Jupyter Notebooks, select <strong>New &gt; Terminal</strong> to create a new terminal.</p>
+<p><a href="https://user-images.githubusercontent.com/11130940/91648326-1c2afe00-ea34-11ea-8f84-48b98e1ec148.png" target="_blank">[Image: image]</a></p>
+<p>In the terminal, add the Microsoft package signing key to your list of trusted keys.</p>
+<pre><code class="language-bash">wget https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+</code></pre>
+<p>Install the .NET Core 3.1 SDK with the following command:</p>
+<pre><code class="language-bash">sudo apt-get update; \
+  sudo apt-get install -y apt-transport-https &amp;&amp; \
+  sudo apt-get update &amp;&amp; \
+  sudo apt-get install -y dotnet-sdk-3.1
+</code></pre>
+<blockquote class="blockquote">
+<p>Note that as of the time of this writing, .NET Interactive requires .NET Core 3.1.</p>
+</blockquote>
+<p>You can also find these installation instructions in the <a href="https://docs.microsoft.com/dotnet/core/install/linux-ubuntu#1604-">.NET Core installation documentation</a>.</p>
+<h2>Install .NET Interactive</h2>
+<p>Start off by checking which kernels are installed. In the terminal, enter the following command.</p>
+<pre><code class="language-bash">jupyter kernelspec list
+</code></pre>
+<p>The output should look something like the output below</p>
+<pre><code class="language-console">Available kernels:
+  python3            /anaconda/envs/azureml_py36/share/jupyter/kernels/python3
+  ir                 /usr/local/share/jupyter/kernels/ir
+  python3-azureml    /usr/local/share/jupyter/kernels/python3-azureml
+</code></pre>
+<p>Then, install the .NET Interactive global tool</p>
+<pre><code class="language-bash">dotnet tool install -g --add-source &quot;https://dotnet.myget.org/F/dotnet-try/api/v3/index.json&quot; Microsoft.dotnet-interactive
+</code></pre>
+<p>Use the .NET Interactive tool to install the .NET and powershell kernels.</p>
+<pre><code class="language-bash">dotnet interactive jupyter install
+</code></pre>
+<p>Finally, run the following command to confirm that the kernels have been installed.</p>
+<pre><code class="language-bash">jupyter kernelspec list
+</code></pre>
+<p>In the output you should see the C#, F#, and PowerShell kernels listed</p>
+<pre><code class="language-bash">Available kernels:
+  .net-csharp        /home/azureuser/.local/share/jupyter/kernels/.net-csharp
+  .net-fsharp        /home/azureuser/.local/share/jupyter/kernels/.net-fsharp
+  .net-powershell    /home/azureuser/.local/share/jupyter/kernels/.net-powershell
+  python3            /anaconda/envs/azureml_py36/share/jupyter/kernels/python3
+  ir                 /usr/local/share/jupyter/kernels/ir
+  python3-azureml    /usr/local/share/jupyter/kernels/python3-azureml
+</code></pre>
+<h2>Add .NET global tools directory to PATH</h2>
+<p>The Jupyter Notebook server is managed by a <code>systemd</code> service. Although during installation .NET Interactive is added to your <code>PATH</code> environment variable, it's not added to the environment file <code>/etc/environment</code> which is used by <code>systemd</code>. Therefore, in order to run .NET Interactive, you have to add the .NET global tools directory to that file.</p>
+<p>The contents of the file should look similar to the one below</p>
+<pre><code class="language-text">PATH=&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games&quot;
+AML_CloudName=AzureCloud
+</code></pre>
+<p>Open the <code>/etc/environment</code> using your preferred text editor (vi/nano) and replace the <code>PATH</code> with the following content:</p>
+<pre><code class="language-text">PATH=&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/azureuser/.dotnet/tools&quot;
+</code></pre>
+<p>Save your changes and restart the Jupyter Server. In the terminal, run the following command.</p>
+<pre><code class="language-bash">sudo service jupyter restart
+</code></pre>
+<p>This will close your terminal session since the notebook server has been restarted.</p>
+<p>Close all Jupyter Notebook windows.</p>
+<h2>Create new .NET Jupyter Notebook</h2>
+<p>From Azure Machine Learning studio, launch Jupyter Notebooks again by selecting the <strong>Jupyter</strong> link.</p>
+<p>Then, in Jupyter Notebooks select <strong>New</strong> and create a new notebook (C#/F#/PowerShell). In this case, I created an F# notebook.</p>
+<p>Once the kernel is ready, enter code into the first cell and run it.</p>
+<p><a href="https://user-images.githubusercontent.com/11130940/91648958-20f3b000-ea3c-11ea-95a1-3e4ba71c31d8.png" target="_blank">[Image: FSharp Jupyter Notebook running in AML compute instance]</a></p>
+<p>Congratulations! You should now be able to run .NET and PowerShell code inside of your Azure Machine Learning compute instance.</p>
+<h2>Conclusion</h2>
+<p>In this post, I showed how you can run .NET code in Jupyter Notebooks on an Azure Machine Learning compute instance with the help of .NET Interactive. This enables you to interactively prototype solutions remotely while still having control over your environment and dependencies. Now that you have .NET interactive setup, compute instances also give you the option of using JupyterLab. Feel free to tinker with the different environments and see which one works best for you. Happy coding!</p>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://docs.microsoft.com/azure/machine-learning/">Azure Machine Learning documentation</a></li>
+<li><a href="https://github.com/dotnet/interactive">.NET Interactive GitHub repository</a></li>
+<li><a href="https://jupyter.org/">Jupyter Notebooks</a></li>
+</ul>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

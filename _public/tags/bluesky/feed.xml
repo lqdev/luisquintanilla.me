@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - bluesky</title>
+    <link>https://www.lqdev.me/tags/bluesky</link>
+    <description>All content tagged with 'bluesky' by Luis Quintanilla</description>
+    <lastBuildDate>2024-12-08 19:40 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Starter Packs with OPML and RSS</title>
+      <description>&lt;![CDATA[
+One of the things I like about Bluesky is the [Starter Pack feature](https://bsky.social/about/blog/06-26-2024-starter-packs). 
+
+In a gist, a Starter Pack is a collection of feeds. 
+
+Bluesky users can:
+
+- Create starter packs
+- Share starter packs
+- Subscribe to starter packs
+
+Unfortunately, Starter Packs are limited to Bluesky. 
+
+Or are they? 
+
+As mentioned, starter packs are a collection of feeds that others can create, share, and subscribe to. 
+
+[Bluesky supports RSS](/responses/bluesky-rss-support/), which means you could organize the feeds using an OPML file that you can share with others and others can subscribe to. The benefits of this is, you can continue to keep up with activity on Bluesky from the feed reader of your choice without being required to have an account on Bluesky. 
+
+More importantly, because RSS and OPML are open standards, you're not limited to building starter packs for Bluesky. You can create, share, and subscribe to starter packs for any platform that supports RSS. That includes blogs, podcasts, forums, YouTube, Mastodon, etc. [Manton seems to have something similar in mind](https://www.manton.org/2024/12/07/with-the-success.html) as a means of building on open standards that make it easy for Micro.blog to interop with various platforms. 
+
+If you're interested in what that might look like in practice, check out my "starter packs" which you can subscribe to using your RSS reader of choice and the provided OPML files. 
+
+- [Blogs](/collections/blogroll)
+- [Podcasts](/collections/podroll)
+- [YouTube](/collections/youtube)
+- [Forums](/collections/forums)
+
+I'm still working on similar collections for Mastodon and Bluesky but the same concept applies.  
+
+Although these are just simple examples, it shows the importance of building on open standards and the open web. Doing so introduces more freedom for creators and communities. 
+
+Here are other "starter packs" you might consider subscribing to. 
+
+- [People and Blogs](https://www.thingelstad.com/2024/12/03/people-blogs-list.html)
+- [Blogroll Club](https://blogroll.club/faq/)
+
+If this is interesting to you, [Feedland](https://feedland.org/) might be a project worth checking out.  ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/rss-opml-starter-packs</link>
+      <guid>https://www.lqdev.me/posts/rss-opml-starter-packs</guid>
+      <pubDate>2024-12-08 19:40 -05:00</pubDate>
+      <category>rss</category>
+      <category>opml</category>
+      <category>indieweb</category>
+      <category>starterpacks</category>
+      <category>community</category>
+      <category>bluesky</category>
+      <category>socialmedia</category>
+      <category>openweb</category>
+      <category>protocols</category>
+      <category>openstandards</category>
+      <category>feedland</category>
+    </item>
+    <item>
+      <title>Bluesky Welcomes Mike Masnick to Board of Directors</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Nice! I remember reading &lt;a href="https://knightcolumbia.org/content/protocols-not-platforms-a-technological-approach-to-free-speech"&gt;Protocols, Not Platforms&lt;/a&gt; many years ago and felt inspired to seek out a better web.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/mike-masnick-bluesky-board-of-directors</link>
+      <guid>https://www.lqdev.me/responses/mike-masnick-bluesky-board-of-directors</guid>
+      <pubDate>2024-08-07 22:14 -05:00</pubDate>
+      <category>bluesky</category>
+      <category>protocols</category>
+      <category>platforms</category>
+      <category>socialmedia</category>
+      <category>decentralization</category>
+      <category>distributedweb</category>
+      <category>indieweb</category>
+      <category>smallweb</category>
+      <category>humanweb</category>
+      <category>web</category>
+    </item>
+    <item>
+      <title>Bluesky’s Stackable Approach to Moderation</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Bluesky was created to put users and communities in control of their social spaces online. The first generation of social media platforms connected the world, but ended up consolidating power in the hands of a few corporations and their leaders. Our online experience doesn’t have to depend on billionaires unilaterally making decisions over what we see. On an open social network like Bluesky, you can shape your experience for yourself.&lt;br /&gt;
+&lt;br&gt;
+Today, we’re excited to announce that we’re &lt;a href="https://github.com/bluesky-social/ozone"&gt;open-sourcing Ozone&lt;/a&gt;, our collaborative moderation tool. With Ozone, individuals and teams can work together to review and label content across the network. Later this week, we’re opening up the ability for you to run your own independent moderation services, seamlessly integrated into the Bluesky app. This means that you'll be able to create and subscribe to additional moderation services on top of what Bluesky requires, giving you unprecedented control over your social media experience.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/bluesky-stackable-approach-moderation</link>
+      <guid>https://www.lqdev.me/responses/bluesky-stackable-approach-moderation</guid>
+      <pubDate>2024-03-15 20:53 -05:00</pubDate>
+      <category>moderation</category>
+      <category>community</category>
+      <category>bluesky</category>
+      <category>atprotocol</category>
+      <category>socialmedia</category>
+      <category>internet</category>
+      <category>web</category>
+    </item>
+    <item>
+      <title>Bluesky: An Open Social Web</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we’re excited to announce that the Bluesky network is federating and opening up in a way that allows you to host your own data. What does this mean?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Your data, such as your posts, likes, and follows, needs to be stored somewhere. With traditional social media, your data is stored by the social media company whose services you've signed up for. If you ever want to stop using that company's services, you can do that—but you would have to leave that social network and lose your existing connections.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;It doesn't have to be this way! An alternative model is how the internet itself works. Anyone can put up a website on the internet&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We think social media should work the same way. When you register on Bluesky, by default we'll suggest that Bluesky will store your data. But if you'd like to let another company store it, or even store it yourself, you can do that. You'll also be able to change your mind at any point, moving your data to another provider without losing any of your existing posts, likes, or follows. From your followers' perspective, your profile is always available at your handle—no matter where your information is actually stored, or how many times it has been moved.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I don't spend a lot of time on Bluesky, but I love what they're doing.&lt;/p&gt;
+&lt;p&gt;They now:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://bsky.social/about/blog/02-06-2024-join-bluesky"&gt;Made their service generally available&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Have over &lt;a href="https://bsky.app/profile/bsky.app/post/3klzrudt4uk2z"&gt;5 million users&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/bluesky-rss-support/"&gt;Support RSS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now you can self-host your data. I'm excited.&lt;/p&gt;
+&lt;p&gt;The other piece of this that's interesting is their feature which enables you to &lt;a href="https://bsky.social/about/blog/7-05-2023-namecheap"&gt;use your domain as a custom handle&lt;/a&gt;. Not only is your identity portable, but also your data. I'd be interested to see how this works in practice given you can already do some of this on the Fediverse on platforms like Mastodon. ... identity component to me is crucial. That's one of the challenges with Mastodon today. While you can move instances, your identity changes and while most of your data comes with you, there's tihngs that still dont transfer over. The other part that I'd be interested in seeing is whether or not they can be efficient in the storage of federated data. One of the challenges with Mastodon is, your server quickly fills up because of data from other instances (when you federate). &lt;a href="https://www.lqdev.me/notes/mastodon-4-1-0-release"&gt;It's gotten better&lt;/a&gt;, but this is an area I spend most of my time when maintaining my own self-hosted instance.&lt;/p&gt;
+&lt;p&gt;I'm excited to tinker and self-host my own data. Maybe I'll also &lt;a href="https://www.lqdev.me/posts/rss-to-mastodon-posse-azure-logic-apps"&gt;syndicate to Bluesky just like I do with Mastodon today&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In the meantime, you can find me on Bluesky &lt;a href="https://www.lqdev.me/bluesky"&gt;@lqdev.me&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/bluesky-open-social-web</link>
+      <guid>https://www.lqdev.me/responses/bluesky-open-social-web</guid>
+      <pubDate>2024-02-22 21:03 -05:00</pubDate>
+      <category>bluesky</category>
+      <category>socialmedia</category>
+      <category>web</category>
+      <category>internet</category>
+      <category>community</category>
+    </item>
+    <item>
+      <title>Bluesky now supports RSS</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;I'm not as active on there, but feel free to &lt;a href="https://bsky.app/profile/did:plc:pme7qquljcdx6i4zyawoxypd/rss"&gt;subscribe to my Bluesky feed&lt;/a&gt; wherever you subscribe to feeds.&lt;/p&gt;
+&lt;p&gt;Also, if you have any feed recommendations, &lt;a href="https://www.lqdev.me/contact"&gt;let me know&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;📢 1.60 is rolling out now (3/5)&lt;/p&gt;
+&lt;p&gt;RSS feeds for profiles!&lt;/p&gt;
+&lt;p&gt;Access your posts via RSS by pasting your profile link into your RSS feed reader and it will automatically be discovered.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/bluesky-rss-support</link>
+      <guid>https://www.lqdev.me/responses/bluesky-rss-support</guid>
+      <pubDate>2023-12-23 20:59 -05:00</pubDate>
+      <category>bluesky</category>
+      <category>rss</category>
+      <category>socialmedia</category>
+    </item>
+    <item>
+      <title>I'm on Bluesky</title>
+      <description>&lt;![CDATA[&lt;p&gt;I'm now on Bluesky. Follow me at &lt;a href="https://bsky.app/profile/lqdev.me"&gt;@lqdev.me&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/bsky-profile.png" class="img-fluid" alt="Bluesky web app showing lqdev.me profile" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/now-on-bluesky</link>
+      <guid>https://www.lqdev.me/notes/now-on-bluesky</guid>
+      <pubDate>2023-06-02 15:50 -05:00</pubDate>
+      <category>web</category>
+      <category>socialmedia</category>
+      <category>bluesky</category>
+    </item>
+  </channel>
+</rss>

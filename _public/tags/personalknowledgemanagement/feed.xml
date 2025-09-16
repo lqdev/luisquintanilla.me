@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - personalknowledgemanagement</title>
+    <link>https://www.lqdev.me/tags/personalknowledgemanagement</link>
+    <description>All content tagged with 'personalknowledgemanagement' by Luis Quintanilla</description>
+    <lastBuildDate>2024-01-17 20:47 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>I need to optimize my response publishing workflow</title>
+      <description>&lt;![CDATA[&lt;p&gt;I like to use my &lt;a href="https://www.lqdev.me/feed/responses"&gt;response feed&lt;/a&gt; to bookmark and reshare interesting content I find online. Typically my workflow looks like the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-mermaid"&gt;flowchart TD
+  A[&amp;quot;Scroll through feed reader&amp;quot;] --&amp;gt; B[&amp;quot;Open articles I want to read in a new tab&amp;quot;]
+  B --&amp;gt; C[&amp;quot;Read articles&amp;quot;]
+  C --&amp;gt; D[&amp;quot;Create a response file to publish on my website&amp;quot;]
+  D --&amp;gt; E[&amp;quot;Capture interesting information from the article in the response file&amp;quot;]
+  E --&amp;gt; F[&amp;quot;Publish the response&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The bottleneck I usually find is in the middle steps of creating a response file and capturing the relevant content. This usually happens as I'm reading the article. For a single file, it's not a big deal. Doing it for several can be time consuming, especially with the &lt;a href="https://www.lqdev.me/notes/subscribed-to-1042-feeds-newsblur"&gt;number of feeds I subscribe to&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There's a few things I think could help here:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create one response file and do a daily link dump.&lt;/li&gt;
+&lt;li&gt;Create a browser extension or system where I can:
+&lt;ol&gt;
+&lt;li&gt;Highlight text or content on a page&lt;/li&gt;
+&lt;li&gt;Right-click or use a keyboard shortcut to create an entry for the content I highlighted&lt;/li&gt;
+&lt;li&gt;Create an entry in a database somewhere which captures the URL of the page I'm looking at.&lt;/li&gt;
+&lt;li&gt;I enter a few more details like the file name I want to use and response type&lt;/li&gt;
+&lt;li&gt;When I'm done with my session, I can publish. This will use the database content to compose the content for my response and create a PR&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The first option is simple but I don't like it because although most of the content I come across is tech related, I prefer having individual articles I can link to with their own tags to make it easier to build relationships.&lt;/p&gt;
+&lt;p&gt;The second option sounds complex, but it's basically a web highlighting tool. I know there's a few out there already so maybe worth checking out.&lt;/p&gt;
+&lt;p&gt;I'd prefer to build my own to tailor it specifically to what I want just like my website generator. However, it would mean that I'd have to spend some time thinking about how to implement it.&lt;/p&gt;
+&lt;p&gt;It'd be a fun project though. Maybe worthwhile experimenting with building an AI agent to help me use the content I captured to nicely format the response.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/simplifying-feed-publishing-workflow</link>
+      <guid>https://www.lqdev.me/notes/simplifying-feed-publishing-workflow</guid>
+      <pubDate>2024-01-17 20:47 -05:00</pubDate>
+      <category>workflow</category>
+      <category>publishing</category>
+      <category>blog</category>
+      <category>personalknowledgemanagement</category>
+      <category>pkm</category>
+    </item>
+    <item>
+      <title>Time to try Anytype</title>
+      <description>&lt;![CDATA[&lt;p&gt;Currently I'm using org-mode in Emacs for note-taking, journaling, habit-tracking, task management, any many other things. I've heard good things about Notion and Obsidian but haven't made the switch because I like the flexibility of Emacs. I learned about &lt;a href="https://anytype.io/"&gt;Anytype&lt;/a&gt; a few months ago and it looked like it might be a good replacement. I'd been holding out because back then it didn't have local-only mode. In their latest release, they &lt;a href="https://github.com/anyproto/roadmap/issues/34"&gt;added local-only mode&lt;/a&gt; so maybe it's finally time to try it. First though, I have to figure out if it works on NixOS.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/anytype-local-only</link>
+      <guid>https://www.lqdev.me/notes/anytype-local-only</guid>
+      <pubDate>2024-01-06 11:45 -05:00</pubDate>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+      <category>anytype</category>
+      <category>knowledge</category>
+    </item>
+    <item>
+      <title>One more blog post for 2023?</title>
+      <description>&lt;![CDATA[&lt;p&gt;Update from &lt;a href="https://www.lqdev.me/notes/weblogging-rewind-2023/"&gt;yesterday&lt;/a&gt;. 2023 is still not over. I think I can squeeze out at least one more post for the year 🙂.&lt;/p&gt;
+&lt;h2&gt;Blog post counts&lt;/h2&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;h2&gt;Note counts&lt;/h2&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;37&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;36&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/one-more-post-2023</link>
+      <guid>https://www.lqdev.me/notes/one-more-post-2023</guid>
+      <pubDate>2023-12-24 14:31 -05:00</pubDate>
+      <category>weblogging</category>
+      <category>quantifiedself</category>
+      <category>indieweb</category>
+      <category>stats</category>
+      <category>analytics</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>opensource</category>
+      <category>community</category>
+      <category>selfhost</category>
+      <category>fsharp</category>
+      <category>spotify</category>
+      <category>antennapod</category>
+      <category>microblog</category>
+      <category>analytics</category>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+    </item>
+    <item>
+      <title>(We)blogging Rewind 2023 Continued</title>
+      <description>&lt;![CDATA[&lt;p&gt;Yesterday I posted aggregate statistics about this website in the post &lt;a href="https://www.lqdev.me/notes/weblogging-rewind-2023/"&gt;(We)blogging Rewind 2023&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I thought it'd be cool to see which domains I referenced most in my responses. Here's the breakdown of the top 5.&lt;/p&gt;
+&lt;p&gt;Domain&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;github.com&lt;/p&gt;
+&lt;p&gt;15&lt;/p&gt;
+&lt;p&gt;huggingface.co&lt;/p&gt;
+&lt;p&gt;11&lt;/p&gt;
+&lt;p&gt;arxiv.org&lt;/p&gt;
+&lt;p&gt;10&lt;/p&gt;
+&lt;p&gt;openai.com&lt;/p&gt;
+&lt;p&gt;6&lt;/p&gt;
+&lt;p&gt;www.theverge.com&lt;/p&gt;
+&lt;p&gt;4&lt;/p&gt;
+&lt;p&gt;No surprise here given that AI was one of the top tags in my responses.&lt;/p&gt;
+&lt;p&gt;Updated script is here &lt;a href="https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics"&gt;stats.fsx&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/weblogging-rewind-2023-continued</link>
+      <guid>https://www.lqdev.me/notes/weblogging-rewind-2023-continued</guid>
+      <pubDate>2023-12-24 09:39 -05:00</pubDate>
+      <category>weblogging</category>
+      <category>quantifiedself</category>
+      <category>indieweb</category>
+      <category>stats</category>
+      <category>analytics</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>opensource</category>
+      <category>community</category>
+      <category>selfhost</category>
+      <category>fsharp</category>
+      <category>spotify</category>
+      <category>antennapod</category>
+      <category>microblog</category>
+      <category>analytics</category>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+    </item>
+    <item>
+      <title>(We)blogging Rewind 2023</title>
+      <description>&lt;![CDATA[&lt;p&gt;Inspired by &lt;a href="https://www.lqdev.me/notes/spotify-wrapped-2023"&gt;Spotify Wrapped&lt;/a&gt; and &lt;a href="https://www.lqdev.me/notes/antennapod-echo-2023"&gt;Antennapod Echo&lt;/a&gt;, I decided to look back at my activity on this website for 2023. Here is the &lt;a href="https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics"&gt;snippet&lt;/a&gt; I used to generate these metrics.&lt;/p&gt;
+&lt;h2&gt;Posts by Year&lt;/h2&gt;
+&lt;h3&gt;Blog&lt;/h3&gt;
+&lt;p&gt;Blog posts are my more formal, long-form content. This year, I published less blog posts than last year.&lt;/p&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;5&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;Part of that includes me getting in my head about what these posts &amp;quot;should be&amp;quot;. Historically, they have been detailed technical posts related to a project I've worked on like &lt;a href="https://www.lqdev.me/posts/receive-webmentions-fsharp-az-functions-fsadvent"&gt;Accept Webmentions using F#, Azure Functions, and RSS&lt;/a&gt;. I haven't stopped experimenting and tinkering, but because they aren't end-to-end solutions, I don't think of them as &amp;quot;blog post worthy&amp;quot;. That doesn't mean though that learnings and growth haven't come from them. In more recent blog posts like &lt;a href="https://www.lqdev.me/posts/ai-1999-1899"&gt;AI like it's 1999 or 1899&lt;/a&gt; and &lt;a href="https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023"&gt;Quick thoughts about Snapdragon Summit 2023&lt;/a&gt;, I've started experimenting more with just posting. In 2024, I want to be more flexible in my posting and not worry too much about whether the blog posts are &amp;quot;good enough&amp;quot;.&lt;/p&gt;
+&lt;h3&gt;Microblog&lt;/h3&gt;
+&lt;p&gt;This site also contains a microblog feed, one for &lt;a href="https://www.lqdev.me/feed"&gt;notes&lt;/a&gt; and another for &lt;a href="https://www.lqdev.me/feed/responses"&gt;responses&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Notes&lt;/h4&gt;
+&lt;p&gt;Notes tend to be original content that although can include links to external content, they are short-form and informal versions of blog posts. This post is an example of a note. This year, I posted less notes than last year.&lt;/p&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;33&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;36&lt;/p&gt;
+&lt;p&gt;Usually, when these notes start to get long, I turn them into blog posts. &lt;a href="https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023"&gt;Quick thoughts about Snapdragon Summit 2023&lt;/a&gt; is an example of that. However, I haven't set a criteria for what makes a note &amp;quot;long&amp;quot;. This post for example I think is getting to the &amp;quot;blog post&amp;quot; length. I can't tell you why though, it's just &amp;quot;vibes&amp;quot;. One of the benefits of starting with notes types of posts is that the frame of mind is more informal which lets me just write and post without thinking too much about what the post &amp;quot;should be&amp;quot;. In 2024, I want to continue using notes as the starting point for these types of posts. Maybe later in the future, I just merge them both.&lt;/p&gt;
+&lt;h4&gt;Responses&lt;/h4&gt;
+&lt;p&gt;Responses are reactions to content created / published by someone else. These can include bookmarks, replies, likes (star), and reposts (reshare). This year, I posted significantly more responses than last year.&lt;/p&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;216&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;146&lt;/p&gt;
+&lt;p&gt;I'm very happy with this, especially my bookmark use explained later. Not only am I happy because I'm actually making use of my website and the work I put in previous years that enabled me to publish all types of content but also because these responses create a log of my interactions with the internet over the years I can look back at.&lt;/p&gt;
+&lt;h2&gt;Responses by Type&lt;/h2&gt;
+&lt;p&gt;Looking deeper into my responses and breaking them down by type, bookmarks take up the top spot with more than half of my responses being bookmarks. That makes sense since I'm usually bookmarking articles, papers, and other content I come across on the internet.&lt;/p&gt;
+&lt;p&gt;Type&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;bookmark&lt;/p&gt;
+&lt;p&gt;151&lt;/p&gt;
+&lt;p&gt;reshare&lt;/p&gt;
+&lt;p&gt;48&lt;/p&gt;
+&lt;p&gt;reply&lt;/p&gt;
+&lt;p&gt;10&lt;/p&gt;
+&lt;p&gt;star&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;Let me start off with bookmarks. Bookmark style reponses on my website have slowly become my default capture system. Now, not everything I read and come across makes it onto my bookmarks. I'm experimenting with the first pass which I might just turn into another post. Generally, the things that are interesting or thought provoking, I post. Bookmark posts generally include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Post title - Gives me a readable way to see what the post is about&lt;/li&gt;
+&lt;li&gt;Source link - Provides a direct link to the source material&lt;/li&gt;
+&lt;li&gt;Tags - Enable me to index and organize related topics&lt;/li&gt;
+&lt;li&gt;Quotes / Notes - Provide highlights and things I thought were interesting about the post&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When all these pieces come together, they provide me with distilled bits of information that are organized in a way that enable quick retrieval and action when needed.&lt;/p&gt;
+&lt;p&gt;Moving on to other posts. Since the post type is effectively just metadata, the line between reshare, star, and reply is often blurry. It's not as blurry with replies because I use that to draft replies / comments to other posts and content on the internet. My &lt;a href="https://www.lqdev.me/responses/tracy-durnell-20-blogging-anniversary"&gt;Tracy Durnell 20th anniversary of blogging&lt;/a&gt; post is an example of a reply. In these examples, the replies were directed at someone. However, for star and reshare, I'm still trying to understand where they fit in my flow. Today other than visually expressing the post type, the role these post types serve is webmentions. However, I'm not sure how many websites I create these post types for actually use webmentions. Maybe some analysis worth doing for 2025.&lt;/p&gt;
+&lt;h2&gt;Responses by Tag (Top 5)&lt;/h2&gt;
+&lt;p&gt;AI and LLMs took the top spots which I think in general aligns with what was top of mind for everyone in 2023.&lt;/p&gt;
+&lt;p&gt;Tag&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;ai&lt;/p&gt;
+&lt;p&gt;104&lt;/p&gt;
+&lt;p&gt;llm&lt;/p&gt;
+&lt;p&gt;42&lt;/p&gt;
+&lt;p&gt;untagged&lt;/p&gt;
+&lt;p&gt;41&lt;/p&gt;
+&lt;p&gt;opensource&lt;/p&gt;
+&lt;p&gt;31&lt;/p&gt;
+&lt;p&gt;internet&lt;/p&gt;
+&lt;p&gt;17&lt;/p&gt;
+&lt;p&gt;Not much commentary here. Tags have helped me organize related content on my website. I do think that I get too high level with my tags and could do a better job of being more specific. Ultimately, there's no limit to the number of tags I can use so why not be liberal with it. The only self-imposed limitation I've placed on myself is the first 3 tags should be the most important because they're the ones that show up when my articles are automatically cross-posted to Mastodon.&lt;/p&gt;
+&lt;h2&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;Overall, I'm happy with my activity and heavy use of my own website this year. I plan to make even more use of the bookmark type of posts in 2024 and plan on posting more whether that's as a note or blog post, just posting is something I want to work towards.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/weblogging-rewind-2023</link>
+      <guid>https://www.lqdev.me/notes/weblogging-rewind-2023</guid>
+      <pubDate>2023-12-23 02:28 -05:00</pubDate>
+      <category>weblogging</category>
+      <category>quantifiedself</category>
+      <category>indieweb</category>
+      <category>stats</category>
+      <category>analytics</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>opensource</category>
+      <category>community</category>
+      <category>selfhost</category>
+      <category>fsharp</category>
+      <category>spotify</category>
+      <category>antennapod</category>
+      <category>microblog</category>
+      <category>analytics</category>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+    </item>
+    <item>
+      <title>Plain text</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This guide provides an overview of plain text and how it can be used for a variety of tasks and advantages over rich text and custom text formats.&lt;/p&gt;
+&lt;h2&gt;What is plain text?&lt;/h2&gt;
+&lt;p&gt;In general, plain text is text that isn't formatted and generally uses common characters.&lt;/p&gt;
+&lt;h2&gt;Benefits of plain text&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Simplicity: Focus on the content rather than the formatting or medium&lt;/li&gt;
+&lt;li&gt;Portability: Any text editor can create and display plain text. That means you're not locked in to any particular tool or service.&lt;/li&gt;
+&lt;li&gt;Local-first: Because you can create plain text files using any phone or computer, it means your files belong to you and you have access to them any time regardless of network connectivity. While you can upload and sync your files with your preferred cloud storage provider for redundancy and backup, it's not a requirement.&lt;/li&gt;
+&lt;li&gt;Longevity: Computers have been able to create and display plain text for decades. Since you don't need proprietary file formats or tools to create and consume plain text, it's likely many decades from now you'll be able to read plain text.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Additional plain markup and text formats&lt;/h2&gt;
+&lt;p&gt;You can write plain text on its own. However, you can format your plain text to provide additional visual cues, information, and context. Some popular plain formats and markup languages include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://orgmode.org/worg/org-syntax.html"&gt;Org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.latex-project.org/"&gt;LaTeX&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Editors&lt;/h2&gt;
+&lt;p&gt;Below are a few popular plain text editors you can use to read and create plain text files:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.gnu.org/software/emacs/"&gt;Emacs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.vim.org/"&gt;vi/vim&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://code.visualstudio.com/"&gt;VS Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://apps.microsoft.com/detail/9msmlrh6lzf3?hl=en-us&amp;amp;gl=US"&gt;Notepad&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Use cases&lt;/h2&gt;
+&lt;h3&gt;Note taking&lt;/h3&gt;
+&lt;p&gt;The easiest way to start taking notes using plain text is to open any text editor of choice and start capturing your thoughts.&lt;/p&gt;
+&lt;h3&gt;Productivity / Personal Knowledge Management&lt;/h3&gt;
+&lt;p&gt;An extension to note taking is personal knowlege management and productivity. Whether it's scheduling appointments, journaling, tracking habits (exercise, reading, meditation), or managing to-do lists, you can use plain text for these tasks. Some tools and formats that can help with that include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://orgmode.org/"&gt;Emacs Org Mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://todotxt.org/"&gt;todo.txt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Email&lt;/h3&gt;
+&lt;p&gt;While e-mail clients support HTML, in general e-mail communication is predomenantly text-based. Therefore, plain text is all you need. If you wanted to only use plain text, e-mail clients enable you to configure them to only support plain text. While your HTML e-mails may look weird, there are some advantages.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://useplaintext.email/"&gt;use plaintext email guide&lt;/a&gt; can provide guidance as to how to get started using plaintext only for e-mails&lt;/p&gt;
+&lt;h3&gt;Personal finance&lt;/h3&gt;
+&lt;p&gt;There are many apps for managing your personal finance. However, if you want to keep it simple, you can track your personal finances using plain text as well. Some tools that can help you do that include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://ledger-cli.org/"&gt;Ledger&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Databases&lt;/h3&gt;
+&lt;p&gt;When you think of a database, you might think of a complicated system hosted in a server. While database systems are optimized for enterprise production workloads, at the end of the day, the purpose of a database is to store data. That means plain text can work for that too. Some tools that can help you here include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.gnu.org/software/recutils/"&gt;GNU Recutils&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Blogging and building websites&lt;/h3&gt;
+&lt;p&gt;The more capable our computing devices have become, our software has suffered from inflation by becoming larger. However, larger doesn't mean the software is richer. If you're just trying to transmit information, you can upload your raw text files containing your blog posts or website to a server and they can be displayed in the browser. Examples of these sites include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://minim.blog/"&gt;minim.blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://250kb.club/"&gt;250kb club&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://512kb.club/"&gt;512kb club&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Often you can build these websites with the help of static site generators such as. The &lt;a href="https://jamstack.org/generators/"&gt;Static Site Generators catalog&lt;/a&gt; provides more details on popular ones.&lt;/p&gt;
+&lt;p&gt;For hosting, you can do so for free using offerings like GitHub Pages. The &lt;a href="https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll"&gt;Setting up a GitHub Pages site with Jekyll&lt;/a&gt; can help you get started there.&lt;/p&gt;
+&lt;h2&gt;Additional Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://plaintext-productivity.net"&gt;Plaintext Productivity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://plaintextproject.online/articles.html"&gt;The Plain Text Project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://doc.norang.ca/org-mode.html"&gt;Org Mode - Organize Your Life In Plain Text!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.markwk.com/plain-text-life.html"&gt;The Plain Text Life: Note Taking, Writing and Life Organization Using Plain Text Files&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://sive.rs/plaintext"&gt;Write plain text files&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/plaintext</link>
+      <guid>https://www.lqdev.me/resources/wiki/plaintext</guid>
+      <pubDate>10/14/2023 12:56 -05:00</pubDate>
+      <category>plaintext</category>
+      <category>productivity</category>
+      <category>email</category>
+      <category>notes</category>
+      <category>personalknowledgemanagement</category>
+      <category>pkm</category>
+      <category>wiki</category>
+      <category>calendar</category>
+      <category>finance</category>
+      <category>tools</category>
+      <category>databases</category>
+      <category>writing</category>
+    </item>
+    <item>
+      <title>Get started with TiddlyWiki in VS Code</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+A while back, I set up a knowledge base (KB) section on my website. As part of that knowledge base, I have a [wiki](/resources/wiki) and [snippets](/resources/snippets) section. As opposed to the [blog posts](/posts) which tend to be more long-form and have structure or the microblog-like posts on my [main](/notes) and [response](/responses) feeds, the wiki and snippets section are intended to have self-contained blocks of information that are linked somehow but not a linear or chronological order. 
+
+My current wiki and snippets solution was fairly basic. It was a series of documents authored in Markdown which then get converted to static HTML pages. The index pages for wiki articles and snippets contain links to each of those documents. While that's worked okay, I felt I was missing functionality when it came to linking between documents, tagging, and more importantly searching. 
+
+While I had seen wiki solutions like [MediaWiki](https://www.mediawiki.org/wiki/MediaWiki), they felt too bloated for my use case. Since my site is statically hosted, I didn't want to have to create, maintain, and pay for a server only to run my wiki. That's where TiddlyWiki comes in.
+
+[TiddlyWiki](https://tiddlywiki.com/) describes itself as "a unique non-linear notebook for capturing, organising and sharing complex information". In short, TiddlyWiki is a self-contained single HTML file with WYSIWYG-like functionality for creating a wiki. Because everything is contained in a single HTML file, it's static-site friendly. 
+
+Now I had heard of TiddlyWiki before but dismissed it because I didn't get how it worked. For one, I was confused how the WYSIWYG GUI supported editing, viewing, and exporting of these notes since there was just a single HTML file. More importantly, when it comes to [saving changes](https://tiddlywiki.com/#Saving), the recommendations on the website point users to browser extensions and apps. If it's just an HTML page, why can't I use the tools I'm already using to work with HTML? 
+
+After giving it another look and tinkering a bit, I found I was right and could use tools like VS Code to work with TiddlyWiki. In this post, I'll show how you can get started with the empty edition of TiddlyWiki using VS Code and the Live Preview extension.  
+
+## Prerequisites
+
+- [Visual Studio Code](https://code.visualstudio.com/#alt-downloads)
+- [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server)
+
+This guide was written on a Linux (Manjaro) PC but should work the same on Windows and macOS.
+
+## Download TiddlyWiki
+
+The quickest way to get started with TiddlyWiki is to: 
+
+1. Download the [empty edition](https://tiddlywiki.com/#Empty%20Edition). 
+
+    A file called *empty.html* should download to your computer. For simplicity, I would recommend creating a new directory on your computer that only contains that file.
+
+    The empty edition contains the core functionality. For other editions, see [TiddlyWiki editions](https://tiddlywiki.com/#Editions).
+
+1.  Rename the file *index.html*.
+
+## Edit and save your wiki
+
+### Edit your wiki
+
+1. Open the directory containing your *index.html* file in VS Code.
+1. Open the command palette (View &gt; Command Palette).
+1. Enter into the text box *Live Preview: Start Server* and press *Enter*. The server should start.
+
+![lqdev TiddlyWiki Main Page](http://cdn.lqdev.tech/files/images/lqdev-tiddlywiki.png)
+
+At this point, you can use the TiddlyWiki interface to create and edit your wiki.
+
+### Save your wiki
+
+Saving can be a bit tricky but it's not too bad. Use the checkmark in the side pane to save your changes. When there are unsaved changes, the checkmark turns red. 
+
+![TiddlyWiki Side Panel Red Checkmark Save Changes](http://cdn.lqdev.tech/files/images/tiddlywiki-save-changes.png)
+
+To save your changes, overwrite the existing file or if you want, you can also save it to a file with a different name. I would recommend saving it to the same file because it's easier to manage. You don't want to end up with *index-version12341.html*. That being said, I don't know if there may be risks in overwriting the file. In my limited testing I had no issues overwriting the file, but I'd still tread lightly.
+
+### Stop the server
+
+Once you're done viewing and editing your wiki, stop the Live Preview server:
+
+1. In VS Code, open the command palette **(View &gt; Command Palette)**.
+1. Enter into the text box *Live Preview: Stop Server* and press *Enter*. The server should stop.
+
+## Tips
+
+### Plugins
+
+I prefer working in Markdown and since some of my notes include code, I addded two plugins to my wiki:
+
+- [Markdown](https://tiddlywiki.com/#Markdown%20Plugin)
+- [Highlight](https://tiddlywiki.com/#Highlight%20Plugin)
+
+For more information, see [Installing a plugin from the plugin library](https://tiddlywiki.com/#Installing%20a%20plugin%20from%20the%20plugin%20library).
+
+### Things to watch out for in VS Code
+
+When using the Live Preview extension, some things might not work such as keyboard shortcuts and navigating to external links. Since a local server is running you should be able to use the browser as well. However, I would recommend only using the browser to *view* your wiki. Trying to save changes made in the browser will download the HTML page containing your changes. 
+
+### Use Git
+
+Autosaving to Git is one of the ways you can save your TiddlyWiki. However, you have to enter and use your credentials. Since your wiki is a static HTML page, just save it like you would any other HTML file in a repo. Doing so also makes it easy to backup to a previous version in case data is corrupted or lost. 
+
+## Conclusion
+
+I this post, I shared how TiddlyWiki provides a relatively low overhead, static-website friendly way of creating wikis. If you use VS Code, you can use the Live Preview extension to view and edit your wiki. Although my intended use for TiddlyWiki is as a personal knowledge management solution, I can also think of ways you could use TiddlyWiki as a low-friction way of building your own website. The WYSIWYG functionality makes creating content extremely more accessible than static site generators and similar to WordPress. In contrast to WordPress though, since you only have a single HTML file, it's less overhead to manage and also low-cost since you can [host it on GitHub Pages for free](https://nesslabs.com/tiddlywiki-static-website-generator) or any other file hosting service. In the near future, I plan to migrate my wiki and snippets to use TiddlyWiki. ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/tiddlywiki-vscode</link>
+      <guid>https://www.lqdev.me/posts/tiddlywiki-vscode</guid>
+      <pubDate>2022-10-21 08:32 -05:00</pubDate>
+      <category>web</category>
+      <category>vscode</category>
+      <category>wiki</category>
+      <category>personalknowledgemanagement</category>
+      <category>git</category>
+      <category>website</category>
+    </item>
+  </channel>
+</rss>

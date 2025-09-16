@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - openai</title>
+    <link>https://www.lqdev.me/tags/openai</link>
+    <description>All content tagged with 'openai' by Luis Quintanilla</description>
+    <lastBuildDate>2025-09-15 19:48 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>How people use ChatGPT</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Despite the rapid adoption of LLM chatbots, little is known about how they are used. We document the growth of ChatGPT’s consumer product from its launch in November 2022 through July 2025, when it had been adopted by around 10% of the world’s adult population. Early adopters were disproportionately male but the gender gap has narrowed dramatically, and we find higher growth rates in lower-income countries. Using a privacy-preserving automated pipeline, we classify usage patterns within a representative sample of ChatGPT conversations. We find steady growth in work-related messages but even faster growth in non-work-related messages, which have grown from 53% to more than 70% of all usage. Work usage is more common for educated users in highly-paid professional occupations. We classify messages by conversation topic and find that “Practical Guidance,” “Seeking Information,” and “Writing” are the three most common topics and collectively account for nearly 80% of all conversations. Writing dominates work-related tasks, highlighting chatbots’ unique ability to generate digital outputs compared to traditional search engines. Computer programming and self-expression both represent relatively small shares of use. Overall, we find that ChatGPT provides economic value through decision support, which is especially important in knowledge-intensive jobs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.nber.org/system/files/working_papers/w34255/w34255.pdf"&gt;PDF&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/how-people-use-chatgpt-national-bureau-economic-research</link>
+      <guid>https://www.lqdev.me/bookmarks/how-people-use-chatgpt-national-bureau-economic-research</guid>
+      <pubDate>2025-09-15 19:48 -05:00</pubDate>
+      <category>ai</category>
+      <category>openai</category>
+      <category>research</category>
+      <category>chatgpt</category>
+      <category>economics</category>
+    </item>
+    <item>
+      <title>Agents.md</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A simple, open format for guiding coding agents&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Think of AGENTS.md as a README for agents: a dedicated, predictable place to provide the context and instructions to help AI coding agents work on your project.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/agentsmd</link>
+      <guid>https://www.lqdev.me/responses/agentsmd</guid>
+      <pubDate>2025-08-20 22:53 -05:00</pubDate>
+      <category>ai</category>
+      <category>agents</category>
+      <category>openai</category>
+    </item>
+    <item>
+      <title>GPT Image 1 - Image Generation API</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we’re bringing the natively multimodal model that powers this experience in ChatGPT to the API via &lt;code&gt;gpt-image-1&lt;/code&gt;, enabling developers and businesses to easily integrate high-quality, professional-grade image generation directly into their own tools and platforms.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The &lt;code&gt;gpt-image-1&lt;/code&gt; model is now available globally via the Images API, with support in the Responses API coming soon.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/gpt-image-1-api</link>
+      <guid>https://www.lqdev.me/responses/gpt-image-1-api</guid>
+      <pubDate>2025-04-24 19:50 -05:00</pubDate>
+      <category>openai</category>
+      <category>ai</category>
+      <category>gpt</category>
+    </item>
+    <item>
+      <title>Introducing deep research</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;An agent that uses reasoning to synthesize large amounts of online information and complete multi-step research tasks for you.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Powered by a version of the upcoming OpenAI o3 model that’s optimized for web browsing and data analysis, it leverages reasoning to search, interpret, and analyze massive amounts of text, images, and PDFs on the internet, pivoting as needed in reaction to information it encounters.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;How it works&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Deep research was trained using end-to-end reinforcement learning on hard browsing and reasoning tasks across a range of domains. Through that training, it learned to plan and execute a multi-step trajectory to find the data it needs, backtracking and reacting to real-time information where necessary. The model is also able to browse over user uploaded files, plot and iterate on graphs using the python tool, embed both generated graphs and images from websites in its responses, and cite specific sentences or passages from its sources. As a result of this training, it reaches new highs on a number of public evaluations focused on real-world problems.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/openai-deep-research</link>
+      <guid>https://www.lqdev.me/responses/openai-deep-research</guid>
+      <pubDate>2025-02-03 20:17 -05:00</pubDate>
+      <category>ai</category>
+      <category>openai</category>
+      <category>agent</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>Build a YouTube chat app with .NET</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Great post from &lt;a href="https://jordanmatthiesen.me/"&gt;jordanmatthiesen.me&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Recently on a trip for a tech conference I created a YouTube chat app using .NET and AI. This is part of my exploration into creating a larger app for chatting about .NET AI development (leveraging docs, presentations, and sample code my team has been working on at Microsoft).&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/youtube-chat-app-ai-dotnet</link>
+      <guid>https://www.lqdev.me/responses/youtube-chat-app-ai-dotnet</guid>
+      <pubDate>2024-12-16 21:22 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>ai</category>
+      <category>youtube</category>
+      <category>chat</category>
+      <category>microsoft.extensions.ai</category>
+      <category>openai</category>
+    </item>
+    <item>
+      <title>Sora is here</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our video generation model is rolling out at &lt;a href="https://sora.com"&gt;sora.com⁠&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Users can generate videos up to 1080p resolution, up to 20 sec long, and in widescreen, vertical or square aspect ratios. You can bring your own assets to extend, remix, and blend, or generate entirely new content from text.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The version of Sora we are deploying has many limitations. It often generates unrealistic physics and struggles with complex actions over long durations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We’re introducing our video generation technology now to give society time to explore its possibilities and co-develop norms and safeguards that ensure it’s used responsibly as the field advances.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/sora-released</link>
+      <guid>https://www.lqdev.me/responses/sora-released</guid>
+      <pubDate>2024-12-09 21:34 -05:00</pubDate>
+      <category>sora</category>
+      <category>openai</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>GPT-4o System Card</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;GPT-4o is an autoregressive omni model, which accepts as input any combination of text, audio, image, and video and generates any combination of text, audio, and image outputs. It\u2019s trained end-to-end across text, vision, and audio, meaning that all inputs and outputs are processed by the same neural network.&lt;br /&gt;
+&lt;br&gt;
+GPT-4o can respond to audio inputs in as little as 232 milliseconds, with an average of 320 milliseconds, which is similar to human response time(opens in a new window)2 in a conversation. It matches GPT-4 Turbo performance on text in English and code, with significant improvement on text in non-English languages, while also being much faster and 50% cheaper in the API. GPT-4o is especially better at vision and audio understanding compared to existing models.&lt;br /&gt;
+&lt;br&gt;
+In line with our commitment to building AI safely and consistent with our voluntary commitments to the White House3, we are sharing the GPT-4o System Card, which includes our Preparedness Framework(opens in a new window)5 evaluations. In this System Card, we provide a detailed look at GPT-4o\u2019s capabilities, limitations, and safety evaluations across multiple categories, with a focus on speech-to-speech (voice)A while also evaluating text and image capabilities, and the measures we\u2019ve taken to enhance safety and alignment. We also include third party assessments on general autonomous capabilities, as well as discussion of potential societal impacts of GPT-4o text and vision capabilities.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/gpt4o-system-card</link>
+      <guid>https://www.lqdev.me/bookmarks/gpt4o-system-card</guid>
+      <pubDate>2024-08-08 20:16 -05:00</pubDate>
+      <category>ai</category>
+      <category>openai</category>
+      <category>gpt-4o</category>
+      <category>documentation</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Clock Tables - Org Mode, Plain Text, and AI</title>
+      <description>&lt;![CDATA[&lt;p&gt;Org-mode appreciation post.&lt;/p&gt;
+&lt;p&gt;I use plain text and org-mode for most things in my life, especially when it comes to task and life management.&lt;/p&gt;
+&lt;p&gt;I won't rehash all the reasons Emacs and org-mode are amazing. There are tons of blog posts and videos out there that would do it more justice than I ever could.&lt;/p&gt;
+&lt;p&gt;Over the last few years, Emacs has become my go-to text editor. Throughout all that time, I've continued to find new features that delight.&lt;/p&gt;
+&lt;p&gt;The most recent is &lt;a href="https://orgmode.org/manual/The-clock-table.html"&gt;clock table&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I already use org-mode to track my to-dos and perform some sort of time-block planning by setting deadlines and scheduling tasks.&lt;/p&gt;
+&lt;p&gt;Recently though, I've been wanting a way to see all of the things I've worked on over the past [ INSERT TIME PERIOD ]. More importantly, I'd like to have time associated with them to see where my time has gone and evaluate whether I'm spending time on the things I should be.&lt;/p&gt;
+&lt;p&gt;I knew you could &lt;a href="https://orgmode.org/manual/Clocking-commands.html"&gt;clock in and clock out&lt;/a&gt; on tasks. However, I didn't know you could easily build a customized report that automatically updates. That's when I came across clock tables.&lt;/p&gt;
+&lt;p&gt;Now, I have a way of visualizing all of the things I worked on during a week or month, and as I'm planning for the next week or month, I can adjust and reprioritize the things I'm working on.&lt;/p&gt;
+&lt;p&gt;I know there are enterprise offerings like the Viva suite from Microsoft which provides detailed reports on how you spend your time.&lt;/p&gt;
+&lt;p&gt;What excites me about org-mode though is that it's plain text. The clock table report that gets generated is a plain text table which makes it portable and easy to access using any text editor of your choice. It works best with Emacs, but that's not a requirement.&lt;/p&gt;
+&lt;p&gt;On their own, clock tables are amazing.&lt;/p&gt;
+&lt;p&gt;However, given how well language models work on plain text, they could be used as context for your queries. Imagine giving a language model as input an org file which contains:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A clock table&lt;/li&gt;
+&lt;li&gt;A list of TODO tasks (with notes, priorities, deadlines, tags, properties, and other annotations)&lt;/li&gt;
+&lt;li&gt;A high level list of goals you want to achieve&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then, you could enter a prompt along the lines of: &amp;quot;Using the following clock-table and list of goals I want to achieve, provide me with recommendations of tasks I should work on for the next week. Ensure that they align with my goals, are top priority, and provide the highest return on my efforts&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Additionally, you might also provide your org-agenda view containing appointments and use the results from the first query as context for the following prompt: &amp;quot;Given the agenda view for the next week, schedule the top 3 tasks you recommended&amp;quot;.&lt;/p&gt;
+&lt;p&gt;The result would be a list of TODO items containing schedule / active timestamps annotations which now show up on your org-agenda view.&lt;/p&gt;
+&lt;p&gt;Today, almost every productivity application out there is working on building these kinds of AI features into their products. The difference is, in many cases, the formats used by those applications aren't plain text. This adds complexity to the data extraction and transformation pipelines required to get the data into the right format for a language model to process. With plain text, there's little to no transformations required.&lt;/p&gt;
+&lt;p&gt;What's even better, I can extend org-mode and Emacs using elisp to do the things I just talked about.&lt;/p&gt;
+&lt;p&gt;I'm no elisp expert, so I asked Copilot to generate an elisp function that takes an org-mode clock table as input and generates a written text summary of it. Here are the results:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-lisp"&gt;(defun org-clock-summary-to-chatgpt ()
+  &amp;quot;Extracts clock table data and requests a summary from ChatGPT.&amp;quot;
+  (interactive)
+  (let* ((clock-table-data (org-clocktable-get-clocktable))
+         (summary-text (org-clocktable-format-summary clock-table-data))
+         (api-endpoint &amp;quot;https://api.openai.com/v1/engines/davinci/completions&amp;quot;)
+         (api-key &amp;quot;YOUR_API_KEY&amp;quot;)) ; Replace with your actual API key
+
+    ;; Construct the HTTP request and send it to ChatGPT
+    (with-current-buffer
+        (url-retrieve-synchronously api-endpoint
+                                    `((&amp;quot;text&amp;quot; . ,summary-text)
+                                      (&amp;quot;api_key&amp;quot; . ,api-key)))
+      (goto-char (point-min))
+      (search-forward &amp;quot;\n\n&amp;quot;)
+      (let ((response-json (json-read)))
+        (message &amp;quot;ChatGPT summary: %s&amp;quot; (cdr (assoc 'choices response-json)))))))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;All you elisp experts out there, let me know how it did.&lt;/p&gt;
+&lt;p&gt;I know at least the API endpoint is wrong, but generally speaking, it seems to be doing the right thing. Such function could be extended to include org-agenda information, TODO items, and many other things that would use AI to augment the existing functionality of Emacs and org-mode to tailor them to my needs.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/love-plain-text-org-mode-clocktable</link>
+      <guid>https://www.lqdev.me/notes/love-plain-text-org-mode-clocktable</guid>
+      <pubDate>2024-07-09 22:07 -05:00</pubDate>
+      <category>emacs</category>
+      <category>orgmode</category>
+      <category>ai</category>
+      <category>plaintext</category>
+      <category>productivity</category>
+      <category>tools</category>
+      <category>technology</category>
+      <category>gnu</category>
+      <category>opensource</category>
+      <category>gtd</category>
+      <category>calendar</category>
+      <category>agenda</category>
+      <category>llm</category>
+      <category>openai</category>
+    </item>
+    <item>
+      <title>OpenAI - Introducing improvements to the fine-tuning API and expanding our custom models program</title>
+      <description>&lt;![CDATA[[reshare] &lt;h2&gt;New fine-tuning API features&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we’re introducing new features to give developers even more control over their fine-tuning jobs, including:&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Epoch-based Checkpoint Creation: Automatically produce one full fine-tuned model checkpoint during each training epoch, which reduces the need for subsequent retraining, especially in the cases of overfitting&lt;/li&gt;
+&lt;li&gt;Comparative Playground: A new side-by-side Playground UI for comparing model quality and performance, allowing human evaluation of the outputs of multiple models or fine-tune snapshots against a single prompt&lt;/li&gt;
+&lt;li&gt;Third-party Integration: Support for integrations with third-party platforms (starting with Weights and Biases this week) to let developers share detailed fine-tuning data to the rest of their stack&lt;/li&gt;
+&lt;li&gt;Comprehensive Validation Metrics: The ability to compute metrics like loss and accuracy over the entire validation dataset instead of a sampled batch, providing better insight on model quality&lt;/li&gt;
+&lt;li&gt;Hyperparameter Configuration: The ability to configure available hyperparameters from the Dashboard (rather than only through the API or SDK)&lt;/li&gt;
+&lt;li&gt;Fine-Tuning Dashboard Improvements: Including the ability to configure hyperparameters, view more detailed training metrics, and rerun jobs from previous configurations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Expanding our Custom Models Program&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Assisted Fine-Tuning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we are formally announcing our assisted fine-tuning offering as part of the Custom Model program. Assisted fine-tuning is a collaborative effort with our technical teams to leverage techniques beyond the fine-tuning API, such as additional hyperparameters and various parameter efficient fine-tuning (PEFT) methods at a larger scale. It’s particularly helpful for organizations that need support setting up efficient training data pipelines, evaluation systems, and bespoke parameters and methods to maximize model performance for their use case or task.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Custom-Trained Model&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In some cases, organizations need to train a purpose-built model from scratch that understands their business, industry, or domain. Fully custom-trained models imbue new knowledge from a specific domain by modifying key steps of the model training process using novel mid-training and post-training techniques. Organizations that see success with a fully custom-trained model often have large quantities of proprietary data—millions of examples or billions of tokens—that they want to use to teach the model new knowledge or complex, unique behaviors for highly specific use cases.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/openai-introducing-fine-tuning-improvements</link>
+      <guid>https://www.lqdev.me/responses/openai-introducing-fine-tuning-improvements</guid>
+      <pubDate>2024-04-04 22:58 -05:00</pubDate>
+      <category>openai</category>
+      <category>finetuning</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Start using ChatGPT instantly</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We’re making it easier for people to experience the benefits of AI without needing to sign up.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We may use what you provide to ChatGPT to improve our models for everyone. If you’d like, you can turn this off through your Settings - whether you create an account or not.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We’ve also introduced additional content safeguards for this experience, such as blocking prompts and generations in a wider range of categories.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/start-using-chatgpt-seamlessly-no-signup</link>
+      <guid>https://www.lqdev.me/responses/start-using-chatgpt-seamlessly-no-signup</guid>
+      <pubDate>2024-04-01 20:44 -05:00</pubDate>
+      <category>openai</category>
+      <category>chatgpt</category>
+      <category>ai</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>OpenAI Transformer Debugger</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Transformer Debugger (TDB) is a tool developed by OpenAI's Superalignment team with the goal of supporting investigations into specific behaviors of small language models. The tool combines automated interpretability techniques with sparse autoencoders.&lt;br /&gt;
+&lt;br&gt;
+TDB enables rapid exploration before needing to write code, with the ability to intervene in the forward pass and see how it affects a particular behavior. It can be used to answer questions like, &amp;quot;Why does the model output token A instead of token B for this prompt?&amp;quot; or &amp;quot;Why does attention head H attend to token T for this prompt?&amp;quot; It does so by identifying specific components (neurons, attention heads, autoencoder latents) that contribute to the behavior, showing automatically generated explanations of what causes those components to activate most strongly, and tracing connections between components to help discover circuits.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/openai-transformer-debugger</link>
+      <guid>https://www.lqdev.me/responses/openai-transformer-debugger</guid>
+      <pubDate>2024-03-17 21:05 -05:00</pubDate>
+      <category>openai</category>
+      <category>ai</category>
+      <category>transformer</category>
+      <category>debugger</category>
+      <category>tools</category>
+    </item>
+    <item>
+      <title>What I learned from looking at 900 most popular open source AI tools</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;So many cool ideas are being developed by the community. Here are some of my favorites.&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Batch inference optimization: FlexGen, llama.cpp&lt;/li&gt;
+&lt;li&gt;Faster decoder with techniques such as Medusa, LookaheadDecoding&lt;/li&gt;
+&lt;li&gt;Model merging: mergekit&lt;/li&gt;
+&lt;li&gt;Constrained sampling: outlines, guidance, SGLang&lt;/li&gt;
+&lt;li&gt;Seemingly niche tools that solve one problem really well, such as einops and safetensors.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/learned-from-looking-900-oss-ai-tools-huyen</link>
+      <guid>https://www.lqdev.me/responses/learned-from-looking-900-oss-ai-tools-huyen</guid>
+      <pubDate>2024-03-14 22:13 -05:00</pubDate>
+      <category>ai</category>
+      <category>tools</category>
+      <category>analysis</category>
+      <category>openai</category>
+      <category>github</category>
+    </item>
+    <item>
+      <title>Getting started with Ollama on Windows</title>
+      <description>&lt;![CDATA[
+Recently [Ollama announced support for Windows](/responses/ollama-windows-preview) in preview. In doing so, people who want to use AI models like Llama, Phi, and many others can do so locally on their PC. In this post, I'll go over how you can get started with Ollama on Windows. 
+
+## Install Ollama
+
+The first thing you'll want to do is install Ollama.
+
+You can do so by [downloading the installer from the website](https://ollama.com/download/windows) and following the installation prompts. 
+
+## Get a model
+
+Once you've installed Ollama, it's time to get a model.
+
+1. Open PowerShell
+1. Run the following command
+
+    ```powershell
+    ollama pull llama2
+    ```
+
+In this case, I'm using llama2. However, you can choose another model. You could even download many models at once and switch between them. For a full list of supported models, see the [Ollama model documentation](https://ollama.com/library).
+
+## Use the model
+
+Now that you have the model, it's time to use it. The easiest way to use the model is using the REST API. When you install Ollama, it starts up a server to host your model. One other neat thing is, the REST API is [OpenAI API compatible](https://ollama.com/blog/openai-compatibility).
+
+1. Open PowerShell
+1. Send the following request:
+
+    ```powershell
+    (Invoke-WebRequest -method POST -Body '{"model":"llama2", "prompt":"Why is the sky blue?", "stream": false}' -uri http://localhost:11434/api/generate ).Content | ConvertFrom-json
+    ```
+
+    This command will issue an HTTP POST request to the server listening on port 11434.
+
+    The main things to highlight in the body:
+
+    - *model*: The model you'll use. Make sure this is one of the models you pulled. 
+    - *prompt*: The input to the model
+    - *stream*: Whether to stream responses back to the client
+
+    For more details on the REST API, see the [Ollama REST API documentation](https://github.com/ollama/ollama/blob/main/docs/api.md). 
+
+## Conclusion
+
+In this post, I went over how you can quickly install Ollama to start using generative AI models like Llama and Phi locally on your Windows PC. If you use Mac or Linux, you can perform similar steps as those outlined in this guide to get started on those operating systems. Happy coding! ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/getting-started-ollama-windows</link>
+      <guid>https://www.lqdev.me/posts/getting-started-ollama-windows</guid>
+      <pubDate>2024-03-05 10:32 -05:00</pubDate>
+      <category>ai</category>
+      <category>ollama</category>
+      <category>windows</category>
+      <category>llm</category>
+      <category>opensource</category>
+      <category>llama</category>
+      <category>openai</category>
+      <category>generativeai</category>
+      <category>genai</category>
+    </item>
+    <item>
+      <title>OpenAI Sora - Creating video from text</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Sora is an AI model that can create realistic and imaginative scenes from text instructions.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Sora can generate videos up to a minute long while maintaining visual quality and adherence to the user’s prompt.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/openai-sora</link>
+      <guid>https://www.lqdev.me/responses/openai-sora</guid>
+      <pubDate>2024-02-15 20:15 -05:00</pubDate>
+      <category>openai</category>
+      <category>multimodal</category>
+      <category>ai</category>
+      <category>texttovideo</category>
+    </item>
+    <item>
+      <title>Memory and new controls for ChatGPT</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We’re testing memory with ChatGPT. Remembering things you discuss across all chats saves you from having to repeat information and makes future conversations more helpful.&lt;br /&gt;
+&lt;br&gt;
+You're in control of ChatGPT's memory. You can explicitly tell it to remember something, ask it what it remembers, and tell it to forget conversationally or through settings. You can also turn it off entirely.&lt;br /&gt;
+&lt;br&gt;
+We are rolling out to a small portion of ChatGPT free and Plus users this week to learn how useful it is. We will share plans for broader roll out soon.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/openai-chatgpt-memory</link>
+      <guid>https://www.lqdev.me/responses/openai-chatgpt-memory</guid>
+      <pubDate>2024-02-13 21:00 -05:00</pubDate>
+      <category>openai</category>
+      <category>chatgpt</category>
+      <category>memory</category>
+      <category>ai</category>
+      <category>llm</category>
+      <category>gpt</category>
+    </item>
+    <item>
+      <title>New OpenAI embedding models and API updates</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We are launching a new generation of embedding models, new GPT-4 Turbo and moderation models, new API usage management tools, and soon, lower pricing on GPT-3.5 Turbo.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/new-openai-text-embedding-models-3</link>
+      <guid>https://www.lqdev.me/responses/new-openai-text-embedding-models-3</guid>
+      <pubDate>2024-01-25 21:20 -05:00</pubDate>
+      <category>openai</category>
+      <category>llm</category>
+      <category>embedding</category>
+      <category>openai</category>
+      <category>gpt</category>
+    </item>
+    <item>
+      <title>OpenAI Microscope</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We’re introducing OpenAI Microscope, a collection of visualizations of every significant layer and neuron of eight vision “model organisms” which are often studied in interpretability. Microscope makes it easier to analyze the features that form inside these neural networks, and we hope it will help the research community as we move towards understanding these complicated systems.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/openai-microscope</link>
+      <guid>https://www.lqdev.me/bookmarks/openai-microscope</guid>
+      <pubDate>2024-01-23 22:15 -05:00</pubDate>
+      <category>openai</category>
+      <category>interpretability</category>
+      <category>ai</category>
+      <category>generativeai</category>
+      <category>visualization</category>
+    </item>
+    <item>
+      <title>Introducing the GPT Store</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;It’s been two months since we announced GPTs, and users have already created over 3 million custom versions of ChatGPT. Many builders have shared their GPTs for others to use. Today, we're starting to roll out the GPT Store to ChatGPT Plus, Team and Enterprise users so you can find useful and popular GPTs.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/introducing-gpt-store</link>
+      <guid>https://www.lqdev.me/bookmarks/introducing-gpt-store</guid>
+      <pubDate>2024-01-11 10:01 -05:00</pubDate>
+      <category>openai</category>
+      <category>gpt</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>OpenAI - Prompt engineering</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This guide shares strategies and tactics for getting better results from large language models (sometimes referred to as GPT models) like GPT-4. The methods described here can sometimes be deployed in combination for greater effect. We encourage experimentation to find the methods that work best for you.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/openai-prompting-guide</link>
+      <guid>https://www.lqdev.me/bookmarks/openai-prompting-guide</guid>
+      <pubDate>2023-12-19 19:37 -05:00</pubDate>
+      <category>openai</category>
+      <category>llm</category>
+      <category>promptengineering</category>
+      <category>ai</category>
+      <category>guide</category>
+    </item>
+    <item>
+      <title>AI abundance after scarcity cycles</title>
+      <description>&lt;![CDATA[&lt;p&gt;While writing the post &lt;a href="https://www.lqdev.me/notes/rss-community-calendars-new-events"&gt;RSS for new event notifications&lt;/a&gt; I mentioned how the flow of getting new event notifications through RSS might work:&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;When a new event is added to the calendar, the RSS feed can be updated. The &lt;code&gt;channel&lt;/code&gt;property has the link to the shared calendar you can subscribe to and the individual events have &lt;em&gt;.ics&lt;/em&gt; files embedded in the &lt;code&gt;enclosure&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I actually didn't know if that was possible until I looked at the &lt;a href="https://en.wikipedia.org/wiki/RSS_enclosure"&gt;RSS enclosure syntax&lt;/a&gt;. Based on that page, as long as you provide the URL to the &lt;em&gt;.ics&lt;/em&gt; file, length of the file, and the MIME type (text/calendar), you can link to your events inside enclosures. So it is possible.&lt;/p&gt;
+&lt;p&gt;That's not the point of this post though. When I was looking at the references, I came across this post talking about the &lt;a href="https://www.rssboard.org/rss-enclosures-use-case"&gt;use case for RSS enclosures&lt;/a&gt;. I don't know when this post was published but given the problems mentioned with accessing high quality video, I assume it was in the days when the internet was on dial-up or DSL speeds. At that time, downloading webpages or e-mail was slow. Forget about downloading multimedia. As that post mentions, with enclosures, you could schedule your RSS client to download content like videos during off-peak hours so any content you'd want to access would download overnight and be available to you in the morning. About 30 years later, in many places, even with a connection that has 1MB download speeds, downloading a podcast that's 100MB or a video that's 2GB is relatively fast. It might take a while, but compared to 30 years ago, it's &amp;quot;instant&amp;quot;. So at this point, it's not really technical challenge as much as it is an access challenge.&lt;/p&gt;
+&lt;p&gt;Low bandwith speeds forced people to get creative in how they utilized their resources. The internet was not the only time this happened. About 30 years ago or so when cell phones were just becoming mainstream they too suffered from scarcity. Cell phones and plans were very expensive. You had limited minutes and when SMS became a thing, those too were limited. If you wanted to have hour long conversations with friends and loved ones, you'd have to wait until off-peak hours so you could use your &amp;quot;free&amp;quot; minutes. Fast-forward 30 years later, cell phones and cell phone plans are relatively affordable. When you purchase these plans, you get access to unlimited minutes, messages, and data. So again, the technical limitations aren't as prevalent. It's mainly a matter of access and whether your cell phone provider offers good coverage in your area.&lt;/p&gt;
+&lt;p&gt;This brings me to my point. We're seeing this cycle again with AI. Large Language Models today are expensive to run and I'm not overindexing on the financial perspective. You pay per call, access to these models can be throttled at times, there's only so many GPUs you can get access to in a data center to run them, you pay the latency penalty by going through the network as well as the cost of inferencing, and you also have token limits. About a year into the release of ChatGPT, access to these models has been expanded, the models have gotten more capable (&lt;a href="https://openai.com/research/gpt-4v-system-card"&gt;GPT-4V&lt;/a&gt; and GPT4 with 128k tokens), it's become &lt;a href="https://openai.com/blog/new-models-and-developer-products-announced-at-devday"&gt;cheaper to run these models&lt;/a&gt;. At the same time, &lt;a href="https://www.qualcomm.com/news/onq/2023/10/rethink-whats-possible-with-new-snapdragon-x-elite-platform"&gt;computing is becoming more efficient&lt;/a&gt; and &lt;a href="https://ai.meta.com/llama/#inside-the-model"&gt;smaller &amp;quot;open-source&amp;quot; models&lt;/a&gt; are becoming more capable. Today, we have to be creative with how we utilize our resources, but we're only a year in. If we extrapolate how these cycles play out though, in 30 years we'll forget how challenging it was to use and access early AI technologies and AI will become more abundant like the internet, cell phones, and other technologies before it.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/ai-abundance-scarcity-cycle-repeats-rss-enclosure-use-case</link>
+      <guid>https://www.lqdev.me/notes/ai-abundance-scarcity-cycle-repeats-rss-enclosure-use-case</guid>
+      <pubDate>2023-11-12 10:37 -05:00</pubDate>
+      <category>ai</category>
+      <category>internet</category>
+      <category>history</category>
+      <category>rss</category>
+      <category>openai</category>
+      <category>llm</category>
+      <category>gpt</category>
+      <category>opensource</category>
+    </item>
+  </channel>
+</rss>

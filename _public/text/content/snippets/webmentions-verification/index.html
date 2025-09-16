@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Webmentions Verification - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Webmentions Verification</h1><div class="content-meta"><div class="content-type">snippets</div><time datetime="2022-09-25">September 25, 2022</time><p>Tags: f#, indieweb, webmentions, internet, web, social, interactive, script</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/snippets/">← All snippets</a> | <a href="https://www.lqdev.me/resources/snippets/webmentions-verification">View Full Version</a></p><div class="content"><h2>Description</h2>
+<p>Sample script that shows how to perform Webmention verification per <a href="https://www.w3.org/TR/webmention/#webmention-verification">Webmentions specification</a>.</p>
+<h2>Usage</h2>
+<pre><code class="language-bash">dotnet fsi webmention-verification.fsx
+</code></pre>
+<h2>Snippet</h2>
+<p><strong>webmention-verification.fsx</strong></p>
+<pre><code class="language-fsharp">// https://www.w3.org/TR/webmention/#webmention-verification
+<p>#r &quot;nuget:FSharp.Data&quot;
+#r &quot;nuget: Microsoft.AspNetCore.WebUtilities, 2.2.0&quot;</p>
+<p>open System
+open System.Net
+open System.Net.Http
+open System.Net.Http.Headers
+open System.Collections.Generic
+open Microsoft.AspNetCore.WebUtilities
+open FSharp.Data</p>
+<p>type WebmentionVerificationResult =
+| TaggedMention of {| Replies: bool; Likes: bool; Reposts: bool|}
+| UntaggedMention
+| Error of string</p>
+<p>let getFormContent (request:HttpRequestMessage) =
+async {
+let! content = request.Content.ReadAsStringAsync() |&gt; Async.AwaitTask
+let query = QueryHelpers.ParseQuery(content)
+let source = query[&quot;source&quot;] |&gt; Seq.head
+let target = query[&quot;target&quot;] |&gt; Seq.head</p>
+<pre><code>    return source,target
+}
+</code></pre>
+<p>let cont =<br />
+dict [
+(&quot;source&quot;,&quot;https://raw.githubusercontent.com/lqdev/fsadvent-2021-webmentions/main/reply.html&quot;)
+(&quot;target&quot;,&quot;https://webmention.rocks/test/1&quot;)
+]</p>
+<p>let buildSampleRequestMessage (content:IDictionary&lt;string,string&gt;) =</p>
+<pre><code>let reqMessage = new HttpRequestMessage()
+reqMessage.Content &amp;lt;- new FormUrlEncodedContent(content)
+
+reqMessage
+</code></pre>
+<p>let req = buildSampleRequestMessage cont</p>
+<p>// verification</p>
+<p>let source,target =
+req
+|&gt; getFormContent
+|&gt; Async.RunSynchronously</p>
+<p>let getMentionUsingCssSelector (doc:HtmlDocument) (selector:string) (target:string) =
+doc.CssSelect(selector)
+|&gt; List.map(fun x -&gt; x.AttributeValue(&quot;href&quot;))
+|&gt; List.filter(fun x -&gt; x = target)</p>
+<p>let hasMention (mentions:string list) =
+mentions |&gt; List.isEmpty |&gt; not</p>
+<p>let verifyWebmentions (source:string) (target:string)=
+async {
+use client = new HttpClient()
+let reqMessage = new HttpRequestMessage(new HttpMethod(&quot;Get&quot;), source)
+reqMessage.Headers.Accept.Clear()</p>
+<pre><code>    // Only accept text/html content
+    reqMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(&amp;quot;text/html&amp;quot;))
+    
+    // Get document
+    let! res = client.SendAsync(reqMessage) |&amp;gt; Async.AwaitTask
+    
+    // Verify webmention
+    let webmentions = 
+        match res.IsSuccessStatusCode with 
+        | true -&amp;gt;
+            // Get document contents
+            let body = 
+                async {
+                    return! res.Content.ReadAsStringAsync() |&amp;gt; Async.AwaitTask
+                } |&amp;gt; Async.RunSynchronously
+
+            // Parse document
+            let doc = HtmlDocument.Parse(body)
+
+            // Get links tagged as replies using microformats
+            let replies = 
+                getMentionUsingCssSelector doc &amp;quot;.u-in-reply-to&amp;quot; target
+
+            // Get links tagged as likes using microformats
+            let likes = 
+                getMentionUsingCssSelector doc &amp;quot;.u-in-like-of&amp;quot; target
+
+            // Get links tagged as repost using microformats
+            let shares = 
+                getMentionUsingCssSelector doc &amp;quot;.u-in-repost-of&amp;quot; target
+
+            // Get untagged mentions
+            let mentions = 
+                getMentionUsingCssSelector doc &amp;quot;a&amp;quot; target
+
+            // Collect all tagged mentions
+            let knownInteractions = 
+                [replies;likes;shares] 
+                |&amp;gt; List.collect(id)
+
+            // Choose tagged mentions before untagged mentions
+            match knownInteractions.IsEmpty,mentions.IsEmpty with 
+            | true,true -&amp;gt; Error &amp;quot;Target not mentioned&amp;quot;
+            | true,false | false,false -&amp;gt; 
+                TaggedMention 
+                    {|
+                        Replies = hasMention replies 
+                        Likes = hasMention likes
+                        Reposts = hasMention shares
+                    |}
+            | false,true -&amp;gt; UntaggedMention 
+
+        | false -&amp;gt; 
+            Error &amp;quot;Unable to get source&amp;quot;
+    return webmentions            
+}
+</code></pre>
+<p>verifyWebmentions source target
+|&gt; Async.RunSynchronously
+</code></pre></p>
+<h2>Sample Output</h2>
+<pre><code class="language-text">Interactions { 
+    Likes = false
+    Replies = true
+    Shares = false }
+</code></pre>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

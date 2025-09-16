@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Upgrade Matrix Synapse homeserver - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Upgrade Matrix Synapse homeserver</h1><div class="content-meta"><div class="content-type">snippets</div><time datetime="2022-09-01">September 1, 2022</time><p>Tags: matrix, synapse, homeserver, selfhost, python, internet, network</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/snippets/">← All snippets</a> | <a href="https://www.lqdev.me/resources/snippets/update-matrix-synapse-homeserver">View Full Version</a></p><div class="content"><h2>Description</h2>
+<p>Upgrade a <a href="https://matrix.org/">Matrix</a> <a href="https://github.com/matrix-org/synapse/">Synapse homeserver</a> using pip. For more information, see the official article on <a href="https://matrix-org.github.io/synapse/develop/upgrade">upgrading between Synapse versions</a>.</p>
+<h2>Usage</h2>
+<pre><code class="language-bash">./update-matrix-homeserver.sh
+</code></pre>
+<h2>Snippet</h2>
+<h3>update-matrix-homeserver.sh</h3>
+<pre><code class="language-bash"># Initialize Python virtual environment
+source ./env/bin/activate
+<h1>Upgrade using pip</h1>
+<h1>For PostgreSQL packages, use matrix-synapse[postgres]</h1>
+<p>pip install --upgrade matrix-synapse</p>
+<h1>Restart server</h1>
+<p>synctl restart</p>
+<h1>Check version</h1>
+<p>curl http://localhost:8008/_synapse/admin/v1/server_version</p>
+<h1>Deactivate Python virtual environment</h1>
+<p>deactivate
+</code></pre></p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

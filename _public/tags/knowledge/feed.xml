@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - knowledge</title>
+    <link>https://www.lqdev.me/tags/knowledge</link>
+    <description>All content tagged with 'knowledge' by Luis Quintanilla</description>
+    <lastBuildDate>2025-05-05 19:53 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>CORG: Generating Answers from Complex, Interrelated Contexts</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In a real-world corpus, knowledge frequently recurs across documents but often contains inconsistencies due to ambiguous naming, outdated information, or errors, leading to complex interrelationships between contexts. Previous research has shown that language models struggle with these complexities, typically focusing on single factors in isolation. We classify these relationships into four types: distracting, ambiguous, counterfactual, and duplicated. Our analysis reveals that no single approach effectively addresses all these interrelationships simultaneously. Therefore, &lt;strong&gt;we introduce Context Organizer (CORG), a framework that organizes multiple contexts into independently processed groups. This design allows the model to efficiently find all relevant answers while ensuring disambiguation. CORG consists of three key components: a graph constructor, a reranker, and an aggregator.&lt;/strong&gt; Our results demonstrate that CORG balances performance and efficiency effectively, outperforming existing grouping methods and achieving comparable results to more computationally intensive, single-context approaches.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/corg-context-organizer-framework</link>
+      <guid>https://www.lqdev.me/bookmarks/corg-context-organizer-framework</guid>
+      <pubDate>2025-05-05 19:53 -05:00</pubDate>
+      <category>rag</category>
+      <category>ai</category>
+      <category>knowledge</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>ARAGOG: Advanced RAG Output Grading</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Retrieval-Augmented Generation (RAG) is essential for integrating external knowledge into Large Language Model (LLM) outputs. While the literature on RAG is growing, it primarily focuses on systematic reviews and comparisons of new state-of-the-art (SoTA) techniques against their predecessors, with a gap in extensive experimental comparisons. This study begins to address this gap by assessing various RAG methods' impacts on retrieval precision and answer similarity. We found that Hypothetical Document Embedding (HyDE) and LLM reranking significantly enhance retrieval precision. However, Maximal Marginal Relevance (MMR) and Cohere rerank did not exhibit notable advantages over a baseline Naive RAG system, and Multi-query approaches underperformed. Sentence Window Retrieval emerged as the most effective for retrieval precision, despite its variable performance on answer similarity. The study confirms the potential of the Document Summary Index as a competent retrieval approach. All resources related to this research are publicly accessible for further investigation through our GitHub repository ARAGOG (this https URL). We welcome the community to further this exploratory study in RAG systems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/predlico/ARAGOG"&gt;GitHub repo&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/aragog-advanced-rag-output-grading</link>
+      <guid>https://www.lqdev.me/responses/aragog-advanced-rag-output-grading</guid>
+      <pubDate>2024-04-09 00:32 -05:00</pubDate>
+      <category>rag</category>
+      <category>ai</category>
+      <category>research</category>
+      <category>llm</category>
+      <category>knowledge</category>
+      <category>retrieval</category>
+      <category>retrievalaugmentedgeneration</category>
+    </item>
+    <item>
+      <title>Time to try Anytype</title>
+      <description>&lt;![CDATA[&lt;p&gt;Currently I'm using org-mode in Emacs for note-taking, journaling, habit-tracking, task management, any many other things. I've heard good things about Notion and Obsidian but haven't made the switch because I like the flexibility of Emacs. I learned about &lt;a href="https://anytype.io/"&gt;Anytype&lt;/a&gt; a few months ago and it looked like it might be a good replacement. I'd been holding out because back then it didn't have local-only mode. In their latest release, they &lt;a href="https://github.com/anyproto/roadmap/issues/34"&gt;added local-only mode&lt;/a&gt; so maybe it's finally time to try it. First though, I have to figure out if it works on NixOS.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/anytype-local-only</link>
+      <guid>https://www.lqdev.me/notes/anytype-local-only</guid>
+      <pubDate>2024-01-06 11:45 -05:00</pubDate>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+      <category>anytype</category>
+      <category>knowledge</category>
+    </item>
+  </channel>
+</rss>

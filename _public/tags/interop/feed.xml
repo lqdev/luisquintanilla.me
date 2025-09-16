@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - interop</title>
+    <link>https://www.lqdev.me/tags/interop</link>
+    <description>All content tagged with 'interop' by Luis Quintanilla</description>
+    <lastBuildDate>2023-10-24 17:13 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Texts Joins Automattic</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Using an all-in-one messaging app is a real game-changer for productivity and keeping up with things.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This is obviously a tricky area to navigate, as in the past the networks have blocked third-party clients, but I think with the current anti-trust and regulatory environments this is actually something the big networks will appreciate: it maintains the same security as their clients, opens them up in a way consumers will love and is very user-centric, and because we’re committed to supporting all their features it can actually increase engagement and usage of their platforms.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I can relate to the feeling of wanting to have one inbox expressed in the video. Coincidentally, I've been playing with &lt;a href="https://delta.chat/"&gt;Delta Chat&lt;/a&gt; and by building on top of e-mail, some of the issues with the siloed platforms are alleviated. Also, &lt;a href="https://www.emailisnotdead.com/"&gt;e-mail isn't dead&lt;/a&gt; and despite some of its shortcomings, it's still broadly used to sign up and sign into platforms.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/texts-joins-automattic</link>
+      <guid>https://www.lqdev.me/responses/texts-joins-automattic</guid>
+      <pubDate>2023-10-24 17:13 -05:00</pubDate>
+      <category>messaging</category>
+      <category>interop</category>
+      <category>decentralization</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>Automattic is acquiring Texts and betting big on the future of messaging</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;I'm really liking the recent acquisitions from Automattic. I'm just starting to use Day One and really enjoy it. Pocket Casts is a fantastic podcast app, though I prefer to use AntennaPod. WordPress is also starting to make it easy to plug into the Fediverse using your blog. I'm excited for Texts and what that might offer in the current siloed messaging landscape.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Automattic, the company that runs WordPress.com, Tumblr, Pocket Casts, and a number of other popular web properties, just made a different kind of acquisition: it’s buying Texts, a universal messaging app, for $50 million.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Texts is an app for all your messaging apps. You can use it to log in to WhatsApp, Instagram, LinkedIn, Signal, iMessage, and more and see and respond to all your messages in one place.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...Mullenweg says he’s bullish on solutions like Matrix, which offers a decentralized and open-source messaging network, and other up-and-coming standards for messaging. He’s already thinking about how Texts might gently nudge people toward more open protocols over time.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Mullenweg and Automattic see a big future for messaging, as more online interaction shifts away from public-first social networks and toward things like group chats. Hardly anyone has figured out how to build a meaningful and sustainable business from chat, but Mullenweg thinks it’s possible. And he thinks it starts with making your messaging a little less messy.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/automattic-acquires-texts-messaging</link>
+      <guid>https://www.lqdev.me/responses/automattic-acquires-texts-messaging</guid>
+      <pubDate>2023-10-24 09:16 -05:00</pubDate>
+      <category>messaging</category>
+      <category>interop</category>
+      <category>decentralization</category>
+      <category>opensource</category>
+    </item>
+  </channel>
+</rss>

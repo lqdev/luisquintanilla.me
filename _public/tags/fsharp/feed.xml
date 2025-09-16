@@ -1,0 +1,2375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - fsharp</title>
+    <link>https://www.lqdev.me/tags/fsharp</link>
+    <description>All content tagged with 'fsharp' by Luis Quintanilla</description>
+    <lastBuildDate>2025-09-13 12:25 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Which Static Site Generator (SSG) do I use?</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;&lt;a href="https://xoxo.zone/@artlung/"&gt;@artlung@xoxo.zone&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;When I first started, I used Hexo.&lt;/p&gt;
+&lt;p&gt;Then, I moved to Hugo.&lt;/p&gt;
+&lt;p&gt;Ultimately though, I decided to roll my own.&lt;/p&gt;
+&lt;p&gt;Currently my site's content and the generator live in the same &lt;a href="https://github.com/lqdev/luisquintanilla.me"&gt;repo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While not up to date, my &lt;a href="https://www.lqdev.me/colophon"&gt;colophon&lt;/a&gt; contains details of how my site is built. The &lt;a href="https://github.com/lqdev/luisquintanilla.me/blob/main/README.md"&gt;README&lt;/a&gt; in the repo also contains more up to date information since the massive revamp I made last month (which I still need to write about). I think that revamp and decoupling of various components in my site would've been significantly harder had I not been in complete control of my codebase.&lt;/p&gt;
+&lt;p&gt;Although I have to pay a maintenance toll by owning the code that generates my site, knowing the entire codebase also gives me freedom to experiment and explore.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/which-static-site-generator-use-reply-mastodon-joe</link>
+      <guid>https://www.lqdev.me/responses/which-static-site-generator-use-reply-mastodon-joe</guid>
+      <pubDate>2025-09-13 12:25 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>website</category>
+      <category>staticsitegenerator</category>
+      <category>ssg</category>
+      <category>fsharp</category>
+    </item>
+    <item>
+      <title>DevContainer configurations</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;A collection of DevContainer configurations&lt;/p&gt;
+&lt;h2&gt;Base Debian Image&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Base Debian DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;                
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python (GPU)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python (GPU) DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },
+        &amp;quot;ghcr.io/devcontainers/features/nvidia-cuda:1&amp;quot;: {},
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;                
+            ]
+        }
+    },
+    &amp;quot;runArgs&amp;quot;: [
+        &amp;quot;--gpus&amp;quot;, 
+        &amp;quot;all&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;.NET&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me .NET DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        }
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;                                
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;.NET (GPU)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me .NET (GPU) DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        },
+        &amp;quot;ghcr.io/devcontainers/features/nvidia-cuda:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;                
+            ]
+        }
+    },
+    &amp;quot;runArgs&amp;quot;: [
+        &amp;quot;--gpus&amp;quot;, 
+        &amp;quot;all&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python and .NET&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python and .NET DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },        
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        },
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;                
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python and .NET (GPU)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python and .NET (GPU) DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },        
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        },
+        &amp;quot;ghcr.io/devcontainers/features/nvidia-cuda:1&amp;quot;: {},
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;               
+            ]
+        }
+    },
+    &amp;quot;runArgs&amp;quot;: [
+        &amp;quot;--gpus&amp;quot;, 
+        &amp;quot;all&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Additional Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://code.visualstudio.com/docs/devcontainers/containers"&gt;Developing inside a DevContainer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/devcontainers/images"&gt;Pre-built DevContainer images&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/devcontainers/features"&gt;Pre-built DevContainer features&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.github.com/en/codespaces/overview"&gt;GitHub Codespaces overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://marketplace.visualstudio.com/vscode"&gt;VS Code Extensions Marketplace&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/devcontainers-configurations</link>
+      <guid>https://www.lqdev.me/resources/wiki/devcontainers-configurations</guid>
+      <pubDate>06/29/2024 14:48 -05:00</pubDate>
+      <category>devcontainer</category>
+      <category>vscode</category>
+      <category>codespaces</category>
+      <category>development</category>
+      <category>software</category>
+      <category>tech</category>
+      <category>programming</category>
+      <category>python</category>
+      <category>dotnet</category>
+      <category>csharp</category>
+      <category>fsharp</category>
+      <category>docker</category>
+      <category>git</category>
+      <category>debian</category>
+    </item>
+    <item>
+      <title>TIOBE Index for January 2024</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;For the first time in the history of the TIOBE index, C# has won the programming language of the year award. Congratulations! C# has been a top 10 player for more than 2 decades and now that it is catching up with the big 4 languages, it won the well-deserved award by being the language with the biggest uptick in one year (+1.43%).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Exciting to see F# almost break into the Top 20 at number 22 with 0.77%.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/tiobe-index-january-2024</link>
+      <guid>https://www.lqdev.me/bookmarks/tiobe-index-january-2024</guid>
+      <pubDate>2024-01-07 22:52 -05:00</pubDate>
+      <category>programming</category>
+      <category>dotnet</category>
+      <category>technology</category>
+      <category>fsharp</category>
+      <category>csharp</category>
+      <category>programminglanguages</category>
+    </item>
+    <item>
+      <title>GitHub Actions workflow for post metrics almost works</title>
+      <description>&lt;![CDATA[&lt;p&gt;A few days ago, I posted about a script I wrote. The &lt;a href="https://www.lqdev.me/posts/website-metrics-github-actions/"&gt;script computes computes post metrics on my website&lt;/a&gt;. That's what I used to author my &lt;a href="https://www.lqdev.me/notes/weblogging-rewind-2023-continued/"&gt;(We)blogging Rewind 2023&lt;/a&gt; posts. Because I want the script to run at periodic intervals, I automated the process using GitHub Actions.&lt;/p&gt;
+&lt;p&gt;The script is scheduled to run on the first of every month and I'm happy to report that it works! Kind of.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/lqdev/luisquintanilla.me/assets/11130940/bd413326-cc7b-44f7-a287-4580f1268cb2" class="img-fluid" alt="Image of an unsuccessful run of a GitHub Actions workflow" /&gt;&lt;/p&gt;
+&lt;p&gt;The GitHub Action was successfully triggered at the defined interval. Unfortunately, the script failed due to a &lt;a href="https://github.com/lqdev/luisquintanilla.me/commit/1296c3f929e3ad2834a8b7963c9ed66421a4fb8a"&gt;user error which I've since fixed&lt;/a&gt;. Come February 1st, everything should work as expected though, so I'm happy about that.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/post-statistics-gh-actions-working-almost</link>
+      <guid>https://www.lqdev.me/notes/post-statistics-gh-actions-working-almost</guid>
+      <pubDate>2024-01-03 00:26 -05:00</pubDate>
+      <category>github</category>
+      <category>cicd</category>
+      <category>blogging</category>
+      <category>automation</category>
+      <category>githubactions</category>
+      <category>fsharp</category>
+      <category>cron</category>
+    </item>
+    <item>
+      <title>One more blog post for 2023?</title>
+      <description>&lt;![CDATA[&lt;p&gt;Update from &lt;a href="https://www.lqdev.me/notes/weblogging-rewind-2023/"&gt;yesterday&lt;/a&gt;. 2023 is still not over. I think I can squeeze out at least one more post for the year 🙂.&lt;/p&gt;
+&lt;h2&gt;Blog post counts&lt;/h2&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;h2&gt;Note counts&lt;/h2&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;37&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;36&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/one-more-post-2023</link>
+      <guid>https://www.lqdev.me/notes/one-more-post-2023</guid>
+      <pubDate>2023-12-24 14:31 -05:00</pubDate>
+      <category>weblogging</category>
+      <category>quantifiedself</category>
+      <category>indieweb</category>
+      <category>stats</category>
+      <category>analytics</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>opensource</category>
+      <category>community</category>
+      <category>selfhost</category>
+      <category>fsharp</category>
+      <category>spotify</category>
+      <category>antennapod</category>
+      <category>microblog</category>
+      <category>analytics</category>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+    </item>
+    <item>
+      <title>Computing website metrics using GitHub Actions</title>
+      <description>&lt;![CDATA[
+## Introduction 
+
+I recently posted my [(We)blogging Rewind](/notes/weblogging-rewind-2023/) and [(We)blogging Rewind Continued](/notes/weblogging-rewind-2023-continued) for 2023. In these posts, I discuss some analysis I did of my posting behaviors over the past year on this website. I don't use platforms like Google Analytics to track visitors. I used to self-host a [GoatCounter](https://www.goatcounter.com/) instance but personally I don't really care about traffic so I got rid of that. There are some standard reports I get from my [CDN provider on Azure](https://learn.microsoft.com/azure/cdn/cdn-advanced-http-reports), but again I don't really care about those metrics. What I do care about though is my output and understanding what I'm publishing and the topics that were important to me at any given time. In the case of those blog posts, it was for the year 2023. Given that I had already done the analysis and had written the script, I thought, why not automate it and run it on a more regular basis to have monthly summaries. Since my blog and scripts are already on GitHub, it makes sense to create a GitHub Action workflow. In this post, I discuss in more details what my post analytics script does and how I configured my workflow in GitHub Actions to run the script on the first of every month.  
+
+## The script
+
+This script loads the various posts on my website and computes aggregate metrics based on post types and their metadata. You can find the full script at [stats.fsx](/resources/snippets/lqdev-me-website-post-metrics).
+
+### Loading files
+
+The following are convenience functions which I use as part of my website build process. 
+
+In general these functions:
+
+- Load the individual post files
+- Parse the content and YAML metadata
+
+```fsharp
+let posts = loadPosts()
+let notes = loadFeed ()
+let responses = loadReponses ()
+```
+
+Instead of building new custom functions, I can repurpose them and apply additional transformations to compute aggregate statistics.
+
+### Computing aggregate statistics
+
+Once the posts are loaded, I apply transformations on the collections to compute aggregate metrics:
+
+#### Annual post counts
+
+The following are annual aggreagates of blog posts, notes, and responses. 
+
+##### Blog posts
+
+Takes the blog post collection, parses the published date, and computes counts by the year property. Then, it sorts them in descending order.
+
+```fsharp
+let postCountsByYear = 
+    posts
+    |&gt; Array.countBy (fun (x:Post) -&gt; DateTime.Parse(x.Metadata.Date) |&gt; _.Year)
+    |&gt; Array.sortByDescending fst 
+```
+
+##### Notes
+
+Takes the note collection, parses the published date, and computes counts by the year property. Then, it sorts them in descending order.
+
+```fsharp
+let noteCountsByYear = 
+    notes
+    |&gt; Array.countBy (fun (x:Post) -&gt; DateTime.Parse(x.Metadata.Date) |&gt; _.Year)
+    |&gt; Array.sortByDescending fst
+```
+
+##### Responses
+
+Takes the response collection, parses the published date, and computes counts by the year property. Then, it sorts them in descending order.
+
+```fsharp
+let responseCountsByYear = 
+    responses
+    |&gt; Array.countBy (fun (x:Response) -&gt; DateTime.Parse(x.Metadata.DatePublished) |&gt; _.Year)
+    |&gt; Array.sortByDescending fst
+```
+
+#### Response counts by type
+
+Takes the response collection, parses the published date, filters it for the current year, and computes counts by the post type (reply, bookmark, reshare, star).
+
+```fsharp
+let responsesByType = 
+    responses
+    |&gt; Array.filter(fun x -&gt; (DateTime.Parse(x.Metadata.DatePublished) |&gt; _.Year) = DateTime.UtcNow.Year)
+    |&gt; Array.countBy(fun x -&gt; x.Metadata.ResponseType)
+    |&gt; Array.sortByDescending(snd)
+```
+
+#### Tag counts (responses)
+
+Takes the response collection, parses the published date, filters it for the current year, and computes counts by the tag name, and sorts in descending order using the count.
+
+
+```fsharp
+let responsesByTag = 
+    responses
+    |&gt; Array.filter(fun x -&gt; (DateTime.Parse(x.Metadata.DatePublished) |&gt; _.Year) = DateTime.UtcNow.Year)
+    |&gt; Array.collect(fun x -&gt; 
+            match x.Metadata.Tags with
+            | null -&gt; [|"untagged"|]
+            | [||] -&gt; [|"untagged"|]
+            | _ -&gt; x.Metadata.Tags
+        )
+    |&gt; Array.countBy(fun x -&gt; x)
+    |&gt; Array.sortByDescending(snd)
+```
+
+#### Domain counts (responses)
+ 
+Takes the response collection, parses the published date, filters it for the current year, and computes counts by the target URL host name, and sorts it in descending order using the count.
+
+```fsharp
+let responsesByDomain = 
+    responses
+    |&gt; Array.filter(fun x -&gt; (DateTime.Parse(x.Metadata.DatePublished) |&gt; _.Year) = DateTime.UtcNow.Year)
+    |&gt; Array.countBy(fun x -&gt; Uri(x.Metadata.TargetUrl).Host)
+    |&gt; Array.sortByDescending(snd)
+```
+
+### Displaying counts
+
+Since the `countBy` function is the one used to compute the counts, this produces a tuple. The tuple though could be `string` or `int`. Therefore, I set the collection of entry counts to use a generic `'a` for the first item in the tuple. I'm also able to control using `n` whether to display the entire collection by using `-1` as input or a limit when `n &gt;= 0`.
+
+```fsharp
+let printEntryCounts&lt;'a&gt; (title:string) (entryCounts:('a * int) array) (n:int) = 
+    printfn $"{title}"
+
+    match n with 
+    | n when n = -1 -&gt; 
+        entryCounts
+        |&gt; Array.iter(fun x -&gt; printfn $"{fst x} {snd x}")
+        |&gt; fun _ -&gt; printfn $""
+    | n when n &gt;= 0 -&gt; 
+        entryCounts
+        |&gt; Array.take n
+        |&gt; Array.iter(fun x -&gt; printfn $"{fst x} {snd x}")
+        |&gt; fun _ -&gt; printfn $""
+```
+
+The result of running this script produces the following results:
+
+```text
+Blogs
+2023 5
+2022 7
+
+Notes
+2023 34
+2022 36
+
+Responses
+2023 216
+2022 146
+
+Response Types
+bookmark 151
+reshare 48
+reply 10
+star 7
+
+Response Tags
+ai 104
+llm 42
+untagged 41
+opensource 31
+internet 17
+
+Domains
+github.com 15
+huggingface.co 11
+arxiv.org 10
+openai.com 6
+www.theverge.com 4
+```
+
+## The workflow file
+
+The workflow file is a GitHub Actions workflow which you can find in my [website repo](https://github.com/lqdev/luisquintanilla.me/blob/main/.github/workflows/stats.yml).  
+
+### Triggers
+
+I don't really want the script to run every time I publish my website. Instead, I just want to have these aggregate values computed on a monthly basis. Optionally though, I'd like to be able to run ad-hoc reports and trigger this job manually.
+
+The triggers in my workflow file look like the following:
+
+```yaml
+schedule: 
+  - cron: '30 0 1 * *'
+workflow_dispatch: 
+```
+
+Using cron job syntax, I use the `schedule` trigger to configure the script to run at 12:30 AM on the 1st day of every month.
+
+The `workflow_dispatch` trigger is there so I can manually trigger this job.
+
+## Steps
+
+The steps in the workflow file are the following:
+
+- Check out the repo
+
+    ```yaml
+    - uses: actions/checkout@v2
+    ```
+
+
+- Install the .NET 8 SDK
+
+    ```yaml
+    - name: Setup .NET SDK 8.x
+      uses: actions/setup-dotnet@v1.9.0
+      with: 
+        dotnet-version: '8.0.x'    
+    ```
+
+- Restore dependencies
+
+    ```yaml
+    - name: Install dependencies
+      run: dotnet restore    
+    ```
+
+- Build the project
+
+    ```yaml
+    - name: Build project
+      run: dotnet build --no-restore  
+    ```
+
+- Run the script and display metrics
+
+    ```yaml
+    - name: Display Post Metrics
+      run: dotnet fsi Scripts/stats.fsx
+    ```
+
+## Conclusion
+
+If you have scripts that you run on a repo on a fairly regular basis, consider using GitHub Actions to automate the execution of these scripts. Happy coding! ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/website-metrics-github-actions</link>
+      <guid>https://www.lqdev.me/posts/website-metrics-github-actions</guid>
+      <pubDate>2023-12-24 13:24 -05:00</pubDate>
+      <category>github</category>
+      <category>cicd</category>
+      <category>website</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>web</category>
+      <category>internet</category>
+      <category>fsharp</category>
+      <category>dotnet</category>
+    </item>
+    <item>
+      <title>(We)blogging Rewind 2023 Continued</title>
+      <description>&lt;![CDATA[&lt;p&gt;Yesterday I posted aggregate statistics about this website in the post &lt;a href="https://www.lqdev.me/notes/weblogging-rewind-2023/"&gt;(We)blogging Rewind 2023&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I thought it'd be cool to see which domains I referenced most in my responses. Here's the breakdown of the top 5.&lt;/p&gt;
+&lt;p&gt;Domain&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;github.com&lt;/p&gt;
+&lt;p&gt;15&lt;/p&gt;
+&lt;p&gt;huggingface.co&lt;/p&gt;
+&lt;p&gt;11&lt;/p&gt;
+&lt;p&gt;arxiv.org&lt;/p&gt;
+&lt;p&gt;10&lt;/p&gt;
+&lt;p&gt;openai.com&lt;/p&gt;
+&lt;p&gt;6&lt;/p&gt;
+&lt;p&gt;www.theverge.com&lt;/p&gt;
+&lt;p&gt;4&lt;/p&gt;
+&lt;p&gt;No surprise here given that AI was one of the top tags in my responses.&lt;/p&gt;
+&lt;p&gt;Updated script is here &lt;a href="https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics"&gt;stats.fsx&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/weblogging-rewind-2023-continued</link>
+      <guid>https://www.lqdev.me/notes/weblogging-rewind-2023-continued</guid>
+      <pubDate>2023-12-24 09:39 -05:00</pubDate>
+      <category>weblogging</category>
+      <category>quantifiedself</category>
+      <category>indieweb</category>
+      <category>stats</category>
+      <category>analytics</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>opensource</category>
+      <category>community</category>
+      <category>selfhost</category>
+      <category>fsharp</category>
+      <category>spotify</category>
+      <category>antennapod</category>
+      <category>microblog</category>
+      <category>analytics</category>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+    </item>
+    <item>
+      <title>(We)blogging Rewind 2023</title>
+      <description>&lt;![CDATA[&lt;p&gt;Inspired by &lt;a href="https://www.lqdev.me/notes/spotify-wrapped-2023"&gt;Spotify Wrapped&lt;/a&gt; and &lt;a href="https://www.lqdev.me/notes/antennapod-echo-2023"&gt;Antennapod Echo&lt;/a&gt;, I decided to look back at my activity on this website for 2023. Here is the &lt;a href="https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics"&gt;snippet&lt;/a&gt; I used to generate these metrics.&lt;/p&gt;
+&lt;h2&gt;Posts by Year&lt;/h2&gt;
+&lt;h3&gt;Blog&lt;/h3&gt;
+&lt;p&gt;Blog posts are my more formal, long-form content. This year, I published less blog posts than last year.&lt;/p&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;5&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;Part of that includes me getting in my head about what these posts &amp;quot;should be&amp;quot;. Historically, they have been detailed technical posts related to a project I've worked on like &lt;a href="https://www.lqdev.me/posts/receive-webmentions-fsharp-az-functions-fsadvent"&gt;Accept Webmentions using F#, Azure Functions, and RSS&lt;/a&gt;. I haven't stopped experimenting and tinkering, but because they aren't end-to-end solutions, I don't think of them as &amp;quot;blog post worthy&amp;quot;. That doesn't mean though that learnings and growth haven't come from them. In more recent blog posts like &lt;a href="https://www.lqdev.me/posts/ai-1999-1899"&gt;AI like it's 1999 or 1899&lt;/a&gt; and &lt;a href="https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023"&gt;Quick thoughts about Snapdragon Summit 2023&lt;/a&gt;, I've started experimenting more with just posting. In 2024, I want to be more flexible in my posting and not worry too much about whether the blog posts are &amp;quot;good enough&amp;quot;.&lt;/p&gt;
+&lt;h3&gt;Microblog&lt;/h3&gt;
+&lt;p&gt;This site also contains a microblog feed, one for &lt;a href="https://www.lqdev.me/feed"&gt;notes&lt;/a&gt; and another for &lt;a href="https://www.lqdev.me/feed/responses"&gt;responses&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Notes&lt;/h4&gt;
+&lt;p&gt;Notes tend to be original content that although can include links to external content, they are short-form and informal versions of blog posts. This post is an example of a note. This year, I posted less notes than last year.&lt;/p&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;33&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;36&lt;/p&gt;
+&lt;p&gt;Usually, when these notes start to get long, I turn them into blog posts. &lt;a href="https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023"&gt;Quick thoughts about Snapdragon Summit 2023&lt;/a&gt; is an example of that. However, I haven't set a criteria for what makes a note &amp;quot;long&amp;quot;. This post for example I think is getting to the &amp;quot;blog post&amp;quot; length. I can't tell you why though, it's just &amp;quot;vibes&amp;quot;. One of the benefits of starting with notes types of posts is that the frame of mind is more informal which lets me just write and post without thinking too much about what the post &amp;quot;should be&amp;quot;. In 2024, I want to continue using notes as the starting point for these types of posts. Maybe later in the future, I just merge them both.&lt;/p&gt;
+&lt;h4&gt;Responses&lt;/h4&gt;
+&lt;p&gt;Responses are reactions to content created / published by someone else. These can include bookmarks, replies, likes (star), and reposts (reshare). This year, I posted significantly more responses than last year.&lt;/p&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;216&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;146&lt;/p&gt;
+&lt;p&gt;I'm very happy with this, especially my bookmark use explained later. Not only am I happy because I'm actually making use of my website and the work I put in previous years that enabled me to publish all types of content but also because these responses create a log of my interactions with the internet over the years I can look back at.&lt;/p&gt;
+&lt;h2&gt;Responses by Type&lt;/h2&gt;
+&lt;p&gt;Looking deeper into my responses and breaking them down by type, bookmarks take up the top spot with more than half of my responses being bookmarks. That makes sense since I'm usually bookmarking articles, papers, and other content I come across on the internet.&lt;/p&gt;
+&lt;p&gt;Type&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;bookmark&lt;/p&gt;
+&lt;p&gt;151&lt;/p&gt;
+&lt;p&gt;reshare&lt;/p&gt;
+&lt;p&gt;48&lt;/p&gt;
+&lt;p&gt;reply&lt;/p&gt;
+&lt;p&gt;10&lt;/p&gt;
+&lt;p&gt;star&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;Let me start off with bookmarks. Bookmark style reponses on my website have slowly become my default capture system. Now, not everything I read and come across makes it onto my bookmarks. I'm experimenting with the first pass which I might just turn into another post. Generally, the things that are interesting or thought provoking, I post. Bookmark posts generally include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Post title - Gives me a readable way to see what the post is about&lt;/li&gt;
+&lt;li&gt;Source link - Provides a direct link to the source material&lt;/li&gt;
+&lt;li&gt;Tags - Enable me to index and organize related topics&lt;/li&gt;
+&lt;li&gt;Quotes / Notes - Provide highlights and things I thought were interesting about the post&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When all these pieces come together, they provide me with distilled bits of information that are organized in a way that enable quick retrieval and action when needed.&lt;/p&gt;
+&lt;p&gt;Moving on to other posts. Since the post type is effectively just metadata, the line between reshare, star, and reply is often blurry. It's not as blurry with replies because I use that to draft replies / comments to other posts and content on the internet. My &lt;a href="https://www.lqdev.me/responses/tracy-durnell-20-blogging-anniversary"&gt;Tracy Durnell 20th anniversary of blogging&lt;/a&gt; post is an example of a reply. In these examples, the replies were directed at someone. However, for star and reshare, I'm still trying to understand where they fit in my flow. Today other than visually expressing the post type, the role these post types serve is webmentions. However, I'm not sure how many websites I create these post types for actually use webmentions. Maybe some analysis worth doing for 2025.&lt;/p&gt;
+&lt;h2&gt;Responses by Tag (Top 5)&lt;/h2&gt;
+&lt;p&gt;AI and LLMs took the top spots which I think in general aligns with what was top of mind for everyone in 2023.&lt;/p&gt;
+&lt;p&gt;Tag&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;ai&lt;/p&gt;
+&lt;p&gt;104&lt;/p&gt;
+&lt;p&gt;llm&lt;/p&gt;
+&lt;p&gt;42&lt;/p&gt;
+&lt;p&gt;untagged&lt;/p&gt;
+&lt;p&gt;41&lt;/p&gt;
+&lt;p&gt;opensource&lt;/p&gt;
+&lt;p&gt;31&lt;/p&gt;
+&lt;p&gt;internet&lt;/p&gt;
+&lt;p&gt;17&lt;/p&gt;
+&lt;p&gt;Not much commentary here. Tags have helped me organize related content on my website. I do think that I get too high level with my tags and could do a better job of being more specific. Ultimately, there's no limit to the number of tags I can use so why not be liberal with it. The only self-imposed limitation I've placed on myself is the first 3 tags should be the most important because they're the ones that show up when my articles are automatically cross-posted to Mastodon.&lt;/p&gt;
+&lt;h2&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;Overall, I'm happy with my activity and heavy use of my own website this year. I plan to make even more use of the bookmark type of posts in 2024 and plan on posting more whether that's as a note or blog post, just posting is something I want to work towards.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/weblogging-rewind-2023</link>
+      <guid>https://www.lqdev.me/notes/weblogging-rewind-2023</guid>
+      <pubDate>2023-12-23 02:28 -05:00</pubDate>
+      <category>weblogging</category>
+      <category>quantifiedself</category>
+      <category>indieweb</category>
+      <category>stats</category>
+      <category>analytics</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>opensource</category>
+      <category>community</category>
+      <category>selfhost</category>
+      <category>fsharp</category>
+      <category>spotify</category>
+      <category>antennapod</category>
+      <category>microblog</category>
+      <category>analytics</category>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+    </item>
+    <item>
+      <title>Generate QR Codes for MeCard Data in F#</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+Today I learned about MeCard file formats for representing contact information while reading the post [Sharing contacts using QR Code without requiring a network connection](https://andregarzia.com/2023/10/sharing-contacts-using-qr-code.html) by Andre Garzia.
+
+Currently I host my [vCard](../vcard.vcf) on my site in a very similar way Andre describes in his post. I've also encoded it in [QR Code format](http://cdn.lqdev.tech/files/images/contact/qr-vcard.svg) to make it easy to import and share.  
+
+When I saw the MeCard format, I immediately liked how simple it was so I decided to see how difficult it'd be to write some code to generate a QR code for my own contact data.
+
+## What is MeCard?
+
+According to Wikipedia, MeCard is "...a data file similar to vCard...It is largely compatible with most QR-readers for smartphones. It is an easy way to share a contact with the most used fields. Usually, devices can recognize it and treat it like a contact ready to import."
+
+An example might look like: `MECARD:N:Doe,John;TEL:13035551212;EMAIL:john.doe@example.com;;`
+
+## Encoding text as a QR code using F#
+
+I'd written a [snippet](/resources/snippets/qr-code-generator) a few years ago to help me generate the QR Codes for all accounts in [my contact page](/contact).
+
+The snippet is a F# Interactive script which uses [Net.Codecrete.QrCodeGenerator NuGet package](https://www.nuget.org/packages/Net.Codecrete.QrCodeGenerator) to encode text as a QR code and saves it to an SVG file. 
+
+The core logic consists of the following code:
+
+```fsharp
+let createQrCode (savePath:string) (target:string) = 
+    let qr = QrCode.EncodeText(target,QrCode.Ecc.High)
+    let svgString = qr.ToSvgString(4)
+    File.WriteAllText(savePath,svgString, Encoding.UTF8)
+```
+
+In this case `target` is the text I want to encode and `savePath` is the path of the SVG file I'm saving the generated QR code in. 
+
+Given MeCard with the following content:
+
+```csharp
+MECARD:N:Doe,John;TEL:13035551212;EMAIL:john.doe@example.com;;
+```
+
+The QR Code generated might look as follows:
+
+![MECARD QR CODE](http://cdn.lqdev.tech/files/images/mecard.svg)
+
+Scanning the QR Code with a smartphone would then immediately recognize it as a contact and prompt you to save the contact information to your device.
+
+## Conclusion
+
+Since I already had the code snippet to do this available, creating a MeCard was straightforward. I've since added my [MeCard](/mecard.txt) alongside by vCard. You can check out the corresponding [QR code](http://cdn.lqdev.tech/files/images/contact/qr-mecard.svg) in my [contact](/contact) page.]]&gt;</description>
+      <link>https://www.lqdev.me/posts/generate-mecard-qr-code-fsharp</link>
+      <guid>https://www.lqdev.me/posts/generate-mecard-qr-code-fsharp</guid>
+      <pubDate>2023-10-23 19:24 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>fsharp</category>
+      <category>qrcode</category>
+    </item>
+    <item>
+      <title>fsharpConf 2023</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;I'm really enjoying the sessions. Kudos to the team who put it together and presenters delivering great content.&lt;/p&gt;
+&lt;p&gt;If you're interested, check out the stream at &lt;a href="http://fsharpconf.com/"&gt;http://fsharpconf.com/&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/fsharp-conf-2023</link>
+      <guid>https://www.lqdev.me/responses/fsharp-conf-2023</guid>
+      <pubDate>2023-06-26 13:02 -05:00</pubDate>
+      <category>fsharp</category>
+      <category>fsharpConf</category>
+      <category>dotnet</category>
+      <category>programming</category>
+      <category>community</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>Fitch: CLI system information utility built with F#</title>
+      <description>&lt;![CDATA[&lt;p&gt;I wasn't really planning on this, but here we are. I've been using &lt;a href="https://github.com/dylanaraps/neofetch"&gt;Neofetch&lt;/a&gt; on my PC to display system information whenever the terminal opens. However, in some cases, that would hang and it would take a while before I was able to use my terminal.&lt;/p&gt;
+&lt;p&gt;I then ran into &lt;a href="https://github.com/unxsh/nitch"&gt;Nitch&lt;/a&gt; which is simple and fast. However, it was missing the local and public IP information Neofetch provides out of the box. Nitch is written using the &lt;a href="https://nim-lang.org/"&gt;Nim&lt;/a&gt; programming language. Originally, I had planned on extending Nitch and I figured out the code I needed to write to support IP information. However, my program wouldn't build and I was unable to find any information online to unblock myself.&lt;/p&gt;
+&lt;p&gt;That's when I looked at the existing components in Nitch and found that it was basically just reading files from the &lt;code&gt;/proc&lt;/code&gt; and &lt;code&gt;/etc&lt;/code&gt; system directories. At that point, I decided to see if I could build my own utility using F#. A couple of hours later and the result was &lt;a href="https://www.lqdev.me/github/fitch"&gt;Fitch&lt;/a&gt;. This works well enough for my needs and in the future, I might publish it as a dotnet global tool to make it easy for others to use.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/fitch-display.png" class="img-fluid" alt="Screeenshot of command line running Fitch F# System Utility" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/fitch-fsharp-cli-v0</link>
+      <guid>https://www.lqdev.me/notes/fitch-fsharp-cli-v0</guid>
+      <pubDate>2022-12-25 20:10 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>fsharp</category>
+      <category>linux</category>
+      <category>system</category>
+      <category>utilities</category>
+      <category>cli</category>
+      <category>fitch</category>
+    </item>
+    <item>
+      <title>Accept Webmentions using F#, Azure Functions, and RSS</title>
+      <description>&lt;![CDATA[
+# Introduction 
+
+&gt; This post is part of [F# Advent 2022](https://sergeytihon.com/2022/10/28/f-advent-calendar-in-english-2022/). Thanks to [Sergey Tihon](https://sergeytihon.com) for organizing it. 
+
+While not planned this way, this post is timely considering recent developments in the social media space. While Twitter is in the headlines, it's not the only time people have questioned their engagement and relationship with these social media platforms. In the context of Twitter though, users have been looking for alternative platforms to best serve their communities. While Mastodon and the Fediverse appear to be one of those alternatives, they're not the only one. Blogosphere platforms like Tumblr and WordPress, both owned by Automattic, are also positioning themselves as viable alternatives to the point they've [considered the idea of supporting ActivityPub](https://techcrunch.com/2022/11/21/tumblr-to-add-support-for-activitypub-the-social-protocol-powering-mastodon-and-other-apps/). ActivityPub is the protocol that powers many of the platforms on the Fediverse. However, it's not the only open protocol that enables communication and engagement on the open web. Webmentions is another protocol for enabling conversations on the web which I'll talk about more in this post. 
+
+I'll also discuss how I used F#, Azure Functions, and RSS to implement a solution that helps me and my website engage in conversations on the open web thanks to Webmentions. 
+
+## What are Webmentions?
+
+First, let's start by talking a bit about Webmentions. 
+
+According to the W3C specification, Webmentions are "...a simple way to notify any URL when you mention it on your site. From the receiver's perspective, it's a way to request notifications when other sites mention it.". 
+
+One of the goals according to the IndieWeb wiki is to enable cross-site conversations.  
+
+Here's how a potential Webmention workflow might look like:
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor A as Alice
+  participant AS as Alice's "Website"
+  participant AW as Alice's Webmention Service
+  participant BS as Bob's "Website"
+  actor B as Bob
+  A -&gt;&gt; AS: Publishes post
+  B -&gt;&gt; AS: Reads post
+  B -&gt;&gt; BS: Publishes post with link to Alice's post
+  rect rgb(230,230,230)
+    alt Automated
+      BS -&gt;&gt; AS: Fetch Webmention endpoint
+      BS -&gt;&gt; AW: Sends Webmention
+    else Manual
+      B -&gt;&gt; AS: Fetch Webmention endpoint
+      B -&gt;&gt; AW: Sends Webmention
+    end 
+  end
+  rect rgb(230,230,230)
+      note over AW:Validates Webmention request
+      note over AW: Validates Webmention
+      note over AW: Accepts / processes Webmention
+      alt Automated
+        AW -&gt;&gt; BS: Sends back response
+      else Manual
+        AW -&gt;&gt; B: Sends back response
+      end
+  end 
+  opt Display Webmentions
+    AS -&gt;&gt; AW: Fetch Webmentions
+    note over AS: Display / publish Webmentions
+  end
+```
+
+I use the term website here very loosely because it's not only limited to your own personal website. You can technically use Webmentions through any public website including social media platforms like Twitter, Mastodon, or even GitHub.
+
+This post will focus on the middle blocks consisting of sending and receiving Webmentions. For more information, check out the [specification](https://www.w3.org/TR/webmention/#abstract-p-1) and [Webmentions page](https://indieweb.org/Webmention) on the IndieWeb wiki. 
+
+## My webmention solution
+
+In September of this year, I [integrated a partial implementation of Webmentions](/notes/webmentions-partially-implemented/) into my website. This implementation only allowed me to send webmentions as part of my publishing process. If you're interested in the details, it's based on the blog post I wrote for last year's F# Advent, [Sending Webmentions with F#](/posts/sending-webmentions-fsharp-fsadvent/).
+
+A couple of days ago, I [successfully deployed and integrated](/notes/now-accepting-webmentions) the other part of the implementation which allowed me to receive webmentions. While there are many great [services](https://indieweb.org/Webmention#Publisher_Services) which will do this for you, I decided to roll my own for fun and to learn something new. 
+
+To help with that, I released [WebmentionFs](https://www.nuget.org/packages/lqdev.WebmentionFs), an open-source .NET library written in F# with components for sending and receiving Webmentions.
+
+The backend service I use to receive webmentions is built on Azure Functions. 
+
+If you're interested, here's the source code for [WebmentionFs](https://github.com/lqdev/WebmentionFs) and my [Webmention service](https://github.com/lqdev/WebmentionService). 
+
+Before diving into the technical details of the solution, I'll first discuss some of the priorities driving my design decisions. 
+
+### Requirements
+
+While I don't want to trivialize it, at the end of the day, the Webmention service is just an endpoint that accepts HTTP POST requests. That means there's many ways to build it. However, here were the requirements important to me that guided my design choices:
+
+- **Cost:** The solution should be low cost
+- **Maintenance:** The solution should be easy to maintain
+- **Easy to consume:** I have multiple ways to view and access my webmentions.
+- **Notifications first:** Since I don't own or have responsibility over content that's not mine, prioritize Webmentions for notifications, not content.
+
+With that in mind, I ended up choosing a solution built on Azure Functions to receive Webmentions and publish them as an RSS feed. 
+
+### Why Azure Functions?
+
+I don't make money from my website. It's a labor of love in which I document my experiences. Selfishly, it's for me to remind myself how to solve a problem or share something that was important to me at that time. If my posts end up helping others solve their own problems, that's a side effect and a reward unto itself. To that effect, I want my website to be as low-cost to run as possible. One way I achieve that is by using static hosting. This dramatically reduces the cost associated with my site. If you're interested in how this site is built, you can check out the [colophon](/colophon).
+
+So where do Azure Functions come in? 
+
+Azure Functions is a serverless solution which means there are no servers! (I kid :smirk:)
+
+#### Cost :heavy_check_mark:
+
+As a serverless solutions, it means web services are not constantly running. They only run whenever there is something to process so I only pay for what I need. That takes care of my low-cost requirement since processing Webmentions is not a long-running, resource-intensive operation that can easily run in a serverless environment.
+
+#### Maintenance :heavy_check_mark:
+
+Cost is not only monetary. There are also time costs associated with maintaining a solution. Because there is no infrastructure to maintain, that's not really a factor I need to consider. Instead I get to focus on writing the logic for accepting and processing Webmentions. Azure Functions provides a set of [prebuilt trigger and binding components](https://learn.microsoft.com/azure/azure-functions/functions-triggers-bindings) to reduce the amount of code I have to write to handle things like accepting HTTP requests or storing data in a table or blob storage. Also, in the rare instance that this blog post breaks the internet, Azure Functions enables my service to automatically handle that scale. Don't believe me? Check out this post frorm [Troy Hunt](https://www.troyhunt.com/) on [Have I Been Pwned usage of Azure Functions](https://www.troyhunt.com/serverless-to-the-max-doing-big-things-for-small-dollars-with-cloudflare-workers-and-azure-functions/).
+
+### Why RSS?
+
+The choice of how to display and consume Webmentions is entirely up to you. At regular intervals, my Webmention service generates an RSS feed and publishes it to a private Azure Blob Storage. Here are some of the reasons why:
+
+#### Easy to consume :heavy_check_mark:
+
+The decision to use RSS comes from the fact that like Webmentions, it's an open protocol that gives choice to creators and consumers. Check out my post, [Rediscovering the RSS protocol](/posts/rediscovering-rss-user-freedom) for more of my thoughts on that. Despite the appearance of decline in use, it's a protocol that's been around for over 20 years and it's one of the many reasons why podcasts continue to be one of the more open platforms despite some attempts to lock down the ecosystem.  With that it mind, by choosing RSS as the publishing format for my Webmentions feed, I can lean on the vast number of RSS readers ([NewsBlur](http://newsblur.com/) and [Elfeed](https://github.com/skeeto/elfeed) being my favorites) out there instead of having to write a custom UI. Not happy with my RSS reader? I can just add my feed to whichever other reader I move to and continue consuming my Webmentions without skipping a beat. 
+
+### Notifications first :heavy_check_mark:
+ 
+While not technical or specific to RSS, this is a topic I wrestled with as part of my implementation. However, choosing RSS made many parts of it simpler. 
+
+Who owns your content? If you publish on your own website or a platform under your control, chances are you do. If I publish and redistribute your content on my website though, what parts do I own and which parts do you? I'm not sure. What about spam, harrassment, and lewd content? I'd have to put in place some sort of moderation instead of publishing directly on my site. I didn't want to have to deal with any of these questions so choosing to publish to a private RSS feed instead of directly on my site made it so Webmentions are for my eyes only. More importantly, I only capture the source and target links, not the content. Therefore, I don't store or redistribute your content. Now there's nothing stopping anyone from seeing your post since it's public but in cases where your site's content is not something I'm comfortable with, I'm not resharing or redistributing that content. If my RSS reader chooses to display the full contents of your post by using the `link` element from the RSS feed, since your post is public, that's no different than me viewing the original post on your site. If at some point I feel differently about it, the changes to capture the content in the `description` happen at the RSS file level and because the RSS is private, I'm still not redistributing your content. 
+
+In short, with my implementation I chose to prioritize Webmentions for notification purposes rather than building a commenting and interaction (like, reshare) system for my website. 
+
+Now that I've talked about the what and the why, in the next sections I'll get into the how. 
+
+## Sending Webmentions
+
+Once you've created a post linking to someone else's website, sending webmentions is a two-step process:
+
+1. URL discovery of webmention endpoint
+2. Send webmention
+
+These steps can be automated or performed manually. 
+
+### URL discovery of Webmention endpoint
+
+The first thing you'll need is the endpoint where you'll be sending your Webmention to.
+
+According to the Webmention specification, a Webmention endpoint can be found in one of three places:
+
+- HTTP response headers
+- `&lt;link&gt;` tag with `rel=webmention` attribute
+- `&lt;a&gt;` tag with `rel=me` attribute
+
+When this process is automated, the discovery is performed in order and each subsequent option works as a fallback of the other. When done manually, either the website author will publish and advertise this on their website or you can inspect the website's source code to find it.  
+
+### Send webmention
+
+To send a Webmention, you need to send an HTTP POST request with an `x-www-form-urlencoded` body containing two properties: `source` and `target`. Source is the URL of your article and target is the URL of the original article. Again, this too can either be automated or done manually with tools like cURL, Insomnia, or any other HTTP client.  
+
+### Sending Webmentions in practice
+
+Let's use a redundant example to walk through the workflow. Pretend that you created or commented on a GitHub issue and added a link to one of my articles, [Sending Webmentions with F#](/posts/sending-webmentions-fsharp-fsadvent/) for example. You then wanted to notify me either to get my attention on that issue or just as an FYI. Now I say this is a redundant example because GitHub already has notifications. However, what this does illustrate are the cross-site capabilities of Webmentions. 
+
+![Image of GitHub Issue Post](http://cdn.lqdev.tech/files/images/send-gh-issue.png)
+
+At this point, if GitHub implemented Webmentions, it would automatically:
+
+1. Fetch my webpage and look for my Webmention endpoint.
+1. Compose and send the HTTP POST request.  
+
+Sadly, today that's not the case so we'll walk through the workflow manually.  
+
+On my website, I include a `link` tag with the `rel=webmention` attribute that looks like the following:
+
+```html
+&lt;link rel="webmention" title="Luis Quintanilla Webmention Endpoint" href="https://lqdevwebmentions.azurewebsites.net/api/inbox"&gt;
+```
+
+My current Webmention endpoint is *https://lqdevwebmentions.azurewebsites.net/api/inbox*.
+
+Now that you have the Webmention endpoint, you could use any tool of your choice to create and send the HTTP POST request. I have made it simpler though and included a form on my website for each of my posts for this purpose. 
+
+![luisquintanilla.me send Webmention form](http://cdn.lqdev.tech/files/images/send-webmention-form.png)
+
+The source code looks like the following:
+
+```html
+&lt;div&gt;
+    &lt;script type="application/javascript"&gt;window.onload = function() { document.getElementById('webmention-target').value = window.location.href }&lt;/script&gt;
+    &lt;form action="https://lqdevwebmentions.azurewebsites.net/api/inbox" method="POST" enctype="application/x-www-form-urlencoded"&gt;
+        &lt;h5 class="text-center"&gt;Send me a &lt;a href="https://indieweb.org/webmentions"&gt;webmention&lt;/a&gt;&lt;/h5&gt;
+        &lt;div class="form-row justify-content-center"&gt;
+            &lt;div class="w-75"&gt;
+                &lt;input type="text" name="source" class="form-control" placeholder="Your URL (source)"&gt;
+            &lt;/div&gt;
+            &lt;div class="col-auto"&gt;
+                &lt;input type="submit" class="btn btn-primary" value="Send"&gt;
+            &lt;/div&gt;
+            &lt;input readonly="" class="form-control-plaintext" style="visibility:hidden" type="text" id="webmention-target" name="target"&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+```
+
+Now to send the webmention, navigate to the post you want to send a Webmention to. In this case, it's [Sending Webmentions with F#](/posts/sending-webmentions-fsharp-fsadvent/). Then, paste the link to the GitHub issue that contains the link to my site into the post's text box and hit "Send". 
+
+![luisquintanilla.me send Webmention form filled-in](http://cdn.lqdev.tech/files/images/send-webmention-form-populated.png)
+
+At that point, the request is sent to my Webmention service which receives and processes the request and responds with a message whether the request was successful or not. 
+
+That's all there is to it! Before moving the the receiving process though, I'll briefly show how to send Webmentions using WebmentionFs. 
+
+### Sending Webmentions with WebmentionFs
+
+In WebmentionFs, you can use the [`UrlDiscoveryService`](https://github.com/lqdev/WebmentionFs/blob/main/UrlDiscoveryService.fs) and [`WebmentionSenderService`](https://github.com/lqdev/WebmentionFs/blob/main/WebmentionSenderService.fs) to send Webmentions. If you wanted to integrate sending Webmentions into your application or service, here's an example that shows how you'd use those components.
+
+```fsharp
+open System
+open WebmentionFs
+open WebmentionFs.Services
+
+let ds = new UrlDiscoveryService()
+
+let ws = new WebmentionSenderService(ds)
+
+let data = 
+    {   
+        Source = new Uri("https://twitter.com/ljquintanilla/status/1603602055435894784")  
+        Target = new Uri("/feed/mastodon-hashtag-rss-boffosocko")
+    }
+
+ws.SendAsync(data) |&gt; Async.AwaitTask |&gt; Async.RunSynchronously
+```
+
+The main part to pay attention to is the `SendAsync` function. This uses the `UrlDiscoveryService` to perform the Webmention endpoint discovery and send the HTTP POST request with the provided data. 
+
+## Receiving webmentions
+
+Now that you know how to send webmentions, let's talk about what happens on the receiver end. At its core, it's about a three-step process:
+
+1. Validate request
+1. Validate Webmention
+1. Process Webmention
+
+### Validate request
+
+Before processing the Webmention, you want to make sure that the request is valid. To do so there are a few checks you perform:
+
+1. Is the protocol valid? Check that the protocol for the source and target URLs in the request body are HTTP or HTTPS.
+1. Are the URLs the same? Check that the source and target URLS in the request body are NOT the same. 
+1. Is the target URL a valid resource? This is more loosely defined and up to you. In my case I defined valid as: 
+    - I own the domain
+    - The target URL doesn't return an HTTP 400 or 500 error. 
+
+If the request is not valid, nothing is done with the Webmention and an error returns. Otherwise, it moves to the next step which is Webmention validation. 
+
+### Validate Webmention
+
+In the base case, Webmention validation just means you parse through the source document and make sure that the target URL is included in it. However, if you wanted to get more complex and take into account specific types of interactions such as likes, replies, reposts, bookmarks, etc. you can parse through the document looking for [microformat](http://microformats.org/wiki/h-entry#Core_Properties) annotations. For more information on these annotations, see the [Types of Posts](https://indieweb.org/posts#Types_of_Posts) or [reply](https://indieweb.org/reply#Post_a_reply) pages in the IndieWeb Wiki. 
+
+If the target link is NOT in the source document, you return an error. Otherwise, you move to the next step of processing the Webmention
+
+### Processing Webmentions
+
+This step is optional and loosely defined. Once you've validated the request and Webmention, you can do with it as you please. One thing you can do is publish it (after moderation) on your website. 
+
+In my case, I'm storing it in an Azure Tables database. Then, every morning, I generate an RSS feed of all my webmentions and save it to a private container on Azure Blob Storage.  
+
+## Reciving Webmentions with WebmentionFs
+
+To receive Webmentions, I use the [`RequestValidationService`](https://github.com/lqdev/WebmentionFs/blob/main/RequestValidationService.fs), [`WebmentionValidationService`](https://github.com/lqdev/WebmentionFs/blob/main/WebmentionValidationService.fs) and [`WebmentionReceiverService`](https://github.com/lqdev/WebmentionFs/blob/main/WebmentionReceiverService.fs) inside my Azure Function. 
+
+The source code for my Azure Function is available in the [WebmentionService GitHub repo](https://github.com/lqdev/WebmentionService).
+
+The main components are in the `Startup.fs` and `ReceiveWebmention.fs` files. 
+
+The [`Startup.fs`](https://github.com/lqdev/WebmentionService/blob/main/Startup.fs) files registers each of the services I'll use to to receive Webmentions. By doing so, I define the initialization logic for use later in my application using dependency injection. The main thing to note here is that the `WebmentionReceiverService` is initialized with instances of a `RequestValidationService` and `WebmentionValidationService`. For the `RequestValidationService`, it's initialized with a list of host names. In this case, I'm passing it in as a comma-delimited environment variable that looks something like "lqdev.me,luisquintanilla.me". This is what the `RequestValidationService` uses to check whether I own a domain.
+
+```fsharp
+// Add request validation service
+builder.Services.AddScoped&lt;RequestValidationService&gt;(fun _ -&gt; 
+
+    let hostNames = Environment.GetEnvironmentVariable("PERSONAL_WEBSITE_HOSTNAMES")
+
+    let hostNameList = hostNames.Split(',')
+
+    new RequestValidationService(hostNameList)) |&gt; ignore
+
+
+// Add webmention validation service
+builder.Services.AddScoped&lt;WebmentionValidationService&gt;() |&gt; ignore
+
+// Add receiver service
+builder.Services.AddScoped&lt;IWebmentionReceiver&lt;Webmention&gt;,WebmentionReceiverService&gt;(fun (s:IServiceProvider) -&gt;
+    let requestValidationService = s.GetRequiredService&lt;RequestValidationService&gt;()
+    let webmentionValidationService = s.GetRequiredService&lt;WebmentionValidationService&gt;()
+    new WebmentionReceiverService(requestValidationService,webmentionValidationService)) |&gt; ignore
+```
+
+Then, in the [`ReceiveWebmention.fs`](https://github.com/lqdev/WebmentionService/blob/main/ReceiveWebmention.fs) file, I inject my `WebmentionReceiverService` into the constructor and add all the logic for running my serverless function in the `Run` function. In this snippet, some code is ommitted for brevity.
+
+```fsharp
+type ReceiveWebmention (webmentionReceiver: IWebmentionReceiver&lt;Webmention&gt;) = 
+
+    ///...
+
+    [&lt;FunctionName("ReceiveWebmention")&gt;]
+    member x.Run 
+        ([&lt;HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "inbox")&gt;] req: HttpRequest) 
+        ([&lt;Table("webmentions", Connection="AzureWebJobsStorage")&gt;] t: TableClient)
+        (log: ILogger) =
+        task {
+            
+            log.LogInformation("Processing webmention request")
+
+            let! validationResult = x.WebmentionReceiver.ReceiveAsync(req)
+
+            let response = 
+                match validationResult with
+                | ValidationSuccess m -&gt; 
+                    let entity = mapMentionToTableEntity m
+                    try
+                        t.AddEntity(entity) |&gt; ignore
+                        OkObjectResult("Webmention processed successfully") :&gt; IActionResult
+                    with
+                        | ex -&gt; 
+                            log.LogError($"{ex}")
+                            BadRequestObjectResult($"Error processing webmention. Webmention already exists") :&gt; IActionResult
+                | ValidationError e -&gt; 
+                    log.LogError(e)
+                    BadRequestObjectResult(e) :&gt; IActionResult
+
+            return response
+
+        }
+```
+
+The `Run` function is triggered whenever an HTTP POST request is made to my Webmention endpoint. It then calls `ReceiveAsync` on the `WebmentionReceiverService` which under the hood uses the `RequestValidationService` and `WebmentionValidationService` for validation. For reference, here's the code that does that in WebmentionFS.
+
+```fsharp
+member x.ReceiveAsync (data:UrlData) = 
+    task {
+        let! requestValidationResult = 
+            x.RequestValidationService.ValidateAsync data
+
+        match requestValidationResult with
+        | RequestSuccess r -&gt; 
+            let! webmentionValidationResult = 
+                x.WembentionValidationService.ValidateAsync r.Source r.Target
+
+            let (result:ValidationResult&lt;Webmention&gt;) = 
+                match webmentionValidationResult with
+                | AnnotatedMention m -&gt; 
+                    ValidationSuccess {RequestBody = r; Mentions = m}
+                | UnannotatedMention -&gt; 
+                    ValidationSuccess 
+                        {
+                            RequestBody = r
+                            Mentions = 
+                                {
+                                    IsBookmark = false
+                                    IsLike = false
+                                    IsReply = false
+                                    IsRepost = false        
+                                }
+                        }
+                | MentionError e -&gt; ValidationError e
+            return result
+        | RequestError e -&gt; return ValidationError e
+    }
+```
+
+&gt; A quick side-note. I love how elegant function composition in F# makes the request validation pipeline look. See for yourself :slightly_smiling_face:
+&gt; 
+&gt; ```fsharp
+&gt;let validateAsync = 
+&gt;    isProtocolValid &gt;&gt; isSameUrl &gt;&gt; isTargetUrlValidAsync
+&gt;```
+
+Inside my `Run` function, if the request and Webmention validation are successful, I use the Azure Table Storage table client `AddEntity` method to save the Webmention to a table. One thing to note is that `AddEntity` ensures that an entry is only added once. If an entry already exists in the table, it returns an error. 
+
+This is what the GitHub Webmention we sent looks like in the table.
+
+![Webmentions table on Azure Table Storage](http://cdn.lqdev.tech/files/images/webmentions-azure-table.png)
+
+In this case, the `PartitionKey` is the target URL and `RowKey` is the source URL. The fact all other columns are set to false indicates this is an untagged mention with no special microformats annotations. Annotating your posts appropriately would set one or more of those columns to true. 
+
+Now that we went over how I receive Webmentions, I'll show how I prepare my Webmentions for consumption. 
+
+## Viewing Webmentions
+
+I consume my Webmentions using RSS feeds and RSS readers. To do so, I have an Azure Function called [`WebmentionToRss`](https://github.com/lqdev/WebmentionService/blob/main/WebmentionToRss.fs) that triggers every day at 3 AM. This function queries the Azure Table Storage table containing my Webmentions and creates an RSS feed that's then stored to Azure Blob Storage. Like the other function to process my Webmentions, I:
+
+Register the `RssService` responsible for generating the RSS feed in `Startup.fs`.
+
+```fsharp
+// Add RSS service
+builder.Services.AddScoped&lt;RssService&gt;() |&gt; ignore
+```
+
+Inject the service into my `WebmentionToRss` constructor. Then in my `Run` function, I call the `getMentions` helper function to query the table, call `BuildRssFeed` to generate the feed, and write it out to Azure Blob Storage using a `Stream`.
+
+```fsharp
+type WebmentionToRss (rssService:RssService) =
+
+    let getMentions (t:TableClient) = 
+
+        //...
+
+        let webmentions = t.Query&lt;WebmentionEntity&gt;()
+
+        webmentions
+
+
+    //...
+
+    [&lt;FunctionName("WebmentionToRss")&gt;]
+    member x.Run
+        ([&lt;TimerTrigger("0 0 3 * * *")&gt;] info: TimerInfo)
+        ([&lt;Table("webmentions",Connection="AzureWebJobsStorage")&gt;] t: TableClient)
+        ([&lt;Blob("feeds/webmentions/index.xml", FileAccess.Write, Connection="AzureWebJobsStorage")&gt;] rssBlob: Stream)
+        (log: ILogger) =
+
+        task {
+            let mentions = getMentions t
+
+            let rss = x.RssService.BuildRssFeed mentions "lqdev's Webmentions" "http://lqdev.me" "lqdev's Webmentions" "en"
+
+            log.LogInformation(rss.ToString())                
+
+            use xmlWriter = XmlWriter.Create(rssBlob)
+
+            rss.WriteTo(xmlWriter) |&gt; ignore
+        }
+```
+
+Now, to view my feed I add the URL to the RSS file in Azure Blob Storage to my RSS feed reader. The container and blob containing the file are private though, so how does my RSS reader get access to the file? I don't use the direct link. Instead, I use a link containing a [Shared Access Signatures (SAS) token](https://learn.microsoft.com/azure/storage/common/storage-sas-overview#sas-token). 
+
+The RSS feed reader then fetches my Webmentions feed at regular intervals. 
+
+This is what the GitHub post looks like in my RSS reader.
+
+![Webmentions table on Azure Table Storage](http://cdn.lqdev.tech/files/images/newsblur-webmentions-rss-feed.png)
+
+That's all there is to it!
+
+## What's next?
+
+Overall I'm happy with my solution. I learned a few things along the way and got something working for myself. Publishing WebmentionFs as a library and making my Azure Function code open-source were attempts to help others looking to implement similar solutions get started. These solitions could be improved though. These are some updates I would like to make at some point:
+
+- Upgrade my website to use WebmentionFs for sending Webmentions. You can see the [current implementation](https://github.com/lqdev/luisquintanilla.me/blob/main/Services/Webmention.fs) on my website repo which is basically what's in `UrlDiscoveryService` and `WebmentionSenderService` today. 
+- Add interfaces for all services in WebmentionFs. Currently most services have concrete implementations. By adding interfaces, I can make the library extensible and you can implement your own URL discovery and validation services. 
+- Implement `outbox` enpoint in WebmentionService to handle sending Webmentions.
+- Create Azure ARM template for deploying WebmentionService. Currently with some small edits, you could fork and get my WebmentionService project working for your website. However, that process isn't turnkey today. Maybe using something like [Farmer](https://compositionalit.github.io/farmer/) would make onboarding easier for folks. 
+ 
+## Conclusion
+
+Webmentions are a great way to enable cross-site conversations on the internet. In this post, I provided a brief introduction to the general workflow for sending and receiving Webmentions. I also detailed my own implementation which I use today on my website. That implementation relies on the WebmentionFs .NET library, Azure Functions, and RSS. By using the WebmentionFs .NET library, you can more quickly implement similar solutions into your own apps and services. If you need a reference, check out my WebmentionService repository on GitHub which contains the code I use for receiving Webmentions. 
+
+I'll leave you with three things:
+
+1. As you consider the next platform for your next online home, in addition to considering the health of the community, take some time to also think about the protocols it's built on top of and whether they give you more or less freedom. 
+1. Try out the WebmentionFs library on NuGet and add Webmentions to your site.
+1. If you share this post anywhere publicly on the web, send me a Webmention.
+
+Catch you on the world wide web!]]&gt;</description>
+      <link>https://www.lqdev.me/posts/receive-webmentions-fsharp-az-functions-fsadvent</link>
+      <guid>https://www.lqdev.me/posts/receive-webmentions-fsharp-az-functions-fsadvent</guid>
+      <pubDate>2022-12-21 00:33 -05:00</pubDate>
+      <category>fsharp</category>
+      <category>indieweb</category>
+      <category>protocol</category>
+      <category>internet</category>
+      <category>web</category>
+      <category>dotnet</category>
+    </item>
+    <item>
+      <title>Now accepting webmentions</title>
+      <description>&lt;![CDATA[&lt;p&gt;It took me a while to get all the pieces working but I'm excited that my website now accepts &lt;a href="https://www.w3.org/TR/webmention/"&gt;webmentions&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;A few months ago I implemented &lt;a href="https://www.lqdev.me/notes/webmentions-partially-implemented/"&gt;sending webmentions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Accepting them was a bit tricky because there were a few design decisions I was optimizing for.&lt;/p&gt;
+&lt;p&gt;In the meantime, you can check out &lt;a href="https://github.com/lqdev/WebmentionFs"&gt;WebmentionFs&lt;/a&gt;, an F# library I built for validating and receiving webmentions along with the &lt;a href="https://github.com/lqdev/WebmentionService"&gt;WebmentionService&lt;/a&gt; Azure Functions backend that I'm using to process webmentions for my website.&lt;/p&gt;
+&lt;p&gt;Also, feel free to send me a webmention. Here's my endpoint for now &lt;a href="https://lqdevwebmentions.azurewebsites.net/api/inbox"&gt;https://lqdevwebmentions.azurewebsites.net/api/inbox&lt;/a&gt;. Check out this &lt;a href="https://www.lqdev.me/posts/sending-webmentions-fsharp-fsadvent/"&gt;blog post&lt;/a&gt; where I show how you can send webmentions using F#. You can use any HTTP Client of your choosing to send an HTTP POST request to that endpoint with the body containing a link to one of my articles (target) and the link to your post (source).&lt;/p&gt;
+&lt;p&gt;Stay tuned for a more detailed post coming on December 21st!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/now-accepting-webmentions</link>
+      <guid>https://www.lqdev.me/notes/now-accepting-webmentions</guid>
+      <pubDate>2022-12-18 22:41 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>webmentions</category>
+      <category>community</category>
+      <category>fsharp</category>
+      <category>azurefunctions</category>
+      <category>azure</category>
+    </item>
+    <item>
+      <title>Webmentions (partially) implemented</title>
+      <description>&lt;![CDATA[&lt;p&gt;Success! I just partially implemented &lt;a href="https://www.w3.org/TR/webmention/"&gt;Webmentions&lt;/a&gt; for my website. Although I haven't figured out a good way to receive Webmentions yet, I'm able to send them. Fortunately most of the work was done, as detailed in the post &lt;a href="https://www.lqdev.me/posts/sending-webmentions-fsharp-fsadvent/"&gt;Sending Webmentions with F#&lt;/a&gt;. The rest was mainly a matter of adapting it to my static site generator.&lt;/p&gt;
+&lt;p&gt;Below is an example of a &lt;a href="https://www.lqdev.me/responses/webmention-test-1/"&gt;post on my website&lt;/a&gt; being displayed in the &lt;a href="https://webmention.rocks/test/1"&gt;Webmention test suite website&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Source&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/190879250-4554750f-b435-4627-bad9-ecc3d96f9ed0.png" class="img-fluid" alt="Webmention on lqdev.me" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/190879274-f6566225-2173-4213-a3d0-eeb9fdc67df9.png" class="img-fluid" alt="Webmention displayed in webmention test suite" /&gt;&lt;/p&gt;
+&lt;p&gt;What does this mean? It means I can comment on any website I want, regardless of whether they allow comments or not. As if that weren't enough, I have full ownership of my content as my website is the single source of truth. As a bonus, if the website I comment on supports receiving Webmentions, my post will be displayed on their website / articles as a comment. The next step is to handle deleted comments, but so far I'm happy with the progress.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/webmentions-partially-implemented</link>
+      <guid>https://www.lqdev.me/notes/webmentions-partially-implemented</guid>
+      <pubDate>09/17/2022 19:59 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>webmentions</category>
+      <category>fsharp</category>
+      <category>website</category>
+    </item>
+    <item>
+      <title>Markdig Advanced Extensions</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Markdig advanced extensions are a series of CommonMark compliant syntax extensions for the markdown language.&lt;/p&gt;
+&lt;h2&gt;Task lists&lt;/h2&gt;
+&lt;p&gt;Tasks lists allow you to create unorder list items with checkboxes.&lt;/p&gt;
+&lt;h3&gt;Syntax&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-markdown"&gt;- [ ] Item1
+- [x] Item2
+- [ ] Item3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Output&lt;/h3&gt;
+&lt;ul class="contains-task-list"&gt;
+&lt;li class="task-list-item"&gt; Item1&lt;/li&gt;
+&lt;li class="task-list-item"&gt; Item2&lt;/li&gt;
+&lt;li class="task-list-item"&gt; Item3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Tables&lt;/h2&gt;
+&lt;h3&gt;Pipe tables&lt;/h3&gt;
+&lt;h4&gt;Syntax&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="language-markdown"&gt;| a | b | c
+| - | - | - 
+| 1 | 2 | 3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Output&lt;/h4&gt;
+&lt;p&gt;a&lt;/p&gt;
+&lt;p&gt;b&lt;/p&gt;
+&lt;p&gt;c&lt;/p&gt;
+&lt;p&gt;1&lt;/p&gt;
+&lt;p&gt;2&lt;/p&gt;
+&lt;p&gt;3&lt;/p&gt;
+&lt;h2&gt;Diagrams&lt;/h2&gt;
+&lt;p&gt;Support for diagram syntax such as &lt;a href="https://mermaid-js.github.io/mermaid/"&gt;Mermaid&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Syntax&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-markdown"&gt;```mermaid
+flowchart LR
+    Start --&amp;gt; Stop
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Output&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-mermaid"&gt;flowchart LR;
+    Start --&amp;gt; Stop;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Emojis&lt;/h2&gt;
+&lt;p&gt;Support for emojis.&lt;/p&gt;
+&lt;h3&gt;Syntax&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-markdown"&gt;We all need :), it makes us :muscle:. (and :ok_hand:).
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Output&lt;/h3&gt;
+&lt;p&gt;We all need 😃, it makes us 💪. (and 👌).&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/xoofx/markdig/tree/master/src/Markdig.Tests/Specs"&gt;Markdig Specs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/markdig-advanced-extensions</link>
+      <guid>https://www.lqdev.me/resources/wiki/markdig-advanced-extensions</guid>
+      <pubDate>09/03/2022 19:26 -05:00</pubDate>
+      <category>markdown</category>
+      <category>markdig</category>
+      <category>dotnet</category>
+      <category>fsharp</category>
+      <category>csharp</category>
+      <category>website</category>
+    </item>
+    <item>
+      <title>Analyze RSS feeds with FSharp.Data XML Type Provider</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;Use the &lt;a href="https://fsprojects.github.io/FSharp.Data/library/XmlProvider.html"&gt;FSharp.Data XML Type Provider&lt;/a&gt; to load and analyze RSS feeds.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet fsi rss-parser.fsx 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;h3&gt;rss-parser.fsx&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;// Install NuGet packages
+#r &amp;quot;nuget:FSharp.Data&amp;quot;
+
+// Import NuGet packages
+open System.Xml.Linq
+open FSharp.Data
+
+// Define Rss type using XML Type Provider
+type Rss = XmlProvider&amp;lt;&amp;quot;http://luisquintanilla.me/posts/index.xml&amp;quot;&amp;gt;
+
+// Load RSS feed using Rss type
+let blogFeed = Rss.Load(&amp;quot;http://luisquintanilla.me/posts/index.xml&amp;quot;)
+
+// Get Feed Title
+blogFeed.Channel.Title
+
+// Get the 5 latest posts
+blogFeed.Channel.Items
+|&amp;gt; Array.sortByDescending(fun item -&amp;gt; item.PubDate)
+|&amp;gt; Array.take 5
+
+// Get the title and URL of 5 latest posts
+blogFeed.Channel.Items
+|&amp;gt; Array.sortByDescending(fun item -&amp;gt; item.PubDate)
+|&amp;gt; Array.take 5
+|&amp;gt; Array.map(fun item -&amp;gt; {|Title=item.Title;Url=item.Link|})
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/fsharp-data-rss-parser</link>
+      <guid>https://www.lqdev.me/resources/snippets/fsharp-data-rss-parser</guid>
+      <pubDate>08/30/2022 12:50 -05:00</pubDate>
+      <category>xml</category>
+      <category>dotnet</category>
+      <category>fsharp</category>
+      <category>typeprovider</category>
+      <category>rss</category>
+    </item>
+    <item>
+      <title>OPML File Generator</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;Script to take information stored in a JSON file and converts it into OPML format. This works for RSS readers as well as podcast clients that support OPML import.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet fsi opml-generator.fsx &amp;quot;&amp;lt;feed-title&amp;gt;&amp;quot; &amp;quot;&amp;lt;author-url&amp;gt;&amp;quot; &amp;quot;&amp;lt;data-file-path&amp;gt;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet fsi opml-generator.fsx &amp;quot;My Blogroll&amp;quot; &amp;quot;http://lqdev.me&amp;quot; &amp;quot;blogroll.json&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;h3&gt;opml-generator.fsx&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;open System.IO
+open System.Linq
+open System.Text.Json
+open System.Xml.Linq
+
+type OpmlMetadata = 
+    {
+        Title: string
+        OwnerId: string
+    }
+
+type Outline = 
+    {
+        Title: string
+        Type: string
+        HtmlUrl: string
+        XmlUrl: string
+    }
+
+let opmlFeed (head:XElement) = 
+    XElement(XName.Get &amp;quot;opml&amp;quot;,
+        XAttribute(XName.Get &amp;quot;version&amp;quot;, &amp;quot;2.0&amp;quot;),
+            head,
+            XElement(XName.Get &amp;quot;body&amp;quot;))
+
+let headElement (metadata:OpmlMetadata) = 
+        XElement(XName.Get &amp;quot;head&amp;quot;,
+            XElement(XName.Get &amp;quot;title&amp;quot;, metadata.Title),
+            XElement(XName.Get &amp;quot;ownerId&amp;quot;, metadata.OwnerId))
+
+let outlineElement (data:Outline) = 
+    XElement(XName.Get &amp;quot;outline&amp;quot;,
+        XAttribute(XName.Get &amp;quot;title&amp;quot;, data.Title),
+        XAttribute(XName.Get &amp;quot;text&amp;quot;, data.Title),        
+        XAttribute(XName.Get &amp;quot;type&amp;quot;, data.Type),
+        XAttribute(XName.Get &amp;quot;htmlUrl&amp;quot;, data.HtmlUrl),
+        XAttribute(XName.Get &amp;quot;xmlUrl&amp;quot;, data.XmlUrl))
+
+let loadLinks (filePath:string) = 
+    File.ReadAllText(filePath)
+    |&amp;gt; fun x -&amp;gt; x |&amp;gt; JsonSerializer.Deserialize&amp;lt;Outline array&amp;gt;
+
+let buildOpmlFeed (title:string) (ownerId:string) (filePath:string) = 
+    let fileName = Path.GetFileNameWithoutExtension(filePath)
+    
+    let head = 
+        {
+            Title=title
+            OwnerId=ownerId
+        }
+        |&amp;gt; headElement
+    
+    let links = filePath |&amp;gt; loadLinks |&amp;gt; Array.map(outlineElement) 
+    
+    let feed =  opmlFeed head 
+    feed.Descendants(XName.Get &amp;quot;body&amp;quot;).First().Add(links)
+    File.WriteAllText($&amp;quot;{fileName}.opml&amp;quot;, feed.ToString())
+
+let args = fsi.CommandLineArgs
+let title = args[1]
+let ownerId = args.[2]
+let dataPath = args.[3]
+
+buildOpmlFeed title ownerId dataPath
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;blogroll.json&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;[
+    {
+        &amp;quot;Title&amp;quot;: &amp;quot;Blogroll.org&amp;quot;,
+        &amp;quot;Type&amp;quot;: &amp;quot;rss&amp;quot;,
+        &amp;quot;HtmlUrl&amp;quot;: &amp;quot;https://blogroll.org/&amp;quot;,
+        &amp;quot;XmlUrl&amp;quot;: &amp;quot;https://blogroll.org/feed/&amp;quot;
+    },
+    {
+        &amp;quot;Title&amp;quot;: &amp;quot;Cheapskate's Guide&amp;quot;,
+        &amp;quot;Type&amp;quot;: &amp;quot;rss&amp;quot;,
+        &amp;quot;HtmlUrl&amp;quot;: &amp;quot;https://cheapskatesguide.org/&amp;quot;,
+        &amp;quot;XmlUrl&amp;quot;: &amp;quot;https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml&amp;quot;
+    },
+    {
+        &amp;quot;Title&amp;quot;: &amp;quot;JWZ&amp;quot;,
+        &amp;quot;Type&amp;quot;: &amp;quot;rss&amp;quot;,
+        &amp;quot;HtmlUrl&amp;quot;: &amp;quot;https://www.jwz.org/blog/&amp;quot;,
+        &amp;quot;XmlUrl&amp;quot;: &amp;quot;https://cdn.jwz.org/blog/feed/&amp;quot;
+    }    
+]
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/opml-file-generator</link>
+      <guid>https://www.lqdev.me/resources/snippets/opml-file-generator</guid>
+      <pubDate>08/14/2022 13:45 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>fsharp</category>
+      <category>script</category>
+    </item>
+    <item>
+      <title>Train an image classifier using F# and ML .NET</title>
+      <description>&lt;![CDATA[
+# Introduction
+
+This post is part of F# Advent 2020. Thank you to [Sergey Tihon](https://twitter.com/sergey_tihon) for organizing this and the rest of the contributors for producing high-quality content. Make sure to check out the rest of the [F# Advent 2020 content](https://sergeytihon.com/2020/10/22/f-advent-calendar-in-english-2020/).
+
+When picking who's on the naughty or nice list, I often wonder how Santa decides. I took a shot at answering this question by training an image classifier using the ML.NET image classification API and images of Disney heroes and villains to tell whether they're naughty or nice. You shouldn't judge someone by the way they look (even if they are the Evil Queen), so it's safe to say, don't try this at home or with your neighbors 😉. This sample is just for demo purposes. You can find the full code on [GitHub](https://gist.github.com/lqdev/0c4dc9eea93b7b8541f31ddd429afb53).
+
+## Prerequisites
+
+This sample was built on a Windows 10 PC, but should work on Mac / Linux PCs
+
+- [.NET 5 SDK](https://dotnet.microsoft.com/download)
+
+## The data
+
+The dataset contains images of Disney characters, both real and animated. They were obtained from the [Disney Fandom Wiki](https://disney.fandom.com/wiki/The_Disney_Wiki). The characters are split into two categories, [villains](https://disney.fandom.com/wiki/Category:Villains) and [heroes](https://disney.fandom.com/wiki/Category:Protagonists). For the purpose of this sample, we'll label heroes as nice and villains as naughty. The dataset used to train this model contains 2400 villain (naughty) and 675 hero (nice) images stored in top-level directories with the naughty/nice names. This means that the dataset is unbalanced and may skew predictions as it can be seen when making predictions.
+
+## Install  NuGet packages
+
+Use the `#r` convention to install the necessary NuGet packages used in this sample.
+
+```fsharp
+#r "nuget:Microsoft.ML"
+#r "nuget:Microsoft.ML.Vision"
+#r "nuget:Microsoft.ML.ImageAnalytics"
+#r "nuget:SciSharp.TensorFlow.Redist" 
+```
+
+Then, import the packages.
+
+```fsharp
+open System
+open System.IO
+open Microsoft.ML
+open Microsoft.ML.Data
+open Microsoft.ML.Vision
+```
+
+## Define data types
+
+Start off by defining the data types containing your input and output schema. You can do this by creating two records, `ImageData` and `ImagePrediction`. `ImageData` is the input which contains the path to image file and the category it belongs to and the `ImagePrediction` contains the prediction generated by the model.
+
+```fsharp
+[&lt;CLIMutable&gt;]
+type ImageData = {
+    ImagePath: string
+    Label: string
+}
+
+[&lt;CLIMutable&gt;]
+type ImagePrediction = {
+    PredictedLabel: string
+}
+```
+
+## Training
+
+The training process loads a set of training images, preprocesses them, and uses the ML.NET image classification API to train an image classification model. 
+
+### Initialize MLContext
+
+Once you've defined the data type, initialize the `MLContext`. `MLContext` is the entrypoint for ML.NET applications.
+
+```fsharp
+let ctx = new MLContext()
+```
+
+### Load training data
+
+Then, load the data using the helper function `loadImagesFromDirectory` and point it to the top-level directory containing the subdirectories of images in the nice and naughty categories.
+
+```fsharp
+let imageData = loadImagesFromDirectory "C:/Datasets/fsadvent2020/Train" true
+```
+
+The `loadImagesFromDirectory` function looks like the following:
+
+```fsharp
+let loadImagesFromDirectory (path:string) (useDirectoryAsLabel:bool) = 
+
+    let files = Directory.GetFiles(path, "*",searchOption=SearchOption.AllDirectories)
+
+    files
+    |&gt; Array.filter(fun file -&gt; 
+        (Path.GetExtension(file) = ".jpg") ||
+        (Path.GetExtension(file) = ".png"))
+    |&gt; Array.map(fun file -&gt; 
+        let mutable label = Path.GetFileName(file)
+        if useDirectoryAsLabel then
+            label &lt;-  Directory.GetParent(file).Name
+        else
+            let mutable brk = false
+            for index in 0..label.Length do
+                while not brk do
+                    if not (label.[index] |&gt; Char.IsLetter) then
+                        label &lt;- label.Substring(0,index)
+                        brk &lt;- true
+
+        {ImagePath=file; Label=label}
+    )
+```
+
+Then, create an `IDataView` for the training images. An `IDataView` is the way data is represented in ML.NET.
+
+```fsharp
+let imageIdv = ctx.Data.LoadFromEnumerable&lt;ImageData&gt;(imageData)
+```
+
+### Define training pipeline
+
+Once your data is is loaded into an `IDataView`, set the classifier options by using `ImageClassificationTrainer.Options`. Use it to define the name of the network architecture, input and output columns, and some additional parameters. The network architecture used in this case is [`ResNet V2`](https://www.paperswithcode.com/method/inception-resnet-v2).
+
+```fsharp
+let classifierOptions = ImageClassificationTrainer.Options()
+classifierOptions.FeatureColumnName &lt;- "Image" 
+classifierOptions.LabelColumnName &lt;- "LabelKey" 
+classifierOptions.TestOnTrainSet &lt;- true  
+classifierOptions.Arch &lt;- ImageClassificationTrainer.Architecture.ResnetV2101
+classifierOptions.MetricsCallback &lt;- Action&lt;ImageClassificationTrainer.ImageClassificationMetrics&gt;(fun x -&gt; printfn "%s" (x.ToString()))
+```
+
+Define the preprocessing steps, image classification trainer (along with the previously defined options) and postprocessing steps.
+
+```fsharp
+let pipeline = 
+    EstimatorChain()
+        .Append(ctx.Transforms.LoadRawImageBytes("Image",null,"ImagePath"))
+        .Append(ctx.Transforms.Conversion.MapValueToKey("LabelKey","Label"))
+        .Append(ctx.MulticlassClassification.Trainers.ImageClassification(classifierOptions))
+        .Append(ctx.Transforms.Conversion.MapKeyToValue("PredictedLabel"))
+```
+
+The ML.NET image classification API leverages a technique known as transfer learning. Transfer learning uses pretrained models (usually neural networks) and retrains the last few layers using new data. This significantly cuts down the amount of time, resources, and data you need to train deep learning models. ML .NET is able to do this with the help of [TensorFlow .NET](https://github.com/SciSharp/TensorFlow.NET), a set of .NET bindings for the TensorFlow deep learning framework. Although transfer learning usually makes the process of training a deep learning models less resource intensive, the TensorFlow API is usually low level and still requires a significant amount of code. See this [transfer learning example](https://github.com/SciSharp/SciSharp-Stack-Examples/blob/master/src/TensorFlowNET.Examples/ImageProcessing/TransferLearningWithInceptionV3.cs) from TensorFlow.NET to see how you'd do it in TensorFlow.NET. Although the low-level nature of the TensorFlow API gives you control over what you're building, many times you don't need that level of control. ML.NET through the image classification trainer greatly simplifies this process by providing a high-level API for achieving the same task.
+
+To train the model, use the `Fit` method on the training image `IDataView`.
+
+```fsharp
+let model = pipeline.Fit(imageIdv)
+```
+
+Throughout the training process, you should see output similar to the following:
+
+```console
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 279
+Phase: Bottleneck Computation, Dataset used:      Train, Image Index: 280
+Phase: Bottleneck Computation, Dataset used: Validation, Image Index:   1
+```
+
+With the model trained, it's time to use it to make predictions. Optionally, you can save it for use in other applications.
+
+```fsharp
+ctx.Model.Save(model,imageIdv.Schema,"fsadvent2020-model.zip")
+```
+
+## Make predictions
+
+Load the test images and create an `IDataView` for them. The test images used are of Jack Skellington and The Grinch.
+
+```fsharp
+let testImages = 
+    Directory.GetFiles("C:/Datasets/fsadvent2020/Test")
+    |&gt; Array.map(fun file -&gt; {ImagePath=file; Label=""})
+
+let testImageIdv = ctx.Data.LoadFromEnumerable&lt;ImageData&gt;(testImages)
+```
+
+![The grinch](https://www.khwiki.com/images/thumb/f/ff/Jack_Skellington_KHII.png/180px-Jack_Skellington_KHII.png)
+
+Then, use the model to make predictions.
+
+```fsharp
+let predictionIdv = model.Transform(testImageIdv)
+```
+
+One of the easiest ways to access the predictions is to create an `IEnumerable`. To do so, use the `CreateEnumerable` method.
+
+```fsharp
+let predictions = ctx.Data.CreateEnumerable&lt;ImagePrediction&gt;(predictionIdv,false)
+```
+
+Then, use the built-in F# sequence operations to display the predictions 
+
+```fsharp
+predictions |&gt; Seq.iter(fun pred -&gt; 
+    printfn "%s is %s" (Path.GetFileNameWithoutExtension(pred.ImagePath)) pred.PredictedLabel)
+```
+
+The output should look like the following:
+
+```console
+grinch is Naughty
+jack is Naughty
+```
+
+## Conclusion
+
+In this post, I showed how you can use the ML.NET and TensorFlow.NET to train an image classification model to classify Disney characters as naughty or nice. Depending on the level of control you need, you might choose to use TensorFlow.NET or if you want a high-level API for training an image classifier, you can use the ML.NET. Most importantly, we figured out that Jack Skellington and The Grinch are naughty, so I guess no gifts for them this year? Happy coding!
+
+### Call to Action
+
+Originally, I had planned on writing this article using [TensorFlow.Keras](https://github.com/SciSharp/TensorFlow.NET), which is part of the SciSharp TensorFlow.NET project. TensorFlow.Keras provides .NET bindings for Keras. Keras provides a high-level API for TensorFlow which makes the process of building custom neural networks much simpler than working with the TensorFlow API. Unfortunately, while trying to adapt my scenario to an [existing sample](https://github.com/SciSharp/SciSharp-Stack-Examples/blob/master/src/TensorFlowNET.Examples/ImageProcessing/ImageClassificationKeras.cs), I ran into an [issue](https://github.com/SciSharp/SciSharp-Stack-Examples/issues/23).  This is not something I would have been able to resolve in time to publish this post, so I defaulted to using ML.NET.
+
+I'm a big fan of the work being done by the SciSharp community and the machine learning and data science capabilities it brings to the .NET ecosystem. The work and efforts are all community driven, and as such, there's plenty of opportunities to contribute. Here are just some examples of ways to contribute, especially from an F# perspective. From my end, I plan on eventually converting this sample to use TensorFlow.Keras. See you in the SciSharp repos! 🙂
+
+![FsLab SciSharp contribute](https://user-images.githubusercontent.com/11130940/102030239-f4ac3700-3d7f-11eb-9898-f18990a56326.png)
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/image-classification-mlnet-fsadvent2020</link>
+      <guid>https://www.lqdev.me/posts/image-classification-mlnet-fsadvent2020</guid>
+      <pubDate>2020-12-14 20:03:18 -05:00</pubDate>
+      <category>image classification</category>
+      <category>mlnet</category>
+      <category>fsharp</category>
+      <category>dotnet</category>
+      <category>deep learning</category>
+      <category>fsadvent2020</category>
+      <category>tensorflow</category>
+    </item>
+    <item>
+      <title>Use machine learning to categorize web links with F# and ML.NET</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+This post is part of [F# Advent 2019](https://sergeytihon.com/2019/11/05/f-advent-calendar-in-english-2019/). Thank you [Sergey Tihon](https://twitter.com/sergey_tihon) for organizing this and the rest of the contributors for producing interesting, high-quality content.
+
+I scan and read articles on a constant basis, such as those published as part of F# Advent. Those that I find interesting, or I want to save for later, I bookmark using [Pocket](https://getpocket.com/). One of the neat features it provides is tagging. You can add as many tags as you want to organize the bookmarked links. When I first started using the service, I was fairly good at adding tags. However, I've gotten lazy and don't do it as much. It would be nice if bookmarked links could automatically be categorized for me without having to provide the tags manually. Using machine learning, this task can be automated. In this writeup, I will show how to build a machine learning model using [ML.NET](https://dotnet.microsoft.com/apps/machinelearning-ai/ml-dotnet), a .NET, open-source, cross-platform machine learning framework to automatically categorize web links / articles.
+
+## Prerequisites
+
+This application was built on a Windows 10 PC, but should work cross-platform.
+
+- [.NET Core SDK 2.1+](https://dotnet.microsoft.com/download)
+- [Visual Studio Code](https://code.visualstudio.com/Download)
+- [Ionide](http://ionide.io/)
+- [Microsoft.ML NuGet package](https://www.nuget.org/packages/Microsoft.ML/)
+
+## Create the solution
+
+Make a new directory and create a solution by using the .NET CLI.
+
+```powershell
+mkdir FsAdvent2019
+cd FsAdvent2019
+dotnet new sln
+```
+
+Then, create an F# Console application.
+
+```powershell
+dotnet new console -o FsAdvent2019 -lang f#
+```
+
+Navigate to the console application directory and install the Microsoft.ML NuGet package.
+
+```powershell
+cd FsAdvent2019
+dotnet add package Microsoft.ML -v 1.4.0
+```
+
+## Get the data
+
+[Click on this link to download and unzip the data anywhere on your PC](https://archive.ics.uci.edu/ml/machine-learning-databases/00359/NewsAggregatorDataset.zip).
+
+The data contains information about several articles that are separated into four categories: business (b), science and technology (t), entertainment (e) and health (h). Visit the [UCI Machine Learning repository website](https://archive.ics.uci.edu/ml/datasets/News+Aggregator) to learn more about the dataset.
+
+Below is a sample of the data.
+
+```text
+ID    Title    Url    Publisher    Category    Story    Hostname    Timestamp
+2	Fed's Charles Plosser sees high bar for change in pace of tapering	http://www.livemint.com/Politics/H2EvwJSK2VE6OF7iK1g3PP/Feds-Charles-Plosser-sees-high-bar-for-change-in-pace-of-ta.html	Livemint	b	ddUyU0VZz0BRneMioxUPQVP6sIxvM	www.livemint.com	1394470371207
+3	US open: Stocks fall after Fed official hints at accelerated tapering	http://www.ifamagazine.com/news/us-open-stocks-fall-after-fed-official-hints-at-accelerated-tapering-294436	IFA Magazine	b	ddUyU0VZz0BRneMioxUPQVP6sIxvM	www.ifamagazine.com	1394470371550
+4	Fed risks falling 'behind the curve', Charles Plosser says	http://www.ifamagazine.com/news/fed-risks-falling-behind-the-curve-charles-plosser-says-294430	IFA Magazine	b	ddUyU0VZz0BRneMioxUPQVP6sIxvM	www.ifamagazine.com	1394470371793
+```
+
+Inside the console application directory, create a new directory called *data* and copy the *newsCorpora.csv* file to it.
+
+```powershell
+mkdir data
+```
+
+## Define the schema
+
+Open the *Program.fs* file and add the following `open` statements at the top.
+
+```fsharp
+open Microsoft.ML
+open Microsoft.ML.Data
+```
+
+Directly below the `open` statements, define the data schema of the input and output of the machine learning model as records called `ModelInput` and `ModelOutput` respectively.
+
+```fsharp
+[&lt;CLIMutable&gt;]
+type ModelInput = {
+    [&lt;LoadColumn(1)&gt;]
+    Title:string
+    [&lt;LoadColumn(2)&gt;]
+    Url:string
+    [&lt;LoadColumn(3)&gt;]
+    Publisher:string
+    [&lt;LoadColumn(4)&gt;]
+    Category:string
+    [&lt;LoadColumn(6)&gt;]
+    Hostname:string
+}
+
+[&lt;CLIMutable&gt;]
+type ModelOutput = {
+    PredictedLabel: string
+}
+```
+
+As input, only the **Title**, **Url**, **Publisher** and **Hostname** columns are used to train the machine learning model and make predictions. The label or value to predict in this case is the **Category**. When a prediction is output by the model, its value is stored in a column called **PredictedLabel**.
+
+## Create the application entry point
+
+The `MLContext` is the entry point of all ML.NET applications which binds all tasks like data loading, data transformations, model training, model evaluation, and model saving/loading.
+
+Inside of the `main` function, create an instance of `MLContext`.
+
+```fsharp
+let mlContext = MLContext()
+```
+
+## Load the data
+
+Once the `MLContext` is initialized, use the `LoadFromTextFile` function and provide the path to the file containing the data.
+
+```fsharp
+let data = mlContext.Data.LoadFromTextFile&lt;ModelInput&gt;("data/newsCorpora.csv")
+```
+
+## Create training and test datasets
+
+It's often good practice to split the data into train and test sets. The goal of a machine learning model is to accurately make predictions on data it has not seen before. Therefore, making predictions using inputs that are the same as those it was trained on may provide misleading accuracy metrics.
+
+Use the `TrainTestSplit` to split the data into train / test sets with 90% of the data used for training and 10% used for testing.
+
+```fsharp
+let datasets = mlContext.Data.TrainTestSplit(data,testFraction=0.1)
+```
+
+## Define the transformation and algorithm pipelines
+
+Now that the data is split, define the set of transformations to be applied to the data. The purpose of transforming the data is to convert it into numbers which are more easily processed by machine learning algorithms.
+
+### Preprocessing pipeline
+
+The preprocessing pipeline contains the series of transformations that take place before training the model. To create a pipeline, initialize an `EstimatorChain` and append the desired transformations to it.
+
+```fsharp
+let preProcessingPipeline = 
+    EstimatorChain()
+        .Append(mlContext.Transforms.Text.FeaturizeText("FeaturizedTitle","Title"))
+        .Append(mlContext.Transforms.Text.FeaturizeText("FeaturizedUrl","Url"))
+        .Append(mlContext.Transforms.Text.FeaturizeText("FeaturizedPublisher","Publisher"))
+        .Append(mlContext.Transforms.Text.FeaturizeText("FeaturizedHost","Hostname"))
+        .Append(mlContext.Transforms.Concatenate("Features",[|"FeaturizedTitle"; "FeaturizedUrl" ;"FeaturizedPublisher"; "FeaturizedHost"|]))
+        .Append(mlContext.Transforms.Conversion.MapValueToKey("Label","Category"))
+```
+
+In this preprocessing pipeline, the following transformations are taking place:
+
+1. Convert the *Title*, *Url*, *Publisher* and *Hostname* columns into numbers and store the transformed value into the *FeaturizedTitle*, *FeaturizedUrl*, *FeaturizedPublisher* and *FeaturizedHost* columns respectively.
+2. Combine the *FeaturizedTitle*, *FeaturizedUrl*, *FeaturizedPublisher* and *FeaturizedHost* into one column called *Features*.
+3. Create a mapping of the text value contained in the *Category* column to a numerical key and store the result into a new column called *Label*.
+
+### Algorithm pipeline
+
+The algorithm pipeline contains the algorithm used to train the machine learning model. In this application, the multiclass classification algorithm used is `LbfgsMaximumEntropy`. To learn more about the algorithm, see the [ML.NET LbfgsMaximumEntropy multiclass trainer API documentation](https://docs.microsoft.com/en-us/dotnet/api/microsoft.ml.trainers.lbfgsmaximumentropymulticlasstrainer?view=ml-dotnet#training-algorithm-details).
+
+```fsharp
+let algorithm = 
+    mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy()
+```
+
+### Postprocessing pipeline
+
+The postprocessing pipeline contains the series of transformations to get the output of training into a more readable format. The only transformation performed in this pipeline is mapping back the numerical value mapping of the predicted value into text form. 
+
+```fsharp
+let postProcessingPipeline = 
+    mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel")
+```
+
+### Create training pipeline
+
+Once the pipelines are defined, combine them into a single pipeline which applies all of the transformations to the data with a single function call.
+
+```fsharp
+let trainingPipeline = 
+    preProcessingPipeline
+        .Append(algorithm)
+        .Append(postProcessingPipeline)
+```
+
+## Train the model
+
+Use the `Fit` function to train the model by applying the set of transformations defined by `trainingPipeline` to the training dataset.
+
+```fsharp
+let model =
+    datasets.TrainSet |&gt; trainingPipeline.Fit
+```
+
+## Evaluate the model
+
+Once the model is trained, evaluate how well it performs against the test dataset. First, use the trained model to get the predicted category by using the `Transform` function. Then, provide the test dataset containing predictions to the `Evaluate` function which calculates the model's performance metrics by comparing the predicted category to the actual category and print some of them out.
+
+```fsharp
+let metrics = 
+    (datasets.TestSet |&gt; model.Transform)
+    |&gt; mlContext.MulticlassClassification.Evaluate
+
+printfn "Log Loss: %f | MacroAccuracy: %f" metrics.LogLoss metrics.MacroAccuracy
+```
+
+## Using the model on real data
+
+Create a list of `ModelInput` items and use the `Transform` method to get the predicted category.
+
+```fsharp
+let predictions = 
+    [
+        { 
+            Title="A FIRST LOOK AT SURFACE DUO, MICROSOFT’S FOLDABLE ANDROID PHONE"
+            Url="https://www.theverge.com/2019/10/3/20895268/microsoft-surface-duo-foldable-phone-dual-screen-android-hands-on-features-price-photos-video"
+            Publisher="The Verge"
+            Hostname="www.theverge.com" 
+            Category = "" 
+        }
+        { 
+            Title="This Shrinking Economy With Low Inflation Is Stuck on Rates"
+            Url="https://www.bloomberg.com/news/articles/2019-12-12/when-a-shrinking-economy-and-low-inflation-don-t-mean-rate-cuts?srnd=economics-vp"
+            Publisher="Bloomberg"
+            Hostname="www.bloomberg.com" 
+            Category = "" 
+        }
+    ] 
+    |&gt; mlContext.Data.LoadFromEnumerable
+    |&gt; model.Transform
+```
+
+Then, create a `Sequence` of `ModelOutput` values and print out the *PredictedLabel* values.
+
+```fsharp
+mlContext.Data.CreateEnumerable&lt;ModelOutput&gt;(predictions,false)
+|&gt; Seq.iter(fun prediction -&gt; printfn "Predicted Value: %s" prediction.PredictedLabel)
+```
+
+The final *Program.fs* file should look as follows:
+
+```fsharp
+open System
+open Microsoft.ML
+open Microsoft.ML.Data
+
+[&lt;CLIMutable&gt;]
+type ModelInput = {
+    [&lt;LoadColumn(1)&gt;]
+    Title:string
+    [&lt;LoadColumn(2)&gt;]
+    Url:string
+    [&lt;LoadColumn(3)&gt;]
+    Publisher:string
+    [&lt;LoadColumn(4)&gt;]
+    Category:string
+    [&lt;LoadColumn(6)&gt;]
+    Hostname:string
+}
+
+[&lt;CLIMutable&gt;]
+type ModelOutput = {
+    PredictedLabel: string
+}
+
+[&lt;EntryPoint&gt;]
+let main argv =
+
+    let mlContext = MLContext()
+
+    let data = mlContext.Data.LoadFromTextFile&lt;ModelInput&gt;("data/newsCorpora.csv")
+
+    let datasets = mlContext.Data.TrainTestSplit(data,testFraction=0.1)
+
+    let preProcessingPipeline = 
+        EstimatorChain()
+            .Append(mlContext.Transforms.Text.FeaturizeText("FeaturizedTitle","Title"))
+            .Append(mlContext.Transforms.Text.FeaturizeText("FeaturizedUrl","Url"))
+            .Append(mlContext.Transforms.Text.FeaturizeText("FeaturizedPublisher","Publisher"))
+            .Append(mlContext.Transforms.Text.FeaturizeText("FeaturizedHost","Hostname"))
+            .Append(mlContext.Transforms.Concatenate("Features",[|"FeaturizedTitle"; "FeaturizedUrl" ;"FeaturizedPublisher"; "FeaturizedHost"|]))
+            .Append(mlContext.Transforms.Conversion.MapValueToKey("Label","Category"))
+
+    let algorithm = 
+        mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy()
+
+    let postProcessingPipeline = 
+        mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel")
+
+    let trainingPipeline = 
+        preProcessingPipeline
+            .Append(algorithm)
+            .Append(postProcessingPipeline)
+
+    let model =
+        datasets.TrainSet |&gt; trainingPipeline.Fit
+
+    let metrics = 
+        (datasets.TestSet |&gt; model.Transform)
+        |&gt; mlContext.MulticlassClassification.Evaluate
+
+    printfn "Log Loss: %f | MacroAccuracy: %f" metrics.LogLoss metrics.MacroAccuracy
+
+    let predictions = 
+        [
+            { 
+                Title="A FIRST LOOK AT SURFACE DUO, MICROSOFT’S FOLDABLE ANDROID PHONE"
+                Url="https://www.theverge.com/2019/10/3/20895268/microsoft-surface-duo-foldable-phone-dual-screen-android-hands-on-features-price-photos-video"
+                Publisher="The Verge"
+                Hostname="www.theverge.com" 
+                Category = "" 
+            }
+            { 
+                Title="This Shrinking Economy With Low Inflation Is Stuck on Rates"
+                Url="https://www.bloomberg.com/news/articles/2019-12-12/when-a-shrinking-economy-and-low-inflation-don-t-mean-rate-cuts?srnd=economics-vp"
+                Publisher="Bloomberg"
+                Hostname="www.bloomberg.com" 
+                Category = "" 
+            }
+        ] 
+        |&gt; mlContext.Data.LoadFromEnumerable
+        |&gt; model.Transform
+ 
+    mlContext.Data.CreateEnumerable&lt;ModelOutput&gt;(predictions,false)
+    |&gt; Seq.iter(fun prediction -&gt; printfn "Predicted Value: %s" prediction.PredictedLabel)
+
+    0 // return an integer exit code
+```
+
+## Run the application
+
+This particular model achieved a macro-accuracy of 0.92, where closer to 1 is preferred and log loss of 0.20 where closer to 0 is preferred.
+
+```bash
+Log Loss: 0.200502 | MacroAccuracy: 0.927742
+```
+
+The predicted values are the following:
+
+```bash
+Predicted Value: t
+Predicted Value: b
+```
+
+Upon inspection, they appear to be correct, science and technology for the first link and business for the second link.
+
+## Conclusion
+
+In this writeup, I showed how to build a machine learning multiclass classification model that categorizes web links using ML.NET. Now that you have a model trained, you can save it and deploy it in another application (desktop, web) that bookmarks links. This model can be further improved and personalized by using data from Pocket which has already been tagged. Happy coding!]]&gt;</description>
+      <link>https://www.lqdev.me/posts/categorize-web-links-ml-net-fsharp-fsadvent2019</link>
+      <guid>https://www.lqdev.me/posts/categorize-web-links-ml-net-fsharp-fsadvent2019</guid>
+      <pubDate>2019-12-17 19:59:06 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>dotnet-core</category>
+      <category>machine-learning</category>
+      <category>ai</category>
+      <category>artificial-intelligence</category>
+      <category>ml</category>
+      <category>fsharp</category>
+      <category>functional-programming</category>
+    </item>
+    <item>
+      <title>Create an HTTP Trigger Azure Function using FSharp</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+Since the upgrade to the 2.0 version of the Azure Functions runtime, .NET Core has been natively supported by the platform. As a result some changes took effect. Most notably, in version 1.0, a template for an F# HttpTrigger function was available. The template was removed in 2.0. However, that does not mean Azure Functions does not support F#. Azure Functions can be built in F# using a .NET Standard Class Library. This writeup provides a detailed walk-through of how to build an Azure Function that processes HTTP requests using F#. The complete code sample can be found on [GitHub](https://github.com/lqdev/FsHttpTriggerSample).
+
+## Prerequisites
+
+This solution was built using a Windows PC but should work on Mac and Linux.
+
+- [.NET SDK (2.x or 3.x)](https://dotnet.microsoft.com/download/dotnet-core)
+- [Node.js](https://nodejs.org/en/download/)
+- [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#windows-npm)
+
+## Create Solution
+
+Open the command prompt and create a new directory for your solution called "FsHttpTriggerSample".
+
+```bash
+mkdir FsHttpTriggerSample
+```
+
+Navigate into the new directory and create a solution using the .NET CLI.
+
+```bash
+cd FsHttpTriggerSample
+dotnet new sln
+```
+
+## Create Azure Functions Project
+
+Inside the *FsHttpTriggerSample* solution directory, use the .NET CLI to create a new F# .NET Standard Class Library project.
+
+```bash
+dotnet new classlib -o FsHttpTriggerSample -lang f#
+```
+
+Add the project to the solution
+
+```bash
+dotnet sln add FsHttpTriggerSample
+```
+
+## Install NuGet Packages
+
+To use Azure Functions, install the [**Microsoft.Net.Sdk.Functions** NuGet package](https://www.nuget.org/packages/Microsoft.NET.Sdk.Functions).
+
+Inside the *FsHttpTriggerSample* project directory, enter the following command.
+
+```bash
+dotnet add package Microsoft.Net.Sdk.Functions
+```
+
+## Create the Azure Function
+
+### Prepare Files
+
+Delete the default *Library.fs* file inside the *FsHttpTriggerSample* project directory.
+
+```bash
+del Library.fs
+```
+
+Create a new file called *GreetFunction.fs*.
+
+```bash
+type nul &gt; GreetFunction.fs
+```
+
+### Configure Files
+
+Open the *FsHttpTriggerSample.fsproj* file and find the following snippet.
+
+```xml
+&lt;Compile Include="Library.fs" /&gt;
+```
+
+Replace the snippet with the content below.
+
+```xml
+&lt;Compile Include="GreetFunction.fs" /&gt;
+```
+
+### Configure Host
+
+At a minimum, Azure Functions requires the runtime version to run. This information is provided by a file called *host.json*.
+
+Create a new file called *host.json* inside the *FsHttpTriggerSample* project directory.
+
+```bash
+type nul &gt; host.json
+```
+
+Open the *host.json* file and add the following content
+
+```json
+{
+    "version": "2.0"
+}
+```
+
+### Implement Azure Function
+
+Open the *GreetFunction.fs* file and add the namespace and module for it.
+
+```fsharp
+namespace FsHttpTriggerSample
+
+module GreetFunction = 
+```
+
+Below the module definition, add the following `open` statements:
+
+```fsharp
+open Microsoft.AspNetCore.Mvc
+open Microsoft.Azure.WebJobs
+open Microsoft.AspNetCore.Http
+open Newtonsoft.Json
+open System.IO
+open Microsoft.Extensions.Logging
+```
+
+Define a `User` type containing a single property called `Name`.
+
+```fsharp
+type User = {
+    Name: string
+}
+```
+
+The entrypoint of an Azure Function is the `Run` function. Create a function called `Run`.
+
+```fsharp
+[&lt;FunctionName("Greet")&gt;]
+let Run ([&lt;HttpTrigger(Methods=[|"POST"|])&gt;] req:HttpRequest) (log:ILogger) = 
+```
+
+To register an Azure Function, use the `FunctionName` attribute. In this case, the name of the function is `Greet`. The `Run` function takes two parameters, an `HttpRequest` and an `ILogger`. Since the binding used by HTTP Trigger functions is `HttpTrigger`, the request object is annotated with the `HttpTrigger` attribute. Options such as the accepted methods can be provided through the `HttpTrigger` attribute. In this case, only `POST` requests are accepted.
+
+Create an `async` computation expression inside the `Run` function.
+
+```fsharp
+async {
+
+}
+```
+
+Inside the `async` expression, add logging to indicate that the function has initialized. 
+
+```fsharp
+"Running function"
+|&gt; log.LogInformation
+```
+
+Below that, get the body of the request.
+
+```fsharp
+let! body = 
+    new StreamReader(req.Body) 
+    |&gt; (fun stream -&gt; stream.ReadToEndAsync()) 
+    |&gt; Async.AwaitTask
+```
+
+Then, deserialized the body into an instance of `User`.
+
+```fsharp
+let user = JsonConvert.DeserializeObject&lt;User&gt;(body)
+```
+
+Return a personalized greeting with the user's name.
+
+```fsharp
+return OkObjectResult(sprintf "Hello %s" user.Name)
+```
+
+Finally, use the `StartAsTask` function to start the `async` expression as a `Task`.
+
+```fsharp
+|&gt; Async.StartAsTask
+```
+
+Once finished, the contents of the *GreetFunction.fs* should look similar to the following.
+
+```fsharp
+namespace FsHttpTriggerSample
+
+module GreetFunction = 
+
+    open Microsoft.AspNetCore.Mvc
+    open Microsoft.Azure.WebJobs
+    open Microsoft.AspNetCore.Http
+    open Newtonsoft.Json
+    open System.IO
+    open Microsoft.Extensions.Logging
+
+    type User = {
+        Name: string
+    }
+
+    [&lt;FunctionName("Greet")&gt;]
+    let Run ([&lt;HttpTrigger(Methods=[|"POST"|])&gt;] req:HttpRequest) (log:ILogger) = 
+        async {
+            "Runnning Function"
+            |&gt; log.LogInformation
+
+            let! body = 
+                new StreamReader(req.Body) 
+                |&gt; (fun stream -&gt; stream.ReadToEndAsync()) 
+                |&gt; Async.AwaitTask
+
+            let user = JsonConvert.DeserializeObject&lt;User&gt;(body)
+
+            return OkObjectResult(sprintf "Hello %s" user.Name)
+        } |&gt; Async.StartAsTask
+```
+
+## Run the Function Locally
+
+Build the project by using the `build` command inside the *FsHttpTriggerSample* project directory.
+
+```bash
+dotnet build
+```
+
+Then, navigate to the output directory
+
+```bash
+cd bin\Debug\netstandard2.0
+```
+
+Use the Azure Functions Core Tools to start the Azure Functions host locally.
+
+```bash
+func host start
+```
+
+Once the host is initialized, the function is available at the following endpoint `http://localhost:7071/api/Greet`.
+
+## Test the function
+
+Using a REST client like Postman or Insomnia, make a POST request to `http://localhost:7071/api/Greet` with the following body. Feel free to replace the name with your own.
+
+```json
+{
+    "Name": "Luis"
+}
+```
+
+If successful, the response should look similar to the following output.
+
+```text
+Hello Luis
+```
+
+## Conclusion
+
+This writeup showed how to create an HTTP Trigger Azure Function using F#. Creating additional functions inside the same project is relatively trivial since the structure of the *GreetFunction.fs* file can be copied and the logic inside the `Run` function can be adapted to meet your requirements.
+
+## Resources
+
+- [Azure Functions F# Developer Reference](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-fsharp)
+- [Azure Functions Host 2.x Reference](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json)
+- [Azure Functions Zip Deployment](https://docs.microsoft.com/en-us/azure/azure-functions/deployment-zip-push)
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/http-trigger-azure-functions-fsharp</link>
+      <guid>https://www.lqdev.me/posts/http-trigger-azure-functions-fsharp</guid>
+      <pubDate>2019-11-16 17:33:59 -05:00</pubDate>
+      <category>fsharp</category>
+      <category>serverless</category>
+      <category>azure-functions</category>
+      <category>azure</category>
+      <category>dotnet</category>
+      <category>dotnet-core</category>
+      <category>functional-programming</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - windows</title>
+    <link>https://www.lqdev.me/tags/windows</link>
+    <description>All content tagged with 'windows' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-23 20:11 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Windows 11 upgrade?</title>
+      <description>&lt;![CDATA[Album containing 0 photos]]&gt;</description>
+      <link>https://www.lqdev.me/media/windows-11-upgrade</link>
+      <guid>https://www.lqdev.me/media/windows-11-upgrade</guid>
+      <pubDate>2025-08-23 20:11 -05:00</pubDate>
+      <category>windows</category>
+      <category>windows10</category>
+    </item>
+    <item>
+      <title>Running RAG with ONNX Runtime GenAI for On-Prem Windows</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Really great to see these case studies and comparisons.&lt;/p&gt;
+&lt;p&gt;A while back we published a blog post showcasing how experiences like the &lt;a href="https://devblogs.microsoft.com/dotnet/introducing-ai-dev-gallery-gateway-to-local-ai-development/"&gt;AI Dev Gallery&lt;/a&gt; make use of ONNX Runtime and the various AI building blocks in .NET to enable a diverse set of scenarios.&lt;/p&gt;
+&lt;p&gt;For more ONNX Runtime GenAI focused C# content, you can also reference the post &lt;a href="https://devblogs.microsoft.com/dotnet/using-phi3-csharp-with-onnx-for-text-and-vision-samples-md/"&gt;Using Phi-3 &amp;amp; C# with ONNX for text and vision samples&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/rag-onnx-runtime-genai-windows</link>
+      <guid>https://www.lqdev.me/responses/rag-onnx-runtime-genai-windows</guid>
+      <pubDate>2025-05-02 15:19 -05:00</pubDate>
+      <category>onnxruntime</category>
+      <category>windows</category>
+      <category>dotnet</category>
+    </item>
+    <item>
+      <title>Install Element Desktop on Windows ARM64 Devices</title>
+      <description>&lt;![CDATA[&lt;p&gt;In a previous post, I talked about my &lt;a href="https://www.lqdev.me/notes/running-linux-gui-apps-windows-wsl-amazing"&gt;workaround for running Element Desktop on my ARM64 Windows device&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I'm happy that I no longer need that workaround.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/element-hq/element-desktop"&gt;Element Desktop&lt;/a&gt; enabled support for &lt;a href="https://github.com/element-hq/element-desktop/pull/624"&gt;ARM64 on Windows&lt;/a&gt; and shipped it as part of the &lt;a href="https://github.com/element-hq/element-desktop/releases/tag/v1.11.95"&gt;1.11.95 release&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While you could go to the &lt;a href="https://element.io/download"&gt;downloads website&lt;/a&gt; and get the installer from there, you can now also get it via &lt;a href="https://learn.microsoft.com/windows/package-manager/winget/"&gt;WinGet&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I built on the work of the &lt;a href="https://github.com/microsoft/winget-pkgs/tree/master/manifests/e/Element/Element"&gt;existing community manifest&lt;/a&gt; in the winget-pkgs repo and via a &lt;a href="https://github.com/microsoft/winget-pkgs/pull/244768"&gt;pull request&lt;/a&gt; updated the latest 1.11.96 version to include the ARM64 installer.&lt;/p&gt;
+&lt;p&gt;While I didn't create the manifest from scratch, I thought it was really easy to contribute a new installer. I'll leave the details of my process for another post though.&lt;/p&gt;
+&lt;p&gt;Installing Element Desktop via WinGet is relativaly straightforward.&lt;/p&gt;
+&lt;p&gt;Assuming you already have the WinGet tool installed, all you have to do is run the following commmand in the terminal and you're all set!&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-powershell"&gt;winget install Element.Element -a arm64
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/install-element-desktop-windows-arm64</link>
+      <guid>https://www.lqdev.me/notes/install-element-desktop-windows-arm64</guid>
+      <pubDate>2025-04-07 08:38 -05:00</pubDate>
+      <category>matrix</category>
+      <category>arm64</category>
+      <category>windows</category>
+      <category>element</category>
+      <category>winget</category>
+      <category>opensource</category>
+      <category>decentralization</category>
+    </item>
+    <item>
+      <title>AI Dev Gallery now in the Microsoft Store</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;So excited to see the &lt;a href="https://apps.microsoft.com/detail/9n9pn1mm3bd5"&gt;AI Dev Gallery is now in the Microsoft Store&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Through various interactive samples, developers get to see how they might use AI for different tasks like text classification, object detection, and many others.&lt;/p&gt;
+&lt;p&gt;Best of all, the models are all running locally and you get to see and export the C# code powering the samples to Visual Studio so you can continue tinkering on your own and integrate into your own applications.&lt;/p&gt;
+&lt;p&gt;A few months ago, the team came on the .NET AI Community Standup to showcase the app. Since then, it's only kept improving and introducing new scenarios.&lt;/p&gt;
+&lt;p&gt;You can check out the recording from that stream here.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=5H9TxzCQfNo" title="Thumbnail of AI Community Standup AI Dev Gallery"&gt;&lt;img src="http://img.youtube.com/vi/5H9TxzCQfNo/0.jpg" class="img-fluid" alt="Thumbnail of AI Community Standup AI Dev Gallery" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/ai-dev-gallery-windows-preview-ms-store</link>
+      <guid>https://www.lqdev.me/responses/ai-dev-gallery-windows-preview-ms-store</guid>
+      <pubDate>2025-02-15 12:02 -05:00</pubDate>
+      <category>ai</category>
+      <category>windows</category>
+      <category>dotnet</category>
+      <category>microsoft</category>
+      <category>onnx</category>
+    </item>
+    <item>
+      <title>Winget Configuration</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;My Winget Configuration file&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-powershell"&gt;winget configure -f &amp;lt;FILENAME&amp;gt;.dsc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-yaml"&gt;# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+# Reference: https://github.com/microsoft/winget-create#building-the-client
+# WinGet Configure file Generated By Dev Home.
+
+properties:
+  resources:
+  - resource: Microsoft.Windows.Developer/DeveloperMode
+    directives:
+      description: Enable Developer Mode
+      allowPrerelease: true
+    settings:
+      Ensure: Present  
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing Microsoft.VisualStudio.2022.Community
+      allowPrerelease: true
+      securityContext: current
+    settings:
+      id: &amp;quot;Microsoft.VisualStudio.2022.Community&amp;quot;
+      source: winget
+    id: Microsoft.VisualStudio.2022.Community
+  - resource: Microsoft.VisualStudio.DSC/VSComponents
+    dependsOn:
+      - Microsoft.VisualStudio.2022.Community
+    directives:
+      description: Install required VS workloads
+      allowPrerelease: true
+    settings:
+      productId: Microsoft.VisualStudio.Product.Community
+      channelId: VisualStudio.17.Release
+      components:
+        - Microsoft.VisualStudio.Workload.Azure
+        - Microsoft.VisualStudio.Workload.NetWeb
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing Microsoft.VisualStudioCode
+      allowPrerelease: true
+      securityContext: current
+    settings:
+      id: &amp;quot;Microsoft.VisualStudioCode&amp;quot;
+      source: winget
+    id: Microsoft.VisualStudioCode
+  #   https://github.com/microsoft/winget-cli/discussions/3958
+  # - resource: vscode/VSCodeExtension
+  #   directives:
+  #     description: Install Remote Development Extension
+  #     allowPrerelease: true
+  #   settings:
+  #     Name: ms-vscode-remote.vscode-remote-extensionpack
+  #     Ensure: Present
+  # - resource: vscode/VSCodeExtension
+  #   directives:
+  #     description: Install YAML Extension
+  #     allowPrerelease: true
+  #   settings:
+  #     Name: redhat.vscode-yaml
+  #     Ensure: Present
+  # - resource: vscode/VSCodeExtension
+  #   directives:
+  #     description: Install Ionide Extension
+  #     allowPrerelease: true
+  #   settings:
+  #     Name: Ionide.Ionide-fsharp
+  #     Ensure: Present
+  # - resource: vscode/VSCodeExtension
+  #   directives:
+  #     description: Install C# Extension
+  #     allowPrerelease: true
+  #   settings:
+  #     Name: ms-dotnettools.csdevkit
+  #     Ensure: Present      
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing Git.Git
+      allowPrerelease: true
+      securityContext: current
+    settings:
+      id: &amp;quot;Git.Git&amp;quot;
+      source: winget
+    id: Git.Git
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing Microsoft.PowerShell
+      allowPrerelease: true
+      securityContext: current
+    settings:
+      id: &amp;quot;Microsoft.PowerShell&amp;quot;
+      source: winget
+    id: Microsoft.PowerShell
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing Docker.DockerDesktop
+      allowPrerelease: true
+      securityContext: current
+    settings:
+      id: &amp;quot;Docker.DockerDesktop&amp;quot;
+      source: winget
+    id: Docker.DockerDesktop
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing Debian.Debian
+      allowPrerelease: true
+      securityContext: current
+    settings:
+      id: &amp;quot;Debian.Debian&amp;quot;
+      source: winget
+    id: Debian.Debian
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing Microsoft.DotNet.SDK.8
+      allowPrerelease: true
+      securityContext: current
+    settings:
+      id: &amp;quot;Microsoft.DotNet.SDK.8&amp;quot;
+      source: winget
+    id: Microsoft.DotNet.SDK.8
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing Microsoft.DotNet.SDK.9
+      allowPrerelease: true
+      securityContext: current
+    settings:
+      id: &amp;quot;Microsoft.DotNet.SDK.9&amp;quot;
+      source: winget
+    id: Microsoft.DotNet.SDK.9
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing OBSProject.OBSStudio
+      allowPrerelease: true
+      securityContext: current
+    settings:
+      id: &amp;quot;OBSProject.OBSStudio&amp;quot;
+      source: winget
+    id: OBSProject.OBSStudio
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing Microsoft.WSL
+      allowPrerelease: true
+      securityContext: current
+    settings:
+      id: &amp;quot;Microsoft.WSL&amp;quot;
+      source: winget
+    id: Microsoft.WSL
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing Ollama.Ollama
+      allowPrerelease: true
+      securityContext: current
+    settings:
+      id: &amp;quot;Ollama.Ollama&amp;quot;
+      source: winget
+    id: Ollama.Ollama
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing Microsoft.WindowsTerminal
+      allowPrerelease: false
+      securityContext: current
+    settings:
+      id: &amp;quot;Microsoft.WindowsTerminal&amp;quot;
+      source: winget
+    id: Microsoft.WindowsTerminal
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing Brave Browser
+      allowPrerelease: true
+      securityContext: current
+    settings:
+      id: &amp;quot;Brave.Brave&amp;quot;
+      source: winget
+    id: Brave.Brave    
+  # https://github.com/microsoft/winget-pkgs/issues/155070
+  # - resource: Microsoft.WinGet.DSC/WinGetPackage
+  #   directives:
+  #     description: Installing NordVPN
+  #     allowPrerelease: true
+  #     securityContext: current
+  #   settings:
+  #     id: &amp;quot;NordSecurity.NordVPN&amp;quot;
+  #     source: winget
+  #   id: NordSecurity.NordVPN
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing Thunderbird
+      allowPrerelease: true
+      securityContext: current
+    settings:
+      id: &amp;quot;Mozilla.Thunderbird&amp;quot;
+      source: winget
+    id: Mozilla.Thunderbird  
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing ProtonMail
+      allowPrerelease: true
+      securityContext: current
+    settings:
+      id: &amp;quot;Proton.ProtonMail&amp;quot;
+      source: winget
+    id: Proton.ProtonMail     
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing Bitwarden
+      allowPrerelease: true
+      securityContext: current
+    settings:
+      id: &amp;quot;Bitwarden.Bitwarden&amp;quot;
+      source: winget
+    id: Bitwarden.Bitwarden    
+  - resource: Microsoft.WinGet.DSC/WinGetPackage
+    directives:
+      description: Installing VLC
+      allowPrerelease: true
+      securityContext: current
+    settings:
+      id: &amp;quot;VideoLAN.VLC&amp;quot;
+      source: winget
+    id: VideoLAN.VLC        
+  configurationVersion: 0.2.0
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/winget-config</link>
+      <guid>https://www.lqdev.me/resources/snippets/winget-config</guid>
+      <pubDate>01/14/2025 20:51 -05:00</pubDate>
+      <category>windows</category>
+      <category>powershell</category>
+      <category>yaml</category>
+    </item>
+    <item>
+      <title>Running Linux GUI Apps on Windows (WSLg) is amazing!</title>
+      <description>&lt;![CDATA[&lt;p&gt;So you might've heard of Windows Subsystem for Linux (WSL), but did you know you can also &lt;a href="https://learn.microsoft.com/windows/wsl/tutorials/gui-apps"&gt;run Linux GUI apps with WSLg&lt;/a&gt;?&lt;/p&gt;
+&lt;p&gt;While trying to install the Element Desktop client on my Spandragon X Elite Windows device, I quickly realized &lt;a href="https://github.com/element-hq/element-desktop/issues/650"&gt;you can't because of an issue with Electron&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;WSL is supported on ARM64 Windows devices. This means, it should also support GUI apps.&lt;/p&gt;
+&lt;p&gt;I decided to try and install the Element Desktop client for Linux in WSL and this was the result!&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/element-linux-wsl.png" class="img-fluid" alt="Screenshot of Element Desktop Login Screen" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/running-linux-gui-apps-windows-wsl-amazing</link>
+      <guid>https://www.lqdev.me/notes/running-linux-gui-apps-windows-wsl-amazing</guid>
+      <pubDate>2024-11-27 20:48 -05:00</pubDate>
+      <category>wsl</category>
+      <category>linux</category>
+      <category>windows</category>
+      <category>gui</category>
+      <category>element</category>
+      <category>matrix</category>
+    </item>
+    <item>
+      <title>New Era of Work - Windows / Surface Event Blog (March 21, 2024)</title>
+      <description>&lt;![CDATA[&lt;p&gt;&lt;strong&gt;12:03&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Copilot is making people more productive.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;12:06&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Copilot for Microsoft 365 integrated into Windows.&lt;/li&gt;
+&lt;li&gt;Demo: After coming back from vacation, you want to catch up.
+&lt;ul&gt;
+&lt;li&gt;Ask copilot about latest project updates&lt;/li&gt;
+&lt;li&gt;Ask copilot for summary of meeting you missed which generates a summary of the discussion and action items.&lt;/li&gt;
+&lt;li&gt;Copilot then can help you tackle the action items like drafting and sending e-mails.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;12:09&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Demo: Using Copilot to configure Windows settings&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;12:13&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Demo: Using Windows App to manage Windows 365 cloud PCs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;12:21&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Surface Pro 10 and Surface Laptop 6 announced for business. Comes with latest Intel processors, Neural Processing Units (NPUs), and Copilot.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;12:39&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The demo showing a .NET development workflow on the Surface Laptop 6 was great. Usually that same workflow longer on my Lenovo P4.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/surface-event-mar-21-24-event-blog</link>
+      <guid>https://www.lqdev.me/notes/surface-event-mar-21-24-event-blog</guid>
+      <pubDate>2024-03-21 12:02 -05:00</pubDate>
+      <category>windows</category>
+      <category>microsoft</category>
+      <category>surface</category>
+      <category>copilot</category>
+      <category>ai</category>
+      <category>pc</category>
+      <category>hardware</category>
+    </item>
+    <item>
+      <title>Microsoft to end its Android apps on Windows 11 subsystem in 2025</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Microsoft is ending support for its Android subsystem in Windows 11 next year. The software giant first announced it was bringing Android apps to Windows 11 with Amazon’s Appstore nearly three years ago, but this Windows Subsystem for Android will now be deprecated starting March 5th, 2025.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That's unfortunate considering the new lineup of ARM-based PCs expected later this year. It would've been nice to have a &lt;a href="https://www.lqdev.me/responses/windows-12-mobile-concept/"&gt;mobile PC with 5G support&lt;/a&gt; that could run mobile apps for scenarios where there are no web / native PC apps.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/windows-subsystem-for-android-end-of-support-2025</link>
+      <guid>https://www.lqdev.me/responses/windows-subsystem-for-android-end-of-support-2025</guid>
+      <pubDate>2024-03-05 20:47 -05:00</pubDate>
+      <category>windows</category>
+      <category>android</category>
+      <category>wsa</category>
+      <category>pc</category>
+    </item>
+    <item>
+      <title>Getting started with Ollama on Windows</title>
+      <description>&lt;![CDATA[
+Recently [Ollama announced support for Windows](/responses/ollama-windows-preview) in preview. In doing so, people who want to use AI models like Llama, Phi, and many others can do so locally on their PC. In this post, I'll go over how you can get started with Ollama on Windows. 
+
+## Install Ollama
+
+The first thing you'll want to do is install Ollama.
+
+You can do so by [downloading the installer from the website](https://ollama.com/download/windows) and following the installation prompts. 
+
+## Get a model
+
+Once you've installed Ollama, it's time to get a model.
+
+1. Open PowerShell
+1. Run the following command
+
+    ```powershell
+    ollama pull llama2
+    ```
+
+In this case, I'm using llama2. However, you can choose another model. You could even download many models at once and switch between them. For a full list of supported models, see the [Ollama model documentation](https://ollama.com/library).
+
+## Use the model
+
+Now that you have the model, it's time to use it. The easiest way to use the model is using the REST API. When you install Ollama, it starts up a server to host your model. One other neat thing is, the REST API is [OpenAI API compatible](https://ollama.com/blog/openai-compatibility).
+
+1. Open PowerShell
+1. Send the following request:
+
+    ```powershell
+    (Invoke-WebRequest -method POST -Body '{"model":"llama2", "prompt":"Why is the sky blue?", "stream": false}' -uri http://localhost:11434/api/generate ).Content | ConvertFrom-json
+    ```
+
+    This command will issue an HTTP POST request to the server listening on port 11434.
+
+    The main things to highlight in the body:
+
+    - *model*: The model you'll use. Make sure this is one of the models you pulled. 
+    - *prompt*: The input to the model
+    - *stream*: Whether to stream responses back to the client
+
+    For more details on the REST API, see the [Ollama REST API documentation](https://github.com/ollama/ollama/blob/main/docs/api.md). 
+
+## Conclusion
+
+In this post, I went over how you can quickly install Ollama to start using generative AI models like Llama and Phi locally on your Windows PC. If you use Mac or Linux, you can perform similar steps as those outlined in this guide to get started on those operating systems. Happy coding! ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/getting-started-ollama-windows</link>
+      <guid>https://www.lqdev.me/posts/getting-started-ollama-windows</guid>
+      <pubDate>2024-03-05 10:32 -05:00</pubDate>
+      <category>ai</category>
+      <category>ollama</category>
+      <category>windows</category>
+      <category>llm</category>
+      <category>opensource</category>
+      <category>llama</category>
+      <category>openai</category>
+      <category>generativeai</category>
+      <category>genai</category>
+    </item>
+    <item>
+      <title>Windows 12 Mobile - Concept</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;Cool concept.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=XhwFp6lMOcQ" title="Windows 12 Mobile Concept Video"&gt;&lt;img src="http://img.youtube.com/vi/XhwFp6lMOcQ/0.jpg" class="img-fluid" alt="Windows 12 Mobile Concept Video" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The likelihood of it happening is low, but there's a lot of really great opportunities here especially with &lt;a href="https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023"&gt;the new wave or ARM PCs coming&lt;/a&gt;. I don't know what the device form factor looks like, but I wouldn't mind carrying around a pocket PC - a true mobile computer. Already with the Windows Store, you have access to tons of apps. For the apps that aren't in the Store, there's the browser. That seemed to be good enough for &lt;a href="https://www.lqdev.me/responses/vision-pros-most-important-app-safari"&gt;Apple's Vision Pro&lt;/a&gt;. Taking it a step further would the app gap matter as much if you have Copilot as your concierge orchestrating tasks for you using the various services? Better yet, what if these services had their own assistants / GPTs Copilot could talk to and coordinate on your behalf?&lt;/p&gt;
+&lt;p&gt;At some point, I might just use &lt;a href="https://www.lqdev.me/responses/openai-sora"&gt;OpenAI's Sora model&lt;/a&gt; to live vicariously through an AI-generated video depicting this alternate reality where Windows Phone exists...&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/windows-12-mobile-concept</link>
+      <guid>https://www.lqdev.me/responses/windows-12-mobile-concept</guid>
+      <pubDate>2024-02-21 14:59 -05:00</pubDate>
+      <category>windows</category>
+      <category>mobile</category>
+      <category>windowsphone</category>
+      <category>pc</category>
+    </item>
+    <item>
+      <title>Ollama - Windows Preview</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Ollama is now available on Windows in preview, making it possible to pull, run and create large language models in a new native Windows experience. Ollama on Windows includes built-in GPU acceleration, access to the full model library, and the Ollama API including OpenAI compatibility.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://ollama.com/download/windows"&gt;Download (https://ollama.com/download/windows)&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/ollama-windows-preview</link>
+      <guid>https://www.lqdev.me/responses/ollama-windows-preview</guid>
+      <pubDate>2024-02-19 16:13 -05:00</pubDate>
+      <category>ollama</category>
+      <category>windows</category>
+      <category>llm</category>
+      <category>opensource</category>
+      <category>localmodels</category>
+      <category>ml</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>Introducing Sudo for Windows</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Sudo for Windows is a new way for users to run elevated commands directly from an unelevated console session. It is an ergonomic and familiar solution for users who want to elevate a command without having to first open a new elevated console.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We are also excited to announce that we are open-sourcing this project here on GitHub!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/microsoft/sudo"&gt;GitHub Repo&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-sudo-windows</link>
+      <guid>https://www.lqdev.me/responses/introducing-sudo-windows</guid>
+      <pubDate>2024-02-13 21:51 -05:00</pubDate>
+      <category>windows</category>
+      <category>sudo</category>
+      <category>system</category>
+    </item>
+    <item>
+      <title>lqdev.me Post Metrics</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;Generates an aggregate analysis of posts on &lt;a href="https://www.lqdev.me"&gt;lqdev.me / luisquintanilla.me&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet fsi stats.fsx 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;h3&gt;stats.fsx&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;// Reference DLL
+#r &amp;quot;../bin/Debug/net8.0/PersonalSite.dll&amp;quot;
+
+// Add modules
+open Domain
+open Builder
+open System
+
+// Load posts
+let posts = loadPosts()
+let notes = loadFeed ()
+let responses = loadReponses ()
+
+// Organize posts by year
+let postCountsByYear = 
+    posts
+    |&amp;gt; Array.countBy (fun (x:Post) -&amp;gt; DateTime.Parse(x.Metadata.Date) |&amp;gt; _.Year)
+    |&amp;gt; Array.sortByDescending fst 
+
+let noteCountsByYear = 
+    notes
+    |&amp;gt; Array.countBy (fun (x:Post) -&amp;gt; DateTime.Parse(x.Metadata.Date) |&amp;gt; _.Year)
+    |&amp;gt; Array.sortByDescending fst
+
+let responseCountsByYear = 
+    responses
+    |&amp;gt; Array.countBy (fun (x:Response) -&amp;gt; DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year)
+    |&amp;gt; Array.sortByDescending fst
+
+// Organize responses by type
+let responsesByType = 
+    responses
+    |&amp;gt; Array.filter(fun x -&amp;gt; (DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year) = DateTime.UtcNow.Year)
+    |&amp;gt; Array.countBy(fun x -&amp;gt; x.Metadata.ResponseType)
+    |&amp;gt; Array.sortByDescending(snd)
+
+// Organize responses by tag
+let responsesByTag = 
+    responses
+    |&amp;gt; Array.filter(fun x -&amp;gt; (DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year) = DateTime.UtcNow.Year)
+    |&amp;gt; Array.collect(fun x -&amp;gt; 
+            match x.Metadata.Tags with
+            | null -&amp;gt; [|&amp;quot;untagged&amp;quot;|]
+            | [||] -&amp;gt; [|&amp;quot;untagged&amp;quot;|]
+            | _ -&amp;gt; x.Metadata.Tags
+        )
+    |&amp;gt; Array.countBy(fun x -&amp;gt; x)
+    |&amp;gt; Array.sortByDescending(snd)
+
+// Organize responses by host name (domain)
+let responsesByDomain = 
+    responses
+    |&amp;gt; Array.filter(fun x -&amp;gt; (DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year) = DateTime.UtcNow.Year)
+    |&amp;gt; Array.countBy(fun x -&amp;gt; Uri(x.Metadata.TargetUrl).Host)
+    |&amp;gt; Array.sortByDescending(snd)
+
+// Utility function to display counts
+let printEntryCounts&amp;lt;'a&amp;gt; (title:string) (entryCounts:('a * int) array) (n:int) = 
+    printfn $&amp;quot;{title}&amp;quot;
+
+    match entryCounts.Length with
+    | 0 -&amp;gt; 
+        printfn $&amp;quot;No entries&amp;quot;
+        printfn $&amp;quot;&amp;quot;
+    | a when a &amp;gt; 0 -&amp;gt; 
+        match n with 
+        | n when n = -1 || n &amp;gt; entryCounts.Length -&amp;gt; 
+            entryCounts
+            |&amp;gt; Array.iter(fun x -&amp;gt; printfn $&amp;quot;{fst x} {snd x}&amp;quot;)
+            |&amp;gt; fun _ -&amp;gt; printfn $&amp;quot;&amp;quot;
+        | n when n &amp;gt; 0 -&amp;gt; 
+            entryCounts
+            |&amp;gt; Array.take n
+            |&amp;gt; Array.iter(fun x -&amp;gt; printfn $&amp;quot;{fst x} {snd x}&amp;quot;)
+            |&amp;gt; fun _ -&amp;gt; printfn $&amp;quot;&amp;quot;
+
+// Print yearly counts
+printEntryCounts &amp;quot;Blogs&amp;quot; postCountsByYear 2
+
+printEntryCounts &amp;quot;Notes&amp;quot; noteCountsByYear 2
+
+printEntryCounts &amp;quot;Responses&amp;quot; responseCountsByYear 2
+
+// Print response types
+printEntryCounts &amp;quot;Response Types&amp;quot; responsesByType -1
+
+// Print response tag counts
+printEntryCounts &amp;quot;Response Tags&amp;quot; responsesByTag 5
+
+// Print response by host name
+printEntryCounts &amp;quot;Domains&amp;quot; responsesByDomain 5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Expected Output&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Blogs
+2023 5
+2022 7
+
+Notes
+2023 34
+2022 36
+
+Responses
+2023 216
+2022 146
+
+Response Types
+bookmark 151
+reshare 48
+reply 10
+star 7
+
+Response Tags
+ai 104
+llm 42
+untagged 41
+opensource 31
+internet 17
+
+Domains
+github.com 15
+huggingface.co 11
+arxiv.org 10
+openai.com 6
+www.theverge.com 4
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics</link>
+      <guid>https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics</guid>
+      <pubDate>12/23/2023 13:13 -05:00</pubDate>
+      <category>analytics</category>
+      <category>website</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>pkm</category>
+      <category>indieweb</category>
+      <category>dotnet</category>
+      <category>windows</category>
+      <category>linux</category>
+      <category>mac</category>
+    </item>
+    <item>
+      <title>Quick Thoughts Snapdragon Summit 2023 Addendum</title>
+      <description>&lt;![CDATA[&lt;p&gt;Yesterday I wrote a post with some quick thoughts on &lt;a href="https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023"&gt;why I'm excited for the new Snapdragon X Elite&lt;/a&gt; set of chips.&lt;/p&gt;
+&lt;p&gt;There's something I missed which came to mind this morning.&lt;/p&gt;
+&lt;p&gt;If your Snapdragon X Elite powered computer is running Windows, and it also has calling and messaging capabilities like a phone, does that mean that you're now the proud owner of a &amp;quot;Windows Phone&amp;quot;? As a fan of Windows Phone, that sounds interesting.&lt;/p&gt;
+&lt;p&gt;Now you might say, &amp;quot;Windows doesn't have all my apps&amp;quot;. Fair point but with Windows Subsystem for Android (WSA), maybe the app gap isn't much of a concern. More importantly, as I mentioned in the post, if the apps no longer become the main mode of interaction and instead are relegated to serve as background services to the AI interface, does it even matter?&lt;/p&gt;
+&lt;p&gt;In the post, I also mentioned how I'd prefer my mobile computer runs Linux (and no, I don't mean AOSP). Even that is not a strict limitation, since I can run Windows Subsystem for Linux (WSL) inside Windows. So technically I can still have Linux on my mobile computer even if it's running Windows.&lt;/p&gt;
+&lt;p&gt;Let's see if 2024 becomes the Year of the Windows (or Linux) Phone.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/snapdragon-summit-2023-addendum</link>
+      <guid>https://www.lqdev.me/notes/snapdragon-summit-2023-addendum</guid>
+      <pubDate>2023-10-25 19:26 -05:00</pubDate>
+      <category>windows</category>
+      <category>qualcomm</category>
+      <category>windowsphone</category>
+      <category>mobilecomputing</category>
+      <category>arm</category>
+      <category>hardware</category>
+      <category>5g</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>The history and legacy of Visual Basic</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;How Visual Basic became the world's most dominant programming environment, its sudden fall from grace, and why its influence is still shaping the future of software development.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/visual-basic-history-retool</link>
+      <guid>https://www.lqdev.me/bookmarks/visual-basic-history-retool</guid>
+      <pubDate>2023-09-12 10:33 -05:00</pubDate>
+      <category>visualbasic</category>
+      <category>windows</category>
+    </item>
+    <item>
+      <title>Windows 11 upgrade</title>
+      <description>&lt;![CDATA[&lt;p&gt;No Windows 11 upgrade for me. 😥&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/135946651-d4d9acee-5618-4846-85aa-8387077a4785.png" class="img-fluid" alt="PC doesn't meet windows 11 upgrade requirements message" /&gt;&lt;/p&gt;
+&lt;p&gt;Just because I can't doesn't mean you can't though. Go and check if you're eligible at Windows Update&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Start &amp;gt; Settings &amp;gt; Update &amp;amp; Security &amp;gt; Windows Update&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;See &lt;a href="https://support.microsoft.com/windows/manage-updates-in-windows-643e9ea7-3cf6-7da6-a25c-95d4f7f099fe#WindowsVersion=Windows_10"&gt;Manage updates in Windows&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;p&gt;For alternative install options, check out the &lt;a href="https://www.microsoft.com/software-download/windows11"&gt;Download Windows 11&lt;/a&gt; page.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/windows-11-upgrade</link>
+      <guid>https://www.lqdev.me/notes/windows-11-upgrade</guid>
+      <pubDate>10/05/2021 08:55 AM -05:00</pubDate>
+      <category>windows10</category>
+      <category>windows</category>
+      <category>windows11</category>
+      <category>microsoft</category>
+    </item>
+  </channel>
+</rss>

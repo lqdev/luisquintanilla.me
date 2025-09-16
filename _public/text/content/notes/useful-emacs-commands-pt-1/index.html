@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Note to Self: Useful Emacs Commands Pt. 1 - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Note to Self: Useful Emacs Commands Pt. 1</h1><div class="content-meta"><div class="content-type">notes</div><time datetime="2024-07-28">July 28, 2024</time><p>Tags: emacs, lisp, elisp, programming, code, notetoself</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/notes/">← All notes</a> | <a href="https://www.lqdev.me/notes/useful-emacs-commands-pt-1">View Full Version</a></p><div class="content"><p>I still need to set up an org-capture template for snippets, so writing a note to myself to remember these commands I'll eventually want to come back to.</p>
+<h2>Capture elfeed link</h2>
+<p>In this custom function, <code>elfeed-show-yank</code> extracts the link element in an elfeed entry. <code>org-capture</code> then just invokes the org-capture template selection prompt. At this point, I can move forward with creating a response entry on the website and since the link to the entry I was viewing in elfeed is in the kill-ring, I can easily paste the URL while filling out the org-capture template.</p>
+<pre><code class="language-lisp">(defun capture-elfeed-entry ()
+  (elfeed-show-yank)
+  (org-capture))
+</code></pre>
+<h2>Org capture contexts</h2>
+<p>I recently found out, I can add filters to org-capture templates based on the mode I'm in Emacs. Here's an example:</p>
+<pre><code class="language-lisp">(setq org-capture-templates-contexts
+      '((&quot;wrn&quot; ((in-mode . &quot;elfeed-show-mode&quot;)))))
+</code></pre>
+<p><code>org-capture-templates-contexts</code> defines a set of conditions that defines which contexts certain org-capture templates appear under.</p>
+<p>For example, the org-capture template mapped to <code>wrn</code> will only be visible when org-capture is invoked from a buffer in <code>elfeed-show-mode</code>.</p>
+<p>More information can be found in the <a href="https://orgmode.org/manual/Templates-in-contexts.html">org-capture templates in context documentation</a></p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

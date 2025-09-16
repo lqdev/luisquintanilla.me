@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - cost</title>
+    <link>https://www.lqdev.me/tags/cost</link>
+    <description>All content tagged with 'cost' by Luis Quintanilla</description>
+    <lastBuildDate>2022-05-04 20:36 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>A year's worth of Azure hosting costs</title>
+      <description>&lt;![CDATA[&lt;p&gt;It's been a little over a year since I started hosting my website on Azure. The resources I use include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Azure Storage: Where all my site assets are stored.&lt;/li&gt;
+&lt;li&gt;Azure CDN: Content delivery&lt;/li&gt;
+&lt;li&gt;Azure Logic Apps: Event-based jobs to syndicate new posts on Twitter and Mastodon.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I haven't tracked traffic for the entire year but since October of last year the site has gotten roughly 5,000 visitors.&lt;/p&gt;
+&lt;p&gt;Taking all that into account, I've only had to pay $2.06 most of it being the storage I use for the site. In comparison, I was previously hosting my website through my domain provider in a shared server where it cost about $60!&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/166848883-8d6cfe2c-5ff3-468c-b95f-b0ecab69595a.png" class="img-fluid" alt="Azure portal billing cost" /&gt;&lt;/p&gt;
+&lt;p&gt;If you're interested in how this site is built, check out the &lt;a href="https://www.lqdev.me/colophon"&gt;colophon&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/azure-costs-website-hosting-2021</link>
+      <guid>https://www.lqdev.me/notes/azure-costs-website-hosting-2021</guid>
+      <pubDate>2022-05-04 20:36 -05:00</pubDate>
+      <category>azure</category>
+      <category>website</category>
+      <category>cost</category>
+      <category>hosting</category>
+      <category>selfhosting</category>
+      <category>cloud</category>
+      <category>indieweb</category>
+    </item>
+  </channel>
+</rss>

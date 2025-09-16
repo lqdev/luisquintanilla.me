@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - darkpattern</title>
+    <link>https://www.lqdev.me/tags/darkpattern</link>
+    <description>All content tagged with 'darkpattern' by Luis Quintanilla</description>
+    <lastBuildDate>2024-07-30 20:37 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Subscription dark patterns</title>
+      <description>&lt;![CDATA[&lt;p&gt;I recently took inventory of subscriptions I'm no longer using. The ones that were especially tricky to spot were the annual subscriptions that don't show up on bank statements every month. These also happened to be ones that I hadn't used in years.&lt;/p&gt;
+&lt;p&gt;Getting a list of them was the easy part. The fun didn't start until I actually went through the process of unsubscribing.&lt;/p&gt;
+&lt;p&gt;For a few of them, cancelling was relatively straightforward.&lt;/p&gt;
+&lt;p&gt;Others, it was an adventure. Best case, I was presented with several screens where the option to keep my subscription was front and center and the cancel button was in small print all the way at the bottom of the screen. In other cases, I had to send an e-mail to cancel. My favorite though was the one where I was able to log in and access member content. When I went to the account settings to try and cancel my subscription, they were conveniently having technical difficulties &lt;span&gt;🙃&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Super frustrating experience all around, but happy to get it done so I get to keep more of my money.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/subscription-dark-patterns</link>
+      <guid>https://www.lqdev.me/notes/subscription-dark-patterns</guid>
+      <pubDate>2024-07-30 20:37 -05:00</pubDate>
+      <category>darkpattern</category>
+      <category>subscriptions</category>
+      <category>services</category>
+    </item>
+  </channel>
+</rss>

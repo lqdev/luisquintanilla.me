@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - webgpu</title>
+    <link>https://www.lqdev.me/tags/webgpu</link>
+    <description>All content tagged with 'webgpu' by Luis Quintanilla</description>
+    <lastBuildDate>2023-08-31 18:57 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Llama 2 7B/13B are now available in Web LLM</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Llama 2 7B/13B are now available in Web LLM!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Llama 2 70B is also supported.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This project brings large-language model and LLM-based chatbot to web browsers. Everything runs inside the browser with no server support and accelerated with WebGPU. This opens up a lot of fun opportunities to build AI assistants for everyone and enable privacy while enjoying GPU acceleration.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/web-llm-llama-2</link>
+      <guid>https://www.lqdev.me/bookmarks/web-llm-llama-2</guid>
+      <pubDate>2023-08-31 18:57 -05:00</pubDate>
+      <category>ai</category>
+      <category>webgpu</category>
+      <category>llama</category>
+      <category>llm</category>
+    </item>
+  </channel>
+</rss>

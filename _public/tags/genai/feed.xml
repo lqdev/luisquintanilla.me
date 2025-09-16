@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - genai</title>
+    <link>https://www.lqdev.me/tags/genai</link>
+    <description>All content tagged with 'genai' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-14 12:40 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Introducing Gemma 3 270M</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we're adding a new, highly specialized tool to the Gemma 3 toolkit: Gemma 3 270M, a compact, 270-million parameter model designed from the ground up for task-specific fine-tuning with strong instruction-following and text structuring capabilities already trained in.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-gemma-3-270m</link>
+      <guid>https://www.lqdev.me/responses/introducing-gemma-3-270m</guid>
+      <pubDate>2025-08-14 12:40 -05:00</pubDate>
+      <category>ai</category>
+      <category>google</category>
+      <category>gemma</category>
+      <category>slm</category>
+      <category>genai</category>
+    </item>
+    <item>
+      <title>The Illustrated DeepSeek-R1</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Just like most existing LLMs, DeepSeek-R1 generates one token at a time, except it excels at solving math and reasoning problems because it is able to spend more time processing a problem through the process of generating thinking tokens that explain its chain of thought.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fed7fd8c3-7654-497c-a8e2-1f2e7930992e_3302x1438.png" class="img-fluid" alt="DeepSeek R1 Training Recipe" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/illustrated-deepseek-r1</link>
+      <guid>https://www.lqdev.me/bookmarks/illustrated-deepseek-r1</guid>
+      <pubDate>2025-02-03 20:20 -05:00</pubDate>
+      <category>deepseek</category>
+      <category>ai</category>
+      <category>visualization</category>
+      <category>generativeai</category>
+      <category>genai</category>
+      <category>llm</category>
+      <category>learning</category>
+    </item>
+    <item>
+      <title>Spotify Wrapped 2024 AI Generated Podcast</title>
+      <description>&lt;![CDATA[&lt;p&gt;While looking at &lt;a href="https://www.lqdev.me/notes/spotify-wrapped-2024"&gt;Spotify Wrapped this year&lt;/a&gt;, I completely missed the AI-generated podcast that came along with it.&lt;/p&gt;
+&lt;p&gt;As cool as this is, &lt;strong&gt;it should've been opt-in&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Although I would hope that when I clicked &amp;quot;I Agree&amp;quot; on the user agreement, the use of my data in this way is covered (for Spotify's sake), it's not clear or easy to find:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;What data was shared with Google's NotebookLM&lt;/li&gt;
+&lt;li&gt;What Google will do with that data&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;There's a reason I purposefully haven't linked Spotify to other accounts.&lt;/p&gt;
+&lt;p&gt;I know there's probably hundreds of worse ways my data is being used I don't know about. This one though was hard to miss and a sad reminder that often you don't learn about how your data is being used until after the fact. Cases like this are not really a big deal. So what if you know I was going through a &amp;quot;Witchy Jam Band Phsychedelic Rock&amp;quot; phase in September? Where it does matter though is when it involves more personal and sensitive data. Again, because we don't realize it until after the fact, it's not until then that we learn what we're giving up when we make the simple, often uninformed, decision to select &amp;quot;I Agree&amp;quot;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://wrappedaipodcast.spotifycdn.com/bDEn3i-uWoItOTYMmcRcNGKBqZ18M9ygFTAY0X8YHXk.mp4" class="img-fluid" alt="AI Genereated Spotify Wrapped Podcast" /&gt;&lt;/p&gt;
+&lt;!-- &lt;video controls="" autoplay="" name="media"&gt;&lt;source src="https://wrappedaipodcast.spotifycdn.com/bDEn3i-uWoItOTYMmcRcNGKBqZ18M9ygFTAY0X8YHXk.mp4" type="video/mp4"&gt;&lt;/video&gt; --&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/spotify-wrapped-2024-podcast-notebook-lm</link>
+      <guid>https://www.lqdev.me/notes/spotify-wrapped-2024-podcast-notebook-lm</guid>
+      <pubDate>2024-12-05 09:02 -05:00</pubDate>
+      <category>spotify</category>
+      <category>ai</category>
+      <category>spotifywrapped</category>
+      <category>google</category>
+      <category>notebooklm</category>
+      <category>privacy</category>
+      <category>podcast</category>
+      <category>generativeai</category>
+      <category>genai</category>
+    </item>
+    <item>
+      <title>Generative AI Handbook: A Roadmap for Learning Resources</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This document aims to serve as a handbook for learning the key concepts underlying modern artificial intelligence systems. Given the speed of recent development in AI, there really isn’t a good textbook-style source for getting up-to-speed on the latest-and-greatest innovations in LLMs or other generative models, yet there is an abundance of great explainer resources (blog posts, videos, etc.) for these topics scattered across the internet. My goal is to organize the “best” of these resources into a textbook-style presentation, which can serve as a roadmap for filling in the prerequisites towards individual AI-related learning goals. My hope is that this will be a “living document”, to be updated as new innovations and paradigms inevitably emerge, and ideally also a document that can benefit from community input and contribution. This guide is aimed at those with a technical background of some kind, who are interested in diving into AI either out of curiosity or for a potential career. I’ll assume that you have some experience with coding and high-school level math, but otherwise will provide pointers for filling in any other prerequisites.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/genai-handbook-learning-resource-brown</link>
+      <guid>https://www.lqdev.me/bookmarks/genai-handbook-learning-resource-brown</guid>
+      <pubDate>2024-06-06 22:18 -05:00</pubDate>
+      <category>generativeai</category>
+      <category>genai</category>
+      <category>handbook</category>
+      <category>learning</category>
+      <category>resource</category>
+    </item>
+    <item>
+      <title>Introducing Phi-3</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Starting today, Phi-3-mini, a 3.8B language model is available on Microsoft Azure AI Studio, Hugging Face, and Ollama.&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Phi-3-mini is available in two context-length variants—4K and 128K tokens. It is the first model in its class to support a context window of up to 128K tokens, with little impact on quality.&lt;/li&gt;
+&lt;li&gt;It is instruction-tuned, meaning that it’s trained to follow different types of instructions reflecting how people normally communicate. This ensures the model is ready to use out-of-the-box.&lt;/li&gt;
+&lt;li&gt;It is available on Azure AI to take advantage of the deploy-eval-finetune toolchain, and is available on Ollama for developers to run locally on their laptops.&lt;/li&gt;
+&lt;li&gt;It has been optimized for ONNX Runtime with support for Windows DirectML along with cross-platform support across graphics processing unit (GPU), CPU, and even mobile hardware.&lt;/li&gt;
+&lt;li&gt;It is also available as an NVIDIA NIM microservice with a standard API interface that can be deployed anywhere. And has been optimized for NVIDIA GPUs.&lt;br /&gt;
+&lt;br&gt;
+In the coming weeks, additional models will be added to Phi-3 family to offer customers even more flexibility across the quality-cost curve. Phi-3-small (7B) and Phi-3-medium (14B) will be available in the Azure AI model catalog and other model gardens shortly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-phi-3</link>
+      <guid>https://www.lqdev.me/responses/introducing-phi-3</guid>
+      <pubDate>2024-04-23 22:47 -05:00</pubDate>
+      <category>microsoft</category>
+      <category>phi3</category>
+      <category>ai</category>
+      <category>slm</category>
+      <category>llm</category>
+      <category>genai</category>
+    </item>
+    <item>
+      <title>One-step Diffusion with Distribution Matching Distillation</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Our one-step generator achieves comparable image quality with StableDiffusion v1.5 while being 30x faster.&lt;/strong&gt;&lt;br /&gt;
+&lt;br&gt;
+Diffusion models are known to approximate the score function of the distribution they are trained on. In other words, an unrealistic synthetic image can be directed toward higher probability density region through the denoising process (see SDS). Our core idea is training two diffusion models to estimate not only the score function of the target real distribution, but also that of the fake distribution. We construct a gradient update to our generator as the difference between the two scores, essentially nudging the generated images toward higher realism as well as lower fakeness (see VSD). Our method is similar to GANs in that a critic is jointly trained with the generator to minimize a divergence between the real and fake distributions, but differs in that our training does not play an adversarial game that may cause training instability, and our critic can fully leverage the weights of a pretrained diffusion model. Combined with a simple regression loss to match the output of the multi-step diffusion model, our method outperforms all published few-step diffusion approaches, reaching 2.62 FID on ImageNet 64x64 and 11.49 FID on zero-shot COCO-30k, comparable to Stable Diffusion but orders of magnitude faster. Utilizing FP16 inference, our model generates images at 20 FPS on modern hardware.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://arxiv.org/abs/2311.18828"&gt;Paper&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/one-step-diffusion-distribution-matching-distillation</link>
+      <guid>https://www.lqdev.me/responses/one-step-diffusion-distribution-matching-distillation</guid>
+      <pubDate>2024-03-26 21:44 -05:00</pubDate>
+      <category>ai</category>
+      <category>genai</category>
+      <category>diffusion</category>
+      <category>dmd</category>
+      <category>stablediffusion</category>
+      <category>dalle</category>
+    </item>
+    <item>
+      <title>Enhancing RAG-based application accuracy by constructing and leveraging knowledge graphs</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A practical guide to constructing and retrieving information from knowledge graphs in RAG applications with Neo4j and LangChain&lt;br /&gt;
+&lt;br&gt;
+Graph retrieval augmented generation (Graph RAG) is gaining momentum and emerging as a powerful addition to traditional vector search retrieval methods. This approach leverages the structured nature of graph databases, which organize data as nodes and relationships, to enhance the depth and contextuality of retrieved information.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/enhace-rag-application-accuracy-knowledge-graphs</link>
+      <guid>https://www.lqdev.me/responses/enhace-rag-application-accuracy-knowledge-graphs</guid>
+      <pubDate>2024-03-17 21:29 -05:00</pubDate>
+      <category>knowledgegraph</category>
+      <category>rag</category>
+      <category>genai</category>
+      <category>langchain</category>
+      <category>generativeai</category>
+      <category>retrievalaugmentedgeneration</category>
+      <category>patterns</category>
+      <category>applicationpatterns</category>
+    </item>
+    <item>
+      <title>LaVague - Large Action Model framework</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Redefining internet surfing by transforming natural language instructions into seamless browser interactions.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/lavague-large-action-model</link>
+      <guid>https://www.lqdev.me/responses/lavague-large-action-model</guid>
+      <pubDate>2024-03-17 21:22 -05:00</pubDate>
+      <category>ai</category>
+      <category>genai</category>
+      <category>lavague</category>
+      <category>selenium</category>
+      <category>web</category>
+      <category>lam</category>
+      <category>largeactionmodel</category>
+    </item>
+    <item>
+      <title>Spreadsheets are all you need</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A low-code way to learn AI - Learn how AI works from a real LLM implemented entirely in Excel&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/spreadsheets-are-all-you-need</link>
+      <guid>https://www.lqdev.me/responses/spreadsheets-are-all-you-need</guid>
+      <pubDate>2024-03-17 21:18 -05:00</pubDate>
+      <category>excel</category>
+      <category>tutorial</category>
+      <category>ai</category>
+      <category>genai</category>
+      <category>tokenizers</category>
+      <category>transformers</category>
+    </item>
+    <item>
+      <title>Building Meta’s GenAI Infrastructure</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;ul&gt;
+&lt;li&gt;Marking a major investment in Meta’s AI future, we are announcing two 24k GPU clusters. We are sharing details on the hardware, network, storage, design, performance, and software that help us extract high throughput and reliability for various AI workloads. We use this cluster design for Llama 3 training.&lt;/li&gt;
+&lt;li&gt;We are strongly committed to open compute and open source. We built these clusters on top of Grand Teton, OpenRack, and PyTorch and continue to push open innovation across the industry.&lt;/li&gt;
+&lt;li&gt;This announcement is one step in our ambitious infrastructure roadmap. By the end of 2024, we’re aiming to continue to grow our infrastructure build-out that will include 350,000 NVIDIA H100 GPUs as part of a portfolio that will feature compute power equivalent to nearly 600,000 H100s.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/building-meta-genai-infrastructure</link>
+      <guid>https://www.lqdev.me/responses/building-meta-genai-infrastructure</guid>
+      <pubDate>2024-03-17 21:14 -05:00</pubDate>
+      <category>meta</category>
+      <category>ai</category>
+      <category>infrastraucture</category>
+      <category>generativeai</category>
+      <category>genai</category>
+      <category>facebook</category>
+    </item>
+    <item>
+      <title>Stable Diffusion 3: Research Paper</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Key Takeaways:&lt;br /&gt;
+&lt;br&gt;
+Today, we’re publishing our research paper that dives into the underlying technology powering Stable Diffusion 3.&lt;br /&gt;
+&lt;br&gt;
+Stable Diffusion 3 outperforms state-of-the-art text-to-image generation systems such as DALL·E 3, Midjourney v6, and Ideogram v1 in typography and prompt adherence, based on human preference evaluations.&lt;br /&gt;
+&lt;br&gt;
+Our new Multimodal Diffusion Transformer (MMDiT) architecture uses separate sets of weights for image and language representations, which improves text understanding and spelling capabilities compared to previous versions of SD3.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/stable-diffusion-3-research-paper</link>
+      <guid>https://www.lqdev.me/responses/stable-diffusion-3-research-paper</guid>
+      <pubDate>2024-03-05 12:55 -05:00</pubDate>
+      <category>stabilityai</category>
+      <category>stablediffusion</category>
+      <category>ai</category>
+      <category>generativeai</category>
+      <category>genai</category>
+      <category>images</category>
+    </item>
+    <item>
+      <title>Getting started with Ollama on Windows</title>
+      <description>&lt;![CDATA[
+Recently [Ollama announced support for Windows](/responses/ollama-windows-preview) in preview. In doing so, people who want to use AI models like Llama, Phi, and many others can do so locally on their PC. In this post, I'll go over how you can get started with Ollama on Windows. 
+
+## Install Ollama
+
+The first thing you'll want to do is install Ollama.
+
+You can do so by [downloading the installer from the website](https://ollama.com/download/windows) and following the installation prompts. 
+
+## Get a model
+
+Once you've installed Ollama, it's time to get a model.
+
+1. Open PowerShell
+1. Run the following command
+
+    ```powershell
+    ollama pull llama2
+    ```
+
+In this case, I'm using llama2. However, you can choose another model. You could even download many models at once and switch between them. For a full list of supported models, see the [Ollama model documentation](https://ollama.com/library).
+
+## Use the model
+
+Now that you have the model, it's time to use it. The easiest way to use the model is using the REST API. When you install Ollama, it starts up a server to host your model. One other neat thing is, the REST API is [OpenAI API compatible](https://ollama.com/blog/openai-compatibility).
+
+1. Open PowerShell
+1. Send the following request:
+
+    ```powershell
+    (Invoke-WebRequest -method POST -Body '{"model":"llama2", "prompt":"Why is the sky blue?", "stream": false}' -uri http://localhost:11434/api/generate ).Content | ConvertFrom-json
+    ```
+
+    This command will issue an HTTP POST request to the server listening on port 11434.
+
+    The main things to highlight in the body:
+
+    - *model*: The model you'll use. Make sure this is one of the models you pulled. 
+    - *prompt*: The input to the model
+    - *stream*: Whether to stream responses back to the client
+
+    For more details on the REST API, see the [Ollama REST API documentation](https://github.com/ollama/ollama/blob/main/docs/api.md). 
+
+## Conclusion
+
+In this post, I went over how you can quickly install Ollama to start using generative AI models like Llama and Phi locally on your Windows PC. If you use Mac or Linux, you can perform similar steps as those outlined in this guide to get started on those operating systems. Happy coding! ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/getting-started-ollama-windows</link>
+      <guid>https://www.lqdev.me/posts/getting-started-ollama-windows</guid>
+      <pubDate>2024-03-05 10:32 -05:00</pubDate>
+      <category>ai</category>
+      <category>ollama</category>
+      <category>windows</category>
+      <category>llm</category>
+      <category>opensource</category>
+      <category>llama</category>
+      <category>openai</category>
+      <category>generativeai</category>
+      <category>genai</category>
+    </item>
+    <item>
+      <title>GGUF, the long way around</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We’ve been on a whirlwind adventure to build up our intuition of how machine learning models work, what artifacts they produce, how the machine learning artifact storage story has changed over the past couple years, and finally ended up in GGUF’s documentation to better understand the log that is presented to us when we perform local inference on artifacts in GGUF.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/gguf-long-way-around</link>
+      <guid>https://www.lqdev.me/responses/gguf-long-way-around</guid>
+      <pubDate>2024-02-29 21:49 -05:00</pubDate>
+      <category>ai</category>
+      <category>genai</category>
+      <category>gguf</category>
+      <category>llm</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>Stable Diffusion 3 - Early Preview</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Announcing Stable Diffusion 3 in early preview, our most capable text-to-image model with greatly improved performance in multi-subject prompts, image quality, and spelling abilities.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The Stable Diffusion 3 suite of models currently range from 800M to 8B parameters.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Stable Diffusion 3 combines a diffusion transformer architecture and flow matching.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/stable-diffusion-3-early-preview</link>
+      <guid>https://www.lqdev.me/responses/stable-diffusion-3-early-preview</guid>
+      <pubDate>2024-02-22 20:59 -05:00</pubDate>
+      <category>stabilityai</category>
+      <category>ai</category>
+      <category>stablediffusion</category>
+      <category>imagegeneration</category>
+      <category>ml</category>
+      <category>image</category>
+      <category>genai</category>
+      <category>generativeai</category>
+    </item>
+    <item>
+      <title>Cosmopedia v0.1</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Cosmopedia is a dataset of synthetic textbooks, blogposts, stories, posts and WikiHow articles generated by Mixtral-8x7B-Instruct-v0.1.The dataset contains over 30 million files and 25 billion tokens, making it the largest open synthetic dataset to date.&lt;br /&gt;
+&lt;br&gt;
+It covers a variety of topics; we tried to map world knowledge present in Web datasets like RefinedWeb and RedPajama, and generate synthetic content that covers them. This is the v0.1 of Cosmopedia, with ample room for improvement and topics to be more comprehensively covered. We hope this dataset will help the community's research efforts in the increasingly intriguing domain of synthetic data.&lt;br /&gt;
+&lt;br&gt;
+This work is inspired by the great work of Phi1.5.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/cosmopedia-ai-synthetic-dataset</link>
+      <guid>https://www.lqdev.me/responses/cosmopedia-ai-synthetic-dataset</guid>
+      <pubDate>2024-02-20 16:50 -05:00</pubDate>
+      <category>cosmopedia</category>
+      <category>dataset</category>
+      <category>huggingface</category>
+      <category>mixtral</category>
+      <category>ai</category>
+      <category>genai</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>What about instrumentals? AI Generated Spotify Clips Addendum</title>
+      <description>&lt;![CDATA[&lt;p&gt;In my recent post, &lt;a href="https://www.lqdev.me/posts/generative-ai-spotify-clips"&gt;Using Generative AI to produce Spotify Clips&lt;/a&gt; I listed a bunch of challenges but realized I missed a big one. While listening to &lt;a href="https://www.youtube.com/watch?v=G0CqHxDG74k"&gt;IJ by Sam Gendel&lt;/a&gt;, I realized, what do you do about instrumental songs, solos, or songs with few lyrics?&lt;/p&gt;
+&lt;p&gt;Some sort of audio-to-video technique?&lt;/p&gt;
+&lt;p&gt;Maybe using metadata like title, genre, beats-per-minute (BPM), spectrogram, and musical notes would work?&lt;/p&gt;
+&lt;p&gt;Or generating an image and animating it or its background to add depth similar to how in the &lt;a href="https://blog.research.google/2023/12/videopoet-large-language-model-for-zero.html"&gt;VideoPoet blog post&lt;/a&gt;, the image of the Mona Lisa is animated.&lt;/p&gt;
+&lt;p&gt;It would be a fun experiment.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/genai-spotify-clips-instrumental</link>
+      <guid>https://www.lqdev.me/notes/genai-spotify-clips-instrumental</guid>
+      <pubDate>2023-12-23 19:32 -05:00</pubDate>
+      <category>ai</category>
+      <category>genai</category>
+      <category>music</category>
+      <category>instrumental</category>
+      <category>spotify</category>
+      <category>generativeai</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>VideoPoet: A large language model for zero-shot video generation</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;VideoPoet is a simple modeling method that can convert any autoregressive language model or large language model (LLM) into a high-quality video generator. It contains a few simple components:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A pre-trained MAGVIT V2 video tokenizer and a SoundStream audio tokenizer transform images, video, and audio clips with variable lengths into a sequence of discrete codes in a unified vocabulary. These codes are compatible with text-based language models, facilitating an integration with other modalities, such as text.&lt;/li&gt;
+&lt;li&gt;An autoregressive language model learns across video, image, audio, and text modalities to autoregressively predict the next video or audio token in the sequence.&lt;/li&gt;
+&lt;li&gt;A mixture of multimodal generative learning objectives are introduced into the LLM training framework, including text-to-video, text-to-image, image-to-video, video frame continuation, video inpainting and outpainting, video stylization, and video-to-audio. Furthermore, such tasks can be composed together for additional zero-shot capabilities (e.g., text-to-audio).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This simple recipe shows that language models can synthesize and edit videos with a high degree of temporal consistency. VideoPoet demonstrates state-of-the-art video generation, in particular in producing a wide range of large, interesting, and high-fidelity motions. The VideoPoet model supports generating videos in square orientation, or portrait to tailor generations towards short-form content, as well as supporting audio generation from a video input.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://blog.research.google/2023/12/videopoet-large-language-model-for-zero.html"&gt;Blog Post&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/videopoet-llm-zero-shot-video-generation</link>
+      <guid>https://www.lqdev.me/bookmarks/videopoet-llm-zero-shot-video-generation</guid>
+      <pubDate>2023-12-23 19:06 -05:00</pubDate>
+      <category>ai</category>
+      <category>genai</category>
+      <category>videopoet</category>
+      <category>generativeai</category>
+      <category>google</category>
+    </item>
+    <item>
+      <title>Using Generative AI to produce Spotify Clips</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+While listening to music on Spotify last night, this thought hit me. It's been cooking for some time so now you get to read about it. Spotify and YouTube, if you build this into your platforms for songs or podcasts, [contact me](/contact) for info on where to send the check :joy:. As the title of the post suggests, this is a thought experiment on how you might use Generative AI to produce Spotify Clips. This is not limited to songs but could also be extended to audio-only podcasts. However, given the long-form nature of podcasts it might be extremely resource intensive to produce clips per episode. This post is not exactly a how-to guide, though there are some practical examples of how some of the steps in the workflow might work using [Microsoft Copilot (formerly Bing Chat)](https://copilot.microsoft.com/).
+
+## Spotify Clips
+
+Let's start off by talking about what Spotify Clips are. Back in March of 2023, [Spotify introduced Clips to their platform](https://artists.spotify.com/blog/spotify-clips-get-started-short-form-video-stream-on). Spotify describes [Clips](https://clips.byspotify.com/) as "short, under-30-second vertical videos that are uploaded directly to Spotify for Artists. They’re designed to put you and your music front-and-center, so they can be attached to your artist profile, to a song, to an album, or to an upcoming release.". When paired with a song, you can think of them as short music videos. Music videos being the videos made to accompany songs that played on TV channels like Music Television (MTV) before Jersey Shore and Catfish. Music videos are still in production today and they generally serve the same purpose. They provide a visual representation of the story being told by the song.  
+
+## Generative AI for video
+
+An overwhelming majority of Generative AI models only generate text. With models like DALL-E and Stable Diffusion, you can also generate images. Other models to generate audio and video have started coming on the scene. Most recently, Google announced [VideoPoet](https://blog.research.google/2023/12/videopoet-large-language-model-for-zero.html), a large language model for zero-shot video generation. There's many interesting techniques that VideoPoet introduces but I'll keep it to one of the more simple scenarios and the technique used in this post, text-to-image. Given a text prompt, VideoPoet can generate by default, a short 2-second clip. You can use VideoPoet as well to extend a clip so you could go well beyond the default 2 seconds. That however is outside the scope of this post. With that in mind, let's talk about how we might use a Generative AI model and apply it to the context of Spotify Clips.
+
+## Generative AI Spotify Clips workflow
+
+The following is a rough idea of how you might use song information like lyrics to 
+
+```mermaid
+flowchart TD
+  A["Get song lyrics"] --&gt; B["Generate scenes and script"]
+  B --&gt; C["Generate prompts for each scene"]
+  C --&gt; D["Generate video clips"]
+  D --&gt; E["(Optional) Edit clips"]
+  D --&gt; F["Stitch clips together"]
+  E--&gt;F
+```
+
+This is roughly what Google did in their VideoPoet samples. They "...produced a short movie composed of many short clips generated by the model. For the script, we asked Bard to write a series of prompts to detail a short story about a traveling raccoon. We then generated video clips for each prompt, and stitched together all resulting clips". The resulting video looks like the following:
+
+[![An AI generated video of a traveling racoon demoing VideoPoet AI model capabilities](http://img.youtube.com/vi/70wZKfx6Ylk/0.jpg)](https://www.youtube.com/watch?v=70wZKfx6Ylk "An AI generated video of a traveling racoon demoing VideoPoet AI model capabilities")
+
+One thing to note is that the videos generated are YouTube Shorts which are vertical as well. This makes it easier to produce videos in the format Spotify expects Clips to be in.
+
+## AI Generated Spotify Clips in practice
+
+Now that we know the general process, what does it actually look like in practice? To help me with that, I used Microsoft Copilot.
+
+### Generate scenes and script
+
+In the example shared by Google, they used a prompt to generate a script made up of a series of prompts. In the case of songs on Spotify, we can use that as context and the starting point for our script. From there, we can ask Copilot to compose scenes for the verses in the song. We can also make sure as these scenes are generated, that there is a smooth transition between them and the storytelling is consistent. 
+
+Let's take a look at what this might look like using the Chicano Batman song "A Hundred Dead and Loving Souls". Why that one? Just check out my [Spotify Wrapped](/notes/spotify-wrapped-2023). The general theme of that song is about the cycles of life experienced across millenia and generations. 
+
+**Prompt**
+
+Given the following prompt:
+
+```text
+Using the song information below as context, generate a script for a story that visually represents the song lyrics. Ensure that the script is broken down into individual scenes and the scenes are linear and cohesively transition.
+
+&lt;song&gt;
+&lt;title&gt;A Hundred Dead and Loving Souls&lt;/title&gt;
+&lt;lyrics&gt;
+I am the sand stuck under miles of rock
+watching the dry air sweep away my thoughts
+as we travel protected by shards of glass
+driving through the history of a million memories
+
+In a sea of a hundred dead and loving souls
+In a sea of a hundred dead and loving souls
+In a sea of a hundred dead and loving souls
+Climbing a thousand unclimbed trees
+I don't know I want to know how it would feel
+to be on top of one of these!
+
+I am the root
+quickly ascending
+up through the surrounding dirt
+quickly devoured by a hungry sun
+quickly devoured by a hungry son
+who is my father
+and we are alike
+we look alike we talk alike
+we are alike
+we are alike
+we are alike we look alike
+we talk alike
+
+Thats why Im hungry
+like the bellowing sky
+this is no lie
+as sure as light
+entering eye
+want to stay high
+everything's cool too cool so cool
+and I remember that everything falls
+
+So I take a look around me now, as I speak
+and I imagine a disinterested crowd
+talking aloud
+and I think of what I want most
+and the crowd disappears
+and a fixated gaze envelopes my wondering mind
+and then she recruits and takes me to this place
+I've been there before and that's where I saw her face
+
+In a sea of a hundred dead and loving souls
+In a sea of a hundred dead and loving souls
+In a sea of a hundred dead and loving souls
+Climbing a thousand unclimbed trees
+I don't know I want to know how it would feel
+to be on top of one of these!
+&lt;/lyrics&gt;
+&lt;/song&gt;
+
+Story: 
+```
+
+**Response**
+
+The response looks like the following:
+
+```text
+# Script for A Hundred Dead and Loving Souls
+
+## Scene 1: The Sand
+- A close-up shot of a grain of sand under a microscope, showing its intricate structure and texture.
+- The camera zooms out to reveal that the sand is part of a vast desert landscape, with dunes and rocks stretching to the horizon.
+- A voice-over of the protagonist (a young man) narrates the first verse of the song, expressing his feelings of being trapped and forgotten under the weight of the world.
+- The camera pans to show a car driving on a dusty road, with the protagonist and his father inside. They are both wearing sunglasses and hats to protect themselves from the sun.
+- The car is filled with boxes and bags, indicating that they are moving to a new place.
+- The father is driving and listening to the radio, while the protagonist is looking out the window, bored and restless.
+- The radio plays a news report about a nuclear fusion experiment in South Korea, followed by a song by a popular band.
+- The father comments on the news, saying that it is a breakthrough for humanity and that he hopes to see it in his lifetime.
+- The protagonist does not respond, but thinks to himself that he does not care about anything anymore.
+
+## Scene 2: The Sea
+- A montage of shots showing the protagonist and his father arriving at their new home, a small town by the sea.
+- The father is excited and optimistic, while the protagonist is indifferent and detached.
+- The father unpacks their belongings and sets up their new house, while the protagonist wanders around the town, exploring the beach, the pier, and the streets.
+- The protagonist sees a group of teenagers hanging out at a skate park, laughing and having fun. He feels out of place and lonely.
+- The protagonist walks to the edge of the pier, where he sees a sign that says "No diving".
+- He looks down at the water, where he sees hundreds of dead fish floating on the surface, victims of a recent oil spill.
+- He hears the chorus of the song in his head, imagining himself diving into the sea of a hundred dead and loving souls, and climbing a thousand unclimbed trees.
+- He wonders what it would feel like to be free and alive, instead of being stuck and dead inside.
+
+## Scene 3: The Root
+- A flashback scene, showing the protagonist as a child, playing in a garden with his father.
+- The father is a botanist, and he teaches his son about different plants and flowers, showing him how to care for them and appreciate their beauty.
+- The son is curious and eager, and he asks his father many questions about the natural world.
+- The father tells his son that he is a root, quickly ascending up through the surrounding dirt, and that he will grow into a strong and beautiful tree one day.
+- The son smiles and hugs his father, saying that he loves him and that he wants to be like him.
+- The father smiles and hugs his son back, saying that he loves him too and that he is proud of him.
+
+## Scene 4: The Sun
+- A flash-forward scene, showing the protagonist as a young adult, working in a laboratory with his father.
+- The father is a nuclear physicist, and he is working on a project to harness the power of nuclear fusion, the same process that fuels the sun.
+- The son is his assistant, and he helps his father with the experiments and calculations, following his instructions and commands.
+- The father tells his son that he is a hungry sun, quickly devoured by a hungry son, and that he will make a great contribution to science and humanity one day.
+- The son nods and agrees, but he does not look happy or satisfied. He feels pressured and obligated to follow his father's footsteps, even though he does not share his passion or vision.
+- The son thinks to himself that he is hungry, like the bellowing sky, and that he wants to stay high, away from the reality and expectations that weigh him down.
+
+## Scene 5: The Crowd
+- A present-day scene, showing the protagonist at a party, surrounded by a crowd of people.
+- The party is hosted by one of the teenagers that he saw at the skate park, who invited him out of pity and curiosity.
+- The party is loud and chaotic, with music, drinks, and drugs everywhere.
+- The protagonist feels uncomfortable and anxious, and he does not fit in with the crowd. He does not know anyone, and no one knows him.
+- He tries to make small talk with some of the guests, but they are either rude, bored, or high, and they do not pay attention to him.
+- He feels invisible and insignificant, and he wishes he could disappear.
+- He takes a look around him, as he speaks, and he imagines a disinterested crowd, talking aloud, and he thinks of what he wants most.
+
+## Scene 6: The Gaze
+- A close-up shot of a pair of eyes, staring intently at the protagonist.
+- The eyes belong to a girl, who is also at the party, but who is different from the rest of the crowd. She is quiet and mysterious, and she has a captivating and mysterious aura.
+- The girl notices the protagonist, and she is intrigued by him. She sees something in him that no one else sees, something that she relates to and understands.
+- She walks up to him, and she introduces herself. She says her name is Luna, and that she likes his song. She says she heard him humming it to himself, and that she knows the lyrics by heart.
+- The protagonist is surprised and confused, and he asks her how she knows his song. He says he wrote it himself, and that he never shared it with anyone.
+- The girl smiles and says that she knows his song, because she wrote it too. She says she has a gift, or a curse, depending on how you look at it. She says she can hear the songs that people sing in their souls, and that she can sing them back to them.
+- The protagonist is shocked and amazed, and he asks her to prove it. He asks her to sing his song, or any song that he knows.
+- The girl nods and agrees, and she sings his song, word for word, note for note, perfectly. She sings it with emotion and expression, as if she wrote it herself.
+- The protagonist is speechless and mesmerized, and he feels a connection with the girl that he never felt with anyone before. He feels like she knows him, and he wants to know her.
+- The girl stops singing, and she looks at him with a fixated gaze, that envelopes his wondering mind. She says she likes him, and she asks him if he wants to go with her to a place that she knows.
+- The protagonist nods and agrees, and he follows her out of the party, leaving the crowd behind.
+
+## Scene 7: The Place
+- A montage of shots showing the protagonist and the girl driving to a secluded spot in the woods, where they park their car and get out.
+- The spot is a clearing, where there is a large tree, with a rope swing hanging from one of its branches.
+- The tree is the only one of its kind in the area, and it stands out from the rest of the forest. It is tall and majestic, with green leaves and red flowers.
+- The girl tells the protagonist that this is her place, and that she comes here often to escape from the world. She says she loves this tree, and that she calls it Luna, after herself.
+- The protagonist tells the girl that this is his place too, and that he has been here before. He says he saw this tree in his dreams, and that he always wanted to climb it.
+- The girl smiles and says that they have more in common than they thought, and that they are meant to be together. She says she wants to show him something, and she asks him to follow her.
+- The girl climbs the tree, using the rope swing as a support. She is agile and graceful, and she reaches the top in no time.
+- The protagonist follows her, using the rope swing as well. He is clumsy and nervous, and he struggles to keep up with her.
+- The girl reaches the top of the tree, where she finds a small platform, made of wood and rope. She sits on the platform, and she looks at the view.
+- The view is breathtaking, and it shows the sea, the town, and the sky, all in one panorama. The sun is setting, and it casts a golden glow on everything.
+- The girl waves at the protagonist, and she invites him to join her. She says this is the best place to watch the sunset, and that she wants to share it with him.
+- The protagonist reaches the top of the tree, where he joins the girl on the platform. He sits next to her, and he looks at the view. He is awestruck, and he agrees that this is the best place to watch the sunset.
+- The girl leans in and kisses the protagonist, and he kisses her back. They embrace each other, and they watch the sunset together.
+- The chorus of the song plays in the background, as the scene fades to black.
+```
+
+Not too bad for a first pass. From here you might want to continue tweaking the different scenes but at least you have a starting point. 
+
+### Generate prompts for each scene
+
+Using the text-to-image technique, I first need to generate prompts to guide the model in the video generation process. In the case of this sample, you could take each of the bullet points in the scenes and generate a video for each of them. 
+
+At the time of this writing, I didn't have access to a video generation model and I don't think VideoPoet is open to the public yet. Therefore, I had to slightly modify what I was generating. Instead of generating a video, I used Copilot to generate images using DALL-E. The concept is the same, except instead of generating videos, I'm generating still images. 
+
+I could've applied the same concept of one image per bullet point. However, for brevity, I chose to summarize all of the bullet points in a scene into a single prompt. 
+
+**Prompt**
+
+Given the following prompt:
+
+```text
+Using storyboarding techniques, for each scene, generate a single prompt to use as input for DALL-E to generate an image. Since there are 7 scenes, there should be only 7 prompts. Distill as much of the concepts from each of the bullet points in each scene.
+```
+
+**Response**
+
+The results from that prompt are the following:
+
+```text
+Scene 1: The Sand
+    A grain of sand under a microscope and a car driving on a dusty road in a desert
+Scene 2: The Sea
+    A boy standing on a pier looking at a sea of dead fish and a sign that says “No diving”
+Scene 3: The Root
+    A father and a son playing in a garden with different plants and flowers
+Scene 4: The Sun
+    A father and a son working in a laboratory with a nuclear fusion reactor
+Scene 5: The Crowd
+    A boy at a party surrounded by a crowd of people with music, drinks, and drugs
+Scene 6: The Gaze
+    A girl with a pair of eyes that can hear the songs that people sing in their souls
+Scene 7: The Place
+    A boy and a girl sitting on a platform on top of a tree with a rope swing and a view of the sea, the town, and the sunset
+```
+
+Again, not too bad for a first pass. The main points of the scene are captured. I can already foresee there are a few scenes like "The Sand" which might be difficult to illustrate in a single image. 
+
+### Generate images (video clips)
+
+Now that we have individual prompts, it's time to generate some images. Again, I'm doing this because I don't have access to a video generation model but the process would be generally the same. 
+
+**Prompt**
+
+```text
+Use the prompts for each of the scenes to generate images with DALL-E. Render them as pencil art.
+```
+
+**Response**
+
+For brevity, I'll only include some of the images generated:
+
+"The Sand"
+
+![AI genreated image of a grain of sand under a microscope and a car driving on a dusty road in a desert](http://cdn.lqdev.tech/files/images/sand-car-dirt-road.jpg)
+
+"The Sea"
+
+![AI generated image of a boy standing on a pier looking at a sea of dead fish and a sign that says “No diving”](http://cdn.lqdev.tech/files/images/child-dock.jpg)
+
+"The Root"
+
+![AI generated image of a father and a son playing in a garden with different plants and flowers”](http://cdn.lqdev.tech/files/images/father-son-playing.jpg)
+
+The pencil art part was something I thought would look nice to illustrate this instead of digital art or photorealism. That was a personal choice though. 
+
+As we can see from the images, in general they're not too bad. When not condensed into a single image though and you have an image or video per frame in a scene, the generated content can be richer. 
+
+### Edit and stitch videos
+
+For the image generation example, this seems like a natural stopping point. However, with videos, you can imagine using AI to edit these videos. The VideoPoet post mentions how you might be able to do that. Part of that editing might also include lengthening the video clips. Once you're happy with your videos, you would then stitch them together to compose a larger clip. 
+
+## Improvements
+
+Tons! I used the simplest tools available at hand to validate whether my idea is feasible.  
+
+### Videos
+
+The most obvious improvement here would be to actually generate the videos. Whether that's using VideoPoet or another video generation model, the whole point is to end up with a video clip to upload to Spotify.
+
+### Prompts
+
+The prompts I used were not complex at all. I tried to keep them as simple as possible and in many cases, I wasn't the one providing the prompts, Copilot generated them for me. I would try to use more complex prompts to further guide the model in the formats I expect the outputs to be in and give more details for the model to generate better results. 
+
+### Code
+
+All of this was done using Copilot in the browser. As a starting point to validate my ideas this was fine. However, this approach is not composable, testable, reproducible, or scalable. I'd convert these steps to code in order to get all of the things Copilot doesn't give me. 
+
+### Timestamp sync
+
+One of the features Spotify offers is lyrics that are synced to the song. Similarly, being able to sync these generated clips to the song would be important so the visuals match the 
+
+## Challenges
+
+### Consistency
+
+One challenge that someone brought up when I was explaining this idea was, how do you ensure that the visuals are consistent throughout all of the video clips.
+
+That is a great question I don't have a great answer for, though I have ideas. 
+
+If there aren't many changes throughout scenes, you could just opt to keep lengthening the video clip. 
+
+If there are flashbacks or different visuals between scenes, you might achieve consistency by  using the image-to-video modality. Using a snapshot from a frame in a previous video clip, you might try to edit that snapshot to use in between transitions and then lengthen the video to produce the next scene. 
+
+### Power Consumption
+
+As fascinating as this is, is it worth the energy and cooling demands it requires when using large models? Maybe not in its current form, but maybe it makes sense when using smaller models or more power efficient compute. 
+
+### People
+
+For music videos, there's a human element to it both from the performers and the people who produce them. Again, the Generative AI is impressive and for someone like me without any artistic skills, it can be an empowering tool. Although I'm tempted to see what an [AI Rickroll](https://www.youtube.com/watch?v=dQw4w9WgXcQ) might look like, I prefer the human version. :slightly_smiling_face:
+
+## Conclusion
+
+In this post I discussed how you might use Generative AI models like VideoPoet to generate short videos for Spotify Clips. Since I don't have acess to VideoPoet or other video generation models at this time, I decided to show practical image generation examples instead using models like DALL-E to illustrate the general concepts. It's not wihtout its challenges and there's a ton of improvements I can think of but it was a fun experiment regardless. What else would you use these Generative AI models for? 
+
+You can find an addendum to this post [here](/notes/genai-spotify-clips-instrumental).]]&gt;</description>
+      <link>https://www.lqdev.me/posts/generative-ai-spotify-clips</link>
+      <guid>https://www.lqdev.me/posts/generative-ai-spotify-clips</guid>
+      <pubDate>2023-12-23 18:30 -05:00</pubDate>
+      <category>ai</category>
+      <category>video</category>
+      <category>chicanobatman</category>
+      <category>generativeai</category>
+      <category>genai</category>
+      <category>spotify</category>
+      <category>google</category>
+      <category>microsoft</category>
+      <category>bing</category>
+      <category>copilot</category>
+      <category>dalle</category>
+      <category>image</category>
+      <category>prompt</category>
+      <category>projectidea</category>
+      <category>music</category>
+      <category>podcasts</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Dall-E Outpainting and generative models</title>
+      <description>&lt;![CDATA[&lt;p&gt;Things are heating up in the AI generative model space. OpenAI just announced &lt;a href="https://openai.com/blog/dall-e-introducing-outpainting/"&gt;Outpainting&lt;/a&gt;. A few days ago, Stability.ai released &lt;a href="https://stability.ai/blog/stable-diffusion-public-release"&gt;Stable Diffusion&lt;/a&gt; and recently a painting generated using &lt;a href="https://www.midjourney.com/home/"&gt;Midjourney&lt;/a&gt; won &lt;a href="https://arstechnica.com/information-technology/2022/08/ai-wins-state-fair-art-contest-annoys-humans/"&gt;first place&lt;/a&gt; in the digital category of the Colorado State Fair fine art competition.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/open-ai-dall-e-outpainting-generative-models</link>
+      <guid>https://www.lqdev.me/notes/open-ai-dall-e-outpainting-generative-models</guid>
+      <pubDate>08/31/2022 17:49 -05:00</pubDate>
+      <category>dalle</category>
+      <category>openai</category>
+      <category>genai</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>Next gen stick figures using AI and NVIDIA Canvas</title>
+      <description>&lt;![CDATA[&lt;p&gt;I have almost zero artistic skills, so when I came across &lt;a href="https://www.nvidia.com/en-us/studio/canvas/"&gt;NVIDIA Canvas&lt;/a&gt; I was extremely excited!&lt;/p&gt;
+&lt;p&gt;Essentially it's an application that takes simple brushstrokes as input and uses a Generative Adversarial Network (GAN) to turn them into realistic landscape photos.&lt;/p&gt;
+&lt;p&gt;I had known about GANs being used to generate faces (see &lt;a href="https://thispersondoesnotexist.com/"&gt;This Person Does Not Exist&lt;/a&gt;) but it's one of the first times I've seen them used to enhance drawings.&lt;/p&gt;
+&lt;p&gt;Time to take my stick figures to the next level!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/nvidia-canvas-next-gen-stick-figures-ai</link>
+      <guid>https://www.lqdev.me/notes/nvidia-canvas-next-gen-stick-figures-ai</guid>
+      <pubDate>10/19/2021 10:51 PM -05:00</pubDate>
+      <category>nvidia</category>
+      <category>ai</category>
+      <category>genai</category>
+      <category>art</category>
+    </item>
+  </channel>
+</rss>

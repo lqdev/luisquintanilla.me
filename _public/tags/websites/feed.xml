@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - websites</title>
+    <link>https://www.lqdev.me/tags/websites</link>
+    <description>All content tagged with 'websites' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-10 23:26 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>URL Town</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;Love to see projects like this.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;url.town doesn’t have any overly lofty ambitions; we’re just building our own directory of really nice websites. We’re not trying to fully recreate the original Yahoo! or DMOZ directories. We’re not aiming for some astronomical number of links. This is just one space on the web, tied to a community that loves to share neat things with one another. Quality matters much more than quantity. There’s no need to share everything just for the shake of sharing it; it’s much better to share things that are useful or interesting.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/url-town</link>
+      <guid>https://www.lqdev.me/bookmarks/url-town</guid>
+      <pubDate>2025-08-10 23:26 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>websites</category>
+      <category>directory</category>
+    </item>
+    <item>
+      <title>Making space for a handmade web</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Love this article.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Before the web was more commercialized, it was personal...A website was a way to represent yourself and connect to others, a space to tend and call your very own.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The imperfect, handmade character of websites has been sanded away in favor of efficiency, and social media platforms have risen in the stead of amateur sites. Many of us conform to these containers and retreat from expressing our authentic selves publicly...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;If the idea of a more handcrafted internet resonates with you, the best way to be part of the movement is simply to make your own website. This may seem intimidating if we expect webpages to be a holistic reflection of ourselves, like a resume, portfolio, or blog. We limit the web as a medium when we expect that a website must fulfill a host of needs, or serve any function at all. &lt;strong&gt;A website doesn’t need to be anything but your own&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A more personal web becomes possible once we turn away from our preconceived notions of what a website must be. Let’s use our tools to continuously push at the boundaries of the web. Doing so will create a more creative, expansive environment that allows us to reclaim our agency and reinvigorate our collective understanding of software as an artisanal craft. Instead of concentrating on a few, monolithic sites, what if we visited many, more personalized sites? We should explore the far reaches of the web and invite our friends to join in: After all, &lt;strong&gt;we make the internet, and only we can build the web we want&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/making-space-handmade-web</link>
+      <guid>https://www.lqdev.me/responses/making-space-handmade-web</guid>
+      <pubDate>2025-01-18 19:25 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>personalweb</category>
+      <category>internet</category>
+      <category>websites</category>
+      <category>handmadeweb</category>
+    </item>
+    <item>
+      <title>Grow Your Own Services</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This is a site encouraging non-technical people and organisations to create their own online services such as websites, social networks, personal clouds, instant messaging etc.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/grow-your-own-services</link>
+      <guid>https://www.lqdev.me/bookmarks/grow-your-own-services</guid>
+      <pubDate>2024-04-25 22:53 -05:00</pubDate>
+      <category>selfhosting</category>
+      <category>indieweb</category>
+      <category>openweb</category>
+      <category>internet</category>
+      <category>community</category>
+      <category>cloud</category>
+      <category>messaging</category>
+      <category>website</category>
+      <category>socialnetworks</category>
+      <category>websites</category>
+      <category>online</category>
+    </item>
+    <item>
+      <title>Ghost is federating over ActivityPub</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In 2024, Ghost is adopting ActivityPub and connecting with other federated platforms across the web.&lt;br /&gt;
+&lt;br&gt;
+This means that, soon, Ghost publishers will be able to follow, like and interact with one another in the same way that you would normally do on a social network — but on your own website.&lt;br /&gt;
+&lt;br&gt;
+The difference, of course, is that you’ll also be able to follow, like, and interact with users on Mastodon, Threads, Flipboard, Buttondown, WriteFreely, Tumblr, WordPress, PeerTube, Pixelfed... or any other platform that has adopted ActivityPub, too. You don’t need to limit yourself to following people who happen to use the same platform as you.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;For the past few years the choice has been difficult. Either participate in closed networks at the mercy of algorithms, or set up an independent website at the expense of your growth.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Email gave us private messaging technology that isn’t owned by a single company.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;ActivityPub is doing the same for social technology.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The open web is coming back, and with it returns diversity. You can both publish independently and grow faster than ever before with followers from all over the world &amp;amp; the web.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I can't express how much I love this. Personally I don't use Ghost, but given platforms like WordPress and now Ghost are adding support for ActivityPub, it empowers people to build their own platforms.&lt;/p&gt;
+&lt;p&gt;That said, this still doesn't address the challenges of building your own website, which as mentioned in the post are one of the appealing aspects of current closed networks.&lt;/p&gt;
+&lt;p&gt;Still though, there is a vast number of creators, businesses, and company websites or blogs that can benefit from this today. When paired with RSS, it gives people choice and autonomy in how they create and consume content as I mentioned in a previous post, &lt;a href="https://www.lqdev.me/posts/rediscovering-rss-user-freedom"&gt;Rediscovering the RSS protocol&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/ghost-activitypub-integration-announcement</link>
+      <guid>https://www.lqdev.me/responses/ghost-activitypub-integration-announcement</guid>
+      <pubDate>2024-04-25 22:11 -05:00</pubDate>
+      <category>ghost</category>
+      <category>openweb</category>
+      <category>activitypub</category>
+      <category>fediverse</category>
+      <category>blogging</category>
+      <category>websites</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>Wix’s new AI chatbot builds websites in seconds based on prompts</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;You can now build a website, images and all, using only prompts in Wix’s new AI website builder. Creating a website is free, but you’ll have to upgrade to one of Wix’s premium plans if you want to do things like accept payments or don’t want to be limited to using a Wix domain name.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;You’d probably need to delve into Wix’s advanced editing features and know things about actual web development for that. But it was very easy to use the basic AI generator to create something that looks close to a legitimate site to start with, making it much easier to get to a basic starting point.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/wix-website-builder-ai-chatbot</link>
+      <guid>https://www.lqdev.me/responses/wix-website-builder-ai-chatbot</guid>
+      <pubDate>2024-03-04 23:15 -05:00</pubDate>
+      <category>wix</category>
+      <category>ai</category>
+      <category>websites</category>
+      <category>internet</category>
+      <category>web</category>
+    </item>
+    <item>
+      <title>Guest host Hank Green makes Nilay Patel explain why websites have a future</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...the last platform on the web of any scale or influence is Google Search. And so, over time, webpages have become dramatically optimized for Google Search. And that means the kinds of things people write about, the containers that we write in, are mostly designed to be optimized for Google Search. They’re not designed for, “I need to just quickly tell you about this and move on.” Our little insight was, “Well, what if we just don’t do that? What if we only write for the people who come directly to our website instead of the people who find our articles through Search or Google Discover or whatever other Google platforms are in the world?” And so we just made these little blog posts, and the idea was, if you just come to our website one more time a day because there’s one more thing to look at that you’ll like, we will be fine.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;more and more people are starting to realize, “Oh, we should just make the websites more valuable.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...if you start writing for other people, which is the heart of what a blog post really is: it’s you trying to entertain yourself and trying to entertain just a handful of other people, you’re going to go really much farther than trying to satisfy the robot.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Why am I writing in the text box that pays money to Elon and Mark [Zuckerberg] and not my text box?&lt;/strong&gt;&lt;br /&gt;
+&lt;br&gt;
+Why do we all work for free? Look, we want to talk about the platform era and media. Why do we all work for free?&lt;br /&gt;
+&lt;br&gt;
+...It’s very confusing, and there are a lot of reasons. If you just sit back and think about why, there are a million reasons why.&lt;br /&gt;
+&lt;br&gt;
+One, the software is nicer to use than most CMSes. You just pick one. Name a company that makes a CMS. They’re like, “Is this as fun to use as Twitter?” And the answer is no. Flatly no. Even the one we have now for quick posts is not as fun to use as Twitter was in its heyday. Will this immediately bring me the dopamine hit of immediate feedback? No.&lt;br /&gt;
+&lt;br&gt;
+[When redesigning the website]...the first instinct was, “Let’s at least make it easier to publish. Let’s at least remove the barriers to entry to getting on the website, and then we can do comments, and then we can think about how we can distribute in different ways.” So that is working. My team is happier. We did not know that the Twitter thing would happen, but the Twitter thing happened, and our desire to publish in the boxes we controlled went up as a group. And then, on top of it, our audience saw that we were having fun. And once you are having fun anywhere on the internet, people sort of gravitate to you. So traffic has gone up.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The distribution actually just creates the work or creates the pressures that force all the work to be the same. And I think over time that’s what drives the audiences away. So there’s a real change in how these platforms work, where, over time, they just become more and more of the same thing and the creators become more and more the same. And that’s a little exhausting. And every place where you see open distribution, you see a huge variety of creators and content.&lt;br /&gt;
+&lt;br&gt;
+Podcasts have basically open distribution. Like podcast or distributor RSS feeds, that means people kind of own their distribution, there’s a vast array of podcast creators. There’s a vast array of podcast formats. They don’t all sound like the beginning of YouTube videos or whatever. And I hate to keep picking on YouTube; you can pick any algorithmic platform, and it’s the same. TikTokers are more the same than different. Podcasters are more different than the same. The web is distributed largely through websites and through RSS. There’s a huge variety of websites and the way websites look. But then you see the algorithmic search pressure push web design kind of all under the same box.&lt;br /&gt;
+&lt;br&gt;
+Newsletters distributed by email: open distribution. The newsletter economy is full of a huge variety of creators doing a huge variety of things. They’re more different than the same. So all I see with the fediverse is, “Oh, this is going to open social distribution up a little bit.” It’s going to allow us to control our distribution networks. It’s going to say, “I’m not on Twitter, but people on Twitter can follow my website, and I can go promote that follow anywhere I want in different ways and build an audience outside of the pressures of the algorithm.” To me, just that, that ability to try, is 1 percent better.
+&lt;br&gt;
+If you’re me and you run a big website and you are thinking, “How can I redistribute this website, how can I reach people more directly?” my brain is lit up. You should be able to follow me at TheVerge.com and see all my quick posts in your Threads account when Threads federates.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/decoder-nilay-patel-why-websites-are-the-future</link>
+      <guid>https://www.lqdev.me/responses/decoder-nilay-patel-why-websites-are-the-future</guid>
+      <pubDate>2024-03-04 22:45 -05:00</pubDate>
+      <category>websites</category>
+      <category>internet</category>
+      <category>podcast</category>
+      <category>decoder</category>
+      <category>rss</category>
+      <category>platforms</category>
+      <category>blogs</category>
+      <category>technology</category>
+    </item>
+    <item>
+      <title>Replacing apps with websites</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I woke up today...and decided I was going to delete all the apps off my iPhone.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;If I didn’t need it to do a specialized function? Gone, poof. I decided to just use websites and bookmarks instead.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The websites worked just fine.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...websites are just badly designed these days, especially with using a screen reader on a mobile device. I can’t quite describe it, because mobile web browsers aren’t really well designed either, so it makes the website worse because it doesn’t even render all elements as smoothly as on desktop.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Even though there are problems, I’m honestly glad I deleted almost all my apps off my phone and started to pin websites to my home screen more. For one thing, it cuts down on notifications. it’s super freeing to not get a random notification because you didn’t open the app in a day, so the app pings you to say hey I’m still here please pay attention to me, I feel lonely, and nobody will give me animals to snuggle with.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;With pinned websites, my phone is faster and my home screen is much more organized as well.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I did this a few years ago. Websites work just fine for almost everything I need to do. The main benefits I noticed:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Less distractions&lt;/li&gt;
+&lt;li&gt;More real estate when viewing websites on laptop / desktop&lt;/li&gt;
+&lt;li&gt;Less apps to drain the battery when running on the background&lt;/li&gt;
+&lt;li&gt;More restricted access / permissions (i.e. websites don't need unrestricted access to my contacts or other information on my phone)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Better PWA support on mobile platforms would go a long way here to better balance between apps and websites. In the meantime though, pinning websites and websites overall work just fine for most things I need to do day-to-day.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/replacing-apps-websites-kingett</link>
+      <guid>https://www.lqdev.me/responses/replacing-apps-websites-kingett</guid>
+      <pubDate>2024-01-09 09:37 -05:00</pubDate>
+      <category>apps</category>
+      <category>websites</category>
+      <category>internet</category>
+      <category>mobile</category>
+    </item>
+  </channel>
+</rss>

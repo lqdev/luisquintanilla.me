@@ -1,0 +1,1154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - serverless</title>
+    <link>https://www.lqdev.me/tags/serverless</link>
+    <description>All content tagged with 'serverless' by Luis Quintanilla</description>
+    <lastBuildDate>2020-03-21 13:45:43 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Serverless Racket Applications Using Azure Functions Custom Handlers</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+[Racket](https://racket-lang.org/) is a fun and powerful general purpose programming language based on the Scheme dialect of Lisp that provides tools and packages that allow individuals to quickly be productive. Although you can build traditional web applications with it, it would be nice to use it with cloud-native technologies like serverless. Azure Functions is designed for these types of event-driven workflows but unfortunately does not officially support Racket. Recently, a new feature called custom handlers was announced which allows individuals to run web applications written in any language that supports HTTP primitives as an Azure Function. When I learned of this feature, my immediate thought was, challenge accepted!
+
+Custom handlers require the following:
+
+1. Write a web server to process requests
+2. Define the bindings for the request and response function payloads
+3. Configure the Azure Functions host to send request to the web server
+
+In this writeup, I'll show how to set up a Racket web server that processes `GET` requests running as an Azure Function. The source code for this project can be found in the [RacketAzureFunctionsCustomHandlerSample GitHub repository](https://github.com/lqdev/RacketAzureFunctionsCustomHandlerSample)
+
+## Prerequisites
+
+This project was built on a Windows 10 PC, but it should work cross-platform on Mac and Linux.
+
+- [Node.js](https://nodejs.org/en/)
+- [Racket](https://download.racket-lang.org/)
+- [Azure Functions Core Tools](https://docs.microsoft.com/azure/azure-functions/functions-run-local). This sample uses v2.x of the tool.
+
+## Create Azure Functions project
+
+Create a new directory called `RacketAzureFunctionsCustomHandlerSample` and navigate to it.
+
+## Create Racket server
+
+The way Azure Functions custom handlers work is by having the Azure Functions host proxy requests to a web server written in the language of choice which processes the request and sends the response back to the Azure Functions host.
+
+Start by setting the environment variable where Azure Functions and the server listen on. Create and environment variable called `FUNCTIONS_HTTPWORKER_PORT`. In this example, I set the variable to `7071`.
+
+Inside of your application directory, create a file called *server.rkt* which will contain the server logic.
+
+Open the *server.rkt* file. Define the language and import the required packages.
+
+```racket
+#lang racket
+(require json)
+(require web-server/servlet)
+(require web-server/servlet-env)
+```
+
+Then, get the port where the server listens on from the `FUNCTIONS_HTTPWORKER_PORT` environment variable.
+
+```racket
+(define PORT (string-&gt;number (getenv "FUNCTIONS_HTTPWORKER_PORT")))
+```
+
+Next, create a function called `get-values` to process your request. In this case, the function receives a `GET` request that returns a JSON object containing a list of integers.
+
+```racket
+(define (get-values req)
+    (response/full
+        200
+        #"OK"
+        (current-seconds)
+        #"application/json;charset=utf-8"
+        empty
+        (list (jsexpr-&gt;bytes #hasheq((value . (1 2 3)))))))
+```
+
+After that, define the routes so your server dispatches requests to the appropriate endpoint. In this case, `GET` requests to the `/values` endpoint are sent to and processed by the `get-values` function.
+
+```racket
+(define-values (dispatch req)
+    (dispatch-rules
+        [("values") #:method "get" get-values]
+        [else (error "Route does not exist")]))
+```
+
+The final *server.rkt* file should contains content similar to the one below:
+
+```racket
+;; Define language and import packages
+#lang racket
+(require json)
+(require web-server/servlet)
+(require web-server/servlet-env)
+
+;; Get port where server listens on
+(define PORT (string-&gt;number (getenv "FUNCTIONS_HTTPWORKER_PORT")))
+
+;; Create function to handle GET /values request
+(define (get-values req)
+    (response/full
+        200
+        #"OK"
+        (current-seconds)
+        #"application/json;charset=utf-8"
+        empty
+        (list (jsexpr-&gt;bytes #hasheq((value . (1 2 3)))))))
+
+;; Define routes
+(define-values (dispatch req)
+    (dispatch-rules
+        [("values") #:method "get" get-values]
+        [else (error "Route does not exist")]))
+
+;; Define and start server
+(serve/servlet
+    (lambda (req) (dispatch req))
+    #:launch-browser? #f
+    #:quit? #f
+    #:port PORT
+    #:servlet-path "/"
+    #:servlet-regexp #rx"")
+```
+
+## Test the Racket server
+
+Start the server by running the following command:
+
+```bash
+racket --require server.rkt
+```
+
+Then, using an application like Postman or Insomina, make a `GET` request to `http://localhost:7071/values`.
+
+The response should look like the following:
+
+```json
+{
+    "value": [
+        1,
+        2,
+        3
+    ]
+}
+```
+
+## Define function bindings
+
+The way Azure Functions discovers functions is through subdirectories containing a binding definition called *function.json*. The name of the subdirectories must match the name of your function's route path. For example if the route path is `/values`, then the name of the subdirectory is  `values`.
+
+Create a subdirectory inside the main application directory called *values*
+
+Inside the *values* subdirectory, create a file called *function.json* and add the following content to it.
+
+```json
+{
+    "bindings": [
+      {
+        "type": "httpTrigger",
+        "direction": "in",
+        "name": "req",
+        "methods": ["get"]
+      },
+      {
+        "type": "http",
+        "direction": "out",
+        "name": "res"
+      }
+    ]
+}
+```
+
+The *function.json* file defines the request and response payloads. In this case, the incoming request is an `HttpTrigger` that only handles `GET` requests and returns an HTTP response.
+
+## Create server executable
+
+Package your server application into a single executable by entering the following command into the command prompt:
+
+```bash
+raco exe server.rkt
+```
+
+Once your application is packaged, an executable with the name *server.exe* should be created in your application directory.
+
+## Configure Azure Functions host
+
+In your application directory, create a file called *host.json* and add the following contents:
+
+```json
+{
+  "version": "2.0",
+  "httpWorker": {
+      "description": {
+          "defaultExecutablePath": "server.exe"
+      }
+  }
+}
+```
+
+This *host.json* configuration file tells the Azure Functions host where to find the web server executable.
+
+## Run the Azure Functions application
+
+Inside the root application directory, enter the following command into the command prompt.
+
+```bash
+func start
+```
+
+Using an application like Postman or Insomnia, make a `GET` request to `localhost:7071/api/values`.
+
+The response should look like the following:
+
+```json
+{
+    "value": [
+        1,
+        2,
+        3
+    ]
+}
+```
+
+## Conclusion
+
+In this writeup, I showed how to create a Racket serverless application that runs on Azure Functions by using custom handlers. Doing so requires you to:
+
+1. Write a web server to process requests
+2. Define the bindings for the request and response function payloads
+3. Configure the Azure Functions host to send request to the web server
+
+Although in this example, the server was written in Racket, the same process is applicable to other languages. Keep in mind that at the time of this writing, custom handlers are preview and may change. Happy coding!
+
+## Resources
+
+- [Azure Functions Custom Handlers](https://docs.microsoft.com/azure/azure-functions/functions-custom-handlers)]]&gt;</description>
+      <link>https://www.lqdev.me/posts/serverless-racket-azure-functions-custom-handlers</link>
+      <guid>https://www.lqdev.me/posts/serverless-racket-azure-functions-custom-handlers</guid>
+      <pubDate>2020-03-21 13:45:43 -05:00</pubDate>
+      <category>serverless</category>
+      <category>racket</category>
+      <category>lisp</category>
+      <category>azure-functions</category>
+      <category>azure</category>
+      <category>programming</category>
+      <category>web</category>
+    </item>
+    <item>
+      <title>Create an HTTP Trigger Azure Function using FSharp</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+Since the upgrade to the 2.0 version of the Azure Functions runtime, .NET Core has been natively supported by the platform. As a result some changes took effect. Most notably, in version 1.0, a template for an F# HttpTrigger function was available. The template was removed in 2.0. However, that does not mean Azure Functions does not support F#. Azure Functions can be built in F# using a .NET Standard Class Library. This writeup provides a detailed walk-through of how to build an Azure Function that processes HTTP requests using F#. The complete code sample can be found on [GitHub](https://github.com/lqdev/FsHttpTriggerSample).
+
+## Prerequisites
+
+This solution was built using a Windows PC but should work on Mac and Linux.
+
+- [.NET SDK (2.x or 3.x)](https://dotnet.microsoft.com/download/dotnet-core)
+- [Node.js](https://nodejs.org/en/download/)
+- [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#windows-npm)
+
+## Create Solution
+
+Open the command prompt and create a new directory for your solution called "FsHttpTriggerSample".
+
+```bash
+mkdir FsHttpTriggerSample
+```
+
+Navigate into the new directory and create a solution using the .NET CLI.
+
+```bash
+cd FsHttpTriggerSample
+dotnet new sln
+```
+
+## Create Azure Functions Project
+
+Inside the *FsHttpTriggerSample* solution directory, use the .NET CLI to create a new F# .NET Standard Class Library project.
+
+```bash
+dotnet new classlib -o FsHttpTriggerSample -lang f#
+```
+
+Add the project to the solution
+
+```bash
+dotnet sln add FsHttpTriggerSample
+```
+
+## Install NuGet Packages
+
+To use Azure Functions, install the [**Microsoft.Net.Sdk.Functions** NuGet package](https://www.nuget.org/packages/Microsoft.NET.Sdk.Functions).
+
+Inside the *FsHttpTriggerSample* project directory, enter the following command.
+
+```bash
+dotnet add package Microsoft.Net.Sdk.Functions
+```
+
+## Create the Azure Function
+
+### Prepare Files
+
+Delete the default *Library.fs* file inside the *FsHttpTriggerSample* project directory.
+
+```bash
+del Library.fs
+```
+
+Create a new file called *GreetFunction.fs*.
+
+```bash
+type nul &gt; GreetFunction.fs
+```
+
+### Configure Files
+
+Open the *FsHttpTriggerSample.fsproj* file and find the following snippet.
+
+```xml
+&lt;Compile Include="Library.fs" /&gt;
+```
+
+Replace the snippet with the content below.
+
+```xml
+&lt;Compile Include="GreetFunction.fs" /&gt;
+```
+
+### Configure Host
+
+At a minimum, Azure Functions requires the runtime version to run. This information is provided by a file called *host.json*.
+
+Create a new file called *host.json* inside the *FsHttpTriggerSample* project directory.
+
+```bash
+type nul &gt; host.json
+```
+
+Open the *host.json* file and add the following content
+
+```json
+{
+    "version": "2.0"
+}
+```
+
+### Implement Azure Function
+
+Open the *GreetFunction.fs* file and add the namespace and module for it.
+
+```fsharp
+namespace FsHttpTriggerSample
+
+module GreetFunction = 
+```
+
+Below the module definition, add the following `open` statements:
+
+```fsharp
+open Microsoft.AspNetCore.Mvc
+open Microsoft.Azure.WebJobs
+open Microsoft.AspNetCore.Http
+open Newtonsoft.Json
+open System.IO
+open Microsoft.Extensions.Logging
+```
+
+Define a `User` type containing a single property called `Name`.
+
+```fsharp
+type User = {
+    Name: string
+}
+```
+
+The entrypoint of an Azure Function is the `Run` function. Create a function called `Run`.
+
+```fsharp
+[&lt;FunctionName("Greet")&gt;]
+let Run ([&lt;HttpTrigger(Methods=[|"POST"|])&gt;] req:HttpRequest) (log:ILogger) = 
+```
+
+To register an Azure Function, use the `FunctionName` attribute. In this case, the name of the function is `Greet`. The `Run` function takes two parameters, an `HttpRequest` and an `ILogger`. Since the binding used by HTTP Trigger functions is `HttpTrigger`, the request object is annotated with the `HttpTrigger` attribute. Options such as the accepted methods can be provided through the `HttpTrigger` attribute. In this case, only `POST` requests are accepted.
+
+Create an `async` computation expression inside the `Run` function.
+
+```fsharp
+async {
+
+}
+```
+
+Inside the `async` expression, add logging to indicate that the function has initialized. 
+
+```fsharp
+"Running function"
+|&gt; log.LogInformation
+```
+
+Below that, get the body of the request.
+
+```fsharp
+let! body = 
+    new StreamReader(req.Body) 
+    |&gt; (fun stream -&gt; stream.ReadToEndAsync()) 
+    |&gt; Async.AwaitTask
+```
+
+Then, deserialized the body into an instance of `User`.
+
+```fsharp
+let user = JsonConvert.DeserializeObject&lt;User&gt;(body)
+```
+
+Return a personalized greeting with the user's name.
+
+```fsharp
+return OkObjectResult(sprintf "Hello %s" user.Name)
+```
+
+Finally, use the `StartAsTask` function to start the `async` expression as a `Task`.
+
+```fsharp
+|&gt; Async.StartAsTask
+```
+
+Once finished, the contents of the *GreetFunction.fs* should look similar to the following.
+
+```fsharp
+namespace FsHttpTriggerSample
+
+module GreetFunction = 
+
+    open Microsoft.AspNetCore.Mvc
+    open Microsoft.Azure.WebJobs
+    open Microsoft.AspNetCore.Http
+    open Newtonsoft.Json
+    open System.IO
+    open Microsoft.Extensions.Logging
+
+    type User = {
+        Name: string
+    }
+
+    [&lt;FunctionName("Greet")&gt;]
+    let Run ([&lt;HttpTrigger(Methods=[|"POST"|])&gt;] req:HttpRequest) (log:ILogger) = 
+        async {
+            "Runnning Function"
+            |&gt; log.LogInformation
+
+            let! body = 
+                new StreamReader(req.Body) 
+                |&gt; (fun stream -&gt; stream.ReadToEndAsync()) 
+                |&gt; Async.AwaitTask
+
+            let user = JsonConvert.DeserializeObject&lt;User&gt;(body)
+
+            return OkObjectResult(sprintf "Hello %s" user.Name)
+        } |&gt; Async.StartAsTask
+```
+
+## Run the Function Locally
+
+Build the project by using the `build` command inside the *FsHttpTriggerSample* project directory.
+
+```bash
+dotnet build
+```
+
+Then, navigate to the output directory
+
+```bash
+cd bin\Debug\netstandard2.0
+```
+
+Use the Azure Functions Core Tools to start the Azure Functions host locally.
+
+```bash
+func host start
+```
+
+Once the host is initialized, the function is available at the following endpoint `http://localhost:7071/api/Greet`.
+
+## Test the function
+
+Using a REST client like Postman or Insomnia, make a POST request to `http://localhost:7071/api/Greet` with the following body. Feel free to replace the name with your own.
+
+```json
+{
+    "Name": "Luis"
+}
+```
+
+If successful, the response should look similar to the following output.
+
+```text
+Hello Luis
+```
+
+## Conclusion
+
+This writeup showed how to create an HTTP Trigger Azure Function using F#. Creating additional functions inside the same project is relatively trivial since the structure of the *GreetFunction.fs* file can be copied and the logic inside the `Run` function can be adapted to meet your requirements.
+
+## Resources
+
+- [Azure Functions F# Developer Reference](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-fsharp)
+- [Azure Functions Host 2.x Reference](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json)
+- [Azure Functions Zip Deployment](https://docs.microsoft.com/en-us/azure/azure-functions/deployment-zip-push)
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/http-trigger-azure-functions-fsharp</link>
+      <guid>https://www.lqdev.me/posts/http-trigger-azure-functions-fsharp</guid>
+      <pubDate>2019-11-16 17:33:59 -05:00</pubDate>
+      <category>fsharp</category>
+      <category>serverless</category>
+      <category>azure-functions</category>
+      <category>azure</category>
+      <category>dotnet</category>
+      <category>dotnet-core</category>
+      <category>functional-programming</category>
+    </item>
+    <item>
+      <title>Serverless Machine Learning with ML.NET and Azure Functions</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+In a previous blog [post](http://luisquintanilla.me/2018/05/11/deploy-netml-docker-aci/), I explored how to build and deploy machine learning models built with the `ML.NET` framework using an ASP.NET Core Web API, Docker and Azure Container Instances. While this is certainly a good way to deploy such models especially those that are critical and require high availability and/or consist of long-running processes, it's not the case when those requirements are not needed. In such cases serverless computing makes more sense from a cost and resource utilization standpoint. Therefore, in this blog post I will go over how to train a classification model with `ML.NET` and deploy it using Azure Functions. Source code for this post can be found at the following [link](https://github.com/lqdev/azfnmlnetdemo).
+
+## Prerequisites
+
+Prior to starting, make sure you have all of the necessary software to build this project. Although this project was built on a system running Ubuntu 16.04 it should work cross-platform.
+
+- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+- [Azure Functions Core Tools Version 2.x](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local)
+- [.NET Core SDK 2.0+](https://www.microsoft.com/net/download)
+
+## Set Up Azure Environment
+
+Before writing any code we want to configure our Azure environment. To do so we'll be using the Azure CLI. Although in these examples I am providing the resource group name, storage account name and function application name feel free to use one of your choosing. Naming is not as important for resource group or storage account but definitely is the case for the application.
+
+Fist we want to log into our account using the following command
+
+```bash
+az login
+```
+
+This will guide you through a series of prompts that will eventually result in you being logged in. To make sure you are logged in you can use the `account` command.
+
+```bash
+az account list
+```
+
+The following output should appear if successfull.
+
+```bash
+[
+  {
+    "cloudName": "AzureCloud",
+    "id": "&lt;YOUR-ID&gt;",
+    "isDefault": true,
+    "name": "Pay-As-You-Go",
+    "state": "Enabled",
+    "tenantId": "&lt;YOUR-TENANT-ID&gt;",
+    "user": {
+      "name": "&lt;YOUR-USERNAME&gt;",
+      "type": "user"
+    }
+  }
+]
+```
+
+Next, we want to create a resource group to contain all of our Azure resources for this application.
+
+```bash
+az group create --name azfnmlnetdemo --location eastus
+```
+
+Once our resource group is created, it's time to start adding resources for it. First we'll add a storage account which will contain our trained model.
+
+```bash
+az storage account create --name azfnmlnetdemostorage --location eastus --resource-group azfnmlnetdemo --sku Standard_LRS
+```
+
+Then we'll create an Serverless Function Application and link it to our storage account. We'll want to create a unique name for it. An easy way to do so is to add the date to the end of the name of our application (i.e. myappname20180816).
+
+```bash
+az functionapp create --name azfnmlnetdemo20180821 --storage-account azfnmlnetdemostorage --consumption-plan-location eastus --resource-group azfnmlnetdemo
+```
+
+The final step in the environment setup is to set the runtime of our Serverless Function Application in the Application Settings to `beta` which supports `.NET Core`.
+
+```bash
+az functionapp config appsettings set --name azfnmlnetdemo20180821 --resource-group azfnmlnetdemo --settings FUNCTIONS_EXTENSION_VERSION=beta
+```
+
+Now we're ready to build our machine learning model and upload it to our storage account
+
+## Building The Model
+
+Once our environment is set up we can start building our solution. The first step is to create a directory and initialize our solution inside of it.
+
+### Set Up The Solution
+
+```bash
+mkdir azfnmlnetdemo
+cd azfnmlnetdemo
+dotnet new sln
+```
+
+### Create The Model Project
+
+Then we want to create a console project for our model and add it to our solution.
+
+```bash
+dotnet new console -o model
+dotnet sln add model/model.csproj
+```
+
+### Add Dependencies
+
+Since we’ll be using the `ML.NET` framework, we need to add it to our model project.
+
+```
+cd model
+dotnet add package Microsoft.ML
+dotnet restore
+```
+
+### Download The Data
+
+Before we start training the model, we need to download the data we’ll be using to train. We do so by creating a directory called `data` and downloading the data file onto there.
+
+```bash
+mkdir data
+curl -o data/iris.txt https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data
+```
+
+If we take a look at the data file, it should look something like this:
+
+```bash
+5.1,3.5,1.4,0.2,Iris-setosa
+4.9,3.0,1.4,0.2,Iris-setosa
+4.7,3.2,1.3,0.2,Iris-setosa
+4.6,3.1,1.5,0.2,Iris-setosa
+5.0,3.6,1.4,0.2,Iris-setosa
+5.4,3.9,1.7,0.4,Iris-setosa
+4.6,3.4,1.4,0.3,Iris-setosa
+5.0,3.4,1.5,0.2,Iris-setosa
+4.4,2.9,1.4,0.2,Iris-setosa
+4.9,3.1,1.5,0.1,Iris-setosa
+```
+
+### Train The Model
+
+Now that we have all our dependencies set up, it’s time to train our model. I leveraged the demo that is used on the [ML.NET Getting-Started website](https://www.microsoft.com/net/learn/machine-learning-and-ai/get-started-with-ml-dotnet-tutorial).
+
+#### Define Data Structures
+
+In the root directory of our `model` project, let’s create two classes called `IrisData` and `IrisPrediction` which will define our features and predicted attribute respectively. Both of them will use `Microsoft.ML.Runtime.Api` to add the property attributes.
+
+Here is what our `IrisData` class looks like:
+
+```csharp
+using Microsoft.ML.Runtime.Api;
+
+namespace model
+{
+    public class IrisData
+    {
+        [Column("0")]
+        public float SepalLength;
+
+        [Column("1")]
+        public float SepalWidth;
+
+        [Column("2")]
+        public float PetalLength;
+
+        [Column("3")]
+        public float PetalWidth;
+
+        [Column("4")]
+        [ColumnName("Label")]
+        public string Label;
+    }
+}
+```
+
+Similarly, here is the `IrisPrediction` class:
+
+```csharp
+using Microsoft.ML.Runtime.Api;
+
+namespace model
+{
+    public class IrisPrediction
+    {
+        [ColumnName("PredictedLabel")]
+        public string PredictedLabels;
+    }
+}
+```
+
+#### Build the Training Pipeline
+
+The way the `ML.NET` computations process data is via a sequential pipeline of steps that are performed eventually leading up to the training of the model. Therefore, we can create a class called `Model` to perform all of these tasks for us.
+
+```csharp
+using Microsoft.ML.Data;
+using Microsoft.ML;
+using Microsoft.ML.Runtime.Api;
+using Microsoft.ML.Trainers;
+using Microsoft.ML.Transforms;
+using Microsoft.ML.Models;
+using System;
+using System.Threading.Tasks;
+
+namespace model
+{
+    class Model
+    {
+
+        public static async Task&lt;PredictionModel&lt;IrisData,IrisPrediction&gt;&gt; Train(LearningPipeline pipeline, string dataPath, string modelPath)
+        {
+            // Load Data
+            pipeline.Add(new TextLoader(dataPath).CreateFrom&lt;IrisData&gt;(separator:','));
+
+            // Transform Data
+            // Assign numeric values to text in the "Label" column, because
+            // only numbers can be processed during model training
+            pipeline.Add(new Dictionarizer("Label"));
+
+            // Vectorize Features
+            pipeline.Add(new ColumnConcatenator("Features", "SepalLength", "SepalWidth", "PetalLength", "PetalWidth"));
+
+            // Add Learner
+            pipeline.Add(new StochasticDualCoordinateAscentClassifier());
+
+            // Convert Label back to text
+            pipeline.Add(new PredictedLabelColumnOriginalValueConverter() {PredictedLabelColumn = "PredictedLabel"});
+
+            // Train Model
+            var model = pipeline.Train&lt;IrisData,IrisPrediction&gt;();
+
+            // Persist Model
+            await model.WriteAsync(modelPath);
+
+            return model;
+        }
+    }
+}
+```
+
+In addition to building our pipeline and training our machine learning model, the `Model` class also serialized and persisted the model for future use in a file called `model.zip`.
+
+### Test The Model
+
+Now that we have our data structures and model training pipeline set up, it’s time to test everything to make sure it’s working. We’ll put our logic inside of our `Program.cs` file.
+
+```csharp
+using System;
+using Microsoft.ML;
+
+namespace model
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string dataPath = "model/data/iris.txt";
+
+            string modelPath = "model/model.zip";
+
+            var model = Model.Train(new LearningPipeline(),dataPath,modelPath).Result;
+
+            // Test data for prediction
+            var prediction = model.Predict(new IrisData()
+            {
+                SepalLength = 3.3f,
+                SepalWidth = 1.6f,
+                PetalLength = 0.2f,
+                PetalWidth = 5.1f
+            });
+
+            Console.WriteLine($"Predicted flower type is: {prediction.PredictedLabels}");
+        }
+    }
+}
+```
+
+All set to run. We can do so by entering the following command from our solution directory:
+
+```bash
+dotnet run -p model/model.csproj
+```
+
+Once the application has been run, the following output should display on the console.
+
+```bash
+Automatically adding a MinMax normalization transform, use 'norm=Warn' or
+'norm=No' to turn this behavior off.Using 2 threads to train.
+Automatically choosing a check frequency of 2.Auto-tuning parameters: maxIterations = 9998.
+Auto-tuning parameters: L2 = 2.667734E-05.
+Auto-tuning parameters: L1Threshold (L1/L2) = 0.Using best model from iteration 882.
+Not training a calibrator because it is not needed.
+Predicted flower type is: Iris-virginica
+```
+
+Additionally, you’ll notice that a file called `model.zip` was created in the root directory of our model project. This persisted model can now be used outside of our application to make predictions, but first we need to upload it to our Azure Storage account.
+
+### Upload The Model
+
+Now that we have a trained model and it has been persisted to the `model.zip` file, it's time to upload it to Azure Storage so that it is available to our Azure Functions application.
+
+To get started with that, first we need the access keys for our storage account. You can get those by using the following command.
+
+```bash
+az storage account keys list --account-name azfnmlnetdemostorage --resource-group azfnmlnetdemo
+```
+
+The result of that command should return your primary and secondary keys. You can use either one for the following steps.
+
+Although we can upload directly to the account, it's best to create a container to upload our model to. To keep it simple, I'll call the container `models`.
+
+```bash
+az storage container create --name models --account-key &lt;YOUR-ACCOUNT-KEY&gt; --account-name azfnmlnetdemostorage --fail-on-exist
+```
+
+Once our container's created, we can upload our `model.zip` file to it.
+
+```bash
+az storage blob upload --container-name models --account-name azfnmlnetdemostorage --file model/model.zip --name model.zip
+```
+
+To verify that the file has been uploaded, you can list the files inside the `models` storage container.
+
+```bash
+az storage blob list --container-name models --account-name azfnmlnetdemostorage --output table
+```
+
+That command should produce output similar to that below:
+
+```bash
+Name       Blob Type    Blob Tier    Length    Content Type     Last Modified              Snapshot
+---------  -----------  -----------  --------  ---------------  -------------------------  ----------
+model.zip  BlockBlob                 4373      application/zip  2018-08-21T19:26:09+00:00
+```
+
+That's all there is to the upload process. It's now time to build our Azure Functions Application
+
+## Build The Azure Functions Application
+
+### Initialize Azure Function Project
+
+In our solution directory, we want to create a new directory for our Azure Function project
+
+```bash
+mkdir serverlessfunctionapp
+dotnet sln add serverlessfunctionapp/serverlessfunctionapp.csproj
+```
+
+Then, we can scaffold an Azure Functions project inside our newly created `serverlessfunctionapp` project directory using Azure Functions Core Tools
+
+```bash
+cd serverlessfunctionapp
+func init
+```
+
+At this point you will be prompted to select the runtime for your application. For this application select `dotnet`.
+
+This will generate a few files in the `serverlessfunctionapp` directory. Keep in mind though that this does not create the function.
+
+### Add Dependencies
+
+Before we create any functions, we need to add the dependencies for our Azure Functions application. Since we'll be using `Microsoft.ML` in our Azure Function application, we'll need to add it as a dependency. From the `serverlessfunctionapp` enter the following command:
+
+```bash
+dotnet add package Microsoft.ML
+dotnet restore
+```
+
+### Create Serverless Function
+
+Once we've added the dependencies it's time to create a new function. To do so we'll use the Azure Functions Core Tools `new` command. Although not required, it's good practice to separate functions and related files into their own directory.
+
+```bash
+mkdir Predict
+cd Predict
+func new
+```
+
+At this time you will be prompted to select a template. For our classification model, we'll be using an HttpTrigger which is exactly what it sounds like. An HTTP request is what calls or invokes our function. With that being said, select the `HttpTrigger` option.
+
+You will then be prompted to enter a name for your function. You can use any name but to make things easy, name it the same as the directory the function is in. Once that process is complete, there should be a file called `Predict.cs` inside our `serverlessfunctionapp/Predict` directory. This is where we'll write the logic for our application.
+
+### Define Data Structures
+
+We'll also be making use of the IrisData and IrisPrediction classes inside our `Predict` function. Therefore, we need to create classes for them inside our `Predict` directory. The content will be the same as when we trained our model with the exception of the namespace which will now be `serverlessfunctionapp.Predict`. The content of those files should look like the code below:
+
+```csharp
+//IrisData.cs
+using Microsoft.ML.Runtime.Api;
+
+namespace serverlessfunctionapp.Predict
+{
+    public class IrisData
+    {
+        [Column("0")]
+        public float SepalLength;
+
+        [Column("1")]
+        public float SepalWidth;
+
+        [Column("2")]
+        public float PetalLength;
+
+        [Column("3")]
+        public float PetalWidth;
+
+        [Column("4")]
+        [ColumnName("Label")]
+        public string Label;
+    }
+}
+
+//IrisPrediction.cs
+using Microsoft.ML.Runtime.Api;
+
+namespace serverlessfunctionapp.Predict
+{
+    public class IrisPrediction
+    {
+        [ColumnName("PredictedLabel")]
+        public string PredictedLabels;
+    }
+}
+```
+
+### Write Function Logic
+
+With our dependencies and data structures set up, it's time to write our function logic to make predictions. The first thing we want to do is replace the `Run` method inside the `Predict` class with the following code.
+
+```csharp
+public static IActionResult Run(
+    [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequest req,
+    [Blob("models/model.zip", FileAccess.Read, Connection = "AzureWebJobsStorage")] Stream serializedModel,
+    TraceWriter log)
+{
+    // Workaround for Azure Functions Host
+    if (typeof(Microsoft.ML.Runtime.Data.LoadTransform) == null ||
+        typeof(Microsoft.ML.Runtime.Learners.LinearClassificationTrainer) == null ||
+        typeof(Microsoft.ML.Runtime.Internal.CpuMath.SseUtils) == null ||
+        typeof(Microsoft.ML.Runtime.FastTree.FastTree) == null)
+    {
+        log.Error("Error loading ML.NET");
+        return new StatusCodeResult(500);
+    }
+
+    //Read incoming request body
+    string requestBody = new StreamReader(req.Body).ReadToEnd();
+
+    log.Info(requestBody);
+
+    //Bind request body to IrisData object
+    IrisData data = JsonConvert.DeserializeObject&lt;IrisData&gt;(requestBody);
+
+    //Load prediction model
+    var model = PredictionModel.ReadAsync&lt;IrisData, IrisPrediction&gt;(serializedModel).Result;
+
+    //Make prediction
+    IrisPrediction prediction = model.Predict(data);
+
+    //Return prediction
+    return (IActionResult)new OkObjectResult(prediction.PredictedLabels);
+}
+```
+
+There are a few notable change worth looking at. One of them is the workaround at the beginning of the function.
+
+```csharp
+if (typeof(Microsoft.ML.Runtime.Data.LoadTransform) == null ||
+    typeof(Microsoft.ML.Runtime.Learners.LinearClassificationTrainer) == null ||
+    typeof(Microsoft.ML.Runtime.Internal.CpuMath.SseUtils) == null ||
+    typeof(Microsoft.ML.Runtime.FastTree.FastTree) == null)
+{
+    log.Error("Error loading ML.NET");
+    return new StatusCodeResult(500);
+}
+```
+
+There are some issues with Azure Functions and ML.NET Assemblies which are being worked on by both teams at Microsoft (see [Github Issue](https://github.com/Azure/azure-functions-host/issues/3190)). In the meantime, it's safe to just include that code in there.
+
+The other addition to note is the method signature. As you can see, I have added an additional parameter called `serializedModel` which is decorated by the `Blob` attribute.
+
+```csharp
+[Blob("models/model.zip", FileAccess.Read, Connection = "AzureWebJobsStorage")] Stream serializedModel
+```
+
+What this code is doing is telling the function to import the blob `model.zip` as a `Stream` and bind it to `serializedModel`. Using additional arguments, I tell my function to only have `Read` access to the `model.zip` blob inside the `models` container which can be accessed with the `AzureWebJobsStorage` connection string. Right now that last part might seem confusing, but this is something we configured when we set up the Azure environment and linked `azfnmlnetdemostorage` account with our `azfnmlnetdemo20180821` serverless function app using the `--storage-account` option. Although the production environment is configured, if we try to test our application locally we won't be able to access our storage account because we have not configured the connection string locally. We can do so by looking in the `local.settings.json` file inside our `serverlessfunctionapp` directory. The contents should look like the following.
+
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "AzureWebJobsDashboard": "",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+  }
+}
+```
+
+Our function running locally will look in this file, try to find `AzureWebJobsStorage` and use the connection string value in the `Predict` function. To get the connection string for our `azfnmlnetdemostorage` account, enter the following command.
+
+```bash
+az storage account show-connection-string --name azfnmlnetdemostorage
+```
+
+The output of that command should look like the following:
+
+```json
+{
+  "connectionString": "&lt;YOUR-CONNECTION-STRING&gt;"
+}
+```
+
+At this point, you just need to copy the value of `connectionString` to your `local.settings.json` file and replace the current empty string for `AzureWebJobsStorage`. It's important to note that it's okay to paste the connection string in here since the `local.settings.json` file is not committed to version control. (See `.gitignore` inside `serverlessfunctionapp` directory). Now the application is ready to be tested locally.
+
+### Testing The Function Locally
+
+To test the application, first build your project by entering the following command from the `serverlessfunctionapp` directory.
+
+```bash
+dotnet build
+```
+
+Then, navigate to the build directory `./bin/Debug/netstandard2.0` and enter the following command:
+
+```bash
+func host start
+```
+
+Finally, using a tool like Postman or Insomnia make an HTTP POST request to the `http://localhost:7071/api/Predict` endpoint with the following body:
+
+```json
+{
+  "SepalLength": 3.3,
+  "SepalWidth": 1.6,
+  "PetalLength": 0.2,
+  "PetalWidth": 5.1
+}
+```
+
+If everything is set up correctly, you should receive the following output
+
+```bash
+Iris-virginica
+```
+
+Once satisfied with testing, press `Ctrl + C` to stop the application.
+
+## Deploy To Azure
+
+### Push Build
+
+Great! Now on to the final step, deploying our application to production. Since we already configured everything it should only require a few commands to do so.
+
+First, make sure you are logged in. Using Azure Functions Core Tools log in with the following command:
+
+```bash
+func azure login
+```
+
+Like with the Azure CLI, you will follow a series of prompts to log into your account.
+
+Once you have successfully logged in, it's time to publish our application to Azure. From the `serverlessfunctionapp` directory enter the following command.
+
+```bash
+func azure functionapp publish azfnmlnetdemo20180821
+```
+
+When our deployment is complete, we can check whether our function was published successfully by using the following command.
+
+```bash
+func azure functionapp list-functions azfnmlnetdemo20180821
+```
+
+The output should look similar to that below.
+
+```bash
+Functions in azfnmlnetdemo20180821:
+    Predict - [httpTrigger]
+```
+
+### Configure Platform
+
+For the last part of the deployment step, we'll need to head over to the Azure Portal. To do so, visit [https://portal.azure.com](https://portal.azure.com) and log in.
+
+Once logged in, type the name of your application into the search bar at the top of the page and select your Azure Function application of type `App Service`
+
+![](http://cdn.lqdev.tech/files/images/azfnmlnetdemo1.png)
+
+Then, from the accordion element on the left, select the top-most item with your appplication name on it. Then, select the `Platform features` tab and open the `Application settings` option.
+
+![](http://cdn.lqdev.tech/files/images/azfnmlnetdemo2.png)
+
+When the `Application settings` page loads, change the `Platform` setting to `64-bit`. The reason for this is `ML.NET` has to be built and run on a 64-bit environment due to some of its native dependencies. 
+
+![](http://cdn.lqdev.tech/files/images/azfnmlnetdemo3.png)
+
+That's all there is to it.
+
+### Test The Deployed Function
+
+Now it's time to test our deployed function. We can do so from the portal by going back to the accordion and selecting the function name below the `Functions` parent element and clicking on the `Test` button on the far right. Doing so will show a form that will allow us to test our application. Make sure the `HTTP method` option is set to POST. In the text area for the `Request body` paste the following content:
+
+```json
+{
+  "SepalLength": 3.3,
+  "SepalWidth": 1.6,
+  "PetalLength": 0.2,
+  "PetalWidth": 5.1
+}
+```
+
+Once the form is filled in, click `Run` at the top of the page and if successful `Iris-virginica` should show up in the `Output` area.
+
+![](http://cdn.lqdev.tech/files/images/azfnmlnetdemo4.png)
+
+To test the function outside the portal, you can click on the `Get function URL` link next to the `Run` button and make an HTTP POST request using that link.
+
+## Conclusion
+
+In this writeup, we trained a classification model that predicts a class of flower using Microsoft's `ML.NET` framework. Then, we exposed this model for inference via an Azure Functions serverless application. In doing so, we can more efficiently manage our cost as well as our resource utilization. Happy coding!
+
+###### Resources
+
+[Create a function app for serverless code execution](https://docs.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-serverless)  
+[Using the Azure CLI 2.0 with Azure Storage](https://docs.microsoft.com/en-us/azure/storage/common/storage-azure-cli)  
+[Work with Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local)
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/serverless-machine-learning-mlnet-azure-functions</link>
+      <guid>https://www.lqdev.me/posts/serverless-machine-learning-mlnet-azure-functions</guid>
+      <pubDate>2018-08-21 19:13:47 -05:00</pubDate>
+      <category>serverless</category>
+      <category>azurefunctions</category>
+      <category>mlnet</category>
+      <category>machinelearning</category>
+      <category>dotnet</category>
+      <category>dotnetcore</category>
+      <category>csharp</category>
+      <category>microsoft</category>
+      <category>devops</category>
+      <category>artificialintelligence</category>
+      <category>ai</category>
+    </item>
+  </channel>
+</rss>

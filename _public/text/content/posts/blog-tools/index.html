@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Blogging Tools - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Blogging Tools</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2018-11-18">November 18, 2018</time><p>Tags: markdown, vscode, tools, development, blogging</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/blog-tools">View Full Version</a></p><div class="content"><h2>TLDR</h2>
+<p>These are the tools I use to write this blog:</p>
+<ul>
+<li><strong>Editor</strong>: <a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+<li><strong>Markup</strong>: <a href="https://daringfireball.net/projects/markdown/">Markdown</a></li>
+<li><strong>Static Site Generator</strong>: <a href="https://hexo.io/">Hexo</a></li>
+<li><strong>Blog Theme</strong>: <a href="https://github.com/probberechts/hexo-theme-cactus">Cactus</a></li>
+<li><strong>Hosting</strong>: <a href="https://www.namecheap.com/">Namecheap</a></li>
+</ul>
+<h2>Introduction</h2>
+<p>I have gotten a few questions regarding what I use to write this blog so I thought it would be a good idea to write a post about it. In this writeup I'll discuss what I use for writing posts as well as building and hosting the site.</p>
+<h2>Writing</h2>
+<h3>Editor</h3>
+<p>For writing, I use Visual Studio Code. Visual Studio Code is an open source, cross-platform text editor. One of the nice features it includes is Markdown Preview. Markdown Preview allows you to see how the content would look when rendered as a web page. Additionally, Visual Studio Code allows you to split panes. What that provides is the ability to write and preview the content side-by-side.</p>
+<p><a href="http://cdn.lqdev.tech/files/images/blog-tools-1.PNG" target="_blank">[Image: Image]</a></p>
+<h3>Markup</h3>
+<p>I write my content in Markdown. Markdown is a plain text formatting syntax that allows authors to write easy-to-read and easy-to-write plain text formats that are then converted to HTML. It can take a while to get used to the syntax especially when including images, links and code snippets but once you get comfortable with it, it becomes natural and no different than writing sentences in plain text. While this is not a requirement for everyone, since a fair amount of my content includes code snippets, Markdown makes it easy to include such content in the language of choice.</p>
+<h2>Website</h2>
+<h3>Static Site Generation</h3>
+<p>While Markdown helps me format my plain text, at some point it needs to be converted into HTML or some format that can be rendered on the web. To help with that, I use Hexo. Hexo is an open source blog framework that allows you to write content using Markdown or other languages and generates static files which have a theme applied to them. Hexo is built on JavaScript, therefore you'll need NodeJS to configure it.</p>
+<h3>Theme</h3>
+<p>Hexo has numerous themes that can be used to style your site. The one I use is the <code>Cactus</code> theme.</p>
+<h2>Hosting</h2>
+<p>For hosting, I use Namecheap. There is no special reason for this other than I had a slot available in an existing hosting plan. My method of deployment is via FTP. Since my site is all static assets, I upload them into a folder that is publicly accessible. With that in mind, by having my site made up of static assets I have the flexibility of hosting it on an S3 bucket or Azure Storage. This is the method I'm looking to use for deployments and hosting in the near future. Here is a <a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-static-website">link</a> that details how to host a static site on Azure Storage.</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

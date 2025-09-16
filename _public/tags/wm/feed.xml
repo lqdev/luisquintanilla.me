@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - wm</title>
+    <link>https://www.lqdev.me/tags/wm</link>
+    <description>All content tagged with 'wm' by Luis Quintanilla</description>
+    <lastBuildDate>12/11/2022 18:56 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Configure opacity - Manjaro</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This article shows how to configure background opacity for the kitty terminal emulator using picom and i3.&lt;/p&gt;
+&lt;p&gt;By defaut, i3 doesn't support composting. Programs like picom add support for it.&lt;/p&gt;
+&lt;p&gt;In addition, terminal emulators like kitty are hardware accelerated which means there's opportunities to offload from the CPU and save power.&lt;/p&gt;
+&lt;h2&gt;Install &amp;amp; configure picom&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Install picom&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo pacman -S picom
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Move default configuration file to &lt;em&gt;~/.config/picom/picom.conf&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Define opacity rule:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;opacity-rule = [&amp;quot;90:class_g = 'kitty'&amp;quot;];
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Save changes&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Install &amp;amp; configure kitty&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Install picom&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo pacman -S kitty
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Move default configuration file to &lt;em&gt;~/.config/kitty/kitty.conf&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Set background opacity:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;background_opacity 0.90
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Save changes&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Configure i3&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Open your i3 configuration and add the following line to it:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;exec_always picom
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Restart i3.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.org/title/Picom#Opacity"&gt;Picom&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.org/title/Kitty"&gt;Kitty&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.reddit.com/r/i3wm/comments/g62qy0/kitty_terminal_emulator_transparency_not_working/"&gt;Kitty emulator not working - Reddit&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/configure-opacity-manjaro</link>
+      <guid>https://www.lqdev.me/resources/wiki/configure-opacity-manjaro</guid>
+      <pubDate>12/11/2022 18:56 -05:00</pubDate>
+      <category>i3</category>
+      <category>wm</category>
+      <category>linux</category>
+      <category>manjaro</category>
+      <category>kitty</category>
+      <category>terminal</category>
+      <category>wiki</category>
+      <category>configuration</category>
+      <category>picom</category>
+    </item>
+  </channel>
+</rss>

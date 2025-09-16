@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - fosdem</title>
+    <link>https://www.lqdev.me/tags/fosdem</link>
+    <description>All content tagged with 'fosdem' by Luis Quintanilla</description>
+    <lastBuildDate>2024-01-23 22:19 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>FOSDEM 2024 Schedule</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Lots of great sessions. I'm looking forward to the sessions on the following topics:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Matrix&lt;/li&gt;
+&lt;li&gt;AI&lt;/li&gt;
+&lt;li&gt;Nix / NixOS&lt;/li&gt;
+&lt;li&gt;Software Defined Radio (SDR) &amp;amp; Amateur Radio&lt;/li&gt;
+&lt;li&gt;Modern Email&lt;/li&gt;
+&lt;li&gt;Collaboration &amp;amp; Content Management&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/fosdem-2024-schedule</link>
+      <guid>https://www.lqdev.me/responses/fosdem-2024-schedule</guid>
+      <pubDate>2024-01-23 22:19 -05:00</pubDate>
+      <category>fosdem</category>
+      <category>opensource</category>
+      <category>foss</category>
+      <category>floss</category>
+      <category>ai</category>
+      <category>matrix</category>
+      <category>nixos</category>
+    </item>
+  </channel>
+</rss>

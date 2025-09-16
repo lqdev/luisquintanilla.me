@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Real-Time Sentiment Analysis with C# - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Real-Time Sentiment Analysis with C#</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2018-01-18">January 18, 2018</time><p>Tags: data analysis, sentiment analysis, nlp, machine learning, csharp, c#, twitter, api, .net, dotnet</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/real-time-sentiment-analysis-csharp">View Full Version</a></p><div class="content"><h6>This is strictly for use with the .NET Framework. With Mono it might be able to work on other platforms. <code>SimpleNetNlp</code> does not currently work with .NET Core/Standard</h6>
+<p>In this project, I will demonstate how to perform sentiment analysis on tweets using various C# libraries.</p>
+<h2>Dependencies</h2>
+<ul>
+<li>TweetInviAPI</li>
+<li>SimpleNetNlp</li>
+<li>SimpleNetNlp.Models.LexParser</li>
+<li>SimpleNetNlP.Models.Sentiment</li>
+</ul>
+<h2>Create Console Application</h2>
+<p>In Visual Studio, Click File &gt; New &gt; New Project &gt; Console Application</p>
+<p>All of the code below will be placed in the <code>Program</code> class.</p>
+<h2>Creating A Stream</h2>
+<h3>Authenticate</h3>
+<p>Thanks to the <code>Tweetinvi</code> library, the authentication with the Twitter API is a breeze. Assuming that an application has been registered at <a href="http://apps.twitter.com">http://apps.twitter.com</a>, the <code>SetUserCredentials</code> method can be used and the <code>Consumer Key</code>, <code>Consumer Secret</code>,<code>Access Token</code> and <code>Access Token Secret</code> can be passed into it. This type of global authentication makes it easy to perform authenticated calls throughout the entire application.</p>
+<pre><code class="language-csharp">Auth.SetUserCredentials(&quot;consumer-key&quot;,&quot;consumer-secret&quot;,&quot;access-token&quot;,&quot;access-token-secret&quot;);
+</code></pre>
+<h3>Build Stream</h3>
+<p>Like the authentication, creating a stream is seamless.</p>
+<p>We can create a stream by calling the <code>CreateFilteredStream</code> method.</p>
+<pre><code class="language-csharp">var stream = Stream.CreateFilteredStream();
+</code></pre>
+<p>We can then add conditions to filter on using the <code>AddTrack</code> method. In this case, I will be filtering for cryptocurrencies, ether, bitcoin, and litecoin.</p>
+<pre><code class="language-csharp">stream.AddTrack(&quot;cryptocurrencies&quot;);
+stream.AddTrack(&quot;bitcoin&quot;);
+stream.AddTrack(&quot;ether&quot;);
+stream.AddTrack(&quot;Litecoin&quot;);
+</code></pre>
+<p>Additionally, we can filter by language. In my case, I will only be filtering on English. This can be done by using the <code>AddTweetLanguageFilter</code> method.</p>
+<pre><code class="language-csharp">stream.AddTweetLanguageFilter(&quot;en&quot;);
+</code></pre>
+<p>Once we have all the filters set up, we need to handle what will happen when a matching tweet is detected. This will be handled by an <code>EventHandler</code> called <code>MatchingTweetReceived</code>.</p>
+<pre><code class="language-csharp">stream.MatchingTweetReceived += OnMatchedTweet;
+</code></pre>
+<p><code>MatchingTweetReceived</code> will be bound to the <code>OnMatchedTweet</code> method which I created.</p>
+<pre><code class="language-csharp">private static void OnMatchedTweet(object sender, MatchedTweetReceivedEventArgs args)
+{
+  //Do Stuff
+}
+</code></pre>
+<p>The logic inside of this method will perform sentiment analysis and output the sentiment as well as the full text of the tweet.</p>
+<h2>Data Cleaning</h2>
+<p>Tweets can contain many non-ascii characters. Therefore, we need to sanitize it as best as possible so that it can be processed by the sentiment analyzer. To help with that, I used regular expresions to replace non-ascii characters inside of the <code>sanitize</code> method.</p>
+<pre><code class="language-csharp">private static string sanitize(string raw)
+{
+  return Regex.Replace(raw, @&quot;(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)&quot;, &quot; &quot;).ToString();
+}
+</code></pre>
+<h2>Sentiment Analysis</h2>
+<p>In order to perform sentiment analysis, we will be using the <code>SimpleNetNlp</code> library. This library is built on top of the Stanford CoreNLP library. In order to get the sentiment of a piece of text, we need to create a <code>Sentence</code> object which takes a string as a parameter and then get the <code>Sentiment</code> property. In our case, the parameter that will be used to instantiate a new <code>Sentence</code> object will be the sanitized text of a tweet.</p>
+<pre><code class="language-csharp">var sanitized = sanitize(args.Tweet.FullText);
+string sentence = new Sentence(sanitized);
+</code></pre>
+<p>The code above will be placed inside of the <code>OnMatchedTweet</code> method.</p>
+<h2>Produce Output</h2>
+<p>Now that we have everything set up, we can just output to the console the sentiment and raw text of the tweet. To do that, we can place the code below inside the <code>OnMatchedTweet</code> method.</p>
+<pre><code class="language-csharp">Console.WriteLine(sentence.Sentiment + &quot;|&quot; + args.Tweet);
+</code></pre>
+<p>The final <code>OnMatchedTweet</code> method looks as follows:</p>
+<pre><code class="language-csharp">private static void OnMatchedTweet(object sender, MatchedTweetReceivedEventArgs args)
+{
+    var sanitized = sanitize(args.Tweet.FullText); //Sanitize Tweet
+    var sentence = new Sentence(sanitized); //Get Sentiment
+
+    //Output Tweet and Sentiment
+    Console.WriteLine(sentence.Sentiment + &quot;|&quot; + args.Tweet);
+}
+</code></pre>
+<h2>Run</h2>
+<p>Once we run the application, our console application should look something like this:</p>
+<p><a href="http://cdn.lqdev.tech/files/images/sentiment-analysis-1.png" target="_blank">[Image: Image]</a></p>
+<h2>Conclusion</h2>
+<p>C# is not always the first language that comes to mind when doing analytics and machine learning. However, tasks such as sentiment analysis can be trivially performed thanks to libraries such as <code>Tweetinvi</code> and <code>SimpleNetNlp</code>. In its current state, this application is not very useful because it just outputs to the console sentiments and the respective tweets. In order to make it more useful, we can collect and aggregate the data someplace for more robust analysis.</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

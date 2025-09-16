@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - permadomain</title>
+    <link>https://www.lqdev.me/tags/permadomain</link>
+    <description>All content tagged with 'permadomain' by Luis Quintanilla</description>
+    <lastBuildDate>2024-05-30 21:41 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>My Permadomain</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;I'm guilty of owning way too many domains but this short-hand (lqdev.me) and other permadomain (luisquintanilla.me) are the ones I use mostly.&lt;/p&gt;
+&lt;p&gt;A potential happy medium I've seen is using subdomains (i.e. project.lqdev.me).&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://blog.jim-nielsen.com/2018/pathnames-to-subdomains/"&gt;Jim Nielsen has great examples&lt;/a&gt; of how he's doing that today. Though that's an older post, he also addressed it most recently in the post &lt;a href="https://blog.jim-nielsen.com/2023/domain-sins-of-my-youth/"&gt;Domain Sins of My Youth&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;That somehow feels better than the URL you get when you use free hosting like GitHub Pages. As a bonus, it's already tied to your identity (if using your personal domain). Also, you save some money.&lt;/p&gt;
+&lt;p&gt;There's a few ways I practice this today. In addition to the previously mentioned domains, I also own lqdev.tech. Services and projects I host live there.&lt;/p&gt;
+&lt;p&gt;For example:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mastodon Instance (toot.lqdev.tech)&lt;/li&gt;
+&lt;li&gt;Matrix server (matrix.lqdev.tech)&lt;/li&gt;
+&lt;li&gt;Webmentions service (webmentions.lqdev.tech)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So far it's been working well.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/my-permadomain-rscottjones</link>
+      <guid>https://www.lqdev.me/responses/my-permadomain-rscottjones</guid>
+      <pubDate>2024-05-30 21:41 -05:00</pubDate>
+      <category>domains</category>
+      <category>personalweb</category>
+      <category>permadomain</category>
+      <category>indieweb</category>
+      <category>projects</category>
+      <category>selfhosting</category>
+      <category>hosting</category>
+      <category>self-hosting</category>
+    </item>
+  </channel>
+</rss>

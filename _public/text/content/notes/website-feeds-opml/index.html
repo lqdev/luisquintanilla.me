@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>OPML for website feeds - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>OPML for website feeds</h1><div class="content-meta"><div class="content-type">notes</div><time datetime="2024-08-02">August 2, 2024</time><p>Tags: rss, opml, indieweb, feeds, internet, protocols, webstandards, standards, web</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/notes/">← All notes</a> | <a href="https://www.lqdev.me/notes/website-feeds-opml">View Full Version</a></p><div class="content"><p>While thiking about implementing <a href="/responses/well-known-feeds/"><code>.well-known</code> for RSS feeds on my site</a>, I had another idea. Since that uses OPML anyways, I remembered recently <a href="/notes/blogroll-discovery-implemented//">doing something similar for my blogroll</a>.</p>
+<p>The concept is the same, except instead of making my blogroll discoverable, I'm doing it for my feeds. At the end of the day, a blogroll is a collection of feeds, so it should just work for my own feeds.</p>
+<p>The implementation ended up being:</p>
+<ol>
+<li><p>Create an OPML file for<a href="/feed"> each of the feeds on by website</a>.</p>
+<pre><code class="language-xml"> &lt;opml version=&quot;2.0&quot;&gt;
+   &lt;head&gt;
+ 	&lt;title&gt;Luis Quintanilla Feeds&lt;/title&gt;
+ 	&lt;ownerId&gt;https://www.luisquintanilla.me&lt;/ownerId&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+ 	&lt;outline title=&quot;Blog&quot; text=&quot;Blog&quot; type=&quot;rss&quot; htmlUrl=&quot;/posts/1&quot; xmlUrl=&quot;/blog.rss&quot; /&gt;
+ 	&lt;outline title=&quot;Microblog&quot; text=&quot;Microblog&quot; type=&quot;rss&quot; htmlUrl=&quot;/feed&quot; xmlUrl=&quot;/microblog.rss&quot; /&gt;
+ 	&lt;outline title=&quot;Responses&quot; text=&quot;Responses&quot; type=&quot;rss&quot; htmlUrl=&quot;/feed/responses&quot; xmlUrl=&quot;/responses.rss&quot; /&gt;
+ 	&lt;outline title=&quot;Mastodon&quot; text=&quot;Mastodon&quot; type=&quot;rss&quot; htmlUrl=&quot;/mastodon&quot; xmlUrl=&quot;/mastodon.rss&quot; /&gt;
+ 	&lt;outline title=&quot;Bluesky&quot; text=&quot;Bluesky&quot; type=&quot;rss&quot; htmlUrl=&quot;/bluesky&quot; xmlUrl=&quot;/bluesky.rss&quot; /&gt;
+ 	&lt;outline title=&quot;YouTube&quot; text=&quot;YouTube&quot; type=&quot;rss&quot; htmlUrl=&quot;/youtube&quot; xmlUrl=&quot;/bluesky.rss&quot; /&gt;
+   &lt;/body&gt;
+ &lt;/opml&gt;
+</code></pre>
+</li>
+<li><p>Add a <code>link</code> tag to the <code>head</code> element of my website.</p>
+<pre><code class="language-html"> &lt;link rel=&quot;feeds&quot; type=&quot;text/xml&quot; title=&quot;Luis Quintanilla's Feeds&quot; href=&quot;/feed/index.opml&quot;&gt;
+</code></pre>
+</li>
+</ol>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

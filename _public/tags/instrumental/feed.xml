@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - instrumental</title>
+    <link>https://www.lqdev.me/tags/instrumental</link>
+    <description>All content tagged with 'instrumental' by Luis Quintanilla</description>
+    <lastBuildDate>2024-09-14 22:08 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Listening to the Sun by Andre 3000</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;Simply amazing.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=2nOxSeBhQAA" title="Andre 3000 Listening to the Sun Thumbnail"&gt;&lt;img src="http://img.youtube.com/vi/2nOxSeBhQAA/0.jpg" class="img-fluid" alt="Andre 3000 Listening to the Sun Thumbnail" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/andre-3000-listening-to-the-sun</link>
+      <guid>https://www.lqdev.me/responses/andre-3000-listening-to-the-sun</guid>
+      <pubDate>2024-09-14 22:08 -05:00</pubDate>
+      <category>andre3000</category>
+      <category>music</category>
+      <category>instrumental</category>
+      <category>experimental</category>
+      <category>ambient</category>
+      <category>jazz</category>
+      <category>creative</category>
+      <category>instrumental</category>
+    </item>
+    <item>
+      <title>New Chicano Batman: Tanto Arriba Como Abajo</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;As above, so below.&lt;/p&gt;
+&lt;p&gt;Some new Chicano Batman was a pleasant surprise this morning. Even better, an instrumental track.&lt;/p&gt;
+&lt;p&gt;You can hear some of their older sound in this track, which I really enjoyed.&lt;/p&gt;
+&lt;iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/518ruJoGWraifuVpTBKr5a" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/new-chicano-batman-tanto-arriba-como-abajo</link>
+      <guid>https://www.lqdev.me/responses/new-chicano-batman-tanto-arriba-como-abajo</guid>
+      <pubDate>2024-08-20 20:24 -05:00</pubDate>
+      <category>music</category>
+      <category>chicanobatman</category>
+      <category>instrumental</category>
+      <category>newmusic</category>
+    </item>
+    <item>
+      <title>What about instrumentals? AI Generated Spotify Clips Addendum</title>
+      <description>&lt;![CDATA[&lt;p&gt;In my recent post, &lt;a href="https://www.lqdev.me/posts/generative-ai-spotify-clips"&gt;Using Generative AI to produce Spotify Clips&lt;/a&gt; I listed a bunch of challenges but realized I missed a big one. While listening to &lt;a href="https://www.youtube.com/watch?v=G0CqHxDG74k"&gt;IJ by Sam Gendel&lt;/a&gt;, I realized, what do you do about instrumental songs, solos, or songs with few lyrics?&lt;/p&gt;
+&lt;p&gt;Some sort of audio-to-video technique?&lt;/p&gt;
+&lt;p&gt;Maybe using metadata like title, genre, beats-per-minute (BPM), spectrogram, and musical notes would work?&lt;/p&gt;
+&lt;p&gt;Or generating an image and animating it or its background to add depth similar to how in the &lt;a href="https://blog.research.google/2023/12/videopoet-large-language-model-for-zero.html"&gt;VideoPoet blog post&lt;/a&gt;, the image of the Mona Lisa is animated.&lt;/p&gt;
+&lt;p&gt;It would be a fun experiment.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/genai-spotify-clips-instrumental</link>
+      <guid>https://www.lqdev.me/notes/genai-spotify-clips-instrumental</guid>
+      <pubDate>2023-12-23 19:32 -05:00</pubDate>
+      <category>ai</category>
+      <category>genai</category>
+      <category>music</category>
+      <category>instrumental</category>
+      <category>spotify</category>
+      <category>generativeai</category>
+      <category>llm</category>
+    </item>
+  </channel>
+</rss>

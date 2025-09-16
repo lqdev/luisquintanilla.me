@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - dayone</title>
+    <link>https://www.lqdev.me/tags/dayone</link>
+    <description>All content tagged with 'dayone' by Luis Quintanilla</description>
+    <lastBuildDate>2024-01-23 20:26 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Introducing Shared Journals for Day One</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Shared Journals are a private space for your closest friends and family to shared life updates and memories. Shared Journals introduce a new dimension to journaling, offering a unique way to share your personal stories and experiences with up to 30 selected individuals, while keeping your individual entries private and secure.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Awesome! When I was writing the post &lt;a href="https://www.lqdev.me/notes/private-social-media"&gt;Private Social Media&lt;/a&gt; yesterday, I wasn't aware that these had already launched. I knew they were in beta but it's great to see they're now generally available. I'll have to give them a try.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-shared-journals-day-one</link>
+      <guid>https://www.lqdev.me/responses/introducing-shared-journals-day-one</guid>
+      <pubDate>2024-01-23 20:26 -05:00</pubDate>
+      <category>dayone</category>
+      <category>automattic</category>
+      <category>journal</category>
+    </item>
+    <item>
+      <title>Introducing Journaling Suggestions for Day One</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;See journaling recommendations inspired by your photos, locations, activities and more. Exclusively for iPhone.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I've been tinkering with Day One the past few months. When paired with their templates, this is a nice addition. Too bad it's iPhone exclusive. Hopefully it makes its way to Android at some point.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/journaling-suggestions-day-one</link>
+      <guid>https://www.lqdev.me/responses/journaling-suggestions-day-one</guid>
+      <pubDate>2023-12-12 20:49 -05:00</pubDate>
+      <category>journaling</category>
+      <category>dayone</category>
+    </item>
+  </channel>
+</rss>

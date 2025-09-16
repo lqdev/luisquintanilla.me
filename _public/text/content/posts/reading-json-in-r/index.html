@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Reading Local JSON Files in R - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Reading Local JSON Files in R</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2017-12-11">December 11, 2017</time><p>Tags: R, programming</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/reading-json-in-r">View Full Version</a></p><div class="content"><p>The following example is a way of reading local JSON files into R scripts. This can be useful for config files, although it's still also acceptable for data files as well.</p>
+<h1>Import package to work with JSON and lists</h1>
+<pre><code class="language-r">require(rlist)
+require(rjson)
+</code></pre>
+<h1>Load file into script</h1>
+<pre><code class="language-r">configPath &lt;- '.'
+fileName &lt;- 'config.json'
+jsonFile &lt;- fromJSON(file=paste(configPath,fileName,sep=&quot;/&quot;),method=&quot;C&quot;)
+</code></pre>
+<p>The data gets loaded in as a list. It may be tedious to access nested contents via indices. To aid with this, a helper function can be created to extract the individual nested data elements of the file.</p>
+<pre><code class="language-r">#Extract values form nested list
+#top_level = list.select(obj$topkey,obj$subkey)
+extractData &lt;- function(top_level) {
+    output &lt;- unlist(lapply(top_level,'[[',1));
+    return(output);
+}
+</code></pre>
+<h1>Extract data</h1>
+<p>Below is a default sample json file that includes both nested and non-nested data.</p>
+<pre><code class="language-json">{
+    &quot;port&quot;: 2100,
+    &quot;connectionStrings&quot;: {
+        &quot;default&quot;: &quot;123.567.890&quot;
+    }
+}
+</code></pre>
+<p>The data in that file can be accessed as shown below.</p>
+<pre><code class="language-r">#Not Nested
+port &lt;- config$port # Should store 2100
+
+#Nested
+connectionString &lt;- extractData(list.select(config$connectionStrings,default)) #Should store 123.567.890
+</code></pre>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - embedding</title>
+    <link>https://www.lqdev.me/tags/embedding</link>
+    <description>All content tagged with 'embedding' by Luis Quintanilla</description>
+    <lastBuildDate>2024-03-19 21:39 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Demystifying Embedding Spaces using Large Language Models</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Embeddings have become a pivotal means to represent complex, multi-faceted information about entities, concepts, and relationships in a condensed and useful format. Nevertheless, they often preclude direct interpretation. While downstream tasks make use of these compressed representations, meaningful interpretation usually requires visualization using dimensionality reduction or specialized machine learning interpretability methods. This paper addresses the challenge of making such embeddings more interpretable and broadly useful, by employing Large Language Models (LLMs) to directly interact with embeddings -- transforming abstract vectors into understandable narratives. By injecting embeddings into LLMs, we enable querying and exploration of complex embedding data. We demonstrate our approach on a variety of diverse tasks, including: enhancing concept activation vectors (CAVs), communicating novel embedded entities, and decoding user preferences in recommender systems. Our work couples the immense information potential of embeddings with the interpretative power of LLMs.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/demistifying-embedding-spaces-llms</link>
+      <guid>https://www.lqdev.me/responses/demistifying-embedding-spaces-llms</guid>
+      <pubDate>2024-03-19 21:39 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>embedding</category>
+      <category>interpretability</category>
+    </item>
+    <item>
+      <title>Introducing Nomic Embed: A Truly Open Embedding Model</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We're excited to announce the release of Nomic Embed, the first&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open source&lt;/li&gt;
+&lt;li&gt;Open data&lt;/li&gt;
+&lt;li&gt;Open training code&lt;/li&gt;
+&lt;li&gt;Fully reproducible and auditable&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/nomic-embed-open-embedding-model</link>
+      <guid>https://www.lqdev.me/responses/nomic-embed-open-embedding-model</guid>
+      <pubDate>2024-02-03 20:37 -05:00</pubDate>
+      <category>embedding</category>
+      <category>ai</category>
+      <category>opensource</category>
+      <category>ml</category>
+      <category>model</category>
+    </item>
+    <item>
+      <title>New OpenAI embedding models and API updates</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We are launching a new generation of embedding models, new GPT-4 Turbo and moderation models, new API usage management tools, and soon, lower pricing on GPT-3.5 Turbo.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/new-openai-text-embedding-models-3</link>
+      <guid>https://www.lqdev.me/responses/new-openai-text-embedding-models-3</guid>
+      <pubDate>2024-01-25 21:20 -05:00</pubDate>
+      <category>openai</category>
+      <category>llm</category>
+      <category>embedding</category>
+      <category>openai</category>
+      <category>gpt</category>
+    </item>
+  </channel>
+</rss>

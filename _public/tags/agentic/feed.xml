@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - agentic</title>
+    <link>https://www.lqdev.me/tags/agentic</link>
+    <description>All content tagged with 'agentic' by Luis Quintanilla</description>
+    <lastBuildDate>2024-12-17 19:44 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Agentic Fediverse</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The &amp;quot;Agentic Fediverse&amp;quot; is the idea of a new kind of network federation, a complementary iteration on the concept of federation currently established with ActivityPub. It's an experiment and something that we in Muni Town are still trying to define more concretely.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Tenets&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We are still working on defining the core tenets of the agentic fediverse, but here is what we have so far.&lt;br /&gt;
+&lt;br&gt;
+An agentic fediverse is...&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A fediverse of agents; agent-centric, as opposed to server-centric.&lt;/li&gt;
+&lt;li&gt;Local-first; solve local problems for local people.&lt;/li&gt;
+&lt;li&gt;Accessible by default; inaccessibility is a bug.&lt;/li&gt;
+&lt;li&gt;Systematically consensual; architected on the basis of informed consent.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/agentic-fediverse</link>
+      <guid>https://www.lqdev.me/responses/agentic-fediverse</guid>
+      <pubDate>2024-12-17 19:44 -05:00</pubDate>
+      <category>fediverse</category>
+      <category>munitown</category>
+      <category>agents</category>
+      <category>agentic</category>
+      <category>activitypub</category>
+      <category>protocols</category>
+      <category>socialweb</category>
+    </item>
+  </channel>
+</rss>

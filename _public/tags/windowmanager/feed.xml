@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - windowmanager</title>
+    <link>https://www.lqdev.me/tags/windowmanager</link>
+    <description>All content tagged with 'windowmanager' by Luis Quintanilla</description>
+    <lastBuildDate>2023-01-26 10:46 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>i3-gaps Released</title>
+      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="https://i3wm.org/docs/gaps1920.png" class="img-fluid" alt="Screenshot of i3-gaps" /&gt;&lt;/p&gt;
+&lt;p&gt;Nice! &lt;a href="https://i3wm.org/docs/userguide.html#gaps"&gt;i3-gaps&lt;/a&gt; was recently merged into the main i3 codebase some  time ago and with the &lt;a href="https://github.com/i3/i3/blob/next/RELEASE-NOTES-4.22"&gt;4.22 release&lt;/a&gt; a few weeks ago, you can now use it with your existing i3 configuration. I've started tinkering with it and I like the way it makes my desktop look.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/i3-gaps-released</link>
+      <guid>https://www.lqdev.me/notes/i3-gaps-released</guid>
+      <pubDate>2023-01-26 10:46 -05:00</pubDate>
+      <category>i3</category>
+      <category>windowmanager</category>
+      <category>linux</category>
+      <category>desktop</category>
+    </item>
+  </channel>
+</rss>

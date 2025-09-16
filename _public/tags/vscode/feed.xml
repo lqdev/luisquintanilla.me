@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - vscode</title>
+    <link>https://www.lqdev.me/tags/vscode</link>
+    <description>All content tagged with 'vscode' by Luis Quintanilla</description>
+    <lastBuildDate>06/29/2024 14:48 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>DevContainer configurations</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;A collection of DevContainer configurations&lt;/p&gt;
+&lt;h2&gt;Base Debian Image&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Base Debian DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;                
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python (GPU)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python (GPU) DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },
+        &amp;quot;ghcr.io/devcontainers/features/nvidia-cuda:1&amp;quot;: {},
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;                
+            ]
+        }
+    },
+    &amp;quot;runArgs&amp;quot;: [
+        &amp;quot;--gpus&amp;quot;, 
+        &amp;quot;all&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;.NET&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me .NET DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        }
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;                                
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;.NET (GPU)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me .NET (GPU) DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        },
+        &amp;quot;ghcr.io/devcontainers/features/nvidia-cuda:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;                
+            ]
+        }
+    },
+    &amp;quot;runArgs&amp;quot;: [
+        &amp;quot;--gpus&amp;quot;, 
+        &amp;quot;all&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python and .NET&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python and .NET DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },        
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        },
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;                
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python and .NET (GPU)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python and .NET (GPU) DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },        
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        },
+        &amp;quot;ghcr.io/devcontainers/features/nvidia-cuda:1&amp;quot;: {},
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;               
+            ]
+        }
+    },
+    &amp;quot;runArgs&amp;quot;: [
+        &amp;quot;--gpus&amp;quot;, 
+        &amp;quot;all&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Additional Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://code.visualstudio.com/docs/devcontainers/containers"&gt;Developing inside a DevContainer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/devcontainers/images"&gt;Pre-built DevContainer images&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/devcontainers/features"&gt;Pre-built DevContainer features&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.github.com/en/codespaces/overview"&gt;GitHub Codespaces overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://marketplace.visualstudio.com/vscode"&gt;VS Code Extensions Marketplace&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/devcontainers-configurations</link>
+      <guid>https://www.lqdev.me/resources/wiki/devcontainers-configurations</guid>
+      <pubDate>06/29/2024 14:48 -05:00</pubDate>
+      <category>devcontainer</category>
+      <category>vscode</category>
+      <category>codespaces</category>
+      <category>development</category>
+      <category>software</category>
+      <category>tech</category>
+      <category>programming</category>
+      <category>python</category>
+      <category>dotnet</category>
+      <category>csharp</category>
+      <category>fsharp</category>
+      <category>docker</category>
+      <category>git</category>
+      <category>debian</category>
+    </item>
+    <item>
+      <title>Configure Ollama on Dev Containers and VS Code</title>
+      <description>&lt;![CDATA[
+The source for my website is [hosted on GitHub](/github/luisquintanilla.me). As a result, I use VS Code as the text editor to author my posts. Typically, I use [Codespaces or github.dev](/colophon) to quickly draft and publish articles to simplify the process. 
+
+As part of my authoring and publishing posts, there's a few things I do like:
+
+1. Coming up with a title
+2. Creating relevant tags to help with discovery and connecting related information on my website.
+3. For long-form blog posts, I also include a description. 
+
+This is generally relatively easy to do. However, sometimes I spend too much time coming up with something that truly summarizes and condenses the information in the post. It'd be nice if I had an assistant to help me brainstorm and workshop some of these items.
+
+In comes AI. Now, I could use something like [Copilot](https://code.visualstudio.com/docs/copilot/overview) which would work wonderfully and easily plug into my workflow. However, my website is a labor of love and I don't make any money from it. In many instances, I've designed [various components to be as low-cost as possible](/posts/receive-webmentions-fsharp-az-functions-fsadvent). 
+
+Recently, I created a post which showed [how to get started with Ollama on Windows](/posts/getting-started-ollama-windows). In this post, I'll show how you can do the same for your Dev Container environments. 
+
+## Install Ollama
+
+Assuming you already have a [Dev Container configuration file](https://code.visualstudio.com/docs/devcontainers/create-dev-container), add the following line to it:
+
+```json
+"postCreateCommand": "curl -fsSL https://ollama.com/install.sh | sh"
+```
+
+This command triggers when the container environment is created. This will install Ollama in your development environment. For more details, see the [Ollama download instructions](https://ollama.com/download/linux).
+
+## Start Ollama
+
+Now that Ollama is installed, it's time to start the service so you can get models and use them. To start the Ollama service on your Dev Conatiner environment, add the following line to your Dev Container configuration file.
+
+```json
+"postStartCommand": "ollama serve"
+```
+
+This command will run `ollama serve` when the Dev Container environment starts.
+
+## Pull a model
+
+To use Ollama, you're going to need a model. In my case, I went with [Phi-2](https://ollama.com/library/phi) because it's lightweight and space on Codespaces is limited.  
+
+To get the model:
+
+1. Open the terminal
+1. Enter the following command:
+
+    ```bash
+    ollama pull phi
+    ```
+
+    After a few minutes, the model is downloaded and ready to use. 
+
+1. Enter the following command to ensure that your model is now available
+
+    ```bash
+    ollama list
+    ```
+
+    The result should look like the following:
+
+    ```text
+    NAME            ID              SIZE    MODIFIED      
+    phi:latest      e2fd6321a5fe    1.6 GB  6 seconds ago
+    ```
+
+For more details, see the [Ollama model library](https://ollama.com/library). 
+
+## Conclusion
+
+In this post, I showed how you can configure Ollama with Dev Containers to use AI models locally in your projects. In subsequent posts, I'll show how once the service is running, I use it as part of my authoring and publishing posts. You can see a preview of it in my [scripts directory](https://github.com/lqdev/luisquintanilla.me/blob/main/Scripts/ai.fsx). Happy coding! ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/install-ollama-vscode-devcontainer</link>
+      <guid>https://www.lqdev.me/posts/install-ollama-vscode-devcontainer</guid>
+      <pubDate>2024-03-06 13:50 -05:00</pubDate>
+      <category>ollama</category>
+      <category>vscode</category>
+      <category>devcontainer</category>
+      <category>ai</category>
+      <category>llm</category>
+      <category>opensource</category>
+      <category>development</category>
+    </item>
+    <item>
+      <title>Setting up your Rust development environment using Dev Containers</title>
+      <description>&lt;![CDATA[
+Setting up a new development environment that's configured with all the SDKs and tools you need to get started working can be a multi-step process that is error-prone. Especially when you don't know whether you want to commit to a specific technology or don't have too much space on your device, you might not want to install everything on your device. Additionally, cleaning up and removing everything you installed isn't always 100%. This is where development environments like Dev Containers can come in handy. 
+
+## What are Dev Containers
+
+A development container (Dev Container) lets you use a container as a full development environment. 
+
+Because your development environment is in a container, the environment is isolated. The builds are reproducible and disposable. This means you can quickly stand up a new clean development environments and dispose of them just as easily. 
+
+For more details, see the [Dev Containers website](https://containers.dev/).
+
+If you have Docker installed, you can run them locally. Otherwise, you can run Dev Containers using GitHub Codespaces
+
+## What are GitHub Codespaces
+
+A codespace is a development environment that's hosted in the cloud.
+
+For more details, see the [GitHub Codespaces website](https://github.com/features/codespaces).
+
+## Set up Dev Container for Rust Development
+
+1. Create a new directory.
+1. Add a Dev Container configuration file called *.devcontainer.json* that contains the following content:
+
+    ```json
+    {
+        "name": "Rust Development Environment",
+        "image": "mcr.microsoft.com/devcontainers/rust:latest",
+        "customizations": {
+            "vscode": {
+                "extensions": [
+                    "rust-lang.rust-analyzer"
+                ]
+            }
+        }
+    }
+    ```
+
+    - **name**: A human friendly name to identify your development environment. It's not as important when you only have one environment but if you have different environments, it can be useful for differentiating between the various configurations. 
+    - **image**: For the most customization, you can provide the path to a Docker file. However, to make things easier, there are a set of prebuilt container images. In this case, I'm using the [Rust image](https://github.com/devcontainers/images/tree/main/src/rust).
+    - **customizations.vscode.extensions**: A list of Visual Studio Code extensions that can help you with your development. In this case, it's the [*rust-analyzer*](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer).
+
+At minimum, this is all you need to get started. 
+
+## Start your environment 
+
+[Visual Studio Code provides good support for Dev Containers](https://code.visualstudio.com/docs/devcontainers/tutorial). 
+
+1. Install [VS Code](https://code.visualstudio.com/download)
+1. Open your directory where you configured your Dev Container in Visual Studio Code
+1. Install the [Dev Containers VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
+1. Open the command palette in VS Code. In the menu bar, select **View &gt; Command Palette.**
+1. Enter the following command **&gt;Dev Containers: Open Dev Container**. This will start building your dev container. Wait for it to start.
+
+## Check your environment
+
+Once your Dev Container starts, check that `rustc` is installed.
+
+1. Open the terminal.
+1. Run `rustc -h`. A help message should output to the console for the Rust compiler. 
+
+## Build your app
+
+For simplicity, I've used the [Hello World sample from the Rust By Example website](https://doc.rust-lang.org/rust-by-example/hello.html).
+
+1. Create a new file called *hello.rs*.
+1. Add the following code:
+
+    ```rust
+    fn main ()
+    {
+        println!("Hello World!");
+    }
+    ```
+1. Compile your program
+
+    ```bash
+    rustc hello.rs
+    ```
+
+    This will generate an executable called *hello*
+
+1. Run your app
+
+    ```bash
+    ./hello
+    ```
+
+    The application should print out the string "Hello World" to the console. 
+
+That's it! You now have a Rust development environment to get started learning and building apps. 
+
+## Conclusion
+
+Dev Containers make it easy for you to configure full-featured development environments. When paired with Visual Studio Code and GitHub Codespaces, they can help you focus on learning and building applications rather than setting up your environment. You can find a [final version of the configured environment and app on GitHub](https://github.com/lqdev/rust-codespace-sandbox). Happy coding! 
+
+## Additional Resources
+
+- [Rust in Visual Studio Code](https://code.visualstudio.com/docs/languages/rust)
+- [Rust by Example](https://doc.rust-lang.org/rust-by-example/index.html)
+- [Developing Inside a Container](https://code.visualstudio.com/docs/devcontainers/containers)]]&gt;</description>
+      <link>https://www.lqdev.me/posts/setting-up-rust-dev-env-devcontainers-vscode</link>
+      <guid>https://www.lqdev.me/posts/setting-up-rust-dev-env-devcontainers-vscode</guid>
+      <pubDate>2024-01-31 21:05 -05:00</pubDate>
+      <category>rust</category>
+      <category>vscode</category>
+      <category>devcontainers</category>
+      <category>codespaces</category>
+      <category>programming</category>
+      <category>technology</category>
+      <category>docker</category>
+      <category>containers</category>
+      <category>github</category>
+    </item>
+    <item>
+      <title>Get started with TiddlyWiki in VS Code</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+A while back, I set up a knowledge base (KB) section on my website. As part of that knowledge base, I have a [wiki](/resources/wiki) and [snippets](/resources/snippets) section. As opposed to the [blog posts](/posts) which tend to be more long-form and have structure or the microblog-like posts on my [main](/notes) and [response](/responses) feeds, the wiki and snippets section are intended to have self-contained blocks of information that are linked somehow but not a linear or chronological order. 
+
+My current wiki and snippets solution was fairly basic. It was a series of documents authored in Markdown which then get converted to static HTML pages. The index pages for wiki articles and snippets contain links to each of those documents. While that's worked okay, I felt I was missing functionality when it came to linking between documents, tagging, and more importantly searching. 
+
+While I had seen wiki solutions like [MediaWiki](https://www.mediawiki.org/wiki/MediaWiki), they felt too bloated for my use case. Since my site is statically hosted, I didn't want to have to create, maintain, and pay for a server only to run my wiki. That's where TiddlyWiki comes in.
+
+[TiddlyWiki](https://tiddlywiki.com/) describes itself as "a unique non-linear notebook for capturing, organising and sharing complex information". In short, TiddlyWiki is a self-contained single HTML file with WYSIWYG-like functionality for creating a wiki. Because everything is contained in a single HTML file, it's static-site friendly. 
+
+Now I had heard of TiddlyWiki before but dismissed it because I didn't get how it worked. For one, I was confused how the WYSIWYG GUI supported editing, viewing, and exporting of these notes since there was just a single HTML file. More importantly, when it comes to [saving changes](https://tiddlywiki.com/#Saving), the recommendations on the website point users to browser extensions and apps. If it's just an HTML page, why can't I use the tools I'm already using to work with HTML? 
+
+After giving it another look and tinkering a bit, I found I was right and could use tools like VS Code to work with TiddlyWiki. In this post, I'll show how you can get started with the empty edition of TiddlyWiki using VS Code and the Live Preview extension.  
+
+## Prerequisites
+
+- [Visual Studio Code](https://code.visualstudio.com/#alt-downloads)
+- [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server)
+
+This guide was written on a Linux (Manjaro) PC but should work the same on Windows and macOS.
+
+## Download TiddlyWiki
+
+The quickest way to get started with TiddlyWiki is to: 
+
+1. Download the [empty edition](https://tiddlywiki.com/#Empty%20Edition). 
+
+    A file called *empty.html* should download to your computer. For simplicity, I would recommend creating a new directory on your computer that only contains that file.
+
+    The empty edition contains the core functionality. For other editions, see [TiddlyWiki editions](https://tiddlywiki.com/#Editions).
+
+1.  Rename the file *index.html*.
+
+## Edit and save your wiki
+
+### Edit your wiki
+
+1. Open the directory containing your *index.html* file in VS Code.
+1. Open the command palette (View &gt; Command Palette).
+1. Enter into the text box *Live Preview: Start Server* and press *Enter*. The server should start.
+
+![lqdev TiddlyWiki Main Page](http://cdn.lqdev.tech/files/images/lqdev-tiddlywiki.png)
+
+At this point, you can use the TiddlyWiki interface to create and edit your wiki.
+
+### Save your wiki
+
+Saving can be a bit tricky but it's not too bad. Use the checkmark in the side pane to save your changes. When there are unsaved changes, the checkmark turns red. 
+
+![TiddlyWiki Side Panel Red Checkmark Save Changes](http://cdn.lqdev.tech/files/images/tiddlywiki-save-changes.png)
+
+To save your changes, overwrite the existing file or if you want, you can also save it to a file with a different name. I would recommend saving it to the same file because it's easier to manage. You don't want to end up with *index-version12341.html*. That being said, I don't know if there may be risks in overwriting the file. In my limited testing I had no issues overwriting the file, but I'd still tread lightly.
+
+### Stop the server
+
+Once you're done viewing and editing your wiki, stop the Live Preview server:
+
+1. In VS Code, open the command palette **(View &gt; Command Palette)**.
+1. Enter into the text box *Live Preview: Stop Server* and press *Enter*. The server should stop.
+
+## Tips
+
+### Plugins
+
+I prefer working in Markdown and since some of my notes include code, I addded two plugins to my wiki:
+
+- [Markdown](https://tiddlywiki.com/#Markdown%20Plugin)
+- [Highlight](https://tiddlywiki.com/#Highlight%20Plugin)
+
+For more information, see [Installing a plugin from the plugin library](https://tiddlywiki.com/#Installing%20a%20plugin%20from%20the%20plugin%20library).
+
+### Things to watch out for in VS Code
+
+When using the Live Preview extension, some things might not work such as keyboard shortcuts and navigating to external links. Since a local server is running you should be able to use the browser as well. However, I would recommend only using the browser to *view* your wiki. Trying to save changes made in the browser will download the HTML page containing your changes. 
+
+### Use Git
+
+Autosaving to Git is one of the ways you can save your TiddlyWiki. However, you have to enter and use your credentials. Since your wiki is a static HTML page, just save it like you would any other HTML file in a repo. Doing so also makes it easy to backup to a previous version in case data is corrupted or lost. 
+
+## Conclusion
+
+I this post, I shared how TiddlyWiki provides a relatively low overhead, static-website friendly way of creating wikis. If you use VS Code, you can use the Live Preview extension to view and edit your wiki. Although my intended use for TiddlyWiki is as a personal knowledge management solution, I can also think of ways you could use TiddlyWiki as a low-friction way of building your own website. The WYSIWYG functionality makes creating content extremely more accessible than static site generators and similar to WordPress. In contrast to WordPress though, since you only have a single HTML file, it's less overhead to manage and also low-cost since you can [host it on GitHub Pages for free](https://nesslabs.com/tiddlywiki-static-website-generator) or any other file hosting service. In the near future, I plan to migrate my wiki and snippets to use TiddlyWiki. ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/tiddlywiki-vscode</link>
+      <guid>https://www.lqdev.me/posts/tiddlywiki-vscode</guid>
+      <pubDate>2022-10-21 08:32 -05:00</pubDate>
+      <category>web</category>
+      <category>vscode</category>
+      <category>wiki</category>
+      <category>personalknowledgemanagement</category>
+      <category>git</category>
+      <category>website</category>
+    </item>
+    <item>
+      <title>TIL: VS Code Live Preview Extension</title>
+      <description>&lt;![CDATA[&lt;p&gt;Today I Learned about the &lt;a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server"&gt;VS Code Live Preview extension&lt;/a&gt;. While reading the &lt;a href="https://code.visualstudio.com/updates/v1_71"&gt;release notes&lt;/a&gt; for the latest version of VS Code, I noticed a &lt;a href="https://code.visualstudio.com/updates/v1_71#_live-preview"&gt;note&lt;/a&gt; on the Live Preview extension. Usually to preview static content, I use Python's HTTP server with the &lt;code&gt;python -m http.server&lt;/code&gt; command. This extension simplifies the process because it's built into Visual Studio Code. If you do any kind of web development, it's definitely worth a look.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/til-vs-code-live-preview-extension</link>
+      <guid>https://www.lqdev.me/notes/til-vs-code-live-preview-extension</guid>
+      <pubDate>09/03/2022 18:47 -05:00</pubDate>
+      <category>til</category>
+      <category>vscode</category>
+      <category>vs</category>
+      <category>extension</category>
+      <category>development</category>
+      <category>web</category>
+    </item>
+    <item>
+      <title>Blogging Tools</title>
+      <description>&lt;![CDATA[
+## TLDR
+
+These are the tools I use to write this blog:
+
+- **Editor**: [Visual Studio Code](https://code.visualstudio.com/)
+- **Markup**: [Markdown](https://daringfireball.net/projects/markdown/)
+- **Static Site Generator**: [Hexo](https://hexo.io/) 
+- **Blog Theme**: [Cactus](https://github.com/probberechts/hexo-theme-cactus)
+- **Hosting**: [Namecheap](https://www.namecheap.com/)
+
+## Introduction
+
+I have gotten a few questions regarding what I use to write this blog so I thought it would be a good idea to write a post about it. In this writeup I'll discuss what I use for writing posts as well as building and hosting the site. 
+
+## Writing
+
+### Editor
+
+For writing, I use Visual Studio Code. Visual Studio Code is an open source, cross-platform text editor. One of the nice features it includes is Markdown Preview. Markdown Preview allows you to see how the content would look when rendered as a web page. Additionally, Visual Studio Code allows you to split panes. What that provides is the ability to write and preview the content side-by-side. 
+
+![](http://cdn.lqdev.tech/files/images/blog-tools-1.PNG)
+
+### Markup 
+
+I write my content in Markdown. Markdown is a plain text formatting syntax that allows authors to write easy-to-read and easy-to-write plain text formats that are then converted to HTML. It can take a while to get used to the syntax especially when including images, links and code snippets but once you get comfortable with it, it becomes natural and no different than writing sentences in plain text. While this is not a requirement for everyone, since a fair amount of my content includes code snippets, Markdown makes it easy to include such content in the language of choice. 
+
+## Website
+
+### Static Site Generation
+
+While Markdown helps me format my plain text, at some point it needs to be converted into HTML or some format that can be rendered on the web. To help with that, I use Hexo. Hexo is an open source blog framework that allows you to write content using Markdown or other languages and generates static files which have a theme applied to them. Hexo is built on JavaScript, therefore you'll need NodeJS to configure it. 
+
+### Theme 
+
+Hexo has numerous themes that can be used to style your site. The one I use is the `Cactus` theme. 
+
+## Hosting
+
+For hosting, I use Namecheap. There is no special reason for this other than I had a slot available in an existing hosting plan. My method of deployment is via FTP. Since my site is all static assets, I upload them into a folder that is publicly accessible. With that in mind, by having my site made up of static assets I have the flexibility of hosting it on an S3 bucket or Azure Storage. This is the method I'm looking to use for deployments and hosting in the near future. Here is a [link](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-static-website) that details how to host a static site on Azure Storage.]]&gt;</description>
+      <link>https://www.lqdev.me/posts/blog-tools</link>
+      <guid>https://www.lqdev.me/posts/blog-tools</guid>
+      <pubDate>2018-11-18 00:07:36 -05:00</pubDate>
+      <category>markdown</category>
+      <category>vscode</category>
+      <category>tools</category>
+      <category>development</category>
+      <category>blogging</category>
+    </item>
+  </channel>
+</rss>

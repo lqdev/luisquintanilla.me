@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - agents</title>
+    <link>https://www.lqdev.me/tags/agents</link>
+    <description>All content tagged with 'agents' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-20 22:53 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Agents.md</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A simple, open format for guiding coding agents&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Think of AGENTS.md as a README for agents: a dedicated, predictable place to provide the context and instructions to help AI coding agents work on your project.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/agentsmd</link>
+      <guid>https://www.lqdev.me/responses/agentsmd</guid>
+      <pubDate>2025-08-20 22:53 -05:00</pubDate>
+      <category>ai</category>
+      <category>agents</category>
+      <category>openai</category>
+    </item>
+    <item>
+      <title>State-Of-The-Art Prompting For AI Agents</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=DL82mGde6wo" title="YouTube Thumbnail for State-of-the-art prompting for ai agents"&gt;&lt;img src="http://img.youtube.com/vi/DL82mGde6wo/0.jpg" class="img-fluid" alt="YouTube Thumbnail for State-of-the-art prompting for ai agents" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/state-of-the-art-prompting-ai-agents-y-combinator</link>
+      <guid>https://www.lqdev.me/responses/state-of-the-art-prompting-ai-agents-y-combinator</guid>
+      <pubDate>2025-06-03 20:23 -05:00</pubDate>
+      <category>ai</category>
+      <category>agents</category>
+      <category>prompting</category>
+    </item>
+    <item>
+      <title>A Survey of AI Agent Protocols</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;It'll be interesting to see once many of the exiting protocols begin to converge towards a standard. There's a ton of existing well-adopted protocol standards out there that when stitched together could create a compelling and native experience. I think eventually we'll get to a place where agents are native parts of the OSI stack and the world wide web.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The rapid development of large language models (LLMs) has led to the widespread deployment of LLM agents across diverse industries, including customer service, content generation, data analysis, and even healthcare. However, as more LLM agents are deployed, a major issue has emerged: &lt;strong&gt;there is no standard way for these agents to communicate with external tools or data sources. This lack of standardized protocols makes it difficult for agents to work together or scale effectively, and it limits their ability to tackle complex, real-world tasks. A unified communication protocol for LLM agents could change this. It would allow agents and tools to interact more smoothly, encourage collaboration, and triggering the formation of collective intelligence.&lt;/strong&gt; In this paper, we provide the first comprehensive analysis of existing agent protocols, proposing a systematic two-dimensional classification that differentiates context-oriented versus inter-agent protocols and general-purpose versus domain-specific protocols. Additionally, we conduct a comparative performance analysis of these protocols across key dimensions such as security, scalability, and latency. Finally, we explore the future landscape of agent protocols by identifying critical research directions and characteristics necessary for next-generation protocols. These characteristics include adaptability, privacy preservation, and group-based interaction, as well as trends toward layered architectures and collective intelligence infrastructures. We expect this work to serve as a practical reference for both researchers and engineers seeking to design, evaluate, or integrate robust communication infrastructures for intelligent agents.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/survey-ai-agent-protocols</link>
+      <guid>https://www.lqdev.me/bookmarks/survey-ai-agent-protocols</guid>
+      <pubDate>2025-05-09 20:23 -05:00</pubDate>
+      <category>ai</category>
+      <category>agents</category>
+      <category>protocols</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>Self-Generated In-Context Examples Improve LLM Agents for Sequential Decision-Making Tasks</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Many methods for improving Large Language Model (LLM) agents for sequential decision-making tasks depend on task-specific knowledge engineering--such as prompt tuning, curated in-context examples, or customized observation and action spaces. Using these approaches, agent performance improves with the quality or amount of knowledge engineering invested. Instead, we investigate how LLM agents can automatically improve their performance by learning in-context from their own successful experiences on similar tasks. Rather than relying on task-specific knowledge engineering, we focus on constructing and refining a database of self-generated examples. We demonstrate that even a naive accumulation of successful trajectories across training tasks boosts test performance on three benchmarks: ALFWorld (73% to 89%), Wordcraft (55% to 64%), and InterCode-SQL (75% to 79%)--matching the performance the initial agent achieves if allowed two to three attempts per task. We then introduce two extensions: (1) database-level selection through population-based training to identify high-performing example collections, and (2) exemplar-level selection that retains individual trajectories based on their empirical utility as in-context examples. These extensions further enhance performance, achieving 91% on ALFWorld--matching more complex approaches that employ task-specific components and prompts. Our results demonstrate that &lt;strong&gt;automatic trajectory database construction offers a compelling alternative to labor-intensive knowledge engineering.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/self-generate-incontext-examples-llm-agents-improve-sequential-decision-making</link>
+      <guid>https://www.lqdev.me/bookmarks/self-generate-incontext-examples-llm-agents-improve-sequential-decision-making</guid>
+      <pubDate>2025-05-05 19:50 -05:00</pubDate>
+      <category>ai</category>
+      <category>agents</category>
+      <category>planning</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>Introducing AX: Why Agent Experience Matters</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Interesting post from &lt;a href="https://biilmann.blog/"&gt;Matt Biilman&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...the largest disruption from the current evolution of AI will come from bringing agency to computers.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Computers will perceive their environment and take actions autonomously in order to achieve goals.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Companies discovered that improving the DX of their products would empower and incentivize developers to extend their product with new capabilities and lead to huge competitive advantages. For developer tool companies, DX became a key competitive differentiator.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We need to start focusing on AX or “agent experience” — the holistic experience AI agents will have as the user of a product or platform.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Too many companies are focusing on adding shallow AI features all over their products or building yet another AI agent. The real breakthrough will be thinking about how your customers’ favorite agents can help them derive more value from your product. This requires thinking deeply about agents as a persona your team is building and developing for.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;As AI agents start becoming useful and commonplace, we’re broadly going to see two approaches enabling agents to interact with the software we depend on:&lt;br /&gt;
+&lt;br&gt;
+A closed vertical approach, where companies tightly integrate their own agents into their own software. An open approach, where companies focus on making their software accessible to external agents.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Leaning into AX as a strategy, means embracing a vision of an open agent world. This vision aligns with the original ethos of the open web: a place where many diverse competing agents (built by different people or companies) can seamlessly interact with software on behalf of their users. Prioritizing AX makes it as simple as possible for any agent a user prefers, to deliver outcomes on their behalf.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Software designed for AI agents has the potential to deliver exponential value. As an industry we must collectively focus on building an open agent ecosystem and designing thoughtful AX to create a better, more open, and connected digital world.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/ax-why-agent-experience-matters</link>
+      <guid>https://www.lqdev.me/responses/ax-why-agent-experience-matters</guid>
+      <pubDate>2025-03-05 21:49 -05:00</pubDate>
+      <category>ai</category>
+      <category>agents</category>
+      <category>ax</category>
+    </item>
+    <item>
+      <title>HuggingFace AI Agents Course</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This free course will take you on a journey, from beginner to expert, in understanding, using and building AI agents.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;At the end of this course you’ll understand how Agents work and how to build your own Agents using the latest libraries and tools.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/huggingface-ai-agents-course</link>
+      <guid>https://www.lqdev.me/bookmarks/huggingface-ai-agents-course</guid>
+      <pubDate>2025-02-10 17:20 -05:00</pubDate>
+      <category>huggingface</category>
+      <category>ai</category>
+      <category>agents</category>
+      <category>course</category>
+    </item>
+    <item>
+      <title>Swarm navigation of cyborg-insects in unknown obstructed soft terrain</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;I'm going to tell future generations, this is how we built multi-agent systems back in my day.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Cyborg insects refer to hybrid robots that integrate living insects with miniature electronic controllers to enable robotic-like programmable control. These creatures exhibit advantages over conventional robots in adaption to complex terrain and sustained energy efficiency. Nevertheless, there is a lack of literature on the control of multi-cyborg systems. This research gap is due to the difficulty in coordinating the movements of a cyborg system under the presence of insects' inherent individual variability in their reactions to control input. Regarding this issue, we propose a swarm navigation algorithm and verify it under experiments. This research advances swarm robotics by integrating biological organisms with control theory to develop intelligent autonomous systems for real-world applications.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/swarm-cyborg-insects-agents</link>
+      <guid>https://www.lqdev.me/responses/swarm-cyborg-insects-agents</guid>
+      <pubDate>2025-01-15 21:02 -05:00</pubDate>
+      <category>robotics</category>
+      <category>ai</category>
+      <category>insects</category>
+      <category>agents</category>
+    </item>
+    <item>
+      <title>Agents</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The unprecedented capabilities of foundation models have opened the door to agentic applications that were previously unimaginable. These new capabilities make it finally possible to develop autonomous, intelligent agents to act as our assistants, coworkers, and coaches. They can help us create a website, gather data, plan a trip, do market research, manage a customer account, automate data entry, prepare us for interviews, interview our candidates, negotiate a deal, etc. The possibilities seem endless, and the potential economic value of these agents is enormous.&lt;br /&gt;
+&lt;br&gt;
+This section will start with an overview of agents and then continue with two aspects that determine the capabilities of an agent: tools and planning. Agents, with their new modes of operations, have new modes of failure. This section will end with a discussion on how to evaluate agents to catch these failures.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/agents-huyen</link>
+      <guid>https://www.lqdev.me/bookmarks/agents-huyen</guid>
+      <pubDate>2025-01-07 11:23 -05:00</pubDate>
+      <category>ai</category>
+      <category>agents</category>
+    </item>
+    <item>
+      <title>Agents Whitepaper</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Humans are fantastic at messy pattern recognition tasks. However, they often rely on tools - like books, Google Search, or a calculator - to supplement their prior knowledge before arriving at a conclusion. Just like humans, Generative AI models can be trained to use tools to access real-time information or suggest a real-world action. For example, a model can leverage a database retrieval tool to access specific information, like a customer's purchase history, so it can generate tailored shopping recommendations. Alternatively, based on a user's query, a model can make various API calls to send an email response to a colleague or complete a financial transaction on your behalf. To do so, the model must not only have access to a set of external tools, it needs the ability to plan and execute any task in a self- directed fashion. This combination of reasoning, logic, and access to external information that are all connected to a Generative AI model invokes the concept of an agent, or a program that extends beyond the standalone capabilities of a Generative AI model. This whitepaper dives into all these and associated aspects in more detail.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/kaggle-agents-whitepaper</link>
+      <guid>https://www.lqdev.me/bookmarks/kaggle-agents-whitepaper</guid>
+      <pubDate>2025-01-06 21:50 -05:00</pubDate>
+      <category>agents</category>
+      <category>ai</category>
+      <category>whitepaper</category>
+    </item>
+    <item>
+      <title>Agentic Fediverse</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The &amp;quot;Agentic Fediverse&amp;quot; is the idea of a new kind of network federation, a complementary iteration on the concept of federation currently established with ActivityPub. It's an experiment and something that we in Muni Town are still trying to define more concretely.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Tenets&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We are still working on defining the core tenets of the agentic fediverse, but here is what we have so far.&lt;br /&gt;
+&lt;br&gt;
+An agentic fediverse is...&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A fediverse of agents; agent-centric, as opposed to server-centric.&lt;/li&gt;
+&lt;li&gt;Local-first; solve local problems for local people.&lt;/li&gt;
+&lt;li&gt;Accessible by default; inaccessibility is a bug.&lt;/li&gt;
+&lt;li&gt;Systematically consensual; architected on the basis of informed consent.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/agentic-fediverse</link>
+      <guid>https://www.lqdev.me/responses/agentic-fediverse</guid>
+      <pubDate>2024-12-17 19:44 -05:00</pubDate>
+      <category>fediverse</category>
+      <category>munitown</category>
+      <category>agents</category>
+      <category>agentic</category>
+      <category>activitypub</category>
+      <category>protocols</category>
+      <category>socialweb</category>
+    </item>
+    <item>
+      <title>OpenAgents: An Open Platform for Language Agents in the Wild</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Language agents show potential in being capable of utilizing natural language for varied and intricate tasks in diverse environments, particularly when built upon large language models (LLMs). Current language agent frameworks aim to facilitate the construction of proof-of-concept language agents while neglecting the non-expert user access to agents and paying little attention to application-level designs. We present OpenAgents, an open platform for using and hosting language agents in the wild of everyday life. OpenAgents includes three agents: (1) Data Agent for data analysis with Python/SQL and data tools; (2) Plugins Agent with 200+ daily API tools; (3) Web Agent for autonomous web browsing. OpenAgents enables general users to interact with agent functionalities through a web user interface optimized for swift responses and common failures while offering developers and researchers a seamless deployment experience on local setups, providing a foundation for crafting innovative language agents and facilitating real-world evaluations. We elucidate the challenges and opportunities, aspiring to set a foundation for future research and development of real-world language agents.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/openagents-platform-language-agents</link>
+      <guid>https://www.lqdev.me/bookmarks/openagents-platform-language-agents</guid>
+      <pubDate>2023-12-11 19:39 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>agents</category>
+    </item>
+  </channel>
+</rss>

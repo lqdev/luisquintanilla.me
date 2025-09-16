@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - til</title>
+    <link>https://www.lqdev.me/tags/til</link>
+    <description>All content tagged with 'til' by Luis Quintanilla</description>
+    <lastBuildDate>2022-10-09 20:49 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>TIL: Automaticc owns Tumblr</title>
+      <description>&lt;![CDATA[&lt;p&gt;Last I heard of Tumblr, they were owned by Verizon. While readying the book &lt;a href="https://book.micro.blog/"&gt;Indie Microblogging&lt;/a&gt; by Manton Reece, I learned (and later confirmed) they were owned by Automaticc, the company behind WordPress. Out of the the different homes it's had, I can't think of a better place for it.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/til-automaticc-tumblr</link>
+      <guid>https://www.lqdev.me/notes/til-automaticc-tumblr</guid>
+      <pubDate>2022-10-09 20:49 -05:00</pubDate>
+      <category>tumblr</category>
+      <category>automattic</category>
+      <category>til</category>
+      <category>socialmedia</category>
+      <category>blogging</category>
+    </item>
+    <item>
+      <title>TIL: VS Code Live Preview Extension</title>
+      <description>&lt;![CDATA[&lt;p&gt;Today I Learned about the &lt;a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server"&gt;VS Code Live Preview extension&lt;/a&gt;. While reading the &lt;a href="https://code.visualstudio.com/updates/v1_71"&gt;release notes&lt;/a&gt; for the latest version of VS Code, I noticed a &lt;a href="https://code.visualstudio.com/updates/v1_71#_live-preview"&gt;note&lt;/a&gt; on the Live Preview extension. Usually to preview static content, I use Python's HTTP server with the &lt;code&gt;python -m http.server&lt;/code&gt; command. This extension simplifies the process because it's built into Visual Studio Code. If you do any kind of web development, it's definitely worth a look.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/til-vs-code-live-preview-extension</link>
+      <guid>https://www.lqdev.me/notes/til-vs-code-live-preview-extension</guid>
+      <pubDate>09/03/2022 18:47 -05:00</pubDate>
+      <category>til</category>
+      <category>vscode</category>
+      <category>vs</category>
+      <category>extension</category>
+      <category>development</category>
+      <category>web</category>
+    </item>
+    <item>
+      <title>Top 10 listicles</title>
+      <description>&lt;![CDATA[&lt;p&gt;The other day I was going down a Wikipedia rabbit hole and learned those click-baity &amp;quot;Top 10 ...&amp;quot; or &amp;quot;Worst 10 ...&amp;quot; articles apparently have a name, &lt;a href="https://en.wikipedia.org/wiki/Listicle"&gt;listicles&lt;/a&gt;. The more you know...&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/top-10-listicles</link>
+      <guid>https://www.lqdev.me/notes/top-10-listicles</guid>
+      <pubDate>10/24/2021 19:33 -05:00</pubDate>
+      <category>til</category>
+      <category>internet</category>
+      <category>listicles</category>
+      <category>wikipedia</category>
+    </item>
+    <item>
+      <title>TIL: Canonical HTML tags</title>
+      <description>&lt;![CDATA[&lt;p&gt;Today I learned about canonical URLs. While looking into how I can syndicate content from this site, specifically longer form blog posts on other sites like dev.to, I came across canonical tags.&lt;/p&gt;
+&lt;p&gt;Basically they're a way of telling the internet, specifically search engines, what version of your content is the main copy or single-source of truth.&lt;/p&gt;
+&lt;p&gt;Currently I've configured my site so it's not indexed or crawled. However, for sites I don't own I don't have the same level of control. Check out the &lt;a href="https://moz.com/learn/seo/canonicalization"&gt;canonicalization&lt;/a&gt; and &lt;a href="https://moz.com/blog/rel-canonical"&gt;SEO best practices for canonical URLs&lt;/a&gt; articles from Moz if you're interested in learning more.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/rel-canonical-tags</link>
+      <guid>https://www.lqdev.me/notes/rel-canonical-tags</guid>
+      <pubDate>10/21/2021 21:31 -05:00</pubDate>
+      <category>html</category>
+      <category>til</category>
+      <category>canonical</category>
+      <category>web</category>
+      <category>w3c</category>
+      <category>standards</category>
+    </item>
+  </channel>
+</rss>

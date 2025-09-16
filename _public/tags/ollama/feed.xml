@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - ollama</title>
+    <link>https://www.lqdev.me/tags/ollama</link>
+    <description>All content tagged with 'ollama' by Luis Quintanilla</description>
+    <lastBuildDate>2025-04-08 08:19 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Ollama Adds Mistral 3.1 Support</title>
+      <description>&lt;![CDATA[&lt;p&gt;In the latest &lt;a href="https://github.com/ollama/ollama/releases/tag/v0.6.5"&gt;Ollama 0.6.5 release&lt;/a&gt; support was added for &lt;a href="https://ollama.com/library/mistral-small3.1"&gt;Mistral Small 3.1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In an earlier post, I &lt;a href="https://www.lqdev.me/responses/mistral-small-3-1"&gt;highlighted the announcement and summarized the key features&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I've been using it with &lt;a href="https://github.com/marketplace/models/azureml-mistral/mistral-small-2503"&gt;GitHub Models&lt;/a&gt; and based on vibes I found it was more reliable at structured output compared to Gemma 3, especially when considering the model and context window size.&lt;/p&gt;
+&lt;p&gt;Now that it's on Ollama thought, I can use it offline as well. However, I'm not sure how well that'll work on my ARM64 device, which only has 16GB of RAM.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/ollama-adds-support-mistral-small-3-1</link>
+      <guid>https://www.lqdev.me/notes/ollama-adds-support-mistral-small-3-1</guid>
+      <pubDate>2025-04-08 08:19 -05:00</pubDate>
+      <category>mistral</category>
+      <category>ollama</category>
+      <category>ai</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Ollama now supports AMD graphics cards</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Ollama now supports AMD graphics cards in preview on Windows and Linux. All the features of Ollama can now be accelerated by AMD graphics cards on Ollama for Linux and Windows.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/ollama-supports-amd-gpus</link>
+      <guid>https://www.lqdev.me/responses/ollama-supports-amd-gpus</guid>
+      <pubDate>2024-03-17 20:43 -05:00</pubDate>
+      <category>ollama</category>
+      <category>gpu</category>
+      <category>amd</category>
+      <category>ai</category>
+      <category>llm</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>Configure Ollama on Dev Containers and VS Code</title>
+      <description>&lt;![CDATA[
+The source for my website is [hosted on GitHub](/github/luisquintanilla.me). As a result, I use VS Code as the text editor to author my posts. Typically, I use [Codespaces or github.dev](/colophon) to quickly draft and publish articles to simplify the process. 
+
+As part of my authoring and publishing posts, there's a few things I do like:
+
+1. Coming up with a title
+2. Creating relevant tags to help with discovery and connecting related information on my website.
+3. For long-form blog posts, I also include a description. 
+
+This is generally relatively easy to do. However, sometimes I spend too much time coming up with something that truly summarizes and condenses the information in the post. It'd be nice if I had an assistant to help me brainstorm and workshop some of these items.
+
+In comes AI. Now, I could use something like [Copilot](https://code.visualstudio.com/docs/copilot/overview) which would work wonderfully and easily plug into my workflow. However, my website is a labor of love and I don't make any money from it. In many instances, I've designed [various components to be as low-cost as possible](/posts/receive-webmentions-fsharp-az-functions-fsadvent). 
+
+Recently, I created a post which showed [how to get started with Ollama on Windows](/posts/getting-started-ollama-windows). In this post, I'll show how you can do the same for your Dev Container environments. 
+
+## Install Ollama
+
+Assuming you already have a [Dev Container configuration file](https://code.visualstudio.com/docs/devcontainers/create-dev-container), add the following line to it:
+
+```json
+"postCreateCommand": "curl -fsSL https://ollama.com/install.sh | sh"
+```
+
+This command triggers when the container environment is created. This will install Ollama in your development environment. For more details, see the [Ollama download instructions](https://ollama.com/download/linux).
+
+## Start Ollama
+
+Now that Ollama is installed, it's time to start the service so you can get models and use them. To start the Ollama service on your Dev Conatiner environment, add the following line to your Dev Container configuration file.
+
+```json
+"postStartCommand": "ollama serve"
+```
+
+This command will run `ollama serve` when the Dev Container environment starts.
+
+## Pull a model
+
+To use Ollama, you're going to need a model. In my case, I went with [Phi-2](https://ollama.com/library/phi) because it's lightweight and space on Codespaces is limited.  
+
+To get the model:
+
+1. Open the terminal
+1. Enter the following command:
+
+    ```bash
+    ollama pull phi
+    ```
+
+    After a few minutes, the model is downloaded and ready to use. 
+
+1. Enter the following command to ensure that your model is now available
+
+    ```bash
+    ollama list
+    ```
+
+    The result should look like the following:
+
+    ```text
+    NAME            ID              SIZE    MODIFIED      
+    phi:latest      e2fd6321a5fe    1.6 GB  6 seconds ago
+    ```
+
+For more details, see the [Ollama model library](https://ollama.com/library). 
+
+## Conclusion
+
+In this post, I showed how you can configure Ollama with Dev Containers to use AI models locally in your projects. In subsequent posts, I'll show how once the service is running, I use it as part of my authoring and publishing posts. You can see a preview of it in my [scripts directory](https://github.com/lqdev/luisquintanilla.me/blob/main/Scripts/ai.fsx). Happy coding! ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/install-ollama-vscode-devcontainer</link>
+      <guid>https://www.lqdev.me/posts/install-ollama-vscode-devcontainer</guid>
+      <pubDate>2024-03-06 13:50 -05:00</pubDate>
+      <category>ollama</category>
+      <category>vscode</category>
+      <category>devcontainer</category>
+      <category>ai</category>
+      <category>llm</category>
+      <category>opensource</category>
+      <category>development</category>
+    </item>
+    <item>
+      <title>Getting started with Ollama on Windows</title>
+      <description>&lt;![CDATA[
+Recently [Ollama announced support for Windows](/responses/ollama-windows-preview) in preview. In doing so, people who want to use AI models like Llama, Phi, and many others can do so locally on their PC. In this post, I'll go over how you can get started with Ollama on Windows. 
+
+## Install Ollama
+
+The first thing you'll want to do is install Ollama.
+
+You can do so by [downloading the installer from the website](https://ollama.com/download/windows) and following the installation prompts. 
+
+## Get a model
+
+Once you've installed Ollama, it's time to get a model.
+
+1. Open PowerShell
+1. Run the following command
+
+    ```powershell
+    ollama pull llama2
+    ```
+
+In this case, I'm using llama2. However, you can choose another model. You could even download many models at once and switch between them. For a full list of supported models, see the [Ollama model documentation](https://ollama.com/library).
+
+## Use the model
+
+Now that you have the model, it's time to use it. The easiest way to use the model is using the REST API. When you install Ollama, it starts up a server to host your model. One other neat thing is, the REST API is [OpenAI API compatible](https://ollama.com/blog/openai-compatibility).
+
+1. Open PowerShell
+1. Send the following request:
+
+    ```powershell
+    (Invoke-WebRequest -method POST -Body '{"model":"llama2", "prompt":"Why is the sky blue?", "stream": false}' -uri http://localhost:11434/api/generate ).Content | ConvertFrom-json
+    ```
+
+    This command will issue an HTTP POST request to the server listening on port 11434.
+
+    The main things to highlight in the body:
+
+    - *model*: The model you'll use. Make sure this is one of the models you pulled. 
+    - *prompt*: The input to the model
+    - *stream*: Whether to stream responses back to the client
+
+    For more details on the REST API, see the [Ollama REST API documentation](https://github.com/ollama/ollama/blob/main/docs/api.md). 
+
+## Conclusion
+
+In this post, I went over how you can quickly install Ollama to start using generative AI models like Llama and Phi locally on your Windows PC. If you use Mac or Linux, you can perform similar steps as those outlined in this guide to get started on those operating systems. Happy coding! ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/getting-started-ollama-windows</link>
+      <guid>https://www.lqdev.me/posts/getting-started-ollama-windows</guid>
+      <pubDate>2024-03-05 10:32 -05:00</pubDate>
+      <category>ai</category>
+      <category>ollama</category>
+      <category>windows</category>
+      <category>llm</category>
+      <category>opensource</category>
+      <category>llama</category>
+      <category>openai</category>
+      <category>generativeai</category>
+      <category>genai</category>
+    </item>
+    <item>
+      <title>Ollama - Windows Preview</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Ollama is now available on Windows in preview, making it possible to pull, run and create large language models in a new native Windows experience. Ollama on Windows includes built-in GPU acceleration, access to the full model library, and the Ollama API including OpenAI compatibility.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://ollama.com/download/windows"&gt;Download (https://ollama.com/download/windows)&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/ollama-windows-preview</link>
+      <guid>https://www.lqdev.me/responses/ollama-windows-preview</guid>
+      <pubDate>2024-02-19 16:13 -05:00</pubDate>
+      <category>ollama</category>
+      <category>windows</category>
+      <category>llm</category>
+      <category>opensource</category>
+      <category>localmodels</category>
+      <category>ml</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>Ollama - Python &amp; JavaScript Libraries</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The initial versions of the Ollama Python and JavaScript libraries are now available:&lt;br /&gt;
+&lt;br&gt;
+&lt;a href="https://github.com/ollama/ollama-python"&gt;Ollama Python Library&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://github.com/ollama/ollama-js"&gt;Ollama JavaScript Library&lt;/a&gt;&lt;br /&gt;
+&lt;br&gt;
+Both libraries make it possible to integrate new and existing apps with Ollama in a few lines of code, and share the features and feel of the Ollama REST API.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/python-js-ollama-libraries</link>
+      <guid>https://www.lqdev.me/responses/python-js-ollama-libraries</guid>
+      <pubDate>2024-01-25 21:26 -05:00</pubDate>
+      <category>ollama</category>
+      <category>ai</category>
+      <category>llama</category>
+      <category>python</category>
+      <category>javascript</category>
+      <category>opensource</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - forums</title>
+    <link>https://www.lqdev.me/tags/forums</link>
+    <description>All content tagged with 'forums' by Luis Quintanilla</description>
+    <lastBuildDate>2024-03-23 12:38 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>New Forums Page</title>
+      <description>&lt;![CDATA[&lt;p&gt;Following the patterns of a blogroll and podroll, I decided to post a &lt;a href="https://www.lqdev.me/collections/forums/"&gt;forums page&lt;/a&gt; to list various forums and communities I find interesting.&lt;/p&gt;
+&lt;p&gt;I've also created an &lt;a href="https://www.lqdev.me/collections/forums//index.opml"&gt;OPML file&lt;/a&gt; for it so you can subscribe to them in your RSS reader of choice.&lt;/p&gt;
+&lt;p&gt;Discord is good for communities. For example on servers like Shudder there's watch parties and HuggingFace reading club gets together to discuss some of the latest papers. For events, this works really well because everyone can participate in real-time. However, I find that outside of events or general chat, it's difficult to follow the message stream. I like the forum format with topics / threads much better.&lt;/p&gt;
+&lt;p&gt;If you have any forum recommendations, feel free to &lt;a href="https://www.lqdev.me/contact"&gt;send them my way&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/new-forums-page</link>
+      <guid>https://www.lqdev.me/notes/new-forums-page</guid>
+      <pubDate>2024-03-23 12:38 -05:00</pubDate>
+      <category>forums</category>
+      <category>community</category>
+      <category>rss</category>
+      <category>web</category>
+      <category>openweb</category>
+      <category>internet</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>Private social media?</title>
+      <description>&lt;![CDATA[&lt;p&gt;Brain dumping a bunch of half-formed thoughts.&lt;/p&gt;
+&lt;p&gt;Over the past few days, I've been thinking about different forms of sharing content. With the &lt;a href="https://www.nytimes.com/2023/04/19/technology/personaltech/tiktok-twitter-facebook-social.html"&gt;shifts in social media towards smaller, more private communities&lt;/a&gt;, is it possible to get the best of feeds for sharing updates and information but in a smaller more intimate way?&lt;/p&gt;
+&lt;p&gt;Here's a few of the options I came up with:&lt;/p&gt;
+&lt;h2&gt;Journals&lt;/h2&gt;
+&lt;p&gt;Examples: &lt;a href="https://dayoneapp.com/guides/tips-and-tutorials/shared-journals/"&gt;Day One Shared Journals&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Made for an audience of one, but other can collaborate on it.&lt;/li&gt;
+&lt;li&gt;Depending on the interface, looking back at specific days and events that took place is easy to look back on.&lt;/li&gt;
+&lt;li&gt;May be able to include different forms of media (i.e. audio, video, photos)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;No individual profiles&lt;/li&gt;
+&lt;li&gt;May require everyone to use the same app / service&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;E-mail&lt;/h2&gt;
+&lt;p&gt;Examples: Newsletters, Mailing lists&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Almost everyone has an e-mail address.&lt;/li&gt;
+&lt;li&gt;Built on standard protocols.&lt;/li&gt;
+&lt;li&gt;Producers can use any app they'd like to compose e-mails.&lt;/li&gt;
+&lt;li&gt;Consumers can use any app they'd like to read e-mails.&lt;/li&gt;
+&lt;li&gt;Could use any app / client / service-provider they'd like. (Federated by default)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;Content rendering may differ based on app.&lt;/li&gt;
+&lt;li&gt;Could add to the noise already present in your e-mail inbox.&lt;/li&gt;
+&lt;li&gt;No individual accounts / feeds.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Messaging Apps&lt;/h2&gt;
+&lt;p&gt;Examples: Discord, Matrix, IRC, Slack, Signal&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Sharing could be done via SMS (though this would limit the content you share).&lt;/li&gt;
+&lt;li&gt;You could form various sub-groups to sub&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;May require everyone to use the same app / service.&lt;/li&gt;
+&lt;li&gt;May not have a way to view individual profiles or feeds.&lt;/li&gt;
+&lt;li&gt;Because conversations are not often grouped by topics, it might be difficult to find conversations, especially older conversations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Private blogs&lt;/h2&gt;
+&lt;p&gt;Examples: &lt;a href="https://wordpress.com/go/tutorials/private-blog-wordpress-com/"&gt;Private WordPress Blog&lt;/a&gt;, &lt;a href="https://havenweb.org/"&gt;Haven&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Produces can use any tool / service to author and publish posts.&lt;/li&gt;
+&lt;li&gt;Consumers can access via any browser of their choice.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;May have to host your own service.&lt;/li&gt;
+&lt;li&gt;Consumers may have to create accounts and passwords for each of the private blogs they follow.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Fediverse&lt;/h2&gt;
+&lt;p&gt;Examples: Mastodon, PixelFed, PeerTube&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Familar social media interface.&lt;/li&gt;
+&lt;li&gt;More availability of apps and services that form part of the Fediverse make it easier for producers and consumers to use what makes the most sense for them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;Limited to the format supported by the app / service (i.e. Pixelfed is for images / video, PeerTube for video, etc.).&lt;/li&gt;
+&lt;li&gt;May require you to host your own service.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;P2P Social Media&lt;/h2&gt;
+&lt;p&gt;Examples: &lt;a href="https://scuttlebutt.nz/"&gt;ScuttleButt&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Could be made for an audience of one but shared with other peers.&lt;/li&gt;
+&lt;li&gt;Decentralized by default.&lt;/li&gt;
+&lt;li&gt;Access individual feeds.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;Similar to the Fediverse, being exposed to new protocols and technical terms may make onboarding and adoption challenging.&lt;/li&gt;
+&lt;li&gt;May require you to host your own service.&lt;/li&gt;
+&lt;li&gt;Protocols haven't been widely adopted so users are limited in the apps / services they can use for this.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Forums&lt;/h2&gt;
+&lt;p&gt;Examples: &lt;a href="https://discourse.nixos.org/"&gt;NixOS Forum&lt;/a&gt;, &lt;a href="https://lemmy.world/"&gt;Lemmy&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Could create threads and conversations on various topics&lt;/li&gt;
+&lt;li&gt;Easy to search and tag content&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;Someone would have to host a server&lt;/li&gt;
+&lt;li&gt;Might not work well for small groups&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;RSS feeds&lt;/h2&gt;
+&lt;p&gt;This is a variation on the private blog. Except instead of having a website that displays the posts, you just have an RSS feed.&lt;/p&gt;
+&lt;p&gt;Examples: &lt;a href="https://daverupert.com/2018/01/welcome-to-rss-club/"&gt;RSS-Only Club&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Producers can use any software they'd like to create and publish their RSS feed&lt;/li&gt;
+&lt;li&gt;Consumers can use any feed reader to access and read content&lt;/li&gt;
+&lt;li&gt;Everyone could have their own feed, so effectively they'd be like profiles&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;You have to figure out how to produce and host the RSS feed&lt;/li&gt;
+&lt;li&gt;Can't really control who sees this since the feed is public. Maybe private feeds could help here.&lt;/li&gt;
+&lt;li&gt;Limited interaction. Users can't comment or reply to items in a feed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Note that this is not an exhaustive list of pros and cons, just a few that I thought of. I persoanlly would skew towards e-mail and messaging apps. The main reason at least with e-mail is that everyone is familiar with it and most likely won't have to create separate accounts on various silos to communicate and engage with others. With apps like &lt;a href="https://delta.chat/"&gt;DeltaChat&lt;/a&gt; you could actualy combine them and get the best of both.&lt;/p&gt;
+&lt;p&gt;What are your thoughts?&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/private-social-media</link>
+      <guid>https://www.lqdev.me/notes/private-social-media</guid>
+      <pubDate>2024-01-22 21:40 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>website</category>
+      <category>community</category>
+      <category>private</category>
+      <category>privacy</category>
+      <category>blog</category>
+      <category>protocols</category>
+      <category>rss</category>
+      <category>forums</category>
+      <category>journal</category>
+      <category>e-mail</category>
+      <category>fediverse</category>
+      <category>messaging</category>
+    </item>
+  </channel>
+</rss>

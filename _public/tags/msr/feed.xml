@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - msr</title>
+    <link>https://www.lqdev.me/tags/msr</link>
+    <description>All content tagged with 'msr' by Luis Quintanilla</description>
+    <lastBuildDate>2024-11-04 21:59 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Microsoft Research: Introducing DRIFT Search</title>
+      <description>&lt;![CDATA[[reshare] &lt;h2&gt;Introducing DRIFT Search: Combining global and local search methods to improve quality and efficiency&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;DRIFT search (Dynamic Reasoning and Inference with Flexible Traversal)...builds upon Microsoft’s GraphRAG technique, combining characteristics of both global and local search to generate detailed responses in a method that balances computational costs with quality outcomes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;DRIFT Search: A step-by-step process&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Primer&lt;/strong&gt;: When a user submits a query, DRIFT compares it to the top K most semantically relevant community reports. This generates an initial answer along with several follow-up questions, which act as a lighter version of global search. To do this, we expand the query using Hypothetical Document Embeddings (HyDE), to increase sensitivity (recall), embed the query, look up the query against all community reports, select the top K and then use the top K to try to answer the query. The aim is to leverage high-level abstractions to guide further exploration.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Follow-Up&lt;/strong&gt;: With the primer in place, DRIFT executes each follow-up using a local search variant. This yields additional intermediate answers and follow-up questions, creating a loop of refinement that continues until the search engine meets its termination criteria, which is currently configured for two iterations (further research will investigate reward functions to guide terminations). This phase represents a globally informed query refinement. Using global data structures, DRIFT navigates toward specific, relevant information within the knowledge graph even when the initial query diverges from the indexing persona. This follow-up process enables DRIFT to adjust its approach based on emerging information.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Output Hierarchy&lt;/strong&gt;: The final output is a hierarchy of questions and answers ranked on their relevance to the original query. This hierarchical structure can be customized to fit specific user needs. During benchmark testing, a naive map-reduce approach aggregated all intermediate answers, with each answer weighted equally.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-drift-search</link>
+      <guid>https://www.lqdev.me/responses/introducing-drift-search</guid>
+      <pubDate>2024-11-04 21:59 -05:00</pubDate>
+      <category>ai</category>
+      <category>search</category>
+      <category>RAG</category>
+      <category>llm</category>
+      <category>microsoft</category>
+      <category>research</category>
+      <category>msr</category>
+      <category>graphrag</category>
+    </item>
+    <item>
+      <title>Microsoft Research Focus: Week of October 28, 2024</title>
+      <description>&lt;![CDATA[[reshare] &lt;h2&gt;METAREFLECTION: Learning Instructions for Language Agents using Past Reflections&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Language agents are AI systems that can understand, reason and respond in natural language to complete various tasks. While the latest LLMs are capable enough to power reasonably good language agents, the closed-API model makes it hard to improve them when they perform sub-optimally. Recent studies have explored using techniques like self-reflection and prompt optimization to improve performance. Unfortunately, self-reflection can be used only during the agent’s current run, while contemporary prompt optimization techniques are designed and tested to work on simple single-step agents.&lt;/p&gt;
+&lt;p&gt;In a recent paper: METAREFLECTION: Learning Instructions for Language Agents using Past Reflections, researchers from Microsoft introduce a novel offline reinforcement learning technique that enhances the performance of language agents by augmenting a semantic memory based on experiential learnings from past trials. They demonstrate the efficacy of METAREFLECTION across multiple domains, including complex logical reasoning, biomedical semantic similarity, open world question answering, and vulnerability threat detection, in Infrastructure-as-Code, spanning different agent designs. METAREFLECTION boosts language agents’ performance by 4% to 16.82% over the baseline agent implementations and performs on par with existing state-of-the-art prompt optimization techniques while requiring fewer LLM calls.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Domino: Eliminating Communication in LLM Training via Generic Tensor Slicing and Overlapping&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Generative AI applications rely on large, foundation models, particularly LLMs. LLMs often have tens to hundreds of billions of parameters, making them too large for a single graphics processing unit (GPU) to handle in terms of both memory and computation. Because of their size, training these models requires distributing the workload across hundreds or even thousands of GPUs. This can lead to significant communication overhead, a challenge that arises when data needs to be shared between different GPUs.&lt;/p&gt;
+&lt;p&gt;In a recent paper: Domino: Eliminating Communication in LLM Training via Generic Tensor Slicing and Overlapping, researchers from Microsoft introduce a system designed to enhance the efficiency of LLM training by reducing the time lost to communication between GPUs.&lt;/p&gt;
+&lt;p&gt;Domino breaks down data dependencies in a single batch of training into smaller, independent pieces. These smaller pieces are processed in parallel, and communication between GPUs happens simultaneously with computation, minimizing delays.&lt;/p&gt;
+&lt;p&gt;Test results comparing Domino to Megatron-LM show that Domino speeds up the training process by up to 1.3x on Nvidia DGX-H100 GPUs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;OmniParser for pure vision-based GUI agent&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Large vision-language models (VLMs) such as GPT-4V and GPT-4o show promise in driving intelligent agent systems that operate within user interfaces (UI). However, VLMs’ full potential remains underexplored in real-world applications, particularly when it comes to acting as general agents across diverse operating systems and applications with only vision input. One limiting factor is the absence of a robust technique for screen parsing which is capable of 1) reliably identifying interactable icons within the user interface, and 2) understanding the semantics of various elements in a screenshot and accurately associating the intended action with the corresponding region on the screen.&lt;/p&gt;
+&lt;p&gt;In a recent article: OmniParser for pure vision-based GUI agent, researchers from Microsoft present a compact screen parsing module that can convert UI screenshots into structured elements. OmniParser can be used with a variety of models to create agents capable of taking actions on UIs. When used with GPT-4V, OmniParser significantly improves the agent capability to generate precisely grounded actions for interface regions.&lt;/p&gt;
+&lt;p&gt;OmniParser with GPT-4V agent achieved the best performance on the recently released  WindowsAgentArena (opens in new tab) benchmark.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/microsoft-research-focus-oct-28-2024</link>
+      <guid>https://www.lqdev.me/responses/microsoft-research-focus-oct-28-2024</guid>
+      <pubDate>2024-11-04 21:39 -05:00</pubDate>
+      <category>ai</category>
+      <category>microsoft</category>
+      <category>research</category>
+      <category>msr</category>
+      <category>microsoftresearch</category>
+    </item>
+    <item>
+      <title>LongROPE: Extending LLM Context Window Beyond 2 Million Tokens</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Large context window is a desirable feature in large language models (LLMs). However, due to high fine-tuning costs, scarcity of long texts, and catastrophic values introduced by new token positions, current extended context windows are limited to around 128k tokens. This paper introduces LongRoPE that, for the first time, extends the context window of pre-trained LLMs to an impressive 2048k tokens, with up to only 1k fine-tuning steps at within 256k training lengths, while maintaining performance at the original short context window. This is achieved by three key innovations: (i) we identify and exploit two forms of non-uniformities in positional interpolation through an efficient search, providing a better initialization for fine-tuning and enabling an 8x extension in non-fine-tuning scenarios; (ii) we introduce a progressive extension strategy that first fine-tunes a 256k length LLM and then conducts a second positional interpolation on the fine-tuned extended LLM to achieve a 2048k context window; (iii) we readjust LongRoPE on 8k length to recover the short context window performance. Extensive experiments on LLaMA2 and Mistral across various tasks demonstrate the effectiveness of our method. Models extended via LongRoPE retain the original architecture with minor modifications to the positional embedding, and can reuse most pre-existing optimizations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/jshuadvd/LongRoPE"&gt;GitHub Repo&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/longrope-extending-llm-context-2m-tokens</link>
+      <guid>https://www.lqdev.me/bookmarks/longrope-extending-llm-context-2m-tokens</guid>
+      <pubDate>2024-07-30 14:16 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>longrope</category>
+      <category>microsoft</category>
+      <category>research</category>
+      <category>msr</category>
+    </item>
+  </channel>
+</rss>

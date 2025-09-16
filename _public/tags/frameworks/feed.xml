@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - frameworks</title>
+    <link>https://www.lqdev.me/tags/frameworks</link>
+    <description>All content tagged with 'frameworks' by Luis Quintanilla</description>
+    <lastBuildDate>2023-12-12 19:19 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Mixtral 8x7B on Apple Silicon with MLX</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Run the Mixtral1 8x7B mixture-of-experts (MoE) model in MLX on Apple silicon.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/mlx-mixtral-8x7b</link>
+      <guid>https://www.lqdev.me/bookmarks/mlx-mixtral-8x7b</guid>
+      <pubDate>2023-12-12 19:19 -05:00</pubDate>
+      <category>mlx</category>
+      <category>ai</category>
+      <category>frameworks</category>
+    </item>
+  </channel>
+</rss>

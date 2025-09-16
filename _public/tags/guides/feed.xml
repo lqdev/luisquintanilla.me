@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - guides</title>
+    <link>https://www.lqdev.me/tags/guides</link>
+    <description>All content tagged with 'guides' by Luis Quintanilla</description>
+    <lastBuildDate>2023-11-11 17:49 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>You Need Feeds</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;YOU NEED FEEDS.&lt;/p&gt;
+&lt;p&gt;A web feed is a special listing of the latest content from your favourite site.  News, music, video and more - whatever is new, web feeds will show you.  What's more, you can combine your favourite feeds using a feed reader application - and suddenly the whole web comes to you.&lt;/p&gt;
+&lt;p&gt;You don't have to do the work of staying on top any more.  You can now visit a single site, or use a single app, and see everything that's new and interesting.  You choose the content.  You're in control.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/you-need-feeds</link>
+      <guid>https://www.lqdev.me/bookmarks/you-need-feeds</guid>
+      <pubDate>2023-11-11 17:49 -05:00</pubDate>
+      <category>rss</category>
+      <category>feeds</category>
+      <category>guides</category>
+    </item>
+  </channel>
+</rss>

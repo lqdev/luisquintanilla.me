@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - assistants</title>
+    <link>https://www.lqdev.me/tags/assistants</link>
+    <description>All content tagged with 'assistants' by Luis Quintanilla</description>
+    <lastBuildDate>2024-02-21 14:38 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>HuggingChat</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The goal of this app is to showcase that it is now possible to build an open source alternative to ChatGPT.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/huggingface/chat-ui"&gt;GitHub repo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/huggingface/text-generation-inference"&gt;Text Generation Inference&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/huggingchat</link>
+      <guid>https://www.lqdev.me/responses/huggingchat</guid>
+      <pubDate>2024-02-21 14:38 -05:00</pubDate>
+      <category>huggingface</category>
+      <category>assistants</category>
+      <category>ai</category>
+      <category>chat</category>
+      <category>opensource</category>
+    </item>
+  </channel>
+</rss>

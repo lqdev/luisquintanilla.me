@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - messsaging</title>
+    <link>https://www.lqdev.me/tags/messsaging</link>
+    <description>All content tagged with 'messsaging' by Luis Quintanilla</description>
+    <lastBuildDate>2023-01-30 17:25 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Skype Feature Request - Default Encrypted Conversations</title>
+      <description>&lt;![CDATA[&lt;p&gt;As the feedback post suggests, Skype offers the option to have &lt;a href="https://support.skype.com/en/faq/FA34824/what-are-skype-private-conversations"&gt;encrypted conversations (chat &amp;amp; calls) using the Signal protocol&lt;/a&gt;. However, it's not the detault. If you're using Skype and this is something you'd like added, feel free to upvote the feedback request.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://feedbackportal.microsoft.com/feedback/idea/0b770e9e-bca0-ed11-a81b-002248519701"&gt;https://feedbackportal.microsoft.com/feedback/idea/0b770e9e-bca0-ed11-a81b-002248519701&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/skype-feature-request-default-e2ee</link>
+      <guid>https://www.lqdev.me/notes/skype-feature-request-default-e2ee</guid>
+      <pubDate>2023-01-30 17:25 -05:00</pubDate>
+      <category>communication</category>
+      <category>messsaging</category>
+      <category>privacy</category>
+      <category>skype</category>
+    </item>
+  </channel>
+</rss>

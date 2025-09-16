@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link rel="stylesheet" href="/assets/css/custom/main.css"><link rel="stylesheet" href="/assets/css/custom/timeline.css"><link rel="stylesheet" href="/assets/css/bootstrap-icons-1.5.0/bootstrap-icons.css"><link rel="stylesheet" href="/assets/css/highlight.github-dark-dimmed.min.css"><link rel="stylesheet" href="/assets/css/main.css"><link rel="stylesheet" href="/lib/revealjs/dist/reveal.css"><link rel="stylesheet" href="/lib/revealjs/dist/theme/black.css"><link rel="stylesheet" href="/lib/revealjs/plugin/highlight/monokai.css"><meta property="og:title" content="Create an HTTP Trigger Azure Function using FSharp - Luis Quintanilla"><meta property="og:type" content="website"><meta property="og:image" content="https://www.lqdev.me/avatar.png"><meta property="og:image:secure_url" content="https://www.lqdev.me/avatar.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="200"><meta property="og:image:height" content="200"><meta property="og:site_name" content="Luis Quintanilla Personal Website"><meta property="og:locale" content="en_US"><meta property="twitter:image" content="https://www.lqdev.me/avatar.png"><meta property="fediverse:creator" content="@lqdev@toot.lqdev.tech"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Blog RSS Feed" href="/blog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Microblog RSS Feed" href="/microblog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Response RSS Feed" href="/responses.rss"><link rel="webmention" title="Luis Quintanilla Webmention Endpoint" href="https://webmentions.lqdev.tech/api/inbox"><link rel="feeds" type="text/xml" title="Luis Quintanilla&#39;s Feeds" href="/feed/index.opml"><link rel="blogroll" type="text/xml" title="Luis Quintanilla&#39;s Blogroll" href="/collections/blogroll/index.opml"><link rel="podroll" type="text/xml" title="Luis Quintanilla&#39;s Podroll" href="/collections/podroll/index.opml"><link rel="youtuberoll" type="text/xml" title="Luis Quintanilla&#39;s YouTube Roll" href="/collections/youtube/index.opml"><meta name="robots" content="nosnippet"><title>Create an HTTP Trigger Azure Function using FSharp - Luis Quintanilla</title></head><body><button class="mobile-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"><div class="hamburger"><span></span><span></span><span></span></div></button><div class="nav-overlay" id="nav-overlay"></div><nav class="desert-nav" id="sidebar-menu" role="navigation" aria-label="Main navigation"><div class="nav-brand"><a href="/" class="brand-text"><img src="/avatar.png" alt="Luis Quintanilla avatar" loading="lazy">Luis Quintanilla</a></div><div class="nav-section"><a class="nav-link" href="/"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"></path></svg>Home</a><a class="nav-link" href="/about"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path></svg>About</a><a class="nav-link" href="/contact"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"></path></svg>Contact</a><a class="nav-link" href="/search"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path></svg>Search</a><a class="nav-link" href="/feed"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"></path></svg>Subscribe</a></div><div class="nav-section dropdown"><button class="nav-link dropdown-toggle" data-target="collections-dropdown"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"></path><path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"></path></svg>Collections<svg class="dropdown-arrow" viewBox="0 0 16 16" fill="currentColor"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path></svg></button><div class="dropdown-menu" id="collections-dropdown"><a class="dropdown-item" href="/collections/blogroll">Blogroll</a><a class="dropdown-item" href="/collections/podroll">Podroll</a><a class="dropdown-item" href="/collections/youtube">YouTube</a><a class="dropdown-item" href="/collections/forums">Forums</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/collections/starter-packs">Starter Packs</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/radio">Radio</a><a class="dropdown-item" href="/tags">Tags</a></div></div><div class="nav-section dropdown"><button class="nav-link dropdown-toggle" data-target="resources-dropdown"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"></path></svg>Resources<svg class="dropdown-arrow" viewBox="0 0 16 16" fill="currentColor"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path></svg></button><div class="dropdown-menu" id="resources-dropdown"><a class="dropdown-item" href="/resources/snippets">Snippets</a><a class="dropdown-item" href="/resources/wiki">Wiki</a><a class="dropdown-item" href="/resources/presentations">Presentations</a></div></div><div class="theme-toggle"><button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark mode"><span id="theme-toggle-icon">☀️</span><span>Theme</span></button></div></nav><main role="main" class="main-content" id="main-content"><div class="content-wrapper"><div class="mr-auto"><article class="h-entry individual-post"><header class="post-header"><h1 class="p-name post-title">Create an HTTP Trigger Azure Function using FSharp</h1><div class="post-meta"><time class="dt-published" datetime="2019-11-16 17:33:59 -05:00">November 16, 2019</time></div><div class="u-author h-card microformat-hidden"><img src="/avatar.png" class="u-photo" alt="Luis Quintanilla" /><a href="/about" class="u-url p-name">Luis Quintanilla</a></div></header><div class="e-content post-content"><h2>Introduction</h2>
+<p>Since the upgrade to the 2.0 version of the Azure Functions runtime, .NET Core has been natively supported by the platform. As a result some changes took effect. Most notably, in version 1.0, a template for an F# HttpTrigger function was available. The template was removed in 2.0. However, that does not mean Azure Functions does not support F#. Azure Functions can be built in F# using a .NET Standard Class Library. This writeup provides a detailed walk-through of how to build an Azure Function that processes HTTP requests using F#. The complete code sample can be found on <a href="https://github.com/lqdev/FsHttpTriggerSample">GitHub</a>.</p>
+<h2>Prerequisites</h2>
+<p>This solution was built using a Windows PC but should work on Mac and Linux.</p>
+<ul>
+<li><a href="https://dotnet.microsoft.com/download/dotnet-core">.NET SDK (2.x or 3.x)</a></li>
+<li><a href="https://nodejs.org/en/download/">Node.js</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#windows-npm">Azure Functions Core Tools</a></li>
+</ul>
+<h2>Create Solution</h2>
+<p>Open the command prompt and create a new directory for your solution called &quot;FsHttpTriggerSample&quot;.</p>
+<pre><code class="language-bash">mkdir FsHttpTriggerSample
+</code></pre>
+<p>Navigate into the new directory and create a solution using the .NET CLI.</p>
+<pre><code class="language-bash">cd FsHttpTriggerSample
+dotnet new sln
+</code></pre>
+<h2>Create Azure Functions Project</h2>
+<p>Inside the <em>FsHttpTriggerSample</em> solution directory, use the .NET CLI to create a new F# .NET Standard Class Library project.</p>
+<pre><code class="language-bash">dotnet new classlib -o FsHttpTriggerSample -lang f#
+</code></pre>
+<p>Add the project to the solution</p>
+<pre><code class="language-bash">dotnet sln add FsHttpTriggerSample
+</code></pre>
+<h2>Install NuGet Packages</h2>
+<p>To use Azure Functions, install the <a href="https://www.nuget.org/packages/Microsoft.NET.Sdk.Functions"><strong>Microsoft.Net.Sdk.Functions</strong> NuGet package</a>.</p>
+<p>Inside the <em>FsHttpTriggerSample</em> project directory, enter the following command.</p>
+<pre><code class="language-bash">dotnet add package Microsoft.Net.Sdk.Functions
+</code></pre>
+<h2>Create the Azure Function</h2>
+<h3>Prepare Files</h3>
+<p>Delete the default <em>Library.fs</em> file inside the <em>FsHttpTriggerSample</em> project directory.</p>
+<pre><code class="language-bash">del Library.fs
+</code></pre>
+<p>Create a new file called <em>GreetFunction.fs</em>.</p>
+<pre><code class="language-bash">type nul &gt; GreetFunction.fs
+</code></pre>
+<h3>Configure Files</h3>
+<p>Open the <em>FsHttpTriggerSample.fsproj</em> file and find the following snippet.</p>
+<pre><code class="language-xml">&lt;Compile Include=&quot;Library.fs&quot; /&gt;
+</code></pre>
+<p>Replace the snippet with the content below.</p>
+<pre><code class="language-xml">&lt;Compile Include=&quot;GreetFunction.fs&quot; /&gt;
+</code></pre>
+<h3>Configure Host</h3>
+<p>At a minimum, Azure Functions requires the runtime version to run. This information is provided by a file called <em>host.json</em>.</p>
+<p>Create a new file called <em>host.json</em> inside the <em>FsHttpTriggerSample</em> project directory.</p>
+<pre><code class="language-bash">type nul &gt; host.json
+</code></pre>
+<p>Open the <em>host.json</em> file and add the following content</p>
+<pre><code class="language-json">{
+    &quot;version&quot;: &quot;2.0&quot;
+}
+</code></pre>
+<h3>Implement Azure Function</h3>
+<p>Open the <em>GreetFunction.fs</em> file and add the namespace and module for it.</p>
+<pre><code class="language-fsharp">namespace FsHttpTriggerSample
+
+module GreetFunction = 
+</code></pre>
+<p>Below the module definition, add the following <code>open</code> statements:</p>
+<pre><code class="language-fsharp">open Microsoft.AspNetCore.Mvc
+open Microsoft.Azure.WebJobs
+open Microsoft.AspNetCore.Http
+open Newtonsoft.Json
+open System.IO
+open Microsoft.Extensions.Logging
+</code></pre>
+<p>Define a <code>User</code> type containing a single property called <code>Name</code>.</p>
+<pre><code class="language-fsharp">type User = {
+    Name: string
+}
+</code></pre>
+<p>The entrypoint of an Azure Function is the <code>Run</code> function. Create a function called <code>Run</code>.</p>
+<pre><code class="language-fsharp">[&lt;FunctionName(&quot;Greet&quot;)&gt;]
+let Run ([&lt;HttpTrigger(Methods=[|&quot;POST&quot;|])&gt;] req:HttpRequest) (log:ILogger) = 
+</code></pre>
+<p>To register an Azure Function, use the <code>FunctionName</code> attribute. In this case, the name of the function is <code>Greet</code>. The <code>Run</code> function takes two parameters, an <code>HttpRequest</code> and an <code>ILogger</code>. Since the binding used by HTTP Trigger functions is <code>HttpTrigger</code>, the request object is annotated with the <code>HttpTrigger</code> attribute. Options such as the accepted methods can be provided through the <code>HttpTrigger</code> attribute. In this case, only <code>POST</code> requests are accepted.</p>
+<p>Create an <code>async</code> computation expression inside the <code>Run</code> function.</p>
+<pre><code class="language-fsharp">async {
+
+}
+</code></pre>
+<p>Inside the <code>async</code> expression, add logging to indicate that the function has initialized.</p>
+<pre><code class="language-fsharp">&quot;Running function&quot;
+|&gt; log.LogInformation
+</code></pre>
+<p>Below that, get the body of the request.</p>
+<pre><code class="language-fsharp">let! body = 
+    new StreamReader(req.Body) 
+    |&gt; (fun stream -&gt; stream.ReadToEndAsync()) 
+    |&gt; Async.AwaitTask
+</code></pre>
+<p>Then, deserialized the body into an instance of <code>User</code>.</p>
+<pre><code class="language-fsharp">let user = JsonConvert.DeserializeObject&lt;User&gt;(body)
+</code></pre>
+<p>Return a personalized greeting with the user's name.</p>
+<pre><code class="language-fsharp">return OkObjectResult(sprintf &quot;Hello %s&quot; user.Name)
+</code></pre>
+<p>Finally, use the <code>StartAsTask</code> function to start the <code>async</code> expression as a <code>Task</code>.</p>
+<pre><code class="language-fsharp">|&gt; Async.StartAsTask
+</code></pre>
+<p>Once finished, the contents of the <em>GreetFunction.fs</em> should look similar to the following.</p>
+<pre><code class="language-fsharp">namespace FsHttpTriggerSample
+
+module GreetFunction = 
+
+    open Microsoft.AspNetCore.Mvc
+    open Microsoft.Azure.WebJobs
+    open Microsoft.AspNetCore.Http
+    open Newtonsoft.Json
+    open System.IO
+    open Microsoft.Extensions.Logging
+
+    type User = {
+        Name: string
+    }
+
+    [&lt;FunctionName(&quot;Greet&quot;)&gt;]
+    let Run ([&lt;HttpTrigger(Methods=[|&quot;POST&quot;|])&gt;] req:HttpRequest) (log:ILogger) = 
+        async {
+            &quot;Runnning Function&quot;
+            |&gt; log.LogInformation
+
+            let! body = 
+                new StreamReader(req.Body) 
+                |&gt; (fun stream -&gt; stream.ReadToEndAsync()) 
+                |&gt; Async.AwaitTask
+
+            let user = JsonConvert.DeserializeObject&lt;User&gt;(body)
+
+            return OkObjectResult(sprintf &quot;Hello %s&quot; user.Name)
+        } |&gt; Async.StartAsTask
+</code></pre>
+<h2>Run the Function Locally</h2>
+<p>Build the project by using the <code>build</code> command inside the <em>FsHttpTriggerSample</em> project directory.</p>
+<pre><code class="language-bash">dotnet build
+</code></pre>
+<p>Then, navigate to the output directory</p>
+<pre><code class="language-bash">cd bin\Debug\netstandard2.0
+</code></pre>
+<p>Use the Azure Functions Core Tools to start the Azure Functions host locally.</p>
+<pre><code class="language-bash">func host start
+</code></pre>
+<p>Once the host is initialized, the function is available at the following endpoint <code>http://localhost:7071/api/Greet</code>.</p>
+<h2>Test the function</h2>
+<p>Using a REST client like Postman or Insomnia, make a POST request to <code>http://localhost:7071/api/Greet</code> with the following body. Feel free to replace the name with your own.</p>
+<pre><code class="language-json">{
+    &quot;Name&quot;: &quot;Luis&quot;
+}
+</code></pre>
+<p>If successful, the response should look similar to the following output.</p>
+<pre><code class="language-text">Hello Luis
+</code></pre>
+<h2>Conclusion</h2>
+<p>This writeup showed how to create an HTTP Trigger Azure Function using F#. Creating additional functions inside the same project is relatively trivial since the structure of the <em>GreetFunction.fs</em> file can be copied and the logic inside the <code>Run</code> function can be adapted to meet your requirements.</p>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-fsharp">Azure Functions F# Developer Reference</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json">Azure Functions Host 2.x Reference</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/azure-functions/deployment-zip-push">Azure Functions Zip Deployment</a></li>
+</ul>
+</div><footer class="post-footer"><div class="permalink-info">Permalink: <a class="u-url permalink-link" href="/posts/http-trigger-azure-functions-fsharp/">/posts/http-trigger-azure-functions-fsharp/</a></div><div><script type="application/javascript">window.onload = function() { document.getElementById('webmention-target').value = window.location.href }</script><form action="https://webmentions.lqdev.tech/api/inbox" method="POST" enctype="application/x-www-form-urlencoded"><h5 class="text-center">Send me a <a href="/contact">message</a> or <a href="https://indieweb.org/webmentions">webmention</a></h5><div class="form-row justify-content-center"><div class="w-75"><input type="url" class="form-control" name="source" placeholder="Your URL (webmention source)" required /></div><div class="col-auto"><input type="submit" class="btn btn-primary" value="Send" /></div><input type="hidden" readonly name="target" id="webmention-target" /></div></form></div></footer></article></div></div></main><script src="/assets/lib/jquery/jquery.slim.min.js"></script><script src="/assets/lib/boostrap/bootstrap.min.js"></script><script src="/assets/lib/highlight/highlight.min.js"></script><script src="/assets/lib/highlight/highlight.fsharp.min.js"></script><script src="/assets/lib/highlight/highlight.nix.min.js"></script><script src="/assets/js/timeline.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script type="application/javascript">mermaid.initialize({startOnLoad:true});</script><script type="application/javascript">hljs.initHighlightingOnLoad();</script><script src="/lib/revealjs/dist/reveal.js"></script><script src="/lib/revealjs/plugin/markdown/markdown.js"></script><script src="/lib/revealjs/plugin/highlight/highlight.js"></script><script type="application/javascript">
+                    // Initialize Reveal.js when a presentation container is found on the page
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const presentationContainer = document.querySelector('.presentation-container');
+                        if (presentationContainer && typeof Reveal !== 'undefined') {
+                            Reveal.initialize({
+                                plugins: [RevealMarkdown, RevealHighlight],
+                                embedded: true
+                            });
+                        }
+                    });
+                    </script></body><footer><a rel="me" href="https://toot.lqdev.tech/@lqdev"></a><a rel="me" href="https://github.com/lqdev"></a><a rel="me" href="https://twitter.com/ljquintanilla"></a><a rel="me" href="https://www.linkedin.com/in/lquintanilla01/"></a><a rel="me" href="mailto:lqdev@outlook.com"></a></footer></html>

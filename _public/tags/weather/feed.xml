@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - weather</title>
+    <link>https://www.lqdev.me/tags/weather</link>
+    <description>All content tagged with 'weather' by Luis Quintanilla</description>
+    <lastBuildDate>2025-05-16 19:49 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Chicago Dust Storm</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Never change Chicago.&lt;/p&gt;
+&lt;p&gt;What felt like the first week of good weather since forever ends with a dust storm.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/chicago-dust-storm</link>
+      <guid>https://www.lqdev.me/responses/chicago-dust-storm</guid>
+      <pubDate>2025-05-16 19:49 -05:00</pubDate>
+      <category>chicago</category>
+      <category>weather</category>
+      <category>duststorm</category>
+    </item>
+    <item>
+      <title>ATOM Weather Alerts</title>
+      <description>&lt;![CDATA[&lt;p&gt;Yesterday I ran into more feed goodness. When going to a website to get the weather forecast, weather alerts are displayed (if there are any).&lt;/p&gt;
+&lt;p&gt;I thought, wouldn't it be great to be able to subscribe to those alerts without having to go to the website?&lt;/p&gt;
+&lt;p&gt;A quick search revealed the National Weather Service provides these alerts in ATOM format for each of the states in the U.S.
+You have the option of tracking updates at the national, state, zone, and county level.&lt;/p&gt;
+&lt;p&gt;Subscribing is as easy as adding the link for the respective feed to your favorite feed reader. If you're interested, you can find the list of feeds at &lt;a href="https://alerts.weather.gov/"&gt;https://alerts.weather.gov/&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/atom-rss-nws-weather-alerts</link>
+      <guid>https://www.lqdev.me/notes/atom-rss-nws-weather-alerts</guid>
+      <pubDate>04/27/2022 20:19 -05:00</pubDate>
+      <category>rss</category>
+      <category>atom</category>
+      <category>weather</category>
+      <category>alerts</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - e2ee</title>
+    <link>https://www.lqdev.me/tags/e2ee</link>
+    <description>All content tagged with 'e2ee' by Luis Quintanilla</description>
+    <lastBuildDate>2024-03-02 15:49 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Ente - Private cloud storage for photos, videos, etc.</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Store, share, and rediscover your memories with absolute privacy&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/ente-private-media-cloud-storage</link>
+      <guid>https://www.lqdev.me/bookmarks/ente-private-media-cloud-storage</guid>
+      <pubDate>2024-03-02 15:49 -05:00</pubDate>
+      <category>e2ee</category>
+      <category>photos</category>
+      <category>cloud</category>
+      <category>storage</category>
+      <category>product</category>
+    </item>
+  </channel>
+</rss>

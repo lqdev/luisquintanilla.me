@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - softwaredevelopment</title>
+    <link>https://www.lqdev.me/tags/softwaredevelopment</link>
+    <description>All content tagged with 'softwaredevelopment' by Luis Quintanilla</description>
+    <lastBuildDate>2024-01-17 20:36 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Stable Code 3B - Coding on the Edge</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Stable Code 3B is a 3 billion parameter Large Language Model (LLM), allowing accurate and responsive code completion at a level on par with models such as CodeLLaMA 7b that are 2.5x larger.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Operates offline even without a GPU on common laptops such as a MacBook Air.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/stable-code-3b-stability</link>
+      <guid>https://www.lqdev.me/bookmarks/stable-code-3b-stability</guid>
+      <pubDate>2024-01-17 20:36 -05:00</pubDate>
+      <category>ai</category>
+      <category>stabilityai"</category>
+      <category>code</category>
+      <category>software</category>
+      <category>softwaredevelopment</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>vim + llm = 🔥</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;... I learned that you could be inside vim, but manipulate the entire file as if you were piping the contents of the file into a command. The output of the command does in-line replacement of the entire file with those changes. That sounds confusing, but it just means you can be inside a vim file and do :%!grep test and it’ll remove all lines that don’t contain test, for example.&lt;/p&gt;
+&lt;p&gt;This post is a simple showcase of taking that concept, but throwing an llm into the mix to add more dynamic functionality.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/vim-llm-hacks-thacker</link>
+      <guid>https://www.lqdev.me/bookmarks/vim-llm-hacks-thacker</guid>
+      <pubDate>2023-09-25 20:39 -05:00</pubDate>
+      <category>vi</category>
+      <category>linux</category>
+      <category>llm</category>
+      <category>ai</category>
+      <category>softwaredevelopment</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - net7</title>
+    <link>https://www.lqdev.me/tags/net7</link>
+    <description>All content tagged with 'net7' by Luis Quintanilla</description>
+    <lastBuildDate>2022-11-11 09:59 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Upgraded website to .NET 7</title>
+      <description>&lt;![CDATA[&lt;p&gt;Last year, I posted about &lt;a href="https://www.lqdev.me/notes/net6-website-update"&gt;upgrading this website to .NET 6&lt;/a&gt; and how easy that process was. I just had a chance to upgrade to .NET 7 and the experience was just as smooth. All I had to do was change the version in two places:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;GitHub Actions *.yml file&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-yml"&gt;dotnet-version: '7.0.x'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;*.fsproj  file&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;TargetFramework&amp;gt;net7.0&amp;lt;/TargetFramework&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I'm happy that with such a simple change, I can get all the benefits of .NET 7 without doing a lot of work.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/net7-website-update</link>
+      <guid>https://www.lqdev.me/notes/net7-website-update</guid>
+      <pubDate>2022-11-11 09:59 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>website</category>
+      <category>net7</category>
+      <category>upgrade</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - content</title>
+    <link>https://www.lqdev.me/tags/content</link>
+    <description>All content tagged with 'content' by Luis Quintanilla</description>
+    <lastBuildDate>2024-03-24 16:33 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Introducing the 100 Sways Project</title>
+      <description>&lt;![CDATA[&lt;p&gt;Introducing the 100 Sways project.&lt;/p&gt;
+&lt;p&gt;Over the next few months, I plan on creating artifacts like blog posts, newsletters, and websites using &lt;a href="https://sway.cloud.microsoft/"&gt;Microsoft Sway&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Bookmark the site &lt;a href="http://100sways.lqdev.tech"&gt;100sways.lqdev.tech&lt;/a&gt; and follow along!&lt;/p&gt;
+&lt;p&gt;Note: If you can't access the website, you can use the &lt;a href="https://sway.cloud.microsoft/aC19McbR3xcNo6s8"&gt;direct link (https://sway.cloud.microsoft/aC19McbR3xcNo6s8)&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;What is the 100 Sways project?&lt;/h2&gt;
+&lt;p&gt;This project is an attempt to show how you might use Sway as a publishing platform for content like newsletters, blog posts, and websites.&lt;/p&gt;
+&lt;p&gt;This project was inspired by &lt;a href="https://jamesg.blog/"&gt;James'&lt;/a&gt; &lt;a href="https://jamesg.blog/2024/02/19/personal-website-ideas/"&gt;100 things you can do on your personal website post&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Motivations&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Learn more about Microsoft Sway&lt;/li&gt;
+&lt;li&gt;Show how you can make the most use out of apps and services already included with your Microsoft Account&lt;/li&gt;
+&lt;li&gt;Show how easy it is to create and consume web content using Sway&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/introducing-100-sways-project</link>
+      <guid>https://www.lqdev.me/notes/introducing-100-sways-project</guid>
+      <pubDate>2024-03-24 16:33 -05:00</pubDate>
+      <category>microsoft</category>
+      <category>sway</category>
+      <category>indieweb</category>
+      <category>blog</category>
+      <category>website</category>
+      <category>microblog</category>
+      <category>blogging</category>
+      <category>content</category>
+      <category>m365</category>
+      <category>office</category>
+      <category>internet</category>
+      <category>web</category>
+      <category>microsoftoffice</category>
+      <category>microsoft365</category>
+    </item>
+  </channel>
+</rss>

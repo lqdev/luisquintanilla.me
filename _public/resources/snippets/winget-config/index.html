@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link rel="stylesheet" href="/assets/css/custom/main.css"><link rel="stylesheet" href="/assets/css/custom/timeline.css"><link rel="stylesheet" href="/assets/css/bootstrap-icons-1.5.0/bootstrap-icons.css"><link rel="stylesheet" href="/assets/css/highlight.github-dark-dimmed.min.css"><link rel="stylesheet" href="/assets/css/main.css"><link rel="stylesheet" href="/lib/revealjs/dist/reveal.css"><link rel="stylesheet" href="/lib/revealjs/dist/theme/black.css"><link rel="stylesheet" href="/lib/revealjs/plugin/highlight/monokai.css"><meta property="og:title" content="Snippet | Winget Configuration | Luis Quintanilla"><meta property="og:type" content="website"><meta property="og:image" content="https://www.lqdev.me/avatar.png"><meta property="og:image:secure_url" content="https://www.lqdev.me/avatar.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="200"><meta property="og:image:height" content="200"><meta property="og:site_name" content="Luis Quintanilla Personal Website"><meta property="og:locale" content="en_US"><meta property="twitter:image" content="https://www.lqdev.me/avatar.png"><meta property="fediverse:creator" content="@lqdev@toot.lqdev.tech"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Blog RSS Feed" href="/blog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Microblog RSS Feed" href="/microblog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Response RSS Feed" href="/responses.rss"><link rel="webmention" title="Luis Quintanilla Webmention Endpoint" href="https://webmentions.lqdev.tech/api/inbox"><link rel="feeds" type="text/xml" title="Luis Quintanilla&#39;s Feeds" href="/feed/index.opml"><link rel="blogroll" type="text/xml" title="Luis Quintanilla&#39;s Blogroll" href="/collections/blogroll/index.opml"><link rel="podroll" type="text/xml" title="Luis Quintanilla&#39;s Podroll" href="/collections/podroll/index.opml"><link rel="youtuberoll" type="text/xml" title="Luis Quintanilla&#39;s YouTube Roll" href="/collections/youtube/index.opml"><meta name="robots" content="nosnippet"><title>Snippet | Winget Configuration | Luis Quintanilla</title></head><body><button class="mobile-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"><div class="hamburger"><span></span><span></span><span></span></div></button><div class="nav-overlay" id="nav-overlay"></div><nav class="desert-nav" id="sidebar-menu" role="navigation" aria-label="Main navigation"><div class="nav-brand"><a href="/" class="brand-text"><img src="/avatar.png" alt="Luis Quintanilla avatar" loading="lazy">Luis Quintanilla</a></div><div class="nav-section"><a class="nav-link" href="/"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"></path></svg>Home</a><a class="nav-link" href="/about"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path></svg>About</a><a class="nav-link" href="/contact"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"></path></svg>Contact</a><a class="nav-link" href="/search"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path></svg>Search</a><a class="nav-link" href="/feed"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"></path></svg>Subscribe</a></div><div class="nav-section dropdown"><button class="nav-link dropdown-toggle" data-target="collections-dropdown"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"></path><path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"></path></svg>Collections<svg class="dropdown-arrow" viewBox="0 0 16 16" fill="currentColor"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path></svg></button><div class="dropdown-menu" id="collections-dropdown"><a class="dropdown-item" href="/collections/blogroll">Blogroll</a><a class="dropdown-item" href="/collections/podroll">Podroll</a><a class="dropdown-item" href="/collections/youtube">YouTube</a><a class="dropdown-item" href="/collections/forums">Forums</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/collections/starter-packs">Starter Packs</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/radio">Radio</a><a class="dropdown-item" href="/tags">Tags</a></div></div><div class="nav-section dropdown"><button class="nav-link dropdown-toggle" data-target="resources-dropdown"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"></path></svg>Resources<svg class="dropdown-arrow" viewBox="0 0 16 16" fill="currentColor"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path></svg></button><div class="dropdown-menu" id="resources-dropdown"><a class="dropdown-item" href="/resources/snippets">Snippets</a><a class="dropdown-item" href="/resources/wiki">Wiki</a><a class="dropdown-item" href="/resources/presentations">Presentations</a></div></div><div class="theme-toggle"><button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark mode"><span id="theme-toggle-icon">☀️</span><span>Theme</span></button></div></nav><main role="main" class="main-content" id="main-content"><div class="content-wrapper"><div class="mr-auto"><article class="h-entry individual-post"><header class="post-header"><h1 class="p-name post-title">Winget Configuration</h1><div class="post-meta"><time class="dt-published" datetime="01/14/2025 20:51 -05:00">January 14, 2025</time></div><div class="u-author h-card microformat-hidden"><img src="/avatar.png" class="u-photo" alt="Luis Quintanilla" /><a href="/about" class="u-url p-name">Luis Quintanilla</a></div></header><div class="e-content post-content"><h2>Description</h2>
+<p>My Winget Configuration file</p>
+<h2>Usage</h2>
+<pre><code class="language-powershell">winget configure -f &lt;FILENAME&gt;.dsc
+</code></pre>
+<h2>Snippet</h2>
+<pre><code class="language-yaml"># yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+# Reference: https://github.com/microsoft/winget-create#building-the-client
+# WinGet Configure file Generated By Dev Home.
+<p>properties:
+resources:</p>
+<ul>
+<li>resource: Microsoft.Windows.Developer/DeveloperMode
+directives:
+description: Enable Developer Mode
+allowPrerelease: true
+settings:
+Ensure: Present</li>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing Microsoft.VisualStudio.2022.Community
+allowPrerelease: true
+securityContext: current
+settings:
+id: &quot;Microsoft.VisualStudio.2022.Community&quot;
+source: winget
+id: Microsoft.VisualStudio.2022.Community</li>
+<li>resource: Microsoft.VisualStudio.DSC/VSComponents
+dependsOn:
+<ul>
+<li>Microsoft.VisualStudio.2022.Community
+directives:
+description: Install required VS workloads
+allowPrerelease: true
+settings:
+productId: Microsoft.VisualStudio.Product.Community
+channelId: VisualStudio.17.Release
+components:
+<ul>
+<li>Microsoft.VisualStudio.Workload.Azure</li>
+<li>Microsoft.VisualStudio.Workload.NetWeb</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing Microsoft.VisualStudioCode
+allowPrerelease: true
+securityContext: current
+settings:
+id: &quot;Microsoft.VisualStudioCode&quot;
+source: winget
+id: Microsoft.VisualStudioCode</li>
+</ul>
+<h1>https://github.com/microsoft/winget-cli/discussions/3958</h1>
+<h1>- resource: vscode/VSCodeExtension</h1>
+<h1>directives:</h1>
+<h1>description: Install Remote Development Extension</h1>
+<h1>allowPrerelease: true</h1>
+<h1>settings:</h1>
+<h1>Name: ms-vscode-remote.vscode-remote-extensionpack</h1>
+<h1>Ensure: Present</h1>
+<h1>- resource: vscode/VSCodeExtension</h1>
+<h1>directives:</h1>
+<h1>description: Install YAML Extension</h1>
+<h1>allowPrerelease: true</h1>
+<h1>settings:</h1>
+<h1>Name: redhat.vscode-yaml</h1>
+<h1>Ensure: Present</h1>
+<h1>- resource: vscode/VSCodeExtension</h1>
+<h1>directives:</h1>
+<h1>description: Install Ionide Extension</h1>
+<h1>allowPrerelease: true</h1>
+<h1>settings:</h1>
+<h1>Name: Ionide.Ionide-fsharp</h1>
+<h1>Ensure: Present</h1>
+<h1>- resource: vscode/VSCodeExtension</h1>
+<h1>directives:</h1>
+<h1>description: Install C# Extension</h1>
+<h1>allowPrerelease: true</h1>
+<h1>settings:</h1>
+<h1>Name: ms-dotnettools.csdevkit</h1>
+<h1>Ensure: Present</h1>
+<ul>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing Git.Git
+allowPrerelease: true
+securityContext: current
+settings:
+id: &quot;Git.Git&quot;
+source: winget
+id: Git.Git</li>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing Microsoft.PowerShell
+allowPrerelease: true
+securityContext: current
+settings:
+id: &quot;Microsoft.PowerShell&quot;
+source: winget
+id: Microsoft.PowerShell</li>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing Docker.DockerDesktop
+allowPrerelease: true
+securityContext: current
+settings:
+id: &quot;Docker.DockerDesktop&quot;
+source: winget
+id: Docker.DockerDesktop</li>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing Debian.Debian
+allowPrerelease: true
+securityContext: current
+settings:
+id: &quot;Debian.Debian&quot;
+source: winget
+id: Debian.Debian</li>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing Microsoft.DotNet.SDK.8
+allowPrerelease: true
+securityContext: current
+settings:
+id: &quot;Microsoft.DotNet.SDK.8&quot;
+source: winget
+id: Microsoft.DotNet.SDK.8</li>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing Microsoft.DotNet.SDK.9
+allowPrerelease: true
+securityContext: current
+settings:
+id: &quot;Microsoft.DotNet.SDK.9&quot;
+source: winget
+id: Microsoft.DotNet.SDK.9</li>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing OBSProject.OBSStudio
+allowPrerelease: true
+securityContext: current
+settings:
+id: &quot;OBSProject.OBSStudio&quot;
+source: winget
+id: OBSProject.OBSStudio</li>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing Microsoft.WSL
+allowPrerelease: true
+securityContext: current
+settings:
+id: &quot;Microsoft.WSL&quot;
+source: winget
+id: Microsoft.WSL</li>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing Ollama.Ollama
+allowPrerelease: true
+securityContext: current
+settings:
+id: &quot;Ollama.Ollama&quot;
+source: winget
+id: Ollama.Ollama</li>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing Microsoft.WindowsTerminal
+allowPrerelease: false
+securityContext: current
+settings:
+id: &quot;Microsoft.WindowsTerminal&quot;
+source: winget
+id: Microsoft.WindowsTerminal</li>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing Brave Browser
+allowPrerelease: true
+securityContext: current
+settings:
+id: &quot;Brave.Brave&quot;
+source: winget
+id: Brave.Brave</li>
+</ul>
+<h1>https://github.com/microsoft/winget-pkgs/issues/155070</h1>
+<h1>- resource: Microsoft.WinGet.DSC/WinGetPackage</h1>
+<h1>directives:</h1>
+<h1>description: Installing NordVPN</h1>
+<h1>allowPrerelease: true</h1>
+<h1>securityContext: current</h1>
+<h1>settings:</h1>
+<h1>id: &quot;NordSecurity.NordVPN&quot;</h1>
+<h1>source: winget</h1>
+<h1>id: NordSecurity.NordVPN</h1>
+<ul>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing Thunderbird
+allowPrerelease: true
+securityContext: current
+settings:
+id: &quot;Mozilla.Thunderbird&quot;
+source: winget
+id: Mozilla.Thunderbird</li>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing ProtonMail
+allowPrerelease: true
+securityContext: current
+settings:
+id: &quot;Proton.ProtonMail&quot;
+source: winget
+id: Proton.ProtonMail</li>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing Bitwarden
+allowPrerelease: true
+securityContext: current
+settings:
+id: &quot;Bitwarden.Bitwarden&quot;
+source: winget
+id: Bitwarden.Bitwarden</li>
+<li>resource: Microsoft.WinGet.DSC/WinGetPackage
+directives:
+description: Installing VLC
+allowPrerelease: true
+securityContext: current
+settings:
+id: &quot;VideoLAN.VLC&quot;
+source: winget
+id: VideoLAN.VLC<br />
+configurationVersion: 0.2.0
+</code></pre></li>
+</ul>
+</div><footer class="post-footer"><div class="permalink-info">Permalink: <a class="u-url permalink-link" href="/resources/snippets/winget-config/">/resources/snippets/winget-config/</a></div><div><script type="application/javascript">window.onload = function() { document.getElementById('webmention-target').value = window.location.href }</script><form action="https://webmentions.lqdev.tech/api/inbox" method="POST" enctype="application/x-www-form-urlencoded"><h5 class="text-center">Send me a <a href="/contact">message</a> or <a href="https://indieweb.org/webmentions">webmention</a></h5><div class="form-row justify-content-center"><div class="w-75"><input type="url" class="form-control" name="source" placeholder="Your URL (webmention source)" required /></div><div class="col-auto"><input type="submit" class="btn btn-primary" value="Send" /></div><input type="hidden" readonly name="target" id="webmention-target" /></div></form></div></footer></article></div></div></main><script src="/assets/lib/jquery/jquery.slim.min.js"></script><script src="/assets/lib/boostrap/bootstrap.min.js"></script><script src="/assets/lib/highlight/highlight.min.js"></script><script src="/assets/lib/highlight/highlight.fsharp.min.js"></script><script src="/assets/lib/highlight/highlight.nix.min.js"></script><script src="/assets/js/timeline.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script type="application/javascript">mermaid.initialize({startOnLoad:true});</script><script type="application/javascript">hljs.initHighlightingOnLoad();</script><script src="/lib/revealjs/dist/reveal.js"></script><script src="/lib/revealjs/plugin/markdown/markdown.js"></script><script src="/lib/revealjs/plugin/highlight/highlight.js"></script><script type="application/javascript">
+                    // Initialize Reveal.js when a presentation container is found on the page
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const presentationContainer = document.querySelector('.presentation-container');
+                        if (presentationContainer && typeof Reveal !== 'undefined') {
+                            Reveal.initialize({
+                                plugins: [RevealMarkdown, RevealHighlight],
+                                embedded: true
+                            });
+                        }
+                    });
+                    </script></body><footer><a rel="me" href="https://toot.lqdev.tech/@lqdev"></a><a rel="me" href="https://github.com/lqdev"></a><a rel="me" href="https://twitter.com/ljquintanilla"></a><a rel="me" href="https://www.linkedin.com/in/lquintanilla01/"></a><a rel="me" href="mailto:lqdev@outlook.com"></a></footer></html>

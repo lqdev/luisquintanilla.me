@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - reddit</title>
+    <link>https://www.lqdev.me/tags/reddit</link>
+    <description>All content tagged with 'reddit' by Luis Quintanilla</description>
+    <lastBuildDate>2024-12-16 22:00 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Tumblr adds Reddit-like ‘communities’</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Tumblr is introducing a new Community feature — in-app groups organized by topic or interest.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Communities are similar to subreddits or Facebook groups and had previously been in beta.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Given recent announcements like &lt;a href="https://www.lqdev.me/responses/shipping-wordpress-tumblr/"&gt;Tumblr replatforming on top of WordPress&lt;/a&gt; and &lt;a href="https://www.lqdev.me/responses/wordpress-activitypub-plugin/"&gt;WordPress adding support for ActivityPub&lt;/a&gt;, I could see communities becoming not only an alternative to Reddit, but also Lemmy in the Fediverse.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/tumblr-adding-reddit-like-communities</link>
+      <guid>https://www.lqdev.me/responses/tumblr-adding-reddit-like-communities</guid>
+      <pubDate>2024-12-16 22:00 -05:00</pubDate>
+      <category>tumblr</category>
+      <category>reddit</category>
+      <category>communities</category>
+      <category>automattic</category>
+      <category>wordpress</category>
+      <category>activitypub</category>
+      <category>fediverse</category>
+      <category>lemmy</category>
+    </item>
+    <item>
+      <title>Reddit says companies must pay for data access</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;&lt;img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExejNzaDF5aHZ6dHRlenl6bnh4c2h6YWoxbnRuOXBqZnlmOGVlbWlwOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT9DPzhNGA8MKjxwFG/giphy.gif" class="img-fluid" alt="GIF of Snoopy laughing" /&gt;&lt;/p&gt;
+&lt;p&gt;I'm all for compensation. Remind me again, how much are the communities that create the content and make Reddit what it is getting out of these licensing deals?&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/reddit-companies-pay-data-access</link>
+      <guid>https://www.lqdev.me/responses/reddit-companies-pay-data-access</guid>
+      <pubDate>2024-07-31 16:23 -05:00</pubDate>
+      <category>ai</category>
+      <category>reddit</category>
+      <category>data</category>
+      <category>licensing</category>
+      <category>microsoft</category>
+      <category>anthropic</category>
+      <category>perplexity</category>
+    </item>
+  </channel>
+</rss>

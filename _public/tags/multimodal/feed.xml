@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - multimodal</title>
+    <link>https://www.lqdev.me/tags/multimodal</link>
+    <description>All content tagged with 'multimodal' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-20 23:59 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Omnineural 4B</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;OmniNeural-4B is the first multimodal AI model built natively for NPUs — handling text, images, and audio in one model.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/omnineural-4b</link>
+      <guid>https://www.lqdev.me/responses/omnineural-4b</guid>
+      <pubDate>2025-08-20 23:59 -05:00</pubDate>
+      <category>ai</category>
+      <category>npu</category>
+      <category>multimodal</category>
+    </item>
+    <item>
+      <title>Ultravox - An open, fast, and extensible multimodal LLM</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Ultravox is a new kind of multimodal LLM that can understand text as well as human speech, without the need for a separate Audio Speech Recognition (ASR) stage. Building on research like AudioLM, SeamlessM4T, Gazelle, SpeechGPT, and others, we've extended Meta's Llama 3 model with a multimodal projector that converts audio directly into the high-dimensional space used by Llama 3. This direct coupling allows Ultravox to respond much more quickly than systems that combine separate ASR and LLM components. In the future this will also allow Ultravox to natively understand the paralinguistic cues of timing and emotion that are omnipresent in human speech.&lt;br /&gt;
+&lt;br&gt;
+The current version of Ultravox (v0.1), when invoked with audio content, has a time-to-first-token (TTFT) of approximately 200ms, and a tokens-per-second rate of ~100, all using a Llama 3 8B backbone. While quite fast, we believe there is considerable room for improvement in these numbers. We look forward to working with LLM hosting providers to deliver state-of-the-art performance for Ultravox.&lt;br /&gt;
+&lt;br&gt;
+Ultravox currently takes in audio and emits streaming text. As we evolve the model, we'll train it to be able to emit a stream of speech tokens that can then be converted directly into raw audio by an appropriate unit vocoder. We're interested in working with interested parties to build this functionality!&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/ultravox-multimodal-llm</link>
+      <guid>https://www.lqdev.me/responses/ultravox-multimodal-llm</guid>
+      <pubDate>2024-06-11 20:51 -05:00</pubDate>
+      <category>ai</category>
+      <category>multimodal</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>MM1: Methods, Analysis &amp; Insights from Multimodal LLM Pre-training</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In this work, we discuss building performant Multimodal Large Language Models (MLLMs). In particular, we study the importance of various architecture components and data choices. Through careful and comprehensive ablations of the image encoder, the vision language connector, and various pre-training data choices, we identified several crucial design lessons. For example, we demonstrate that for large-scale multimodal pre-training using a careful mix of image-caption, interleaved image-text, and text-only data is crucial for achieving state-of-the-art (SOTA) few-shot results across multiple benchmarks, compared to other published pre-training results. Further, we show that the image encoder together with image resolution and the image token count has substantial impact, while the vision-language connector design is of comparatively negligible importance. By scaling up the presented recipe, we build MM1, a family of multimodal models up to 30B parameters, consisting of both dense models and mixture-of-experts (MoE) variants, that are SOTA in pre-training metrics and achieve competitive performance after supervised fine-tuning on a range of established multimodal benchmarks. Thanks to large-scale pre-training, MM1 enjoys appealing properties such as enhanced in-context learning, and multi-image reasoning, enabling few-shot chain-of-thought prompting.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/mm1-multimodal-llm-pretraining</link>
+      <guid>https://www.lqdev.me/bookmarks/mm1-multimodal-llm-pretraining</guid>
+      <pubDate>2024-03-18 21:02 -05:00</pubDate>
+      <category>ai</category>
+      <category>mm1</category>
+      <category>llm</category>
+      <category>multimodal</category>
+      <category>apple</category>
+    </item>
+    <item>
+      <title>V-JEPA: The next step toward Yann LeCun’s vision of advanced machine intelligence (AMI)</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we’re publicly releasing the Video Joint Embedding Predictive Architecture (V-JEPA) model, a crucial step in &lt;a href="https://openreview.net/pdf?id=BZ5a1r-kVsf"&gt;advancing machine intelligence&lt;/a&gt; with a more grounded understanding of the world.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This early example of a physical world model excels at detecting and understanding highly detailed interactions between objects.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In the spirit of responsible open science, we’re releasing this model under a Creative Commons NonCommercial license for researchers to further explore.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/v-jepa-meta</link>
+      <guid>https://www.lqdev.me/responses/v-jepa-meta</guid>
+      <pubDate>2024-02-15 20:20 -05:00</pubDate>
+      <category>meta</category>
+      <category>ai</category>
+      <category>ami</category>
+      <category>ml</category>
+      <category>opensource</category>
+      <category>multimodal</category>
+    </item>
+    <item>
+      <title>OpenAI Sora - Creating video from text</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Sora is an AI model that can create realistic and imaginative scenes from text instructions.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Sora can generate videos up to a minute long while maintaining visual quality and adherence to the user’s prompt.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/openai-sora</link>
+      <guid>https://www.lqdev.me/responses/openai-sora</guid>
+      <pubDate>2024-02-15 20:15 -05:00</pubDate>
+      <category>openai</category>
+      <category>multimodal</category>
+      <category>ai</category>
+      <category>texttovideo</category>
+    </item>
+    <item>
+      <title>Ferret: Refer and Ground Anything Anywhere at Any Granularity</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We introduce Ferret, a new Multimodal Large Language Model (MLLM) capable of understanding spatial referring of any shape or granularity within an image and accurately grounding open-vocabulary descriptions. To unify referring and grounding in the LLM paradigm, Ferret employs a novel and powerful hybrid region representation that integrates discrete coordinates and continuous features jointly to represent a region in the image. To extract the continuous features of versatile regions, we propose a spatial-aware visual sampler, adept at handling varying sparsity across different shapes. Consequently, Ferret can accept diverse region inputs, such as points, bounding boxes, and free-form shapes. To bolster the desired capability of Ferret, we curate GRIT, a comprehensive refer-and-ground instruction tuning dataset including 1.1M samples that contain rich hierarchical spatial knowledge, with 95K hard negative data to promote model robustness. The resulting model not only achieves superior performance in classical referring and grounding tasks, but also greatly outperforms existing MLLMs in region-based and localization-demanded multimodal chatting. Our evaluations also reveal a significantly improved capability of describing image details and a remarkable alleviation in object hallucination. Code and data will be available at this https URL&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/apple/ml-ferret"&gt;Code&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/apple-ml-ferret</link>
+      <guid>https://www.lqdev.me/bookmarks/apple-ml-ferret</guid>
+      <pubDate>2023-12-25 20:12 -05:00</pubDate>
+      <category>ai</category>
+      <category>ml</category>
+      <category>llm</category>
+      <category>mllm</category>
+      <category>largelanguagemodel</category>
+      <category>multimodal</category>
+      <category>multimodallargelanguagemodel</category>
+      <category>apple</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>PointLLM: Empowering Large Language Models to Understand Point Clouds</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We introduce PointLLM, a multi-modal large language model capable of understanding colored point clouds of objects. It perceives object types, geometric structures, and appearance without concerns for ambiguous depth, occlusion, or viewpoint dependency. We collect a novel dataset comprising 660K simple and 70K complex point-text instruction pairs to enable a two-stage training strategy. To rigorously evaluate our model's perceptual abilities and its generalization capabilities, we establish two benchmarks: Generative 3D Object Classification and 3D Object Captioning, assessed through three different evaluation methods.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/point-llm-point-clouds</link>
+      <guid>https://www.lqdev.me/bookmarks/point-llm-point-clouds</guid>
+      <pubDate>2023-09-17 12:52 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>generativeai</category>
+      <category>multimodal</category>
+      <category>research</category>
+    </item>
+  </channel>
+</rss>

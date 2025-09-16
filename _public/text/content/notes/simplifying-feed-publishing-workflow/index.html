@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>I need to optimize my response publishing workflow - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>I need to optimize my response publishing workflow</h1><div class="content-meta"><div class="content-type">notes</div><time datetime="2024-01-18">January 18, 2024</time><p>Tags: workflow, publishing, blog, personalknowledgemanagement, pkm</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/notes/">← All notes</a> | <a href="https://www.lqdev.me/notes/simplifying-feed-publishing-workflow">View Full Version</a></p><div class="content"><p>I like to use my <a href="/feed/responses">response feed</a> to bookmark and reshare interesting content I find online. Typically my workflow looks like the following:</p>
+<pre><code class="language-mermaid">flowchart TD
+  A[&quot;Scroll through feed reader&quot;] --&gt; B[&quot;Open articles I want to read in a new tab&quot;]
+  B --&gt; C[&quot;Read articles&quot;]
+  C --&gt; D[&quot;Create a response file to publish on my website&quot;]
+  D --&gt; E[&quot;Capture interesting information from the article in the response file&quot;]
+  E --&gt; F[&quot;Publish the response&quot;]
+</code></pre>
+<p>The bottleneck I usually find is in the middle steps of creating a response file and capturing the relevant content. This usually happens as I'm reading the article. For a single file, it's not a big deal. Doing it for several can be time consuming, especially with the <a href="/notes/subscribed-to-1042-feeds-newsblur">number of feeds I subscribe to</a>.</p>
+<p>There's a few things I think could help here:</p>
+<ol>
+<li>Create one response file and do a daily link dump.</li>
+<li>Create a browser extension or system where I can:
+<ol>
+<li>Highlight text or content on a page</li>
+<li>Right-click or use a keyboard shortcut to create an entry for the content I highlighted</li>
+<li>Create an entry in a database somewhere which captures the URL of the page I'm looking at.</li>
+<li>I enter a few more details like the file name I want to use and response type</li>
+<li>When I'm done with my session, I can publish. This will use the database content to compose the content for my response and create a PR</li>
+</ol>
+</li>
+</ol>
+<p>The first option is simple but I don't like it because although most of the content I come across is tech related, I prefer having individual articles I can link to with their own tags to make it easier to build relationships.</p>
+<p>The second option sounds complex, but it's basically a web highlighting tool. I know there's a few out there already so maybe worth checking out.</p>
+<p>I'd prefer to build my own to tailor it specifically to what I want just like my website generator. However, it would mean that I'd have to spend some time thinking about how to implement it.</p>
+<p>It'd be a fun project though. Maybe worthwhile experimenting with building an AI agent to help me use the content I captured to nicely format the response.</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

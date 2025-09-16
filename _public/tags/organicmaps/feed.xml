@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - organicmaps</title>
+    <link>https://www.lqdev.me/tags/organicmaps</link>
+    <description>All content tagged with 'organicmaps' by Luis Quintanilla</description>
+    <lastBuildDate>2024-08-17 11:00 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Organic Maps removed from Google Play Store</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Last night Organic Maps was removed from the Play Store without any warnings or additional details due to &amp;quot;not meeting the requirements for the Family Program&amp;quot;. Compared to Google Maps and other maps apps rated for 3+ age, there are no ads or in-app purchases in Organic Maps. We have asked for an appeal.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The app is still available on &lt;a href="https://f-droid.org/en/packages/app.organicmaps/"&gt;F-Droid&lt;/a&gt;. Much better place for getting apps in my opinion.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/organic-maps-removed-play-store</link>
+      <guid>https://www.lqdev.me/responses/organic-maps-removed-play-store</guid>
+      <pubDate>2024-08-17 11:00 -05:00</pubDate>
+      <category>organicmaps</category>
+      <category>google</category>
+      <category>play</category>
+      <category>fdroid</category>
+      <category>opensource</category>
+      <category>osm</category>
+      <category>openstreetmaps</category>
+      <category>maps</category>
+      <category>app</category>
+      <category>store</category>
+    </item>
+  </channel>
+</rss>

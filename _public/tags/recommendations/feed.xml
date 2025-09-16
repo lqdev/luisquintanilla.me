@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - recommendations</title>
+    <link>https://www.lqdev.me/tags/recommendations</link>
+    <description>All content tagged with 'recommendations' by Luis Quintanilla</description>
+    <lastBuildDate>2024-03-19 22:53 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Looking for Discord server / community recommendations</title>
+      <description>&lt;![CDATA[&lt;p&gt;I finally decided to dust off my Discord. So far, I've joined several communities like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HuggingFace&lt;/li&gt;
+&lt;li&gt;LangChain&lt;/li&gt;
+&lt;li&gt;LlamaIndex&lt;/li&gt;
+&lt;li&gt;Racket&lt;/li&gt;
+&lt;li&gt;Virtual ML.NET&lt;/li&gt;
+&lt;li&gt;Shudder&lt;/li&gt;
+&lt;li&gt;ClubTwit&lt;/li&gt;
+&lt;li&gt;...and many others&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I've noticed that server / community discovery needs improvement, so I'm asking for your recommendations!&lt;/p&gt;
+&lt;p&gt;General topics I'm interested in:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AI&lt;/li&gt;
+&lt;li&gt;Machine Learning&lt;/li&gt;
+&lt;li&gt;Open Source&lt;/li&gt;
+&lt;li&gt;Software Development&lt;/li&gt;
+&lt;li&gt;.NET&lt;/li&gt;
+&lt;li&gt;F#&lt;/li&gt;
+&lt;li&gt;Open Web&lt;/li&gt;
+&lt;li&gt;IndieWeb&lt;/li&gt;
+&lt;li&gt;Fediverse&lt;/li&gt;
+&lt;li&gt;Lisp&lt;/li&gt;
+&lt;li&gt;Tech&lt;/li&gt;
+&lt;li&gt;Personal Finance&lt;/li&gt;
+&lt;li&gt;Podcasts&lt;/li&gt;
+&lt;li&gt;Books&lt;/li&gt;
+&lt;li&gt;Travel&lt;/li&gt;
+&lt;li&gt;Retro Tech&lt;/li&gt;
+&lt;li&gt;Retro Gaming&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;E-mail me your recommendations at contact@lqdev.me or send me a Webmention!&lt;/p&gt;
+&lt;p&gt;Thanks in advance.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/looking-for-discord-communities</link>
+      <guid>https://www.lqdev.me/notes/looking-for-discord-communities</guid>
+      <pubDate>2024-03-19 22:53 -05:00</pubDate>
+      <category>discord</category>
+      <category>community</category>
+      <category>recommendations</category>
+      <category>lazyweb</category>
+    </item>
+  </channel>
+</rss>

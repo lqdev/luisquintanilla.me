@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - microblog</title>
+    <link>https://www.lqdev.me/tags/microblog</link>
+    <description>All content tagged with 'microblog' by Luis Quintanilla</description>
+    <lastBuildDate>2025-09-12 21:05 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Geek To Live - Tumblelog</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;A blast from the past. Can't believe this post is still available.&lt;/p&gt;
+&lt;p&gt;Almost two decades later and it feels like we're still figuring out how to share and express ourselves online.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;These are the reasons most people abandon their personal weblog or never start one. But we all come across interesting tidbits online every day that we want to remember and share - links, photos, videos, even that side-splitting IM session you had with your co-worker. A new blog format, called a &amp;quot;tumblelog,&amp;quot; is a no-hassle, no-writing-required way to share those bits and maintain a personal site with the least possible commitment.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A new service called Tumblr can publish your tumblelog with minimal setup and for free.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/geek-to-live-tumblelog</link>
+      <guid>https://www.lqdev.me/responses/geek-to-live-tumblelog</guid>
+      <pubDate>2025-09-12 21:05 -05:00</pubDate>
+      <category>blog</category>
+      <category>tumblr</category>
+      <category>microblog</category>
+    </item>
+    <item>
+      <title>How I turned my blog into a social media hub</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...my blog has become a central hub for almost everything I write online, including nearly all my social media posts, links to my published work on other sites, and the occasional freestanding blog post. While this approach has a few trade-offs, I feel better about posting in the first place knowing that I’m doing it on my own terms.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;There’s also just something deeply satisfying about seeing a running feed of my own writing, on my own website, with my own design and presentation. A social network alone can’t replicate that, but the POSSE approach offers the best of both worlds.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I've enjoyed seeing over the past few weeks, as people seek new online platforms, the personal website is being rediscovered.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/how-i-turned-website-social-media-hub-newman</link>
+      <guid>https://www.lqdev.me/responses/how-i-turned-website-social-media-hub-newman</guid>
+      <pubDate>2024-12-05 19:22 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>social</category>
+      <category>microblog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>web</category>
+      <category>socialmedia</category>
+    </item>
+    <item>
+      <title>Mastodon instance working again</title>
+      <description>&lt;![CDATA[&lt;p&gt;After about a month of not being able to access my Mastodon instance, I'm so excited to have it working again!&lt;/p&gt;
+&lt;p&gt;Not sure what I did wrong with my upgrade to 4.3.0. Fortunately, the issues appears to have been on the frontend and the fix wasn't too involved.&lt;/p&gt;
+&lt;p&gt;Upgrading to the latest 4.3.1 fixed the issue I ran into during my last upgrade.&lt;/p&gt;
+&lt;p&gt;Thanks to my &lt;a href="https://www.lqdev.me/posts/rss-to-mastodon-posse-azure-logic-apps/"&gt;POSSE setup&lt;/a&gt;, I've been able to continue posting to my website and syndicating to Mastodon. Unfortunately, since the frontend wasn't working, I was unable to access my notifications. Because the mobile apps make use of the web frontend to log in, I couldn't use the mobile app either.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/mastodon-working-again-v-4-3-1</link>
+      <guid>https://www.lqdev.me/notes/mastodon-working-again-v-4-3-1</guid>
+      <pubDate>2024-11-18 17:34 -05:00</pubDate>
+      <category>mastodon</category>
+      <category>fediverse</category>
+      <category>sysadmin</category>
+      <category>selfhost</category>
+      <category>socialmedia</category>
+      <category>social</category>
+      <category>microblog</category>
+      <category>indieweb</category>
+      <category>posse</category>
+    </item>
+    <item>
+      <title>Leo.fm move to micro.blog</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;So cool to see you posting more on your own platform.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/leo-fm-moves-to-microblog</link>
+      <guid>https://www.lqdev.me/responses/leo-fm-moves-to-microblog</guid>
+      <pubDate>2024-11-10 14:27 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>microblog</category>
+      <category>twit</category>
+    </item>
+    <item>
+      <title>Shipping Tumblr and WordPress</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Since Automattic acquired Tumblr we’ve made it more efficient, grown its revenue, and worked to improve the platform. But there’s one part of the plan that we haven’t yet started, which is to run Tumblr on WordPress. I’m pleased to say we’re kicking off that project now!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A little late, but I can't express how much I love this.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We love Tumblr’s streamlined posting experience and its current product direction. We’re not changing that. We’re talking about running Tumblr’s backend on WordPress. You won’t even notice a difference from the outside.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Although it sounds outside the scope of the original plan, it would be amazing if the shared backend as well as the Tumblr publishing front-end made their way into the open-source version of WordPress.&lt;/p&gt;
+&lt;p&gt;That would open the door to self-hosted personal websites that also make it significantly easier to post content in smaller chunks like a microblog.&lt;/p&gt;
+&lt;p&gt;Pair that with ActivityPub integrations and you now have a connected web of individuals where the first place they post content to is their own website and for discovery / broader reach can also federate and post to other platforms that also support protocols like ActivityPub.&lt;/p&gt;
+&lt;p&gt;Can't wait to see how this project develops.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Do you yearn for the days when people owned their corner of the internet and expressed themselves in wild and wacky ways? Do you want to see an internet focused on creativity, art, and ideas instead of debating and dividing? Do you think content and data should be owned by authors and artists, instead of getting locked behind the closed platform of a mega-corporation? Do you want to build an internet where anyone with a story can tell it, and anyone with a product can sell it, regardless of income, gender, politics, language, or where they live in the world?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The answer to all of those is YES.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/shipping-wordpress-tumblr</link>
+      <guid>https://www.lqdev.me/responses/shipping-wordpress-tumblr</guid>
+      <pubDate>2024-09-05 22:15 -05:00</pubDate>
+      <category>wordpress</category>
+      <category>tumblr</category>
+      <category>personalweb</category>
+      <category>blogging</category>
+      <category>indieweb</category>
+      <category>microblog</category>
+      <category>posse</category>
+      <category>smallweb</category>
+      <category>automattic</category>
+    </item>
+    <item>
+      <title>Micro.blog - Podcast hosting for $5</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;This is cool! The Micro.blog premium plan has tons of great features as well.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Six years ago, we launched our $10/month plan with podcast hosting. Since then we’ve added several big features to the plan...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, I want to bring the podcast feature to more people, so we’re moving it down to the standard $5/month plan.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/microblog-podcast-hosting</link>
+      <guid>https://www.lqdev.me/responses/microblog-podcast-hosting</guid>
+      <pubDate>2024-05-30 21:27 -05:00</pubDate>
+      <category>microblog</category>
+      <category>podcast</category>
+      <category>indieweb</category>
+      <category>hosting</category>
+      <category>blog</category>
+      <category>blogging</category>
+    </item>
+    <item>
+      <title>Introducing the 100 Sways Project</title>
+      <description>&lt;![CDATA[&lt;p&gt;Introducing the 100 Sways project.&lt;/p&gt;
+&lt;p&gt;Over the next few months, I plan on creating artifacts like blog posts, newsletters, and websites using &lt;a href="https://sway.cloud.microsoft/"&gt;Microsoft Sway&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Bookmark the site &lt;a href="http://100sways.lqdev.tech"&gt;100sways.lqdev.tech&lt;/a&gt; and follow along!&lt;/p&gt;
+&lt;p&gt;Note: If you can't access the website, you can use the &lt;a href="https://sway.cloud.microsoft/aC19McbR3xcNo6s8"&gt;direct link (https://sway.cloud.microsoft/aC19McbR3xcNo6s8)&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;What is the 100 Sways project?&lt;/h2&gt;
+&lt;p&gt;This project is an attempt to show how you might use Sway as a publishing platform for content like newsletters, blog posts, and websites.&lt;/p&gt;
+&lt;p&gt;This project was inspired by &lt;a href="https://jamesg.blog/"&gt;James'&lt;/a&gt; &lt;a href="https://jamesg.blog/2024/02/19/personal-website-ideas/"&gt;100 things you can do on your personal website post&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Motivations&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Learn more about Microsoft Sway&lt;/li&gt;
+&lt;li&gt;Show how you can make the most use out of apps and services already included with your Microsoft Account&lt;/li&gt;
+&lt;li&gt;Show how easy it is to create and consume web content using Sway&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/introducing-100-sways-project</link>
+      <guid>https://www.lqdev.me/notes/introducing-100-sways-project</guid>
+      <pubDate>2024-03-24 16:33 -05:00</pubDate>
+      <category>microsoft</category>
+      <category>sway</category>
+      <category>indieweb</category>
+      <category>blog</category>
+      <category>website</category>
+      <category>microblog</category>
+      <category>blogging</category>
+      <category>content</category>
+      <category>m365</category>
+      <category>office</category>
+      <category>internet</category>
+      <category>web</category>
+      <category>microsoftoffice</category>
+      <category>microsoft365</category>
+    </item>
+    <item>
+      <title>One more blog post for 2023?</title>
+      <description>&lt;![CDATA[&lt;p&gt;Update from &lt;a href="https://www.lqdev.me/notes/weblogging-rewind-2023/"&gt;yesterday&lt;/a&gt;. 2023 is still not over. I think I can squeeze out at least one more post for the year 🙂.&lt;/p&gt;
+&lt;h2&gt;Blog post counts&lt;/h2&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;h2&gt;Note counts&lt;/h2&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;37&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;36&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/one-more-post-2023</link>
+      <guid>https://www.lqdev.me/notes/one-more-post-2023</guid>
+      <pubDate>2023-12-24 14:31 -05:00</pubDate>
+      <category>weblogging</category>
+      <category>quantifiedself</category>
+      <category>indieweb</category>
+      <category>stats</category>
+      <category>analytics</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>opensource</category>
+      <category>community</category>
+      <category>selfhost</category>
+      <category>fsharp</category>
+      <category>spotify</category>
+      <category>antennapod</category>
+      <category>microblog</category>
+      <category>analytics</category>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+    </item>
+    <item>
+      <title>(We)blogging Rewind 2023 Continued</title>
+      <description>&lt;![CDATA[&lt;p&gt;Yesterday I posted aggregate statistics about this website in the post &lt;a href="https://www.lqdev.me/notes/weblogging-rewind-2023/"&gt;(We)blogging Rewind 2023&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I thought it'd be cool to see which domains I referenced most in my responses. Here's the breakdown of the top 5.&lt;/p&gt;
+&lt;p&gt;Domain&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;github.com&lt;/p&gt;
+&lt;p&gt;15&lt;/p&gt;
+&lt;p&gt;huggingface.co&lt;/p&gt;
+&lt;p&gt;11&lt;/p&gt;
+&lt;p&gt;arxiv.org&lt;/p&gt;
+&lt;p&gt;10&lt;/p&gt;
+&lt;p&gt;openai.com&lt;/p&gt;
+&lt;p&gt;6&lt;/p&gt;
+&lt;p&gt;www.theverge.com&lt;/p&gt;
+&lt;p&gt;4&lt;/p&gt;
+&lt;p&gt;No surprise here given that AI was one of the top tags in my responses.&lt;/p&gt;
+&lt;p&gt;Updated script is here &lt;a href="https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics"&gt;stats.fsx&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/weblogging-rewind-2023-continued</link>
+      <guid>https://www.lqdev.me/notes/weblogging-rewind-2023-continued</guid>
+      <pubDate>2023-12-24 09:39 -05:00</pubDate>
+      <category>weblogging</category>
+      <category>quantifiedself</category>
+      <category>indieweb</category>
+      <category>stats</category>
+      <category>analytics</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>opensource</category>
+      <category>community</category>
+      <category>selfhost</category>
+      <category>fsharp</category>
+      <category>spotify</category>
+      <category>antennapod</category>
+      <category>microblog</category>
+      <category>analytics</category>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+    </item>
+    <item>
+      <title>(We)blogging Rewind 2023</title>
+      <description>&lt;![CDATA[&lt;p&gt;Inspired by &lt;a href="https://www.lqdev.me/notes/spotify-wrapped-2023"&gt;Spotify Wrapped&lt;/a&gt; and &lt;a href="https://www.lqdev.me/notes/antennapod-echo-2023"&gt;Antennapod Echo&lt;/a&gt;, I decided to look back at my activity on this website for 2023. Here is the &lt;a href="https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics"&gt;snippet&lt;/a&gt; I used to generate these metrics.&lt;/p&gt;
+&lt;h2&gt;Posts by Year&lt;/h2&gt;
+&lt;h3&gt;Blog&lt;/h3&gt;
+&lt;p&gt;Blog posts are my more formal, long-form content. This year, I published less blog posts than last year.&lt;/p&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;5&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;Part of that includes me getting in my head about what these posts &amp;quot;should be&amp;quot;. Historically, they have been detailed technical posts related to a project I've worked on like &lt;a href="https://www.lqdev.me/posts/receive-webmentions-fsharp-az-functions-fsadvent"&gt;Accept Webmentions using F#, Azure Functions, and RSS&lt;/a&gt;. I haven't stopped experimenting and tinkering, but because they aren't end-to-end solutions, I don't think of them as &amp;quot;blog post worthy&amp;quot;. That doesn't mean though that learnings and growth haven't come from them. In more recent blog posts like &lt;a href="https://www.lqdev.me/posts/ai-1999-1899"&gt;AI like it's 1999 or 1899&lt;/a&gt; and &lt;a href="https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023"&gt;Quick thoughts about Snapdragon Summit 2023&lt;/a&gt;, I've started experimenting more with just posting. In 2024, I want to be more flexible in my posting and not worry too much about whether the blog posts are &amp;quot;good enough&amp;quot;.&lt;/p&gt;
+&lt;h3&gt;Microblog&lt;/h3&gt;
+&lt;p&gt;This site also contains a microblog feed, one for &lt;a href="https://www.lqdev.me/feed"&gt;notes&lt;/a&gt; and another for &lt;a href="https://www.lqdev.me/feed/responses"&gt;responses&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Notes&lt;/h4&gt;
+&lt;p&gt;Notes tend to be original content that although can include links to external content, they are short-form and informal versions of blog posts. This post is an example of a note. This year, I posted less notes than last year.&lt;/p&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;33&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;36&lt;/p&gt;
+&lt;p&gt;Usually, when these notes start to get long, I turn them into blog posts. &lt;a href="https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023"&gt;Quick thoughts about Snapdragon Summit 2023&lt;/a&gt; is an example of that. However, I haven't set a criteria for what makes a note &amp;quot;long&amp;quot;. This post for example I think is getting to the &amp;quot;blog post&amp;quot; length. I can't tell you why though, it's just &amp;quot;vibes&amp;quot;. One of the benefits of starting with notes types of posts is that the frame of mind is more informal which lets me just write and post without thinking too much about what the post &amp;quot;should be&amp;quot;. In 2024, I want to continue using notes as the starting point for these types of posts. Maybe later in the future, I just merge them both.&lt;/p&gt;
+&lt;h4&gt;Responses&lt;/h4&gt;
+&lt;p&gt;Responses are reactions to content created / published by someone else. These can include bookmarks, replies, likes (star), and reposts (reshare). This year, I posted significantly more responses than last year.&lt;/p&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;216&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;146&lt;/p&gt;
+&lt;p&gt;I'm very happy with this, especially my bookmark use explained later. Not only am I happy because I'm actually making use of my website and the work I put in previous years that enabled me to publish all types of content but also because these responses create a log of my interactions with the internet over the years I can look back at.&lt;/p&gt;
+&lt;h2&gt;Responses by Type&lt;/h2&gt;
+&lt;p&gt;Looking deeper into my responses and breaking them down by type, bookmarks take up the top spot with more than half of my responses being bookmarks. That makes sense since I'm usually bookmarking articles, papers, and other content I come across on the internet.&lt;/p&gt;
+&lt;p&gt;Type&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;bookmark&lt;/p&gt;
+&lt;p&gt;151&lt;/p&gt;
+&lt;p&gt;reshare&lt;/p&gt;
+&lt;p&gt;48&lt;/p&gt;
+&lt;p&gt;reply&lt;/p&gt;
+&lt;p&gt;10&lt;/p&gt;
+&lt;p&gt;star&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;Let me start off with bookmarks. Bookmark style reponses on my website have slowly become my default capture system. Now, not everything I read and come across makes it onto my bookmarks. I'm experimenting with the first pass which I might just turn into another post. Generally, the things that are interesting or thought provoking, I post. Bookmark posts generally include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Post title - Gives me a readable way to see what the post is about&lt;/li&gt;
+&lt;li&gt;Source link - Provides a direct link to the source material&lt;/li&gt;
+&lt;li&gt;Tags - Enable me to index and organize related topics&lt;/li&gt;
+&lt;li&gt;Quotes / Notes - Provide highlights and things I thought were interesting about the post&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When all these pieces come together, they provide me with distilled bits of information that are organized in a way that enable quick retrieval and action when needed.&lt;/p&gt;
+&lt;p&gt;Moving on to other posts. Since the post type is effectively just metadata, the line between reshare, star, and reply is often blurry. It's not as blurry with replies because I use that to draft replies / comments to other posts and content on the internet. My &lt;a href="https://www.lqdev.me/responses/tracy-durnell-20-blogging-anniversary"&gt;Tracy Durnell 20th anniversary of blogging&lt;/a&gt; post is an example of a reply. In these examples, the replies were directed at someone. However, for star and reshare, I'm still trying to understand where they fit in my flow. Today other than visually expressing the post type, the role these post types serve is webmentions. However, I'm not sure how many websites I create these post types for actually use webmentions. Maybe some analysis worth doing for 2025.&lt;/p&gt;
+&lt;h2&gt;Responses by Tag (Top 5)&lt;/h2&gt;
+&lt;p&gt;AI and LLMs took the top spots which I think in general aligns with what was top of mind for everyone in 2023.&lt;/p&gt;
+&lt;p&gt;Tag&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;ai&lt;/p&gt;
+&lt;p&gt;104&lt;/p&gt;
+&lt;p&gt;llm&lt;/p&gt;
+&lt;p&gt;42&lt;/p&gt;
+&lt;p&gt;untagged&lt;/p&gt;
+&lt;p&gt;41&lt;/p&gt;
+&lt;p&gt;opensource&lt;/p&gt;
+&lt;p&gt;31&lt;/p&gt;
+&lt;p&gt;internet&lt;/p&gt;
+&lt;p&gt;17&lt;/p&gt;
+&lt;p&gt;Not much commentary here. Tags have helped me organize related content on my website. I do think that I get too high level with my tags and could do a better job of being more specific. Ultimately, there's no limit to the number of tags I can use so why not be liberal with it. The only self-imposed limitation I've placed on myself is the first 3 tags should be the most important because they're the ones that show up when my articles are automatically cross-posted to Mastodon.&lt;/p&gt;
+&lt;h2&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;Overall, I'm happy with my activity and heavy use of my own website this year. I plan to make even more use of the bookmark type of posts in 2024 and plan on posting more whether that's as a note or blog post, just posting is something I want to work towards.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/weblogging-rewind-2023</link>
+      <guid>https://www.lqdev.me/notes/weblogging-rewind-2023</guid>
+      <pubDate>2023-12-23 02:28 -05:00</pubDate>
+      <category>weblogging</category>
+      <category>quantifiedself</category>
+      <category>indieweb</category>
+      <category>stats</category>
+      <category>analytics</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>opensource</category>
+      <category>community</category>
+      <category>selfhost</category>
+      <category>fsharp</category>
+      <category>spotify</category>
+      <category>antennapod</category>
+      <category>microblog</category>
+      <category>analytics</category>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+    </item>
+    <item>
+      <title>Personal Feed - One Year In</title>
+      <description>&lt;![CDATA[&lt;p&gt;It's been a year since I created this feed and &lt;a href="https://www.lqdev.me/notes/hello-world"&gt;started posting&lt;/a&gt; mainly on my website. Since then, I've:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Used a &lt;a href="https://www.lqdev.me/notes/lqdevme-redirect"&gt;shorter domain&lt;/a&gt; to redirect to my website domain.&lt;/li&gt;
+&lt;li&gt;Created &lt;a href="https://www.lqdev.me/posts/automate-yaml-front-matter-vs-code-snippets/"&gt;VS Code snippets&lt;/a&gt; to simplify metadata tagging.&lt;/li&gt;
+&lt;li&gt;Used &lt;a href="https://www.lqdev.me/notes/surface-duo-blogging-github-dev"&gt;github.dev&lt;/a&gt; as the main interface for authoring and editing posts. For longer posts, I use VS Code locally but for these smaller microblog-style posts, github.dev makes it really easy.&lt;/li&gt;
+&lt;li&gt;Syndicated posts to Twitter and &lt;a href="https://www.lqdev.me/notes/mastodon-posse-enabled"&gt;Mastodon&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Created a &lt;a href="https://www.lqdev.me/feed/responses"&gt;response feed&lt;/a&gt; for interactions like replies, reshares (repost), and likes (favorites) with support for sending &lt;a href="https://www.lqdev.me/notes/webmentions-partially-implemented/"&gt;Webmentions&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Created &lt;a href="https://www.lqdev.me/feed"&gt;RSS feeds&lt;/a&gt; for each of my feeds.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It hasn't happened overnight. Instead, it's been the result of small incremental efforts over time.&lt;/p&gt;
+&lt;p&gt;Overall, I don't think I've posted any more or less than I do on other platforms.&lt;/p&gt;
+&lt;p&gt;What I have enjoyed the most though has been:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Learning.&lt;/li&gt;
+&lt;li&gt;Building the tools and processes to author and share content.&lt;/li&gt;
+&lt;li&gt;Owning my content. My website acts as the single source of truth.&lt;/li&gt;
+&lt;li&gt;Not requiring others to have or create accounts on individual platforms to access content.&lt;/li&gt;
+&lt;li&gt;Choosing how I author content. I'm sure this post is way over the 280 character limit and if there's a typo, I can just edit the post and republish the website 🙂&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Going forward, I plan to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Update RSS feeds to include post content, not just link to the post.&lt;/li&gt;
+&lt;li&gt;Accept Webmentions. I'm about halfway done with the main parts of my &lt;a href="https://github.com/lqdev/luisquintanilla.me/blob/main/_scratch/receive-web-mentions.md"&gt;implementation&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Implement tags for easier discoverability / search.&lt;/li&gt;
+&lt;li&gt;Consolidate metadata for posts (articles, microblogs, responses).&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/feed-one-year</link>
+      <guid>https://www.lqdev.me/notes/feed-one-year</guid>
+      <pubDate>09/29/2022 10:55 -05:00</pubDate>
+      <category>microblog</category>
+      <category>blog</category>
+      <category>feed</category>
+      <category>rss</category>
+      <category>indieweb</category>
+      <category>openweb</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>Hello World</title>
+      <description>&lt;![CDATA[&lt;p&gt;Hello World! First post in the personal feed.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/hello-world</link>
+      <guid>https://www.lqdev.me/notes/hello-world</guid>
+      <pubDate>09/29/2021 07:16 PM -05:00</pubDate>
+      <category>blog</category>
+      <category>microblog</category>
+      <category>indieweb</category>
+      <category>internet</category>
+      <category>feed</category>
+      <category>rss</category>
+    </item>
+  </channel>
+</rss>

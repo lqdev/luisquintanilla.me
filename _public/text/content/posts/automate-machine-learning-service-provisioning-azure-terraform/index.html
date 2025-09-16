@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Automating Resource Provisioning for Machine Learning in Azure with Cognitive Services and Terraform - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Automating Resource Provisioning for Machine Learning in Azure with Cognitive Services and Terraform</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2019-01-06">January 6, 2019</time><p>Tags: azure, cognitive services, terraform, machine learning, cloud</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/automate-machine-learning-service-provisioning-azure-terraform">View Full Version</a></p><div class="content"><h2>Introduction</h2>
+<p>Resources in the cloud, particularly Azure can be created in several ways some of which include Powershell, Azure CLI, Azure Portal and programatically through code. Another tool that can be leveraged to create resources in Azure is <a href="https://www.terraform.io/">Terraform</a>. Terraform via configuration files can build and manage infrastructure across various providers such as AWS, Azure and Google. One of the benefits of Terraform is that it allows infastructure and resources to be defined as code. The configuration files serve as a blueprint as well as an execution plan of what needs to be provisioned in the cloud. Not only does this allow for automation and removal of human error in configurations but it also serves as a way to document the different changes infrastructure has gone through thoroughout the application lifecycle. The purpose of this writeup is to show how to create an environment using Terraform for an application that utilizes Azure Cognitive Services. Our application will create a Computer Vision service that we can then use via HTTP requests. Source code for this writeup can be found at the following <a href="https://github.com/lqdev/azcognitiveserviceterraformsample">link</a>.</p>
+<h1>Prerequisites</h1>
+<p>This writeup was built and tested using a PC running Ubuntu 18.04 but should work on both Windows and Mac. It also assumes that you have an Azure account as well as Azure CLI and Terraform CLI installed. Below are links to get all of the resources needed:</p>
+<ul>
+<li><a href="https://azure.microsoft.com/en-us/free/">Azure Account</a></li>
+<li><a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest">Azure CLI</a></li>
+<li><a href="https://www.terraform.io/downloads.html">Terraform CLI</a></li>
+</ul>
+<h2>Log into Azure CLI</h2>
+<p>The first thing we need to do is authenticate with Azure CLI so that Terraform can use your account information to create services. In the terminal, enter the following command:</p>
+<pre><code class="language-bash">az login
+</code></pre>
+<h2>Create Terraform Resource Configuration Script</h2>
+<p>Once we're logged in, it's time to create the configuration file that Terraform will use to provision our services. First we'll need to create a directory for our application:</p>
+<pre><code class="language-bash">mkdir azcognitiveserviceterraformsample
+</code></pre>
+<p>Then, we'll enter that directory and create our configuration file:</p>
+<pre><code class="language-bash">cd azcognitiveserviceterraformsample
+touch azcomputervision.tf
+</code></pre>
+<p>Using your preferred text editor, open the newly created <code>azcomputervision.tf</code> file and begin editing.</p>
+<h3>Defining the Provider</h3>
+<p>At the top of our file we'll want to configure our provider. This tells Terraform where our resources will be deployed to. In the <code>azcomputervision.tf</code> file enter the following:</p>
+<pre><code class="language-bash"># Configure Azure Provider
+provider &quot;azurerm&quot; {
+  version=&quot;=1.20.0&quot;
+}
+</code></pre>
+<p>Because we've already authenticated with the Azure CLI, there's no need to provide credentials. The only thing we need to do is specify the provider name and the version of the provider that will be used by the configuration file. For more details on how to configure the Azure provider, visit this <a href="https://www.terraform.io/docs/providers/azurerm/index.html">link</a>.</p>
+<h3>Create Resource Group</h3>
+<p>After defining the provider, it's time to create a Resource Group that will contain the resources we create. In the configuration file, under the provider definition, enter the following:</p>
+<pre><code class="language-bash"># Create Resource Group
+resource &quot;azurerm_resource_group&quot; &quot;terraform_cognitive_sample&quot; {
+  name=&quot;terraform_cognitive_sample&quot;
+  location=&quot;East US&quot;
+}
+</code></pre>
+<p>This defines the name of our resource groups as well as where it is hosted. The syntax for resources looks like the snippet below where the <code>type</code> is the type of resources as required by Terraform and the <code>name</code> is any value of your choosing.</p>
+<pre><code class="language-bash">resource &quot;type&quot; &quot;name&quot; {
+# Properties
+}
+</code></pre>
+<p>For more details on Resource Group configuration visit this <a href="https://www.terraform.io/docs/providers/azurerm/d/resource_group.html">link</a>.</p>
+<h3>Create Azure Cognitive Service</h3>
+<p>With our resource group defined, it's time to define our Cognitive Service resource. Below our Resource Group definition, enter the following:</p>
+<pre><code class="language-bash">resource &quot;azurerm_cognitive_account&quot; &quot;computer_vision_service&quot; {
+  name=&quot;computer_vision_service&quot;
+  resource_group_name=&quot;${azurerm_resource_group.terraform_cognitive_sample.name}&quot;
+  location=&quot;${azurerm_resource_group.terraform_cognitive_sample.location}&quot;
+  kind=&quot;ComputerVision&quot;
+  
+  sku {
+      name=&quot;F0&quot;
+      tier=&quot;Free&quot;
+  }
+}
+</code></pre>
+<p>Like our Resource Group, we provide a name for our service. Additional properties we need to provide are the name of the Resource Group and the location of where to deploy our service to. Because this has been previously defined in our Resource Group, Terraform allows us to access the configuration values as variables. Additionally, we need to specify the <code>kind</code> of cognitive service to deploy. In our case it will be the Computer Vision service so we use <code>ComputerVision</code>. The last thing we need to do is specify the pricing tier to use. We'll be using the free tier for this project. There are several services and tiers to choose from. To get more details on acceptable values for these properties visit the following <a href="https://www.terraform.io/docs/providers/azurerm/r/cognitive_account.html">link</a>.</p>
+<h3>Store Output Variables</h3>
+<p>When our application is deployed, in order to use it we'll need the endpoint to where we will be making HTTP requests to. This can be persisted by Terraform by defining an output variable inside of the configuration file. To get the enpoint of our cognitive service, enter the following in the <code>azcomputervision.tf</code> file:</p>
+<pre><code class="language-bash">output &quot;computer_vision_endpoint&quot; {
+    value=&quot;${azurerm_cognitive_account.computer_vision_service.endpoint}&quot;
+}
+</code></pre>
+<p>Once finished, the <code>azcomputervision.tf</code> file should look like this:</p>
+<pre><code class="language-bash"># Configure Azure Provider
+provider &quot;azurerm&quot; {
+  version=&quot;=1.20.0&quot;
+}
+
+# Create Resource Group
+resource &quot;azurerm_resource_group&quot; &quot;terraform_cognitive_sample&quot; {
+  name=&quot;terraform_cognitive_sample&quot;
+  location=&quot;East US&quot;
+}
+
+# Create Cognitive Service
+resource &quot;azurerm_cognitive_account&quot; &quot;computer_vision_service&quot; {
+  name=&quot;computer_vision_service&quot;
+  resource_group_name=&quot;${azurerm_resource_group.terraform_cognitive_sample.name}&quot;
+  location=&quot;${azurerm_resource_group.terraform_cognitive_sample.location}&quot;
+  kind=&quot;ComputerVision&quot;
+  
+  sku {
+      name=&quot;F0&quot;
+      tier=&quot;Free&quot;
+  }
+}
+
+# Output Cognitive Services Endpoint
+output &quot;computer_vision_endpoint&quot; {
+    value=&quot;${azurerm_cognitive_account.computer_vision_service.endpoint}&quot;
+}
+</code></pre>
+<h2>Provision Resources</h2>
+<h3>Initialize Terraform Resources</h3>
+<p>When provisioning resources we first want to get the necessary plugins needed by Terraform to create such resources. Using Terraform CLI, enter the following in the terminal:</p>
+<pre><code class="language-bash">terraform init
+</code></pre>
+<h3>Check Execution Plan</h3>
+<p>Although this is a single resource provision, it's always a good idea to see the execution plan of the resources that will be created. To do so, enter the following command in the terminal:</p>
+<pre><code class="language-bash">terraform plan
+</code></pre>
+<p>The output should look similar to the content below:</p>
+<pre><code class="language-text">Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  + azurerm_cognitive_account.computer_vision_service
+      id:                  &lt;computed&gt;
+      endpoint:            &lt;computed&gt;
+      kind:                &quot;ComputerVision&quot;
+      location:            &quot;eastus&quot;
+      name:                &quot;computer_vision_service&quot;
+      resource_group_name: &quot;terraform_cognitive_sample&quot;
+      sku.#:               &quot;1&quot;
+      sku.0.name:          &quot;F0&quot;
+      sku.0.tier:          &quot;Free&quot;
+      tags.%:              &lt;computed&gt;
+
+  + azurerm_resource_group.terraform_cognitive_sample
+      id:                  &lt;computed&gt;
+      location:            &quot;eastus&quot;
+      name:                &quot;terraform_cognitive_sample&quot;
+      tags.%:              &lt;computed&gt;
+
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+</code></pre>
+<h2>Create Resources</h2>
+<p>It's now time to create our Computer Vision resource. Enter the following command in the terminal:</p>
+<pre><code class="language-bash">terraform apply
+</code></pre>
+<p>You will be asked to review the execution plan once again. If everything looks good, type <code>yes</code> in the terminal to continue with the creation of resources. If everything deployed successfully, you should be able to see it in Azure.</p>
+<h2>Test Provisioned Resources</h2>
+<p>Using Azure CLI, enter the following command in the terminal to see whether your resource was deployed:</p>
+<pre><code class="language-bash">az resource list --resource-group terraform_cognitive_sample --output table
+</code></pre>
+<p>That command will output something similar to the content below:</p>
+<pre><code class="language-bash">Name                     ResourceGroup               Location    Type                                  Status
+-----------------------  --------------------------  ----------  ------------------------------------  --------
+computer_vision_service  terraform_cognitive_sample  eastus      Microsoft.CognitiveServices/accounts
+</code></pre>
+<h3>Get Resource Endpoint and Keys</h3>
+<p>In order to make a request to our service, we need both the endpoint and a key to authenticate our request.</p>
+<p>To get the endpoint, we can use Terraform CLI to extract the output variable defined in our configuration file. We can do that by using the following command in the terminal:</p>
+<pre><code class="language-bash">terraform output computer_vision_endpoint
+</code></pre>
+<p>Save the output value somewhere because that's what will be used to make a request to the Computer Vision Cognitive Service.</p>
+<p>To get the keys, we'll use Azure CLI. In the terminal, enter:</p>
+<pre><code class="language-bash">az cognitiveservices account keys list --resource-group terraform_cognitive_sample --name computer_vision_service
+</code></pre>
+<p>This will output the keys of your deployed service.</p>
+<pre><code class="language-json">{
+  &quot;key1&quot;: &quot;&lt;YOUR-KEY-1&gt;&quot;,
+  &quot;key2&quot;: &quot;&lt;YOUR-KEY-2&gt;&quot;
+}
+</code></pre>
+<h3>Make HTTP Request</h3>
+<p>Either key can be used to make requests. To test the service, I'll be using an image from the web. All you need is to get the URL for that image. The image I will be using can be found at this URL <code>https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg</code>. Using cURL, I will make a POST request to the endpoint with the key provided.</p>
+<p>One thing to note is that the endpoint is generic to many Cognitive Services. Therefore, we need to append to the path which service we will be using and the action we want to perform. In our case, we'll append the following path the the endpoint <code>/vision/v1.0/describe</code>. For more details, visit the Computer Vision API documentation at this <a href="https://eastus.dev.cognitive.microsoft.com/docs/services/56f91f2d778daf23d8ec6739/operations/56f91f2e778daf14a499e1fe">link</a>.</p>
+<p>To make the request, enter the following into the terminal where <code>&lt;YOUR-KEY&gt;</code> is one of the keys of your Computer Vision service.</p>
+<pre><code class="language-bash">curl -H 'Ocp-Apim-Subscription-Key: &lt;YOUR-KEY&gt;' -H &quot;Content-type: application/json&quot; -d '{&quot;url&quot;:&quot;https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg&quot;}' 'https://eastus.api.cognitive.microsoft.com/vision/v1.0/describe'
+</code></pre>
+<p>If on Windows, you might want to try using a REST client such as POSTMAN or Insomnia.</p>
+<p>If the request is successful, the output should be similar to the following:</p>
+<pre><code class="language-json">{
+    &quot;description&quot;:{
+        &quot;tags&quot;:[
+            &quot;mountain&quot;,&quot;building&quot;,&quot;city&quot;,&quot;sitting&quot;,&quot;table&quot;,&quot;view&quot;,&quot;full&quot;,&quot;filled&quot;,&quot;large&quot;,&quot;old&quot;,&quot;skyscraper&quot;,&quot;many&quot;,&quot;stacked&quot;,&quot;water&quot;,&quot;room&quot;,&quot;white&quot;
+        ],
+        &quot;captions&quot;:[
+            {
+                &quot;text&quot;:&quot;a view of a city&quot;,&quot;confidence&quot;:0.927147938733121
+            }
+        ]
+    },
+    &quot;requestId&quot;:&quot;a9aaf779-2aa1-4012-b1e0-2d2d9c20c6a5&quot;,
+    &quot;metadata&quot;:{
+        &quot;width&quot;:846,
+        &quot;height&quot;:1270,
+        &quot;format&quot;:&quot;Jpeg&quot;
+    }
+}
+</code></pre>
+<h2>Conclusion</h2>
+<p>In this writeup I went over how to create a Terraform configuration file for automating the creation of a Computer Vision Cognitive Service resource in Azure. Although this is a simple example, using the same concepts, more complex environments and infrastructure can be provisioned just as seamlessly in a safe and efficient manner. An example of how to extend this application would be to provision an Azure Storage Account as well as an Azure Function application that utilizes the Computer Vision Cognitive Service to automatically classify photos when they are uploaded to an Azure Storage container. In such scenario, the benefits of automation and documentation that Terraform provides can leveraged to a greater extent.</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

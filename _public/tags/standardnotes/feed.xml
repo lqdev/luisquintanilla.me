@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - standardnotes</title>
+    <link>https://www.lqdev.me/tags/standardnotes</link>
+    <description>All content tagged with 'standardnotes' by Luis Quintanilla</description>
+    <lastBuildDate>2024-04-10 22:35 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Proton and Standard Notes are joining forces </title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...today, we’re happy to announce that Standard Notes will also join us to advance our shared mission.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Both Proton and Standard Notes share a strong commitment to our communities, so Standard Notes will remain open source, freely available, and fully supported. Prices are not changing, and if you have a current subscription to Standard Notes, it will continue to be honored. Proton aspires to do the right thing and be a responsible home for open-source projects, and just as we did with SimpleLogin, we are committed to preserving what makes Standard Notes special and much loved.&lt;br /&gt;
+&lt;br&gt;
+In the coming months, we hope to find ways to make Standard Notes more easily accessible to the Proton community. This way, in addition to protecting your email, calendar, files, passwords, and online activity, you can also protect your notes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is another exciting acquisition! I mainly use org-mode in Emacs for note taking. However, I love the ecosystem Proton is building with their security and privacy focused set of collaborative software offerings.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/proton-acquires-standard-notes</link>
+      <guid>https://www.lqdev.me/responses/proton-acquires-standard-notes</guid>
+      <pubDate>2024-04-10 22:35 -05:00</pubDate>
+      <category>proton</category>
+      <category>standardnotes</category>
+      <category>notetaking</category>
+      <category>security</category>
+      <category>privacy</category>
+      <category>email</category>
+      <category>notes</category>
+    </item>
+  </channel>
+</rss>

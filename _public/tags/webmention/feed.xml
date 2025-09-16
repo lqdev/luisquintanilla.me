@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - webmention</title>
+    <link>https://www.lqdev.me/tags/webmention</link>
+    <description>All content tagged with 'webmention' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-21 19:15 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Webmentions are back</title>
+      <description>&lt;![CDATA[&lt;p&gt;Nice to see my GitHub Actions back to green after fixing my script to send webmentions.&lt;/p&gt;
+&lt;p&gt;Now to discover more amazing content I can link out to.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/webmentions-are-back</link>
+      <guid>https://www.lqdev.me/notes/webmentions-are-back</guid>
+      <pubDate>2025-08-21 19:15 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>webmention</category>
+      <category>socialweb</category>
+    </item>
+  </channel>
+</rss>

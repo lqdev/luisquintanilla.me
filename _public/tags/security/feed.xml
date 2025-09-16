@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - security</title>
+    <link>https://www.lqdev.me/tags/security</link>
+    <description>All content tagged with 'security' by Luis Quintanilla</description>
+    <lastBuildDate>2024-04-10 22:35 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Proton and Standard Notes are joining forces </title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...today, we’re happy to announce that Standard Notes will also join us to advance our shared mission.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Both Proton and Standard Notes share a strong commitment to our communities, so Standard Notes will remain open source, freely available, and fully supported. Prices are not changing, and if you have a current subscription to Standard Notes, it will continue to be honored. Proton aspires to do the right thing and be a responsible home for open-source projects, and just as we did with SimpleLogin, we are committed to preserving what makes Standard Notes special and much loved.&lt;br /&gt;
+&lt;br&gt;
+In the coming months, we hope to find ways to make Standard Notes more easily accessible to the Proton community. This way, in addition to protecting your email, calendar, files, passwords, and online activity, you can also protect your notes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is another exciting acquisition! I mainly use org-mode in Emacs for note taking. However, I love the ecosystem Proton is building with their security and privacy focused set of collaborative software offerings.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/proton-acquires-standard-notes</link>
+      <guid>https://www.lqdev.me/responses/proton-acquires-standard-notes</guid>
+      <pubDate>2024-04-10 22:35 -05:00</pubDate>
+      <category>proton</category>
+      <category>standardnotes</category>
+      <category>notetaking</category>
+      <category>security</category>
+      <category>privacy</category>
+      <category>email</category>
+      <category>notes</category>
+    </item>
+    <item>
+      <title>Introducing the Proton Mail desktop app </title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we’re excited to broaden the horizons of secure communication by launching the Proton Mail desktop app. Anyone can now use the new Proton Mail desktop app for Windows and macOS, with a Linux version in beta.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;With the new Proton Mail desktop apps, you get a dedicated email experience, allowing you to enjoy all the productivity innovations of our web app, allowing you to go through your emails and events faster without the potential distractions that pop up anytime you open your browser. And, of course, your privacy remains protected at all times.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-protonmail-desktop-app</link>
+      <guid>https://www.lqdev.me/responses/introducing-protonmail-desktop-app</guid>
+      <pubDate>2024-03-15 20:06 -05:00</pubDate>
+      <category>email</category>
+      <category>proton</category>
+      <category>desktop</category>
+      <category>app</category>
+      <category>privacy</category>
+      <category>security</category>
+    </item>
+    <item>
+      <title>When should I check in stranger's luggage?</title>
+      <description>&lt;![CDATA[&lt;p&gt;I was sitting at the airport waiting to board my flight and over the PA system, the usual &amp;quot;see something, say something&amp;quot; security announcements were going off.&lt;/p&gt;
+&lt;p&gt;Although I've heard these many times before, this time for some reason there's one that caught my attention and got me thinking. I don't remember the exact words, but basically the gist of it said something like, &amp;quot;If anyone asks you to check in baggage other than your own, do not accept it&amp;quot;.&lt;/p&gt;
+&lt;p&gt;I barely even want to deal with my own bags. Why would I want to deal with someone else's bag?&lt;/p&gt;
+&lt;p&gt;I've been trying to visualize scenarios where:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Someone would come up to you and ask you to check in THEIR luggage&lt;/li&gt;
+&lt;li&gt;You would accept&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Maybe in scenarios where you're traveling with friends or family? In the case of family, maybe someone doesn't have a carry-on and if there's an extra bag that's small enough to be considered carry-on they'll &amp;quot;claim&amp;quot; it as their carry-on to not pay the extra fees. Still though, that's not checking it in. I'm just having a hard time seeing it.&lt;/p&gt;
+&lt;p&gt;Putting this out there ahead of time - no, stranger, I will not check in your bag.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/checking-in-strangers-luggage</link>
+      <guid>https://www.lqdev.me/notes/checking-in-strangers-luggage</guid>
+      <pubDate>2024-03-11 17:57 -05:00</pubDate>
+      <category>question</category>
+      <category>airport</category>
+      <category>security</category>
+      <category>fun</category>
+    </item>
+    <item>
+      <title>Keep your phone number private with Signal usernames</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Signal’s mission and sole focus is private communication. For years, Signal has kept your messages private, your profile information (like your name and profile photo) private, your contacts private, and your groups private – among much else. Now we’re taking that one step further, by making your phone number on Signal more private.&lt;br /&gt;
+&lt;br&gt;
+Here’s how:&lt;br /&gt;
+&lt;br&gt;
+New default: Your phone number will no longer be visible to everyone in Signal...&lt;br /&gt;
+&lt;br&gt;
+Connect without sharing your phone number...&lt;br /&gt;
+&lt;br&gt;
+Control who can find you on Signal by phone number...&lt;br /&gt;
+&lt;br&gt;
+Right now, these options are in beta, and will be rolling out to everyone in the coming weeks.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/signal-usernames</link>
+      <guid>https://www.lqdev.me/responses/signal-usernames</guid>
+      <pubDate>2024-02-20 17:01 -05:00</pubDate>
+      <category>signal</category>
+      <category>privacy</category>
+      <category>security</category>
+      <category>osint</category>
+      <category>messaging</category>
+    </item>
+    <item>
+      <title>StatiCrypt: Protected Posts on a Static Site</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...I was longing for a way to do friends-only blog posts on the open web, today I came across Stati­Crypt , an open-source utility that lets you encrypt static HTML pages behind a password.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/staticrypt-protected-posts-static-site-jayless</link>
+      <guid>https://www.lqdev.me/responses/staticrypt-protected-posts-static-site-jayless</guid>
+      <pubDate>2024-02-17 12:27 -05:00</pubDate>
+      <category>staticsite</category>
+      <category>web</category>
+      <category>blogs</category>
+      <category>community</category>
+      <category>openweb</category>
+      <category>security</category>
+      <category>privacy</category>
+    </item>
+    <item>
+      <title>UNREDACTED Magazine Issue 006</title>
+      <description>&lt;![CDATA[[reshare] &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://inteltechniques.com/magazine.html"&gt;https://inteltechniques.com/magazine.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://inteltechniques.com/issues/006.pdf"&gt;https://inteltechniques.com/issues/006.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/unredacted-magazine-issue-006</link>
+      <guid>https://www.lqdev.me/responses/unredacted-magazine-issue-006</guid>
+      <pubDate>2024-01-31 21:24 -05:00</pubDate>
+      <category>osint</category>
+      <category>magazine</category>
+      <category>unredacted</category>
+      <category>privacy</category>
+      <category>security</category>
+    </item>
+    <item>
+      <title>LeftoverLocals: Listening to LLM responses through leaked GPU local memory</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We are disclosing LeftoverLocals: a vulnerability that allows recovery of data from GPU local memory created by another process on Apple, Qualcomm, AMD, and Imagination GPUs. LeftoverLocals impacts the security posture of GPU applications as a whole, with particular significance to LLMs and ML models run on impacted GPU platforms. By recovering local memory—an optimized GPU memory region—we were able to build a PoC where an attacker can listen into another user’s interactive LLM session (e.g., llama.cpp) across process or container boundaries&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/lefoverlocals-llm-responses-leaked-gpu-memory</link>
+      <guid>https://www.lqdev.me/responses/lefoverlocals-llm-responses-leaked-gpu-memory</guid>
+      <pubDate>2024-01-16 20:16 -05:00</pubDate>
+      <category>security</category>
+      <category>llm</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>Easy Ways to Improve Your Privacy &amp; Security in 2024</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Every year, I like to remind everyone to go back to the basics. For those who are new to privacy and security and may be trying to create some new, positive habits, this serves as a great entry point. For veteran privacy enthusiasts, the basics form our foundation for more advanced techniques later, making it imperative to ensure we cover all those bases. So in that spirit, let’s all pause – wherever we are in our privacy journeys – to do a quick check and make sure we’ve got the basics covered. If you’re one of those new people I mentioned, welcome! But also know that this post is packed with information, so try not to get overwhelmed. Maybe bookmark this post and do one thing per day or something like that.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Strong Passwords...&lt;br /&gt;
+&lt;br&gt;
+Multi-Factor Authentication (MFA)...&lt;br /&gt;
+&lt;br&gt;
+Regular Software Updates...&lt;br /&gt;
+&lt;br&gt;
+Secure Your Wi-Fi Network...&lt;br /&gt;
+&lt;br&gt;
+Be Cautious with Communications...&lt;br /&gt;
+&lt;br&gt;&lt;br /&gt;
+Review App Permissions...&lt;br /&gt;
+&lt;br&gt;
+Review Your Account Settings...&lt;br /&gt;
+&lt;br&gt;
+Secure Browsing Habits...&lt;br /&gt;
+&lt;br&gt;
+Device Security...&lt;br /&gt;
+&lt;br&gt;
+Review Financial Statements...&lt;br /&gt;
+&lt;br&gt;
+Educate Yourself...&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/easy-ways-improve-privacy-security-2024</link>
+      <guid>https://www.lqdev.me/responses/easy-ways-improve-privacy-security-2024</guid>
+      <pubDate>2024-01-15 16:54 -05:00</pubDate>
+      <category>privacy</category>
+      <category>security</category>
+    </item>
+    <item>
+      <title>Creating the First Confidential GPUs</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The team at NVIDIA brings confidentiality and integrity to user code and data for accelerated computing.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/creating-first-confidential-gpus</link>
+      <guid>https://www.lqdev.me/bookmarks/creating-first-confidential-gpus</guid>
+      <pubDate>2023-09-28 20:59 -05:00</pubDate>
+      <category>ai</category>
+      <category>security</category>
+      <category>privacy</category>
+      <category>gpu</category>
+    </item>
+    <item>
+      <title>The AI Attack Surface Map v1.0</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;&lt;img src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/asset/file/29651bf8-3dd7-4c94-90e4-0bab3398db60/ai-attack-surface-categories-miessler-1.png" class="img-fluid" alt="AI Surface Attack Map" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/ai-attack-surface-map-v1</link>
+      <guid>https://www.lqdev.me/bookmarks/ai-attack-surface-map-v1</guid>
+      <pubDate>2023-09-28 20:45 -05:00</pubDate>
+      <category>ai</category>
+      <category>security</category>
+      <category>cybersecurity</category>
+    </item>
+    <item>
+      <title>The Atlantic’s Guide to Privacy</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Sponsored post, but it's still a good list with guidance and suggestions for common questions.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/atlantic-privacy-guide-2023</link>
+      <guid>https://www.lqdev.me/responses/atlantic-privacy-guide-2023</guid>
+      <pubDate>2023-09-17 13:03 -05:00</pubDate>
+      <category>privacy</category>
+      <category>security</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>Tailscale has partnered with Mullvad</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today we announce a partnership with Tailscale that allows you to use both in conjunction through the Tailscale app. This functionality is not available through the Mullvad VPN app.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This partnership allows customers of Tailscale to make use of our WireGuard VPN servers as “exit nodes”. This means that whilst connected to Tailscale, you can access your devices across Tailscale’s mesh network, whilst still connecting outbound through Mullvad VPN WireGuard servers in any location.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/tailscale-partners-mullvad</link>
+      <guid>https://www.lqdev.me/responses/tailscale-partners-mullvad</guid>
+      <pubDate>2023-09-08 21:26 -05:00</pubDate>
+      <category>privacy</category>
+      <category>vpn</category>
+      <category>security</category>
+    </item>
+    <item>
+      <title>Rethinking trust in direct messages in the AI era</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This blog post is a part of a series exploring our research in privacy, security, and cryptography. For the previous post, see &lt;a href="https://www.microsoft.com/en-us/research/blog/research-trends-in-privacy-security-and-cryptography"&gt;https://www.microsoft.com/en-us/research/blog/research-trends-in-privacy-security-and-cryptography&lt;/a&gt;. While AI has the potential to massively increase productivity, this power can be used equally well for malicious purposes, for example, to automate the creation of sophisticated scam messages. In this post, we explore threats AI can pose for online communication ecosystems and outline a high-level approach to mitigating these threats.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/rethinking-trust-dm-ai-era</link>
+      <guid>https://www.lqdev.me/bookmarks/rethinking-trust-dm-ai-era</guid>
+      <pubDate>2023-09-06 00:05 -05:00</pubDate>
+      <category>security</category>
+      <category>ai</category>
+      <category>privacy</category>
+      <category>cryptography</category>
+      <category>communication</category>
+      <category>messaging</category>
+      <category>socialmedia</category>
+      <category>trust</category>
+    </item>
+    <item>
+      <title>Introducing Proton Pass</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We’re happy to announce the global launch of Proton Pass...a password manager, one of the most highly demanded services from the Proton community in our annual surveys since we first launched Proton Mail...&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/protonpass-release</link>
+      <guid>https://www.lqdev.me/responses/protonpass-release</guid>
+      <pubDate>2023-06-29 10:32 -05:00</pubDate>
+      <category>security</category>
+    </item>
+    <item>
+      <title>Alternatives to WhatsApp</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+Recently I've heard a lot of buzz around people moving away from the WhatsApp messaging app. I'm not tuned into all the details as to why there's been a mass exodus, but from what I understand it has to do with its privacy policies. I've seen many people including Elon Musk recommend Signal. Signal is a great alternative but there are a few others that are worth considering. This recommendation was originally planned as a tweet, but there's so many details that just can't be captured in a tweet or thread so instead I turned it into a blog post. If you haven't made the switch or if you're still not completely committed to the platform you've switched to, this post is for you.
+
+![Phone and notebook - Oscar Mucyo Unsplash](https://user-images.githubusercontent.com/11130940/104107289-08689180-5289-11eb-890d-54527902df97.png)
+
+## Matrix
+
+![Element web client screenshot](https://user-images.githubusercontent.com/11130940/104107320-3e0d7a80-5289-11eb-9449-71e34315b96e.png)
+
+[Matrix](https://matrix.org/) is my go-to messaging platform. Matrix is an open-source project that provides an open standard for real-time communication. Built on top of this standard are several implementations with [Synapse](https://github.com/matrix-org/synapse) being the most popular server and [Element](https://element.io/) being the most popular client.
+
+Matrix is relatively new. However, it has a lot of potential and there are a lot of exciting things happening around it. Some of the most notable include:
+
+- [Mozilla selected Matrix](https://matrix.org/blog/2019/12/19/welcoming-mozilla-to-matrix) to be the successor to its IRC communications.
+- Matrix recently [acquired Gitter](https://matrix.org/blog/2020/09/30/welcoming-gitter-to-matrix), a popular chat platform for software projects, and has quickly worked to [integrate Gitter with Matrix](https://matrix.org/blog/2020/12/07/gitter-now-speaks-matrix) allowing for it to take advantage of many of the features provided by the protocol. 
+- [Matrix will power FOSDEM 2021](https://matrix.org/blog/2021/01/04/taking-fosdem-online-via-matrix) communications.
+- [Matrix is experimenting with P2P architectures](https://matrix.org/blog/2020/06/02/introducing-p-2-p-matrix) to help users have full control over their communications.
+
+Although Matrix provides several features commonly associated with messaging platforms such as 1:1 messaging, video/audio calls, and group chat, there are a few features worth highlighting:
+
+- End-to-end encryption
+- Interoperability with other communication platforms
+- Decentralization
+
+### End-to-end encryption
+
+End-to-end encryption makes sure your communications stay private. Only you and the intended recipients of the message are able to see the messages. 
+
+### Interoperability
+
+One of the biggest challenges of moving over to a new platform is that your friends and family don't or won't join you, making it a lonely place. Matrix provides interoperability with other communication platforms and protocols through [bridges](https://matrix.org/bridges/). Bridges facilitate the exchange of messages with other platforms without requiring all participants to be on Matrix. The core team maintains bridges for Slack, IRC, XMPP, and Gitter. There are also community maintained bridges for WhatsApp, Discord, Facebook Messenger, Signal, and many others. 
+
+### Decentralization 
+
+Decentralization means that there's no central authority that holds control over the platform or data. Matrix is decentralized through federation. One of the most common examples of federation is e-mail. I may have an AOL e-mail address and you may have a Hotmail e-mail address, yet we're still able to exchange messages. With Matrix, in a similar way, users and groups don't have to have their accounts on the same server in order to communicate. It also means that users have a choice over [which server they join](https://www.hello-matrix.net/public_servers.php). If I don't agree with the conversations or moderation of a particular server, I have the choice to open an account on another server without leaving Matrix altogether. Even better, because Matrix is built using open technologies, I have the option of hosting my own server.
+
+To get started with Matrix, visit the [Element](https://element.io/get-started) website and create an account.
+
+## Jami
+
+![Jami Screenshot](https://user-images.githubusercontent.com/11130940/104107348-64331a80-5289-11eb-8606-944269e17d10.png)
+
+Another project that I like but haven't used it to the same extent as Matrix is [Jami](https://jami.net/). Jami is an open-source project for real-time communication. Similar to Matrix, Jami is cross-platform, free (as in freedom and beer), end-to-end encrypted, and decentralized. Jami achieves decentralization by using P2P protocols. This means that the data is stored on your device so you're in full control of your data. Jami also doesn't require the internet to work. As long as you're in the same local network as your peers, you're able to communicate. 
+
+To get started with Jami, [download the app](https://jami.net/download/) and create an account.
+
+## Conclusion
+
+In this post, I've mentioned some communication platforms that I consider great alternatives to WhatsApp. Regardless of the platform you choose, some things that I believe should be top of mind are security and privacy. It's important that you own your data and you have control over who has access to it and what they do with it. Feel free say hi on Matrix [@lqdev:lqdev.tech](https://matrix.to/#/@lqdev:lqdev.tech) or Jami where you can find me as lqdev1.]]&gt;</description>
+      <link>https://www.lqdev.me/posts/alternatives-to-whatsapp</link>
+      <guid>https://www.lqdev.me/posts/alternatives-to-whatsapp</guid>
+      <pubDate>2021-01-09 13:44:27 -05:00</pubDate>
+      <category>privacy</category>
+      <category>self-hosted</category>
+      <category>security</category>
+      <category>open-source</category>
+      <category>apps</category>
+    </item>
+    <item>
+      <title>Authorization Code Authentication Flow in Python</title>
+      <description>&lt;![CDATA[
+For the longest time, authentication had been my worst enemy. I took small steps towards becoming comfortable with it. At first I learned Implicit Authorization with AngularJS, then I learned Client Credentials Authorization with Python and C# and finally, I learned Authorization Code authentication with C#. The one that always gave me trouble was Authorization Code authentication because it requires user credentials. 
+
+To help with that, I started with the `WebAuthenticationBroker` in C#. Although, most of it was done for me in terms of creating a `WebView` for users to authenticate with their credentials, I wanted to know whether I could do it myself without having to rely on a service to do it for me. 
+
+First, I had to find an API to test this out with and in an attempt to reduce complexity, I decided to prototype it in Python. As an avid user of [Pocket](http://getpocket.com), I chose its API to learn Authorization Flow authentication. 
+
+# Getting Started 
+
+## Register An Application
+
+In order to get started, we need to register an application with Pocket. This can be done by visiting the following [website](https://getpocket.com/developer/apps/new).
+
+## Install Requests
+
+In order to create HTTP requests, we need to install the `requests` module
+
+```
+pip install requests
+```
+
+# Get Request Token
+
+## Import Modules
+
+```python
+import requests
+import json
+```
+
+## Prepare Request
+
+```python
+consumer_key = "YOUR_CONSUMER_KEY"
+request_url = "https://getpocket.com/v3/oauth/request"
+headers = {"Content-Type":"application/json","X-Accept":"application/json"}
+redirect_uri = "http://www.google.com"
+payload = {"consumer_key":consumer_key,"redirect_uri":redirect_uri}
+```
+
+Notice how the `redirect_uri` is set to `http://www.google.com`. This, for the most part is irrelevant, especially for console/desktop applications. Since this is a console application and we are not hosting a server for it, the value assigned to this field is arbitrary.
+
+## Make Request
+
+```python
+request = requests.post(request_url,headers=headers,data=json.dumps(payload))
+code = request.json()['code']
+code
+```
+
+# Redirect User to Pocket to Continue Authorization
+
+## Import Modules
+
+```python
+import webbrowser
+```
+
+```python
+webbrowser.open('https://getpocket.com/auth/authorize?request_token='+ code + '&amp;redirect_uri=' + redirect_uri)
+```
+
+This will open your default browser and redirect you to an authorization page. After logging in, should you accept giving the application access to your account, it should redirect you to `http://www.google.com`. Once on the Google page, you can close out of it.
+
+# Convert A Request Token Into A Pocket Access Token
+
+After authorizing the application to access your account, you need to exchange the code you received for an access token.
+
+## Prepare the Request
+
+```python
+access_token_url = "https://getpocket.com/v3/oauth/authorize"
+payload = {"consumer_key":consumer_key,"code":code}
+```
+
+## Get Access Token
+
+```python
+access_token_request = requests.post(access_token_url,headers=headers,data=json.dumps(payload))
+access_token = access_token_request.json()['access_token']
+access_token
+```
+
+# Make Authenticated Request
+
+In order to test whether the authentication was successful, try making an authenticated request.
+
+## Prepare Request
+
+```python
+get_url = "https://getpocket.com/v3/get"
+get_payload = {"consumer_key":consumer_key,"access_token":access_token,"contentType":"article","count":10}
+get_request = requests.get(get_url,data=json.dumps(get_payload),headers=headers)
+```
+
+## Get Response
+```python
+response = get_request.json()
+```
+
+## Sample Response
+
+```json
+{'complete': 1,
+ 'error': None,
+ 'list': {'1519049132': {'excerpt': 'Heads up! As part of our efforts to improve security and standards-based interoperability, we have implemented several new features in our authentication flows and made changes to existing ones.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://auth0.com/docs/api-auth/grant/authorization-code-pkce',
+   'has_image': '0',
+   'has_video': '0',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '1519049132',
+   'resolved_id': '1519049132',
+   'resolved_title': 'Calling APIs from Mobile Apps',
+   'resolved_url': 'https://auth0.com/docs/api-auth/grant/authorization-code-pkce',
+   'sort_id': 5,
+   'status': '0',
+   'time_added': '1514493110',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514493110',
+   'word_count': '445'},
+  '1607678551': {'excerpt': 'What is the smallest number of Democrats that could have changed the outcome of the 2016 United States presidential election by relocating to another state? And where should they have moved?  It turns out this question is a variant of the knapsack problem, an NP-hard computer science classic.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://mike.place/2017/ecknapsack/',
+   'has_image': '0',
+   'has_video': '0',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '1607678551',
+   'resolved_id': '1607678551',
+   'resolved_title': 'The Electoral College and the knapsack problem',
+   'resolved_url': 'http://mike.place/2017/ecknapsack/',
+   'sort_id': 7,
+   'status': '0',
+   'time_added': '1514478701',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514478701',
+   'word_count': '1564'},
+  '1616406703': {'excerpt': 'OAuth 2.0 is a protocol that allows a user to grant limited access to their resources on one site, to another site. This is done without the users having to expose their credentials. According to OAuth‘s website the protocol is not unlike a valet key.  Many luxury cars today come with a valet key.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://auth0.com/docs/protocols/oauth2',
+   'has_image': '1',
+   'has_video': '0',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '1616406703',
+   'resolved_id': '1616406703',
+   'resolved_title': 'OAuth 2.0',
+   'resolved_url': 'https://auth0.com/docs/protocols/oauth2',
+   'sort_id': 4,
+   'status': '0',
+   'time_added': '1514493120',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514493120',
+   'word_count': '823'},
+  '1859670338': {'excerpt': 'Last Tuesday saw the official launch of Will Robots Take My Job? and 5 days later we have passed 500K visitors and 4M page views.  To say this surpassed any expectations we had would be a major understatement. This is a recap of how the project got started and the first 5 days after launch.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://hackernoon.com/from-idea-to-4m-page-views-in-4-weeks-622aa194787d?ref=quuu',
+   'has_image': '1',
+   'has_video': '1',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '1859670338',
+   'resolved_id': '1773505341',
+   'resolved_title': 'From Idea to 4M Page Views in 4\xa0Weeks',
+   'resolved_url': 'https://hackernoon.com/from-idea-to-4m-page-views-in-4-weeks-622aa194787d',
+   'sort_id': 0,
+   'status': '0',
+   'time_added': '1514494606',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514494606',
+   'word_count': '1837'},
+  '2001727306': {'amp_url': 'https://venturebeat.com/2017/12/22/how-ibm-builds-an-effective-data-science-team/amp/',
+   'excerpt': 'Data science is a team sport. This sentiment rings true not only with our experiences within IBM, but with our enterprise customers, who often ask us for advice on how to structure data science teams within their own organizations.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://venturebeat.com/2017/12/22/how-ibm-builds-an-effective-data-science-team/',
+   'has_image': '1',
+   'has_video': '0',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '2001727306',
+   'resolved_id': '2001727306',
+   'resolved_title': 'How IBM builds an effective data science team',
+   'resolved_url': 'https://venturebeat.com/2017/12/22/how-ibm-builds-an-effective-data-science-team/',
+   'sort_id': 1,
+   'status': '0',
+   'time_added': '1514493979',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514493979',
+   'word_count': '773'},
+  '2006596547': {'excerpt': 'I ran, a lot, this year— 2017 miles over 280 hours, or just short of 12 full days. For many of you, that seems like a ridiculous amount of distance and time, but to put it in perspective, elite marathoners and ultrarunners easily run two or three times that distance in a year.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://medium.com/run-ruminate/17-thoughts-on-running-life-and-startups-5d305223669b',
+   'has_image': '1',
+   'has_video': '0',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '2006596547',
+   'resolved_id': '2006596547',
+   'resolved_title': '17 thoughts on running, startups, and life while running 2017 miles in\xa02017',
+   'resolved_url': 'https://medium.com/run-ruminate/17-thoughts-on-running-life-and-startups-5d305223669b',
+   'sort_id': 6,
+   'status': '0',
+   'time_added': '1514479812',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514479812',
+   'word_count': '1561'},
+  '2006920392': {'excerpt': 'What the heck is “work” anyway?  In the Information Age, the dictionary definition of the word just doesn’t cut it anymore. Skill sets, jobs, and entire companies are forming daily based on new technology, market demands, and trends that didn’t exist even just a few years ago.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://www.hellosign.com/blog/the-future-of-work',
+   'has_image': '1',
+   'has_video': '0',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '2006920392',
+   'resolved_id': '2006920392',
+   'resolved_title': '4 Pillars Of The Future of Work',
+   'resolved_url': 'https://www.hellosign.com/blog/the-future-of-work',
+   'sort_id': 2,
+   'status': '0',
+   'time_added': '1514493449',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514493449',
+   'word_count': '1805'},
+  '2007117419': {'excerpt': 'Finding a job is not an easy task. There are multiple ways to look for jobs. Multiple steps has to be completed before you are called for an interview. After completing all these the most annoying part is when your interview doesn’t even last for 10 minutes.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://www.jobsstudios.com/blog/interview-tips',
+   'has_image': '0',
+   'has_video': '0',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '2007117419',
+   'resolved_id': '2007117419',
+   'resolved_title': '7 Tips to prepare for an Interview',
+   'resolved_url': 'https://www.jobsstudios.com/blog/interview-tips',
+   'sort_id': 8,
+   'status': '0',
+   'time_added': '1514477292',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514477292',
+   'word_count': '468'},
+  '2007245672': {'excerpt': 'RESTful API Versioning, though a simple and elegant concept, is a LOT harder to enforce than it sounds. It’s hard to not break backward compatibility on a continually evolving API, and though API versioning is a great concept, it’s rarely followed without flaw.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://shift.infinite.red/snapshot-testing-api-calls-the-right-way-58ef59b7f71b',
+   'has_image': '1',
+   'has_video': '1',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '2007245672',
+   'resolved_id': '2007245672',
+   'resolved_title': 'Snapshot Testing API Calls The Right\xa0Way',
+   'resolved_url': 'https://shift.infinite.red/snapshot-testing-api-calls-the-right-way-58ef59b7f71b',
+   'sort_id': 3,
+   'status': '0',
+   'time_added': '1514493189',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514493189',
+   'word_count': '1230'},
+  '234097661': {'excerpt': 'Sanchez examines the question, concluding that intellectuals support government intervention because it makes their work have greater importance.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://www.libertarianism.org/blog/why-do-intellecuals-support-government-solutions',
+   'has_image': '0',
+   'has_video': '0',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '234097661',
+   'resolved_id': '234097661',
+   'resolved_title': 'Why Do Intellectuals Support Government Solutions?',
+   'resolved_url': 'https://www.libertarianism.org/blog/why-do-intellecuals-support-government-solutions',
+   'sort_id': 9,
+   'status': '0',
+   'time_added': '1514477287',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514477287',
+   'word_count': '1423'}},
+ 'search_meta': {'search_type': 'normal'},
+ 'since': 1514514495,
+ 'status': 1}
+```
+
+Hope this helps!
+
+###### Sources
+
+[Pocket API](https://getpocket.com/developer/docs/authentication)  
+[Requests](http://docs.python-requests.org/en/master/)]]&gt;</description>
+      <link>https://www.lqdev.me/posts/authorization-code-flow-python</link>
+      <guid>https://www.lqdev.me/posts/authorization-code-flow-python</guid>
+      <pubDate>2017-12-29 18:45:19 -05:00</pubDate>
+      <category>python</category>
+      <category>api</category>
+      <category>programming</category>
+      <category>security</category>
+      <category>authentication</category>
+    </item>
+  </channel>
+</rss>

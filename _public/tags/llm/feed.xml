@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - llm</title>
+    <link>https://www.lqdev.me/tags/llm</link>
+    <description>All content tagged with 'llm' by Luis Quintanilla</description>
+    <lastBuildDate>2025-06-16 20:33 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Self-Adapting Language Models (SEAL)</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Large language models (LLMs) are powerful but static; they lack mechanisms to adapt their weights in response to new tasks, knowledge, or examples. &lt;strong&gt;We introduce Self-Adapting LLMs (SEAL) 🦭, a framework that enables LLMs to self-adapt by generating their own finetuning data and update directives.&lt;/strong&gt; Given a new input, the model produces a self-edit — a generation that may restructure the information in different ways, specify optimization hyperparameters, or invoke tools for data augmentation and gradient-based updates. Through supervised finetuning (SFT), these self-edits result in persistent weight updates, enabling lasting adaptation. To train the model to produce effective self-edits, we use a reinforcement learning loop, using the downstream performance of the updated model as the reward signal. Unlike prior approaches that rely on separate adaptation modules or auxiliary networks, SEAL directly uses the model's generation to parameterize and control its own adaptation process. Experiments on knowledge incorporation and few-shot generalization show that SEAL is a promising step toward language models capable of self-directed adaptation in response to new data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We demonstrate SEAL in two domains: (1) &lt;strong&gt;Knowledge Incorporation&lt;/strong&gt;, where the model integrates new factual information by generating logical implications as synthetic data, and (2) &lt;strong&gt;Few-Shot Learning&lt;/strong&gt;, where the model autonomously selects data augmentations and training hyperparameters to adapt to new abstract reasoning tasks.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/Continual-Intelligence"&gt;Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://arxiv.org/abs/2506.10943"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/self-adapting-language-models-seal</link>
+      <guid>https://www.lqdev.me/responses/self-adapting-language-models-seal</guid>
+      <pubDate>2025-06-16 20:33 -05:00</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>llm</category>
+      <category>mit</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>ZeroSearch - Incentivize the Search Capability of LLMs without Searching</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Effective information searching is essential for enhancing the reasoning and generation capabilities of large language models (LLMs). Recent research has explored using reinforcement learning (RL) to improve LLMs' search capabilities by interacting with live search engines in real-world environments. While these approaches show promising results, they face two major challenges: (1) &lt;strong&gt;Uncontrolled Document Quality&lt;/strong&gt;: The quality of documents returned by search engines is often unpredictable, introducing noise and instability into the training process. (2) &lt;strong&gt;Prohibitively High API Costs&lt;/strong&gt;: RL training requires frequent rollouts, potentially involving hundreds of thousands of search requests, which incur substantial API expenses and severely constrain scalability. To address these challenges, we introduce &lt;strong&gt;ZeroSearch&lt;/strong&gt;, a reinforcement learning framework that &lt;strong&gt;enhances the search capabilities of LLMs without interacting with real search engines&lt;/strong&gt;. Our approach begins with lightweight supervised fine-tuning to transform the LLM into a retrieval module capable of generating both relevant and noisy documents in response to a query. During RL training, we employ a curriculum-based rollout strategy that incrementally degrades the quality of generated documents, progressively eliciting the model’s reasoning ability by exposing it to increasingly challenging retrieval scenarios. Extensive experiments demonstrate that &lt;strong&gt;ZeroSearch effectively incentivizes the search capabilities of LLMs using a 3B LLM as the retrieval module&lt;/strong&gt;. Remarkably, &lt;strong&gt;a 7B retrieval module achieves comparable performance to the real search engine, while a 14B retrieval module even surpasses it&lt;/strong&gt;. Furthermore, it generalizes well across both base and instruction-tuned models of varying sizes and is compatible with a wide range of RL algorithms.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/zero-search-alibaba</link>
+      <guid>https://www.lqdev.me/bookmarks/zero-search-alibaba</guid>
+      <pubDate>2025-05-09 20:31 -05:00</pubDate>
+      <category>ai</category>
+      <category>search</category>
+      <category>llm</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>The Llama 4 herd: The beginning of a new era of natively multimodal AI innovation</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We’re introducing Llama 4 Scout and Llama 4 Maverick, the first open-weight natively multimodal models with unprecedented context length support and our first built using a mixture-of-experts (MoE) architecture. We’re also previewing Llama 4 Behemoth, one of the smartest LLMs in the world and our most powerful yet to serve as a teacher for our new models.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Llama 4 Scout, a 17 billion active parameter model with 16 experts, is the best multimodal model in the world in its class and is more powerful than all previous generation Llama models, while fitting in a single NVIDIA H100 GPU. Additionally, Llama 4 Scout offers an industry-leading context window of 10M and delivers better results than Gemma 3&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Llama 4 Maverick, a 17 billion active parameter model with 128 experts, is the best multimodal model in its class, beating GPT-4o and Gemini 2.0 Flash across a broad range of widely reported benchmarks&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;After tinkering with Mistral Small 3.1, I'm excited to try Llama 4 Scout once it lands in GitHub Models and Ollama.&lt;/p&gt;
+&lt;p&gt;I don't think that Mistral Small 3.1 uses MoE architecture which should help a ton considering the 10 million token context size.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/llama-4-herd</link>
+      <guid>https://www.lqdev.me/responses/llama-4-herd</guid>
+      <pubDate>2025-04-08 08:30 -05:00</pubDate>
+      <category>llama</category>
+      <category>meta</category>
+      <category>ai</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Ollama Adds Mistral 3.1 Support</title>
+      <description>&lt;![CDATA[&lt;p&gt;In the latest &lt;a href="https://github.com/ollama/ollama/releases/tag/v0.6.5"&gt;Ollama 0.6.5 release&lt;/a&gt; support was added for &lt;a href="https://ollama.com/library/mistral-small3.1"&gt;Mistral Small 3.1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In an earlier post, I &lt;a href="https://www.lqdev.me/responses/mistral-small-3-1"&gt;highlighted the announcement and summarized the key features&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I've been using it with &lt;a href="https://github.com/marketplace/models/azureml-mistral/mistral-small-2503"&gt;GitHub Models&lt;/a&gt; and based on vibes I found it was more reliable at structured output compared to Gemma 3, especially when considering the model and context window size.&lt;/p&gt;
+&lt;p&gt;Now that it's on Ollama thought, I can use it offline as well. However, I'm not sure how well that'll work on my ARM64 device, which only has 16GB of RAM.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/ollama-adds-support-mistral-small-3-1</link>
+      <guid>https://www.lqdev.me/notes/ollama-adds-support-mistral-small-3-1</guid>
+      <pubDate>2025-04-08 08:19 -05:00</pubDate>
+      <category>mistral</category>
+      <category>ollama</category>
+      <category>ai</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Introducing Command A</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we’re introducing Command A, a new state-of-the-art generative model optimized for demanding enterprises that require fast, secure, and high-quality AI. Command A delivers maximum performance with minimal hardware costs when compared to leading proprietary and open-weights models, such as GPT-4o and DeepSeek-V3. For private deployments, Command A excels on business-critical agentic and multilingual tasks, while being deployable on just two GPUs, compared to other models that typically require as many as 32.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Its 256k context length (2x most leading models) can handle much longer enterprise documents. Other key features include Cohere’s advanced retrieval-augmented generation (RAG) with verifiable citations, agentic tool use, enterprise-grade security, and strong multilingual performance.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The next generation of Cohere models will help power a range of AI applications for customers across industries like finance, healthcare, manufacturing, energy, and the public sector. In particular, they will seamlessly integrate with North, our secure AI agents platform to unlock the full potential of your company data and people with AI agents.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-command-a-cohere</link>
+      <guid>https://www.lqdev.me/responses/introducing-command-a-cohere</guid>
+      <pubDate>2025-03-18 20:45 -05:00</pubDate>
+      <category>cohere</category>
+      <category>ai</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Simon Willison's AI-Generated Tools Colophon</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The tools on tools.simonwillison.net were mostly built using AI-assisted programming.&lt;br /&gt;
+&lt;br&gt;
+This page lists the commit messages for each tool, many of which link to the LLM transcript used to produce the code.&lt;br /&gt;
+&lt;br&gt;
+The descriptions for each of the tools were generated using Claude 3.7 Sonnet.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is such a cool use of a website. Using AI, Simon has generated a set of small utilities that are useful to him. If they're useful to others though, he's made them avaiable on his website.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/willison-tools-colophon</link>
+      <guid>https://www.lqdev.me/responses/willison-tools-colophon</guid>
+      <pubDate>2025-03-18 20:35 -05:00</pubDate>
+      <category>colophon</category>
+      <category>indieweb</category>
+      <category>ai</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Introducing Mercury, the first commercial-scale diffusion large language model</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We are announcing the Mercury family of diffusion large language models (dLLMs), a new generation of LLMs that push the frontier of fast, high-quality text generation.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Mercury is up to 10x faster than frontier speed-optimized LLMs. Our models run at over 1000 tokens/sec on NVIDIA H100s, a speed previously possible only using custom chips.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/mercury-first-commercial-scale-llm</link>
+      <guid>https://www.lqdev.me/responses/mercury-first-commercial-scale-llm</guid>
+      <pubDate>2025-02-26 20:10 -05:00</pubDate>
+      <category>diffusion</category>
+      <category>llm</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>The Ultra-Scale Playbook: Training LLMs on GPU Clusters</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Gold.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;All the techniques we'll cover in this book tackle one or several of the following three key challenges, which we'll keep bumping into throughout the book:&lt;/p&gt;
+&lt;hr&gt;
+  1. **Memory Usage**: it's a hard limitation - if a training step doesn't fit in memory, training cannot proceed  
+  2. **Compute Efficiency**: we want our hardware to spend most time computing, so we need to reduce time spent on data transfers or waiting for other GPUs to perform work.  
+  3. **Communication overhead**: we want to minimize communication overhead as it keeps GPUs idle. To archieve this we will try to make best use of intra-node (fast) and inter-node (slower) bandwidths as well as overlap communication with compute as much as possible.  
+&lt;hr&gt;
+In many places we'll see that we can trade one of these (computation, communication, memory) for another (e.g. recomputation or Tensor Parallelism). Finding the right balance is key to scaling training.
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src="https://nanotron-ultrascale-playbook.static.hf.space/dist/files/images/ultra-cheatsheet.svg" class="img-fluid" alt="Ultra-Scale Playbook Cheatsheet" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/ultrascale-playbook-training-llms-gpu-clusters</link>
+      <guid>https://www.lqdev.me/responses/ultrascale-playbook-training-llms-gpu-clusters</guid>
+      <pubDate>2025-02-19 22:03 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>training</category>
+    </item>
+    <item>
+      <title>The Illustrated DeepSeek-R1</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Just like most existing LLMs, DeepSeek-R1 generates one token at a time, except it excels at solving math and reasoning problems because it is able to spend more time processing a problem through the process of generating thinking tokens that explain its chain of thought.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fed7fd8c3-7654-497c-a8e2-1f2e7930992e_3302x1438.png" class="img-fluid" alt="DeepSeek R1 Training Recipe" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/illustrated-deepseek-r1</link>
+      <guid>https://www.lqdev.me/bookmarks/illustrated-deepseek-r1</guid>
+      <pubDate>2025-02-03 20:20 -05:00</pubDate>
+      <category>deepseek</category>
+      <category>ai</category>
+      <category>visualization</category>
+      <category>generativeai</category>
+      <category>genai</category>
+      <category>llm</category>
+      <category>learning</category>
+    </item>
+    <item>
+      <title>LangChain State of AI 2024 Report</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In 2024, developers leaned into complexity with multi-step agents, sharpened efficiency by doing more with fewer LLM calls, and added quality checks to their apps using methods of feedback and evaluation.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src="https://blog.langchain.dev/content/images/size/w1600/2024/12/Top-10-LLM-Providers-bar-chart.png" class="img-fluid" alt="Bar Chart Showing Top 10 LLMs Used 2024" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.langchain.dev/content/images/size/w1600/2024/12/Top-10-Retrievers--1-.png" class="img-fluid" alt="Graphic showing Top 10 Retrievers / Vector Stores 2024" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.langchain.dev/content/images/size/w1600/2024/12/Top-evaluation-metrics--1-.png" class="img-fluid" alt="Graphic showing Top LLM Evaluation Metrics 2024" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/langchain-state-of-ai-2024</link>
+      <guid>https://www.lqdev.me/responses/langchain-state-of-ai-2024</guid>
+      <pubDate>2024-12-29 12:12 -05:00</pubDate>
+      <category>ai</category>
+      <category>2024</category>
+      <category>report</category>
+      <category>langchain</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Microsoft Research: Introducing DRIFT Search</title>
+      <description>&lt;![CDATA[[reshare] &lt;h2&gt;Introducing DRIFT Search: Combining global and local search methods to improve quality and efficiency&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;DRIFT search (Dynamic Reasoning and Inference with Flexible Traversal)...builds upon Microsoft’s GraphRAG technique, combining characteristics of both global and local search to generate detailed responses in a method that balances computational costs with quality outcomes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;DRIFT Search: A step-by-step process&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Primer&lt;/strong&gt;: When a user submits a query, DRIFT compares it to the top K most semantically relevant community reports. This generates an initial answer along with several follow-up questions, which act as a lighter version of global search. To do this, we expand the query using Hypothetical Document Embeddings (HyDE), to increase sensitivity (recall), embed the query, look up the query against all community reports, select the top K and then use the top K to try to answer the query. The aim is to leverage high-level abstractions to guide further exploration.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Follow-Up&lt;/strong&gt;: With the primer in place, DRIFT executes each follow-up using a local search variant. This yields additional intermediate answers and follow-up questions, creating a loop of refinement that continues until the search engine meets its termination criteria, which is currently configured for two iterations (further research will investigate reward functions to guide terminations). This phase represents a globally informed query refinement. Using global data structures, DRIFT navigates toward specific, relevant information within the knowledge graph even when the initial query diverges from the indexing persona. This follow-up process enables DRIFT to adjust its approach based on emerging information.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Output Hierarchy&lt;/strong&gt;: The final output is a hierarchy of questions and answers ranked on their relevance to the original query. This hierarchical structure can be customized to fit specific user needs. During benchmark testing, a naive map-reduce approach aggregated all intermediate answers, with each answer weighted equally.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-drift-search</link>
+      <guid>https://www.lqdev.me/responses/introducing-drift-search</guid>
+      <pubDate>2024-11-04 21:59 -05:00</pubDate>
+      <category>ai</category>
+      <category>search</category>
+      <category>RAG</category>
+      <category>llm</category>
+      <category>microsoft</category>
+      <category>research</category>
+      <category>msr</category>
+      <category>graphrag</category>
+    </item>
+    <item>
+      <title>Thinking LLMs: General Instruction Following with Thought Generation</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;LLMs are typically trained to answer user questions or follow instructions similarly to how human experts respond. However, in the standard alignment framework they lack the basic ability of explicit thinking before answering. Thinking is important for complex questions that require reasoning and planning -- but can be applied to any task. We propose a training method for equipping existing LLMs with such thinking abilities for general instruction following without use of additional human data. We achieve this by an iterative search and optimization procedure that explores the space of possible thought generations, allowing the model to learn how to think without direct supervision. For each instruction, the thought candidates are scored using a judge model to evaluate their responses only, and then optimized via preference optimization. We show that this procedure leads to superior performance on AlpacaEval and Arena-Hard, and shows gains from thinking on non-reasoning categories such as marketing, health and general knowledge, in addition to more traditional reasoning &amp;amp; problem-solving tasks.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/thinking-llms-instruction-following-thought-generation</link>
+      <guid>https://www.lqdev.me/responses/thinking-llms-instruction-following-thought-generation</guid>
+      <pubDate>2024-11-04 21:24 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>research</category>
+      <category>meta</category>
+      <category>chainofthought</category>
+      <category>training</category>
+      <category>finetuning</category>
+    </item>
+    <item>
+      <title>Bringing Llama 3 to life</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;At AI Infra @ Scale 2024, Meta engineers discussed every step of how we built and brought Llama 3 to life, from data and training to inference.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=ELIcy6flgQI" title="Bringing Llama 3 to life talk video thumbnail"&gt;&lt;img src="http://img.youtube.com/vi/ELIcy6flgQI/0.jpg" class="img-fluid" alt="Bringing Llama 3 to life talk video thumbnail" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/meta-bringing-llama-3-to-life</link>
+      <guid>https://www.lqdev.me/responses/meta-bringing-llama-3-to-life</guid>
+      <pubDate>2024-08-22 16:21 -05:00</pubDate>
+      <category>ai</category>
+      <category>meta</category>
+      <category>llama3</category>
+      <category>opensource</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>GPT-4o System Card</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;GPT-4o is an autoregressive omni model, which accepts as input any combination of text, audio, image, and video and generates any combination of text, audio, and image outputs. It\u2019s trained end-to-end across text, vision, and audio, meaning that all inputs and outputs are processed by the same neural network.&lt;br /&gt;
+&lt;br&gt;
+GPT-4o can respond to audio inputs in as little as 232 milliseconds, with an average of 320 milliseconds, which is similar to human response time(opens in a new window)2 in a conversation. It matches GPT-4 Turbo performance on text in English and code, with significant improvement on text in non-English languages, while also being much faster and 50% cheaper in the API. GPT-4o is especially better at vision and audio understanding compared to existing models.&lt;br /&gt;
+&lt;br&gt;
+In line with our commitment to building AI safely and consistent with our voluntary commitments to the White House3, we are sharing the GPT-4o System Card, which includes our Preparedness Framework(opens in a new window)5 evaluations. In this System Card, we provide a detailed look at GPT-4o\u2019s capabilities, limitations, and safety evaluations across multiple categories, with a focus on speech-to-speech (voice)A while also evaluating text and image capabilities, and the measures we\u2019ve taken to enhance safety and alignment. We also include third party assessments on general autonomous capabilities, as well as discussion of potential societal impacts of GPT-4o text and vision capabilities.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/gpt4o-system-card</link>
+      <guid>https://www.lqdev.me/bookmarks/gpt4o-system-card</guid>
+      <pubDate>2024-08-08 20:16 -05:00</pubDate>
+      <category>ai</category>
+      <category>openai</category>
+      <category>gpt-4o</category>
+      <category>documentation</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>LongROPE: Extending LLM Context Window Beyond 2 Million Tokens</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Large context window is a desirable feature in large language models (LLMs). However, due to high fine-tuning costs, scarcity of long texts, and catastrophic values introduced by new token positions, current extended context windows are limited to around 128k tokens. This paper introduces LongRoPE that, for the first time, extends the context window of pre-trained LLMs to an impressive 2048k tokens, with up to only 1k fine-tuning steps at within 256k training lengths, while maintaining performance at the original short context window. This is achieved by three key innovations: (i) we identify and exploit two forms of non-uniformities in positional interpolation through an efficient search, providing a better initialization for fine-tuning and enabling an 8x extension in non-fine-tuning scenarios; (ii) we introduce a progressive extension strategy that first fine-tunes a 256k length LLM and then conducts a second positional interpolation on the fine-tuned extended LLM to achieve a 2048k context window; (iii) we readjust LongRoPE on 8k length to recover the short context window performance. Extensive experiments on LLaMA2 and Mistral across various tasks demonstrate the effectiveness of our method. Models extended via LongRoPE retain the original architecture with minor modifications to the positional embedding, and can reuse most pre-existing optimizations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/jshuadvd/LongRoPE"&gt;GitHub Repo&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/longrope-extending-llm-context-2m-tokens</link>
+      <guid>https://www.lqdev.me/bookmarks/longrope-extending-llm-context-2m-tokens</guid>
+      <pubDate>2024-07-30 14:16 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>longrope</category>
+      <category>microsoft</category>
+      <category>research</category>
+      <category>msr</category>
+    </item>
+    <item>
+      <title>Clock Tables - Org Mode, Plain Text, and AI</title>
+      <description>&lt;![CDATA[&lt;p&gt;Org-mode appreciation post.&lt;/p&gt;
+&lt;p&gt;I use plain text and org-mode for most things in my life, especially when it comes to task and life management.&lt;/p&gt;
+&lt;p&gt;I won't rehash all the reasons Emacs and org-mode are amazing. There are tons of blog posts and videos out there that would do it more justice than I ever could.&lt;/p&gt;
+&lt;p&gt;Over the last few years, Emacs has become my go-to text editor. Throughout all that time, I've continued to find new features that delight.&lt;/p&gt;
+&lt;p&gt;The most recent is &lt;a href="https://orgmode.org/manual/The-clock-table.html"&gt;clock table&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I already use org-mode to track my to-dos and perform some sort of time-block planning by setting deadlines and scheduling tasks.&lt;/p&gt;
+&lt;p&gt;Recently though, I've been wanting a way to see all of the things I've worked on over the past [ INSERT TIME PERIOD ]. More importantly, I'd like to have time associated with them to see where my time has gone and evaluate whether I'm spending time on the things I should be.&lt;/p&gt;
+&lt;p&gt;I knew you could &lt;a href="https://orgmode.org/manual/Clocking-commands.html"&gt;clock in and clock out&lt;/a&gt; on tasks. However, I didn't know you could easily build a customized report that automatically updates. That's when I came across clock tables.&lt;/p&gt;
+&lt;p&gt;Now, I have a way of visualizing all of the things I worked on during a week or month, and as I'm planning for the next week or month, I can adjust and reprioritize the things I'm working on.&lt;/p&gt;
+&lt;p&gt;I know there are enterprise offerings like the Viva suite from Microsoft which provides detailed reports on how you spend your time.&lt;/p&gt;
+&lt;p&gt;What excites me about org-mode though is that it's plain text. The clock table report that gets generated is a plain text table which makes it portable and easy to access using any text editor of your choice. It works best with Emacs, but that's not a requirement.&lt;/p&gt;
+&lt;p&gt;On their own, clock tables are amazing.&lt;/p&gt;
+&lt;p&gt;However, given how well language models work on plain text, they could be used as context for your queries. Imagine giving a language model as input an org file which contains:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A clock table&lt;/li&gt;
+&lt;li&gt;A list of TODO tasks (with notes, priorities, deadlines, tags, properties, and other annotations)&lt;/li&gt;
+&lt;li&gt;A high level list of goals you want to achieve&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then, you could enter a prompt along the lines of: &amp;quot;Using the following clock-table and list of goals I want to achieve, provide me with recommendations of tasks I should work on for the next week. Ensure that they align with my goals, are top priority, and provide the highest return on my efforts&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Additionally, you might also provide your org-agenda view containing appointments and use the results from the first query as context for the following prompt: &amp;quot;Given the agenda view for the next week, schedule the top 3 tasks you recommended&amp;quot;.&lt;/p&gt;
+&lt;p&gt;The result would be a list of TODO items containing schedule / active timestamps annotations which now show up on your org-agenda view.&lt;/p&gt;
+&lt;p&gt;Today, almost every productivity application out there is working on building these kinds of AI features into their products. The difference is, in many cases, the formats used by those applications aren't plain text. This adds complexity to the data extraction and transformation pipelines required to get the data into the right format for a language model to process. With plain text, there's little to no transformations required.&lt;/p&gt;
+&lt;p&gt;What's even better, I can extend org-mode and Emacs using elisp to do the things I just talked about.&lt;/p&gt;
+&lt;p&gt;I'm no elisp expert, so I asked Copilot to generate an elisp function that takes an org-mode clock table as input and generates a written text summary of it. Here are the results:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-lisp"&gt;(defun org-clock-summary-to-chatgpt ()
+  &amp;quot;Extracts clock table data and requests a summary from ChatGPT.&amp;quot;
+  (interactive)
+  (let* ((clock-table-data (org-clocktable-get-clocktable))
+         (summary-text (org-clocktable-format-summary clock-table-data))
+         (api-endpoint &amp;quot;https://api.openai.com/v1/engines/davinci/completions&amp;quot;)
+         (api-key &amp;quot;YOUR_API_KEY&amp;quot;)) ; Replace with your actual API key
+
+    ;; Construct the HTTP request and send it to ChatGPT
+    (with-current-buffer
+        (url-retrieve-synchronously api-endpoint
+                                    `((&amp;quot;text&amp;quot; . ,summary-text)
+                                      (&amp;quot;api_key&amp;quot; . ,api-key)))
+      (goto-char (point-min))
+      (search-forward &amp;quot;\n\n&amp;quot;)
+      (let ((response-json (json-read)))
+        (message &amp;quot;ChatGPT summary: %s&amp;quot; (cdr (assoc 'choices response-json)))))))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;All you elisp experts out there, let me know how it did.&lt;/p&gt;
+&lt;p&gt;I know at least the API endpoint is wrong, but generally speaking, it seems to be doing the right thing. Such function could be extended to include org-agenda information, TODO items, and many other things that would use AI to augment the existing functionality of Emacs and org-mode to tailor them to my needs.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/love-plain-text-org-mode-clocktable</link>
+      <guid>https://www.lqdev.me/notes/love-plain-text-org-mode-clocktable</guid>
+      <pubDate>2024-07-09 22:07 -05:00</pubDate>
+      <category>emacs</category>
+      <category>orgmode</category>
+      <category>ai</category>
+      <category>plaintext</category>
+      <category>productivity</category>
+      <category>tools</category>
+      <category>technology</category>
+      <category>gnu</category>
+      <category>opensource</category>
+      <category>gtd</category>
+      <category>calendar</category>
+      <category>agenda</category>
+      <category>llm</category>
+      <category>openai</category>
+    </item>
+    <item>
+      <title>Home-Cooked Software and Barefoot Developers</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The emerging golden age of home-cooked software, barefoot developers, and why the local-first community should help build it&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This is a talk I presented Local-first Conference in Berlin, May 2024. It's specifically directed at the local-first
+community, but its relevant to anyone involved in building software.&lt;br /&gt;
+&lt;/br&gt;
+For the last ~year I've been keeping a close eye on how language models capabilities meaningfully change the speed, ease, and accessibility of software development. The slightly bold theory I put forward in this talk is that we're on a verge of a golden age of local, home-cooked software and a new kind of developer – what I've called the barefoot developer.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/home-cooked-software-barefoot-developers-appleton</link>
+      <guid>https://www.lqdev.me/responses/home-cooked-software-barefoot-developers-appleton</guid>
+      <pubDate>2024-07-06 22:02 -05:00</pubDate>
+      <category>localfirst</category>
+      <category>smallweb</category>
+      <category>sofware</category>
+      <category>llm</category>
+      <category>programming</category>
+      <category>talk</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>Meta Large Language Model Compiler: Foundation Models of Compiler Optimization</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Large Language Models (LLMs) have demonstrated remarkable capabilities across a variety of software engineering and coding tasks. However, their application in the domain of code and compiler optimization remains underexplored. Training LLMs is resource-intensive, requiring substantial GPU hours and extensive data collection, which can be prohibitive. To address this gap, we introduce Meta Large Language Model Compiler (LLM Compiler), a suite of robust, openly available, pre-trained models specifically designed for code optimization tasks. Built on the foundation of Code Llama, LLM Compiler enhances the understanding of compiler intermediate representations (IRs), assembly language, and optimization techniques. The model has been trained on a vast corpus of 546 billion tokens of LLVM-IR and assembly code and has undergone instruction fine-tuning to interpret compiler behavior. LLM Compiler is released under a bespoke commercial license to allow wide reuse and is available in two sizes: 7 billion and 13 billion parameters. We also present fine-tuned versions of the model, demonstrating its enhanced capabilities in optimizing code size and disassembling from x86_64 and ARM assembly back into LLVM-IR. These achieve 77% of the optimising potential of an autotuning search, and 45% disassembly round trip (14% exact match). This release aims to provide a scalable, cost-effective foundation for further research and development in compiler optimization by both academic researchers and industry practitioners.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://huggingface.co/collections/facebook/llm-compiler-667c5b05557fe99a9edd25cb"&gt;HuggingFace Collection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://scontent-lga3-1.xx.fbcdn.net/v/t39.2365-6/448997590_1496256481254967_2304975057370160015_n.pdf?_nc_cat=106&amp;amp;ccb=1-7&amp;amp;_nc_sid=3c67a6&amp;amp;_nc_ohc=4Yn8V9DFdbsQ7kNvgHtvfLI&amp;amp;_nc_ht=scontent-lga3-1.xx&amp;amp;oh=00_AYDYp657HzWrcs2CZ6ZBjStwB03bo760w9voXwJorfXA_w&amp;amp;oe=6683F28D"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/meta-llm-compiler</link>
+      <guid>https://www.lqdev.me/responses/meta-llm-compiler</guid>
+      <pubDate>2024-06-27 22:39 -05:00</pubDate>
+      <category>ai</category>
+      <category>compiler</category>
+      <category>meta</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Mapping the Mind of a Large Language Model</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today we report a significant advance in understanding the inner workings of AI models. We have identified how millions of concepts are represented inside Claude Sonnet, one of our deployed large language models. This is the first ever detailed look inside a modern, production-grade large language model. This interpretability discovery could, in future, help us make AI models safer.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Previously, we made some progress matching patterns of neuron activations, called features, to human-interpretable concepts. We used a technique called &amp;quot;dictionary learning&amp;quot;, borrowed from classical machine learning, which isolates patterns of neuron activations that recur across many different contexts. In turn, any internal state of the model can be represented in terms of a few active features instead of many active neurons. Just as every English word in a dictionary is made by combining letters, and every sentence is made by combining words, every feature in an AI model is made by combining neurons, and every internal state is made by combining features.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In October 2023, we reported success applying dictionary learning to a very small &amp;quot;toy&amp;quot; language model and found coherent features corresponding to concepts like uppercase text, DNA sequences, surnames in citations, nouns in mathematics, or function arguments in Python code.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We used the same scaling law philosophy that predicts the performance of larger models from smaller ones to tune our methods at an affordable scale before launching on Sonnet.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We successfully extracted millions of features from the middle layer of Claude 3.0 Sonnet, (a member of our current, state-of-the-art model family, currently available on claude.ai), providing a rough conceptual map of its internal states halfway through its computation. This is the first ever detailed look inside a modern, production-grade large language model.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/mapping-mind-large-language-model-anthropic</link>
+      <guid>https://www.lqdev.me/responses/mapping-mind-large-language-model-anthropic</guid>
+      <pubDate>2024-06-11 21:03 -05:00</pubDate>
+      <category>ai</category>
+      <category>interpretability</category>
+      <category>anthropic</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Ultravox - An open, fast, and extensible multimodal LLM</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Ultravox is a new kind of multimodal LLM that can understand text as well as human speech, without the need for a separate Audio Speech Recognition (ASR) stage. Building on research like AudioLM, SeamlessM4T, Gazelle, SpeechGPT, and others, we've extended Meta's Llama 3 model with a multimodal projector that converts audio directly into the high-dimensional space used by Llama 3. This direct coupling allows Ultravox to respond much more quickly than systems that combine separate ASR and LLM components. In the future this will also allow Ultravox to natively understand the paralinguistic cues of timing and emotion that are omnipresent in human speech.&lt;br /&gt;
+&lt;br&gt;
+The current version of Ultravox (v0.1), when invoked with audio content, has a time-to-first-token (TTFT) of approximately 200ms, and a tokens-per-second rate of ~100, all using a Llama 3 8B backbone. While quite fast, we believe there is considerable room for improvement in these numbers. We look forward to working with LLM hosting providers to deliver state-of-the-art performance for Ultravox.&lt;br /&gt;
+&lt;br&gt;
+Ultravox currently takes in audio and emits streaming text. As we evolve the model, we'll train it to be able to emit a stream of speech tokens that can then be converted directly into raw audio by an appropriate unit vocoder. We're interested in working with interested parties to build this functionality!&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/ultravox-multimodal-llm</link>
+      <guid>https://www.lqdev.me/responses/ultravox-multimodal-llm</guid>
+      <pubDate>2024-06-11 20:51 -05:00</pubDate>
+      <category>ai</category>
+      <category>multimodal</category>
+      <category>llm</category>
+    </item>
+  </channel>
+</rss>

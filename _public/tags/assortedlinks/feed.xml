@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - assortedlinks</title>
+    <link>https://www.lqdev.me/tags/assortedlinks</link>
+    <description>All content tagged with 'assortedlinks' by Luis Quintanilla</description>
+    <lastBuildDate>04/21/2022 19:44 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Assorted links - Ubuntu 22.04 LTS, Bitwarden, DALLE-2, Emacs</title>
+      <description>&lt;![CDATA[&lt;p&gt;Here's a few links I found in the interwebs today that I thought were worth sharing.&lt;/p&gt;
+&lt;h2&gt;Ubuntu 22.04 LTS Released&lt;/h2&gt;
+&lt;p&gt;For my personal computing needs, Manjaro has been my default Linux distro. However, for hosting and cloud VMs I go back and forth between Debian and Ubuntu depending on which better supports the software I'm running. Canonical announced the release of the latest Ubuntu LTS version 22.04. Check out their &lt;a href="https://ubuntu.com/blog/ubuntu-22-04-lts-released"&gt;blog post&lt;/a&gt; for more details on what's new.&lt;/p&gt;
+&lt;h2&gt;Self-hosting Bitwarden on DigitalOcean&lt;/h2&gt;
+&lt;p&gt;When it comes to password managers, other than KeePass, my favorite it &lt;a href="https://bitwarden.com/"&gt;Bitwarden&lt;/a&gt;. It's open-source, built on .NET, has excellent features that get even better with the low-cost paid version, but most importantly provides you the option of self-hosting. If you're looking to self-host Bitwarden on DigitalOcean, make sure to check out the &lt;a href="https://bitwarden.com/blog/digitalocean-marketplace/"&gt;guide&lt;/a&gt; they just published.&lt;/p&gt;
+&lt;h2&gt;How DALLE-2 Actually Works&lt;/h2&gt;
+&lt;p&gt;A few weeks ago, OpenAI announced the release of &lt;a href="https://openai.com/dall-e-2/"&gt;DALLE-2&lt;/a&gt;. Open AI describes DALLE-2 as, &amp;quot;...a new AI system that can create realistic images and art from a description in natural language.&amp;quot; If you want to understand the details of how it works, you could read the 27 page research paper &lt;a href="https://arxiv.org/pdf/2204.06125.pdf"&gt;Hierarchical Text-Conditional
+Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an approachable guide into the inner workings of DALLE-2. If you're interested in that, check out their &lt;a href="https://www.assemblyai.com/blog/how-dall-e-2-actually-works/"&gt;blog post&lt;/a&gt; on the topic.&lt;/p&gt;
+&lt;h2&gt;Emacs Configuration Generator&lt;/h2&gt;
+&lt;p&gt;In my early days of using Emacs, I often found it difficult to customize it to my needs. Not only did I not know what was possible, but it also caused some anxiety because I didn't feel confident enough making major tweaks. If you're getting started with Emacs and aren't sure how to configure it, this neat &lt;a href="https://emacs.amodernist.com/"&gt;utility&lt;/a&gt; helps you generate a config file for Emacs.&lt;/p&gt;
+&lt;h2&gt;PostgresML&lt;/h2&gt;
+&lt;p&gt;If you're building machine learning applications, one of the main things you'll need is data. This data can reside in databases such as MySQL, SQL Server, and Postgres. Algorithms are applied to this data downstream using libraries written in languages like Python, R, and .NET. This not only means potentially moving the data from the database to another process but also using another library to train models. According to the project description on GitHub, &amp;quot;PostgresML is an end-to-end machine learning system. It enables you to train models and make online predictions using only SQL, without your data ever leaving your favorite database.&amp;quot; If that's something you're interested in, check out the project on &lt;a href="https://github.com/postgresml/postgresml"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/2022-04-21-assorted-links</link>
+      <guid>https://www.lqdev.me/notes/2022-04-21-assorted-links</guid>
+      <pubDate>04/21/2022 19:44 -05:00</pubDate>
+      <category>links</category>
+      <category>assortedlinks</category>
+      <category>ubuntu</category>
+      <category>bitwarden</category>
+      <category>dalle</category>
+      <category>openai</category>
+      <category>emacs</category>
+      <category>linkblog</category>
+    </item>
+  </channel>
+</rss>

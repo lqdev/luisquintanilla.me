@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - rss</title>
+    <link>https://www.lqdev.me/tags/rss</link>
+    <description>All content tagged with 'rss' by Luis Quintanilla</description>
+    <lastBuildDate>2025-09-12 21:16 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Notes on why blogging lost to Twitter</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;I haven't listened to the &lt;a href="https://shownotes.scripting.com/scripting/2025/09/08/whyBloggingLostToTwitterAndOtherFolkSongs.html"&gt;podcast&lt;/a&gt; yet but there's a lot of good points.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Subscribing in feed readers required too many steps: copying URLs, menus, pasting, confirming.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Blogging lost to Twitter because Twitter had one-click subscribe.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Rebooting the blogosphere requires cooperation and a universal &amp;quot;follow&amp;quot; button.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/notes-why-blogging-lost-twitter-winer</link>
+      <guid>https://www.lqdev.me/responses/notes-why-blogging-lost-twitter-winer</guid>
+      <pubDate>2025-09-12 21:16 -05:00</pubDate>
+      <category>blog</category>
+      <category>indieweb</category>
+      <category>feed</category>
+      <category>rss</category>
+      <category>blogosphere</category>
+    </item>
+    <item>
+      <title>No Rule Says We Have To Stay on Social Media</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;💯💯💯&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;If we can go back to vinyl records and film cameras, we can go back to blogs and RSS feeds.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Do we need permission from the masses before we do something that might bring us joy?&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/no-rule-says-stay-on-social-media</link>
+      <guid>https://www.lqdev.me/responses/no-rule-says-stay-on-social-media</guid>
+      <pubDate>2025-09-12 20:46 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>socialweb</category>
+      <category>socialmedia</category>
+      <category>rss</category>
+    </item>
+    <item>
+      <title>Filter YouTube RSS Feeds</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;As someone who subscribes to YouTube channels using RSS feeds, I found this incredibly useful.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;https://www.youtube.com/feeds/videos.xml?playlist_id=UU&amp;lt;channel id&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Notice the UU and look below what you can replace it with.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;UU - all public uploads (same as the channel_id= url)
+UULF - all public videos
+UUMO - all member videos 
+UULV - all live streams
+UUSH - all shorts
+UULP - popular videos
+UUPV - popular live streams
+UUPS - popular shorts
+UUMV - member live streams
+UUMS - member shorts
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/filter-youtube-video-rss-feed</link>
+      <guid>https://www.lqdev.me/responses/filter-youtube-video-rss-feed</guid>
+      <pubDate>2025-09-12 19:57 -05:00</pubDate>
+      <category>rss</category>
+      <category>youtube</category>
+      <category>feed</category>
+    </item>
+    <item>
+      <title>How do I keep up with AI?</title>
+      <description>&lt;![CDATA[
+This question comes up a lot in conversations. The short answer? I don’t. There’s just too much happening, too fast, for anyone to stay on top of everything.
+
+While I enjoy sharing links and recommendations, I realized that a blog post might be more helpful. It gives folks a single place they can bookmark, share, and come back to on their own time, rather than having to dig through message threads where things inevitably get lost.
+
+That said, here are some sources I use to try and stay informed:
+
+- **Newsletters** are great for curated content. They highlight the top stories and help filter through the noise.
+- **Blogs** are often the primary sources behind those newsletters. They go deeper and often cover a broader set of topics that might not make it into curated roundups.
+- **Podcasts** serve a similar role. In some cases, they provide curation like newsletters and deep dives like blogs in others. Best of all, you can tune in while on the go making it a hands-free activity.
+
+For your convenience, if any of the sources (including podcasts) I list below have RSS feeds, I’ve included them in my [AI Starter Pack](/collections/starter-packs//ai), which you can [download and import into your favorite RSS reader](/collections/starter-packs//ai/index.opml) (as long as it supports OPML file imports).
+
+If you have some sources to share, [send me an e-mail](/contact). I'd love to keep adding to this list! If they have a feed I can subscribe to, even better.
+
+## Newsletters
+
+- [AlphaSignal](https://alphasignal.ai/)
+- [The Batch](https://www.deeplearning.ai/the-batch/)
+- [Latent Space](https://www.latent.space/)
+- [TLDR AI](https://tldr.tech/ai)
+
+## Blogs
+
+I pride myself on being able to track down an RSS feed on just about any website, even if it’s buried or not immediately visible. Unfortunately, I haven't found a feed URL for either OpenAI or Anthropic which is annoying. 
+
+**OpenAI and Anthropic, if you could do everyone a favor and drop a link, that would be great.** 
+
+UPDATE: Thanks to [@m2vh@mastodontech.de](https://toot.lqdev.tech/@m2vh@mastodontech.de) for sharing the OpenAI news feed. 
+
+I know I could use one of those web-page-to-RSS converters, but I'd much rather have an official link directly from the source.
+
+- [OpenAI](https://openai.com/news/)
+- [Anthropic](https://www.anthropic.com/news)
+- [Google AI Blog](https://blog.google/technology/ai/)
+- [AWS Machine Learning Blog](https://aws.amazon.com/blogs/machine-learning/)
+- [Microsoft Research](https://www.microsoft.com/en-us/research/blog/)
+- [Google Research](https://research.google/blog/)
+- [Simon Willison](https://simonwillison.net/)
+
+## Podcasts
+
+- [AI Daily Brief](https://www.podchaser.com/podcasts/the-ai-daily-brief-formerly-th-5260567)
+- [TWIML AI Podcast](https://twimlai.com/)
+- [Practical AI](https://changelog.com/practicalai)
+
+## Subscribing to feeds
+
+Now that I’ve got you here...
+
+Let’s talk about the best way to access all these feeds. My preferred and recommended approach is using a feed reader.
+
+When subscribing to content on the open web, feed readers are your secret weapon.
+
+RSS might seem like it’s dead (it’s not—yet). In fact, it’s the reason you often hear the phrase, “Wherever you get your podcasts.” But RSS goes beyond podcasts. It’s widely supported by blogs, newsletters, and even social platforms like the Fediverse (Mastodon, PeerTube, etc.) and BlueSky. It’s also how I’m able to compile my [starter packs](/collections/starter-packs/). 
+
+I've written more about RSS in [Rediscovering the RSS Protocol](/posts/rediscovering-rss-user-freedom), but the short version is this: when you build on open standards like RSS and OPML, you’re building on freedom. Freedom to use the tools that work best for you. Freedom to own your experience. And freedom to support a healthier, more independent web.
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/how-i-keep-up-with-ai</link>
+      <guid>https://www.lqdev.me/posts/how-i-keep-up-with-ai</guid>
+      <pubDate>2025-05-27 19:44 -05:00</pubDate>
+      <category>ai</category>
+      <category>rss</category>
+      <category>starterpack</category>
+      <category>newsletter</category>
+      <category>blog</category>
+      <category>opml</category>
+      <category>openweb</category>
+      <category>podcast</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>RSS is (not) dead (yet)</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Illustrating the history of RSS. Created in collaboration with &lt;a href="https://audmcname.com/alliaservice.com"&gt;A. Service&lt;/a&gt;, and debuted at VanCAF 2023&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src="https://audmcname.com/wp-content/uploads/rss/rss0.jpg" class="img-fluid" alt="Cover of Rss is not dead yet comic" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/rss-not-dead-yet-mcnamee</link>
+      <guid>https://www.lqdev.me/responses/rss-not-dead-yet-mcnamee</guid>
+      <pubDate>2025-05-26 18:11 -05:00</pubDate>
+      <category>rss</category>
+      <category>comic</category>
+      <category>art</category>
+    </item>
+    <item>
+      <title>ALL about RSS</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A list of RSS related stuff: tools, services, communities and tutorials, etc.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/all-about-rss</link>
+      <guid>https://www.lqdev.me/bookmarks/all-about-rss</guid>
+      <pubDate>2025-04-28 21:07 -05:00</pubDate>
+      <category>rss</category>
+      <category>indieweb</category>
+      <category>feeds</category>
+    </item>
+    <item>
+      <title>Redirect URLs working again</title>
+      <description>&lt;![CDATA[&lt;p&gt;Thanks to the kind e-mail from &lt;a href="https://www.benji.dog/"&gt;benji.dog&lt;/a&gt;, I realized people couldn't subscribe to my RSS feeds using the links provided in the &lt;a href="https://www.lqdev.me/feed"&gt;/feed&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;I'd noticed something weird had been going on for the past few days but since the rest of my site was working, I didn't pay attention to it.&lt;/p&gt;
+&lt;p&gt;When I went in earlier today to fix the issue, I realized because of changes to &lt;a href="https://learn.microsoft.com/azure/cdn/edgio-retirement-faq"&gt;Azure CDN&lt;/a&gt;, none of my redirects were working.&lt;/p&gt;
+&lt;p&gt;My site kept working fine, but that's because the migration was autmatically done by Azure.&lt;/p&gt;
+&lt;p&gt;What wasn't automatically migrated were my CDN rules which I'd set up to &lt;a href="https://www.lqdev.me/notes/new-rss-feed-links"&gt;simplify URLs&lt;/a&gt; and &lt;a href="https://www.lqdev.me/responses/own-your-rss-links"&gt;own my links&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/cdn-issue-fixed-redirects-working</link>
+      <guid>https://www.lqdev.me/notes/cdn-issue-fixed-redirects-working</guid>
+      <pubDate>2025-02-08 14:38 -05:00</pubDate>
+      <category>cdn</category>
+      <category>azure</category>
+      <category>rss</category>
+      <category>ownyourlinks</category>
+      <category>cdn</category>
+      <category>frontdoor</category>
+      <category>community</category>
+    </item>
+    <item>
+      <title>Building a Reading Habit with Audiobooks, LibriVox, and AntennaPod</title>
+      <description>&lt;![CDATA[
+Last year, I was able to complete my goal of reading 12 books or roughly one book per month. I kept track of some of the books I read in my [library page](/reviews).
+
+I enjoyed most of the books I read. However, despite hitting my goal and averaging a book a month, I didn't build up a habit which is what I would've preferred. Many of the books I read last year, I read them during long periods of uninterrupted time, such as cross-country flights. The topic of goal setting and measuring the right thing could be an entire post, but I'll leave that for another time. 
+
+Taking the learnings from last year, this year, I'll try to focus on building a reading habit rather than reading a set number of books. While I'd still like to finish at least one book per month, that's a metric I'll use to track general progress rather than making it the goal. Unless I'm reading something like War and Peace, I'd expect that by establishing a consistent cadence, I should be able to get through at least one book every month. Also, I'm only accounting for uninterrupted reading time blocks. Using audiobooks, I can continue building my reading habit while working out or doing chores. Kind of like having TV playing in the background. 
+
+There is no shortage of audiobooks out there. Audible is one of the easiest ways to access audiobooks and they have a large selection to choose from. Personally, I don't use Audible. I don't like paying for a separate subscription, getting credits to "buy" books that I don't really own and can only listen through the Audible app. Instead, I use Spotify. I get [15 hours of access to audiobooks per month](https://support.spotify.com/us/article/audiobooks-access-plan/) as part of my subscription. While I still don't own the books and can only listen on the Spotify app, at least I'm not paying a separate subscription. Also, the 15 hour limit at this time is more than enough for me. 
+
+The library is another amazing option. No subscription fees and you get access to your local library's entire digital catalog. Using the [Libby app](https://www.overdrive.com/apps/libby), you can borrow books and start listening for free. Selection though may be an issue here since you are limited to what's available through your local library. Pro-tip, universities and employers sometimes have libraries, so as an alumnus or employee, you can expand the number of books available to you by registering multiple libraries on the Libby app. Regardless of which library you choose though, you still have to go through the Libby app. 
+
+The dream setup for me is, having direct access to the audiobook files so I can listen to them whenever and wherever I'd like. Similar to podcasts. Thanks to LibriVox and AntennaPod, that setup is possible. 
+
+In case you're interested in setting up something similar, in this post, I'll briefly explain what LibriVox and AntennaPod are and show how you can use them to start listening to free audiobooks on your phone. 
+
+## What is LibriVox?
+
+[LibriVox](https://librivox.org/) is a website that provides a collection of free audiobooks from the public domain. Thanks to a vibrant community of volunteers, you can enjoy classics such as:
+
+- [The Divine Comedy](https://librivox.org/the-divine-comedy-by-dante-alighieri/)
+- [The Adventures of Sherlock Holmes](https://librivox.org/the-adventures-of-sherlock-holmes/)
+- [Discourses of Epictetus](https://librivox.org/discourses-of-epictetus-by-epictetus/)
+- [Roughing It](https://librivox.org/roughing-it/)
+- [And many others...](https://librivox.org/search?primary_key=0&amp;search_category=title&amp;search_page=1&amp;search_form=get_results&amp;search_order=catalog_date)
+
+It's important to note that the catalog is limited to public domain works. That means you won't have access to the latest self-help, business, or current events books. However, there are still thousands of books to keep you busy for an entire lifetime and the list is constantly growining since there are new works introduced into the public domain every year. 
+
+Here's [a few notable literary works that entered the public domain in 2025](https://blog.archive.org/2025/01/01/welcome-to-the-public-domain-in-2025/) as well as the complete list of [literary works from 1929](https://archive.org/details/internetarchivebooks?tab=collection&amp;query=date%3A1929).
+
+## What is Antennapod?
+
+[AntennaPod](https://antennapod.org/) is an open-source podcast player for Android. 
+
+The app has a ton of great features, such as [Podcast Index](https://podcastindex.org/) support, subscribe via RSS directly,  OPML import and export, chapters, adjustable playback speed, and for the past few years, a personalized yearly summary which is computed locally on your device [(here's my summary from 2024)](/notes/antennapod-echo-2024).
+
+You can get AntennaPod from the Play Store or [F-Droid](https://f-droid.org/en/packages/de.danoeh.antennapod/)
+
+## Keep track of new releases
+
+LibriVox provides [several feeds](https://librivox.org/pages/librivox-feeds/). 
+
+Since podcast distribution is primarly done through RSS and you can subscribe to podcasts directly using RSS feeds in AntennaPod, we can use the app to stay up to date with new audiobook releases. 
+
+To subscribe to the LibriVox New Release feed:
+
+1. Copy the LibriVox New Releases RSS feed URL to your clipboard: [https://librivox.org/rss/latest_releases](https://librivox.org/rss/latest_releases)
+1. In AntennaPod, open up the hamburger menu and select **Add Podcast**.
+1. In the *Add Podcast* dialog, select **Add podcast by RSS address**.
+
+    ![AntennaPod Add Podcast Dialog](http://cdn.lqdev.tech/files/images/add-podcast-antennapod.png)
+
+1. Paste the LibriVox New Releases RSS feed URL into the text box and select **Confirm**. 
+
+At this point, you should see the feed listed in your AntennaPod subscriptions. 
+
+By subscribing the LibriVox New Release feed, AntennaPod treats the feed as a podcast, and each new release entry or audiobook is like a podcast episode. 
+
+For more information on subscribing to podcasts, see the [AntennaPod documentation](https://antennapod.org/documentation/getting-started/subscribe). 
+
+## Add books to Antennapod
+
+Subscribing to the new releases feed only notifies you when new books are added, you can't listen to or download the books. To do that, you'll need to subscribe to the RSS feed of the book you want to listen to in AntennaPod.
+
+### From New Releases Feed
+
+1. In AntennaPod's Subscription screen, select **LibriVox's New Releases**.
+1. From the list of new releases, select the book you want to listen to. For example, "Room of One's Own" by Virginia Woolf.
+
+    ![AntennaPod New Releases Feed](http://cdn.lqdev.tech/files/images/antennapod-librivox-new-releases.png)
+
+1. In the audiobook's screen, select **Visit Website**. This will take you to the LibriVox audiobook's page in the browser.
+
+    ![AntennaPod Audiobook Screen](http://cdn.lqdev.tech/files/images/antennapod-room-of-ones-own.png)
+
+1. In the LibriVox audiobook page, select the book's RSS Feed.
+
+    ![A Room of One's Own by Virginia Woolf LibriVox book page](http://cdn.lqdev.tech/files/images/librivox-room-ones-own.png)
+
+1. Copy the book's feed URL to your clipboard.
+1. In AntennaPod, open up the hamburger menu and select **Add Podcast**.
+1. In the *Add Podcast* dialog, select **Add podcast by RSS address**.
+1. Paste the book's RSS feed URL into the text box and select **Confirm**. 
+
+### Any other books
+
+The process works the same for other books but you'll have to use LibriVox as the entrypoint to browse books.
+
+1. In your browser, navigate to LibriVox. 
+1. Go to the audiobook page. For example, this is the page for [Walden](https://librivox.org/walden-by-henry-david-thoreau).
+1. In the audiobook page, select the book's RSS Feed. For Walden, it's [https://librivox.org/rss/549](https://librivox.org/rss/549).
+1. Copy the book's feed URL to your clipboard.
+1. In AntennaPod, open up the hamburger menu and select **Add Podcast**.
+1. In the *Add Podcast* dialog, select **Add podcast by RSS address**.
+1. Paste the book's RSS feed URL into the text box and select **Confirm**. 
+
+## Conclusion 
+
+Although AntennaPod wasn't designed for audiobook listening, thanks to the flexibility of RSS feeds and the thankless work of the LibriVox community, you can easily listen to audiobooks for free on your mobile device. I plan on testing out this setup and seeing whether it helps keep my reading habit on track.]]&gt;</description>
+      <link>https://www.lqdev.me/posts/listen-audiobooks-librivox-antennapod</link>
+      <guid>https://www.lqdev.me/posts/listen-audiobooks-librivox-antennapod</guid>
+      <pubDate>2025-01-05 21:04 -05:00</pubDate>
+      <category>book</category>
+      <category>audiobook</category>
+      <category>rss</category>
+      <category>antennapod</category>
+      <category>librivox</category>
+      <category>android</category>
+      <category>podcast</category>
+      <category>publicdomain</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>Starter Packs with OPML and RSS</title>
+      <description>&lt;![CDATA[
+One of the things I like about Bluesky is the [Starter Pack feature](https://bsky.social/about/blog/06-26-2024-starter-packs). 
+
+In a gist, a Starter Pack is a collection of feeds. 
+
+Bluesky users can:
+
+- Create starter packs
+- Share starter packs
+- Subscribe to starter packs
+
+Unfortunately, Starter Packs are limited to Bluesky. 
+
+Or are they? 
+
+As mentioned, starter packs are a collection of feeds that others can create, share, and subscribe to. 
+
+[Bluesky supports RSS](/responses/bluesky-rss-support/), which means you could organize the feeds using an OPML file that you can share with others and others can subscribe to. The benefits of this is, you can continue to keep up with activity on Bluesky from the feed reader of your choice without being required to have an account on Bluesky. 
+
+More importantly, because RSS and OPML are open standards, you're not limited to building starter packs for Bluesky. You can create, share, and subscribe to starter packs for any platform that supports RSS. That includes blogs, podcasts, forums, YouTube, Mastodon, etc. [Manton seems to have something similar in mind](https://www.manton.org/2024/12/07/with-the-success.html) as a means of building on open standards that make it easy for Micro.blog to interop with various platforms. 
+
+If you're interested in what that might look like in practice, check out my "starter packs" which you can subscribe to using your RSS reader of choice and the provided OPML files. 
+
+- [Blogs](/collections/blogroll)
+- [Podcasts](/collections/podroll)
+- [YouTube](/collections/youtube)
+- [Forums](/collections/forums)
+
+I'm still working on similar collections for Mastodon and Bluesky but the same concept applies.  
+
+Although these are just simple examples, it shows the importance of building on open standards and the open web. Doing so introduces more freedom for creators and communities. 
+
+Here are other "starter packs" you might consider subscribing to. 
+
+- [People and Blogs](https://www.thingelstad.com/2024/12/03/people-blogs-list.html)
+- [Blogroll Club](https://blogroll.club/faq/)
+
+If this is interesting to you, [Feedland](https://feedland.org/) might be a project worth checking out.  ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/rss-opml-starter-packs</link>
+      <guid>https://www.lqdev.me/posts/rss-opml-starter-packs</guid>
+      <pubDate>2024-12-08 19:40 -05:00</pubDate>
+      <category>rss</category>
+      <category>opml</category>
+      <category>indieweb</category>
+      <category>starterpacks</category>
+      <category>community</category>
+      <category>bluesky</category>
+      <category>socialmedia</category>
+      <category>openweb</category>
+      <category>protocols</category>
+      <category>openstandards</category>
+      <category>feedland</category>
+    </item>
+    <item>
+      <title>You should be using an RSS reader</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;Yes, you should!&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...the conduit through which I experience Molly's excellent work is totally enshittification-proof, and the more I use it, the easier it is for everyone to be less enshittified.&lt;br /&gt;
+&lt;/br&gt;
+This conduit is anti-lock-in, it works for nearly the whole internet. It is surveillance-resistant, far more accessible than the web or any mobile app interface. It is my secret super-power.&lt;br /&gt;
+&lt;/br&gt;
+It's RSS.&lt;br /&gt;
+&lt;br&gt;
+...But RSS isn't just good for the news! It's good for everything.&lt;br /&gt;
+&lt;/br&gt;
+Your RSS reader doesn't (necessarily) have an algorithm. By default, you'll get everything as it appears, in reverse-chronological order.&lt;br /&gt;
+&lt;/br&gt;
+Now, you sign up to so many feeds that you're feeling overwhelmed and you want an algorithm to prioritize posts – or recommend content. Lots of RSS readers have some kind of algorithm and recommendation system...&lt;br /&gt;
+&lt;/br&gt;
+But you control the algorithm, you control the recommendations. And if a new RSS reader pops up with an algorithm you're dying to try, you can export all the feeds you follow with a single click, which will generate an OPML file. Then, with one click, you can import that OPML file into any other RSS reader in existence and all your feeds will be seamlessly migrated there. You can delete your old account, or you can even use different readers for different purposes.&lt;br /&gt;
+&lt;/br&gt;
+RSS basically works like social media should work. Using RSS is a chance to visit a utopian future in which the platforms have no power, and all power is vested in publishers, who get to decide what to publish, and in readers, who have total control over what they read and how, without leaking any personal information through the simple act of reading.&lt;br /&gt;
+&lt;/br&gt;
+And here's the best part: every time you use RSS, you bring that world closer into being!&lt;br /&gt;
+&lt;/br&gt;
+Unlike those largely useless, performative boycotts of widely used platforms, switching to RSS doesn't require that you give anything up. Not only does switching to RSS let you continue to follow all the newsletters, webpages and social media accounts you're following now, it makes doing so better: more private, more accessible, and less enshittified.&lt;br /&gt;
+&lt;/br&gt;
+Using RSS to follow the stuff that matters to you will have an immediate, profoundly beneficial impact on your own digital life – and it will appreciably, irreversibly nudge the whole internet towards a better state.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Great article by &lt;a href="https://craphound.com/bio/"&gt;Cory Doctorow&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I've written at length on my website as to &lt;a href="https://www.lqdev.me/posts/rediscovering-rss-user-freedom"&gt;why I enjoy RSS&lt;/a&gt;. My use goes back to the days of Google Reader. Like many, once that was disbanded, my consumption pretty much shifted to social media for a few years. After growing dissatisfaction with the limitations and lack of control over my feed, I started my journey back to RSS readers eventually landing on &lt;a href="https://www.lqdev.me/notes/subscribed-to-1042-feeds-newsblur"&gt;NewsBlur&lt;/a&gt; and elfeed as my readers of choice.&lt;/p&gt;
+&lt;p&gt;On this website, RSS plays an important role in a few areas.&lt;/p&gt;
+&lt;p&gt;RSS is how I:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/notes/website-feeds-opml/"&gt;Enable discovery of my own feeds&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/feed"&gt;Enable visitors to subscribe and get the latest content&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/posts/rss-to-mastodon-posse-azure-logic-apps"&gt;Syndicate posts to Mastodon&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/notes/blogroll-discovery-implemented/"&gt;Enable feed discovery of websites I subscribe to&lt;/a&gt; through my:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/collections/blogroll/"&gt;Blogroll&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/collections/podroll/"&gt;Podroll (podcasts)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/collections/youtube/"&gt;YouTubeRoll?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/collections/forums/"&gt;ForumRoll?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So how can you get started?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Learn &lt;a href="https://aboutfeeds.com/"&gt;about feeds&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Check out the many &lt;a href="https://matthiasott.com/notes/we-love-rss"&gt;getting started guides&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Browse through &lt;a href="https://blogroll.club/"&gt;blogrolls and feed catalogs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.theverge.com/24036427/rss-feed-reader-best"&gt;Explore various feed readers&lt;/a&gt; to find the one that works best for you.&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/you-should-be-using-rss-reader-pluralistic</link>
+      <guid>https://www.lqdev.me/responses/you-should-be-using-rss-reader-pluralistic</guid>
+      <pubDate>2024-10-18 08:54 -05:00</pubDate>
+      <category>rss</category>
+      <category>pluralistic</category>
+      <category>indieweb</category>
+      <category>protocols</category>
+      <category>openweb</category>
+      <category>freeweb</category>
+      <category>internet</category>
+      <category>smallweb</category>
+    </item>
+    <item>
+      <title>Blogroll Club - A blog directory</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;A Blog Directory is a cool project from &lt;a href="https://notes.jeddacp.com/"&gt;JC (Probably)&lt;/a&gt; and &lt;a href="https://louplummer.lol/"&gt;Lou Plummer&lt;/a&gt;. &lt;a href="https://blogroll.club/"&gt;Check it out&lt;/a&gt;!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/blogroll-club-blog-directory</link>
+      <guid>https://www.lqdev.me/responses/blogroll-club-blog-directory</guid>
+      <pubDate>2024-08-05 20:53 -05:00</pubDate>
+      <category>blog</category>
+      <category>rss</category>
+      <category>indieweb</category>
+      <category>blogroll</category>
+      <category>community</category>
+      <category>web</category>
+      <category>smallweb</category>
+      <category>personalweb</category>
+    </item>
+    <item>
+      <title>Congratulations on ten years of Overcast</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;I no longer have an iPhone, but whenever anyone asks for a podcast app recommendation, Overcast is the first one I mention. Congrats on 10 years. Here's to many more.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/congratulations-overcast-ten-years</link>
+      <guid>https://www.lqdev.me/responses/congratulations-overcast-ten-years</guid>
+      <pubDate>2024-08-04 17:07 -05:00</pubDate>
+      <category>podcast</category>
+      <category>app</category>
+      <category>overcast</category>
+      <category>anniversary</category>
+      <category>milestone</category>
+      <category>apple</category>
+      <category>ios</category>
+      <category>rss</category>
+    </item>
+    <item>
+      <title>OPML for website feeds</title>
+      <description>&lt;![CDATA[&lt;p&gt;While thiking about implementing &lt;a href="https://www.lqdev.me/responses/well-known-feeds/"&gt;&lt;code&gt;.well-known&lt;/code&gt; for RSS feeds on my site&lt;/a&gt;, I had another idea. Since that uses OPML anyways, I remembered recently &lt;a href="https://www.lqdev.me/notes/blogroll-discovery-implemented//"&gt;doing something similar for my blogroll&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The concept is the same, except instead of making my blogroll discoverable, I'm doing it for my feeds. At the end of the day, a blogroll is a collection of feeds, so it should just work for my own feeds.&lt;/p&gt;
+&lt;p&gt;The implementation ended up being:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Create an OPML file for&lt;a href="https://www.lqdev.me/feed"&gt; each of the feeds on by website&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt; &amp;lt;opml version=&amp;quot;2.0&amp;quot;&amp;gt;
+   &amp;lt;head&amp;gt;
+ 	&amp;lt;title&amp;gt;Luis Quintanilla Feeds&amp;lt;/title&amp;gt;
+ 	&amp;lt;ownerId&amp;gt;https://www.luisquintanilla.me&amp;lt;/ownerId&amp;gt;
+   &amp;lt;/head&amp;gt;
+   &amp;lt;body&amp;gt;
+ 	&amp;lt;outline title=&amp;quot;Blog&amp;quot; text=&amp;quot;Blog&amp;quot; type=&amp;quot;rss&amp;quot; htmlUrl=&amp;quot;/posts/1&amp;quot; xmlUrl=&amp;quot;/blog.rss&amp;quot; /&amp;gt;
+ 	&amp;lt;outline title=&amp;quot;Microblog&amp;quot; text=&amp;quot;Microblog&amp;quot; type=&amp;quot;rss&amp;quot; htmlUrl=&amp;quot;/feed&amp;quot; xmlUrl=&amp;quot;/microblog.rss&amp;quot; /&amp;gt;
+ 	&amp;lt;outline title=&amp;quot;Responses&amp;quot; text=&amp;quot;Responses&amp;quot; type=&amp;quot;rss&amp;quot; htmlUrl=&amp;quot;/feed/responses&amp;quot; xmlUrl=&amp;quot;/responses.rss&amp;quot; /&amp;gt;
+ 	&amp;lt;outline title=&amp;quot;Mastodon&amp;quot; text=&amp;quot;Mastodon&amp;quot; type=&amp;quot;rss&amp;quot; htmlUrl=&amp;quot;/mastodon&amp;quot; xmlUrl=&amp;quot;/mastodon.rss&amp;quot; /&amp;gt;
+ 	&amp;lt;outline title=&amp;quot;Bluesky&amp;quot; text=&amp;quot;Bluesky&amp;quot; type=&amp;quot;rss&amp;quot; htmlUrl=&amp;quot;/bluesky&amp;quot; xmlUrl=&amp;quot;/bluesky.rss&amp;quot; /&amp;gt;
+ 	&amp;lt;outline title=&amp;quot;YouTube&amp;quot; text=&amp;quot;YouTube&amp;quot; type=&amp;quot;rss&amp;quot; htmlUrl=&amp;quot;/youtube&amp;quot; xmlUrl=&amp;quot;/bluesky.rss&amp;quot; /&amp;gt;
+   &amp;lt;/body&amp;gt;
+ &amp;lt;/opml&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add a &lt;code&gt;link&lt;/code&gt; tag to the &lt;code&gt;head&lt;/code&gt; element of my website.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt; &amp;lt;link rel=&amp;quot;feeds&amp;quot; type=&amp;quot;text/xml&amp;quot; title=&amp;quot;Luis Quintanilla's Feeds&amp;quot; href=&amp;quot;/feed/index.opml&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/website-feeds-opml</link>
+      <guid>https://www.lqdev.me/notes/website-feeds-opml</guid>
+      <pubDate>2024-08-01 20:08 -05:00</pubDate>
+      <category>rss</category>
+      <category>opml</category>
+      <category>indieweb</category>
+      <category>feeds</category>
+      <category>internet</category>
+      <category>protocols</category>
+      <category>webstandards</category>
+      <category>standards</category>
+      <category>web</category>
+    </item>
+    <item>
+      <title>.well-known feeds</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;This is a clever use of &lt;em&gt;.well-known&lt;/em&gt; and OPML.&lt;/p&gt;
+&lt;p&gt;Definitely something I want to experiment with and implement on my site even if it's not widely adopted.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/well-known-feeds</link>
+      <guid>https://www.lqdev.me/responses/well-known-feeds</guid>
+      <pubDate>2024-07-31 09:01 -05:00</pubDate>
+      <category>standards</category>
+      <category>feeds</category>
+      <category>rss</category>
+      <category>web</category>
+      <category>indieweb</category>
+      <category>smallweb</category>
+    </item>
+    <item>
+      <title>Deep Questions - Debunking AI Model Capabilities / Distributed Webs of Trust</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=OvlfCW3Ec1g" title="Deep Questions Podcast Debunking AI Episode Thumbnail"&gt;&lt;img src="http://img.youtube.com/vi/OvlfCW3Ec1g/0.jpg" class="img-fluid" alt="Deep Questions Podcast Debunking AI Episode Thumbnail" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Nice job by Cal debunking misconceptions about AI model capabilities. The segment highlights a few points I cover in my unpublished &lt;a href="https://github.com/lqdev/luisquintanilla.me/blob/main/_scratch/nolm-not-only-language-models.md"&gt;NoLM - Not Only Language Models&lt;/a&gt; blog post. Specifically the fact that Language Models on their own can't do much and need to be connected to data sources and other systems. Complex AI systems will be built with more specialized roles and leverage various components for their planning and execution. In the end though, models will require integration into existing systems. Those integrations need to be done by people, meaning humans are still in control of the AI-assisted system capabilities.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=OvlfCW3Ec1g&amp;amp;t=4082" title="Deep Questions Podcast Debunking AI Episode Thumbnail"&gt;&lt;img src="http://img.youtube.com/vi/OvlfCW3Ec1g/0.jpg" class="img-fluid" alt="Same Deep Questions Podcast Debunking AI Episode Thumbnail" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Later in the podcast, Cal takes a question about distributed webs of trust. I agree with Cal's point of using existing open standards like RSS for content consumption. It's the reason you often hear the phrase, &amp;quot;or wherever you get your podcasts&amp;quot;. Assuming you have a program that can read an RSS feed, you can follow all types of content. On the topic of discovery, Cal makes the suggestion of using distributed webs of trust. Using domain names and linking as ways of discovering content. While blogrolls were not directly called out, it's one of the benefits a curated set of links provides.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/deep-questions-debunking-genai-rss-blogroll</link>
+      <guid>https://www.lqdev.me/responses/deep-questions-debunking-genai-rss-blogroll</guid>
+      <pubDate>2024-06-24 20:40 -05:00</pubDate>
+      <category>ai</category>
+      <category>deepquestions</category>
+      <category>rss</category>
+      <category>calnewport</category>
+      <category>podcast</category>
+      <category>blogroll</category>
+      <category>opml</category>
+      <category>social</category>
+      <category>socialmedia</category>
+      <category>distributedweb</category>
+    </item>
+    <item>
+      <title>Blogroll discovery enabled</title>
+      <description>&lt;![CDATA[&lt;p&gt;Just enabled discovery for my &lt;a href="https://www.lqdev.me/collections/blogroll/"&gt;blogroll&lt;/a&gt; based on the &lt;a href="https://opml.org/blogroll.opml"&gt;OPML blogroll spec&lt;/a&gt;. While technically not part of the spec, I also have similar collections for &lt;a href="https://www.lqdev.me/collections/podroll/"&gt;podcasts&lt;/a&gt; and &lt;a href="https://www.lqdev.me/collections/youtube/"&gt;YouTube&lt;/a&gt;. I've added those as well.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;head&amp;gt;
+    &amp;lt;!--...--&amp;gt;
+    &amp;lt;link rel=&amp;quot;blogroll&amp;quot; type=&amp;quot;text/xml&amp;quot; title=&amp;quot;Luis Quintanilla's Blogroll&amp;quot; href=&amp;quot;/collections/blogroll//index.opml&amp;quot;&amp;gt;
+    &amp;lt;link rel=&amp;quot;youtuberoll&amp;quot; type=&amp;quot;text/xml&amp;quot; title=&amp;quot;Luis Quintanilla's YouTube Roll&amp;quot; href=&amp;quot;/collections/youtube//index.opml&amp;quot;&amp;gt;
+    &amp;lt;link rel=&amp;quot;podroll&amp;quot; type=&amp;quot;text/xml&amp;quot; title=&amp;quot;Luis Quintanilla's Podroll&amp;quot; href=&amp;quot;/collections/podroll//index.opml&amp;quot;&amp;gt;
+    &amp;lt;!--...--&amp;gt;
+&amp;lt;/head&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;youtuberoll doesn't really roll off the tongue, but I'm hesitant to call it videoroll or vidroll. My concerns mainly come from the fact that YouTube != video.&lt;/p&gt;
+&lt;p&gt;Ideas welcome!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/blogroll-discovery-implemented</link>
+      <guid>https://www.lqdev.me/notes/blogroll-discovery-implemented</guid>
+      <pubDate>2024-05-25 22:44 -05:00</pubDate>
+      <category>blogroll</category>
+      <category>opml</category>
+      <category>rss</category>
+      <category>indieweb</category>
+      <category>openweb</category>
+      <category>socialweb</category>
+      <category>personalweb</category>
+    </item>
+    <item>
+      <title>Molly White's Blogroll</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;Bookmarking for reference.&lt;/p&gt;
+&lt;p&gt;I'm already subscribed to many of these websites and publications. However, there's several new ones I found that I think will eventually make their rotation into my &lt;a href="https://www.lqdev.me/collections/blogroll/"&gt;blogroll&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/blogroll-molly-white</link>
+      <guid>https://www.lqdev.me/bookmarks/blogroll-molly-white</guid>
+      <pubDate>2024-04-07 17:50 -05:00</pubDate>
+      <category>blogroll</category>
+      <category>indieweb</category>
+      <category>rss</category>
+      <category>blogging</category>
+      <category>web</category>
+      <category>internet</category>
+      <category>smallweb</category>
+      <category>community</category>
+    </item>
+    <item>
+      <title>Google Podcasts is gone — and so is my faith in Google</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;Good article. I felt this way when Google Reader and a few other services were shut down.&lt;/p&gt;
+&lt;p&gt;That being said, this is kind of a good thing.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Luckily, there are plenty of good podcast apps out there, like Pocket Casts, Overcast, Antennapod, and even Apple Podcasts.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This line basically says it all. Podcasts, like blogging, continue to be an open ecosystem and where the saying,&amp;quot;wherever you get your podcasts&amp;quot;, is still going strong.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/google-podcasts-gone-youtube-cant-replace-it-verge</link>
+      <guid>https://www.lqdev.me/responses/google-podcasts-gone-youtube-cant-replace-it-verge</guid>
+      <pubDate>2024-04-02 22:54 -05:00</pubDate>
+      <category>google</category>
+      <category>podcasts</category>
+      <category>youtube</category>
+      <category>audio</category>
+      <category>opensource</category>
+      <category>rss</category>
+    </item>
+    <item>
+      <title>404 Media Now Has a Full Text RSS Feed</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We paid for the development of full text RSS feeds for Ghost-based publishers. Now we can offer them to our paid subscribers, and other Ghost sites can use the service too.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our friends Anil Dash and Ernie Smith have recently written passionately and persuasively about the importance of RSS to the open web, and about how a technology that turns 25 years old this month remains both subversive and quite versatile. RSS-based distribution underpins a podcasting ecosystem that has allowed for shows to be distributed not just on Apple Podcasts but on Spotify, Google Podcasts, Pocket Casts, Overcast, and whatever other podcast player you might want to listen on. “Being able to say, ‘wherever you get your podcasts’ is a radical statement,” Dash wrote. “Because what it represents is the triumph of exactly the kind of technology that's supposed to be impossible: open, empowering tech that's not owned by any one company, that can't be controlled by any one company, and that allows people to have ownership over their work and their relationship with their audience.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;RSS has empowered podcasters, but that it needs a “creator economy rethink” for text.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/404-media-full-text-rss</link>
+      <guid>https://www.lqdev.me/responses/404-media-full-text-rss</guid>
+      <pubDate>2024-03-26 21:16 -05:00</pubDate>
+      <category>rss</category>
+      <category>404media</category>
+      <category>ghost</category>
+      <category>404</category>
+      <category>media</category>
+      <category>protocols</category>
+      <category>opensource</category>
+      <category>technology</category>
+    </item>
+    <item>
+      <title>New Forums Page</title>
+      <description>&lt;![CDATA[&lt;p&gt;Following the patterns of a blogroll and podroll, I decided to post a &lt;a href="https://www.lqdev.me/collections/forums/"&gt;forums page&lt;/a&gt; to list various forums and communities I find interesting.&lt;/p&gt;
+&lt;p&gt;I've also created an &lt;a href="https://www.lqdev.me/collections/forums//index.opml"&gt;OPML file&lt;/a&gt; for it so you can subscribe to them in your RSS reader of choice.&lt;/p&gt;
+&lt;p&gt;Discord is good for communities. For example on servers like Shudder there's watch parties and HuggingFace reading club gets together to discuss some of the latest papers. For events, this works really well because everyone can participate in real-time. However, I find that outside of events or general chat, it's difficult to follow the message stream. I like the forum format with topics / threads much better.&lt;/p&gt;
+&lt;p&gt;If you have any forum recommendations, feel free to &lt;a href="https://www.lqdev.me/contact"&gt;send them my way&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/new-forums-page</link>
+      <guid>https://www.lqdev.me/notes/new-forums-page</guid>
+      <pubDate>2024-03-23 12:38 -05:00</pubDate>
+      <category>forums</category>
+      <category>community</category>
+      <category>rss</category>
+      <category>web</category>
+      <category>openweb</category>
+      <category>internet</category>
+      <category>indieweb</category>
+    </item>
+  </channel>
+</rss>

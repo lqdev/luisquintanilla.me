@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - npu</title>
+    <link>https://www.lqdev.me/tags/npu</link>
+    <description>All content tagged with 'npu' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-20 23:59 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Omnineural 4B</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;OmniNeural-4B is the first multimodal AI model built natively for NPUs — handling text, images, and audio in one model.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/omnineural-4b</link>
+      <guid>https://www.lqdev.me/responses/omnineural-4b</guid>
+      <pubDate>2025-08-20 23:59 -05:00</pubDate>
+      <category>ai</category>
+      <category>npu</category>
+      <category>multimodal</category>
+    </item>
+  </channel>
+</rss>

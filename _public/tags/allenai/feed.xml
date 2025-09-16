@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - allenai</title>
+    <link>https://www.lqdev.me/tags/allenai</link>
+    <description>All content tagged with 'allenai' by Luis Quintanilla</description>
+    <lastBuildDate>2024-04-09 22:17 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Hello OLMo: A truly open LLM</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, The Allen Institute for AI (AI2) has released OLMo 7B, a truly open, state-of-the-art large language model released alongside the pre-training data and training code. This empowers researchers and developers to use the best and open models to advance the science of language models collectively.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://huggingface.co/allenai/OLMo-7B"&gt;OLMo-7B on HuggingFace&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/allen-ai-olmo-llm</link>
+      <guid>https://www.lqdev.me/responses/allen-ai-olmo-llm</guid>
+      <pubDate>2024-04-09 22:17 -05:00</pubDate>
+      <category>allenai</category>
+      <category>llm</category>
+      <category>opensource</category>
+    </item>
+  </channel>
+</rss>

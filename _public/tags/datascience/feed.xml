@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - datascience</title>
+    <link>https://www.lqdev.me/tags/datascience</link>
+    <description>All content tagged with 'datascience' by Luis Quintanilla</description>
+    <lastBuildDate>2024-02-06 20:07 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>SQL for Data Scientists in 100 Queries</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;notes and working examples that instructors can use to perform a lesson&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/sql-for-data-scientists-100-queries</link>
+      <guid>https://www.lqdev.me/bookmarks/sql-for-data-scientists-100-queries</guid>
+      <pubDate>2024-02-06 20:07 -05:00</pubDate>
+      <category>sql</category>
+      <category>datascience</category>
+      <category>tutorial</category>
+    </item>
+  </channel>
+</rss>

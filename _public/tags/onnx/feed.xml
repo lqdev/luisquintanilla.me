@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - onnx</title>
+    <link>https://www.lqdev.me/tags/onnx</link>
+    <description>All content tagged with 'onnx' by Luis Quintanilla</description>
+    <lastBuildDate>2025-02-15 12:02 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>AI Dev Gallery now in the Microsoft Store</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;So excited to see the &lt;a href="https://apps.microsoft.com/detail/9n9pn1mm3bd5"&gt;AI Dev Gallery is now in the Microsoft Store&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Through various interactive samples, developers get to see how they might use AI for different tasks like text classification, object detection, and many others.&lt;/p&gt;
+&lt;p&gt;Best of all, the models are all running locally and you get to see and export the C# code powering the samples to Visual Studio so you can continue tinkering on your own and integrate into your own applications.&lt;/p&gt;
+&lt;p&gt;A few months ago, the team came on the .NET AI Community Standup to showcase the app. Since then, it's only kept improving and introducing new scenarios.&lt;/p&gt;
+&lt;p&gt;You can check out the recording from that stream here.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=5H9TxzCQfNo" title="Thumbnail of AI Community Standup AI Dev Gallery"&gt;&lt;img src="http://img.youtube.com/vi/5H9TxzCQfNo/0.jpg" class="img-fluid" alt="Thumbnail of AI Community Standup AI Dev Gallery" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/ai-dev-gallery-windows-preview-ms-store</link>
+      <guid>https://www.lqdev.me/responses/ai-dev-gallery-windows-preview-ms-store</guid>
+      <pubDate>2025-02-15 12:02 -05:00</pubDate>
+      <category>ai</category>
+      <category>windows</category>
+      <category>dotnet</category>
+      <category>microsoft</category>
+      <category>onnx</category>
+    </item>
+    <item>
+      <title>Semantic Search and On-Device ML in Emacs</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;This is a cool walk-through of how to add semantic search to Emacs using local ML models.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;With ONNX.el you can run any ML model inside Emacs, including ones for images, audios, etc. In case you are running embedding models, combine this with sem.el to perform semantic searches. Depending on your input modality, you might have to figure out preprocessing. For text, tokenizers.el should cover all of what you need in modern NLP for preprocessing, though you will have to do something on your own for anything non-text or multimodal.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;By default sem runs a local all-MiniLM-L6-v2 model for text embeddings. This model is small and runs fast on CPU. Additionally, we load an O2 optimized variant which helps further. The vectors are stored in a lancedb database on file system which runs without a separate process. I was originally writing the vector db core myself to learn more of Rust, but then stopped doing that since lancedb gives all that I needed, out of the box.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/semantic-search-on-device-ml-emacs</link>
+      <guid>https://www.lqdev.me/responses/semantic-search-on-device-ml-emacs</guid>
+      <pubDate>2025-01-20 21:09 -05:00</pubDate>
+      <category>onnx</category>
+      <category>emacs</category>
+      <category>ai</category>
+      <category>ml</category>
+    </item>
+    <item>
+      <title>OnnxStream - Stable Diffusion XL 1.0 Base on a Raspberry Pi Zero 2</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Generally major machine learning frameworks and libraries are focused on minimizing inference latency and/or maximizing throughput, all of which at the cost of RAM usage. So I decided to write a super small and hackable inference library specifically focused on minimizing memory consumption: OnnxStream.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;OnnxStream is based on the idea of decoupling the inference engine from the component responsible of providing the model weights, which is a class derived from WeightsProvider. A WeightsProvider specialization can implement any type of loading, caching and prefetching of the model parameters. For example a custom WeightsProvider can decide to download its data from an HTTP server directly, without loading or writing anything to disk (hence the word &amp;quot;Stream&amp;quot; in &amp;quot;OnnxStream&amp;quot;). Three default WeightsProviders are available: DiskNoCache, DiskPrefetch and Ram.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;OnnxStream can consume even 55x less memory than OnnxRuntime with only a 50% to 200% increase in latency (on CPU, with a good SSD, with reference to the SD 1.5's UNET - see the Performance section below).&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/onnxstream</link>
+      <guid>https://www.lqdev.me/bookmarks/onnxstream</guid>
+      <pubDate>2023-12-11 20:11 -05:00</pubDate>
+      <category>ai</category>
+      <category>onnx</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>How Discord Serves 15-Million Users on One Server - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>How Discord Serves 15-Million Users on One Server</h1><div class="content-meta"><div class="content-type">reshare</div><time datetime="2024-01-18">January 18, 2024</time><p>Tags: beam, erlang, elixir, discord, scale, enterprise, chat, communities</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/reshare/">← All reshare</a> | <a href="https://www.lqdev.me/responses/how-discord-serves-15-million-users-using-one-server">View Full Version</a></p><div class="content"><article class="response-card h-entry" ><h2><a href="/responses/how-discord-serves-15-million-users-using-one-server/" >How Discord Serves 15-Million Users on One Server</a></h2><div class="response-target" >→ <a href="https://blog.bytebytego.com/p/how-discord-serves-15-million-users" >https://blog.bytebytego.com/p/how-discord-serves-15-million-users</a></div><div class="response-content" ><blockquote class="blockquote">
+<p>In early summer 2022, the Discord operations team noticed unusually high activity on their dashboards. They thought it was a bot attack, but it was legitimate traffic from MidJourney - a new, fast-growing community for generating AI images from text prompts.
+<br>
+To use MidJourney, you need a Discord account. Most MidJourney users join one main Discord server. This server grew so quickly that it soon hit Discord’s old limit of around 1 million users per server.
+<br>
+This is the story of how the Discord team creatively solved this challenge.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Discord’s real-time messaging backend is built with Elixir. Elixir runs on the BEAM virtual machine. BEAM was created for Erlang - a language optimized for large real-time systems requiring rock-solid reliability and uptime.
+<br>
+A key capability BEAM provides is extremely lightweight parallel processes. This enables a single server to efficiently run tens or hundreds of thousands of processes concurrently.
+<br>
+Elixir brings friendlier, Ruby-inspired syntax to the battle-tested foundation of BEAM. Combined they make it much easier to program massively scalable, fault-tolerant systems.
+<br>
+So by leveraging BEAM's lightweight processes, the Elixir code powering Discord can &quot;fan out&quot; messages to hundreds of thousands of users around the world concurrently. However, limits emerge as communities grow larger.</p>
+</blockquote>
+</div></article>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

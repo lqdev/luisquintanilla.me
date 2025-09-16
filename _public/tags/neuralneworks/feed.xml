@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - neuralneworks</title>
+    <link>https://www.lqdev.me/tags/neuralneworks</link>
+    <description>All content tagged with 'neuralneworks' by Luis Quintanilla</description>
+    <lastBuildDate>2024-08-21 20:16 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Transformers in music recommendation</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We present a music recommendation ranking system that uses Transformer models to better understand the sequential nature of user actions based on the current user context.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/transformers-music-recommendation-google</link>
+      <guid>https://www.lqdev.me/responses/transformers-music-recommendation-google</guid>
+      <pubDate>2024-08-21 20:16 -05:00</pubDate>
+      <category>google</category>
+      <category>ai</category>
+      <category>transformers</category>
+      <category>deeplearning</category>
+      <category>neuralneworks</category>
+      <category>recommendation</category>
+      <category>research</category>
+      <category>music</category>
+    </item>
+  </channel>
+</rss>

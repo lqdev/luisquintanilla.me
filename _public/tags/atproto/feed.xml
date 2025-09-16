@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - atproto</title>
+    <link>https://www.lqdev.me/tags/atproto</link>
+    <description>All content tagged with 'atproto' by Luis Quintanilla</description>
+    <lastBuildDate>2024-12-17 19:39 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>A New Social Web - Hello, Social Web</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We're A New Social, a new non-profit organization focused on building cross-protocol tools and services for the open social web.&lt;br /&gt;
+&lt;br&gt;
+Our mission is to liberate people's networks from their platforms, enabling &lt;a href="https://www.augment.ink/bridges-the-last-network-effect/?ref=anew.social"&gt;The Last Network Effect&lt;/a&gt; and leveling the playing field across the open social web.&lt;br /&gt;
+&lt;br&gt;
+The first project we'll take on to accomplish this mission is &lt;a href="https://fed.brid.gy/?ref=anew.social"&gt;Bridgy Fed&lt;/a&gt;, a service that enables users of ActivityPub-based platforms like Mastodon, ATProto-based platforms like Bluesky, and websites to interact and engage across ecosystems.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/hello-social-web</link>
+      <guid>https://www.lqdev.me/responses/hello-social-web</guid>
+      <pubDate>2024-12-17 19:39 -05:00</pubDate>
+      <category>anewsocial</category>
+      <category>fediverse</category>
+      <category>socialmedia</category>
+      <category>protocols</category>
+      <category>atproto</category>
+      <category>activitypub</category>
+      <category>socialweb</category>
+      <category>personalweb</category>
+    </item>
+  </channel>
+</rss>

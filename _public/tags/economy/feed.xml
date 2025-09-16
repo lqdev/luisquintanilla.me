@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - economy</title>
+    <link>https://www.lqdev.me/tags/economy</link>
+    <description>All content tagged with 'economy' by Luis Quintanilla</description>
+    <lastBuildDate>2024-01-15 16:49 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>AI for economists - prompts and resources</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This page contains example prompts and responses intended to showcase how generative AI, namely LLMs like GPT-4, can benefit economists.
+&lt;br&gt;
+Example prompts are shown from six domains: ideation and feedback; writing; background research; coding; data analysis; and mathematical derivations.
+&lt;br&gt;
+The framework as well as some of the prompts and related notes come from Korinek, A. 2023. &lt;a href="https://www.aeaweb.org/articles?id=10.1257/jel.20231736"&gt;“Generative AI for Economic Research: Use Cases and Implications for Economists“&lt;/a&gt;, Journal of Economic Literature, 61 (4): 1281–1317.
+&lt;br&gt;
+Each application area includes 1-3 prompts and responses from an LLM, often from the field of development economics, along with brief notes. The prompts will be updated periodically.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/ai-for-economists-prompts</link>
+      <guid>https://www.lqdev.me/bookmarks/ai-for-economists-prompts</guid>
+      <pubDate>2024-01-15 16:49 -05:00</pubDate>
+      <category>ai</category>
+      <category>economy</category>
+      <category>promptengineering</category>
+      <category>llm</category>
+      <category>gpt</category>
+    </item>
+  </channel>
+</rss>

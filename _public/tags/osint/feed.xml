@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - osint</title>
+    <link>https://www.lqdev.me/tags/osint</link>
+    <description>All content tagged with 'osint' by Luis Quintanilla</description>
+    <lastBuildDate>2024-02-20 17:01 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Keep your phone number private with Signal usernames</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Signal’s mission and sole focus is private communication. For years, Signal has kept your messages private, your profile information (like your name and profile photo) private, your contacts private, and your groups private – among much else. Now we’re taking that one step further, by making your phone number on Signal more private.&lt;br /&gt;
+&lt;br&gt;
+Here’s how:&lt;br /&gt;
+&lt;br&gt;
+New default: Your phone number will no longer be visible to everyone in Signal...&lt;br /&gt;
+&lt;br&gt;
+Connect without sharing your phone number...&lt;br /&gt;
+&lt;br&gt;
+Control who can find you on Signal by phone number...&lt;br /&gt;
+&lt;br&gt;
+Right now, these options are in beta, and will be rolling out to everyone in the coming weeks.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/signal-usernames</link>
+      <guid>https://www.lqdev.me/responses/signal-usernames</guid>
+      <pubDate>2024-02-20 17:01 -05:00</pubDate>
+      <category>signal</category>
+      <category>privacy</category>
+      <category>security</category>
+      <category>osint</category>
+      <category>messaging</category>
+    </item>
+    <item>
+      <title>UNREDACTED Magazine Issue 006</title>
+      <description>&lt;![CDATA[[reshare] &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://inteltechniques.com/magazine.html"&gt;https://inteltechniques.com/magazine.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://inteltechniques.com/issues/006.pdf"&gt;https://inteltechniques.com/issues/006.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/unredacted-magazine-issue-006</link>
+      <guid>https://www.lqdev.me/responses/unredacted-magazine-issue-006</guid>
+      <pubDate>2024-01-31 21:24 -05:00</pubDate>
+      <category>osint</category>
+      <category>magazine</category>
+      <category>unredacted</category>
+      <category>privacy</category>
+      <category>security</category>
+    </item>
+    <item>
+      <title>UNREDACTED Magazine Status</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...the magazine is not 'dead'. Much like the podcast, it is simply on a hiatus. Many people falsely report online that the podcast and magazine are officially never coming back, which is contradictory to my &lt;a href="https://inteltechniques.com/blog/2023/11/20/my-irish-exit/"&gt;previous post&lt;/a&gt;. The reason there have been no issues of the magazine is simply a lack of submissions.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The magazine is a community-driven product. Without the community driving it, it will go nowhere. If you would like to submit an article, please email it to staff@unredactedmagazine.com.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Sponsors are lined up to pay the costs and keep the content free, but there lies other problems. We received constant complaints about having sponsors. Most readers demanded free content without ads, which is unrealistic.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We have considered a small fee per issue, but the credit card fraud which comes with that is an even bigger issue. What is the solution? I do not know yet. If the articles pour in, I will figure it out.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/unredacted-magazine-status-jan-2024</link>
+      <guid>https://www.lqdev.me/responses/unredacted-magazine-status-jan-2024</guid>
+      <pubDate>2024-01-23 21:34 -05:00</pubDate>
+      <category>magazine</category>
+      <category>unredacted</category>
+      <category>osint</category>
+    </item>
+    <item>
+      <title>Farewell to The Privacy, Security, and OSINT Show</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...a farewell episode was released on November 20th, 2023 entitled “My Irish Exit”. It was finally officially confirmed that [The Privacy, Security, and OSINT Show with Michael Bazzell]...has reached an end.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That's unfortunate. I really enjoyed listening to this show and even had it listed in my &lt;a href="https://www.lqdev.me/collections/podroll/"&gt;podroll&lt;/a&gt;. The UNREDACTED magazine had great content as well.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/farewell-privacy-security-osint-podcast</link>
+      <guid>https://www.lqdev.me/responses/farewell-privacy-security-osint-podcast</guid>
+      <pubDate>2023-12-13 20:00 -05:00</pubDate>
+      <category>podcast</category>
+      <category>privacy</category>
+      <category>osint</category>
+    </item>
+  </channel>
+</rss>

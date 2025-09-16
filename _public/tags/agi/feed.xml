@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - agi</title>
+    <link>https://www.lqdev.me/tags/agi</link>
+    <description>All content tagged with 'agi' by Luis Quintanilla</description>
+    <lastBuildDate>2024-02-15 20:18 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Magic.dev</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Magic is working on frontier-scale code models to build a coworker, not just a copilot.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/magic-dev</link>
+      <guid>https://www.lqdev.me/bookmarks/magic-dev</guid>
+      <pubDate>2024-02-15 20:18 -05:00</pubDate>
+      <category>ai</category>
+      <category>copilot</category>
+      <category>magic</category>
+      <category>code</category>
+      <category>agi</category>
+    </item>
+    <item>
+      <title>My AI Timelines Have Sped Up (Again)</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...computers are useful, ML models are useful, and even if models fail to scale, people will want to fit GPT-4 sized models on their phone. It seems reasonable to assume the competing factions will figure something out.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Data seems like the harder question. (Or at least the one I feel qualified talking about.) We have already crossed the event horizon of trying to train on everything on the Internet. It’s increasingly difficult for labs to differentiate themselves on publicly available data. Differentiation is instead coming from non-public high-quality data to augment public low-quality data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;All the scaling laws have followed power laws so far, including dataset size. Getting more data by hand doesn’t seem good enough to cross to the next thresholds. We need better means to get good data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A long time ago, when OpenAI still did RL in games / simulation, they were very into self-play. You run agents against copies of themselves, score their interactions, and update the models towards interactions with higher reward. Given enough time, they learn complex strategies through competition.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I think it’s possible we’re at the start of a world where self-play or self-play-like ideas work to improve LLM capabilities. Drawing an analogy, the environment is the dialogue, actions are text generated from an LLM, and the reward is from whatever reward model you have. Instead of using ground truth data, our models may be at a point where they can generate data that’s good enough to train on.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/ai-pipelines-sped-up-again-alexirpan</link>
+      <guid>https://www.lqdev.me/bookmarks/ai-pipelines-sped-up-again-alexirpan</guid>
+      <pubDate>2024-01-11 10:07 -05:00</pubDate>
+      <category>ai</category>
+      <category>predictions</category>
+      <category>agi</category>
+      <category>data</category>
+      <category>llm</category>
+      <category>technology</category>
+      <category>ml</category>
+      <category>computervision</category>
+    </item>
+  </channel>
+</rss>

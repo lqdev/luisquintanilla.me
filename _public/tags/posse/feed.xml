@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - posse</title>
+    <link>https://www.lqdev.me/tags/posse</link>
+    <description>All content tagged with 'posse' by Luis Quintanilla</description>
+    <lastBuildDate>2024-12-17 18:41 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Weird, Inc. and 2025</title>
+      <description>&lt;![CDATA[
+I don't remember how I came across Weird and their projects but I'm glad I did. I appreciate their approach of using existing platforms, protocols, and practices from the yesterweb to put the personal website front and center. 
+
+## Weird, Inc
+
+First, the topic of [Weird the organization and their aspirations](https://blog.muni.town/weird-inc/).
+
+&gt; We have big aspirations for Weird. At minimum, a 'social network of personal websites' can be catalyzed by simply mapping and linking existing web spaces together, playing the role of social glue. On a grander scale there's potential for a pro-social reformation of the web as we know it, putting people's websites at the center of our sociodigital interactions.
+
+By aligning to the foundations of [Seth Godin's Modern Business Plan](https://seths.blog/2010/05/the-modern-business-plan/), they aim to focus on:
+
+1. Truth -  describe the world as it is
+1. Assertions - how you’re going to change things
+1. Alternatives - what you'll do if assertions don't pan out.
+1. People - who is on your team, who is going to join your team
+1. Money - how much do you need and how will you spend it
+
+Below are some of the points that resonated with me. 
+
+### Truth
+
+&gt; Home ownership on the web, remarkably, is just as fraught with rent-seeking monopolists as our physical spaces. No one gets to own anything anymore.
+
+While they're mainly referring to the social web, this is is generally true across many areas of our digital spaces. 
+
+&gt;  Bluesky...is bringing into mainstream a nearly forgotten cornerstone of the Indie Web: Domain sovereignty  
+&gt; &lt;br&gt;
+&gt; In a reinvigorated social web where your domain-name is your universal address in the digital sphere, Weird is the virtual home to which that address is pointing  
+&gt; &lt;br&gt;
+&gt; 'Weird the data importer' is our wedge into the data fortresses keeping our digital identities captive. What will start as a Publish Elsewhere, Syndicate (to your) Own Site (PESOS) strategy makes way for a fully self-sovereign Publish (on your) Own Site, Syndicate Elsewhere (POSSE) end state.  
+&gt; &lt;br&gt;
+&gt; Imagine a WordPress-like website engine that aggregates all of your digital personas into a unified mosaic, completely under your control by combination of cloud backing and local storage.  
+
+### Alternatives
+
+If the assertions don't pan out, the alternatives that I think might be interesting:
+
+- Local-first knowledge base with cloud synchronization. [AnyType](https://anytype.io/) comes to mind.
+- Cloud + local archiver for many other 3rd party accounts such as Bluesky, Mastodon, Discourse etc. This might make PESOS scenarios easier. Of course, this only works if the 3rd party services allow developer access to their APIs.
+
+## Weird in 2025
+
+Speaking specifically about [Weird the product and what the team plans of shipping in 2025](https://blog.muni.town/weird-2025/).
+
+&gt; Weird is best understood as a single-page website generator
+
+### Q1 and Q2
+
+&gt; 'Weird the data importer' is our wedge into the data fortresses keeping our digital identities captive.  
+&gt; &lt;br&gt;
+&gt; 'Weird: ₱ESOS-edition' aggregates all of your digital personas into a harmonious mosaic, made completely yours by combination of cloud backing and local-first storage.  
+&gt; &lt;br&gt;
+&gt; Setting up a POSSE pipeline however requires not just the right infrastructure...but also a big shift in workflow.  
+&gt; &lt;br&gt;
+&gt; Most people will probably want a combination of both.  
+&gt; &lt;br&gt;
+&gt; Hence our commitment to both models, starting with the least laborious one [PESOS].  
+
+Personally, [I prefer POSSE](/posts/rss-to-mastodon-posse-azure-logic-apps/), but it's great to see that Weird plans on meeting people where they are.
+
+### Late 2025
+
+&gt; Around half-way through 2025, we're hoping to shift some of our attention away from Weird as an individualistic publishing tool to Weird as a network engine.  
+&gt; &lt;br&gt;
+&gt; We think there's massive untapped potential in the web 1.0 concept of webrings, and we fully intend to bring them back.  
+&gt; &lt;br&gt;
+&gt; All of this culminates in one of the key motivations behind the Weird project: [A Network of Shared Purpose](https://github.com/muni-town/weird/issues/3).  
+
+I'm not sure yet what this looks like but making it easier to discover and build networks of personal websites is a good problem to try to solve.
+
+## Conclusion
+
+I wish them luck and success in what they're aiming to accomplish. I'm excited to see more projects like this sprouting to shake up the status-quo in our digital spaces. ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/weird-inc-2025</link>
+      <guid>https://www.lqdev.me/posts/weird-inc-2025</guid>
+      <pubDate>2024-12-17 18:41 -05:00</pubDate>
+      <category>weird</category>
+      <category>cms</category>
+      <category>munitown</category>
+      <category>2025</category>
+      <category>indieweb</category>
+      <category>posse</category>
+      <category>pesos</category>
+      <category>personalweb</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>Mastodon instance working again</title>
+      <description>&lt;![CDATA[&lt;p&gt;After about a month of not being able to access my Mastodon instance, I'm so excited to have it working again!&lt;/p&gt;
+&lt;p&gt;Not sure what I did wrong with my upgrade to 4.3.0. Fortunately, the issues appears to have been on the frontend and the fix wasn't too involved.&lt;/p&gt;
+&lt;p&gt;Upgrading to the latest 4.3.1 fixed the issue I ran into during my last upgrade.&lt;/p&gt;
+&lt;p&gt;Thanks to my &lt;a href="https://www.lqdev.me/posts/rss-to-mastodon-posse-azure-logic-apps/"&gt;POSSE setup&lt;/a&gt;, I've been able to continue posting to my website and syndicating to Mastodon. Unfortunately, since the frontend wasn't working, I was unable to access my notifications. Because the mobile apps make use of the web frontend to log in, I couldn't use the mobile app either.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/mastodon-working-again-v-4-3-1</link>
+      <guid>https://www.lqdev.me/notes/mastodon-working-again-v-4-3-1</guid>
+      <pubDate>2024-11-18 17:34 -05:00</pubDate>
+      <category>mastodon</category>
+      <category>fediverse</category>
+      <category>sysadmin</category>
+      <category>selfhost</category>
+      <category>socialmedia</category>
+      <category>social</category>
+      <category>microblog</category>
+      <category>indieweb</category>
+      <category>posse</category>
+    </item>
+    <item>
+      <title>Shipping Tumblr and WordPress</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Since Automattic acquired Tumblr we’ve made it more efficient, grown its revenue, and worked to improve the platform. But there’s one part of the plan that we haven’t yet started, which is to run Tumblr on WordPress. I’m pleased to say we’re kicking off that project now!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A little late, but I can't express how much I love this.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We love Tumblr’s streamlined posting experience and its current product direction. We’re not changing that. We’re talking about running Tumblr’s backend on WordPress. You won’t even notice a difference from the outside.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Although it sounds outside the scope of the original plan, it would be amazing if the shared backend as well as the Tumblr publishing front-end made their way into the open-source version of WordPress.&lt;/p&gt;
+&lt;p&gt;That would open the door to self-hosted personal websites that also make it significantly easier to post content in smaller chunks like a microblog.&lt;/p&gt;
+&lt;p&gt;Pair that with ActivityPub integrations and you now have a connected web of individuals where the first place they post content to is their own website and for discovery / broader reach can also federate and post to other platforms that also support protocols like ActivityPub.&lt;/p&gt;
+&lt;p&gt;Can't wait to see how this project develops.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Do you yearn for the days when people owned their corner of the internet and expressed themselves in wild and wacky ways? Do you want to see an internet focused on creativity, art, and ideas instead of debating and dividing? Do you think content and data should be owned by authors and artists, instead of getting locked behind the closed platform of a mega-corporation? Do you want to build an internet where anyone with a story can tell it, and anyone with a product can sell it, regardless of income, gender, politics, language, or where they live in the world?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The answer to all of those is YES.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/shipping-wordpress-tumblr</link>
+      <guid>https://www.lqdev.me/responses/shipping-wordpress-tumblr</guid>
+      <pubDate>2024-09-05 22:15 -05:00</pubDate>
+      <category>wordpress</category>
+      <category>tumblr</category>
+      <category>personalweb</category>
+      <category>blogging</category>
+      <category>indieweb</category>
+      <category>microblog</category>
+      <category>posse</category>
+      <category>smallweb</category>
+      <category>automattic</category>
+    </item>
+    <item>
+      <title>POSSE to Mastodon using RSS and Azure Logic Apps</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+[Over the past year, I've made this website the main place where I post content](/notes/weblogging-rewind-2023/). The easiest way to [subscribe to content on my website](/feed) is through the various RSS feeds. However, I have accounts on other platforms like X (formerly Twitter), Bluesky, and Mastodon where I'd still like to repost my content to. Since the [changes to the Twitter API](https://techcrunch.com/2023/03/29/twitter-announces-new-api-with-only-free-basic-and-enterprise-levels/), the only place I cross-post to is Mastodon. The main reason behind it is, as of now, it's one of the few platforms that allows me to automate post creation via its REST APIs without restrictions. A large part of that is I self-host my own Mastodon instance but I assume there aren't as many restrictions when using other instances like mastodon.social. The way I automate posting is by setting up workflows using Azure Logic Apps. These workflows subscribe to my various RSS feeds and whenever a new post is published, they make an HTTP request to my Mastodon instance to create a new post. I've been doing this for some time but never got around to documenting it. This blog post goes into more details about how to set up these workflows.  
+
+## What is POSSE
+
+[POSSE](https://indieweb.org/POSSE) is short for "Post on your Own Site Syndicate Elsewhere". It's one of the patterns adopted within IndiWeb communities and projects. The main idea is, your website or a website you own or have administrative rights to becomes the main platform where you publish your content. Effectively, it's the cannonical version of your content. Once your content is on your website, you can optionally choose to distribute it on other platforms. 
+
+## What is RSS
+
+[RSS](https://en.wikipedia.org/wiki/RSS) is short for Really Simple Syndication. Accorting to Wikipedia, this protocol "allows users and applications to access updates to websites in a standardized, computer-readable format". 
+
+## What is Mastodon
+
+[Mastodon](https://joinmastodon.org/) is an [open-source](https://github.com/mastodon/mastodon) decentralized microblogging platform built on the [ActivityPub](https://activitypub.rocks/) protocol and part of the larger collective of federated systems known as the [Fediverse](https://fediverse.info/). 
+
+## What are Azure Logic Apps
+
+If you've used workflow automation systems like [IFTTT](https://ifttt.com/), then you generally know what Azure Logic Apps are. 
+
+A more formal definition from the Azure documentation - "Azure Logic Apps is a cloud platform where you can create and run automated workflows with little to no code. By using the visual designer and selecting from prebuilt operations, you can quickly build a workflow that integrates and manages your apps, data, services, and systems."
+
+For more details, see the [Azure Logic Apps documentation](https://learn.microsoft.com/azure/logic-apps/logic-apps-overview).
+
+## Prerequisites
+
+Since you'll be creating Logic App Resources on Azure, you'll need an [Azure account](https://aka.ms/free).
+
+## Create Consumption Azure Logic App Resource
+
+There's various ways to create an Azure Logic App Resource but the easiest one for this relatively simple workflow is using the Azure Portal. For more details, see the [create a consumption logic app resource documentation](https://learn.microsoft.com/azure/logic-apps/quickstart-create-example-consumption-workflow#create-a-consumption-logic-app-resource).
+
+For the most part you can leave the defaults as is. Since the intended use for this workflow is personal and I don't need enterprise features, I chose to create my logic app using the consumption plan. 
+
+When prompted to choose **Plan Type**, select **Consumption**. 
+
+## The Workflow
+
+The workflow is relatively simple. Whenever a new item is posted to an RSS feed, make an HTTP POST request to the Mastodon API
+
+```mermaid
+flowchart TD
+    A["RSS"] --&gt; B["HTTP (Mastodon API)"]
+```
+
+Once your Logic App resource deploys to Azure, create a new logic app using the Blank Template. For more details, see the [select a blank template documentation](https://learn.microsoft.com/azure/logic-apps/quickstart-create-example-consumption-workflow#select-the-blank-template).
+
+This will launch you into the Logic app designer UI where you can begin to configure your workflow.
+
+### RSS trigger
+
+The first thing you'll want to do is set up the trigger that initiates the workflow. The trigger in this case will be new posts on an RSS feed.
+
+In the Logic app designer, search for *RSS* and add it as a trigger.
+
+Once the RSS trigger is added to your workflow, configure it as follows:
+
+- **The RSS feed URL**: The feed you want want to get posts from. In this case, I'm using my blog posts [feed](/posts/feed.xml). 
+
+    **TIP: The RSS feed can be ANY feed. So if you wanted to subscribe and repost items from your favorite blog or website, you can as well. Just note though that if you don't own the content it might not be something the author wants you doing and for websites that update multiple times a day, it might produce a lot of noise in your feed. Other than that though, subscribe and post away!**
+
+- **How often do you want to check for items?**: The frequency at which you want to poll the RSS feed and check for new posts. In my case, I don't post very often but I do want my posts to be published on Mastodon within an hour of publishing. Therefore, I chose 1 hour as the update frequency. 
+
+### HTTP action
+
+Now that your trigger is configured, it's time to do someting with the latest posts. In this case, since I want to create a new post on Mastodon, I can do so via their REST API. 
+
+#### Get Mastodon credentials
+
+One thing that you'll need to publish posts to Mastodon is an application token. The easiest way to get one is using the Web UI. 
+
+To get your app credentials through the web UI:
+
+1. In the Mastodon Web UI, select **Preferences**.
+1. In the preferences page, select **Development**.
+1. In the development preferences tab, select **New application**.
+1. In the new application page:
+  - Provide a name for your application
+  - Choose the **write:statuses** scope checkbox. For details on required scopes to post statuses, see the [Post a new status REST API documentation](https://docs.joinmastodon.org/methods/statuses/#create)
+  - Select **Submit**
+
+If successful, this will create credentials and a token you can use to send authenticated requests to the Mastodon API.
+
+#### Configure HTTP action
+
+Now that you have your credentials, you can configure your HTTP action in the Logic Apps workflow.
+
+In the Logic App designer:
+
+1. Select **+ New Step**.
+1. Search for *HTTP* and add it as an action. 
+1. Once the HTTP action is added, configure it as follows:
+
+- **Method**: The HTTP Method. To create statuses, choose **POST** from the dropdown.
+- **URI**: The endpoint to make the requests to. For mastodon, it's `https://&lt;HOST&gt;/api/v1/statuses`. Make sure to replace `&lt;HOST&gt;` with your Mastodon instance. In my case, it's `toot.lqdev.tech` since that's where I host my mastodon instance. 
+- **Headers**: HTTP Headers to use. In this case, set the following:
+
+    | Key | Value |
+    | --- | --- |
+    | Content-Type | application/x-www-form-urlencoded |
+
+- **Queries**: URL Query Parameters to add to the request. This is where you'll set your access token.
+
+    | Key | Value |
+    | --- | --- |
+    | access_token | `[YOUR-ACCESS-TOKEN]` |
+
+    Make sure to replace `[YOUR-ACCESS-TOKEN]` with the token credential generated in the Mastodon Web UI.
+- **Body**: The content to be published in your Mastodon post. This is entirely up to you though at minumum, you'll add the following to the text feed. `status=&lt;YOUR-CONTENT&gt;`. `&lt;YOUR-CONTENT&gt;` is what will be displayed in the Mastodon post. 
+
+    One of the nice things about Azure Logic Apps is, properties from previous steps are available to you in subsequent steps. Since our trigger is an RSS feed, we can get access to the feed and item properties of our feed in the HTTP action. If all you wanted was to post the tile and URL, you can do that using the **Feed title** and **Primary Feed Link** properties. For more details, see the [RSS connector documentation](https://learn.microsoft.com/connectors/rss/). 
+
+## Save and run
+
+That's it! Now you just need to select **Save** in the Logic app designer page. 
+
+Once it's saved, click **Run trigger** which will kick off your trigger. If you have anything recent to publish and everything is configured correctly, it should show up in your Mastodon feed.
+
+## Conclusion
+
+By publishing content on your own website first, you're in full control of your content. Regardless of which platforms come and go, you won't have to adjust to those changes because your content is not locked in to those platforms. However, that doesn't mean you can't also publish your content there. Using protocols like RSS make it easy to subscribe to updates on your website. Using REST APIs provided by the respective platforms, you can automate publishing these updates. To further automate and simplify this process, you can use services like Azure Logic Apps to make publishing to all places easy. ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/rss-to-mastodon-posse-azure-logic-apps</link>
+      <guid>https://www.lqdev.me/posts/rss-to-mastodon-posse-azure-logic-apps</guid>
+      <pubDate>2023-12-24 16:40 -05:00</pubDate>
+      <category>azure</category>
+      <category>mastodon</category>
+      <category>indieweb</category>
+      <category>logicapps</category>
+      <category>fediverse</category>
+      <category>posse</category>
+      <category>internet</category>
+      <category>web</category>
+      <category>blogging</category>
+      <category>blog</category>
+      <category>automation</category>
+      <category>programming</category>
+      <category>rss</category>
+    </item>
+    <item>
+      <title>POSSE: A Better Way to Post on Social Networks</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The platform era is ending. Rather than build new Twitters and Facebooks, we can create a stuff-posting system that works better for everybody.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In a POSSE world, everybody owns a domain name, and everybody has a blog. (I’m defining “blog” pretty loosely here — just as a place on the internet where you post your stuff and others consume it.)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;But there are some big challenges to the idea...The most immediate question...is simply how to build a POSSE system that works. POSSE’s problems start at the very beginning: it requires owning your own website, which means buying a domain and worrying about DNS records and figuring out web hosts, and by now, you’ve already lost the vast majority of people who would rather just type a username and password into some free Meta platform...Even those willing and able to do the technical work can struggle to make POSSE work.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;When I ask Doctorow why he believed in POSSE, he describes the tension every poster feels on the modern internet. “I wanted to find a way to stand up a new platform in this moment,” he says, “where, with few exceptions, everyone gets their news and does their reading through the silos that then hold you to ransom. And I wanted to use those silos to bring in readers and to attract and engage with an audience, but I didn’t want to become beholden to them.” &lt;strong&gt;The best of both worlds is currently a lot of work. But the poster’s paradise might not be so far away.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/posse-better-way-to-post-social-networks</link>
+      <guid>https://www.lqdev.me/responses/posse-better-way-to-post-social-networks</guid>
+      <pubDate>2023-10-23 18:55 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>posse</category>
+      <category>socialnetworks</category>
+      <category>internet</category>
+      <category>community</category>
+    </item>
+    <item>
+      <title>Mastodon POSSE enabled</title>
+      <description>&lt;![CDATA[&lt;p&gt;Hello Mastodon from lqdev.me. Got &lt;a href="https://indieweb.org/POSSE"&gt;POSSE (Publish (on your) Own Site, Syndicate Elsewhere)&lt;/a&gt; working for Mastodon! I already had an Azure Logic App which took the latest post from my RSS feed and published to Twitter. Now it's also enabled for Mastodon. Might do a writeup later in the blog on how to do it.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/mastodon-posse-enabled</link>
+      <guid>https://www.lqdev.me/notes/mastodon-posse-enabled</guid>
+      <pubDate>04/27/2022 21:29 -05:00</pubDate>
+      <category>mastodon</category>
+      <category>fediverse</category>
+      <category>posse</category>
+      <category>indieweb</category>
+    </item>
+  </channel>
+</rss>

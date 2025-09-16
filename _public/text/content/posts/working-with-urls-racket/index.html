@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Working with URLs in Racket - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Working with URLs in Racket</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2017-12-13">December 13, 2017</time><p>Tags: lisp, racket</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/working-with-urls-racket">View Full Version</a></p><div class="content"><p>Often times when working with web applications, parameters and values are passed in the path as well as the query string of a URL. In order to do something useful, parsing of the url is required. Noted below are examples of how this can be done in an elegant manner using Racket.</p>
+<p>The first step is to import the appropriate packages</p>
+<pre><code class="language-lisp">(require net/url)
+(require net/url-structs)
+</code></pre>
+<p>Assuming we are working with the url string &quot;https://hacker-news.firebaseio.com/v0/item/192327.json?print=pretty&quot;, we can convert the string to a URL struct using the <code>string-&gt;url</code> procedure.</p>
+<pre><code class="language-lisp">(define myurl (string-&gt;url &quot;https://hacker-news.firebaseio.com/v0/item/192327.json?print=pretty&quot;))
+</code></pre>
+<p>The result is the following output</p>
+<pre><code class="language-lisp">myurl
+;;(url
+;; &quot;https&quot;
+;; #f
+;; &quot;hacker-news.firebaseio.com&quot;
+;; #f
+;; #t
+;; (list
+;;  (path/param &quot;v0&quot; '())
+;;  (path/param &quot;item&quot; '())
+;;  (path/param &quot;192327.json&quot; '()))
+;; '((print . &quot;pretty&quot;))
+;; #f)
+</code></pre>
+<p>The structure of the URL struct is as follows and directly maps to the values displayed above.</p>
+<pre><code class="language-lisp">(struct url ( scheme
+ 	      user
+ 	      host
+ 	      port
+ 	      path-absolute?
+	      path
+ 	      query
+ 	      fragment)
+    #:extra-constructor-name make-url)
+  scheme : (or/c false/c string?)
+  user : (or/c false/c string?)
+  host : (or/c false/c string?)
+  port : (or/c false/c exact-nonnegative-integer?)
+  path-absolute? : boolean?
+  path : (listof path/param?)
+  query : (listof (cons/c symbol? (or/c false/c string?)))
+  fragment : (or/c false/c string?)
+</code></pre>
+<p>To access the individual data members of the struct, the syntax <code>&lt;type&gt;-&lt;member&gt; &lt;instance&gt;</code>. What is returned can be further manipulated based on its type (string, list, boolean)</p>
+<pre><code class="language-lisp">(url-host myurl)
+;;&quot;hacker-news.firebaseio.com&quot;
+</code></pre>
+<h6>Source</h6>
+<p><a href="https://docs.racket-lang.org/net/url.html">URLS and HTTP</a></p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

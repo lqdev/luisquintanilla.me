@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - enterprise</title>
+    <link>https://www.lqdev.me/tags/enterprise</link>
+    <description>All content tagged with 'enterprise' by Luis Quintanilla</description>
+    <lastBuildDate>2024-04-25 23:34 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Introducing Snowflake Arctic</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, the Snowflake AI Research Team is thrilled to introduce Snowflake Arctic, a top-tier enterprise-focused LLM that pushes the frontiers of cost-effective training and openness. Arctic is efficiently intelligent and truly open.&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Efficiently Intelligent: Arctic excels at enterprise tasks such as SQL generation, coding and instruction following benchmarks even when compared to open source models trained with significantly higher compute budgets. In fact, it sets a new baseline for cost-effective training to enable Snowflake customers to create high-quality custom models for their enterprise needs at a low cost.&lt;br /&gt;
+&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;Truly Open: Apache 2.0 license provides ungated access to weights and code. In addition, we are also open sourcing all of our data recipes and research insights.&lt;br /&gt;
+&lt;br&gt;
+Snowflake Arctic is available from Hugging Face, NVIDIA API catalog and Replicate today or via your model garden or catalog of choice, including Snowflake Cortex, Amazon Web Services (AWS), Microsoft Azure, Lamini, Perplexity and Together over the coming days.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/snowflake-arctic-enterprise-ai-llm</link>
+      <guid>https://www.lqdev.me/responses/snowflake-arctic-enterprise-ai-llm</guid>
+      <pubDate>2024-04-25 23:34 -05:00</pubDate>
+      <category>snowflake</category>
+      <category>ai</category>
+      <category>llm</category>
+      <category>enterprise</category>
+    </item>
+    <item>
+      <title>How Discord Serves 15-Million Users on One Server</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In early summer 2022, the Discord operations team noticed unusually high activity on their dashboards. They thought it was a bot attack, but it was legitimate traffic from MidJourney - a new, fast-growing community for generating AI images from text prompts.
+&lt;br&gt;
+To use MidJourney, you need a Discord account. Most MidJourney users join one main Discord server. This server grew so quickly that it soon hit Discord’s old limit of around 1 million users per server.
+&lt;br&gt;
+This is the story of how the Discord team creatively solved this challenge.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Discord’s real-time messaging backend is built with Elixir. Elixir runs on the BEAM virtual machine. BEAM was created for Erlang - a language optimized for large real-time systems requiring rock-solid reliability and uptime.
+&lt;br&gt;
+A key capability BEAM provides is extremely lightweight parallel processes. This enables a single server to efficiently run tens or hundreds of thousands of processes concurrently.
+&lt;br&gt;
+Elixir brings friendlier, Ruby-inspired syntax to the battle-tested foundation of BEAM. Combined they make it much easier to program massively scalable, fault-tolerant systems.
+&lt;br&gt;
+So by leveraging BEAM's lightweight processes, the Elixir code powering Discord can &amp;quot;fan out&amp;quot; messages to hundreds of thousands of users around the world concurrently. However, limits emerge as communities grow larger.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/how-discord-serves-15-million-users-using-one-server</link>
+      <guid>https://www.lqdev.me/responses/how-discord-serves-15-million-users-using-one-server</guid>
+      <pubDate>2024-01-17 20:40 -05:00</pubDate>
+      <category>beam</category>
+      <category>erlang</category>
+      <category>elixir</category>
+      <category>discord</category>
+      <category>scale</category>
+      <category>enterprise</category>
+      <category>chat</category>
+      <category>communities</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - sudo</title>
+    <link>https://www.lqdev.me/tags/sudo</link>
+    <description>All content tagged with 'sudo' by Luis Quintanilla</description>
+    <lastBuildDate>2024-02-13 21:51 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Introducing Sudo for Windows</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Sudo for Windows is a new way for users to run elevated commands directly from an unelevated console session. It is an ergonomic and familiar solution for users who want to elevate a command without having to first open a new elevated console.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We are also excited to announce that we are open-sourcing this project here on GitHub!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/microsoft/sudo"&gt;GitHub Repo&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-sudo-windows</link>
+      <guid>https://www.lqdev.me/responses/introducing-sudo-windows</guid>
+      <pubDate>2024-02-13 21:51 -05:00</pubDate>
+      <category>windows</category>
+      <category>sudo</category>
+      <category>system</category>
+    </item>
+  </channel>
+</rss>

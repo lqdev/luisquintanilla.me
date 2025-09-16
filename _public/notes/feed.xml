@@ -1,0 +1,1067 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - Notes</title>
+    <link>https://www.lqdev.me/notes</link>
+    <description>Notes and micro-posts by Luis Quintanilla</description>
+    <lastBuildDate>9/14/2025 10:31 PM -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Copilot, add new features. But first, coffee</title>
+      <description>&lt;![CDATA[&lt;p&gt;Something I've tried to make a habit of on a weekly basis is compiling a post which aggregates all posts on my website from the past week. Because right now it's not fully automated and I haven't been posting as much, there are gaps.&lt;/p&gt;
+&lt;p&gt;The process is fairly straightforward. I run a script that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Collects all of the previous week's posts&lt;/li&gt;
+&lt;li&gt;Drafts a note with links to all the posts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then, I publish the post.&lt;/p&gt;
+&lt;p&gt;Given this is mostly automated, I decided it was something I could just create a GitHub Action to do the post generation and publishing on my behalf.&lt;/p&gt;
+&lt;p&gt;However, there were some issues with the original file generation and formatting that were annoying, but easy enough to fix manually so I never invested time in fixing them.&lt;/p&gt;
+&lt;p&gt;This morning, I created a few issues describing the features and improvements I wanted to make. Worth noting, I did this from my phone.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/lqdev/luisquintanilla.me/issues/213"&gt;#213&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/lqdev/luisquintanilla.me/issues/215"&gt;#215&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Rather than working on them though, I assigned them to GitHub Coding Agent and stepped out to grab coffee.&lt;/p&gt;
+&lt;p&gt;The agent worked on solutions in the background and by the time I got back, I had working solutions. They weren't perfect but with no input from me, it got 90-95% of it right. The rest were minor refinements.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/copilot-add-new-features-but-first-coffee</link>
+      <guid>https://www.lqdev.me/notes/copilot-add-new-features-but-first-coffee</guid>
+      <pubDate>9/14/2025 10:31 PM -05:00</pubDate>
+      <category>github</category>
+      <category>copilot</category>
+      <category>ai</category>
+      <category>indieweb</category>
+      <category>blogging</category>
+      <category>githubactions</category>
+    </item>
+    <item>
+      <title>Testing my GH mobile publishing flow</title>
+      <description>&lt;![CDATA[&lt;h2&gt;This is a post&lt;/h2&gt;
+&lt;p&gt;As far as posts go it's &lt;strong&gt;bold&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I can write &lt;em&gt;code&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;let x = 1
+x * x
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;To be or not to be&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Maybe one day we will&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add responses&lt;/li&gt;
+&lt;li&gt;Add bookmarks&lt;/li&gt;
+&lt;li&gt;Add media posts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here are some attachments?&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/5ae15c0b-fac2-4ec5-be39-15fe6db277ca" class="img-fluid" alt="Image" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/test-github-mobile-post</link>
+      <guid>https://www.lqdev.me/notes/test-github-mobile-post</guid>
+      <pubDate>9/14/2025 9:50 PM -05:00</pubDate>
+      <category>github</category>
+      <category>blogging</category>
+      <category>githubactions</category>
+      <category>cicd</category>
+      <category>indieweb</category>
+      <category>website</category>
+    </item>
+    <item>
+      <title>Week of September 14, 2025 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/notes/crawford-canelo-2025"&gt;Crawford vs. Canelo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/notes/tennessee-georgia-2025"&gt;Tennessee vs. Georgia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/notes/crate-finds-august-2025"&gt;Crate Finds - August 2025&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Bookmarks&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/real-simple-licensing-open-standard"&gt;Real Simple Licensing&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Replies&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/which-static-site-generator-use-reply-mastodon-joe"&gt;Which Static Site Generator (SSG) do I use?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/posthog-meowwolf"&gt;PostHog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Reshares&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/ray-dalio-diary-of-a-ceo-podcast-2025"&gt;Ray Dalio on Diary of a CEO&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/notes-why-blogging-lost-twitter-winer"&gt;Notes on why blogging lost to Twitter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/protect-backcountry-forests-roadless-rule-petition"&gt;Protect Backcountry U.S. Forests&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/last-days-social-media-noemag"&gt;The Last Days of Social Media&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/filter-youtube-video-rss-feed"&gt;Filter YouTube RSS Feeds&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/masdoton-launches-quote-posts"&gt;Mastodon Launching Quote Posts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/internet-hidden-creative-rennaissance-indieweb"&gt;The Internet's Hidden Creative Renaissance&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Stars&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/breathing-with-the-forest-emergence"&gt;Breathing with the forest&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/salmon-metal-bear-national-park"&gt;Salmon Metal&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/geek-to-live-tumblelog"&gt;Geek To Live - Tumblelog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/no-rule-says-stay-on-social-media"&gt;No Rule Says We Have To Stay on Social Media&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/return-cassette-tape-analog-media-comeback"&gt;The Return of the Cassette Tape&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/mistake-music-teachers-make-ted-talk"&gt;The mistake music teachers make&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Reviews&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/reviews/serviceberry-robin-wall-kimerrer"&gt;The Serviceberry&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Media&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/media/lossless-audio-coming-spotify"&gt;Lossless audio coming to Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/media/just-ordered-internet-phone-book-issue-1"&gt;Just ordered Internet Phone Book&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/media/toy-story-underpass"&gt;Urban Toy Story&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/2025-09-14-weekly-post-summary</link>
+      <guid>https://www.lqdev.me/notes/2025-09-14-weekly-post-summary</guid>
+      <pubDate>2025-09-14 23:03 +00:00</pubDate>
+      <category>weeklysummary</category>
+      <category>blogging</category>
+      <category>website</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>Crawford vs. Canelo</title>
+      <description>&lt;![CDATA[&lt;p&gt;Masterclass performance from Crawford. Made that look easy.&lt;/p&gt;
+&lt;p&gt;After tonight he reached legendary status.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/crawford-canelo-2025</link>
+      <guid>https://www.lqdev.me/notes/crawford-canelo-2025</guid>
+      <pubDate>2025-09-14 00:51 -05:00</pubDate>
+      <category>boxing</category>
+      <category>canelo</category>
+      <category>crawford</category>
+    </item>
+    <item>
+      <title>Tennessee vs. Georgia</title>
+      <description>&lt;![CDATA[&lt;p&gt;This game is wild!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/tennessee-georgia-2025</link>
+      <guid>https://www.lqdev.me/notes/tennessee-georgia-2025</guid>
+      <pubDate>2025-09-13 17:58 -05:00</pubDate>
+      <category>football</category>
+      <category>ncaaf</category>
+      <category>tennessee</category>
+      <category>georgia</category>
+    </item>
+    <item>
+      <title>Crate Finds - August 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;Trying something different with this iteration of playlists. Usually I embed the Spotify playlist directly into the post. I don't like this for several reasons:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;If you don't have Spotify, listening is limited&lt;/li&gt;
+&lt;li&gt;I don't know this for a fact, but I assume it to be the case - there's some analytics and tracking Spotify gets by embedding their player on my site. Given I don't even track visitors on this site, it's not something I'm comfortable with. I've done it because it requires no work on my end to embed the playlist, but I know the bargain I am making.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So to solve that, I've written a &lt;a href="https://github.com/lqdev/playlist-creator"&gt;script&lt;/a&gt; which does a best effort to find the tracks on YouTube and provides those links alongside this&lt;/p&gt;
+&lt;p&gt;These are the results from one of the generated artifacts:&lt;/p&gt;
+&lt;h2&gt;Tracks&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Reaching Out - (Original Mix)&lt;/strong&gt; by Diinch&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Reaching Out EP&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:41&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=s4kGu7FWrvs"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1xnlRaG9WOHGQWSkG1sX4I"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Melodía del Río&lt;/strong&gt; by Ruben Gonzalez&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Introducing&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:42&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Z8C76TDpb00"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4NRcWinZz7Kq1ErQPaMIqY"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Calico&lt;/strong&gt; by 1tbsp&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;kanashī&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:51&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=wpQbl2Wwiq4"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2lJM9fK3zYQRXVXOTauwhZ"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Nu Hope&lt;/strong&gt; by Neggy Gemmy&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Body Work&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:38&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=yeKBoW4sDPI"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0iIh8chjXYKQMhqO0b1hGu"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Controller - Instrumental&lt;/strong&gt; by Channel Tres&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Controller&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:28&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=IvjzcwKj1uk"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/7fAVWCjPLL4WV1a4htyL0Z"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Volos&lt;/strong&gt; by Benyayer, Dark Sky&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Volos&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 6:51&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=KwVNKYx2z5Q"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3HIfT3TlQpNQJApZnJIk7F"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Heart Made Of Glass&lt;/strong&gt; by Eli &amp;amp; Fur&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Dreamscapes&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:50&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=I1t6B5eBDYo"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/49oh846SsD8V9Zj7eQF4gb"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Forbidden Fruits - Handbook's Remix&lt;/strong&gt; by Edamame, Handbook&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Anywhere People&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:14&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=vQ90og5ffFo"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5wHjchEV7pPBWvffyNUJSM"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Ulu&lt;/strong&gt; by Belief, Boom Bip, Stella Mozgawa&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Belief&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:26&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=-qCLR-MatN4"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1w6Z2eLAHMMaMOrHtCRcKA"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Let Her Know&lt;/strong&gt; by CMYK, James Blake&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;CMYK 002&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:07&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=tPgK9NIQrT8"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0dX9DhvCHFTwnF4sgUSSVD"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="11"&gt;
+&lt;li&gt;&lt;strong&gt;The Wrap Around&lt;/strong&gt; by Dam Swindle&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;The Wrap Around&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 7:11&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=RmHWcP3f-7c"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6rltsJM5CMrpuG1lZkoGBJ"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="12"&gt;
+&lt;li&gt;&lt;strong&gt;887 - Structure&lt;/strong&gt; by Banco De Gaia&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Last Train to Lhasa (Special Edition)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 14:17&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=MDTmaW9qatQ"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3SlM5bKvhyHKQBJEi6AoAV"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="13"&gt;
+&lt;li&gt;&lt;strong&gt;Summer Sun&lt;/strong&gt; by Common Saints&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Summer Sun&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:49&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=ApSZDlw9diI"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/7JHFdL1Tt1JcCpt3pPY2Ok"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="14"&gt;
+&lt;li&gt;&lt;strong&gt;Secret Song&lt;/strong&gt; by Common Saints&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Idol Eyes&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:21&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=gCGqj991qN4"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3usIpncQ0ZQ6ZNgpBAWyAV"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="15"&gt;
+&lt;li&gt;&lt;strong&gt;Space&lt;/strong&gt; by Cellomano&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Unwinding&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 6:19&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=bbkaZc2b7UE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0ECvHoLfBSOL182Ojgigch"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="16"&gt;
+&lt;li&gt;&lt;strong&gt;Step Out Of The Light&lt;/strong&gt; by Bruno Pernadas&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Private Reasons&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 9:15&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Ou1yQ1S7a0E"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/303Il86VraD7v8f0x2dWGB"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="17"&gt;
+&lt;li&gt;&lt;strong&gt;By Hook or by Crook&lt;/strong&gt; by Jessica Pratt&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Here in the Pitch&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:27&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=jVoViv23BdE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6KMUBFHS4ad118X0HcR42T"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="18"&gt;
+&lt;li&gt;&lt;strong&gt;Asphalt Homeland&lt;/strong&gt; by Ghost Funk Orchestra, Golden Rules&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Asphalt Homeland&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:01&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=OxLHmmvbonA"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4ieVyUVpSZz1GBKuU22PtU"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="19"&gt;
+&lt;li&gt;&lt;strong&gt;Earth&lt;/strong&gt; by Joe Henderson, Alice Coltrane&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;The Elements&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 13:13&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=UpZJ_LQ4CFg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5tR80sypNbMyWIbDfiBBXh"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="20"&gt;
+&lt;li&gt;&lt;strong&gt;Equanimity&lt;/strong&gt; by Ancient Infinity Orchestra&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;River of Light&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 8:33&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=NSNlD74PYwg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5WrlP1k0g65VibfU62NWnu"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="21"&gt;
+&lt;li&gt;&lt;strong&gt;Love Is Everywhere&lt;/strong&gt; by Pharoah Sanders&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Wisdom Through Music&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:18&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=yQvpDIE70wk"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4IIxBK0L8uj7viwxhmuSc4"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Original Spotify Playlist:&lt;/strong&gt; &lt;a href="https://open.spotify.com/playlist/5CTCAnbYOoWS1sdYolrZAG"&gt;Listen on Spotify&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/crate-finds-august-2025</link>
+      <guid>https://www.lqdev.me/notes/crate-finds-august-2025</guid>
+      <pubDate>2025-09-07 18:59 -05:00</pubDate>
+      <category>cratefinds</category>
+      <category>music</category>
+      <category>playlist</category>
+      <category>spotify</category>
+    </item>
+    <item>
+      <title>Arizona State vs Mississippi State (2025)</title>
+      <description>&lt;![CDATA[&lt;p&gt;What an upset. That ending was wild. Probably the best game of the weekend.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/arizona-state-vs-mississippi-state-2025</link>
+      <guid>https://www.lqdev.me/notes/arizona-state-vs-mississippi-state-2025</guid>
+      <pubDate>2025-09-06 22:07 -05:00</pubDate>
+      <category>ncaaf</category>
+      <category>football</category>
+      <category>asu</category>
+      <category>msu</category>
+    </item>
+    <item>
+      <title>Miami vs. Notre Dame (2025)</title>
+      <description>&lt;![CDATA[&lt;p&gt;Another great game that went down to the wire. Miami dug deep in the end and earned that W.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/miami-vs-notre-dame-2025</link>
+      <guid>https://www.lqdev.me/notes/miami-vs-notre-dame-2025</guid>
+      <pubDate>2025-08-31 22:18 -05:00</pubDate>
+      <category>ncaaf</category>
+      <category>miami</category>
+      <category>notredame</category>
+    </item>
+    <item>
+      <title>Webmentions are back</title>
+      <description>&lt;![CDATA[&lt;p&gt;Nice to see my GitHub Actions back to green after fixing my script to send webmentions.&lt;/p&gt;
+&lt;p&gt;Now to discover more amazing content I can link out to.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/webmentions-are-back</link>
+      <guid>https://www.lqdev.me/notes/webmentions-are-back</guid>
+      <pubDate>2025-08-21 19:15 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>webmention</category>
+      <category>socialweb</category>
+    </item>
+    <item>
+      <title>College football is back (2025)</title>
+      <description>&lt;![CDATA[&lt;p&gt;It's that time of the year again.&lt;/p&gt;
+&lt;p&gt;Week 1 is going to be nuts with a top 5 matchup and several top 10 games.&lt;/p&gt;
+&lt;p&gt;Looks like Penn State's schedule this year is going to be lighter than usual so they may have a shot at the title.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/college-football-is-back-2025</link>
+      <guid>https://www.lqdev.me/notes/college-football-is-back-2025</guid>
+      <pubDate>2025-08-20 21:54 -05:00</pubDate>
+      <category>football</category>
+      <category>ncaaf</category>
+      <category>psu</category>
+      <category>pennstate</category>
+    </item>
+    <item>
+      <title>New text-first site and search are live</title>
+      <description>&lt;![CDATA[&lt;p&gt;Just iterated on another version of the website.&lt;/p&gt;
+&lt;p&gt;The major change is that there's now a text-first version of the website for minimal and resource-constrained environments over at &lt;a href="https://www.lqdev.me/text"&gt;/text&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I've also added search functionality, which you can find at &lt;a href="https://www.lqdev.me/search"&gt;/search&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/new-text-first-site-and-search-are-live</link>
+      <guid>https://www.lqdev.me/notes/new-text-first-site-and-search-are-live</guid>
+      <pubDate>2025-08-11 20:57 -05:00</pubDate>
+      <category>plaintext</category>
+      <category>indieweb</category>
+      <category>website</category>
+    </item>
+    <item>
+      <title>Hello world from the new site</title>
+      <description>&lt;![CDATA[&lt;p&gt;Posting from my brand new redesigned website.&lt;/p&gt;
+&lt;p&gt;I was working on it for about a month so I plan on doing a longer writeup on what has changed.&lt;/p&gt;
+&lt;p&gt;There's still a few things that are broken, but for the most part, I'm happy with the progress and the changes that need to be made are incremental.&lt;/p&gt;
+&lt;p&gt;There's a ton of cleanup as well but again. That is not a blocker to publishing the site.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/hello-world-new-site-2025-08</link>
+      <guid>https://www.lqdev.me/notes/hello-world-new-site-2025-08</guid>
+      <pubDate>2025-08-06 17:01 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>note</category>
+      <category>website</category>
+    </item>
+    <item>
+      <title>Week of July 6, 2025 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/notes/2025-06-29-weekly-post-summary/"&gt;Week of June 29, 2025 - Post Summary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/notes/crate-finds-june-2025"&gt;Crate Finds - June 2025&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/notes/crate-finds-may-2025"&gt;Crate Finds - May 2025&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/notes/post-statistics-june-2025"&gt;Website Post Statistics - June 2025&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/do-not-privatize-federal-land"&gt;Do not privatize federal land&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/tumblr-wordpress-fediverse-integration-pause"&gt;Tumblr’s move to WordPress and fediverse integration is ‘on hold’&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/2025-07-06-weekly-post-summary</link>
+      <guid>https://www.lqdev.me/notes/2025-07-06-weekly-post-summary</guid>
+      <pubDate>2025-07-06 14:48 -05:00</pubDate>
+      <category>weeklysummary</category>
+      <category>blogging</category>
+      <category>website</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>Website Post Statistics - June 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;I haven't published much this past month. Notes and responses are significantly down from last year.&lt;/p&gt;
+&lt;p&gt;That said, I'm happy that so far I've published seven long-form blog posts, which is how many I published all of last year.&lt;/p&gt;
+&lt;p&gt;I haven't spent as much time bookmarking and resharing content. Partially due to the fact that I'm still working on the redesign. So far &lt;a href="https://www.lqdev.me/posts/vibe-specing-prompt-to-spec/"&gt;vibe-specing&lt;/a&gt; the redesign hasn't yielded good enough results. Maybe I need to break down my problem further. That experience on its own might make a good blog post.&lt;/p&gt;
+&lt;p&gt;Part of the challenge with the redesign is that I'm trying to find a balance between standardizing my front-matter YAML schemas so that I can simplify my code and just have a single function handle the parsing of the front-matter, while at the same time enabling custom rendering depending on the post type. I think in the end what I'll end up doing is having different schemas per post type and maybe refactoring some of my code to remove redundancies.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/post-statistics-june-2025</link>
+      <guid>https://www.lqdev.me/notes/post-statistics-june-2025</guid>
+      <pubDate>2025-07-01 20:00 -05:00</pubDate>
+      <category>githubactions</category>
+      <category>cicd</category>
+      <category>blogging</category>
+      <category>stats</category>
+      <category>github</category>
+    </item>
+    <item>
+      <title>Crate Finds - June 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;Playlist from June 2025.&lt;/p&gt;
+&lt;p&gt;Some of my favorites:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Claudia, Wilhelm R And Me by Roberto Musci&lt;/li&gt;
+&lt;li&gt;Journey in Satchidananda by Alice Coltrane and Pharoah Sanders&lt;/li&gt;
+&lt;li&gt;Little Sunflower by Dorothy Ashby&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Tracks&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Claudia, Wilhelm R And Me&lt;/strong&gt; by Roberto Musci&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Tower of Silence&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:57&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=g6-Wf79K_zE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4jR8SmpJ76qsD1TlaD6TIY"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Eternal Loop&lt;/strong&gt; by Sam Gendel&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Fresh Bread&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:44&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=4IVquk6qCK8"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5accXvV8qKql1dvAq5Qg6K"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Are These My Memories?&lt;/strong&gt; by Steve Hiett&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Girls In The Grass&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:55&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=G0LULLBZxi8"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1NPf5FCRtTxNlm5XGhkKhw"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Daddy's Gonna Tell You No Lie&lt;/strong&gt; by Red Hot Org, Laraaji, Kronos Quartet, Sun Ra&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Outer Spaceways Incorporated - Kronos Quartet &amp;amp; Friends Meet Sun Ra&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:35&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=a87qKeEy1JM"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/25w1nwtRPI5ozR13AH7E5O"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Journey In Satchidananda&lt;/strong&gt; by Alice Coltrane, Pharoah Sanders&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Journey in Satchidananda&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 6:36&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=TQtEFdyhgdE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2gG3ivmsfylVXLyIJvLXyN"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Little Sunflower&lt;/strong&gt; by Dorothy Ashby&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Afro-Harping&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:45&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=PtU7I59BbK4"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3A6e928yOFJ0MhlG7xrFDW"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Time's A Wastin&lt;/strong&gt; by Erykah Badu&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Mama's Gun&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 6:40&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=apHvjAXjTgI"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6q8fYYujrQxXckq1tTtqqi"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Freedom Flight&lt;/strong&gt; by Shuggie Otis&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Freedom Flight&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 12:56&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=xkpvklUQpOo"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/7xPlEpRGFkI7AcsqSMCLbM"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Pretty Darlin'&lt;/strong&gt; by Eric Relph&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Pretty Darlin&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:14&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=9jqRD_jVXpI"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/43ADCg1ppa4P7at2oJ3RFC"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Josephine&lt;/strong&gt; by Caoilfhionn Rose&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Constellation&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:40&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=lalaVN6oI8Q"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2BigkQQGvgUdj5moWxXuti"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="11"&gt;
+&lt;li&gt;&lt;strong&gt;May Ninth&lt;/strong&gt; by Khruangbin&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;A LA SALA&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:12&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=sTcHbELHYCk"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5yVGW2o9LXaiiS4I3HUM3k"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="12"&gt;
+&lt;li&gt;&lt;strong&gt;Dream Puppy&lt;/strong&gt; by The Sweet Enoughs&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Marshmallow&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:39&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=k2D7txqmPaQ"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0JuXNcbA4jqJgDzIO90f1D"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="13"&gt;
+&lt;li&gt;&lt;strong&gt;Crystal Blue Persuasion&lt;/strong&gt; by Tommy James &amp;amp; The Shondells&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Crimson &amp;amp; Clover&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:02&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=oDN7nukZRnw"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0aD8W0ChzDgEKpB1zsJ8zv"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="14"&gt;
+&lt;li&gt;&lt;strong&gt;Witchoo&lt;/strong&gt; by Durand Jones &amp;amp; The Indications, Durand Jones, Aaron Frazer&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Private Space&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:42&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=d7vTtnevlO4"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6W9rbkBueZQrwuzO24GHZ2"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="15"&gt;
+&lt;li&gt;&lt;strong&gt;Poly Blue&lt;/strong&gt; by Jessica Pratt&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Quiet Signs&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:43&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=7mBq_4D1s6A"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3cW2MmZW1GjdFbBfezcOZI"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="16"&gt;
+&lt;li&gt;&lt;strong&gt;Mona Lisa Overdrive&lt;/strong&gt; by Juno Reactor&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;The Matrix Reloaded: The Album&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 10:08&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=QQsf8wRiEoc"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6m7mgnkUOpQGzvaqdIeyye"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="17"&gt;
+&lt;li&gt;&lt;strong&gt;Documents&lt;/strong&gt; by Slick Rick, Nas&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;VICTORY&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:49&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=cb8U6atGJp8"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2GZIuPFHBY7yanCa7pzxak"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Original Spotify Playlist:&lt;/strong&gt; &lt;a href="https://open.spotify.com/playlist/6ZhcCrMutGjgL80C22iN1u"&gt;Listen on Spotify&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/crate-finds-june-2025</link>
+      <guid>https://www.lqdev.me/notes/crate-finds-june-2025</guid>
+      <pubDate>2025-07-01 20:00 -05:00</pubDate>
+      <category>cratefinds</category>
+      <category>music</category>
+      <category>playlist</category>
+      <category>spotify</category>
+    </item>
+    <item>
+      <title>Crate Finds - May 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;Better late than never. Here's the May 2025 drop.&lt;/p&gt;
+&lt;p&gt;Some of my favorites from last month:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Prayer to the Stars by Vianney Lopez, Sam Bottner&lt;/li&gt;
+&lt;li&gt;Diarabi by Viex Farka Toure, Khruangbin&lt;/li&gt;
+&lt;li&gt;Everything &amp;amp; Nothing, OHMA&lt;/li&gt;
+&lt;li&gt;Bloom, Deya Dova&lt;/li&gt;
+&lt;li&gt;Dance of the Seven Sisters, Deya Dova&lt;/li&gt;
+&lt;li&gt;Wisdom Eye by Alice Coltrane&lt;/li&gt;
+&lt;li&gt;Black Meditation by Shabaka&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Tracks&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;La Casita Blanca - Rebajada&lt;/strong&gt; by Bilo Alban, Hector Manito Bonilla&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;El Órgano Electrónico de Bilo Albán&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:02&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=krROlxz2zdk"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5NYBlbcxkmoYeJ2FlTZd7y"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Cumbia Disco Energy&lt;/strong&gt; by Sonido Gallo Negro, Polymarchs&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Cumbia Disco Energy&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:57&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=x_GyD5u6Hdg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4I4JOjfW35xlyEgjiyswGJ"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;El Mercado De Los Brujos&lt;/strong&gt; by Sonido Gallo Negro&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Cumbia Salvaje&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:31&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=1dWcw0PzJeU"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2gJbmtM85cCnHlBveHgDbP"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Cumbia Triste&lt;/strong&gt; by Sonido Gallo Negro, Grupo Kual?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Paganismo&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:51&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=iVkVY-M-LkI"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2NagSRAuRKhczwC1hUhtB1"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Mulberry Jam&lt;/strong&gt; by Allah-Las&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Mulberry Jam (Peaking Lights Dub)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:17&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=l9t4GrJN5nE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5deHYI0KDEXkQsDkUui5m7"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Sozin&lt;/strong&gt; by Pedro Mizutani, Skinshape&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Sozin&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:28&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Y98TjNVi4Os"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/7hFx498UBDaX0RafWpscWd"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;TTT&lt;/strong&gt; by Bluestaeb, Melodiesinfonie, S. Fidelity, douniah&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;TTT&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:21&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=DojEuMupecc"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6gDDaGM8zIscNdtbWESvWl"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Selenge&lt;/strong&gt; by Céline Dessberg&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Selenge&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:21&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=qL-k42eT10g"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/47yngLaqEr3z1lnk7ok0OV"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Spring Has Sprung&lt;/strong&gt; by СОЮЗ, Asha Puthli, Sven Wunder&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Spring Has Sprung&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:08&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Zw91r5pgYTI"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/6ljB4xE0PBnOoj769PJgdE"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Voyage&lt;/strong&gt; by anaiis, Grupo Cosmo, Sessa&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;anaiis &amp;amp; Grupo Cosmo&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:46&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=FBKYgMa-DjQ"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4eutFav6aAuoLyCMlVsmPa"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="11"&gt;
+&lt;li&gt;&lt;strong&gt;Toda Cor&lt;/strong&gt; by anaiis, Grupo Cosmo, Luedji Luna&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;anaiis &amp;amp; Grupo Cosmo&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:51&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=jNgnUoOU0Eg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/2rxfuico35HgTvoD28LJ4B"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="12"&gt;
+&lt;li&gt;&lt;strong&gt;São Só Palavras&lt;/strong&gt; by Nyron Higor, alici, Bruno Berle&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Nyron Higor&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 1:30&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=VxejWXqaVT8"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/10A2t3li8EQvr27lmJDIqy"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="13"&gt;
+&lt;li&gt;&lt;strong&gt;Conversations&lt;/strong&gt; by Carlos Niño &amp;amp; Friends, André 3000, Nate Mercereau, Cavana Lee, Mia Doi Todd&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;(I'm just) Chillin', on Fire&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:36&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Lo5wmBhvwA8"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/69dsbTG8YZWb7jxalOJalg"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="14"&gt;
+&lt;li&gt;&lt;strong&gt;Together Is A Beautiful Place To Be - Nala Sinephro Remix&lt;/strong&gt; by Nubya Garcia, Nala Sinephro&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;SOURCE ⧺ WE MOVE&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:27&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=DrN-kqMOgc4"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4Wt7ZGzelNDUZCCZxgLsuK"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="15"&gt;
+&lt;li&gt;&lt;strong&gt;Space 5&lt;/strong&gt; by Nala Sinephro&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Space 1.8&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:00&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=1ujTycpT9To"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5qQiAyGH1zJtCwPDRvs1wa"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="16"&gt;
+&lt;li&gt;&lt;strong&gt;Sun&lt;/strong&gt; by Skinshape&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Umoja&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:41&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=qVAckPZ0ZBo"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/7ISuVR7cR4kjxwkF5sUTy3"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="17"&gt;
+&lt;li&gt;&lt;strong&gt;The Touch of You&lt;/strong&gt; by The Equatics&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Doin It!!!!&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:36&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Z6_qvBO9pHw"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4BPQA11N0hEYYH043S1fMT"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="18"&gt;
+&lt;li&gt;&lt;strong&gt;manos ajenas (touch you every day)&lt;/strong&gt; by Dos Santos&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Logos&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:34&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=WVYAHfbvajs"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/71JFbeVEheDu3YwhOOxIPh"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="19"&gt;
+&lt;li&gt;&lt;strong&gt;Prayer to the Stars&lt;/strong&gt; by Vianney Lopez, Sam Bottner&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Ceremonia&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:26&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=H7naazaSSfM"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1o6DRTTUzcVlOwXWYKaNEG"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="20"&gt;
+&lt;li&gt;&lt;strong&gt;Moving Through&lt;/strong&gt; by Alexa Sunshine Rose, Aimée Ringle&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Come Receive&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:40&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=TgKucJ5J4DY"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/45Ml50QGvuH8oBXPjegYNE"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="21"&gt;
+&lt;li&gt;&lt;strong&gt;Bloom&lt;/strong&gt; by Deya Dova&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;The Jasmani Garden&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:03&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Km0gKVOkO28"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5thytQyWjWecUJY5FLFIy6"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="22"&gt;
+&lt;li&gt;&lt;strong&gt;Turquoise Galaxy&lt;/strong&gt; by Yussef Dayes&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Black Classical Music&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:11&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=a9ImOdvh7LE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/443JNQpv6lz4wxnHZKV7wH"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="23"&gt;
+&lt;li&gt;&lt;strong&gt;Dive into the Medicine Within&lt;/strong&gt; by Vianney Lopez&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Spirit Medicine&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:17&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=XKJX7Aye-Eg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5o9138EZOCpr5N7RiLkL0N"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="24"&gt;
+&lt;li&gt;&lt;strong&gt;Fingerprints&lt;/strong&gt; by Hiatus Kaiyote&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Choose Your Weapon&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:16&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=YUmSu_54478"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3c7N2fCFB4JVKGF8cWfteh"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="25"&gt;
+&lt;li&gt;&lt;strong&gt;La Puerta&lt;/strong&gt; by Los Tres Ases&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Epoca De Oro&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:56&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=qCD1c7DZ4Nc"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/7410XFJdR47lachsg3fkth"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="26"&gt;
+&lt;li&gt;&lt;strong&gt;Dónde Estás&lt;/strong&gt; by Los Tres Caballeros&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Los Tres Caballeros&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:49&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=MibydTowH1A"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0G35JrHAh7E6KtVC11eDv4"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="27"&gt;
+&lt;li&gt;&lt;strong&gt;Sabra Dios&lt;/strong&gt; by Los Tres Ases&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Tríos Del Mundo : 40 Éxitos&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:06&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=5hwu19JLSTE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/7fcXNUtZSgh9VrKW58Bjuz"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="28"&gt;
+&lt;li&gt;&lt;strong&gt;Lovesong&lt;/strong&gt; by Common Saints&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Idol Eyes&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 9:17&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=DPMt6w1RaDI"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1J7uPqs46vgRZZ5ZhiPG3Y"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="29"&gt;
+&lt;li&gt;&lt;strong&gt;Sweetie&lt;/strong&gt; by Kokoroko&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Sweetie&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:04&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=VDrS1qrHllE"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5rffvBl5fCAGCW6hdTZ3q9"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="30"&gt;
+&lt;li&gt;&lt;strong&gt;Carta Ao Tom 74&lt;/strong&gt; by Vinícius de Moraes, Toquinho, Quarteto Em Cy&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;20 Grandes Sucessos De Vinicius De Moreas&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:41&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=snL61YwwLCw"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3pemsJqLI0GXY9tlQDn8yS"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="31"&gt;
+&lt;li&gt;&lt;strong&gt;Iceland&lt;/strong&gt; by Daniel Lanois&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Flesh And Machine&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 2:38&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=DvWa62aQLhg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/5i6DI0TPO8sYfCvOUhakve"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="32"&gt;
+&lt;li&gt;&lt;strong&gt;Água&lt;/strong&gt; by Zeep&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Nina Miranda &amp;amp; Chris Franck Present: Zeep&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:36&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=eijfKVG0aGk"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/4mULUGzxNVz5O10Fwzs4pf"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="33"&gt;
+&lt;li&gt;&lt;strong&gt;Diarabi&lt;/strong&gt; by Vieux Farka Touré, Khruangbin&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Ali&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 5:01&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=NnE73tTRPmg"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/36huM0UOR9A17TYAape2Xg"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="34"&gt;
+&lt;li&gt;&lt;strong&gt;Wisdom Eye&lt;/strong&gt; by Alice Coltrane&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Eternity&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:10&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=shOfu810phM"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0XLH43dcYq2pOe7COx8gPT"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="35"&gt;
+&lt;li&gt;&lt;strong&gt;Black meditation&lt;/strong&gt; by Shabaka&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Afrikan Culture&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:58&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=TSCagxxGMM0"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/0OK7oUUtjtUAVNxgXFtqsw"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="36"&gt;
+&lt;li&gt;&lt;strong&gt;Everything &amp;amp; Nothing&lt;/strong&gt; by OHMA&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Between All Things&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:06&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=kKe-4yF3Luo"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1FabTpuGnm8TkCRYZHzb4J"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="37"&gt;
+&lt;li&gt;&lt;strong&gt;Take It Slow&lt;/strong&gt; by Ayla Nereo&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;By the Light of the Dark Moon&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:06&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Zq-Jj0ReW1g"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/50i9oISMvbtdQyvgDJ0Wi1"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="38"&gt;
+&lt;li&gt;&lt;strong&gt;Dance of the Seven Sisters&lt;/strong&gt; by Deya Dova&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;The Jasmani Garden&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 4:38&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=HiKWBM4JSOw"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/1yI7aULDqSfW4zfjTV0xOK"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="39"&gt;
+&lt;li&gt;&lt;strong&gt;Little Star&lt;/strong&gt; by Little Whale, Danit&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Album: &lt;em&gt;Movement of the Dawn&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Duration: 3:05&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=ljvUMVgznms"&gt;Listen on YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.spotify.com/track/3hibbtCtdisq4r4cj3Bxnb"&gt;Backup: Listen on Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Original Spotify Playlist:&lt;/strong&gt; &lt;a href="https://open.spotify.com/playlist/0ETG3ZcVXCPqgHN4xFQ8qN"&gt;Listen on Spotify&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/crate-finds-may-2025</link>
+      <guid>https://www.lqdev.me/notes/crate-finds-may-2025</guid>
+      <pubDate>2025-06-29 18:00 -05:00</pubDate>
+      <category>cratefinds</category>
+      <category>music</category>
+      <category>playlist</category>
+      <category>spotify</category>
+    </item>
+    <item>
+      <title>Week of June 29, 2025 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/notes/crate-finds-may-2025"&gt;Crate Finds - May 2025&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/do-not-privatize-federal-land"&gt;Do not privatize federal land&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/2025-06-29-weekly-post-summary</link>
+      <guid>https://www.lqdev.me/notes/2025-06-29-weekly-post-summary</guid>
+      <pubDate>2025-06-29 14:00 -05:00</pubDate>
+      <category>weeklysummary</category>
+      <category>blogging</category>
+      <category>website</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>Thee Sacred Souls 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;Some pictures from the Thee Sacred Souls concert I attended a few weeks ago.&lt;/p&gt;
+&lt;p&gt;I caught them in New York when the tour started, so it was nice to catch them at the end of the tour as well.&lt;/p&gt;
+&lt;p&gt;In both cases, they were great performances.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/thee-sacred-souls-2025-1.jpg" class="img-fluid" alt="A stage with Thee Sacred Souls band performing" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/thee-sacred-souls-2025-2.jpg" class="img-fluid" alt="Thee Sacred Souls members on stage embracing" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/thee-sacred-souls-2025</link>
+      <guid>https://www.lqdev.me/notes/thee-sacred-souls-2025</guid>
+      <pubDate>2025-06-14 12:30 -05:00</pubDate>
+      <category>music</category>
+      <category>concert</category>
+      <category>theesacredsouls</category>
+    </item>
+    <item>
+      <title>Local Artist Websites</title>
+      <description>&lt;![CDATA[&lt;p&gt;I saw these really cool murals around the neighborhood. The artists signed their work either with their name or Instagram handle. I don't use Instagram, so it was nice to see that some of them also had websites where I could follow their work.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.shawnimals.com/"&gt;Shawnimals&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://cydsmillie.com/"&gt;Cyd Smillie&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/local-mural-artist-websites</link>
+      <guid>https://www.lqdev.me/notes/local-mural-artist-websites</guid>
+      <pubDate>2025-06-14 10:57 -05:00</pubDate>
+      <category>art</category>
+      <category>website</category>
+      <category>openweb</category>
+    </item>
+    <item>
+      <title>Week of May 26, 2025 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/notes/attitude-copilot-agent"&gt;Copilot Agent is giving me attitude&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Responses&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/pocket-shutting-down"&gt;Pocket shutting down&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/2025-05-26-weekly-post-summary</link>
+      <guid>https://www.lqdev.me/notes/2025-05-26-weekly-post-summary</guid>
+      <pubDate>2025-05-26 13:06 -05:00</pubDate>
+      <category>weeklysummary</category>
+      <category>blogging</category>
+      <category>website</category>
+      <category>indieweb</category>
+    </item>
+  </channel>
+</rss>

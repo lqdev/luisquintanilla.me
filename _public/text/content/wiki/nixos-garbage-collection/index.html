@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Garbage Collections NixOS - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Garbage Collections NixOS</h1><div class="content-meta"><div class="content-type">wiki</div><time datetime="2024-03-10">March 10, 2024</time><p>Tags: nixos, system, os, linux</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/wiki/">← All wiki</a> | <a href="https://www.lqdev.me/resources/wiki/nixos-garbage-collection">View Full Version</a></p><div class="content"><h2>Overview</h2>
+<p>One of the nice things about NixOS is, whenever you update the system, old configurations remain in place. That way if something were to go wrong, you can always revert back. However, there are tradeoffs. Each old configuration takes up space on your hard drive. If you're updating your system every week or every few weeks, this adds up. The following is a general guide on how to clean these up.</p>
+<h2>Delete old generations</h2>
+<p>This command deletes every generation, except the most current one.</p>
+<pre><code class="language-bash">nix-env --delete-generations old
+</code></pre>
+<p>If you'd like to keep a few of the most recent ones. Say, from the last 14 days, you can pass an argument.</p>
+<pre><code class="language-bash">nix-env --delete-generations 14d
+</code></pre>
+<h2>Run the garbage collector</h2>
+<pre><code class="language-bash">nix-store --gc
+</code></pre>
+<h2>Use the nix-collect-garbage utility</h2>
+<p>The following utility will delete older generations across all profiles on your system.</p>
+<pre><code class="language-bash">nix-collect-garbage -d
+</code></pre>
+<h2>Resources</h2>
+<p><a href="https://nixos.org/manual/nix/stable/package-management/garbage-collection.html">NixOS Garbage Collection</a></p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

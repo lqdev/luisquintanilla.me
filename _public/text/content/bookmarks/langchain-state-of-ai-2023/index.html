@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>LangChain State of AI 2023 - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>LangChain State of AI 2023</h1><div class="content-meta"><div class="content-type">bookmarks</div><time datetime="2023-12-22">December 22, 2023</time><p>Tags: ai, llm, opensource, report</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/bookmarks/">← All bookmarks</a> | <a href="https://www.lqdev.me/bookmarks/langchain-state-of-ai-2023">View Full Version</a></p><div class="content"><article class="response-card h-entry" ><h2><a href="/bookmarks/langchain-state-of-ai-2023/" >LangChain State of AI 2023</a></h2><div class="response-target" >→ <a href="https://blog.langchain.dev/langchain-state-of-ai-2023/" >https://blog.langchain.dev/langchain-state-of-ai-2023/</a></div><div class="response-content" ><h2>What are people building?</h2>
+<blockquote class="blockquote">
+<p>Retrieval has emerged as the dominant way to combine your data with LLMs.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>...42% of complex queries involve retrieval</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>...about 17% of complex queries are part of an agent.</p>
+</blockquote>
+<h2>Most used LLM Providers</h2>
+<blockquote class="blockquote">
+<p>OpenAI has emerged as the leading LLM provider of 2023, and Azure (with more enterprise guarantees) has seized that momentum well.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>On the open source model side, we see Hugging Face (4th), Fireworks AI (6th), and Ollama (7th) emerge as the main ways users interact with those models.</p>
+</blockquote>
+<h2>OSS Model Providers</h2>
+<blockquote class="blockquote">
+<p>A lot of attention recently has been given to open source models, with more and more providers racing to host them at cheaper and cheaper costs. So how exactly are developers accessing these open source models?</p>
+<p>We see that the people are mainly running them locally, with options to do so like Hugging Face, LlamaCpp, Ollama, and GPT4All ranking high.</p>
+</blockquote>
+<h2>Most used vector stores</h2>
+<blockquote class="blockquote">
+<p>Vectorstores are emerging as the primary way to retrieve relevant context.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>...local vectorstores are the most used, with Chroma, FAISS, Qdrant and DocArray all ranking in the top 5.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Of the hosted offerings, Pinecone leads the pack as the only hosted vectorstore in the top 5. Weaviate follows next, showing that vector-native databases are currently more used than databases that add in vector functionality.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Of databases that have added in vector functionality, we see Postgres (PGVector), Supabase, Neo4j, Redis, Azure Search, and Astra DB leading the pack.</p>
+</blockquote>
+<h2>Most used embeddings</h2>
+<blockquote class="blockquote">
+<p>OpenAI reigns supreme</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Open source providers are more used, with Hugging Face coming in 2nd most use</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>On the hosted side, we see that Vertex AI actually beats out AzureOpenAI</p>
+</blockquote>
+<h2>Top Advanced Retrieval Strategies</h2>
+<blockquote class="blockquote">
+<p>the most common retrieval strategy we see is not a built-in one but rather a custom one.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>After that, we see more familiar names popping up:</p>
+<ul>
+<li><strong>Self Query</strong> - which extracts metadata filters from user's questions</li>
+<li><strong>Hybrid Search</strong> - mainly through provider specific integrations like Supabase and Pinecone</li>
+<li><strong>Contextual Compression</strong> - which is postprocessing of base retrieval results</li>
+<li><strong>Multi Query</strong> - transforming a single query into multiple, and then retrieving results for all</li>
+<li><strong>TimeWeighted VectorStore</strong> - give more preference to recent documents</li>
+</ul>
+</blockquote>
+<h2>How are people testing?</h2>
+<blockquote class="blockquote">
+<p>83% of test runs have some form of feedback associated with them. Of the runs with feedback, they average 2.3 different types of feedback, suggesting that developers are having difficulty finding a single metric to rely entirely on, and instead use multiple different metrics to evaluate.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>...the majority of them use an LLM to evaluate the outputs. While some have expressed concern and hesitation around this, we are bullish on this as an approach and see that in practice it has emerged as the dominant way to test.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>...nearly 40% of evaluators are custom evaluators. This is in line with the fact that we've observed that evaluation is often really specific to the application being worked on, and there's no one-size-fits-all evaluator to rely on.</p>
+</blockquote>
+<h2>What are people testing?</h2>
+<blockquote class="blockquote">
+<p>...most people are still primarily concerned with the correctness of their application (as opposed to toxicity, prompt leakage, or other guardrails</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>...low usage of Exact Matching as an evaluation technique [suggests] that judging correctness is often quite complex (you can't just compare the output exactly as is)</p>
+</blockquote>
+</div></article></div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

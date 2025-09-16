@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - promptengineering</title>
+    <link>https://www.lqdev.me/tags/promptengineering</link>
+    <description>All content tagged with 'promptengineering' by Luis Quintanilla</description>
+    <lastBuildDate>2024-01-15 16:49 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>AI for economists - prompts and resources</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This page contains example prompts and responses intended to showcase how generative AI, namely LLMs like GPT-4, can benefit economists.
+&lt;br&gt;
+Example prompts are shown from six domains: ideation and feedback; writing; background research; coding; data analysis; and mathematical derivations.
+&lt;br&gt;
+The framework as well as some of the prompts and related notes come from Korinek, A. 2023. &lt;a href="https://www.aeaweb.org/articles?id=10.1257/jel.20231736"&gt;“Generative AI for Economic Research: Use Cases and Implications for Economists“&lt;/a&gt;, Journal of Economic Literature, 61 (4): 1281–1317.
+&lt;br&gt;
+Each application area includes 1-3 prompts and responses from an LLM, often from the field of development economics, along with brief notes. The prompts will be updated periodically.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/ai-for-economists-prompts</link>
+      <guid>https://www.lqdev.me/bookmarks/ai-for-economists-prompts</guid>
+      <pubDate>2024-01-15 16:49 -05:00</pubDate>
+      <category>ai</category>
+      <category>economy</category>
+      <category>promptengineering</category>
+      <category>llm</category>
+      <category>gpt</category>
+    </item>
+    <item>
+      <title>OpenAI - Prompt engineering</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This guide shares strategies and tactics for getting better results from large language models (sometimes referred to as GPT models) like GPT-4. The methods described here can sometimes be deployed in combination for greater effect. We encourage experimentation to find the methods that work best for you.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/openai-prompting-guide</link>
+      <guid>https://www.lqdev.me/bookmarks/openai-prompting-guide</guid>
+      <pubDate>2023-12-19 19:37 -05:00</pubDate>
+      <category>openai</category>
+      <category>llm</category>
+      <category>promptengineering</category>
+      <category>ai</category>
+      <category>guide</category>
+    </item>
+    <item>
+      <title>Steering at the Frontier: Extending the Power of Prompting </title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...steering GPT-4 with a modified version of Medprompt achieves the highest score ever achieved on the complete MMLU.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;To achieve a new SoTA on MMLU, we extended Medprompt to Medprompt+ by adding a simpler prompting method and formulating a policy for deriving a final answer by integrating outputs from both the base Medprompt strategy and the simple prompts. The synthesis of a final answer is guided by a control strategy governed by GPT-4 and inferred confidences of candidate answers.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;While systematic prompt engineering can yield maximal performance, we continue to explore the out-of-the-box performance of frontier models with simple prompts. It’s important to keep an eye on the native power of GPT-4 and how we can steer the model with zero- or few-shot prompting strategies.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/medprompt-promptbase-extending-power-prompting</link>
+      <guid>https://www.lqdev.me/bookmarks/medprompt-promptbase-extending-power-prompting</guid>
+      <pubDate>2023-12-12 19:14 -05:00</pubDate>
+      <category>ai</category>
+      <category>promptengineering</category>
+    </item>
+    <item>
+      <title>promptbase</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;promptbase is an evolving collection of resources, best practices, and example scripts for eliciting the best performance from foundation models like GPT-4.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/microsoft-promptbase</link>
+      <guid>https://www.lqdev.me/bookmarks/microsoft-promptbase</guid>
+      <pubDate>2023-12-12 19:13 -05:00</pubDate>
+      <category>ai</category>
+      <category>promptengineering</category>
+    </item>
+    <item>
+      <title>Chain-of-Verification Reduces Hallucination in Large Language Models</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Generation of plausible yet incorrect factual information, termed hallucination, is an unsolved issue in large language models. We study the ability of language models to deliberate on the responses they give in order to correct their mistakes. We develop the Chain-of-Verification (COVE) method whereby the model first (i) drafts an initial response; then (ii) plans verification questions to fact-check its draft; (iii) answers those questions independently so the answers are not biased by other responses; and (iv) generates its final verified response. In experiments, we show COVE decreases hallucinations across a variety of tasks, from list-based questions from Wikidata, closed book MultiSpanQA and longform text generation.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/chain-of-verification-prompting-technique</link>
+      <guid>https://www.lqdev.me/bookmarks/chain-of-verification-prompting-technique</guid>
+      <pubDate>2023-10-14 21:09 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>promptengineering</category>
+    </item>
+    <item>
+      <title>ChatGPT Prompt Engineering for Developers</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In ChatGPT Prompt Engineering for Developers, you will learn how to use a large language model (LLM) to quickly build new and powerful applications.  Using the OpenAI API, you’ll be able to quickly build capabilities that learn to innovate and create value in ways that were cost-prohibitive, highly technical, or simply impossible before now.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/chatgpt-prompt-engineering-developers</link>
+      <guid>https://www.lqdev.me/bookmarks/chatgpt-prompt-engineering-developers</guid>
+      <pubDate>2023-05-11 20:29 -05:00</pubDate>
+      <category>ai</category>
+      <category>gpt</category>
+      <category>promptengineering</category>
+    </item>
+  </channel>
+</rss>

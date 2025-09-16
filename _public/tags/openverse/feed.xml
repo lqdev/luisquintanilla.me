@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - openverse</title>
+    <link>https://www.lqdev.me/tags/openverse</link>
+    <description>All content tagged with 'openverse' by Luis Quintanilla</description>
+    <lastBuildDate>2024-12-17 16:53 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Openverse</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Openverse is a tool that allows openly licensed and public domain works to be discovered and used by everyone.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Openverse searches across more than 800 million images and audio tracks from open APIs and the Common Crawl dataset. We aggregate works from multiple public repositories, and facilitate reuse through features like one-click attribution.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Openverse is the successor to CC Search which was launched by Creative Commons in 2019&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/openverse</link>
+      <guid>https://www.lqdev.me/bookmarks/openverse</guid>
+      <pubDate>2024-12-17 16:53 -05:00</pubDate>
+      <category>openverse</category>
+      <category>opensource</category>
+      <category>creativecommons</category>
+    </item>
+  </channel>
+</rss>

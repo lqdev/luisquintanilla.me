@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - notetoself</title>
+    <link>https://www.lqdev.me/tags/notetoself</link>
+    <description>All content tagged with 'notetoself' by Luis Quintanilla</description>
+    <lastBuildDate>2024-07-28 17:00 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Note to Self: Useful Emacs Commands Pt. 1</title>
+      <description>&lt;![CDATA[&lt;p&gt;I still need to set up an org-capture template for snippets, so writing a note to myself to remember these commands I'll eventually want to come back to.&lt;/p&gt;
+&lt;h2&gt;Capture elfeed link&lt;/h2&gt;
+&lt;p&gt;In this custom function, &lt;code&gt;elfeed-show-yank&lt;/code&gt; extracts the link element in an elfeed entry. &lt;code&gt;org-capture&lt;/code&gt; then just invokes the org-capture template selection prompt. At this point, I can move forward with creating a response entry on the website and since the link to the entry I was viewing in elfeed is in the kill-ring, I can easily paste the URL while filling out the org-capture template.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-lisp"&gt;(defun capture-elfeed-entry ()
+  (elfeed-show-yank)
+  (org-capture))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Org capture contexts&lt;/h2&gt;
+&lt;p&gt;I recently found out, I can add filters to org-capture templates based on the mode I'm in Emacs. Here's an example:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-lisp"&gt;(setq org-capture-templates-contexts
+      '((&amp;quot;wrn&amp;quot; ((in-mode . &amp;quot;elfeed-show-mode&amp;quot;)))))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;org-capture-templates-contexts&lt;/code&gt; defines a set of conditions that defines which contexts certain org-capture templates appear under.&lt;/p&gt;
+&lt;p&gt;For example, the org-capture template mapped to &lt;code&gt;wrn&lt;/code&gt; will only be visible when org-capture is invoked from a buffer in &lt;code&gt;elfeed-show-mode&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;More information can be found in the &lt;a href="https://orgmode.org/manual/Templates-in-contexts.html"&gt;org-capture templates in context documentation&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/useful-emacs-commands-pt-1</link>
+      <guid>https://www.lqdev.me/notes/useful-emacs-commands-pt-1</guid>
+      <pubDate>2024-07-28 17:00 -05:00</pubDate>
+      <category>emacs</category>
+      <category>lisp</category>
+      <category>elisp</category>
+      <category>programming</category>
+      <category>code</category>
+      <category>notetoself</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Webmentions Request Verification - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Webmentions Request Verification</h1><div class="content-meta"><div class="content-type">snippets</div><time datetime="2022-09-23">September 23, 2022</time><p>Tags: f#, indieweb, webmentions, internet, web, social, interactive, script</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/snippets/">← All snippets</a> | <a href="https://www.lqdev.me/resources/snippets/webmentions-request-verification">View Full Version</a></p><div class="content"><h2>Description</h2>
+<p>Sample script that shows how to perform Webmention request verification per <a href="https://www.w3.org/TR/webmention/#request-verification">Webmentions specification</a>.</p>
+<h2>Usage</h2>
+<pre><code class="language-bash">dotnet fsi request-verification.fsx
+</code></pre>
+<h2>Snippet</h2>
+<p><strong>request-verification.fsx</strong></p>
+<pre><code class="language-fsharp">// https://www.w3.org/TR/webmention/#request-verification
+<p>// 1. Send response with 202 Accepted to acknowledge successful request
+// 2. DONE: Check that the protocol is http or https
+// 3. DONE: Source URL is different than Target URL
+// 4. DONE Check that Target URL is a valid resource</p>
+<p>#r &quot;nuget: Microsoft.AspNetCore.WebUtilities, 2.2.0&quot;</p>
+<p>open System
+open System.Net
+open System.Net.Http
+open System.Collections.Generic
+open Microsoft.AspNetCore.WebUtilities</p>
+<p>type RequestVerificationResult =
+| Ok of HttpRequestMessage
+| Error of string</p>
+<p>// Parse Form URL Encoded string
+let getFormContent (request:HttpRequestMessage) =
+async {
+let! content = request.Content.ReadAsStringAsync() |&gt; Async.AwaitTask
+let query = QueryHelpers.ParseQuery(content)
+let source = query[&quot;source&quot;] |&gt; Seq.head
+let target = query[&quot;target&quot;] |&gt; Seq.head</p>
+<pre><code>    return source,target
+}
+</code></pre>
+<p>// Check protocol is HTTP or HTTPS
+let checkProtocol (request: RequestVerificationResult) =
+match request with
+| Ok m -&gt;
+let source,target =
+async {
+return! getFormContent(m)
+} |&gt; Async.RunSynchronously</p>
+<pre><code>    let isProtocolValid = 
+        match source.StartsWith(&amp;quot;http&amp;quot;),target.StartsWith(&amp;quot;http&amp;quot;) with
+        | true,true -&amp;gt; Ok m
+        | true,false -&amp;gt; Error &amp;quot;Target invalid protocol&amp;quot;
+        | false,true -&amp;gt;  Error &amp;quot;Source invalid protocol&amp;quot;
+        | false,false -&amp;gt; Error &amp;quot;Source and Target invalid protocol&amp;quot;
+
+    isProtocolValid
+| Error s -&amp;gt; Error $&amp;quot;{s}&amp;quot;
+</code></pre>
+<p>// Check the URLs are not the same
+let checkUrlsSame (request:RequestVerificationResult) =
+match request with
+| Ok m -&gt;
+let source,target =
+async {
+return! getFormContent(m)
+} |&gt; Async.RunSynchronously
+let check =
+match source.Equals(target) with
+| true -&gt; Error &quot;Urls are the same&quot;
+| false -&gt;  Ok m
+check
+| Error s -&gt; Error s</p>
+<p>// Helper functions
+let uriIsMine (url:string) =
+let uri = new Uri(url)
+uri.Host.Equals(&quot;lqdev.me&quot;) || uri.Host.Equals(&quot;www.luisquintanilla.me&quot;) || uri.Host.Equals(&quot;luisquintanilla.me&quot;)</p>
+<p>let isValid (url:string) (msg:HttpResponseMessage) =
+let isMine = uriIsMine url
+isMine &amp; msg.IsSuccessStatusCode</p>
+<p>// Check URL is a valid resource
+// Valid means, the URL is one of my domains and returns a non-400 or 500 HTML status code
+let checkUrlValidResource (request:RequestVerificationResult) =
+match request with
+| Ok m -&gt;
+let res =
+async {
+let! source,target = getFormContent(m)
+use client = new HttpClient()
+let reqMessage = new HttpRequestMessage(HttpMethod.Head, target)
+let! resp = client.SendAsync(reqMessage) |&gt; Async.AwaitTask
+return isValid target resp
+} |&gt; Async.RunSynchronously
+match res with
+| true -&gt; Ok m
+| false -&gt; Error &quot;Target is not a valid resource&quot;
+| Error s -&gt; Error s</p>
+<p>// Combine validation steps into single function
+let validate =
+checkProtocol &gt;&gt; checkUrlsSame &gt;&gt; checkUrlValidResource</p>
+<p>// Test application
+let buildSampleRequestMessages (content:IDictionary&lt;string,string&gt;) =</p>
+<pre><code>let reqMessage = new HttpRequestMessage()
+reqMessage.Content &amp;lt;- new FormUrlEncodedContent(content)
+
+let liftedReqMessage = Ok reqMessage
+liftedReqMessage
+</code></pre>
+<p>let sampleContent = [
+dict [
+(&quot;source&quot;,&quot;http://lqdev.me&quot;)
+(&quot;target&quot;,&quot;http://lqdev.me&quot;)
+]
+dict [
+(&quot;source&quot;,&quot;http://://lqdev.me&quot;)
+(&quot;target&quot;,&quot;protocol://lqdev.me&quot;)
+]<br />
+dict [
+(&quot;source&quot;,&quot;http://lqdev.me&quot;)
+(&quot;target&quot;,&quot;http://github.com/lqdev&quot;)
+]
+dict [
+(&quot;source&quot;,&quot;http://github.com/lqdev&quot;)
+(&quot;target&quot;,&quot;http://lqdev.me&quot;)
+]<br />
+]</p>
+<p>sampleContent
+|&gt; List.map(buildSampleRequestMessages)
+|&gt; List.map(validate)
+</code></pre></p>
+<h2>Sample Output</h2>
+<pre><code class="language-text">[  
+  Error &quot;Urls are the same&quot;; 
+  Error &quot;Target invalid protocol&quot;;
+  Error &quot;Target is not a valid resource&quot;;
+  Ok
+    Method: GET, RequestUri: '&lt;null&gt;', Version: 1.1, Content: System.Net.Http.FormUrlEncodedContent, Headers:
+    {
+        Content-Type: application/x-www-form-urlencoded
+        Content-Length: 67
+    }
+    {
+        Content = System.Net.Http.FormUrlEncodedContent;
+        Headers = seq [];
+        Method = GET;
+        Options = seq [];
+        Properties = seq [];
+        RequestUri = null;
+        Version = 1.1;
+        VersionPolicy = RequestVersionOrLower;
+    }
+]
+</code></pre>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

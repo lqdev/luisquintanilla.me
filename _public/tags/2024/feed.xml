@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - 2024</title>
+    <link>https://www.lqdev.me/tags/2024</link>
+    <description>All content tagged with '2024' by Luis Quintanilla</description>
+    <lastBuildDate>2024-12-29 12:12 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>LangChain State of AI 2024 Report</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In 2024, developers leaned into complexity with multi-step agents, sharpened efficiency by doing more with fewer LLM calls, and added quality checks to their apps using methods of feedback and evaluation.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src="https://blog.langchain.dev/content/images/size/w1600/2024/12/Top-10-LLM-Providers-bar-chart.png" class="img-fluid" alt="Bar Chart Showing Top 10 LLMs Used 2024" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.langchain.dev/content/images/size/w1600/2024/12/Top-10-Retrievers--1-.png" class="img-fluid" alt="Graphic showing Top 10 Retrievers / Vector Stores 2024" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.langchain.dev/content/images/size/w1600/2024/12/Top-evaluation-metrics--1-.png" class="img-fluid" alt="Graphic showing Top LLM Evaluation Metrics 2024" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/langchain-state-of-ai-2024</link>
+      <guid>https://www.lqdev.me/responses/langchain-state-of-ai-2024</guid>
+      <pubDate>2024-12-29 12:12 -05:00</pubDate>
+      <category>ai</category>
+      <category>2024</category>
+      <category>report</category>
+      <category>langchain</category>
+      <category>llm</category>
+    </item>
+  </channel>
+</rss>

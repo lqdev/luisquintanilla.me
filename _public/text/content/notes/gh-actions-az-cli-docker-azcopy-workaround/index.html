@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Workaround for Azure CLI docker image azcopy issue in GitHub Actions - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Workaround for Azure CLI docker image azcopy issue in GitHub Actions</h1><div class="content-meta"><div class="content-type">notes</div><time datetime="2025-01-11">January 11, 2025</time><p>Tags: azure, github, cicd</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/notes/">← All notes</a> | <a href="https://www.lqdev.me/notes/gh-actions-az-cli-docker-azcopy-workaround">View Full Version</a></p><div class="content"><p>Publishing on my site was broken since yesterday. I thought it was only me but after doing some digging looks like it was an issue with Azure CLI and the link it uses to download azcopy.</p>
+<p>Looks like the team is already working on a fix and you can track progress using this issue</p>
+<p><a href="https://github.com/Azure/azure-cli/issues/30635">https://github.com/Azure/azure-cli/issues/30635</a></p>
+<p>If you're using Azure CLI in GitHub Actions and running into this problem, you can unblock yourself by installing azcopy manually. Here's the snippet that worked for me.</p>
+<pre><code class="language-yaml">- name: Upload to blob storage
+  uses: azure/CLI@v1
+  with:
+    azcliversion: 2.67.0
+    # azcopy workadound https://github.com/Azure/azure-cli/issues/30635
+    inlineScript: |
+        tdnf install -y azcopy;
+        # YOUR SCRIPT
+</code></pre>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

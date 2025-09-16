@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link rel="stylesheet" href="/assets/css/custom/main.css"><link rel="stylesheet" href="/assets/css/custom/timeline.css"><link rel="stylesheet" href="/assets/css/bootstrap-icons-1.5.0/bootstrap-icons.css"><link rel="stylesheet" href="/assets/css/highlight.github-dark-dimmed.min.css"><link rel="stylesheet" href="/assets/css/main.css"><link rel="stylesheet" href="/lib/revealjs/dist/reveal.css"><link rel="stylesheet" href="/lib/revealjs/dist/theme/black.css"><link rel="stylesheet" href="/lib/revealjs/plugin/highlight/monokai.css"><meta property="og:title" content="Use .NET Interactive to run .NET code in Jupyter Notebooks on an Azure Machine Learning compute instance - Luis Quintanilla"><meta property="og:type" content="website"><meta property="og:image" content="https://www.lqdev.me/avatar.png"><meta property="og:image:secure_url" content="https://www.lqdev.me/avatar.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="200"><meta property="og:image:height" content="200"><meta property="og:site_name" content="Luis Quintanilla Personal Website"><meta property="og:locale" content="en_US"><meta property="twitter:image" content="https://www.lqdev.me/avatar.png"><meta property="fediverse:creator" content="@lqdev@toot.lqdev.tech"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Blog RSS Feed" href="/blog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Microblog RSS Feed" href="/microblog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Response RSS Feed" href="/responses.rss"><link rel="webmention" title="Luis Quintanilla Webmention Endpoint" href="https://webmentions.lqdev.tech/api/inbox"><link rel="feeds" type="text/xml" title="Luis Quintanilla&#39;s Feeds" href="/feed/index.opml"><link rel="blogroll" type="text/xml" title="Luis Quintanilla&#39;s Blogroll" href="/collections/blogroll/index.opml"><link rel="podroll" type="text/xml" title="Luis Quintanilla&#39;s Podroll" href="/collections/podroll/index.opml"><link rel="youtuberoll" type="text/xml" title="Luis Quintanilla&#39;s YouTube Roll" href="/collections/youtube/index.opml"><meta name="robots" content="nosnippet"><title>Use .NET Interactive to run .NET code in Jupyter Notebooks on an Azure Machine Learning compute instance - Luis Quintanilla</title></head><body><button class="mobile-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"><div class="hamburger"><span></span><span></span><span></span></div></button><div class="nav-overlay" id="nav-overlay"></div><nav class="desert-nav" id="sidebar-menu" role="navigation" aria-label="Main navigation"><div class="nav-brand"><a href="/" class="brand-text"><img src="/avatar.png" alt="Luis Quintanilla avatar" loading="lazy">Luis Quintanilla</a></div><div class="nav-section"><a class="nav-link" href="/"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"></path></svg>Home</a><a class="nav-link" href="/about"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path></svg>About</a><a class="nav-link" href="/contact"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"></path></svg>Contact</a><a class="nav-link" href="/search"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path></svg>Search</a><a class="nav-link" href="/feed"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"></path></svg>Subscribe</a></div><div class="nav-section dropdown"><button class="nav-link dropdown-toggle" data-target="collections-dropdown"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"></path><path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"></path></svg>Collections<svg class="dropdown-arrow" viewBox="0 0 16 16" fill="currentColor"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path></svg></button><div class="dropdown-menu" id="collections-dropdown"><a class="dropdown-item" href="/collections/blogroll">Blogroll</a><a class="dropdown-item" href="/collections/podroll">Podroll</a><a class="dropdown-item" href="/collections/youtube">YouTube</a><a class="dropdown-item" href="/collections/forums">Forums</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/collections/starter-packs">Starter Packs</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/radio">Radio</a><a class="dropdown-item" href="/tags">Tags</a></div></div><div class="nav-section dropdown"><button class="nav-link dropdown-toggle" data-target="resources-dropdown"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"></path></svg>Resources<svg class="dropdown-arrow" viewBox="0 0 16 16" fill="currentColor"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path></svg></button><div class="dropdown-menu" id="resources-dropdown"><a class="dropdown-item" href="/resources/snippets">Snippets</a><a class="dropdown-item" href="/resources/wiki">Wiki</a><a class="dropdown-item" href="/resources/presentations">Presentations</a></div></div><div class="theme-toggle"><button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark mode"><span id="theme-toggle-icon">☀️</span><span>Theme</span></button></div></nav><main role="main" class="main-content" id="main-content"><div class="content-wrapper"><div class="mr-auto"><article class="h-entry individual-post"><header class="post-header"><h1 class="p-name post-title">Use .NET Interactive to run .NET code in Jupyter Notebooks on an Azure Machine Learning compute instance</h1><div class="post-meta"><time class="dt-published" datetime="2020-08-29 20:23:09 -05:00">August 29, 2020</time></div><div class="u-author h-card microformat-hidden"><img src="/avatar.png" class="u-photo" alt="Luis Quintanilla" /><a href="/about" class="u-url p-name">Luis Quintanilla</a></div></header><div class="e-content post-content"><h1>Introduction</h1>
+<p>In this post, I'll go over how you can run .NET code in Jupyter Notebooks using .NET Interactive and Azure Machine Learning compute instances.</p>
+<p><a href="https://jupyter.org/">Jupyter Notebooks</a> are an graphical interactive computing environment used in disciplines like data science and education. When it comes to prototyping or learning scenarios, they can help users see near real-time what their code is doing. The interactive computing protocol used by Jupyter Notebooks is extensible and as a result, you're able to run a variety of languages inside of this environment via kernels. Kernels are processes that take the input from the user, execute the code, and return the output for display and further processing. Using <a href="https://github.com/dotnet/interactive">.NET Interactive</a>, a .NET Core global tool, that among its many features provides a kernel for Jupyter Notebooks to run .NET (C#/F#) and PowerShell code.</p>
+<p>Although you can install and run Jupyter Notebooks on your local computer, services like <a href="https://docs.microsoft.com/azure/machine-learning/">Azure Machine Learning</a> provide single VMs known as compute instances which have Jupyter Notebooks as well as many popular data science libraries and development tools like Docker preinstalled. Therefore, installing .NET Interactive on one of these VMs is a seamless experience. Additionally, Azure Machine Learning gives you the ability to share computing resources with teams of various sizes.</p>
+<p>Let's get started!</p>
+<h2>Prerequisites</h2>
+<ul>
+<li><a href="https://azure.microsoft.com/free/">Azure account</a>. If you don't have one, create one.</li>
+</ul>
+<h2>Create Azure Machine Learning workspace</h2>
+<p>A workspace organizes all of you Azure Machine Learning resources and assets such as compute instances in a single place. In order to use Azure Machine Learning, you have to create a workspace.</p>
+<p>There's multiple ways to create a workspace. For this writeup, I use the Azure Portal.</p>
+<p>Navigate to <a href="https://portal.azure.com">portal.azure.com</a></p>
+<p>In the portal, select <strong>Create a resource</strong>.</p>
+<p><img src="https://user-images.githubusercontent.com/11130940/91647989-d79d6380-ea2f-11ea-9d97-cc265c79801f.png" class="img-fluid" alt="Create new resource Azure Portal" /></p>
+<p>From the resource list, select <strong>AI + Machine Learning &gt; Machine Learning</strong></p>
+<p><img src="https://user-images.githubusercontent.com/11130940/91647999-01ef2100-ea30-11ea-954a-3c3280a9cbca.png" class="img-fluid" alt="Create Azure Machine Learning Resource" /></p>
+<p>Fill in the form and select <strong>Review + create</strong>.</p>
+<p><img src="https://user-images.githubusercontent.com/11130940/91648065-07993680-ea31-11ea-9273-c28b4ec4bf7c.png" class="img-fluid" alt="Create Azure Machine Learning workspace" /></p>
+<p>Review your information before creating the workspace and select <strong>Create</strong>. Deployment takes a few minutes. As part of your workspace deployment, additional Azure resources are created such as Azure Container Registry, Azure Storage account, Azure Application Insights, and Azure KeyVault.</p>
+<p>For more information on workspaces, see the <a href="https://docs.microsoft.com/azure/machine-learning/concept-workspace">Azure Machine Learning workspace documentation</a>.</p>
+<h2>Create an Azure Machine Learning compute instance</h2>
+<p>As mentioned earlier, an Azure Machine Learning compute instance is a single VM that comes with a variety of development tools and libraries commonly used for data science and machine learning workflows preinstalled.</p>
+<p>Navigate to <a href="https://ml.azure.com">Azure Machine Learning studio</a>. The studio is a web interface for managing your Azure Machine Learning resources such as data, experiments, models, and compute.</p>
+<p>In studio, select <strong>Create new &gt; Compute instance</strong> to create a new compute instance.</p>
+<p><img src="https://user-images.githubusercontent.com/11130940/91648186-73c86a00-ea32-11ea-9986-205306fe76b0.png" class="img-fluid" alt="Create new Azure Machine Learning compute instance" /></p>
+<p>Provide a name for your instance and select <strong>Create</strong>. You can also customize the size of your VM and whether you want it to be GPU enabled. In this case, I just selected the preselected option.</p>
+<p><img src="https://user-images.githubusercontent.com/11130940/91648251-1c76c980-ea33-11ea-91de-818e1f63767c.png" class="img-fluid" alt="Provision Azure Machine Learning compute instance" /></p>
+<p>Once your compute instance is provisioned, select the <strong>Jupyter</strong> link to launch Jupyter Notebooks.</p>
+<p><img src="https://user-images.githubusercontent.com/11130940/91648307-f271d700-ea33-11ea-9b80-57e44f0bcdf5.png" class="img-fluid" alt="Launch Jupyter Notebooks" /></p>
+<p>For more information on compute instances, see the <a href="https://docs.microsoft.com/azure/machine-learning/concept-compute-instance">Azure Machine Learning compute instance documentation</a>.</p>
+<h2>Install the .NET Core 3.1 SDK</h2>
+<p>At the time of this writing, the image used by compute instances is Ubuntu 16.04. Therefore, we'll be installing the Linux version of the .NET Core SDK.</p>
+<p>Inside the Jupyter Notebooks, select <strong>New &gt; Terminal</strong> to create a new terminal.</p>
+<p><img src="https://user-images.githubusercontent.com/11130940/91648326-1c2afe00-ea34-11ea-8f84-48b98e1ec148.png" class="img-fluid" alt="image" /></p>
+<p>In the terminal, add the Microsoft package signing key to your list of trusted keys.</p>
+<pre><code class="language-bash">wget https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+</code></pre>
+<p>Install the .NET Core 3.1 SDK with the following command:</p>
+<pre><code class="language-bash">sudo apt-get update; \
+  sudo apt-get install -y apt-transport-https &amp;&amp; \
+  sudo apt-get update &amp;&amp; \
+  sudo apt-get install -y dotnet-sdk-3.1
+</code></pre>
+<blockquote class="blockquote">
+<p>Note that as of the time of this writing, .NET Interactive requires .NET Core 3.1.</p>
+</blockquote>
+<p>You can also find these installation instructions in the <a href="https://docs.microsoft.com/dotnet/core/install/linux-ubuntu#1604-">.NET Core installation documentation</a>.</p>
+<h2>Install .NET Interactive</h2>
+<p>Start off by checking which kernels are installed. In the terminal, enter the following command.</p>
+<pre><code class="language-bash">jupyter kernelspec list
+</code></pre>
+<p>The output should look something like the output below</p>
+<pre><code class="language-console">Available kernels:
+  python3            /anaconda/envs/azureml_py36/share/jupyter/kernels/python3
+  ir                 /usr/local/share/jupyter/kernels/ir
+  python3-azureml    /usr/local/share/jupyter/kernels/python3-azureml
+</code></pre>
+<p>Then, install the .NET Interactive global tool</p>
+<pre><code class="language-bash">dotnet tool install -g --add-source &quot;https://dotnet.myget.org/F/dotnet-try/api/v3/index.json&quot; Microsoft.dotnet-interactive
+</code></pre>
+<p>Use the .NET Interactive tool to install the .NET and powershell kernels.</p>
+<pre><code class="language-bash">dotnet interactive jupyter install
+</code></pre>
+<p>Finally, run the following command to confirm that the kernels have been installed.</p>
+<pre><code class="language-bash">jupyter kernelspec list
+</code></pre>
+<p>In the output you should see the C#, F#, and PowerShell kernels listed</p>
+<pre><code class="language-bash">Available kernels:
+  .net-csharp        /home/azureuser/.local/share/jupyter/kernels/.net-csharp
+  .net-fsharp        /home/azureuser/.local/share/jupyter/kernels/.net-fsharp
+  .net-powershell    /home/azureuser/.local/share/jupyter/kernels/.net-powershell
+  python3            /anaconda/envs/azureml_py36/share/jupyter/kernels/python3
+  ir                 /usr/local/share/jupyter/kernels/ir
+  python3-azureml    /usr/local/share/jupyter/kernels/python3-azureml
+</code></pre>
+<h2>Add .NET global tools directory to PATH</h2>
+<p>The Jupyter Notebook server is managed by a <code>systemd</code> service. Although during installation .NET Interactive is added to your <code>PATH</code> environment variable, it's not added to the environment file <code>/etc/environment</code> which is used by <code>systemd</code>. Therefore, in order to run .NET Interactive, you have to add the .NET global tools directory to that file.</p>
+<p>The contents of the file should look similar to the one below</p>
+<pre><code class="language-text">PATH=&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games&quot;
+AML_CloudName=AzureCloud
+</code></pre>
+<p>Open the <code>/etc/environment</code> using your preferred text editor (vi/nano) and replace the <code>PATH</code> with the following content:</p>
+<pre><code class="language-text">PATH=&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/azureuser/.dotnet/tools&quot;
+</code></pre>
+<p>Save your changes and restart the Jupyter Server. In the terminal, run the following command.</p>
+<pre><code class="language-bash">sudo service jupyter restart
+</code></pre>
+<p>This will close your terminal session since the notebook server has been restarted.</p>
+<p>Close all Jupyter Notebook windows.</p>
+<h2>Create new .NET Jupyter Notebook</h2>
+<p>From Azure Machine Learning studio, launch Jupyter Notebooks again by selecting the <strong>Jupyter</strong> link.</p>
+<p>Then, in Jupyter Notebooks select <strong>New</strong> and create a new notebook (C#/F#/PowerShell). In this case, I created an F# notebook.</p>
+<p>Once the kernel is ready, enter code into the first cell and run it.</p>
+<p><img src="https://user-images.githubusercontent.com/11130940/91648958-20f3b000-ea3c-11ea-95a1-3e4ba71c31d8.png" class="img-fluid" alt="FSharp Jupyter Notebook running in AML compute instance" /></p>
+<p>Congratulations! You should now be able to run .NET and PowerShell code inside of your Azure Machine Learning compute instance.</p>
+<h2>Conclusion</h2>
+<p>In this post, I showed how you can run .NET code in Jupyter Notebooks on an Azure Machine Learning compute instance with the help of .NET Interactive. This enables you to interactively prototype solutions remotely while still having control over your environment and dependencies. Now that you have .NET interactive setup, compute instances also give you the option of using JupyterLab. Feel free to tinker with the different environments and see which one works best for you. Happy coding!</p>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://docs.microsoft.com/azure/machine-learning/">Azure Machine Learning documentation</a></li>
+<li><a href="https://github.com/dotnet/interactive">.NET Interactive GitHub repository</a></li>
+<li><a href="https://jupyter.org/">Jupyter Notebooks</a></li>
+</ul>
+</div><footer class="post-footer"><div class="permalink-info">Permalink: <a class="u-url permalink-link" href="/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance/">/posts/dotnet-jupyter-notebooks-azure-machine-learning-compute-instance/</a></div><div><script type="application/javascript">window.onload = function() { document.getElementById('webmention-target').value = window.location.href }</script><form action="https://webmentions.lqdev.tech/api/inbox" method="POST" enctype="application/x-www-form-urlencoded"><h5 class="text-center">Send me a <a href="/contact">message</a> or <a href="https://indieweb.org/webmentions">webmention</a></h5><div class="form-row justify-content-center"><div class="w-75"><input type="url" class="form-control" name="source" placeholder="Your URL (webmention source)" required /></div><div class="col-auto"><input type="submit" class="btn btn-primary" value="Send" /></div><input type="hidden" readonly name="target" id="webmention-target" /></div></form></div></footer></article></div></div></main><script src="/assets/lib/jquery/jquery.slim.min.js"></script><script src="/assets/lib/boostrap/bootstrap.min.js"></script><script src="/assets/lib/highlight/highlight.min.js"></script><script src="/assets/lib/highlight/highlight.fsharp.min.js"></script><script src="/assets/lib/highlight/highlight.nix.min.js"></script><script src="/assets/js/timeline.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script type="application/javascript">mermaid.initialize({startOnLoad:true});</script><script type="application/javascript">hljs.initHighlightingOnLoad();</script><script src="/lib/revealjs/dist/reveal.js"></script><script src="/lib/revealjs/plugin/markdown/markdown.js"></script><script src="/lib/revealjs/plugin/highlight/highlight.js"></script><script type="application/javascript">
+                    // Initialize Reveal.js when a presentation container is found on the page
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const presentationContainer = document.querySelector('.presentation-container');
+                        if (presentationContainer && typeof Reveal !== 'undefined') {
+                            Reveal.initialize({
+                                plugins: [RevealMarkdown, RevealHighlight],
+                                embedded: true
+                            });
+                        }
+                    });
+                    </script></body><footer><a rel="me" href="https://toot.lqdev.tech/@lqdev"></a><a rel="me" href="https://github.com/lqdev"></a><a rel="me" href="https://twitter.com/ljquintanilla"></a><a rel="me" href="https://www.linkedin.com/in/lquintanilla01/"></a><a rel="me" href="mailto:lqdev@outlook.com"></a></footer></html>

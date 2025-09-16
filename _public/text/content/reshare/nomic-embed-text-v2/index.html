@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Nomic Embed Text V2: An Open Source, Multilingual, Mixture-of-Experts Embedding Model - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Nomic Embed Text V2: An Open Source, Multilingual, Mixture-of-Experts Embedding Model</h1><div class="content-meta"><div class="content-type">reshare</div><time datetime="2025-02-25">February 25, 2025</time><p>Tags: nomic, ai, embeddings</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/reshare/">← All reshare</a> | <a href="https://www.lqdev.me/responses/nomic-embed-text-v2">View Full Version</a></p><div class="content"><article class="response-card h-entry" ><h2><a href="/responses/nomic-embed-text-v2/" >Nomic Embed Text V2: An Open Source, Multilingual, Mixture-of-Experts Embedding Model</a></h2><div class="response-target" >→ <a href="https://www.nomic.ai/blog/posts/nomic-embed-text-v2" >https://www.nomic.ai/blog/posts/nomic-embed-text-v2</a></div><div class="response-content" ><blockquote class="blockquote">
+<p>Today we're excited to announce Nomic Embed Text V2, our next-generation embedding model that brings the Mixture of Experts (MoE) architecture to text embeddings on a new expanded multilingual training dataset.</p>
+</blockquote>
+<p>Personally, I found the part on MoE to be the most interesting about this release.</p>
+<blockquote class="blockquote">
+<p>Rather than a dense model which uses all parameters on an input, the MoE architecture dynamically routes to different &quot;experts&quot; - sparse subsets of parameters at each layer - activating, ideally, only the parameters especially needed to process the input. This approach allows for more efficient use of compute when generating embeddings.<br />
+<br>
+In our experiments, we found that alternating MoE layers with 8 experts and top-2 routing provides the optimal balance between performance and efficiency. This results in 475M total parameters in the model, but only 305M active during training and inference.<br />
+<br>
+Research into embedding model architecture has significant practical implications for working with text embeddings in production:<br />
+<br></p>
+<ul>
+<li>Lower latency for high-volume applications of embeddings like retrieval<br />
+<br></li>
+<li>Reduced deployment costs through more efficient parameter usage<br />
+<br></li>
+<li>More accessibility to embeddings in settings with constrained compute</li>
+</ul>
+</blockquote>
+</div></article>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

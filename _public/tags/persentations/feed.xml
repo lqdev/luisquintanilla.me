@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - persentations</title>
+    <link>https://www.lqdev.me/tags/persentations</link>
+    <description>All content tagged with 'persentations' by Luis Quintanilla</description>
+    <lastBuildDate>2024-10-10 20:41 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>DEFCON Media Server</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;Videos, Slides, Presentations, and assets from DEFCON.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/defcon-media-server</link>
+      <guid>https://www.lqdev.me/bookmarks/defcon-media-server</guid>
+      <pubDate>2024-10-10 20:41 -05:00</pubDate>
+      <category>defcon</category>
+      <category>media</category>
+      <category>persentations</category>
+      <category>videos</category>
+      <category>slides</category>
+    </item>
+  </channel>
+</rss>

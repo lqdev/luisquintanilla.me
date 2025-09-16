@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - bash</title>
+    <link>https://www.lqdev.me/tags/bash</link>
+    <description>All content tagged with 'bash' by Luis Quintanilla</description>
+    <lastBuildDate>2023-07-12 22:07 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>A slack clone in 5 lines of bash</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;suc provides Slack, Mattermost, etc.’s core features:&lt;/p&gt;
+&lt;p&gt;Real-time, rich-text chat,&lt;br /&gt;
+File sharing,&lt;br /&gt;
+Fine-grained access control,&lt;br /&gt;
+Straightforward automation and integration with other tools,&lt;br /&gt;
+Data encryption in transit&lt;br /&gt;
+and optionally at rest,&lt;br /&gt;
+state-of-the-art user authentication.&lt;/p&gt;
+&lt;p&gt;This paper shows how suc implements those features. suc stays small by leveraging the consistent and composable primitives offered by modern UNIX implementations&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/dam-slack-clone-bash</link>
+      <guid>https://www.lqdev.me/responses/dam-slack-clone-bash</guid>
+      <pubDate>2023-07-12 22:07 -05:00</pubDate>
+      <category>linux</category>
+      <category>bash</category>
+      <category>communication</category>
+    </item>
+    <item>
+      <title>Power Management Manjaro</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The following shows how you can optimize your computer using Powertop to generate runing recommendations and apply those optimizations at boot using an rc-local service.&lt;/p&gt;
+&lt;h2&gt;Powertop&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Install powertop&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo pacman -S powertop
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Run powertop report (on battery power)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo powertop -r
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After a few seconds, a file called &lt;em&gt;powertop.html&lt;/em&gt; is created.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Open the &lt;em&gt;powertop.html&lt;/em&gt; file in your browser and inspect the &lt;strong&gt;Tuning&lt;/strong&gt; tab for tuning recommendations.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Configure rc-local service&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Create &lt;em&gt;rc.local&lt;/em&gt; file in &lt;code&gt;/etc&lt;/code&gt; directory with the following content&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;#!/bin/sh -e
+
+echo &amp;quot;Hello World&amp;quot;
+
+# Insert powertop optimization scripts here. 
+
+exit 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Create &lt;em&gt;rc-local.service&lt;/em&gt; file in &lt;code&gt;/etc/systemd/system&lt;/code&gt; directory with the following content&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=/etc/rc.local Compatibility
+ConditionPathExists=/etc/rc.local
+
+[Service]
+Type=oneshot
+ExecStart=/etc/rc.local
+TimeoutSec=0
+StandardOutput=tty
+RemainAfterExit=yes
+SysVStartPriority=99
+
+[Install]
+WantedBy=multi-user.target
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Enable and start rc-local service&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo systemctl enable rc-local
+sudo systemctl start rc-local
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Confirm that the service has successfully started&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo systemctl status rc-local
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.org/title/Powertop"&gt;Arch Wiki - Powertop&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/power-management-manjaro</link>
+      <guid>https://www.lqdev.me/resources/wiki/power-management-manjaro</guid>
+      <pubDate>12/11/2022 16:15 -05:00</pubDate>
+      <category>manjaro</category>
+      <category>bash</category>
+      <category>powermanagement</category>
+      <category>tech</category>
+      <category>wiki</category>
+      <category>linux</category>
+    </item>
+    <item>
+      <title>Create a new Matrix user using the CLI</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;Create a new user in your &lt;a href="https://matrix.org/"&gt;Matrix&lt;/a&gt; &lt;a href="https://github.com/matrix-org/synapse/"&gt;Synapse homeserver&lt;/a&gt; using &lt;a href="https://manpages.debian.org/buster/matrix-synapse/register_new_matrix_user.1.en.html"&gt;register_new_matrix_user&lt;/a&gt; CLI utility. This is helpful when creating accounts on a homeserver where registrations are closed.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;p&gt;N/A&lt;/p&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;register_new_matrix_user --user user1 --password p@ssword --config homeserver-config.yaml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;--user&lt;/strong&gt;: Local part of the new user. Will prompt if omitted.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;--password&lt;/strong&gt;: New password for user. Will prompt if omitted. Supplying the password on the command line is not recommended. Use the STDIN instead.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;--config&lt;/strong&gt;: Path to server config file containing the shared secret.&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/create-matrix-user-cli</link>
+      <guid>https://www.lqdev.me/resources/snippets/create-matrix-user-cli</guid>
+      <pubDate>08/31/2022 19:40 -05:00</pubDate>
+      <category>bash</category>
+      <category>linux</category>
+      <category>matrix</category>
+      <category>synapse</category>
+      <category>communication</category>
+    </item>
+    <item>
+      <title>Download Main Wikipedia Page as PDF</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;Download the main page of Wikipedia locally as a PDF&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;curl -o Main_Page.pdf https://en.wikipedia.org/api/rest_v1/page/pdf/Main_Page
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;h3&gt;script.sh&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;curl -o Main_Page.pdf https://en.wikipedia.org/api/rest_v1/page/pdf/Main_Page
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/curl-download-wikipedia-mainpage</link>
+      <guid>https://www.lqdev.me/resources/snippets/curl-download-wikipedia-mainpage</guid>
+      <pubDate>08/11/2022 19:19 -05:00</pubDate>
+      <category>bash</category>
+      <category>linux</category>
+    </item>
+  </channel>
+</rss>

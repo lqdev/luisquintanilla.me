@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - gemma</title>
+    <link>https://www.lqdev.me/tags/gemma</link>
+    <description>All content tagged with 'gemma' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-14 12:40 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Introducing Gemma 3 270M</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we're adding a new, highly specialized tool to the Gemma 3 toolkit: Gemma 3 270M, a compact, 270-million parameter model designed from the ground up for task-specific fine-tuning with strong instruction-following and text structuring capabilities already trained in.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-gemma-3-270m</link>
+      <guid>https://www.lqdev.me/responses/introducing-gemma-3-270m</guid>
+      <pubDate>2025-08-14 12:40 -05:00</pubDate>
+      <category>ai</category>
+      <category>google</category>
+      <category>gemma</category>
+      <category>slm</category>
+      <category>genai</category>
+    </item>
+    <item>
+      <title>Introducing Gemma 3</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we're introducing Gemma 3, a collection of lightweight, state-of-the-art open models built from the same research and technology that powers our Gemini 2.0 models. These are our most advanced, portable and responsibly developed open models yet. They are designed to run fast, directly on devices — from phones and laptops to workstations — helping developers create AI applications, wherever people need them. Gemma 3 comes in a range of sizes (1B, 4B, 12B and 27B), allowing you to choose the best model for your specific hardware and performance needs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Build with the world's best single-accelerator model: Gemma 3 delivers state-of-the-art performance for its size, outperforming Llama3-405B, DeepSeek-V3 and o3-mini in preliminary human preference evaluations on LMArena’s leaderboard. This helps you to &lt;strong&gt;create engaging user experiences that can fit on a single GPU or TPU host.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Create AI with &lt;strong&gt;advanced text and visual reasoning capabilities&lt;/strong&gt;: Easily build applications that analyze images, text, and short videos, opening up new possibilities for interactive and intelligent applications.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Handle complex tasks with an expanded context window: Gemma 3 offers a &lt;strong&gt;128k-token context window&lt;/strong&gt; to let your applications process and understand vast amounts of information.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Create AI-driven workflows using function calling: &lt;strong&gt;Gemma 3 supports function calling and structured output&lt;/strong&gt; to help you automate tasks and build agentic experiences.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-gemma-3</link>
+      <guid>https://www.lqdev.me/responses/introducing-gemma-3</guid>
+      <pubDate>2025-03-18 20:55 -05:00</pubDate>
+      <category>gemma</category>
+      <category>google</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>RecurrentGemma - Open weights language model from Google DeepMind, based on Griffin.</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;RecurrentGemma is a family of open-weights Language Models by Google DeepMind, based on the novel Griffin architecture. This architecture achieves fast inference when generating long sequences by replacing global attention with a mixture of local attention and linear recurrences.&lt;br /&gt;
+&lt;br&gt;
+This repository contains the model implementation and examples for sampling and fine-tuning. We recommend most users adopt the Flax implementation, which is highly optimized. We also provide an un-optimized PyTorch implementation for reference.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/google-deepmind-recurrent-gemma</link>
+      <guid>https://www.lqdev.me/responses/google-deepmind-recurrent-gemma</guid>
+      <pubDate>2024-04-10 21:57 -05:00</pubDate>
+      <category>ai</category>
+      <category>gemma</category>
+      <category>google</category>
+      <category>llm</category>
+      <category>opensource</category>
+      <category>slm</category>
+      <category>griffin</category>
+      <category>neuralnetwork</category>
+    </item>
+    <item>
+      <title>Gemma PyTorch</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Gemma is a family of lightweight, state-of-the art open models built from research and technology used to create Google Gemini models. They are text-to-text, decoder-only large language models, available in English, with open weights, pre-trained variants, and instruction-tuned variants.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This is the official PyTorch implementation of Gemma models. We provide model and inference implementations using both PyTorch and PyTorch/XLA, and support running inference on CPU, GPU and TPU.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/gemma-pytorch</link>
+      <guid>https://www.lqdev.me/responses/gemma-pytorch</guid>
+      <pubDate>2024-03-04 21:29 -05:00</pubDate>
+      <category>google</category>
+      <category>gemma</category>
+      <category>pytorch</category>
+      <category>ai</category>
+      <category>llm</category>
+    </item>
+  </channel>
+</rss>

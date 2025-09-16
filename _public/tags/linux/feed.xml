@@ -1,0 +1,1026 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - linux</title>
+    <link>https://www.lqdev.me/tags/linux</link>
+    <description>All content tagged with 'linux' by Luis Quintanilla</description>
+    <lastBuildDate>2024-11-27 20:48 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Running Linux GUI Apps on Windows (WSLg) is amazing!</title>
+      <description>&lt;![CDATA[&lt;p&gt;So you might've heard of Windows Subsystem for Linux (WSL), but did you know you can also &lt;a href="https://learn.microsoft.com/windows/wsl/tutorials/gui-apps"&gt;run Linux GUI apps with WSLg&lt;/a&gt;?&lt;/p&gt;
+&lt;p&gt;While trying to install the Element Desktop client on my Spandragon X Elite Windows device, I quickly realized &lt;a href="https://github.com/element-hq/element-desktop/issues/650"&gt;you can't because of an issue with Electron&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;WSL is supported on ARM64 Windows devices. This means, it should also support GUI apps.&lt;/p&gt;
+&lt;p&gt;I decided to try and install the Element Desktop client for Linux in WSL and this was the result!&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/element-linux-wsl.png" class="img-fluid" alt="Screenshot of Element Desktop Login Screen" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/running-linux-gui-apps-windows-wsl-amazing</link>
+      <guid>https://www.lqdev.me/notes/running-linux-gui-apps-windows-wsl-amazing</guid>
+      <pubDate>2024-11-27 20:48 -05:00</pubDate>
+      <category>wsl</category>
+      <category>linux</category>
+      <category>windows</category>
+      <category>gui</category>
+      <category>element</category>
+      <category>matrix</category>
+    </item>
+    <item>
+      <title>Upgrade NixOS versions</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This guide provides general guidance on upgrading between NixOS versions&lt;/p&gt;
+&lt;h2&gt;Check which version you're currently running&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;cat /etc/lsb_release
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Get list of channels&lt;/h2&gt;
+&lt;p&gt;This provides the URL used to download packages for nixos release&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;nix-channel --list | grep nixos
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Add / Replace Software Channel&lt;/h2&gt;
+&lt;p&gt;To get on the latest version, you need to update the &lt;code&gt;nixos&lt;/code&gt; channel to the latest version.&lt;/p&gt;
+&lt;p&gt;You can find a list of versions in this &lt;a href="https://channels.nixos.org/"&gt;repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For example, if you wanted to upgrade to the latest 24.05 version, you'd use the following command:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;nix-channel --add https://channels.nixos.org/nixos-24.05 nixos
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The general format is: &lt;code&gt;nix-channel --add &amp;lt;CHANNEL_URL&amp;gt; nixos&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;Rebuild your system&lt;/h2&gt;
+&lt;p&gt;Once you've configured the channel for the latest version, switch to it just like you would when upgading sofware packages.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;nixos-rebuild switch --upgrade
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After the operation completes, you'll want to check which version is running as mentioned in previous instructions.&lt;/p&gt;
+&lt;h2&gt;Additional Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://nlewo.github.io/nixos-manual-sphinx/installation/upgrading.xml.html"&gt;Upgrading Nix OS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/nix-upgrade-versions</link>
+      <guid>https://www.lqdev.me/resources/wiki/nix-upgrade-versions</guid>
+      <pubDate>2024-07-14 14:49 -05:00</pubDate>
+      <category>linux</category>
+      <category>sysadmin</category>
+      <category>nixos</category>
+      <category>nix</category>
+      <category>os</category>
+    </item>
+    <item>
+      <title>Mastodon Server Cleanup</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;General commands for cleaning up resources on Mastodon servers&lt;/p&gt;
+&lt;h2&gt;Setup&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Stop services&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo systemctl stop mastodon-sidekiq mastodon-streaming mastodon-web
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Restart postgresql&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo systemctl restart postgresql
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Log into mastodon user&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo su - mastodon
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Go to &lt;code&gt;live&lt;/code&gt; directory&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;cd /home/mastodon/live
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Check media usage&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;RAILS_ENV=production ./bin/tootctl media usage
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Remove media&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;RAILS_ENV=production ./bin/tootctl media remove
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Remove media headers&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;RAILS_ENV=production ./bin/tootctl media remove --prune-profiles
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Remove preview cards&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;RAILS_ENV=production ./bin/tootctl preview_cards remove
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Restart services&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo systemctl restart mastodon-sidekiq mastodon-streaming mastodon-web
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.joinmastodon.org/admin/tootctl/"&gt;Using the Admin CLI&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/mastodon-server-cleanup</link>
+      <guid>https://www.lqdev.me/resources/wiki/mastodon-server-cleanup</guid>
+      <pubDate>07/14/2024 03:24 -05:00</pubDate>
+      <category>mastodon</category>
+      <category>linux</category>
+      <category>socialmedia</category>
+      <category>sysadmin</category>
+    </item>
+    <item>
+      <title>Omakub - An Omakase Developer Setup for Ubuntu 24.04</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Cool project.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Turn a fresh Ubuntu installation into a fully-configured, beautiful, and modern web development system by running a single command.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Omakub is an opinionated take on what Linux can be at its best.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Omakub includes a curated set of applications and tools that one might discover through hours of watching YouTube, reading blogs, or just stumbling around Linux internet. All so someone coming straight from a platform like Windows or the Mac can immediately start enjoying a ready-made system, without having to do any configuration and curation legwork at all.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/omakub-ubuntu-developer-desktop</link>
+      <guid>https://www.lqdev.me/responses/omakub-ubuntu-developer-desktop</guid>
+      <pubDate>2024-06-06 22:14 -05:00</pubDate>
+      <category>linux</category>
+      <category>developer</category>
+      <category>ubuntu</category>
+      <category>desktop</category>
+      <category>37signals</category>
+    </item>
+    <item>
+      <title>Pandoc</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;If you need to convert files from one markup format into another, pandoc is your swiss-army knife.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://pandoc.org/"&gt;Website&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Recipes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://pandoc.org/demos.html"&gt;List of recipes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Emacs org-mode to Microsoft Word&lt;/h3&gt;
+&lt;p&gt;Personally, I like drafting and structuring documents in org-mode. However, for sharing and collaboration, that usually takes place in Microsoft Word. This is a command I use on a regular basis.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;pandoc -s -o &amp;lt;document-name&amp;gt;.docx &amp;lt;document-name&amp;gt;.org
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/pandoc</link>
+      <guid>https://www.lqdev.me/resources/wiki/pandoc</guid>
+      <pubDate>04/25/2024 22:00 -05:00</pubDate>
+      <category>pandoc</category>
+      <category>plaintext</category>
+      <category>docx</category>
+      <category>documents</category>
+      <category>word</category>
+      <category>org</category>
+      <category>emacs</category>
+      <category>utility</category>
+      <category>linux</category>
+    </item>
+    <item>
+      <title>Garbage Collections NixOS</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;One of the nice things about NixOS is, whenever you update the system, old configurations remain in place. That way if something were to go wrong, you can always revert back. However, there are tradeoffs. Each old configuration takes up space on your hard drive. If you're updating your system every week or every few weeks, this adds up. The following is a general guide on how to clean these up.&lt;/p&gt;
+&lt;h2&gt;Delete old generations&lt;/h2&gt;
+&lt;p&gt;This command deletes every generation, except the most current one.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;nix-env --delete-generations old
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you'd like to keep a few of the most recent ones. Say, from the last 14 days, you can pass an argument.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;nix-env --delete-generations 14d
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Run the garbage collector&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;nix-store --gc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Use the nix-collect-garbage utility&lt;/h2&gt;
+&lt;p&gt;The following utility will delete older generations across all profiles on your system.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;nix-collect-garbage -d
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://nixos.org/manual/nix/stable/package-management/garbage-collection.html"&gt;NixOS Garbage Collection&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/nixos-garbage-collection</link>
+      <guid>https://www.lqdev.me/resources/wiki/nixos-garbage-collection</guid>
+      <pubDate>03/10/2024 14:01 -05:00</pubDate>
+      <category>nixos</category>
+      <category>system</category>
+      <category>os</category>
+      <category>linux</category>
+    </item>
+    <item>
+      <title>5 reasons why desktop Linux is finally growing in popularity</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;StatCounter reported that desktop Linux reached over 4% market share for the first time.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Why is Linux finally growing?&lt;br /&gt;
+&lt;br&gt;
+While Windows is the king of the hill with 72.13% and MacOS comes in a distant second at 15.46%, it's clear that Linux is making progress.&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Microsoft isn't that interested in Windows&lt;/li&gt;
+&lt;li&gt;Linux gaming, thanks to Steam, is also growing&lt;/li&gt;
+&lt;li&gt;Users are finally figuring out that some Linux distros are easy to use&lt;/li&gt;
+&lt;li&gt;Finding and installing Linux desktop software is easier than ever&lt;/li&gt;
+&lt;li&gt;The Linux desktop is growing in popularity in India&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/year-of-linux-desktop-4-percent</link>
+      <guid>https://www.lqdev.me/responses/year-of-linux-desktop-4-percent</guid>
+      <pubDate>2024-03-07 21:27 -05:00</pubDate>
+      <category>linux</category>
+      <category>pc</category>
+      <category>desktop</category>
+      <category>desktop</category>
+    </item>
+    <item>
+      <title>lqdev.me Post Metrics</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;Generates an aggregate analysis of posts on &lt;a href="https://www.lqdev.me"&gt;lqdev.me / luisquintanilla.me&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet fsi stats.fsx 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;h3&gt;stats.fsx&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;// Reference DLL
+#r &amp;quot;../bin/Debug/net8.0/PersonalSite.dll&amp;quot;
+
+// Add modules
+open Domain
+open Builder
+open System
+
+// Load posts
+let posts = loadPosts()
+let notes = loadFeed ()
+let responses = loadReponses ()
+
+// Organize posts by year
+let postCountsByYear = 
+    posts
+    |&amp;gt; Array.countBy (fun (x:Post) -&amp;gt; DateTime.Parse(x.Metadata.Date) |&amp;gt; _.Year)
+    |&amp;gt; Array.sortByDescending fst 
+
+let noteCountsByYear = 
+    notes
+    |&amp;gt; Array.countBy (fun (x:Post) -&amp;gt; DateTime.Parse(x.Metadata.Date) |&amp;gt; _.Year)
+    |&amp;gt; Array.sortByDescending fst
+
+let responseCountsByYear = 
+    responses
+    |&amp;gt; Array.countBy (fun (x:Response) -&amp;gt; DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year)
+    |&amp;gt; Array.sortByDescending fst
+
+// Organize responses by type
+let responsesByType = 
+    responses
+    |&amp;gt; Array.filter(fun x -&amp;gt; (DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year) = DateTime.UtcNow.Year)
+    |&amp;gt; Array.countBy(fun x -&amp;gt; x.Metadata.ResponseType)
+    |&amp;gt; Array.sortByDescending(snd)
+
+// Organize responses by tag
+let responsesByTag = 
+    responses
+    |&amp;gt; Array.filter(fun x -&amp;gt; (DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year) = DateTime.UtcNow.Year)
+    |&amp;gt; Array.collect(fun x -&amp;gt; 
+            match x.Metadata.Tags with
+            | null -&amp;gt; [|&amp;quot;untagged&amp;quot;|]
+            | [||] -&amp;gt; [|&amp;quot;untagged&amp;quot;|]
+            | _ -&amp;gt; x.Metadata.Tags
+        )
+    |&amp;gt; Array.countBy(fun x -&amp;gt; x)
+    |&amp;gt; Array.sortByDescending(snd)
+
+// Organize responses by host name (domain)
+let responsesByDomain = 
+    responses
+    |&amp;gt; Array.filter(fun x -&amp;gt; (DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year) = DateTime.UtcNow.Year)
+    |&amp;gt; Array.countBy(fun x -&amp;gt; Uri(x.Metadata.TargetUrl).Host)
+    |&amp;gt; Array.sortByDescending(snd)
+
+// Utility function to display counts
+let printEntryCounts&amp;lt;'a&amp;gt; (title:string) (entryCounts:('a * int) array) (n:int) = 
+    printfn $&amp;quot;{title}&amp;quot;
+
+    match entryCounts.Length with
+    | 0 -&amp;gt; 
+        printfn $&amp;quot;No entries&amp;quot;
+        printfn $&amp;quot;&amp;quot;
+    | a when a &amp;gt; 0 -&amp;gt; 
+        match n with 
+        | n when n = -1 || n &amp;gt; entryCounts.Length -&amp;gt; 
+            entryCounts
+            |&amp;gt; Array.iter(fun x -&amp;gt; printfn $&amp;quot;{fst x} {snd x}&amp;quot;)
+            |&amp;gt; fun _ -&amp;gt; printfn $&amp;quot;&amp;quot;
+        | n when n &amp;gt; 0 -&amp;gt; 
+            entryCounts
+            |&amp;gt; Array.take n
+            |&amp;gt; Array.iter(fun x -&amp;gt; printfn $&amp;quot;{fst x} {snd x}&amp;quot;)
+            |&amp;gt; fun _ -&amp;gt; printfn $&amp;quot;&amp;quot;
+
+// Print yearly counts
+printEntryCounts &amp;quot;Blogs&amp;quot; postCountsByYear 2
+
+printEntryCounts &amp;quot;Notes&amp;quot; noteCountsByYear 2
+
+printEntryCounts &amp;quot;Responses&amp;quot; responseCountsByYear 2
+
+// Print response types
+printEntryCounts &amp;quot;Response Types&amp;quot; responsesByType -1
+
+// Print response tag counts
+printEntryCounts &amp;quot;Response Tags&amp;quot; responsesByTag 5
+
+// Print response by host name
+printEntryCounts &amp;quot;Domains&amp;quot; responsesByDomain 5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Expected Output&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Blogs
+2023 5
+2022 7
+
+Notes
+2023 34
+2022 36
+
+Responses
+2023 216
+2022 146
+
+Response Types
+bookmark 151
+reshare 48
+reply 10
+star 7
+
+Response Tags
+ai 104
+llm 42
+untagged 41
+opensource 31
+internet 17
+
+Domains
+github.com 15
+huggingface.co 11
+arxiv.org 10
+openai.com 6
+www.theverge.com 4
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics</link>
+      <guid>https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics</guid>
+      <pubDate>12/23/2023 13:13 -05:00</pubDate>
+      <category>analytics</category>
+      <category>website</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>pkm</category>
+      <category>indieweb</category>
+      <category>dotnet</category>
+      <category>windows</category>
+      <category>linux</category>
+      <category>mac</category>
+    </item>
+    <item>
+      <title>Install .NET packages on NixOS from GitHub</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This guide shows how to build a .NET package from GitHub source. The project used to illustrate the process can be found on &lt;a href="https://github.com/lqdev/fitch"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Create derivation&lt;/h2&gt;
+&lt;p&gt;The first thing you'll want to do is create a derivation for your package.&lt;/p&gt;
+&lt;p&gt;Create a file for your package. In this case, I called mine &lt;em&gt;fitch.nix&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Since I'm building a .NET package from the GitHub source, I use &lt;code&gt;buildDotnetModule&lt;/code&gt;, &lt;code&gt;dotnetCorePackages&lt;/code&gt;, and &lt;code&gt;fetchFromGithub&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To get the rev, use the &lt;code&gt;git log&lt;/code&gt; command. It's the hash of the latest commit.&lt;/p&gt;
+&lt;h2&gt;Fake SHA&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-nix"&gt;{
+  fetchFromGitHub,
+  buildDotnetModule,
+  dotnetCorePackages
+}:
+
+buildDotnetModule {
+  name = &amp;quot;fitch&amp;quot;;
+
+  src = fetchFromGitHub {
+    owner = &amp;quot;lqdev&amp;quot;;
+    repo = &amp;quot;fitch&amp;quot;;
+    rev = &amp;quot;e5fb91ddf57eb5611e0e313af29126e590cd149f&amp;quot;;
+    sha256 = &amp;quot;&amp;quot;;
+  };
+
+  projectFile = &amp;quot;src/fitch.fsproj&amp;quot;;
+  executables = &amp;quot;fitch&amp;quot;;
+  dotnet-sdk = dotnetCorePackages.sdk_8_0;
+  dotnet-runtime = dotnetCorePackages.runtime_8_0;
+  nugetDeps = ./deps.nix;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At this point the sha256 will be empty because you'll get it later in the process.&lt;/p&gt;
+&lt;h2&gt;Create default.nix&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-nix"&gt;let
+  pkgs = import &amp;lt;nixpkgs&amp;gt; { };
+in
+{
+  fitch = pkgs.callPackage ./fitch.nix { };
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Fetch dependencies&lt;/h2&gt;
+&lt;p&gt;Create a file called &lt;code&gt;deps.nix&lt;/code&gt;. This will contain the dependencies you need for your application.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;touch deps.nix
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then, run &lt;code&gt;nix-build -A fitch.fetch-deps&lt;/code&gt;. This should fail because of the empty SHA.&lt;/p&gt;
+&lt;h2&gt;Update SHA&lt;/h2&gt;
+&lt;p&gt;The empty SHA will fail. However, the error message will contain the actual SHA value. Copy that and paste it into the sha256 property.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-nix"&gt;{
+  lib    
+  fetchFromGitHub,
+  buildDotnetModule,
+  dotnetCorePackages
+}:
+
+buildDotnetModule {
+  name = &amp;quot;fitch&amp;quot;;
+
+  src = fetchFromGitHub {
+    owner = &amp;quot;lqdev&amp;quot;;
+    repo = &amp;quot;fitch&amp;quot;;
+    rev = &amp;quot;e5fb91ddf57eb5611e0e313af29126e590cd149f&amp;quot;;
+    sha256 = &amp;quot;74xddAUGQNVliVs5o3zQQEAUAoF9r8iBmiiBr4qrUgw=&amp;quot;;
+  };
+
+  projectFile = &amp;quot;src/fitch.fsproj&amp;quot;;
+  executables = &amp;quot;fitch&amp;quot;;
+  dotnet-sdk = dotnetCorePackages.sdk_7_0;
+  dotnet-runtime = dotnetCorePackages.runtime_7_0;
+  nugetDeps = ./deps.nix;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Get dependencies&lt;/h2&gt;
+&lt;p&gt;Now that you have the correct SHA, try getting the dependencies again. These dependencies are created in a series of steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Run the following command &lt;code&gt;sudo nix-build -A fitch.fetch-deps&lt;/code&gt;. The result of this command is an executable script called &lt;em&gt;result&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Run the &lt;em&gt;result&lt;/em&gt; script. &lt;code&gt;sudo ./result deps.nix&lt;/code&gt;. This will generate the lockfile called &lt;em&gt;deps.nix&lt;/em&gt; and is referenced by the &lt;code&gt;nugetDeps&lt;/code&gt; property.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Build package&lt;/h2&gt;
+&lt;p&gt;Once everything is set up, run &lt;code&gt;nix-build -A fitch&lt;/code&gt;. This will package and install the package onto your system.&lt;/p&gt;
+&lt;h2&gt;Add to configuration&lt;/h2&gt;
+&lt;p&gt;To add the newly built package to your &lt;em&gt;configuration.nix&lt;/em&gt;, add it to your packages:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-nix"&gt;environment.systemPackages = with pkgs; [
+    #...
+    (callPackage ./fitch.nix {})
+    #...
+];
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then, run &lt;code&gt;nixos-rebuild switch&lt;/code&gt;. This should now install the package onto your PC.&lt;/p&gt;
+&lt;h2&gt;(Optional) Initialize when shell starts&lt;/h2&gt;
+&lt;p&gt;In my case, since I want fitch to run when the terminal starts, I edit my bash configuration in the &lt;em&gt;configuration.nix&lt;/em&gt; file.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-nix"&gt;programs.bash = {
+    interactiveShellInit = &amp;quot;fitch&amp;quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Sources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://ryantm.github.io/nixpkgs/languages-frameworks/dotnet/"&gt;Dotnet Nixpkgs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wuffs.org/blog/joining-the-nixos-pyramid-scheme"&gt;Joining the NixOS Pyramid Scheme&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://nix.dev/tutorials/learning-journey/packaging-existing-software"&gt;Packaging existing software with Nix&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/nixos-dotnet-packages-source</link>
+      <guid>https://www.lqdev.me/resources/wiki/nixos-dotnet-packages-source</guid>
+      <pubDate>12/17/2023 17:56 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>nixos</category>
+      <category>linux</category>
+      <category>sysadmin</category>
+      <category></category>
+    </item>
+    <item>
+      <title>Running Waydroid on NixOS using X11</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;h2&gt;Packages&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://search.nixos.org/packages?channel=23.05&amp;amp;show=weston&amp;amp;from=0&amp;amp;size=50&amp;amp;sort=relevance&amp;amp;type=packages&amp;amp;query=weston"&gt;weston&lt;/a&gt; - Wayland compositor&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;NixOS Configuration&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-nix"&gt;virtualisation = {
+    waydroid = {
+        enable = true;
+    };
+};
+
+environment.systemPackages = with pkgs; [weston];
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Initialize Waydroid&lt;/h3&gt;
+&lt;p&gt;This downloads the LineageOS image and installs it&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;# Fetch WayDroid images.
+# You can add the parameters &amp;quot;-s GAPPS -f&amp;quot; to have GApps support.
+sudo waydroid init
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Start Waydroid&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Open the terminal and start the waydroid container&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo systemctl start waydroid-container
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Check status of container&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo journalctl -u waydroid-container
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Open terminal and start weston&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;weston
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In the weston window, open a terminal and start Waydroid sesson in the background&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;waydroid session start &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Start the UI&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;waydroid show-full-ui
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Stop Waydroid&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Close weston window&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Stop waydroid container&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo systemctl stop waydroid-container
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;Remove user data&lt;/h4&gt;
+&lt;p&gt;Only do this if you don't want to persist anything from that container&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;# Removing images and user data
+sudo rm -r /var/lib/waydroid/* ~/.local/share/waydroid
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Update Android&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo waydroid upgrade
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;General Usage&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;# Start Android UI
+waydroid show-full-ui
+
+# List Android apps
+waydroid app list
+
+# Start an Android app
+waydroid app launch &amp;lt;application name&amp;gt;
+
+# Install an Android app
+waydroid app install &amp;lt;/path/to/app.apk&amp;gt;
+
+# Enter the LXC shell
+sudo waydroid shell
+
+# Overrides the full-ui width
+waydroid prop set persist.waydroid.width 608
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://nixos.wiki/wiki/WayDroid"&gt;NixOS Wiki - WayDroid&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://unix.stackexchange.com/questions/732485/script-to-start-android-lineageos-with-waydroid-in-an-x11-session"&gt;Script to start LineageOS on X11&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/waydroid/waydroid/issues/195#issuecomment-953926526"&gt;Any plan to support X11?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/waydroid-nixos-x11</link>
+      <guid>https://www.lqdev.me/resources/wiki/waydroid-nixos-x11</guid>
+      <pubDate>10/05/2023 22:25 -05:00</pubDate>
+      <category>android</category>
+      <category>linux</category>
+      <category>nixos</category>
+      <category>x11</category>
+      <category>waydroid</category>
+    </item>
+    <item>
+      <title>vim + llm = 🔥</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;... I learned that you could be inside vim, but manipulate the entire file as if you were piping the contents of the file into a command. The output of the command does in-line replacement of the entire file with those changes. That sounds confusing, but it just means you can be inside a vim file and do :%!grep test and it’ll remove all lines that don’t contain test, for example.&lt;/p&gt;
+&lt;p&gt;This post is a simple showcase of taking that concept, but throwing an llm into the mix to add more dynamic functionality.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/vim-llm-hacks-thacker</link>
+      <guid>https://www.lqdev.me/bookmarks/vim-llm-hacks-thacker</guid>
+      <pubDate>2023-09-25 20:39 -05:00</pubDate>
+      <category>vi</category>
+      <category>linux</category>
+      <category>llm</category>
+      <category>ai</category>
+      <category>softwaredevelopment</category>
+    </item>
+    <item>
+      <title>SerenityOS</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A graphical Unix-like operating system for desktop computers!&lt;/p&gt;
+&lt;p&gt;SerenityOS is a love letter to '90s user interfaces with a custom Unix-like core. It flatters with sincerity by stealing beautiful ideas from various other systems.&lt;/p&gt;
+&lt;p&gt;Roughly speaking, the goal is a marriage between the aesthetic of late-1990s productivity software and the power-user accessibility of late-2000s *nix.&lt;/p&gt;
+&lt;p&gt;This is a system by us, for us, based on the things we like.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/serenity-os</link>
+      <guid>https://www.lqdev.me/bookmarks/serenity-os</guid>
+      <pubDate>2023-08-24 18:57 -05:00</pubDate>
+      <category>os</category>
+      <category>linux</category>
+      <category>90s</category>
+      <category>serenityos</category>
+      <category>retro</category>
+    </item>
+    <item>
+      <title>NixOS Configuration</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;This is my NixOS Configuration file&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Update configuration file&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Run the following command to apply changes&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo nixos-rebuild switch
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-nix"&gt;# Edit this configuration file to define what should be installed on
+# your system.  Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).
+
+{ config, pkgs, ... }:
+
+{
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
+
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.hostName = &amp;quot;nixos&amp;quot;; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = &amp;quot;http://user:password@proxy:port/&amp;quot;;
+  # networking.proxy.noProxy = &amp;quot;127.0.0.1,localhost,internal.domain&amp;quot;;
+
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+  # Set your time zone.
+  time.timeZone = &amp;quot;America/New_York&amp;quot;;
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = &amp;quot;en_US.UTF-8&amp;quot;;
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = &amp;quot;en_US.UTF-8&amp;quot;;
+    LC_IDENTIFICATION = &amp;quot;en_US.UTF-8&amp;quot;;
+    LC_MEASUREMENT = &amp;quot;en_US.UTF-8&amp;quot;;
+    LC_MONETARY = &amp;quot;en_US.UTF-8&amp;quot;;
+    LC_NAME = &amp;quot;en_US.UTF-8&amp;quot;;
+    LC_NUMERIC = &amp;quot;en_US.UTF-8&amp;quot;;
+    LC_PAPER = &amp;quot;en_US.UTF-8&amp;quot;;
+    LC_TELEPHONE = &amp;quot;en_US.UTF-8&amp;quot;;
+    LC_TIME = &amp;quot;en_US.UTF-8&amp;quot;;
+  };
+
+  # Enable the X11 windowing system.
+  # services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+
+    desktopManager = {
+      xterm.enable = false;
+    };
+
+    displayManager = {
+      defaultSession = &amp;quot;none+i3&amp;quot;;
+    };
+
+    windowManager.i3 = {
+       enable = true;
+       extraPackages = with pkgs; [
+         dmenu
+	 i3status
+         j4-dmenu-desktop
+	 i3lock	
+       ];
+    };
+  };
+
+  # Enable the XFCE Desktop Environment.
+  # services.xserver.displayManager.lightdm.enable = true;
+  # services.xserver.desktopManager.xfce.enable = true;
+
+  # Configure keymap in X11
+  services.xserver = {
+    layout = &amp;quot;us&amp;quot;;
+    xkbVariant = &amp;quot;&amp;quot;;
+  };
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  # Enable sound with pipewire.
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
+
+  # Enable gvfs
+  services.gvfs.enable = true;
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.lqdev = {
+    isNormalUser = true;
+    description = &amp;quot;lqdev&amp;quot;;
+    extraGroups = [ &amp;quot;networkmanager&amp;quot; &amp;quot;wheel&amp;quot; &amp;quot;docker&amp;quot;];
+    packages = with pkgs; [
+      firefox
+      thunderbird
+      vscode
+      element-desktop
+    ];
+  };
+
+  #Enable docker
+  virtualisation.docker.enable = true;
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+
+  # Utilities
+    wget
+    emacs
+    alacritty
+    mc
+    du-dust
+    htop
+    feh
+    duf
+    shutter
+    gparted
+    keepassxc
+    bitwarden
+    git
+    yt-dlp
+    streamlink
+    ffmpeg
+    gnome.seahorse
+    xfce.thunar-volman
+    xfce.xfconf
+
+  # Media
+  
+    mpv
+    vlc
+    
+  # Dotnet
+    (with dotnetCorePackages; combinePackages [
+      dotnet-sdk
+      dotnet-sdk_7
+    ])
+  # Development
+  
+    docker
+    cargo
+    rustc
+
+  # Office
+  
+    libreoffice
+  ];
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+
+  # Bash Configuration
+  programs.bash = {
+    shellAliases = {
+      emacs=&amp;quot;emacs -nw&amp;quot;;
+    };
+  };
+
+  # Thunar
+  programs.thunar.enable = true;
+
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = &amp;quot;23.05&amp;quot;; # Did you read the comment?
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/nixos-configuration</link>
+      <guid>https://www.lqdev.me/resources/snippets/nixos-configuration</guid>
+      <pubDate>08/22/2023 18:45 -05:00</pubDate>
+      <category>nix</category>
+      <category>linux</category>
+      <category>configuration</category>
+      <category>nixos</category>
+      <category>os</category>
+    </item>
+    <item>
+      <title>First Steps with NixOS</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+For the longest time, when using Linux distributions, I chose those that were Debian-based. I still do for servers. However, on the dekstop I switched to [Manjaro](https://manjaro.org/), which is Arch-based, about two years ago. Two years is a long time without distro-hopping, so I was long overdue. I've been following the [NixOS](https://nixos.org/) project for some time but since I was happy with my setup, I didn't consider making the switch. However, a month ago, I decided to [dip my toes](/notes/maybe-switching-nixos). I installed NixOS on a flash drive and started tinkering with it. In this post, I'll provide some of my initial impressions and things I find appealing about the OS.
+
+## Declarative configuration
+
+One of the first things I did when I booted into my new NixOS installation was get familiar with the [configuration file](https://nixos.wiki/wiki/Overview_of_the_NixOS_Linux_distribution#Declarative_Configuration). The configuration file is authored using the [Nix programming language](https://nix.dev/tutorials/first-steps/nix-language) and it's the place where you configure your entire system, including services, packages, and desktop environments. The best way I can describe it is a Dockerfile for your desktop. If interested, you can find my [config file](/resources/snippets/nixos-configuration/) on the scripts section of this website. 
+
+
+There's a few advantages to this approach:
+
+1. **Configurations are stored in a single place** - The advantage to this is, I don't have to figure out where the configuration files for each of the components of my system are. I can manage everything in one place. A perfect example where the configuration file goes beyond what I expected was being able to include my bash configuration. Typically, I'd have that configuration in my `bashrc` file. With NixOS, I can just include that in the configuration file as follows:
+
+
+    ```nix
+    programs.bash = {
+        shellAliases = {
+            emacs="emacs -nw";
+        };
+    };
+    ```
+
+1. **Enables composition** - Because the configuration file is effectively a script, I can modularize the difference pieces. For example, if I wanted to split out my service and package configurations into separate files, I can do so and reference those individual files from my configuration file, separating concerns while still keeping my system configuration simple. 
+1. **Version control** - Because the configuration file is just like any other plain text file, it means I can check it into the version control system or cloud service of my choice and manage it that way. In doing so, not only can I roll back using the built-in NixOS mechanisms, but I have another layer of security in case I need to recover that file. 
+
+Now, because I can define everything about my system in the configuration file, this means I can seamlessly rebuild my entire system using this single file in a reproducible manner.
+
+## Reproducible builds
+
+I got to experience first-hand how the configuration file can simplify out-of-box-experiences and system configurations. Initially, I did not install NixOS on my main hard drive. All of my configuration and learning took place on a flash drive. Once I got my configuration to a place I was satisfied, it was time to take the plunge and reimage my PC. In the past, when I've done something similar, I've had to document everything I did when configuring my system. That's where posts like [Setting up a new Ubuntu PC](/posts/setting-up-new-ubuntu-pc/) come from. With NixOS, all I needed to do was replace my configuration file with the one I configured on the flash drive. Then, when I ran `nixos-rebuild switch`, my system was configured exactly like the one on the flash drive. 
+
+## Risk-free software evaluations
+
+This is something I haven't tried yet, but I could easily see it coming in handy. Sometimes I might need a piece of software to do one thing or maybe I want to see whether it'll solve a problem I'm facing. In order to try it out and use it, I need to install it globally. This can cause changes to my system permanently that I don't want. With NixOS, you can create [ad-hoc shell environments](https://nix.dev/tutorials/first-steps/ad-hoc-shell-environments#ad-hoc-shell-environments). These environments make temporary changes to your system, so you can evaluate a piece of software or use it that one time. Then, when you exit the environment, the software is no longer installed in your system.
+
+## Large package selection
+
+A [large package selection](https://search.nixos.org/packages) to choose from is something I got used to with Manjaro. Being an Arch-based distribution, I had access to the [Arch User Repository (AUR)](https://aur.archlinux.org/). Moving to NixOS, it's nice to know that in this area, NixOS offers great support. Additionally, NixOS has built-in support for [Flatpak](https://nixos.wiki/wiki/Flatpak)
+
+## Still exploring
+
+There's still a few things I don't really get. For example, when installing the .NET SDK, I wanted to have side-by-side installs of the latest STS (7.0) and LTS (6.0). However, including the package names in my configuration file didn't work as expected. Instead I had to use the following convention.
+
+```nix
+(with dotnetCorePackages; combinePackages [
+    dotnet-sdk
+    dotnet-sdk_7
+])
+```
+
+As I learn more, this will probably make more sense but for now it's a mystery. 
+
+## Conclusion
+
+Overall, I'm happy with NixOS and I can see myself using it for the long-term. Hopefully longer than two years. I'm not a gamer so I can't say how well it does in that front. For web browsing and software development though, I really like what NixOS has to offer. If some of the things I mentioned above sound interesting, I'd encourage you to install it on a flash drive and start tinkering with it. ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/first-steps-nixos</link>
+      <guid>https://www.lqdev.me/posts/first-steps-nixos</guid>
+      <pubDate>2023-08-22 18:03 -05:00</pubDate>
+      <category>nixos</category>
+      <category>linux</category>
+      <category>os</category>
+      <category>nix</category>
+      <category>sysadmin</category>
+      <category>floss</category>
+    </item>
+    <item>
+      <title>Thinking of switching to NixOS</title>
+      <description>&lt;![CDATA[&lt;p&gt;Time to distro hop. Maybe. For the past two years I've been happily using Manjaro as my main distribution. During that time I've also kept an eye on the immutable distributions. One of the main ones I've been paying attention to is &lt;a href="https://nixos.org/"&gt;NixOS&lt;/a&gt;. Like Arch, it's taken me some time to wrap my head around it. Now that it's gotten easier to set up through a graphical installer, I'll start out with a live install to see how I like it.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/maybe-switching-nixos</link>
+      <guid>https://www.lqdev.me/notes/maybe-switching-nixos</guid>
+      <pubDate>2023-07-21 17:15 -05:00</pubDate>
+      <category>linux</category>
+      <category>nixos</category>
+    </item>
+    <item>
+      <title>Tildeverse</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;a loose association of like-minded tilde communities.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;tildes are pubnixes in the spirit of &lt;a href="http://tilde.club/"&gt;tilde.club&lt;/a&gt;, which was created in 2014 by &lt;a href="https://medium.com/message/tilde-club-i-had-a-couple-drinks-and-woke-up-with-1-000-nerds-a8904f0a2ebf"&gt;paul ford&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Public Access UNIX Systems (PAUS) are a type of server that provide various services to a multi-user community.  They first began in the early 1980's and continue today. Early servers ran various flavors of UNIX, hence the name Public Access &amp;quot;UNIX&amp;quot; Systems, but later generations saw a large mix of Unix-variants and, of course, GNU/Linux. To recognize the many different operating systems online today, these systems are increasingly referred to generically as &amp;quot;pubnixes&amp;quot;. - &lt;a href="https://github.com/cwmccabe/pubnixhist"&gt;Pubnix Hist&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/tildeverse</link>
+      <guid>https://www.lqdev.me/bookmarks/tildeverse</guid>
+      <pubDate>2023-07-12 22:25 -05:00</pubDate>
+      <category>linux</category>
+      <category>community</category>
+      <category>retrocomputing</category>
+    </item>
+    <item>
+      <title>Hacking the Planet (with Notcurses) - A Guide to TUIs and Character Graphics</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A TUI (text user interface) is a holistic model, view, and controller implemented using character graphics.
+TUIs, like WIMP3 GUIs, freely move the cursor around their rectilinear display, as opposed to line-oriented
+CLIs and their ineluctable marches through the scrolling region.
+Given the same interactive task&lt;/p&gt;
+&lt;p&gt;• A TUI implementation is almost certainly a smaller memory and disk footprint than a GUI,&lt;br /&gt;
+• a good TUI implementation might introduce less latency, and&lt;br /&gt;
+• a properly-done TUI implementation can often be significantly more portable.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/hack-the-planet-notcurses-tuis</link>
+      <guid>https://www.lqdev.me/bookmarks/hack-the-planet-notcurses-tuis</guid>
+      <pubDate>2023-07-12 22:21 -05:00</pubDate>
+      <category>linux</category>
+      <category>terminal</category>
+      <category>tui</category>
+    </item>
+    <item>
+      <title>A slack clone in 5 lines of bash</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;suc provides Slack, Mattermost, etc.’s core features:&lt;/p&gt;
+&lt;p&gt;Real-time, rich-text chat,&lt;br /&gt;
+File sharing,&lt;br /&gt;
+Fine-grained access control,&lt;br /&gt;
+Straightforward automation and integration with other tools,&lt;br /&gt;
+Data encryption in transit&lt;br /&gt;
+and optionally at rest,&lt;br /&gt;
+state-of-the-art user authentication.&lt;/p&gt;
+&lt;p&gt;This paper shows how suc implements those features. suc stays small by leveraging the consistent and composable primitives offered by modern UNIX implementations&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/dam-slack-clone-bash</link>
+      <guid>https://www.lqdev.me/responses/dam-slack-clone-bash</guid>
+      <pubDate>2023-07-12 22:07 -05:00</pubDate>
+      <category>linux</category>
+      <category>bash</category>
+      <category>communication</category>
+    </item>
+    <item>
+      <title>i3-gaps Released</title>
+      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="https://i3wm.org/docs/gaps1920.png" class="img-fluid" alt="Screenshot of i3-gaps" /&gt;&lt;/p&gt;
+&lt;p&gt;Nice! &lt;a href="https://i3wm.org/docs/userguide.html#gaps"&gt;i3-gaps&lt;/a&gt; was recently merged into the main i3 codebase some  time ago and with the &lt;a href="https://github.com/i3/i3/blob/next/RELEASE-NOTES-4.22"&gt;4.22 release&lt;/a&gt; a few weeks ago, you can now use it with your existing i3 configuration. I've started tinkering with it and I like the way it makes my desktop look.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/i3-gaps-released</link>
+      <guid>https://www.lqdev.me/notes/i3-gaps-released</guid>
+      <pubDate>2023-01-26 10:46 -05:00</pubDate>
+      <category>i3</category>
+      <category>windowmanager</category>
+      <category>linux</category>
+      <category>desktop</category>
+    </item>
+    <item>
+      <title>Linux ls Commands</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;An overview of &lt;code&gt;ls&lt;/code&gt; Linux commands&lt;/p&gt;
+&lt;h2&gt;ls&lt;/h2&gt;
+&lt;p&gt;Display information about a directory and its contents&lt;/p&gt;
+&lt;h2&gt;lscpu&lt;/h2&gt;
+&lt;p&gt;Display information about the CPU architecture&lt;/p&gt;
+&lt;h2&gt;lsgpu&lt;/h2&gt;
+&lt;p&gt;Display information about GPU architecture&lt;/p&gt;
+&lt;h2&gt;lsblk&lt;/h2&gt;
+&lt;p&gt;Display information about block devices&lt;/p&gt;
+&lt;h2&gt;lsmem&lt;/h2&gt;
+&lt;p&gt;List ranges of available memory with their online status.&lt;/p&gt;
+&lt;h2&gt;lspci&lt;/h2&gt;
+&lt;p&gt;Display information about PCI devices&lt;/p&gt;
+&lt;h2&gt;lsusb&lt;/h2&gt;
+&lt;p&gt;Display information about USB devices&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/linux-ls-commands</link>
+      <guid>https://www.lqdev.me/resources/wiki/linux-ls-commands</guid>
+      <pubDate>01/02/2023 15:22 -05:00</pubDate>
+      <category>linux</category>
+      <category>commandline</category>
+      <category>cli</category>
+      <category>hardware</category>
+      <category>software</category>
+    </item>
+  </channel>
+</rss>

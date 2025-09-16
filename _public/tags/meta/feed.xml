@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - meta</title>
+    <link>https://www.lqdev.me/tags/meta</link>
+    <description>All content tagged with 'meta' by Luis Quintanilla</description>
+    <lastBuildDate>2025-05-09 20:33 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Introducing Locate 3D</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Locate 3D transforms how AI understands physical space, delivering &lt;strong&gt;state-of-the-art object localization in complex 3D environments&lt;/strong&gt;.&lt;br /&gt;
+&lt;br&gt;
+Operating directly on standard sensor data, Locate 3D brings spatial intelligence to robotics and augmented reality applications in real-world settings.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://ai.meta.com/research/publications/locate-3d-real-world-object-localization-via-self-supervised-learning-in-3d/"&gt;Paper&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We present Locate 3D, a model for localizing objects in 3D scenes from referring expressions like “the small coffee table between the sofa and the lamp.” Locate 3D sets a new state-of-the-art on standard referential grounding benchmarks and showcases robust generalization capabilities. Notably, Locate 3D operates directly on sensor observation streams (posed RGB-D frames), enabling real-world deployment on robots and AR devices. Key to our approach is 3D-JEPA, a novel self-supervised learning (SSL) algorithm applicable to sensor point clouds. It takes as input a 3D pointcloud featurized using 2D foundation models (CLIP, DINO). Subsequently, masked prediction in latent space is employed as a pretext task to aid the self-supervised learning of contextualized pointcloud features. Once trained, the 3D-JEPA encoder is finetuned alongside a language-conditioned decoder to jointly predict 3D masks and bounding boxes. Additionally, we introduce Locate 3D Dataset, a new dataset for 3D referential grounding, spanning multiple capture setups with over 130K annotations. This enables a systematic study of generalization capabilities as well as a stronger model.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/meta-locate3d</link>
+      <guid>https://www.lqdev.me/bookmarks/meta-locate3d</guid>
+      <pubDate>2025-05-09 20:33 -05:00</pubDate>
+      <category>meta</category>
+      <category>ai</category>
+      <category>3d</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>The Llama 4 herd: The beginning of a new era of natively multimodal AI innovation</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We’re introducing Llama 4 Scout and Llama 4 Maverick, the first open-weight natively multimodal models with unprecedented context length support and our first built using a mixture-of-experts (MoE) architecture. We’re also previewing Llama 4 Behemoth, one of the smartest LLMs in the world and our most powerful yet to serve as a teacher for our new models.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Llama 4 Scout, a 17 billion active parameter model with 16 experts, is the best multimodal model in the world in its class and is more powerful than all previous generation Llama models, while fitting in a single NVIDIA H100 GPU. Additionally, Llama 4 Scout offers an industry-leading context window of 10M and delivers better results than Gemma 3&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Llama 4 Maverick, a 17 billion active parameter model with 128 experts, is the best multimodal model in its class, beating GPT-4o and Gemini 2.0 Flash across a broad range of widely reported benchmarks&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;After tinkering with Mistral Small 3.1, I'm excited to try Llama 4 Scout once it lands in GitHub Models and Ollama.&lt;/p&gt;
+&lt;p&gt;I don't think that Mistral Small 3.1 uses MoE architecture which should help a ton considering the 10 million token context size.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/llama-4-herd</link>
+      <guid>https://www.lqdev.me/responses/llama-4-herd</guid>
+      <pubDate>2025-04-08 08:30 -05:00</pubDate>
+      <category>llama</category>
+      <category>meta</category>
+      <category>ai</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Thinking LLMs: General Instruction Following with Thought Generation</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;LLMs are typically trained to answer user questions or follow instructions similarly to how human experts respond. However, in the standard alignment framework they lack the basic ability of explicit thinking before answering. Thinking is important for complex questions that require reasoning and planning -- but can be applied to any task. We propose a training method for equipping existing LLMs with such thinking abilities for general instruction following without use of additional human data. We achieve this by an iterative search and optimization procedure that explores the space of possible thought generations, allowing the model to learn how to think without direct supervision. For each instruction, the thought candidates are scored using a judge model to evaluate their responses only, and then optimized via preference optimization. We show that this procedure leads to superior performance on AlpacaEval and Arena-Hard, and shows gains from thinking on non-reasoning categories such as marketing, health and general knowledge, in addition to more traditional reasoning &amp;amp; problem-solving tasks.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/thinking-llms-instruction-following-thought-generation</link>
+      <guid>https://www.lqdev.me/responses/thinking-llms-instruction-following-thought-generation</guid>
+      <pubDate>2024-11-04 21:24 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>research</category>
+      <category>meta</category>
+      <category>chainofthought</category>
+      <category>training</category>
+      <category>finetuning</category>
+    </item>
+    <item>
+      <title>Bringing Llama 3 to life</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;At AI Infra @ Scale 2024, Meta engineers discussed every step of how we built and brought Llama 3 to life, from data and training to inference.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=ELIcy6flgQI" title="Bringing Llama 3 to life talk video thumbnail"&gt;&lt;img src="http://img.youtube.com/vi/ELIcy6flgQI/0.jpg" class="img-fluid" alt="Bringing Llama 3 to life talk video thumbnail" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/meta-bringing-llama-3-to-life</link>
+      <guid>https://www.lqdev.me/responses/meta-bringing-llama-3-to-life</guid>
+      <pubDate>2024-08-22 16:21 -05:00</pubDate>
+      <category>ai</category>
+      <category>meta</category>
+      <category>llama3</category>
+      <category>opensource</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Meta AI's Segment Anything Model (SAM) 2</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;h2&gt;Takeaways&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Following up on the success of the Meta Segment Anything Model (SAM) for images, we're releasing SAM 2, a unified model for real-time promptable object segmentation in images and videos that achieves state-of-the-art performance.&lt;/li&gt;
+&lt;li&gt;In keeping with our approach to open science, we're sharing the code and model weights with a permissive Apache 2.0 license.&lt;/li&gt;
+&lt;li&gt;We're also sharing the SA-V dataset, which includes approximately 51,000 real-world videos and more than 600,000 masklets (spatio-temporal masks).&lt;/li&gt;
+&lt;li&gt;SAM 2 can segment any object in any video or image - even for objects and visual domains it has not seen previously, enabling a diverse range of use cases without custom adaptation.&lt;/li&gt;
+&lt;li&gt;SAM 2 has many potential real-world applications. For example, the outputs of SAM 2 can be used with a generative video model to create new video effects and unlock new creative applications. SAM 2 could also aid in faster annotation tools for visual data to build better computer vision systems.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/meta-ai-segment-anything-model-2</link>
+      <guid>https://www.lqdev.me/responses/meta-ai-segment-anything-model-2</guid>
+      <pubDate>2024-07-29 22:22 -05:00</pubDate>
+      <category>meta</category>
+      <category>ai</category>
+      <category>computervision</category>
+      <category>sam2</category>
+      <category>segmentanythingmodel</category>
+      <category>aimodel</category>
+      <category>cv</category>
+    </item>
+    <item>
+      <title>Meta Large Language Model Compiler: Foundation Models of Compiler Optimization</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Large Language Models (LLMs) have demonstrated remarkable capabilities across a variety of software engineering and coding tasks. However, their application in the domain of code and compiler optimization remains underexplored. Training LLMs is resource-intensive, requiring substantial GPU hours and extensive data collection, which can be prohibitive. To address this gap, we introduce Meta Large Language Model Compiler (LLM Compiler), a suite of robust, openly available, pre-trained models specifically designed for code optimization tasks. Built on the foundation of Code Llama, LLM Compiler enhances the understanding of compiler intermediate representations (IRs), assembly language, and optimization techniques. The model has been trained on a vast corpus of 546 billion tokens of LLVM-IR and assembly code and has undergone instruction fine-tuning to interpret compiler behavior. LLM Compiler is released under a bespoke commercial license to allow wide reuse and is available in two sizes: 7 billion and 13 billion parameters. We also present fine-tuned versions of the model, demonstrating its enhanced capabilities in optimizing code size and disassembling from x86_64 and ARM assembly back into LLVM-IR. These achieve 77% of the optimising potential of an autotuning search, and 45% disassembly round trip (14% exact match). This release aims to provide a scalable, cost-effective foundation for further research and development in compiler optimization by both academic researchers and industry practitioners.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://huggingface.co/collections/facebook/llm-compiler-667c5b05557fe99a9edd25cb"&gt;HuggingFace Collection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://scontent-lga3-1.xx.fbcdn.net/v/t39.2365-6/448997590_1496256481254967_2304975057370160015_n.pdf?_nc_cat=106&amp;amp;ccb=1-7&amp;amp;_nc_sid=3c67a6&amp;amp;_nc_ohc=4Yn8V9DFdbsQ7kNvgHtvfLI&amp;amp;_nc_ht=scontent-lga3-1.xx&amp;amp;oh=00_AYDYp657HzWrcs2CZ6ZBjStwB03bo760w9voXwJorfXA_w&amp;amp;oe=6683F28D"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/meta-llm-compiler</link>
+      <guid>https://www.lqdev.me/responses/meta-llm-compiler</guid>
+      <pubDate>2024-06-27 22:39 -05:00</pubDate>
+      <category>ai</category>
+      <category>compiler</category>
+      <category>meta</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Introducing Llama 3</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Build the future of AI with Meta Llama 3&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Now available with both 8B and 70B pretrained and instruction-tuned versions to support a wide range of applications&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Llama 3 models take data and scale to new heights. It’s been trained on our two recently announced custom-built 24K GPU clusters on over 15T token of data – a training dataset 7x larger than that used for Llama 2, including 4x more code. This results in the most capable Llama model yet, which supports a 8K context length that doubles the capacity of Llama 2.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-llama-3</link>
+      <guid>https://www.lqdev.me/responses/introducing-llama-3</guid>
+      <pubDate>2024-04-18 21:01 -05:00</pubDate>
+      <category>meta</category>
+      <category>ai</category>
+      <category>llama3</category>
+      <category>llama</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Building Meta’s GenAI Infrastructure</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;ul&gt;
+&lt;li&gt;Marking a major investment in Meta’s AI future, we are announcing two 24k GPU clusters. We are sharing details on the hardware, network, storage, design, performance, and software that help us extract high throughput and reliability for various AI workloads. We use this cluster design for Llama 3 training.&lt;/li&gt;
+&lt;li&gt;We are strongly committed to open compute and open source. We built these clusters on top of Grand Teton, OpenRack, and PyTorch and continue to push open innovation across the industry.&lt;/li&gt;
+&lt;li&gt;This announcement is one step in our ambitious infrastructure roadmap. By the end of 2024, we’re aiming to continue to grow our infrastructure build-out that will include 350,000 NVIDIA H100 GPUs as part of a portfolio that will feature compute power equivalent to nearly 600,000 H100s.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/building-meta-genai-infrastructure</link>
+      <guid>https://www.lqdev.me/responses/building-meta-genai-infrastructure</guid>
+      <pubDate>2024-03-17 21:14 -05:00</pubDate>
+      <category>meta</category>
+      <category>ai</category>
+      <category>infrastraucture</category>
+      <category>generativeai</category>
+      <category>genai</category>
+      <category>facebook</category>
+    </item>
+    <item>
+      <title>V-JEPA: The next step toward Yann LeCun’s vision of advanced machine intelligence (AMI)</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we’re publicly releasing the Video Joint Embedding Predictive Architecture (V-JEPA) model, a crucial step in &lt;a href="https://openreview.net/pdf?id=BZ5a1r-kVsf"&gt;advancing machine intelligence&lt;/a&gt; with a more grounded understanding of the world.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This early example of a physical world model excels at detecting and understanding highly detailed interactions between objects.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In the spirit of responsible open science, we’re releasing this model under a Creative Commons NonCommercial license for researchers to further explore.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/v-jepa-meta</link>
+      <guid>https://www.lqdev.me/responses/v-jepa-meta</guid>
+      <pubDate>2024-02-15 20:20 -05:00</pubDate>
+      <category>meta</category>
+      <category>ai</category>
+      <category>ami</category>
+      <category>ml</category>
+      <category>opensource</category>
+      <category>multimodal</category>
+    </item>
+    <item>
+      <title>Each Facebook User is Monitored by Thousands of Companies</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;By now most internet users know their online activity is constantly tracked.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;But what is the scale of this surveillance? Judging from data collected by Facebook and &lt;a href="https://innovation.consumerreports.org/wp-content/uploads/2024/01/CR_Who-Shares-Your-Information-With-Facebook.pdf"&gt;newly described in a unique study&lt;/a&gt; by non-profit consumer watchdog Consumer Reports, it’s massive, and examining the data may leave you with more questions than answers.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Using a panel of 709 volunteers who shared archives of their Facebook data, Consumer Reports found that a total of 186,892 companies sent data about them to the social network. On average, each participant in the study had their data sent to Facebook by 2,230 companies. That number varied significantly, with some panelists’ data listing over 7,000 companies providing their data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;h2&gt;What Exactly Does This Data Contain?&lt;/h2&gt;
+&lt;br&gt;
+The data examined by Consumer Reports in this study comes from two types of collection: events and custom audiences. Both categories include information about what people do outside of Meta’s platforms.
+&lt;br&gt;
+Custom audiences allow advertisers to upload customer lists to Meta, often including identifiers like email addresses and mobile advertising IDs...
+&lt;br&gt;
+The other category of data collection, “events,” describes interactions that the user had with a brand, which can occur outside of Meta’s apps and in the real world. Events can include visiting a page on a company’s website, leveling up in a game, visiting a physical store, or purchasing a product...
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;h2&gt;How Can I See My Data?&lt;/h2&gt;
+&lt;br&gt;
+Facebook users can browse through the list of companies that have sent their data to Facebook by going to: [https://accountscenter.facebook.com/info_and_permissions](https://accountscenter.facebook.com/info_and_permissions)
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/facebook-users-monitored-thousands-companies-markup</link>
+      <guid>https://www.lqdev.me/responses/facebook-users-monitored-thousands-companies-markup</guid>
+      <pubDate>2024-01-17 20:09 -05:00</pubDate>
+      <category>socialmedia</category>
+      <category>privacy</category>
+      <category>facebook</category>
+      <category>meta</category>
+      <category>surveillance</category>
+    </item>
+    <item>
+      <title>Meta announces AI experiences in Facebook, Instagram, WhatsApp</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;ul&gt;
+&lt;li&gt;We’re starting to roll out AI stickers across our apps, and soon you’ll be able to edit your images or even co-create them with friends on Instagram using our new AI editing tools, restyle and backdrop.&lt;/li&gt;
+&lt;li&gt;We’re introducing Meta AI in beta, an advanced conversational assistant that’s available on WhatsApp, Messenger, and Instagram, and is coming to Ray-Ban Meta smart glasses and Quest 3. Meta AI can give you real-time information and generate photorealistic images from your text prompts in seconds to share with friends. (Available in the US only)&lt;/li&gt;
+&lt;li&gt;We’re also launching 28 more AIs in beta, with unique interests and personalities. Some are played by cultural icons and influencers, including Snoop Dogg, Tom Brady, Kendall Jenner, and Naomi Osaka.&lt;/li&gt;
+&lt;li&gt;Over time, we’re making AIs for businesses and creators available, and releasing our AI studio for people and developers to build their own AIs.&lt;/li&gt;
+&lt;li&gt;These new AI experiences also come with a new set of challenges for our industry. We’re rolling out our new AIs slowly and have built in safeguards.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/meta-announces-ai-experiences-fb-whatsapp-ig</link>
+      <guid>https://www.lqdev.me/bookmarks/meta-announces-ai-experiences-fb-whatsapp-ig</guid>
+      <pubDate>2023-09-28 10:12 -05:00</pubDate>
+      <category>meta</category>
+      <category>ai</category>
+      <category>facebook</category>
+    </item>
+    <item>
+      <title>Introducing Code Llama, a state-of-the-art large language model for coding</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Takeaways&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Code Llama is a state-of-the-art LLM capable of generating code, and natural language about code, from both code and natural language prompts.&lt;/li&gt;
+&lt;li&gt;Code Llama is free for research and commercial use.&lt;/li&gt;
+&lt;li&gt;Code Llama is built on top of Llama 2 and is available in three models:
+&lt;ul&gt;
+&lt;li&gt;Code Llama, the foundational code model;&lt;/li&gt;
+&lt;li&gt;Codel Llama - Python specialized for Python;&lt;/li&gt;
+&lt;li&gt;and Code Llama - Instruct, which is fine-tuned for understanding natural language instructions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;In our own benchmark testing, Code Llama outperformed state-of-the-art publicly available LLMs on code tasks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/meta-code-llama</link>
+      <guid>https://www.lqdev.me/bookmarks/meta-code-llama</guid>
+      <pubDate>2023-08-24 12:43 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>llama</category>
+      <category>code</category>
+      <category>opensource</category>
+      <category>meta</category>
+    </item>
+  </channel>
+</rss>

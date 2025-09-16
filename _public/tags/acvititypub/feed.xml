@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - acvititypub</title>
+    <link>https://www.lqdev.me/tags/acvititypub</link>
+    <description>All content tagged with 'acvititypub' by Luis Quintanilla</description>
+    <lastBuildDate>2024-11-19 10:03 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Implement ActivityPub on a static site series by maho.dev</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;I've been following along with this amazing series from &lt;a href="https://maho.dev/"&gt;Maho&lt;/a&gt; on implementing ActivityPub on static websites.&lt;/p&gt;
+&lt;p&gt;As I think about what I want out of my website and the way I engage in the Fediverse, there's a lot of overlap.&lt;/p&gt;
+&lt;p&gt;Today, what I mainly use my Mastodon instance for is:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Having a Fediverse presence on a self-hosted Mastodon instance.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/posts/rss-to-mastodon-posse-azure-logic-apps/"&gt;Cross-posting posts on by website using the POSSE pattern&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Although I have learned a ton from self-hosting my own Mastodon instance, neither of the points listed above require me self-hosting or even having an account on someone else's instance.&lt;/p&gt;
+&lt;p&gt;Yesterday, &lt;a href="https://www.lqdev.me/notes/using-domain-mastodon-discovery"&gt;I took the first step in linking my Fediverse presence to my domain&lt;/a&gt;. That fulfills my first requirement.&lt;/p&gt;
+&lt;p&gt;I rarely post original content on Mastodon and for consumption, &lt;a href="https://www.lqdev.me/notes/subscribed-to-1042-feeds-newsblur"&gt;I already subscribe to accounts and tags via RSS&lt;/a&gt;. Therefore, the second requirement is one that can naturally occur without having to use a Mastodon instance as an intermediary. I can just post on my website and because my posts can show up in my outbox, there's no need to POSSE. I don't want my presence to be limited to Mastodon though, but since I plan on supporting media, reviews, and other types of posts, I expect my posts to be accessible across other platforms on the Fediverse like Pixelfed, Bookwyrm, and many others.&lt;/p&gt;
+&lt;p&gt;Since my website and website features are built using .NET, Maho's guide simplifies my implementation. Because &lt;a href="https://www.lqdev.me/colophon"&gt;I'm not using any of the existing static site generators and rolled my own&lt;/a&gt;, that means that there's going to be some effort and customizations required on my end. It would no different from my &lt;a href="https://www.lqdev.me/posts/receive-webmentions-fsharp-az-functions-fsadvent/"&gt;custom Webmentions implementation&lt;/a&gt; though. My hope is that I will save time I often spend maintaining the server as well as money since I no longer need to rent a server to host my instance. At the same time, I get to learn and contribute to building a more open, decentralized, and personal web.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/implement-activitypub-static-site-series-maho</link>
+      <guid>https://www.lqdev.me/responses/implement-activitypub-static-site-series-maho</guid>
+      <pubDate>2024-11-19 10:03 -05:00</pubDate>
+      <category>acvititypub</category>
+      <category>fediverse</category>
+      <category>staticsite</category>
+      <category>blogging</category>
+      <category>indieweb</category>
+      <category>openweb</category>
+      <category>personalweb</category>
+      <category>dotnet</category>
+      <category>internet</category>
+    </item>
+  </channel>
+</rss>

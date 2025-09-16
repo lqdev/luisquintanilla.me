@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - technology</title>
+    <link>https://www.lqdev.me/tags/technology</link>
+    <description>All content tagged with 'technology' by Luis Quintanilla</description>
+    <lastBuildDate>2025-06-05 20:05 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Faircamp - A static site generator for audio producers</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;This is such a cool project. Looks like it's super simple to get started with and it's packed with a ton of features so creators get to stay in their flow.&lt;/p&gt;
+&lt;p&gt;I also like how creators are showcased.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/faircamp-static-site-audio-producers</link>
+      <guid>https://www.lqdev.me/responses/faircamp-static-site-audio-producers</guid>
+      <pubDate>2025-06-05 20:05 -05:00</pubDate>
+      <category>faircamp</category>
+      <category>music</category>
+      <category>socialweb</category>
+      <category>indieweb</category>
+      <category>staticsite</category>
+      <category>technology</category>
+      <category>tools</category>
+      <category>openweb</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>The Future of Calm Technology with Amber Case</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Interesting interview and introduction to &lt;a href="https://calmtech.com/"&gt;Calm Technology&lt;/a&gt; and the &lt;a href="https://www.calmtech.institute/"&gt;Calm Tech Institute&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/calm-tech-interview</link>
+      <guid>https://www.lqdev.me/responses/calm-tech-interview</guid>
+      <pubDate>2025-01-14 21:13 -05:00</pubDate>
+      <category>digitalminimalism</category>
+      <category>technology</category>
+    </item>
+    <item>
+      <title>Clock Tables - Org Mode, Plain Text, and AI</title>
+      <description>&lt;![CDATA[&lt;p&gt;Org-mode appreciation post.&lt;/p&gt;
+&lt;p&gt;I use plain text and org-mode for most things in my life, especially when it comes to task and life management.&lt;/p&gt;
+&lt;p&gt;I won't rehash all the reasons Emacs and org-mode are amazing. There are tons of blog posts and videos out there that would do it more justice than I ever could.&lt;/p&gt;
+&lt;p&gt;Over the last few years, Emacs has become my go-to text editor. Throughout all that time, I've continued to find new features that delight.&lt;/p&gt;
+&lt;p&gt;The most recent is &lt;a href="https://orgmode.org/manual/The-clock-table.html"&gt;clock table&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I already use org-mode to track my to-dos and perform some sort of time-block planning by setting deadlines and scheduling tasks.&lt;/p&gt;
+&lt;p&gt;Recently though, I've been wanting a way to see all of the things I've worked on over the past [ INSERT TIME PERIOD ]. More importantly, I'd like to have time associated with them to see where my time has gone and evaluate whether I'm spending time on the things I should be.&lt;/p&gt;
+&lt;p&gt;I knew you could &lt;a href="https://orgmode.org/manual/Clocking-commands.html"&gt;clock in and clock out&lt;/a&gt; on tasks. However, I didn't know you could easily build a customized report that automatically updates. That's when I came across clock tables.&lt;/p&gt;
+&lt;p&gt;Now, I have a way of visualizing all of the things I worked on during a week or month, and as I'm planning for the next week or month, I can adjust and reprioritize the things I'm working on.&lt;/p&gt;
+&lt;p&gt;I know there are enterprise offerings like the Viva suite from Microsoft which provides detailed reports on how you spend your time.&lt;/p&gt;
+&lt;p&gt;What excites me about org-mode though is that it's plain text. The clock table report that gets generated is a plain text table which makes it portable and easy to access using any text editor of your choice. It works best with Emacs, but that's not a requirement.&lt;/p&gt;
+&lt;p&gt;On their own, clock tables are amazing.&lt;/p&gt;
+&lt;p&gt;However, given how well language models work on plain text, they could be used as context for your queries. Imagine giving a language model as input an org file which contains:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A clock table&lt;/li&gt;
+&lt;li&gt;A list of TODO tasks (with notes, priorities, deadlines, tags, properties, and other annotations)&lt;/li&gt;
+&lt;li&gt;A high level list of goals you want to achieve&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then, you could enter a prompt along the lines of: &amp;quot;Using the following clock-table and list of goals I want to achieve, provide me with recommendations of tasks I should work on for the next week. Ensure that they align with my goals, are top priority, and provide the highest return on my efforts&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Additionally, you might also provide your org-agenda view containing appointments and use the results from the first query as context for the following prompt: &amp;quot;Given the agenda view for the next week, schedule the top 3 tasks you recommended&amp;quot;.&lt;/p&gt;
+&lt;p&gt;The result would be a list of TODO items containing schedule / active timestamps annotations which now show up on your org-agenda view.&lt;/p&gt;
+&lt;p&gt;Today, almost every productivity application out there is working on building these kinds of AI features into their products. The difference is, in many cases, the formats used by those applications aren't plain text. This adds complexity to the data extraction and transformation pipelines required to get the data into the right format for a language model to process. With plain text, there's little to no transformations required.&lt;/p&gt;
+&lt;p&gt;What's even better, I can extend org-mode and Emacs using elisp to do the things I just talked about.&lt;/p&gt;
+&lt;p&gt;I'm no elisp expert, so I asked Copilot to generate an elisp function that takes an org-mode clock table as input and generates a written text summary of it. Here are the results:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-lisp"&gt;(defun org-clock-summary-to-chatgpt ()
+  &amp;quot;Extracts clock table data and requests a summary from ChatGPT.&amp;quot;
+  (interactive)
+  (let* ((clock-table-data (org-clocktable-get-clocktable))
+         (summary-text (org-clocktable-format-summary clock-table-data))
+         (api-endpoint &amp;quot;https://api.openai.com/v1/engines/davinci/completions&amp;quot;)
+         (api-key &amp;quot;YOUR_API_KEY&amp;quot;)) ; Replace with your actual API key
+
+    ;; Construct the HTTP request and send it to ChatGPT
+    (with-current-buffer
+        (url-retrieve-synchronously api-endpoint
+                                    `((&amp;quot;text&amp;quot; . ,summary-text)
+                                      (&amp;quot;api_key&amp;quot; . ,api-key)))
+      (goto-char (point-min))
+      (search-forward &amp;quot;\n\n&amp;quot;)
+      (let ((response-json (json-read)))
+        (message &amp;quot;ChatGPT summary: %s&amp;quot; (cdr (assoc 'choices response-json)))))))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;All you elisp experts out there, let me know how it did.&lt;/p&gt;
+&lt;p&gt;I know at least the API endpoint is wrong, but generally speaking, it seems to be doing the right thing. Such function could be extended to include org-agenda information, TODO items, and many other things that would use AI to augment the existing functionality of Emacs and org-mode to tailor them to my needs.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/love-plain-text-org-mode-clocktable</link>
+      <guid>https://www.lqdev.me/notes/love-plain-text-org-mode-clocktable</guid>
+      <pubDate>2024-07-09 22:07 -05:00</pubDate>
+      <category>emacs</category>
+      <category>orgmode</category>
+      <category>ai</category>
+      <category>plaintext</category>
+      <category>productivity</category>
+      <category>tools</category>
+      <category>technology</category>
+      <category>gnu</category>
+      <category>opensource</category>
+      <category>gtd</category>
+      <category>calendar</category>
+      <category>agenda</category>
+      <category>llm</category>
+      <category>openai</category>
+    </item>
+    <item>
+      <title>The Daylight DC1 is a $729 attempt to build a calmer computer</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Like many in the comments, I like the idea of this device and what it's aiming to do.&lt;/p&gt;
+&lt;p&gt;The &amp;quot;LivePaper&amp;quot; display technology seems interesting.&lt;/p&gt;
+&lt;p&gt;At $729 though, it seems a little steep. I paid a fraction of that for my &lt;a href="https://www.lqdev.me/uses"&gt;Onyx Boox Nova Air 2&lt;/a&gt; and I have most of the functionality of this device. As an e-reader, note-taking device, and tablet that can install any Android app, it works perfectly fine for my use cases and I'm very happy with it.&lt;/p&gt;
+&lt;p&gt;Still, I'm interested in seeing whether this takes off or whether it ends up being another Rabbit R1 or Humane Ai Pin.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/daylight-dc-1-tablet-computer</link>
+      <guid>https://www.lqdev.me/responses/daylight-dc-1-tablet-computer</guid>
+      <pubDate>2024-05-26 16:48 -05:00</pubDate>
+      <category>eink</category>
+      <category>digitalminimalism</category>
+      <category>daylight</category>
+      <category>tablet</category>
+      <category>technology</category>
+      <category>gadgets</category>
+    </item>
+    <item>
+      <title>One year with the Light Phone 2</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;&lt;img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXVrN2kxamptbnZtdTVwZnM1ZndnOWFydnBlOTdja2FpMTI1cjdnZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6ZtfZp8ID54YUne0/giphy.gif" class="img-fluid" alt="GIF image with man signing into microphone with caption don't call it a comeback" /&gt;&lt;/p&gt;
+&lt;p&gt;Between this article and &lt;a href="https://www.lqdev.me/responses/dumbphone-boom-real"&gt;The Dumbphone Boom is Real&lt;/a&gt;, I'm seeing more publications on the subject. Far from a comeback, but still cool to see.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/one-year-retrospect-lightphone-2-verge</link>
+      <guid>https://www.lqdev.me/responses/one-year-retrospect-lightphone-2-verge</guid>
+      <pubDate>2024-04-28 20:43 -05:00</pubDate>
+      <category>dumbphone</category>
+      <category>retro</category>
+      <category>technology</category>
+      <category>lightphone</category>
+      <category>minimalism</category>
+      <category>digitalminimalism</category>
+    </item>
+    <item>
+      <title>The Dumbphone Boom Is Real</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Will Stults spent too much time on his iPhone, doom-scrolling the site formerly known as Twitter and tweeting angrily at Elon Musk as if the billionaire would actually notice. Stults’s partner, Daisy Krigbaum, was addicted to Pinterest and YouTube, bingeing videos on her iPhone before going to sleep. Two years ago, they both tried Apple’s Screen Time restriction tool and found it too easy to disable, so the pair decided to trade out their iPhones for more low-tech devices. They’d heard about so-called dumbphones, which lacked the kinds of bells and whistles—a high-resolution screen, an app store, a video camera—that made smartphones so addictive. But they found the process of acquiring one hard to navigate. “The information on it was kind of disparate and hard to get to. A lot of people who know the most about dumbphones spend the least time online,” Krigbaum said. A certain irony presented itself: figuring out a way to be less online required aggressive online digging.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The growing dumbphone fervor may be motivated, in part, by the discourse around child safety online. Parents are increasingly confronted with evidence that sites like Instagram and TikTok intentionally try to hook their children. Using those sites can increase teens’ anxiety and lower their self-esteem, according to some studies, and smartphones make it so that kids are logged on constantly. Why should this situation be any healthier for adults? After almost two decades with iPhones, the public seems to be experiencing a collective ennui with digital life. So many hours of each day are lived through our portable, glowing screens, but the Internet isn’t even fun anymore. We lack the self-control to wean ourselves off, so we crave devices that actively prevent us from getting sucked into them. That means opting out of the prevailing technology and into what Cal Newport, a contributing writer for The New Yorker, has called a more considered “digital minimalism.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;While dumbphones aren't a cure-all for unhealthy technology habits, as a dumbphone user, I can relate to the frustrations that come from the lack of device availability and support. Even when new devices hit the market, they tend to be targeted towards non-US markets.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/dumbphone-boom-real</link>
+      <guid>https://www.lqdev.me/responses/dumbphone-boom-real</guid>
+      <pubDate>2024-04-25 23:38 -05:00</pubDate>
+      <category>dumbphone</category>
+      <category>technology</category>
+      <category>culture</category>
+      <category>digitalminimalism</category>
+      <category>minimalism</category>
+    </item>
+    <item>
+      <title>We Need To Rewild The Internet</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The internet has become an extractive and fragile monoculture. But we can revitalize it using lessons learned by ecologists.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our online spaces are not ecosystems, though tech firms love that word. They’re plantations; highly concentrated and controlled environments...&lt;br /&gt;
+&lt;br&gt;
+We all know this. We see it each time we reach for our phones. But what most people have missed is how this concentration reaches deep into the internet’s infrastructure — the pipes and protocols, cables and networks, search engines and browsers. These structures determine how we build and use the internet, now and in the future.&lt;br /&gt;
+&lt;br&gt;
+They’ve concentrated into a series of near-planetary duopolies.&lt;br /&gt;
+&lt;br&gt;
+Two kinds of everything may be enough to fill a fictional ark and repopulate a ruined world, but can’t run an open, global “network of networks” where everyone has the same chance to innovate and compete.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The internet made the tech giants possible. Their services have scaled globally, via its open, interoperable core. But for the past decade, they’ve also worked to enclose the varied, competing and often open-source or collectively provided services the internet is built on into their proprietary domains. Although this improves their operational efficiency, it also ensures that the flourishing conditions of their own emergence aren’t repeated by potential competitors. For tech giants, the long period of open internet evolution is over. Their internet is not an ecosystem. It’s a zoo.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Up close, internet concentration seems too intricate to untangle; from far away, it seems too difficult to deal with. But what if we thought of the internet not as a doomsday “hyperobject,” but as a damaged and struggling ecosystem facing destruction? What if we looked at it not with helpless horror at the eldritch encroachment of its current controllers, but with compassion, constructiveness and hope?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Rewilding “aims to restore healthy ecosystems by creating wild, biodiverse spaces,” according to the International Union for Conservation of Nature. More ambitious and risk-tolerant than traditional conservation, it targets entire ecosystems to make space for complex food webs and the emergence of unexpected interspecies relations. It’s less interested in saving specific endangered species. Individual species are just ecosystem components, and focusing on components loses sight of the whole. Ecosystems flourish through multiple points of contact between their many elements, just like computer networks. And like in computer networks, ecosystem interactions are multifaceted and generative.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Whatever we do, the internet isn’t returning to old-school then-common interfaces like FTP and Gopher, or organizations operating their own mail servers again instead of off-the-shelf solutions like G-Suite. But some of what we need is already here, especially on the web. Look at the resurgence of RSS feeds, email newsletters and blogs, as we discover (yet again) that relying on one app to host global conversations creates a single point of failure and control. New systems are growing, like the Fediverse with its federated islands, or Bluesky with algorithmic choice and composable moderation.&lt;br /&gt;
+&lt;br&gt;
+We don’t know what the future holds. Our job is to keep open as much opportunity as we can, trusting that those who come later will use it. Instead of setting purity tests for which kind of internet is most like the original, we can test changes against the values of the original design. Do new standards protect the network’s “generality,” i.e. its ability to support multiple uses, or is functionality limited to optimize efficiency for the biggest tech firms?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...our internet took off because it was designed as a general-purpose network, built to connect anyone.&lt;br /&gt;
+&lt;br&gt;
+Our internet was built to be complex and unbiddable, to do things we cannot yet imagine.&lt;br /&gt;
+&lt;br&gt;
+Internet infrastructure is a degraded ecosystem, but it’s also a built environment, like a city. Its unpredictability makes it generative, worthwhile and deeply human.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We need to stop thinking of internet infrastructure as too hard to fix. It’s the underlying system we use for nearly everything we do.&lt;br /&gt;
+&lt;br&gt;
+Rewilding the internet connects and grows what people are doing across regulation, standards-setting and new ways of organizing and building infrastructure, to tell a shared story of where we want to go. It’s a shared vision with many strategies. The instruments we need to shift away from extractive technological monocultures are at hand or ready to be built.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/rewild-the-internet-farrell-berjon</link>
+      <guid>https://www.lqdev.me/responses/rewild-the-internet-farrell-berjon</guid>
+      <pubDate>2024-04-25 23:11 -05:00</pubDate>
+      <category>internet</category>
+      <category>technology</category>
+      <category>openweb</category>
+      <category>personalweb</category>
+      <category>online</category>
+    </item>
+    <item>
+      <title>Far Out Guides</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;Outdoor nagivation app for long-distance trails&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/far-out-guides-hiking-app</link>
+      <guid>https://www.lqdev.me/bookmarks/far-out-guides-hiking-app</guid>
+      <pubDate>2024-04-07 19:38 -05:00</pubDate>
+      <category>outdoors</category>
+      <category>app</category>
+      <category>hiking</category>
+      <category>technology</category>
+    </item>
+    <item>
+      <title>404 Media Now Has a Full Text RSS Feed</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We paid for the development of full text RSS feeds for Ghost-based publishers. Now we can offer them to our paid subscribers, and other Ghost sites can use the service too.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our friends Anil Dash and Ernie Smith have recently written passionately and persuasively about the importance of RSS to the open web, and about how a technology that turns 25 years old this month remains both subversive and quite versatile. RSS-based distribution underpins a podcasting ecosystem that has allowed for shows to be distributed not just on Apple Podcasts but on Spotify, Google Podcasts, Pocket Casts, Overcast, and whatever other podcast player you might want to listen on. “Being able to say, ‘wherever you get your podcasts’ is a radical statement,” Dash wrote. “Because what it represents is the triumph of exactly the kind of technology that's supposed to be impossible: open, empowering tech that's not owned by any one company, that can't be controlled by any one company, and that allows people to have ownership over their work and their relationship with their audience.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;RSS has empowered podcasters, but that it needs a “creator economy rethink” for text.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/404-media-full-text-rss</link>
+      <guid>https://www.lqdev.me/responses/404-media-full-text-rss</guid>
+      <pubDate>2024-03-26 21:16 -05:00</pubDate>
+      <category>rss</category>
+      <category>404media</category>
+      <category>ghost</category>
+      <category>404</category>
+      <category>media</category>
+      <category>protocols</category>
+      <category>opensource</category>
+      <category>technology</category>
+    </item>
+    <item>
+      <title>Today’s smart homes: the hopes and the realities</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The Verge team and others share their experiences of how smart technologies affect their lives — how it can often help and sometimes frustrate.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In these articles, we’ve concentrated on how our own experiences, and the experiences of others, have affected how we regard smart home tech. We’ve got personal accounts by one reporter who decided to put together a brand-new smart home and another whose brother moved into a home haunted by the ghosts of someone else’s smart tech. Several of our staffers wax enthusiastically about their favorite devices and automations. A writer describes how smart tech makes his home more accessible. Our smart home reviewer tells how she uses technology to keep her varied pets (and she has a lot of them) happy and healthy. We talk to people who use smart devices to help them care for their parents — and more.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/todays-smart-homes-hopes-realities-verge</link>
+      <guid>https://www.lqdev.me/responses/todays-smart-homes-hopes-realities-verge</guid>
+      <pubDate>2024-03-04 23:13 -05:00</pubDate>
+      <category>iot</category>
+      <category>verge</category>
+      <category>smarthome</category>
+      <category>technology</category>
+    </item>
+    <item>
+      <title>Guest host Hank Green makes Nilay Patel explain why websites have a future</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...the last platform on the web of any scale or influence is Google Search. And so, over time, webpages have become dramatically optimized for Google Search. And that means the kinds of things people write about, the containers that we write in, are mostly designed to be optimized for Google Search. They’re not designed for, “I need to just quickly tell you about this and move on.” Our little insight was, “Well, what if we just don’t do that? What if we only write for the people who come directly to our website instead of the people who find our articles through Search or Google Discover or whatever other Google platforms are in the world?” And so we just made these little blog posts, and the idea was, if you just come to our website one more time a day because there’s one more thing to look at that you’ll like, we will be fine.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;more and more people are starting to realize, “Oh, we should just make the websites more valuable.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...if you start writing for other people, which is the heart of what a blog post really is: it’s you trying to entertain yourself and trying to entertain just a handful of other people, you’re going to go really much farther than trying to satisfy the robot.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Why am I writing in the text box that pays money to Elon and Mark [Zuckerberg] and not my text box?&lt;/strong&gt;&lt;br /&gt;
+&lt;br&gt;
+Why do we all work for free? Look, we want to talk about the platform era and media. Why do we all work for free?&lt;br /&gt;
+&lt;br&gt;
+...It’s very confusing, and there are a lot of reasons. If you just sit back and think about why, there are a million reasons why.&lt;br /&gt;
+&lt;br&gt;
+One, the software is nicer to use than most CMSes. You just pick one. Name a company that makes a CMS. They’re like, “Is this as fun to use as Twitter?” And the answer is no. Flatly no. Even the one we have now for quick posts is not as fun to use as Twitter was in its heyday. Will this immediately bring me the dopamine hit of immediate feedback? No.&lt;br /&gt;
+&lt;br&gt;
+[When redesigning the website]...the first instinct was, “Let’s at least make it easier to publish. Let’s at least remove the barriers to entry to getting on the website, and then we can do comments, and then we can think about how we can distribute in different ways.” So that is working. My team is happier. We did not know that the Twitter thing would happen, but the Twitter thing happened, and our desire to publish in the boxes we controlled went up as a group. And then, on top of it, our audience saw that we were having fun. And once you are having fun anywhere on the internet, people sort of gravitate to you. So traffic has gone up.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The distribution actually just creates the work or creates the pressures that force all the work to be the same. And I think over time that’s what drives the audiences away. So there’s a real change in how these platforms work, where, over time, they just become more and more of the same thing and the creators become more and more the same. And that’s a little exhausting. And every place where you see open distribution, you see a huge variety of creators and content.&lt;br /&gt;
+&lt;br&gt;
+Podcasts have basically open distribution. Like podcast or distributor RSS feeds, that means people kind of own their distribution, there’s a vast array of podcast creators. There’s a vast array of podcast formats. They don’t all sound like the beginning of YouTube videos or whatever. And I hate to keep picking on YouTube; you can pick any algorithmic platform, and it’s the same. TikTokers are more the same than different. Podcasters are more different than the same. The web is distributed largely through websites and through RSS. There’s a huge variety of websites and the way websites look. But then you see the algorithmic search pressure push web design kind of all under the same box.&lt;br /&gt;
+&lt;br&gt;
+Newsletters distributed by email: open distribution. The newsletter economy is full of a huge variety of creators doing a huge variety of things. They’re more different than the same. So all I see with the fediverse is, “Oh, this is going to open social distribution up a little bit.” It’s going to allow us to control our distribution networks. It’s going to say, “I’m not on Twitter, but people on Twitter can follow my website, and I can go promote that follow anywhere I want in different ways and build an audience outside of the pressures of the algorithm.” To me, just that, that ability to try, is 1 percent better.
+&lt;br&gt;
+If you’re me and you run a big website and you are thinking, “How can I redistribute this website, how can I reach people more directly?” my brain is lit up. You should be able to follow me at TheVerge.com and see all my quick posts in your Threads account when Threads federates.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/decoder-nilay-patel-why-websites-are-the-future</link>
+      <guid>https://www.lqdev.me/responses/decoder-nilay-patel-why-websites-are-the-future</guid>
+      <pubDate>2024-03-04 22:45 -05:00</pubDate>
+      <category>websites</category>
+      <category>internet</category>
+      <category>podcast</category>
+      <category>decoder</category>
+      <category>rss</category>
+      <category>platforms</category>
+      <category>blogs</category>
+      <category>technology</category>
+    </item>
+    <item>
+      <title>What a bunch of A-list celebs taught me about how to use my phone</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...[phone-free celebs are] not trying to disconnect from everyone, but they are trying to get away from that feeling of being tapped constantly on the shoulder by all the calls, texts, and emails.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;So many celebrities ditch their phone, disconnect from their social media, log off entirely.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A few years ago, Ed Sheeran shared a strategy...He hasn’t had a phone since 2015...Being phoneless hadn’t cut his contact to the world, Sheeran said, just reduced it — and that was the point. “I have friends email and people email, and every few days I’ll sit down and open up my laptop, and I’ll answer 10 emails at a time,” he said. “I’ll send them off, and I close my laptop, and then that’ll be it. And then I’ll go back to living my life, and I don’t feel overwhelmed by it.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Read and watch enough celebrity interviews, and the lesson becomes obvious: that the most powerful and connected device in your life shouldn’t be within arm’s reach at all times. All that does is invite distraction and makes it too easy to disengage from your life every time you get bored or sad or curious even for a second.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;It sounds a little like I’m advocating for the return of the ’90s, when the computer was a giant box that lived in a central room of your home and the only way to use it was to go to it. And to some extent, I am! I’m increasingly convinced that my primary computer should be a device I use on purpose — that I sit down at, operate, and then extract myself from until the next time. Whether it’s a laptop on a desk or an iPad on your nightstand, your computer should be a place as much as it is a device. And when you’re not in that place, you’re somewhere else. The computer doesn’t come along.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Over the last few weeks, as an experiment, I’ve moved as many apps as possible — the obviously distracting social media stuff but also anything I can live without on a minute-to-minute basis — off my phone and onto my tablet and my laptop...&lt;br /&gt;
+&lt;br&gt;
+So far, it’s been great. I’m realizing how much of a crutch my phone really has become: I would open up TikTok just to keep me company on the walk to the kitchen or scroll through Threads while I waited for the microwave to finish. Now, I’m not sure I’m doing any less of those things in aggregate, but at least I’m doing them on purpose. I’ve turned time-wasting into a deliberate activity — I sit in my scrolling chair and scroll away, then I get up, and the scrolling stays put. And best of all, when I leave the house, there’s nothing to scroll at all.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;There has always been talk in tech about removing friction: the obsessive corporate desire to make everything easier, faster, fewer clicks, fewer chances for you to decide not to click that ad or buy that thing or like that post or upload that photo...It should be a little harder for someone to distract me while I’m eating dinner with my wife or hanging out with my kid.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;It’s not about ditching technology, just about doing technology on purpose.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/celebs-how-to-use-phone</link>
+      <guid>https://www.lqdev.me/responses/celebs-how-to-use-phone</guid>
+      <pubDate>2024-02-28 10:24 -05:00</pubDate>
+      <category>technology</category>
+      <category>communication</category>
+      <category>phones</category>
+      <category>smartphones</category>
+      <category>dumbphones</category>
+      <category>email</category>
+      <category>celebrities</category>
+    </item>
+    <item>
+      <title>Physical media week - Exploring the importance of discs and cartridges in an increasingly digital age</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The bright promise of streaming and digital stores has given way to a darker reality: we rarely have ownership over the art we love, and much is getting lost in the process. Only a fraction of movies released over the last century are available on streaming services, while a staggering 90 percent of classic video games are considered “critically endangered” by archivists. As these platforms continue to dominate the media landscape, a whole lot of cultural history is being abandoned.&lt;br /&gt;
+&lt;br&gt;
+In this special issue, The Verge will explore how physical media factors into this and its importance in keeping art alive and accessible. That could mean boutique publishers releasing beautiful special editions of games and movies, foundations dedicated to preserving the physical history of video games, or musicians releasing their latest albums on floppy discs. We’ll also be looking at some cautionary tales in the shift to subscription services and offering tips on building bookshelf-worthy collections.&lt;br /&gt;
+&lt;br&gt;
+Cartridges and discs have been hurtling toward obsolescence — but it turns out, they may be more important than ever.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/verge-physical-media-week</link>
+      <guid>https://www.lqdev.me/responses/verge-physical-media-week</guid>
+      <pubDate>2024-02-27 12:21 -05:00</pubDate>
+      <category>media</category>
+      <category>verge</category>
+      <category>disc</category>
+      <category>dvd</category>
+      <category>cd</category>
+      <category>floppy</category>
+      <category>tech</category>
+      <category>technology</category>
+    </item>
+    <item>
+      <title>Setting up your Rust development environment using Dev Containers</title>
+      <description>&lt;![CDATA[
+Setting up a new development environment that's configured with all the SDKs and tools you need to get started working can be a multi-step process that is error-prone. Especially when you don't know whether you want to commit to a specific technology or don't have too much space on your device, you might not want to install everything on your device. Additionally, cleaning up and removing everything you installed isn't always 100%. This is where development environments like Dev Containers can come in handy. 
+
+## What are Dev Containers
+
+A development container (Dev Container) lets you use a container as a full development environment. 
+
+Because your development environment is in a container, the environment is isolated. The builds are reproducible and disposable. This means you can quickly stand up a new clean development environments and dispose of them just as easily. 
+
+For more details, see the [Dev Containers website](https://containers.dev/).
+
+If you have Docker installed, you can run them locally. Otherwise, you can run Dev Containers using GitHub Codespaces
+
+## What are GitHub Codespaces
+
+A codespace is a development environment that's hosted in the cloud.
+
+For more details, see the [GitHub Codespaces website](https://github.com/features/codespaces).
+
+## Set up Dev Container for Rust Development
+
+1. Create a new directory.
+1. Add a Dev Container configuration file called *.devcontainer.json* that contains the following content:
+
+    ```json
+    {
+        "name": "Rust Development Environment",
+        "image": "mcr.microsoft.com/devcontainers/rust:latest",
+        "customizations": {
+            "vscode": {
+                "extensions": [
+                    "rust-lang.rust-analyzer"
+                ]
+            }
+        }
+    }
+    ```
+
+    - **name**: A human friendly name to identify your development environment. It's not as important when you only have one environment but if you have different environments, it can be useful for differentiating between the various configurations. 
+    - **image**: For the most customization, you can provide the path to a Docker file. However, to make things easier, there are a set of prebuilt container images. In this case, I'm using the [Rust image](https://github.com/devcontainers/images/tree/main/src/rust).
+    - **customizations.vscode.extensions**: A list of Visual Studio Code extensions that can help you with your development. In this case, it's the [*rust-analyzer*](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer).
+
+At minimum, this is all you need to get started. 
+
+## Start your environment 
+
+[Visual Studio Code provides good support for Dev Containers](https://code.visualstudio.com/docs/devcontainers/tutorial). 
+
+1. Install [VS Code](https://code.visualstudio.com/download)
+1. Open your directory where you configured your Dev Container in Visual Studio Code
+1. Install the [Dev Containers VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
+1. Open the command palette in VS Code. In the menu bar, select **View &gt; Command Palette.**
+1. Enter the following command **&gt;Dev Containers: Open Dev Container**. This will start building your dev container. Wait for it to start.
+
+## Check your environment
+
+Once your Dev Container starts, check that `rustc` is installed.
+
+1. Open the terminal.
+1. Run `rustc -h`. A help message should output to the console for the Rust compiler. 
+
+## Build your app
+
+For simplicity, I've used the [Hello World sample from the Rust By Example website](https://doc.rust-lang.org/rust-by-example/hello.html).
+
+1. Create a new file called *hello.rs*.
+1. Add the following code:
+
+    ```rust
+    fn main ()
+    {
+        println!("Hello World!");
+    }
+    ```
+1. Compile your program
+
+    ```bash
+    rustc hello.rs
+    ```
+
+    This will generate an executable called *hello*
+
+1. Run your app
+
+    ```bash
+    ./hello
+    ```
+
+    The application should print out the string "Hello World" to the console. 
+
+That's it! You now have a Rust development environment to get started learning and building apps. 
+
+## Conclusion
+
+Dev Containers make it easy for you to configure full-featured development environments. When paired with Visual Studio Code and GitHub Codespaces, they can help you focus on learning and building applications rather than setting up your environment. You can find a [final version of the configured environment and app on GitHub](https://github.com/lqdev/rust-codespace-sandbox). Happy coding! 
+
+## Additional Resources
+
+- [Rust in Visual Studio Code](https://code.visualstudio.com/docs/languages/rust)
+- [Rust by Example](https://doc.rust-lang.org/rust-by-example/index.html)
+- [Developing Inside a Container](https://code.visualstudio.com/docs/devcontainers/containers)]]&gt;</description>
+      <link>https://www.lqdev.me/posts/setting-up-rust-dev-env-devcontainers-vscode</link>
+      <guid>https://www.lqdev.me/posts/setting-up-rust-dev-env-devcontainers-vscode</guid>
+      <pubDate>2024-01-31 21:05 -05:00</pubDate>
+      <category>rust</category>
+      <category>vscode</category>
+      <category>devcontainers</category>
+      <category>codespaces</category>
+      <category>programming</category>
+      <category>technology</category>
+      <category>docker</category>
+      <category>containers</category>
+      <category>github</category>
+    </item>
+    <item>
+      <title>FLOSS Weekly is now on Hackaday!</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We’re excited to announce that Hackaday is the new home of FLOSS Weekly, a long-running podcast about free, libre, and open-source software! The TWiT network hosted the podcast for an incredible seventeen years, but due to some changes on their end, they recently had to wind things down. They were gracious enough to let us pick up the torch, with Jonathan Bennett now taking over hosting duties.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That didn't take long. Last month &lt;a href="https://www.lqdev.me/responses/floss-weekly-ends-twit-start-of-an-era/"&gt;I learned FLOSS Weekly was ending on the TWiT network&lt;/a&gt;. It's great to see it has found a new home in Hackaday! Time to update the RSS feeds and &lt;a href="https://www.lqdev.me/collections/podroll/"&gt;podroll&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/floss-weekly-now-on-hackaday</link>
+      <guid>https://www.lqdev.me/responses/floss-weekly-now-on-hackaday</guid>
+      <pubDate>2024-01-15 12:15 -05:00</pubDate>
+      <category>podcast</category>
+      <category>floss</category>
+      <category>hackaday</category>
+      <category>opensource</category>
+      <category>technology</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>Every - Daily Newsletter</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Every is a daily newsletter founded in 2020. Every day, we publish a long-form essay to make you smarter about technology, productivity, and AI.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/every-newsletter</link>
+      <guid>https://www.lqdev.me/bookmarks/every-newsletter</guid>
+      <pubDate>2024-01-15 11:08 -05:00</pubDate>
+      <category>newsletter</category>
+      <category>technology</category>
+      <category>productivity</category>
+      <category>ai</category>
+      <category>essay</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>My AI Timelines Have Sped Up (Again)</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...computers are useful, ML models are useful, and even if models fail to scale, people will want to fit GPT-4 sized models on their phone. It seems reasonable to assume the competing factions will figure something out.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Data seems like the harder question. (Or at least the one I feel qualified talking about.) We have already crossed the event horizon of trying to train on everything on the Internet. It’s increasingly difficult for labs to differentiate themselves on publicly available data. Differentiation is instead coming from non-public high-quality data to augment public low-quality data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;All the scaling laws have followed power laws so far, including dataset size. Getting more data by hand doesn’t seem good enough to cross to the next thresholds. We need better means to get good data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A long time ago, when OpenAI still did RL in games / simulation, they were very into self-play. You run agents against copies of themselves, score their interactions, and update the models towards interactions with higher reward. Given enough time, they learn complex strategies through competition.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I think it’s possible we’re at the start of a world where self-play or self-play-like ideas work to improve LLM capabilities. Drawing an analogy, the environment is the dialogue, actions are text generated from an LLM, and the reward is from whatever reward model you have. Instead of using ground truth data, our models may be at a point where they can generate data that’s good enough to train on.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/ai-pipelines-sped-up-again-alexirpan</link>
+      <guid>https://www.lqdev.me/bookmarks/ai-pipelines-sped-up-again-alexirpan</guid>
+      <pubDate>2024-01-11 10:07 -05:00</pubDate>
+      <category>ai</category>
+      <category>predictions</category>
+      <category>agi</category>
+      <category>data</category>
+      <category>llm</category>
+      <category>technology</category>
+      <category>ml</category>
+      <category>computervision</category>
+    </item>
+    <item>
+      <title>TIOBE Index for January 2024</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;For the first time in the history of the TIOBE index, C# has won the programming language of the year award. Congratulations! C# has been a top 10 player for more than 2 decades and now that it is catching up with the big 4 languages, it won the well-deserved award by being the language with the biggest uptick in one year (+1.43%).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Exciting to see F# almost break into the Top 20 at number 22 with 0.77%.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/tiobe-index-january-2024</link>
+      <guid>https://www.lqdev.me/bookmarks/tiobe-index-january-2024</guid>
+      <pubDate>2024-01-07 22:52 -05:00</pubDate>
+      <category>programming</category>
+      <category>dotnet</category>
+      <category>technology</category>
+      <category>fsharp</category>
+      <category>csharp</category>
+      <category>programminglanguages</category>
+    </item>
+    <item>
+      <title>It’s Time to Dismantle the Technopoly</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...according to [Neil Postman], we no longer live in a technocratic era. We now inhabit what he calls technopoly. In this third technological age, Postman argues, the fight between invention and traditional values has been resolved, with the former emerging as the clear winner. The result is the “submission of all forms of cultural life to the sovereignty of technique and technology.” Innovation and increased efficiency become the unchallenged mechanisms of progress, while any doubts about the imperative to accommodate the shiny and new are marginalized. “Technopoly eliminates alternatives to itself in precisely the way Aldous Huxley outlined in Brave New World,” Postman writes. “It does not make them illegal. It does not make them immoral. It does not even make them unpopular. It makes them invisible and therefore irrelevant.” Technopoly, he concludes, “is totalitarian technocracy.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;What I didn’t realize back in 2016, however, was that, although the grip of technopoly was strong, it was also soon to weaken.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A major source of this destabilization was the Trump-Clinton election cycle...Where once they had seen platforms like Facebook as useful and in some sense mandatory, they started treating them more warily.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This emerging resistance to the technopoly mind-set doesn’t fall neatly onto a spectrum with techno-optimism at one end and techno-skepticism at the other. Instead, it occupies an orthogonal dimension we might call techno-selectionism. This is a perspective that accepts the idea that innovations can significantly improve our lives but also holds that we can build new things without having to accept every popular invention as inevitable. Techno-selectionists believe that we should continue to encourage and reward people who experiment with what comes next. But they also know that some experiments end up causing more bad than good. Techno-selectionists can be enthusiastic about artificial intelligence, say, while also taking a strong stance on settings where we should block its use. They can marvel at the benefits of the social Internet without surrendering their kids’ mental lives to TikTok.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/dismantle-technology-newport</link>
+      <guid>https://www.lqdev.me/bookmarks/dismantle-technology-newport</guid>
+      <pubDate>2023-12-20 10:12 -05:00</pubDate>
+      <category>technology</category>
+      <category>culture</category>
+      <category>media</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>Doing Laundry on Campus Without a Phone</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;This article reminds me of this gem 😂&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=mzb355qT8RI" title="Dennis Orders a Boba Tea - Scene | It's Always Sunny in Philadelphia | FX"&gt;&lt;img src="http://img.youtube.com/vi/mzb355qT8RI/0.jpg" class="img-fluid" alt="Dennis Orders a Boba Tea - Scene | It's Always Sunny in Philadelphia | FX" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/doing-laundry-without-phone</link>
+      <guid>https://www.lqdev.me/responses/doing-laundry-without-phone</guid>
+      <pubDate>2023-09-02 18:45 -05:00</pubDate>
+      <category>technology</category>
+      <category>tv</category>
+    </item>
+  </channel>
+</rss>

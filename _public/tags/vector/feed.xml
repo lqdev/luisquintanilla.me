@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - vector</title>
+    <link>https://www.lqdev.me/tags/vector</link>
+    <description>All content tagged with 'vector' by Luis Quintanilla</description>
+    <lastBuildDate>2024-08-14 21:49 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>HybridRAG: Integrating Knowledge Graphs and Vector Retrieval Augmented Generation for Efficient Information Extraction</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Extraction and interpretation of intricate information from unstructured text data arising in financial applications, such as earnings call transcripts, present substantial challenges to large language models (LLMs) even using the current best practices to use Retrieval Augmented Generation (RAG) (referred to as VectorRAG techniques which utilize vector databases for information retrieval) due to challenges such as domain specific terminology and complex formats of the documents. We introduce a novel approach based on a combination, called HybridRAG, of the Knowledge Graphs (KGs) based RAG techniques (called GraphRAG) and VectorRAG techniques to enhance question-answer (Q&amp;amp;A) systems for information extraction from financial documents that is shown to be capable of generating accurate and contextually relevant answers. Using experiments on a set of financial earning call transcripts documents which come in the form of Q&amp;amp;A format, and hence provide a natural set of pairs of ground-truth Q&amp;amp;As, we show that HybridRAG which retrieves context from both vector database and KG outperforms both traditional VectorRAG and GraphRAG individually when evaluated at both the retrieval and generation stages in terms of retrieval accuracy and answer generation. The proposed technique has applications beyond the financial domain&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/hybridrag-knowledge-graphs-vector-rag-info-extraction</link>
+      <guid>https://www.lqdev.me/bookmarks/hybridrag-knowledge-graphs-vector-rag-info-extraction</guid>
+      <pubDate>2024-08-14 21:49 -05:00</pubDate>
+      <category>ai</category>
+      <category>rag</category>
+      <category>graph</category>
+      <category>database</category>
+      <category>knowledgegraph</category>
+      <category>kb</category>
+      <category>vector</category>
+    </item>
+    <item>
+      <title>Vector databases: A comparison and guide for 2023</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Picking a vector database can be hard. Scalability, latency, costs, and even compliance hinge on this choice. For those navigating this terrain, I've embarked on a journey to sieve through the noise and compare the leading vector databases of 2023. I’ve included the following vector databases in the comparision: Pinecone, Weviate, Milvus, Qdrant, Chroma, Elasticsearch and PGvector. The data behind the comparision comes from &lt;a href="https://ann-benchmarks.com/"&gt;ANN Benchmarks&lt;/a&gt;, the docs and internal benchmarks of each vector database and from digging in open source github repos.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/vector-db-comparison-guide-2023</link>
+      <guid>https://www.lqdev.me/bookmarks/vector-db-comparison-guide-2023</guid>
+      <pubDate>2023-12-11 20:05 -05:00</pubDate>
+      <category>vector</category>
+      <category>databases</category>
+    </item>
+  </channel>
+</rss>

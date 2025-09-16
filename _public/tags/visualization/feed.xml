@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - visualization</title>
+    <link>https://www.lqdev.me/tags/visualization</link>
+    <description>All content tagged with 'visualization' by Luis Quintanilla</description>
+    <lastBuildDate>2025-02-03 20:20 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>The Illustrated DeepSeek-R1</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Just like most existing LLMs, DeepSeek-R1 generates one token at a time, except it excels at solving math and reasoning problems because it is able to spend more time processing a problem through the process of generating thinking tokens that explain its chain of thought.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fed7fd8c3-7654-497c-a8e2-1f2e7930992e_3302x1438.png" class="img-fluid" alt="DeepSeek R1 Training Recipe" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/illustrated-deepseek-r1</link>
+      <guid>https://www.lqdev.me/bookmarks/illustrated-deepseek-r1</guid>
+      <pubDate>2025-02-03 20:20 -05:00</pubDate>
+      <category>deepseek</category>
+      <category>ai</category>
+      <category>visualization</category>
+      <category>generativeai</category>
+      <category>genai</category>
+      <category>llm</category>
+      <category>learning</category>
+    </item>
+    <item>
+      <title>Google Penzai</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A JAX research toolkit for building, editing, and visualizing neural networks.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Penzai is a JAX library for writing models as legible, functional pytree data structures, along with tools for visualizing, modifying, and analyzing them. Penzai focuses on making it easy to do stuff with models after they have been trained, making it a great choice for research involving reverse-engineering or ablating model components, inspecting and probing internal activations, performing model surgery, debugging architectures, and more. (But if you just want to build and train a model, you can do that too!)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src="https://github.com/google-deepmind/penzai/raw/main/docs/_static/readme_teaser.png" class="img-fluid" alt="Screenshot of Google Penzai Neural Network Visualization" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/google-jax-penzai</link>
+      <guid>https://www.lqdev.me/responses/google-jax-penzai</guid>
+      <pubDate>2024-04-25 22:06 -05:00</pubDate>
+      <category>google</category>
+      <category>jax</category>
+      <category>ai</category>
+      <category>visualization</category>
+    </item>
+    <item>
+      <title>OpenAI Microscope</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We’re introducing OpenAI Microscope, a collection of visualizations of every significant layer and neuron of eight vision “model organisms” which are often studied in interpretability. Microscope makes it easier to analyze the features that form inside these neural networks, and we hope it will help the research community as we move towards understanding these complicated systems.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/openai-microscope</link>
+      <guid>https://www.lqdev.me/bookmarks/openai-microscope</guid>
+      <pubDate>2024-01-23 22:15 -05:00</pubDate>
+      <category>openai</category>
+      <category>interpretability</category>
+      <category>ai</category>
+      <category>generativeai</category>
+      <category>visualization</category>
+    </item>
+    <item>
+      <title>Perplexity: Interactive LLM visualization</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I built this little tool to help me understand what it's like to be an autoregressive language model. For any given passage of text, it augments the original text with highlights and annotations that tell me how &amp;quot;surprising&amp;quot; each token is to the model, and which other tokens the model thought were most likely to occur in its place. Right now, the LM I'm using is the smallest version of GPT-2, with 124M parameters.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/perplexity-interactive-llm-visualizations</link>
+      <guid>https://www.lqdev.me/bookmarks/perplexity-interactive-llm-visualizations</guid>
+      <pubDate>2023-09-06 00:02 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>visualization</category>
+      <category>tools</category>
+    </item>
+  </channel>
+</rss>

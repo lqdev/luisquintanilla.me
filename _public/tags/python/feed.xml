@@ -1,0 +1,1551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - python</title>
+    <link>https://www.lqdev.me/tags/python</link>
+    <description>All content tagged with 'python' by Luis Quintanilla</description>
+    <lastBuildDate>2024-12-18 21:43 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>MarkItDown - Convert files to Markdown</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;MarkItDown is a utility for converting various files to Markdown (e.g., for indexing, text analysis, etc). It supports:&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PDF&lt;/li&gt;
+&lt;li&gt;PowerPoint&lt;/li&gt;
+&lt;li&gt;Word&lt;/li&gt;
+&lt;li&gt;Excel&lt;/li&gt;
+&lt;li&gt;Images (EXIF metadata and OCR)&lt;/li&gt;
+&lt;li&gt;Audio (EXIF metadata and speech transcription)&lt;/li&gt;
+&lt;li&gt;HTML&lt;/li&gt;
+&lt;li&gt;Text-based formats (CSV, JSON, XML)&lt;/li&gt;
+&lt;li&gt;ZIP files (iterates over contents)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/microsoft-markitdown</link>
+      <guid>https://www.lqdev.me/responses/microsoft-markitdown</guid>
+      <pubDate>2024-12-18 21:43 -05:00</pubDate>
+      <category>markdown</category>
+      <category>etl</category>
+      <category>data</category>
+      <category>python</category>
+      <category>ai</category>
+      <category>microsoft</category>
+    </item>
+    <item>
+      <title>Remove all installed Python packages with pip</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;I recently had the need to get rid of all the packages I'd installed due to conflicting dependencies.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;p&gt;To uninstall packages you need to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Get a list of the packages&lt;/li&gt;
+&lt;li&gt;Uninstall them&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This works both for virtual environments as well as system-wide installations.&lt;/p&gt;
+&lt;h3&gt;Get all packages&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;pip freeze &amp;gt; requirements.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Uninstall packages&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;pip uninstall -r requirements.txt -y
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;p&gt;N/A&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/remove-installed-pip-packages</link>
+      <guid>https://www.lqdev.me/resources/snippets/remove-installed-pip-packages</guid>
+      <pubDate>08/08/2024 10:26 -05:00</pubDate>
+      <category>python</category>
+      <category>pip</category>
+      <category>packages</category>
+    </item>
+    <item>
+      <title>DevContainer configurations</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;A collection of DevContainer configurations&lt;/p&gt;
+&lt;h2&gt;Base Debian Image&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Base Debian DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;                
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python (GPU)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python (GPU) DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },
+        &amp;quot;ghcr.io/devcontainers/features/nvidia-cuda:1&amp;quot;: {},
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;                
+            ]
+        }
+    },
+    &amp;quot;runArgs&amp;quot;: [
+        &amp;quot;--gpus&amp;quot;, 
+        &amp;quot;all&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;.NET&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me .NET DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        }
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;                                
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;.NET (GPU)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me .NET (GPU) DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        },
+        &amp;quot;ghcr.io/devcontainers/features/nvidia-cuda:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;                
+            ]
+        }
+    },
+    &amp;quot;runArgs&amp;quot;: [
+        &amp;quot;--gpus&amp;quot;, 
+        &amp;quot;all&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python and .NET&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python and .NET DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },        
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        },
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;                
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python and .NET (GPU)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python and .NET (GPU) DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },        
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        },
+        &amp;quot;ghcr.io/devcontainers/features/nvidia-cuda:1&amp;quot;: {},
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;               
+            ]
+        }
+    },
+    &amp;quot;runArgs&amp;quot;: [
+        &amp;quot;--gpus&amp;quot;, 
+        &amp;quot;all&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Additional Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://code.visualstudio.com/docs/devcontainers/containers"&gt;Developing inside a DevContainer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/devcontainers/images"&gt;Pre-built DevContainer images&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/devcontainers/features"&gt;Pre-built DevContainer features&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.github.com/en/codespaces/overview"&gt;GitHub Codespaces overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://marketplace.visualstudio.com/vscode"&gt;VS Code Extensions Marketplace&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/devcontainers-configurations</link>
+      <guid>https://www.lqdev.me/resources/wiki/devcontainers-configurations</guid>
+      <pubDate>06/29/2024 14:48 -05:00</pubDate>
+      <category>devcontainer</category>
+      <category>vscode</category>
+      <category>codespaces</category>
+      <category>development</category>
+      <category>software</category>
+      <category>tech</category>
+      <category>programming</category>
+      <category>python</category>
+      <category>dotnet</category>
+      <category>csharp</category>
+      <category>fsharp</category>
+      <category>docker</category>
+      <category>git</category>
+      <category>debian</category>
+    </item>
+    <item>
+      <title>Deep Dive into Ownership in Mojo</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In the second part of the ownership series in Mojo, we built on the mental model developed in the &lt;a href="http://www.modular.com/blog/what-ownership-is-really-about-a-mental-model-approach"&gt;first part&lt;/a&gt; and provided practical examples to illustrate how ownership works in Mojo. We covered the different kinds of values (BValue, LValue, and RValue) and how they propagate through expressions. We also explained the function argument conventions (borrowed, inout, owned) and demonstrated how these conventions help manage memory safely and efficiently. We concluded with three fundamental rules:&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Rule 1&lt;/strong&gt;: Owned arguments take RValue on the caller side but are LValue on the callee side.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rule 2&lt;/strong&gt;: Owned arguments own the type if the transfer operator ^ is used; otherwise, they copy the type if it is Copyable.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rule 3&lt;/strong&gt;: Copy operations are optimized to move operations if the type is Copyable and Movable and isn’t used anymore, reducing unnecessary overhead.&lt;br /&gt;
+&lt;br&gt;
+Lastly, we emphasized that the main goals of ownership in Mojo are:&lt;br /&gt;
+&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Memory Safety&lt;/strong&gt;: Enforcing exclusive ownership and proper lifetimes to prevent memory errors such as use-after-free and double-free.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Performance Optimization&lt;/strong&gt;: Converting unnecessary copy operations into move operations to reduce overhead and enhance performance.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ease of Use&lt;/strong&gt;: Automating memory management through ownership rules and the transfer operator, simplifying development.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Compile-Time Guarantees&lt;/strong&gt;: Providing strong compile-time guarantees through type-checking and dataflow lifetime analysis, catching errors early in the development process.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/deep-dive-ownership-mojo</link>
+      <guid>https://www.lqdev.me/responses/deep-dive-ownership-mojo</guid>
+      <pubDate>2024-06-11 21:20 -05:00</pubDate>
+      <category>mojo</category>
+      <category>python</category>
+      <category>c</category>
+      <category>cpp</category>
+      <category>c++</category>
+      <category>pl</category>
+      <category>programming</category>
+      <category>programminglanguage</category>
+    </item>
+    <item>
+      <title>Getting Started With CUDA for Python Programmers</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=nOxKexn3iBo" title="A YouTube Video Tutorial by Jeremy Howard to help Python programmers get started with CUDA"&gt;&lt;img src="http://img.youtube.com/vi/nOxKexn3iBo/0.jpg" class="img-fluid" alt="A YouTube Video Tutorial by Jeremy Howard to help Python programmers get started with CUDA" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In this comprehensive video tutorial, Jeremy Howard from answer.ai demystifies the process of programming NVIDIA GPUs using CUDA, and simplifies the perceived complexities of CUDA programming. Jeremy emphasizes the accessibility of CUDA, especially when combined with PyTorch's capabilities, allowing for programming directly in notebooks rather than traditional compilers and terminals. To make CUDA more approachable to Python programmers, Jeremy shows step by step how to start with Python implementations, and then convert them largely automatically to CUDA. This approach, he argues, simplifies debugging and development.&lt;br /&gt;
+&lt;br&gt;
+The tutorial is structured in a hands-on manner, encouraging viewers to follow along in a Colab notebook. Jeremy uses practical examples, starting with converting an RGB image to grayscale using CUDA, demonstrating the process step-by-step. He further explains the memory layout in GPUs, emphasizing the differences from CPU memory structures, and introduces key CUDA concepts like streaming multi-processors and CUDA cores.&lt;br /&gt;
+&lt;br&gt;
+Jeremy then delves into more advanced topics, such as matrix multiplication, a critical operation in deep learning. He demonstrates how to implement matrix multiplication in Python first and then translates it to CUDA, highlighting the significant performance gains achievable with GPU programming. The tutorial also covers CUDA's intricacies, such as shared memory, thread blocks, and optimizing CUDA kernels.&lt;br /&gt;
+&lt;br&gt;
+The tutorial also includes a section on setting up the CUDA environment on various systems using Conda, making it accessible for a wide range of users.&lt;br /&gt;
+&lt;br&gt;
+This is lecture 3 of the &amp;quot;CUDA Mode&amp;quot; series (but you don't need to watch the others first). The notebook is available in the lecture3 folder here: &lt;a href="https://github.com/cuda-mode/lecture2"&gt;https://github.com/cuda-mode/lecture2&lt;/a&gt;...&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/get-started-cuda-python-programmers</link>
+      <guid>https://www.lqdev.me/bookmarks/get-started-cuda-python-programmers</guid>
+      <pubDate>2024-01-29 20:23 -05:00</pubDate>
+      <category>gpu</category>
+      <category>cuda</category>
+      <category>python</category>
+      <category>programming</category>
+    </item>
+    <item>
+      <title>Ollama - Python &amp; JavaScript Libraries</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The initial versions of the Ollama Python and JavaScript libraries are now available:&lt;br /&gt;
+&lt;br&gt;
+&lt;a href="https://github.com/ollama/ollama-python"&gt;Ollama Python Library&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://github.com/ollama/ollama-js"&gt;Ollama JavaScript Library&lt;/a&gt;&lt;br /&gt;
+&lt;br&gt;
+Both libraries make it possible to integrate new and existing apps with Ollama in a few lines of code, and share the features and feel of the Ollama REST API.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/python-js-ollama-libraries</link>
+      <guid>https://www.lqdev.me/responses/python-js-ollama-libraries</guid>
+      <pubDate>2024-01-25 21:26 -05:00</pubDate>
+      <category>ollama</category>
+      <category>ai</category>
+      <category>llama</category>
+      <category>python</category>
+      <category>javascript</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>Python 3.13 gets a JIT</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In late December 2023 (Christmas Day to be precise), CPython core developer &lt;a href="https://github.com/python/cpython/pull/113465"&gt;Brandt Bucher submitted a little pull-request&lt;/a&gt; to the Python 3.13 branch adding a JIT compiler.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/python-3-13-gets-jit</link>
+      <guid>https://www.lqdev.me/bookmarks/python-3-13-gets-jit</guid>
+      <pubDate>2024-01-09 09:53 -05:00</pubDate>
+      <category>python</category>
+      <category>programming</category>
+      <category>compiler</category>
+    </item>
+    <item>
+      <title>Modular: Mojo🔥 - It’s finally here!</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we’re excited to announce the next big step in Mojo’s evolution: Mojo is now available for &lt;a href="https://developer.modular.com/"&gt;local download&lt;/a&gt; – beginning with Linux systems, and adding Mac and Windows in coming releases.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/mojo-available-local-download</link>
+      <guid>https://www.lqdev.me/bookmarks/mojo-available-local-download</guid>
+      <pubDate>2023-09-10 10:37 -05:00</pubDate>
+      <category>ai</category>
+      <category>python</category>
+      <category>programminglanguages</category>
+    </item>
+    <item>
+      <title>Announcing Python in Excel</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today we’re announcing a significant evolution in the analytical capabilities available within Excel by releasing a Public Preview of Python in Excel. Python in Excel makes it possible to natively combine Python and Excel analytics within the same workbook - with no setup required. With Python in Excel, you can type Python directly into a cell, the Python calculations run in the Microsoft Cloud, and your results are returned to the worksheet, including plots and visualizations.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/announcing-python-in-excel</link>
+      <guid>https://www.lqdev.me/bookmarks/announcing-python-in-excel</guid>
+      <pubDate>2023-08-22 17:38 -05:00</pubDate>
+      <category>python</category>
+      <category>excel</category>
+      <category>dataanalytics</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>Matrix Synapse Server Administration</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The following is a guide for managing &lt;a href="https://github.com/matrix-org/synapse"&gt;Matrix Synapse&lt;/a&gt; servers.&lt;/p&gt;
+&lt;h2&gt;Upgrade&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Initialize Python virtual environment&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;source env/bin/activate
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Stop server&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;synctl stop
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Upgrade Synapse package&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;pip install --upgrade matrix-synapse[postgres]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Restart server&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;synctl restart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Deactivate Python virtual environment&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;deactivate
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Check version&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;curl http://localhost:8008/_synapse/admin/v1/server_version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Clean up storage&lt;/h2&gt;
+&lt;h3&gt;Delete old media&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Run the following command to clean local meadia older than 30 days.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;curl -X POST -H &amp;quot;Authorization: Bearer access_token&amp;quot; http://localhost:8008/_synapse/admin/v1/media/delete?before_ts=$(date +%s000 --date &amp;quot;30 days ago&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Start PSQL&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;psql
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Connect to database&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;\c synapse
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Clean up unreferenced itemes&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;VACUUM FULL;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Delete items in database&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Start PSQL&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;psql
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Connect to database&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;\c synapse
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Run the following SQL script&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;DROP FUNCTION IF EXISTS synapse_clean_redacted_messages();
+CREATE FUNCTION synapse_clean_redacted_messages()
+    RETURNS void AS $$
+    DECLARE
+    BEGIN
+        UPDATE events SET content = '{}' FROM redactions AS rdc
+            WHERE events.event_id = rdc.redacts
+            AND (events.type = 'm.room.encrypted' OR events.type = 'm.room.message');
+    END;
+$$ LANGUAGE 'plpgsql';
+
+DROP FUNCTION IF EXISTS synapse_get_server_name();
+CREATE FUNCTION synapse_get_server_name()
+    RETURNS text AS $$
+    DECLARE
+        _someUser TEXT;
+        _serverName TEXT;
+    BEGIN
+        select user_id from account_data limit 1 INTO _someUser;
+        select regexp_replace(_someUser, '^.*:', ':') INTO _serverName;
+        RETURN _serverName;
+    END;
+$$ LANGUAGE 'plpgsql';
+
+DROP FUNCTION IF EXISTS synapse_get_unused_rooms();
+CREATE FUNCTION synapse_get_unused_rooms()
+    RETURNS TABLE(room_id TEXT) AS $$
+    DECLARE
+    BEGIN
+        RETURN QUERY SELECT r.room_id FROM rooms AS r WHERE r.room_id NOT IN (
+            SELECT DISTINCT(m.room_id) FROM room_memberships as m
+                INNER JOIN current_state_events as c
+                ON m.event_id = c.event_id
+                AND m.room_id = c.room_id
+                AND m.user_id = c.state_key
+                WHERE c.type = 'm.room.member'
+                AND m.membership = 'join'
+                AND m.user_id LIKE concat('%', synapse_get_server_name())
+        );
+    END;
+$$ LANGUAGE 'plpgsql';
+
+DROP FUNCTION IF EXISTS synapse_clean_unused_rooms();
+CREATE FUNCTION synapse_clean_unused_rooms()
+    RETURNS void AS $$
+    DECLARE
+        _count INT;
+    BEGIN
+        CREATE TEMP TABLE synapse_clean_unused_rooms__tmp
+            ON COMMIT DROP
+            AS SELECT room_id FROM synapse_get_unused_rooms();
+
+        SELECT COUNT(*) FROM synapse_clean_unused_rooms__tmp INTO _count;
+        RAISE NOTICE 'synapse_clean_unused_rooms() Cleaning up % unused rooms', _count;
+
+        DELETE FROM event_forward_extremities AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: event_forward_extremities';
+
+        DELETE FROM event_backward_extremities AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: event_backward_extremities';
+
+        DELETE FROM event_edges AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: event_edges';
+
+        DELETE FROM room_depth AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: room_depth';
+
+        DELETE FROM events AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: events';
+
+        DELETE FROM event_json AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: event_json';
+
+        DELETE FROM state_events AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: state_events';
+
+        DELETE FROM current_state_events AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: current_state_events';
+
+        DELETE FROM room_memberships AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: room_memberships';
+
+        DELETE FROM destination_rooms AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: destination_rooms';
+
+        DELETE FROM event_failed_pull_attempts AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: event_failed_pull_attempts';
+
+        DELETE FROM rooms AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: rooms';
+
+        DELETE FROM room_aliases AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: room_aliases';
+
+        DELETE FROM state_groups AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: state_groups';
+
+        DELETE FROM state_groups_state AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: state_groups_state';
+
+        DELETE FROM receipts_graph AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: receipts_graph';
+
+        DELETE FROM receipts_linearized AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: receipts_linearized';
+
+        DELETE FROM room_tags AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: room_tags';
+
+        DELETE FROM room_tags_revisions AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: room_tags_revisions';
+
+        DELETE FROM room_account_data AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: room_account_data';
+
+        DELETE FROM event_push_actions AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: event_push_actions';
+
+        DELETE FROM pusher_throttle AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: pusher_throttle';
+
+        DELETE FROM event_reports AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: event_reports';
+
+        DELETE FROM stream_ordering_to_exterm AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: stream_ordering_to_exterm';
+
+        DELETE FROM event_auth AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: event_auth';
+
+        DELETE FROM appservice_room_list AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: appservice_room_list';
+    END;
+$$ LANGUAGE 'plpgsql';
+
+SELECT synapse_clean_redacted_messages();
+SELECT synapse_clean_unused_rooms();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Clean up unreferenced tuples&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;VACUUM FULL;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://matrix-org.github.io/synapse/latest/welcome_and_overview.html"&gt;Matrix Synapse Docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://matrix-org.github.io/synapse/latest/upgrade.html"&gt;Upgrading Synapse&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://matrix-org.github.io/synapse/v1.38/admin_api/media_admin_api.html"&gt;Admin Media API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/xwiki-labs/synapse_scripts"&gt;Synapse Scripts&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/matrix-synapse-admin</link>
+      <guid>https://www.lqdev.me/resources/wiki/matrix-synapse-admin</guid>
+      <pubDate>06/11/2023 21:13 -05:00</pubDate>
+      <category>messaging</category>
+      <category>how-to</category>
+      <category>matrix</category>
+      <category>self-host</category>
+      <category>synapse</category>
+      <category>sql</category>
+      <category>python</category>
+    </item>
+    <item>
+      <title>Upgrade Matrix Synapse homeserver</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;Upgrade a &lt;a href="https://matrix.org/"&gt;Matrix&lt;/a&gt; &lt;a href="https://github.com/matrix-org/synapse/"&gt;Synapse homeserver&lt;/a&gt; using pip. For more information, see the official article on &lt;a href="https://matrix-org.github.io/synapse/develop/upgrade"&gt;upgrading between Synapse versions&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;./update-matrix-homeserver.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;h3&gt;update-matrix-homeserver.sh&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;# Initialize Python virtual environment
+source ./env/bin/activate
+
+# Upgrade using pip
+# For PostgreSQL packages, use matrix-synapse[postgres]
+pip install --upgrade matrix-synapse
+
+# Restart server
+synctl restart
+
+# Check version
+curl http://localhost:8008/_synapse/admin/v1/server_version
+
+# Deactivate Python virtual environment
+deactivate
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/update-matrix-synapse-homeserver</link>
+      <guid>https://www.lqdev.me/resources/snippets/update-matrix-synapse-homeserver</guid>
+      <pubDate>08/31/2022 19:40 -05:00</pubDate>
+      <category>matrix</category>
+      <category>synapse</category>
+      <category>homeserver</category>
+      <category>selfhost</category>
+      <category>python</category>
+      <category>internet</category>
+      <category>network</category>
+    </item>
+    <item>
+      <title>The Case for Doing Machine Learning with F#</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+This post is part of the 2018 [FsAdvent](https://sergeytihon.com/tag/fsadvent/) series organized by [Sergey Tihon](https://twitter.com/sergey_tihon).
+
+When searching for tools and languages to implement machine learning applications, there are numerous options to choose from each with their own set of advantages and disadvantages. Out of all, however, Python seems to be the most salient. Not only is it a popular language but also many of the tools available for machine learning are either implemented in Python or support it in some capacity whether it's native or through community libraries. Very rarely though is F# mentioned in these discussions despite having many of the features that make languages like Python so loved and extending them to empower users. In this writeup, I will do a short review of many of the advantages of Python such as succinctness, platform support, library availability as well as many others and compare it to F#'s capabilities.
+
+![2017 Top Languages](http://cdn.lqdev.tech/files/images/case-fsharp-ml-0.PNG)
+
+## Python's Advantages
+
+### Learning Curve
+
+One of the reasons why Python is so widely adopted is its learning curve. Whether an individual knows how to program or not, at times, Python can look like pseudocode making it accessible to not only readers but also writers. As with anything the more complex the task, the steeper the learning curve. However, at a simpler level, Python makes it as easy as possible to get started. 
+
+Although at first it may not appear to be the case with F#, the learning curve is not much steeper than that of Python. The syntax can sometimes look intimidating to individuals, but the steepest part of the learning curve doesn't necessarily come from the language itself but rather from the way of reasoning about the logic of the programs. As a functional language, there is somewhat of a paradigm shift from that of a procedural execution model. Below is an example that defines a function that doubles an integer in both languages.  
+
+##### Python
+
+```python
+def double(x):
+    return x * 2
+```
+
+##### FSharp
+
+```fsharp
+let double x = 
+    x * 2
+```
+
+As it can be seen, despite some minor syntax and character differences the functions are essentially the same.  
+
+### Intended Purpose
+
+Depending on the task at hand, some languages are more adept for handling respective tasks. For example, R and Julia are excellent languages when performing statistical tasks. However, outside of those types of tasks their abilities are more limited. Python, being a general-purpose language means that not only can you use it for machine learning tasks but also to build n-tier applications entirely in Python without having to worry about integrations, plugins or having to learn an entirely different language to perform such actions. 
+
+Similarly, F# is a general-purpose language which allows you to build web and console applications as well as machine learning applications all from the comfort of the same ecosystem.
+
+### Strong Library Support
+
+When performing data analysis and machine learning, practicioners use a variety of libraries for their development such as [NumPy](http://www.numpy.org/) and [Pandas](https://pandas.pydata.org/) for data wrangling, [scikit-learn](https://scikit-learn.org/stable/index.html) for machine learning algorithms and [matplotlib](https://matplotlib.org/) for creating visualizations. Although all of these tasks could most certainly be implemented from scratch, libraries speed up the development process allowing practitioners to focus more on the domain and experiment with the models that best solve the respective problem they are facing.  
+
+F#, like Python has exceptional library support, specifically as it regards data science and machine learning. [FsLab](https://fslab.org/) is a collection of open source F# packages for machine learning that contain libraries such as [FSharp.Data](https://fsharp.github.io/FSharp.Data/) and [Deedle](https://fslab.org/Deedle/) for data wrangling, [Math.NET Numerics](https://numerics.mathdotnet.com/) for machine learning algorithms and [XPlot](https://fslab.org/XPlot/) to help with data visualization. Furthermore, at Build 2018, Microsoft released [ML.NET](https://dotnet.microsoft.com/apps/machinelearning-ai/ml-dotnet), an open-source, cross-platform machine learning framework for .NET which allows .NET users to not only perform machine learning tasks within .NET but also allows extensibility via Tensorflow, ONNX and Python extensions. For a more detailed writup on using ML.NET with F#, check out the post [A Christmas Classifier](https://towardsdatascience.com/f-advent-calendar-a-christmas-classifier-72fb9e9d8f23) by Willie Tetlow or my post [Classification with F# ML.NET Models](http://luisquintanilla.me/2018/06/13/mlnet-classification-fsharp/).
+
+Libraries for F# are also not confined only to those written in F#. In many instances, because F# is a .NET language, there is interoperability with C# libraries further extending the capabilities of F#.
+
+### Platform Support
+
+One of the things that makes Python so attractive is that it runs cross-platform. It does not matter whether you're on Windows, Mac or Linux; Python code runs the same. That being said though, not all platforms are created equal and although it is possible to run Python code on all platforms, essential libraries such as NumPy, Pandas and scikit-learn run best on Unix environments. It is possible to run them on Windows but the set up is not as straightforward. 
+
+As a .NET Language, F# runs on Windows. With the help of the Mono runtime and most recently .NET Core, it also runs on Mac and Linux. Like Python, depending on the runtime and dependencies used by the respective software packages there may be limitations as to which platform code can be run on. However, from my experience most of the FsLab set of packages work cross-platform. 
+
+### Succintness
+
+Productivity is an important measure of a language. One way to achieve it is to write logic using the least number of characters. This is where Python shines. As a dynamically typed, whitespace ruled language, Python does not require developers to declare types associated with the objects and variables defined nor does it require the use of brackets and any other special characters. As expected, this allows for developers to write the same logic with less characters much faster. 
+
+Unlike Python, F# is a statically typed language. However, thanks to type inference and the help of the compiler, writing programs often does not require developers to explicitly define what types objects and variables are. Additionally, it is a whitespace ruled language therefore removing the need for brackets and additional characters further speeding up the development process in a safe manner.
+
+### Immediate Feedback
+
+Writing safe and effective code takes time and experience. However, even the most experienced developers often makes mistakes. Therefore, getting immediate feedback before adding certain logic to programs goes a long way to making code that is safe, efficient and tested.  
+
+#### Read-Evaluate-Print Loop (REPL)
+
+One way in which both Python and F# provide immediate feedback is via the command line using the Read-Evaluate-Print Loop (REPL). The REPL is a programming environment that reads the user input, evaluates it and prints out the results, hence the name. Below are screenshots of what that environment looks like using both Python and F#.
+
+##### Python
+
+![](http://cdn.lqdev.tech/files/images/case-fsharp-ml-1.png)
+
+##### FSharp
+
+![](http://cdn.lqdev.tech/files/images/case-fsharp-ml-2.png)
+
+As it can be seen, getting that immediate feedback makes it easier to see whether the code is behaving the way it should. Although useful, this environment is not ideal when experimenting and making tweaks to the code. Additionally, because of the lack of a graphical user interface, the navigation can be less than ideal. Fortunately there is a solution out there that provides the same level of interactivity along with a graphical user interface that allows for ad-hoc experimentation and re-running of code at different points in time which is essential when developing machine learning applications.
+
+#### Jupyter Notebooks
+
+Much of machine learning deals with experimentation. Experimentation involves having a way to tweak parameters and evaluate the results. In addition, experiments should have a way of being documented and reproduced. As alluded to previously, such development environment and capabilities can be found in [Jupyter Notebook](https://jupyter.org/). 
+
+As mentioned on the project's website: 
+
+&gt; The Jupyter Notebook is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
+
+Jupyter Notebooks work with various languages which include but are not limited to Python and F# and can be run both on local machines as well as via a hosted service. One such service is Microsoft's [Azure Notebooks](https://notebooks.azure.com/) which allows you to use Jupyter Notebooks in the cloud for free. All you need is to have a Microsoft account. Below are screenshots of what that environment looks like in both Python and F#.   
+
+##### Python
+
+![](http://cdn.lqdev.tech/files/images/case-fsharp-ml-3.png)
+
+##### FSharp
+
+![](http://cdn.lqdev.tech/files/images/case-fsharp-ml-4.png)
+
+## Beyond Python
+
+F#, is comparable to Python on many of the features that make Python a great language for both development and machine learning. However, there are some areas where F# provides additional safety and functionality that greatly improve the way in which machine learning applications are built. 
+
+### Typing
+
+As previously mentioned, F# is a statically typed language. However, it also makes use of type inference which means that declaring types is not always required. With the help of the compiler, based on the structure of functions and variables it is possible to determine which type an object or variable is. This has several advantages. One advantage of being strongly typed is that when the types are declared the code becomes self-documented because it is easier to deduce what functions are doing based on the types being passed in and returned. Another advantage is that it makes it harder to write bad code. Having the compiler help you when you write your code allows you to find errors prior to compilation or running the code. This along with the REPL gives you additional reassurance that your code is executing the intended logic. 
+
+Python is making strides in acquiring some of that functionality with the introduction of type hints in version 3.6. However, this has not always been a core feature of the language and is only in its nascent stages. 
+
+### Immutability
+
+As a functional language, immutability is something that is a native part of the language. While in some cases it can change the way in which code is written, immutability has one advantage, especially when it comes to machine learning. With immutability, parallelization can be fully exploited for those algorithms which take advantage of it. 
+
+## Conclusion
+
+In this writeup, I went over how F# is comparable to Python on many of the features that make it such a popular language such as library support, succinctness, general purpose and interactivity. However, F# has additional capabilities such as static typing and immutability that further enhance its capabilities as a language for machine learning. That is not to say that one is better than the other as they both are more adept for performing certain tasks. When it comes to machine learning it does become a matter of choice as they are both robust, powerful and strongly supported languages. Therefore next time you're looking to build a machine learning application, hopefully you give F# a try. Happy coding!
+
+###### Resources
+
+[2018 Top Programming Languages](https://spectrum.ieee.org/at-work/innovation/the-2018-top-programming-languages)  
+[Get Programming with F#](https://www.manning.com/books/get-programming-with-f-sharp)  
+[ML.NET Machine Learning Samples](https://github.com/dotnet/machinelearning-samples)]]&gt;</description>
+      <link>https://www.lqdev.me/posts/case-fsharp-machine-learning</link>
+      <guid>https://www.lqdev.me/posts/case-fsharp-machine-learning</guid>
+      <pubDate>2018-12-14 23:34:50 -05:00</pubDate>
+      <category>mlnet</category>
+      <category>machine learning</category>
+      <category>fsharp</category>
+      <category>dotnet</category>
+      <category>programming</category>
+      <category>python</category>
+      <category>ai</category>
+      <category>dotnetcore</category>
+      <category>artificial intelligence</category>
+      <category>fsadvent</category>
+      <category>artificialintelligence</category>
+      <category>machinelearning</category>
+      <category>data science</category>
+      <category>functional programming</category>
+    </item>
+    <item>
+      <title>Type Driven Development - Scaling Safely with Python</title>
+      <description>&lt;![CDATA[
+# Introduction
+
+Python is a great language. The syntax is readable and allows pseudocode to be converted into code nearly verbatim. While this is great for prototyping and moving fast, scaling can become an issue. One of the issues is with regards to documentation. In statically typed languages, even if there's no documentation, types help provide some sort of documentation that allow new contributors as well current developers to remember where they left off and what their code does. There are ways around this using docstrings as well as unit tests. However, this often involves performing tasks outside of writing code which can be time consuming. In Python 3.5, type hints or optional static typing are allowed and tools like `mypy` help write safer, more scalable code. The best part is, if the code already has docstrings and unit tests, optional static typing adds an additional layer of safety and documentation to existing projects. This writeup explores practices for documenting and developing scalable Python code as well as illustrating how to use optional static types and type checkers.
+
+## Prerequisites
+
+This writeup assumes that Python 3.5 or greater is being used and both `mypy` and `pytest` packages are installed. To install them using `pip` we can type the following command in the shell:
+
+```bash
+pip install pytest mypy
+```
+
+## Docstrings
+
+[PEP 257](https://www.python.org/dev/peps/pep-0257/) provides a great overview of what docstrings are and how to use them. The summarized version of it is a string literal in classes and functions that allows developers to document logic, inputs and outputs of those particular sections of code. Below are examples of code with and without docstrings:
+
+### No Docstring
+
+```python
+def combine(a,b):
+    return a + b
+```
+
+### With Docstring
+
+```python
+def combine(a,b):
+    """
+    Returns the sum of two numbers
+
+    Keyword arguments:
+    a -- the first number
+    b -- the second number
+
+    Returns:
+    Sum of a and b
+    """
+    return a + b
+```
+
+As we can see, the string literal or docstring allows individuals who are looking at the code for the first time as well as someone who worked on it and has forgotten the logic of a program to easily decipher what the code does.
+
+Something else to notice is the function name. In this case, the logic is relatively simple and the name may make some sense at the time of writing the code. However, this simple logic is dangerous. Without knowing what is expected as input and output, there's not a clear way of knowing what this code should do. For example, someone might try to run the undocumented version of this function with parameter `a` having the value 'Hello' and `b` with the value 'World'. The function would not throw any errors and return 'HelloWorld' as a result. However, if we look at the intented logic as well as expected input and output provided by the docstring, we'd know that `a` and `b` are both supposed to be numerical values, not strings or any other type.
+
+It's clear that writing a docstring can become tedious and take up a substantial amount of time as a project grows. However, the benefits are reaped when extending the code and using it in production because more time is spent being productive rather than figuring out what the code should do and whether it's being done correctly. Docstrings however are not a panacea since there is no way to enforce what is documented in the code and serves as more of an FYI for developers using and extending the code.
+
+## Unit Testing
+
+One way to prevent code from being misused is by writing tests. By writing unit tests and making sure that they pass, developers can test edge cases such as passing a string and immediately getting feedback through failing tests. Here's an example of what a unit test would look like for the `combine` function written above.
+
+In the file `main.py`, we can write the logic for our `combine` function. However, keeping in mind the docstring, we might want to add some exception handling. 
+
+```python
+"""
+Module Containing Logic
+"""
+
+def combine(a,b):
+    """                    
+    Returns the sum of two numbers                                          
+    Keyword arguments:                 
+    a -- the first number  
+    b -- the second number                                                      
+    Returns:             
+    Sum of a and b       
+    """
+    if(type(a) == str or type(b) == str)
+        return a + b
+    else:
+        raise TypeError
+```
+
+In another file called `test_main.py`, we can write our tests. Our test file will look like the code below:
+
+```python
+import pytest
+from main import combine
+
+testparams = [(1,2,3),(2,4,6)]
+@pytest.mark.parametrize("a,b,expected",testparams)
+def test_combine(a,b,expected): 
+    assert combine(a,b) == expected
+
+testparams = [('a','b'),('a','b')]
+@pytest.mark.parametrize("a,b",testparams)
+def test_combine_exception(a,b):
+    with pytest.raises(TypeError):
+        combine(a,b)
+```
+
+In our shell we can enter the `pytest` command inside of our project directory and get the following output.
+
+```bash
+pytest
+```
+
+![](http://cdn.lqdev.tech/files/images/typedrivendevelopment1.png)
+
+The results from `pytest` ensure that passing the expected parameters returns the expected output which is the sum of two numbers and passing in the wrong parameters such as those of type string return a `TypeError`. This gets us closer to where we want to be where we're able to test whether the functionality of our application does what it's supposed to. Like docstrings, there is additional work and time that needs to be accounted for when writing tests. However, this is a practice that should be taking place already and in the case of Python which does not provide the type checking or compilation is a way to if not ensure that our logic is sound, at least it provides us with an additional form of documentation and peace of mind that the code is being used accurately. 
+
+## Type Hints (Optional Static Types)
+
+Good practice would have us write docstrings to document our code and unit tests to ensure the soundness of our logic and code. However, what if that seems like too much work or there's not much time to perform those tasks. Is there a shorthand way that we can both document our code for posterity as well as ensure that we can only use the code as intended. That's where type hints comes in and starting with Python 3.5 have been accepted by the Python community per [PEP 484](https://www.python.org/dev/peps/pep-0484/). With type hints our code would not change much and with a few extra characters, we can write safer code. Our `combine` function from previous examples would look as follows with type hints:
+
+```python
+def combine(a:float,b:float) -&gt; float:
+    return a + b    
+```
+
+If we run this, it should run as expected given the appropriate parameters. That being said, as with the undocumented example, if we pass in parameters 'Hello' and 'World', it should work as well and we get the result 'HelloWorld'. If we still don't get the result we want and our code is still unsafe, then what's the point? One of the benefits is the documentation piece. In the event that we had no docstring, we could still tell that `a` and `b` are both of type `float` and return a `float`. The second benefit comes from the use of `mypy`, a type checker for Python. To see it in action, we can create a script called `mainmypy.py` and add the following code:
+
+```python
+def combine(a:float,b:float) -&gt; float:
+    return a + b
+
+combine(1,2)
+combine('Hello','World')
+```
+
+In the shell, we can then use the `mypy` command on our script to check types.
+
+```bash
+mypy mainmypy.py
+```
+
+The output is the following:
+
+![](http://cdn.lqdev.tech/files/images/typedrivendevelopment2.png)
+
+As we can see, without having to run our code, `mypy` checks the types and throws errors that we would not have found unless we ran our code. Therefore, we get both documentation by defining the types of parameters and outputs we expect which make it easier for individuals using or writing code to safely do so without having to write long, descriptive docstrings. With `mypy`, we enforce the good use of code by checking that the correct parameters are being passed in and the correct results are being returned prior to runtime making it safe to scale and write correct code most of the time. 
+
+## Conclusion
+
+Python is a very expressive language that allows applications to be prototyped in no time. However, the tradeoff is that writing new code or returning to it at a later time without documenting it, particularly the types needed by functions or classes to produce an accurate result can be unsafe. Some existing practices such as docstrings and unit tests can help with documenting and writing safe code. However, tools like `mypy` and the recently introduced type hints achieve what both docstrings and unit tests do in less time and code. This is not to say that these tools are perfect and ideally, unit tests, docstrings and type hints are all integrated to make developers more productive and create safe, scalable code. Happy coding!
+
+
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/type-driven-development-scaling-safely-with-python</link>
+      <guid>https://www.lqdev.me/posts/type-driven-development-scaling-safely-with-python</guid>
+      <pubDate>2018-03-24 18:16:31 -05:00</pubDate>
+      <category>python</category>
+      <category>static typing</category>
+      <category>productivity</category>
+      <category>programming</category>
+      <category>development</category>
+    </item>
+    <item>
+      <title>Testing and Deploying Python Projects with Travis CI</title>
+      <description>&lt;![CDATA[
+# Introduction
+
+When working on projects, especially those that others or yourself may depend upon, it is important to test to make sure that everything is working as expected. Furthermore, being able to deploy your code/packages to a central repository with a package manager makes distribution easier. Although this can all be done manually, it can also be automated. Both testing and deployment can be automated using Travis CI which makes the entire process as easy as pushing your most recent changes to GitHub. In this writeup, I will go over how to create a Python project with unit tests and deploy to PyPI. A sample project can be found at this [link](https://github.com/lqdev/TravisTest)
+
+## Prerequisites
+
+- [GitHub Login](https://github.com/)
+- [PyPI Login](https://pypi.python.org/pypi)
+- [virtualenv](https://virtualenv.pypa.io/en/stable/)
+
+### Install virtualenv
+
+```bash
+sudo pip install virtualenv
+```
+
+# Create The Project
+
+For the test project, I will create a module that performs adding, subtracting, increment and decrement operations.
+
+## Define Folder Structure
+
+We start out by creating a directory for our project.
+
+```bash
+mkdir travistest
+```
+
+Inside that directory, we want to have have a directory for our module as well as for our tests. Therefore, we need to create a directory for both of them.
+
+```bash
+mkdir travistest
+mkdir test
+```
+
+Finally, we want to initialize the virtual environment for our project. To do so, we can use the `virtualenv` package. For the project `python 3.5` is the version that will be used.
+
+```bash
+virtualenv -p python3.5 ENV
+```
+
+After installation, a folder with the name `ENV` should appear in the root directory of the project. The final directory structure should look like so:
+
+```text
+travistest
+|_ENV
+|_travistest
+|_test
+```
+
+## Install Modules
+
+For this project, I'll be using `pytest` for unit testing. Before installing anything however, I'll need to activate the virtual environment.
+
+```bash
+source ENV/bin/activate
+```
+
+Once our virtual environment is activated, we can install `pytest`.
+
+```bash
+pip install pytest
+```
+
+After installation, we can persist installed packages inside a `requirements.txt` file with the `freeze` command.
+
+```bash
+pip freeze &gt; requirements.txt
+```
+
+## Create The Module
+
+Inside the `travistest` module directory, the easiest way to create a module is to include an `__init__.py` file inside the directory. It's okay if it's empty.
+
+Therefore, we can start by creating the `__init__` file in that directory.
+
+```bash
+touch __init__.py
+```
+
+Once that's created, we can begin writing the main functionality of our module. Inside a file called `Operations.py`, we can put the following code in.
+
+```python
+class Operations:
+    def __init__(self):
+        pass
+    
+    def add(self,x,y):
+        return x + y
+
+    def subtract(self,x,y):
+        return x - y
+
+    def increment(self,x):
+        return x + 1
+
+    def decrement(self,x):
+    	return x - 1
+```
+
+## Unit Test
+
+Once we have our code, we need to write tests for it. Navigating to the `test` directory, we can add the following code to the `test_operations.py` file.
+
+```python
+from pytest import fixture
+
+@fixture
+def op():
+    from travistest.Operations import Operations
+    return Operations()
+
+def test_add(op):
+    assert op.add(1,2) == 3
+
+def test_subtract(op):
+    assert op.subtract(2,1) == 1
+
+def test_increment(op):
+    assert op.increment(1) == 2
+
+def test_decrement(op):
+assert op.decrement(2) == 1
+```
+
+To make sure everything is working correctly, from the project's root directory, we can run the `pytest` command. If all goes well, an output similar to the one below should appear.
+
+```bash
+============================= test session starts ==============================
+platform linux -- Python 3.5.2, pytest-3.4.0, py-1.5.2, pluggy-0.6.0
+
+collected 4 items                                                              
+
+test/test_operations.py ....                                             [100%]
+
+=========================== 4 passed in 0.04 seconds ===========================
+```
+
+# Prepare For Deployment
+
+To prepare for deployment and uploading to PyPI, we need to add a `setup.py` file to the root directory of our project. The contents of this file for our purposes are mostly metadata that will populate information in PyPI.
+
+```python
+from distutils.core import setup
+
+setup(
+    name='travistest',
+    packages=['travistest'],
+    version='0.0.7',
+    description='Test project to get acquainted with TravisCI',
+    url='https://github.com/lqdev/TravisTest',    
+)
+```
+
+## Setup Travis
+
+### Enable Repository
+
+Assuming that you have a `GitHub` login and a repository has been created for your project:
+
+1. Log into [travis-ci.org](https://travis-ci.org/) with your GitHub credentials.
+2. Once all of your repositores are synced, toggle the switch next to the repository containing your project.
+
+### Configure .travis.yml
+
+Once the project has been enabled, we need fo configure Travis. This is all done using the `.travis.yml` file.
+
+In this file we'll tell Travis that the language of our project is Python version 3.5 and that we'll be using a virtual environment. Additionally we'll require sudo priviliges and target the Ubuntu Xenial 16.04 distribution. All of these configurations can be done as follows.
+
+```yaml
+sudo: required
+dist: xenial
+language: python
+virtualenv:
+  system_site_packages: true
+python:
+- '3.5'
+```
+
+Once that is set up, we can tell it to install all of the dependencies stored in our `requirements.txt` file.
+
+```yaml
+install:
+- pip install -r requirements.txt
+```
+
+After this, we need to tell Travis to run our tests just like we would on our local machine.
+
+```yaml
+script: pytest
+```
+
+Once our tests have run, we need to make sure we are back in the root directory of our project for deployment.
+
+```yaml
+after_script: cd ~
+```
+
+We're done with the automated testing script portion of our project. Now we need to setup deployment options. This section will mainly contain the credentials of your PyPI account.
+
+```yaml
+deploy:
+  provider: pypi
+  user: "YOURUSERNAME"
+```
+
+After setting the provider and user, we need to set the password. Because this will be a public repository DO NOT enter your password on this file. Instead, we can set an encrypted version that only Travis can decrypt. To do so, while in the root directory of our project, we can enter the following command into the terminal.
+
+```bash
+travis encrypt --add deployment.password
+```
+
+Type your password into the terminal and press `Ctrl + D`.
+
+If you take a look at your `.travis.yml` file you should see something like the following in your `deploy` options
+
+```bash
+deploy:
+  provider: pypi
+  user: "YOURUSERNAME"
+  password:
+    secure: "YOURPASSWORD"
+```
+
+The final `.travis.yml` file should like like so
+
+```yaml
+sudo: required
+dist: xenial
+language: python
+virtualenv:
+  system_site_packages: true
+python:
+- '3.5'
+install:
+- pip install -r requirements.txt
+script: pytest
+after_script: cd ~
+deploy:
+  provider: pypi
+  user: "YOURUSERNAME"
+  password:
+    secure: "YOURPASSWORD"
+```
+
+# Deploy
+
+Now that we have everything set up, deployment should be relatively easy. A build is triggered when changes are pushed to the repository on GitHub. Therefore, pushing your local changes to the remote GitHub repository should initialize the build. To track progress, visit the project's page on Travis CI.
+
+**NOTE: WHEN PUSHING NEW CHANGES, INCREMENT VERSION NUMBER IN THE `SETUP.PY` FILE SO THAT EXISTING FILE ERRORS DO NOT CRASH BUILDS**
+
+# Conclusion
+
+In this writeup, we created a Python package that performs basic operations and set up automated testing and deployment with Travis CI. Configurations can be further customized and refined to adapt more complex build processes.]]&gt;</description>
+      <link>https://www.lqdev.me/posts/testing-deploying-python-projects-travisci</link>
+      <guid>https://www.lqdev.me/posts/testing-deploying-python-projects-travisci</guid>
+      <pubDate>2018-02-18 20:51:32 -05:00</pubDate>
+      <category>devops</category>
+      <category>travisci</category>
+      <category>python</category>
+      <category>ci/cd</category>
+      <category>programming</category>
+      <category>development</category>
+    </item>
+    <item>
+      <title>Authorization Code Authentication Flow in Python</title>
+      <description>&lt;![CDATA[
+For the longest time, authentication had been my worst enemy. I took small steps towards becoming comfortable with it. At first I learned Implicit Authorization with AngularJS, then I learned Client Credentials Authorization with Python and C# and finally, I learned Authorization Code authentication with C#. The one that always gave me trouble was Authorization Code authentication because it requires user credentials. 
+
+To help with that, I started with the `WebAuthenticationBroker` in C#. Although, most of it was done for me in terms of creating a `WebView` for users to authenticate with their credentials, I wanted to know whether I could do it myself without having to rely on a service to do it for me. 
+
+First, I had to find an API to test this out with and in an attempt to reduce complexity, I decided to prototype it in Python. As an avid user of [Pocket](http://getpocket.com), I chose its API to learn Authorization Flow authentication. 
+
+# Getting Started 
+
+## Register An Application
+
+In order to get started, we need to register an application with Pocket. This can be done by visiting the following [website](https://getpocket.com/developer/apps/new).
+
+## Install Requests
+
+In order to create HTTP requests, we need to install the `requests` module
+
+```
+pip install requests
+```
+
+# Get Request Token
+
+## Import Modules
+
+```python
+import requests
+import json
+```
+
+## Prepare Request
+
+```python
+consumer_key = "YOUR_CONSUMER_KEY"
+request_url = "https://getpocket.com/v3/oauth/request"
+headers = {"Content-Type":"application/json","X-Accept":"application/json"}
+redirect_uri = "http://www.google.com"
+payload = {"consumer_key":consumer_key,"redirect_uri":redirect_uri}
+```
+
+Notice how the `redirect_uri` is set to `http://www.google.com`. This, for the most part is irrelevant, especially for console/desktop applications. Since this is a console application and we are not hosting a server for it, the value assigned to this field is arbitrary.
+
+## Make Request
+
+```python
+request = requests.post(request_url,headers=headers,data=json.dumps(payload))
+code = request.json()['code']
+code
+```
+
+# Redirect User to Pocket to Continue Authorization
+
+## Import Modules
+
+```python
+import webbrowser
+```
+
+```python
+webbrowser.open('https://getpocket.com/auth/authorize?request_token='+ code + '&amp;redirect_uri=' + redirect_uri)
+```
+
+This will open your default browser and redirect you to an authorization page. After logging in, should you accept giving the application access to your account, it should redirect you to `http://www.google.com`. Once on the Google page, you can close out of it.
+
+# Convert A Request Token Into A Pocket Access Token
+
+After authorizing the application to access your account, you need to exchange the code you received for an access token.
+
+## Prepare the Request
+
+```python
+access_token_url = "https://getpocket.com/v3/oauth/authorize"
+payload = {"consumer_key":consumer_key,"code":code}
+```
+
+## Get Access Token
+
+```python
+access_token_request = requests.post(access_token_url,headers=headers,data=json.dumps(payload))
+access_token = access_token_request.json()['access_token']
+access_token
+```
+
+# Make Authenticated Request
+
+In order to test whether the authentication was successful, try making an authenticated request.
+
+## Prepare Request
+
+```python
+get_url = "https://getpocket.com/v3/get"
+get_payload = {"consumer_key":consumer_key,"access_token":access_token,"contentType":"article","count":10}
+get_request = requests.get(get_url,data=json.dumps(get_payload),headers=headers)
+```
+
+## Get Response
+```python
+response = get_request.json()
+```
+
+## Sample Response
+
+```json
+{'complete': 1,
+ 'error': None,
+ 'list': {'1519049132': {'excerpt': 'Heads up! As part of our efforts to improve security and standards-based interoperability, we have implemented several new features in our authentication flows and made changes to existing ones.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://auth0.com/docs/api-auth/grant/authorization-code-pkce',
+   'has_image': '0',
+   'has_video': '0',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '1519049132',
+   'resolved_id': '1519049132',
+   'resolved_title': 'Calling APIs from Mobile Apps',
+   'resolved_url': 'https://auth0.com/docs/api-auth/grant/authorization-code-pkce',
+   'sort_id': 5,
+   'status': '0',
+   'time_added': '1514493110',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514493110',
+   'word_count': '445'},
+  '1607678551': {'excerpt': 'What is the smallest number of Democrats that could have changed the outcome of the 2016 United States presidential election by relocating to another state? And where should they have moved?  It turns out this question is a variant of the knapsack problem, an NP-hard computer science classic.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://mike.place/2017/ecknapsack/',
+   'has_image': '0',
+   'has_video': '0',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '1607678551',
+   'resolved_id': '1607678551',
+   'resolved_title': 'The Electoral College and the knapsack problem',
+   'resolved_url': 'http://mike.place/2017/ecknapsack/',
+   'sort_id': 7,
+   'status': '0',
+   'time_added': '1514478701',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514478701',
+   'word_count': '1564'},
+  '1616406703': {'excerpt': 'OAuth 2.0 is a protocol that allows a user to grant limited access to their resources on one site, to another site. This is done without the users having to expose their credentials. According to OAuth‘s website the protocol is not unlike a valet key.  Many luxury cars today come with a valet key.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://auth0.com/docs/protocols/oauth2',
+   'has_image': '1',
+   'has_video': '0',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '1616406703',
+   'resolved_id': '1616406703',
+   'resolved_title': 'OAuth 2.0',
+   'resolved_url': 'https://auth0.com/docs/protocols/oauth2',
+   'sort_id': 4,
+   'status': '0',
+   'time_added': '1514493120',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514493120',
+   'word_count': '823'},
+  '1859670338': {'excerpt': 'Last Tuesday saw the official launch of Will Robots Take My Job? and 5 days later we have passed 500K visitors and 4M page views.  To say this surpassed any expectations we had would be a major understatement. This is a recap of how the project got started and the first 5 days after launch.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://hackernoon.com/from-idea-to-4m-page-views-in-4-weeks-622aa194787d?ref=quuu',
+   'has_image': '1',
+   'has_video': '1',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '1859670338',
+   'resolved_id': '1773505341',
+   'resolved_title': 'From Idea to 4M Page Views in 4\xa0Weeks',
+   'resolved_url': 'https://hackernoon.com/from-idea-to-4m-page-views-in-4-weeks-622aa194787d',
+   'sort_id': 0,
+   'status': '0',
+   'time_added': '1514494606',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514494606',
+   'word_count': '1837'},
+  '2001727306': {'amp_url': 'https://venturebeat.com/2017/12/22/how-ibm-builds-an-effective-data-science-team/amp/',
+   'excerpt': 'Data science is a team sport. This sentiment rings true not only with our experiences within IBM, but with our enterprise customers, who often ask us for advice on how to structure data science teams within their own organizations.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://venturebeat.com/2017/12/22/how-ibm-builds-an-effective-data-science-team/',
+   'has_image': '1',
+   'has_video': '0',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '2001727306',
+   'resolved_id': '2001727306',
+   'resolved_title': 'How IBM builds an effective data science team',
+   'resolved_url': 'https://venturebeat.com/2017/12/22/how-ibm-builds-an-effective-data-science-team/',
+   'sort_id': 1,
+   'status': '0',
+   'time_added': '1514493979',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514493979',
+   'word_count': '773'},
+  '2006596547': {'excerpt': 'I ran, a lot, this year— 2017 miles over 280 hours, or just short of 12 full days. For many of you, that seems like a ridiculous amount of distance and time, but to put it in perspective, elite marathoners and ultrarunners easily run two or three times that distance in a year.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://medium.com/run-ruminate/17-thoughts-on-running-life-and-startups-5d305223669b',
+   'has_image': '1',
+   'has_video': '0',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '2006596547',
+   'resolved_id': '2006596547',
+   'resolved_title': '17 thoughts on running, startups, and life while running 2017 miles in\xa02017',
+   'resolved_url': 'https://medium.com/run-ruminate/17-thoughts-on-running-life-and-startups-5d305223669b',
+   'sort_id': 6,
+   'status': '0',
+   'time_added': '1514479812',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514479812',
+   'word_count': '1561'},
+  '2006920392': {'excerpt': 'What the heck is “work” anyway?  In the Information Age, the dictionary definition of the word just doesn’t cut it anymore. Skill sets, jobs, and entire companies are forming daily based on new technology, market demands, and trends that didn’t exist even just a few years ago.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://www.hellosign.com/blog/the-future-of-work',
+   'has_image': '1',
+   'has_video': '0',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '2006920392',
+   'resolved_id': '2006920392',
+   'resolved_title': '4 Pillars Of The Future of Work',
+   'resolved_url': 'https://www.hellosign.com/blog/the-future-of-work',
+   'sort_id': 2,
+   'status': '0',
+   'time_added': '1514493449',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514493449',
+   'word_count': '1805'},
+  '2007117419': {'excerpt': 'Finding a job is not an easy task. There are multiple ways to look for jobs. Multiple steps has to be completed before you are called for an interview. After completing all these the most annoying part is when your interview doesn’t even last for 10 minutes.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://www.jobsstudios.com/blog/interview-tips',
+   'has_image': '0',
+   'has_video': '0',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '2007117419',
+   'resolved_id': '2007117419',
+   'resolved_title': '7 Tips to prepare for an Interview',
+   'resolved_url': 'https://www.jobsstudios.com/blog/interview-tips',
+   'sort_id': 8,
+   'status': '0',
+   'time_added': '1514477292',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514477292',
+   'word_count': '468'},
+  '2007245672': {'excerpt': 'RESTful API Versioning, though a simple and elegant concept, is a LOT harder to enforce than it sounds. It’s hard to not break backward compatibility on a continually evolving API, and though API versioning is a great concept, it’s rarely followed without flaw.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://shift.infinite.red/snapshot-testing-api-calls-the-right-way-58ef59b7f71b',
+   'has_image': '1',
+   'has_video': '1',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '2007245672',
+   'resolved_id': '2007245672',
+   'resolved_title': 'Snapshot Testing API Calls The Right\xa0Way',
+   'resolved_url': 'https://shift.infinite.red/snapshot-testing-api-calls-the-right-way-58ef59b7f71b',
+   'sort_id': 3,
+   'status': '0',
+   'time_added': '1514493189',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514493189',
+   'word_count': '1230'},
+  '234097661': {'excerpt': 'Sanchez examines the question, concluding that intellectuals support government intervention because it makes their work have greater importance.',
+   'favorite': '0',
+   'given_title': '',
+   'given_url': 'https://www.libertarianism.org/blog/why-do-intellecuals-support-government-solutions',
+   'has_image': '0',
+   'has_video': '0',
+   'is_article': '1',
+   'is_index': '0',
+   'item_id': '234097661',
+   'resolved_id': '234097661',
+   'resolved_title': 'Why Do Intellectuals Support Government Solutions?',
+   'resolved_url': 'https://www.libertarianism.org/blog/why-do-intellecuals-support-government-solutions',
+   'sort_id': 9,
+   'status': '0',
+   'time_added': '1514477287',
+   'time_favorited': '0',
+   'time_read': '0',
+   'time_updated': '1514477287',
+   'word_count': '1423'}},
+ 'search_meta': {'search_type': 'normal'},
+ 'since': 1514514495,
+ 'status': 1}
+```
+
+Hope this helps!
+
+###### Sources
+
+[Pocket API](https://getpocket.com/developer/docs/authentication)  
+[Requests](http://docs.python-requests.org/en/master/)]]&gt;</description>
+      <link>https://www.lqdev.me/posts/authorization-code-flow-python</link>
+      <guid>https://www.lqdev.me/posts/authorization-code-flow-python</guid>
+      <pubDate>2017-12-29 18:45:19 -05:00</pubDate>
+      <category>python</category>
+      <category>api</category>
+      <category>programming</category>
+      <category>security</category>
+      <category>authentication</category>
+    </item>
+  </channel>
+</rss>

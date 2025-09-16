@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - ghost</title>
+    <link>https://www.lqdev.me/tags/ghost</link>
+    <description>All content tagged with 'ghost' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-18 19:31 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Reflections on the social web</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The work of a product team, when working with new technology, is to abstract away as much of this complexity as possible, so that it feels friendly and approachable to new people.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;My strongest belief about the social web is that if we want it to succeed, we have to keep lowering the barrier to entry.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/reflections-on-social-web</link>
+      <guid>https://www.lqdev.me/responses/reflections-on-social-web</guid>
+      <pubDate>2025-08-18 19:31 -05:00</pubDate>
+      <category>ghost</category>
+      <category>socialweb</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>Ghost 6.0</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In Ghost 6.0 we're introducing another new distribution channel: The social web. Now, millions of people can discover, follow, like and reply to your posts from any supported social web client - including Bluesky, Mastodon, Threads, Flipboard, Ghost, WordPress, Surf, WriteFreely, and many more.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Just as people can visit your Ghost website in any browser, subscribe with any feed reader, or receive newsletters in any email client, they can now follow your Ghost publication from any social web client.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Unlike closed platforms with restrictive algorithms, open web protocols create a direct connection between you and your subscribers which you have full control over.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;If you've been around on the web for while, and you can remember back that far... you might even call it the return of the blogosphere.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Love the introduction of social components to the Ghost platform. I'm so ready for the return of the blogosphere and the return to open protocols.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/ghost-6-changelog</link>
+      <guid>https://www.lqdev.me/responses/ghost-6-changelog</guid>
+      <pubDate>2025-08-18 19:24 -05:00</pubDate>
+      <category>ghost</category>
+      <category>fediverse</category>
+      <category>socialweb</category>
+      <category>publishing</category>
+    </item>
+    <item>
+      <title>Ghost is federating over ActivityPub</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In 2024, Ghost is adopting ActivityPub and connecting with other federated platforms across the web.&lt;br /&gt;
+&lt;br&gt;
+This means that, soon, Ghost publishers will be able to follow, like and interact with one another in the same way that you would normally do on a social network — but on your own website.&lt;br /&gt;
+&lt;br&gt;
+The difference, of course, is that you’ll also be able to follow, like, and interact with users on Mastodon, Threads, Flipboard, Buttondown, WriteFreely, Tumblr, WordPress, PeerTube, Pixelfed... or any other platform that has adopted ActivityPub, too. You don’t need to limit yourself to following people who happen to use the same platform as you.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;For the past few years the choice has been difficult. Either participate in closed networks at the mercy of algorithms, or set up an independent website at the expense of your growth.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Email gave us private messaging technology that isn’t owned by a single company.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;ActivityPub is doing the same for social technology.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The open web is coming back, and with it returns diversity. You can both publish independently and grow faster than ever before with followers from all over the world &amp;amp; the web.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I can't express how much I love this. Personally I don't use Ghost, but given platforms like WordPress and now Ghost are adding support for ActivityPub, it empowers people to build their own platforms.&lt;/p&gt;
+&lt;p&gt;That said, this still doesn't address the challenges of building your own website, which as mentioned in the post are one of the appealing aspects of current closed networks.&lt;/p&gt;
+&lt;p&gt;Still though, there is a vast number of creators, businesses, and company websites or blogs that can benefit from this today. When paired with RSS, it gives people choice and autonomy in how they create and consume content as I mentioned in a previous post, &lt;a href="https://www.lqdev.me/posts/rediscovering-rss-user-freedom"&gt;Rediscovering the RSS protocol&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/ghost-activitypub-integration-announcement</link>
+      <guid>https://www.lqdev.me/responses/ghost-activitypub-integration-announcement</guid>
+      <pubDate>2024-04-25 22:11 -05:00</pubDate>
+      <category>ghost</category>
+      <category>openweb</category>
+      <category>activitypub</category>
+      <category>fediverse</category>
+      <category>blogging</category>
+      <category>websites</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>404 Media Now Has a Full Text RSS Feed</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We paid for the development of full text RSS feeds for Ghost-based publishers. Now we can offer them to our paid subscribers, and other Ghost sites can use the service too.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our friends Anil Dash and Ernie Smith have recently written passionately and persuasively about the importance of RSS to the open web, and about how a technology that turns 25 years old this month remains both subversive and quite versatile. RSS-based distribution underpins a podcasting ecosystem that has allowed for shows to be distributed not just on Apple Podcasts but on Spotify, Google Podcasts, Pocket Casts, Overcast, and whatever other podcast player you might want to listen on. “Being able to say, ‘wherever you get your podcasts’ is a radical statement,” Dash wrote. “Because what it represents is the triumph of exactly the kind of technology that's supposed to be impossible: open, empowering tech that's not owned by any one company, that can't be controlled by any one company, and that allows people to have ownership over their work and their relationship with their audience.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;RSS has empowered podcasters, but that it needs a “creator economy rethink” for text.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/404-media-full-text-rss</link>
+      <guid>https://www.lqdev.me/responses/404-media-full-text-rss</guid>
+      <pubDate>2024-03-26 21:16 -05:00</pubDate>
+      <category>rss</category>
+      <category>404media</category>
+      <category>ghost</category>
+      <category>404</category>
+      <category>media</category>
+      <category>protocols</category>
+      <category>opensource</category>
+      <category>technology</category>
+    </item>
+    <item>
+      <title>Migrating from Substack to self-hosted Ghost</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I have found myself with a roughly $103/mo setup...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;However, more important to me than the exact price is the degree of control I have over my own not-a-platform...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I realize that this is...a lot. If you are a newsletter writer looking to flee the Substack ship, please don't let this discourage you.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Love seeing this! Whether through self-hosted or hosted options, I hope more people get to experience the benefits of owning their own platform.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/migrating-substack-self-hosted-ghost-white</link>
+      <guid>https://www.lqdev.me/responses/migrating-substack-self-hosted-ghost-white</guid>
+      <pubDate>2024-01-14 16:11 -05:00</pubDate>
+      <category>substack</category>
+      <category>selfhost</category>
+      <category>indieweb</category>
+      <category>ghost</category>
+    </item>
+  </channel>
+</rss>

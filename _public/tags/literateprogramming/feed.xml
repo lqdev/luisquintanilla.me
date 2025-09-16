@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - literateprogramming</title>
+    <link>https://www.lqdev.me/tags/literateprogramming</link>
+    <description>All content tagged with 'literateprogramming' by Luis Quintanilla</description>
+    <lastBuildDate>2024-01-13 09:38 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Marimo</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;marimo is an open-source reactive notebook for Python — reproducible, git-friendly, executable as a script, and shareable as an app.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/marimo-notebook</link>
+      <guid>https://www.lqdev.me/bookmarks/marimo-notebook</guid>
+      <pubDate>2024-01-13 09:38 -05:00</pubDate>
+      <category>notebook</category>
+      <category>programming</category>
+      <category>literateprogramming</category>
+    </item>
+  </channel>
+</rss>

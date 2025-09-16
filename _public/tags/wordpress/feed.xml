@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - wordpress</title>
+    <link>https://www.lqdev.me/tags/wordpress</link>
+    <description>All content tagged with 'wordpress' by Luis Quintanilla</description>
+    <lastBuildDate>2025-06-30 20:21 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Tumblr’s move to WordPress and fediverse integration is ‘on hold’</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;That's unfortunate. Having Tumblr as your frontend for posting and curating feeds, with WordPress as the backend and integrated with decentralized networks like the Fediverse for distribution would've been amazing. It sounds like Tumblr is still strategic to Automattic and as more people move away from the centralized social platforms and towards their own corners of the internet, having these differente building blocks in place will be even more important.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/tumblr-wordpress-fediverse-integration-pause</link>
+      <guid>https://www.lqdev.me/responses/tumblr-wordpress-fediverse-integration-pause</guid>
+      <pubDate>2025-06-30 20:21 -05:00</pubDate>
+      <category>tumblr</category>
+      <category>wordpress</category>
+      <category>fediverse</category>
+      <category>automattic</category>
+    </item>
+    <item>
+      <title>State of the Word 2024</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Cool retrospective and announcements from this WordPress' State of the Word 2024.&lt;/p&gt;
+&lt;p&gt;Focused mode and templates look interesting.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=KLybH5YvIPQ" title="State of the Word 2024 YouTube Thumbnail"&gt;&lt;img src="http://img.youtube.com/vi/KLybH5YvIPQ/0.jpg" class="img-fluid" alt="State of the Word 2024 YouTube Thumbnail" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/state-of-the-word-2024-wordpress</link>
+      <guid>https://www.lqdev.me/responses/state-of-the-word-2024-wordpress</guid>
+      <pubDate>2024-12-17 16:50 -05:00</pubDate>
+      <category>wordpress</category>
+      <category>conference</category>
+      <category>blogging</category>
+      <category>website</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>Tumblr adds Reddit-like ‘communities’</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Tumblr is introducing a new Community feature — in-app groups organized by topic or interest.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Communities are similar to subreddits or Facebook groups and had previously been in beta.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Given recent announcements like &lt;a href="https://www.lqdev.me/responses/shipping-wordpress-tumblr/"&gt;Tumblr replatforming on top of WordPress&lt;/a&gt; and &lt;a href="https://www.lqdev.me/responses/wordpress-activitypub-plugin/"&gt;WordPress adding support for ActivityPub&lt;/a&gt;, I could see communities becoming not only an alternative to Reddit, but also Lemmy in the Fediverse.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/tumblr-adding-reddit-like-communities</link>
+      <guid>https://www.lqdev.me/responses/tumblr-adding-reddit-like-communities</guid>
+      <pubDate>2024-12-16 22:00 -05:00</pubDate>
+      <category>tumblr</category>
+      <category>reddit</category>
+      <category>communities</category>
+      <category>automattic</category>
+      <category>wordpress</category>
+      <category>activitypub</category>
+      <category>fediverse</category>
+      <category>lemmy</category>
+    </item>
+    <item>
+      <title>Shipping Tumblr and WordPress</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Since Automattic acquired Tumblr we’ve made it more efficient, grown its revenue, and worked to improve the platform. But there’s one part of the plan that we haven’t yet started, which is to run Tumblr on WordPress. I’m pleased to say we’re kicking off that project now!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A little late, but I can't express how much I love this.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We love Tumblr’s streamlined posting experience and its current product direction. We’re not changing that. We’re talking about running Tumblr’s backend on WordPress. You won’t even notice a difference from the outside.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Although it sounds outside the scope of the original plan, it would be amazing if the shared backend as well as the Tumblr publishing front-end made their way into the open-source version of WordPress.&lt;/p&gt;
+&lt;p&gt;That would open the door to self-hosted personal websites that also make it significantly easier to post content in smaller chunks like a microblog.&lt;/p&gt;
+&lt;p&gt;Pair that with ActivityPub integrations and you now have a connected web of individuals where the first place they post content to is their own website and for discovery / broader reach can also federate and post to other platforms that also support protocols like ActivityPub.&lt;/p&gt;
+&lt;p&gt;Can't wait to see how this project develops.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Do you yearn for the days when people owned their corner of the internet and expressed themselves in wild and wacky ways? Do you want to see an internet focused on creativity, art, and ideas instead of debating and dividing? Do you think content and data should be owned by authors and artists, instead of getting locked behind the closed platform of a mega-corporation? Do you want to build an internet where anyone with a story can tell it, and anyone with a product can sell it, regardless of income, gender, politics, language, or where they live in the world?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The answer to all of those is YES.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/shipping-wordpress-tumblr</link>
+      <guid>https://www.lqdev.me/responses/shipping-wordpress-tumblr</guid>
+      <pubDate>2024-09-05 22:15 -05:00</pubDate>
+      <category>wordpress</category>
+      <category>tumblr</category>
+      <category>personalweb</category>
+      <category>blogging</category>
+      <category>indieweb</category>
+      <category>microblog</category>
+      <category>posse</category>
+      <category>smallweb</category>
+      <category>automattic</category>
+    </item>
+    <item>
+      <title>21 Years of WordPress</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;21 years since Mike and I did the first release of WordPress, forking Michel’s work on b2/cafélog.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I’ve been thinking a lot about elements that made WordPress successful in its early years that we should keep in mind as we build this year and beyond. Here’s 11 opinions:&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Simple things should be easy and intuitive, and complex things possible.&lt;br /&gt;
+&lt;br&gt;...&lt;/li&gt;
+&lt;li&gt;Wikis are amazing, and our documentation should be wiki-easy to edit.&lt;br /&gt;
+&lt;br&gt;...&lt;/li&gt;
+&lt;li&gt;It’s important that we all do support, go to meetups and events, anything we can to stay close to regular end-users of what we make.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Congrats to WordPress and the team on 21 years. I think the following are some good elements to keep building on.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/21-years-of-wordpress</link>
+      <guid>https://www.lqdev.me/responses/21-years-of-wordpress</guid>
+      <pubDate>2024-05-27 21:05 -05:00</pubDate>
+      <category>wordpress</category>
+      <category>blogging</category>
+      <category>web</category>
+      <category>anniversary</category>
+      <category>opensource</category>
+      <category>openweb</category>
+    </item>
+    <item>
+      <title>Tumblr and WordPress to Sell Users’ Data to Train AI Tools</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Tumblr and WordPress.com are preparing to sell user data to Midjourney and OpenAI, according to a source with internal knowledge about the deals and internal documentation referring to the deals&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The internal documentation details a messy and controversial process within Tumblr itself. One internal post made by Cyle Gage, a product manager at Tumblr, states that a query made to prepare data for OpenAI and Midjourney compiled a huge number of user posts that it wasn’t supposed to. It is not clear from Gage’s post whether this data has already been sent to OpenAI and Midjourney, or whether Gage was detailing a process for scrubbing the data before it was to be sent.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I generally enjoy what Automattic does for the web as a whole. However, if these claims are true, it's unfortunate. I believe there's a way to opt-out, but I'd love to learn more before jumping to conclusions.&lt;/p&gt;
+&lt;p&gt;That said, WordPress (.com not .org) and Tumblr are platforms just like Reddit, Twitter, and the Meta set of offerings. I'm sure somewhere in their Terms of Service, there's some clauses around their ownserhip of the data you published on their platforms and just like it's sold to data brokers and advertisers, they can also sell it to companies training AI models.&lt;/p&gt;
+&lt;p&gt;To counter these types of moves from platforms, I wish it were as easy as saying &lt;a href="https://indieweb.org/own_your_data"&gt;&amp;quot;build your own platform&amp;quot;&lt;/a&gt;. Doing so can be as &amp;quot;simple&amp;quot; as setting up a website using &lt;a href="https://indieweb.org/own_your_links"&gt;your own domain&lt;/a&gt;. Unfortunately, today, it's still not as easy to do and one of the products / companies that help you do that is WordPress. I think it's important though to note the distinction there between WordPress the company and WordPress the technology. Another piece that complicates building your own site is, there's still other ways for companies training AI models to use data that's publicly available on the internet. These are the arguments that are currently being litigated in several legal cases. Maybe there are opportunities to explore &lt;a href="https://www.lqdev.me/responses/verge-ai-robots-txt/"&gt;a robots.txt for AI&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;AI models need high quality data that's representative and as close as possible to the real world in order to improve. There is a role here for &lt;a href="https://www.lqdev.me/responses/cosmopedia-ai-synthetic-dataset/"&gt;synthetic data&lt;/a&gt;. High quality synthetic data is behind &lt;a href="https://www.lqdev.me/responses/phi-2-huggingface/"&gt;groundbreaking models like Microsoft's Phi&lt;/a&gt;. Instincts tell me that synthetic data can only go so far though and real data is still needed. In that case, as an AI consumer who makes use of these AI models, but don't want to contribute my data, do I have a responsibility to contribute my data to improve the systems that I use? Piracy aside, in some ways it reminds me of torrenting. You usually run into scenarios where there are multiple people downloading a file. However, there's only a handful of seeders who once obtained, make the file available for others to download. There are also additional considerations such as how people are compensated for contributing their data to these systems. It's important to note that this is not a new problem and people had been thinking about this though in different contexts. Maybe it's time to reconsider ideas like &lt;a href="https://www.microsoft.com/research/wp-content/uploads/2016/02/Inverse11.pdf"&gt;inverse privacy&lt;/a&gt; and &lt;a href="https://hbr.org/2018/09/a-blueprint-for-a-better-digital-society"&gt;data dignity&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There are no clear answers here and there are a lot of things to consider. However, it's comforting that as a society we're having these conversations.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/automattic-ai-data-tumblr-wordpress</link>
+      <guid>https://www.lqdev.me/responses/automattic-ai-data-tumblr-wordpress</guid>
+      <pubDate>2024-02-27 21:09 -05:00</pubDate>
+      <category>tumblr</category>
+      <category>automattic</category>
+      <category>wordpress</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>Gravatar - Your digital profile beyond blog comments</title>
+      <description>&lt;![CDATA[&lt;p&gt;I had known about &lt;a href="https://gravatar.com/"&gt;Gravatar&lt;/a&gt; since its early days. I was under the (incorrect) impression that it could only be used to comment on blogs. I thought when you created an account, you added your name, e-mail, and image as part of your profile. Then, when you wanted to comment on blogs, instead of creating individual accounts or profiles, you could just reuse your Gravatar profile. That's partially true. However, I'm happy to report I was wrong and there's so much more.&lt;/p&gt;
+&lt;p&gt;While commenting on &lt;a href="https://www.lqdev.me/responses/blog-posts-can-be-any-length-matt"&gt;Matt Mullenweg's Birthday Gift post&lt;/a&gt;, I didn't use a Gravatar profile. This prompted Matt to kindly respond via e-mail and suggest I check out Gravatar. I put it off for a few days. Eventually, I decided to check it out and I'm glad I did. Thanks &lt;a href="https://ma.tt"&gt;Matt&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;The signup process was simple. All I had to do was enter my e-mail address. This immediately sent me a confirmation e-mail which I then used to proceed with onboarding.&lt;/p&gt;
+&lt;p&gt;Here's where things got interesting.&lt;/p&gt;
+&lt;p&gt;You can add all the things I was already aware of (name, e-mail, photo). However, you can also do much more than that! You can add your own verified accounts, links, contact information, and payments.&lt;/p&gt;
+&lt;p&gt;As of the time of this writing these options include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Accounts
+&lt;ul&gt;
+&lt;li&gt;WordPress&lt;/li&gt;
+&lt;li&gt;Instagram&lt;/li&gt;
+&lt;li&gt;X / Twitter&lt;/li&gt;
+&lt;li&gt;TikTok&lt;/li&gt;
+&lt;li&gt;Tumblr&lt;/li&gt;
+&lt;li&gt;Mastodon&lt;/li&gt;
+&lt;li&gt;GitHub&lt;/li&gt;
+&lt;li&gt;Twitch&lt;/li&gt;
+&lt;li&gt;Fediverse&lt;/li&gt;
+&lt;li&gt;Stackoverflow&lt;/li&gt;
+&lt;li&gt;Calendly&lt;/li&gt;
+&lt;li&gt;Vimeo&lt;/li&gt;
+&lt;li&gt;TripIt&lt;/li&gt;
+&lt;li&gt;Foursquare&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Contact info
+&lt;ul&gt;
+&lt;li&gt;E-mail&lt;/li&gt;
+&lt;li&gt;Phone number (home, work, mobile)&lt;/li&gt;
+&lt;li&gt;Contact form&lt;/li&gt;
+&lt;li&gt;Calendar&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Payments
+&lt;ul&gt;
+&lt;li&gt;PayPal&lt;/li&gt;
+&lt;li&gt;Patron&lt;/li&gt;
+&lt;li&gt;Venmo&lt;/li&gt;
+&lt;li&gt;Crypto
+&lt;ul&gt;
+&lt;li&gt;Bitcoin&lt;/li&gt;
+&lt;li&gt;Litecoin&lt;/li&gt;
+&lt;li&gt;Dogecoin&lt;/li&gt;
+&lt;li&gt;Ethereum&lt;/li&gt;
+&lt;li&gt;XRP&lt;/li&gt;
+&lt;li&gt;Cardano&lt;/li&gt;
+&lt;li&gt;Custom&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In addition to those integrations, you can also provide as many of your own custom links as you'd like. In my case, I've chosen to link to my &lt;a href="https://www.lqdev.me/"&gt;website&lt;/a&gt; and &lt;a href="https://www.lqdev.me/feed"&gt;RSS feeds&lt;/a&gt;. The options are endless though.&lt;/p&gt;
+&lt;p&gt;I don't have a &lt;a href="https://linktr.ee/"&gt;Linktree&lt;/a&gt; profile so I can't objectively say how Gravatar compares to those offerings. At their core though, Gravatar and Linktree seem to address similar problems.&lt;/p&gt;
+&lt;p&gt;If you're not yet committed to having your own place on the internet (website/blog) or if you're looking for a way to organize your digital identity in single place, Gravatar is an excellent option. I'd encourage you to check it out.&lt;/p&gt;
+&lt;p&gt;You can find my Gravatar profile at &lt;a href="https://www.lqdev.me/gravatar"&gt;lqdev.me/gravatar&lt;/a&gt;!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/gravatar-digital-profile-beyond-blog-comments</link>
+      <guid>https://www.lqdev.me/notes/gravatar-digital-profile-beyond-blog-comments</guid>
+      <pubDate>2024-01-15 11:18 -05:00</pubDate>
+      <category>profile</category>
+      <category>online</category>
+      <category>gravatar</category>
+      <category>website</category>
+      <category>web</category>
+      <category>comments</category>
+      <category>internet</category>
+      <category>automattic</category>
+      <category>wordpress</category>
+      <category>identity</category>
+      <category>linktree</category>
+      <category>indieweb</category>
+      <category>socialmedia</category>
+      <category>blog</category>
+      <category>bloggin</category>
+    </item>
+    <item>
+      <title>Birthday Gift - I want you to blog</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;the gift I most want for my 40th is something everyone can do.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I want you to blog.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Publish a post. About anything! It can be long or short, a photo or a video, maybe a quote or a link to something you found interesting. Don’t sweat it. Just blog. Share something you created, or amplify something you enjoyed. It doesn’t take much. The act of publishing will be a gift for you and me.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;That’s it! No wrapping paper or bows. Just blogs and blogs and blogs, each unique and beautiful in its own way.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/i-want-you-to-blog-mullenweg</link>
+      <guid>https://www.lqdev.me/responses/i-want-you-to-blog-mullenweg</guid>
+      <pubDate>2024-01-03 00:16 -05:00</pubDate>
+      <category>blogging</category>
+      <category>wordpress</category>
+      <category>writing</category>
+      <category>community</category>
+    </item>
+    <item>
+      <title>State of the Word 2023</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;State of the Word is the annual keynote address delivered by the WordPress project’s co-founder, Matt Mullenweg, celebrating the progress of the open source project and offering a glimpse into its future.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=c7M4mBVgP3Y" title="State of the Word 2023"&gt;&lt;img src="http://img.youtube.com/vi/c7M4mBVgP3Y/0.jpg" class="img-fluid" alt="State of the Word 2023" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/state-of-the-word-2023</link>
+      <guid>https://www.lqdev.me/bookmarks/state-of-the-word-2023</guid>
+      <pubDate>2023-12-12 19:17 -05:00</pubDate>
+      <category>wordpress</category>
+      <category>blogging</category>
+      <category>web</category>
+      <category>opensource</category>
+      <category>community</category>
+    </item>
+    <item>
+      <title>Engage a Wider Audience With ActivityPub on WordPress.com</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Exciting times are here for all WordPress.com users! The revolutionary ActivityPub feature is now available across all WordPress.com plans, unlocking a world of engagement and interaction for your blog. Your blogs can now be part of the rapidly expanding fediverse, which enables you to connect with a broader audience and attract more followers.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I can't believe I missed these news but so exciting!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/activitypub-plugin-available-hosted-wordpress</link>
+      <guid>https://www.lqdev.me/responses/activitypub-plugin-available-hosted-wordpress</guid>
+      <pubDate>2023-10-14 20:57 -05:00</pubDate>
+      <category>activitypub</category>
+      <category>mastodon</category>
+      <category>wordpress</category>
+      <category>blogging</category>
+    </item>
+    <item>
+      <title>WordPress ActivityPub Plugin</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;I can't believe I missed this announcement. This is great to see!&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Enter the fediverse with ActivityPub, broadcasting your blog to a wider audience! Attract followers, deliver updates, and receive comments from a diverse user base of ActivityPub-compliant platforms.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;With the ActivityPub plugin installed, your WordPress blog itself function as a federated profile, along with profiles for each author. For instance, if your website is example.com, then the blog-wide profile can be found at @example.com@example.com, and authors like Jane and Bob would have their individual profiles at @jane@example.com and @bobz@example.com, respectively.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/wordpress-activitypub-plugin</link>
+      <guid>https://www.lqdev.me/responses/wordpress-activitypub-plugin</guid>
+      <pubDate>2023-09-17 12:32 -05:00</pubDate>
+      <category>wordpress</category>
+      <category>activitypub</category>
+      <category>fediverse</category>
+      <category>openweb</category>
+      <category>decentralization</category>
+      <category>internet</category>
+      <category>blogging</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>WordPress at 25 and the Indie Web</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Good discussion on the open web, self-hosting, radio, and the indie web.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/podcast-wordpress-indieweb-reality2</link>
+      <guid>https://www.lqdev.me/responses/podcast-wordpress-indieweb-reality2</guid>
+      <pubDate>2023-08-30 21:02 -05:00</pubDate>
+      <category>podcast</category>
+      <category>indieweb</category>
+      <category>wordpress</category>
+      <category>selfhost</category>
+      <category>radio</category>
+      <category>openweb</category>
+      <category>fediverse</category>
+    </item>
+    <item>
+      <title>Making Large Language Models Work For You</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;My goal today is to provide practical, actionable advice for getting the most out of Large Language Models—both for personal productivity but also as a platform that you can use to build things that you couldn’t build before.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/making-llms-work-for-you-willison</link>
+      <guid>https://www.lqdev.me/bookmarks/making-llms-work-for-you-willison</guid>
+      <pubDate>2023-08-29 19:57 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>wordpress</category>
+      <category>presentation</category>
+    </item>
+    <item>
+      <title>WordPress Playground</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Not a WordPress user but this is cool, especially this - &lt;em&gt;&amp;quot;Build an entire site, save it, host it&amp;quot;&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;WordPress Playground makes WordPress instantly accessible for users, learners, extenders, and contributors. You can:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Try a block, a theme, or a plugin&lt;/li&gt;
+&lt;li&gt;Build an entire site, save it, host it&lt;/li&gt;
+&lt;li&gt;Test your plugin with many specific WordPress and PHP versions&lt;/li&gt;
+&lt;li&gt;Embed a real, interactive WordPress site in your tutorial or course&lt;/li&gt;
+&lt;li&gt;Showcase a plugin or theme on your website&lt;/li&gt;
+&lt;li&gt;Preview pull requests from your repository&lt;/li&gt;
+&lt;li&gt;…or even run WordPress locally using the VisualStudio Code plugin or a CLI tool called wp-now&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/wordpress-playground</link>
+      <guid>https://www.lqdev.me/responses/wordpress-playground</guid>
+      <pubDate>2023-07-15 00:27 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>wordpress</category>
+      <category>openweb</category>
+    </item>
+    <item>
+      <title>WordPress - Newsletter paid subscriptions</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...we’re introducing a big update — the ability to add paid subscriptions and premium content, whatever plan you’re on. Including the Free plan.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Paid subscriptions let your fans support your art, writing, or project directly.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/wordpress-paid-newsletter</link>
+      <guid>https://www.lqdev.me/responses/wordpress-paid-newsletter</guid>
+      <pubDate>2023-06-01 21:00 -05:00</pubDate>
+      <category>web</category>
+      <category>blogging</category>
+      <category>wordpress</category>
+      <category>newsletters</category>
+    </item>
+  </channel>
+</rss>

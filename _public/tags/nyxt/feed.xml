@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - nyxt</title>
+    <link>https://www.lqdev.me/tags/nyxt</link>
+    <description>All content tagged with 'nyxt' by Luis Quintanilla</description>
+    <lastBuildDate>2024-07-28 16:53 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Nyxt Emacs Hacks</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;Saving this guide for future reference as I set up my elfeed / Nyxt capture workflows for the website.&lt;/p&gt;
+&lt;p&gt;Additional articles that might be helpful.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ag91.github.io/blog/2021/07/09/org-capture-in-nyxt-taking-notes-while-browsing/"&gt;Org capture in Nyxt: Taking Notes While Browsing&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/nyxt-emacs-hacks</link>
+      <guid>https://www.lqdev.me/bookmarks/nyxt-emacs-hacks</guid>
+      <pubDate>2024-07-28 16:53 -05:00</pubDate>
+      <category>nyxt</category>
+      <category>emacs</category>
+      <category>orgmode</category>
+      <category>capture</category>
+      <category>templates</category>
+      <category>workflow</category>
+      <category>lisp</category>
+    </item>
+  </channel>
+</rss>

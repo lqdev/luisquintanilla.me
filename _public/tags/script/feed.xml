@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - script</title>
+    <link>https://www.lqdev.me/tags/script</link>
+    <description>All content tagged with 'script' by Luis Quintanilla</description>
+    <lastBuildDate>09/25/2022 15:13 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Webmentions Verification</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;Sample script that shows how to perform Webmention verification per &lt;a href="https://www.w3.org/TR/webmention/#webmention-verification"&gt;Webmentions specification&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet fsi webmention-verification.fsx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;webmention-verification.fsx&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;// https://www.w3.org/TR/webmention/#webmention-verification
+
+#r &amp;quot;nuget:FSharp.Data&amp;quot;
+#r &amp;quot;nuget: Microsoft.AspNetCore.WebUtilities, 2.2.0&amp;quot;
+
+open System
+open System.Net
+open System.Net.Http
+open System.Net.Http.Headers
+open System.Collections.Generic
+open Microsoft.AspNetCore.WebUtilities
+open FSharp.Data
+
+type WebmentionVerificationResult = 
+    | TaggedMention of {| Replies: bool; Likes: bool; Reposts: bool|}
+    | UntaggedMention
+    | Error of string
+
+let getFormContent (request:HttpRequestMessage) =
+    async {
+        let! content = request.Content.ReadAsStringAsync() |&amp;gt; Async.AwaitTask
+        let query = QueryHelpers.ParseQuery(content)
+        let source = query[&amp;quot;source&amp;quot;] |&amp;gt; Seq.head
+        let target = query[&amp;quot;target&amp;quot;] |&amp;gt; Seq.head
+
+        return source,target
+    }
+
+let cont =  
+    dict [
+        (&amp;quot;source&amp;quot;,&amp;quot;https://raw.githubusercontent.com/lqdev/fsadvent-2021-webmentions/main/reply.html&amp;quot;)
+        (&amp;quot;target&amp;quot;,&amp;quot;https://webmention.rocks/test/1&amp;quot;)
+    ]
+
+let buildSampleRequestMessage (content:IDictionary&amp;lt;string,string&amp;gt;) = 
+
+    let reqMessage = new HttpRequestMessage()
+    reqMessage.Content &amp;lt;- new FormUrlEncodedContent(content)
+
+    reqMessage
+
+let req = buildSampleRequestMessage cont
+
+// verification
+
+let source,target = 
+    req
+    |&amp;gt; getFormContent
+    |&amp;gt; Async.RunSynchronously
+
+let getMentionUsingCssSelector (doc:HtmlDocument) (selector:string) (target:string) = 
+    doc.CssSelect(selector)
+    |&amp;gt; List.map(fun x -&amp;gt; x.AttributeValue(&amp;quot;href&amp;quot;))
+    |&amp;gt; List.filter(fun x -&amp;gt; x = target)    
+
+let hasMention (mentions:string list) = 
+    mentions |&amp;gt; List.isEmpty |&amp;gt; not
+
+let verifyWebmentions (source:string) (target:string)= 
+    async {
+        use client = new HttpClient()
+        let reqMessage = new HttpRequestMessage(new HttpMethod(&amp;quot;Get&amp;quot;), source)
+        reqMessage.Headers.Accept.Clear()
+        
+        // Only accept text/html content
+        reqMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(&amp;quot;text/html&amp;quot;))
+        
+        // Get document
+        let! res = client.SendAsync(reqMessage) |&amp;gt; Async.AwaitTask
+        
+        // Verify webmention
+        let webmentions = 
+            match res.IsSuccessStatusCode with 
+            | true -&amp;gt;
+                // Get document contents
+                let body = 
+                    async {
+                        return! res.Content.ReadAsStringAsync() |&amp;gt; Async.AwaitTask
+                    } |&amp;gt; Async.RunSynchronously
+
+                // Parse document
+                let doc = HtmlDocument.Parse(body)
+
+                // Get links tagged as replies using microformats
+                let replies = 
+                    getMentionUsingCssSelector doc &amp;quot;.u-in-reply-to&amp;quot; target
+
+                // Get links tagged as likes using microformats
+                let likes = 
+                    getMentionUsingCssSelector doc &amp;quot;.u-in-like-of&amp;quot; target
+
+                // Get links tagged as repost using microformats
+                let shares = 
+                    getMentionUsingCssSelector doc &amp;quot;.u-in-repost-of&amp;quot; target
+
+                // Get untagged mentions
+                let mentions = 
+                    getMentionUsingCssSelector doc &amp;quot;a&amp;quot; target
+
+                // Collect all tagged mentions
+                let knownInteractions = 
+                    [replies;likes;shares] 
+                    |&amp;gt; List.collect(id)
+
+                // Choose tagged mentions before untagged mentions
+                match knownInteractions.IsEmpty,mentions.IsEmpty with 
+                | true,true -&amp;gt; Error &amp;quot;Target not mentioned&amp;quot;
+                | true,false | false,false -&amp;gt; 
+                    TaggedMention 
+                        {|
+                            Replies = hasMention replies 
+                            Likes = hasMention likes
+                            Reposts = hasMention shares
+                        |}
+                | false,true -&amp;gt; UntaggedMention 
+
+            | false -&amp;gt; 
+                Error &amp;quot;Unable to get source&amp;quot;
+        return webmentions            
+    }
+
+verifyWebmentions source target
+|&amp;gt; Async.RunSynchronously
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Sample Output&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Interactions { 
+    Likes = false
+    Replies = true
+    Shares = false }
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/webmentions-verification</link>
+      <guid>https://www.lqdev.me/resources/snippets/webmentions-verification</guid>
+      <pubDate>09/25/2022 15:13 -05:00</pubDate>
+      <category>f#</category>
+      <category>indieweb</category>
+      <category>webmentions</category>
+      <category>internet</category>
+      <category>web</category>
+      <category>social</category>
+      <category>interactive</category>
+      <category>script</category>
+    </item>
+    <item>
+      <title>Webmentions Request Verification</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;Sample script that shows how to perform Webmention request verification per &lt;a href="https://www.w3.org/TR/webmention/#request-verification"&gt;Webmentions specification&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet fsi request-verification.fsx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;request-verification.fsx&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;// https://www.w3.org/TR/webmention/#request-verification
+
+// 1. Send response with 202 Accepted to acknowledge successful request
+// 2. DONE: Check that the protocol is http or https
+// 3. DONE: Source URL is different than Target URL
+// 4. DONE Check that Target URL is a valid resource
+
+#r &amp;quot;nuget: Microsoft.AspNetCore.WebUtilities, 2.2.0&amp;quot;
+
+open System
+open System.Net
+open System.Net.Http
+open System.Collections.Generic
+open Microsoft.AspNetCore.WebUtilities
+
+type RequestVerificationResult =
+    | Ok of HttpRequestMessage
+    | Error of string
+
+// Parse Form URL Encoded string
+let getFormContent (request:HttpRequestMessage) =
+    async {
+        let! content = request.Content.ReadAsStringAsync() |&amp;gt; Async.AwaitTask
+        let query = QueryHelpers.ParseQuery(content)
+        let source = query[&amp;quot;source&amp;quot;] |&amp;gt; Seq.head
+        let target = query[&amp;quot;target&amp;quot;] |&amp;gt; Seq.head
+
+        return source,target
+    }
+
+// Check protocol is HTTP or HTTPS
+let checkProtocol (request: RequestVerificationResult) =
+    match request with 
+    | Ok m -&amp;gt; 
+        let source,target = 
+            async {
+                return! getFormContent(m)
+            } |&amp;gt; Async.RunSynchronously
+
+        let isProtocolValid = 
+            match source.StartsWith(&amp;quot;http&amp;quot;),target.StartsWith(&amp;quot;http&amp;quot;) with
+            | true,true -&amp;gt; Ok m
+            | true,false -&amp;gt; Error &amp;quot;Target invalid protocol&amp;quot;
+            | false,true -&amp;gt;  Error &amp;quot;Source invalid protocol&amp;quot;
+            | false,false -&amp;gt; Error &amp;quot;Source and Target invalid protocol&amp;quot;
+
+        isProtocolValid
+    | Error s -&amp;gt; Error $&amp;quot;{s}&amp;quot;
+
+// Check the URLs are not the same
+let checkUrlsSame (request:RequestVerificationResult) = 
+    match request with 
+    | Ok m -&amp;gt; 
+        let source,target = 
+            async {
+                return! getFormContent(m)
+            } |&amp;gt; Async.RunSynchronously
+        let check = 
+            match source.Equals(target) with 
+            | true -&amp;gt; Error &amp;quot;Urls are the same&amp;quot;
+            | false -&amp;gt;  Ok m
+        check
+    | Error s -&amp;gt; Error s
+
+// Helper functions
+let uriIsMine (url:string) = 
+    let uri = new Uri(url)
+    uri.Host.Equals(&amp;quot;lqdev.me&amp;quot;) || uri.Host.Equals(&amp;quot;www.luisquintanilla.me&amp;quot;) || uri.Host.Equals(&amp;quot;luisquintanilla.me&amp;quot;)
+
+let isValid (url:string) (msg:HttpResponseMessage) = 
+    let isMine = uriIsMine url
+    isMine &amp;amp; msg.IsSuccessStatusCode
+
+// Check URL is a valid resource
+// Valid means, the URL is one of my domains and returns a non-400 or 500 HTML status code
+let checkUrlValidResource (request:RequestVerificationResult) = 
+    match request with 
+    | Ok m -&amp;gt; 
+        let res = 
+            async {
+                let! source,target = getFormContent(m)
+                use client = new HttpClient()
+                let reqMessage = new HttpRequestMessage(HttpMethod.Head, target)
+                let! resp = client.SendAsync(reqMessage) |&amp;gt; Async.AwaitTask
+                return isValid target resp
+            } |&amp;gt; Async.RunSynchronously
+        match res with 
+        | true -&amp;gt; Ok m
+        | false -&amp;gt; Error &amp;quot;Target is not a valid resource&amp;quot; 
+    | Error s -&amp;gt; Error s
+
+// Combine validation steps into single function
+let validate = 
+    checkProtocol &amp;gt;&amp;gt; checkUrlsSame &amp;gt;&amp;gt; checkUrlValidResource
+
+// Test application
+let buildSampleRequestMessages (content:IDictionary&amp;lt;string,string&amp;gt;) = 
+
+    let reqMessage = new HttpRequestMessage()
+    reqMessage.Content &amp;lt;- new FormUrlEncodedContent(content)
+
+    let liftedReqMessage = Ok reqMessage
+    liftedReqMessage
+
+let sampleContent = [ 
+    dict [
+        (&amp;quot;source&amp;quot;,&amp;quot;http://lqdev.me&amp;quot;)
+        (&amp;quot;target&amp;quot;,&amp;quot;http://lqdev.me&amp;quot;)
+    ]
+    dict [
+        (&amp;quot;source&amp;quot;,&amp;quot;http://://lqdev.me&amp;quot;)
+        (&amp;quot;target&amp;quot;,&amp;quot;protocol://lqdev.me&amp;quot;)
+    ]    
+    dict [
+        (&amp;quot;source&amp;quot;,&amp;quot;http://lqdev.me&amp;quot;)
+        (&amp;quot;target&amp;quot;,&amp;quot;http://github.com/lqdev&amp;quot;)
+    ]
+    dict [
+        (&amp;quot;source&amp;quot;,&amp;quot;http://github.com/lqdev&amp;quot;)
+        (&amp;quot;target&amp;quot;,&amp;quot;http://lqdev.me&amp;quot;)
+    ]        
+]
+
+sampleContent
+|&amp;gt; List.map(buildSampleRequestMessages)
+|&amp;gt; List.map(validate)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Sample Output&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;[  
+  Error &amp;quot;Urls are the same&amp;quot;; 
+  Error &amp;quot;Target invalid protocol&amp;quot;;
+  Error &amp;quot;Target is not a valid resource&amp;quot;;
+  Ok
+    Method: GET, RequestUri: '&amp;lt;null&amp;gt;', Version: 1.1, Content: System.Net.Http.FormUrlEncodedContent, Headers:
+    {
+        Content-Type: application/x-www-form-urlencoded
+        Content-Length: 67
+    }
+    {
+        Content = System.Net.Http.FormUrlEncodedContent;
+        Headers = seq [];
+        Method = GET;
+        Options = seq [];
+        Properties = seq [];
+        RequestUri = null;
+        Version = 1.1;
+        VersionPolicy = RequestVersionOrLower;
+    }
+]
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/webmentions-request-verification</link>
+      <guid>https://www.lqdev.me/resources/snippets/webmentions-request-verification</guid>
+      <pubDate>09/23/2022 15:41 -05:00</pubDate>
+      <category>f#</category>
+      <category>indieweb</category>
+      <category>webmentions</category>
+      <category>internet</category>
+      <category>web</category>
+      <category>social</category>
+      <category>interactive</category>
+      <category>script</category>
+    </item>
+    <item>
+      <title>OPML File Generator</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;Script to take information stored in a JSON file and converts it into OPML format. This works for RSS readers as well as podcast clients that support OPML import.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet fsi opml-generator.fsx &amp;quot;&amp;lt;feed-title&amp;gt;&amp;quot; &amp;quot;&amp;lt;author-url&amp;gt;&amp;quot; &amp;quot;&amp;lt;data-file-path&amp;gt;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet fsi opml-generator.fsx &amp;quot;My Blogroll&amp;quot; &amp;quot;http://lqdev.me&amp;quot; &amp;quot;blogroll.json&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;h3&gt;opml-generator.fsx&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;open System.IO
+open System.Linq
+open System.Text.Json
+open System.Xml.Linq
+
+type OpmlMetadata = 
+    {
+        Title: string
+        OwnerId: string
+    }
+
+type Outline = 
+    {
+        Title: string
+        Type: string
+        HtmlUrl: string
+        XmlUrl: string
+    }
+
+let opmlFeed (head:XElement) = 
+    XElement(XName.Get &amp;quot;opml&amp;quot;,
+        XAttribute(XName.Get &amp;quot;version&amp;quot;, &amp;quot;2.0&amp;quot;),
+            head,
+            XElement(XName.Get &amp;quot;body&amp;quot;))
+
+let headElement (metadata:OpmlMetadata) = 
+        XElement(XName.Get &amp;quot;head&amp;quot;,
+            XElement(XName.Get &amp;quot;title&amp;quot;, metadata.Title),
+            XElement(XName.Get &amp;quot;ownerId&amp;quot;, metadata.OwnerId))
+
+let outlineElement (data:Outline) = 
+    XElement(XName.Get &amp;quot;outline&amp;quot;,
+        XAttribute(XName.Get &amp;quot;title&amp;quot;, data.Title),
+        XAttribute(XName.Get &amp;quot;text&amp;quot;, data.Title),        
+        XAttribute(XName.Get &amp;quot;type&amp;quot;, data.Type),
+        XAttribute(XName.Get &amp;quot;htmlUrl&amp;quot;, data.HtmlUrl),
+        XAttribute(XName.Get &amp;quot;xmlUrl&amp;quot;, data.XmlUrl))
+
+let loadLinks (filePath:string) = 
+    File.ReadAllText(filePath)
+    |&amp;gt; fun x -&amp;gt; x |&amp;gt; JsonSerializer.Deserialize&amp;lt;Outline array&amp;gt;
+
+let buildOpmlFeed (title:string) (ownerId:string) (filePath:string) = 
+    let fileName = Path.GetFileNameWithoutExtension(filePath)
+    
+    let head = 
+        {
+            Title=title
+            OwnerId=ownerId
+        }
+        |&amp;gt; headElement
+    
+    let links = filePath |&amp;gt; loadLinks |&amp;gt; Array.map(outlineElement) 
+    
+    let feed =  opmlFeed head 
+    feed.Descendants(XName.Get &amp;quot;body&amp;quot;).First().Add(links)
+    File.WriteAllText($&amp;quot;{fileName}.opml&amp;quot;, feed.ToString())
+
+let args = fsi.CommandLineArgs
+let title = args[1]
+let ownerId = args.[2]
+let dataPath = args.[3]
+
+buildOpmlFeed title ownerId dataPath
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;blogroll.json&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;[
+    {
+        &amp;quot;Title&amp;quot;: &amp;quot;Blogroll.org&amp;quot;,
+        &amp;quot;Type&amp;quot;: &amp;quot;rss&amp;quot;,
+        &amp;quot;HtmlUrl&amp;quot;: &amp;quot;https://blogroll.org/&amp;quot;,
+        &amp;quot;XmlUrl&amp;quot;: &amp;quot;https://blogroll.org/feed/&amp;quot;
+    },
+    {
+        &amp;quot;Title&amp;quot;: &amp;quot;Cheapskate's Guide&amp;quot;,
+        &amp;quot;Type&amp;quot;: &amp;quot;rss&amp;quot;,
+        &amp;quot;HtmlUrl&amp;quot;: &amp;quot;https://cheapskatesguide.org/&amp;quot;,
+        &amp;quot;XmlUrl&amp;quot;: &amp;quot;https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml&amp;quot;
+    },
+    {
+        &amp;quot;Title&amp;quot;: &amp;quot;JWZ&amp;quot;,
+        &amp;quot;Type&amp;quot;: &amp;quot;rss&amp;quot;,
+        &amp;quot;HtmlUrl&amp;quot;: &amp;quot;https://www.jwz.org/blog/&amp;quot;,
+        &amp;quot;XmlUrl&amp;quot;: &amp;quot;https://cdn.jwz.org/blog/feed/&amp;quot;
+    }    
+]
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/opml-file-generator</link>
+      <guid>https://www.lqdev.me/resources/snippets/opml-file-generator</guid>
+      <pubDate>08/14/2022 13:45 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>fsharp</category>
+      <category>script</category>
+    </item>
+    <item>
+      <title>QR Code Generator</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;Script to generate a QR Code and save as PNG image from a URL&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet fsi qr-code-generator.fsx &amp;quot;my-qr-code.svg&amp;quot; &amp;quot;https://twitter.com/user-profile&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;h3&gt;qr-code-generator.fsx&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;open System.Threading
+
+printfn &amp;quot;Loading packages&amp;quot;
+
+#r &amp;quot;nuget:Net.Codecrete.QrCodeGenerator&amp;quot;
+
+Thread.Sleep(5000)
+
+printfn &amp;quot;Loaded QrCodeGenerator&amp;quot;
+
+open Net.Codecrete.QrCodeGenerator
+open System.IO
+open System.Text
+
+let createQrCode (savePath:string) (target:string) = 
+    let qr = QrCode.EncodeText(target,QrCode.Ecc.High)
+    let svgString = qr.ToSvgString(4)
+    File.WriteAllText(savePath,svgString, Encoding.UTF8)
+    
+let args = fsi.CommandLineArgs
+let savePath = args.[1]
+let target = args.[2]
+
+createQrCode savePath target
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/qr-code-generator</link>
+      <guid>https://www.lqdev.me/resources/snippets/qr-code-generator</guid>
+      <pubDate>08/03/2022 20:07 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>f#</category>
+      <category>script</category>
+    </item>
+  </channel>
+</rss>

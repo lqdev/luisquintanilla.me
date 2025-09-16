@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - shows</title>
+    <link>https://www.lqdev.me/tags/shows</link>
+    <description>All content tagged with 'shows' by Luis Quintanilla</description>
+    <lastBuildDate>2024-04-08 23:36 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Enjoying El Sonido from KEXP</title>
+      <description>&lt;![CDATA[&lt;p&gt;I just found &lt;a href="https://www.kexp.org/shows/El-Sonido/"&gt;El Sonido from KEXP&lt;/a&gt;. Albina Cabrera is a great host. I've already found a few new songs and artists to listen to I otherwise wouldn't have been aware of or exposed to.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/enjoying-kexp-el-sonido</link>
+      <guid>https://www.lqdev.me/notes/enjoying-kexp-el-sonido</guid>
+      <pubDate>2024-04-08 23:36 -05:00</pubDate>
+      <category>radio</category>
+      <category>music</category>
+      <category>kexp</category>
+      <category>shows</category>
+    </item>
+  </channel>
+</rss>

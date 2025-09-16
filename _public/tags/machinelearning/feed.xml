@@ -1,0 +1,2762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - machinelearning</title>
+    <link>https://www.lqdev.me/tags/machinelearning</link>
+    <description>All content tagged with 'machinelearning' by Luis Quintanilla</description>
+    <lastBuildDate>2024-07-29 22:26 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Tensors from scratch series</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;I've been enjoying reading through this Tensors series.&lt;/p&gt;
+&lt;p&gt;If you're interested, here's also the link to &lt;a href="https://maharshi.bearblog.dev/tensors-from-scratch-part-1/"&gt;part 1&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/tensors-from-scratch-blog-series</link>
+      <guid>https://www.lqdev.me/responses/tensors-from-scratch-blog-series</guid>
+      <pubDate>2024-07-29 22:26 -05:00</pubDate>
+      <category>tensors</category>
+      <category>math</category>
+      <category>ai</category>
+      <category>c</category>
+      <category>machinelearning</category>
+      <category>ml</category>
+      <category>artificialintelligence</category>
+    </item>
+    <item>
+      <title>Machine Learning for Games Course - HuggingFace</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Welcome to the course that will teach you the most fascinating topic in game development: how to use powerful AI tools and models to create unique game experiences.&lt;br /&gt;
+&lt;br&gt;
+New AI models are revolutionizing the Game Industry in two impactful ways:&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;On how we make games:
+&lt;ul&gt;
+&lt;li&gt;Generate textures using AI&lt;/li&gt;
+&lt;li&gt;Using AI voice actors for the voices.&lt;br /&gt;
+&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;How we create gameplay:
+&lt;ul&gt;
+&lt;li&gt;Crafting smart Non-Playable Characters (NPCs) using large language models.&lt;br /&gt;
+&lt;br&gt;
+This course will teach you:&lt;br /&gt;
+&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;How to integrate AI models for innovative gameplay, featuring intelligent NPCs.&lt;/li&gt;
+&lt;li&gt;How to use AI tools to help your game development pipeline.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/machine-learning-for-games-course-huggingface</link>
+      <guid>https://www.lqdev.me/bookmarks/machine-learning-for-games-course-huggingface</guid>
+      <pubDate>2024-03-19 22:35 -05:00</pubDate>
+      <category>machinelearning</category>
+      <category>games</category>
+      <category>huggingface</category>
+      <category>course</category>
+      <category>ai</category>
+      <category>ml</category>
+    </item>
+    <item>
+      <title>The AI Study Guide: Azure Machine Learning Edition</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The AI Study Guide: Discover Machine Learning with these free Azure resources&lt;br /&gt;
+&lt;br&gt;
+Welcome to the February edition of the Azure AI Study Guide. Every month I’ll be spilling the tea on the best and newest tools for skilling up on Azure AI. This month we’re putting on our thinking caps to investigate Azure Machine Learning (ML). I’ll give you a quick breakdown of what it is, then we’ll explore a four-week roadmap of our top FREE resources for you to continue your AI learning journey! And as a bonus, stay tuned to the end to see what makes machine learning and generative AI a dynamic duo.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/ai-study-guide-azure-ml-edition</link>
+      <guid>https://www.lqdev.me/bookmarks/ai-study-guide-azure-ml-edition</guid>
+      <pubDate>2024-02-21 15:18 -05:00</pubDate>
+      <category>azure</category>
+      <category>tutorial</category>
+      <category>machinelearning</category>
+      <category>ml</category>
+      <category>ai</category>
+      <category>azureml</category>
+    </item>
+    <item>
+      <title>ChatGPT can now see, hear, and speak</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We are beginning to roll out new voice and image capabilities in ChatGPT. They offer a new, more intuitive type of interface by allowing you to have a voice conversation or show ChatGPT what you’re talking about.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/chatgpt-voice-image-capabilities</link>
+      <guid>https://www.lqdev.me/bookmarks/chatgpt-voice-image-capabilities</guid>
+      <pubDate>2023-09-25 10:12 -05:00</pubDate>
+      <category>ai</category>
+      <category>chatgpt</category>
+      <category>openai</category>
+      <category>llm</category>
+      <category>machinelearning</category>
+      <category>ml</category>
+    </item>
+    <item>
+      <title>Supporting the Open Source AI Community</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We believe artificial intelligence has the power to save the world—and that a thriving open source ecosystem is essential to building this future.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;To help close this resource gap, we’re announcing today the a16z Open Source AI Grant program. We’ll support a small group of open source developers through grant funding (not an investment or SAFE note), giving them the opportunity to continue their work without the pressure to generate financial returns.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/supporting-open-source-ai-community-az</link>
+      <guid>https://www.lqdev.me/responses/supporting-open-source-ai-community-az</guid>
+      <pubDate>2023-08-31 18:48 -05:00</pubDate>
+      <category>ai</category>
+      <category>opensource</category>
+      <category>machinelearning</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>HuggingFace Candle</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Candle is a minimalist ML framework for Rust with a focus on performance (including GPU support) and ease of use.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/huggingface-candle</link>
+      <guid>https://www.lqdev.me/bookmarks/huggingface-candle</guid>
+      <pubDate>2023-08-16 21:54 -05:00</pubDate>
+      <category>ai</category>
+      <category>machinelearning</category>
+      <category>opensource</category>
+      <category>huggingface</category>
+    </item>
+    <item>
+      <title>Machine Learning</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Machine learning is a subset of artificial intelligence.&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/resources/wiki/ml-frameworks"&gt;Frameworks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://landscape.lfai.foundation/"&gt;LF AI &amp;amp; Data Foundation Interactive Landscape&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/machine-learning</link>
+      <guid>https://www.lqdev.me/resources/wiki/machine-learning</guid>
+      <pubDate>08/26/2022 08:15 -05:00</pubDate>
+      <category>technology</category>
+      <category>machinelearning</category>
+      <category>artificialintelligence</category>
+      <category>index</category>
+    </item>
+    <item>
+      <title>Machine Learning Frameworks</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Machine learning frameworks provide APIs for training and consuming machine learning models.&lt;/p&gt;
+&lt;h2&gt;Frameworks&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dot.net/ml"&gt;ML.NET&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://scikit-learn.org/stable/index.html"&gt;Scikit-Learn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.tensorflow.org/"&gt;TensorFlow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://keras.io/"&gt;Keras&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pytorch.org/"&gt;PyTorch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.fast.ai/"&gt;Fast.AI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://onnx.ai/"&gt;ONNX&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://huggingface.co/"&gt;HuggingFace&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/ml-frameworks</link>
+      <guid>https://www.lqdev.me/resources/wiki/ml-frameworks</guid>
+      <pubDate>08/26/2022 08:10 -05:00</pubDate>
+      <category>technology</category>
+      <category>artificialintelligence</category>
+      <category>machinelearning</category>
+      <category>software</category>
+    </item>
+    <item>
+      <title>Deploy ML.NET Machine Learning Model in Blazor WebAssembly Static Website</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+There are many ways of deploying machine learning models. The most common way to do so is by exposing models as a web service through APIs or serverless functions. One of the considerations when deploying a model as a web service is latency and performance. The process of making predictions over HTTP using a model involves accepting the user input, loading the serialized version of the model from a file, using the model to make a prediction, and returning the prediction back to the user. Since models are typically just static files, another way of deploying a model is as a static asset over the web, just like any other HTML, CSS, or JavaScript file. This deployment method is similar to that of TensorFlow.js. Deploying in this way has several advantages. One advantage is that there is no longer a web service just to serve the model, making it more cost-efficient. Another advantage is that once the model has been downloaded onto the user's PC, the resources used at that point are those of the user's PC rather than the server the model would otherwise be hosted in. Finally, because the model is a static file, it can be distributed via CDNs. 
+
+One of the challenges with this is that machine learning models are usually built using languages other than JavaScript. This makes using the same code / library the model was built difficult or nearly impossible. WebAssembly is changing that by allowing Rust, C++, C# and other languages to run natively inside the browser. Having that ability, the code / logic to load the model and make predictions is much easier and almost comparable to that of a native platform. Blazor WebAssembly provides users the ability to create modern component-based web applications completely in C#. Additionally, Blazor WebAssembly allows users to publish and deploy their applications as static websites in an easy and cost-efficient way. ML.NET is an open-source, cross-platform framework that allows developers to create machine learning models using .NET. In this post, I'll show how to train a multiclass classification machine learning model that predicts iris flower species. Then, I'll take that model and deploy it alongside a Blazor WebAssembly static website to Azure Storage. The full code for this application may be found at the [MLNETBlazorWASMSample repository on GitHub](https://github.com/lqdev/MLNETBlazorWASMSample).
+
+## Prerequisites
+
+This project was built on a Windows PC but should work cross platform on Mac and Linux.
+
+- [.NET Core SDK 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+- [Blazor WebAssembly Template](https://www.nuget.org/packages/Microsoft.AspNetCore.Blazor.Templates/3.2.0-preview1.20073.1)
+- [Azure Subscription](http://aka.ms/amlFree)
+- [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
+
+## Set up the solution
+
+The solution built in this post contains three projects:
+
+- SchemaLibrary: C# .NET Standard 2.0 class library that contains the schema definition classes of the data used to train the model as well as the prediction output generated by the model.
+- TrainingConsole: C# .NET Core 3.1 console application used to train the machine learning model.
+- BlazorWebApp: Blazor WebAssembly web application to make predictions using machine learning model trained by TrainingConsole application.
+
+### Install Blazor WebAssembly Template
+
+Use the .NET CLI to run the following command in the command prompt:
+
+```powershell
+dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.2.0-preview1.20073.1
+```
+
+### Create the solution
+
+Create a new directory for the solution called *MLNETBlazorWASMSample*.
+
+```powershell
+mkdir MLNETBlazorWASMSample
+```
+
+Navigate to the newly created solution directory and create a solution:
+
+```powershell
+cd MLNETBlazorWASMSample
+dotnet new sln
+```
+
+### Create schema class library
+
+The data schema for the model input and output are shared during training as well as when making predictions. To share resources, create a class library that's shared by the `ConsoleTraining` and `BlazorWebApp` projects. In the solution directory, enter the following command:
+
+```powershell
+dotnet new classlib -o SchemaLibrary
+```
+
+Install the *Microsoft.ML* NuGet package (This solution is built with version 1.4.0). The *Microsoft.ML* package is used throughout the entire solution.
+
+```powershell
+dotnet add SchemaLibrary package Microsoft.ML
+```
+
+Add the library project to the solution.
+
+```powershell
+dotnet sln add SchemaLibrary
+```
+
+### Create the training console application
+
+The console application contains the series of data transformations and algorithms used to train the model. In the solution directory, create a new console application.
+
+```powershell
+dotnet new console -o TrainingConsole
+```
+
+Add the console application to the solution.
+
+```powershell
+dotnet sln add TrainingConsole
+```
+
+Reference the *SchemaLibrary* project.
+
+```powershell
+dotnet add TrainingConsole reference SchemaLibrary
+```
+
+### Create the Blazor WebAssembly web application
+
+The web application contains a few input elements so users can provide new data that the model then uses to make predictions. In the solution directory, create a new Blazor WebAssembly application.
+
+```powershell
+dotnet new blazorwasm -o BlazorWebApp
+```
+
+Add the web application project to the solution.
+
+```powershell
+dotnet sln add BlazorWebApp
+```
+
+Reference the *SchemaLibrary* project.
+
+```powershell
+dotnet add BlazorWebApp reference SchemaLibrary
+```
+
+## Define the schema
+
+### Understand the data
+
+The data used to train the model comes from the [iris dataset](https://archive.ics.uci.edu/ml/datasets/Iris). It contains four numerical columns which are sepal and petal measurements and one numerical column for the species of iris flower. This is a sample of the data.
+
+|Sepal length (cm)  |Sepal width (cm)  |Petal length (cm)  |Petal width (cm)  |Class (iris species)  |
+|---------|---------|---------|---------|---------|
+|5.1|3.5|1.4|0.2|Iris-setosa|
+|7.0|3.2|4.7|1.4|Iris-versicolor|
+|6.3|3.3|6.0|2.5|Iris-virginica|
+
+### Define model input schema
+
+In the *SchemaLibrary* project, create a class called `ModelInput` to model the data used for training and as model input.
+
+```powershell
+ni ModelInput.cs
+```
+
+The `ModelInput` class should look like the following:
+
+```csharp
+using Microsoft.ML.Data;
+
+namespace SchemaLibrary
+{
+    public class ModelInput
+    {
+        [LoadColumn(0)]
+        public float SepalLength { get; set; }
+
+        [LoadColumn(1)]
+        public float SepalWidth { get; set; }
+
+        [LoadColumn(2)]
+        public float PetalLength { get; set; }
+
+        [LoadColumn(3)]
+        public float PetalWidth { get; set; }
+
+        [LoadColumn(4)]
+        public string Label { get; set; }
+    }
+}
+```
+
+Notice that the `Class` column is now a property called `Label`. This is for two reasons:
+
+1. Avoid using the `class` keyword.
+2. In ML.NET, the default column name of the column to predict expected by algorithms is `Label`.
+
+Also notice the `LoadColumn` attributes at the top of each property. This is used to tell the loader the index of the column where the data for the respective property is.
+
+### Define model output schema
+
+Similar to the input schema, there's a schema for the output of the model. The type of model used in this solution is a multiclass classification model since there are more than two categories to choose from for iris flower species. Multiclass classification models output a column called `PredictedLabel` which contains the name of the predicted category. In the *SchemaLibrary* project, create a class called `ModelOutput` to model the predictions made by the model.
+
+```powershell
+ni ModelOutput.cs
+```
+
+The `ModelOutput` class should look like the following:
+
+```csharp
+namespace SchemaLibrary
+{
+    public class ModelOutput
+    {
+        public string PredictedLabel { get; set; }
+    }
+}
+```
+
+## Train the model
+
+Now it's time to create the application that trains the model.
+
+### Get the data
+
+Download the data and save it inside the *TrainingConsole* project directory.
+
+```powershell
+curl https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data -o iris.data
+```
+
+### Define the data preparation and training steps
+
+In the *TrainingConsole* project, open the *Program.cs* file and add the following using statements at the top:
+
+```csharp
+using System;
+using System.Linq;
+using Microsoft.ML;
+using SchemaLibrary;
+```
+
+Then, delete the contents inside the `Main` method and replace it with the following.
+
+```csharp
+// 1. Initialize MLContext
+MLContext mlContext = new MLContext();
+
+// 2. Load the data
+IDataView data = mlContext.Data.LoadFromTextFile&lt;ModelInput&gt;("iris.data", separatorChar:',');
+
+// 3. Shuffle the data
+IDataView shuffledData = mlContext.Data.ShuffleRows(data);
+
+// 3. Define the data preparation and training pipeline.
+IEstimator&lt;ITransformer&gt; pipeline = 
+    mlContext.Transforms.Concatenate("Features","SepalLength","SepalWidth","PetalLength","PetalWidth")
+        .Append(mlContext.Transforms.NormalizeMinMax("Features"))
+        .Append(mlContext.Transforms.Conversion.MapValueToKey("Label"))
+        .Append(mlContext.MulticlassClassification.Trainers.NaiveBayes())
+        .Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel"));
+
+// 4. Train with cross-validation
+var cvResults = mlContext.MulticlassClassification.CrossValidate(shuffledData, pipeline);
+
+// 5. Get the highest performing model and its accuracy
+(ITransformer, double) model = 
+    cvResults
+        .OrderByDescending(fold =&gt; fold.Metrics.MacroAccuracy)
+        .Select(fold =&gt; (fold.Model, fold.Metrics.MacroAccuracy))
+        .First();
+
+Console.WriteLine($"Top performing model's macro-accuracy: {model.Item2}");
+
+// 6. Save the model
+mlContext.Model.Save(model.Item1, data.Schema, "model.zip");
+
+Console.WriteLine("Model trained");
+```
+
+The training application loads the data from the `iris.data` file and applies a series of transformations. First, all of the individual numerical columns are combined into a single vector and stored in a new column called `Features`. The `Features` column is then normalized and the `MapValueToKey` transform is used to convert the text in the `Label` column to a number. Then, the transformed data is used to train a model using the `NaiveBayes` algorithm. **Note that at the time of this writing, for multiclass classification problems, only Naive Bayes has been confirmed to work with Blazor WebAssembly**. Finally, the `PredictedLabel` is stored as a number so it has to be converted back into text.
+
+Using the `Fit` method, the data is applied to the pipeline. Because the dataset is small, a technique called cross-validation is used to build a more robust model. Once the model is trained, the model with the top performance is then serialized and saved to a file called *model.zip* for later use in the web application.
+
+The final *Program.cs* file should look like the content below:
+
+```csharp
+using System;
+using System.Linq;
+using Microsoft.ML;
+using SchemaLibrary;
+
+namespace TrainingConsole
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // 1. Initialize MLContext
+            MLContext mlContext = new MLContext();
+
+            // 2. Load the data
+            IDataView data = mlContext.Data.LoadFromTextFile&lt;ModelInput&gt;("iris.data", separatorChar:',');
+
+            // 3. Shuffle the data
+            IDataView shuffledData = mlContext.Data.ShuffleRows(data);
+
+            // 3. Define the data preparation and training pipeline.
+            IEstimator&lt;ITransformer&gt; pipeline = 
+                mlContext.Transforms.Concatenate("Features","SepalLength","SepalWidth","PetalLength","PetalWidth")
+                    .Append(mlContext.Transforms.NormalizeMinMax("Features"))
+                    .Append(mlContext.Transforms.Conversion.MapValueToKey("Label"))
+                    .Append(mlContext.MulticlassClassification.Trainers.NaiveBayes())
+                    .Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel"));
+
+            // 4. Train with cross-validation
+            var cvResults = mlContext.MulticlassClassification.CrossValidate(shuffledData, pipeline);
+
+            // 5. Get the highest performing model and its accuracy
+            (ITransformer, double) model = 
+                cvResults
+                    .OrderByDescending(fold =&gt; fold.Metrics.MacroAccuracy)
+                    .Select(fold =&gt; (fold.Model, fold.Metrics.MacroAccuracy))
+                    .First();
+
+            Console.WriteLine($"Top performing model's macro-accuracy: {model.Item2}");
+
+            // 6. Save the model
+            mlContext.Model.Save(model.Item1, data.Schema, "model.zip");
+
+            Console.WriteLine("Model trained");
+        }
+    }
+}
+```
+
+### Run the application
+
+In the *TrainConsole* project directory, use the following command to run the application and train the model:
+
+```powershell
+dotnet run
+```
+
+## Host the model
+
+Once you have the model saved, use the Azure Portal to create an Azure Storage account.
+
+![Create Azure Storage Account](http://cdn.lqdev.tech/files/images/deploy-machine-learning-mlnet-model-blazor-webassembly1.png)
+
+Then, navigate to your newly created storage account resource and create a blob container called `models`.
+
+![Create Blob Container](http://cdn.lqdev.tech/files/images/deploy-machine-learning-mlnet-model-blazor-webassembly2.png)
+
+Once your container is created, navigate to it and upload the *model.zip* file.
+
+![Upload Model](http://cdn.lqdev.tech/files/images/deploy-machine-learning-mlnet-model-blazor-webassembly3.png)
+
+## Create prediction web page
+
+To make predictions, create a web page to take in user input. Then, provide the user input to the model and display the prediction to the user.
+
+### Set up imports
+
+In the *BlazorWebApp* project directory, open the *_Imports.razor* file. This contains the using statements for the pages and components in your application. Add the following using statements:
+
+```razor
+@using System.IO
+@using Microsoft.ML
+@using SchemaLibrary
+```
+
+### Create user input page
+
+In the *BlazorWebApp* project, create a new razor page called *Prediction.razor* inside the *Pages* directory.
+
+```powershell
+ni Prediction.razor
+```
+
+Add the following content to it:
+
+```razor
+@page "/prediction"
+@inject HttpClient _client
+
+&lt;label&gt;Sepal Length: &lt;/label&gt;
+&lt;input type="text" @bind="_sepalLength"&gt;&lt;br&gt;
+&lt;label&gt;Sepal Width: &lt;/label&gt;
+&lt;input type="text" @bind="_sepalWidth"&gt;&lt;br&gt;
+&lt;label&gt;Petal Length: &lt;/label&gt;
+&lt;input type="text" @bind="_petalLength"&gt;&lt;br&gt;
+&lt;label&gt;Petal Width: &lt;/label&gt;
+&lt;input type="text" @bind="_petalWidth"&gt;&lt;br&gt;
+&lt;button @onclick="GetPrediction"&gt;Make prediction&lt;/button&gt;
+@if(@ModelPrediction == null)
+{
+    &lt;p&gt;Enter data to get a prediction&lt;/p&gt;
+} else
+{
+    &lt;p&gt;@ModelPrediction&lt;/p&gt;
+}
+
+
+@code {
+    private PredictionEngine&lt;ModelInput,ModelOutput&gt; _predictionEngine;
+    private string _sepalLength, _sepalWidth, _petalLength, _petalWidth, ModelPrediction;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Stream savedModel = await _client.GetStreamAsync("&lt;YOUR-MODEL-ENDPOINT&gt;");
+        MLContext mlContext = new MLContext();
+        ITransformer _model = mlContext.Model.Load(savedModel,out DataViewSchema schema);
+        _predictionEngine = mlContext.Model.CreatePredictionEngine&lt;ModelInput,ModelOutput&gt;(_model);
+    }
+
+    private void GetPrediction()
+    {
+        ModelInput input = new ModelInput
+        {
+            SepalLength=float.Parse(_sepalLength),
+            SepalWidth=float.Parse(_sepalWidth),
+            PetalLength=float.Parse(_petalLength),
+            PetalWidth=float.Parse(_petalWidth)
+        };
+
+        ModelOutput prediction = _predictionEngine.Predict(input);
+
+        ModelPrediction = prediction.PredictedLabel;
+    }
+}
+```
+
+The *Predict.razor* page contains a text input element for each of the columns the model was original trained on. When the page is initialized, the model is loaded from Azure Storage and a `PredictionEngine` is created. **Make sure to replace `&lt;YOUR-MODEL-ENDPOINT&gt;` with the URL of the blob that contains your `model.zip`**. A `PredictionEngine` is a convenience API to make a single prediction. Traditionally when models are served as a web service, it is recommended to use the `PredictionEnginePool` service because it's thread-safe and more performant in multi-threaded application. However, in this case since the model is downloaded onto the individual user's browser, it's okay to use `PredictionEngine`. After a user enters input values and clicks the "Make Prediction" button, the `GetPrediction` method executes by taking the user input and making a prediction using the `PredictionEngine`. The prediction is then displayed in the browser.
+
+### Add to navigation menu
+
+In the *BlazorWebApp* project, open the *NavMenu.razor* file in the *Shared* directory.
+
+Add the following list item to the `&lt;ul&gt;` element.
+
+```html
+&lt;li class="nav-item px-3"&gt;
+    &lt;NavLink class="nav-link" href="prediction"&gt;
+        &lt;span class="oi oi-list-rich" aria-hidden="true"&gt;&lt;/span&gt; Prediction
+    &lt;/NavLink&gt;
+&lt;/li&gt;
+```
+
+The final *NavMenu.razor* page should look like the following:
+
+```razor
+&lt;div class="top-row pl-4 navbar navbar-dark"&gt;
+    &lt;a class="navbar-brand" href=""&gt;BlazorWebApp&lt;/a&gt;
+    &lt;button class="navbar-toggler" @onclick="ToggleNavMenu"&gt;
+        &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class="@NavMenuCssClass" @onclick="ToggleNavMenu"&gt;
+    &lt;ul class="nav flex-column"&gt;
+        &lt;li class="nav-item px-3"&gt;
+            &lt;NavLink class="nav-link" href="" Match="NavLinkMatch.All"&gt;
+                &lt;span class="oi oi-home" aria-hidden="true"&gt;&lt;/span&gt; Home
+            &lt;/NavLink&gt;
+        &lt;/li&gt;
+        &lt;li class="nav-item px-3"&gt;
+            &lt;NavLink class="nav-link" href="counter"&gt;
+                &lt;span class="oi oi-plus" aria-hidden="true"&gt;&lt;/span&gt; Counter
+            &lt;/NavLink&gt;
+        &lt;/li&gt;
+        &lt;li class="nav-item px-3"&gt;
+            &lt;NavLink class="nav-link" href="fetchdata"&gt;
+                &lt;span class="oi oi-list-rich" aria-hidden="true"&gt;&lt;/span&gt; Fetch data
+            &lt;/NavLink&gt;
+        &lt;/li&gt;
+        &lt;li class="nav-item px-3"&gt;
+            &lt;NavLink class="nav-link" href="prediction"&gt;
+                &lt;span class="oi oi-list-rich" aria-hidden="true"&gt;&lt;/span&gt; Prediction
+            &lt;/NavLink&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass =&gt; collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
+```
+
+## Configure the web application
+
+The web application will he hosted as a static site on Azure Storage.
+
+In the Azure Portal, navigate to the storage account resource where you are hosting your model.
+
+### Enable static website
+
+Enable a static website for the storage account and set the index document name and error document path to *index.html*.
+
+![Enable Static Website](http://cdn.lqdev.tech/files/images/deploy-machine-learning-mlnet-model-blazor-webassembly4.png)
+
+At this point, a new container called *$web* is created in your storage account. This is where all your site's static files will reside. Additionally, a primary endpoint is created. This is the URL you will use to access your application
+
+### Configure CORS
+
+The storage account has some default CORS settings. In order to download and use your model from your application, you'll have to configure them.
+
+![Configure CORS](http://cdn.lqdev.tech/files/images/deploy-machine-learning-mlnet-model-blazor-webassembly5.png)
+
+For "Allowed origins", enter your primary endpoint.
+
+## Publish and deploy the web application
+
+To publish your application, run the following command:
+
+```powershell
+dotnet publish -c Release
+```
+
+This generates all the files you'll need to host your web application as a static site in the *bin/Release/netstandard2.1/publish/BlazorWebApp/dist* directory of your *BlazorWebApp* project.
+
+To deploy your application, use Azure Storage Explorer to copy all of the files in the *dist* directory into the *$web* container of your Azure Storage Account.
+
+![Copy files into web container](http://cdn.lqdev.tech/files/images/deploy-machine-learning-mlnet-model-blazor-webassembly6.png)
+
+## Test the application
+
+In your browser, navigate to your static website's primary endpoint and select the Prediction page. Input data and click "Make prediction". The page should look as follows. 
+
+![Test the application](http://cdn.lqdev.tech/files/images/deploy-machine-learning-mlnet-model-blazor-webassembly7.png)
+
+**You may note that performance of Naive Bayes on this dataset is not the best so some of the predictions may not be as accurate. I am okay with this at the moment because this is a proof-of-concept to show how these technologies might work together. Perhaps using a better dataset may yield better results.**
+
+## Conclusion
+
+In this post, I went over how to deploy an ML.NET multiclass classification model alongside a Blazor WebAssembly static website to Azure Storage. While more limited than other methods of deployment due to the early stages of WebAssembly and Blazor WebAssembly, this shows the possibilities for the technologies. Deploying in this manner reduces the amount of resources required to deploy these models and shifts processing from a server or web service to the client's browser making deployment and distribution of machine learning models more efficient, scalable and cost-efficient.
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/deploy-machine-learning-mlnet-models-blazor-webassembly</link>
+      <guid>https://www.lqdev.me/posts/deploy-machine-learning-mlnet-models-blazor-webassembly</guid>
+      <pubDate>2020-03-01 19:21:04 -05:00</pubDate>
+      <category>azure</category>
+      <category>staticwebsites</category>
+      <category>machinelearning</category>
+      <category>ai</category>
+      <category>artifificalintelligence</category>
+      <category>ml</category>
+      <category>dotnet</category>
+      <category>dotnetcore</category>
+      <category>webassembly</category>
+      <category>webdevelopment</category>
+      <category>mldotnet</category>
+      <category>mlnet</category>
+      <category>blazor</category>
+    </item>
+    <item>
+      <title>The Case for Doing Machine Learning with F#</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+This post is part of the 2018 [FsAdvent](https://sergeytihon.com/tag/fsadvent/) series organized by [Sergey Tihon](https://twitter.com/sergey_tihon).
+
+When searching for tools and languages to implement machine learning applications, there are numerous options to choose from each with their own set of advantages and disadvantages. Out of all, however, Python seems to be the most salient. Not only is it a popular language but also many of the tools available for machine learning are either implemented in Python or support it in some capacity whether it's native or through community libraries. Very rarely though is F# mentioned in these discussions despite having many of the features that make languages like Python so loved and extending them to empower users. In this writeup, I will do a short review of many of the advantages of Python such as succinctness, platform support, library availability as well as many others and compare it to F#'s capabilities.
+
+![2017 Top Languages](http://cdn.lqdev.tech/files/images/case-fsharp-ml-0.PNG)
+
+## Python's Advantages
+
+### Learning Curve
+
+One of the reasons why Python is so widely adopted is its learning curve. Whether an individual knows how to program or not, at times, Python can look like pseudocode making it accessible to not only readers but also writers. As with anything the more complex the task, the steeper the learning curve. However, at a simpler level, Python makes it as easy as possible to get started. 
+
+Although at first it may not appear to be the case with F#, the learning curve is not much steeper than that of Python. The syntax can sometimes look intimidating to individuals, but the steepest part of the learning curve doesn't necessarily come from the language itself but rather from the way of reasoning about the logic of the programs. As a functional language, there is somewhat of a paradigm shift from that of a procedural execution model. Below is an example that defines a function that doubles an integer in both languages.  
+
+##### Python
+
+```python
+def double(x):
+    return x * 2
+```
+
+##### FSharp
+
+```fsharp
+let double x = 
+    x * 2
+```
+
+As it can be seen, despite some minor syntax and character differences the functions are essentially the same.  
+
+### Intended Purpose
+
+Depending on the task at hand, some languages are more adept for handling respective tasks. For example, R and Julia are excellent languages when performing statistical tasks. However, outside of those types of tasks their abilities are more limited. Python, being a general-purpose language means that not only can you use it for machine learning tasks but also to build n-tier applications entirely in Python without having to worry about integrations, plugins or having to learn an entirely different language to perform such actions. 
+
+Similarly, F# is a general-purpose language which allows you to build web and console applications as well as machine learning applications all from the comfort of the same ecosystem.
+
+### Strong Library Support
+
+When performing data analysis and machine learning, practicioners use a variety of libraries for their development such as [NumPy](http://www.numpy.org/) and [Pandas](https://pandas.pydata.org/) for data wrangling, [scikit-learn](https://scikit-learn.org/stable/index.html) for machine learning algorithms and [matplotlib](https://matplotlib.org/) for creating visualizations. Although all of these tasks could most certainly be implemented from scratch, libraries speed up the development process allowing practitioners to focus more on the domain and experiment with the models that best solve the respective problem they are facing.  
+
+F#, like Python has exceptional library support, specifically as it regards data science and machine learning. [FsLab](https://fslab.org/) is a collection of open source F# packages for machine learning that contain libraries such as [FSharp.Data](https://fsharp.github.io/FSharp.Data/) and [Deedle](https://fslab.org/Deedle/) for data wrangling, [Math.NET Numerics](https://numerics.mathdotnet.com/) for machine learning algorithms and [XPlot](https://fslab.org/XPlot/) to help with data visualization. Furthermore, at Build 2018, Microsoft released [ML.NET](https://dotnet.microsoft.com/apps/machinelearning-ai/ml-dotnet), an open-source, cross-platform machine learning framework for .NET which allows .NET users to not only perform machine learning tasks within .NET but also allows extensibility via Tensorflow, ONNX and Python extensions. For a more detailed writup on using ML.NET with F#, check out the post [A Christmas Classifier](https://towardsdatascience.com/f-advent-calendar-a-christmas-classifier-72fb9e9d8f23) by Willie Tetlow or my post [Classification with F# ML.NET Models](http://luisquintanilla.me/2018/06/13/mlnet-classification-fsharp/).
+
+Libraries for F# are also not confined only to those written in F#. In many instances, because F# is a .NET language, there is interoperability with C# libraries further extending the capabilities of F#.
+
+### Platform Support
+
+One of the things that makes Python so attractive is that it runs cross-platform. It does not matter whether you're on Windows, Mac or Linux; Python code runs the same. That being said though, not all platforms are created equal and although it is possible to run Python code on all platforms, essential libraries such as NumPy, Pandas and scikit-learn run best on Unix environments. It is possible to run them on Windows but the set up is not as straightforward. 
+
+As a .NET Language, F# runs on Windows. With the help of the Mono runtime and most recently .NET Core, it also runs on Mac and Linux. Like Python, depending on the runtime and dependencies used by the respective software packages there may be limitations as to which platform code can be run on. However, from my experience most of the FsLab set of packages work cross-platform. 
+
+### Succintness
+
+Productivity is an important measure of a language. One way to achieve it is to write logic using the least number of characters. This is where Python shines. As a dynamically typed, whitespace ruled language, Python does not require developers to declare types associated with the objects and variables defined nor does it require the use of brackets and any other special characters. As expected, this allows for developers to write the same logic with less characters much faster. 
+
+Unlike Python, F# is a statically typed language. However, thanks to type inference and the help of the compiler, writing programs often does not require developers to explicitly define what types objects and variables are. Additionally, it is a whitespace ruled language therefore removing the need for brackets and additional characters further speeding up the development process in a safe manner.
+
+### Immediate Feedback
+
+Writing safe and effective code takes time and experience. However, even the most experienced developers often makes mistakes. Therefore, getting immediate feedback before adding certain logic to programs goes a long way to making code that is safe, efficient and tested.  
+
+#### Read-Evaluate-Print Loop (REPL)
+
+One way in which both Python and F# provide immediate feedback is via the command line using the Read-Evaluate-Print Loop (REPL). The REPL is a programming environment that reads the user input, evaluates it and prints out the results, hence the name. Below are screenshots of what that environment looks like using both Python and F#.
+
+##### Python
+
+![](http://cdn.lqdev.tech/files/images/case-fsharp-ml-1.png)
+
+##### FSharp
+
+![](http://cdn.lqdev.tech/files/images/case-fsharp-ml-2.png)
+
+As it can be seen, getting that immediate feedback makes it easier to see whether the code is behaving the way it should. Although useful, this environment is not ideal when experimenting and making tweaks to the code. Additionally, because of the lack of a graphical user interface, the navigation can be less than ideal. Fortunately there is a solution out there that provides the same level of interactivity along with a graphical user interface that allows for ad-hoc experimentation and re-running of code at different points in time which is essential when developing machine learning applications.
+
+#### Jupyter Notebooks
+
+Much of machine learning deals with experimentation. Experimentation involves having a way to tweak parameters and evaluate the results. In addition, experiments should have a way of being documented and reproduced. As alluded to previously, such development environment and capabilities can be found in [Jupyter Notebook](https://jupyter.org/). 
+
+As mentioned on the project's website: 
+
+&gt; The Jupyter Notebook is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
+
+Jupyter Notebooks work with various languages which include but are not limited to Python and F# and can be run both on local machines as well as via a hosted service. One such service is Microsoft's [Azure Notebooks](https://notebooks.azure.com/) which allows you to use Jupyter Notebooks in the cloud for free. All you need is to have a Microsoft account. Below are screenshots of what that environment looks like in both Python and F#.   
+
+##### Python
+
+![](http://cdn.lqdev.tech/files/images/case-fsharp-ml-3.png)
+
+##### FSharp
+
+![](http://cdn.lqdev.tech/files/images/case-fsharp-ml-4.png)
+
+## Beyond Python
+
+F#, is comparable to Python on many of the features that make Python a great language for both development and machine learning. However, there are some areas where F# provides additional safety and functionality that greatly improve the way in which machine learning applications are built. 
+
+### Typing
+
+As previously mentioned, F# is a statically typed language. However, it also makes use of type inference which means that declaring types is not always required. With the help of the compiler, based on the structure of functions and variables it is possible to determine which type an object or variable is. This has several advantages. One advantage of being strongly typed is that when the types are declared the code becomes self-documented because it is easier to deduce what functions are doing based on the types being passed in and returned. Another advantage is that it makes it harder to write bad code. Having the compiler help you when you write your code allows you to find errors prior to compilation or running the code. This along with the REPL gives you additional reassurance that your code is executing the intended logic. 
+
+Python is making strides in acquiring some of that functionality with the introduction of type hints in version 3.6. However, this has not always been a core feature of the language and is only in its nascent stages. 
+
+### Immutability
+
+As a functional language, immutability is something that is a native part of the language. While in some cases it can change the way in which code is written, immutability has one advantage, especially when it comes to machine learning. With immutability, parallelization can be fully exploited for those algorithms which take advantage of it. 
+
+## Conclusion
+
+In this writeup, I went over how F# is comparable to Python on many of the features that make it such a popular language such as library support, succinctness, general purpose and interactivity. However, F# has additional capabilities such as static typing and immutability that further enhance its capabilities as a language for machine learning. That is not to say that one is better than the other as they both are more adept for performing certain tasks. When it comes to machine learning it does become a matter of choice as they are both robust, powerful and strongly supported languages. Therefore next time you're looking to build a machine learning application, hopefully you give F# a try. Happy coding!
+
+###### Resources
+
+[2018 Top Programming Languages](https://spectrum.ieee.org/at-work/innovation/the-2018-top-programming-languages)  
+[Get Programming with F#](https://www.manning.com/books/get-programming-with-f-sharp)  
+[ML.NET Machine Learning Samples](https://github.com/dotnet/machinelearning-samples)]]&gt;</description>
+      <link>https://www.lqdev.me/posts/case-fsharp-machine-learning</link>
+      <guid>https://www.lqdev.me/posts/case-fsharp-machine-learning</guid>
+      <pubDate>2018-12-14 23:34:50 -05:00</pubDate>
+      <category>mlnet</category>
+      <category>machine learning</category>
+      <category>fsharp</category>
+      <category>dotnet</category>
+      <category>programming</category>
+      <category>python</category>
+      <category>ai</category>
+      <category>dotnetcore</category>
+      <category>artificial intelligence</category>
+      <category>fsadvent</category>
+      <category>artificialintelligence</category>
+      <category>machinelearning</category>
+      <category>data science</category>
+      <category>functional programming</category>
+    </item>
+    <item>
+      <title>Operationalizing Machine Learning with ML.NET, Azure DevOps and Azure Container Instances</title>
+      <description>&lt;![CDATA[
+
+## Introduction
+
+Azure DevOps, formerly known as Visual Studio Team Services (VSTS), helps individuals and organizations plan, collaborate and ship products faster. One if its noteworthy services, Azure Pipelines, helps developers build Continuous Integration (CI) and Continuous Delivery (CD) pipelines that automate and standardize the build, test and deploy phases of the software development process. In addition, Azure Pipelines provides native container support and works with any language, platform and cloud. Machine learning like software development is also a process that includes a build, test and deploy phase which makes it a good candidate for automation and standardization. At Build 2018, Microsoft announced [ML.NET](https://github.com/dotnet/machinelearning), an open-source, cross-plaform machine learning framework for .NET. If we were to put all of these tools and services together, it means that we can automate and standardize the training of a machine learning model built with ML.NET, package it into a Docker container and deploy it to Azure Container Instances (ACI). In this writeup, I will go through the process of building a CI/CD pipeline in Azure Devops that trains, packages and deploys an ML.NET machine learning model to predict which class an Iris flower belongs to using a variety of measurements. Source code for this project can be found at this [link](https://github.com/lqdev/mlnetazdevopssample).
+
+## Prerequisites
+
+- [Git](https://git-scm.com/)
+- [GitHub Account](https://github.com/)
+- [.NET Core SDK](https://www.microsoft.com/net/download)  
+- [Azure Account](https://azure.microsoft.com/en-us/free/)
+
+## The Application
+
+Because the purpose of this post is to demonstrate the functionality of Azure Devops and not that of ML.NET, I'll start with a pre-built application. For some more information and detail into the functionality of ML.NET, check out the official documentation [page](https://docs.microsoft.com/en-us/dotnet/machine-learning/) as well as some of my previous posts: 
+
+- [Serverless Machine Learning with ML.NET and Azure Functions](http://luisquintanilla.me/2018/08/21/serverless-machine-learning-mlnet-azure-functions/)
+- [Deploy .NET Machine Learning Models with ML.NET, ASP.NET Core, Docker and Azure Container Instances](http://luisquintanilla.me/2018/05/11/deploy-netml-docker-aci/).
+
+The application used in this writeup contains three .NET Core projects within it. One is a class library which is what we'll use to wrap ML.NET functionality for training models as well as loading pre-trained models that will then be used to make predictions. Another is a .NET Core console application which references the class library to train and persist an ML.NET model. Finally, there's the ASP.NET Core Web API which also references the class library application to load the pre-trained model created by the console application and then makes predictions via HTTP. This application can be utilized and deployed standalone but in this writeup it will be packaged into a Docker image that will then be deployed to Azure Container Instances.  
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-1.png)
+
+### Class Library
+
+The class library can be found in the `MLModel` directory. The class library defines the observation and prediction data classes which can be found in the `IrisData.cs` and `IrisPrediction.cs` files respectively. Additionally, the `Model` class contains helper methods that train and save machine learning models, load pre-trained models and use these models to make predictions. 
+
+### Console Application
+
+In the solution directory we also have a console application in the `ModelTrainer` directory. This application references the class library in the `MLModel` directory to train and persist the machine learning model. 
+
+### API
+
+The `ModelApi` directory contains an ASP.NET Core Web API application that references the `MLModel` class library project to load the pre-trained model that is trained by the `ModelTrainer` console application and makes predictions via HTTP. The logic for making predictions can be found in the `PredictController.cs` class in the `Controllers` directory of the `ModelApi` application. 
+
+## CI/CD Pipeline Flow
+
+Conceptually, when the application is built and deployed manually, the machine learning model is defined and developed inside the `MLModel` class library. Once satisfied with the model, the class library is built. The console application which references the `MLModel` class library is built as well as run to train and persist a classification model in a file called `model.zip`. The `MLModel` class library is also referenced in the `ModelApi` ASP.NET Core project. Because `ModelApi` is the application we're looking to deploy in order to expose our pre-trained machine learning model, we need to find a way to package it for deployment. We'll be deploying `ModelApi` using Azure Container Instances which means we need to create a Docker image of the project that will then be pushed to a Docker registry where it will be made available for public consumption. The building of multiple projects as well as the building, publishing and deployment of the Docker image to Azure Container Instances can be standardized and automated using Azure DevOps. The rest of this write-up will focus on demonstrating step-by-step how to operationalize this machine learning application via CI/CD pipelines in Azure DevOps using Azure Pipelines.   
+
+### Getting The Code
+
+Before getting started, the first thing you'll want to do is fork the [mlnetazdevopssample](https://github.com/lqdev/mlnetazdevopssample) GitHub repository into your own GitHub account.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-2.png)
+
+### Creating the Project
+
+Navigate to [https://devops.azure.com](https://devops.azure.com), click `Start Free` and follow the prompts to either create a new account or sign into your existing account.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-3.png)
+
+Once logged in, click `Create Project`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-4.png)
+
+Enter the name of your project as well as a short description. Then, click `Create`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-5.png)
+
+## The Continuous Integration (CI) Pipeline
+
+Using Azure Pipelines, we'll configure a CI pipeline for the build and packaging steps of our application. Below is an illustration of all the steps involved in our CI pipeline:
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-6.png)
+
+1. Build the class library application
+2. Build the console application
+3. Train and persist the ML.NET Model by running the console application.
+4. Copy ML.NET model file created by console application into ASP.NET Core Web API application directory
+5. Build ASP.NET Core Web API application
+6. Build Docker image 
+7. Push Docker image to Docker Hub
+
+### CI Pipeline Setup
+
+Once the project is created, in the main project page, hover over `Pipelines` and click on `Builds`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-7.png)
+
+In the `Builds` pipeline page, click `New pipeline`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-8.png)
+
+Select GitHub as the source and connect your GitHub account with Azure DevOps.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-9.png)
+
+Once you have authorized Azure DevOps to use your GitHub account, select the repository and branch that will be used for this build pipeline. In our case, we'll be using the master branch of the `mlnetazdevopssample` repository. When finished configuring, click `Continue`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-10.png)
+
+The next step will be to select the jobs to execute in our pipeline. Because there are multiple steps in this build pipeline, let's start with an `Empty Job` and customize it to our needs.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-11.png)
+
+From inside the build pipeline page, before we start adding jobs, lets select the agent that will execute the jobs. For this pipeline, select the `Hosted Ubuntu 1604` option from the dropdown.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-12.png)
+
+### 1. Build the Class Library Application
+
+The first step in our CI Pipeline will be to build our class library which contains methods that wrap the training, loading and prediction functionality of the ML.NET framework and persisted models.
+
+To achieve that, we'll add a .NET Core task to our `Agent Job 1`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-13.png)
+
+Once added to the pipeline, let's configure this task. To make it more descriptive, we can give it a name such as `Build Class Library`. Because this task will be responsible for building the .NET Core class library, we'll leave the default `build` Command setting as is. 
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-14.png)
+
+The other setting we'll want to configure is the `Working Directory`. We can do so by clicking the `Advanced` tab. 
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-15.png)
+
+For this task we'll use the `MLModel` directory.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-16.png)
+
+When finished with the configuration, click `Save &amp; Queue` -&gt; `Save` on the top toolbar.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-17.png)
+
+Enter a detailed comment describing the change to the pipeline and click `Save`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-18.png)
+
+### 2. Building The Console Application
+
+Once we've built the class library application which we'll reference from the .NET Core console and ASP.NET Core Web API applications, it's time to build the console application which will serve the purpose of training and persisting the ML.NET model.
+
+Similar to the previous step, add a new .NET Core *build* task to the pipeline. The only setting that will change for this task is the `Working Directory` which will have the value of `ModelTrainer`. 
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-19.png)
+
+Although not required, when finished configuring the task, click `Save &amp; Queue` -&gt; `Save` to save and comment the changes to the pipeline. 
+
+### 3. Train and persist the ML.NET Model
+
+Now that our console application is built, it's time to run it in order to train and persist the ML.NET model. To do so, we'll add another .NET Core task. The difference is that the `Command` setting will now be configured with the `run` value. 
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-20.png)
+
+The `Working Directory` will be set to `ModelTrainer` like in the previous task.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-21.png)
+
+Remember to save and comment the new changes to the pipeline.
+
+### 4. Copy ML.NET Model to Web API Directory
+
+After the console application is run and the ML.NET model is trained, it is persisted in a file called `model.zip` inside the `ModelTrainer` directory. We can use this persisted version of the model to make predictions from both the console application or any other application of our choice. In this case, we'll be making predictions via an ASP.NET Core Web API. In order for our API to reference this file, we need to copy it into the root directory of our `ModelApi` directory. A way to perform that task is via bash script. To add a bash script to our pipeline, all we need to do is add a Bash task to it. 
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-22.png)
+
+Once added to our pipeline, it's time to configure the task. We'll set the `Type` setting to `Inline` which will bring up a text box for us to type in the script. 
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-23.png)
+
+Inside of the text box, enter the following content:
+
+```bash
+# Write your commands here
+
+cp ../ModelTrainer/model.zip .
+
+# Use the environment variables input below to pass secret variables to this script
+```
+
+This command will copy the `model.zip` file from the `ModelTrainer` directory to the `ModelApi` directory.
+
+We can set the `Working Directory` of this step to `ModelApi`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-24.png)
+
+Once finished, save and comment the new changes to the pipeline. 
+
+### 5. Build ASP.NET Core Web API application
+
+Now that we have the necessary files inside our `ModelApi` application, it's time to build it. We'll add a .NET Core task to our pipeline and set the `Command` to `build`. The `Working Directory` will be `ModelApi` like the previous task.
+
+Save and comment the new changes to the pipeline when finished.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-25.png)
+
+### 6. Build ASP.NET Core Web API Docker Image
+
+The method of deployment for the ASP.NET Core Web API application is via containers. Therefore, after building the application, we have to build a Docker image for it that can then be pushed to a Docker registry of your choice. To build a Docker image, we'll add a Docker task to our pipeline.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-26.png)
+
+When we configure the task, we'll start off by setting the `Container Registry Type` to `Container Registry`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-27.png)
+
+This will prompt the setup of a service connection to a Docker registry if one does not already exist.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-28.png)
+
+The Docker registry type we'll be using is Docker Hub. Give the connection a name, enter the credentials to your Docker Hub account and click `Verify this connection` to make sure that your credentials are valid and a connection can be established with Docker Hub. When finished click `OK`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-29.png)
+
+The `Command` setting will be `build` so we can leave the default as is as well as the `Dockerfile` setting which will use the Dockerfile in the root `mlnetazdevopssample` directory.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-30.png)
+
+Finally, we'll configure the `Image name` setting. The convention we'll use is `&lt;docker-hub-username&gt;/&lt;image-name&gt;`. In my case, `lqdev` is my Docker Hub username and I'll name my image `mlnetazdevopssample` resulting in `lqdev/mlnetazdevopssample`. Additionally, check the `Include latest tag` checkbox to have every build be the latest as opposed to tagging it with versions numbers. 
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-31.png)
+
+Remember to save and comment the recent changes to the pipeline.
+
+### 7. Push Docker Image to Docker Hub
+
+The last step in our CI pipeline is to push our newly built image to Docker Hub. To do so we'll use anoter Docker task. 
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-32.png)
+
+Like in the previous task, we'll set the `Container registry type` to `Container Registry`. Set the `Docker registry service connection` to the most recently created connection by selecting it from the dropdown. We'll be changing our `Command` to `push` and set the `Image name` to the name of the image built in the previous step. The naming convention is `&lt;docker-hub-username&gt;/&lt;image-name&gt;:latest`. The latest tag was added by our previous Docker build task so make sure that you include it in this task.
+
+Once finished, click `Save &amp; Queue` -&gt; `Save &amp; Queue`. As opposed to only clicking `Save`, this action will manually trigger the CI pipeline.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-33.png)
+
+Don't forget to comment your changes and click `Save &amp; queue` to kick off the CI pipeline.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-34.png)
+
+### Monitoring the Build
+
+When the build starts, you can click on `Builds` under the `Pipelines` section on the left pane.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-35.png)
+
+Select the first build from the list to get more details on the build.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-36.png)
+
+This will take you to the logs which show the status of the pipeline near real-time.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-37.png)
+
+### Confirming CI Pipeline Success
+
+If the build is successful, navigate to [https://hub.docker.com/](https://hub.docker.com/) to check whether the Docker image was pushed to the registry.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-38.png)
+
+## The Continuous Delivery (CD) Pipeline
+
+Now that we have our CI pipeline set up which will build and package our application, it's time to deploy it. We could do this ourselves or automate it using a CD pipeline. Our application wil be deployed to Azure Container Instances which is an Azure service that offers a quick way to run containers without having to worry about the management of virtual machines or orchestration services. The steps involved in our CD pipeline are the following:
+
+1. Create Azure Resource Group for deployment
+2. Deploy application to Azure Container Instances.
+
+### CD Pipeline Setup
+
+To get started setting up a CD pipeline, from the Azure DevOps project main page, hover over `Pipelines` and click on `Releases`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-39.png)
+
+Once in that page, click on `New pipeline`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-40.png)
+
+As with our CI pipeline, we'll start off with an `Empty Job` which we'll configure at a later time.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-41.png)
+
+### Triggering Deployments
+
+Once our pipeline is created, it's time to configure it. The first thing we'll want to do is add an artifact. An artifact can be a variety of things including the output of our build pipeline. In our case, the end our CI pipeline will be the trigger for our CD pipeline. To add an artifact, click `Add an artifact`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-42.png)
+
+In the configuration form, set the `Source type` to `Build` and the `Source` to the name of the CI pipeline created in the previous steps. When finished, click `Add`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-43.png)
+
+
+After configuring our artifact, it's time to configure the steps in the CD pipeline. To do so, click on the `Stage 1` option in the `Stages` section of the release pipeline page and change the name to something more descriptive.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-44.png)
+
+When finished, close out the form and click on the hyperlink below the stage title. 
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-45.png)
+
+You should now be on a page similar to the CI pipeline job configuration page. On this page, we'll want to click on the `Agent Job` panel to set the `Agent pool` setting to `Hosted Ubuntu 1604`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-46.png)
+
+Once that is complete, it's time to configure the tasks in the CD pipeline.
+
+### 1. Create Azure Resource Group
+
+Start off adding an `Azure CLI` task to the pipeline. In this task we'll create a resource group in Azure to which we'll deploy our application to. 
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-47.png)
+
+Before doing anything else, link DevOps to an Azure Subscription by selecting one from the dropdown and clicking `Authorize` which will prompt you to authenticate your subscription. 
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-48.png)
+
+Once an Azure subscription has been linked, let's change the `Script Location` setting to `Inline Script`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-49.png)
+
+In the `Inline Script` text box enter the following:
+
+```bash
+az group create --name mlnetazdevopssampleresourcegroup --location eastus
+```
+This script will create a resource group in Azure called `mlnetazdevopssampleresourcegroup` that is located in `eastus`. Both of these are configurable to your preference. 
+
+### 2. Deploy Docker Image to Azure Container Instances
+
+The next and final step in our CD pipeline is the deployment to Azure Container Instances. To deploy our application, we'll add another `Azure CLI` task. This time, since we already configured our `Azure subscription` in the previous task, we can select the service connection as opposed to a subscription from the dropdown.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-50.png)
+
+Like in the previous task, our script will be inline. 
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-51.png)
+
+In the `Inline Script` text box enter the following:
+
+```bash
+az container create --resource-group mlnetazdevopssampleresourcegroup --name mlnetcontainer --image lqdev/mlnetazdevopssample:latest --ports 80 --ip-address public
+```
+
+This script creates a container in the resource group created by the previous task of the pipeline with the name `mlnetcontainer` from the Docker image that was pushed to Docker Hub by the CI pipeline. Additionally, it opens up port 80 and assigns a publicly accessible IP address for the container to be accessed externally. 
+
+Once this step has been configured, make sure to save and comment all your changes by clicking `Save`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-52.png)
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-53.png)
+
+Then, to make it easily recognizable, edit the name of the pipeline by hovering near `New release pipeline` and clicking on the pencil icon.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-54.png)
+
+Make sure to save and comment your changes.
+
+## Automating CI/CD Pipelines
+
+In the previous steps, we configured CI and CD pipelines. However, we have still not fully automated the triggers that kick off both of these. 
+
+### CI Pipeline Trigger
+
+First, lets start off by automating the CI pipeline. To do so, go the project's main page, hover over `Pipelines` and click on `Builds`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-55.png)
+
+This will take you to the CI pipeline page. While on this page, click `Edit`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-56.png)
+
+Then, click on `Triggers`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-57.png)
+
+Once on this page, check the `Enable continous integration` checkbox and save and comment your changes by clicking `Save &amp; Queue` -&gt; `Save`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-58.png)
+
+
+### CD Pipeline Trigger
+
+To automate the CD pipeline trigger, click on `Releases` under the `Pipelines` page to automate the CD pipeline.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-59.png)
+
+Once on the CD pipeline's page, click `Edit`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-60.png)
+
+Then, click on the lightning icon in the Artifacts section which will show a configuration form. In this form, toggle the `Continuous deployment trigger` setting to `Enabled`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-61.png)
+
+When finished, save and comment your changes. 
+
+## Running CI/CD Pipelines
+
+Although going forward builds and deployments will be started when new changes are checked into the master branch of the `mlnetazdevopssample` repository, for demonstration purposes we will manually kick off the CI/CD pipelines we have just configured. To do so, click on `Builds` under the `Pipelines` section on the left pane.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-62.png)
+
+From the CI pipeline page click `Queue`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-63.png)
+
+This will prompt a modal to show up in which you can just click `Queue` to start the build.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-64.png)
+
+This will kick off a new CI build which subsequently will also kick off the CD pipeline of your application. 
+
+## Testing The Deployment
+
+If all is successful, a Docker image of an ASP.NET Core Web API application will be deployed to Azure Container Instances which can be accessed via a public IP address. 
+
+To see whether the deployment worked, navigate to [https://portal.azure.com/](https://portal.azure.com/) and click on `Resource groups`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-65.png)
+
+At this point, you should see the resource group that was created by the CD pipeline. If that's the case, click on it. 
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-66.png)
+
+This will then show a page that displays the container that was deployed to this resource group. Click on that.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-67.png)
+
+The container page will display diagnostic and configuration information about the container. The information we're interested in is the `IP address`. Hover to the right of it and click on the icon that says `Click to copy`. This will copy the address to the clipboard.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-68.png)
+
+In an application like Postman or Insomnia, make an HTTP POST request to `http://&lt;ip-address&gt;/api/predict` where `ip-address` is the public IP address of the container in Azure with the following body.
+
+```json
+{
+    "SepalLength":3.3,
+    "SepalWidth":1.6,
+    "PetalLength":0.2,
+    "PetalWidth":5.1
+}
+```
+
+If successful, the response will be `Iris-virginica`.
+
+![](http://cdn.lqdev.tech/files/images/azdevops-mlnet-69.png)
+
+## Conclusion
+
+In this writeup, we operationalized the building, packaging and deployment of an ML.NET application that predicts the class of an Iris flower using a variety of mesurements with Azure DevOps. We created both a Continous Integration as well as a Continous Delivery pipeline which deploys the Docker image of an ASP.NET Core Web API to Azure Container Instances. Keep in mind this is just one way of doing it and Azure DevOps is flexible in how all of these tasks and workflows are configured to meet your requirements. Happy coding!
+
+###### Resources
+
+[ML.NET Samples](https://github.com/dotnet/machinelearning-samples)
+[DevOps for Data Science](https://www.youtube.com/watch?v=bUTBBS1TECc)]]&gt;</description>
+      <link>https://www.lqdev.me/posts/azdevops-mlnet-aci</link>
+      <guid>https://www.lqdev.me/posts/azdevops-mlnet-aci</guid>
+      <pubDate>2018-11-26 23:50:23 -05:00</pubDate>
+      <category>mlnet</category>
+      <category>machinelearning</category>
+      <category>ai</category>
+      <category>dotnet</category>
+      <category>dotnetcore</category>
+      <category>devops</category>
+      <category>azure</category>
+      <category>docker</category>
+      <category>containers</category>
+      <category>microsoft</category>
+      <category>artificialintelligence</category>
+      <category>programming</category>
+      <category>webapi</category>
+      <category>aci</category>
+      <category>development</category>
+    </item>
+    <item>
+      <title>Serverless Machine Learning with ML.NET and Azure Functions</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+In a previous blog [post](http://luisquintanilla.me/2018/05/11/deploy-netml-docker-aci/), I explored how to build and deploy machine learning models built with the `ML.NET` framework using an ASP.NET Core Web API, Docker and Azure Container Instances. While this is certainly a good way to deploy such models especially those that are critical and require high availability and/or consist of long-running processes, it's not the case when those requirements are not needed. In such cases serverless computing makes more sense from a cost and resource utilization standpoint. Therefore, in this blog post I will go over how to train a classification model with `ML.NET` and deploy it using Azure Functions. Source code for this post can be found at the following [link](https://github.com/lqdev/azfnmlnetdemo).
+
+## Prerequisites
+
+Prior to starting, make sure you have all of the necessary software to build this project. Although this project was built on a system running Ubuntu 16.04 it should work cross-platform.
+
+- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+- [Azure Functions Core Tools Version 2.x](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local)
+- [.NET Core SDK 2.0+](https://www.microsoft.com/net/download)
+
+## Set Up Azure Environment
+
+Before writing any code we want to configure our Azure environment. To do so we'll be using the Azure CLI. Although in these examples I am providing the resource group name, storage account name and function application name feel free to use one of your choosing. Naming is not as important for resource group or storage account but definitely is the case for the application.
+
+Fist we want to log into our account using the following command
+
+```bash
+az login
+```
+
+This will guide you through a series of prompts that will eventually result in you being logged in. To make sure you are logged in you can use the `account` command.
+
+```bash
+az account list
+```
+
+The following output should appear if successfull.
+
+```bash
+[
+  {
+    "cloudName": "AzureCloud",
+    "id": "&lt;YOUR-ID&gt;",
+    "isDefault": true,
+    "name": "Pay-As-You-Go",
+    "state": "Enabled",
+    "tenantId": "&lt;YOUR-TENANT-ID&gt;",
+    "user": {
+      "name": "&lt;YOUR-USERNAME&gt;",
+      "type": "user"
+    }
+  }
+]
+```
+
+Next, we want to create a resource group to contain all of our Azure resources for this application.
+
+```bash
+az group create --name azfnmlnetdemo --location eastus
+```
+
+Once our resource group is created, it's time to start adding resources for it. First we'll add a storage account which will contain our trained model.
+
+```bash
+az storage account create --name azfnmlnetdemostorage --location eastus --resource-group azfnmlnetdemo --sku Standard_LRS
+```
+
+Then we'll create an Serverless Function Application and link it to our storage account. We'll want to create a unique name for it. An easy way to do so is to add the date to the end of the name of our application (i.e. myappname20180816).
+
+```bash
+az functionapp create --name azfnmlnetdemo20180821 --storage-account azfnmlnetdemostorage --consumption-plan-location eastus --resource-group azfnmlnetdemo
+```
+
+The final step in the environment setup is to set the runtime of our Serverless Function Application in the Application Settings to `beta` which supports `.NET Core`.
+
+```bash
+az functionapp config appsettings set --name azfnmlnetdemo20180821 --resource-group azfnmlnetdemo --settings FUNCTIONS_EXTENSION_VERSION=beta
+```
+
+Now we're ready to build our machine learning model and upload it to our storage account
+
+## Building The Model
+
+Once our environment is set up we can start building our solution. The first step is to create a directory and initialize our solution inside of it.
+
+### Set Up The Solution
+
+```bash
+mkdir azfnmlnetdemo
+cd azfnmlnetdemo
+dotnet new sln
+```
+
+### Create The Model Project
+
+Then we want to create a console project for our model and add it to our solution.
+
+```bash
+dotnet new console -o model
+dotnet sln add model/model.csproj
+```
+
+### Add Dependencies
+
+Since we’ll be using the `ML.NET` framework, we need to add it to our model project.
+
+```
+cd model
+dotnet add package Microsoft.ML
+dotnet restore
+```
+
+### Download The Data
+
+Before we start training the model, we need to download the data we’ll be using to train. We do so by creating a directory called `data` and downloading the data file onto there.
+
+```bash
+mkdir data
+curl -o data/iris.txt https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data
+```
+
+If we take a look at the data file, it should look something like this:
+
+```bash
+5.1,3.5,1.4,0.2,Iris-setosa
+4.9,3.0,1.4,0.2,Iris-setosa
+4.7,3.2,1.3,0.2,Iris-setosa
+4.6,3.1,1.5,0.2,Iris-setosa
+5.0,3.6,1.4,0.2,Iris-setosa
+5.4,3.9,1.7,0.4,Iris-setosa
+4.6,3.4,1.4,0.3,Iris-setosa
+5.0,3.4,1.5,0.2,Iris-setosa
+4.4,2.9,1.4,0.2,Iris-setosa
+4.9,3.1,1.5,0.1,Iris-setosa
+```
+
+### Train The Model
+
+Now that we have all our dependencies set up, it’s time to train our model. I leveraged the demo that is used on the [ML.NET Getting-Started website](https://www.microsoft.com/net/learn/machine-learning-and-ai/get-started-with-ml-dotnet-tutorial).
+
+#### Define Data Structures
+
+In the root directory of our `model` project, let’s create two classes called `IrisData` and `IrisPrediction` which will define our features and predicted attribute respectively. Both of them will use `Microsoft.ML.Runtime.Api` to add the property attributes.
+
+Here is what our `IrisData` class looks like:
+
+```csharp
+using Microsoft.ML.Runtime.Api;
+
+namespace model
+{
+    public class IrisData
+    {
+        [Column("0")]
+        public float SepalLength;
+
+        [Column("1")]
+        public float SepalWidth;
+
+        [Column("2")]
+        public float PetalLength;
+
+        [Column("3")]
+        public float PetalWidth;
+
+        [Column("4")]
+        [ColumnName("Label")]
+        public string Label;
+    }
+}
+```
+
+Similarly, here is the `IrisPrediction` class:
+
+```csharp
+using Microsoft.ML.Runtime.Api;
+
+namespace model
+{
+    public class IrisPrediction
+    {
+        [ColumnName("PredictedLabel")]
+        public string PredictedLabels;
+    }
+}
+```
+
+#### Build the Training Pipeline
+
+The way the `ML.NET` computations process data is via a sequential pipeline of steps that are performed eventually leading up to the training of the model. Therefore, we can create a class called `Model` to perform all of these tasks for us.
+
+```csharp
+using Microsoft.ML.Data;
+using Microsoft.ML;
+using Microsoft.ML.Runtime.Api;
+using Microsoft.ML.Trainers;
+using Microsoft.ML.Transforms;
+using Microsoft.ML.Models;
+using System;
+using System.Threading.Tasks;
+
+namespace model
+{
+    class Model
+    {
+
+        public static async Task&lt;PredictionModel&lt;IrisData,IrisPrediction&gt;&gt; Train(LearningPipeline pipeline, string dataPath, string modelPath)
+        {
+            // Load Data
+            pipeline.Add(new TextLoader(dataPath).CreateFrom&lt;IrisData&gt;(separator:','));
+
+            // Transform Data
+            // Assign numeric values to text in the "Label" column, because
+            // only numbers can be processed during model training
+            pipeline.Add(new Dictionarizer("Label"));
+
+            // Vectorize Features
+            pipeline.Add(new ColumnConcatenator("Features", "SepalLength", "SepalWidth", "PetalLength", "PetalWidth"));
+
+            // Add Learner
+            pipeline.Add(new StochasticDualCoordinateAscentClassifier());
+
+            // Convert Label back to text
+            pipeline.Add(new PredictedLabelColumnOriginalValueConverter() {PredictedLabelColumn = "PredictedLabel"});
+
+            // Train Model
+            var model = pipeline.Train&lt;IrisData,IrisPrediction&gt;();
+
+            // Persist Model
+            await model.WriteAsync(modelPath);
+
+            return model;
+        }
+    }
+}
+```
+
+In addition to building our pipeline and training our machine learning model, the `Model` class also serialized and persisted the model for future use in a file called `model.zip`.
+
+### Test The Model
+
+Now that we have our data structures and model training pipeline set up, it’s time to test everything to make sure it’s working. We’ll put our logic inside of our `Program.cs` file.
+
+```csharp
+using System;
+using Microsoft.ML;
+
+namespace model
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string dataPath = "model/data/iris.txt";
+
+            string modelPath = "model/model.zip";
+
+            var model = Model.Train(new LearningPipeline(),dataPath,modelPath).Result;
+
+            // Test data for prediction
+            var prediction = model.Predict(new IrisData()
+            {
+                SepalLength = 3.3f,
+                SepalWidth = 1.6f,
+                PetalLength = 0.2f,
+                PetalWidth = 5.1f
+            });
+
+            Console.WriteLine($"Predicted flower type is: {prediction.PredictedLabels}");
+        }
+    }
+}
+```
+
+All set to run. We can do so by entering the following command from our solution directory:
+
+```bash
+dotnet run -p model/model.csproj
+```
+
+Once the application has been run, the following output should display on the console.
+
+```bash
+Automatically adding a MinMax normalization transform, use 'norm=Warn' or
+'norm=No' to turn this behavior off.Using 2 threads to train.
+Automatically choosing a check frequency of 2.Auto-tuning parameters: maxIterations = 9998.
+Auto-tuning parameters: L2 = 2.667734E-05.
+Auto-tuning parameters: L1Threshold (L1/L2) = 0.Using best model from iteration 882.
+Not training a calibrator because it is not needed.
+Predicted flower type is: Iris-virginica
+```
+
+Additionally, you’ll notice that a file called `model.zip` was created in the root directory of our model project. This persisted model can now be used outside of our application to make predictions, but first we need to upload it to our Azure Storage account.
+
+### Upload The Model
+
+Now that we have a trained model and it has been persisted to the `model.zip` file, it's time to upload it to Azure Storage so that it is available to our Azure Functions application.
+
+To get started with that, first we need the access keys for our storage account. You can get those by using the following command.
+
+```bash
+az storage account keys list --account-name azfnmlnetdemostorage --resource-group azfnmlnetdemo
+```
+
+The result of that command should return your primary and secondary keys. You can use either one for the following steps.
+
+Although we can upload directly to the account, it's best to create a container to upload our model to. To keep it simple, I'll call the container `models`.
+
+```bash
+az storage container create --name models --account-key &lt;YOUR-ACCOUNT-KEY&gt; --account-name azfnmlnetdemostorage --fail-on-exist
+```
+
+Once our container's created, we can upload our `model.zip` file to it.
+
+```bash
+az storage blob upload --container-name models --account-name azfnmlnetdemostorage --file model/model.zip --name model.zip
+```
+
+To verify that the file has been uploaded, you can list the files inside the `models` storage container.
+
+```bash
+az storage blob list --container-name models --account-name azfnmlnetdemostorage --output table
+```
+
+That command should produce output similar to that below:
+
+```bash
+Name       Blob Type    Blob Tier    Length    Content Type     Last Modified              Snapshot
+---------  -----------  -----------  --------  ---------------  -------------------------  ----------
+model.zip  BlockBlob                 4373      application/zip  2018-08-21T19:26:09+00:00
+```
+
+That's all there is to the upload process. It's now time to build our Azure Functions Application
+
+## Build The Azure Functions Application
+
+### Initialize Azure Function Project
+
+In our solution directory, we want to create a new directory for our Azure Function project
+
+```bash
+mkdir serverlessfunctionapp
+dotnet sln add serverlessfunctionapp/serverlessfunctionapp.csproj
+```
+
+Then, we can scaffold an Azure Functions project inside our newly created `serverlessfunctionapp` project directory using Azure Functions Core Tools
+
+```bash
+cd serverlessfunctionapp
+func init
+```
+
+At this point you will be prompted to select the runtime for your application. For this application select `dotnet`.
+
+This will generate a few files in the `serverlessfunctionapp` directory. Keep in mind though that this does not create the function.
+
+### Add Dependencies
+
+Before we create any functions, we need to add the dependencies for our Azure Functions application. Since we'll be using `Microsoft.ML` in our Azure Function application, we'll need to add it as a dependency. From the `serverlessfunctionapp` enter the following command:
+
+```bash
+dotnet add package Microsoft.ML
+dotnet restore
+```
+
+### Create Serverless Function
+
+Once we've added the dependencies it's time to create a new function. To do so we'll use the Azure Functions Core Tools `new` command. Although not required, it's good practice to separate functions and related files into their own directory.
+
+```bash
+mkdir Predict
+cd Predict
+func new
+```
+
+At this time you will be prompted to select a template. For our classification model, we'll be using an HttpTrigger which is exactly what it sounds like. An HTTP request is what calls or invokes our function. With that being said, select the `HttpTrigger` option.
+
+You will then be prompted to enter a name for your function. You can use any name but to make things easy, name it the same as the directory the function is in. Once that process is complete, there should be a file called `Predict.cs` inside our `serverlessfunctionapp/Predict` directory. This is where we'll write the logic for our application.
+
+### Define Data Structures
+
+We'll also be making use of the IrisData and IrisPrediction classes inside our `Predict` function. Therefore, we need to create classes for them inside our `Predict` directory. The content will be the same as when we trained our model with the exception of the namespace which will now be `serverlessfunctionapp.Predict`. The content of those files should look like the code below:
+
+```csharp
+//IrisData.cs
+using Microsoft.ML.Runtime.Api;
+
+namespace serverlessfunctionapp.Predict
+{
+    public class IrisData
+    {
+        [Column("0")]
+        public float SepalLength;
+
+        [Column("1")]
+        public float SepalWidth;
+
+        [Column("2")]
+        public float PetalLength;
+
+        [Column("3")]
+        public float PetalWidth;
+
+        [Column("4")]
+        [ColumnName("Label")]
+        public string Label;
+    }
+}
+
+//IrisPrediction.cs
+using Microsoft.ML.Runtime.Api;
+
+namespace serverlessfunctionapp.Predict
+{
+    public class IrisPrediction
+    {
+        [ColumnName("PredictedLabel")]
+        public string PredictedLabels;
+    }
+}
+```
+
+### Write Function Logic
+
+With our dependencies and data structures set up, it's time to write our function logic to make predictions. The first thing we want to do is replace the `Run` method inside the `Predict` class with the following code.
+
+```csharp
+public static IActionResult Run(
+    [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequest req,
+    [Blob("models/model.zip", FileAccess.Read, Connection = "AzureWebJobsStorage")] Stream serializedModel,
+    TraceWriter log)
+{
+    // Workaround for Azure Functions Host
+    if (typeof(Microsoft.ML.Runtime.Data.LoadTransform) == null ||
+        typeof(Microsoft.ML.Runtime.Learners.LinearClassificationTrainer) == null ||
+        typeof(Microsoft.ML.Runtime.Internal.CpuMath.SseUtils) == null ||
+        typeof(Microsoft.ML.Runtime.FastTree.FastTree) == null)
+    {
+        log.Error("Error loading ML.NET");
+        return new StatusCodeResult(500);
+    }
+
+    //Read incoming request body
+    string requestBody = new StreamReader(req.Body).ReadToEnd();
+
+    log.Info(requestBody);
+
+    //Bind request body to IrisData object
+    IrisData data = JsonConvert.DeserializeObject&lt;IrisData&gt;(requestBody);
+
+    //Load prediction model
+    var model = PredictionModel.ReadAsync&lt;IrisData, IrisPrediction&gt;(serializedModel).Result;
+
+    //Make prediction
+    IrisPrediction prediction = model.Predict(data);
+
+    //Return prediction
+    return (IActionResult)new OkObjectResult(prediction.PredictedLabels);
+}
+```
+
+There are a few notable change worth looking at. One of them is the workaround at the beginning of the function.
+
+```csharp
+if (typeof(Microsoft.ML.Runtime.Data.LoadTransform) == null ||
+    typeof(Microsoft.ML.Runtime.Learners.LinearClassificationTrainer) == null ||
+    typeof(Microsoft.ML.Runtime.Internal.CpuMath.SseUtils) == null ||
+    typeof(Microsoft.ML.Runtime.FastTree.FastTree) == null)
+{
+    log.Error("Error loading ML.NET");
+    return new StatusCodeResult(500);
+}
+```
+
+There are some issues with Azure Functions and ML.NET Assemblies which are being worked on by both teams at Microsoft (see [Github Issue](https://github.com/Azure/azure-functions-host/issues/3190)). In the meantime, it's safe to just include that code in there.
+
+The other addition to note is the method signature. As you can see, I have added an additional parameter called `serializedModel` which is decorated by the `Blob` attribute.
+
+```csharp
+[Blob("models/model.zip", FileAccess.Read, Connection = "AzureWebJobsStorage")] Stream serializedModel
+```
+
+What this code is doing is telling the function to import the blob `model.zip` as a `Stream` and bind it to `serializedModel`. Using additional arguments, I tell my function to only have `Read` access to the `model.zip` blob inside the `models` container which can be accessed with the `AzureWebJobsStorage` connection string. Right now that last part might seem confusing, but this is something we configured when we set up the Azure environment and linked `azfnmlnetdemostorage` account with our `azfnmlnetdemo20180821` serverless function app using the `--storage-account` option. Although the production environment is configured, if we try to test our application locally we won't be able to access our storage account because we have not configured the connection string locally. We can do so by looking in the `local.settings.json` file inside our `serverlessfunctionapp` directory. The contents should look like the following.
+
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "AzureWebJobsDashboard": "",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+  }
+}
+```
+
+Our function running locally will look in this file, try to find `AzureWebJobsStorage` and use the connection string value in the `Predict` function. To get the connection string for our `azfnmlnetdemostorage` account, enter the following command.
+
+```bash
+az storage account show-connection-string --name azfnmlnetdemostorage
+```
+
+The output of that command should look like the following:
+
+```json
+{
+  "connectionString": "&lt;YOUR-CONNECTION-STRING&gt;"
+}
+```
+
+At this point, you just need to copy the value of `connectionString` to your `local.settings.json` file and replace the current empty string for `AzureWebJobsStorage`. It's important to note that it's okay to paste the connection string in here since the `local.settings.json` file is not committed to version control. (See `.gitignore` inside `serverlessfunctionapp` directory). Now the application is ready to be tested locally.
+
+### Testing The Function Locally
+
+To test the application, first build your project by entering the following command from the `serverlessfunctionapp` directory.
+
+```bash
+dotnet build
+```
+
+Then, navigate to the build directory `./bin/Debug/netstandard2.0` and enter the following command:
+
+```bash
+func host start
+```
+
+Finally, using a tool like Postman or Insomnia make an HTTP POST request to the `http://localhost:7071/api/Predict` endpoint with the following body:
+
+```json
+{
+  "SepalLength": 3.3,
+  "SepalWidth": 1.6,
+  "PetalLength": 0.2,
+  "PetalWidth": 5.1
+}
+```
+
+If everything is set up correctly, you should receive the following output
+
+```bash
+Iris-virginica
+```
+
+Once satisfied with testing, press `Ctrl + C` to stop the application.
+
+## Deploy To Azure
+
+### Push Build
+
+Great! Now on to the final step, deploying our application to production. Since we already configured everything it should only require a few commands to do so.
+
+First, make sure you are logged in. Using Azure Functions Core Tools log in with the following command:
+
+```bash
+func azure login
+```
+
+Like with the Azure CLI, you will follow a series of prompts to log into your account.
+
+Once you have successfully logged in, it's time to publish our application to Azure. From the `serverlessfunctionapp` directory enter the following command.
+
+```bash
+func azure functionapp publish azfnmlnetdemo20180821
+```
+
+When our deployment is complete, we can check whether our function was published successfully by using the following command.
+
+```bash
+func azure functionapp list-functions azfnmlnetdemo20180821
+```
+
+The output should look similar to that below.
+
+```bash
+Functions in azfnmlnetdemo20180821:
+    Predict - [httpTrigger]
+```
+
+### Configure Platform
+
+For the last part of the deployment step, we'll need to head over to the Azure Portal. To do so, visit [https://portal.azure.com](https://portal.azure.com) and log in.
+
+Once logged in, type the name of your application into the search bar at the top of the page and select your Azure Function application of type `App Service`
+
+![](http://cdn.lqdev.tech/files/images/azfnmlnetdemo1.png)
+
+Then, from the accordion element on the left, select the top-most item with your appplication name on it. Then, select the `Platform features` tab and open the `Application settings` option.
+
+![](http://cdn.lqdev.tech/files/images/azfnmlnetdemo2.png)
+
+When the `Application settings` page loads, change the `Platform` setting to `64-bit`. The reason for this is `ML.NET` has to be built and run on a 64-bit environment due to some of its native dependencies. 
+
+![](http://cdn.lqdev.tech/files/images/azfnmlnetdemo3.png)
+
+That's all there is to it.
+
+### Test The Deployed Function
+
+Now it's time to test our deployed function. We can do so from the portal by going back to the accordion and selecting the function name below the `Functions` parent element and clicking on the `Test` button on the far right. Doing so will show a form that will allow us to test our application. Make sure the `HTTP method` option is set to POST. In the text area for the `Request body` paste the following content:
+
+```json
+{
+  "SepalLength": 3.3,
+  "SepalWidth": 1.6,
+  "PetalLength": 0.2,
+  "PetalWidth": 5.1
+}
+```
+
+Once the form is filled in, click `Run` at the top of the page and if successful `Iris-virginica` should show up in the `Output` area.
+
+![](http://cdn.lqdev.tech/files/images/azfnmlnetdemo4.png)
+
+To test the function outside the portal, you can click on the `Get function URL` link next to the `Run` button and make an HTTP POST request using that link.
+
+## Conclusion
+
+In this writeup, we trained a classification model that predicts a class of flower using Microsoft's `ML.NET` framework. Then, we exposed this model for inference via an Azure Functions serverless application. In doing so, we can more efficiently manage our cost as well as our resource utilization. Happy coding!
+
+###### Resources
+
+[Create a function app for serverless code execution](https://docs.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-serverless)  
+[Using the Azure CLI 2.0 with Azure Storage](https://docs.microsoft.com/en-us/azure/storage/common/storage-azure-cli)  
+[Work with Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local)
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/serverless-machine-learning-mlnet-azure-functions</link>
+      <guid>https://www.lqdev.me/posts/serverless-machine-learning-mlnet-azure-functions</guid>
+      <pubDate>2018-08-21 19:13:47 -05:00</pubDate>
+      <category>serverless</category>
+      <category>azurefunctions</category>
+      <category>mlnet</category>
+      <category>machinelearning</category>
+      <category>dotnet</category>
+      <category>dotnetcore</category>
+      <category>csharp</category>
+      <category>microsoft</category>
+      <category>devops</category>
+      <category>artificialintelligence</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>Classification with F# ML.NET Models</title>
+      <description>&lt;![CDATA[
+# Introduction
+
+In a previous [post](http://luisquintanilla.me/2018/05/11/deploy-netml-docker-aci/), I detailed how to build and deploy C# `ML.NET` models with `Docker` and `ASP.NET Core`. With inspiration from [Jeff Fritz](https://twitter.com/csharpfritz), I have been learning F# for the past week and a half or so. When trying to think of projects to start practicing my F#, porting over the code I had built in C# naturally came to mind. After overcoming many obstacles and with much guidance from [Alan Ball](https://github.com/voronoipotato) and [Isaac Abraham](https://twitter.com/isaac_abraham) whose F# [book](https://www.amazon.com/Get-Programming-guide-NET-developers/dp/1617293997/ref=sr_1_1?ie=UTF8&amp;qid=1528929802&amp;sr=8-1&amp;keywords=get+programming+with+F%23) I highly recommend, I was able to successfully port over the main parts of my code which highlight `ML.NET` functionality. In this writeup, I will port a C# `ML.NET` classification model to F# which predicts the type of flower based on four numerical measurement inputs. I tried to keep the organization of this post nearly identical to that of the C# article where possible. Sample code for this project can be found at the following [link](https://github.com/lqdev/fsmlnetdemo).
+
+## Prerequisites
+
+This project was built on a Linux PC but should work cross-platform on Mac and Windows.
+
+- [.NET Core SDK 2.0+](https://www.microsoft.com/net/download/linux)
+- [Ionide Extension - Option 1](https://fsharp.org/use/linux/)
+- [ML.NET v 0.2.0](https://www.nuget.org/packages/Microsoft.ML/)
+
+## Setting Up The Project
+
+The first thing we want to do is create a folder for our solution.
+
+```bash
+mkdir fsharpmlnetdemo
+```
+
+Then, we want to create a solution inside our newly created folder.
+
+```bash
+cd fsharpmlnetdemo
+dotnet new sln
+```
+
+## Building The Model
+
+### Setting Up The Model Project
+
+First, we want to create the project. From the solution folder enter:
+
+```bash
+dotnet new console -o model -lang f#
+```
+
+Now we want to add this new project to our solution.
+
+```bash
+dotnet sln add model/model.fsproj
+```
+
+### Adding Dependencies
+
+Since we’ll be using the `ML.NET` framework, we need to add it to our `model` project.
+
+```bash
+dotnet add model/model.fsproj package Microsoft.ML
+```
+
+### Download The Data
+
+Before we start training the model, we need to download the data we’ll be using to train. We do so by downloading the data file into our root solution directory.
+
+```bash
+curl -o iris-data.txt https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data
+```
+
+If we take a look at the data file, it should look something like this:
+
+```bash
+5.1,3.5,1.4,0.2,Iris-setosa
+4.9,3.0,1.4,0.2,Iris-setosa
+4.7,3.2,1.3,0.2,Iris-setosa
+4.6,3.1,1.5,0.2,Iris-setosa
+5.0,3.6,1.4,0.2,Iris-setosa
+5.4,3.9,1.7,0.4,Iris-setosa
+4.6,3.4,1.4,0.3,Iris-setosa
+5.0,3.4,1.5,0.2,Iris-setosa
+4.4,2.9,1.4,0.2,Iris-setosa
+4.9,3.1,1.5,0.1,Iris-setosa
+```
+
+### Train Model
+
+Now that we have all our dependencies set up, it’s time to build our model. I leveraged the demo that is used on the `ML.NET` Getting-Started [website](https://www.microsoft.com/net/learn/apps/machine-learning-and-ai/ml-dotnet/get-started/linux/ubuntu16-04).
+
+#### Defining Data Structures
+
+At the time of this writing, `ML.NET` version `0.2.0` does not fully support F# Records. A workaround for this are mutable classes. Not really inline with F# paradigms, but it should be good enough.
+
+In the `Program.fs` file of our `model` project directory, let’s create two mutable classes called `IrisData` and `IrisPrediction` which will define our features and predicted attribute respectively. Both of them will use `Microsoft.ML.Runtime.Api` to add the property attributes.
+
+Here is what our `IrisData` class looks like:
+
+```fsharp
+type IrisData() =
+    [&lt;Column(ordinal = "0");DefaultValue&gt;]
+    val mutable public SepalLength: float32
+
+    [&lt;Column(ordinal = "1");DefaultValue&gt;]
+    val mutable public SepalWidth: float32
+
+    [&lt;Column(ordinal = "2");DefaultValue&gt;]
+    val mutable public PetalLength:float32
+
+    [&lt;Column(ordinal = "3");DefaultValue&gt;]
+    val mutable public PetalWidth:float32
+
+    [&lt;Column(ordinal = "4",name="Label");DefaultValue&gt;]
+    val mutable public Label: string
+```
+
+Similarly, here is the `IrisPrediction` class:
+
+```fsharp
+type IrisPrediction() =
+    [&lt;ColumnName "PredictedLabel";DefaultValue&gt;] val mutable public PredictedLabel : string
+```
+
+#### Building Training Pipeline
+
+The way the `ML.NET` computations process is via a sequential pipeline of steps that are performed eventually leading up to the training of the model. We can add that logic inside the `main` function of our `Program.fs` file.
+
+```fsharp
+let dataPath = "./iris-data.txt"
+
+// Initialize Compute Graph
+let pipeline = new LearningPipeline()
+
+// Load Data
+pipeline.Add((new TextLoader(dataPath).CreateFrom&lt;IrisData&gt;separator=','))
+
+// Transform Data
+// Assign numeric values to text in the "Label" column, because
+// only numbers can be processed during model training
+pipeline.Add(new Transforms.Dictionarizer("Label"))
+
+// Vectorize Features
+pipeline.Add(new ColumnConcatenator("Features","SepalLength", "SepalWidth", "PetalLength", "PetalWidth"))
+
+// Add Learner
+pipeline.Add(new StochasticDualCoordinateAscentClassifier())
+
+// Convert Label back to text
+pipeline.Add(new ransforms.PredictedLabelColumnOriginalValueConverterPredictedLabelColumn = "PredictedLabel"))
+
+//Train the model
+let model = pipeline.Train&lt;IrisData, IrisPrediction&gt;()
+```
+
+#### Testing Our Model
+
+Now that we have our data structures and model trained, it’s time to test it to make sure it's working. Following our training operation, we can add the following code.
+
+```fsharp
+// Test data for prediction
+let testInstance = IrisData()
+testInstance.SepalLength &lt;- 3.3f
+testInstance.SepalWidth &lt;- 1.6f
+testInstance.PetalLength &lt;- 0.2f
+testInstance.PetalWidth &lt;- 5.1f
+
+//Get Prediction
+let prediction = model.Predict(testInstance)
+
+//Output Prediction
+printfn "Predicted flower type is: %s" prediction.PredictedLabel
+```
+
+Our final `Program.fs` file should contain content similar to that below:
+
+```fsharp
+open System
+open Microsoft.ML
+open Microsoft.ML.Runtime
+open Microsoft.ML.Runtime.Api
+open Microsoft.ML.Data
+open Microsoft.ML.Transforms
+open Microsoft.ML.Trainers
+
+type IrisData() =
+
+    [&lt;Column(ordinal = "0");DefaultValue&gt;] val mutable public SepalLength: float32
+    [&lt;Column(ordinal = "1");DefaultValue&gt;] val mutable public SepalWidth: float32
+    [&lt;Column(ordinal = "2");DefaultValue&gt;] val mutable public PetalLength:float32
+    [&lt;Column(ordinal = "3");DefaultValue&gt;] val mutable public PetalWidth:float32
+    [&lt;Column(ordinal = "4",name="Label");DefaultValue&gt;] val mutable public Label: string
+
+
+type IrisPrediction() =
+
+    [&lt;ColumnName "PredictedLabel";DefaultValue&gt;] val mutable public PredictedLabel : string
+
+[&lt;EntryPoint&gt;]
+let main argv =
+
+    let dataPath = "./iris-data.txt"
+
+    // Initialize Compute Graph
+    let pipeline = new LearningPipeline()
+
+    // Load Data
+    pipeline.Add((new TextLoader(dataPath)).CreateFrom&lt;IrisData&gt;(separator=','))
+
+    // Transform Data
+    // Assign numeric values to text in the "Label" column, because
+    // only numbers can be processed during model training
+    pipeline.Add(new Transforms.Dictionarizer("Label"))
+
+    // Vectorize Features
+    pipeline.Add(new ColumnConcatenator("Features","SepalLength", "SepalWidth", "PetalLength", "PetalWidth"))
+
+    // Add Learner
+    pipeline.Add(new StochasticDualCoordinateAscentClassifier())
+
+    // Convert Label back to text
+    pipeline.Add(new Transforms.PredictedLabelColumnOriginalValueConverter(PredictedLabelColumn = "PredictedLabel"))
+
+    //Train the model
+    let model = pipeline.Train&lt;IrisData, IrisPrediction&gt;()
+
+    // Test data for prediction
+    let testInstance = IrisData()
+    testInstance.SepalLength &lt;- 3.3f
+    testInstance.SepalWidth &lt;- 1.6f
+    testInstance.PetalLength &lt;- 0.2f
+    testInstance.PetalWidth &lt;- 5.1f
+
+    //Get Prediction
+    let prediction = model.Predict(testInstance)
+
+    //Output Prediction
+    printfn "Predicted flower type is: %s" prediction.PredictedLabel
+    0 // return an integer exit code
+```
+
+All set to run. We can do so by entering the following command from our solution directory:
+
+```fsharp
+dotnet run -p model/model.fsproj
+```
+
+Once the application has been run, the following output should display on the console.
+
+```bash
+Automatically adding a MinMax normalization transform, use 'norm=Warn' or 'norm=No' to turn this behavior off.
+Using 2 threads to train.
+Automatically choosing a check frequency of 2.
+Auto-tuning parameters: maxIterations = 9998.
+Auto-tuning parameters: L2 = 2.667734E-05.Auto-tuning parameters: L1Threshold (L1/L2) = 0.
+Using best model from iteration 1066.Not training a calibrator because it is not needed.
+Predicted flower type is: Iris-virginica
+```
+
+## Conclusion
+
+In this post, we ported over a C# `ML.NET` classification model to F# which predicts the class of flower based on numerical measurement inputs. While several workarounds needed to be made, `ML.NET` is still in its infancy. As more people become involved and provide feedback hopefully in the near future, F# support and functionality will become more stable. Happy coding!
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/mlnet-classification-fsharp</link>
+      <guid>https://www.lqdev.me/posts/mlnet-classification-fsharp</guid>
+      <pubDate>2018-06-13 18:19:05 -05:00</pubDate>
+      <category>fsharp</category>
+      <category>dotnet</category>
+      <category>dotnetcore</category>
+      <category>programming</category>
+      <category>development</category>
+      <category>mlnet</category>
+      <category>machinelearning</category>
+      <category>artificialintelligence</category>
+      <category>functionalprogramming</category>
+    </item>
+    <item>
+      <title>Deploy .NET Machine Learning Models with ML.NET, ASP.NET Core, Docker and Azure Container Instances</title>
+      <description>&lt;![CDATA[
+
+# Introduction
+
+Leading up to and during MS Build 2018 Microsoft has released a wide range of products that reduce the complexity that comes with building and deploying software. The focus this year was on Machine Learning and Artificial Intelligence. Some of the products I found particularly interesting are [Azure Container Instances](https://azure.microsoft.com/en-us/services/container-instances/) which makes it easier to run containerized applications without provisioning or managing servers and [ML.NET](https://www.microsoft.com/net/learn/apps/machine-learning-and-ai/ml-dotnet) which is a .NET cross-platform machine learning framework. In this writeup, I will make use of both these products by creating a machine learning classification model with `ML.NET`, exposing it via an ASP.NET Core Web API, packaging it into a Docker container and deploying it to the cloud via Azure Container Instances. Source code for this project can be found [here](https://github.com/lqdev/mlnetacidemo).
+
+## Prerequisites
+
+This writeup assumes that you have some familiarity with Docker. The following software/dependencies are also required to build and deploy the sample application. It's important to note the application was built on a Ubuntu 16.04 PC, but all the software is cross-platform and should work on any environment.
+
+- [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+- [.NET Core 2.0](https://www.microsoft.com/net/download/linux)
+- [Docker Hub Account](https://hub.docker.com/)
+
+## Setting Up The Project
+
+The first thing we want to do is create a folder for our solution.
+
+```bash
+mkdir mlnetacidemo
+```
+
+Then, we want to create a solution inside our newly created folder.
+
+```bash
+cd mlnetacidemo
+dotnet new sln
+```
+
+## Building The Model
+
+Inside our solution folder, we want to create a new console application which is where we'll build and test our machine learning model.
+
+### Setting Up the Model Project
+
+First, we want to create the project. From the solution folder enter:
+
+```bash
+dotnet new console -o model
+```
+
+Now we want to add this new project to our solution.
+
+```bash
+dotnet sln mlnetacidemo.sln add model/model.csproj
+```
+
+### Adding Dependencies
+
+Since we'll be using the `ML.NET` framework, we need to add it to our `model` project.
+
+```bash
+cd model
+dotnet add package Microsoft.ML
+dotnet restore
+```
+
+### Download The Data
+
+Before we start training the model, we need to download the data we'll be using to train. We do so by creating a directory called `data` and downloading the data file onto there.
+
+```bash
+mkdir data
+curl -o data/iris.txt https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data
+```
+
+If we take a look at the data file, it should look something like this:
+
+```text
+5.1,3.5,1.4,0.2,Iris-setosa
+4.9,3.0,1.4,0.2,Iris-setosa
+4.7,3.2,1.3,0.2,Iris-setosa
+4.6,3.1,1.5,0.2,Iris-setosa
+5.0,3.6,1.4,0.2,Iris-setosa
+5.4,3.9,1.7,0.4,Iris-setosa
+4.6,3.4,1.4,0.3,Iris-setosa
+5.0,3.4,1.5,0.2,Iris-setosa
+4.4,2.9,1.4,0.2,Iris-setosa
+4.9,3.1,1.5,0.1,Iris-setosa
+```
+
+### Train Model
+
+Now that we have all our dependencies set up, it's time to build our model. I leveraged the demo that is used on the [ML.NET Getting-Started website](https://www.microsoft.com/net/learn/apps/machine-learning-and-ai/ml-dotnet/get-started/linux/ubuntu16-04).
+
+#### Defining Data Structures
+
+In the root directory of our `model` project, let's create two classes called `IrisData` and `IrisPrediction` which will define our features and predicted attribute respectively. Both of them will use `Microsoft.ML.Runtime.Api` to add the property attributes.
+
+Here is what our `IrisData` class looks like: 
+```csharp
+using Microsoft.ML.Runtime.Api;
+
+namespace model
+{
+public class IrisData
+    {
+        [Column("0")]
+        public float SepalLength;
+
+        [Column("1")]
+        public float SepalWidth;
+
+        [Column("2")]
+        public float PetalLength;
+        
+        [Column("3")]
+        public float PetalWidth;
+
+        [Column("4")]
+        [ColumnName("Label")]
+        public string Label;
+    }       
+}
+```
+
+Similarly, here is the `IrisPrediction` class:
+
+```csharp
+using Microsoft.ML.Runtime.Api;
+
+namespace model
+{
+    public class IrisPrediction
+    {
+        [ColumnName("PredictedLabel")]
+        public string PredictedLabels;
+    }
+}
+```
+
+#### Building Training Pipeline
+
+The way the `ML.NET` computations process is via a sequential pipeline of steps that are performed eventually leading up to the training of the model. Therefore, we can create a class called `Model` to perform all of these tasks for us.
+
+```csharp
+using Microsoft.ML.Data;
+using Microsoft.ML;
+using Microsoft.ML.Runtime.Api;
+using Microsoft.ML.Trainers;
+using Microsoft.ML.Transforms;
+using Microsoft.ML.Models;
+using System;
+using System.Threading.Tasks;
+
+namespace model
+{
+    class Model
+    {
+        
+        public static async Task&lt;PredictionModel&lt;IrisData,IrisPrediction&gt;&gt; Train(LearningPipeline pipeline, string dataPath, string modelPath)
+        {
+            // Load Data
+            pipeline.Add(new TextLoader(dataPath).CreateFrom&lt;IrisData&gt;(separator:',')); 
+
+            // Transform Data
+            // Assign numeric values to text in the "Label" column, because 
+            // only numbers can be processed during model training   
+            pipeline.Add(new Dictionarizer("Label"));
+
+            // Vectorize Features
+            pipeline.Add(new ColumnConcatenator("Features", "SepalLength", "SepalWidth", "PetalLength", "PetalWidth"));
+
+            // Add Learner
+            pipeline.Add(new StochasticDualCoordinateAscentClassifier());
+
+            // Convert Label back to text 
+            pipeline.Add(new PredictedLabelColumnOriginalValueConverter() {PredictedLabelColumn = "PredictedLabel"});
+
+            // Train Model
+            var model = pipeline.Train&lt;IrisData,IrisPrediction&gt;();
+
+            // Persist Model
+            await model.WriteAsync(modelPath);
+
+            return model;
+        }
+    }
+}
+```
+
+In addition to building our pipeline and training our machine learning model, the `Model` class also serialized and persisted the model for future use in a file called `model.zip`.
+
+#### Testing Our Model
+
+Now that we have our data structures and model training pipeline set up, it's time to test everything to make sure it's working. We'll put our logic inside of our `Program.cs` file.
+
+```csharp
+using System;
+using Microsoft.ML;
+
+namespace model
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string dataPath = "model/data/iris.txt";
+
+            string modelPath = "model/model.zip";
+
+            var model = Model.Train(new LearningPipeline(),dataPath,modelPath).Result;
+
+            // Test data for prediction
+            var prediction = model.Predict(new IrisData() 
+            {
+                SepalLength = 3.3f,
+                SepalWidth = 1.6f,
+                PetalLength = 0.2f,
+                PetalWidth = 5.1f
+            });
+
+            Console.WriteLine($"Predicted flower type is: {prediction.PredictedLabels}");
+        }
+    }
+}
+```
+
+All set to run. We can do so by entering the following command from our solution directory:
+
+```bash
+dotnet run -p model/model.csproj
+```
+
+Once the application has been run, the following output should display on the console. 
+
+```text
+Automatically adding a MinMax normalization transform, use 'norm=Warn' or
+'norm=No' to turn this behavior off.Using 2 threads to train.
+Automatically choosing a check frequency of 2.Auto-tuning parameters: maxIterations = 9998.
+Auto-tuning parameters: L2 = 2.667734E-05.
+Auto-tuning parameters: L1Threshold (L1/L2) = 0.Using best model from iteration 882.
+Not training a calibrator because it is not needed.
+Predicted flower type is: Iris-virginica
+```
+
+Additionally, you'll notice that a file called `model.zip` was created in the root directory of our `model` project. This persisted model can now be used outside of our application to make predictions, which is what we'll do next via an API.
+
+## Exposing The Model
+
+Once a machine learning model is built, you want to deploy it so it can start making predictions. One way to do that is via a REST API. At it's core, all our API needs to do is accept data input from the client and respond back with a prediction. To help us do that, we'll be using an ASP.NET Core API.
+
+### Setting Up The API Project
+
+The first thing we want to do is create the project.
+
+```bash
+dotnet new webapi -o api
+```
+
+Then we want to add this new project to our solution
+
+```bash
+dotnet sln mlnetacidemo.sln add api/api.csproj
+```
+
+### Adding Dependencies
+
+Because we'll be loading our model and making predictions via our API, we need to add the `ML.NET` package to our `api` project.
+
+```bash
+cd api
+dotnet add package Microsoft.ML
+dotnet restore
+```
+
+### Referencing Our Model
+
+In the previous step when we built our machine learning model, it was saved to a file called `model.zip`. This is the file we'll be referencing in our API to help us make predictions. To reference it in our API, simply copy it from the model project directory into our `api` project directory.
+
+### Creating Data Models
+
+Our model was built using data structures `IrisData` and `IrisPrediction` to define the features as well as the predicted attribute. Therefore, when our model makes predictions via our API, it needs to reference these data types as well. As a result, we need to define `IrisData` and `IrisPrediction` classes inside of our `api` project. The contents of the classes will be nearly identical to those in the `model` project with the only exception of our namespace changing from `model` to `api`.
+
+```csharp
+using Microsoft.ML.Runtime.Api;
+
+namespace api
+{
+    public class IrisData
+    {
+        [Column("0")]
+        public float SepalLength;
+
+        [Column("1")]
+        public float SepalWidth;
+
+        [Column("2")]
+        public float PetalLength;
+        
+        [Column("3")]
+        public float PetalWidth;
+
+        [Column("4")]
+        [ColumnName("Label")]
+        public string Label;
+    }    
+}
+```
+
+```csharp
+using Microsoft.ML.Runtime.Api;
+
+namespace api
+{
+    public class IrisPrediction
+    {
+        [ColumnName("PredictedLabel")]
+        public string PredictedLabels;
+    }
+}
+```
+
+### Building Endpoints
+
+Now that our project is set up, it's time to add a controller that will handle prediction requests from the client. In the `Controllers` directory of our `api` project we can create a new class called `PredictController` with a single `POST` endpoint. The contents of the file should look like the code below:
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.ML;
+
+namespace api.Controllers
+{
+    [Route("api/[controller]")]
+    public class PredictController : Controller
+    {
+        // POST api/predict
+        [HttpPost]
+        public string Post([FromBody] IrisData instance)
+        {
+            var model = PredictionModel.ReadAsync&lt;IrisData,IrisPrediction&gt;("model.zip").Result;
+            var prediction = model.Predict(instance);
+            return prediction.PredictedLabels;
+        }
+    }
+}
+```
+
+### Testing The API
+
+Once our `predict` endpoint is set up, it's time to test it. From the root directory of our `mlnetacidemo` solution, enter the following command.
+
+```bash
+dotnet run -p api/api.csproj
+```
+
+In a client like POSTMAN or Insomnia, send an HHTP POST request to the endpoint `http://localhost:5000/api/predict`.
+
+The body our request should look similar to the snippet below:
+
+```json
+{
+	"SepalLength": 3.3,
+	"SepalWidth": 1.6,
+	"PetalLength": 0.2,
+	"PetalWidth": 5.1,
+}
+```
+
+If successful, the output returned should equal `Iris-virginica` just like our console application.
+
+## Packaging The Application
+
+Great! Now that our application is successfully running locally, it's time to package it up into a Docker container and push it to Docker Hub.
+
+### Creating The Dockerfile
+
+In our `mlnetacidemo` solution directory, create a `Dockerfile` with the following content:
+
+```Dockerfile
+FROM microsoft/dotnet:2.0-sdk AS build
+WORKDIR /app
+
+# copy csproj and restore as distinct layers
+COPY *.sln .
+COPY api/*.csproj ./api/
+RUN dotnet restore
+
+# copy everything else and build app
+COPY api/. ./api/
+WORKDIR /app/api
+RUN dotnet publish -c release -o out
+
+
+FROM microsoft/aspnetcore:2.0 AS runtime
+WORKDIR /app
+COPY api/model.zip .
+COPY --from=build /app/api/out ./
+ENTRYPOINT ["dotnet", "api.dll"]
+```
+
+### Building Our Image
+
+To build the image, we need to enter the following command into the command prompt. This make take a while because it needs to download the .NET Core SDK and ASP.NET Core runtime Docker images.
+
+```bash
+docker build -t &lt;DOCKERUSERNAME&gt;/&lt;IMAGENAME&gt;:latest .
+```
+
+### Test Image Locally
+
+We need to test our image locally to make sure it can run on the cloud. To do so, we can use the `docker run` command. 
+
+```bash
+docker run -d -p 5000:80 &lt;DOCKERUSERNAME&gt;/&lt;IMAGENAME&gt;:latest
+```
+
+Although the API is exposing port 80, we bind it to the local port 5000 just to keep our prior API request intact. When sending a POST request to `http://localhost:5000/api/predict` with the appropriate body, the response should again equal `Iris-virginica`.
+
+To stop the container, use `Ctrl + C`.
+
+### Push to Docker Hub
+
+Now that the Docker image is successfully running locally, it's time to push to Docker Hub. Again, we use the Docker CLI to do this.
+
+```bash
+docker login
+docker push &lt;DOCKERUSERNAME&gt;/&lt;IMAGENAME&gt;:latest
+```
+
+## Deploying To The Cloud
+
+Now comes the final step which is to deploy and expose our machine learning model and API to the world. Our deployment will occur via Azure Container Instances because it requires almost no provisioning or management of servers. 
+
+### Prepare Deployment Manifest
+
+Although deployments can be performed inline in the command line, it's usually best to place all the configurations in a file for documentation and to save time not having to type in the parameters every time. With Azure, we can do that via a JSON file. 
+
+```json
+{
+  "$schema":
+    "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "containerGroupName": {
+      "type": "string",
+      "defaultValue": "mlnetacicontainergroup",
+      "metadata": {
+        "description": "Container Group name."
+      }
+    }
+  },
+  "variables": {
+    "containername": "mlnetacidemo",
+    "containerimage": "&lt;DOCKERUSERNAME&gt;/&lt;IMAGENAME&gt;:latest"
+  },
+  "resources": [
+    {
+      "name": "[parameters('containerGroupName')]",
+      "type": "Microsoft.ContainerInstance/containerGroups",
+      "apiVersion": "2018-04-01",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "containers": [
+          {
+            "name": "[variables('containername')]",
+            "properties": {
+              "image": "[variables('containerimage')]",
+              "resources": {
+                "requests": {
+                  "cpu": 1,
+                  "memoryInGb": 1.5
+                }
+              },
+              "ports": [
+                {
+                  "port": 80
+                }
+              ]
+            }
+          }
+        ],
+        "osType": "Linux",
+        "ipAddress": {
+          "type": "Public",
+          "ports": [
+            {
+              "protocol": "tcp",
+              "port": "80"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "containerIPv4Address": {
+      "type": "string",
+      "value":
+        "[reference(resourceId('Microsoft.ContainerInstance/containerGroups/', parameters('containerGroupName'))).ipAddress.ip]"
+    }
+  }
+}
+```
+
+It's a lot to look at but for now we can use this template and save it to the file `azuredeploy.json` in the root directory of our `mlnetacidemo` solution. The only thing that needs to be changed is the value of the `containerimage` property. Replace it with your Docker Hub username and the name of the image you just pushed to Docker Hub.
+
+### Deploy
+
+In order to deploy our application we need to make sure to log into our Azure account. To do so via the Azure CLI, type into the command prompt:
+
+```bash
+az login
+```
+
+Follow the prompts to log in. Once logged in, it's time to create a resource group for our container.
+
+```bash
+az group create --name mlnetacidemogroup --location eastus
+```
+
+After the group has been successfully created it's time to deploy our application.
+
+```bash
+az group deployment create --resource-group mlnetacidemogroup --template-file azuredeploy.json
+```
+
+Give it a few minutes for your deployment to initialize. If the deployment was successful, you should see some output on the command line. Look for the `ContainerIPv4Address` property. This is the IP Address where your container is accessible. In POSTMAN or Insomnia, replace the URL to which you previously made a POST request to with `http://&lt;ContainerIPv4Address&gt;/api/predict` where `ContainerIPv4Address` is the value that was returned to the command line after the deployment. If successful, the response should be just like previous requests `Iris-virginica`.
+
+Once you're finished, you can clean up resources with the following command:
+
+```bash
+az group delete --name mlnetacidemogroup
+```
+
+## Conclusion
+
+In this writeup, we built a classification machine learning model using `ML.NET` that predicts the class of an iris plant given four measurement features, exposed it via an ASP.NET Core REST API, packaged it into a container and deployed it to the cloud using Azure Container Instances. As the model changes and becomes more complex, the process is standardized enough that extending this example would require minimal changes to our existing application. Happy Coding!
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/deploy-netml-docker-aci</link>
+      <guid>https://www.lqdev.me/posts/deploy-netml-docker-aci</guid>
+      <pubDate>2018-05-11 21:17:00 -05:00</pubDate>
+      <category>azure</category>
+      <category>devops</category>
+      <category>dotnet</category>
+      <category>ml</category>
+      <category>ai</category>
+      <category>microsoft</category>
+      <category>programming</category>
+      <category>development</category>
+      <category>csharp</category>
+      <category>aci</category>
+      <category>docker</category>
+      <category>mlnet</category>
+      <category>webapi</category>
+      <category>aspnetcore</category>
+      <category>aspnet</category>
+      <category>machinelearning</category>
+      <category>artificialintelligence</category>
+    </item>
+  </channel>
+</rss>

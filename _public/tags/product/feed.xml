@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - product</title>
+    <link>https://www.lqdev.me/tags/product</link>
+    <description>All content tagged with 'product' by Luis Quintanilla</description>
+    <lastBuildDate>2024-03-02 15:49 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Ente - Private cloud storage for photos, videos, etc.</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Store, share, and rediscover your memories with absolute privacy&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/ente-private-media-cloud-storage</link>
+      <guid>https://www.lqdev.me/bookmarks/ente-private-media-cloud-storage</guid>
+      <pubDate>2024-03-02 15:49 -05:00</pubDate>
+      <category>e2ee</category>
+      <category>photos</category>
+      <category>cloud</category>
+      <category>storage</category>
+      <category>product</category>
+    </item>
+    <item>
+      <title>Eigensolutions: composability as the antidote to overfit </title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;tl;dr: Overfitting happens when solutions don’t generalize sufficiently and is a hallmark of poor design. Eigensolutions are the opposite: solutions that generalize so much they expose links between seemingly unrelated use cases. Designing eigensolutions takes a mindset shift from linear design to composability.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The eigensolution is a solution that addresses several key use cases, that previously appeared unrelated.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...it takes a mindset shift, from the linear Use case → Idea → Solution process to composability. Rather than designing a solution to address only our driving use cases, step back and ask yourself: can we design a solution as a composition of smaller, more general features, that could be used together to address a broader set of use cases?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Contrary to what you may expect, eigensolutions can actually be quite hard to push to stakeholders:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Due to their generality, they often require significantly higher engineering effort to implement. Quick-wins are easier to sell: they ship faster and add value sooner. In my 11 years designing web technologies, I have seen many beautiful, elegant eigensolutions be vetoed due to implementation difficulties in favor of far more specific solutions — and often this was the right decision, it’s all about the cost-benefit.&lt;/li&gt;
+&lt;li&gt;Eigensolutions tend to be lower level primitives, which are more flexible, but can also involve higher friction to use than a solution that is tailored to a specific use case.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Eigensolutions tend to be lower level primitives. They enable a broad set of use cases, but may not be the most learnable or efficient way to implement all of them, compared to a tailored solution. In other words, they make complex things possible, but do not necessarily make common things easy.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Instead of implementing tailored solutions ad-hoc (risking overfitting), they can be implemented as shortcuts: higher level abstractions using the lower level primitive. Done well, shortcuts provide dual benefit: not only do they reduce friction for common cases, they also serve as teaching aids for the underlying lower level feature. This offers a very smooth ease-of-use to power curve: if users need to go further than what the shortcut provides, they can always fall back on the lower level primitive to do so.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In an ideal world, lower level primitives and higher level abstractions would be designed and shipped together. However, engineering resources are typically limited, and it often makes sense to ship one before the other, so we can provide value sooner.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This can happen in either direction:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lower level primitive first. Shortcuts to make common cases easy can ship at a later stage, and demos and documentation to showcase common “recipes” can be used as a stopgap meanwhile. This prioritizes use case coverage over optimal UX, but it also allows collecting more data, which can inform the design of the shortcuts implemented.&lt;/li&gt;
+&lt;li&gt;Higher level abstraction first, as an independent, ostensibly ad hoc feature. Then later, once the lower level primitive ships, it is used to “explain” the shortcut, and make it more powerful. This prioritizes optimal UX over use case coverage: we’re not covering all use cases, but for the ones we are covering, we’re offering a frictionless user experience.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...despite the name eigensolution, it’s still all about the use cases: eigensolutions just expose links between use cases that may have been hard to detect, but seem obvious in retrospect...Requiring all use cases to precede any design work can be unnecessarily restrictive, as frequently solving a problem improves our understanding of the problem.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/eigensolutions-composability-antidote-overfitting-verou</link>
+      <guid>https://www.lqdev.me/bookmarks/eigensolutions-composability-antidote-overfitting-verou</guid>
+      <pubDate>2023-12-21 22:38 -05:00</pubDate>
+      <category>design</category>
+      <category>product</category>
+    </item>
+    <item>
+      <title>Practical Ways To Increase Product Velocity</title>
+      <description>&lt;![CDATA[[bookmark] &lt;h2&gt;Remove Dependencies&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Create a culture that favors begging forgiveness (and reversing decisions quickly) rather than asking permission. Invest in infrastructure such as progressive / cancellable rollouts. Use asynchronous written docs to get people aligned (“comment in this doc by Friday if you disagree with the plan”) rather than meetings (“we’ll get approval at the next weekly review meeting”).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Demand Clear Narratives&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Unclear thinking is a reliable cause of slowness, and gets revealed under a microscope.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Bonus points for documenting plans in writing. One of the largest advantages of a strong writing culture is that it forces much clearer narratives than meetings, powerpoint, or five Slack threads spread over 8 business days.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Get Your Deployment and Incident Metrics In Shape&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;No matter what your job function is, part of your role is ensuring that your engineering team has enough time to get their vital metrics in order. Especially if you’re a product leader, it’s essential that you resist the temptation to push relentlessly for more features and give your engineering counterparts the room to get fit.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Find Trusted Engineering Guides&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...it’s especially important to build a strong relationship with all of your engineering partners, and especially these trusted guides.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/practical-ways-increase-product-velocity</link>
+      <guid>https://www.lqdev.me/bookmarks/practical-ways-increase-product-velocity</guid>
+      <pubDate>2023-12-09 10:03 -05:00</pubDate>
+      <category>product</category>
+      <category>productivity</category>
+    </item>
+    <item>
+      <title>How consumers are using Generative AI</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;1. Most leading products are built from the “ground up” around generative AI&lt;/strong&gt;&lt;br /&gt;
+Like ChatGPT, the majority of products on this list didn’t exist a year ago—80% of these websites are new
+Of the 50 companies on the list, only 5 are products of, or acquisitions by, pre-existing big tech companies...
+Of the remaining list members, a whopping 48% are completely bootstrapped, with no outside funding, according to PitchBook data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;2. ChatGPT has a massive lead, for now…&lt;/strong&gt;&lt;br /&gt;
+ChatGPT represents 60% of monthly traffic to the entire top 50 list, with an estimated 1.6 billion monthly visits and 200 million monthly users (as of June 2023). This makes ChatGPT the 24th most visited website globally.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;3. LLM assistants (like ChatGPT) are dominant, but companionship and creative tools are on the rise&lt;/strong&gt;&lt;br /&gt;
+General LLM chatbots represent 68% of total consumer traffic to the top 50 list.
+However, two other categories have started to drive significant usage in recent months—AI companions (such as CharacterAI) and content generation tools (such as Midjourney and ElevenLabs). Within the broader content generation category, image generation is the top use case with 41% of traffic, followed by prosumer writing tools at 26%, and video generation at 8%.
+Another category worth mentioning? Model hubs. There are only 2 on the list, but they drive significant traffic—Civitai (for images) and Hugging Face both rank in the top 10. This is especially impressive because consumers are typically visiting these sites to download models to run locally, so web traffic is likely an underestimate of actual usage.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;4. Early “winners” have emerged, but most product categories are up for grabs&lt;/strong&gt;&lt;br /&gt;
+Good news for builders: despite the surge in interest in generative AI, in many categories there is not yet a runway success.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;5. Acquisition for top products is entirely organic—and consumers are willing to pay!&lt;/strong&gt;&lt;br /&gt;
+The majority of companies on this list have no paid marketing (at least, that SimilarWeb is able to attribute). There is significant free traffic “available” via X, Reddit, Discord, and email, as well as word of mouth and referral growth.
+And consumers are willing to pay for GenAI. 90% of companies on the list are already monetizing, nearly all of them via a subscription model. The average product on the list makes $21/month (for users on monthly plans)—yielding $252 annually.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;6. Mobile apps are still emerging as a GenAI platform&lt;/strong&gt;&lt;br /&gt;
+Consumer AI products have, thus far, been largely browser-first, rather than app-first. Even ChatGPT took 6 months to launch a mobile app!
+Why aren’t more AI companies building on mobile? The browser is a natural starting place to reach the broadest base of consumers. Many AI companies have small teams and likely don’t want to fragment their focus and resources across Web, iOS, and Android.
+Given that the average consumer now spends 36 minutes more per day on mobile than desktop (4.1 hours vs. 3.5 hours), we expect to see more mobile-first GenAI products emerge as the technology matures.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/a16z-how-consumers-using-generative-ai</link>
+      <guid>https://www.lqdev.me/bookmarks/a16z-how-consumers-using-generative-ai</guid>
+      <pubDate>2023-09-17 12:40 -05:00</pubDate>
+      <category>ai</category>
+      <category>generativeai</category>
+      <category>product</category>
+      <category>business</category>
+      <category>venturecapital</category>
+      <category>vc</category>
+    </item>
+    <item>
+      <title>Kaz Nejatian (COO, Shopify): Why Shopify Elevated the Non-Manager Career Path and Ditched Meetings</title>
+      <description>&lt;![CDATA[[bookmark] &lt;h2&gt;The difference between crafters and managers&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The difference is in what you spend time on.&lt;/p&gt;
+&lt;p&gt;&amp;quot;Most people get satisfaction from building — from actually creating things.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;As companies scale, optics start playing a larger role. People start spending more time on internal docs than actually talking to customers. How do you prevent this from happening at Shopify?&lt;/p&gt;
+&lt;p&gt;In most product reviews, product managers spend way too much time preparing the perfect presentation for execs.&lt;/p&gt;
+&lt;p&gt;At Shopify, our approach to product reviews is different. We want to see how the product actually works by playing with the demo or diving into the code.&lt;/p&gt;
+&lt;p&gt;We want our PMs to be extremely user-focused, to take full ownership over problems, and to have a high tolerance for risk.&lt;/p&gt;
+&lt;p&gt;If these attributes aren't present, product managers tend to become &amp;quot;keepers of strategy.” You end up with smart, highly credentialed individuals spending all their time writing strategy memos to increase their team size so that they can write even more strategy memos.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;How Shopify rages against meetings&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In early 2023, Shopify initiated operation “Chaos Monkey” to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Cancel all meetings with 3+ people&lt;/li&gt;
+&lt;li&gt;Reinstate “no meeting Wednesdays”&lt;/li&gt;
+&lt;li&gt;Remove needless Slack channels&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Does Shopify have a strong writing culture to help people communicate without meetings?&lt;/p&gt;
+&lt;p&gt;Yes, we try to make async decisions as much as we can. We do this in a few ways:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;One of our mantras is “Do things, tell people.” You’ll see this plastered on our walls if you come to Shopify’s office.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;We built an operating system called GSD (get shit done). This internal tool emphasizes frequent written updates, which are much easier to digest than constant meetings.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A meeting is a bug that some other process didn’t work out.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We focus on the mission. We want to be the all-in-one commerce platform for people to start and grow businesses. We try to avoid getting distracted by other side quests.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The main thing is to keep the main thing the main thing.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/interview-shopify-coo-career-path-meetings</link>
+      <guid>https://www.lqdev.me/bookmarks/interview-shopify-coo-career-path-meetings</guid>
+      <pubDate>2023-07-12 20:20 -05:00</pubDate>
+      <category>career</category>
+      <category>productivity</category>
+      <category>product</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - polls</title>
+    <link>https://www.lqdev.me/tags/polls</link>
+    <description>All content tagged with 'polls' by Luis Quintanilla</description>
+    <lastBuildDate>2023-01-30 11:46 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Microsoft Forms Test Embedding</title>
+      <description>&lt;![CDATA[&lt;p&gt;Testing whether my site can handle embedding &lt;a href="https://forms.office.com/"&gt;Microsoft Forms&lt;/a&gt;. Useful for polls across a variety of channels.&lt;/p&gt;
+&lt;iframe width="640px" height="480px" src="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAANHhN2pUQTZMR1VCUUxDUDNGSFUwWTZLWkdDQklVSC4u&amp;embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen&gt; &lt;/iframe&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/ms-forms-embed-test</link>
+      <guid>https://www.lqdev.me/notes/ms-forms-embed-test</guid>
+      <pubDate>2023-01-30 11:46 -05:00</pubDate>
+      <category>forms</category>
+      <category>microsoft</category>
+      <category>polls</category>
+      <category>web</category>
+      <category>indieweb</category>
+    </item>
+  </channel>
+</rss>

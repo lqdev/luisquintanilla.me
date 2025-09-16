@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - news</title>
+    <link>https://www.lqdev.me/tags/news</link>
+    <description>All content tagged with 'news' by Luis Quintanilla</description>
+    <lastBuildDate>2024-08-06 09:06 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>CNET purchased for JUST $100 million</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;JUST $100 million. That's pocket change 🙃&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Red Ventures paid $500 million for the tech property once valued at $1.8 billion.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Given previous valuations though, I see why the headline was phrased that way.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/cnet-bought-for-just-100-million</link>
+      <guid>https://www.lqdev.me/responses/cnet-bought-for-just-100-million</guid>
+      <pubDate>2024-08-06 09:06 -05:00</pubDate>
+      <category>cnet</category>
+      <category>tech</category>
+      <category>acquisition</category>
+      <category>news</category>
+    </item>
+    <item>
+      <title>Just added Fediverse Open Graph meta tag to my website</title>
+      <description>&lt;![CDATA[&lt;p&gt;I learned from &lt;a href="https://matthiasott.com/notes/highlighting-blogging-on-mastodon"&gt;Matthias Ott&lt;/a&gt; that Mastodon created a new Open Graph meta tag which displays a direct link to the website owner's Fediverse (Mastodon, Pixelfed, Threads, etc...) profile as part of the URL preview card on the Mastodon web and mobile apps.&lt;/p&gt;
+&lt;p&gt;I just added support for it on my website.&lt;/p&gt;
+&lt;p&gt;All I had to do was add the following tag to my site.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;meta property=&amp;quot;fediverse:creator&amp;quot; content=&amp;quot;@lqdev@toot.lqdev.tech&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I'm not running the nightly version of Mastodon on my instance, but if anyone on an instance where this is already supported like mastodon.social can verify and let me know it's working, it's much appreciated.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/added-fediverse-og-creator-tag</link>
+      <guid>https://www.lqdev.me/notes/added-fediverse-og-creator-tag</guid>
+      <pubDate>2024-07-02 21:41 -05:00</pubDate>
+      <category>mastodon</category>
+      <category>fediverse</category>
+      <category>blogging</category>
+      <category>indieweb</category>
+      <category>blogs</category>
+      <category>news</category>
+      <category>journalism</category>
+      <category>openweb</category>
+      <category>distributedweb</category>
+      <category>smallweb</category>
+      <category>personalweb</category>
+      <category>opengraph</category>
+      <category>html</category>
+    </item>
+    <item>
+      <title>Stability CEO Resigns</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Earlier today, Emad Mostaque resigned from his role as CEO of Stability AI and from his position on the Board of Directors of the company to pursue decentralized AI.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/stability-ai-ceo-resigns</link>
+      <guid>https://www.lqdev.me/responses/stability-ai-ceo-resigns</guid>
+      <pubDate>2024-03-23 11:49 -05:00</pubDate>
+      <category>stability</category>
+      <category>ai</category>
+      <category>news</category>
+    </item>
+    <item>
+      <title>The Online Local Chronicle</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In the same way that every little place in America used to have a printed newspaper, every little place in America could have an online local chronicle.&lt;br /&gt;
+&lt;br&gt;
+Broadly speaking, an online local chronicle is a collection of facts organized mostly in chronological order. The “pages” of the chronicle can be thought of as subsets of a community’s universal timeline of events. These online local chronicles could become the backbone of local news operations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Nice project. Unfortunately, it's rare you get local news. I like publications / websites like &lt;a href="https://www.hobokengirl.com/"&gt;Hoboken Girl&lt;/a&gt; and &lt;a href="https://blockclubchicago.org/"&gt;Block Club Chicago&lt;/a&gt;. I wish there were more of them in more cities and towns. I know they're there in some forms like Facebook Groups. Even better, it'd be great to have the websites for these publications be the main source of truth that then syndicated their content to the various platforms out there.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/online-local-chronicle-searls</link>
+      <guid>https://www.lqdev.me/responses/online-local-chronicle-searls</guid>
+      <pubDate>2024-03-19 22:17 -05:00</pubDate>
+      <category>community</category>
+      <category>news</category>
+      <category>local</category>
+      <category>knowledgebase</category>
+      <category>information</category>
+      <category>web</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>Now where will I get my RSS fix?</title>
+      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="https://github.com/lqdev/luisquintanilla.me/assets/11130940/b50ebeaa-c38c-4c58-b70f-fb9b9a26a017" class="img-fluid" alt="Screenshot of message informing users NewsBlur is down for maintenance" /&gt;&lt;/p&gt;
+&lt;p&gt;Good thing I have elfeed as my backup so I can use that in the meantime.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/newsblur-maintenace-mode-022024</link>
+      <guid>https://www.lqdev.me/notes/newsblur-maintenace-mode-022024</guid>
+      <pubDate>2024-02-25 14:18 -05:00</pubDate>
+      <category>newsblur</category>
+      <category>rss</category>
+      <category>maintenance</category>
+      <category>emacs</category>
+      <category>elfeed</category>
+      <category>news</category>
+    </item>
+    <item>
+      <title>TWiT's Lesser Known RSS Feeds</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;Subscribed!&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Many people are unaware that TWiT also has RSS feeds designed for news aggregators like Feedly, NetNewsWire, Mozilla Thunderbird, and Akregator. These feeds are not meant for podcast apps but are specifically designed for news aggregators. You can copy any of the RSS feed links below into your RSS feed reader of choice and get updates on the latest TWiT blog posts, articles, or podcasts as soon as they are published.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/twit-lesser-known-rss-feeds</link>
+      <guid>https://www.lqdev.me/bookmarks/twit-lesser-known-rss-feeds</guid>
+      <pubDate>2024-02-14 22:35 -05:00</pubDate>
+      <category>twit</category>
+      <category>rss</category>
+      <category>tech</category>
+      <category>news</category>
+      <category>community</category>
+    </item>
+    <item>
+      <title>The top five RSS readers for keeping up with your news feeds</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;RSS readers allow you to collect the articles of specific sources in one app, making it a lot easier to find the content you’re interested in without crawling through a lot of noise.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Whatever RSS feed reader you choose, it’s worth it to try at least one or two. This way, you can keep up with news from your favorite sources without depending on the chaos that is your email account or the random opinions from TikTok.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Great overview of the various RSS feed readers out there.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/top-five-rss-feed-readers-verge</link>
+      <guid>https://www.lqdev.me/responses/top-five-rss-feed-readers-verge</guid>
+      <pubDate>2024-01-22 20:49 -05:00</pubDate>
+      <category>rss</category>
+      <category>news</category>
+      <category>feeds</category>
+      <category>indieweb</category>
+      <category>protocols</category>
+    </item>
+    <item>
+      <title>Chip-making Chip Shortage</title>
+      <description>&lt;![CDATA[&lt;p&gt;&lt;a href="https://9to5mac.com/2022/05/03/chips-for-chipmaking-machines/"&gt;Chips for chipmaking machines are affected by chip shortage, says TSMC and Intel - via 9to5Mac&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://res-5.cloudinary.com/hdwvnfa8d/image/upload/q_auto/v1/ghost-blog-images/Spider-Man-Pointing-Meme.jpg" class="img-fluid" alt="Spiderman meme pointing at each other" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/chipmaking-chip-shortage</link>
+      <guid>https://www.lqdev.me/notes/chipmaking-chip-shortage</guid>
+      <pubDate>05/03/2022 18:50 -05:00</pubDate>
+      <category>chip</category>
+      <category>pc</category>
+      <category>hardware</category>
+      <category>news</category>
+    </item>
+  </channel>
+</rss>

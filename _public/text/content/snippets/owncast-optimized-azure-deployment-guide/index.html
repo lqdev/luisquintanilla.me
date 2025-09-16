@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Deploy Owncast to Azure Container Apps with Persistent Storage - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Deploy Owncast to Azure Container Apps with Persistent Storage</h1><div class="content-meta"><div class="content-type">snippets</div><time datetime="2025-08-14">August 14, 2025</time><p>Tags: owncast, fediverse, azure, livestream</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/snippets/">← All snippets</a> | <a href="https://www.lqdev.me/resources/snippets/owncast-optimized-azure-deployment-guide">View Full Version</a></p><div class="content"><h2>Description</h2>
+<p>This guide shows how to deploy Owncast to Azure Container Apps with persistent storage, scale-to-zero capability, and proper SQLite compatibility to minimize costs while ensuring reliable operation.</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li>Ultra-cost-optimized configuration (~$0.60/month for 4 hours of streaming)</li>
+<li>Full data persistence (users, chat, federation, configuration)</li>
+<li>Scale-to-zero capability when not streaming</li>
+<li>SQLite + Azure Files compatibility fixes</li>
+<li>RTMP + HTTP dual-port configuration for OBS Studio</li>
+</ul>
+<h2>Prerequisites</h2>
+<ul>
+<li>Azure CLI installed and logged in</li>
+<li>An Azure subscription</li>
+<li>A resource group created</li>
+</ul>
+<h2>Step 1: Create Required Resources</h2>
+<h3>Create Storage Account for Persistent Data</h3>
+<pre><code class="language-bash"># Set variables (choose cheapest regions)
+RESOURCE_GROUP=&quot;your-resource-group&quot;
+LOCATION=&quot;centralus&quot;  # Often cheaper than eastus
+STORAGE_ACCOUNT=&quot;owncaststorage$(date +%s)&quot;  # Must be globally unique
+CONTAINER_APP_ENV=&quot;owncast-env&quot;
+CONTAINER_APP_NAME=&quot;owncast-app&quot;
+<h1>Create MINIMAL cost storage account</h1>
+<p>az storage account create <br />
+--name $STORAGE_ACCOUNT <br />
+--resource-group $RESOURCE_GROUP <br />
+--location $LOCATION <br />
+--sku Standard_LRS <br />
+--kind StorageV2 <br />
+--access-tier Cool <br />
+--allow-blob-public-access false <br />
+--https-only true <br />
+--min-tls-version TLS1_2</p>
+<h1>Create file share with minimal provisioned size</h1>
+<p>az storage share create <br />
+--name &quot;owncast-data&quot; <br />
+--account-name $STORAGE_ACCOUNT <br />
+--quota 1  # Start with 1GB, scales automatically
+</code></pre></p>
+<h3>Create Container Apps Environment</h3>
+<pre><code class="language-bash"># Create the Container Apps environment
+az containerapp env create \
+  --name $CONTAINER_APP_ENV \
+  --resource-group $RESOURCE_GROUP \
+  --location $LOCATION
+</code></pre>
+<h2>Step 2: Configure Storage Mount</h2>
+<p>Get the storage account key and create the storage mount:</p>
+<pre><code class="language-bash"># Get storage account key
+STORAGE_KEY=$(az storage account keys list \
+  --account-name $STORAGE_ACCOUNT \
+  --resource-group $RESOURCE_GROUP \
+  --query &quot;[0].value&quot; -o tsv)
+<h1>Create storage mount in the environment</h1>
+<p>az containerapp env storage set <br />
+--name $CONTAINER_APP_ENV <br />
+--resource-group $RESOURCE_GROUP <br />
+--storage-name &quot;owncast-storage&quot; <br />
+--azure-file-account-name $STORAGE_ACCOUNT <br />
+--azure-file-account-key $STORAGE_KEY <br />
+--azure-file-share-name &quot;owncast-data&quot; <br />
+--access-mode ReadWrite
+</code></pre></p>
+<h2>Step 3: Deploy Owncast Container App</h2>
+<p>Create the container app with persistent storage:</p>
+<pre><code class="language-bash">az containerapp create \
+  --name $CONTAINER_APP_NAME \
+  --resource-group $RESOURCE_GROUP \
+  --environment $CONTAINER_APP_ENV \
+  --image &quot;owncast/owncast:latest&quot; \
+  --target-port 8080 \
+  --ingress external \
+  --min-replicas 0 \
+  --max-replicas 1 \
+  --cpu 0.5 \
+  --memory 1Gi \
+  --volume-mount &quot;data:/app/data&quot; \
+  --volume-name &quot;data&quot; \
+  --volume-storage-name &quot;owncast-storage&quot; \
+  --volume-storage-type AzureFile
+</code></pre>
+<h2>Step 4: Configure Dual-Port Ingress (HTTP + RTMP)</h2>
+<p>For Owncast to work properly, you need both HTTP (8080) and RTMP (1935) ports. This requires a <strong>Virtual Network (VNet)</strong> integration:</p>
+<h3>Create VNet and Subnet</h3>
+<pre><code class="language-bash"># Create MINIMAL virtual network (smallest possible address space)
+az network vnet create \
+  --name &quot;owncast-vnet&quot; \
+  --resource-group $RESOURCE_GROUP \
+  --location $LOCATION \
+  --address-prefix &quot;10.0.0.0/24&quot;  # Smaller than default /16
+<h1>Create minimal subnet</h1>
+<p>az network vnet subnet create <br />
+--name &quot;container-apps-subnet&quot; <br />
+--resource-group $RESOURCE_GROUP <br />
+--vnet-name &quot;owncast-vnet&quot; <br />
+--address-prefix &quot;10.0.0.0/27&quot;  # Only 32 IPs instead of /23 (512 IPs)
+</code></pre></p>
+<h3>Recreate Container Apps Environment with VNet</h3>
+<pre><code class="language-bash"># Get subnet ID
+SUBNET_ID=$(az network vnet subnet show \
+  --name &quot;container-apps-subnet&quot; \
+  --vnet-name &quot;owncast-vnet&quot; \
+  --resource-group $RESOURCE_GROUP \
+  --query id -o tsv)
+<h1>Delete existing environment and recreate with VNet</h1>
+<p>az containerapp env delete <br />
+--name $CONTAINER_APP_ENV <br />
+--resource-group $RESOURCE_GROUP <br />
+--yes</p>
+<h1>Create Container Apps environment with workload profiles DISABLED (cheapest option)</h1>
+<p>az containerapp env create <br />
+--name $CONTAINER_APP_ENV <br />
+--resource-group $RESOURCE_GROUP <br />
+--location $LOCATION <br />
+--infrastructure-subnet-resource-id $SUBNET_ID <br />
+--enable-workload-profiles false  # Forces consumption-only pricing
+</code></pre></p>
+<h3>Deploy Container App with MINIMAL Resources</h3>
+<pre><code class="language-bash">az containerapp create \
+  --name $CONTAINER_APP_NAME \
+  --resource-group $RESOURCE_GROUP \
+  --environment $CONTAINER_APP_ENV \
+  --image &quot;owncast/owncast:latest&quot; \
+  --target-port 8080 \
+  --exposed-port 1935 \
+  --ingress external \
+  --transport auto \
+  --min-replicas 0 \
+  --max-replicas 1 \
+  --cpu 0.25 \
+  --memory 0.5Gi \
+  --volume-mount &quot;data:/app/data&quot; \
+  --volume-name &quot;data&quot; \
+  --volume-storage-name &quot;owncast-storage&quot; \
+  --volume-storage-type AzureFile
+</code></pre>
+<p><strong>Cost-Optimized Resource Allocation:</strong></p>
+<ul>
+<li><strong>CPU</strong>: 0.25 cores (minimum allowed, sufficient for small streams)</li>
+<li><strong>Memory</strong>: 0.5Gi (minimum allowed, will work for basic streaming)</li>
+<li><strong>Scaling</strong>: Aggressive scale-to-zero with max 1 replica</li>
+</ul>
+<h2>Ultra Low-Cost Alternative YAML Configuration</h2>
+<p>For maximum cost optimization, use this YAML approach with the smallest possible resource allocation. This configuration includes critical SQLite compatibility fixes for Azure Files:</p>
+<pre><code class="language-yaml"># owncast-production-ready.yaml
+properties:
+  configuration:
+    ingress:
+      external: true
+      targetPort: 8080
+      additionalPortMappings:
+      - external: true
+        targetPort: 1935
+        exposedPort: 1935
+        transport: tcp
+    secrets: []
+  template:
+    containers:
+    - image: owncast/owncast:latest
+      name: owncast-app
+      resources:
+        cpu: 0.25
+        memory: 0.5Gi
+      volumeMounts:
+      - mountPath: /app/data
+        volumeName: data
+      env:
+      - name: OWNCAST_RTMP_PORT
+        value: &quot;1935&quot;
+      - name: OWNCAST_WEBSERVER_PORT  
+        value: &quot;8080&quot;
+      - name: OWNCAST_DATABASE_FILE
+        value: &quot;/app/data/db/owncast.db&quot;
+      - name: OWNCAST_DATABASE_JOURNAL_MODE
+        value: &quot;DELETE&quot;
+      - name: OWNCAST_LOG_DIRECTORY
+        value: &quot;/app/data/logs&quot;
+      - name: OWNCAST_DATA_DIRECTORY
+        value: &quot;/app/data&quot;
+      - name: OWNCAST_HLS_DIRECTORY
+        value: &quot;/app/data/hls&quot;
+    scale:
+      minReplicas: 0
+      maxReplicas: 1
+      rules:
+      - name: &quot;http-rule&quot;
+        http:
+          metadata:
+            concurrentRequests: &quot;10&quot;
+    volumes:
+    - name: data
+      storageType: AzureFile
+      storageName: owncast-storage
+</code></pre>
+<p>Deploy with:</p>
+<pre><code class="language-bash">az containerapp create \
+  --name $CONTAINER_APP_NAME \
+  --resource-group $RESOURCE_GROUP \
+  --yaml owncast-production-ready.yaml
+</code></pre>
+<h2>Critical Configuration Notes</h2>
+<h3>SQLite + Azure Files Compatibility Fix</h3>
+<p><strong>Important</strong>: The default Owncast configuration can cause &quot;database is locked&quot; errors when using Azure Files storage due to SQLite's WAL (Write-Ahead Logging) mode being incompatible with network file systems. The configuration above includes these critical fixes:</p>
+<ol>
+<li><strong>Database Subdirectory</strong>: <code>OWNCAST_DATABASE_FILE=/app/data/db/owncast.db</code> - Places database in a subdirectory which improves Azure Files compatibility</li>
+<li><strong>Journal Mode Override</strong>: <code>OWNCAST_DATABASE_JOURNAL_MODE=DELETE</code> - Forces SQLite to use DELETE mode instead of WAL mode to prevent file locking issues</li>
+<li><strong>Full Data Mount</strong>: Mounts entire <code>/app/data</code> directory for complete persistence of logs, database, and HLS content</li>
+</ol>
+<h3>What Gets Persisted</h3>
+<p>With this configuration, the following data persists across container restarts:</p>
+<ul>
+<li><strong>User accounts and chat history</strong> (critical for community continuity)</li>
+<li><strong>Stream keys and admin credentials</strong> (prevents reconfiguration)</li>
+<li><strong>ActivityPub federation data</strong> (maintains Mastodon/Fediverse followers)</li>
+<li><strong>Server customization and branding</strong> (logos, site name, descriptions)</li>
+<li><strong>API tokens and webhook configurations</strong> (third-party integrations)</li>
+<li><strong>Complete logs and HLS video segments</strong></li>
+</ul>
+<p><strong>Without proper persistence, you would lose all users, followers, and configuration on every container restart.</strong></p>
+<h2>Cost Optimization Features</h2>
+<h3>Scale-to-Zero Configuration</h3>
+<ul>
+<li><strong>Min Replicas</strong>: Set to 0 to completely scale down when not in use</li>
+<li><strong>Max Replicas</strong>: Set to 1 (Owncast doesn't need horizontal scaling)</li>
+<li><strong>Scale Rules</strong>: Container Apps will automatically scale up when requests arrive</li>
+</ul>
+<h3>Resource Limits (Ultra Cost-Optimized)</h3>
+<ul>
+<li><strong>CPU</strong>: 0.25 cores (absolute minimum, sufficient for 1-2 viewer streams)</li>
+<li><strong>Memory</strong>: 0.5Gi (minimum allowed by Azure Container Apps)</li>
+<li><strong>Storage</strong>: Cool tier with 1GB initial quota (auto-scales as needed)</li>
+<li><strong>Network</strong>: Minimal VNet addressing to reduce overhead</li>
+</ul>
+<h2>OBS Configuration</h2>
+<p>After deployment, configure OBS for streaming:</p>
+<ol>
+<li><p><strong>Server Settings</strong>: Use <code>rtmp://your-app-url:1935/live</code> (note: <code>rtmp://</code> not <code>https://</code>)</p>
+</li>
+<li><p><strong>Stream Key</strong>: Use the key from Owncast admin panel (Configuration &gt; Server Setup &gt; Stream Keys)</p>
+</li>
+<li><p><strong>Owncast Web Interface</strong>: Access at <code>https://your-app-url</code> (port 8080 is handled automatically by ingress)</p>
+</li>
+<li><p><strong>Persistent Data</strong>: All Owncast configuration, database, and uploaded files are stored in Azure Files and persist across container restarts and scale-to-zero events. <strong>Critical</strong>: Uses SQLite DELETE journal mode to prevent &quot;database is locked&quot; errors with Azure Files.</p>
+</li>
+<li><p><strong>Cold Start</strong>: When scaling from zero, there will be a 10-15 second cold start delay as the container initializes. This is normal and acceptable for personal streaming.</p>
+</li>
+<li><p><strong>VNet Requirement</strong>: For dual-port access (HTTP + RTMP), you <strong>must</strong> use a Virtual Network integration. This is a requirement for exposing additional TCP ports in Azure Container Apps.</p>
+</li>
+<li><p><strong>Database Compatibility</strong>: The configuration includes specific environment variables (<code>OWNCAST_DATABASE_JOURNAL_MODE=DELETE</code>) to ensure SQLite works properly with Azure Files network storage. Without these settings, you'll experience database crashes.</p>
+</li>
+<li><p><strong>Security Configuration</strong>: After deployment, immediately change the default admin credentials:</p>
+<ul>
+<li>Navigate to <code>https://your-app-url/admin</code></li>
+<li>Default login: <code>admin</code> / <code>abc123</code></li>
+<li>Go to Configuration &gt; Server Setup and change the admin password</li>
+<li>Create/copy stream keys from Configuration &gt; Server Setup &gt; Stream Keys tab</li>
+</ul>
+</li>
+<li><p><strong>Custom Domain</strong>: You can configure a custom domain using:</p>
+<pre><code class="language-bash">az containerapp hostname add \
+  --name $CONTAINER_APP_NAME \
+  --resource-group $RESOURCE_GROUP \
+  --hostname &quot;your-domain.com&quot;
+</code></pre>
+</li>
+<li><p><strong>SSL Certificate</strong>: Azure Container Apps provides automatic SSL certificates for custom domains.</p>
+</li>
+</ol>
+<h2>Monitoring and Troubleshooting</h2>
+<p>Check your deployment:</p>
+<pre><code class="language-bash"># Get the URL
+az containerapp show \
+  --name $CONTAINER_APP_NAME \
+  --resource-group $RESOURCE_GROUP \
+  --query properties.configuration.ingress.fqdn
+<h1>Test RTMP port connectivity (should return TcpTestSucceeded: True)</h1>
+<p>Test-NetConnection -ComputerName &quot;your-app-url&quot; -Port 1935 -InformationLevel Detailed</p>
+<h1>Test web interface</h1>
+<p>curl -I https://your-app-url/</p>
+<h1>View logs</h1>
+<p>az containerapp logs show <br />
+--name $CONTAINER_APP_NAME <br />
+--resource-group $RESOURCE_GROUP
+</code></pre></p>
+<h3>Common Issues and Solutions</h3>
+<p><strong>Problem</strong>: Container logs show &quot;database is locked&quot; errors and crashes
+<strong>Solution</strong>: Ensure you're using the configuration above with <code>OWNCAST_DATABASE_JOURNAL_MODE=DELETE</code> and database in a subdirectory</p>
+<p><strong>Problem</strong>: OBS shows &quot;Failed to connect to server&quot;<br />
+<strong>Solution</strong>: Verify RTMP port 1935 is accessible using <code>Test-NetConnection</code> and ensure you're using VNet integration</p>
+<p><strong>Problem</strong>: Admin panel won't load or shows errors
+<strong>Solution</strong>: Database persistence issues - check that the <code>/app/data</code> mount is working and SQLite journal mode is set correctly</p>
+<p><strong>Problem</strong>: Container scales to zero but doesn't start properly
+<strong>Solution</strong>: Cold start delay is normal (10-15 seconds). If it doesn't start, check environment variable configuration</p>
+<h2>Cost Estimation (Ultra-Optimized)</h2>
+<p>With these optimizations, your monthly costs should be:</p>
+<p><strong>When Streaming (4 hours/month example):</strong></p>
+<ul>
+<li><strong>Compute</strong>: ~$0.50/month (0.25 CPU + 0.5Gi RAM × 4 hours)</li>
+<li><strong>Container Apps Environment</strong>: ~$0.00 (consumption plan, no dedicated resources)</li>
+<li><strong>Networking</strong>: ~$0.05/month (minimal VNet overhead)</li>
+</ul>
+<p><strong>When Idle (Scale-to-Zero):</strong></p>
+<ul>
+<li><strong>Compute</strong>: $0.00 (scaled to zero)</li>
+<li><strong>Environment</strong>: $0.00 (consumption plan)</li>
+</ul>
+<p><strong>Always-On Costs:</strong></p>
+<ul>
+<li><strong>Storage</strong>: ~$0.05-0.10/month (1-2GB in Cool tier)</li>
+<li><strong>VNet</strong>: ~$0.00 (no gateways or dedicated resources)</li>
+</ul>
+<p><strong>Total Monthly Cost: ~$0.60-0.65/month</strong> (assuming 4 hours of streaming)</p>
+<h3>Performance Expectations at Minimal Resources:</h3>
+<ul>
+<li><strong>0.25 CPU + 0.5Gi RAM</strong>: Suitable for 480p-720p streams with 1-5 concurrent viewers</li>
+<li><strong>Scale-up Path</strong>: Monitor performance and increase to 0.5 CPU + 1Gi if needed</li>
+<li><strong>Cold Start</strong>: ~10-15 seconds when scaling from zero (acceptable for personal streaming)</li>
+</ul>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

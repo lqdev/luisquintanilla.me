@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - surveillance</title>
+    <link>https://www.lqdev.me/tags/surveillance</link>
+    <description>All content tagged with 'surveillance' by Luis Quintanilla</description>
+    <lastBuildDate>2024-01-17 20:09 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Each Facebook User is Monitored by Thousands of Companies</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;By now most internet users know their online activity is constantly tracked.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;But what is the scale of this surveillance? Judging from data collected by Facebook and &lt;a href="https://innovation.consumerreports.org/wp-content/uploads/2024/01/CR_Who-Shares-Your-Information-With-Facebook.pdf"&gt;newly described in a unique study&lt;/a&gt; by non-profit consumer watchdog Consumer Reports, it’s massive, and examining the data may leave you with more questions than answers.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Using a panel of 709 volunteers who shared archives of their Facebook data, Consumer Reports found that a total of 186,892 companies sent data about them to the social network. On average, each participant in the study had their data sent to Facebook by 2,230 companies. That number varied significantly, with some panelists’ data listing over 7,000 companies providing their data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;h2&gt;What Exactly Does This Data Contain?&lt;/h2&gt;
+&lt;br&gt;
+The data examined by Consumer Reports in this study comes from two types of collection: events and custom audiences. Both categories include information about what people do outside of Meta’s platforms.
+&lt;br&gt;
+Custom audiences allow advertisers to upload customer lists to Meta, often including identifiers like email addresses and mobile advertising IDs...
+&lt;br&gt;
+The other category of data collection, “events,” describes interactions that the user had with a brand, which can occur outside of Meta’s apps and in the real world. Events can include visiting a page on a company’s website, leveling up in a game, visiting a physical store, or purchasing a product...
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;h2&gt;How Can I See My Data?&lt;/h2&gt;
+&lt;br&gt;
+Facebook users can browse through the list of companies that have sent their data to Facebook by going to: [https://accountscenter.facebook.com/info_and_permissions](https://accountscenter.facebook.com/info_and_permissions)
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/facebook-users-monitored-thousands-companies-markup</link>
+      <guid>https://www.lqdev.me/responses/facebook-users-monitored-thousands-companies-markup</guid>
+      <pubDate>2024-01-17 20:09 -05:00</pubDate>
+      <category>socialmedia</category>
+      <category>privacy</category>
+      <category>facebook</category>
+      <category>meta</category>
+      <category>surveillance</category>
+    </item>
+    <item>
+      <title>AI and Mass Spying</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Surveillance facilitates social control, and spying will only make this worse. Governments around the world already use mass surveillance; they will engage in mass spying as well.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Mass surveillance ushered in the era of personalized advertisements; mass spying will supercharge that industry...The tech monopolies that are currently keeping us all under constant surveillance won’t be able to resist collecting and using all of that data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We could limit this capability. We could prohibit mass spying. We could pass strong data-privacy rules. But we haven’t done anything to limit mass surveillance. Why would spying be any different?&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/ai-mass-spying-schneier</link>
+      <guid>https://www.lqdev.me/bookmarks/ai-mass-spying-schneier</guid>
+      <pubDate>2023-12-05 21:12 -05:00</pubDate>
+      <category>ai</category>
+      <category>privacy</category>
+      <category>internet</category>
+      <category>surveillance</category>
+    </item>
+  </channel>
+</rss>

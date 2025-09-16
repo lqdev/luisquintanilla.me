@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Scaffolding A Web Page In One Line - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Scaffolding A Web Page In One Line</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2018-03-10">March 10, 2018</time><p>Tags: html, web development, development, tools, emmet</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/scaffold-a-webpage-in-one-line">View Full Version</a></p><div class="content"><h2>Introduction</h2>
+<p>A few months ago, I saw VS Code released an update that had <a href="https://www.emmet.io/">Emmet</a> abbreviations built in. At the time, I saw a demo and it looked like an interesting tool but I knew very little about it. This past week, while practicing <code>css</code> and scaffolding a blog-like web page for practice I decided to give Emmet a try. After reading some of the documentation and trying it out, within five minutes I was able to replicate what I had done manually with one line of &quot;code&quot;. The entire process is described below.</p>
+<h2>What We'll Build</h2>
+<p>Displayed below is the scaffold of the webpage I built. As it can be seen, in the <code>body</code> element there is a <code>nav</code> element and four <code>div</code> elements that will contain our articles and their metadata.</p>
+<pre><code class="language-html">&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;&lt;/li&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;&lt;/li&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+    &lt;div&gt;
+        &lt;div class=&quot;article&quot;&gt;
+            &lt;h2 class=&quot;article-title&quot;&gt;&lt;/h2&gt;
+            &lt;h6 class=&quot;article-date&quot;&gt;&lt;/h6&gt;
+            &lt;p class=&quot;article-description&quot;&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;div class=&quot;article&quot;&gt;
+            &lt;h2 class=&quot;article-title&quot;&gt;&lt;/h2&gt;
+            &lt;h6 class=&quot;article-date&quot;&gt;&lt;/h6&gt;
+            &lt;p class=&quot;article-description&quot;&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;div class=&quot;article&quot;&gt;
+            &lt;h2 class=&quot;article-title&quot;&gt;&lt;/h2&gt;
+            &lt;h6 class=&quot;article-date&quot;&gt;&lt;/h6&gt;
+            &lt;p class=&quot;article-description&quot;&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;div class=&quot;article&quot;&gt;
+            &lt;h2 class=&quot;article-title&quot;&gt;&lt;/h2&gt;
+            &lt;h6 class=&quot;article-date&quot;&gt;&lt;/h6&gt;
+            &lt;p class=&quot;article-description&quot;&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2>How We'll Build It</h2>
+<p>The <code>hmtl</code> above can be programatically built using the abbreviation below.</p>
+<pre><code class="language-text">html&gt;(head&gt;title+link)+(body&gt;(nav&gt;ul&gt;li.nav-item*3)+(div&gt;div.article&gt;h2.article-title+h6.article-date+p.article-description)*4
+</code></pre>
+<p>To break down some of the things that are going on here, we can start with the syntax. The <code>&gt;</code> character denotes that the item on the left is the parent of the item(s) on the right. Similarly, the <code>+</code> character is used to describe siblings. Similar to math operations, parentheses evaluate what's inside them. Elements themselves can contain additional data such as class names and ids. This data can be appended to the element name just like <code>css</code> with <code>.</code> for classes and <code>#</code> for ids.</p>
+<p>With that knowledge, we can see that we have an <code>html</code> root element with <code>head</code> and <code>body</code> children. The <code>head</code> element has a <code>title</code> and <code>link</code> child elements. The <code>body</code> element has a <code>nav</code> element with a <code>ul</code> child which contains three <code>li</code> elements. The <code>nav</code> element has a <code>div</code> sibling which contains four <code>div</code> children that serve as the containers for our articles and their metadata.</p>
+<h2>Adding some style</h2>
+<p>To help visualize what the page looks like we can add some <code>css</code>.</p>
+<pre><code class="language-css">* {
+    margin: 0;
+}
+
+nav {
+    padding: 0;
+    background-color: black;
+    color: white;
+}
+
+.nav-item {
+    margin: 20px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.nav-item:hover {
+    opacity: 0.7;
+}
+
+.article {
+    display: block;
+    margin: 20px;
+    padding-left: 5px;
+    background-color: lightgray;
+    border: black solid 2px;
+}
+
+.article-title {
+    display: block;
+    font-family: serif;
+    font-size: 30px;
+    text-decoration: underline;
+    display: inline;
+}
+
+.article-date {
+    font-size: 20px;
+    font-family: fantasy;
+    float: right;
+    margin-right: 5px;
+}
+
+.article-description {
+    display: block;
+    font-size: 18px;
+    font-family: sans-serif;
+    margin-top: 5px;
+}
+</code></pre>
+<h2>Result</h2>
+<p>After linking our <code>css</code> with the webpage as well as adding some content to the page, the result will look as follows.</p>
+<p><a href="http://cdn.lqdev.tech/files/images/scaffoldawebpageoneline1.png" target="_blank">[Image: Image]</a></p>
+<pre><code class="language-html">&lt;html&gt;
+    &lt;head&gt;
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;main.css&quot;/&gt;
+        &lt;title&gt;HTML CSS Practice&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li class=&quot;nav-item&quot;&gt;Home&lt;/li&gt;
+                &lt;li class=&quot;nav-item&quot;&gt;About&lt;/li&gt;
+                &lt;li class=&quot;nav-item&quot;&gt;Contact&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+        &lt;div&gt;
+            &lt;div class=&quot;article&quot;&gt;
+                &lt;h2 class=&quot;article-title&quot;&gt;Hello World&lt;/h2&gt;
+                &lt;h6 class=&quot;article-date&quot;&gt;January 8, 2017&lt;/h6&gt;
+                &lt;p class=&quot;article-description&quot;&gt;This is a short description of my program. There are more things than this.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;article&quot;&gt;
+                &lt;h2 class=&quot;article-title&quot;&gt;Second Post&lt;/h2&gt;
+                &lt;h6 class=&quot;article-date&quot;&gt;February 8, 2017&lt;/h6&gt;
+                &lt;p class=&quot;article-description&quot;&gt;I think that I got my feet wet a little bit. Maybe there are other things that I can write about&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;article&quot;&gt;
+                &lt;h2 class=&quot;article-title&quot;&gt;Third Post&lt;/h2&gt;
+                &lt;h6 class=&quot;article-date&quot;&gt;March 8, 2017&lt;/h6&gt;
+                &lt;p class=&quot;article-description&quot;&gt;This is the third go around. I think I got pretty good at this design stuff.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;article&quot;&gt;
+                &lt;h2 class=&quot;article-title&quot;&gt;Fourth Post&lt;/h2&gt;
+                &lt;h6 class=&quot;article-date&quot;&gt;June 8, 2017&lt;/h6&gt;
+                &lt;p class=&quot;article-description&quot;&gt;I really like my description of the things that are happening here and there is another post on the way very soon.&lt;/p&gt;
+            &lt;/div&gt;                        
+        &lt;/div&gt;
+    &lt;/body&gt;    
+&lt;/html&gt;
+</code></pre>
+<h6>Sources</h6>
+<p><a href="https://www.emmet.io/">Emmet</a></p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

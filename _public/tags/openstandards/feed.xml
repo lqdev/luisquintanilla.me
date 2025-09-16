@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - openstandards</title>
+    <link>https://www.lqdev.me/tags/openstandards</link>
+    <description>All content tagged with 'openstandards' by Luis Quintanilla</description>
+    <lastBuildDate>2024-12-08 19:40 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Starter Packs with OPML and RSS</title>
+      <description>&lt;![CDATA[
+One of the things I like about Bluesky is the [Starter Pack feature](https://bsky.social/about/blog/06-26-2024-starter-packs). 
+
+In a gist, a Starter Pack is a collection of feeds. 
+
+Bluesky users can:
+
+- Create starter packs
+- Share starter packs
+- Subscribe to starter packs
+
+Unfortunately, Starter Packs are limited to Bluesky. 
+
+Or are they? 
+
+As mentioned, starter packs are a collection of feeds that others can create, share, and subscribe to. 
+
+[Bluesky supports RSS](/responses/bluesky-rss-support/), which means you could organize the feeds using an OPML file that you can share with others and others can subscribe to. The benefits of this is, you can continue to keep up with activity on Bluesky from the feed reader of your choice without being required to have an account on Bluesky. 
+
+More importantly, because RSS and OPML are open standards, you're not limited to building starter packs for Bluesky. You can create, share, and subscribe to starter packs for any platform that supports RSS. That includes blogs, podcasts, forums, YouTube, Mastodon, etc. [Manton seems to have something similar in mind](https://www.manton.org/2024/12/07/with-the-success.html) as a means of building on open standards that make it easy for Micro.blog to interop with various platforms. 
+
+If you're interested in what that might look like in practice, check out my "starter packs" which you can subscribe to using your RSS reader of choice and the provided OPML files. 
+
+- [Blogs](/collections/blogroll)
+- [Podcasts](/collections/podroll)
+- [YouTube](/collections/youtube)
+- [Forums](/collections/forums)
+
+I'm still working on similar collections for Mastodon and Bluesky but the same concept applies.  
+
+Although these are just simple examples, it shows the importance of building on open standards and the open web. Doing so introduces more freedom for creators and communities. 
+
+Here are other "starter packs" you might consider subscribing to. 
+
+- [People and Blogs](https://www.thingelstad.com/2024/12/03/people-blogs-list.html)
+- [Blogroll Club](https://blogroll.club/faq/)
+
+If this is interesting to you, [Feedland](https://feedland.org/) might be a project worth checking out.  ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/rss-opml-starter-packs</link>
+      <guid>https://www.lqdev.me/posts/rss-opml-starter-packs</guid>
+      <pubDate>2024-12-08 19:40 -05:00</pubDate>
+      <category>rss</category>
+      <category>opml</category>
+      <category>indieweb</category>
+      <category>starterpacks</category>
+      <category>community</category>
+      <category>bluesky</category>
+      <category>socialmedia</category>
+      <category>openweb</category>
+      <category>protocols</category>
+      <category>openstandards</category>
+      <category>feedland</category>
+    </item>
+    <item>
+      <title>Increasing the surface area of blogging</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;RSS is kind of an invisible technology. People call RSS dead because you can’t see it. There’s no feed, no login, no analytics. RSS feels subsurface.&lt;/p&gt;
+&lt;p&gt;Come to think of it - all the interesting bits of blogging are invisible. The discussion has moved to Twitter, or discords, or DMs. Trackbacks aren’t a thing anymore. So when you see someone blogging all you see is the blog post. The branching replies and conversations are either invisible or hard to track down.&lt;/p&gt;
+&lt;p&gt;But I believe we’re living in a golden age of RSS. Blogging is booming. My feed reader has 280 feeds in it.&lt;/p&gt;
+&lt;p&gt;How do we increase the surface area of RSS and blogging?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I think there’s something quietly radical about making your feed reader open by default. It increases the surface area of RSS so others can discover content more easily. It makes blogging more visible.&lt;/p&gt;
+&lt;p&gt;The nice thing about RSS and OPML is that’s a very extensible spec. The file format is flexible, you can define your own schema and fields. This might open up new kinds of publishing.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/increasing-surface-area-blogging-critchlow</link>
+      <guid>https://www.lqdev.me/bookmarks/increasing-surface-area-blogging-critchlow</guid>
+      <pubDate>2023-08-24 21:25 -05:00</pubDate>
+      <category>rss</category>
+      <category>internet</category>
+      <category>blog</category>
+      <category>postcast</category>
+      <category>feeds</category>
+      <category>openweb</category>
+      <category>openstandards</category>
+    </item>
+    <item>
+      <title>About Feeds</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;About Feeds is a free site from Matt Webb. I made this site because using web feeds for the first time is hard, and we can fix that.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/about-feeds</link>
+      <guid>https://www.lqdev.me/bookmarks/about-feeds</guid>
+      <pubDate>2023-08-24 21:21 -05:00</pubDate>
+      <category>rss</category>
+      <category>internet</category>
+      <category>blog</category>
+      <category>openweb</category>
+      <category>openstandards</category>
+    </item>
+    <item>
+      <title>WebGPU API</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The WebGPU API enables web developers to use the underlying system's GPU (Graphics Processing Unit) to carry out high-performance computations and draw complex images that can be rendered in the browser.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/webgpu-api</link>
+      <guid>https://www.lqdev.me/bookmarks/webgpu-api</guid>
+      <pubDate>2023-04-15 22:57 -05:00</pubDate>
+      <category>ai</category>
+      <category>web</category>
+      <category>openstandards</category>
+    </item>
+  </channel>
+</rss>

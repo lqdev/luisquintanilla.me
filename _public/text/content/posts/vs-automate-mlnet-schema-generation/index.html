@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Automate ML.NET model schema generation from sample JSON data with Visual Studio - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Automate ML.NET model schema generation from sample JSON data with Visual Studio</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2021-08-26">August 26, 2021</time><p>Tags: dotnet, machine learning, mlnet, artificial intelligence, tooling, visual studio</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/vs-automate-mlnet-schema-generation">View Full Version</a></p><div class="content"><h2>Introduction</h2>
+<p>When using ML.NET models to make predictions, you often have to define classes for the model's input and output schema. In a previous post, I showed how you can <a href="/posts/inspect-mlnet-models-netron/">use Netron to inspect ML.NET models</a> and manually define classes to represent the input and output schema for your model. That works for models that don't have a lot of features / columns. However, as the number of columns grows, it can become cumbersome to define these classes. Visual Studio has a feature that can help automate that process. Assuming you have a sample of your input and output data in JSON format, you can leverage a built-in feature &quot;Paste JSON As Classes&quot; to take the sample and convert it to a class. In this post, I'll show how to do that.</p>
+<h2>Prerequisites</h2>
+<ul>
+<li>Visual Studio 2019. Though I haven't tested with VS2022, I assume &quot;Paste JSON As Classes&quot; is also available there.</li>
+</ul>
+<h2>Convert sample JSON data to C# classes</h2>
+<p>In this post, I'll work with the <em>sentiment_model.zip</em> model to classify sentiment, which you can find in the <a href="https://github.com/dotnet/samples/blob/main/machine-learning/models/sentimentanalysis/sentiment_model.zip">dotnet/samples</a> repo.</p>
+<p>The model input has 3 columns:</p>
+<ul>
+<li>SentimentText (string)</li>
+<li>Label (boolean)</li>
+<li>SamplingKeyColumn (float32)</li>
+</ul>
+<p>The model output has at least 2 columns since it uses a binary classification algorithm. For information on expected output columns based on the machine learning algorithm/task, see the <a href="https://docs.microsoft.com/dotnet/machine-learning/resources/tasks#binary-classification-inputs-and-outputs">ML.NET tasks article</a>.</p>
+<ul>
+<li>Score (Single). Single is a single-precision floating-point number.</li>
+<li>PredictedLabel (boolean)</li>
+</ul>
+<p>With that in mind, let's then assume that we have sample input data in JSON format that looks as follows.</p>
+<pre><code class="language-json">{
+    &quot;SentimentText&quot;: &quot;This was a very bad steak&quot;,
+    &quot;Label&quot;: false,
+    &quot;SamplingKeyColumn&quot;: 1.0
+}
+</code></pre>
+<p>Inside a C# project in Visual Studio:</p>
+<ol>
+<li><p>Create a C# class</p>
+<ol>
+<li>Right-click your project.</li>
+<li>Select <strong>Add &gt; Class</strong>.</li>
+<li>Provide a name for your class in the New Item dialog.</li>
+</ol>
+</li>
+<li><p>Copy the input JSON data sample to your clipboard.</p>
+</li>
+<li><p>Place your cursor inside the namespace block of your newly created class.</p>
+</li>
+<li><p>In the Visual Studio toolbar, select <strong>Edit &gt; Paste Special &gt; Paste JSON as Classes</strong>.</p>
+</li>
+<li><p>The result should look similar to the following:</p>
+<pre><code class="language-csharp">public class Rootobject
+{
+    public string SentimentText { get; set; }
+    public bool Label { get; set; }
+    public float SamplingKeyColumn { get; set; }
+}
+</code></pre>
+</li>
+<li><p>Rename the class to something more descriptive like <code>ModelInput</code>. The class should look similar to the following:</p>
+<pre><code class="language-csharp">public class ModelInput
+{
+    public string SentimentText { get; set; }
+    public bool Label { get; set; }
+    public float SamplingKeyColumn { get; set; }
+}
+</code></pre>
+</li>
+<li><p>Create a JSON data sample for your output. In this case it'd look something like:</p>
+<pre><code class="language-json">{
+    &quot;Score&quot;: 1.0,
+    &quot;PredictedLabel&quot;: false
+}
+</code></pre>
+</li>
+<li><p>Repeat steps 1-6 for your output JSON data sample. The resulting class should look similar to the following:</p>
+<pre><code class="language-csharp">public class ModelOutput
+{
+    public float Score { get; set; }
+    public bool PredictedLabel { get; set; }
+}
+</code></pre>
+</li>
+</ol>
+<p>It's important to note that the name of the class does not matter as long as the column names and types are the same the ones the model expects.</p>
+<p>At this point, you can go through the process of <a href="https://docs.microsoft.com/dotnet/machine-learning/how-to-guides/machine-learning-model-predictions-ml-net">using the model to make predictions on new data</a>.</p>
+<h2>Conclusion</h2>
+<p>Although the model used in this post does not have many columns, when you have many columns &quot;Paste JSON As Classes&quot; can significantly simplify the process of creating your input and output schema classes for ML.NET models. Happy coding!</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

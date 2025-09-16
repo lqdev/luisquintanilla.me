@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - deeplearning</title>
+    <link>https://www.lqdev.me/tags/deeplearning</link>
+    <description>All content tagged with 'deeplearning' by Luis Quintanilla</description>
+    <lastBuildDate>2024-08-21 20:16 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Transformers in music recommendation</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We present a music recommendation ranking system that uses Transformer models to better understand the sequential nature of user actions based on the current user context.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/transformers-music-recommendation-google</link>
+      <guid>https://www.lqdev.me/responses/transformers-music-recommendation-google</guid>
+      <pubDate>2024-08-21 20:16 -05:00</pubDate>
+      <category>google</category>
+      <category>ai</category>
+      <category>transformers</category>
+      <category>deeplearning</category>
+      <category>neuralneworks</category>
+      <category>recommendation</category>
+      <category>research</category>
+      <category>music</category>
+    </item>
+    <item>
+      <title>Eagle 7B : Soaring past Transformers with 1 Trillion Tokens Across 100+ Languages (RWKV-v5)</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Eagle 7B is a 7.52B parameter model that:&lt;br /&gt;
+&lt;br&gt;
+Built on the &lt;a href="https://wiki.rwkv.com/"&gt;RWKV-v5 architecture&lt;/a&gt; (a linear transformer with 10-100x+ lower inference cost)&lt;br /&gt;
+&lt;br&gt;
+Ranks as the &lt;a href="https://blog.rwkv.com/p/the-worlds-greenest-ai-model-rwkvs"&gt;world’s greenest 7B model (per token)&lt;/a&gt;&lt;br /&gt;
+&lt;br&gt;
+Trained on 1.1 Trillion Tokens across 100+ languages&lt;br /&gt;
+&lt;br&gt;
+Outperforms all 7B class models in multi-lingual benchmarks&lt;br /&gt;
+&lt;br&gt;
+Approaches Falcon (1.5T), LLaMA2 (2T), Mistral (&amp;gt;2T?) level of performance in English evals&lt;br /&gt;
+&lt;br&gt;
+Trade blows with MPT-7B (1T) in English evals&lt;br /&gt;
+&lt;br&gt;
+&lt;a href="https://www.isattentionallyouneed.com/"&gt;All while being an “Attention-Free Transformer”&lt;/a&gt;&lt;br /&gt;
+&lt;br&gt;
+Is a foundation model, with a very small instruct tune - further fine-tuning is required for various use cases!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We are releasing RWKV-v5 Eagle 7B, &lt;a href="https://blog.rwkv.com/p/rwkv-joins-the-linux-foundation-as"&gt;licensed as Apache 2.0 license, under the Linux Foundation&lt;/a&gt;, and can be used personally or commercially without restrictions&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://huggingface.co/RWKV/v5-Eagle-7B/"&gt;Download from HuggingFace&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/eagle-7b-rkwv</link>
+      <guid>https://www.lqdev.me/bookmarks/eagle-7b-rkwv</guid>
+      <pubDate>2024-01-29 20:27 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>rwkv</category>
+      <category>deeplearning</category>
+      <category>neuralnetwork</category>
+    </item>
+    <item>
+      <title>Understanding Deep Learning</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The title of this book is “Understanding Deep Learning” to distinguish it from volumes that cover coding and other practical aspects. This text is primarily about the ideas that underlie deep learning. The first part of the book introduces deep learning models and discusses how to train them, measure their performance, and improve this performance. The next part considers architectures that are specialized to images, text, and graph data. These chapters require only introductory linear algebra, calculus, and probability and should be accessible to any second-year undergraduate in a quantitative discipline. Subsequent parts of the book tackle generative models and reinforcement learning. These chapters require more knowledge of probability and calculus and target more advanced students.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/understanding-deep-learning-book</link>
+      <guid>https://www.lqdev.me/bookmarks/understanding-deep-learning-book</guid>
+      <pubDate>2023-10-14 21:35 -05:00</pubDate>
+      <category>book</category>
+      <category>deeplearning</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>Efficient Controllable Generation for SDXL with T2I-Adapters </title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;a href="https://huggingface.co/papers/2302.08453"&gt;T2I-Adapter&lt;/a&gt; is an efficient plug-and-play model that provides extra guidance to pre-trained text-to-image models while freezing the original large text-to-image models. T2I-Adapter aligns internal knowledge in T2I models with external control signals. We can train various adapters according to different conditions and achieve rich control and editing effects.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Over the past few weeks, the Diffusers team and the T2I-Adapter authors have been collaborating to bring the support of T2I-Adapters for Stable Diffusion XL (SDXL) in diffusers. In this blog post, we share our findings from training T2I-Adapters on SDXL from scratch, some appealing results, and, of course, the T2I-Adapter checkpoints on various conditionings (sketch, canny, lineart, depth, and openpose)!&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/t2i-adapters-efficient-controllable-generation</link>
+      <guid>https://www.lqdev.me/bookmarks/t2i-adapters-efficient-controllable-generation</guid>
+      <pubDate>2023-09-17 12:11 -05:00</pubDate>
+      <category>ai</category>
+      <category>generativeai</category>
+      <category>imagegeneration</category>
+      <category>deeplearning</category>
+      <category>ml</category>
+      <category>huggingface</category>
+    </item>
+    <item>
+      <title>Introducing Keras Core: Keras for TensorFlow, JAX, and PyTorch.</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We're excited to share with you a new library called Keras Core, a preview version of the future of Keras. In Fall 2023, this library will become Keras 3.0. Keras Core is a full rewrite of the Keras codebase that rebases it on top of a modular backend architecture. It makes it possible to run Keras workflows on top of arbitrary frameworks — starting with TensorFlow, JAX, and PyTorch.&lt;/p&gt;
+&lt;p&gt;Keras Core is also a drop-in replacement for tf.keras, with near-full backwards compatibility with tf.keras code when using the TensorFlow backend. In the vast majority of cases you can just start importing it via import keras_core as keras in place of from tensorflow import keras and your existing code will run with no issue — and generally with slightly improved performance, thanks to XLA compilation.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/keras-core-announcement</link>
+      <guid>https://www.lqdev.me/bookmarks/keras-core-announcement</guid>
+      <pubDate>2023-07-11 16:22 -05:00</pubDate>
+      <category>deeplearning</category>
+      <category>ai</category>
+      <category>keras</category>
+      <category>jax</category>
+      <category>tensorflow</category>
+      <category>pytorch</category>
+    </item>
+    <item>
+      <title>Language models can explain neurons in language models</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This paper applies automation to the problem of scaling an interpretability technique to all the neurons in a large language model. Our hope is that building on this approach of automating interpretability will enable us to comprehensively audit the safety of models before deployment.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our technique seeks to explain what patterns in text cause a neuron to activate. It consists of three steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Explain the neuron's activations using GPT-4&lt;/li&gt;
+&lt;li&gt;Simulate activations using GPT-4, conditioning on the explanation&lt;/li&gt;
+&lt;li&gt;Score the explanation by comparing the simulated and real activations&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/large-language-models-explain-neural-network-neurons</link>
+      <guid>https://www.lqdev.me/bookmarks/large-language-models-explain-neural-network-neurons</guid>
+      <pubDate>2023-05-09 20:59 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>deeplearning</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - internet</title>
+    <link>https://www.lqdev.me/tags/internet</link>
+    <description>All content tagged with 'internet' by Luis Quintanilla</description>
+    <lastBuildDate>2025-09-12 07:55 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>The Internet's Hidden Creative Renaissance</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Great post from &lt;a href="https://blogtherapy.substack.com/about"&gt;Alexandra&lt;/a&gt;. Tons of great resources to explore as well.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...recently the indie web has been experiencing a revival, as more netizens look for connection outside the walled gardens created by tech giants.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The kinds of posts and projects you’ll find are creative, personal, experimental, and sometimes so intimate you feel like you’re intruding. However, they’re not the kind of content that usually goes viral on TikTok. That’s beside the point. The focus isn’t on personal branding, growth or monetization, or “content” creation, but on freedom from those things. Instead of polished, 10-second snippets optimized for mass-appeal, engagement, and profit, these are largely slow-cooked projects made just for fun.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Against a backdrop of accelerating enshittification and living chronically online — especially since the COVID pandemic — there’s growing interest in the slower, more intentional and connected experience the indie web promises.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In different corners of the mainstream internet, younger users are talking about reclaiming their attention spans, trading in their smartphones, writing essays for fun, journaling, discovering long reads, reading fiction, and picking up hobbies like crocheting or scrapbooking.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Discoverability can be a challenge...But what seems like a bug can really be a feature of the small web experience: the point is to explore.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In the greater context of the global internet, the small web will never completely replace big platforms or serve every need, nor should it. Social media is still the main source of news in many parts of the world, offering valuable tools for community-building, commerce, even activism. For their part, most indie web creators are happy to exist outside of the mainstream.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/internet-hidden-creative-rennaissance-indieweb</link>
+      <guid>https://www.lqdev.me/responses/internet-hidden-creative-rennaissance-indieweb</guid>
+      <pubDate>2025-09-12 07:55 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>smallweb</category>
+      <category>socialweb</category>
+      <category>creativity</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>Engineering for Slow Internet</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Does this webapp really need to be 20 MB? What all is being loaded that could be deferred until it is needed, or included in an “optional” add-on bundle? Is there a possibility of a “lite” version, for bandwidth-constrained users?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;While Antarctica is an edge case, this article illustrates some of the motivations behind my &lt;a href="https://www.lqdev.me/text"&gt;text-first website&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;By trimming the excess not only do you get to the core of the app or website, but it also loads faster.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/engineering-for-slow-internet</link>
+      <guid>https://www.lqdev.me/responses/engineering-for-slow-internet</guid>
+      <pubDate>2025-08-12 08:41 -05:00</pubDate>
+      <category>slowweb</category>
+      <category>performance</category>
+      <category>internet</category>
+      <category>computing</category>
+    </item>
+    <item>
+      <title>Bukmark Club</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The BUKMARK.CLUB is a collection of websites from across the Internet.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/bukmark-club</link>
+      <guid>https://www.lqdev.me/bookmarks/bukmark-club</guid>
+      <pubDate>2025-05-09 21:09 -05:00</pubDate>
+      <category>bookmark</category>
+      <category>internet</category>
+      <category>web</category>
+      <category>community</category>
+    </item>
+    <item>
+      <title>In Praise of Links</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Hyperlinks deserve more recognition in light of all the ways their value has been sidelined and denied.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;To that end, I present a link compilation in praise of links. It includes things I agree with entirely and things I don't, spanning from the 2020s to the early 2000s, to supply a tapestry of perspectives, context, and examples on the value and importance of links. Links may have their downsides, challenges, and vulnerabilities, but my hope is that this compilation will (re)invigorate your appreciation for linking as a technology and a social practice, all the better to understand what's at stake when links are discarded and devalued.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/in-praise-of-links-osteophage</link>
+      <guid>https://www.lqdev.me/responses/in-praise-of-links-osteophage</guid>
+      <pubDate>2025-05-09 21:05 -05:00</pubDate>
+      <category>openweb</category>
+      <category>internet</category>
+      <category>indieweb</category>
+      <category>decentralization</category>
+      <category>web</category>
+    </item>
+    <item>
+      <title>The Evolution of Blogging</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...around 1997, when Jorn Barger launched his website, titling it “The Robot Wisdom Weblog.” Barger’s plan was to curate his favorite links from around the web, and add bits of commentary to each one. In other words, he meant to keep a log of his web experience. Hence weblog.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In their earliest days, webloggers stood as gatekeepers to the web’s ever-growing well of content. Each day, these URL pioneers would post a few new links and sprinkle in their own commentary. Blogs acted as a signpost for web users, and following a few key blogs was enough to keep track of just about everything new on the web. Many began to look at the blogging community as a brand new type of media, one that often stood far closer to an impartial truth than traditional mediums would allow for.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;1999, Peter Merholz threw up his own weblog, and in the sidebar added the tagline: &amp;quot;I’ve decided to pronounce the word “weblog” as wee’- blog. Or “blog” for short.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In the beginning, most bloggers hand coded their sites, adding a new HTML page to their server each time they had a new entry, or just updating the homepage to include the newest links. But soon enough, tools showed up to help bloggers with the process.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...on the fringes, a new type of blog was emerging. The personal blog. These sites ditched the curated links and focused exclusively on commentary. Bloggers used their site to chronicle their personal journey, from the almost boring and banal to the weird and wonderful. This new type of blog was less an alternative media source and more akin to an online journal or diary. And these writers saw themselves not as gatekeepers to the web, but as sharers of their own identity.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;New tools soon caught up with this shifting perspective. The first of the bunch to do so was LiveJournal...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Blogger came next. And it would prove to be the most popular of the early blogging tools. The platform first launched in August of 1999, but picked up steam the following year when it introduced the concept of a permalink.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;These platforms made blogging open, in every sense of the word. Visitors were greeted with a single, open textarea on a free platform that was open to all to participate.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Blogger became the platform choice for a lot of writers out there. It certainly was for Mena Trott&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Trott had the feeling that platforms like Blogger did not go nearly far enough.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Trott wanted her own site to stand out from the crowd. To be quintessentially hers. Blogger wouldn’t let her do that. So together with her husband, a Perl programmer, she built Movable Type...And with that move, Trott ushered in a third generation of blogging.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Movable Type allowed users to set up their blog on their own server, and have complete control over its look and feel.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Blog (the noun and verb) became a word familiar not just to web geeks, but to everyone. Lots of imitators and innovators followed in the wake of Moveable Type. Open source platforms like WordPress rose to meet the rising demand. But for a long time, Moveable Type was the standard. It fed its community with a constant stream of new features that promoted openness and freedom.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Blogging, as a community and a practice, continues to be refined to this day thanks to the dedication of web users everywhere. But its sharpest point was made the day Mena Trott decided that &lt;strong&gt;a blog could be more than just some text on a page. It could be one of a kind.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/evolution-of-blogging-history-web</link>
+      <guid>https://www.lqdev.me/responses/evolution-of-blogging-history-web</guid>
+      <pubDate>2025-05-09 20:54 -05:00</pubDate>
+      <category>blogging</category>
+      <category>history</category>
+      <category>web</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>A Guide to Implementing ActivityPub in a Static Site (or Any Website) - Part 8</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Part 8 of &lt;a href="https://www.maho.dev/2024/02/a-guide-to-implement-activitypub-in-a-static-site-or-any-website/"&gt;&amp;quot;A guide to implement ActivityPub in a static site (or any website)&amp;quot;&lt;/a&gt; by &lt;a href="https://www.maho.dev/"&gt;maho.dev&lt;/a&gt; recently dropped.&lt;/p&gt;
+&lt;p&gt;This part goes over how to add replies and comments to your static site.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/guide-implementing-activitypub-static-site-pt-8</link>
+      <guid>https://www.lqdev.me/responses/guide-implementing-activitypub-static-site-pt-8</guid>
+      <pubDate>2025-02-02 18:23 -05:00</pubDate>
+      <category>fediverse</category>
+      <category>indieweb</category>
+      <category>activitypub</category>
+      <category>personalweb</category>
+      <category>internet</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>Making space for a handmade web</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Love this article.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Before the web was more commercialized, it was personal...A website was a way to represent yourself and connect to others, a space to tend and call your very own.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The imperfect, handmade character of websites has been sanded away in favor of efficiency, and social media platforms have risen in the stead of amateur sites. Many of us conform to these containers and retreat from expressing our authentic selves publicly...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;If the idea of a more handcrafted internet resonates with you, the best way to be part of the movement is simply to make your own website. This may seem intimidating if we expect webpages to be a holistic reflection of ourselves, like a resume, portfolio, or blog. We limit the web as a medium when we expect that a website must fulfill a host of needs, or serve any function at all. &lt;strong&gt;A website doesn’t need to be anything but your own&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A more personal web becomes possible once we turn away from our preconceived notions of what a website must be. Let’s use our tools to continuously push at the boundaries of the web. Doing so will create a more creative, expansive environment that allows us to reclaim our agency and reinvigorate our collective understanding of software as an artisanal craft. Instead of concentrating on a few, monolithic sites, what if we visited many, more personalized sites? We should explore the far reaches of the web and invite our friends to join in: After all, &lt;strong&gt;we make the internet, and only we can build the web we want&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/making-space-handmade-web</link>
+      <guid>https://www.lqdev.me/responses/making-space-handmade-web</guid>
+      <pubDate>2025-01-18 19:25 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>personalweb</category>
+      <category>internet</category>
+      <category>websites</category>
+      <category>handmadeweb</category>
+    </item>
+    <item>
+      <title>Weird, Inc. and 2025</title>
+      <description>&lt;![CDATA[
+I don't remember how I came across Weird and their projects but I'm glad I did. I appreciate their approach of using existing platforms, protocols, and practices from the yesterweb to put the personal website front and center. 
+
+## Weird, Inc
+
+First, the topic of [Weird the organization and their aspirations](https://blog.muni.town/weird-inc/).
+
+&gt; We have big aspirations for Weird. At minimum, a 'social network of personal websites' can be catalyzed by simply mapping and linking existing web spaces together, playing the role of social glue. On a grander scale there's potential for a pro-social reformation of the web as we know it, putting people's websites at the center of our sociodigital interactions.
+
+By aligning to the foundations of [Seth Godin's Modern Business Plan](https://seths.blog/2010/05/the-modern-business-plan/), they aim to focus on:
+
+1. Truth -  describe the world as it is
+1. Assertions - how you’re going to change things
+1. Alternatives - what you'll do if assertions don't pan out.
+1. People - who is on your team, who is going to join your team
+1. Money - how much do you need and how will you spend it
+
+Below are some of the points that resonated with me. 
+
+### Truth
+
+&gt; Home ownership on the web, remarkably, is just as fraught with rent-seeking monopolists as our physical spaces. No one gets to own anything anymore.
+
+While they're mainly referring to the social web, this is is generally true across many areas of our digital spaces. 
+
+&gt;  Bluesky...is bringing into mainstream a nearly forgotten cornerstone of the Indie Web: Domain sovereignty  
+&gt; &lt;br&gt;
+&gt; In a reinvigorated social web where your domain-name is your universal address in the digital sphere, Weird is the virtual home to which that address is pointing  
+&gt; &lt;br&gt;
+&gt; 'Weird the data importer' is our wedge into the data fortresses keeping our digital identities captive. What will start as a Publish Elsewhere, Syndicate (to your) Own Site (PESOS) strategy makes way for a fully self-sovereign Publish (on your) Own Site, Syndicate Elsewhere (POSSE) end state.  
+&gt; &lt;br&gt;
+&gt; Imagine a WordPress-like website engine that aggregates all of your digital personas into a unified mosaic, completely under your control by combination of cloud backing and local storage.  
+
+### Alternatives
+
+If the assertions don't pan out, the alternatives that I think might be interesting:
+
+- Local-first knowledge base with cloud synchronization. [AnyType](https://anytype.io/) comes to mind.
+- Cloud + local archiver for many other 3rd party accounts such as Bluesky, Mastodon, Discourse etc. This might make PESOS scenarios easier. Of course, this only works if the 3rd party services allow developer access to their APIs.
+
+## Weird in 2025
+
+Speaking specifically about [Weird the product and what the team plans of shipping in 2025](https://blog.muni.town/weird-2025/).
+
+&gt; Weird is best understood as a single-page website generator
+
+### Q1 and Q2
+
+&gt; 'Weird the data importer' is our wedge into the data fortresses keeping our digital identities captive.  
+&gt; &lt;br&gt;
+&gt; 'Weird: ₱ESOS-edition' aggregates all of your digital personas into a harmonious mosaic, made completely yours by combination of cloud backing and local-first storage.  
+&gt; &lt;br&gt;
+&gt; Setting up a POSSE pipeline however requires not just the right infrastructure...but also a big shift in workflow.  
+&gt; &lt;br&gt;
+&gt; Most people will probably want a combination of both.  
+&gt; &lt;br&gt;
+&gt; Hence our commitment to both models, starting with the least laborious one [PESOS].  
+
+Personally, [I prefer POSSE](/posts/rss-to-mastodon-posse-azure-logic-apps/), but it's great to see that Weird plans on meeting people where they are.
+
+### Late 2025
+
+&gt; Around half-way through 2025, we're hoping to shift some of our attention away from Weird as an individualistic publishing tool to Weird as a network engine.  
+&gt; &lt;br&gt;
+&gt; We think there's massive untapped potential in the web 1.0 concept of webrings, and we fully intend to bring them back.  
+&gt; &lt;br&gt;
+&gt; All of this culminates in one of the key motivations behind the Weird project: [A Network of Shared Purpose](https://github.com/muni-town/weird/issues/3).  
+
+I'm not sure yet what this looks like but making it easier to discover and build networks of personal websites is a good problem to try to solve.
+
+## Conclusion
+
+I wish them luck and success in what they're aiming to accomplish. I'm excited to see more projects like this sprouting to shake up the status-quo in our digital spaces. ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/weird-inc-2025</link>
+      <guid>https://www.lqdev.me/posts/weird-inc-2025</guid>
+      <pubDate>2024-12-17 18:41 -05:00</pubDate>
+      <category>weird</category>
+      <category>cms</category>
+      <category>munitown</category>
+      <category>2025</category>
+      <category>indieweb</category>
+      <category>posse</category>
+      <category>pesos</category>
+      <category>personalweb</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>How I turned my blog into a social media hub</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...my blog has become a central hub for almost everything I write online, including nearly all my social media posts, links to my published work on other sites, and the occasional freestanding blog post. While this approach has a few trade-offs, I feel better about posting in the first place knowing that I’m doing it on my own terms.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;There’s also just something deeply satisfying about seeing a running feed of my own writing, on my own website, with my own design and presentation. A social network alone can’t replicate that, but the POSSE approach offers the best of both worlds.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I've enjoyed seeing over the past few weeks, as people seek new online platforms, the personal website is being rediscovered.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/how-i-turned-website-social-media-hub-newman</link>
+      <guid>https://www.lqdev.me/responses/how-i-turned-website-social-media-hub-newman</guid>
+      <pubDate>2024-12-05 19:22 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>social</category>
+      <category>microblog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>web</category>
+      <category>socialmedia</category>
+    </item>
+    <item>
+      <title>Implement ActivityPub on a static site series by maho.dev</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;I've been following along with this amazing series from &lt;a href="https://maho.dev/"&gt;Maho&lt;/a&gt; on implementing ActivityPub on static websites.&lt;/p&gt;
+&lt;p&gt;As I think about what I want out of my website and the way I engage in the Fediverse, there's a lot of overlap.&lt;/p&gt;
+&lt;p&gt;Today, what I mainly use my Mastodon instance for is:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Having a Fediverse presence on a self-hosted Mastodon instance.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/posts/rss-to-mastodon-posse-azure-logic-apps/"&gt;Cross-posting posts on by website using the POSSE pattern&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Although I have learned a ton from self-hosting my own Mastodon instance, neither of the points listed above require me self-hosting or even having an account on someone else's instance.&lt;/p&gt;
+&lt;p&gt;Yesterday, &lt;a href="https://www.lqdev.me/notes/using-domain-mastodon-discovery"&gt;I took the first step in linking my Fediverse presence to my domain&lt;/a&gt;. That fulfills my first requirement.&lt;/p&gt;
+&lt;p&gt;I rarely post original content on Mastodon and for consumption, &lt;a href="https://www.lqdev.me/notes/subscribed-to-1042-feeds-newsblur"&gt;I already subscribe to accounts and tags via RSS&lt;/a&gt;. Therefore, the second requirement is one that can naturally occur without having to use a Mastodon instance as an intermediary. I can just post on my website and because my posts can show up in my outbox, there's no need to POSSE. I don't want my presence to be limited to Mastodon though, but since I plan on supporting media, reviews, and other types of posts, I expect my posts to be accessible across other platforms on the Fediverse like Pixelfed, Bookwyrm, and many others.&lt;/p&gt;
+&lt;p&gt;Since my website and website features are built using .NET, Maho's guide simplifies my implementation. Because &lt;a href="https://www.lqdev.me/colophon"&gt;I'm not using any of the existing static site generators and rolled my own&lt;/a&gt;, that means that there's going to be some effort and customizations required on my end. It would no different from my &lt;a href="https://www.lqdev.me/posts/receive-webmentions-fsharp-az-functions-fsadvent/"&gt;custom Webmentions implementation&lt;/a&gt; though. My hope is that I will save time I often spend maintaining the server as well as money since I no longer need to rent a server to host my instance. At the same time, I get to learn and contribute to building a more open, decentralized, and personal web.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/implement-activitypub-static-site-series-maho</link>
+      <guid>https://www.lqdev.me/responses/implement-activitypub-static-site-series-maho</guid>
+      <pubDate>2024-11-19 10:03 -05:00</pubDate>
+      <category>acvititypub</category>
+      <category>fediverse</category>
+      <category>staticsite</category>
+      <category>blogging</category>
+      <category>indieweb</category>
+      <category>openweb</category>
+      <category>personalweb</category>
+      <category>dotnet</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>Using my domain for discovery in Mastodon</title>
+      <description>&lt;![CDATA[&lt;p&gt;For a while, I've known that I can use my domain and the WebFinger protocol to aid with discovery in the Fediverse, specifically Mastodon.&lt;/p&gt;
+&lt;p&gt;I tried implementing this feature on my website a while back but was unsuccessful.&lt;/p&gt;
+&lt;p&gt;Last night, I got an itch to try it again and got it working.&lt;/p&gt;
+&lt;p&gt;Basically, what I was doing wrong the first time was, I was trying to use &lt;code&gt;lqdev.me&lt;/code&gt; as the domain. Currently, my domain is not set up to use apex / naked domains. Therefore, it makes sense why that didn't work.&lt;/p&gt;
+&lt;p&gt;Once I used &lt;code&gt;www.lqdev.me&lt;/code&gt;, everything seemed to be working fine. The implementation isn't perfect, because technically you can use any username. &lt;a href="https://www.hanselman.com/blog/use-your-own-user-domain-for-mastodon-discoverability-with-the-webfinger-protocol-without-hosting-a-server"&gt;Scott Hanselman does a nice job explaining that&lt;/a&gt;. The important part though is that &lt;a href="https://www.lqdev.me/notes/now-on-bluesky"&gt;my persence on the Fediverse is now directly linked to my domain, just like it is with Bluesky&lt;/a&gt;. This goes beyond the link verification Mastodon provides. As a result, it provides more flexibility and opportunities to shape my presence on the Fediverse.&lt;/p&gt;
+&lt;p&gt;If you're interested in implementing it for yourself, there's a ton of guides, but here's the one I used: &lt;a href="https://guide.toot.as/guide/use-your-own-domain/"&gt;Use your own user @ domain for Mastodon discoverability&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I don't like the &lt;code&gt;www&lt;/code&gt; subdomain. So far I've put up with it for a while but this might be the forcing function to finally getting the apex domain setup.&lt;/p&gt;
+&lt;p&gt;In the meantime, you can search my account in Mastodon using &lt;code&gt;@lqdev@www.lqdev.me&lt;/code&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/using-domain-mastodon-discovery</link>
+      <guid>https://www.lqdev.me/notes/using-domain-mastodon-discovery</guid>
+      <pubDate>2024-11-19 09:35 -05:00</pubDate>
+      <category>mastodon</category>
+      <category>fediverse</category>
+      <category>indieweb</category>
+      <category>openweb</category>
+      <category>web</category>
+      <category>smallweb</category>
+      <category>cdn</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>You should be using an RSS reader</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;Yes, you should!&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...the conduit through which I experience Molly's excellent work is totally enshittification-proof, and the more I use it, the easier it is for everyone to be less enshittified.&lt;br /&gt;
+&lt;/br&gt;
+This conduit is anti-lock-in, it works for nearly the whole internet. It is surveillance-resistant, far more accessible than the web or any mobile app interface. It is my secret super-power.&lt;br /&gt;
+&lt;/br&gt;
+It's RSS.&lt;br /&gt;
+&lt;br&gt;
+...But RSS isn't just good for the news! It's good for everything.&lt;br /&gt;
+&lt;/br&gt;
+Your RSS reader doesn't (necessarily) have an algorithm. By default, you'll get everything as it appears, in reverse-chronological order.&lt;br /&gt;
+&lt;/br&gt;
+Now, you sign up to so many feeds that you're feeling overwhelmed and you want an algorithm to prioritize posts – or recommend content. Lots of RSS readers have some kind of algorithm and recommendation system...&lt;br /&gt;
+&lt;/br&gt;
+But you control the algorithm, you control the recommendations. And if a new RSS reader pops up with an algorithm you're dying to try, you can export all the feeds you follow with a single click, which will generate an OPML file. Then, with one click, you can import that OPML file into any other RSS reader in existence and all your feeds will be seamlessly migrated there. You can delete your old account, or you can even use different readers for different purposes.&lt;br /&gt;
+&lt;/br&gt;
+RSS basically works like social media should work. Using RSS is a chance to visit a utopian future in which the platforms have no power, and all power is vested in publishers, who get to decide what to publish, and in readers, who have total control over what they read and how, without leaking any personal information through the simple act of reading.&lt;br /&gt;
+&lt;/br&gt;
+And here's the best part: every time you use RSS, you bring that world closer into being!&lt;br /&gt;
+&lt;/br&gt;
+Unlike those largely useless, performative boycotts of widely used platforms, switching to RSS doesn't require that you give anything up. Not only does switching to RSS let you continue to follow all the newsletters, webpages and social media accounts you're following now, it makes doing so better: more private, more accessible, and less enshittified.&lt;br /&gt;
+&lt;/br&gt;
+Using RSS to follow the stuff that matters to you will have an immediate, profoundly beneficial impact on your own digital life – and it will appreciably, irreversibly nudge the whole internet towards a better state.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Great article by &lt;a href="https://craphound.com/bio/"&gt;Cory Doctorow&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I've written at length on my website as to &lt;a href="https://www.lqdev.me/posts/rediscovering-rss-user-freedom"&gt;why I enjoy RSS&lt;/a&gt;. My use goes back to the days of Google Reader. Like many, once that was disbanded, my consumption pretty much shifted to social media for a few years. After growing dissatisfaction with the limitations and lack of control over my feed, I started my journey back to RSS readers eventually landing on &lt;a href="https://www.lqdev.me/notes/subscribed-to-1042-feeds-newsblur"&gt;NewsBlur&lt;/a&gt; and elfeed as my readers of choice.&lt;/p&gt;
+&lt;p&gt;On this website, RSS plays an important role in a few areas.&lt;/p&gt;
+&lt;p&gt;RSS is how I:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/notes/website-feeds-opml/"&gt;Enable discovery of my own feeds&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/feed"&gt;Enable visitors to subscribe and get the latest content&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/posts/rss-to-mastodon-posse-azure-logic-apps"&gt;Syndicate posts to Mastodon&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/notes/blogroll-discovery-implemented/"&gt;Enable feed discovery of websites I subscribe to&lt;/a&gt; through my:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/collections/blogroll/"&gt;Blogroll&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/collections/podroll/"&gt;Podroll (podcasts)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/collections/youtube/"&gt;YouTubeRoll?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/collections/forums/"&gt;ForumRoll?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So how can you get started?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Learn &lt;a href="https://aboutfeeds.com/"&gt;about feeds&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Check out the many &lt;a href="https://matthiasott.com/notes/we-love-rss"&gt;getting started guides&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Browse through &lt;a href="https://blogroll.club/"&gt;blogrolls and feed catalogs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.theverge.com/24036427/rss-feed-reader-best"&gt;Explore various feed readers&lt;/a&gt; to find the one that works best for you.&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/you-should-be-using-rss-reader-pluralistic</link>
+      <guid>https://www.lqdev.me/responses/you-should-be-using-rss-reader-pluralistic</guid>
+      <pubDate>2024-10-18 08:54 -05:00</pubDate>
+      <category>rss</category>
+      <category>pluralistic</category>
+      <category>indieweb</category>
+      <category>protocols</category>
+      <category>openweb</category>
+      <category>freeweb</category>
+      <category>internet</category>
+      <category>smallweb</category>
+    </item>
+    <item>
+      <title>Fighting for our web - A talk from XOXO</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;I haven't watched the entire talk, but here are some excerpts from the transcript that resonated with me.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=MTaeVVAvk-c" title="Thumbnail of Molly White Speaking at XOXO Conference"&gt;&lt;img src="http://img.youtube.com/vi/MTaeVVAvk-c/0.jpg" class="img-fluid" alt="Thumbnail of Molly White Speaking at XOXO Conference" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;For a lot of people, the web feels worse than it used to. Much of our time is spent on a handful of giant social networks that do everything they can to keep people in their apps for as long as possible, even if it has detrimental effects on the people who are using them, or on the social networks themselves.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Websites outside of these handful of social networks are harder and harder to even find, and partially because of that, they have a harder and harder time sustaining themselves.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;What is left for those of us who saw the web as an infinite canvas, a tool to reach those who we never could have dreamed of reaching before, a medium that could stretch the limits of what was even possible in an analog world?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...having said all this, would it surprise you to hear that now more than ever, I feel that same burning feeling of excitement around what’s possible?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;That’s because what really sucks about the web these days, what has us feeling despair and anger, has everything to do with the industry that has formed around the web, but not the web itself. The web is still just a substrate on which anything can be built. Most importantly, the web is the people who use it, not the companies that have established themselves around it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;And the widespread disillusionment that we’re seeing may actually be a good thing. More people than ever have realized that the utopian dreams of a web that could only bring about positive and wonderful things might have been misguided.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;With this knowledge comes power. The power to shape the web that we want to see, while fighting against the one that we don’t.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;My experience in fighting this fight has helped to convince me of just how much power we, everyday normal people, have—even when we’re staring down massive platforms and billion-dollar companies.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I ended up doing what I enjoy doing—building something cool, mostly for the sake of building it, and writing down what I saw.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...this simple act of building something interesting and somewhat different had an impact that I could not have anticipated. It turned out that people were starving for it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;And even though I was a nobody, it had a major impact.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The lesson was clear. The tech industry, even with its billions of dollars, is not an indomitable force. Though they can and will ignore what people want from them, they cannot control what those people think. And the tide can turn against them. And it doesn’t always take a job at The New York Times or a huge pre-established platform to become one of the voices speaking up, helping to turn that tide. Sometimes you just have to make something cool. And using the very same technology that enabled crypto guys to sell their scam tokens, or the boosterist journalists to publish obsequious descriptions of companies that were really selling vaporware, or the crypto community to spam social media with promotions for their NFTs, I was able to do something a little different to push back against that very same phenomenon.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;What they don’t seem to realize is that in doing so, by reducing the web only to the types of expression that can happen within their cramped boxes—where you can’t write more than 280 characters, or you can’t publish your cool JavaScript-based art project, or you can’t say the things that you want to say without getting de-boosted by the engagement maximization machine, or you can’t read what your friends are posting without the platform interjecting offensive troll posts or soulless AI-generated meme images—they’re creating a thirst for everything outside of those boxes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A thirst for what the web really is—a medium, a conduit, a tool that is used by readers and artists and creators and explorers, not a gatekeeper that seems to be in an ever more adversarial relationship with everyone who uses it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The platforms I talk about are deeply entrenched to the point where many people barely use the web outside of them.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;But the platforms do not exist without the people, and there are a lot more of us than there are of them.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...it has never been easier to do cool things on the web. What used to be expensive and require a great deal of technical expertise is now becoming more and more accessible, both financially and technologically, by the day. More people than ever have access to the web, both in terms of access to devices, but also in terms of access to internet connectivity and software. What used to be the realm of the nerds and those with the financial wherewithal to purchase expensive home computers, connectivity, and software packages, is now home to people from all walks of life, who bring new ideas, perspectives, and experiences that we often forget were in short supply during what some of us think of as the “good old days” of the internet.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;And so, we—all of us—can build the projects we want to see, write the software that the big platforms won’t, and create the services that people need. We can wire everything together, whether the platforms like it or not, to tear down the walls that they put up. We can modify the software, reverse engineer their systems, and wrestle back control of how we experience the web, even through these very platforms. We can share information and help people understand what is happening around them. We can teach others to build the things they want to build, and share with one another the important and meaningful work that is being done.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We can build the web that we want to see, and we can return to that place where the web is a place of wonder, where all of us feel that same burning feeling of excitement as we push the web back towards the wonderful, beautiful, joyful place it ought to be.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/fighting-for-our-web-white</link>
+      <guid>https://www.lqdev.me/responses/fighting-for-our-web-white</guid>
+      <pubDate>2024-10-10 20:20 -05:00</pubDate>
+      <category>internet</category>
+      <category>indieweb</category>
+      <category>protocolsnotplatforms</category>
+      <category>humanweb</category>
+      <category>smallweb</category>
+      <category>web3.0</category>
+    </item>
+    <item>
+      <title>What is Kick?</title>
+      <description>&lt;![CDATA[&lt;p&gt;I'm oficially old. I had to look up what &lt;a href="https://kick.com/"&gt;Kick&lt;/a&gt; is.&lt;/p&gt;
+&lt;p&gt;In case you also didn't know, I'll save you some time.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Kick is a platform where you can watch and interact with live streamers from various categories, such as games, music, gambling and creative.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/what-is-kick</link>
+      <guid>https://www.lqdev.me/notes/what-is-kick</guid>
+      <pubDate>2024-08-05 21:30 -05:00</pubDate>
+      <category>livestream</category>
+      <category>video</category>
+      <category>app</category>
+      <category>web</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>OPML for website feeds</title>
+      <description>&lt;![CDATA[&lt;p&gt;While thiking about implementing &lt;a href="https://www.lqdev.me/responses/well-known-feeds/"&gt;&lt;code&gt;.well-known&lt;/code&gt; for RSS feeds on my site&lt;/a&gt;, I had another idea. Since that uses OPML anyways, I remembered recently &lt;a href="https://www.lqdev.me/notes/blogroll-discovery-implemented//"&gt;doing something similar for my blogroll&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The concept is the same, except instead of making my blogroll discoverable, I'm doing it for my feeds. At the end of the day, a blogroll is a collection of feeds, so it should just work for my own feeds.&lt;/p&gt;
+&lt;p&gt;The implementation ended up being:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Create an OPML file for&lt;a href="https://www.lqdev.me/feed"&gt; each of the feeds on by website&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt; &amp;lt;opml version=&amp;quot;2.0&amp;quot;&amp;gt;
+   &amp;lt;head&amp;gt;
+ 	&amp;lt;title&amp;gt;Luis Quintanilla Feeds&amp;lt;/title&amp;gt;
+ 	&amp;lt;ownerId&amp;gt;https://www.luisquintanilla.me&amp;lt;/ownerId&amp;gt;
+   &amp;lt;/head&amp;gt;
+   &amp;lt;body&amp;gt;
+ 	&amp;lt;outline title=&amp;quot;Blog&amp;quot; text=&amp;quot;Blog&amp;quot; type=&amp;quot;rss&amp;quot; htmlUrl=&amp;quot;/posts/1&amp;quot; xmlUrl=&amp;quot;/blog.rss&amp;quot; /&amp;gt;
+ 	&amp;lt;outline title=&amp;quot;Microblog&amp;quot; text=&amp;quot;Microblog&amp;quot; type=&amp;quot;rss&amp;quot; htmlUrl=&amp;quot;/feed&amp;quot; xmlUrl=&amp;quot;/microblog.rss&amp;quot; /&amp;gt;
+ 	&amp;lt;outline title=&amp;quot;Responses&amp;quot; text=&amp;quot;Responses&amp;quot; type=&amp;quot;rss&amp;quot; htmlUrl=&amp;quot;/feed/responses&amp;quot; xmlUrl=&amp;quot;/responses.rss&amp;quot; /&amp;gt;
+ 	&amp;lt;outline title=&amp;quot;Mastodon&amp;quot; text=&amp;quot;Mastodon&amp;quot; type=&amp;quot;rss&amp;quot; htmlUrl=&amp;quot;/mastodon&amp;quot; xmlUrl=&amp;quot;/mastodon.rss&amp;quot; /&amp;gt;
+ 	&amp;lt;outline title=&amp;quot;Bluesky&amp;quot; text=&amp;quot;Bluesky&amp;quot; type=&amp;quot;rss&amp;quot; htmlUrl=&amp;quot;/bluesky&amp;quot; xmlUrl=&amp;quot;/bluesky.rss&amp;quot; /&amp;gt;
+ 	&amp;lt;outline title=&amp;quot;YouTube&amp;quot; text=&amp;quot;YouTube&amp;quot; type=&amp;quot;rss&amp;quot; htmlUrl=&amp;quot;/youtube&amp;quot; xmlUrl=&amp;quot;/bluesky.rss&amp;quot; /&amp;gt;
+   &amp;lt;/body&amp;gt;
+ &amp;lt;/opml&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add a &lt;code&gt;link&lt;/code&gt; tag to the &lt;code&gt;head&lt;/code&gt; element of my website.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt; &amp;lt;link rel=&amp;quot;feeds&amp;quot; type=&amp;quot;text/xml&amp;quot; title=&amp;quot;Luis Quintanilla's Feeds&amp;quot; href=&amp;quot;/feed/index.opml&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/website-feeds-opml</link>
+      <guid>https://www.lqdev.me/notes/website-feeds-opml</guid>
+      <pubDate>2024-08-01 20:08 -05:00</pubDate>
+      <category>rss</category>
+      <category>opml</category>
+      <category>indieweb</category>
+      <category>feeds</category>
+      <category>internet</category>
+      <category>protocols</category>
+      <category>webstandards</category>
+      <category>standards</category>
+      <category>web</category>
+    </item>
+    <item>
+      <title>Zombie Internet</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In my experience, the supermajority of engagement on viral AI Facebook pages is just as artificially-generated as the content they publish.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Whether it's a child transforming into a water bottle cyborg, a three-armed flight attendant rescuing Tiger Jesus from a muddy plane crash, or a hybrid human-monkey baby being stung to death by giant hornets, all tend to have copy+pasted captions, reactions &amp;amp; comments which usually make no sense in the observed context.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I've noticed similar patterns on YouTube. Sometime the comments include timestamp links which makes them seem more credible, but upon further inspection, it's all bot activity.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/facebook-zombie-internet-willison</link>
+      <guid>https://www.lqdev.me/responses/facebook-zombie-internet-willison</guid>
+      <pubDate>2024-07-16 11:48 -05:00</pubDate>
+      <category>bots</category>
+      <category>web</category>
+      <category>comments</category>
+      <category>ai</category>
+      <category>facebook</category>
+      <category>internet</category>
+      <category>personalweb</category>
+    </item>
+    <item>
+      <title>We Need To Rewild The Internet</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The internet has become an extractive and fragile monoculture. But we can revitalize it using lessons learned by ecologists.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our online spaces are not ecosystems, though tech firms love that word. They’re plantations; highly concentrated and controlled environments...&lt;br /&gt;
+&lt;br&gt;
+We all know this. We see it each time we reach for our phones. But what most people have missed is how this concentration reaches deep into the internet’s infrastructure — the pipes and protocols, cables and networks, search engines and browsers. These structures determine how we build and use the internet, now and in the future.&lt;br /&gt;
+&lt;br&gt;
+They’ve concentrated into a series of near-planetary duopolies.&lt;br /&gt;
+&lt;br&gt;
+Two kinds of everything may be enough to fill a fictional ark and repopulate a ruined world, but can’t run an open, global “network of networks” where everyone has the same chance to innovate and compete.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The internet made the tech giants possible. Their services have scaled globally, via its open, interoperable core. But for the past decade, they’ve also worked to enclose the varied, competing and often open-source or collectively provided services the internet is built on into their proprietary domains. Although this improves their operational efficiency, it also ensures that the flourishing conditions of their own emergence aren’t repeated by potential competitors. For tech giants, the long period of open internet evolution is over. Their internet is not an ecosystem. It’s a zoo.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Up close, internet concentration seems too intricate to untangle; from far away, it seems too difficult to deal with. But what if we thought of the internet not as a doomsday “hyperobject,” but as a damaged and struggling ecosystem facing destruction? What if we looked at it not with helpless horror at the eldritch encroachment of its current controllers, but with compassion, constructiveness and hope?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Rewilding “aims to restore healthy ecosystems by creating wild, biodiverse spaces,” according to the International Union for Conservation of Nature. More ambitious and risk-tolerant than traditional conservation, it targets entire ecosystems to make space for complex food webs and the emergence of unexpected interspecies relations. It’s less interested in saving specific endangered species. Individual species are just ecosystem components, and focusing on components loses sight of the whole. Ecosystems flourish through multiple points of contact between their many elements, just like computer networks. And like in computer networks, ecosystem interactions are multifaceted and generative.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Whatever we do, the internet isn’t returning to old-school then-common interfaces like FTP and Gopher, or organizations operating their own mail servers again instead of off-the-shelf solutions like G-Suite. But some of what we need is already here, especially on the web. Look at the resurgence of RSS feeds, email newsletters and blogs, as we discover (yet again) that relying on one app to host global conversations creates a single point of failure and control. New systems are growing, like the Fediverse with its federated islands, or Bluesky with algorithmic choice and composable moderation.&lt;br /&gt;
+&lt;br&gt;
+We don’t know what the future holds. Our job is to keep open as much opportunity as we can, trusting that those who come later will use it. Instead of setting purity tests for which kind of internet is most like the original, we can test changes against the values of the original design. Do new standards protect the network’s “generality,” i.e. its ability to support multiple uses, or is functionality limited to optimize efficiency for the biggest tech firms?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...our internet took off because it was designed as a general-purpose network, built to connect anyone.&lt;br /&gt;
+&lt;br&gt;
+Our internet was built to be complex and unbiddable, to do things we cannot yet imagine.&lt;br /&gt;
+&lt;br&gt;
+Internet infrastructure is a degraded ecosystem, but it’s also a built environment, like a city. Its unpredictability makes it generative, worthwhile and deeply human.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We need to stop thinking of internet infrastructure as too hard to fix. It’s the underlying system we use for nearly everything we do.&lt;br /&gt;
+&lt;br&gt;
+Rewilding the internet connects and grows what people are doing across regulation, standards-setting and new ways of organizing and building infrastructure, to tell a shared story of where we want to go. It’s a shared vision with many strategies. The instruments we need to shift away from extractive technological monocultures are at hand or ready to be built.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/rewild-the-internet-farrell-berjon</link>
+      <guid>https://www.lqdev.me/responses/rewild-the-internet-farrell-berjon</guid>
+      <pubDate>2024-04-25 23:11 -05:00</pubDate>
+      <category>internet</category>
+      <category>technology</category>
+      <category>openweb</category>
+      <category>personalweb</category>
+      <category>online</category>
+    </item>
+    <item>
+      <title>The Internet Used To Be Fun</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I’ve been meaning to write some kind of Important Thinkpiece™ on the glory days of the early internet, but every time I sit down to do it, I find another, better piece that someone else has already written. So for now, here’s a collection of articles that to some degree answer the question “Why have a personal website?” with “Because it’s fun, and the internet used to be fun.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is a great catalog of posts about the personal web. Courtesy of &lt;a href="https://kwon.nyc/"&gt;Rachel Kwon&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/internet-used-to-be-fun-kwon</link>
+      <guid>https://www.lqdev.me/bookmarks/internet-used-to-be-fun-kwon</guid>
+      <pubDate>2024-04-25 22:56 -05:00</pubDate>
+      <category>internet</category>
+      <category>indieweb</category>
+      <category>personalweb</category>
+      <category>online</category>
+      <category>blogging</category>
+      <category>blogs</category>
+    </item>
+    <item>
+      <title>Grow Your Own Services</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This is a site encouraging non-technical people and organisations to create their own online services such as websites, social networks, personal clouds, instant messaging etc.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/grow-your-own-services</link>
+      <guid>https://www.lqdev.me/bookmarks/grow-your-own-services</guid>
+      <pubDate>2024-04-25 22:53 -05:00</pubDate>
+      <category>selfhosting</category>
+      <category>indieweb</category>
+      <category>openweb</category>
+      <category>internet</category>
+      <category>community</category>
+      <category>cloud</category>
+      <category>messaging</category>
+      <category>website</category>
+      <category>socialnetworks</category>
+      <category>websites</category>
+      <category>online</category>
+    </item>
+    <item>
+      <title>Molly White's Blogroll</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;Bookmarking for reference.&lt;/p&gt;
+&lt;p&gt;I'm already subscribed to many of these websites and publications. However, there's several new ones I found that I think will eventually make their rotation into my &lt;a href="https://www.lqdev.me/collections/blogroll/"&gt;blogroll&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/blogroll-molly-white</link>
+      <guid>https://www.lqdev.me/bookmarks/blogroll-molly-white</guid>
+      <pubDate>2024-04-07 17:50 -05:00</pubDate>
+      <category>blogroll</category>
+      <category>indieweb</category>
+      <category>rss</category>
+      <category>blogging</category>
+      <category>web</category>
+      <category>internet</category>
+      <category>smallweb</category>
+      <category>community</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - upgrade</title>
+    <link>https://www.lqdev.me/tags/upgrade</link>
+    <description>All content tagged with 'upgrade' by Luis Quintanilla</description>
+    <lastBuildDate>2024-11-14 00:38 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Upgraded to .NET 9</title>
+      <description>&lt;![CDATA[&lt;p&gt;Obligatory upgrade post. Just upgraded the website to .NET 9. As with all the previous years, it involved no code changes, and all I had to do was updade the version I'm using in my project file and GitHub Actions file.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/website-upgraded-dotnet-9</link>
+      <guid>https://www.lqdev.me/notes/website-upgraded-dotnet-9</guid>
+      <pubDate>2024-11-14 00:38 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>net9</category>
+      <category>githubactions</category>
+      <category>github</category>
+      <category>indieweb</category>
+      <category>upgrade</category>
+    </item>
+    <item>
+      <title>Upgraded website to .NET 7</title>
+      <description>&lt;![CDATA[&lt;p&gt;Last year, I posted about &lt;a href="https://www.lqdev.me/notes/net6-website-update"&gt;upgrading this website to .NET 6&lt;/a&gt; and how easy that process was. I just had a chance to upgrade to .NET 7 and the experience was just as smooth. All I had to do was change the version in two places:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;GitHub Actions *.yml file&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-yml"&gt;dotnet-version: '7.0.x'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;*.fsproj  file&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;TargetFramework&amp;gt;net7.0&amp;lt;/TargetFramework&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I'm happy that with such a simple change, I can get all the benefits of .NET 7 without doing a lot of work.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/net7-website-update</link>
+      <guid>https://www.lqdev.me/notes/net7-website-update</guid>
+      <pubDate>2022-11-11 09:59 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>website</category>
+      <category>net7</category>
+      <category>upgrade</category>
+    </item>
+    <item>
+      <title>Site updated to .NET 6</title>
+      <description>&lt;![CDATA[&lt;p&gt;That was easy. Site's been updated to .NET 6 and all it took was a one-line change.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/147173815-9703691c-26cd-481a-98e6-fa23a9ce9674.png" class="img-fluid" alt="GitHub PR diff .NET 6 update" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/net6-website-update</link>
+      <guid>https://www.lqdev.me/notes/net6-website-update</guid>
+      <pubDate>12/22/2021 20:27 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>website</category>
+      <category>net6</category>
+      <category>upgrade</category>
+      <category>selfhost</category>
+    </item>
+  </channel>
+</rss>

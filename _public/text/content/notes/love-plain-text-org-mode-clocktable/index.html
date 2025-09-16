@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Clock Tables - Org Mode, Plain Text, and AI - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Clock Tables - Org Mode, Plain Text, and AI</h1><div class="content-meta"><div class="content-type">notes</div><time datetime="2024-07-10">July 10, 2024</time><p>Tags: emacs, orgmode, ai, plaintext, productivity, tools, technology, gnu, opensource, gtd, calendar, agenda, llm, openai</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/notes/">← All notes</a> | <a href="https://www.lqdev.me/notes/love-plain-text-org-mode-clocktable">View Full Version</a></p><div class="content"><p>Org-mode appreciation post.</p>
+<p>I use plain text and org-mode for most things in my life, especially when it comes to task and life management.</p>
+<p>I won't rehash all the reasons Emacs and org-mode are amazing. There are tons of blog posts and videos out there that would do it more justice than I ever could.</p>
+<p>Over the last few years, Emacs has become my go-to text editor. Throughout all that time, I've continued to find new features that delight.</p>
+<p>The most recent is <a href="https://orgmode.org/manual/The-clock-table.html">clock table</a>.</p>
+<p>I already use org-mode to track my to-dos and perform some sort of time-block planning by setting deadlines and scheduling tasks.</p>
+<p>Recently though, I've been wanting a way to see all of the things I've worked on over the past [ INSERT TIME PERIOD ]. More importantly, I'd like to have time associated with them to see where my time has gone and evaluate whether I'm spending time on the things I should be.</p>
+<p>I knew you could <a href="https://orgmode.org/manual/Clocking-commands.html">clock in and clock out</a> on tasks. However, I didn't know you could easily build a customized report that automatically updates. That's when I came across clock tables.</p>
+<p>Now, I have a way of visualizing all of the things I worked on during a week or month, and as I'm planning for the next week or month, I can adjust and reprioritize the things I'm working on.</p>
+<p>I know there are enterprise offerings like the Viva suite from Microsoft which provides detailed reports on how you spend your time.</p>
+<p>What excites me about org-mode though is that it's plain text. The clock table report that gets generated is a plain text table which makes it portable and easy to access using any text editor of your choice. It works best with Emacs, but that's not a requirement.</p>
+<p>On their own, clock tables are amazing.</p>
+<p>However, given how well language models work on plain text, they could be used as context for your queries. Imagine giving a language model as input an org file which contains:</p>
+<ul>
+<li>A clock table</li>
+<li>A list of TODO tasks (with notes, priorities, deadlines, tags, properties, and other annotations)</li>
+<li>A high level list of goals you want to achieve</li>
+</ul>
+<p>Then, you could enter a prompt along the lines of: &quot;Using the following clock-table and list of goals I want to achieve, provide me with recommendations of tasks I should work on for the next week. Ensure that they align with my goals, are top priority, and provide the highest return on my efforts&quot;.</p>
+<p>Additionally, you might also provide your org-agenda view containing appointments and use the results from the first query as context for the following prompt: &quot;Given the agenda view for the next week, schedule the top 3 tasks you recommended&quot;.</p>
+<p>The result would be a list of TODO items containing schedule / active timestamps annotations which now show up on your org-agenda view.</p>
+<p>Today, almost every productivity application out there is working on building these kinds of AI features into their products. The difference is, in many cases, the formats used by those applications aren't plain text. This adds complexity to the data extraction and transformation pipelines required to get the data into the right format for a language model to process. With plain text, there's little to no transformations required.</p>
+<p>What's even better, I can extend org-mode and Emacs using elisp to do the things I just talked about.</p>
+<p>I'm no elisp expert, so I asked Copilot to generate an elisp function that takes an org-mode clock table as input and generates a written text summary of it. Here are the results:</p>
+<pre><code class="language-lisp">(defun org-clock-summary-to-chatgpt ()
+  &quot;Extracts clock table data and requests a summary from ChatGPT.&quot;
+  (interactive)
+  (let* ((clock-table-data (org-clocktable-get-clocktable))
+         (summary-text (org-clocktable-format-summary clock-table-data))
+         (api-endpoint &quot;https://api.openai.com/v1/engines/davinci/completions&quot;)
+         (api-key &quot;YOUR_API_KEY&quot;)) ; Replace with your actual API key
+<pre><code>;; Construct the HTTP request and send it to ChatGPT
+(with-current-buffer
+    (url-retrieve-synchronously api-endpoint
+                                `((&amp;quot;text&amp;quot; . ,summary-text)
+                                  (&amp;quot;api_key&amp;quot; . ,api-key)))
+  (goto-char (point-min))
+  (search-forward &amp;quot;\n\n&amp;quot;)
+  (let ((response-json (json-read)))
+    (message &amp;quot;ChatGPT summary: %s&amp;quot; (cdr (assoc 'choices response-json)))))))
+</code></pre>
+<p></code></pre></p>
+<p>All you elisp experts out there, let me know how it did.</p>
+<p>I know at least the API endpoint is wrong, but generally speaking, it seems to be doing the right thing. Such function could be extended to include org-agenda information, TODO items, and many other things that would use AI to augment the existing functionality of Emacs and org-mode to tailor them to my needs.</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

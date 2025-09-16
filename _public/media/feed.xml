@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - Media</title>
+    <link>https://www.lqdev.me/media</link>
+    <description>Photo albums and media by Luis Quintanilla</description>
+    <lastBuildDate>2025-09-13 09:16 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Lossless audio coming to Spotify</title>
+      <description>&lt;![CDATA[Album containing 0 photos]]&gt;</description>
+      <link>https://www.lqdev.me/media/lossless-audio-coming-spotify</link>
+      <guid>https://www.lqdev.me/media/lossless-audio-coming-spotify</guid>
+      <pubDate>2025-09-13 09:16 -05:00</pubDate>
+      <category>music</category>
+      <category>spotify</category>
+    </item>
+    <item>
+      <title>Just ordered Internet Phone Book</title>
+      <description>&lt;![CDATA[Album containing 0 photos]]&gt;</description>
+      <link>https://www.lqdev.me/media/just-ordered-internet-phone-book-issue-1</link>
+      <guid>https://www.lqdev.me/media/just-ordered-internet-phone-book-issue-1</guid>
+      <pubDate>2025-09-12 21:50 -05:00</pubDate>
+      <category>smallweb</category>
+      <category>indieweb</category>
+      <category>socialweb</category>
+    </item>
+    <item>
+      <title>Urban Toy Story</title>
+      <description>&lt;![CDATA[Album containing 0 photos]]&gt;</description>
+      <link>https://www.lqdev.me/media/toy-story-underpass</link>
+      <guid>https://www.lqdev.me/media/toy-story-underpass</guid>
+      <pubDate>2025-09-12 08:29 -05:00</pubDate>
+      <category>toy</category>
+      <category>chicago</category>
+      <category>art</category>
+    </item>
+    <item>
+      <title>Windows 11 upgrade?</title>
+      <description>&lt;![CDATA[Album containing 0 photos]]&gt;</description>
+      <link>https://www.lqdev.me/media/windows-11-upgrade</link>
+      <guid>https://www.lqdev.me/media/windows-11-upgrade</guid>
+      <pubDate>2025-08-23 20:11 -05:00</pubDate>
+      <category>windows</category>
+      <category>windows10</category>
+    </item>
+    <item>
+      <title>Test media post from mobile</title>
+      <description>&lt;![CDATA[Album containing 0 photos]]&gt;</description>
+      <link>https://www.lqdev.me/media/test-media-post-from-mobile</link>
+      <guid>https://www.lqdev.me/media/test-media-post-from-mobile</guid>
+      <pubDate>2025-08-12 22:40 -05:00</pubDate>
+      <category>mobile</category>
+      <category>blog</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>Fall Mountains</title>
+      <description>&lt;![CDATA[Album containing 0 photos]]&gt;</description>
+      <link>https://www.lqdev.me/media/fall-mountains</link>
+      <guid>https://www.lqdev.me/media/fall-mountains</guid>
+      <pubDate>2022-10-15 08:56 -05:00</pubDate>
+    </item>
+  </channel>
+</rss>

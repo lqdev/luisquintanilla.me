@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - library</title>
+    <link>https://www.lqdev.me/tags/library</link>
+    <description>All content tagged with 'library' by Luis Quintanilla</description>
+    <lastBuildDate>2024-01-16 20:36 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Building up the reading backlog</title>
+      <description>&lt;![CDATA[&lt;p&gt;Lately I've been using Spotify to listen to audiobooks since it's included as part of their Premium tier. That's how I started listening to &lt;a href="https://www.lqdev.me/reviews/making-it-in-america"&gt;Making It In America&lt;/a&gt;. What I didn't know was that there's a limit to the number of hours you can listen in a given month. I only got as far as chapter 2 and now I have to wait 7 days for my listening hours to be replenished for the month.&lt;/p&gt;
+&lt;p&gt;As a result, I started building the reading backlog at the local library which is now at an unreasonable 164 books that I probably won't get to. It got that way because I added many of the Best of 2023 recommendations from my local library to my wishlist. I haven't added many of those to my &lt;a href="https://www.lqdev.me/library"&gt;library page&lt;/a&gt; because I don't want to go through the process of manually adding them. I should look into whether there's an automated way of getting that information via APIs or batch download.&lt;/p&gt;
+&lt;p&gt;Last night I started reading &lt;a href="https://www.lqdev.me/reviews/how-to-sell-a-haunted-house"&gt;How To Sell A Haunted House&lt;/a&gt; and I'm enjoying it so far. The next one on deck is &lt;a href="https://www.lqdev.me/reviews/a-city-on-mars"&gt;A City on Mars&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/reading-list-january-2024</link>
+      <guid>https://www.lqdev.me/notes/reading-list-january-2024</guid>
+      <pubDate>2024-01-16 20:36 -05:00</pubDate>
+      <category>books</category>
+      <category>reading</category>
+      <category>library</category>
+    </item>
+  </channel>
+</rss>

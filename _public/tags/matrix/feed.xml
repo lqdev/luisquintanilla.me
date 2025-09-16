@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - matrix</title>
+    <link>https://www.lqdev.me/tags/matrix</link>
+    <description>All content tagged with 'matrix' by Luis Quintanilla</description>
+    <lastBuildDate>2025-04-07 08:38 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Install Element Desktop on Windows ARM64 Devices</title>
+      <description>&lt;![CDATA[&lt;p&gt;In a previous post, I talked about my &lt;a href="https://www.lqdev.me/notes/running-linux-gui-apps-windows-wsl-amazing"&gt;workaround for running Element Desktop on my ARM64 Windows device&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I'm happy that I no longer need that workaround.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/element-hq/element-desktop"&gt;Element Desktop&lt;/a&gt; enabled support for &lt;a href="https://github.com/element-hq/element-desktop/pull/624"&gt;ARM64 on Windows&lt;/a&gt; and shipped it as part of the &lt;a href="https://github.com/element-hq/element-desktop/releases/tag/v1.11.95"&gt;1.11.95 release&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While you could go to the &lt;a href="https://element.io/download"&gt;downloads website&lt;/a&gt; and get the installer from there, you can now also get it via &lt;a href="https://learn.microsoft.com/windows/package-manager/winget/"&gt;WinGet&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I built on the work of the &lt;a href="https://github.com/microsoft/winget-pkgs/tree/master/manifests/e/Element/Element"&gt;existing community manifest&lt;/a&gt; in the winget-pkgs repo and via a &lt;a href="https://github.com/microsoft/winget-pkgs/pull/244768"&gt;pull request&lt;/a&gt; updated the latest 1.11.96 version to include the ARM64 installer.&lt;/p&gt;
+&lt;p&gt;While I didn't create the manifest from scratch, I thought it was really easy to contribute a new installer. I'll leave the details of my process for another post though.&lt;/p&gt;
+&lt;p&gt;Installing Element Desktop via WinGet is relativaly straightforward.&lt;/p&gt;
+&lt;p&gt;Assuming you already have the WinGet tool installed, all you have to do is run the following commmand in the terminal and you're all set!&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-powershell"&gt;winget install Element.Element -a arm64
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/install-element-desktop-windows-arm64</link>
+      <guid>https://www.lqdev.me/notes/install-element-desktop-windows-arm64</guid>
+      <pubDate>2025-04-07 08:38 -05:00</pubDate>
+      <category>matrix</category>
+      <category>arm64</category>
+      <category>windows</category>
+      <category>element</category>
+      <category>winget</category>
+      <category>opensource</category>
+      <category>decentralization</category>
+    </item>
+    <item>
+      <title>Running Linux GUI Apps on Windows (WSLg) is amazing!</title>
+      <description>&lt;![CDATA[&lt;p&gt;So you might've heard of Windows Subsystem for Linux (WSL), but did you know you can also &lt;a href="https://learn.microsoft.com/windows/wsl/tutorials/gui-apps"&gt;run Linux GUI apps with WSLg&lt;/a&gt;?&lt;/p&gt;
+&lt;p&gt;While trying to install the Element Desktop client on my Spandragon X Elite Windows device, I quickly realized &lt;a href="https://github.com/element-hq/element-desktop/issues/650"&gt;you can't because of an issue with Electron&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;WSL is supported on ARM64 Windows devices. This means, it should also support GUI apps.&lt;/p&gt;
+&lt;p&gt;I decided to try and install the Element Desktop client for Linux in WSL and this was the result!&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/element-linux-wsl.png" class="img-fluid" alt="Screenshot of Element Desktop Login Screen" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/running-linux-gui-apps-windows-wsl-amazing</link>
+      <guid>https://www.lqdev.me/notes/running-linux-gui-apps-windows-wsl-amazing</guid>
+      <pubDate>2024-11-27 20:48 -05:00</pubDate>
+      <category>wsl</category>
+      <category>linux</category>
+      <category>windows</category>
+      <category>gui</category>
+      <category>element</category>
+      <category>matrix</category>
+    </item>
+    <item>
+      <title>Beeper was just acquired by Automattic</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Beeper, the upstart messaging app that attempts to corral all your messaging services into one inbox, is being acquired by Automattic, the giant that runs Wordpress.com, Tumblr, and a number of other hugely popular web properties&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is exciting especially given some of the recent developments in the EU. What's most interesting to me is how Beeper leverages open protocols like Matrix and for bridging capabilities where possible to provide secure messaging.&lt;/p&gt;
+&lt;p&gt;With more people moving to smaller spaces to communicate with their communities, being able to do so in a single place without everyone being on the same platform like in the early days of the internet is a welcome development.&lt;/p&gt;
+&lt;p&gt;Additional coverage from the &lt;a href="https://blog.beeper.com/2024/04/09/beeper-is-now-available/"&gt;Beeper blog&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;What we’re announcing today…&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;No more waitlist – Beeper is now available to everyone!&lt;/li&gt;
+&lt;li&gt;Beeper has been acquired by Automattic&lt;/li&gt;
+&lt;li&gt;Our new Android app is out of beta&lt;/li&gt;
+&lt;li&gt;We’re renaming Beeper Cloud → Beeper (sorry for the confusion)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;and &lt;a href="https://ma.tt/2024/04/beeper-texts/"&gt;Matt Mullenweg's blog&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today the announcement went out that we’re combining the best technology from Beeper and Texts to create a great private, secure, and open source messaging client for people to have control of their communications. We’re going to use the Beeper brand, because it’s fun. This is not unlike how browsers have evolved, where solid tech and encryption on top of an open ecosystem has created untold value for humanity.&lt;br /&gt;
+&lt;br&gt;
+A lot of people are asking about iMessage on Android… I have zero interest in fighting with Apple, I think instead it’s best to focus on messaging networks that want more engagement from power-user clients. This is an area I’m excited to work on when I return from my sabbatical next month.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/beeper-acquired-automattic</link>
+      <guid>https://www.lqdev.me/responses/beeper-acquired-automattic</guid>
+      <pubDate>2024-04-09 22:06 -05:00</pubDate>
+      <category>beeper</category>
+      <category>messaging</category>
+      <category>automattic</category>
+      <category>matrix</category>
+    </item>
+    <item>
+      <title>The Matrix is coming back for a fifth movie</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Deadline reports that The Martian writer Drew Goddard has been tapped to pen and direct another Matrix movie executive produced by Lana Wachowski. Currently, the new film has no title or projected premiere date, and there’s been no announcement as to whether franchise stars like Keanu Reeves, Carrie-Anne Moss, Laurence Fishburne, Yahya Abdul-Mateen II, or Jessica Henwick will return.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Not sure how to feel about this, but I'll end up watching anyway.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/matrix-five-announced</link>
+      <guid>https://www.lqdev.me/responses/matrix-five-announced</guid>
+      <pubDate>2024-04-04 10:56 -05:00</pubDate>
+      <category>matrix</category>
+      <category>movie</category>
+      <category>scifi</category>
+      <category>neo</category>
+      <category>theone</category>
+    </item>
+    <item>
+      <title>FOSDEM 2024 Schedule</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Lots of great sessions. I'm looking forward to the sessions on the following topics:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Matrix&lt;/li&gt;
+&lt;li&gt;AI&lt;/li&gt;
+&lt;li&gt;Nix / NixOS&lt;/li&gt;
+&lt;li&gt;Software Defined Radio (SDR) &amp;amp; Amateur Radio&lt;/li&gt;
+&lt;li&gt;Modern Email&lt;/li&gt;
+&lt;li&gt;Collaboration &amp;amp; Content Management&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/fosdem-2024-schedule</link>
+      <guid>https://www.lqdev.me/responses/fosdem-2024-schedule</guid>
+      <pubDate>2024-01-23 22:19 -05:00</pubDate>
+      <category>fosdem</category>
+      <category>opensource</category>
+      <category>foss</category>
+      <category>floss</category>
+      <category>ai</category>
+      <category>matrix</category>
+      <category>nixos</category>
+    </item>
+    <item>
+      <title>Matrix 2.0: The Future of Matrix</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;TL;DR: If you want to play with a shiny new Matrix 2.0 client, head over to &lt;a href="https://element.io/blog/element-x-ignition/"&gt;Element X&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/matrix-2-0</link>
+      <guid>https://www.lqdev.me/bookmarks/matrix-2-0</guid>
+      <pubDate>2023-09-22 10:10 -05:00</pubDate>
+      <category>matrix</category>
+      <category>messaging</category>
+      <category>communication</category>
+      <category>opensource</category>
+      <category>protocols</category>
+      <category>decentralization</category>
+      <category>openweb</category>
+      <category>web</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>Matrix Synapse REALLY needs an Admin UI</title>
+      <description>&lt;![CDATA[&lt;p&gt;Spent the day playing sysadmin and removed about 50GB worth of data from my Matrix Synapse instance. Like Mastodon, most of that data wasn't even mine. Most of it comes is remote data from other users in large rooms. I really like Matrix and the ability to host my own messaging server that provides end-to-end encryption as well as federation with other instances. However, not having a straight-forward way of managing my server and cleaning up resources is painful.&lt;/p&gt;
+&lt;p&gt;Anyway, if anyone is interested, here are some resources that have helped me in this process.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.lqdev.me/resources/wiki/matrix-synapse-admin"&gt;Matrix Synapse Server Administration&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/matrix-synapse-needs-admin-ui</link>
+      <guid>https://www.lqdev.me/notes/matrix-synapse-needs-admin-ui</guid>
+      <pubDate>2023-06-11 21:32 -05:00</pubDate>
+      <category>matrix</category>
+      <category>selfhost</category>
+      <category>synapse</category>
+      <category>opensource</category>
+      <category>sysadmin</category>
+      <category>messaging</category>
+    </item>
+    <item>
+      <title>Matrix Synapse Server Administration</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The following is a guide for managing &lt;a href="https://github.com/matrix-org/synapse"&gt;Matrix Synapse&lt;/a&gt; servers.&lt;/p&gt;
+&lt;h2&gt;Upgrade&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Initialize Python virtual environment&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;source env/bin/activate
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Stop server&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;synctl stop
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Upgrade Synapse package&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;pip install --upgrade matrix-synapse[postgres]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Restart server&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;synctl restart
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Deactivate Python virtual environment&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;deactivate
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Check version&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;curl http://localhost:8008/_synapse/admin/v1/server_version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Clean up storage&lt;/h2&gt;
+&lt;h3&gt;Delete old media&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Run the following command to clean local meadia older than 30 days.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;curl -X POST -H &amp;quot;Authorization: Bearer access_token&amp;quot; http://localhost:8008/_synapse/admin/v1/media/delete?before_ts=$(date +%s000 --date &amp;quot;30 days ago&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Start PSQL&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;psql
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Connect to database&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;\c synapse
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Clean up unreferenced itemes&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;VACUUM FULL;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Delete items in database&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Start PSQL&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;psql
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Connect to database&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;\c synapse
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Run the following SQL script&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;DROP FUNCTION IF EXISTS synapse_clean_redacted_messages();
+CREATE FUNCTION synapse_clean_redacted_messages()
+    RETURNS void AS $$
+    DECLARE
+    BEGIN
+        UPDATE events SET content = '{}' FROM redactions AS rdc
+            WHERE events.event_id = rdc.redacts
+            AND (events.type = 'm.room.encrypted' OR events.type = 'm.room.message');
+    END;
+$$ LANGUAGE 'plpgsql';
+
+DROP FUNCTION IF EXISTS synapse_get_server_name();
+CREATE FUNCTION synapse_get_server_name()
+    RETURNS text AS $$
+    DECLARE
+        _someUser TEXT;
+        _serverName TEXT;
+    BEGIN
+        select user_id from account_data limit 1 INTO _someUser;
+        select regexp_replace(_someUser, '^.*:', ':') INTO _serverName;
+        RETURN _serverName;
+    END;
+$$ LANGUAGE 'plpgsql';
+
+DROP FUNCTION IF EXISTS synapse_get_unused_rooms();
+CREATE FUNCTION synapse_get_unused_rooms()
+    RETURNS TABLE(room_id TEXT) AS $$
+    DECLARE
+    BEGIN
+        RETURN QUERY SELECT r.room_id FROM rooms AS r WHERE r.room_id NOT IN (
+            SELECT DISTINCT(m.room_id) FROM room_memberships as m
+                INNER JOIN current_state_events as c
+                ON m.event_id = c.event_id
+                AND m.room_id = c.room_id
+                AND m.user_id = c.state_key
+                WHERE c.type = 'm.room.member'
+                AND m.membership = 'join'
+                AND m.user_id LIKE concat('%', synapse_get_server_name())
+        );
+    END;
+$$ LANGUAGE 'plpgsql';
+
+DROP FUNCTION IF EXISTS synapse_clean_unused_rooms();
+CREATE FUNCTION synapse_clean_unused_rooms()
+    RETURNS void AS $$
+    DECLARE
+        _count INT;
+    BEGIN
+        CREATE TEMP TABLE synapse_clean_unused_rooms__tmp
+            ON COMMIT DROP
+            AS SELECT room_id FROM synapse_get_unused_rooms();
+
+        SELECT COUNT(*) FROM synapse_clean_unused_rooms__tmp INTO _count;
+        RAISE NOTICE 'synapse_clean_unused_rooms() Cleaning up % unused rooms', _count;
+
+        DELETE FROM event_forward_extremities AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: event_forward_extremities';
+
+        DELETE FROM event_backward_extremities AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: event_backward_extremities';
+
+        DELETE FROM event_edges AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: event_edges';
+
+        DELETE FROM room_depth AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: room_depth';
+
+        DELETE FROM events AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: events';
+
+        DELETE FROM event_json AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: event_json';
+
+        DELETE FROM state_events AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: state_events';
+
+        DELETE FROM current_state_events AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: current_state_events';
+
+        DELETE FROM room_memberships AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: room_memberships';
+
+        DELETE FROM destination_rooms AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: destination_rooms';
+
+        DELETE FROM event_failed_pull_attempts AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: event_failed_pull_attempts';
+
+        DELETE FROM rooms AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: rooms';
+
+        DELETE FROM room_aliases AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: room_aliases';
+
+        DELETE FROM state_groups AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: state_groups';
+
+        DELETE FROM state_groups_state AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: state_groups_state';
+
+        DELETE FROM receipts_graph AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: receipts_graph';
+
+        DELETE FROM receipts_linearized AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: receipts_linearized';
+
+        DELETE FROM room_tags AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: room_tags';
+
+        DELETE FROM room_tags_revisions AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: room_tags_revisions';
+
+        DELETE FROM room_account_data AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: room_account_data';
+
+        DELETE FROM event_push_actions AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: event_push_actions';
+
+        DELETE FROM pusher_throttle AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: pusher_throttle';
+
+        DELETE FROM event_reports AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: event_reports';
+
+        DELETE FROM stream_ordering_to_exterm AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: stream_ordering_to_exterm';
+
+        DELETE FROM event_auth AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: event_auth';
+
+        DELETE FROM appservice_room_list AS x WHERE x.room_id IN (SELECT y.room_id FROM synapse_clean_unused_rooms__tmp AS y);
+        RAISE NOTICE 'DONE: appservice_room_list';
+    END;
+$$ LANGUAGE 'plpgsql';
+
+SELECT synapse_clean_redacted_messages();
+SELECT synapse_clean_unused_rooms();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Clean up unreferenced tuples&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;VACUUM FULL;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://matrix-org.github.io/synapse/latest/welcome_and_overview.html"&gt;Matrix Synapse Docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://matrix-org.github.io/synapse/latest/upgrade.html"&gt;Upgrading Synapse&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://matrix-org.github.io/synapse/v1.38/admin_api/media_admin_api.html"&gt;Admin Media API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/xwiki-labs/synapse_scripts"&gt;Synapse Scripts&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/matrix-synapse-admin</link>
+      <guid>https://www.lqdev.me/resources/wiki/matrix-synapse-admin</guid>
+      <pubDate>06/11/2023 21:13 -05:00</pubDate>
+      <category>messaging</category>
+      <category>how-to</category>
+      <category>matrix</category>
+      <category>self-host</category>
+      <category>synapse</category>
+      <category>sql</category>
+      <category>python</category>
+    </item>
+    <item>
+      <title>Upgrade Matrix Synapse homeserver</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;Upgrade a &lt;a href="https://matrix.org/"&gt;Matrix&lt;/a&gt; &lt;a href="https://github.com/matrix-org/synapse/"&gt;Synapse homeserver&lt;/a&gt; using pip. For more information, see the official article on &lt;a href="https://matrix-org.github.io/synapse/develop/upgrade"&gt;upgrading between Synapse versions&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;./update-matrix-homeserver.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;h3&gt;update-matrix-homeserver.sh&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;# Initialize Python virtual environment
+source ./env/bin/activate
+
+# Upgrade using pip
+# For PostgreSQL packages, use matrix-synapse[postgres]
+pip install --upgrade matrix-synapse
+
+# Restart server
+synctl restart
+
+# Check version
+curl http://localhost:8008/_synapse/admin/v1/server_version
+
+# Deactivate Python virtual environment
+deactivate
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/update-matrix-synapse-homeserver</link>
+      <guid>https://www.lqdev.me/resources/snippets/update-matrix-synapse-homeserver</guid>
+      <pubDate>08/31/2022 19:40 -05:00</pubDate>
+      <category>matrix</category>
+      <category>synapse</category>
+      <category>homeserver</category>
+      <category>selfhost</category>
+      <category>python</category>
+      <category>internet</category>
+      <category>network</category>
+    </item>
+    <item>
+      <title>Create a new Matrix user using the CLI</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;Create a new user in your &lt;a href="https://matrix.org/"&gt;Matrix&lt;/a&gt; &lt;a href="https://github.com/matrix-org/synapse/"&gt;Synapse homeserver&lt;/a&gt; using &lt;a href="https://manpages.debian.org/buster/matrix-synapse/register_new_matrix_user.1.en.html"&gt;register_new_matrix_user&lt;/a&gt; CLI utility. This is helpful when creating accounts on a homeserver where registrations are closed.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;p&gt;N/A&lt;/p&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;register_new_matrix_user --user user1 --password p@ssword --config homeserver-config.yaml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;--user&lt;/strong&gt;: Local part of the new user. Will prompt if omitted.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;--password&lt;/strong&gt;: New password for user. Will prompt if omitted. Supplying the password on the command line is not recommended. Use the STDIN instead.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;--config&lt;/strong&gt;: Path to server config file containing the shared secret.&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/create-matrix-user-cli</link>
+      <guid>https://www.lqdev.me/resources/snippets/create-matrix-user-cli</guid>
+      <pubDate>08/31/2022 19:40 -05:00</pubDate>
+      <category>bash</category>
+      <category>linux</category>
+      <category>matrix</category>
+      <category>synapse</category>
+      <category>communication</category>
+    </item>
+    <item>
+      <title>Success! Matrix migration complete</title>
+      <description>&lt;![CDATA[&lt;p&gt;It only took 6 hours but I was able to get it done with a little help.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/mIZ9rPeMKefm0/giphy.gif" class="img-fluid" alt="Bender from Futurama happy dance" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/matrix-migration-complete</link>
+      <guid>https://www.lqdev.me/notes/matrix-migration-complete</guid>
+      <pubDate>10/09/2021 12:23 AM -05:00</pubDate>
+      <category>selfhost</category>
+      <category>matrix</category>
+      <category>messaging</category>
+      <category>opensource</category>
+      <category>element</category>
+      <category>synapse</category>
+    </item>
+    <item>
+      <title>Self-hosting made easy with YunoHost</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+Over the past few months I've started self-hosting a few of the services I use. Among those are a Matrix chat server and Mastodon instance. It may be of special interest to call out, many of these services are hosted on a Raspberry Pi 4, which not only speaks to the capabilities of the device but also shows opportunities for individuals to take control over the services they use and their data. Self-hosting however isn't the easiest thing to get started with. Mainly because each service has their own setup requirements. Technically you could use something like Docker to standardize the process, but that has its own complexities. In particular, there was a recent experience where I had trouble setting up a service which I got up and running in no time using YunoHost. YunoHost describes itself as "...a libre operating system aiming to simplify server administration and democratize self-hosting.". In this post, I'll describe my experience with it and why you might consider it for your self-hosting project.
+
+![Image of server racks by Taylor Vick (Unsplash @tvick)](https://user-images.githubusercontent.com/11130940/128647305-c30ef44e-901d-4bf1-8e9d-af2449d5fd1d.png)
+
+## Why Self-Host?
+
+First off, why even go through the trouble of self-hosting? Service providers nowadays have made it so easy to use their services, self-hosting seems like a lot of work. However, there are several reasons why you might consider self-hosting the applications and services you use. A few that I find interesting include:
+
+1. Explore "new" technologies
+2. Own your data
+3. Learn something new
+
+### Explore "new" technologies
+
+The saying goes "there's nothing new under the sun". However as with all things, people have found alternative uses and solutions to existing technologies. For example, in simple terms, the [Fediverse](https://en.wikipedia.org/wiki/Fediverse) can be summarized as E-mail + RSS. It consists of a common decentralized protocol to handle communication between individuals who may not use the same server while providing "follow" capabilities for services like micro-blogging, photos, and video sharing. Though the Fediverse has been around for some time, it's still relatively new. Whether it's a new technology or new to you, self-hosting can help you learn more about technologies like the Fediverse.
+
+### Own your data
+
+Part of accepting terms of service agreements is sometimes giving up some ownership of your personal data. Although you hope the company and service provider is responsible with your data, you can't always be 100% sure. With self-hosting, you're fully in control of your data and in most cases don't rely on third parties. As a result, your data is as private and secure as you want it to. From a security standpoint though, I'll note that in many cases, service providers have dedicated security teams whose main job is to keep your data secure. Therefore chances are that your data is usually secure when hosted by service providers. In any case, if you want to have complete control and ownership of your data, self-hosting might be for you.
+
+### Learn something new
+
+Over the past few months, I've learned a few things that I don't usually deal with on my day-to-day like DNS records, Nginx, Systemd, certificates, and a few others. Self-hosting these services usually involves setting up several components some of which you may already be familiar with while others may be new to you. Self-hosting gives you the opportunity to learn new skills and as mentioned previously work with new technologies.
+
+## Self-hosting with YunoHost
+
+Recently I was trying to set up an instance of [Pixelfed](https://pixelfed.org/), which describes itself as "A free and ethical photo sharing platform". You can think of it as a self-hosted Instagram. The application is built with PHP and a few other components I'm not very familiar with. I spent about a week trying to configure my Raspberry Pi to successfully run these services. Unfortunately, I had no luck. I had heard about YunoHost previously but had never tried it. Essentially they offer a way to simplify self-hosting. I noticed YunoHost provided a way to self-host Pixelfed. All I had to do was:
+
+1. [Install YunoHost](https://yunohost.org/en/install). In my case, I installed it on a Linode VM (the smallest one) running Debian 10, but you have options including a Raspberry Pi.
+2. [Install Pixelfed](https://github.com/YunoHost-Apps/pixelfed_ynh). YunoHost has a variety of [applications](https://yunohost.org/en/apps) with pre-configured scripts that make it easy to install applications like Pixelfed.
+
+The entire process took about one hour. Some parts I skipped mentioning were getting a domain name and configuring DNS records, but aside from that, getting started with YunoHost was incredibly simple. If you're looking to self-host but don't want to spend too much time configuring your server and each of the services you host on it, give YunoHost a try.
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/yunohost-self-hosting-simplified</link>
+      <guid>https://www.lqdev.me/posts/yunohost-self-hosting-simplified</guid>
+      <pubDate>2021-08-10 18:00:00 -05:00</pubDate>
+      <category>fediverse</category>
+      <category>open-source</category>
+      <category>self-hosting</category>
+      <category>raspberry-pi</category>
+      <category>matrix</category>
+      <category>pixelfed</category>
+      <category>mastodon</category>
+    </item>
+  </channel>
+</rss>

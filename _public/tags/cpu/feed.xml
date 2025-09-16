@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - cpu</title>
+    <link>https://www.lqdev.me/tags/cpu</link>
+    <description>All content tagged with 'cpu' by Luis Quintanilla</description>
+    <lastBuildDate>2024-04-04 11:05 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>IPEX-LLM</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;IPEX-LLM is a PyTorch library for running LLM on Intel CPU and GPU (e.g., local PC with iGPU, discrete GPU such as Arc, Flex and Max) with very low latency&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/intel-ipex-llm</link>
+      <guid>https://www.lqdev.me/responses/intel-ipex-llm</guid>
+      <pubDate>2024-04-04 11:05 -05:00</pubDate>
+      <category>intel</category>
+      <category>llm</category>
+      <category>pytorch</category>
+      <category>cpu</category>
+      <category>gpu</category>
+    </item>
+    <item>
+      <title>Scaffolded LLMs as natural language computers</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;&lt;img src="https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/43C3igfmMrE9Qoyfe/paczewfk3yzexgdaokto" class="img-fluid" alt="ReACT LLM Pattern Image" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/43C3igfmMrE9Qoyfe/sehstj9d7rfgcv6ifg2y" class="img-fluid" alt="Image of high-level CPU architecture" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/scaffolded-llms-natural-language-computers</link>
+      <guid>https://www.lqdev.me/bookmarks/scaffolded-llms-natural-language-computers</guid>
+      <pubDate>2023-09-28 21:00 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>cpu</category>
+    </item>
+  </channel>
+</rss>

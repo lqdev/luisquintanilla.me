@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - cron</title>
+    <link>https://www.lqdev.me/tags/cron</link>
+    <description>All content tagged with 'cron' by Luis Quintanilla</description>
+    <lastBuildDate>2024-01-03 00:26 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>GitHub Actions workflow for post metrics almost works</title>
+      <description>&lt;![CDATA[&lt;p&gt;A few days ago, I posted about a script I wrote. The &lt;a href="https://www.lqdev.me/posts/website-metrics-github-actions/"&gt;script computes computes post metrics on my website&lt;/a&gt;. That's what I used to author my &lt;a href="https://www.lqdev.me/notes/weblogging-rewind-2023-continued/"&gt;(We)blogging Rewind 2023&lt;/a&gt; posts. Because I want the script to run at periodic intervals, I automated the process using GitHub Actions.&lt;/p&gt;
+&lt;p&gt;The script is scheduled to run on the first of every month and I'm happy to report that it works! Kind of.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/lqdev/luisquintanilla.me/assets/11130940/bd413326-cc7b-44f7-a287-4580f1268cb2" class="img-fluid" alt="Image of an unsuccessful run of a GitHub Actions workflow" /&gt;&lt;/p&gt;
+&lt;p&gt;The GitHub Action was successfully triggered at the defined interval. Unfortunately, the script failed due to a &lt;a href="https://github.com/lqdev/luisquintanilla.me/commit/1296c3f929e3ad2834a8b7963c9ed66421a4fb8a"&gt;user error which I've since fixed&lt;/a&gt;. Come February 1st, everything should work as expected though, so I'm happy about that.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/post-statistics-gh-actions-working-almost</link>
+      <guid>https://www.lqdev.me/notes/post-statistics-gh-actions-working-almost</guid>
+      <pubDate>2024-01-03 00:26 -05:00</pubDate>
+      <category>github</category>
+      <category>cicd</category>
+      <category>blogging</category>
+      <category>automation</category>
+      <category>githubactions</category>
+      <category>fsharp</category>
+      <category>cron</category>
+    </item>
+  </channel>
+</rss>

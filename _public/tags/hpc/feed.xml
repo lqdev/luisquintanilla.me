@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - hpc</title>
+    <link>https://www.lqdev.me/tags/hpc</link>
+    <description>All content tagged with 'hpc' by Luis Quintanilla</description>
+    <lastBuildDate>2023-09-25 20:34 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Next-Gen CPU Acceleration: AVX For Generative AI</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The future is AVX10, so says Intel. Recently a document was released showcasing a post-AVX512 world, and to explain why this matters, I've again invited the Chips And Cheese crew onto the channel. Chester and George answer my questions on AVX10 and why it matters! Visit &lt;a href="http://www.chipsandcheese.com"&gt;http://www.chipsandcheese.com&lt;/a&gt; to learn more!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=bskEGP0r3hE" title="YouTube video Next-Gen CPU Acceleration: AVX For Generative AI"&gt;&lt;img src="http://img.youtube.com/vi/bskEGP0r3hE/0.jpg" class="img-fluid" alt="YouTube video Next-Gen CPU Acceleration: AVX For Generative AI" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/next-gen-cpu-acceleration-avx-gen-ai</link>
+      <guid>https://www.lqdev.me/bookmarks/next-gen-cpu-acceleration-avx-gen-ai</guid>
+      <pubDate>2023-09-25 20:34 -05:00</pubDate>
+      <category>ai</category>
+      <category>hardware</category>
+      <category>hpc</category>
+    </item>
+  </channel>
+</rss>

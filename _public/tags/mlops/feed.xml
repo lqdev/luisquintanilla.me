@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - mlops</title>
+    <link>https://www.lqdev.me/tags/mlops</link>
+    <description>All content tagged with 'mlops' by Luis Quintanilla</description>
+    <lastBuildDate>2023-09-28 10:03 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Carton - Run any ML model from any programming language</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Carton makes it easy to run any ML model from any programming language.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/carton-ml-models</link>
+      <guid>https://www.lqdev.me/bookmarks/carton-ml-models</guid>
+      <pubDate>2023-09-28 10:03 -05:00</pubDate>
+      <category>ai</category>
+      <category>ml</category>
+      <category>mlops</category>
+    </item>
+    <item>
+      <title>Optimizing your LLM in production </title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In this blog post, we will go over the most effective techniques at the time of writing this blog post to tackle these challenges for efficient LLM deployment:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Lower Precision:&lt;/strong&gt; Research has shown that operating at reduced numerical precision, namely 8-bit and 4-bit, can achieve computational advantages without a considerable decline in model performance.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;2. Flash Attention:&lt;/strong&gt; Flash Attention is a variation of the attention algorithm that not only provides a more memory-efficient approach but also realizes increased efficiency due to optimized GPU memory utilization.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. Architectural Innovations:&lt;/strong&gt; Considering that LLMs are always deployed in the same way during inference, namely autoregressive text generation with a long input context, specialized model architectures have been proposed that allow for more efficient inference. The most important advancement in model architectures hereby are Alibi, Rotary embeddings, Multi-Query Attention (MQA) and Grouped-Query-Attention (GQA).&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/optimizing-llm-production-hf</link>
+      <guid>https://www.lqdev.me/bookmarks/optimizing-llm-production-hf</guid>
+      <pubDate>2023-09-17 12:58 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>production</category>
+      <category>engineering</category>
+      <category>software</category>
+      <category>mlops</category>
+      <category>aiops</category>
+      <category>opensource</category>
+    </item>
+  </channel>
+</rss>

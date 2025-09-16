@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - performance</title>
+    <link>https://www.lqdev.me/tags/performance</link>
+    <description>All content tagged with 'performance' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-12 08:41 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Engineering for Slow Internet</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Does this webapp really need to be 20 MB? What all is being loaded that could be deferred until it is needed, or included in an “optional” add-on bundle? Is there a possibility of a “lite” version, for bandwidth-constrained users?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;While Antarctica is an edge case, this article illustrates some of the motivations behind my &lt;a href="https://www.lqdev.me/text"&gt;text-first website&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;By trimming the excess not only do you get to the core of the app or website, but it also loads faster.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/engineering-for-slow-internet</link>
+      <guid>https://www.lqdev.me/responses/engineering-for-slow-internet</guid>
+      <pubDate>2025-08-12 08:41 -05:00</pubDate>
+      <category>slowweb</category>
+      <category>performance</category>
+      <category>internet</category>
+      <category>computing</category>
+    </item>
+    <item>
+      <title>Tierra Whack - NPR Tiny Desk Concert</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Great performance.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=uRG6IWYVazM" title="Thumbnail of Tierra Whack NPR Tiny Desk Concert"&gt;&lt;img src="http://img.youtube.com/vi/uRG6IWYVazM/0.jpg" class="img-fluid" alt="Thumbnail of Tierra Whack NPR Tiny Desk Concert" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/tierra-whack-npr-tiny-desk-2024</link>
+      <guid>https://www.lqdev.me/responses/tierra-whack-npr-tiny-desk-2024</guid>
+      <pubDate>2024-06-08 11:55 -05:00</pubDate>
+      <category>music</category>
+      <category>tinydesk</category>
+      <category>tierrawhack</category>
+      <category>hiphop</category>
+      <category>rap</category>
+      <category>livemusic</category>
+      <category>performance</category>
+      <category>npr</category>
+    </item>
+    <item>
+      <title>Hardware Video Acceleration - Linux</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This article talks about using hardware video acceleration so the video card encodes/decodes video offloading the CPU and saving power.&lt;/p&gt;
+&lt;h2&gt;Install intel-media-driver&lt;/h2&gt;
+&lt;p&gt;To install the Intel media driver&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo pacman -S intel-media-driver
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Enable acceleration MPV&lt;/h2&gt;
+&lt;p&gt;For mpv, make sure that decoding and video acceleration is enabled. To do so:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Create or edit the user config file in &lt;em&gt;~/.config/mpv/mpv.conf&lt;/em&gt; with the following settings:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;vo=gpu
+hwdec=auto
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Reboot your PC.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Verification&lt;/h2&gt;
+&lt;p&gt;Use &lt;code&gt;intel_gpu_top&lt;/code&gt; and make sure that when you play video using tools like VLC or MPV, the video bar is active.&lt;/p&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.org/title/Hardware_video_acceleration"&gt;Hardware Video Acceleration - Intel GPU&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/resources/wiki/intel-gpu-tools"&gt;Intel GPU Tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/mpv-player/mpv/blob/master/etc/mpv.conf"&gt;Sample MPV Conf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://mpv.io/manual/master/#configuration-files"&gt;MPV Configuration Files&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/video-hardware-acceleration-linux</link>
+      <guid>https://www.lqdev.me/resources/wiki/video-hardware-acceleration-linux</guid>
+      <pubDate>12/11/2022 17:36 -05:00</pubDate>
+      <category>performance</category>
+      <category>wiki</category>
+      <category>hardware</category>
+      <category>video</category>
+      <category>hardwareacceleration</category>
+      <category>linux</category>
+      <category>arch</category>
+      <category>manjaro</category>
+    </item>
+  </channel>
+</rss>

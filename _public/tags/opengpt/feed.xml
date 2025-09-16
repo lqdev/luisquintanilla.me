@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - opengpt</title>
+    <link>https://www.lqdev.me/tags/opengpt</link>
+    <description>All content tagged with 'opengpt' by Luis Quintanilla</description>
+    <lastBuildDate>2024-01-31 21:30 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>LangChain - OpenGPTs</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A little over two months ago, on the heels of OpenAI dev day, we launched OpenGPTs: a take on what an open-source GPT store may look like. It was powered by an early version of LangGraph - an extension of LangChain aimed at building agents as graphs. At the time, we did not highlight this new package much, as we had not publicly launched it and were still figuring out the interface. We finally got around to launching LangGraph two weeks ago, and over the past weekend we updated OpenGPTs to fully use LangGraph (as well as added some new features). We figure now is as good of time as any to do a technical deep-dive on OpenGPTs and what powers it.&lt;br /&gt;
+&lt;br&gt;
+In this blog, we will talk about:&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MessageGraph: A particular type of graph that OpenGPTs runs on&lt;/li&gt;
+&lt;li&gt;Cognitive architectures: What the 3 different types of cognitive architectures OpenGPTs supports are, and how they differ&lt;/li&gt;
+&lt;li&gt;Persistence: How persistence is baked in OpenGPTs via LangGraph checkpoints.&lt;/li&gt;
+&lt;li&gt;Configuration: How we use LangChain primitives to configure all these different bots.&lt;/li&gt;
+&lt;li&gt;New models: what new models we support&lt;/li&gt;
+&lt;li&gt;New tools: what new tools we support&lt;/li&gt;
+&lt;li&gt;astream_events: How we are using this new method to stream tokens and intermediate steps&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/langchain-opengpts</link>
+      <guid>https://www.lqdev.me/bookmarks/langchain-opengpts</guid>
+      <pubDate>2024-01-31 21:30 -05:00</pubDate>
+      <category>langchain</category>
+      <category>gpt</category>
+      <category>ai</category>
+      <category>opengpt</category>
+      <category>langgraph</category>
+      <category>messagegraph</category>
+    </item>
+  </channel>
+</rss>

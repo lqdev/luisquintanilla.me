@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - information</title>
+    <link>https://www.lqdev.me/tags/information</link>
+    <description>All content tagged with 'information' by Luis Quintanilla</description>
+    <lastBuildDate>2024-03-19 22:17 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>The Online Local Chronicle</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In the same way that every little place in America used to have a printed newspaper, every little place in America could have an online local chronicle.&lt;br /&gt;
+&lt;br&gt;
+Broadly speaking, an online local chronicle is a collection of facts organized mostly in chronological order. The “pages” of the chronicle can be thought of as subsets of a community’s universal timeline of events. These online local chronicles could become the backbone of local news operations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Nice project. Unfortunately, it's rare you get local news. I like publications / websites like &lt;a href="https://www.hobokengirl.com/"&gt;Hoboken Girl&lt;/a&gt; and &lt;a href="https://blockclubchicago.org/"&gt;Block Club Chicago&lt;/a&gt;. I wish there were more of them in more cities and towns. I know they're there in some forms like Facebook Groups. Even better, it'd be great to have the websites for these publications be the main source of truth that then syndicated their content to the various platforms out there.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/online-local-chronicle-searls</link>
+      <guid>https://www.lqdev.me/responses/online-local-chronicle-searls</guid>
+      <pubDate>2024-03-19 22:17 -05:00</pubDate>
+      <category>community</category>
+      <category>news</category>
+      <category>local</category>
+      <category>knowledgebase</category>
+      <category>information</category>
+      <category>web</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>Commonplace Book</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;A way to store notes and knowledge discovered and learned. This can include quotes from books, articles, courses, and any other sources of information.&lt;/p&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Commonplace_book"&gt;Commonplace Book&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://evernote.com/blog/how-to-create-commonplace-with-evernote/"&gt;Taking Note: How To Create a Commonplace with Evernote&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://medium.com/read-smart/what-is-a-commonplace-book-db392bda730c"&gt;What is a commonplace book?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://stevenberlinjohnson.com/the-glass-box-and-the-commonplace-book-639b16c4f3bb"&gt;The Glass Box and The Commonplace Book&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/commonplace-book</link>
+      <guid>https://www.lqdev.me/resources/wiki/commonplace-book</guid>
+      <pubDate>09/04/2022 20:25 -05:00</pubDate>
+      <category>knowledgemanagement</category>
+      <category>commonplace</category>
+      <category>notetaking</category>
+      <category>information</category>
+      <category>technology</category>
+      <category>internet</category>
+      <category>books</category>
+    </item>
+    <item>
+      <title>Wiki</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;A wiki is a publication on subjects related to a particular topic. It often serves as a knowledge base.&lt;/p&gt;
+&lt;h2&gt;Examples&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.wikipedia.org/"&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://indieweb.org/wiki"&gt;IndieWeb Wiki&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.org/"&gt;Arch Wiki&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://massive.wiki/"&gt;Massive Wiki&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://indieweb.org/wiki-page"&gt;IndieWeb Wikipage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hapgood.us/2015/10/17/the-garden-and-the-stream-a-technopastoral/"&gt;The Garden and the Stream: A Technopastoral&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/List_of_wikis"&gt;List of Wikis&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/wiki</link>
+      <guid>https://www.lqdev.me/resources/wiki/wiki</guid>
+      <pubDate>08/25/2022 15:13 -05:00</pubDate>
+      <category>education</category>
+      <category>information</category>
+      <category>wiki</category>
+      <category>index</category>
+    </item>
+  </channel>
+</rss>

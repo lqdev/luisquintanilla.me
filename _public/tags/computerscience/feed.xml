@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - computerscience</title>
+    <link>https://www.lqdev.me/tags/computerscience</link>
+    <description>All content tagged with 'computerscience' by Luis Quintanilla</description>
+    <lastBuildDate>2023-08-24 21:01 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Consciousness is a Big Suitcase</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Marvin Minsky is the leading light of AI—artificial intelligence, that is. He sees the brain as a myriad of structures. Scientists who, like Minsky, take the strong AI view believe that a computer model of the brain will be able to explain what we know of the brain's cognitive abilities. Minsky identifies consciousness with high-level, abstract thought, and believes that in principle machines can do everything a conscious human being can do.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/consciousness-big-suitcase-minsky</link>
+      <guid>https://www.lqdev.me/bookmarks/consciousness-big-suitcase-minsky</guid>
+      <pubDate>2023-08-24 21:01 -05:00</pubDate>
+      <category>ai</category>
+      <category>consciousness</category>
+      <category>computerscience</category>
+    </item>
+  </channel>
+</rss>

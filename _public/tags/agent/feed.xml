@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - agent</title>
+    <link>https://www.lqdev.me/tags/agent</link>
+    <description>All content tagged with 'agent' by Luis Quintanilla</description>
+    <lastBuildDate>2025-06-16 20:33 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Self-Adapting Language Models (SEAL)</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Large language models (LLMs) are powerful but static; they lack mechanisms to adapt their weights in response to new tasks, knowledge, or examples. &lt;strong&gt;We introduce Self-Adapting LLMs (SEAL) 🦭, a framework that enables LLMs to self-adapt by generating their own finetuning data and update directives.&lt;/strong&gt; Given a new input, the model produces a self-edit — a generation that may restructure the information in different ways, specify optimization hyperparameters, or invoke tools for data augmentation and gradient-based updates. Through supervised finetuning (SFT), these self-edits result in persistent weight updates, enabling lasting adaptation. To train the model to produce effective self-edits, we use a reinforcement learning loop, using the downstream performance of the updated model as the reward signal. Unlike prior approaches that rely on separate adaptation modules or auxiliary networks, SEAL directly uses the model's generation to parameterize and control its own adaptation process. Experiments on knowledge incorporation and few-shot generalization show that SEAL is a promising step toward language models capable of self-directed adaptation in response to new data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We demonstrate SEAL in two domains: (1) &lt;strong&gt;Knowledge Incorporation&lt;/strong&gt;, where the model integrates new factual information by generating logical implications as synthetic data, and (2) &lt;strong&gt;Few-Shot Learning&lt;/strong&gt;, where the model autonomously selects data augmentations and training hyperparameters to adapt to new abstract reasoning tasks.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/Continual-Intelligence"&gt;Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://arxiv.org/abs/2506.10943"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/self-adapting-language-models-seal</link>
+      <guid>https://www.lqdev.me/responses/self-adapting-language-models-seal</guid>
+      <pubDate>2025-06-16 20:33 -05:00</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>llm</category>
+      <category>mit</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>How we built our multi-agent research system - Anthropic</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Great article.&lt;/p&gt;
+&lt;p&gt;TLDR: These are largely engineering problems.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The journey of this multi-agent system from prototype to production taught us critical lessons about system architecture, tool design, and prompt engineering. A multi-agent system consists of multiple agents (&lt;strong&gt;LLMs autonomously using tools in a loop&lt;/strong&gt;) working together. Our Research feature involves an agent that plans a research process based on user queries, and then uses tools to create parallel agents that search for information simultaneously. Systems with multiple agents introduce new challenges in agent coordination, evaluation, and reliability.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Benefits of a multi-agent system&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The essence of search is compression: distilling insights from a vast corpus. &lt;strong&gt;Subagents facilitate compression by operating in parallel&lt;/strong&gt; with their own context windows, exploring different aspects of the question simultaneously before condensing the most important tokens for the lead research agent. Each subagent also provides &lt;strong&gt;separation of concerns&lt;/strong&gt;—distinct tools, prompts, and exploration trajectories—which reduces path dependency and enables thorough, independent investigations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Once intelligence reaches a threshold, multi-agent systems become a vital way to scale performance. For instance, although individual humans have become more intelligent in the last 100,000 years, human societies have become exponentially more capable in the information age because of our collective intelligence and ability to coordinate. Even generally-intelligent agents face limits when operating as individuals; &lt;strong&gt;groups of agents can accomplish far more&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our internal evaluations show that multi-agent research systems excel especially for breadth-first queries that involve pursuing multiple independent directions simultaneously.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Multi-agent systems work mainly because they help spend enough tokens to solve the problem...Multi-agent architectures effectively scale token usage for tasks that exceed the limits of single agents.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We’ve found that multi-agent systems excel at valuable tasks that involve heavy parallelization, information that exceeds single context windows, and interfacing with numerous complex tools.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Architecture overview&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our Research system uses a multi-agent architecture with an orchestrator-worker pattern, where a lead agent coordinates the process while delegating to specialized subagents that operate in parallel.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Traditional approaches using Retrieval Augmented Generation (RAG) use static retrieval. That is, they fetch some set of chunks that are most similar to an input query and use these chunks to generate a response. In contrast, our architecture uses a &lt;strong&gt;multi-step search that dynamically finds relevant information, adapts to new findings, and analyzes results to formulate high-quality answers&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Prompt engineering and evaluations for research agents&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Think like your agents.&lt;/strong&gt; To iterate on prompts, you must understand their effects. To help us do this, we built simulations using our Console with the exact prompts and tools from our system, then watched agents work step-by-step.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Teach the orchestrator how to delegate.&lt;/strong&gt; In our system, the lead agent decomposes queries into subtasks and describes them to subagents. Each subagent needs an &lt;strong&gt;objective&lt;/strong&gt;, an &lt;strong&gt;output format&lt;/strong&gt;, &lt;strong&gt;guidance on the tools and sources to use&lt;/strong&gt;, and &lt;strong&gt;clear task boundaries&lt;/strong&gt;. Without detailed task descriptions, agents duplicate work, leave gaps, or fail to find necessary information.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Scale effort to query complexity.&lt;/strong&gt; Agents struggle to judge appropriate effort for different tasks, so we embedded scaling rules in the prompts...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Tool design and selection are critical.&lt;/strong&gt; Agent-tool interfaces are as critical as human-computer interfaces. Using the right tool is efficient—often, it’s strictly necessary...Bad tool descriptions can send agents down completely wrong paths, so each tool needs a distinct purpose and a clear description.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Let agents improve themselves.&lt;/strong&gt;...When given a prompt and a failure mode, they are able to diagnose why the agent is failing and suggest improvements.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Start wide, then narrow down.&lt;/strong&gt; Search strategy should mirror expert human research: explore the landscape before drilling into specifics.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Guide the thinking process.&lt;/strong&gt;...Our testing showed that extended thinking improved instruction-following, reasoning, and efficiency. Subagents also plan, then use interleaved thinking after tool results to evaluate quality, identify gaps, and refine their next query. This makes subagents more effective in adapting to any task.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Parallel tool calling transforms speed and performance.&lt;/strong&gt;...For speed, we introduced two kinds of parallelization: (1) the lead agent spins up 3-5 subagents in parallel rather than serially; (2) the subagents use 3+ tools in parallel.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our prompting strategy focuses on instilling &lt;strong&gt;good heuristics rather than rigid rules&lt;/strong&gt;. We studied how skilled humans approach research tasks and encoded these strategies in our prompts—strategies like &lt;strong&gt;decomposing difficult questions into smaller tasks&lt;/strong&gt;, &lt;strong&gt;carefully evaluating the quality of sources&lt;/strong&gt;, &lt;strong&gt;adjusting search approaches based on new information&lt;/strong&gt;, and &lt;strong&gt;recognizing when to focus on depth (investigating one topic in detail) vs. breadth (exploring many topics in parallel)&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Effective evaluation of agents&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...evaluating multi-agent systems presents unique challenges...Because we don’t always know what the right steps are, we usually can't just check if agents followed the “correct” steps we prescribed in advance. Instead, we need flexible evaluation methods that judge whether agents achieved the right outcomes while also following a reasonable process.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Start evaluating immediately with small samples.&lt;/strong&gt;...it’s best to start with small-scale testing right away with a few examples, rather than delaying until you can build more thorough evals.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;LLM-as-judge evaluation scales when done well.&lt;/strong&gt;...We used an LLM judge that evaluated each output against criteria in a rubric: &lt;strong&gt;factual accuracy&lt;/strong&gt; (do claims match sources?), &lt;strong&gt;citation accuracy&lt;/strong&gt; (do the cited sources match the claims?), &lt;strong&gt;completeness&lt;/strong&gt; (are all requested aspects covered?), &lt;strong&gt;source quality&lt;/strong&gt; (did it use primary sources over lower-quality secondary sources?), and &lt;strong&gt;tool efficiency&lt;/strong&gt; (did it use the right tools a reasonable number of times?)...[we] found that a single LLM call with a single prompt outputting scores from 0.0-1.0 and a pass-fail grade was the most consistent and aligned with human judgements.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Human evaluation catches what automation misses.&lt;/strong&gt;...Adding source quality heuristics to our prompts helped resolve this issue. Even in a world of automated evaluations, manual testing remains essential.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;the best prompts for these agents are not just strict instructions, but &lt;strong&gt;frameworks for collaboration&lt;/strong&gt; that define the &lt;strong&gt;division of labor&lt;/strong&gt;, &lt;strong&gt;problem-solving approaches&lt;/strong&gt;, and &lt;strong&gt;effort budgets&lt;/strong&gt;. Getting this right relies on &lt;strong&gt;careful prompting and tool design&lt;/strong&gt;, &lt;strong&gt;solid heuristics&lt;/strong&gt;, &lt;strong&gt;observability&lt;/strong&gt;, and &lt;strong&gt;tight feedback loops&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Production reliability and engineering challenges&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Agents are stateful and errors compound.&lt;/strong&gt;...Agents can run for long periods of time, maintaining state across many tool calls. This means we need to &lt;strong&gt;durably execute code and handle errors along the way&lt;/strong&gt;. Without effective mitigations, minor system failures can be catastrophic for agents. When errors occur, we can't just restart from the beginning...We combine the adaptability of AI agents built on Claude with deterministic safeguards like retry logic and regular checkpoints.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Debugging benefits from new approaches&lt;/strong&gt;...Adding full production tracing let us diagnose why agents failed and fix issues systematically. Beyond standard observability, we monitor agent decision patterns and interaction structures—all without monitoring the contents of individual conversations, to maintain user privacy.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Deployment needs careful coordination&lt;/strong&gt;...we use rainbow deployments to avoid disrupting running agents, by gradually shifting traffic from old to new versions while keeping both running simultaneously.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Synchronous execution creates bottlenecks.&lt;/strong&gt; Currently, our lead agents execute subagents synchronously, waiting for each set of subagents to complete before proceeding. This simplifies coordination, but creates bottlenecks in the information flow between agents. Asynchronous execution would enable additional parallelism: agents working concurrently and creating new subagents when needed. But this asynchronicity adds challenges in result coordination, state consistency, and error propagation across the subagents. As models can handle longer and more complex research tasks, we expect the performance gains will justify the complexity.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;For all the reasons described in this post, the gap between prototype and production is often wider than anticipated.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Multi-agent research systems can operate reliably at scale with &lt;strong&gt;careful engineering&lt;/strong&gt;, &lt;strong&gt;comprehensive testing&lt;/strong&gt;, &lt;strong&gt;detail-oriented prompt and tool design&lt;/strong&gt;, &lt;strong&gt;robust operational practices&lt;/strong&gt;, and &lt;strong&gt;tight collaboration between research, product, and engineering teams&lt;/strong&gt; who have a strong understanding of current agent capabilities.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/anthropic-how-we-built-multi-agent-system</link>
+      <guid>https://www.lqdev.me/responses/anthropic-how-we-built-multi-agent-system</guid>
+      <pubDate>2025-06-16 17:39 -05:00</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>anthropic</category>
+      <category>engineering</category>
+    </item>
+    <item>
+      <title>The Darwin Gödel Machine - AI that improves itself by rewriting its own code</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A longstanding goal of AI research has been the creation of AI that can learn indefinitely. One tantalizing path toward that goal is an AI that improves itself by rewriting its own code, including any code responsible for learning. That idea, known as a Gödel Machine, proposed by Jürgen Schmidhuber decades ago, is a hypothetical self-improving AI. It optimally solves problems by recursively rewriting its own code when it can mathematically prove a better strategy, making it a key concept in meta-learning or “learning to learn.”&lt;br /&gt;
+&lt;br&gt;
+While the theoretical Gödel Machine promised provably beneficial self-modifications, its realization relied on an impractical assumption: that the AI could mathematically prove that a proposed change in its own code would yield a net improvement before adopting it. We, in collaboration with Jeff Clune’s lab at UBC, propose something more feasible: a system that harnesses the principles of open-ended algorithms like Darwinian evolution to search for improvements that empirically improve performance.&lt;/p&gt;
+&lt;p&gt;We call the result the Darwin Gödel Machine (full technical report). DGMs leverage foundation models to propose code improvements, and use recent innovations in open-ended algorithms to search for a growing library of diverse, high-quality AI agents. Our experiments show that DGMs improve themselves the more compute they are provided. In line with the clear trend that AI systems that rely on learning ultimately outperform those designed by hand, there is a potential that DGMs could soon outperform hand-designed AI systems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://arxiv.org/abs/2505.22954"&gt;Technical Report&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/sakana-ai-gwm</link>
+      <guid>https://www.lqdev.me/responses/sakana-ai-gwm</guid>
+      <pubDate>2025-06-03 20:16 -05:00</pubDate>
+      <category>ai</category>
+      <category>agent</category>
+      <category>sakana</category>
+    </item>
+    <item>
+      <title>Copilot Agent is giving me attitude</title>
+      <description>&lt;![CDATA[&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;(see your rules and project plan)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Is that Copilot's way of saying, &amp;quot;Per my previous e-mail...&amp;quot;?&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/sassy-copilot-agent.png" class="img-fluid" alt="A conversation with Github Copilot Agent" /&gt;&lt;/p&gt;
+&lt;p&gt;And then it rage quit.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/copilot-agent-quit.png" class="img-fluid" alt="Error message saying GitHub Copilot Agent exhausted token limit" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/attitude-copilot-agent</link>
+      <guid>https://www.lqdev.me/notes/attitude-copilot-agent</guid>
+      <pubDate>2025-05-22 21:14 -05:00</pubDate>
+      <category>github</category>
+      <category>copilot</category>
+      <category>agent</category>
+      <category>funny</category>
+    </item>
+    <item>
+      <title>Agent Network Protocol - The HTTP of the Agentic Web Era</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;&lt;a href="https://agent-network-protocol.com/blogs/posts/mcp-anp-comparison.html"&gt;Comparison of MCP and ANP: What Kind of Communication Protocol Do Agents Need?&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;MCP and ANP differ significantly in protocol architecture, identity authentication, and information organization.&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MCP is a typical Client-Server (CS) architecture, while &lt;strong&gt;ANP is a typical Peer-to-Peer (P2P) architecture&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;MCP's identity authentication is based on the OAuth standard, facilitating client access to current internet resources. &lt;strong&gt;ANP's identity authentication is based on the W3C DID standard&lt;/strong&gt;, focusing on cross-platform interoperability among agents, enabling seamless connectivity.&lt;/li&gt;
+&lt;li&gt;MCP organizes information using JSON-RPC technology, essentially API calls. &lt;strong&gt;ANP uses semantic web Linked-Data technology&lt;/strong&gt; to build a data network that is easily accessible and understandable by AI.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;ANP is agent-centric, where each agent has equal status, forming a decentralized agent collaboration network.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/agent-network-protocol</link>
+      <guid>https://www.lqdev.me/responses/agent-network-protocol</guid>
+      <pubDate>2025-05-17 10:56 -05:00</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>protocol</category>
+    </item>
+    <item>
+      <title>Introducing deep research</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;An agent that uses reasoning to synthesize large amounts of online information and complete multi-step research tasks for you.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Powered by a version of the upcoming OpenAI o3 model that’s optimized for web browsing and data analysis, it leverages reasoning to search, interpret, and analyze massive amounts of text, images, and PDFs on the internet, pivoting as needed in reaction to information it encounters.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;How it works&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Deep research was trained using end-to-end reinforcement learning on hard browsing and reasoning tasks across a range of domains. Through that training, it learned to plan and execute a multi-step trajectory to find the data it needs, backtracking and reacting to real-time information where necessary. The model is also able to browse over user uploaded files, plot and iterate on graphs using the python tool, embed both generated graphs and images from websites in its responses, and cite specific sentences or passages from its sources. As a result of this training, it reaches new highs on a number of public evaluations focused on real-world problems.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/openai-deep-research</link>
+      <guid>https://www.lqdev.me/responses/openai-deep-research</guid>
+      <pubDate>2025-02-03 20:17 -05:00</pubDate>
+      <category>ai</category>
+      <category>openai</category>
+      <category>agent</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>TinyAgent: Function Calling at the Edge</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;&lt;img src="https://bair.berkeley.edu/static/blog/tiny-agent/Figure2.png" class="img-fluid" alt="High level conceptual diagram of TinyAgent system" /&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The ability of LLMs to execute commands through plain language (e.g. English) has enabled agentic systems that can complete a user query by orchestrating the right set of tools...recent multi-modal efforts such as the GPT-4o or Gemini-1.5 model, has expanded the realm of possibilities with AI agents. While this is quite exciting, the large model size and computational requirements of these models often requires their inference to be performed on the cloud. This can create several challenges for their widespread adoption. First and foremost, uploading data such as video, audio, or text documents to a third party vendor on the cloud, can result in privacy issues. Second, this requires cloud/Wi-Fi connectivity which is not always possible...latency could also be an issue as uploading large amounts of data to the cloud and waiting for the response could slow down response time, resulting in unacceptable time-to-solution. These challenges could be solved if we deploy the LLM models locally at the edge.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...current LLMs like GPT-4o or Gemini-1.5 are too large for local deployment. One contributing factor is that a lot of the model size ends up memorizing general information about the world into its parametric memory which may not be necessary for a specialized downstream application.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...this leads to an intriguing research question:&lt;br /&gt;
+&lt;br&gt;
+Can a smaller language model with significantly less parametric memory emulate such emergent ability of these larger language models?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Achieving this would significantly reduce the computational footprint of agentic systems and thus enable efficient and privacy-preserving edge deployment. Our study demonstrates that this is feasible for small language models through training with specialized, high-quality data that does not require recalling generic world knowledge.&lt;br /&gt;
+&lt;br&gt;
+Such a system could particularly be useful for semantic systems where the AI agent’s role is to understand the user query in natural language and, instead of responding with a ChatGPT-type question answer response, orchestrate the right set of tools and APIs to accomplish the user’s command. For example, in a Siri-like application, a user may ask a language model to create a calendar invite with particular attendees. If a predefined script for creating calendar items already exists, the LLM simply needs to learn how to invoke this script with the correct input arguments (such as attendees’ email addresses, event title, and time). This process does not require recalling/memorization of world knowledge from sources like Wikipedia, but rather requires reasoning and learning to call the right functions and to correctly orchestrate them.&lt;br /&gt;
+&lt;br&gt;
+Our goal is to develop Small Language Models (SLM) that are capable of complex reasoning that could be deployed securely and privately at the edge. Here we will discuss the research directions that we are pursuing to that end. First, we discuss how we can enable small open-source models to perform accurate function calling, which is a key component of agentic systems. It turns out that off-the-shelf small models have very low function calling capabilities. We discuss how we address this by systematically curating high-quality data for function calling, using a specialized Mac assistant agent as our driving application. We then show that fine-tuning the model on this high quality curated dataset, can enable SLMs to even exceed GPT-4-Turbo’s function calling performance. We then show that this could be further improved and made efficient through a new Tool RAG method. Finally, we show how the final models could be deployed efficiently at the edge with real time responses.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/TinyAgent-function-calling-edge</link>
+      <guid>https://www.lqdev.me/responses/TinyAgent-function-calling-edge</guid>
+      <pubDate>2024-06-11 19:43 -05:00</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>slm</category>
+      <category>function</category>
+      <category>edge</category>
+      <category>local</category>
+      <category>languagemodel</category>
+      <category>smalllanguagemodel</category>
+      <category>research</category>
+    </item>
+  </channel>
+</rss>

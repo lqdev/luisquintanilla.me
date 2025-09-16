@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - emacs</title>
+    <link>https://www.lqdev.me/tags/emacs</link>
+    <description>All content tagged with 'emacs' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-10 20:17 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Claude Code Emacs Integration</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Claude Code IDE for Emacs provides native integration with Claude Code CLI through the Model Context Protocol (MCP). Unlike simple terminal wrappers, this package creates a bidirectional bridge between Claude and Emacs, enabling Claude to understand and leverage Emacs’ powerful features—from LSP and project management to custom Elisp functions. This transforms Claude into a true Emacs-aware AI assistant that works within your existing workflow and can interact with your entire Emacs ecosystem.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/claude-code-emacs-integration</link>
+      <guid>https://www.lqdev.me/bookmarks/claude-code-emacs-integration</guid>
+      <pubDate>2025-08-10 20:17 -05:00</pubDate>
+      <category>emacs</category>
+      <category>anthropic</category>
+      <category>ai</category>
+      <category>claudecode</category>
+    </item>
+    <item>
+      <title>Claude Artifacts</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;💯💯💯. Artifacts are great. In ChatGPT when I find myself trying to format outputs as markdown, the UI gets confused and some of the content is rendered in markdown while the rest gets rendered as part of the UI which makes it unusable and hard to copy. The best way I've found to get around it is to ask it to format in org-mode or asciidoc. Claude Artifacts make this a non-issue. I also love that in addition to copying and downloading the artifact, you can also publish it as a URL.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/claude-artifacts-reece</link>
+      <guid>https://www.lqdev.me/responses/claude-artifacts-reece</guid>
+      <pubDate>2025-05-11 08:42 -05:00</pubDate>
+      <category>claude</category>
+      <category>chatgpt</category>
+      <category>plaintext</category>
+      <category>ai</category>
+      <category>org</category>
+      <category>emacs</category>
+      <category>asciidoc</category>
+      <category>markdown</category>
+    </item>
+    <item>
+      <title>Semantic Search and On-Device ML in Emacs</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;This is a cool walk-through of how to add semantic search to Emacs using local ML models.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;With ONNX.el you can run any ML model inside Emacs, including ones for images, audios, etc. In case you are running embedding models, combine this with sem.el to perform semantic searches. Depending on your input modality, you might have to figure out preprocessing. For text, tokenizers.el should cover all of what you need in modern NLP for preprocessing, though you will have to do something on your own for anything non-text or multimodal.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;By default sem runs a local all-MiniLM-L6-v2 model for text embeddings. This model is small and runs fast on CPU. Additionally, we load an O2 optimized variant which helps further. The vectors are stored in a lancedb database on file system which runs without a separate process. I was originally writing the vector db core myself to learn more of Rust, but then stopped doing that since lancedb gives all that I needed, out of the box.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/semantic-search-on-device-ml-emacs</link>
+      <guid>https://www.lqdev.me/responses/semantic-search-on-device-ml-emacs</guid>
+      <pubDate>2025-01-20 21:09 -05:00</pubDate>
+      <category>onnx</category>
+      <category>emacs</category>
+      <category>ai</category>
+      <category>ml</category>
+    </item>
+    <item>
+      <title>User-provided target file names in Org Capture</title>
+      <description>&lt;![CDATA[&lt;p&gt;I finally got my website note org-capture template working for new files.&lt;/p&gt;
+&lt;p&gt;Originally, I only had it working on existing files using this snippet.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-elisp"&gt;(&amp;quot;wne&amp;quot;
+ &amp;quot;Creates a note in an existing file&amp;quot;
+ plain
+ (file buffer-file-name)
+ (file ,(file-name-concat website-template-dir &amp;quot;note.txt&amp;quot;)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This template uses the file name of the current buffer to select the insertion target.&lt;/p&gt;
+&lt;p&gt;Getting it to work with a new file specified by the user, requires a small tweak.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-elisp"&gt;(&amp;quot;wnn&amp;quot;
+ &amp;quot;Creates a note in a new file&amp;quot;
+ plain
+ (file (lambda () (file-name-concat website-note-dir (format &amp;quot;%s.md&amp;quot; (read-string &amp;quot;Enter file name: &amp;quot;)))))
+ (file ,(file-name-concat website-template-dir &amp;quot;note.txt&amp;quot;)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At first, I thought I had to use the &lt;code&gt;function&lt;/code&gt; target type since I wanted to use a function to capture the file name. That didn't work.&lt;/p&gt;
+&lt;p&gt;I then realized, I could still keep the &lt;code&gt;file&lt;/code&gt; target type. However, to fill in the file name, I could use a function which takes in user input.&lt;/p&gt;
+&lt;p&gt;Now that I got this working, I've also done the same for my reponse template.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/org-capture-functions-file-target</link>
+      <guid>https://www.lqdev.me/notes/org-capture-functions-file-target</guid>
+      <pubDate>2024-07-29 21:45 -05:00</pubDate>
+      <category>emacs</category>
+      <category>orgmode</category>
+      <category>capture</category>
+      <category>org</category>
+      <category>website</category>
+      <category>templates</category>
+      <category>gnu</category>
+    </item>
+    <item>
+      <title>Note to Self: Useful Emacs Commands Pt. 1</title>
+      <description>&lt;![CDATA[&lt;p&gt;I still need to set up an org-capture template for snippets, so writing a note to myself to remember these commands I'll eventually want to come back to.&lt;/p&gt;
+&lt;h2&gt;Capture elfeed link&lt;/h2&gt;
+&lt;p&gt;In this custom function, &lt;code&gt;elfeed-show-yank&lt;/code&gt; extracts the link element in an elfeed entry. &lt;code&gt;org-capture&lt;/code&gt; then just invokes the org-capture template selection prompt. At this point, I can move forward with creating a response entry on the website and since the link to the entry I was viewing in elfeed is in the kill-ring, I can easily paste the URL while filling out the org-capture template.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-lisp"&gt;(defun capture-elfeed-entry ()
+  (elfeed-show-yank)
+  (org-capture))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Org capture contexts&lt;/h2&gt;
+&lt;p&gt;I recently found out, I can add filters to org-capture templates based on the mode I'm in Emacs. Here's an example:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-lisp"&gt;(setq org-capture-templates-contexts
+      '((&amp;quot;wrn&amp;quot; ((in-mode . &amp;quot;elfeed-show-mode&amp;quot;)))))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;org-capture-templates-contexts&lt;/code&gt; defines a set of conditions that defines which contexts certain org-capture templates appear under.&lt;/p&gt;
+&lt;p&gt;For example, the org-capture template mapped to &lt;code&gt;wrn&lt;/code&gt; will only be visible when org-capture is invoked from a buffer in &lt;code&gt;elfeed-show-mode&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;More information can be found in the &lt;a href="https://orgmode.org/manual/Templates-in-contexts.html"&gt;org-capture templates in context documentation&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/useful-emacs-commands-pt-1</link>
+      <guid>https://www.lqdev.me/notes/useful-emacs-commands-pt-1</guid>
+      <pubDate>2024-07-28 17:00 -05:00</pubDate>
+      <category>emacs</category>
+      <category>lisp</category>
+      <category>elisp</category>
+      <category>programming</category>
+      <category>code</category>
+      <category>notetoself</category>
+    </item>
+    <item>
+      <title>Nyxt Emacs Hacks</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;Saving this guide for future reference as I set up my elfeed / Nyxt capture workflows for the website.&lt;/p&gt;
+&lt;p&gt;Additional articles that might be helpful.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ag91.github.io/blog/2021/07/09/org-capture-in-nyxt-taking-notes-while-browsing/"&gt;Org capture in Nyxt: Taking Notes While Browsing&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/nyxt-emacs-hacks</link>
+      <guid>https://www.lqdev.me/bookmarks/nyxt-emacs-hacks</guid>
+      <pubDate>2024-07-28 16:53 -05:00</pubDate>
+      <category>nyxt</category>
+      <category>emacs</category>
+      <category>orgmode</category>
+      <category>capture</category>
+      <category>templates</category>
+      <category>workflow</category>
+      <category>lisp</category>
+    </item>
+    <item>
+      <title>Test response using org capture templates</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Testing org-capture template generated response file&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/test-emacs-capture-response-org</link>
+      <guid>https://www.lqdev.me/responses/test-emacs-capture-response-org</guid>
+      <pubDate>2024-07-14 13:47 -05:00</pubDate>
+      <category>org</category>
+      <category>emacs</category>
+      <category>blogging</category>
+      <category>automation</category>
+      <category>orgmode</category>
+      <category>templates</category>
+      <category>capturetemplates</category>
+      <category>website</category>
+      <category>personalweb</category>
+      <category>capture</category>
+    </item>
+    <item>
+      <title>Clock Tables - Org Mode, Plain Text, and AI</title>
+      <description>&lt;![CDATA[&lt;p&gt;Org-mode appreciation post.&lt;/p&gt;
+&lt;p&gt;I use plain text and org-mode for most things in my life, especially when it comes to task and life management.&lt;/p&gt;
+&lt;p&gt;I won't rehash all the reasons Emacs and org-mode are amazing. There are tons of blog posts and videos out there that would do it more justice than I ever could.&lt;/p&gt;
+&lt;p&gt;Over the last few years, Emacs has become my go-to text editor. Throughout all that time, I've continued to find new features that delight.&lt;/p&gt;
+&lt;p&gt;The most recent is &lt;a href="https://orgmode.org/manual/The-clock-table.html"&gt;clock table&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I already use org-mode to track my to-dos and perform some sort of time-block planning by setting deadlines and scheduling tasks.&lt;/p&gt;
+&lt;p&gt;Recently though, I've been wanting a way to see all of the things I've worked on over the past [ INSERT TIME PERIOD ]. More importantly, I'd like to have time associated with them to see where my time has gone and evaluate whether I'm spending time on the things I should be.&lt;/p&gt;
+&lt;p&gt;I knew you could &lt;a href="https://orgmode.org/manual/Clocking-commands.html"&gt;clock in and clock out&lt;/a&gt; on tasks. However, I didn't know you could easily build a customized report that automatically updates. That's when I came across clock tables.&lt;/p&gt;
+&lt;p&gt;Now, I have a way of visualizing all of the things I worked on during a week or month, and as I'm planning for the next week or month, I can adjust and reprioritize the things I'm working on.&lt;/p&gt;
+&lt;p&gt;I know there are enterprise offerings like the Viva suite from Microsoft which provides detailed reports on how you spend your time.&lt;/p&gt;
+&lt;p&gt;What excites me about org-mode though is that it's plain text. The clock table report that gets generated is a plain text table which makes it portable and easy to access using any text editor of your choice. It works best with Emacs, but that's not a requirement.&lt;/p&gt;
+&lt;p&gt;On their own, clock tables are amazing.&lt;/p&gt;
+&lt;p&gt;However, given how well language models work on plain text, they could be used as context for your queries. Imagine giving a language model as input an org file which contains:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A clock table&lt;/li&gt;
+&lt;li&gt;A list of TODO tasks (with notes, priorities, deadlines, tags, properties, and other annotations)&lt;/li&gt;
+&lt;li&gt;A high level list of goals you want to achieve&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then, you could enter a prompt along the lines of: &amp;quot;Using the following clock-table and list of goals I want to achieve, provide me with recommendations of tasks I should work on for the next week. Ensure that they align with my goals, are top priority, and provide the highest return on my efforts&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Additionally, you might also provide your org-agenda view containing appointments and use the results from the first query as context for the following prompt: &amp;quot;Given the agenda view for the next week, schedule the top 3 tasks you recommended&amp;quot;.&lt;/p&gt;
+&lt;p&gt;The result would be a list of TODO items containing schedule / active timestamps annotations which now show up on your org-agenda view.&lt;/p&gt;
+&lt;p&gt;Today, almost every productivity application out there is working on building these kinds of AI features into their products. The difference is, in many cases, the formats used by those applications aren't plain text. This adds complexity to the data extraction and transformation pipelines required to get the data into the right format for a language model to process. With plain text, there's little to no transformations required.&lt;/p&gt;
+&lt;p&gt;What's even better, I can extend org-mode and Emacs using elisp to do the things I just talked about.&lt;/p&gt;
+&lt;p&gt;I'm no elisp expert, so I asked Copilot to generate an elisp function that takes an org-mode clock table as input and generates a written text summary of it. Here are the results:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-lisp"&gt;(defun org-clock-summary-to-chatgpt ()
+  &amp;quot;Extracts clock table data and requests a summary from ChatGPT.&amp;quot;
+  (interactive)
+  (let* ((clock-table-data (org-clocktable-get-clocktable))
+         (summary-text (org-clocktable-format-summary clock-table-data))
+         (api-endpoint &amp;quot;https://api.openai.com/v1/engines/davinci/completions&amp;quot;)
+         (api-key &amp;quot;YOUR_API_KEY&amp;quot;)) ; Replace with your actual API key
+
+    ;; Construct the HTTP request and send it to ChatGPT
+    (with-current-buffer
+        (url-retrieve-synchronously api-endpoint
+                                    `((&amp;quot;text&amp;quot; . ,summary-text)
+                                      (&amp;quot;api_key&amp;quot; . ,api-key)))
+      (goto-char (point-min))
+      (search-forward &amp;quot;\n\n&amp;quot;)
+      (let ((response-json (json-read)))
+        (message &amp;quot;ChatGPT summary: %s&amp;quot; (cdr (assoc 'choices response-json)))))))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;All you elisp experts out there, let me know how it did.&lt;/p&gt;
+&lt;p&gt;I know at least the API endpoint is wrong, but generally speaking, it seems to be doing the right thing. Such function could be extended to include org-agenda information, TODO items, and many other things that would use AI to augment the existing functionality of Emacs and org-mode to tailor them to my needs.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/love-plain-text-org-mode-clocktable</link>
+      <guid>https://www.lqdev.me/notes/love-plain-text-org-mode-clocktable</guid>
+      <pubDate>2024-07-09 22:07 -05:00</pubDate>
+      <category>emacs</category>
+      <category>orgmode</category>
+      <category>ai</category>
+      <category>plaintext</category>
+      <category>productivity</category>
+      <category>tools</category>
+      <category>technology</category>
+      <category>gnu</category>
+      <category>opensource</category>
+      <category>gtd</category>
+      <category>calendar</category>
+      <category>agenda</category>
+      <category>llm</category>
+      <category>openai</category>
+    </item>
+    <item>
+      <title>Pandoc</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;If you need to convert files from one markup format into another, pandoc is your swiss-army knife.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://pandoc.org/"&gt;Website&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Recipes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://pandoc.org/demos.html"&gt;List of recipes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Emacs org-mode to Microsoft Word&lt;/h3&gt;
+&lt;p&gt;Personally, I like drafting and structuring documents in org-mode. However, for sharing and collaboration, that usually takes place in Microsoft Word. This is a command I use on a regular basis.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;pandoc -s -o &amp;lt;document-name&amp;gt;.docx &amp;lt;document-name&amp;gt;.org
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/pandoc</link>
+      <guid>https://www.lqdev.me/resources/wiki/pandoc</guid>
+      <pubDate>04/25/2024 22:00 -05:00</pubDate>
+      <category>pandoc</category>
+      <category>plaintext</category>
+      <category>docx</category>
+      <category>documents</category>
+      <category>word</category>
+      <category>org</category>
+      <category>emacs</category>
+      <category>utility</category>
+      <category>linux</category>
+    </item>
+    <item>
+      <title>Now where will I get my RSS fix?</title>
+      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="https://github.com/lqdev/luisquintanilla.me/assets/11130940/b50ebeaa-c38c-4c58-b70f-fb9b9a26a017" class="img-fluid" alt="Screenshot of message informing users NewsBlur is down for maintenance" /&gt;&lt;/p&gt;
+&lt;p&gt;Good thing I have elfeed as my backup so I can use that in the meantime.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/newsblur-maintenace-mode-022024</link>
+      <guid>https://www.lqdev.me/notes/newsblur-maintenace-mode-022024</guid>
+      <pubDate>2024-02-25 14:18 -05:00</pubDate>
+      <category>newsblur</category>
+      <category>rss</category>
+      <category>maintenance</category>
+      <category>emacs</category>
+      <category>elfeed</category>
+      <category>news</category>
+    </item>
+    <item>
+      <title>Downsides of untitled RSS items</title>
+      <description>&lt;![CDATA[&lt;p&gt;Although titles are optional for RSS feed items and it's a common practice for microblog platforms like Mastodon to exclude them, it unfortunately means some clients like Elfeed don't know how to render those posts.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/elfeed-mastodon-rss.png" class="img-fluid" alt="Screenshot of elfeed displaying RSS items from Mastodon" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/mastodon-untitled-rss-items</link>
+      <guid>https://www.lqdev.me/notes/mastodon-untitled-rss-items</guid>
+      <pubDate>2023-02-23 21:11 -05:00</pubDate>
+      <category>mastodon</category>
+      <category>rss</category>
+      <category>emacs</category>
+    </item>
+    <item>
+      <title>Manage your reading list in Emacs using Org mode</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+Emacs is a rich and customizable text editor. [Org mode](https://orgmode.org/) for Emacs makes it easy to manage to-do lists, projects, and author technical documents. Many of my workflows like writing, planning, and organization make heavy use of plain text. One reason I enjoy working in plain text is, it's easy for my thoughts and ideas to naturally flow without having tools get in the way. Another reason I like plain text is, I'm not locked-in to any tool. Because plain text can be authored and rendered almost anywhere, it's easy for me to use whichever tool I find most productive. Some that I've found great success with recently have been [Visual Studio Code](https://code.visualstudio.com/), [Joplin](https://joplinapp.org/), and Emacs with Org mode. I've been trying to manage my reading list in plain text and while it's worked well, I'd like a way to track the state for each book by tagging them as read or in various stages of unread. One of the features of Org mode is the ability to track workflows. In this guide, I'll show how you can extend the TODO Org mode functionality to keep track of your reading list.
+
+## Prerequisites
+
+- [Emacs](https://www.gnu.org/software/emacs/)
+
+Since Emacs is cross-platform, the contents of this guide should work the same across Linux, Mac, and Windows.
+
+## Create org file
+
+Org mode in Emacs provides to-do list management features. By default, the built-in states are TODO and DONE. However, you can define your own states to best match your workflow. For more information, see the [TODO item section in the Org mode guide](https://orgmode.org/manual/TODO-Items.html#TODO-Items).
+
+Start by creating a new file in Emacs with the *.org* file extension (i.e. reading-list.org).
+
+Then, add the following headers at the top of the file.
+
+```text
+#+TODO: WISHLIST(w) QUEUED(q) INPROGRESS(p) | READ(r!)
+```
+
+What this heading does is, it defines the different states of completion of a TODO item. The scope of this definition is the file. Although you can define global states, I want these states to only exist in the context of this file. The complete and incomplete states are separated by the pipe character (`|`). In this case, WISHLIST, QUEUED, and INPROGRESS are incomplete states and READ is the complete state. The letters in the parentheses are ways to quickly assign each of the states. One last thing you'll notice is the READ state in addition to having a letter also has an exclamation point. The exclamation point tells Emacs to add a timestamp whenever this book transitions to the READ state.
+
+## Add your book list
+
+Once you've define your reading states, it's time to add your books. TODO items in Emacs Org-mode only work in the context of headings. Therefore you have to prefix your books with asterisks. For more information on headlines, see the [Headlines section in the Org mode guide](https://orgmode.org/manual/Headlines.html). 
+
+Here are examples of some books in my reading list.
+
+```text
+* Hackers (Steven Levy)
+* Ghost In The Wires (Kevin Mitnick)
+```
+
+Since I don't intend to have sub headlines, I just used a top-level headline for each of the books. 
+
+## Assign state
+
+Now that you've populated your list of books, it's time to assign states to them. 
+
+To assign a state:
+
+1. Place your pointer / cursor on the same line as the book you want to assign the state to.
+1. Press `Ctrl-c` + `Ctrl-t` or in Emacs notation `C-c C-t`.
+1. A buffer opens prompting you to choose a state. Enter one of the letters to choose your state. For example, if you want to apply the QUEUED state to your book, press the letter `q`. 
+
+The state you selected is prepended to your book. For example:
+
+```text
+* QUEUED Hackers (Steven Levy)
+```
+
+## Update state
+
+To update the state, you can follow the steps in the assign state section or you can cycle through the various states by pressing `Alt-Left` or `Alt-Right` or in Emacs notation `M-LEFT` or `M-RIGHT`. 
+
+## Marking a book as READ
+
+To assign the READ state to a book, you need to update its state. The only difference between READ and the other states is, a timestamp is applied when the book transitions to the state. 
+
+Here's an example of what a book in the READ state looks like:
+
+```text
+* READ In The Beginning...Was The Command Line (Neal Stephenson) 
+- State "READ"       from "INPROGRESS" [2022-07-26 Tue 00:18]
+```
+
+## Querying your reading list
+
+Org mode has agenda views that allow you to view TODO, timestamped, and tagged items in a single place. One of the built-in agendas that is useful for querying TODO items is the match view. The match view shows headlines based on the tags, properties, and TODO state associated with them. For more information, see the [Agenda views section in the Org-mode guide](https://orgmode.org/manual/Agenda-Views.html). 
+
+Before viewing your books in an agenda view, you need to add the file containing your reading list to the list of files tracked by Org. To do so, open the file in Emacs and press `Ctrl-c + [` or in Emacs notation `C-c [`.
+
+To launch the match agenda view in org-mode:
+
+1. Press `Alt-x` or in Emacs notation `M-x`
+1. In the minibuffer, type `org-agenda` and press Enter.
+1. A buffer appears prompting you to select a view. Press the letter `m` to choose the match view. 
+
+### Unread items
+
+In this case, I want to see all the unfinished books which in this case are under the WISHLIST, QUEUED, and INPROGRESS states. 
+
+In the match view, enter the following query into the minibuffer:
+
+```text
+TODO="WISHLIST"|TODO="QUEUED"|TODO="INPROGRESS"
+```
+
+Press `Enter`.
+
+The result of the query should look similar to the following:
+
+```text
+Headlines with TAGS match: TODO="WISHLIST"|TODO="QUEUED"|TODO="INPROGRESS"
+Press ‘C-u r’ to search again
+  reading-list:QUEUED Hackers (Steven Levy)
+  reading-list:WISHLIST Ghost In The Wires (Kevin Mitnick)
+```
+
+### Read items
+
+To query for read items, you go through the same process, except the query is different.
+
+In the match view, enter the following query into the minibuffer:
+
+```text
+TODO="READ"
+```
+
+Press `Enter`.
+
+The result of the query should look similar to the following:
+
+```text
+Headlines with TAGS match: TODO="READ"
+Press ‘C-u r’ to search again
+  reading-list:READ In The Beginning...Was The Command Line (Neal Stephenson)
+```
+
+## Conclusion
+
+Reading lists are just one of the many things you can track using Emacs and Org mode. You can use this general process to track movies, TV shows, podcasts, etc. Thanks to the extensibility of Emacs, the options are endless!]]&gt;</description>
+      <link>https://www.lqdev.me/posts/manage-reading-list-org-mode-emacs</link>
+      <guid>https://www.lqdev.me/posts/manage-reading-list-org-mode-emacs</guid>
+      <pubDate>07/26/2022 19:15 -05:00</pubDate>
+      <category>linux</category>
+      <category>emacs</category>
+      <category>organization</category>
+    </item>
+    <item>
+      <title>Assorted links - Ubuntu 22.04 LTS, Bitwarden, DALLE-2, Emacs</title>
+      <description>&lt;![CDATA[&lt;p&gt;Here's a few links I found in the interwebs today that I thought were worth sharing.&lt;/p&gt;
+&lt;h2&gt;Ubuntu 22.04 LTS Released&lt;/h2&gt;
+&lt;p&gt;For my personal computing needs, Manjaro has been my default Linux distro. However, for hosting and cloud VMs I go back and forth between Debian and Ubuntu depending on which better supports the software I'm running. Canonical announced the release of the latest Ubuntu LTS version 22.04. Check out their &lt;a href="https://ubuntu.com/blog/ubuntu-22-04-lts-released"&gt;blog post&lt;/a&gt; for more details on what's new.&lt;/p&gt;
+&lt;h2&gt;Self-hosting Bitwarden on DigitalOcean&lt;/h2&gt;
+&lt;p&gt;When it comes to password managers, other than KeePass, my favorite it &lt;a href="https://bitwarden.com/"&gt;Bitwarden&lt;/a&gt;. It's open-source, built on .NET, has excellent features that get even better with the low-cost paid version, but most importantly provides you the option of self-hosting. If you're looking to self-host Bitwarden on DigitalOcean, make sure to check out the &lt;a href="https://bitwarden.com/blog/digitalocean-marketplace/"&gt;guide&lt;/a&gt; they just published.&lt;/p&gt;
+&lt;h2&gt;How DALLE-2 Actually Works&lt;/h2&gt;
+&lt;p&gt;A few weeks ago, OpenAI announced the release of &lt;a href="https://openai.com/dall-e-2/"&gt;DALLE-2&lt;/a&gt;. Open AI describes DALLE-2 as, &amp;quot;...a new AI system that can create realistic images and art from a description in natural language.&amp;quot; If you want to understand the details of how it works, you could read the 27 page research paper &lt;a href="https://arxiv.org/pdf/2204.06125.pdf"&gt;Hierarchical Text-Conditional
+Image Generation with CLIP Latents&lt;/a&gt;. AssemblyAI just published an approachable guide into the inner workings of DALLE-2. If you're interested in that, check out their &lt;a href="https://www.assemblyai.com/blog/how-dall-e-2-actually-works/"&gt;blog post&lt;/a&gt; on the topic.&lt;/p&gt;
+&lt;h2&gt;Emacs Configuration Generator&lt;/h2&gt;
+&lt;p&gt;In my early days of using Emacs, I often found it difficult to customize it to my needs. Not only did I not know what was possible, but it also caused some anxiety because I didn't feel confident enough making major tweaks. If you're getting started with Emacs and aren't sure how to configure it, this neat &lt;a href="https://emacs.amodernist.com/"&gt;utility&lt;/a&gt; helps you generate a config file for Emacs.&lt;/p&gt;
+&lt;h2&gt;PostgresML&lt;/h2&gt;
+&lt;p&gt;If you're building machine learning applications, one of the main things you'll need is data. This data can reside in databases such as MySQL, SQL Server, and Postgres. Algorithms are applied to this data downstream using libraries written in languages like Python, R, and .NET. This not only means potentially moving the data from the database to another process but also using another library to train models. According to the project description on GitHub, &amp;quot;PostgresML is an end-to-end machine learning system. It enables you to train models and make online predictions using only SQL, without your data ever leaving your favorite database.&amp;quot; If that's something you're interested in, check out the project on &lt;a href="https://github.com/postgresml/postgresml"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/2022-04-21-assorted-links</link>
+      <guid>https://www.lqdev.me/notes/2022-04-21-assorted-links</guid>
+      <pubDate>04/21/2022 19:44 -05:00</pubDate>
+      <category>links</category>
+      <category>assortedlinks</category>
+      <category>ubuntu</category>
+      <category>bitwarden</category>
+      <category>dalle</category>
+      <category>openai</category>
+      <category>emacs</category>
+      <category>linkblog</category>
+    </item>
+    <item>
+      <title>Back To School: Emacs Edition</title>
+      <description>&lt;![CDATA[
+As the summer comes to a close and I prepare to enter the fall semester, I am getting back into school mode. When programming in the terminal, I usually used vim. When compared to Emacs, the learning curve was relatively flat and it handled file editing just fine. I’ve read many articles that rave about Emacs and how powerful it can be. Therefore, a couple of months ago I took the plunge and decided to give it a try. Using dired mode to browse through the various directories in my system or project was a neat feature but for my purposes of basic file editing it did not offer anything that would warrant a switch. Furthermore, the default key bindings seemed a bit too much for me which caused me to  revert back to vim.
+
+As part of the articles that I have read in praise of Emacs, one particular feature seemed to be a recurring theme – Org-Mode. Although I had heard about it, I never really understood what it was. Out of curiosity, I decided to try it out for myself and see what it had to offer. While taking notes in it seemed normal enough, it was the export functionality that truly rocked my world and made me realize how amazing this could be for note-taking. Traditionally a pen-and-paper note taker, one of the main reasons I dislike taking notes on my PC is the lack of continuity and organization. Although tools like OneNote of Evernote are extremely powerful, they were not exactly the best when it came to a semester’s worth of notes and although they could be made to have all of the notes for a semester on one page, this defeated the purpose of having different pages and notebooks. Enter Org-Mode. Again, while the process of taking notes is nothing special, the export capabilities are amazing. Furthermore, by default a table of contents is created with links so you can always find what you want when you want. Here are a few examples of what I mean.
+
+![](http://cdn.lqdev.tech/files/images/backtoschoolemacsedition1.png)
+
+As it can be seen, other than * or + characters in front of titles and lists, there is nothing special in the terminal. This is how it looks like in HTML format
+
+![](http://cdn.lqdev.tech/files/images/backtoschoolemacsedition2.png)
+
+Amazing! Not only do you get an organized set of notes, but you can see how this can easily contain a semester’s worth of notes in a single HTML file with main ideas being easily accessible via links. Now, maybe you don’t have an internet connection or prefer to put these notes on your tablet or phone. No problem. Just export it to a PDF.
+
+![](http://cdn.lqdev.tech/files/images/backtoschoolemacsedition3.png)
+
+Magic!
+
+This is definitely going to take my note-taking to the next level by allowing me to have these documents synced across all my devices. Furthermore, it will keep notes organized and in one place. If you’re interested in getting started there may be just a few things that you need to do.
+
+# Install Org-Mode
+
+Org Mode is built in to the latest version of Emacs. However, in the event that it is not installed you can simply try the following commands in the Emacs mini buffer.
+
+`M-x package-install RET org RET`
+
+# Export to HTML
+
+To access the export menu, simply type the following in the mini buffer:
+
+`C-c C-e`
+
+HTML export is included by default. To do that, we can add on to the command used to access the export menu as follows:
+
+`C-c C-e h h`
+
+PDF export is a bit mode complicated. The file is first exported to LaTeX format and then converted to PDF. However, in order to do this you need to install a package on your system. Assuming you are on a Unix machine, the following command should download everything necessary to convert LaTeX files to PDF. Keep in mind, this is relatively large and should take up roughly 1-2 GB in your system. In return, it limits the number of headaches due to installing necessary packages piecemeal that have multiple dependencies. To download the package, type in the following into your terminal:
+
+# Install texlive-full
+
+In the terminal, enter: 
+
+```bash
+sudo apt-get install texlive-full
+```
+Once installed, you can use a similar command to that of HTML export.
+
+# Export to PDF
+
+`C-c C-e l p`
+
+This should be all you need to get started. For more information on how to use Org Mode, here’s a guide with live examples. Happy note-taking!
+
+[Emacs Examples and Cookbook](http://home.fnal.gov/~neilsen/notebook/orgExamples/org-examples.html)
+
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/back-to-school-emacs-edition</link>
+      <guid>https://www.lqdev.me/posts/back-to-school-emacs-edition</guid>
+      <pubDate>2017-12-09 13:01:19 -05:00</pubDate>
+      <category>emacs</category>
+      <category>org-mode</category>
+    </item>
+    <item>
+      <title>Setting Up A New Ubuntu PC</title>
+      <description>&lt;![CDATA[
+# Users
+
+This assumes that you are currently the root user.
+
+Enter the adduser to command to create a new user.
+
+```bash
+adduser &lt;username&gt;
+```
+
+Immediately, you will be prompted for a password. Enter the password and continue the process. 
+
+## Adding Root Privileges
+
+This is only applicable when granting root priviliges to the newly created user. 
+
+Enter the usermod command to add the new user to the sudo (root) group
+
+```bash
+usermod -aG sudo &lt;username&gt;
+```
+
+The user should now have root priviliges. 
+
+To test that it worked log in as that user and try to run a command with sudo
+
+```bash
+su - &lt;username&gt;
+sudo ls -la /root
+```
+
+# Emacs
+
+By default, Ubuntu usually comes preloaded or has the default 24.x version of Emacs. I often like to use Emacs along with org-mode and to take full advantage, especially as it pertains to working with source code I have found version 25.x is much better suited for the task. While there are many ways to go about it, installing it via package manager appears to be the easiest. 
+
+## Add repository to PPA
+
+```bash
+sudo add-apt-repository ppa:kelleyk/emacs
+```
+
+## Update the packages
+
+```bash
+sudo apt update
+```
+
+## Install Emacs. 
+### Text-Only Interface
+
+```bash
+sudo apt-get install emacs25-nox
+```
+
+### GUI Interface
+
+```bash
+sudo apt-get install emacs25
+```
+
+## Backup files
+
+Sometimes Emacs keeps a backup file by default. This can cause a lot of clutter in the current directory where work is being performed. There is a way to disable this.
+
+Navigate to `~/.emacs.d/` and edit the `init.el` file and add the following line.
+
+```lisp
+(setq make-backup-files nil)
+```
+
+# Java
+
+Make sure that your packages and repositories are up to date
+
+```bash
+sudo apt-get update
+```
+
+## OpenJDK
+
+```bash
+sudo apt-get install default-jdk
+```
+
+## Oracle JDK
+### Add PPA Repository
+```bash
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+```
+
+### Install the installer
+
+```bash
+sudo apt-get install oracle-java8-installer
+```
+
+
+#### Sources
+[Users](https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-ubuntu-quickstart)  
+[Emacs](http://ubuntuhandbook.org/index.php/2017/04/install-emacs-25-ppa-ubuntu-16-04-14-04/)  
+[Java](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04)
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/setting-up-new-ubuntu-pc</link>
+      <guid>https://www.lqdev.me/posts/setting-up-new-ubuntu-pc</guid>
+      <pubDate>2017-12-09 12:49:19 -05:00</pubDate>
+      <category>linux</category>
+      <category>ubuntu</category>
+      <category>java</category>
+      <category>sysadmin</category>
+      <category>emacs</category>
+    </item>
+  </channel>
+</rss>

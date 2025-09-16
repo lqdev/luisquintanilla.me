@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - videos</title>
+    <link>https://www.lqdev.me/tags/videos</link>
+    <description>All content tagged with 'videos' by Luis Quintanilla</description>
+    <lastBuildDate>2024-10-10 20:41 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>DEFCON Media Server</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;Videos, Slides, Presentations, and assets from DEFCON.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/defcon-media-server</link>
+      <guid>https://www.lqdev.me/bookmarks/defcon-media-server</guid>
+      <pubDate>2024-10-10 20:41 -05:00</pubDate>
+      <category>defcon</category>
+      <category>media</category>
+      <category>persentations</category>
+      <category>videos</category>
+      <category>slides</category>
+    </item>
+    <item>
+      <title>Remembering the 90's Video Store</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;Reading this post and attached image brings back so many memories.&lt;/p&gt;
+&lt;p&gt;I remember in the last few years of Blockbuster and early days of Netflix, for about $20/month you could rent unlimited movies (I think it was up to three at a time).&lt;/p&gt;
+&lt;p&gt;If you binge watched them or weren't happy with the choices you made, you could just drive down to your local store, return them, and grab a new set of movies.&lt;/p&gt;
+&lt;p&gt;Initially you had a return period, but towards the end, there were none so you basically got to keep some movies as long as you liked.&lt;/p&gt;
+&lt;p&gt;Good times.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/remembering-90s-video-store-plummer</link>
+      <guid>https://www.lqdev.me/responses/remembering-90s-video-store-plummer</guid>
+      <pubDate>2024-04-25 22:31 -05:00</pubDate>
+      <category>nostalgia</category>
+      <category>90s</category>
+      <category>videos</category>
+      <category>blockbuster</category>
+    </item>
+  </channel>
+</rss>

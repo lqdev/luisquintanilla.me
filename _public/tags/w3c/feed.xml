@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - w3c</title>
+    <link>https://www.lqdev.me/tags/w3c</link>
+    <description>All content tagged with 'w3c' by Luis Quintanilla</description>
+    <lastBuildDate>2025-06-14 10:47 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>MLS over ActivityPub Draft</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;a href="https://messaginglayersecurity.rocks/"&gt;Messaging Layer Security (MLS)&lt;/a&gt; is an IETF standard for end-to-end encrypted (E2EE) messaging. It lets people on laptops and phones communicate with each other in a secure way that no one in between can see.&lt;br /&gt;
+&lt;br&gt;
+MLS is designed to use pluggable lower-level protocols. This specification defines an envelope format for distributing MLS messages through the network, and an Activity Streams 2.0 profile for the packets of application data stored inside the messages.&lt;br /&gt;
+&lt;br&gt;
+This specification is ready for review from both ActivityPub developers and security analysts. It’s time to start making proof-of-concept implementations and testing interoperability.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Source: https://socialwebfoundation.org/2025/06/13/mls-over-activitypub-draft/&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/mls-over-activitypub-draft</link>
+      <guid>https://www.lqdev.me/responses/mls-over-activitypub-draft</guid>
+      <pubDate>2025-06-14 10:47 -05:00</pubDate>
+      <category>protocol</category>
+      <category>socialweb</category>
+      <category>activitypub</category>
+      <category>w3c</category>
+    </item>
+    <item>
+      <title>Web Neural Network API - Working Draft</title>
+      <description>&lt;![CDATA[&lt;p&gt;While browsing the interwebs I came across the &lt;a href="https://www.w3.org/TR/webnn/"&gt;Web Neural Network API&lt;/a&gt; spec from the &lt;a href="https://www.w3.org/groups/wg/webmachinelearning"&gt;W3C Web Machine Learning Working Group&lt;/a&gt;. The abstract defines it as &amp;quot;a dedicated low-level API for neural network inference hardware acceleration.&amp;quot;. Although there are already a few frameworks like ONNX &amp;amp; TensorFlow.js that allow you to inference in the browser, this spec looks interesting because it provides an abstraction that allows you to take advantage of hardware acceleration using the framework of your choice. As the &lt;a href="https://github.com/webmachinelearning/webnn/blob/main/explainer.md"&gt;explainer document&lt;/a&gt; mentions, &amp;quot;this architecture allows JavaScript frameworks to tap into cutting-edge machine learning innovations in the operating system and the hardware platform underneath it without being tied to platform-specific capabilities, bridging the gap between software and hardware through a hardware-agnostic abstraction layer.&amp;quot;. It's just a working draft for now but I'm looking forward to how this develops.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/web-neural-network-api-working-draft</link>
+      <guid>https://www.lqdev.me/notes/web-neural-network-api-working-draft</guid>
+      <pubDate>10/24/2021 20:36 -05:00</pubDate>
+      <category>webnn</category>
+      <category>ai</category>
+      <category>neuralnetwork</category>
+      <category>w3c</category>
+      <category>standards</category>
+      <category>api</category>
+      <category>protocol</category>
+    </item>
+    <item>
+      <title>TIL: Canonical HTML tags</title>
+      <description>&lt;![CDATA[&lt;p&gt;Today I learned about canonical URLs. While looking into how I can syndicate content from this site, specifically longer form blog posts on other sites like dev.to, I came across canonical tags.&lt;/p&gt;
+&lt;p&gt;Basically they're a way of telling the internet, specifically search engines, what version of your content is the main copy or single-source of truth.&lt;/p&gt;
+&lt;p&gt;Currently I've configured my site so it's not indexed or crawled. However, for sites I don't own I don't have the same level of control. Check out the &lt;a href="https://moz.com/learn/seo/canonicalization"&gt;canonicalization&lt;/a&gt; and &lt;a href="https://moz.com/blog/rel-canonical"&gt;SEO best practices for canonical URLs&lt;/a&gt; articles from Moz if you're interested in learning more.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/rel-canonical-tags</link>
+      <guid>https://www.lqdev.me/notes/rel-canonical-tags</guid>
+      <pubDate>10/21/2021 21:31 -05:00</pubDate>
+      <category>html</category>
+      <category>til</category>
+      <category>canonical</category>
+      <category>web</category>
+      <category>w3c</category>
+      <category>standards</category>
+    </item>
+  </channel>
+</rss>

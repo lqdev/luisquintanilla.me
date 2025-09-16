@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - rnn</title>
+    <link>https://www.lqdev.me/tags/rnn</link>
+    <description>All content tagged with 'rnn' by Luis Quintanilla</description>
+    <lastBuildDate>2024-04-10 22:02 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Recurrent neural networks (RNNs) have fast inference and scale efficiently on long sequences, but they are difficult to train and hard to scale. We propose Hawk, an RNN with gated linear recurrences, and Griffin, a hybrid model that mixes gated linear recurrences with local attention. Hawk exceeds the reported performance of Mamba on downstream tasks, while Griffin matches the performance of Llama-2 despite being trained on over 6 times fewer tokens. We also show that Griffin can extrapolate on sequences significantly longer than those seen during training. Our models match the hardware efficiency of Transformers during training, and during inference they have lower latency and significantly higher throughput. We scale Griffin up to 14B parameters, and explain how to shard our models for efficient distributed training.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/griffin-mix-linear-recurrence-local-attention-language-models</link>
+      <guid>https://www.lqdev.me/bookmarks/griffin-mix-linear-recurrence-local-attention-language-models</guid>
+      <pubDate>2024-04-10 22:02 -05:00</pubDate>
+      <category>griffin</category>
+      <category>ai</category>
+      <category>research</category>
+      <category>architecture</category>
+      <category>rnn</category>
+      <category>attention</category>
+      <category>transformers</category>
+      <category>llm</category>
+    </item>
+  </channel>
+</rss>

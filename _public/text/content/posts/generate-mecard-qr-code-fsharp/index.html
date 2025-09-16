@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Generate QR Codes for MeCard Data in F# - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Generate QR Codes for MeCard Data in F#</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2023-10-24">October 24, 2023</time><p>Tags: dotnet, fsharp, qrcode</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/generate-mecard-qr-code-fsharp">View Full Version</a></p><div class="content"><h2>Introduction</h2>
+<p>Today I learned about MeCard file formats for representing contact information while reading the post <a href="https://andregarzia.com/2023/10/sharing-contacts-using-qr-code.html">Sharing contacts using QR Code without requiring a network connection</a> by Andre Garzia.</p>
+<p>Currently I host my <a href="../vcard.vcf">vCard</a> on my site in a very similar way Andre describes in his post. I've also encoded it in <a href="http://cdn.lqdev.tech/files/images/contact/qr-vcard.svg">QR Code format</a> to make it easy to import and share.</p>
+<p>When I saw the MeCard format, I immediately liked how simple it was so I decided to see how difficult it'd be to write some code to generate a QR code for my own contact data.</p>
+<h2>What is MeCard?</h2>
+<p>According to Wikipedia, MeCard is &quot;...a data file similar to vCard...It is largely compatible with most QR-readers for smartphones. It is an easy way to share a contact with the most used fields. Usually, devices can recognize it and treat it like a contact ready to import.&quot;</p>
+<p>An example might look like: <code>MECARD:N:Doe,John;TEL:13035551212;EMAIL:john.doe@example.com;;</code></p>
+<h2>Encoding text as a QR code using F#</h2>
+<p>I'd written a <a href="/resources/snippets/qr-code-generator">snippet</a> a few years ago to help me generate the QR Codes for all accounts in <a href="/contact">my contact page</a>.</p>
+<p>The snippet is a F# Interactive script which uses <a href="https://www.nuget.org/packages/Net.Codecrete.QrCodeGenerator">Net.Codecrete.QrCodeGenerator NuGet package</a> to encode text as a QR code and saves it to an SVG file.</p>
+<p>The core logic consists of the following code:</p>
+<pre><code class="language-fsharp">let createQrCode (savePath:string) (target:string) = 
+    let qr = QrCode.EncodeText(target,QrCode.Ecc.High)
+    let svgString = qr.ToSvgString(4)
+    File.WriteAllText(savePath,svgString, Encoding.UTF8)
+</code></pre>
+<p>In this case <code>target</code> is the text I want to encode and <code>savePath</code> is the path of the SVG file I'm saving the generated QR code in.</p>
+<p>Given MeCard with the following content:</p>
+<pre><code class="language-csharp">MECARD:N:Doe,John;TEL:13035551212;EMAIL:john.doe@example.com;;
+</code></pre>
+<p>The QR Code generated might look as follows:</p>
+<p><a href="http://cdn.lqdev.tech/files/images/mecard.svg" target="_blank">[Image: MECARD QR CODE]</a></p>
+<p>Scanning the QR Code with a smartphone would then immediately recognize it as a contact and prompt you to save the contact information to your device.</p>
+<h2>Conclusion</h2>
+<p>Since I already had the code snippet to do this available, creating a MeCard was straightforward. I've since added my <a href="/mecard.txt">MeCard</a> alongside by vCard. You can check out the corresponding <a href="http://cdn.lqdev.tech/files/images/contact/qr-mecard.svg">QR code</a> in my <a href="/contact">contact</a> page.</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - rag</title>
+    <link>https://www.lqdev.me/tags/rag</link>
+    <description>All content tagged with 'rag' by Luis Quintanilla</description>
+    <lastBuildDate>2025-05-05 19:53 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>CORG: Generating Answers from Complex, Interrelated Contexts</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In a real-world corpus, knowledge frequently recurs across documents but often contains inconsistencies due to ambiguous naming, outdated information, or errors, leading to complex interrelationships between contexts. Previous research has shown that language models struggle with these complexities, typically focusing on single factors in isolation. We classify these relationships into four types: distracting, ambiguous, counterfactual, and duplicated. Our analysis reveals that no single approach effectively addresses all these interrelationships simultaneously. Therefore, &lt;strong&gt;we introduce Context Organizer (CORG), a framework that organizes multiple contexts into independently processed groups. This design allows the model to efficiently find all relevant answers while ensuring disambiguation. CORG consists of three key components: a graph constructor, a reranker, and an aggregator.&lt;/strong&gt; Our results demonstrate that CORG balances performance and efficiency effectively, outperforming existing grouping methods and achieving comparable results to more computationally intensive, single-context approaches.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/corg-context-organizer-framework</link>
+      <guid>https://www.lqdev.me/bookmarks/corg-context-organizer-framework</guid>
+      <pubDate>2025-05-05 19:53 -05:00</pubDate>
+      <category>rag</category>
+      <category>ai</category>
+      <category>knowledge</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>HybridRAG: Integrating Knowledge Graphs and Vector Retrieval Augmented Generation for Efficient Information Extraction</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Extraction and interpretation of intricate information from unstructured text data arising in financial applications, such as earnings call transcripts, present substantial challenges to large language models (LLMs) even using the current best practices to use Retrieval Augmented Generation (RAG) (referred to as VectorRAG techniques which utilize vector databases for information retrieval) due to challenges such as domain specific terminology and complex formats of the documents. We introduce a novel approach based on a combination, called HybridRAG, of the Knowledge Graphs (KGs) based RAG techniques (called GraphRAG) and VectorRAG techniques to enhance question-answer (Q&amp;amp;A) systems for information extraction from financial documents that is shown to be capable of generating accurate and contextually relevant answers. Using experiments on a set of financial earning call transcripts documents which come in the form of Q&amp;amp;A format, and hence provide a natural set of pairs of ground-truth Q&amp;amp;As, we show that HybridRAG which retrieves context from both vector database and KG outperforms both traditional VectorRAG and GraphRAG individually when evaluated at both the retrieval and generation stages in terms of retrieval accuracy and answer generation. The proposed technique has applications beyond the financial domain&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/hybridrag-knowledge-graphs-vector-rag-info-extraction</link>
+      <guid>https://www.lqdev.me/bookmarks/hybridrag-knowledge-graphs-vector-rag-info-extraction</guid>
+      <pubDate>2024-08-14 21:49 -05:00</pubDate>
+      <category>ai</category>
+      <category>rag</category>
+      <category>graph</category>
+      <category>database</category>
+      <category>knowledgegraph</category>
+      <category>kb</category>
+      <category>vector</category>
+    </item>
+    <item>
+      <title>ARAGOG: Advanced RAG Output Grading</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Retrieval-Augmented Generation (RAG) is essential for integrating external knowledge into Large Language Model (LLM) outputs. While the literature on RAG is growing, it primarily focuses on systematic reviews and comparisons of new state-of-the-art (SoTA) techniques against their predecessors, with a gap in extensive experimental comparisons. This study begins to address this gap by assessing various RAG methods' impacts on retrieval precision and answer similarity. We found that Hypothetical Document Embedding (HyDE) and LLM reranking significantly enhance retrieval precision. However, Maximal Marginal Relevance (MMR) and Cohere rerank did not exhibit notable advantages over a baseline Naive RAG system, and Multi-query approaches underperformed. Sentence Window Retrieval emerged as the most effective for retrieval precision, despite its variable performance on answer similarity. The study confirms the potential of the Document Summary Index as a competent retrieval approach. All resources related to this research are publicly accessible for further investigation through our GitHub repository ARAGOG (this https URL). We welcome the community to further this exploratory study in RAG systems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/predlico/ARAGOG"&gt;GitHub repo&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/aragog-advanced-rag-output-grading</link>
+      <guid>https://www.lqdev.me/responses/aragog-advanced-rag-output-grading</guid>
+      <pubDate>2024-04-09 00:32 -05:00</pubDate>
+      <category>rag</category>
+      <category>ai</category>
+      <category>research</category>
+      <category>llm</category>
+      <category>knowledge</category>
+      <category>retrieval</category>
+      <category>retrievalaugmentedgeneration</category>
+    </item>
+    <item>
+      <title>Enhancing RAG-based application accuracy by constructing and leveraging knowledge graphs</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A practical guide to constructing and retrieving information from knowledge graphs in RAG applications with Neo4j and LangChain&lt;br /&gt;
+&lt;br&gt;
+Graph retrieval augmented generation (Graph RAG) is gaining momentum and emerging as a powerful addition to traditional vector search retrieval methods. This approach leverages the structured nature of graph databases, which organize data as nodes and relationships, to enhance the depth and contextuality of retrieved information.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/enhace-rag-application-accuracy-knowledge-graphs</link>
+      <guid>https://www.lqdev.me/responses/enhace-rag-application-accuracy-knowledge-graphs</guid>
+      <pubDate>2024-03-17 21:29 -05:00</pubDate>
+      <category>knowledgegraph</category>
+      <category>rag</category>
+      <category>genai</category>
+      <category>langchain</category>
+      <category>generativeai</category>
+      <category>retrievalaugmentedgeneration</category>
+      <category>patterns</category>
+      <category>applicationpatterns</category>
+    </item>
+    <item>
+      <title>Levels of Complexity: RAG Applications</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This post comprehensive guide to understanding and implementing RAG applications across different levels of complexity. Whether you're a beginner eager to learn the basics or an experienced developer looking to deepen your expertise, you'll find valuable insights and practical knowledge to help you on your journey. Let's embark on this exciting exploration together and unlock the full potential of RAG applications.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/levels-of-complexity-rag-applications</link>
+      <guid>https://www.lqdev.me/responses/levels-of-complexity-rag-applications</guid>
+      <pubDate>2024-03-07 22:08 -05:00</pubDate>
+      <category>rag</category>
+      <category>ai</category>
+      <category>llm</category>
+      <category>architecture</category>
+      <category>app</category>
+    </item>
+    <item>
+      <title>GraphRAG: Unlocking LLM discovery on narrative private data </title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Perhaps the greatest challenge – and opportunity – of LLMs is extending their powerful capabilities to solve problems beyond the data on which they have been trained, and to achieve comparable results with data the LLM has never seen.  This opens new possibilities in data investigation, such as identifying themes and semantic concepts with context and grounding on datasets.  In this post, we introduce GraphRAG, created by Microsoft Research, as a significant advance in enhancing the capability of LLMs.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/ms-research-graphrag</link>
+      <guid>https://www.lqdev.me/bookmarks/ms-research-graphrag</guid>
+      <pubDate>2024-02-13 21:50 -05:00</pubDate>
+      <category>research</category>
+      <category>ai</category>
+      <category>rag</category>
+      <category>llm</category>
+      <category>data</category>
+      <category>microsoft</category>
+    </item>
+    <item>
+      <title>NVIDIA Chat with RTX</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Chat With RTX is a demo app that lets you personalize a GPT large language model (LLM) connected to your own content—docs, notes, videos, or other data. Leveraging retrieval-augmented generation (RAG), TensorRT-LLM, and RTX acceleration, you can query a custom chatbot to quickly get contextually relevant answers. And because it all runs locally on your Windows RTX PC or workstation, you’ll get fast and secure results.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/nvidia-chat-rtx</link>
+      <guid>https://www.lqdev.me/responses/nvidia-chat-rtx</guid>
+      <pubDate>2024-02-13 21:08 -05:00</pubDate>
+      <category>nvidia</category>
+      <category>chat</category>
+      <category>ai</category>
+      <category>rag</category>
+      <category>chatbot</category>
+      <category>gpu</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Best Practices for LLM Evaluation of RAG Applications</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This blog represents the first in a series of investigations we’re running at Databricks to provide learnings on LLM evaluation.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Recently, the LLM community has been exploring the use of “LLMs as a judge” for automated evaluation with many using powerful LLMs such as GPT-4 to do the evaluation for their LLM outputs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Using the Few Shots prompt with GPT-4 didn’t make an obvious difference in the consistency of results.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Including few examples for GPT-3.5-turbo-16k significantly improves the consistency of the scores, and makes the result usable.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...evaluation results can’t be transferred between use cases and we need to build use-case-specific benchmarks in order to properly evaluate how good a model can meet customer needs.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/best-practices-rag-application-evaluation-databricks</link>
+      <guid>https://www.lqdev.me/bookmarks/best-practices-rag-application-evaluation-databricks</guid>
+      <pubDate>2023-12-11 19:54 -05:00</pubDate>
+      <category>ai</category>
+      <category>rag</category>
+      <category>evaluation</category>
+      <category>llm</category>
+    </item>
+  </channel>
+</rss>

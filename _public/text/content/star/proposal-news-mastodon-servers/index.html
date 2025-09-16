@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>A Proposal for News Organization Mastodon Servers and More - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>A Proposal for News Organization Mastodon Servers and More</h1><div class="content-meta"><div class="content-type">star</div><time datetime="2022-10-29">October 29, 2022</time></div><p><a href="/text/">← Home</a> | <a href="/text/content/star/">← All star</a> | <a href="https://www.lqdev.me/responses/proposal-news-mastodon-servers">View Full Version</a></p><div class="content"><article class="response-card h-entry" ><h2><a href="/responses/proposal-news-mastodon-servers/" >A Proposal for News Organization Mastodon Servers and More</a></h2><div class="response-target" >→ <a href="https://newsletter.danhon.com/archive/4230/" >https://newsletter.danhon.com/archive/4230/</a></div><div class="response-content" ><blockquote class="blockquote">
+<p>Here’s how it works in practice:</p>
+<ol>
+<li>A news organization (or any organization, let’s just start with news) already asserts ownership of its domain e.g. via its certificate, so we piggyback trust off its domain.</li>
+<li>It stands up a Mastodon or other social server at a standard address. I’d propose follow.washingtonpost.com but there’s a bunch of reasons why you might do something else, see below, and uses the agreed well-known autodiscovery protocol to return the address for its Mastodon server (but I don’t see an entry for activitypub or Mastodon yet).</li>
+<li>It creates accounts for its staff on its Mastodon server. Nobody else gets an account; the public can’t sign up.</li>
+</ol>
+</blockquote>
+<blockquote class="blockquote">
+<p>What you get:</p>
+<ol>
+<li>Verified accounts. Instead of relying on a third party to “verify” your account by sticking a blue check against your display name, account provenance and “verification” is inherited as a property of the Mastodon server....</li>
+<li>Ease of discovery...all a user would have to do, to find Washington Post accounts to follow, would be to know the washingtonpost.com domain. Autodiscovery would let your Mastodon client point itself to the appropriate server.</li>
+</ol>
+</blockquote>
+<blockquote class="blockquote">
+<p>Not just news organizations...anyone can set up a Mastodon server...the federation means that “official” accounts become “more official” when their server home is hung off the domain of the actual organization.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>You wouldn’t need Twitter (or anyone else, really) to verify that the UK Prime Minister’s account is official, because you’d have following.gov.uk as the Mastodon server, which means you can trust that server as much as you trust .gov.uk domains.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Your university or college wants you to have a social media account? Sure, you can have it hosted at following.ucla.edu.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>And yes, brands can get in on it. Sure. That way there’s a tiny chance you’re following the Proper Brand Account rather than a Parody Brand Account, which… is probably for the best. Or it’s easier to see that a Parody Account is a Parody Account because you can look at the parent server.</p>
+</blockquote>
+</div></article>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

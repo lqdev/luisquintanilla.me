@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - domain</title>
+    <link>https://www.lqdev.me/tags/domain</link>
+    <description>All content tagged with 'domain' by Luis Quintanilla</description>
+    <lastBuildDate>2022-11-22 10:19 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Use your domain for verification everywhere</title>
+      <description>&lt;![CDATA[&lt;p&gt;I've never had a blue checkmark on Twitter so I can't say what that process is like. Looking at it from the outside though it seems the process isn't simple or straightforward. My experience with verification has been with other applications such as &lt;a href="https://docs.joinmastodon.org/user/profile/#verification"&gt;Mastodon&lt;/a&gt; and &lt;a href="https://indieauth.com/"&gt;IndieAuth&lt;/a&gt;. In both of these cases, the main verification techniques use your domain and/or the &lt;a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/me"&gt;&lt;code&gt;rel=me&lt;/code&gt; link type&lt;/a&gt;. Although with Mastodon you can add multiple verified links to your profile, verification on those external domains pose challenges which include but are not limited to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You can't edit the HTML directly so you can't add a &lt;code&gt;rel=me&lt;/code&gt; link.&lt;/li&gt;
+&lt;li&gt;You can only add one link, so you're forced to choose between your website and Mastodon.&lt;/li&gt;
+&lt;li&gt;In scenarios where multiple links (i.e. e-mail, webpage, Twitter) are supported, Mastodon isn't one of the options&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So how do you overcome these challenges? By using your domain.&lt;/p&gt;
+&lt;p&gt;A few months ago I wrote about &lt;a href="https://www.lqdev.me/posts/static-website-redirects"&gt;owning your links&lt;/a&gt;. The general concept of owning your links is, using your domain to redirect to other properties and profiles you own. For example, instead of telling people to visit my Twitter profile at &lt;em&gt;twitter.com/ljquintanilla&lt;/em&gt;, I can instead point them to &lt;em&gt;lqdev.me/twitter&lt;/em&gt;. Not only does my domain become the source of truth, but in general it's easier to remember compared to usernames and proprietary domains. Since my site is statically generated, I own my links by using &lt;a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta#attr-http-equiv"&gt;http-equiv meta tags&lt;/a&gt;. Although the only job for these pages is to redirect to the specified site, in the end they are still HTML pages. This means, I can embed any other HTML I want, including &lt;code&gt;rel=me&lt;/code&gt; links. By including the &lt;code&gt;rel=me&lt;/code&gt; link in the redirect page, you satisfy the requirements of applications like Mastodon because that's the page they'll land on before being redirected to the target site. As a result, I can verify my GitHub, Twitter, or any other online property I want with Mastodon using my own domain without having to make any changes or overcome any of the challenges imposed by those other platforms. What you end up with is something like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/mastodon-profile-verified-links.png" class="img-fluid" alt="Screenshot of lqdev profile verified links" /&gt;&lt;/p&gt;
+&lt;p&gt;Before signing off, I'll note that this isn't a perfect solution and technically anyone could do the same thing on their own domain in an attempt to impersonate you, so just be aware of that.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/own-your-links-domain-verification</link>
+      <guid>https://www.lqdev.me/notes/own-your-links-domain-verification</guid>
+      <pubDate>2022-11-22 10:19 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>ownyourlinks</category>
+      <category>internet</category>
+      <category>domain</category>
+      <category>identity</category>
+      <category>technology</category>
+      <category>ownership</category>
+    </item>
+    <item>
+      <title>lqdev.me redirect</title>
+      <description>&lt;![CDATA[&lt;p&gt;That was easier than I thought. Visiting &lt;a href="http://lqdev.me"&gt;lqdev.me&lt;/a&gt; now redirects to this site. Redirect isn't limited to the main page though. You can also access any other resources as well. For example, visiting &lt;a href="http://lqdev.me/feed"&gt;lqdev.me/feed&lt;/a&gt; would redirect you to the main feed on this site.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/lqdevme-redirect</link>
+      <guid>https://www.lqdev.me/notes/lqdevme-redirect</guid>
+      <pubDate>10/22/2021 13:57 -05:00</pubDate>
+      <category>website</category>
+      <category>domain</category>
+      <category>redirect</category>
+      <category>ownyourlinks</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - All Updates</title>
+    <link>https://www.lqdev.me/feed</link>
+    <description>All content updates from Luis Quintanilla's website</description>
+    <lastBuildDate>2025-09-15 19:48 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>How people use ChatGPT</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Despite the rapid adoption of LLM chatbots, little is known about how they are used. We document the growth of ChatGPT’s consumer product from its launch in November 2022 through July 2025, when it had been adopted by around 10% of the world’s adult population. Early adopters were disproportionately male but the gender gap has narrowed dramatically, and we find higher growth rates in lower-income countries. Using a privacy-preserving automated pipeline, we classify usage patterns within a representative sample of ChatGPT conversations. We find steady growth in work-related messages but even faster growth in non-work-related messages, which have grown from 53% to more than 70% of all usage. Work usage is more common for educated users in highly-paid professional occupations. We classify messages by conversation topic and find that “Practical Guidance,” “Seeking Information,” and “Writing” are the three most common topics and collectively account for nearly 80% of all conversations. Writing dominates work-related tasks, highlighting chatbots’ unique ability to generate digital outputs compared to traditional search engines. Computer programming and self-expression both represent relatively small shares of use. Overall, we find that ChatGPT provides economic value through decision support, which is especially important in knowledge-intensive jobs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.nber.org/system/files/working_papers/w34255/w34255.pdf"&gt;PDF&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/how-people-use-chatgpt-national-bureau-economic-research</link>
+      <guid>https://www.lqdev.me/bookmarks/how-people-use-chatgpt-national-bureau-economic-research</guid>
+      <pubDate>2025-09-15 19:48 -05:00</pubDate>
+      <category>ai</category>
+      <category>openai</category>
+      <category>research</category>
+      <category>chatgpt</category>
+      <category>economics</category>
+    </item>
+    <item>
+      <title>Bison herds 'reawaken' Yellowstone's prairies</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A new study published Thursday in Science finds that bringing North America's largest land mammals back to their ancient stomping grounds is breathing new life into grassland ecosystems, with benefits cascading across the food web.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;By munching through grasses, bison speed up the nitrogen cycle, supercharging plants with nutrients.&lt;br /&gt;
+&lt;br&gt;
+The result: forage that is more than 150% richer in protein—a gift to every creature that feeds on the prairie, from elk and deer to pronghorn and bighorn sheep.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/bison-herds-reawaken-yellowstone-prairies</link>
+      <guid>https://www.lqdev.me/responses/bison-herds-reawaken-yellowstone-prairies</guid>
+      <pubDate>2025-09-15 14:02 -05:00</pubDate>
+      <category>nature</category>
+      <category>science</category>
+      <category>bison</category>
+      <category>yellowstone</category>
+      <category>nationalpark</category>
+    </item>
+    <item>
+      <title>Copilot, add new features. But first, coffee</title>
+      <description>&lt;![CDATA[&lt;p&gt;Something I've tried to make a habit of on a weekly basis is compiling a post which aggregates all posts on my website from the past week. Because right now it's not fully automated and I haven't been posting as much, there are gaps.&lt;/p&gt;
+&lt;p&gt;The process is fairly straightforward. I run a script that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Collects all of the previous week's posts&lt;/li&gt;
+&lt;li&gt;Drafts a note with links to all the posts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then, I publish the post.&lt;/p&gt;
+&lt;p&gt;Given this is mostly automated, I decided it was something I could just create a GitHub Action to do the post generation and publishing on my behalf.&lt;/p&gt;
+&lt;p&gt;However, there were some issues with the original file generation and formatting that were annoying, but easy enough to fix manually so I never invested time in fixing them.&lt;/p&gt;
+&lt;p&gt;This morning, I created a few issues describing the features and improvements I wanted to make. Worth noting, I did this from my phone.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/lqdev/luisquintanilla.me/issues/213"&gt;#213&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/lqdev/luisquintanilla.me/issues/215"&gt;#215&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Rather than working on them though, I assigned them to GitHub Coding Agent and stepped out to grab coffee.&lt;/p&gt;
+&lt;p&gt;The agent worked on solutions in the background and by the time I got back, I had working solutions. They weren't perfect but with no input from me, it got 90-95% of it right. The rest were minor refinements.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/copilot-add-new-features-but-first-coffee</link>
+      <guid>https://www.lqdev.me/notes/copilot-add-new-features-but-first-coffee</guid>
+      <pubDate>9/14/2025 10:31 PM -05:00</pubDate>
+      <category>github</category>
+      <category>copilot</category>
+      <category>ai</category>
+      <category>indieweb</category>
+      <category>blogging</category>
+      <category>githubactions</category>
+    </item>
+    <item>
+      <title>Testing my GH mobile publishing flow</title>
+      <description>&lt;![CDATA[&lt;h2&gt;This is a post&lt;/h2&gt;
+&lt;p&gt;As far as posts go it's &lt;strong&gt;bold&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I can write &lt;em&gt;code&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;let x = 1
+x * x
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;To be or not to be&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Maybe one day we will&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add responses&lt;/li&gt;
+&lt;li&gt;Add bookmarks&lt;/li&gt;
+&lt;li&gt;Add media posts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here are some attachments?&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/5ae15c0b-fac2-4ec5-be39-15fe6db277ca" class="img-fluid" alt="Image" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/test-github-mobile-post</link>
+      <guid>https://www.lqdev.me/notes/test-github-mobile-post</guid>
+      <pubDate>9/14/2025 9:50 PM -05:00</pubDate>
+      <category>github</category>
+      <category>blogging</category>
+      <category>githubactions</category>
+      <category>cicd</category>
+      <category>indieweb</category>
+      <category>website</category>
+    </item>
+    <item>
+      <title>Week of September 14, 2025 - Post Summary</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/notes/crawford-canelo-2025"&gt;Crawford vs. Canelo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/notes/tennessee-georgia-2025"&gt;Tennessee vs. Georgia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/notes/crate-finds-august-2025"&gt;Crate Finds - August 2025&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Bookmarks&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/real-simple-licensing-open-standard"&gt;Real Simple Licensing&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Replies&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/which-static-site-generator-use-reply-mastodon-joe"&gt;Which Static Site Generator (SSG) do I use?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/posthog-meowwolf"&gt;PostHog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Reshares&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/ray-dalio-diary-of-a-ceo-podcast-2025"&gt;Ray Dalio on Diary of a CEO&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/notes-why-blogging-lost-twitter-winer"&gt;Notes on why blogging lost to Twitter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/protect-backcountry-forests-roadless-rule-petition"&gt;Protect Backcountry U.S. Forests&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/last-days-social-media-noemag"&gt;The Last Days of Social Media&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/filter-youtube-video-rss-feed"&gt;Filter YouTube RSS Feeds&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/masdoton-launches-quote-posts"&gt;Mastodon Launching Quote Posts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/internet-hidden-creative-rennaissance-indieweb"&gt;The Internet's Hidden Creative Renaissance&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Stars&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/breathing-with-the-forest-emergence"&gt;Breathing with the forest&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/salmon-metal-bear-national-park"&gt;Salmon Metal&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/geek-to-live-tumblelog"&gt;Geek To Live - Tumblelog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/no-rule-says-stay-on-social-media"&gt;No Rule Says We Have To Stay on Social Media&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/return-cassette-tape-analog-media-comeback"&gt;The Return of the Cassette Tape&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/responses/mistake-music-teachers-make-ted-talk"&gt;The mistake music teachers make&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Reviews&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/reviews/serviceberry-robin-wall-kimerrer"&gt;The Serviceberry&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Media&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/media/lossless-audio-coming-spotify"&gt;Lossless audio coming to Spotify&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/media/just-ordered-internet-phone-book-issue-1"&gt;Just ordered Internet Phone Book&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/media/toy-story-underpass"&gt;Urban Toy Story&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/2025-09-14-weekly-post-summary</link>
+      <guid>https://www.lqdev.me/notes/2025-09-14-weekly-post-summary</guid>
+      <pubDate>2025-09-14 23:03 +00:00</pubDate>
+      <category>weeklysummary</category>
+      <category>blogging</category>
+      <category>website</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>Crawford vs. Canelo</title>
+      <description>&lt;![CDATA[&lt;p&gt;Masterclass performance from Crawford. Made that look easy.&lt;/p&gt;
+&lt;p&gt;After tonight he reached legendary status.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/crawford-canelo-2025</link>
+      <guid>https://www.lqdev.me/notes/crawford-canelo-2025</guid>
+      <pubDate>2025-09-14 00:51 -05:00</pubDate>
+      <category>boxing</category>
+      <category>canelo</category>
+      <category>crawford</category>
+    </item>
+    <item>
+      <title>Tennessee vs. Georgia</title>
+      <description>&lt;![CDATA[&lt;p&gt;This game is wild!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/tennessee-georgia-2025</link>
+      <guid>https://www.lqdev.me/notes/tennessee-georgia-2025</guid>
+      <pubDate>2025-09-13 17:58 -05:00</pubDate>
+      <category>football</category>
+      <category>ncaaf</category>
+      <category>tennessee</category>
+      <category>georgia</category>
+    </item>
+    <item>
+      <title>The Serviceberry by Robin Wall Kimerrer</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;As Indigenous scientist and author of Braiding Sweetgrass Robin Wall Kimmerer harvests serviceberries alongside the birds, she considers the ethic of reciprocity that lies at the heart of the gift economy. How, she asks, can we learn from Indigenous wisdom and the plant world to reimagine what we value most? Our economy is rooted in scarcity, competition, and the hoarding of resources, and we have surrendered our values to a system that actively harms what we love. Meanwhile, the serviceberry’s relationship with the natural world is an embodiment of reciprocity, interconnectedness, and gratitude. The tree distributes its wealth—its abundance of sweet, juicy berries—to meet the needs of its natural community. And this distribution ensures its own survival. As Kimmerer explains, “Serviceberries show us another model, one based upon reciprocity, where wealth comes from the quality of your relationships, not from the illusion of self-sufficiency.”&lt;br /&gt;
+&lt;br&gt;
+As Elizabeth Gilbert writes, Robin Wall Kimmerer is “a great teacher, and her words are a hymn of love to the world.” The Serviceberry is an antidote to the broken relationships and misguided goals of our times, and a reminder that “hoarding won’t save us, all flourishing is mutual.”&lt;br /&gt;
+&lt;br&gt;
+Robin Wall Kimmerer is donating her advance payments from this book as a reciprocal gift, back to the land, for land protection, restoration, and justice.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Review&lt;/h2&gt;
+&lt;p&gt;I'm happy my name is not Darren.&lt;/p&gt;
+&lt;p&gt;What started as an &lt;a href="https://emergencemagazine.org/essay/the-serviceberry/"&gt;essay&lt;/a&gt; expanded into book form. I like how Robin uses her experience working with plants and nature and draws parallels to our society and way of life. We are not separate from nature and it has a lot of lessons we could learn from.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/reviews/serviceberry-robin-wall-kimerrer</link>
+      <guid>https://www.lqdev.me/reviews/serviceberry-robin-wall-kimerrer</guid>
+      <pubDate>09/13/2025 14:03 -05:00</pubDate>
+    </item>
+    <item>
+      <title>Which Static Site Generator (SSG) do I use?</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;&lt;a href="https://xoxo.zone/@artlung/"&gt;@artlung@xoxo.zone&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;When I first started, I used Hexo.&lt;/p&gt;
+&lt;p&gt;Then, I moved to Hugo.&lt;/p&gt;
+&lt;p&gt;Ultimately though, I decided to roll my own.&lt;/p&gt;
+&lt;p&gt;Currently my site's content and the generator live in the same &lt;a href="https://github.com/lqdev/luisquintanilla.me"&gt;repo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While not up to date, my &lt;a href="https://www.lqdev.me/colophon"&gt;colophon&lt;/a&gt; contains details of how my site is built. The &lt;a href="https://github.com/lqdev/luisquintanilla.me/blob/main/README.md"&gt;README&lt;/a&gt; in the repo also contains more up to date information since the massive revamp I made last month (which I still need to write about). I think that revamp and decoupling of various components in my site would've been significantly harder had I not been in complete control of my codebase.&lt;/p&gt;
+&lt;p&gt;Although I have to pay a maintenance toll by owning the code that generates my site, knowing the entire codebase also gives me freedom to experiment and explore.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/which-static-site-generator-use-reply-mastodon-joe</link>
+      <guid>https://www.lqdev.me/responses/which-static-site-generator-use-reply-mastodon-joe</guid>
+      <pubDate>2025-09-13 12:25 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>website</category>
+      <category>staticsitegenerator</category>
+      <category>ssg</category>
+      <category>fsharp</category>
+    </item>
+    <item>
+      <title>Breathing with the forest</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;This is beautiful.&lt;/p&gt;
+&lt;p&gt;What an amazing project.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/breathing-with-the-forest-emergence</link>
+      <guid>https://www.lqdev.me/responses/breathing-with-the-forest-emergence</guid>
+      <pubDate>2025-09-13 09:21 -05:00</pubDate>
+      <category>art</category>
+      <category>nature</category>
+      <category>forest</category>
+      <category>mindfulness</category>
+      <category>meditation</category>
+    </item>
+    <item>
+      <title>Lossless audio coming to Spotify</title>
+      <description>&lt;![CDATA[Album containing 0 photos]]&gt;</description>
+      <link>https://www.lqdev.me/media/lossless-audio-coming-spotify</link>
+      <guid>https://www.lqdev.me/media/lossless-audio-coming-spotify</guid>
+      <pubDate>2025-09-13 09:16 -05:00</pubDate>
+      <category>music</category>
+      <category>spotify</category>
+    </item>
+    <item>
+      <title>Salmon Metal</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;This is a banger&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=GZUTc5ZPzrM" title="Salmon Metal"&gt;&lt;img src="http://img.youtube.com/vi/GZUTc5ZPzrM/0.jpg" class="img-fluid" alt="Salmon Metal" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/salmon-metal-bear-national-park</link>
+      <guid>https://www.lqdev.me/responses/salmon-metal-bear-national-park</guid>
+      <pubDate>2025-09-13 08:41 -05:00</pubDate>
+      <category>bear</category>
+      <category>metal</category>
+      <category>music</category>
+      <category>nationalpark</category>
+      <category>nature</category>
+    </item>
+    <item>
+      <title>PostHog</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;You had me at Meow Wolf.&lt;/p&gt;
+&lt;p&gt;This is a cool site. Thanks for sharing.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/posthog-meowwolf</link>
+      <guid>https://www.lqdev.me/responses/posthog-meowwolf</guid>
+      <pubDate>2025-09-12 22:47 -05:00</pubDate>
+      <category>posthog</category>
+      <category>meowwolf</category>
+      <category>web</category>
+      <category>retro</category>
+      <category>art</category>
+      <category>fun</category>
+    </item>
+    <item>
+      <title>Ray Dalio on Diary of a CEO</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;If you get past the doom and gloom, this is a nice conversation with Ray Dalio on systems, team building, and mindfulness.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=49RT6SQ8n0Y" title="Ray Dalio on Diary of a CEO"&gt;&lt;img src="http://img.youtube.com/vi/49RT6SQ8n0Y/0.jpg" class="img-fluid" alt="Ray Dalio on Diary of a CEO" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/ray-dalio-diary-of-a-ceo-podcast-2025</link>
+      <guid>https://www.lqdev.me/responses/ray-dalio-diary-of-a-ceo-podcast-2025</guid>
+      <pubDate>2025-09-12 22:20 -05:00</pubDate>
+      <category>podcast</category>
+      <category>diaryofaceo</category>
+    </item>
+    <item>
+      <title>Just ordered Internet Phone Book</title>
+      <description>&lt;![CDATA[Album containing 0 photos]]&gt;</description>
+      <link>https://www.lqdev.me/media/just-ordered-internet-phone-book-issue-1</link>
+      <guid>https://www.lqdev.me/media/just-ordered-internet-phone-book-issue-1</guid>
+      <pubDate>2025-09-12 21:50 -05:00</pubDate>
+      <category>smallweb</category>
+      <category>indieweb</category>
+      <category>socialweb</category>
+    </item>
+    <item>
+      <title>Notes on why blogging lost to Twitter</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;I haven't listened to the &lt;a href="https://shownotes.scripting.com/scripting/2025/09/08/whyBloggingLostToTwitterAndOtherFolkSongs.html"&gt;podcast&lt;/a&gt; yet but there's a lot of good points.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Subscribing in feed readers required too many steps: copying URLs, menus, pasting, confirming.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Blogging lost to Twitter because Twitter had one-click subscribe.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Rebooting the blogosphere requires cooperation and a universal &amp;quot;follow&amp;quot; button.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/notes-why-blogging-lost-twitter-winer</link>
+      <guid>https://www.lqdev.me/responses/notes-why-blogging-lost-twitter-winer</guid>
+      <pubDate>2025-09-12 21:16 -05:00</pubDate>
+      <category>blog</category>
+      <category>indieweb</category>
+      <category>feed</category>
+      <category>rss</category>
+      <category>blogosphere</category>
+    </item>
+    <item>
+      <title>Geek To Live - Tumblelog</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;A blast from the past. Can't believe this post is still available.&lt;/p&gt;
+&lt;p&gt;Almost two decades later and it feels like we're still figuring out how to share and express ourselves online.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;These are the reasons most people abandon their personal weblog or never start one. But we all come across interesting tidbits online every day that we want to remember and share - links, photos, videos, even that side-splitting IM session you had with your co-worker. A new blog format, called a &amp;quot;tumblelog,&amp;quot; is a no-hassle, no-writing-required way to share those bits and maintain a personal site with the least possible commitment.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A new service called Tumblr can publish your tumblelog with minimal setup and for free.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/geek-to-live-tumblelog</link>
+      <guid>https://www.lqdev.me/responses/geek-to-live-tumblelog</guid>
+      <pubDate>2025-09-12 21:05 -05:00</pubDate>
+      <category>blog</category>
+      <category>tumblr</category>
+      <category>microblog</category>
+    </item>
+    <item>
+      <title>Protect Backcountry U.S. Forests</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Make your voice heard beyond signing the petition by submitting a personal comment directly to the U.S. Forest Service during the public comment period, open until September 19, 2025.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;For nearly 25 years, the Roadless Rule protected nearly one-third of our federal forestlands from major logging operations and oil-and-gas drilling. While nearly half of U.S. federal forest lands are open to these industries, the areas protected by the Roadless Rule are home to massive old-growth carbon sinks, habitats for vulnerable fish and wildlife, migratory corridors for game species and millennia-old cultural landscapes for Indigenous communities. They are beloved destinations for climbers, hikers, mountain bikers, paddlers, backcountry skiers and more and act as critical sources of clean drinking water for over 60 million people in 33 states.But the U.S. Department of Agriculture wants to end the Roadless Rule’s protections across nearly 45 million acres of the National Forest System. Unless we act now, we will lose protections for precious backcountry forestlands. Add your voice and tell the Department of Agriculture to reverse course before it’s too late.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;&lt;a href="https://www.rei.com/action/network/campaign/roadless-rule"&gt;Submit Your Comment&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.fs.usda.gov/managing-land/planning/roadless"&gt;Learn More&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/protect-backcountry-forests-roadless-rule-petition</link>
+      <guid>https://www.lqdev.me/responses/protect-backcountry-forests-roadless-rule-petition</guid>
+      <pubDate>2025-09-12 20:55 -05:00</pubDate>
+      <category>nature</category>
+      <category>civics</category>
+      <category>publiclands</category>
+    </item>
+    <item>
+      <title>Real Simple Licensing</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The open content licensing standard for the AI-first Internet&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/real-simple-licensing-open-standard</link>
+      <guid>https://www.lqdev.me/bookmarks/real-simple-licensing-open-standard</guid>
+      <pubDate>2025-09-12 20:48 -05:00</pubDate>
+      <category>rsl</category>
+      <category>ai</category>
+      <category>licensing</category>
+      <category>openstandard</category>
+    </item>
+    <item>
+      <title>No Rule Says We Have To Stay on Social Media</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;💯💯💯&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;If we can go back to vinyl records and film cameras, we can go back to blogs and RSS feeds.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Do we need permission from the masses before we do something that might bring us joy?&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/no-rule-says-stay-on-social-media</link>
+      <guid>https://www.lqdev.me/responses/no-rule-says-stay-on-social-media</guid>
+      <pubDate>2025-09-12 20:46 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>socialweb</category>
+      <category>socialmedia</category>
+      <category>rss</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Creating A Login Screen With React Native - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Creating A Login Screen With React Native</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2017-12-09">December 9, 2017</time><p>Tags: react, react native, javascript</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/create-login-screen-react-native">View Full Version</a></p><div class="content"><p>This assumes that you have Node and NPM installed on your PC. If not, you can go to the official website and install them. Then, come back to this page.</p>
+<h1>Part I – Install React-Native</h1>
+<pre><code class="language-bash">npm install -g create-react-native-app
+</code></pre>
+<h1>Part II – Create and Run Project</h1>
+<pre><code class="language-bash">create-react-native-app myfirstreactnativeapp
+cd myfirstreactnativeapp
+npm start
+</code></pre>
+<h1>Part III – Create Login Screen</h1>
+<p>In the <code>App.js</code> file that is created, we’re going to want to edit a few details.</p>
+<p>At the top of the file, add the following line of code to import the visual components we will utilize to create the page.</p>
+<pre><code class="language-javascript">Import { TextInput, StyleSheet, Button } from 'react-native';
+</code></pre>
+<p>Inside of your <code>App</code> class, you want to add a few things. The first would be to add a constructor for the component. This will allow us to define and keep track of the text input being provided by the user.</p>
+<pre><code class="language-javascript">constructor(props) {
+  super(props);
+  this.state = {
+    name: &quot;&quot;,
+    email: &quot;&quot;,
+    password: &quot;&quot;
+  }
+}
+</code></pre>
+<p>Then, we want to update our render method to show the text inputs and submit button.</p>
+<pre><code class="language-javascript">render(){
+  return (
+    &lt;View&gt;
+      &lt;TextInput
+        style={styles.input}
+        onChangeText={(text) =&gt; this.setState({name: text})}
+        placeholder=&quot;Name&quot;
+      /&gt;
+      &lt;TextInput
+        style={styles.input}
+        onChangeText={(text) =&gt; this.setState({email: text})}
+        placeholder=&quot;E-Mail&quot;
+      /&gt;
+      &lt;TextInput
+        style={styles.input}
+        onChangeText={(text) =&gt; this.setState({password:text})}
+        secureTextEntry={true}
+        placeholder=&quot;Password&quot;
+      /&gt;
+      &lt;Button
+        onPress={this.submit}
+        title=&quot;Submit&quot;
+        color=&quot;#841584&quot;
+      /&gt;
+    &lt;/View&gt;
+  )
+}
+</code></pre>
+<p>Using the <code>StyleSheet</code> component, we’ll also want to add some styling to our inputs. We can do so by adding the following lines of code outside of our App class definition. These styles are applied as properties of the <code>TextInput</code> components inside the App class.</p>
+<pre><code class="language-javascript">const styles = StyleSheet.create({
+  input: {
+    width: 250,
+    margin: 5
+  }
+});
+</code></pre>
+<p>Finally, we need to create a submit method to handle the press event on the submit button. I have left it blank, since how you pass the e-mail and password is entirely up to you (although hopefully it is in the body of an HTTP Request as opposed to url parameters).</p>
+<pre><code class="language-javascript">submit() {
+//Do Something
+}
+</code></pre>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

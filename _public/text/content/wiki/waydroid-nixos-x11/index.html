@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Running Waydroid on NixOS using X11 - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Running Waydroid on NixOS using X11</h1><div class="content-meta"><div class="content-type">wiki</div><time datetime="2023-10-06">October 6, 2023</time><p>Tags: android, linux, nixos, x11, waydroid</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/wiki/">← All wiki</a> | <a href="https://www.lqdev.me/resources/wiki/waydroid-nixos-x11">View Full Version</a></p><div class="content"><h2>Overview</h2>
+<h2>Packages</h2>
+<ul>
+<li><a href="https://search.nixos.org/packages?channel=23.05&amp;show=weston&amp;from=0&amp;size=50&amp;sort=relevance&amp;type=packages&amp;query=weston">weston</a> - Wayland compositor</li>
+</ul>
+<h2>NixOS Configuration</h2>
+<pre><code class="language-nix">virtualisation = {
+    waydroid = {
+        enable = true;
+    };
+};
+<p>environment.systemPackages = with pkgs; [weston];
+</code></pre></p>
+<h3>Initialize Waydroid</h3>
+<p>This downloads the LineageOS image and installs it</p>
+<pre><code class="language-bash"># Fetch WayDroid images.
+# You can add the parameters &quot;-s GAPPS -f&quot; to have GApps support.
+sudo waydroid init
+</code></pre>
+<h3>Start Waydroid</h3>
+<ol>
+<li><p>Open the terminal and start the waydroid container</p>
+<pre><code class="language-bash">sudo systemctl start waydroid-container
+</code></pre>
+</li>
+<li><p>Check status of container</p>
+<pre><code class="language-bash">sudo journalctl -u waydroid-container
+</code></pre>
+</li>
+<li><p>Open terminal and start weston</p>
+<pre><code class="language-bash">weston
+</code></pre>
+</li>
+<li><p>In the weston window, open a terminal and start Waydroid sesson in the background</p>
+<pre><code class="language-bash">waydroid session start &amp;
+</code></pre>
+</li>
+<li><p>Start the UI</p>
+<pre><code class="language-bash">waydroid show-full-ui
+</code></pre>
+</li>
+</ol>
+<h3>Stop Waydroid</h3>
+<ol>
+<li><p>Close weston window</p>
+</li>
+<li><p>Stop waydroid container</p>
+<pre><code class="language-bash">sudo systemctl stop waydroid-container
+</code></pre>
+</li>
+</ol>
+<h4>Remove user data</h4>
+<p>Only do this if you don't want to persist anything from that container</p>
+<pre><code class="language-bash"># Removing images and user data
+sudo rm -r /var/lib/waydroid/* ~/.local/share/waydroid
+</code></pre>
+<h3>Update Android</h3>
+<pre><code class="language-bash">sudo waydroid upgrade
+</code></pre>
+<h3>General Usage</h3>
+<pre><code class="language-bash"># Start Android UI
+waydroid show-full-ui
+<h1>List Android apps</h1>
+<p>waydroid app list</p>
+<h1>Start an Android app</h1>
+<p>waydroid app launch &lt;application name&gt;</p>
+<h1>Install an Android app</h1>
+<p>waydroid app install &lt;/path/to/app.apk&gt;</p>
+<h1>Enter the LXC shell</h1>
+<p>sudo waydroid shell</p>
+<h1>Overrides the full-ui width</h1>
+<p>waydroid prop set persist.waydroid.width 608
+</code></pre></p>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://nixos.wiki/wiki/WayDroid">NixOS Wiki - WayDroid</a></li>
+<li><a href="https://unix.stackexchange.com/questions/732485/script-to-start-android-lineageos-with-waydroid-in-an-x11-session">Script to start LineageOS on X11</a></li>
+<li><a href="https://github.com/waydroid/waydroid/issues/195#issuecomment-953926526">Any plan to support X11?</a></li>
+</ul>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

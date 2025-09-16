@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - graphrag</title>
+    <link>https://www.lqdev.me/tags/graphrag</link>
+    <description>All content tagged with 'graphrag' by Luis Quintanilla</description>
+    <lastBuildDate>2024-11-04 21:59 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Microsoft Research: Introducing DRIFT Search</title>
+      <description>&lt;![CDATA[[reshare] &lt;h2&gt;Introducing DRIFT Search: Combining global and local search methods to improve quality and efficiency&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;DRIFT search (Dynamic Reasoning and Inference with Flexible Traversal)...builds upon Microsoft’s GraphRAG technique, combining characteristics of both global and local search to generate detailed responses in a method that balances computational costs with quality outcomes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;DRIFT Search: A step-by-step process&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Primer&lt;/strong&gt;: When a user submits a query, DRIFT compares it to the top K most semantically relevant community reports. This generates an initial answer along with several follow-up questions, which act as a lighter version of global search. To do this, we expand the query using Hypothetical Document Embeddings (HyDE), to increase sensitivity (recall), embed the query, look up the query against all community reports, select the top K and then use the top K to try to answer the query. The aim is to leverage high-level abstractions to guide further exploration.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Follow-Up&lt;/strong&gt;: With the primer in place, DRIFT executes each follow-up using a local search variant. This yields additional intermediate answers and follow-up questions, creating a loop of refinement that continues until the search engine meets its termination criteria, which is currently configured for two iterations (further research will investigate reward functions to guide terminations). This phase represents a globally informed query refinement. Using global data structures, DRIFT navigates toward specific, relevant information within the knowledge graph even when the initial query diverges from the indexing persona. This follow-up process enables DRIFT to adjust its approach based on emerging information.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Output Hierarchy&lt;/strong&gt;: The final output is a hierarchy of questions and answers ranked on their relevance to the original query. This hierarchical structure can be customized to fit specific user needs. During benchmark testing, a naive map-reduce approach aggregated all intermediate answers, with each answer weighted equally.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-drift-search</link>
+      <guid>https://www.lqdev.me/responses/introducing-drift-search</guid>
+      <pubDate>2024-11-04 21:59 -05:00</pubDate>
+      <category>ai</category>
+      <category>search</category>
+      <category>RAG</category>
+      <category>llm</category>
+      <category>microsoft</category>
+      <category>research</category>
+      <category>msr</category>
+      <category>graphrag</category>
+    </item>
+  </channel>
+</rss>

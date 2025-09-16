@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>First Steps with NixOS - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>First Steps with NixOS</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2023-08-22">August 22, 2023</time><p>Tags: nixos, linux, os, nix, sysadmin, floss</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/first-steps-nixos">View Full Version</a></p><div class="content"><h2>Introduction</h2>
+<p>For the longest time, when using Linux distributions, I chose those that were Debian-based. I still do for servers. However, on the dekstop I switched to <a href="https://manjaro.org/">Manjaro</a>, which is Arch-based, about two years ago. Two years is a long time without distro-hopping, so I was long overdue. I've been following the <a href="https://nixos.org/">NixOS</a> project for some time but since I was happy with my setup, I didn't consider making the switch. However, a month ago, I decided to <a href="/notes/maybe-switching-nixos">dip my toes</a>. I installed NixOS on a flash drive and started tinkering with it. In this post, I'll provide some of my initial impressions and things I find appealing about the OS.</p>
+<h2>Declarative configuration</h2>
+<p>One of the first things I did when I booted into my new NixOS installation was get familiar with the <a href="https://nixos.wiki/wiki/Overview_of_the_NixOS_Linux_distribution#Declarative_Configuration">configuration file</a>. The configuration file is authored using the <a href="https://nix.dev/tutorials/first-steps/nix-language">Nix programming language</a> and it's the place where you configure your entire system, including services, packages, and desktop environments. The best way I can describe it is a Dockerfile for your desktop. If interested, you can find my <a href="/resources/snippets/nixos-configuration/">config file</a> on the scripts section of this website.</p>
+<p>There's a few advantages to this approach:</p>
+<ol>
+<li><p><strong>Configurations are stored in a single place</strong> - The advantage to this is, I don't have to figure out where the configuration files for each of the components of my system are. I can manage everything in one place. A perfect example where the configuration file goes beyond what I expected was being able to include my bash configuration. Typically, I'd have that configuration in my <code>bashrc</code> file. With NixOS, I can just include that in the configuration file as follows:</p>
+<pre><code class="language-nix">programs.bash = {
+    shellAliases = {
+        emacs=&quot;emacs -nw&quot;;
+    };
+};
+</code></pre>
+</li>
+<li><p><strong>Enables composition</strong> - Because the configuration file is effectively a script, I can modularize the difference pieces. For example, if I wanted to split out my service and package configurations into separate files, I can do so and reference those individual files from my configuration file, separating concerns while still keeping my system configuration simple.</p>
+</li>
+<li><p><strong>Version control</strong> - Because the configuration file is just like any other plain text file, it means I can check it into the version control system or cloud service of my choice and manage it that way. In doing so, not only can I roll back using the built-in NixOS mechanisms, but I have another layer of security in case I need to recover that file.</p>
+</li>
+</ol>
+<p>Now, because I can define everything about my system in the configuration file, this means I can seamlessly rebuild my entire system using this single file in a reproducible manner.</p>
+<h2>Reproducible builds</h2>
+<p>I got to experience first-hand how the configuration file can simplify out-of-box-experiences and system configurations. Initially, I did not install NixOS on my main hard drive. All of my configuration and learning took place on a flash drive. Once I got my configuration to a place I was satisfied, it was time to take the plunge and reimage my PC. In the past, when I've done something similar, I've had to document everything I did when configuring my system. That's where posts like <a href="/posts/setting-up-new-ubuntu-pc/">Setting up a new Ubuntu PC</a> come from. With NixOS, all I needed to do was replace my configuration file with the one I configured on the flash drive. Then, when I ran <code>nixos-rebuild switch</code>, my system was configured exactly like the one on the flash drive.</p>
+<h2>Risk-free software evaluations</h2>
+<p>This is something I haven't tried yet, but I could easily see it coming in handy. Sometimes I might need a piece of software to do one thing or maybe I want to see whether it'll solve a problem I'm facing. In order to try it out and use it, I need to install it globally. This can cause changes to my system permanently that I don't want. With NixOS, you can create <a href="https://nix.dev/tutorials/first-steps/ad-hoc-shell-environments#ad-hoc-shell-environments">ad-hoc shell environments</a>. These environments make temporary changes to your system, so you can evaluate a piece of software or use it that one time. Then, when you exit the environment, the software is no longer installed in your system.</p>
+<h2>Large package selection</h2>
+<p>A <a href="https://search.nixos.org/packages">large package selection</a> to choose from is something I got used to with Manjaro. Being an Arch-based distribution, I had access to the <a href="https://aur.archlinux.org/">Arch User Repository (AUR)</a>. Moving to NixOS, it's nice to know that in this area, NixOS offers great support. Additionally, NixOS has built-in support for <a href="https://nixos.wiki/wiki/Flatpak">Flatpak</a></p>
+<h2>Still exploring</h2>
+<p>There's still a few things I don't really get. For example, when installing the .NET SDK, I wanted to have side-by-side installs of the latest STS (7.0) and LTS (6.0). However, including the package names in my configuration file didn't work as expected. Instead I had to use the following convention.</p>
+<pre><code class="language-nix">(with dotnetCorePackages; combinePackages [
+    dotnet-sdk
+    dotnet-sdk_7
+])
+</code></pre>
+<p>As I learn more, this will probably make more sense but for now it's a mystery.</p>
+<h2>Conclusion</h2>
+<p>Overall, I'm happy with NixOS and I can see myself using it for the long-term. Hopefully longer than two years. I'm not a gamer so I can't say how well it does in that front. For web browsing and software development though, I really like what NixOS has to offer. If some of the things I mentioned above sound interesting, I'd encourage you to install it on a flash drive and start tinkering with it.</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

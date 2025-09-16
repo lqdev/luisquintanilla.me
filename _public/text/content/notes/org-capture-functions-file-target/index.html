@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>User-provided target file names in Org Capture - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>User-provided target file names in Org Capture</h1><div class="content-meta"><div class="content-type">notes</div><time datetime="2024-07-30">July 30, 2024</time><p>Tags: emacs, orgmode, capture, org, website, templates, gnu</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/notes/">← All notes</a> | <a href="https://www.lqdev.me/notes/org-capture-functions-file-target">View Full Version</a></p><div class="content"><p>I finally got my website note org-capture template working for new files.</p>
+<p>Originally, I only had it working on existing files using this snippet.</p>
+<pre><code class="language-elisp">(&quot;wne&quot;
+ &quot;Creates a note in an existing file&quot;
+ plain
+ (file buffer-file-name)
+ (file ,(file-name-concat website-template-dir &quot;note.txt&quot;)))
+</code></pre>
+<p>This template uses the file name of the current buffer to select the insertion target.</p>
+<p>Getting it to work with a new file specified by the user, requires a small tweak.</p>
+<pre><code class="language-elisp">(&quot;wnn&quot;
+ &quot;Creates a note in a new file&quot;
+ plain
+ (file (lambda () (file-name-concat website-note-dir (format &quot;%s.md&quot; (read-string &quot;Enter file name: &quot;)))))
+ (file ,(file-name-concat website-template-dir &quot;note.txt&quot;)))
+</code></pre>
+<p>At first, I thought I had to use the <code>function</code> target type since I wanted to use a function to capture the file name. That didn't work.</p>
+<p>I then realized, I could still keep the <code>file</code> target type. However, to fill in the file name, I could use a function which takes in user input.</p>
+<p>Now that I got this working, I've also done the same for my reponse template.</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>QR Code Generator - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>QR Code Generator</h1><div class="content-meta"><div class="content-type">snippets</div><time datetime="2022-08-04">August 4, 2022</time><p>Tags: dotnet, f#, script</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/snippets/">← All snippets</a> | <a href="https://www.lqdev.me/resources/snippets/qr-code-generator">View Full Version</a></p><div class="content"><h2>Description</h2>
+<p>Script to generate a QR Code and save as PNG image from a URL</p>
+<h2>Usage</h2>
+<pre><code class="language-bash">dotnet fsi qr-code-generator.fsx &quot;my-qr-code.svg&quot; &quot;https://twitter.com/user-profile&quot;
+</code></pre>
+<h2>Snippet</h2>
+<h3>qr-code-generator.fsx</h3>
+<pre><code class="language-fsharp">open System.Threading
+<p>printfn &quot;Loading packages&quot;</p>
+<p>#r &quot;nuget:Net.Codecrete.QrCodeGenerator&quot;</p>
+<p>Thread.Sleep(5000)</p>
+<p>printfn &quot;Loaded QrCodeGenerator&quot;</p>
+<p>open Net.Codecrete.QrCodeGenerator
+open System.IO
+open System.Text</p>
+<p>let createQrCode (savePath:string) (target:string) =
+let qr = QrCode.EncodeText(target,QrCode.Ecc.High)
+let svgString = qr.ToSvgString(4)
+File.WriteAllText(savePath,svgString, Encoding.UTF8)</p>
+<p>let args = fsi.CommandLineArgs
+let savePath = args.[1]
+let target = args.[2]</p>
+<p>createQrCode savePath target
+</code></pre></p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - notetaking</title>
+    <link>https://www.lqdev.me/tags/notetaking</link>
+    <description>All content tagged with 'notetaking' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-11 23:00 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Stop saving everything</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;If your read-it-later list isn’t getting cleared weekly, perhaps it’s time to delete the lot.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Save from a mindset of abundance, rather than scarcity, and process the things you’ve saved each week (or month, at the most). If you are worried that something you deleted truly would have changed your life, just stop.&lt;/p&gt;
+&lt;p&gt;STOP.&lt;/p&gt;
+&lt;p&gt;You can’t read it all, do it all, be it all. Trust that those potentially life-changing ideas will come around again, when you are ready for them&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Good reminder. Lately I've been sending a lot of notes to myself with stuff to read but just haven't had the time to get to it. That said, the act of sending myself those notes is low friction that I don't feel FOMO when I don't get to read the articles and consume the media.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/stop-saving-everything</link>
+      <guid>https://www.lqdev.me/responses/stop-saving-everything</guid>
+      <pubDate>2025-08-11 23:00 -05:00</pubDate>
+      <category>pkm</category>
+      <category>productivity</category>
+      <category>notetaking</category>
+    </item>
+    <item>
+      <title>Stop renting space for your notes and start being your own landlord</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;When you choose to keep your notes in locally stored plain text files, you’re choosing to be your own landlord. Keeping notes in a proprietary app is the same as renting: the land you’re building on belongs to someone else, with no guarantee of continuing access.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is so true for many other areas of our digital lives as well.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/landlord-of-your-notes</link>
+      <guid>https://www.lqdev.me/responses/landlord-of-your-notes</guid>
+      <pubDate>2025-01-13 21:54 -05:00</pubDate>
+      <category>localfirst</category>
+      <category>notetaking</category>
+      <category>pkm</category>
+    </item>
+    <item>
+      <title>Proton and Standard Notes are joining forces </title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...today, we’re happy to announce that Standard Notes will also join us to advance our shared mission.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Both Proton and Standard Notes share a strong commitment to our communities, so Standard Notes will remain open source, freely available, and fully supported. Prices are not changing, and if you have a current subscription to Standard Notes, it will continue to be honored. Proton aspires to do the right thing and be a responsible home for open-source projects, and just as we did with SimpleLogin, we are committed to preserving what makes Standard Notes special and much loved.&lt;br /&gt;
+&lt;br&gt;
+In the coming months, we hope to find ways to make Standard Notes more easily accessible to the Proton community. This way, in addition to protecting your email, calendar, files, passwords, and online activity, you can also protect your notes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is another exciting acquisition! I mainly use org-mode in Emacs for note taking. However, I love the ecosystem Proton is building with their security and privacy focused set of collaborative software offerings.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/proton-acquires-standard-notes</link>
+      <guid>https://www.lqdev.me/responses/proton-acquires-standard-notes</guid>
+      <pubDate>2024-04-10 22:35 -05:00</pubDate>
+      <category>proton</category>
+      <category>standardnotes</category>
+      <category>notetaking</category>
+      <category>security</category>
+      <category>privacy</category>
+      <category>email</category>
+      <category>notes</category>
+    </item>
+    <item>
+      <title>How I Take and Publish Notes</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;99% of the time, this is how my note-taking process goes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I’m catching up on my RSS feed (on my phone in the Reeder app)&lt;/li&gt;
+&lt;li&gt;I read something that strikes me as interesting, novel, or insightful.&lt;/li&gt;
+&lt;li&gt;I copy/paste it as an blockquote into a new, plain-text note in iA writer.&lt;/li&gt;
+&lt;li&gt;I copy/paste the link of the article into iA writer.&lt;/li&gt;
+&lt;li&gt;I finish reading the article and copy/paste anything else in the article that strikes me.&lt;/li&gt;
+&lt;li&gt;I add my own comments in the note as they pop into my head.&lt;/li&gt;
+&lt;li&gt;I move on to the next article in my RSS feed.&lt;/li&gt;
+&lt;li&gt;Repeat.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Kind of meta but somewhat similar process for me. To publish the different content found on my &lt;a href="https://www.lqdev.me/feed/responses/"&gt;response feed&lt;/a&gt;, I:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Go through articles on my RSS feed (NewsBlur on both desktop and mobile).&lt;/li&gt;
+&lt;li&gt;Copy URL and block quotes from article and paste them somewhere. When I have time like now, I create a post like this one, usually in VS Code. If I don't have time though, I've been experimenting with using a messaging app like Element and E-mail as a read-it-later service. At minimum, I create a message with the link and send it to myself for later review. Later on when I have time, I create the post with additional comments and content from the article.&lt;/li&gt;
+&lt;li&gt;(Optional) Add some of my own comments.&lt;/li&gt;
+&lt;li&gt;Publish the notes.&lt;/li&gt;
+&lt;li&gt;Repeat.&lt;/li&gt;
+&lt;/ol&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/take-and-publish-notes-nielsen</link>
+      <guid>https://www.lqdev.me/responses/take-and-publish-notes-nielsen</guid>
+      <pubDate>2023-12-05 21:42 -05:00</pubDate>
+      <category>blogging</category>
+      <category>notetaking</category>
+    </item>
+    <item>
+      <title>Commonplace Book</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;A way to store notes and knowledge discovered and learned. This can include quotes from books, articles, courses, and any other sources of information.&lt;/p&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Commonplace_book"&gt;Commonplace Book&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://evernote.com/blog/how-to-create-commonplace-with-evernote/"&gt;Taking Note: How To Create a Commonplace with Evernote&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://medium.com/read-smart/what-is-a-commonplace-book-db392bda730c"&gt;What is a commonplace book?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://stevenberlinjohnson.com/the-glass-box-and-the-commonplace-book-639b16c4f3bb"&gt;The Glass Box and The Commonplace Book&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/commonplace-book</link>
+      <guid>https://www.lqdev.me/resources/wiki/commonplace-book</guid>
+      <pubDate>09/04/2022 20:25 -05:00</pubDate>
+      <category>knowledgemanagement</category>
+      <category>commonplace</category>
+      <category>notetaking</category>
+      <category>information</category>
+      <category>technology</category>
+      <category>internet</category>
+      <category>books</category>
+    </item>
+  </channel>
+</rss>

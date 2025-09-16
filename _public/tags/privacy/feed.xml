@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - privacy</title>
+    <link>https://www.lqdev.me/tags/privacy</link>
+    <description>All content tagged with 'privacy' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-26 19:40 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Crescent library brings privacy to digital identity systems</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Digital identities, the electronic credentials embedded in phone wallets, workplace logins, and other apps, are becoming ubiquitous. While they offer unprecedented convenience, they also create new privacy risks, particularly around tracking and surveillance.&lt;br /&gt;
+&lt;br&gt;
+One of these risks is linkability, the ability to associate one or more uses of a credential to a specific person. Currently, when people use their mobile driver’s license or log into various apps, hidden identifiers can link these separate activities together, building detailed profiles of user behavior.&lt;br /&gt;
+&lt;br&gt;
+To address this, we have released &lt;a href="https://eprint.iacr.org/2024/2013"&gt;Crescent&lt;/a&gt;, a cryptographic library that adds unlinkability to widely used identity formats, protecting privacy. These include JSON Web Tokens (the authentication standard behind many app logins) and mobile driver’s licenses. Crescent also works without requiring the organizations that issue these credentials to update their systems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/microsoft/crescent-credentials"&gt;GitHub Repo&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/crescent-msr-privacy-digital-identity</link>
+      <guid>https://www.lqdev.me/responses/crescent-msr-privacy-digital-identity</guid>
+      <pubDate>2025-08-26 19:40 -05:00</pubDate>
+      <category>research</category>
+      <category>privacy</category>
+      <category>microsoft</category>
+    </item>
+    <item>
+      <title>Why does Spotify need my full address?</title>
+      <description>&lt;![CDATA[&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/spotify-missing-information.png" class="img-fluid" alt="Pop-up requesting address information in Spotify Android app" /&gt;&lt;/p&gt;
+&lt;p&gt;Why?&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/spotify-address-missing-info</link>
+      <guid>https://www.lqdev.me/notes/spotify-address-missing-info</guid>
+      <pubDate>2025-01-14 19:25 -05:00</pubDate>
+      <category>spotify</category>
+      <category>privacy</category>
+    </item>
+    <item>
+      <title>Spotify Wrapped 2024 AI Generated Podcast</title>
+      <description>&lt;![CDATA[&lt;p&gt;While looking at &lt;a href="https://www.lqdev.me/notes/spotify-wrapped-2024"&gt;Spotify Wrapped this year&lt;/a&gt;, I completely missed the AI-generated podcast that came along with it.&lt;/p&gt;
+&lt;p&gt;As cool as this is, &lt;strong&gt;it should've been opt-in&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Although I would hope that when I clicked &amp;quot;I Agree&amp;quot; on the user agreement, the use of my data in this way is covered (for Spotify's sake), it's not clear or easy to find:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;What data was shared with Google's NotebookLM&lt;/li&gt;
+&lt;li&gt;What Google will do with that data&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;There's a reason I purposefully haven't linked Spotify to other accounts.&lt;/p&gt;
+&lt;p&gt;I know there's probably hundreds of worse ways my data is being used I don't know about. This one though was hard to miss and a sad reminder that often you don't learn about how your data is being used until after the fact. Cases like this are not really a big deal. So what if you know I was going through a &amp;quot;Witchy Jam Band Phsychedelic Rock&amp;quot; phase in September? Where it does matter though is when it involves more personal and sensitive data. Again, because we don't realize it until after the fact, it's not until then that we learn what we're giving up when we make the simple, often uninformed, decision to select &amp;quot;I Agree&amp;quot;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://wrappedaipodcast.spotifycdn.com/bDEn3i-uWoItOTYMmcRcNGKBqZ18M9ygFTAY0X8YHXk.mp4" class="img-fluid" alt="AI Genereated Spotify Wrapped Podcast" /&gt;&lt;/p&gt;
+&lt;!-- &lt;video controls="" autoplay="" name="media"&gt;&lt;source src="https://wrappedaipodcast.spotifycdn.com/bDEn3i-uWoItOTYMmcRcNGKBqZ18M9ygFTAY0X8YHXk.mp4" type="video/mp4"&gt;&lt;/video&gt; --&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/spotify-wrapped-2024-podcast-notebook-lm</link>
+      <guid>https://www.lqdev.me/notes/spotify-wrapped-2024-podcast-notebook-lm</guid>
+      <pubDate>2024-12-05 09:02 -05:00</pubDate>
+      <category>spotify</category>
+      <category>ai</category>
+      <category>spotifywrapped</category>
+      <category>google</category>
+      <category>notebooklm</category>
+      <category>privacy</category>
+      <category>podcast</category>
+      <category>generativeai</category>
+      <category>genai</category>
+    </item>
+    <item>
+      <title>EFF Presents - The Encryptids - Bigfoot</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I’m proud to share the first post in a series from our friends, &lt;a href="https://www.eff.org/Encryptids"&gt;The Encryptids&lt;/a&gt;—the rarely-seen enigmas who inspire campfire lore. But this time, they’re spilling secrets about how they survive this ever-digital world. We begin by checking in with the legendary Bigfoot de la Sasquatch...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;People say I'm the most famous of The Encryptids, but sometimes I don't want the spotlight. They all want a piece of me: exes, ad trackers, scammers, even the government. A picture may be worth a thousand words, but my digital profile is worth cash (to skeezy data brokers). I can’t hit a city block without being captured by doorbell cameras, CCTV, license plate readers, and a maze of street-level surveillance. It can make you want to give up on privacy altogether. Honey, no. Why should you have to hole up in some dank, busted forest for freedom and respect? You don’t.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Privacy isn't about hiding. It's about revealing what you want to who you want on your terms. It's your basic right to dignity.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/eff-the-encryptids-bigfoot</link>
+      <guid>https://www.lqdev.me/responses/eff-the-encryptids-bigfoot</guid>
+      <pubDate>2024-06-11 21:12 -05:00</pubDate>
+      <category>eff</category>
+      <category>privacy</category>
+      <category>digitalrights</category>
+      <category>campaign</category>
+    </item>
+    <item>
+      <title>Apple - Private Cloud Compute</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We set out to build Private Cloud Compute with a set of core requirements:&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Stateless computation on personal user data.&lt;/strong&gt; ...we want a strong form of stateless data processing where personal data leaves no trace in the PCC system.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Enforceable guarantee.&lt;/strong&gt; Security and privacy guarantees are strongest when they are entirely technically enforceable, which means it must be possible to constrain and analyze all the components that critically contribute to the guarantees of the overall Private Cloud Compute system.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No privileged runtime access.&lt;/strong&gt; Private Cloud Compute must not contain privileged interfaces that would enable Apple’s site reliability staff to bypass PCC privacy guarantees, even when working to resolve an outage or other severe incident.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Non-targetability.&lt;/strong&gt; An attacker should not be able to attempt to compromise personal data that belongs to specific, targeted Private Cloud Compute users without attempting a broad compromise of the entire PCC system.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Verifiable transparency.&lt;/strong&gt; Security researchers need to be able to verify, with a high degree of confidence, that our privacy and security guarantees for Private Cloud Compute match our public promises.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/apple-private-cloud-compute</link>
+      <guid>https://www.lqdev.me/responses/apple-private-cloud-compute</guid>
+      <pubDate>2024-06-11 20:42 -05:00</pubDate>
+      <category>ai</category>
+      <category>pcc</category>
+      <category>privacy</category>
+      <category>cloud</category>
+      <category>privatecloudcompute</category>
+      <category>wwdc</category>
+    </item>
+    <item>
+      <title>Proton and Standard Notes are joining forces </title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...today, we’re happy to announce that Standard Notes will also join us to advance our shared mission.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Both Proton and Standard Notes share a strong commitment to our communities, so Standard Notes will remain open source, freely available, and fully supported. Prices are not changing, and if you have a current subscription to Standard Notes, it will continue to be honored. Proton aspires to do the right thing and be a responsible home for open-source projects, and just as we did with SimpleLogin, we are committed to preserving what makes Standard Notes special and much loved.&lt;br /&gt;
+&lt;br&gt;
+In the coming months, we hope to find ways to make Standard Notes more easily accessible to the Proton community. This way, in addition to protecting your email, calendar, files, passwords, and online activity, you can also protect your notes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is another exciting acquisition! I mainly use org-mode in Emacs for note taking. However, I love the ecosystem Proton is building with their security and privacy focused set of collaborative software offerings.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/proton-acquires-standard-notes</link>
+      <guid>https://www.lqdev.me/responses/proton-acquires-standard-notes</guid>
+      <pubDate>2024-04-10 22:35 -05:00</pubDate>
+      <category>proton</category>
+      <category>standardnotes</category>
+      <category>notetaking</category>
+      <category>security</category>
+      <category>privacy</category>
+      <category>email</category>
+      <category>notes</category>
+    </item>
+    <item>
+      <title>Introducing the Proton Mail desktop app </title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we’re excited to broaden the horizons of secure communication by launching the Proton Mail desktop app. Anyone can now use the new Proton Mail desktop app for Windows and macOS, with a Linux version in beta.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;With the new Proton Mail desktop apps, you get a dedicated email experience, allowing you to enjoy all the productivity innovations of our web app, allowing you to go through your emails and events faster without the potential distractions that pop up anytime you open your browser. And, of course, your privacy remains protected at all times.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-protonmail-desktop-app</link>
+      <guid>https://www.lqdev.me/responses/introducing-protonmail-desktop-app</guid>
+      <pubDate>2024-03-15 20:06 -05:00</pubDate>
+      <category>email</category>
+      <category>proton</category>
+      <category>desktop</category>
+      <category>app</category>
+      <category>privacy</category>
+      <category>security</category>
+    </item>
+    <item>
+      <title>Keep your phone number private with Signal usernames</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Signal’s mission and sole focus is private communication. For years, Signal has kept your messages private, your profile information (like your name and profile photo) private, your contacts private, and your groups private – among much else. Now we’re taking that one step further, by making your phone number on Signal more private.&lt;br /&gt;
+&lt;br&gt;
+Here’s how:&lt;br /&gt;
+&lt;br&gt;
+New default: Your phone number will no longer be visible to everyone in Signal...&lt;br /&gt;
+&lt;br&gt;
+Connect without sharing your phone number...&lt;br /&gt;
+&lt;br&gt;
+Control who can find you on Signal by phone number...&lt;br /&gt;
+&lt;br&gt;
+Right now, these options are in beta, and will be rolling out to everyone in the coming weeks.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/signal-usernames</link>
+      <guid>https://www.lqdev.me/responses/signal-usernames</guid>
+      <pubDate>2024-02-20 17:01 -05:00</pubDate>
+      <category>signal</category>
+      <category>privacy</category>
+      <category>security</category>
+      <category>osint</category>
+      <category>messaging</category>
+    </item>
+    <item>
+      <title>StatiCrypt: Protected Posts on a Static Site</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...I was longing for a way to do friends-only blog posts on the open web, today I came across Stati­Crypt , an open-source utility that lets you encrypt static HTML pages behind a password.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/staticrypt-protected-posts-static-site-jayless</link>
+      <guid>https://www.lqdev.me/responses/staticrypt-protected-posts-static-site-jayless</guid>
+      <pubDate>2024-02-17 12:27 -05:00</pubDate>
+      <category>staticsite</category>
+      <category>web</category>
+      <category>blogs</category>
+      <category>community</category>
+      <category>openweb</category>
+      <category>security</category>
+      <category>privacy</category>
+    </item>
+    <item>
+      <title>UNREDACTED Magazine Issue 006</title>
+      <description>&lt;![CDATA[[reshare] &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://inteltechniques.com/magazine.html"&gt;https://inteltechniques.com/magazine.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://inteltechniques.com/issues/006.pdf"&gt;https://inteltechniques.com/issues/006.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/unredacted-magazine-issue-006</link>
+      <guid>https://www.lqdev.me/responses/unredacted-magazine-issue-006</guid>
+      <pubDate>2024-01-31 21:24 -05:00</pubDate>
+      <category>osint</category>
+      <category>magazine</category>
+      <category>unredacted</category>
+      <category>privacy</category>
+      <category>security</category>
+    </item>
+    <item>
+      <title>Private social media?</title>
+      <description>&lt;![CDATA[&lt;p&gt;Brain dumping a bunch of half-formed thoughts.&lt;/p&gt;
+&lt;p&gt;Over the past few days, I've been thinking about different forms of sharing content. With the &lt;a href="https://www.nytimes.com/2023/04/19/technology/personaltech/tiktok-twitter-facebook-social.html"&gt;shifts in social media towards smaller, more private communities&lt;/a&gt;, is it possible to get the best of feeds for sharing updates and information but in a smaller more intimate way?&lt;/p&gt;
+&lt;p&gt;Here's a few of the options I came up with:&lt;/p&gt;
+&lt;h2&gt;Journals&lt;/h2&gt;
+&lt;p&gt;Examples: &lt;a href="https://dayoneapp.com/guides/tips-and-tutorials/shared-journals/"&gt;Day One Shared Journals&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Made for an audience of one, but other can collaborate on it.&lt;/li&gt;
+&lt;li&gt;Depending on the interface, looking back at specific days and events that took place is easy to look back on.&lt;/li&gt;
+&lt;li&gt;May be able to include different forms of media (i.e. audio, video, photos)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;No individual profiles&lt;/li&gt;
+&lt;li&gt;May require everyone to use the same app / service&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;E-mail&lt;/h2&gt;
+&lt;p&gt;Examples: Newsletters, Mailing lists&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Almost everyone has an e-mail address.&lt;/li&gt;
+&lt;li&gt;Built on standard protocols.&lt;/li&gt;
+&lt;li&gt;Producers can use any app they'd like to compose e-mails.&lt;/li&gt;
+&lt;li&gt;Consumers can use any app they'd like to read e-mails.&lt;/li&gt;
+&lt;li&gt;Could use any app / client / service-provider they'd like. (Federated by default)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;Content rendering may differ based on app.&lt;/li&gt;
+&lt;li&gt;Could add to the noise already present in your e-mail inbox.&lt;/li&gt;
+&lt;li&gt;No individual accounts / feeds.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Messaging Apps&lt;/h2&gt;
+&lt;p&gt;Examples: Discord, Matrix, IRC, Slack, Signal&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Sharing could be done via SMS (though this would limit the content you share).&lt;/li&gt;
+&lt;li&gt;You could form various sub-groups to sub&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;May require everyone to use the same app / service.&lt;/li&gt;
+&lt;li&gt;May not have a way to view individual profiles or feeds.&lt;/li&gt;
+&lt;li&gt;Because conversations are not often grouped by topics, it might be difficult to find conversations, especially older conversations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Private blogs&lt;/h2&gt;
+&lt;p&gt;Examples: &lt;a href="https://wordpress.com/go/tutorials/private-blog-wordpress-com/"&gt;Private WordPress Blog&lt;/a&gt;, &lt;a href="https://havenweb.org/"&gt;Haven&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Produces can use any tool / service to author and publish posts.&lt;/li&gt;
+&lt;li&gt;Consumers can access via any browser of their choice.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;May have to host your own service.&lt;/li&gt;
+&lt;li&gt;Consumers may have to create accounts and passwords for each of the private blogs they follow.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Fediverse&lt;/h2&gt;
+&lt;p&gt;Examples: Mastodon, PixelFed, PeerTube&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Familar social media interface.&lt;/li&gt;
+&lt;li&gt;More availability of apps and services that form part of the Fediverse make it easier for producers and consumers to use what makes the most sense for them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;Limited to the format supported by the app / service (i.e. Pixelfed is for images / video, PeerTube for video, etc.).&lt;/li&gt;
+&lt;li&gt;May require you to host your own service.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;P2P Social Media&lt;/h2&gt;
+&lt;p&gt;Examples: &lt;a href="https://scuttlebutt.nz/"&gt;ScuttleButt&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Could be made for an audience of one but shared with other peers.&lt;/li&gt;
+&lt;li&gt;Decentralized by default.&lt;/li&gt;
+&lt;li&gt;Access individual feeds.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;Similar to the Fediverse, being exposed to new protocols and technical terms may make onboarding and adoption challenging.&lt;/li&gt;
+&lt;li&gt;May require you to host your own service.&lt;/li&gt;
+&lt;li&gt;Protocols haven't been widely adopted so users are limited in the apps / services they can use for this.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Forums&lt;/h2&gt;
+&lt;p&gt;Examples: &lt;a href="https://discourse.nixos.org/"&gt;NixOS Forum&lt;/a&gt;, &lt;a href="https://lemmy.world/"&gt;Lemmy&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Could create threads and conversations on various topics&lt;/li&gt;
+&lt;li&gt;Easy to search and tag content&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;Someone would have to host a server&lt;/li&gt;
+&lt;li&gt;Might not work well for small groups&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;RSS feeds&lt;/h2&gt;
+&lt;p&gt;This is a variation on the private blog. Except instead of having a website that displays the posts, you just have an RSS feed.&lt;/p&gt;
+&lt;p&gt;Examples: &lt;a href="https://daverupert.com/2018/01/welcome-to-rss-club/"&gt;RSS-Only Club&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Producers can use any software they'd like to create and publish their RSS feed&lt;/li&gt;
+&lt;li&gt;Consumers can use any feed reader to access and read content&lt;/li&gt;
+&lt;li&gt;Everyone could have their own feed, so effectively they'd be like profiles&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;You have to figure out how to produce and host the RSS feed&lt;/li&gt;
+&lt;li&gt;Can't really control who sees this since the feed is public. Maybe private feeds could help here.&lt;/li&gt;
+&lt;li&gt;Limited interaction. Users can't comment or reply to items in a feed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Note that this is not an exhaustive list of pros and cons, just a few that I thought of. I persoanlly would skew towards e-mail and messaging apps. The main reason at least with e-mail is that everyone is familiar with it and most likely won't have to create separate accounts on various silos to communicate and engage with others. With apps like &lt;a href="https://delta.chat/"&gt;DeltaChat&lt;/a&gt; you could actualy combine them and get the best of both.&lt;/p&gt;
+&lt;p&gt;What are your thoughts?&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/private-social-media</link>
+      <guid>https://www.lqdev.me/notes/private-social-media</guid>
+      <pubDate>2024-01-22 21:40 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>website</category>
+      <category>community</category>
+      <category>private</category>
+      <category>privacy</category>
+      <category>blog</category>
+      <category>protocols</category>
+      <category>rss</category>
+      <category>forums</category>
+      <category>journal</category>
+      <category>e-mail</category>
+      <category>fediverse</category>
+      <category>messaging</category>
+    </item>
+    <item>
+      <title>Willow Protocol Specifications</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A protocol for peer-to-peer data stores. The best parts? Fine-grained permissions, a keen approach to privacy, destructive edits, and a dainty bandwidth and memory footprint.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/willow-protocol</link>
+      <guid>https://www.lqdev.me/bookmarks/willow-protocol</guid>
+      <pubDate>2024-01-17 20:38 -05:00</pubDate>
+      <category>willow</category>
+      <category>protocol</category>
+      <category>p2p</category>
+      <category>privacy</category>
+      <category>data</category>
+    </item>
+    <item>
+      <title>Each Facebook User is Monitored by Thousands of Companies</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;By now most internet users know their online activity is constantly tracked.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;But what is the scale of this surveillance? Judging from data collected by Facebook and &lt;a href="https://innovation.consumerreports.org/wp-content/uploads/2024/01/CR_Who-Shares-Your-Information-With-Facebook.pdf"&gt;newly described in a unique study&lt;/a&gt; by non-profit consumer watchdog Consumer Reports, it’s massive, and examining the data may leave you with more questions than answers.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Using a panel of 709 volunteers who shared archives of their Facebook data, Consumer Reports found that a total of 186,892 companies sent data about them to the social network. On average, each participant in the study had their data sent to Facebook by 2,230 companies. That number varied significantly, with some panelists’ data listing over 7,000 companies providing their data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;h2&gt;What Exactly Does This Data Contain?&lt;/h2&gt;
+&lt;br&gt;
+The data examined by Consumer Reports in this study comes from two types of collection: events and custom audiences. Both categories include information about what people do outside of Meta’s platforms.
+&lt;br&gt;
+Custom audiences allow advertisers to upload customer lists to Meta, often including identifiers like email addresses and mobile advertising IDs...
+&lt;br&gt;
+The other category of data collection, “events,” describes interactions that the user had with a brand, which can occur outside of Meta’s apps and in the real world. Events can include visiting a page on a company’s website, leveling up in a game, visiting a physical store, or purchasing a product...
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;h2&gt;How Can I See My Data?&lt;/h2&gt;
+&lt;br&gt;
+Facebook users can browse through the list of companies that have sent their data to Facebook by going to: [https://accountscenter.facebook.com/info_and_permissions](https://accountscenter.facebook.com/info_and_permissions)
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/facebook-users-monitored-thousands-companies-markup</link>
+      <guid>https://www.lqdev.me/responses/facebook-users-monitored-thousands-companies-markup</guid>
+      <pubDate>2024-01-17 20:09 -05:00</pubDate>
+      <category>socialmedia</category>
+      <category>privacy</category>
+      <category>facebook</category>
+      <category>meta</category>
+      <category>surveillance</category>
+    </item>
+    <item>
+      <title>Easy Ways to Improve Your Privacy &amp; Security in 2024</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Every year, I like to remind everyone to go back to the basics. For those who are new to privacy and security and may be trying to create some new, positive habits, this serves as a great entry point. For veteran privacy enthusiasts, the basics form our foundation for more advanced techniques later, making it imperative to ensure we cover all those bases. So in that spirit, let’s all pause – wherever we are in our privacy journeys – to do a quick check and make sure we’ve got the basics covered. If you’re one of those new people I mentioned, welcome! But also know that this post is packed with information, so try not to get overwhelmed. Maybe bookmark this post and do one thing per day or something like that.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Strong Passwords...&lt;br /&gt;
+&lt;br&gt;
+Multi-Factor Authentication (MFA)...&lt;br /&gt;
+&lt;br&gt;
+Regular Software Updates...&lt;br /&gt;
+&lt;br&gt;
+Secure Your Wi-Fi Network...&lt;br /&gt;
+&lt;br&gt;
+Be Cautious with Communications...&lt;br /&gt;
+&lt;br&gt;&lt;br /&gt;
+Review App Permissions...&lt;br /&gt;
+&lt;br&gt;
+Review Your Account Settings...&lt;br /&gt;
+&lt;br&gt;
+Secure Browsing Habits...&lt;br /&gt;
+&lt;br&gt;
+Device Security...&lt;br /&gt;
+&lt;br&gt;
+Review Financial Statements...&lt;br /&gt;
+&lt;br&gt;
+Educate Yourself...&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/easy-ways-improve-privacy-security-2024</link>
+      <guid>https://www.lqdev.me/responses/easy-ways-improve-privacy-security-2024</guid>
+      <pubDate>2024-01-15 16:54 -05:00</pubDate>
+      <category>privacy</category>
+      <category>security</category>
+    </item>
+    <item>
+      <title>Farewell to The Privacy, Security, and OSINT Show</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...a farewell episode was released on November 20th, 2023 entitled “My Irish Exit”. It was finally officially confirmed that [The Privacy, Security, and OSINT Show with Michael Bazzell]...has reached an end.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That's unfortunate. I really enjoyed listening to this show and even had it listed in my &lt;a href="https://www.lqdev.me/collections/podroll/"&gt;podroll&lt;/a&gt;. The UNREDACTED magazine had great content as well.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/farewell-privacy-security-osint-podcast</link>
+      <guid>https://www.lqdev.me/responses/farewell-privacy-security-osint-podcast</guid>
+      <pubDate>2023-12-13 20:00 -05:00</pubDate>
+      <category>podcast</category>
+      <category>privacy</category>
+      <category>osint</category>
+    </item>
+    <item>
+      <title>MemoryCache - Augmenting Local AI with Browser Data</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;MemoryCache, a Mozilla Innovation Project, is an early exploration project that augments an on-device, personal model with local files saved from the browser to reflect a more personalized and tailored experience through the lens of privacy and agency.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Additional resources&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://memorycache.ai/"&gt;https://memorycache.ai/&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/memorycache-personal-ai</link>
+      <guid>https://www.lqdev.me/bookmarks/memorycache-personal-ai</guid>
+      <pubDate>2023-12-12 19:37 -05:00</pubDate>
+      <category>ai</category>
+      <category>web</category>
+      <category>privacy</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>AI and Mass Spying</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Surveillance facilitates social control, and spying will only make this worse. Governments around the world already use mass surveillance; they will engage in mass spying as well.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Mass surveillance ushered in the era of personalized advertisements; mass spying will supercharge that industry...The tech monopolies that are currently keeping us all under constant surveillance won’t be able to resist collecting and using all of that data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We could limit this capability. We could prohibit mass spying. We could pass strong data-privacy rules. But we haven’t done anything to limit mass surveillance. Why would spying be any different?&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/ai-mass-spying-schneier</link>
+      <guid>https://www.lqdev.me/bookmarks/ai-mass-spying-schneier</guid>
+      <pubDate>2023-12-05 21:12 -05:00</pubDate>
+      <category>ai</category>
+      <category>privacy</category>
+      <category>internet</category>
+      <category>surveillance</category>
+    </item>
+    <item>
+      <title>Creating the First Confidential GPUs</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The team at NVIDIA brings confidentiality and integrity to user code and data for accelerated computing.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/creating-first-confidential-gpus</link>
+      <guid>https://www.lqdev.me/bookmarks/creating-first-confidential-gpus</guid>
+      <pubDate>2023-09-28 20:59 -05:00</pubDate>
+      <category>ai</category>
+      <category>security</category>
+      <category>privacy</category>
+      <category>gpu</category>
+    </item>
+    <item>
+      <title>The Atlantic’s Guide to Privacy</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Sponsored post, but it's still a good list with guidance and suggestions for common questions.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/atlantic-privacy-guide-2023</link>
+      <guid>https://www.lqdev.me/responses/atlantic-privacy-guide-2023</guid>
+      <pubDate>2023-09-17 13:03 -05:00</pubDate>
+      <category>privacy</category>
+      <category>security</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>Tailscale has partnered with Mullvad</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today we announce a partnership with Tailscale that allows you to use both in conjunction through the Tailscale app. This functionality is not available through the Mullvad VPN app.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This partnership allows customers of Tailscale to make use of our WireGuard VPN servers as “exit nodes”. This means that whilst connected to Tailscale, you can access your devices across Tailscale’s mesh network, whilst still connecting outbound through Mullvad VPN WireGuard servers in any location.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/tailscale-partners-mullvad</link>
+      <guid>https://www.lqdev.me/responses/tailscale-partners-mullvad</guid>
+      <pubDate>2023-09-08 21:26 -05:00</pubDate>
+      <category>privacy</category>
+      <category>vpn</category>
+      <category>security</category>
+    </item>
+  </channel>
+</rss>

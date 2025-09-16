@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - designpatterns</title>
+    <link>https://www.lqdev.me/tags/designpatterns</link>
+    <description>All content tagged with 'designpatterns' by Luis Quintanilla</description>
+    <lastBuildDate>2023-08-16 22:20 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Patterns for Building LLM-based Systems and Products</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;There are seven key patterns. They’re also organized along the spectrum of improving performance vs. reducing cost/risk, and closer to the data vs. closer to the user.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Evals: To measure performance&lt;/li&gt;
+&lt;li&gt;RAG: To add recent, external knowledge&lt;/li&gt;
+&lt;li&gt;Fine-tuning: To get better at specific tasks&lt;/li&gt;
+&lt;li&gt;Caching: To reduce latency &amp;amp; cost&lt;/li&gt;
+&lt;li&gt;Guardrails: To ensure output quality&lt;/li&gt;
+&lt;li&gt;Defensive UX: To anticipate &amp;amp; manage errors gracefully&lt;/li&gt;
+&lt;li&gt;Collect user feedback: To build our data flywheel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Addendum: &lt;a href="https://eugeneyan.com/writing/llm-problems/"&gt;how to match these LLM patterns to potential problems&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/patterns-for-building-llm-systems-products-yan</link>
+      <guid>https://www.lqdev.me/bookmarks/patterns-for-building-llm-systems-products-yan</guid>
+      <pubDate>2023-08-16 22:20 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>designpatterns</category>
+    </item>
+  </channel>
+</rss>

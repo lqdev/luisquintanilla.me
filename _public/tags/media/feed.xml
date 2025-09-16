@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - media</title>
+    <link>https://www.lqdev.me/tags/media</link>
+    <description>All content tagged with 'media' by Luis Quintanilla</description>
+    <lastBuildDate>2025-09-12 20:32 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>The Return of the Cassette Tape</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Sales of cassettes are up more than &lt;a href="https://www.npr.org/2024/06/07/nx-s1-4976071/the-cassette-tape-is-making-a-comeback-thanks-to-a-family-run-company-in-missouri"&gt;440 percent&lt;/a&gt; over the past decade. Cassette players (think modernized Walkmans) are also back, with companies producing new versions of this decidedly retro tech.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This “revenge of analog,”...is motivated by a combination of factors, from the practical to the more prosaic, and, ultimately, a more mindful use of technology. This approach rejects a binary of good vs. bad tech, and instead seeks a via media — a middle path — with its daily use.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Although I haven't done it as much with music, over the past few years I've been slowly rebuilding my analog media collection which includes movies and books. As the article mentions, part of that is ownership and actually owning the things I pay for. More importantly though, rather than scrolling through an endless catalog and never finding something to watch or read, I have a curated set of items to enjoy in a more mindful manner. If I feel the need to scroll through an endless catalog, there's always the library which has tons of media available. I find the library to be a heavily underutilized and almost forgotten community service we've all already paid for in some way, so why not use it.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/return-cassette-tape-analog-media-comeback</link>
+      <guid>https://www.lqdev.me/responses/return-cassette-tape-analog-media-comeback</guid>
+      <pubDate>2025-09-12 20:32 -05:00</pubDate>
+      <category>media</category>
+      <category>music</category>
+      <category>analog</category>
+      <category>retro</category>
+      <category>vintage</category>
+    </item>
+    <item>
+      <title>How do you watch Blu-Ray on PC?</title>
+      <description>&lt;![CDATA[&lt;p&gt;I have a preference for physical media. There's many reasons, some related to the sentiment of &lt;a href="https://www.lqdev.me/responses/landlord-of-your-notes"&gt;owning vs. renting content&lt;/a&gt;. Along the same lines, streaming services and service providers can change the terms of service and you have little to no control over it. &lt;a href="https://en.wikipedia.org/wiki/Westworld_(TV_series)"&gt;Westworld&lt;/a&gt; is an example of that. One day, HBO decided to pull it from its streaming service and physical copies were the only way you could watch it.&lt;/p&gt;
+&lt;p&gt;Anyway, on to my most recent experience trying to play a Blu-Ray disc on my PC.&lt;/p&gt;
+&lt;p&gt;The other day I decided to sit down to watch an episode of Westworld. Usually, I get the DVD version. In this case though, I had the Blu-Ray.&lt;/p&gt;
+&lt;p&gt;I have an external Blu-Ray player so I thought, &amp;quot;Great! Let me just plug that into my laptop and start the show&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Wrong!&lt;/p&gt;
+&lt;p&gt;What I thought was a simple task, ended up taking me about 20 minutes to figure out and even then I got to a subpar solution.&lt;/p&gt;
+&lt;p&gt;I prefer playing media either with MPV or VLC.&lt;/p&gt;
+&lt;p&gt;At first, it wouldn't play so I decided to go online and figure out why. Turns out, that's not supported out of the box and to get it working you need to download an additional DLL and &lt;a href="https://www.easefab.com/resource/play-blu-ray-with-vlc.html"&gt;configure a few things in the VLC settings&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I could've gone through that process, but I just wanted to watch a show. There's got to be an easier way.&lt;/p&gt;
+&lt;p&gt;Next, I turned to the built-in Media Player in Windows. No luck there either.&lt;/p&gt;
+&lt;p&gt;I ended up going with the &lt;a href="https://www.leawo.com/blu-ray-player/"&gt;Leawo Blu-Ray player&lt;/a&gt;. Although it's free, you have to deal with pop-ups prompting you to upgrade to the paid version. It works though.&lt;/p&gt;
+&lt;p&gt;I would prefer to use VLC or the built-in media player but it's unfortunate using them isn't as straightforward. Now that I have some more time, I'll set up VLC so that next time, it can &amp;quot;just work&amp;quot;.&lt;/p&gt;
+&lt;p&gt;I'll close it out with a question.&lt;/p&gt;
+&lt;p&gt;How do you watch Blu-Rays on your PC?&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.lqdev.me/contact"&gt;Send me a message&lt;/a&gt; and let me know.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/how-do-you-watch-blueray-on-pc</link>
+      <guid>https://www.lqdev.me/notes/how-do-you-watch-blueray-on-pc</guid>
+      <pubDate>2025-01-14 18:55 -05:00</pubDate>
+      <category>bluray</category>
+      <category>media</category>
+      <category>physicalmedia</category>
+      <category>vlc</category>
+    </item>
+    <item>
+      <title>DEFCON Media Server</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;Videos, Slides, Presentations, and assets from DEFCON.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/defcon-media-server</link>
+      <guid>https://www.lqdev.me/bookmarks/defcon-media-server</guid>
+      <pubDate>2024-10-10 20:41 -05:00</pubDate>
+      <category>defcon</category>
+      <category>media</category>
+      <category>persentations</category>
+      <category>videos</category>
+      <category>slides</category>
+    </item>
+    <item>
+      <title>404 Media Now Has a Full Text RSS Feed</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We paid for the development of full text RSS feeds for Ghost-based publishers. Now we can offer them to our paid subscribers, and other Ghost sites can use the service too.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our friends Anil Dash and Ernie Smith have recently written passionately and persuasively about the importance of RSS to the open web, and about how a technology that turns 25 years old this month remains both subversive and quite versatile. RSS-based distribution underpins a podcasting ecosystem that has allowed for shows to be distributed not just on Apple Podcasts but on Spotify, Google Podcasts, Pocket Casts, Overcast, and whatever other podcast player you might want to listen on. “Being able to say, ‘wherever you get your podcasts’ is a radical statement,” Dash wrote. “Because what it represents is the triumph of exactly the kind of technology that's supposed to be impossible: open, empowering tech that's not owned by any one company, that can't be controlled by any one company, and that allows people to have ownership over their work and their relationship with their audience.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;RSS has empowered podcasters, but that it needs a “creator economy rethink” for text.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/404-media-full-text-rss</link>
+      <guid>https://www.lqdev.me/responses/404-media-full-text-rss</guid>
+      <pubDate>2024-03-26 21:16 -05:00</pubDate>
+      <category>rss</category>
+      <category>404media</category>
+      <category>ghost</category>
+      <category>404</category>
+      <category>media</category>
+      <category>protocols</category>
+      <category>opensource</category>
+      <category>technology</category>
+    </item>
+    <item>
+      <title>Physical media week - Exploring the importance of discs and cartridges in an increasingly digital age</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The bright promise of streaming and digital stores has given way to a darker reality: we rarely have ownership over the art we love, and much is getting lost in the process. Only a fraction of movies released over the last century are available on streaming services, while a staggering 90 percent of classic video games are considered “critically endangered” by archivists. As these platforms continue to dominate the media landscape, a whole lot of cultural history is being abandoned.&lt;br /&gt;
+&lt;br&gt;
+In this special issue, The Verge will explore how physical media factors into this and its importance in keeping art alive and accessible. That could mean boutique publishers releasing beautiful special editions of games and movies, foundations dedicated to preserving the physical history of video games, or musicians releasing their latest albums on floppy discs. We’ll also be looking at some cautionary tales in the shift to subscription services and offering tips on building bookshelf-worthy collections.&lt;br /&gt;
+&lt;br&gt;
+Cartridges and discs have been hurtling toward obsolescence — but it turns out, they may be more important than ever.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/verge-physical-media-week</link>
+      <guid>https://www.lqdev.me/responses/verge-physical-media-week</guid>
+      <pubDate>2024-02-27 12:21 -05:00</pubDate>
+      <category>media</category>
+      <category>verge</category>
+      <category>disc</category>
+      <category>dvd</category>
+      <category>cd</category>
+      <category>floppy</category>
+      <category>tech</category>
+      <category>technology</category>
+    </item>
+    <item>
+      <title>My streaming fatigue got so bad I started collecting DVDs</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;After spending years reassuring myself that I don’t need physical copies of movies because of streaming, DVDs have officially reentered my life.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Walmart...Thrift stores, flea markets, the library, and even my local mall’s FYE have also become places I frequent to get my hands on oft-ignored discs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;It makes sense to subscribe to all these services if you’re into the exclusive content on each one and have the patience to sift through their massive libraries. However, all I’ve been watching lately is the junk on Discovery Plus, simply because I’m too tired to find anything else — especially when the extremely specific shows and movies I want to watch keep switching services or just aren’t available. One of the most devastating examples of this was when both The Office and Parks and Recreation moved from Netflix to Peacock, disrupting the casual binge-watching sessions that I would default to when I was done with work.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Within the past year, nearly every streaming service has raised its prices, including Netflix, Disney Plus, Hulu, Paramount Plus, Discovery Plus, and Apple TV Plus.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I’m not saying DVDs are flawless: there’s a reason no one wants them anymore!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Despite this, it’s still nice to have something that you physically own and don’t even need an internet connection to use. So when Best Buy confirmed it would stop selling DVDs this year and rumors emerged that Walmart would do the same, I was pretty disappointed. I can’t imagine Walmart without its bin of DVDs, nor can I even see Best Buy without its already-shrunken selection of movies.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;It’s 2024, and I’m not ready to say goodbye to DVDs — in fact, I’m just getting started.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Great article from Emma.&lt;/p&gt;
+&lt;p&gt;Personally, I've been doing the same. Just a few weekends ago, I got something like 8-10 DVDs for ~$25 at my local thrift store. That haul included 3 seasons of The Sopranos.&lt;/p&gt;
+&lt;p&gt;With streaming services taking back control of their content and putting it on their own platforms, I don't want to have to keep signing up for a new service just to watch the shows and movies I enjoy. Also, that's assuming you can find the content to begin with (i.e. Westworld).&lt;/p&gt;
+&lt;p&gt;Parks and Recreation, The Office, and Breaking Bad were some of the first shows I started collecting and have slowly been building up my collection. To save on space, I've ditched the cases and have the DVDs organized in a CD case. I've not only limited myself to DVDs but have also started collecting CDs as well.&lt;/p&gt;
+&lt;p&gt;Whenever I want variety, I just use one of the free streaming services like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.justwatch.com/us/provider/freevee"&gt;Freevee&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://pluto.tv/"&gt;Pluto TV&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://tubitv.com/"&gt;Tubi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;YouTube&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Yes, there are ads but at least I'm not paying for it and I know that's part of the deal. There are a ton of good older (and sometimes original) TV shows and movies on those platforms to keep me entertained. The most recent ones being Stargate and &lt;a href="https://www.lqdev.me/notes/vampires-kiss-movie"&gt;Vampire's Kiss&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/streaming-fatigue-collecting-dvds</link>
+      <guid>https://www.lqdev.me/responses/streaming-fatigue-collecting-dvds</guid>
+      <pubDate>2024-02-26 15:44 -05:00</pubDate>
+      <category>streaming</category>
+      <category>media</category>
+      <category>dvds</category>
+      <category>movies</category>
+      <category>tv</category>
+      <category>physicalmedia</category>
+    </item>
+    <item>
+      <title>It’s Time to Dismantle the Technopoly</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...according to [Neil Postman], we no longer live in a technocratic era. We now inhabit what he calls technopoly. In this third technological age, Postman argues, the fight between invention and traditional values has been resolved, with the former emerging as the clear winner. The result is the “submission of all forms of cultural life to the sovereignty of technique and technology.” Innovation and increased efficiency become the unchallenged mechanisms of progress, while any doubts about the imperative to accommodate the shiny and new are marginalized. “Technopoly eliminates alternatives to itself in precisely the way Aldous Huxley outlined in Brave New World,” Postman writes. “It does not make them illegal. It does not make them immoral. It does not even make them unpopular. It makes them invisible and therefore irrelevant.” Technopoly, he concludes, “is totalitarian technocracy.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;What I didn’t realize back in 2016, however, was that, although the grip of technopoly was strong, it was also soon to weaken.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A major source of this destabilization was the Trump-Clinton election cycle...Where once they had seen platforms like Facebook as useful and in some sense mandatory, they started treating them more warily.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This emerging resistance to the technopoly mind-set doesn’t fall neatly onto a spectrum with techno-optimism at one end and techno-skepticism at the other. Instead, it occupies an orthogonal dimension we might call techno-selectionism. This is a perspective that accepts the idea that innovations can significantly improve our lives but also holds that we can build new things without having to accept every popular invention as inevitable. Techno-selectionists believe that we should continue to encourage and reward people who experiment with what comes next. But they also know that some experiments end up causing more bad than good. Techno-selectionists can be enthusiastic about artificial intelligence, say, while also taking a strong stance on settings where we should block its use. They can marvel at the benefits of the social Internet without surrendering their kids’ mental lives to TikTok.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/dismantle-technology-newport</link>
+      <guid>https://www.lqdev.me/bookmarks/dismantle-technology-newport</guid>
+      <pubDate>2023-12-20 10:12 -05:00</pubDate>
+      <category>technology</category>
+      <category>culture</category>
+      <category>media</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>Newspapers, CDs, and MP3 players - Am I in 2006?</title>
+      <description>&lt;![CDATA[&lt;p&gt;While flipping through a local (physical) newspaper, I came across an ad for a sale happening at a nearby record store.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/newspaper_ad.JPG" class="img-fluid" alt="Newpaper ad for a memorial day CD and vinyl sale" /&gt;&lt;/p&gt;
+&lt;p&gt;Having nothing planned, I decided to check it out and ended up with a nice haul of about 15 CDs and 2 DVDs.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/cds_mp3.JPG" class="img-fluid" alt="3 CDs on a wooden table with an portable MP3 player" /&gt;&lt;/p&gt;
+&lt;p&gt;I fired up my &lt;a href="https://www.bestbuy.com/site/lg-8x-external-usb-double-layer-dvdrw-cd-rw-drive-black/5852919.p?skuId=5852919"&gt;portable CD/DVD drive&lt;/a&gt; to transfer my new purchases to my &lt;a href="https://www.fiio.com/m6"&gt;portable MP3 player&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Once finished, I popped one of the DVDs into the drive, made popcorn, and settled in. If I didn't know any better, this could easily be a scene from 2006.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/am-i-in-2006-newspapers-cds-mp3s</link>
+      <guid>https://www.lqdev.me/notes/am-i-in-2006-newspapers-cds-mp3s</guid>
+      <pubDate>2023-05-29 19:50 -05:00</pubDate>
+      <category>tech</category>
+      <category>media</category>
+      <category>retro</category>
+      <category>cds</category>
+      <category>dvds</category>
+    </item>
+    <item>
+      <title>Podcast management with RSS and VLC</title>
+      <description>&lt;![CDATA[&lt;p&gt;I've written before about how &lt;a href="https://www.lqdev.me/posts/rediscovering-rss-user-freedom/"&gt;versatile the RSS protocol is for publishing and consuming content&lt;/a&gt;. Podcasts are one of the many media types that largely rely on RSS, making it easy to subscribe and manage using an RSS client of your choice. Like RSS, &lt;a href="https://www.videolan.org/vlc/"&gt;VLC&lt;/a&gt; is versatile in the type of media it can play. When you combine the two, you're able to stay updated on the latest episodes from your favorite podcasts using the RSS reader of your choice and use the episode's URL to stream the audio in VLC.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/140527726-6635cbf3-8082-45d1-9b51-a4e136168abf.png" class="img-fluid" alt=".NET Rocks podcast RSS feed and VLC playing" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/rss-vlc-podcast-management</link>
+      <guid>https://www.lqdev.me/notes/rss-vlc-podcast-management</guid>
+      <pubDate>11/05/2021 10:27 -05:00</pubDate>
+      <category>rss</category>
+      <category>vlc</category>
+      <category>podcast</category>
+      <category>media</category>
+      <category>audio</category>
+    </item>
+  </channel>
+</rss>

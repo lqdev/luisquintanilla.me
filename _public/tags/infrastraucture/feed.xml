@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - infrastraucture</title>
+    <link>https://www.lqdev.me/tags/infrastraucture</link>
+    <description>All content tagged with 'infrastraucture' by Luis Quintanilla</description>
+    <lastBuildDate>2024-03-17 21:14 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Building Meta’s GenAI Infrastructure</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;ul&gt;
+&lt;li&gt;Marking a major investment in Meta’s AI future, we are announcing two 24k GPU clusters. We are sharing details on the hardware, network, storage, design, performance, and software that help us extract high throughput and reliability for various AI workloads. We use this cluster design for Llama 3 training.&lt;/li&gt;
+&lt;li&gt;We are strongly committed to open compute and open source. We built these clusters on top of Grand Teton, OpenRack, and PyTorch and continue to push open innovation across the industry.&lt;/li&gt;
+&lt;li&gt;This announcement is one step in our ambitious infrastructure roadmap. By the end of 2024, we’re aiming to continue to grow our infrastructure build-out that will include 350,000 NVIDIA H100 GPUs as part of a portfolio that will feature compute power equivalent to nearly 600,000 H100s.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/building-meta-genai-infrastructure</link>
+      <guid>https://www.lqdev.me/responses/building-meta-genai-infrastructure</guid>
+      <pubDate>2024-03-17 21:14 -05:00</pubDate>
+      <category>meta</category>
+      <category>ai</category>
+      <category>infrastraucture</category>
+      <category>generativeai</category>
+      <category>genai</category>
+      <category>facebook</category>
+    </item>
+  </channel>
+</rss>

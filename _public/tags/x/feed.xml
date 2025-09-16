@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - x</title>
+    <link>https://www.lqdev.me/tags/x</link>
+    <description>All content tagged with 'x' by Luis Quintanilla</description>
+    <lastBuildDate>2024-05-26 17:00 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>False alarm - Link is in X bio</title>
+      <description>&lt;![CDATA[&lt;p&gt;I may have spoken too early in my &lt;a href="https://www.lqdev.me/notes/no-link-in-bio-x-twitter"&gt;post about X not displaying bio links correctly&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Not sure if it was a glitch or what was going on, but I now see my domain correctly displayed as the bio link. All good.&lt;/p&gt;
+&lt;p&gt;I'd be interested in knowing whether others have experienced something similar.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/false-alarm-link-in-bio-x-twitter</link>
+      <guid>https://www.lqdev.me/notes/false-alarm-link-in-bio-x-twitter</guid>
+      <pubDate>2024-05-26 17:00 -05:00</pubDate>
+      <category>x</category>
+      <category>twitter</category>
+      <category>website</category>
+    </item>
+    <item>
+      <title>X (Twitter) - No more link in bio?</title>
+      <description>&lt;![CDATA[&lt;p&gt;While making some updates to my X profile, I noticed the link displayed on my bio isn't the same one I configured in the form. Instead it's a t.co shortened link. I get I'm just a free user on the platform but that seems like an annoying change. I haven't found much details about the change, but I'd hope paying subscribers get the &amp;quot;perk&amp;quot; of having control over how the link on their bio displays.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://i0.kym-cdn.com/entries/icons/original/000/019/304/old.jpg" class="img-fluid" alt="Simpsons Old Man Yells at Cloud Meme" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/no-link-in-bio-x-twitter</link>
+      <guid>https://www.lqdev.me/notes/no-link-in-bio-x-twitter</guid>
+      <pubDate>2024-05-26 15:48 -05:00</pubDate>
+      <category>x</category>
+      <category>twitter</category>
+      <category>website</category>
+    </item>
+    <item>
+      <title>Grok-1</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This repository contains JAX example code for loading and running the Grok-1 open-weights model.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/grok-1-open-release</link>
+      <guid>https://www.lqdev.me/responses/grok-1-open-release</guid>
+      <pubDate>2024-03-17 20:45 -05:00</pubDate>
+      <category>grok</category>
+      <category>ai</category>
+      <category>x</category>
+      <category>github</category>
+      <category>opensource</category>
+      <category>moe</category>
+    </item>
+  </channel>
+</rss>

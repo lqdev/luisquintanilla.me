@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Make predictions with ML.NET models without defining schema classes - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Make predictions with ML.NET models without defining schema classes</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2021-09-16">September 16, 2021</time><p>Tags: dotnet, machine learning, mlnet, artificial intelligence</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/mlnet-predictions-no-schema">View Full Version</a></p><div class="content"><h2>Introduction</h2>
+<p>To make predictions with ML.NET models you often have to define schema classes for your model inputs and outputs. In previous posts I wrote how you can <a href="/posts/inspect-mlnet-models-netron/">use Netron to inspect an ML.NET model</a> to determine the name and types of your model inputs and outputs. If you have data samples of what your data input and output look like in JSON format, you can <a href="/posts/vs-automate-mlnet-schema-generation/">automate the generation of model input and output classes by using Visual Studio's &quot;Paste JSON as Classes&quot; feature</a>. However, what if you want to make predictions without defining these classes? In this post I'll show how you can use the .NET DataFrame API to make predictions with ML.NET models without having to create model input and output classes. Code snippets are in F# but notebooks with complete <a href="https://github.com/lqdev/mlnet-noschema-predictions/blob/main/CSharp-NB.ipynb">C#</a> &amp; <a href="https://github.com/lqdev/mlnet-noschema-predictions/blob/main/FSharp-NB.ipynb">F#</a> code can be found in the <a href="https://github.com/lqdev/mlnet-noschema-predictions">mlnet-noschema-predictions repo</a> on GitHub.</p>
+<h2>Install and reference packages</h2>
+<p>In addition to the <a href="https://www.nuget.org/packages/Microsoft.ML/">Microsoft.ML</a> ML.NET NuGet package, you'll also need the <a href="https://www.nuget.org/packages/Microsoft.Data.Analysis/">Microsoft.Data.Analysis</a> NuGet package to use the .NET DataFrame API. For more information on the .NET DataFrame API, see <a href="https://devblogs.microsoft.com/dotnet/an-introduction-to-dataframe/">an introduction to DataFrame</a>.</p>
+<p>Once your packages are installed, reference them in your application.</p>
+<pre><code class="language-fsharp">open Microsoft.ML
+open Microsoft.Data.Analysis
+</code></pre>
+<h2>Initialize MLContext and load the model</h2>
+<p>The <code>MLContext</code> is the entrypoint of ML.NET applications. Use it to load your model. The model used in this case categorizes sentiment as positive or negative. See the <a href="/posts/inspect-mlnet-models-netron/">use Netron to inspect an ML.NET model</a> blog post to learn more about the model.</p>
+<pre><code class="language-fsharp">let ctx = MLContext()
+let model,schema = ctx.Model.Load(&quot;sentiment_model.zip&quot;)
+</code></pre>
+<p>Both the model and the input schema are returned when you load the model. The input schema is a <a href="https://docs.microsoft.com/dotnet/api/microsoft.ml.dataviewschema?view=ml-dotnet">DataViewSchema</a> object containing a collection of <a href="https://docs.microsoft.com/dotnet/api/microsoft.ml.dataviewschema.column?view=ml-dotnet">Columns</a>.</p>
+<h2>Define input and output column names</h2>
+<p>The input and output column names are for the DataFrames containing your input data and predictions. They help the model map the input and output values.</p>
+<p>Use the <code>schema</code> which was loaded with the model to get the name of your input columns.</p>
+<pre><code class="language-fsharp">let inputColumnNames = 
+    schema 
+    |&gt; Seq.map(fun column -&gt; column.Name) 
+    |&gt; Array.ofSeq
+</code></pre>
+<p>Since this is a binary classification model by default only two columns are returned as part of the prediction:</p>
+<ul>
+<li>Score</li>
+<li>PredictedLabel</li>
+</ul>
+<p>You can create an array containing the names of these columns. For more information on default output columns, see the <a href="https://docs.microsoft.com/dotnet/machine-learning/resources/tasks#binary-classification-inputs-and-outputs">ML.NET Tasks documentation</a>.</p>
+<pre><code class="language-fsharp">let outputColumnNames = [| &quot;PredictedLabel&quot; ; &quot;Score&quot; |]
+</code></pre>
+<h2>Create input data for predictions</h2>
+<p>Use the <a href="https://docs.microsoft.com/dotnet/api/microsoft.data.analysis.dataframe.loadcsvfromstring?view=ml-dotnet-preview#Microsoft_Data_Analysis_DataFrame_LoadCsvFromString_System_String_System_Char_System_Boolean_System_String___System_Type___System_Int64_System_Int32_System_Boolean_"><code>LoadCsvFromString</code></a> method to load your input data into a DataFrame. In this case, there's only one column and data instance so I represent it as a string literal. Additionally, I provide the name of the input columns.</p>
+<pre><code class="language-fsharp">let sampleInput = &quot;This was a very bad steak&quot;
+
+let inputDataFrame = 
+    DataFrame.LoadCsvFromString(
+        sampleInput, 
+        header=false, 
+        columnNames=inputColumnNames)
+</code></pre>
+<h2>Make predictions</h2>
+<p>Now that you've loaded your input data, it's time to use the model to make predictions.</p>
+<pre><code class="language-fsharp">let predictionDV = 
+    inputDataFrame 
+    |&gt; model.Transform 
+</code></pre>
+<p>Calling the <a href="https://docs.microsoft.com/dotnet/api/microsoft.ml.itransformer.transform?view=ml-dotnet#Microsoft_ML_ITransformer_Transform_Microsoft_ML_IDataView_"><code>Transform</code></a> method  returns an <a href="https://docs.microsoft.com/dotnet/api/microsoft.ml.idataview?view=ml-dotnet"><code>IDataView</code></a> with your predictions. You can then convert the <code>IDataView</code> into a DataFrame for further processing with the <a href="https://docs.microsoft.com/dotnet/api/microsoft.ml.idataviewextensions.todataframe?view=ml-dotnet-preview"><code>ToDataFrame</code></a> method.</p>
+<pre><code class="language-fsharp">let prediction = predictionDV.ToDataFrame(1L, outputColumnNames)
+</code></pre>
+<p>The resulting DataFrame should look something like the following:</p>
+<table class="table">
+<thead>
+<tr>
+<th>index</th>
+<th>PredictedLabel</th>
+<th>Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>False</td>
+<td>-2.1337974</td>
+</tr>
+</tbody>
+</table>
+<h2>Conclusion</h2>
+<p>If you want to load a model and make predictions without defining  classes for your input and output schema's you can load your data into a DataFrame using the .NET DataFrame API. While this solution works, because DataFrames and IDataViews process data differently, I haven't tested whether this solution would scale for larger data sets.</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

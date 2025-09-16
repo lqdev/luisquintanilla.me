@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - opengraph</title>
+    <link>https://www.lqdev.me/tags/opengraph</link>
+    <description>All content tagged with 'opengraph' by Luis Quintanilla</description>
+    <lastBuildDate>2024-11-19 09:25 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Mastodon instance now supports OpenGraph creator tag</title>
+      <description>&lt;![CDATA[&lt;p&gt;In version 4.3, &lt;a href="https://blog.joinmastodon.org/2024/10/mastodon-4.3/#:%7E:text=Helping%20writers%20and%20journalists"&gt;Mastodon introduced OpenGraph creator tags&lt;/a&gt; to link to an author's Fediverse account from within a post.&lt;/p&gt;
+&lt;p&gt;I had &lt;a href="https://www.lqdev.me/notes/added-fediverse-og-creator-tag"&gt;implemented it on my website&lt;/a&gt; a while back. However, because my instance wasn't using a version that supported it, it didn't show up on my instance.&lt;/p&gt;
+&lt;p&gt;Since upgrading to 4.3.1, I can now see my posts making use of the creator tag feature.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/c8be21fd-daa8-40ef-b923-fd6c302ab1f3" class="img-fluid" alt="Screenshot of Mastodon Post with Author Profile Link" /&gt;&lt;/p&gt;
+&lt;p&gt;As you can see from the original post, implementing it was relatively trivial. Another win for open protocols and standards.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/mastodon-instance-supports-opengraph-creator-tag</link>
+      <guid>https://www.lqdev.me/notes/mastodon-instance-supports-opengraph-creator-tag</guid>
+      <pubDate>2024-11-19 09:25 -05:00</pubDate>
+      <category>mastodon</category>
+      <category>fediverse</category>
+      <category>opengraph</category>
+      <category>protocols</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>Just added Fediverse Open Graph meta tag to my website</title>
+      <description>&lt;![CDATA[&lt;p&gt;I learned from &lt;a href="https://matthiasott.com/notes/highlighting-blogging-on-mastodon"&gt;Matthias Ott&lt;/a&gt; that Mastodon created a new Open Graph meta tag which displays a direct link to the website owner's Fediverse (Mastodon, Pixelfed, Threads, etc...) profile as part of the URL preview card on the Mastodon web and mobile apps.&lt;/p&gt;
+&lt;p&gt;I just added support for it on my website.&lt;/p&gt;
+&lt;p&gt;All I had to do was add the following tag to my site.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;meta property=&amp;quot;fediverse:creator&amp;quot; content=&amp;quot;@lqdev@toot.lqdev.tech&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I'm not running the nightly version of Mastodon on my instance, but if anyone on an instance where this is already supported like mastodon.social can verify and let me know it's working, it's much appreciated.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/added-fediverse-og-creator-tag</link>
+      <guid>https://www.lqdev.me/notes/added-fediverse-og-creator-tag</guid>
+      <pubDate>2024-07-02 21:41 -05:00</pubDate>
+      <category>mastodon</category>
+      <category>fediverse</category>
+      <category>blogging</category>
+      <category>indieweb</category>
+      <category>blogs</category>
+      <category>news</category>
+      <category>journalism</category>
+      <category>openweb</category>
+      <category>distributedweb</category>
+      <category>smallweb</category>
+      <category>personalweb</category>
+      <category>opengraph</category>
+      <category>html</category>
+    </item>
+  </channel>
+</rss>

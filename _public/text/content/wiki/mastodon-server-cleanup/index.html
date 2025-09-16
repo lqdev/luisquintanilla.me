@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Mastodon Server Cleanup - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Mastodon Server Cleanup</h1><div class="content-meta"><div class="content-type">wiki</div><time datetime="2024-07-14">July 14, 2024</time><p>Tags: mastodon, linux, socialmedia, sysadmin</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/wiki/">← All wiki</a> | <a href="https://www.lqdev.me/resources/wiki/mastodon-server-cleanup">View Full Version</a></p><div class="content"><h2>Overview</h2>
+<p>General commands for cleaning up resources on Mastodon servers</p>
+<h2>Setup</h2>
+<ol>
+<li><p>Stop services</p>
+<pre><code class="language-bash">sudo systemctl stop mastodon-sidekiq mastodon-streaming mastodon-web
+</code></pre>
+</li>
+<li><p>Restart postgresql</p>
+<pre><code class="language-bash">sudo systemctl restart postgresql
+</code></pre>
+</li>
+<li><p>Log into mastodon user</p>
+<pre><code class="language-bash">sudo su - mastodon
+</code></pre>
+</li>
+<li><p>Go to <code>live</code> directory</p>
+<pre><code class="language-bash">cd /home/mastodon/live
+</code></pre>
+</li>
+</ol>
+<h2>Check media usage</h2>
+<pre><code class="language-bash">RAILS_ENV=production ./bin/tootctl media usage
+</code></pre>
+<h2>Remove media</h2>
+<pre><code class="language-bash">RAILS_ENV=production ./bin/tootctl media remove
+</code></pre>
+<h2>Remove media headers</h2>
+<pre><code class="language-bash">RAILS_ENV=production ./bin/tootctl media remove --prune-profiles
+</code></pre>
+<h2>Remove preview cards</h2>
+<pre><code class="language-bash">RAILS_ENV=production ./bin/tootctl preview_cards remove
+</code></pre>
+<h2>Restart services</h2>
+<pre><code class="language-bash">sudo systemctl restart mastodon-sidekiq mastodon-streaming mastodon-web
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://docs.joinmastodon.org/admin/tootctl/">Using the Admin CLI</a></li>
+</ul>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

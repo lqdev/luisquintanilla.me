@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - slm</title>
+    <link>https://www.lqdev.me/tags/slm</link>
+    <description>All content tagged with 'slm' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-14 12:40 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Introducing Gemma 3 270M</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we're adding a new, highly specialized tool to the Gemma 3 toolkit: Gemma 3 270M, a compact, 270-million parameter model designed from the ground up for task-specific fine-tuning with strong instruction-following and text structuring capabilities already trained in.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-gemma-3-270m</link>
+      <guid>https://www.lqdev.me/responses/introducing-gemma-3-270m</guid>
+      <pubDate>2025-08-14 12:40 -05:00</pubDate>
+      <category>ai</category>
+      <category>google</category>
+      <category>gemma</category>
+      <category>slm</category>
+      <category>genai</category>
+    </item>
+    <item>
+      <title>Introducing Apple’s On-Device and Server Foundation Models</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Apple Intelligence is comprised of multiple highly-capable generative models that are specialized for our users’ everyday tasks, and can adapt on the fly for their current activity. The foundation models built into Apple Intelligence have been fine-tuned for user experiences such as writing and refining text, prioritizing and summarizing notifications, creating playful images for conversations with family and friends, and taking in-app actions to simplify interactions across apps.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In the following overview, we will detail how two of these models — a ~3 billion parameter on-device language model, and a larger server-based language model available with Private Cloud Compute and running on Apple silicon servers — have been built and adapted to perform specialized tasks efficiently, accurately, and responsibly. These two foundation models are part of a larger family of generative models created by Apple to support users and developers; this includes a coding model to build intelligence into Xcode, as well as a diffusion model to help users express themselves visually, for example, in the Messages app.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Pre-training&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our foundation models are trained on Apple's AXLearn framework, an open-source project we released in 2023. It builds on top of JAX and XLA, and allows us to train the models with high efficiency and scalability on various training hardware and cloud platforms, including TPUs and both cloud and on-premise GPUs. We used a combination of data parallelism, tensor parallelism, sequence parallelism, and Fully Sharded Data Parallel (FSDP) to scale training along multiple dimensions such as data, model, and sequence length.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Post-training&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We find that data quality is essential to model success, so we utilize a hybrid data strategy in our training pipeline, incorporating both human-annotated and synthetic data, and conduct thorough data curation and filtering procedures. We have developed two novel algorithms in post-training: (1) a rejection sampling fine-tuning algorithm with teacher committee, and (2) a reinforcement learning from human feedback (RLHF) algorithm with mirror descent policy optimization and a leave-one-out advantage estimator. We find that these two algorithms lead to significant improvement in the model’s instruction-following quality.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Optimization&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Both the on-device and server models use grouped-query-attention. We use shared input and output vocab embedding tables to reduce memory requirements and inference cost. These shared embedding tensors are mapped without duplications. The on-device model uses a vocab size of 49K, while the server model uses a vocab size of 100K, which includes additional language and technical tokens.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;For on-device inference, we use low-bit palletization, a critical optimization technique that achieves the necessary memory, power, and performance requirements. To maintain model quality, we developed a new framework using LoRA adapters that incorporates a mixed 2-bit and 4-bit configuration strategy — averaging 3.5 bits-per-weight — to achieve the same accuracy as the uncompressed models.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Additionally, we use an interactive model latency and power analysis tool, Talaria, to better guide the bit rate selection for each operation. We also utilize activation quantization and embedding quantization, and have developed an approach to enable efficient Key-Value (KV) cache update on our neural engines.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Model Adaptation&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our foundation models are fine-tuned for users’ everyday activities, and can dynamically specialize themselves on-the-fly for the task at hand...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We represent the values of the adapter parameters using 16 bits, and for the ~3 billion parameter on-device model, the parameters for a rank 16 adapter typically require 10s of megabytes. The adapter models can be dynamically loaded, temporarily cached in memory, and swapped — giving our foundation model the ability to specialize itself on the fly for the task at hand while efficiently managing memory and guaranteeing the operating system's responsiveness.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Performance and Evaluation&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We compare our models with both open-source models (Phi-3, Gemma, Mistral, DBRX) and commercial models of comparable size (GPT-3.5-Turbo, GPT-4-Turbo)1. We find that our models are preferred by human graders over most comparable competitor models. On this benchmark, our on-device model, with ~3B parameters, outperforms larger models including Phi-3-mini, Mistral-7B, and Gemma-7B. Our server model compares favorably to DBRX-Instruct, Mixtral-8x22B, and GPT-3.5-Turbo while being highly efficient.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;To further evaluate our models, we use the Instruction-Following Eval (IFEval) benchmark to compare their instruction-following capabilities with models of comparable size. The results suggest that both our on-device and server model follow detailed instructions better than the open-source and commercial models of comparable size.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-apple-on-device-server-foundational-models</link>
+      <guid>https://www.lqdev.me/responses/introducing-apple-on-device-server-foundational-models</guid>
+      <pubDate>2024-06-11 20:26 -05:00</pubDate>
+      <category>ai</category>
+      <category>apple</category>
+      <category>slm</category>
+      <category>edge</category>
+      <category>wwdc</category>
+    </item>
+    <item>
+      <title>TinyAgent: Function Calling at the Edge</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;&lt;img src="https://bair.berkeley.edu/static/blog/tiny-agent/Figure2.png" class="img-fluid" alt="High level conceptual diagram of TinyAgent system" /&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The ability of LLMs to execute commands through plain language (e.g. English) has enabled agentic systems that can complete a user query by orchestrating the right set of tools...recent multi-modal efforts such as the GPT-4o or Gemini-1.5 model, has expanded the realm of possibilities with AI agents. While this is quite exciting, the large model size and computational requirements of these models often requires their inference to be performed on the cloud. This can create several challenges for their widespread adoption. First and foremost, uploading data such as video, audio, or text documents to a third party vendor on the cloud, can result in privacy issues. Second, this requires cloud/Wi-Fi connectivity which is not always possible...latency could also be an issue as uploading large amounts of data to the cloud and waiting for the response could slow down response time, resulting in unacceptable time-to-solution. These challenges could be solved if we deploy the LLM models locally at the edge.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...current LLMs like GPT-4o or Gemini-1.5 are too large for local deployment. One contributing factor is that a lot of the model size ends up memorizing general information about the world into its parametric memory which may not be necessary for a specialized downstream application.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...this leads to an intriguing research question:&lt;br /&gt;
+&lt;br&gt;
+Can a smaller language model with significantly less parametric memory emulate such emergent ability of these larger language models?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Achieving this would significantly reduce the computational footprint of agentic systems and thus enable efficient and privacy-preserving edge deployment. Our study demonstrates that this is feasible for small language models through training with specialized, high-quality data that does not require recalling generic world knowledge.&lt;br /&gt;
+&lt;br&gt;
+Such a system could particularly be useful for semantic systems where the AI agent’s role is to understand the user query in natural language and, instead of responding with a ChatGPT-type question answer response, orchestrate the right set of tools and APIs to accomplish the user’s command. For example, in a Siri-like application, a user may ask a language model to create a calendar invite with particular attendees. If a predefined script for creating calendar items already exists, the LLM simply needs to learn how to invoke this script with the correct input arguments (such as attendees’ email addresses, event title, and time). This process does not require recalling/memorization of world knowledge from sources like Wikipedia, but rather requires reasoning and learning to call the right functions and to correctly orchestrate them.&lt;br /&gt;
+&lt;br&gt;
+Our goal is to develop Small Language Models (SLM) that are capable of complex reasoning that could be deployed securely and privately at the edge. Here we will discuss the research directions that we are pursuing to that end. First, we discuss how we can enable small open-source models to perform accurate function calling, which is a key component of agentic systems. It turns out that off-the-shelf small models have very low function calling capabilities. We discuss how we address this by systematically curating high-quality data for function calling, using a specialized Mac assistant agent as our driving application. We then show that fine-tuning the model on this high quality curated dataset, can enable SLMs to even exceed GPT-4-Turbo’s function calling performance. We then show that this could be further improved and made efficient through a new Tool RAG method. Finally, we show how the final models could be deployed efficiently at the edge with real time responses.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/TinyAgent-function-calling-edge</link>
+      <guid>https://www.lqdev.me/responses/TinyAgent-function-calling-edge</guid>
+      <pubDate>2024-06-11 19:43 -05:00</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>slm</category>
+      <category>function</category>
+      <category>edge</category>
+      <category>local</category>
+      <category>languagemodel</category>
+      <category>smalllanguagemodel</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>Reproducing GPT-2 (124M) in llm.c in 90 minutes for $20</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...the TLDR is that we're training a 12-layer GPT-2 (124M), from scratch, on 10B tokens of FineWeb, with max sequence length of 1024 tokens.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The 124M model is the smallest model in the GPT-2 series released by OpenAI in 2019, and is actually quite accessible today, even for the GPU poor. With llm.c, which is quite efficient at up to ~60% model flops utilization, reproducing this model on one 8X A100 80GB SXM node takes ~90 minutes. For example, on Lambda this node goes for ~$14/hr, so the total cost of reproducing this model today is about $20. You can train the model with a single GPU too, it would just take proportionally longer (e.g. ~4-24 hours depending on the GPU).&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/repro-gpt-2-llm-c-90-min-20-dollars-karpathy</link>
+      <guid>https://www.lqdev.me/responses/repro-gpt-2-llm-c-90-min-20-dollars-karpathy</guid>
+      <pubDate>2024-05-28 20:33 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>gpt</category>
+      <category>gpt2</category>
+      <category>llmc</category>
+      <category>c</category>
+      <category>slm</category>
+    </item>
+    <item>
+      <title>Introducing Phi-3</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Starting today, Phi-3-mini, a 3.8B language model is available on Microsoft Azure AI Studio, Hugging Face, and Ollama.&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Phi-3-mini is available in two context-length variants—4K and 128K tokens. It is the first model in its class to support a context window of up to 128K tokens, with little impact on quality.&lt;/li&gt;
+&lt;li&gt;It is instruction-tuned, meaning that it’s trained to follow different types of instructions reflecting how people normally communicate. This ensures the model is ready to use out-of-the-box.&lt;/li&gt;
+&lt;li&gt;It is available on Azure AI to take advantage of the deploy-eval-finetune toolchain, and is available on Ollama for developers to run locally on their laptops.&lt;/li&gt;
+&lt;li&gt;It has been optimized for ONNX Runtime with support for Windows DirectML along with cross-platform support across graphics processing unit (GPU), CPU, and even mobile hardware.&lt;/li&gt;
+&lt;li&gt;It is also available as an NVIDIA NIM microservice with a standard API interface that can be deployed anywhere. And has been optimized for NVIDIA GPUs.&lt;br /&gt;
+&lt;br&gt;
+In the coming weeks, additional models will be added to Phi-3 family to offer customers even more flexibility across the quality-cost curve. Phi-3-small (7B) and Phi-3-medium (14B) will be available in the Azure AI model catalog and other model gardens shortly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-phi-3</link>
+      <guid>https://www.lqdev.me/responses/introducing-phi-3</guid>
+      <pubDate>2024-04-23 22:47 -05:00</pubDate>
+      <category>microsoft</category>
+      <category>phi3</category>
+      <category>ai</category>
+      <category>slm</category>
+      <category>llm</category>
+      <category>genai</category>
+    </item>
+    <item>
+      <title>RecurrentGemma - Open weights language model from Google DeepMind, based on Griffin.</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;RecurrentGemma is a family of open-weights Language Models by Google DeepMind, based on the novel Griffin architecture. This architecture achieves fast inference when generating long sequences by replacing global attention with a mixture of local attention and linear recurrences.&lt;br /&gt;
+&lt;br&gt;
+This repository contains the model implementation and examples for sampling and fine-tuning. We recommend most users adopt the Flax implementation, which is highly optimized. We also provide an un-optimized PyTorch implementation for reference.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/google-deepmind-recurrent-gemma</link>
+      <guid>https://www.lqdev.me/responses/google-deepmind-recurrent-gemma</guid>
+      <pubDate>2024-04-10 21:57 -05:00</pubDate>
+      <category>ai</category>
+      <category>gemma</category>
+      <category>google</category>
+      <category>llm</category>
+      <category>opensource</category>
+      <category>slm</category>
+      <category>griffin</category>
+      <category>neuralnetwork</category>
+    </item>
+    <item>
+      <title>These models are too damn big!</title>
+      <description>&lt;![CDATA[&lt;p&gt;While the size of these smaller language models is significantly less than the trillion parameter models like GPT, they still take up a lot of storage space. Playing around with &lt;a href="https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2"&gt;Mistral 7B Instruct v0.2&lt;/a&gt;, the safetensor files containing the weights take up roughly 15GB of space. I'm thinking of playing around with &lt;a href="https://learn.microsoft.com/azure/storage/blobs/blobfuse2-what-is"&gt;blobfuse&lt;/a&gt; to mount a storage container to my local file system. That way, I'm only caching and accessing the models I'm working with at any given time.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/slm-too-big</link>
+      <guid>https://www.lqdev.me/notes/slm-too-big</guid>
+      <pubDate>2024-04-08 23:43 -05:00</pubDate>
+      <category>ai</category>
+      <category>slm</category>
+      <category>huggingface</category>
+      <category>llm</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>Introducing Stable LM 2 1.6B</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Stable LM 2 1.6B is a state-of-the-art 1.6 billion parameter small language model trained on multilingual data in English, Spanish, German, Italian, French, Portuguese, and Dutch.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This model's compact size and speed lower hardware barriers, allowing more developers to participate in the generative AI ecosystem.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In addition to the pre-trained and instruction-tuned version, we release the last checkpoint before the pre-training cooldown. We include optimizer states to facilitate developers in fine-tuning and experimentation. Data details will be provided in the upcoming technical report.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Stable LM 2 1.6B can be used now both commercially and non-commercially with a Stability AI Membership &amp;amp; you can test the model on &lt;a href="https://huggingface.co/spaces/stabilityai/stablelm-2-1_6b-zephyr"&gt;Hugging Face&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-stable-lm-2-1-6B</link>
+      <guid>https://www.lqdev.me/responses/introducing-stable-lm-2-1-6B</guid>
+      <pubDate>2024-01-23 09:36 -05:00</pubDate>
+      <category>ai</category>
+      <category>stabilityai</category>
+      <category>slm</category>
+      <category>llm</category>
+      <category>smalllanguagemodel</category>
+    </item>
+    <item>
+      <title>Phi-2: The surprising power of small language models</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We are now releasing Phi-2, a 2.7 billion-parameter language model that demonstrates outstanding reasoning and language understanding capabilities, showcasing state-of-the-art performance among base language models with less than 13 billion parameters. On complex benchmarks Phi-2 matches or outperforms models up to 25x larger, thanks to new innovations in model scaling and training data curation.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/microsoft-phi-2</link>
+      <guid>https://www.lqdev.me/bookmarks/microsoft-phi-2</guid>
+      <pubDate>2023-12-12 19:00 -05:00</pubDate>
+      <category>ai</category>
+      <category>slm</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Distilling step-by-step: Outperforming larger language models with less training data and smaller model sizes</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In &lt;a href="https://arxiv.org/abs/2305.02301"&gt;“Distilling Step-by-Step! Outperforming Larger Language Models with Less Training Data and Smaller Model Sizes”&lt;/a&gt;, presented at ACL2023, we set out to tackle this trade-off between model size and training data collection cost. We introduce distilling step-by-step, a new simple mechanism that allows us to train smaller task-specific models with much less training data than required by standard fine-tuning or distillation approaches that outperform few-shot prompted LLMs’ performance. We demonstrate that the distilling step-by-step mechanism enables a 770M parameter T5 model to outperform the few-shot prompted 540B PaLM model using only 80% of examples in a benchmark dataset, which demonstrates a more than 700x model size reduction with much less training data required by standard approaches.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/distilling-step-x-step-outperforming-large-models-small-data</link>
+      <guid>https://www.lqdev.me/bookmarks/distilling-step-x-step-outperforming-large-models-small-data</guid>
+      <pubDate>2023-09-25 20:45 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>slm</category>
+      <category>optimization</category>
+    </item>
+  </channel>
+</rss>

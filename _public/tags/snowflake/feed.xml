@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - snowflake</title>
+    <link>https://www.lqdev.me/tags/snowflake</link>
+    <description>All content tagged with 'snowflake' by Luis Quintanilla</description>
+    <lastBuildDate>2024-04-25 23:34 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Introducing Snowflake Arctic</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, the Snowflake AI Research Team is thrilled to introduce Snowflake Arctic, a top-tier enterprise-focused LLM that pushes the frontiers of cost-effective training and openness. Arctic is efficiently intelligent and truly open.&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Efficiently Intelligent: Arctic excels at enterprise tasks such as SQL generation, coding and instruction following benchmarks even when compared to open source models trained with significantly higher compute budgets. In fact, it sets a new baseline for cost-effective training to enable Snowflake customers to create high-quality custom models for their enterprise needs at a low cost.&lt;br /&gt;
+&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;Truly Open: Apache 2.0 license provides ungated access to weights and code. In addition, we are also open sourcing all of our data recipes and research insights.&lt;br /&gt;
+&lt;br&gt;
+Snowflake Arctic is available from Hugging Face, NVIDIA API catalog and Replicate today or via your model garden or catalog of choice, including Snowflake Cortex, Amazon Web Services (AWS), Microsoft Azure, Lamini, Perplexity and Together over the coming days.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/snowflake-arctic-enterprise-ai-llm</link>
+      <guid>https://www.lqdev.me/responses/snowflake-arctic-enterprise-ai-llm</guid>
+      <pubDate>2024-04-25 23:34 -05:00</pubDate>
+      <category>snowflake</category>
+      <category>ai</category>
+      <category>llm</category>
+      <category>enterprise</category>
+    </item>
+  </channel>
+</rss>

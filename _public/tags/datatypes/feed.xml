@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - datatypes</title>
+    <link>https://www.lqdev.me/tags/datatypes</link>
+    <description>All content tagged with 'datatypes' by Luis Quintanilla</description>
+    <lastBuildDate>2024-03-06 21:39 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>The missing graph datatype already exists. It was invented in the '70s</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The datatype for a graph is a relation, and graph algorithms are queries on the relation. But modern languages need better support for the relational model.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This post is a response to/inspired by &lt;a href="https://www.hillelwayne.com/post/graph-types/"&gt;The Hunt for the Missing Data Type (HN) by Hillel Wayne&lt;/a&gt;. I suggest reading his article first.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I claim the reason why it is so difficult to support graphs in languages nowadays is because the imperative/structured programming model of modern programming languages is ill-suited for graph algorithms. As Wayne correctly points out, the core problem is that when you write a graph algorithm in an imperative language like Python or Rust, you have to choose some explicit representation for the graph. Then, your traversal algorithm is dependent on the representation you chose. If you find out later that your representation is no longer efficient, it is a lot of work to adapt your algorithms for a new representation.&lt;br /&gt;
+&lt;br&gt;
+So what if we just, like, didn’t do this?&lt;br /&gt;
+&lt;br&gt;
+We already have a declarative programming language where expressing graph algorithms is extremely natural—Datalog, whose semantics are based on* the relational algebra, which was developed in the 1970s.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Wonderful! Except for the “writing Datalog” part.&lt;br /&gt;
+&lt;br&gt;
+If Datalog is so great, why hasn’t it seen more adoption?&lt;br /&gt;
+&lt;br&gt;
+The short answer is that Datalog is relatively esoteric outside of academia and some industry applications and, as a result, is not a great language from a “software engineering” perspective. It is hard for programmers accustomed to imperative code to write Datalog programs, and large Datalog programs can be hard to write and understand.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/datalog-the-missing-graph-data-type-already-exists</link>
+      <guid>https://www.lqdev.me/responses/datalog-the-missing-graph-data-type-already-exists</guid>
+      <pubDate>2024-03-06 21:39 -05:00</pubDate>
+      <category>datalog</category>
+      <category>programming</category>
+      <category>graphs</category>
+      <category>datatypes</category>
+      <category>programminglanguages</category>
+      <category>software</category>
+      <category>database</category>
+      <category>algorithms</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>OPML File Generator - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>OPML File Generator</h1><div class="content-meta"><div class="content-type">snippets</div><time datetime="2022-08-14">August 14, 2022</time><p>Tags: dotnet, fsharp, script</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/snippets/">← All snippets</a> | <a href="https://www.lqdev.me/resources/snippets/opml-file-generator">View Full Version</a></p><div class="content"><h2>Description</h2>
+<p>Script to take information stored in a JSON file and converts it into OPML format. This works for RSS readers as well as podcast clients that support OPML import.</p>
+<h2>Usage</h2>
+<pre><code class="language-bash">dotnet fsi opml-generator.fsx &quot;&lt;feed-title&gt;&quot; &quot;&lt;author-url&gt;&quot; &quot;&lt;data-file-path&gt;&quot;
+</code></pre>
+<pre><code class="language-bash">dotnet fsi opml-generator.fsx &quot;My Blogroll&quot; &quot;http://lqdev.me&quot; &quot;blogroll.json&quot;
+</code></pre>
+<h2>Snippet</h2>
+<h3>opml-generator.fsx</h3>
+<pre><code class="language-fsharp">open System.IO
+open System.Linq
+open System.Text.Json
+open System.Xml.Linq
+<p>type OpmlMetadata =
+{
+Title: string
+OwnerId: string
+}</p>
+<p>type Outline =
+{
+Title: string
+Type: string
+HtmlUrl: string
+XmlUrl: string
+}</p>
+<p>let opmlFeed (head:XElement) =
+XElement(XName.Get &quot;opml&quot;,
+XAttribute(XName.Get &quot;version&quot;, &quot;2.0&quot;),
+head,
+XElement(XName.Get &quot;body&quot;))</p>
+<p>let headElement (metadata:OpmlMetadata) =
+XElement(XName.Get &quot;head&quot;,
+XElement(XName.Get &quot;title&quot;, metadata.Title),
+XElement(XName.Get &quot;ownerId&quot;, metadata.OwnerId))</p>
+<p>let outlineElement (data:Outline) =
+XElement(XName.Get &quot;outline&quot;,
+XAttribute(XName.Get &quot;title&quot;, data.Title),
+XAttribute(XName.Get &quot;text&quot;, data.Title),<br />
+XAttribute(XName.Get &quot;type&quot;, data.Type),
+XAttribute(XName.Get &quot;htmlUrl&quot;, data.HtmlUrl),
+XAttribute(XName.Get &quot;xmlUrl&quot;, data.XmlUrl))</p>
+<p>let loadLinks (filePath:string) =
+File.ReadAllText(filePath)
+|&gt; fun x -&gt; x |&gt; JsonSerializer.Deserialize&lt;Outline array&gt;</p>
+<p>let buildOpmlFeed (title:string) (ownerId:string) (filePath:string) =
+let fileName = Path.GetFileNameWithoutExtension(filePath)</p>
+<pre><code>let head = 
+    {
+        Title=title
+        OwnerId=ownerId
+    }
+    |&amp;gt; headElement
+
+let links = filePath |&amp;gt; loadLinks |&amp;gt; Array.map(outlineElement) 
+
+let feed =  opmlFeed head 
+feed.Descendants(XName.Get &amp;quot;body&amp;quot;).First().Add(links)
+File.WriteAllText($&amp;quot;{fileName}.opml&amp;quot;, feed.ToString())
+</code></pre>
+<p>let args = fsi.CommandLineArgs
+let title = args[1]
+let ownerId = args.[2]
+let dataPath = args.[3]</p>
+<p>buildOpmlFeed title ownerId dataPath
+</code></pre></p>
+<h3>blogroll.json</h3>
+<pre><code class="language-json">[
+    {
+        &quot;Title&quot;: &quot;Blogroll.org&quot;,
+        &quot;Type&quot;: &quot;rss&quot;,
+        &quot;HtmlUrl&quot;: &quot;https://blogroll.org/&quot;,
+        &quot;XmlUrl&quot;: &quot;https://blogroll.org/feed/&quot;
+    },
+    {
+        &quot;Title&quot;: &quot;Cheapskate's Guide&quot;,
+        &quot;Type&quot;: &quot;rss&quot;,
+        &quot;HtmlUrl&quot;: &quot;https://cheapskatesguide.org/&quot;,
+        &quot;XmlUrl&quot;: &quot;https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml&quot;
+    },
+    {
+        &quot;Title&quot;: &quot;JWZ&quot;,
+        &quot;Type&quot;: &quot;rss&quot;,
+        &quot;HtmlUrl&quot;: &quot;https://www.jwz.org/blog/&quot;,
+        &quot;XmlUrl&quot;: &quot;https://cdn.jwz.org/blog/feed/&quot;
+    }    
+]
+</code></pre>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

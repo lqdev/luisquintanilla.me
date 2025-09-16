@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - mlx</title>
+    <link>https://www.lqdev.me/tags/mlx</link>
+    <description>All content tagged with 'mlx' by Luis Quintanilla</description>
+    <lastBuildDate>2024-02-20 16:25 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>MLX Swift - On-device ML research with MLX and Swift</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The Swift programming language has a lot of potential to be used for machine learning research because it combines the ease of use and high-level syntax of a language like Python with the speed of a compiled language like C++.&lt;br /&gt;
+&lt;br&gt;
+&lt;a href="https://github.com/ml-explore/mlx"&gt;MLX&lt;/a&gt; is an array framework for machine learning research on Apple silicon. MLX is intended for research and not for production deployment of models in apps.&lt;br /&gt;
+&lt;br&gt;
+&lt;a href="https://github.com/ml-explore/mlx-swift/"&gt;MLX Swift&lt;/a&gt; expands MLX to the Swift language, making experimentation on Apple silicon easier for ML researchers.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/swift-mlx-ml-research</link>
+      <guid>https://www.lqdev.me/responses/swift-mlx-ml-research</guid>
+      <pubDate>2024-02-20 16:25 -05:00</pubDate>
+      <category>apple</category>
+      <category>mlx</category>
+      <category>swift</category>
+      <category>opensource</category>
+      <category>ml</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>Mixtral 8x7B on Apple Silicon with MLX</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Run the Mixtral1 8x7B mixture-of-experts (MoE) model in MLX on Apple silicon.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/mlx-mixtral-8x7b</link>
+      <guid>https://www.lqdev.me/bookmarks/mlx-mixtral-8x7b</guid>
+      <pubDate>2023-12-12 19:19 -05:00</pubDate>
+      <category>mlx</category>
+      <category>ai</category>
+      <category>frameworks</category>
+    </item>
+  </channel>
+</rss>

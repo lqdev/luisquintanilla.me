@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Automate YAML front-matter generation with custom Visual Studio Code snippets - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Automate YAML front-matter generation with custom Visual Studio Code snippets</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2021-10-05">October 5, 2021</time><p>Tags: blogging, tooling, visual-studio, visual-studio-code, markdown, yaml</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/automate-yaml-front-matter-vs-code-snippets">View Full Version</a></p><div class="content"><h2>Introduction</h2>
+<p>When creating content with static site generators such as Jekyll, Hexo, and many others, page metadata such as publish date, title, tags, and other details is created using YAML front-matter. Typically these pages are authored in markdown. At the top of each page, there's a YAML formatted section containing all of these details. Sometimes these static site generators include tooling to make it easier to scaffold new pages. In the case of my website, I created my own static site generator. Therefore, scaffolding a new page, especially writing the boilerplate YAML front-matter is cumbersome and time consuming. Since I use Visual Studio Code for authoring content and developing the static site generator, I've decided to use <a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">snippets</a> to help me automate YAML front-matter generation. In this post, I'll show the general process.</p>
+<h2>Create snippets file</h2>
+<p>The first thing you'll want to do is create a snippets file. You can have one or as many as you want. For this website, I have a single snippets file called <em>metadata.code-snippets</em> for all my YAML front-matter. To create a snippets file:</p>
+<ol>
+<li><p>Open the Visual Studio Code command palette.</p>
+</li>
+<li><p>Enter the command <code>&gt;Preferences: Configure User Snippets</code> into the text box.</p>
+</li>
+<li><p>Select the <strong>New Snippets file for &lt;REPO-OR-DIRECTORY-NAME&gt;</strong> from the list of options.</p>
+<p><a href="https://user-images.githubusercontent.com/11130940/135934846-a76dfa16-caed-4489-9e50-95183add673d.png" target="_blank">[Image: Create snippet file from Visual Studio Code command palette]</a></p>
+</li>
+<li><p>Provide a name for your snippets file and press <strong>Enter</strong>.</p>
+</li>
+<li><p>A file with the <em>.code-snippets</em> extension is created in the <em>.vscode</em> directory inside your project.</p>
+</li>
+</ol>
+<p>One benefit of creating a snippets file and saving it in the <em>.vscode</em> directory is you can check it into source control and use it anywhere, even github.dev.</p>
+<h2>Create snippets</h2>
+<p>Now that you've created the file, it's time to define your snippets.</p>
+<ol>
+<li><p>Open your snippets file.</p>
+<p><a href="https://user-images.githubusercontent.com/11130940/135935306-1cbd48e1-6e48-423c-b87f-cb6f7a8eb085.png" target="_blank">[Image: Snippet file for luisquintanilla.me]</a></p>
+</li>
+<li><p>Create a new JSON object and define your snippet.</p>
+<p>For example, the snippet for blog posts on this site looks like the following.</p>
+<pre><code class="language-json">&quot;Article Post metadata&quot;: {
+    &quot;scope&quot;: &quot;markdown&quot;,
+    &quot;prefix&quot;: &quot;article&quot;,
+    &quot;body&quot;: [
+        &quot;---&quot;,
+        &quot;post_type: \&quot;article\&quot; &quot;,
+        &quot;title: \&quot;\&quot;&quot;,
+        &quot;published_date: \&quot;$CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE\&quot;&quot;,
+        &quot;tags: &quot;,
+        &quot;---&quot;
+    ],
+    &quot;description&quot;: &quot;Blog post article metadata&quot;
+}
+</code></pre>
+<p>Let's break down each of the properties:</p>
+<ul>
+<li><p><code>scope</code>: By default, snippets apply to all languages and projects. In my case, since I intend only to use these snippets in markdown files, I set the scope to <code>markdown</code>.</p>
+</li>
+<li><p><code>prefix</code>: The prefix is the word in the page that is associated with. When I type <code>article</code> in a markdown page, a recommendation to use the snippet appears.</p>
+</li>
+<li><p><code>body</code>: The code or content of my snippet. In this case, the expected output is similar to the following.</p>
+<pre><code class="language-yaml">---
+post_type: &quot;article&quot; 
+title: &quot;&quot;
+published_date: &quot;10/04/2021 18:58 -05:00&quot;
+tags: 
+---
+</code></pre>
+<p>VS Code also has built-in variables that you can use to automatically set date, time, and other values.</p>
+</li>
+<li><p><code>description</code>: A text description of your snippet.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>For more information on creating snippets, see <a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets">Create your own snippets</a>.</p>
+<h2>Use your snippets</h2>
+<ol>
+<li><p>Create a new markdown file.</p>
+</li>
+<li><p>Type your prefix into the file. In my case, for blog posts my prefix is <code>article</code>.</p>
+</li>
+<li><p>Press <strong>Ctrl + Space</strong>. For Macs you might have to use Cmd instead of Ctrl.</p>
+<p><a href="https://user-images.githubusercontent.com/11130940/135935808-46ca8314-c2be-47f1-9c9b-9b722e37d908.png" target="_blank">[Image: Populate article front-matter using snippet]</a></p>
+</li>
+<li><p>A tooltip with your snippet's description appears. Press <strong>Enter</strong>.</p>
+</li>
+</ol>
+<p>At this point, your snippet's prefix is replaced with the content defined in the snippet's body.</p>
+<h2>Conclusion</h2>
+<p>In this post I've shown how you can use Visual Studio Code snippets to automate YAML front-matter generation when working with common static site generators that don't provide tooling to scaffold new pages. Snippets can be used for a variety of scenarios and if there's any boilerplate code or content you constantly have to write, they can save you a lot of time.</p>
+<p>Happy writing!</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

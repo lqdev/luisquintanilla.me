@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - apple</title>
+    <link>https://www.lqdev.me/tags/apple</link>
+    <description>All content tagged with 'apple' by Luis Quintanilla</description>
+    <lastBuildDate>2024-08-04 17:07 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Congratulations on ten years of Overcast</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;I no longer have an iPhone, but whenever anyone asks for a podcast app recommendation, Overcast is the first one I mention. Congrats on 10 years. Here's to many more.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/congratulations-overcast-ten-years</link>
+      <guid>https://www.lqdev.me/responses/congratulations-overcast-ten-years</guid>
+      <pubDate>2024-08-04 17:07 -05:00</pubDate>
+      <category>podcast</category>
+      <category>app</category>
+      <category>overcast</category>
+      <category>anniversary</category>
+      <category>milestone</category>
+      <category>apple</category>
+      <category>ios</category>
+      <category>rss</category>
+    </item>
+    <item>
+      <title>Introducing Apple’s On-Device and Server Foundation Models</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Apple Intelligence is comprised of multiple highly-capable generative models that are specialized for our users’ everyday tasks, and can adapt on the fly for their current activity. The foundation models built into Apple Intelligence have been fine-tuned for user experiences such as writing and refining text, prioritizing and summarizing notifications, creating playful images for conversations with family and friends, and taking in-app actions to simplify interactions across apps.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In the following overview, we will detail how two of these models — a ~3 billion parameter on-device language model, and a larger server-based language model available with Private Cloud Compute and running on Apple silicon servers — have been built and adapted to perform specialized tasks efficiently, accurately, and responsibly. These two foundation models are part of a larger family of generative models created by Apple to support users and developers; this includes a coding model to build intelligence into Xcode, as well as a diffusion model to help users express themselves visually, for example, in the Messages app.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Pre-training&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our foundation models are trained on Apple's AXLearn framework, an open-source project we released in 2023. It builds on top of JAX and XLA, and allows us to train the models with high efficiency and scalability on various training hardware and cloud platforms, including TPUs and both cloud and on-premise GPUs. We used a combination of data parallelism, tensor parallelism, sequence parallelism, and Fully Sharded Data Parallel (FSDP) to scale training along multiple dimensions such as data, model, and sequence length.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Post-training&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We find that data quality is essential to model success, so we utilize a hybrid data strategy in our training pipeline, incorporating both human-annotated and synthetic data, and conduct thorough data curation and filtering procedures. We have developed two novel algorithms in post-training: (1) a rejection sampling fine-tuning algorithm with teacher committee, and (2) a reinforcement learning from human feedback (RLHF) algorithm with mirror descent policy optimization and a leave-one-out advantage estimator. We find that these two algorithms lead to significant improvement in the model’s instruction-following quality.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Optimization&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Both the on-device and server models use grouped-query-attention. We use shared input and output vocab embedding tables to reduce memory requirements and inference cost. These shared embedding tensors are mapped without duplications. The on-device model uses a vocab size of 49K, while the server model uses a vocab size of 100K, which includes additional language and technical tokens.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;For on-device inference, we use low-bit palletization, a critical optimization technique that achieves the necessary memory, power, and performance requirements. To maintain model quality, we developed a new framework using LoRA adapters that incorporates a mixed 2-bit and 4-bit configuration strategy — averaging 3.5 bits-per-weight — to achieve the same accuracy as the uncompressed models.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Additionally, we use an interactive model latency and power analysis tool, Talaria, to better guide the bit rate selection for each operation. We also utilize activation quantization and embedding quantization, and have developed an approach to enable efficient Key-Value (KV) cache update on our neural engines.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Model Adaptation&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our foundation models are fine-tuned for users’ everyday activities, and can dynamically specialize themselves on-the-fly for the task at hand...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We represent the values of the adapter parameters using 16 bits, and for the ~3 billion parameter on-device model, the parameters for a rank 16 adapter typically require 10s of megabytes. The adapter models can be dynamically loaded, temporarily cached in memory, and swapped — giving our foundation model the ability to specialize itself on the fly for the task at hand while efficiently managing memory and guaranteeing the operating system's responsiveness.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Performance and Evaluation&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We compare our models with both open-source models (Phi-3, Gemma, Mistral, DBRX) and commercial models of comparable size (GPT-3.5-Turbo, GPT-4-Turbo)1. We find that our models are preferred by human graders over most comparable competitor models. On this benchmark, our on-device model, with ~3B parameters, outperforms larger models including Phi-3-mini, Mistral-7B, and Gemma-7B. Our server model compares favorably to DBRX-Instruct, Mixtral-8x22B, and GPT-3.5-Turbo while being highly efficient.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;To further evaluate our models, we use the Instruction-Following Eval (IFEval) benchmark to compare their instruction-following capabilities with models of comparable size. The results suggest that both our on-device and server model follow detailed instructions better than the open-source and commercial models of comparable size.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-apple-on-device-server-foundational-models</link>
+      <guid>https://www.lqdev.me/responses/introducing-apple-on-device-server-foundational-models</guid>
+      <pubDate>2024-06-11 20:26 -05:00</pubDate>
+      <category>ai</category>
+      <category>apple</category>
+      <category>slm</category>
+      <category>edge</category>
+      <category>wwdc</category>
+    </item>
+    <item>
+      <title>Introducing Apple Intelligence</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Apple today introduced Apple Intelligence, the personal intelligence system for iPhone, iPad, and Mac that combines the power of generative models with personal context to deliver intelligence that’s incredibly useful and relevant.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Apple Intelligence unlocks new ways for users to enhance their writing and communicate more effectively. With brand-new systemwide Writing Tools built into iOS 18, iPadOS 18, and macOS Sequoia, users can rewrite, proofread, and summarize text nearly everywhere they write...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Apple Intelligence powers exciting image creation capabilities to help users communicate and express themselves in new ways. With Image Playground, users can create fun images in seconds, choosing from three styles: Animation, Illustration, or Sketch...All images are created on device, giving users the freedom to experiment with as many images as they want.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Powered by Apple Intelligence, Siri becomes more deeply integrated into the system experience. With richer language-understanding capabilities, Siri is more natural, more contextually relevant, and more personal, with the ability to simplify and accelerate everyday tasks.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A cornerstone of Apple Intelligence is on-device processing, and many of the models that power it run entirely on device. To run more complex requests that require more processing power, Private Cloud Compute extends the privacy and security of Apple devices into the cloud to unlock even more intelligence.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Apple is integrating ChatGPT access into experiences within iOS 18, iPadOS 18, and macOS Sequoia, allowing users to access its expertise — as well as its image- and document-understanding capabilities — without needing to jump between tools.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-apple-intelligence</link>
+      <guid>https://www.lqdev.me/responses/introducing-apple-intelligence</guid>
+      <pubDate>2024-06-11 20:16 -05:00</pubDate>
+      <category>ai</category>
+      <category>apple</category>
+      <category>appleintelligence</category>
+    </item>
+    <item>
+      <title>The Verge - Apple WWDC 2024 keynote in 18 minutes</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;I always look forward to watching these recap videos from the Verge.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=sBXdyUA6A88" title="Thumbnail of Verge WWDC 2024 Keynote recap video"&gt;&lt;img src="http://img.youtube.com/vi/sBXdyUA6A88/0.jpg" class="img-fluid" alt="Thumbnail of Verge WWDC 2024 Keynote recap video" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/verge-wwdc-2024-18-minute-recap-video</link>
+      <guid>https://www.lqdev.me/responses/verge-wwdc-2024-18-minute-recap-video</guid>
+      <pubDate>2024-06-11 20:05 -05:00</pubDate>
+      <category>apple</category>
+      <category>wwdc</category>
+      <category>keynote</category>
+      <category>wwdc2024</category>
+      <category>ai</category>
+      <category>ios</category>
+      <category>ipad</category>
+      <category>iphone</category>
+      <category>watchos</category>
+      <category>ipados</category>
+      <category>macos</category>
+      <category>visionos</category>
+    </item>
+    <item>
+      <title>ReALM: Reference Resolution As Language Modeling</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Reference resolution is an important problem, one that is essential to understand and successfully handle context of different kinds. This context includes both previous turns and context that pertains to non-conversational entities, such as entities on the user's screen or those running in the background. While LLMs have been shown to be extremely powerful for a variety of tasks, their use in reference resolution, particularly for non-conversational entities, remains underutilized. This paper demonstrates how LLMs can be used to create an extremely effective system to resolve references of various types, by showing how reference resolution can be converted into a language modeling problem, despite involving forms of entities like those on screen that are not traditionally conducive to being reduced to a text-only modality. We demonstrate large improvements over an existing system with similar functionality across different types of references, with our smallest model obtaining absolute gains of over 5% for on-screen references. We also benchmark against GPT-3.5 and GPT-4, with our smallest model achieving performance comparable to that of GPT-4, and our larger models substantially outperforming it.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/apple-realm-research-paper</link>
+      <guid>https://www.lqdev.me/bookmarks/apple-realm-research-paper</guid>
+      <pubDate>2024-04-04 11:04 -05:00</pubDate>
+      <category>ai</category>
+      <category>research</category>
+      <category>apple</category>
+      <category>gpt</category>
+    </item>
+    <item>
+      <title>MM1: Methods, Analysis &amp; Insights from Multimodal LLM Pre-training</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In this work, we discuss building performant Multimodal Large Language Models (MLLMs). In particular, we study the importance of various architecture components and data choices. Through careful and comprehensive ablations of the image encoder, the vision language connector, and various pre-training data choices, we identified several crucial design lessons. For example, we demonstrate that for large-scale multimodal pre-training using a careful mix of image-caption, interleaved image-text, and text-only data is crucial for achieving state-of-the-art (SOTA) few-shot results across multiple benchmarks, compared to other published pre-training results. Further, we show that the image encoder together with image resolution and the image token count has substantial impact, while the vision-language connector design is of comparatively negligible importance. By scaling up the presented recipe, we build MM1, a family of multimodal models up to 30B parameters, consisting of both dense models and mixture-of-experts (MoE) variants, that are SOTA in pre-training metrics and achieve competitive performance after supervised fine-tuning on a range of established multimodal benchmarks. Thanks to large-scale pre-training, MM1 enjoys appealing properties such as enhanced in-context learning, and multi-image reasoning, enabling few-shot chain-of-thought prompting.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/mm1-multimodal-llm-pretraining</link>
+      <guid>https://www.lqdev.me/bookmarks/mm1-multimodal-llm-pretraining</guid>
+      <pubDate>2024-03-18 21:02 -05:00</pubDate>
+      <category>ai</category>
+      <category>mm1</category>
+      <category>llm</category>
+      <category>multimodal</category>
+      <category>apple</category>
+    </item>
+    <item>
+      <title>Apple Vision Pro Perspectives - Hugo Barra</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Friends and colleagues have been asking me to share my perspective on the Apple Vision Pro as a product.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This started as blog post and became an essay before too long, so I’ve structured my writing in multiple sections each with a clear lead to make it a bit easier to digest — peppered with my own ‘takes’. I’ve tried to stick to original thoughts for the most part and link to what others have said where applicable.&lt;br /&gt;
+&lt;br&gt;
+Some of the topics I touch on:&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Why I believe Vision Pro may be an over-engineered “devkit”&lt;/li&gt;
+&lt;li&gt;The genius &amp;amp; audacity behind some of Apple’s hardware decisions&lt;/li&gt;
+&lt;li&gt;Gaze &amp;amp; pinch is an incredible UI superpower and major industry ah-ha moment&lt;/li&gt;
+&lt;li&gt;Why the Vision Pro software/content story is so dull and unimaginative&lt;/li&gt;
+&lt;li&gt;Why most people won’t use Vision Pro for watching TV/movies&lt;/li&gt;
+&lt;li&gt;Apple’s bet in immersive video is a total game-changer for Live Sports&lt;/li&gt;
+&lt;li&gt;Why I returned my Vision Pro… and my Top 10 wishlist to reconsider&lt;/li&gt;
+&lt;li&gt;Apple’s VR debut is the best thing that ever happened to Oculus/Meta&lt;/li&gt;
+&lt;li&gt;My unsolicited product advice to Meta for Quest Pro 2 and beyond&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/apple-vision-pro-barra</link>
+      <guid>https://www.lqdev.me/responses/apple-vision-pro-barra</guid>
+      <pubDate>2024-03-15 21:12 -05:00</pubDate>
+      <category>apple</category>
+      <category>visionpro</category>
+      <category>vr</category>
+      <category>ar</category>
+    </item>
+    <item>
+      <title>Apple Podcasts now includes transcripts</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Apple Podcasts will auto-generate transcripts for podcasts beginning today, thanks to the 17.4 update for iPhones and iPads. Transcripts will automatically appear for new podcast episodes shortly after their publication, while Apple will transcribe podcast back catalogs over time.
+&lt;br&gt;
+The podcast transcripts are searchable, allowing users to type in a specific word or phrase and skip to that part of an episode. Users can find transcripts for individual podcast episodes on the bottom-left corner of the “Now Playing” screen.
+&lt;br&gt;
+Podcasters who don’t want to use Apple’s automated transcription can opt to upload their own transcripts via RSS tags or in Apple Podcasts Connect for premium episodes, or they can download and edit Apple’s transcript before reuploading.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is cool and great for accessibility.&lt;/p&gt;
+&lt;p&gt;I recently chose to &lt;a href="https://www.lqdev.me/responses/decoder-nilay-patel-why-websites-are-the-future/"&gt;read the latest episode of Decoder&lt;/a&gt; instead of listening to it. One of the advantages this also provided was that I could reference direct quotes in my post from the episode.&lt;/p&gt;
+&lt;p&gt;I could see Apple taking this further by making it easier to generate show notes / descriptions based on the episode using AI.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/apple-podcasts-transcript-17-4</link>
+      <guid>https://www.lqdev.me/responses/apple-podcasts-transcript-17-4</guid>
+      <pubDate>2024-03-05 20:52 -05:00</pubDate>
+      <category>iphone</category>
+      <category>apple</category>
+      <category>podcasts</category>
+      <category>ios</category>
+      <category>ipados</category>
+    </item>
+    <item>
+      <title>MLX Swift - On-device ML research with MLX and Swift</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The Swift programming language has a lot of potential to be used for machine learning research because it combines the ease of use and high-level syntax of a language like Python with the speed of a compiled language like C++.&lt;br /&gt;
+&lt;br&gt;
+&lt;a href="https://github.com/ml-explore/mlx"&gt;MLX&lt;/a&gt; is an array framework for machine learning research on Apple silicon. MLX is intended for research and not for production deployment of models in apps.&lt;br /&gt;
+&lt;br&gt;
+&lt;a href="https://github.com/ml-explore/mlx-swift/"&gt;MLX Swift&lt;/a&gt; expands MLX to the Swift language, making experimentation on Apple silicon easier for ML researchers.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/swift-mlx-ml-research</link>
+      <guid>https://www.lqdev.me/responses/swift-mlx-ml-research</guid>
+      <pubDate>2024-02-20 16:25 -05:00</pubDate>
+      <category>apple</category>
+      <category>mlx</category>
+      <category>swift</category>
+      <category>opensource</category>
+      <category>ml</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>The Vision Pro’s first killer app is the web, whether Apple likes it or not</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;it’s increasingly clear that the early success of the Vision Pro, and much of the answer to the question of what this headset is actually for, will come from a single app: Safari.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;That’s right, friends. Web browsers are back.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...at least at first, the open web is Apple’s best chance to make its headset a winner. Because at least so far, it seems developers are not exactly jumping to build new apps for Apple’s new platform.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Some of the high-profile companies that have announced they’re not yet building apps for the Vision Pro and its visionOS platform — Netflix, Spotify, YouTube, and others — are the very same ones that have loudly taken issue with how Apple runs the App Store.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;But what if you don’t need the App Store to reach Apple users anymore? All this corporate infighting has the potential to completely change the way we use our devices, starting with the Vision Pro.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...we’ve all stopped opening websites and started tapping app icons, but the age of the URL might be coming back.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;If you believe the open web is a good thing, and that developers should spend more time on their web apps and less on their native ones, this is a big win for the future of the internet.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The problem is, it’s happening after nearly two decades of mobile platforms systematically downgrading and ignoring their browsing experience...Mobile platforms treat browsers like webpage viewers, not app platforms, and it shows.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;There are some reasons for hope, though...the company appears to be still invested in making Safari work.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Safari for visionOS will also come with some platform-specific features: you’ll be able to open multiple windows at the same time and move them all around in virtual space.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;With a good browser and powerful PWAs, many users might mostly not notice the difference between opening the Spotify app and going to Spotify.com. That’s a win for the whole web.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;here’s the real question for Apple: which is more important, getting the Vision Pro off to a good start or protecting the sanctity of its App Store control at all costs? As Apple tries to create a platform shift to face computers, I’m not sure it can have it both ways.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Great article by &lt;a href="https://www.theverge.com/authors/david-pierce"&gt;David Pierce&lt;/a&gt;. As part of my website stats, I should probably start also counting authors I reference since many of the articles from the Verge I've previously linked to are written by David.&lt;/p&gt;
+&lt;p&gt;As someone who &lt;a href="https://www.lqdev.me/responses/replacing-apps-websites-kingett"&gt;accesses services - &amp;quot;apps&amp;quot; - primarily through the web browser on desktop&lt;/a&gt;, this is exciting to see. While native apps have their advantages, the types of cross-platform connected experiences that can be delivered through the browser can't be ignored. First-class support for browsers in various platforms can only make these experiences even better. With more folks building their own platforms on the web on top of open standards that have been around for decades, I'm excited for the future of the web.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/vision-pros-most-important-app-safari</link>
+      <guid>https://www.lqdev.me/responses/vision-pros-most-important-app-safari</guid>
+      <pubDate>2024-01-20 13:29 -05:00</pubDate>
+      <category>apple</category>
+      <category>safari</category>
+      <category>visionpro</category>
+      <category>web</category>
+      <category>browser</category>
+      <category>vr</category>
+      <category>xr</category>
+      <category>mr</category>
+      <category>ar</category>
+      <category>indieweb</category>
+      <category>openweb</category>
+    </item>
+    <item>
+      <title>Ferret: Refer and Ground Anything Anywhere at Any Granularity</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We introduce Ferret, a new Multimodal Large Language Model (MLLM) capable of understanding spatial referring of any shape or granularity within an image and accurately grounding open-vocabulary descriptions. To unify referring and grounding in the LLM paradigm, Ferret employs a novel and powerful hybrid region representation that integrates discrete coordinates and continuous features jointly to represent a region in the image. To extract the continuous features of versatile regions, we propose a spatial-aware visual sampler, adept at handling varying sparsity across different shapes. Consequently, Ferret can accept diverse region inputs, such as points, bounding boxes, and free-form shapes. To bolster the desired capability of Ferret, we curate GRIT, a comprehensive refer-and-ground instruction tuning dataset including 1.1M samples that contain rich hierarchical spatial knowledge, with 95K hard negative data to promote model robustness. The resulting model not only achieves superior performance in classical referring and grounding tasks, but also greatly outperforms existing MLLMs in region-based and localization-demanded multimodal chatting. Our evaluations also reveal a significantly improved capability of describing image details and a remarkable alleviation in object hallucination. Code and data will be available at this https URL&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/apple/ml-ferret"&gt;Code&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/apple-ml-ferret</link>
+      <guid>https://www.lqdev.me/bookmarks/apple-ml-ferret</guid>
+      <pubDate>2023-12-25 20:12 -05:00</pubDate>
+      <category>ai</category>
+      <category>ml</category>
+      <category>llm</category>
+      <category>mllm</category>
+      <category>largelanguagemodel</category>
+      <category>multimodal</category>
+      <category>multimodallargelanguagemodel</category>
+      <category>apple</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>Apple M3 Announced</title>
+      <description>&lt;![CDATA[&lt;p&gt;Apple unveiled their &lt;a href="https://www.apple.com/newsroom/2023/10/apple-unveils-m3-m3-pro-and-m3-max-the-most-advanced-chips-for-a-personal-computer/"&gt;M3 family of chips&lt;/a&gt; and new devices.&lt;/p&gt;
+&lt;p&gt;First off, The Verge always does a great job covering and condensing these events into a short video.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=gN8oCWGeRtI" title="Apple Scary Fast Event - The Verge"&gt;&lt;img src="http://img.youtube.com/vi/gN8oCWGeRtI/0.jpg" class="img-fluid" alt="Apple Scary Fast Event - The Verge" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;My initial impressions of the anouncement, this is why Apple wins.&lt;/p&gt;
+&lt;p&gt;I'm excited by the Snapdragon announcement last week. However, as I mentioned in my &lt;a href="https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023"&gt;post&lt;/a&gt;, &amp;quot;the biggest miss from Qualcomm and Windows partners today was not having a lineup of devices ready for purchase&amp;quot;.&lt;/p&gt;
+&lt;p&gt;That wasn't the case for Apple. Not only did they announce their new chips but they also announced devices which will be available as late as the end of November.&lt;/p&gt;
+&lt;p&gt;I understand Apple owns the entire process so they can align their chip and device announcements. However, Qualcomm brought out many partners on stage. Unless I missed it, I don't remember seeing any PC announcements that would be ready for purchase within the next 2-3 months.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/apple-m3-scary-fast</link>
+      <guid>https://www.lqdev.me/notes/apple-m3-scary-fast</guid>
+      <pubDate>2023-10-31 09:00 -05:00</pubDate>
+      <category>arm</category>
+      <category>apple</category>
+      <category>m3</category>
+    </item>
+    <item>
+      <title>iPod Touch discontinued</title>
+      <description>&lt;![CDATA[&lt;p&gt;Apple just announced they're discontinuing the &lt;a href="https://www.apple.com/newsroom/2022/05/the-music-lives-on/"&gt;iPod Touch&lt;/a&gt;. I'm surprised it hadn't happened earlier! Still, it's sad to see the end of an era for these devices which are effectively smartphones without the phone / cellular data connectivity. I still have my iPod Touch from 2014 that I use occasionally for FaceTime which aside from poor battery life and being stuck on an older version of iOS, it still works smoothly.&lt;/p&gt;
+&lt;p&gt;For the past two years, my audio solution has been a dedicated MP3 device. Since most of the content I consume I download and listen to offline, a dedicated MP3 device doesn't drain my phone's battery or take up storage space.&lt;/p&gt;
+&lt;p&gt;I started with the &lt;a href="https://www.fiio.com/m5"&gt;FiiO M5&lt;/a&gt;, which is like an iPod Shuffle. The device was great, but all it took was one drop for the screen to crack at which point I upgraded to the &lt;a href="https://www.fiio.com/m6"&gt;FiiO M6&lt;/a&gt;. The nice thing about the M6 is that the OS is a stripped down version of Android meaning you can &lt;a href="https://www.fiio.com/newsinfo/139014.html"&gt;side-load applications&lt;/a&gt; such as Spotify. The bad thing, the hardware can't handle (even heavily optimized versions) of these applications making the user experience frustrating. The touchscreen interface is great for navigation especially when you have large collections. However, since I only use the device for podcasts and audiobooks and don't get the benefits of installing streaming music apps, I'd be better off with a more affordable device like those from &lt;a href="https://www.westerndigital.com/c/mp3-players"&gt;SanDisk&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/ipod-touch-discontinued</link>
+      <guid>https://www.lqdev.me/notes/ipod-touch-discontinued</guid>
+      <pubDate>05/10/2022 12:27 -05:00</pubDate>
+      <category>apple</category>
+      <category>ipod</category>
+      <category>music</category>
+      <category>ipodtouch</category>
+    </item>
+  </channel>
+</rss>

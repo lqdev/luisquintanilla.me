@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - prompts</title>
+    <link>https://www.lqdev.me/tags/prompts</link>
+    <description>All content tagged with 'prompts' by Luis Quintanilla</description>
+    <lastBuildDate>2023-12-06 21:07 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Long context prompting for Claude 2.1</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;ul&gt;
+&lt;li&gt;Claude 2.1 recalls information very well across its 200,000 token context window&lt;/li&gt;
+&lt;li&gt;However, the model can be reluctant to answer questions based on an individual sentence in a document, especially if that sentence has been injected or is out of place&lt;/li&gt;
+&lt;li&gt;A minor prompting edit removes this reluctance and results in excellent performance on these tasks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;What can users do if Claude is reluctant to respond to a long context retrieval question? We’ve found that a minor prompt update produces very different outcomes in cases where Claude is capable of giving an answer, but is hesitant to do so. When running the same evaluation internally, adding just one sentence to the prompt resulted in near complete fidelity throughout Claude 2.1’s 200K context window&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We achieved significantly better results on the same evaluation by adding the sentence “Here is the most relevant sentence in the context:” to the start of Claude’s response. This was enough to raise Claude 2.1’s score from 27% to 98% on the original evaluation.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/claude-long-context-prompting</link>
+      <guid>https://www.lqdev.me/bookmarks/claude-long-context-prompting</guid>
+      <pubDate>2023-12-06 21:07 -05:00</pubDate>
+      <category>prompts</category>
+      <category>ai</category>
+      <category>llm</category>
+    </item>
+  </channel>
+</rss>

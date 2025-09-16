@@ -1,0 +1,1262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - blog</title>
+    <link>https://www.lqdev.me/tags/blog</link>
+    <description>All content tagged with 'blog' by Luis Quintanilla</description>
+    <lastBuildDate>2025-09-12 21:16 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Notes on why blogging lost to Twitter</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;I haven't listened to the &lt;a href="https://shownotes.scripting.com/scripting/2025/09/08/whyBloggingLostToTwitterAndOtherFolkSongs.html"&gt;podcast&lt;/a&gt; yet but there's a lot of good points.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Subscribing in feed readers required too many steps: copying URLs, menus, pasting, confirming.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Blogging lost to Twitter because Twitter had one-click subscribe.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Rebooting the blogosphere requires cooperation and a universal &amp;quot;follow&amp;quot; button.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/notes-why-blogging-lost-twitter-winer</link>
+      <guid>https://www.lqdev.me/responses/notes-why-blogging-lost-twitter-winer</guid>
+      <pubDate>2025-09-12 21:16 -05:00</pubDate>
+      <category>blog</category>
+      <category>indieweb</category>
+      <category>feed</category>
+      <category>rss</category>
+      <category>blogosphere</category>
+    </item>
+    <item>
+      <title>Geek To Live - Tumblelog</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;A blast from the past. Can't believe this post is still available.&lt;/p&gt;
+&lt;p&gt;Almost two decades later and it feels like we're still figuring out how to share and express ourselves online.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;These are the reasons most people abandon their personal weblog or never start one. But we all come across interesting tidbits online every day that we want to remember and share - links, photos, videos, even that side-splitting IM session you had with your co-worker. A new blog format, called a &amp;quot;tumblelog,&amp;quot; is a no-hassle, no-writing-required way to share those bits and maintain a personal site with the least possible commitment.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A new service called Tumblr can publish your tumblelog with minimal setup and for free.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/geek-to-live-tumblelog</link>
+      <guid>https://www.lqdev.me/responses/geek-to-live-tumblelog</guid>
+      <pubDate>2025-09-12 21:05 -05:00</pubDate>
+      <category>blog</category>
+      <category>tumblr</category>
+      <category>microblog</category>
+    </item>
+    <item>
+      <title>Test media post from mobile</title>
+      <description>&lt;![CDATA[Album containing 0 photos]]&gt;</description>
+      <link>https://www.lqdev.me/media/test-media-post-from-mobile</link>
+      <guid>https://www.lqdev.me/media/test-media-post-from-mobile</guid>
+      <pubDate>2025-08-12 22:40 -05:00</pubDate>
+      <category>mobile</category>
+      <category>blog</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>How do I keep up with AI?</title>
+      <description>&lt;![CDATA[
+This question comes up a lot in conversations. The short answer? I don’t. There’s just too much happening, too fast, for anyone to stay on top of everything.
+
+While I enjoy sharing links and recommendations, I realized that a blog post might be more helpful. It gives folks a single place they can bookmark, share, and come back to on their own time, rather than having to dig through message threads where things inevitably get lost.
+
+That said, here are some sources I use to try and stay informed:
+
+- **Newsletters** are great for curated content. They highlight the top stories and help filter through the noise.
+- **Blogs** are often the primary sources behind those newsletters. They go deeper and often cover a broader set of topics that might not make it into curated roundups.
+- **Podcasts** serve a similar role. In some cases, they provide curation like newsletters and deep dives like blogs in others. Best of all, you can tune in while on the go making it a hands-free activity.
+
+For your convenience, if any of the sources (including podcasts) I list below have RSS feeds, I’ve included them in my [AI Starter Pack](/collections/starter-packs//ai), which you can [download and import into your favorite RSS reader](/collections/starter-packs//ai/index.opml) (as long as it supports OPML file imports).
+
+If you have some sources to share, [send me an e-mail](/contact). I'd love to keep adding to this list! If they have a feed I can subscribe to, even better.
+
+## Newsletters
+
+- [AlphaSignal](https://alphasignal.ai/)
+- [The Batch](https://www.deeplearning.ai/the-batch/)
+- [Latent Space](https://www.latent.space/)
+- [TLDR AI](https://tldr.tech/ai)
+
+## Blogs
+
+I pride myself on being able to track down an RSS feed on just about any website, even if it’s buried or not immediately visible. Unfortunately, I haven't found a feed URL for either OpenAI or Anthropic which is annoying. 
+
+**OpenAI and Anthropic, if you could do everyone a favor and drop a link, that would be great.** 
+
+UPDATE: Thanks to [@m2vh@mastodontech.de](https://toot.lqdev.tech/@m2vh@mastodontech.de) for sharing the OpenAI news feed. 
+
+I know I could use one of those web-page-to-RSS converters, but I'd much rather have an official link directly from the source.
+
+- [OpenAI](https://openai.com/news/)
+- [Anthropic](https://www.anthropic.com/news)
+- [Google AI Blog](https://blog.google/technology/ai/)
+- [AWS Machine Learning Blog](https://aws.amazon.com/blogs/machine-learning/)
+- [Microsoft Research](https://www.microsoft.com/en-us/research/blog/)
+- [Google Research](https://research.google/blog/)
+- [Simon Willison](https://simonwillison.net/)
+
+## Podcasts
+
+- [AI Daily Brief](https://www.podchaser.com/podcasts/the-ai-daily-brief-formerly-th-5260567)
+- [TWIML AI Podcast](https://twimlai.com/)
+- [Practical AI](https://changelog.com/practicalai)
+
+## Subscribing to feeds
+
+Now that I’ve got you here...
+
+Let’s talk about the best way to access all these feeds. My preferred and recommended approach is using a feed reader.
+
+When subscribing to content on the open web, feed readers are your secret weapon.
+
+RSS might seem like it’s dead (it’s not—yet). In fact, it’s the reason you often hear the phrase, “Wherever you get your podcasts.” But RSS goes beyond podcasts. It’s widely supported by blogs, newsletters, and even social platforms like the Fediverse (Mastodon, PeerTube, etc.) and BlueSky. It’s also how I’m able to compile my [starter packs](/collections/starter-packs/). 
+
+I've written more about RSS in [Rediscovering the RSS Protocol](/posts/rediscovering-rss-user-freedom), but the short version is this: when you build on open standards like RSS and OPML, you’re building on freedom. Freedom to use the tools that work best for you. Freedom to own your experience. And freedom to support a healthier, more independent web.
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/how-i-keep-up-with-ai</link>
+      <guid>https://www.lqdev.me/posts/how-i-keep-up-with-ai</guid>
+      <pubDate>2025-05-27 19:44 -05:00</pubDate>
+      <category>ai</category>
+      <category>rss</category>
+      <category>starterpack</category>
+      <category>newsletter</category>
+      <category>blog</category>
+      <category>opml</category>
+      <category>openweb</category>
+      <category>podcast</category>
+      <category>indieweb</category>
+    </item>
+    <item>
+      <title>Extreme web surfing</title>
+      <description>&lt;![CDATA[&lt;p&gt;This is what my browser looks like every time &lt;a href="https://shellsharks.com/"&gt;shellsharks&lt;/a&gt; drops one of their &lt;a href="https://shellsharks.com/scrolls/"&gt;scrolls&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/too-many-browser-tabs.png" class="img-fluid" alt="A lot of open browser tabs" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/too-many-browser-tabs-shellsharks</link>
+      <guid>https://www.lqdev.me/notes/too-many-browser-tabs-shellsharks</guid>
+      <pubDate>2025-05-10 18:31 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>web</category>
+      <category>community</category>
+      <category>surfing</category>
+      <category>openweb</category>
+      <category>blog</category>
+    </item>
+    <item>
+      <title>The Algorithm - J. Cole has a blog?</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This is just a place for me to share. I been wanting a lil blog for years. Somewhere to post random shit I fuck with where the audience is way smaller than it is on the social media platforms. Finally pulled the trigger, bare with us as we still developing this page and the layout.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is cool!&lt;/p&gt;
+&lt;p&gt;I ran into this while reading the post &lt;a href="https://herbertlui.net/blogging-for-smaller-audiences-and-deeper-connections/"&gt;Blogging for smaller audiences and deeper connections&lt;/a&gt; by &lt;a href="https://herbertlui.net/"&gt;Herbert Lui&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Looking at &lt;a href="https://www.inevitable.live/algorithm"&gt;other posts&lt;/a&gt;, it looks like he or at least someone is actively posting.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/inevitable-jcole-blog</link>
+      <guid>https://www.lqdev.me/responses/inevitable-jcole-blog</guid>
+      <pubDate>2025-02-25 21:34 -05:00</pubDate>
+      <category>music</category>
+      <category>blog</category>
+      <category>indieweb</category>
+      <category>creativity</category>
+      <category>art</category>
+    </item>
+    <item>
+      <title>Blogroll Club - A blog directory</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;A Blog Directory is a cool project from &lt;a href="https://notes.jeddacp.com/"&gt;JC (Probably)&lt;/a&gt; and &lt;a href="https://louplummer.lol/"&gt;Lou Plummer&lt;/a&gt;. &lt;a href="https://blogroll.club/"&gt;Check it out&lt;/a&gt;!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/blogroll-club-blog-directory</link>
+      <guid>https://www.lqdev.me/responses/blogroll-club-blog-directory</guid>
+      <pubDate>2024-08-05 20:53 -05:00</pubDate>
+      <category>blog</category>
+      <category>rss</category>
+      <category>indieweb</category>
+      <category>blogroll</category>
+      <category>community</category>
+      <category>web</category>
+      <category>smallweb</category>
+      <category>personalweb</category>
+    </item>
+    <item>
+      <title>Micro.blog - Podcast hosting for $5</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;This is cool! The Micro.blog premium plan has tons of great features as well.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Six years ago, we launched our $10/month plan with podcast hosting. Since then we’ve added several big features to the plan...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, I want to bring the podcast feature to more people, so we’re moving it down to the standard $5/month plan.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/microblog-podcast-hosting</link>
+      <guid>https://www.lqdev.me/responses/microblog-podcast-hosting</guid>
+      <pubDate>2024-05-30 21:27 -05:00</pubDate>
+      <category>microblog</category>
+      <category>podcast</category>
+      <category>indieweb</category>
+      <category>hosting</category>
+      <category>blog</category>
+      <category>blogging</category>
+    </item>
+    <item>
+      <title>Introducing the 100 Sways Project</title>
+      <description>&lt;![CDATA[&lt;p&gt;Introducing the 100 Sways project.&lt;/p&gt;
+&lt;p&gt;Over the next few months, I plan on creating artifacts like blog posts, newsletters, and websites using &lt;a href="https://sway.cloud.microsoft/"&gt;Microsoft Sway&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Bookmark the site &lt;a href="http://100sways.lqdev.tech"&gt;100sways.lqdev.tech&lt;/a&gt; and follow along!&lt;/p&gt;
+&lt;p&gt;Note: If you can't access the website, you can use the &lt;a href="https://sway.cloud.microsoft/aC19McbR3xcNo6s8"&gt;direct link (https://sway.cloud.microsoft/aC19McbR3xcNo6s8)&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;What is the 100 Sways project?&lt;/h2&gt;
+&lt;p&gt;This project is an attempt to show how you might use Sway as a publishing platform for content like newsletters, blog posts, and websites.&lt;/p&gt;
+&lt;p&gt;This project was inspired by &lt;a href="https://jamesg.blog/"&gt;James'&lt;/a&gt; &lt;a href="https://jamesg.blog/2024/02/19/personal-website-ideas/"&gt;100 things you can do on your personal website post&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Motivations&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Learn more about Microsoft Sway&lt;/li&gt;
+&lt;li&gt;Show how you can make the most use out of apps and services already included with your Microsoft Account&lt;/li&gt;
+&lt;li&gt;Show how easy it is to create and consume web content using Sway&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/introducing-100-sways-project</link>
+      <guid>https://www.lqdev.me/notes/introducing-100-sways-project</guid>
+      <pubDate>2024-03-24 16:33 -05:00</pubDate>
+      <category>microsoft</category>
+      <category>sway</category>
+      <category>indieweb</category>
+      <category>blog</category>
+      <category>website</category>
+      <category>microblog</category>
+      <category>blogging</category>
+      <category>content</category>
+      <category>m365</category>
+      <category>office</category>
+      <category>internet</category>
+      <category>web</category>
+      <category>microsoftoffice</category>
+      <category>microsoft365</category>
+    </item>
+    <item>
+      <title>Private social media?</title>
+      <description>&lt;![CDATA[&lt;p&gt;Brain dumping a bunch of half-formed thoughts.&lt;/p&gt;
+&lt;p&gt;Over the past few days, I've been thinking about different forms of sharing content. With the &lt;a href="https://www.nytimes.com/2023/04/19/technology/personaltech/tiktok-twitter-facebook-social.html"&gt;shifts in social media towards smaller, more private communities&lt;/a&gt;, is it possible to get the best of feeds for sharing updates and information but in a smaller more intimate way?&lt;/p&gt;
+&lt;p&gt;Here's a few of the options I came up with:&lt;/p&gt;
+&lt;h2&gt;Journals&lt;/h2&gt;
+&lt;p&gt;Examples: &lt;a href="https://dayoneapp.com/guides/tips-and-tutorials/shared-journals/"&gt;Day One Shared Journals&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Made for an audience of one, but other can collaborate on it.&lt;/li&gt;
+&lt;li&gt;Depending on the interface, looking back at specific days and events that took place is easy to look back on.&lt;/li&gt;
+&lt;li&gt;May be able to include different forms of media (i.e. audio, video, photos)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;No individual profiles&lt;/li&gt;
+&lt;li&gt;May require everyone to use the same app / service&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;E-mail&lt;/h2&gt;
+&lt;p&gt;Examples: Newsletters, Mailing lists&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Almost everyone has an e-mail address.&lt;/li&gt;
+&lt;li&gt;Built on standard protocols.&lt;/li&gt;
+&lt;li&gt;Producers can use any app they'd like to compose e-mails.&lt;/li&gt;
+&lt;li&gt;Consumers can use any app they'd like to read e-mails.&lt;/li&gt;
+&lt;li&gt;Could use any app / client / service-provider they'd like. (Federated by default)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;Content rendering may differ based on app.&lt;/li&gt;
+&lt;li&gt;Could add to the noise already present in your e-mail inbox.&lt;/li&gt;
+&lt;li&gt;No individual accounts / feeds.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Messaging Apps&lt;/h2&gt;
+&lt;p&gt;Examples: Discord, Matrix, IRC, Slack, Signal&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Sharing could be done via SMS (though this would limit the content you share).&lt;/li&gt;
+&lt;li&gt;You could form various sub-groups to sub&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;May require everyone to use the same app / service.&lt;/li&gt;
+&lt;li&gt;May not have a way to view individual profiles or feeds.&lt;/li&gt;
+&lt;li&gt;Because conversations are not often grouped by topics, it might be difficult to find conversations, especially older conversations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Private blogs&lt;/h2&gt;
+&lt;p&gt;Examples: &lt;a href="https://wordpress.com/go/tutorials/private-blog-wordpress-com/"&gt;Private WordPress Blog&lt;/a&gt;, &lt;a href="https://havenweb.org/"&gt;Haven&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Produces can use any tool / service to author and publish posts.&lt;/li&gt;
+&lt;li&gt;Consumers can access via any browser of their choice.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;May have to host your own service.&lt;/li&gt;
+&lt;li&gt;Consumers may have to create accounts and passwords for each of the private blogs they follow.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Fediverse&lt;/h2&gt;
+&lt;p&gt;Examples: Mastodon, PixelFed, PeerTube&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Familar social media interface.&lt;/li&gt;
+&lt;li&gt;More availability of apps and services that form part of the Fediverse make it easier for producers and consumers to use what makes the most sense for them.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;Limited to the format supported by the app / service (i.e. Pixelfed is for images / video, PeerTube for video, etc.).&lt;/li&gt;
+&lt;li&gt;May require you to host your own service.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;P2P Social Media&lt;/h2&gt;
+&lt;p&gt;Examples: &lt;a href="https://scuttlebutt.nz/"&gt;ScuttleButt&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Could be made for an audience of one but shared with other peers.&lt;/li&gt;
+&lt;li&gt;Decentralized by default.&lt;/li&gt;
+&lt;li&gt;Access individual feeds.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;Similar to the Fediverse, being exposed to new protocols and technical terms may make onboarding and adoption challenging.&lt;/li&gt;
+&lt;li&gt;May require you to host your own service.&lt;/li&gt;
+&lt;li&gt;Protocols haven't been widely adopted so users are limited in the apps / services they can use for this.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Forums&lt;/h2&gt;
+&lt;p&gt;Examples: &lt;a href="https://discourse.nixos.org/"&gt;NixOS Forum&lt;/a&gt;, &lt;a href="https://lemmy.world/"&gt;Lemmy&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Could create threads and conversations on various topics&lt;/li&gt;
+&lt;li&gt;Easy to search and tag content&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;Someone would have to host a server&lt;/li&gt;
+&lt;li&gt;Might not work well for small groups&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;RSS feeds&lt;/h2&gt;
+&lt;p&gt;This is a variation on the private blog. Except instead of having a website that displays the posts, you just have an RSS feed.&lt;/p&gt;
+&lt;p&gt;Examples: &lt;a href="https://daverupert.com/2018/01/welcome-to-rss-club/"&gt;RSS-Only Club&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros
+&lt;ul&gt;
+&lt;li&gt;Producers can use any software they'd like to create and publish their RSS feed&lt;/li&gt;
+&lt;li&gt;Consumers can use any feed reader to access and read content&lt;/li&gt;
+&lt;li&gt;Everyone could have their own feed, so effectively they'd be like profiles&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Cons
+&lt;ul&gt;
+&lt;li&gt;You have to figure out how to produce and host the RSS feed&lt;/li&gt;
+&lt;li&gt;Can't really control who sees this since the feed is public. Maybe private feeds could help here.&lt;/li&gt;
+&lt;li&gt;Limited interaction. Users can't comment or reply to items in a feed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Note that this is not an exhaustive list of pros and cons, just a few that I thought of. I persoanlly would skew towards e-mail and messaging apps. The main reason at least with e-mail is that everyone is familiar with it and most likely won't have to create separate accounts on various silos to communicate and engage with others. With apps like &lt;a href="https://delta.chat/"&gt;DeltaChat&lt;/a&gt; you could actualy combine them and get the best of both.&lt;/p&gt;
+&lt;p&gt;What are your thoughts?&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/private-social-media</link>
+      <guid>https://www.lqdev.me/notes/private-social-media</guid>
+      <pubDate>2024-01-22 21:40 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>website</category>
+      <category>community</category>
+      <category>private</category>
+      <category>privacy</category>
+      <category>blog</category>
+      <category>protocols</category>
+      <category>rss</category>
+      <category>forums</category>
+      <category>journal</category>
+      <category>e-mail</category>
+      <category>fediverse</category>
+      <category>messaging</category>
+    </item>
+    <item>
+      <title>I need to optimize my response publishing workflow</title>
+      <description>&lt;![CDATA[&lt;p&gt;I like to use my &lt;a href="https://www.lqdev.me/feed/responses"&gt;response feed&lt;/a&gt; to bookmark and reshare interesting content I find online. Typically my workflow looks like the following:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-mermaid"&gt;flowchart TD
+  A[&amp;quot;Scroll through feed reader&amp;quot;] --&amp;gt; B[&amp;quot;Open articles I want to read in a new tab&amp;quot;]
+  B --&amp;gt; C[&amp;quot;Read articles&amp;quot;]
+  C --&amp;gt; D[&amp;quot;Create a response file to publish on my website&amp;quot;]
+  D --&amp;gt; E[&amp;quot;Capture interesting information from the article in the response file&amp;quot;]
+  E --&amp;gt; F[&amp;quot;Publish the response&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The bottleneck I usually find is in the middle steps of creating a response file and capturing the relevant content. This usually happens as I'm reading the article. For a single file, it's not a big deal. Doing it for several can be time consuming, especially with the &lt;a href="https://www.lqdev.me/notes/subscribed-to-1042-feeds-newsblur"&gt;number of feeds I subscribe to&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There's a few things I think could help here:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create one response file and do a daily link dump.&lt;/li&gt;
+&lt;li&gt;Create a browser extension or system where I can:
+&lt;ol&gt;
+&lt;li&gt;Highlight text or content on a page&lt;/li&gt;
+&lt;li&gt;Right-click or use a keyboard shortcut to create an entry for the content I highlighted&lt;/li&gt;
+&lt;li&gt;Create an entry in a database somewhere which captures the URL of the page I'm looking at.&lt;/li&gt;
+&lt;li&gt;I enter a few more details like the file name I want to use and response type&lt;/li&gt;
+&lt;li&gt;When I'm done with my session, I can publish. This will use the database content to compose the content for my response and create a PR&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The first option is simple but I don't like it because although most of the content I come across is tech related, I prefer having individual articles I can link to with their own tags to make it easier to build relationships.&lt;/p&gt;
+&lt;p&gt;The second option sounds complex, but it's basically a web highlighting tool. I know there's a few out there already so maybe worth checking out.&lt;/p&gt;
+&lt;p&gt;I'd prefer to build my own to tailor it specifically to what I want just like my website generator. However, it would mean that I'd have to spend some time thinking about how to implement it.&lt;/p&gt;
+&lt;p&gt;It'd be a fun project though. Maybe worthwhile experimenting with building an AI agent to help me use the content I captured to nicely format the response.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/simplifying-feed-publishing-workflow</link>
+      <guid>https://www.lqdev.me/notes/simplifying-feed-publishing-workflow</guid>
+      <pubDate>2024-01-17 20:47 -05:00</pubDate>
+      <category>workflow</category>
+      <category>publishing</category>
+      <category>blog</category>
+      <category>personalknowledgemanagement</category>
+      <category>pkm</category>
+    </item>
+    <item>
+      <title>Gravatar - Your digital profile beyond blog comments</title>
+      <description>&lt;![CDATA[&lt;p&gt;I had known about &lt;a href="https://gravatar.com/"&gt;Gravatar&lt;/a&gt; since its early days. I was under the (incorrect) impression that it could only be used to comment on blogs. I thought when you created an account, you added your name, e-mail, and image as part of your profile. Then, when you wanted to comment on blogs, instead of creating individual accounts or profiles, you could just reuse your Gravatar profile. That's partially true. However, I'm happy to report I was wrong and there's so much more.&lt;/p&gt;
+&lt;p&gt;While commenting on &lt;a href="https://www.lqdev.me/responses/blog-posts-can-be-any-length-matt"&gt;Matt Mullenweg's Birthday Gift post&lt;/a&gt;, I didn't use a Gravatar profile. This prompted Matt to kindly respond via e-mail and suggest I check out Gravatar. I put it off for a few days. Eventually, I decided to check it out and I'm glad I did. Thanks &lt;a href="https://ma.tt"&gt;Matt&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;The signup process was simple. All I had to do was enter my e-mail address. This immediately sent me a confirmation e-mail which I then used to proceed with onboarding.&lt;/p&gt;
+&lt;p&gt;Here's where things got interesting.&lt;/p&gt;
+&lt;p&gt;You can add all the things I was already aware of (name, e-mail, photo). However, you can also do much more than that! You can add your own verified accounts, links, contact information, and payments.&lt;/p&gt;
+&lt;p&gt;As of the time of this writing these options include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Accounts
+&lt;ul&gt;
+&lt;li&gt;WordPress&lt;/li&gt;
+&lt;li&gt;Instagram&lt;/li&gt;
+&lt;li&gt;X / Twitter&lt;/li&gt;
+&lt;li&gt;TikTok&lt;/li&gt;
+&lt;li&gt;Tumblr&lt;/li&gt;
+&lt;li&gt;Mastodon&lt;/li&gt;
+&lt;li&gt;GitHub&lt;/li&gt;
+&lt;li&gt;Twitch&lt;/li&gt;
+&lt;li&gt;Fediverse&lt;/li&gt;
+&lt;li&gt;Stackoverflow&lt;/li&gt;
+&lt;li&gt;Calendly&lt;/li&gt;
+&lt;li&gt;Vimeo&lt;/li&gt;
+&lt;li&gt;TripIt&lt;/li&gt;
+&lt;li&gt;Foursquare&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Contact info
+&lt;ul&gt;
+&lt;li&gt;E-mail&lt;/li&gt;
+&lt;li&gt;Phone number (home, work, mobile)&lt;/li&gt;
+&lt;li&gt;Contact form&lt;/li&gt;
+&lt;li&gt;Calendar&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Payments
+&lt;ul&gt;
+&lt;li&gt;PayPal&lt;/li&gt;
+&lt;li&gt;Patron&lt;/li&gt;
+&lt;li&gt;Venmo&lt;/li&gt;
+&lt;li&gt;Crypto
+&lt;ul&gt;
+&lt;li&gt;Bitcoin&lt;/li&gt;
+&lt;li&gt;Litecoin&lt;/li&gt;
+&lt;li&gt;Dogecoin&lt;/li&gt;
+&lt;li&gt;Ethereum&lt;/li&gt;
+&lt;li&gt;XRP&lt;/li&gt;
+&lt;li&gt;Cardano&lt;/li&gt;
+&lt;li&gt;Custom&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In addition to those integrations, you can also provide as many of your own custom links as you'd like. In my case, I've chosen to link to my &lt;a href="https://www.lqdev.me/"&gt;website&lt;/a&gt; and &lt;a href="https://www.lqdev.me/feed"&gt;RSS feeds&lt;/a&gt;. The options are endless though.&lt;/p&gt;
+&lt;p&gt;I don't have a &lt;a href="https://linktr.ee/"&gt;Linktree&lt;/a&gt; profile so I can't objectively say how Gravatar compares to those offerings. At their core though, Gravatar and Linktree seem to address similar problems.&lt;/p&gt;
+&lt;p&gt;If you're not yet committed to having your own place on the internet (website/blog) or if you're looking for a way to organize your digital identity in single place, Gravatar is an excellent option. I'd encourage you to check it out.&lt;/p&gt;
+&lt;p&gt;You can find my Gravatar profile at &lt;a href="https://www.lqdev.me/gravatar"&gt;lqdev.me/gravatar&lt;/a&gt;!&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/gravatar-digital-profile-beyond-blog-comments</link>
+      <guid>https://www.lqdev.me/notes/gravatar-digital-profile-beyond-blog-comments</guid>
+      <pubDate>2024-01-15 11:18 -05:00</pubDate>
+      <category>profile</category>
+      <category>online</category>
+      <category>gravatar</category>
+      <category>website</category>
+      <category>web</category>
+      <category>comments</category>
+      <category>internet</category>
+      <category>automattic</category>
+      <category>wordpress</category>
+      <category>identity</category>
+      <category>linktree</category>
+      <category>indieweb</category>
+      <category>socialmedia</category>
+      <category>blog</category>
+      <category>bloggin</category>
+    </item>
+    <item>
+      <title>A blog post can be any length</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;&lt;img src="https://github.com/lqdev/luisquintanilla.me/assets/11130940/d42cc57e-b882-4042-b2be-e68810105c3d" class="img-fluid" alt="A comment thread between Luis and Matt" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/26FLgGTPUDH6UGAbm/giphy.gif" class="img-fluid" alt="A GIF of a man dressed in black pointing up to blinking overhead text &amp;quot;THIS&amp;quot;" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/blog-posts-can-be-any-length-matt</link>
+      <guid>https://www.lqdev.me/responses/blog-posts-can-be-any-length-matt</guid>
+      <pubDate>2024-01-07 22:37 -05:00</pubDate>
+      <category>writing</category>
+      <category>blog</category>
+      <category>web</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>Blogs + RSS - best decentralized social media we ever had</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Bring back self-hosted blogs, reinstall a feed reader, make your feed icon prominent on your blog.  Blogs + Atom/RSS is the best decentralized social media system we've ever had!&lt;br /&gt;
+&lt;br&gt;
+And yes I am saying that as co-author of ActivityPub: self hosted blogs is the best decentralized social networking we've had&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;💯 💯 💯 💯 💯 💯&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/blogs-rss-decentralized-social-media-lemmer-webber</link>
+      <guid>https://www.lqdev.me/responses/blogs-rss-decentralized-social-media-lemmer-webber</guid>
+      <pubDate>2023-12-30 00:30 -05:00</pubDate>
+      <category>rss</category>
+      <category>blog</category>
+      <category>decentralized</category>
+      <category>socialmedia</category>
+      <category>blogging</category>
+      <category>mastodon</category>
+      <category>fediverse</category>
+      <category>indieweb</category>
+      <category>atom</category>
+      <category>feed</category>
+    </item>
+    <item>
+      <title>POSSE to Mastodon using RSS and Azure Logic Apps</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+[Over the past year, I've made this website the main place where I post content](/notes/weblogging-rewind-2023/). The easiest way to [subscribe to content on my website](/feed) is through the various RSS feeds. However, I have accounts on other platforms like X (formerly Twitter), Bluesky, and Mastodon where I'd still like to repost my content to. Since the [changes to the Twitter API](https://techcrunch.com/2023/03/29/twitter-announces-new-api-with-only-free-basic-and-enterprise-levels/), the only place I cross-post to is Mastodon. The main reason behind it is, as of now, it's one of the few platforms that allows me to automate post creation via its REST APIs without restrictions. A large part of that is I self-host my own Mastodon instance but I assume there aren't as many restrictions when using other instances like mastodon.social. The way I automate posting is by setting up workflows using Azure Logic Apps. These workflows subscribe to my various RSS feeds and whenever a new post is published, they make an HTTP request to my Mastodon instance to create a new post. I've been doing this for some time but never got around to documenting it. This blog post goes into more details about how to set up these workflows.  
+
+## What is POSSE
+
+[POSSE](https://indieweb.org/POSSE) is short for "Post on your Own Site Syndicate Elsewhere". It's one of the patterns adopted within IndiWeb communities and projects. The main idea is, your website or a website you own or have administrative rights to becomes the main platform where you publish your content. Effectively, it's the cannonical version of your content. Once your content is on your website, you can optionally choose to distribute it on other platforms. 
+
+## What is RSS
+
+[RSS](https://en.wikipedia.org/wiki/RSS) is short for Really Simple Syndication. Accorting to Wikipedia, this protocol "allows users and applications to access updates to websites in a standardized, computer-readable format". 
+
+## What is Mastodon
+
+[Mastodon](https://joinmastodon.org/) is an [open-source](https://github.com/mastodon/mastodon) decentralized microblogging platform built on the [ActivityPub](https://activitypub.rocks/) protocol and part of the larger collective of federated systems known as the [Fediverse](https://fediverse.info/). 
+
+## What are Azure Logic Apps
+
+If you've used workflow automation systems like [IFTTT](https://ifttt.com/), then you generally know what Azure Logic Apps are. 
+
+A more formal definition from the Azure documentation - "Azure Logic Apps is a cloud platform where you can create and run automated workflows with little to no code. By using the visual designer and selecting from prebuilt operations, you can quickly build a workflow that integrates and manages your apps, data, services, and systems."
+
+For more details, see the [Azure Logic Apps documentation](https://learn.microsoft.com/azure/logic-apps/logic-apps-overview).
+
+## Prerequisites
+
+Since you'll be creating Logic App Resources on Azure, you'll need an [Azure account](https://aka.ms/free).
+
+## Create Consumption Azure Logic App Resource
+
+There's various ways to create an Azure Logic App Resource but the easiest one for this relatively simple workflow is using the Azure Portal. For more details, see the [create a consumption logic app resource documentation](https://learn.microsoft.com/azure/logic-apps/quickstart-create-example-consumption-workflow#create-a-consumption-logic-app-resource).
+
+For the most part you can leave the defaults as is. Since the intended use for this workflow is personal and I don't need enterprise features, I chose to create my logic app using the consumption plan. 
+
+When prompted to choose **Plan Type**, select **Consumption**. 
+
+## The Workflow
+
+The workflow is relatively simple. Whenever a new item is posted to an RSS feed, make an HTTP POST request to the Mastodon API
+
+```mermaid
+flowchart TD
+    A["RSS"] --&gt; B["HTTP (Mastodon API)"]
+```
+
+Once your Logic App resource deploys to Azure, create a new logic app using the Blank Template. For more details, see the [select a blank template documentation](https://learn.microsoft.com/azure/logic-apps/quickstart-create-example-consumption-workflow#select-the-blank-template).
+
+This will launch you into the Logic app designer UI where you can begin to configure your workflow.
+
+### RSS trigger
+
+The first thing you'll want to do is set up the trigger that initiates the workflow. The trigger in this case will be new posts on an RSS feed.
+
+In the Logic app designer, search for *RSS* and add it as a trigger.
+
+Once the RSS trigger is added to your workflow, configure it as follows:
+
+- **The RSS feed URL**: The feed you want want to get posts from. In this case, I'm using my blog posts [feed](/posts/feed.xml). 
+
+    **TIP: The RSS feed can be ANY feed. So if you wanted to subscribe and repost items from your favorite blog or website, you can as well. Just note though that if you don't own the content it might not be something the author wants you doing and for websites that update multiple times a day, it might produce a lot of noise in your feed. Other than that though, subscribe and post away!**
+
+- **How often do you want to check for items?**: The frequency at which you want to poll the RSS feed and check for new posts. In my case, I don't post very often but I do want my posts to be published on Mastodon within an hour of publishing. Therefore, I chose 1 hour as the update frequency. 
+
+### HTTP action
+
+Now that your trigger is configured, it's time to do someting with the latest posts. In this case, since I want to create a new post on Mastodon, I can do so via their REST API. 
+
+#### Get Mastodon credentials
+
+One thing that you'll need to publish posts to Mastodon is an application token. The easiest way to get one is using the Web UI. 
+
+To get your app credentials through the web UI:
+
+1. In the Mastodon Web UI, select **Preferences**.
+1. In the preferences page, select **Development**.
+1. In the development preferences tab, select **New application**.
+1. In the new application page:
+  - Provide a name for your application
+  - Choose the **write:statuses** scope checkbox. For details on required scopes to post statuses, see the [Post a new status REST API documentation](https://docs.joinmastodon.org/methods/statuses/#create)
+  - Select **Submit**
+
+If successful, this will create credentials and a token you can use to send authenticated requests to the Mastodon API.
+
+#### Configure HTTP action
+
+Now that you have your credentials, you can configure your HTTP action in the Logic Apps workflow.
+
+In the Logic App designer:
+
+1. Select **+ New Step**.
+1. Search for *HTTP* and add it as an action. 
+1. Once the HTTP action is added, configure it as follows:
+
+- **Method**: The HTTP Method. To create statuses, choose **POST** from the dropdown.
+- **URI**: The endpoint to make the requests to. For mastodon, it's `https://&lt;HOST&gt;/api/v1/statuses`. Make sure to replace `&lt;HOST&gt;` with your Mastodon instance. In my case, it's `toot.lqdev.tech` since that's where I host my mastodon instance. 
+- **Headers**: HTTP Headers to use. In this case, set the following:
+
+    | Key | Value |
+    | --- | --- |
+    | Content-Type | application/x-www-form-urlencoded |
+
+- **Queries**: URL Query Parameters to add to the request. This is where you'll set your access token.
+
+    | Key | Value |
+    | --- | --- |
+    | access_token | `[YOUR-ACCESS-TOKEN]` |
+
+    Make sure to replace `[YOUR-ACCESS-TOKEN]` with the token credential generated in the Mastodon Web UI.
+- **Body**: The content to be published in your Mastodon post. This is entirely up to you though at minumum, you'll add the following to the text feed. `status=&lt;YOUR-CONTENT&gt;`. `&lt;YOUR-CONTENT&gt;` is what will be displayed in the Mastodon post. 
+
+    One of the nice things about Azure Logic Apps is, properties from previous steps are available to you in subsequent steps. Since our trigger is an RSS feed, we can get access to the feed and item properties of our feed in the HTTP action. If all you wanted was to post the tile and URL, you can do that using the **Feed title** and **Primary Feed Link** properties. For more details, see the [RSS connector documentation](https://learn.microsoft.com/connectors/rss/). 
+
+## Save and run
+
+That's it! Now you just need to select **Save** in the Logic app designer page. 
+
+Once it's saved, click **Run trigger** which will kick off your trigger. If you have anything recent to publish and everything is configured correctly, it should show up in your Mastodon feed.
+
+## Conclusion
+
+By publishing content on your own website first, you're in full control of your content. Regardless of which platforms come and go, you won't have to adjust to those changes because your content is not locked in to those platforms. However, that doesn't mean you can't also publish your content there. Using protocols like RSS make it easy to subscribe to updates on your website. Using REST APIs provided by the respective platforms, you can automate publishing these updates. To further automate and simplify this process, you can use services like Azure Logic Apps to make publishing to all places easy. ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/rss-to-mastodon-posse-azure-logic-apps</link>
+      <guid>https://www.lqdev.me/posts/rss-to-mastodon-posse-azure-logic-apps</guid>
+      <pubDate>2023-12-24 16:40 -05:00</pubDate>
+      <category>azure</category>
+      <category>mastodon</category>
+      <category>indieweb</category>
+      <category>logicapps</category>
+      <category>fediverse</category>
+      <category>posse</category>
+      <category>internet</category>
+      <category>web</category>
+      <category>blogging</category>
+      <category>blog</category>
+      <category>automation</category>
+      <category>programming</category>
+      <category>rss</category>
+    </item>
+    <item>
+      <title>One more blog post for 2023?</title>
+      <description>&lt;![CDATA[&lt;p&gt;Update from &lt;a href="https://www.lqdev.me/notes/weblogging-rewind-2023/"&gt;yesterday&lt;/a&gt;. 2023 is still not over. I think I can squeeze out at least one more post for the year 🙂.&lt;/p&gt;
+&lt;h2&gt;Blog post counts&lt;/h2&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;h2&gt;Note counts&lt;/h2&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;37&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;36&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/one-more-post-2023</link>
+      <guid>https://www.lqdev.me/notes/one-more-post-2023</guid>
+      <pubDate>2023-12-24 14:31 -05:00</pubDate>
+      <category>weblogging</category>
+      <category>quantifiedself</category>
+      <category>indieweb</category>
+      <category>stats</category>
+      <category>analytics</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>opensource</category>
+      <category>community</category>
+      <category>selfhost</category>
+      <category>fsharp</category>
+      <category>spotify</category>
+      <category>antennapod</category>
+      <category>microblog</category>
+      <category>analytics</category>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+    </item>
+    <item>
+      <title>Computing website metrics using GitHub Actions</title>
+      <description>&lt;![CDATA[
+## Introduction 
+
+I recently posted my [(We)blogging Rewind](/notes/weblogging-rewind-2023/) and [(We)blogging Rewind Continued](/notes/weblogging-rewind-2023-continued) for 2023. In these posts, I discuss some analysis I did of my posting behaviors over the past year on this website. I don't use platforms like Google Analytics to track visitors. I used to self-host a [GoatCounter](https://www.goatcounter.com/) instance but personally I don't really care about traffic so I got rid of that. There are some standard reports I get from my [CDN provider on Azure](https://learn.microsoft.com/azure/cdn/cdn-advanced-http-reports), but again I don't really care about those metrics. What I do care about though is my output and understanding what I'm publishing and the topics that were important to me at any given time. In the case of those blog posts, it was for the year 2023. Given that I had already done the analysis and had written the script, I thought, why not automate it and run it on a more regular basis to have monthly summaries. Since my blog and scripts are already on GitHub, it makes sense to create a GitHub Action workflow. In this post, I discuss in more details what my post analytics script does and how I configured my workflow in GitHub Actions to run the script on the first of every month.  
+
+## The script
+
+This script loads the various posts on my website and computes aggregate metrics based on post types and their metadata. You can find the full script at [stats.fsx](/resources/snippets/lqdev-me-website-post-metrics).
+
+### Loading files
+
+The following are convenience functions which I use as part of my website build process. 
+
+In general these functions:
+
+- Load the individual post files
+- Parse the content and YAML metadata
+
+```fsharp
+let posts = loadPosts()
+let notes = loadFeed ()
+let responses = loadReponses ()
+```
+
+Instead of building new custom functions, I can repurpose them and apply additional transformations to compute aggregate statistics.
+
+### Computing aggregate statistics
+
+Once the posts are loaded, I apply transformations on the collections to compute aggregate metrics:
+
+#### Annual post counts
+
+The following are annual aggreagates of blog posts, notes, and responses. 
+
+##### Blog posts
+
+Takes the blog post collection, parses the published date, and computes counts by the year property. Then, it sorts them in descending order.
+
+```fsharp
+let postCountsByYear = 
+    posts
+    |&gt; Array.countBy (fun (x:Post) -&gt; DateTime.Parse(x.Metadata.Date) |&gt; _.Year)
+    |&gt; Array.sortByDescending fst 
+```
+
+##### Notes
+
+Takes the note collection, parses the published date, and computes counts by the year property. Then, it sorts them in descending order.
+
+```fsharp
+let noteCountsByYear = 
+    notes
+    |&gt; Array.countBy (fun (x:Post) -&gt; DateTime.Parse(x.Metadata.Date) |&gt; _.Year)
+    |&gt; Array.sortByDescending fst
+```
+
+##### Responses
+
+Takes the response collection, parses the published date, and computes counts by the year property. Then, it sorts them in descending order.
+
+```fsharp
+let responseCountsByYear = 
+    responses
+    |&gt; Array.countBy (fun (x:Response) -&gt; DateTime.Parse(x.Metadata.DatePublished) |&gt; _.Year)
+    |&gt; Array.sortByDescending fst
+```
+
+#### Response counts by type
+
+Takes the response collection, parses the published date, filters it for the current year, and computes counts by the post type (reply, bookmark, reshare, star).
+
+```fsharp
+let responsesByType = 
+    responses
+    |&gt; Array.filter(fun x -&gt; (DateTime.Parse(x.Metadata.DatePublished) |&gt; _.Year) = DateTime.UtcNow.Year)
+    |&gt; Array.countBy(fun x -&gt; x.Metadata.ResponseType)
+    |&gt; Array.sortByDescending(snd)
+```
+
+#### Tag counts (responses)
+
+Takes the response collection, parses the published date, filters it for the current year, and computes counts by the tag name, and sorts in descending order using the count.
+
+
+```fsharp
+let responsesByTag = 
+    responses
+    |&gt; Array.filter(fun x -&gt; (DateTime.Parse(x.Metadata.DatePublished) |&gt; _.Year) = DateTime.UtcNow.Year)
+    |&gt; Array.collect(fun x -&gt; 
+            match x.Metadata.Tags with
+            | null -&gt; [|"untagged"|]
+            | [||] -&gt; [|"untagged"|]
+            | _ -&gt; x.Metadata.Tags
+        )
+    |&gt; Array.countBy(fun x -&gt; x)
+    |&gt; Array.sortByDescending(snd)
+```
+
+#### Domain counts (responses)
+ 
+Takes the response collection, parses the published date, filters it for the current year, and computes counts by the target URL host name, and sorts it in descending order using the count.
+
+```fsharp
+let responsesByDomain = 
+    responses
+    |&gt; Array.filter(fun x -&gt; (DateTime.Parse(x.Metadata.DatePublished) |&gt; _.Year) = DateTime.UtcNow.Year)
+    |&gt; Array.countBy(fun x -&gt; Uri(x.Metadata.TargetUrl).Host)
+    |&gt; Array.sortByDescending(snd)
+```
+
+### Displaying counts
+
+Since the `countBy` function is the one used to compute the counts, this produces a tuple. The tuple though could be `string` or `int`. Therefore, I set the collection of entry counts to use a generic `'a` for the first item in the tuple. I'm also able to control using `n` whether to display the entire collection by using `-1` as input or a limit when `n &gt;= 0`.
+
+```fsharp
+let printEntryCounts&lt;'a&gt; (title:string) (entryCounts:('a * int) array) (n:int) = 
+    printfn $"{title}"
+
+    match n with 
+    | n when n = -1 -&gt; 
+        entryCounts
+        |&gt; Array.iter(fun x -&gt; printfn $"{fst x} {snd x}")
+        |&gt; fun _ -&gt; printfn $""
+    | n when n &gt;= 0 -&gt; 
+        entryCounts
+        |&gt; Array.take n
+        |&gt; Array.iter(fun x -&gt; printfn $"{fst x} {snd x}")
+        |&gt; fun _ -&gt; printfn $""
+```
+
+The result of running this script produces the following results:
+
+```text
+Blogs
+2023 5
+2022 7
+
+Notes
+2023 34
+2022 36
+
+Responses
+2023 216
+2022 146
+
+Response Types
+bookmark 151
+reshare 48
+reply 10
+star 7
+
+Response Tags
+ai 104
+llm 42
+untagged 41
+opensource 31
+internet 17
+
+Domains
+github.com 15
+huggingface.co 11
+arxiv.org 10
+openai.com 6
+www.theverge.com 4
+```
+
+## The workflow file
+
+The workflow file is a GitHub Actions workflow which you can find in my [website repo](https://github.com/lqdev/luisquintanilla.me/blob/main/.github/workflows/stats.yml).  
+
+### Triggers
+
+I don't really want the script to run every time I publish my website. Instead, I just want to have these aggregate values computed on a monthly basis. Optionally though, I'd like to be able to run ad-hoc reports and trigger this job manually.
+
+The triggers in my workflow file look like the following:
+
+```yaml
+schedule: 
+  - cron: '30 0 1 * *'
+workflow_dispatch: 
+```
+
+Using cron job syntax, I use the `schedule` trigger to configure the script to run at 12:30 AM on the 1st day of every month.
+
+The `workflow_dispatch` trigger is there so I can manually trigger this job.
+
+## Steps
+
+The steps in the workflow file are the following:
+
+- Check out the repo
+
+    ```yaml
+    - uses: actions/checkout@v2
+    ```
+
+
+- Install the .NET 8 SDK
+
+    ```yaml
+    - name: Setup .NET SDK 8.x
+      uses: actions/setup-dotnet@v1.9.0
+      with: 
+        dotnet-version: '8.0.x'    
+    ```
+
+- Restore dependencies
+
+    ```yaml
+    - name: Install dependencies
+      run: dotnet restore    
+    ```
+
+- Build the project
+
+    ```yaml
+    - name: Build project
+      run: dotnet build --no-restore  
+    ```
+
+- Run the script and display metrics
+
+    ```yaml
+    - name: Display Post Metrics
+      run: dotnet fsi Scripts/stats.fsx
+    ```
+
+## Conclusion
+
+If you have scripts that you run on a repo on a fairly regular basis, consider using GitHub Actions to automate the execution of these scripts. Happy coding! ]]&gt;</description>
+      <link>https://www.lqdev.me/posts/website-metrics-github-actions</link>
+      <guid>https://www.lqdev.me/posts/website-metrics-github-actions</guid>
+      <pubDate>2023-12-24 13:24 -05:00</pubDate>
+      <category>github</category>
+      <category>cicd</category>
+      <category>website</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>web</category>
+      <category>internet</category>
+      <category>fsharp</category>
+      <category>dotnet</category>
+    </item>
+    <item>
+      <title>(We)blogging Rewind 2023 Continued</title>
+      <description>&lt;![CDATA[&lt;p&gt;Yesterday I posted aggregate statistics about this website in the post &lt;a href="https://www.lqdev.me/notes/weblogging-rewind-2023/"&gt;(We)blogging Rewind 2023&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I thought it'd be cool to see which domains I referenced most in my responses. Here's the breakdown of the top 5.&lt;/p&gt;
+&lt;p&gt;Domain&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;github.com&lt;/p&gt;
+&lt;p&gt;15&lt;/p&gt;
+&lt;p&gt;huggingface.co&lt;/p&gt;
+&lt;p&gt;11&lt;/p&gt;
+&lt;p&gt;arxiv.org&lt;/p&gt;
+&lt;p&gt;10&lt;/p&gt;
+&lt;p&gt;openai.com&lt;/p&gt;
+&lt;p&gt;6&lt;/p&gt;
+&lt;p&gt;www.theverge.com&lt;/p&gt;
+&lt;p&gt;4&lt;/p&gt;
+&lt;p&gt;No surprise here given that AI was one of the top tags in my responses.&lt;/p&gt;
+&lt;p&gt;Updated script is here &lt;a href="https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics"&gt;stats.fsx&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/weblogging-rewind-2023-continued</link>
+      <guid>https://www.lqdev.me/notes/weblogging-rewind-2023-continued</guid>
+      <pubDate>2023-12-24 09:39 -05:00</pubDate>
+      <category>weblogging</category>
+      <category>quantifiedself</category>
+      <category>indieweb</category>
+      <category>stats</category>
+      <category>analytics</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>opensource</category>
+      <category>community</category>
+      <category>selfhost</category>
+      <category>fsharp</category>
+      <category>spotify</category>
+      <category>antennapod</category>
+      <category>microblog</category>
+      <category>analytics</category>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+    </item>
+    <item>
+      <title>lqdev.me Post Metrics</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;Generates an aggregate analysis of posts on &lt;a href="https://www.lqdev.me"&gt;lqdev.me / luisquintanilla.me&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet fsi stats.fsx 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;h3&gt;stats.fsx&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;// Reference DLL
+#r &amp;quot;../bin/Debug/net8.0/PersonalSite.dll&amp;quot;
+
+// Add modules
+open Domain
+open Builder
+open System
+
+// Load posts
+let posts = loadPosts()
+let notes = loadFeed ()
+let responses = loadReponses ()
+
+// Organize posts by year
+let postCountsByYear = 
+    posts
+    |&amp;gt; Array.countBy (fun (x:Post) -&amp;gt; DateTime.Parse(x.Metadata.Date) |&amp;gt; _.Year)
+    |&amp;gt; Array.sortByDescending fst 
+
+let noteCountsByYear = 
+    notes
+    |&amp;gt; Array.countBy (fun (x:Post) -&amp;gt; DateTime.Parse(x.Metadata.Date) |&amp;gt; _.Year)
+    |&amp;gt; Array.sortByDescending fst
+
+let responseCountsByYear = 
+    responses
+    |&amp;gt; Array.countBy (fun (x:Response) -&amp;gt; DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year)
+    |&amp;gt; Array.sortByDescending fst
+
+// Organize responses by type
+let responsesByType = 
+    responses
+    |&amp;gt; Array.filter(fun x -&amp;gt; (DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year) = DateTime.UtcNow.Year)
+    |&amp;gt; Array.countBy(fun x -&amp;gt; x.Metadata.ResponseType)
+    |&amp;gt; Array.sortByDescending(snd)
+
+// Organize responses by tag
+let responsesByTag = 
+    responses
+    |&amp;gt; Array.filter(fun x -&amp;gt; (DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year) = DateTime.UtcNow.Year)
+    |&amp;gt; Array.collect(fun x -&amp;gt; 
+            match x.Metadata.Tags with
+            | null -&amp;gt; [|&amp;quot;untagged&amp;quot;|]
+            | [||] -&amp;gt; [|&amp;quot;untagged&amp;quot;|]
+            | _ -&amp;gt; x.Metadata.Tags
+        )
+    |&amp;gt; Array.countBy(fun x -&amp;gt; x)
+    |&amp;gt; Array.sortByDescending(snd)
+
+// Organize responses by host name (domain)
+let responsesByDomain = 
+    responses
+    |&amp;gt; Array.filter(fun x -&amp;gt; (DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year) = DateTime.UtcNow.Year)
+    |&amp;gt; Array.countBy(fun x -&amp;gt; Uri(x.Metadata.TargetUrl).Host)
+    |&amp;gt; Array.sortByDescending(snd)
+
+// Utility function to display counts
+let printEntryCounts&amp;lt;'a&amp;gt; (title:string) (entryCounts:('a * int) array) (n:int) = 
+    printfn $&amp;quot;{title}&amp;quot;
+
+    match entryCounts.Length with
+    | 0 -&amp;gt; 
+        printfn $&amp;quot;No entries&amp;quot;
+        printfn $&amp;quot;&amp;quot;
+    | a when a &amp;gt; 0 -&amp;gt; 
+        match n with 
+        | n when n = -1 || n &amp;gt; entryCounts.Length -&amp;gt; 
+            entryCounts
+            |&amp;gt; Array.iter(fun x -&amp;gt; printfn $&amp;quot;{fst x} {snd x}&amp;quot;)
+            |&amp;gt; fun _ -&amp;gt; printfn $&amp;quot;&amp;quot;
+        | n when n &amp;gt; 0 -&amp;gt; 
+            entryCounts
+            |&amp;gt; Array.take n
+            |&amp;gt; Array.iter(fun x -&amp;gt; printfn $&amp;quot;{fst x} {snd x}&amp;quot;)
+            |&amp;gt; fun _ -&amp;gt; printfn $&amp;quot;&amp;quot;
+
+// Print yearly counts
+printEntryCounts &amp;quot;Blogs&amp;quot; postCountsByYear 2
+
+printEntryCounts &amp;quot;Notes&amp;quot; noteCountsByYear 2
+
+printEntryCounts &amp;quot;Responses&amp;quot; responseCountsByYear 2
+
+// Print response types
+printEntryCounts &amp;quot;Response Types&amp;quot; responsesByType -1
+
+// Print response tag counts
+printEntryCounts &amp;quot;Response Tags&amp;quot; responsesByTag 5
+
+// Print response by host name
+printEntryCounts &amp;quot;Domains&amp;quot; responsesByDomain 5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Expected Output&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Blogs
+2023 5
+2022 7
+
+Notes
+2023 34
+2022 36
+
+Responses
+2023 216
+2022 146
+
+Response Types
+bookmark 151
+reshare 48
+reply 10
+star 7
+
+Response Tags
+ai 104
+llm 42
+untagged 41
+opensource 31
+internet 17
+
+Domains
+github.com 15
+huggingface.co 11
+arxiv.org 10
+openai.com 6
+www.theverge.com 4
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics</link>
+      <guid>https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics</guid>
+      <pubDate>12/23/2023 13:13 -05:00</pubDate>
+      <category>analytics</category>
+      <category>website</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>pkm</category>
+      <category>indieweb</category>
+      <category>dotnet</category>
+      <category>windows</category>
+      <category>linux</category>
+      <category>mac</category>
+    </item>
+    <item>
+      <title>(We)blogging Rewind 2023</title>
+      <description>&lt;![CDATA[&lt;p&gt;Inspired by &lt;a href="https://www.lqdev.me/notes/spotify-wrapped-2023"&gt;Spotify Wrapped&lt;/a&gt; and &lt;a href="https://www.lqdev.me/notes/antennapod-echo-2023"&gt;Antennapod Echo&lt;/a&gt;, I decided to look back at my activity on this website for 2023. Here is the &lt;a href="https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics"&gt;snippet&lt;/a&gt; I used to generate these metrics.&lt;/p&gt;
+&lt;h2&gt;Posts by Year&lt;/h2&gt;
+&lt;h3&gt;Blog&lt;/h3&gt;
+&lt;p&gt;Blog posts are my more formal, long-form content. This year, I published less blog posts than last year.&lt;/p&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;5&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;Part of that includes me getting in my head about what these posts &amp;quot;should be&amp;quot;. Historically, they have been detailed technical posts related to a project I've worked on like &lt;a href="https://www.lqdev.me/posts/receive-webmentions-fsharp-az-functions-fsadvent"&gt;Accept Webmentions using F#, Azure Functions, and RSS&lt;/a&gt;. I haven't stopped experimenting and tinkering, but because they aren't end-to-end solutions, I don't think of them as &amp;quot;blog post worthy&amp;quot;. That doesn't mean though that learnings and growth haven't come from them. In more recent blog posts like &lt;a href="https://www.lqdev.me/posts/ai-1999-1899"&gt;AI like it's 1999 or 1899&lt;/a&gt; and &lt;a href="https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023"&gt;Quick thoughts about Snapdragon Summit 2023&lt;/a&gt;, I've started experimenting more with just posting. In 2024, I want to be more flexible in my posting and not worry too much about whether the blog posts are &amp;quot;good enough&amp;quot;.&lt;/p&gt;
+&lt;h3&gt;Microblog&lt;/h3&gt;
+&lt;p&gt;This site also contains a microblog feed, one for &lt;a href="https://www.lqdev.me/feed"&gt;notes&lt;/a&gt; and another for &lt;a href="https://www.lqdev.me/feed/responses"&gt;responses&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Notes&lt;/h4&gt;
+&lt;p&gt;Notes tend to be original content that although can include links to external content, they are short-form and informal versions of blog posts. This post is an example of a note. This year, I posted less notes than last year.&lt;/p&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;33&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;36&lt;/p&gt;
+&lt;p&gt;Usually, when these notes start to get long, I turn them into blog posts. &lt;a href="https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023"&gt;Quick thoughts about Snapdragon Summit 2023&lt;/a&gt; is an example of that. However, I haven't set a criteria for what makes a note &amp;quot;long&amp;quot;. This post for example I think is getting to the &amp;quot;blog post&amp;quot; length. I can't tell you why though, it's just &amp;quot;vibes&amp;quot;. One of the benefits of starting with notes types of posts is that the frame of mind is more informal which lets me just write and post without thinking too much about what the post &amp;quot;should be&amp;quot;. In 2024, I want to continue using notes as the starting point for these types of posts. Maybe later in the future, I just merge them both.&lt;/p&gt;
+&lt;h4&gt;Responses&lt;/h4&gt;
+&lt;p&gt;Responses are reactions to content created / published by someone else. These can include bookmarks, replies, likes (star), and reposts (reshare). This year, I posted significantly more responses than last year.&lt;/p&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;216&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;146&lt;/p&gt;
+&lt;p&gt;I'm very happy with this, especially my bookmark use explained later. Not only am I happy because I'm actually making use of my website and the work I put in previous years that enabled me to publish all types of content but also because these responses create a log of my interactions with the internet over the years I can look back at.&lt;/p&gt;
+&lt;h2&gt;Responses by Type&lt;/h2&gt;
+&lt;p&gt;Looking deeper into my responses and breaking them down by type, bookmarks take up the top spot with more than half of my responses being bookmarks. That makes sense since I'm usually bookmarking articles, papers, and other content I come across on the internet.&lt;/p&gt;
+&lt;p&gt;Type&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;bookmark&lt;/p&gt;
+&lt;p&gt;151&lt;/p&gt;
+&lt;p&gt;reshare&lt;/p&gt;
+&lt;p&gt;48&lt;/p&gt;
+&lt;p&gt;reply&lt;/p&gt;
+&lt;p&gt;10&lt;/p&gt;
+&lt;p&gt;star&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;Let me start off with bookmarks. Bookmark style reponses on my website have slowly become my default capture system. Now, not everything I read and come across makes it onto my bookmarks. I'm experimenting with the first pass which I might just turn into another post. Generally, the things that are interesting or thought provoking, I post. Bookmark posts generally include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Post title - Gives me a readable way to see what the post is about&lt;/li&gt;
+&lt;li&gt;Source link - Provides a direct link to the source material&lt;/li&gt;
+&lt;li&gt;Tags - Enable me to index and organize related topics&lt;/li&gt;
+&lt;li&gt;Quotes / Notes - Provide highlights and things I thought were interesting about the post&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When all these pieces come together, they provide me with distilled bits of information that are organized in a way that enable quick retrieval and action when needed.&lt;/p&gt;
+&lt;p&gt;Moving on to other posts. Since the post type is effectively just metadata, the line between reshare, star, and reply is often blurry. It's not as blurry with replies because I use that to draft replies / comments to other posts and content on the internet. My &lt;a href="https://www.lqdev.me/responses/tracy-durnell-20-blogging-anniversary"&gt;Tracy Durnell 20th anniversary of blogging&lt;/a&gt; post is an example of a reply. In these examples, the replies were directed at someone. However, for star and reshare, I'm still trying to understand where they fit in my flow. Today other than visually expressing the post type, the role these post types serve is webmentions. However, I'm not sure how many websites I create these post types for actually use webmentions. Maybe some analysis worth doing for 2025.&lt;/p&gt;
+&lt;h2&gt;Responses by Tag (Top 5)&lt;/h2&gt;
+&lt;p&gt;AI and LLMs took the top spots which I think in general aligns with what was top of mind for everyone in 2023.&lt;/p&gt;
+&lt;p&gt;Tag&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;ai&lt;/p&gt;
+&lt;p&gt;104&lt;/p&gt;
+&lt;p&gt;llm&lt;/p&gt;
+&lt;p&gt;42&lt;/p&gt;
+&lt;p&gt;untagged&lt;/p&gt;
+&lt;p&gt;41&lt;/p&gt;
+&lt;p&gt;opensource&lt;/p&gt;
+&lt;p&gt;31&lt;/p&gt;
+&lt;p&gt;internet&lt;/p&gt;
+&lt;p&gt;17&lt;/p&gt;
+&lt;p&gt;Not much commentary here. Tags have helped me organize related content on my website. I do think that I get too high level with my tags and could do a better job of being more specific. Ultimately, there's no limit to the number of tags I can use so why not be liberal with it. The only self-imposed limitation I've placed on myself is the first 3 tags should be the most important because they're the ones that show up when my articles are automatically cross-posted to Mastodon.&lt;/p&gt;
+&lt;h2&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;Overall, I'm happy with my activity and heavy use of my own website this year. I plan to make even more use of the bookmark type of posts in 2024 and plan on posting more whether that's as a note or blog post, just posting is something I want to work towards.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/weblogging-rewind-2023</link>
+      <guid>https://www.lqdev.me/notes/weblogging-rewind-2023</guid>
+      <pubDate>2023-12-23 02:28 -05:00</pubDate>
+      <category>weblogging</category>
+      <category>quantifiedself</category>
+      <category>indieweb</category>
+      <category>stats</category>
+      <category>analytics</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>opensource</category>
+      <category>community</category>
+      <category>selfhost</category>
+      <category>fsharp</category>
+      <category>spotify</category>
+      <category>antennapod</category>
+      <category>microblog</category>
+      <category>analytics</category>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+    </item>
+  </channel>
+</rss>

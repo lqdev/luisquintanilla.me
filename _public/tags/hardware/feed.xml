@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - hardware</title>
+    <link>https://www.lqdev.me/tags/hardware</link>
+    <description>All content tagged with 'hardware' by Luis Quintanilla</description>
+    <lastBuildDate>2024-03-21 12:02 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>New Era of Work - Windows / Surface Event Blog (March 21, 2024)</title>
+      <description>&lt;![CDATA[&lt;p&gt;&lt;strong&gt;12:03&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Copilot is making people more productive.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;12:06&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Copilot for Microsoft 365 integrated into Windows.&lt;/li&gt;
+&lt;li&gt;Demo: After coming back from vacation, you want to catch up.
+&lt;ul&gt;
+&lt;li&gt;Ask copilot about latest project updates&lt;/li&gt;
+&lt;li&gt;Ask copilot for summary of meeting you missed which generates a summary of the discussion and action items.&lt;/li&gt;
+&lt;li&gt;Copilot then can help you tackle the action items like drafting and sending e-mails.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;12:09&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Demo: Using Copilot to configure Windows settings&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;12:13&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Demo: Using Windows App to manage Windows 365 cloud PCs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;12:21&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Surface Pro 10 and Surface Laptop 6 announced for business. Comes with latest Intel processors, Neural Processing Units (NPUs), and Copilot.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;12:39&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The demo showing a .NET development workflow on the Surface Laptop 6 was great. Usually that same workflow longer on my Lenovo P4.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/surface-event-mar-21-24-event-blog</link>
+      <guid>https://www.lqdev.me/notes/surface-event-mar-21-24-event-blog</guid>
+      <pubDate>2024-03-21 12:02 -05:00</pubDate>
+      <category>windows</category>
+      <category>microsoft</category>
+      <category>surface</category>
+      <category>copilot</category>
+      <category>ai</category>
+      <category>pc</category>
+      <category>hardware</category>
+    </item>
+    <item>
+      <title>Nvidia reveals Blackwell B200 GPU</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Nvidia reveals Blackwell B200 GPU, the ‘world’s most powerful chip’ for AI&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;‘Built to democratize trillion-parameter AI.’&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Nvidia says the new B200 GPU offers up to 20 petaflops of FP4 horsepower from its 208 billion transistors. Also, it says, a GB200 that combines two of those GPUs with a single Grace CPU can offer 30 times the performance for LLM inference workloads while also potentially being substantially more efficient. It “reduces cost and energy consumption by up to 25x” over an H100, says Nvidia.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/nvidia-blackwell-b200-gpu</link>
+      <guid>https://www.lqdev.me/responses/nvidia-blackwell-b200-gpu</guid>
+      <pubDate>2024-03-18 21:09 -05:00</pubDate>
+      <category>ai</category>
+      <category>nvidia</category>
+      <category>gpu</category>
+      <category>hardware</category>
+      <category>pchardware</category>
+      <category>pc</category>
+    </item>
+    <item>
+      <title>Algorithms for Modern Hardware</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This is an upcoming high performance computing book titled “Algorithms for Modern Hardware” by Sergey Slotin.&lt;br /&gt;
+&lt;br&gt;
+Its intended audience is everyone from performance engineers and practical algorithm researchers to undergraduate computer science students who have just finished an advanced algorithms course and want to learn more practical ways to speed up a program than by going from O(nlog⁡n)O(nlogn) to O(nlog⁡log⁡n)O(nloglogn).&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/algorithms-modern-hardware-book</link>
+      <guid>https://www.lqdev.me/bookmarks/algorithms-modern-hardware-book</guid>
+      <pubDate>2024-03-17 21:20 -05:00</pubDate>
+      <category>book</category>
+      <category>algorithms</category>
+      <category>hardware</category>
+    </item>
+    <item>
+      <title>LLM in a flash: Efficient Large Language Model Inference with Limited Memory</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Large language models (LLMs) are central to modern natural language processing, delivering exceptional performance in various tasks. However, their intensive computational and memory requirements present challenges, especially for devices with limited DRAM capacity. This paper tackles the challenge of efficiently running LLMs that exceed the available DRAM capacity by storing the model parameters on flash memory but bringing them on demand to DRAM. Our method involves constructing an inference cost model that harmonizes with the flash memory behavior, guiding us to optimize in two critical areas: reducing the volume of data transferred from flash and reading data in larger, more contiguous chunks. Within this flash memory-informed framework, we introduce two principal techniques. First, &amp;quot;windowing'&amp;quot; strategically reduces data transfer by reusing previously activated neurons, and second, &amp;quot;row-column bundling&amp;quot;, tailored to the sequential data access strengths of flash memory, increases the size of data chunks read from flash memory. These methods collectively enable running models up to twice the size of the available DRAM, with a 4-5x and 20-25x increase in inference speed compared to naive loading approaches in CPU and GPU, respectively. Our integration of sparsity awareness, context-adaptive loading, and a hardware-oriented design paves the way for effective inference of LLMs on devices with limited memory.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/llm-flash-inference-limited-memory</link>
+      <guid>https://www.lqdev.me/bookmarks/llm-flash-inference-limited-memory</guid>
+      <pubDate>2023-12-20 18:30 -05:00</pubDate>
+      <category>llm</category>
+      <category>ai</category>
+      <category>hardware</category>
+    </item>
+    <item>
+      <title>Quick Thoughts Snapdragon Summit 2023 Addendum</title>
+      <description>&lt;![CDATA[&lt;p&gt;Yesterday I wrote a post with some quick thoughts on &lt;a href="https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023"&gt;why I'm excited for the new Snapdragon X Elite&lt;/a&gt; set of chips.&lt;/p&gt;
+&lt;p&gt;There's something I missed which came to mind this morning.&lt;/p&gt;
+&lt;p&gt;If your Snapdragon X Elite powered computer is running Windows, and it also has calling and messaging capabilities like a phone, does that mean that you're now the proud owner of a &amp;quot;Windows Phone&amp;quot;? As a fan of Windows Phone, that sounds interesting.&lt;/p&gt;
+&lt;p&gt;Now you might say, &amp;quot;Windows doesn't have all my apps&amp;quot;. Fair point but with Windows Subsystem for Android (WSA), maybe the app gap isn't much of a concern. More importantly, as I mentioned in the post, if the apps no longer become the main mode of interaction and instead are relegated to serve as background services to the AI interface, does it even matter?&lt;/p&gt;
+&lt;p&gt;In the post, I also mentioned how I'd prefer my mobile computer runs Linux (and no, I don't mean AOSP). Even that is not a strict limitation, since I can run Windows Subsystem for Linux (WSL) inside Windows. So technically I can still have Linux on my mobile computer even if it's running Windows.&lt;/p&gt;
+&lt;p&gt;Let's see if 2024 becomes the Year of the Windows (or Linux) Phone.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/snapdragon-summit-2023-addendum</link>
+      <guid>https://www.lqdev.me/notes/snapdragon-summit-2023-addendum</guid>
+      <pubDate>2023-10-25 19:26 -05:00</pubDate>
+      <category>windows</category>
+      <category>qualcomm</category>
+      <category>windowsphone</category>
+      <category>mobilecomputing</category>
+      <category>arm</category>
+      <category>hardware</category>
+      <category>5g</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>Quick thoughts about Snapdragon Summit 2023</title>
+      <description>&lt;![CDATA[
+This started as a note where I was planning on posting a bullet point or two with my thoughts but kept on writing so I decided to turn it into a blog post.
+
+Here's a few of my thoughts after the Snapdragon Summit 2023 keynote.
+
+Today was the start of Snapdragon Summit 2023 and all I can say is, **WOW**. 
+
+CNET has a [14 minute clip](https://www.youtube.com/watch?v=K7Q5iYHvgwo) that summarizes all the announcements. 
+
+[![Qualcomm’s Snapdragon AI Event: Everything Revealed in 14 Minutes](http://img.youtube.com/vi/K7Q5iYHvgwo/0.jpg)](https://www.youtube.com/watch?v=K7Q5iYHvgwo "Qualcomm’s Snapdragon AI Event: Everything Revealed in 14 Minutes")
+
+I was cautiously optimistic about what would be shown today but Qualcomm delivered. 
+
+The main thing that I'm excited about are their Snapdragon X Elite Oryon-based CPUs.
+
+As someone who does all of their computing on a laptop, I'd love to have a PC that I can take with me on the go. Now you might think that's what your phone is for, and for many people that is definitely the case. However, I only use my phone for calls and messages. I find it much more enjoyable to have a larger screen and keyboard.   
+
+Keeping my preferences in mind, being able to connect to your PC on the go is nothing new either. I can just use the hotspot on my phone or tether over USB in order to connect my PC to the internet. Also, SIM card slots in PCs have been a thing for a while and products like the [Surface Pro 9 with 5G](https://www.microsoft.com/d/surface-pro-9/93vkd8np4fvk?activetab=pivot:overviewtab) provide an even more integrated experience. 
+
+However, in order to truly make this experience mobile, I need to be untethered. Just like a mobile phone, I need my device battery to last all-day while on the go so I don't have to carry my charger. To do that, either you need a device with a large battery or a low-power chip. Larger battery immediately takes the mobile out of mobile computing. I recently carried around my 16" work laptop for a while walking in the city and that was no fun. So then low-power chip it is. Problem solved. Not quite, because in order for it to be low-power, performance needs to be throttled. So for the longest time, it's been a constant struggle between power-efficiency and battery life. 
+
+Apple was the first to solve this problem with their M1 line of chips. However, that meant this innovation was confined to the Apple ecosystem. It's not until now with the Oryon CPUs that Windows (and hopefully soon Linux too) can tap into these types of computing platforms that promise to deliver true mobile computing. This now opens up a world of possibilities when we think about mobile computing. Our phones keep getting [larger in size](https://www.theverge.com/23913658/best-small-phone-dead-iphone-mini-z-flip-pixel-8) that at this point it's harder to carry them in your pocket or use them with one hand. We've seen a surge in interest in handheld gaming devices like the [SteamDeck](https://www.steamdeck.com/) which are full PCs. Their problem is they're using chips that are not power efficient, especially because of their requirements for gaming. 
+
+What happens if you replace the current chips in those devices with Snapdragon X Elite? Now that it's high-performance and power efficient, does your handheld gaming device now become your handheld computing device? And if we're in handheld computing device territory, now all of a sudden it's bumping up against what smartphones do today. So at that point, do we need both a smartphone and a handheld computing device? If I was able to handle calls and messages from my PC then I wouldn't need a phone and I'd much rather just carry a single handheld computing device. Considering that smartphones are general computing devices that are serverely locked down and restricted, I'd much rather go for the general computing type of device like a PC because I have more freedom over what I can do with my PC. More importantly, because it's a full PC, it means when I need to dock down for serious work with a keyboard and multiple monitors, I can plug a USB-C Hub and connect all of my peripherals to the device. This was something projects like [Continuum](https://learn.microsoft.com/windows-hardware/design/device-experiences/continuum-phone) tried to achieve but were unsuccessful doing for various reasons. Because now your PC is now also your mobile device, you take a big problem with these type of experiences which is reconciling mobile and desktop UX patterns.   
+
+What about apps? Not exactly sure what this looks like in the near-term but considering devices running Oryon CPUs will take some time to get to market, by using the AI capabilities you can think of a future where AI is the interface and the apps become background services for interactive with external systems. So no need for specific apps because you can express intent and complete tasks using natural language. 
+
+What about form factors? The steamdeck might not be what folks are looking for when it comes to a mobile device. Foldables are seeing an uptick in adoption. Despite it's lack of commercial success, the Surface Duo was an excellent foldable form factor that was compact but functional for productivity. I think the Surface Duo was misunderstood because it was put into the box of mobile phone. As a mobile phone it didn't work as well. But as a mobile computer, it struck the right form factor that enabled you to be productive on the go while still being portable. Needed more screen real estate? Surface Neo or Courier would've been  nice devices to have. 
+
+Let's go 3 years into the future. What happens when virtual and augmented reality headsets all of a sudden become as small as the [Ray-Ban Meta Smartglasses](https://www.ray-ban.com/usa/ray-ban-meta-smart-glasses)? Do we even need handheld PCs at that point if all we need is for the headset to display the screens we're looking at. Bring in IoT. If the items around us are also "smart" devices, all of a sudden your environment becomes your compute platform. Bring AI into the mix and your AI assistant has access to your environment.  
+
+I'd say the biggest miss from Qualcomm and Windows partners today was not having a lineup of devices ready for purchase. That will come with time. Hopefully not too long after these announcements. I'm sure that Apple which has an announcement coming up on October 30th will have a response. The most important thing though is that now there's competition and as we enter this new era of AI and TRUE mobile computing, it'll lead to innovation. The next things that need to happen is operating systems like Windows need to ensure their existing applications work on these platforms and Linux needs to enable support for these chipsets. I'm so excited for the future of mobile computing and can't wait to be able to carry a device running Linux with always-on connectivity and all-day battery life in the form factor of a Surface Duo. 
+
+An addendum to this post can be found [here](/notes/snapdragon-summit-2023-addendum).]]&gt;</description>
+      <link>https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023</link>
+      <guid>https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023</guid>
+      <pubDate>2023-10-24 23:14 -05:00</pubDate>
+      <category>arm</category>
+      <category>qualcomm</category>
+      <category>hardware</category>
+      <category>mobilecomputing</category>
+      <category>5g</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>Next-Gen CPU Acceleration: AVX For Generative AI</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The future is AVX10, so says Intel. Recently a document was released showcasing a post-AVX512 world, and to explain why this matters, I've again invited the Chips And Cheese crew onto the channel. Chester and George answer my questions on AVX10 and why it matters! Visit &lt;a href="http://www.chipsandcheese.com"&gt;http://www.chipsandcheese.com&lt;/a&gt; to learn more!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=bskEGP0r3hE" title="YouTube video Next-Gen CPU Acceleration: AVX For Generative AI"&gt;&lt;img src="http://img.youtube.com/vi/bskEGP0r3hE/0.jpg" class="img-fluid" alt="YouTube video Next-Gen CPU Acceleration: AVX For Generative AI" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/next-gen-cpu-acceleration-avx-gen-ai</link>
+      <guid>https://www.lqdev.me/bookmarks/next-gen-cpu-acceleration-avx-gen-ai</guid>
+      <pubDate>2023-09-25 20:34 -05:00</pubDate>
+      <category>ai</category>
+      <category>hardware</category>
+      <category>hpc</category>
+    </item>
+    <item>
+      <title>Linux ls Commands</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;An overview of &lt;code&gt;ls&lt;/code&gt; Linux commands&lt;/p&gt;
+&lt;h2&gt;ls&lt;/h2&gt;
+&lt;p&gt;Display information about a directory and its contents&lt;/p&gt;
+&lt;h2&gt;lscpu&lt;/h2&gt;
+&lt;p&gt;Display information about the CPU architecture&lt;/p&gt;
+&lt;h2&gt;lsgpu&lt;/h2&gt;
+&lt;p&gt;Display information about GPU architecture&lt;/p&gt;
+&lt;h2&gt;lsblk&lt;/h2&gt;
+&lt;p&gt;Display information about block devices&lt;/p&gt;
+&lt;h2&gt;lsmem&lt;/h2&gt;
+&lt;p&gt;List ranges of available memory with their online status.&lt;/p&gt;
+&lt;h2&gt;lspci&lt;/h2&gt;
+&lt;p&gt;Display information about PCI devices&lt;/p&gt;
+&lt;h2&gt;lsusb&lt;/h2&gt;
+&lt;p&gt;Display information about USB devices&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/linux-ls-commands</link>
+      <guid>https://www.lqdev.me/resources/wiki/linux-ls-commands</guid>
+      <pubDate>01/02/2023 15:22 -05:00</pubDate>
+      <category>linux</category>
+      <category>commandline</category>
+      <category>cli</category>
+      <category>hardware</category>
+      <category>software</category>
+    </item>
+    <item>
+      <title>Hardware Video Acceleration - Linux</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This article talks about using hardware video acceleration so the video card encodes/decodes video offloading the CPU and saving power.&lt;/p&gt;
+&lt;h2&gt;Install intel-media-driver&lt;/h2&gt;
+&lt;p&gt;To install the Intel media driver&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo pacman -S intel-media-driver
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Enable acceleration MPV&lt;/h2&gt;
+&lt;p&gt;For mpv, make sure that decoding and video acceleration is enabled. To do so:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Create or edit the user config file in &lt;em&gt;~/.config/mpv/mpv.conf&lt;/em&gt; with the following settings:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;vo=gpu
+hwdec=auto
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Reboot your PC.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Verification&lt;/h2&gt;
+&lt;p&gt;Use &lt;code&gt;intel_gpu_top&lt;/code&gt; and make sure that when you play video using tools like VLC or MPV, the video bar is active.&lt;/p&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.org/title/Hardware_video_acceleration"&gt;Hardware Video Acceleration - Intel GPU&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/resources/wiki/intel-gpu-tools"&gt;Intel GPU Tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/mpv-player/mpv/blob/master/etc/mpv.conf"&gt;Sample MPV Conf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://mpv.io/manual/master/#configuration-files"&gt;MPV Configuration Files&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/video-hardware-acceleration-linux</link>
+      <guid>https://www.lqdev.me/resources/wiki/video-hardware-acceleration-linux</guid>
+      <pubDate>12/11/2022 17:36 -05:00</pubDate>
+      <category>performance</category>
+      <category>wiki</category>
+      <category>hardware</category>
+      <category>video</category>
+      <category>hardwareacceleration</category>
+      <category>linux</category>
+      <category>arch</category>
+      <category>manjaro</category>
+    </item>
+    <item>
+      <title>Chip-making Chip Shortage</title>
+      <description>&lt;![CDATA[&lt;p&gt;&lt;a href="https://9to5mac.com/2022/05/03/chips-for-chipmaking-machines/"&gt;Chips for chipmaking machines are affected by chip shortage, says TSMC and Intel - via 9to5Mac&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://res-5.cloudinary.com/hdwvnfa8d/image/upload/q_auto/v1/ghost-blog-images/Spider-Man-Pointing-Meme.jpg" class="img-fluid" alt="Spiderman meme pointing at each other" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/chipmaking-chip-shortage</link>
+      <guid>https://www.lqdev.me/notes/chipmaking-chip-shortage</guid>
+      <pubDate>05/03/2022 18:50 -05:00</pubDate>
+      <category>chip</category>
+      <category>pc</category>
+      <category>hardware</category>
+      <category>news</category>
+    </item>
+  </channel>
+</rss>

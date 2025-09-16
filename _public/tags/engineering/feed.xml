@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - engineering</title>
+    <link>https://www.lqdev.me/tags/engineering</link>
+    <description>All content tagged with 'engineering' by Luis Quintanilla</description>
+    <lastBuildDate>2025-06-16 17:39 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>How we built our multi-agent research system - Anthropic</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Great article.&lt;/p&gt;
+&lt;p&gt;TLDR: These are largely engineering problems.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The journey of this multi-agent system from prototype to production taught us critical lessons about system architecture, tool design, and prompt engineering. A multi-agent system consists of multiple agents (&lt;strong&gt;LLMs autonomously using tools in a loop&lt;/strong&gt;) working together. Our Research feature involves an agent that plans a research process based on user queries, and then uses tools to create parallel agents that search for information simultaneously. Systems with multiple agents introduce new challenges in agent coordination, evaluation, and reliability.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Benefits of a multi-agent system&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The essence of search is compression: distilling insights from a vast corpus. &lt;strong&gt;Subagents facilitate compression by operating in parallel&lt;/strong&gt; with their own context windows, exploring different aspects of the question simultaneously before condensing the most important tokens for the lead research agent. Each subagent also provides &lt;strong&gt;separation of concerns&lt;/strong&gt;—distinct tools, prompts, and exploration trajectories—which reduces path dependency and enables thorough, independent investigations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Once intelligence reaches a threshold, multi-agent systems become a vital way to scale performance. For instance, although individual humans have become more intelligent in the last 100,000 years, human societies have become exponentially more capable in the information age because of our collective intelligence and ability to coordinate. Even generally-intelligent agents face limits when operating as individuals; &lt;strong&gt;groups of agents can accomplish far more&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our internal evaluations show that multi-agent research systems excel especially for breadth-first queries that involve pursuing multiple independent directions simultaneously.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Multi-agent systems work mainly because they help spend enough tokens to solve the problem...Multi-agent architectures effectively scale token usage for tasks that exceed the limits of single agents.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We’ve found that multi-agent systems excel at valuable tasks that involve heavy parallelization, information that exceeds single context windows, and interfacing with numerous complex tools.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Architecture overview&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our Research system uses a multi-agent architecture with an orchestrator-worker pattern, where a lead agent coordinates the process while delegating to specialized subagents that operate in parallel.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Traditional approaches using Retrieval Augmented Generation (RAG) use static retrieval. That is, they fetch some set of chunks that are most similar to an input query and use these chunks to generate a response. In contrast, our architecture uses a &lt;strong&gt;multi-step search that dynamically finds relevant information, adapts to new findings, and analyzes results to formulate high-quality answers&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Prompt engineering and evaluations for research agents&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Think like your agents.&lt;/strong&gt; To iterate on prompts, you must understand their effects. To help us do this, we built simulations using our Console with the exact prompts and tools from our system, then watched agents work step-by-step.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Teach the orchestrator how to delegate.&lt;/strong&gt; In our system, the lead agent decomposes queries into subtasks and describes them to subagents. Each subagent needs an &lt;strong&gt;objective&lt;/strong&gt;, an &lt;strong&gt;output format&lt;/strong&gt;, &lt;strong&gt;guidance on the tools and sources to use&lt;/strong&gt;, and &lt;strong&gt;clear task boundaries&lt;/strong&gt;. Without detailed task descriptions, agents duplicate work, leave gaps, or fail to find necessary information.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Scale effort to query complexity.&lt;/strong&gt; Agents struggle to judge appropriate effort for different tasks, so we embedded scaling rules in the prompts...&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Tool design and selection are critical.&lt;/strong&gt; Agent-tool interfaces are as critical as human-computer interfaces. Using the right tool is efficient—often, it’s strictly necessary...Bad tool descriptions can send agents down completely wrong paths, so each tool needs a distinct purpose and a clear description.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Let agents improve themselves.&lt;/strong&gt;...When given a prompt and a failure mode, they are able to diagnose why the agent is failing and suggest improvements.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Start wide, then narrow down.&lt;/strong&gt; Search strategy should mirror expert human research: explore the landscape before drilling into specifics.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Guide the thinking process.&lt;/strong&gt;...Our testing showed that extended thinking improved instruction-following, reasoning, and efficiency. Subagents also plan, then use interleaved thinking after tool results to evaluate quality, identify gaps, and refine their next query. This makes subagents more effective in adapting to any task.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Parallel tool calling transforms speed and performance.&lt;/strong&gt;...For speed, we introduced two kinds of parallelization: (1) the lead agent spins up 3-5 subagents in parallel rather than serially; (2) the subagents use 3+ tools in parallel.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our prompting strategy focuses on instilling &lt;strong&gt;good heuristics rather than rigid rules&lt;/strong&gt;. We studied how skilled humans approach research tasks and encoded these strategies in our prompts—strategies like &lt;strong&gt;decomposing difficult questions into smaller tasks&lt;/strong&gt;, &lt;strong&gt;carefully evaluating the quality of sources&lt;/strong&gt;, &lt;strong&gt;adjusting search approaches based on new information&lt;/strong&gt;, and &lt;strong&gt;recognizing when to focus on depth (investigating one topic in detail) vs. breadth (exploring many topics in parallel)&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Effective evaluation of agents&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...evaluating multi-agent systems presents unique challenges...Because we don’t always know what the right steps are, we usually can't just check if agents followed the “correct” steps we prescribed in advance. Instead, we need flexible evaluation methods that judge whether agents achieved the right outcomes while also following a reasonable process.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Start evaluating immediately with small samples.&lt;/strong&gt;...it’s best to start with small-scale testing right away with a few examples, rather than delaying until you can build more thorough evals.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;LLM-as-judge evaluation scales when done well.&lt;/strong&gt;...We used an LLM judge that evaluated each output against criteria in a rubric: &lt;strong&gt;factual accuracy&lt;/strong&gt; (do claims match sources?), &lt;strong&gt;citation accuracy&lt;/strong&gt; (do the cited sources match the claims?), &lt;strong&gt;completeness&lt;/strong&gt; (are all requested aspects covered?), &lt;strong&gt;source quality&lt;/strong&gt; (did it use primary sources over lower-quality secondary sources?), and &lt;strong&gt;tool efficiency&lt;/strong&gt; (did it use the right tools a reasonable number of times?)...[we] found that a single LLM call with a single prompt outputting scores from 0.0-1.0 and a pass-fail grade was the most consistent and aligned with human judgements.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Human evaluation catches what automation misses.&lt;/strong&gt;...Adding source quality heuristics to our prompts helped resolve this issue. Even in a world of automated evaluations, manual testing remains essential.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;the best prompts for these agents are not just strict instructions, but &lt;strong&gt;frameworks for collaboration&lt;/strong&gt; that define the &lt;strong&gt;division of labor&lt;/strong&gt;, &lt;strong&gt;problem-solving approaches&lt;/strong&gt;, and &lt;strong&gt;effort budgets&lt;/strong&gt;. Getting this right relies on &lt;strong&gt;careful prompting and tool design&lt;/strong&gt;, &lt;strong&gt;solid heuristics&lt;/strong&gt;, &lt;strong&gt;observability&lt;/strong&gt;, and &lt;strong&gt;tight feedback loops&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Production reliability and engineering challenges&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Agents are stateful and errors compound.&lt;/strong&gt;...Agents can run for long periods of time, maintaining state across many tool calls. This means we need to &lt;strong&gt;durably execute code and handle errors along the way&lt;/strong&gt;. Without effective mitigations, minor system failures can be catastrophic for agents. When errors occur, we can't just restart from the beginning...We combine the adaptability of AI agents built on Claude with deterministic safeguards like retry logic and regular checkpoints.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Debugging benefits from new approaches&lt;/strong&gt;...Adding full production tracing let us diagnose why agents failed and fix issues systematically. Beyond standard observability, we monitor agent decision patterns and interaction structures—all without monitoring the contents of individual conversations, to maintain user privacy.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Deployment needs careful coordination&lt;/strong&gt;...we use rainbow deployments to avoid disrupting running agents, by gradually shifting traffic from old to new versions while keeping both running simultaneously.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;&lt;strong&gt;Synchronous execution creates bottlenecks.&lt;/strong&gt; Currently, our lead agents execute subagents synchronously, waiting for each set of subagents to complete before proceeding. This simplifies coordination, but creates bottlenecks in the information flow between agents. Asynchronous execution would enable additional parallelism: agents working concurrently and creating new subagents when needed. But this asynchronicity adds challenges in result coordination, state consistency, and error propagation across the subagents. As models can handle longer and more complex research tasks, we expect the performance gains will justify the complexity.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;For all the reasons described in this post, the gap between prototype and production is often wider than anticipated.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Multi-agent research systems can operate reliably at scale with &lt;strong&gt;careful engineering&lt;/strong&gt;, &lt;strong&gt;comprehensive testing&lt;/strong&gt;, &lt;strong&gt;detail-oriented prompt and tool design&lt;/strong&gt;, &lt;strong&gt;robust operational practices&lt;/strong&gt;, and &lt;strong&gt;tight collaboration between research, product, and engineering teams&lt;/strong&gt; who have a strong understanding of current agent capabilities.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/anthropic-how-we-built-multi-agent-system</link>
+      <guid>https://www.lqdev.me/responses/anthropic-how-we-built-multi-agent-system</guid>
+      <pubDate>2025-06-16 17:39 -05:00</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>anthropic</category>
+      <category>engineering</category>
+    </item>
+    <item>
+      <title>Optimizing your LLM in production </title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In this blog post, we will go over the most effective techniques at the time of writing this blog post to tackle these challenges for efficient LLM deployment:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Lower Precision:&lt;/strong&gt; Research has shown that operating at reduced numerical precision, namely 8-bit and 4-bit, can achieve computational advantages without a considerable decline in model performance.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;2. Flash Attention:&lt;/strong&gt; Flash Attention is a variation of the attention algorithm that not only provides a more memory-efficient approach but also realizes increased efficiency due to optimized GPU memory utilization.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. Architectural Innovations:&lt;/strong&gt; Considering that LLMs are always deployed in the same way during inference, namely autoregressive text generation with a long input context, specialized model architectures have been proposed that allow for more efficient inference. The most important advancement in model architectures hereby are Alibi, Rotary embeddings, Multi-Query Attention (MQA) and Grouped-Query-Attention (GQA).&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/optimizing-llm-production-hf</link>
+      <guid>https://www.lqdev.me/bookmarks/optimizing-llm-production-hf</guid>
+      <pubDate>2023-09-17 12:58 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>production</category>
+      <category>engineering</category>
+      <category>software</category>
+      <category>mlops</category>
+      <category>aiops</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>How generative AI is changing the way developers work</title>
+      <description>&lt;![CDATA[[reshare] ]]&gt;</description>
+      <link>https://www.lqdev.me/responses/generative-ai-developer-work</link>
+      <guid>https://www.lqdev.me/responses/generative-ai-developer-work</guid>
+      <pubDate>2023-04-20 22:11 -05:00</pubDate>
+      <category>ai</category>
+      <category>engineering</category>
+      <category>software</category>
+    </item>
+  </channel>
+</rss>

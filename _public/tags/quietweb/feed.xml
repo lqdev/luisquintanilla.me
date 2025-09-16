@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - quietweb</title>
+    <link>https://www.lqdev.me/tags/quietweb</link>
+    <description>All content tagged with 'quietweb' by Luis Quintanilla</description>
+    <lastBuildDate>2023-09-23 23:36 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Down the Slow / Quiet Web Rabbit Hole</title>
+      <description>&lt;![CDATA[
+No real commentary on this post other than a web surf down the slow / quite web.
+
+```mermaid
+flowchart TD
+  A["My 20th anniversary of blogging!"] --&gt; B["The Quiet Web"]
+  B --&gt; C["Asyncronous Conversations"]
+  C --&gt; D["The Slow Web"]
+  D --&gt; E["The Slow Web Movement - I DONE THIS"]
+  E --&gt; F["The Slow Web (plus: the modern experience of film-watching)"]
+  F --&gt; G["Minimal Gallery"]
+  G --&gt; H["My website is a shifting house next to a river of knowledge. What could yours be?"]
+  H --&gt; I["Quiet web"]
+  I --&gt; J["Jeremy Sarber"]
+  J --&gt; K["datagubbe"]
+  K --&gt; L["Writers and talkers and leaders, oh my!"]
+  L --&gt; M["Is Blogging Dead?"]
+  click A href "https://tracydurnell.com/2023/09/23/my-20th-anniversary-of-blogging/" "My 20th anniversary of blogging!"
+  click B href "https://briankoberlein.com/tech/quiet-web/" "The Quiet Web"
+  click C href "https://manuelmoreale.com/asynchronous-conversations" "Asyncronous Conversations"
+  click D href "https://www.jackcheng.com/the-slow-web/" "The Slow Web"
+  click E href "https://blog.idonethis.com/the-slow-web-movement/?ref=jackcheng.com" "The Slow Web Movement - I DONE THIS"
+  click F href "http://www.rebeccablood.net/archive/2010/06/a_slow_web.html" "The Slow Web (plus: the modern experience of film-watching)"
+  click G href "https://minimal.gallery/" "Minimal Gallery"
+  click H href "https://thecreativeindependent.com/essays/laurel-schwulst-my-website-is-a-shifting-house-next-to-a-river-of-knowledge-what-could-yours-be/" "My website is a shifting house next to a river of knowledge. What could yours be?"
+  click I href "https://manuelmoreale.com/quiet-web" "Quiet web"
+  click J href "https://jeremysarber.com/" "Jeremy Sarber"
+  click K href "https://datagubbe.se/" "datagubbe"
+  click L href "https://everythingchanges.us/blog/writers-and-talkers-and-leaders/" "Writers and talkers and leaders, oh my!"
+  click M href "https://abeautifulmess.com/is-blogging-dead/" "Is Blogging Dead?"
+```
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/down-the-slow-web-rabbit-hole</link>
+      <guid>https://www.lqdev.me/posts/down-the-slow-web-rabbit-hole</guid>
+      <pubDate>2023-09-23 23:36 -05:00</pubDate>
+      <category>blogs</category>
+      <category>indieweb</category>
+      <category>internet</category>
+      <category>slowweb</category>
+      <category>quietweb</category>
+    </item>
+  </channel>
+</rss>

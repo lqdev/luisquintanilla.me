@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - communication</title>
+    <link>https://www.lqdev.me/tags/communication</link>
+    <description>All content tagged with 'communication' by Luis Quintanilla</description>
+    <lastBuildDate>2024-02-28 10:24 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>What a bunch of A-list celebs taught me about how to use my phone</title>
+      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...[phone-free celebs are] not trying to disconnect from everyone, but they are trying to get away from that feeling of being tapped constantly on the shoulder by all the calls, texts, and emails.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;So many celebrities ditch their phone, disconnect from their social media, log off entirely.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A few years ago, Ed Sheeran shared a strategy...He hasn’t had a phone since 2015...Being phoneless hadn’t cut his contact to the world, Sheeran said, just reduced it — and that was the point. “I have friends email and people email, and every few days I’ll sit down and open up my laptop, and I’ll answer 10 emails at a time,” he said. “I’ll send them off, and I close my laptop, and then that’ll be it. And then I’ll go back to living my life, and I don’t feel overwhelmed by it.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Read and watch enough celebrity interviews, and the lesson becomes obvious: that the most powerful and connected device in your life shouldn’t be within arm’s reach at all times. All that does is invite distraction and makes it too easy to disengage from your life every time you get bored or sad or curious even for a second.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;It sounds a little like I’m advocating for the return of the ’90s, when the computer was a giant box that lived in a central room of your home and the only way to use it was to go to it. And to some extent, I am! I’m increasingly convinced that my primary computer should be a device I use on purpose — that I sit down at, operate, and then extract myself from until the next time. Whether it’s a laptop on a desk or an iPad on your nightstand, your computer should be a place as much as it is a device. And when you’re not in that place, you’re somewhere else. The computer doesn’t come along.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Over the last few weeks, as an experiment, I’ve moved as many apps as possible — the obviously distracting social media stuff but also anything I can live without on a minute-to-minute basis — off my phone and onto my tablet and my laptop...&lt;br /&gt;
+&lt;br&gt;
+So far, it’s been great. I’m realizing how much of a crutch my phone really has become: I would open up TikTok just to keep me company on the walk to the kitchen or scroll through Threads while I waited for the microwave to finish. Now, I’m not sure I’m doing any less of those things in aggregate, but at least I’m doing them on purpose. I’ve turned time-wasting into a deliberate activity — I sit in my scrolling chair and scroll away, then I get up, and the scrolling stays put. And best of all, when I leave the house, there’s nothing to scroll at all.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;There has always been talk in tech about removing friction: the obsessive corporate desire to make everything easier, faster, fewer clicks, fewer chances for you to decide not to click that ad or buy that thing or like that post or upload that photo...It should be a little harder for someone to distract me while I’m eating dinner with my wife or hanging out with my kid.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;It’s not about ditching technology, just about doing technology on purpose.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/celebs-how-to-use-phone</link>
+      <guid>https://www.lqdev.me/responses/celebs-how-to-use-phone</guid>
+      <pubDate>2024-02-28 10:24 -05:00</pubDate>
+      <category>technology</category>
+      <category>communication</category>
+      <category>phones</category>
+      <category>smartphones</category>
+      <category>dumbphones</category>
+      <category>email</category>
+      <category>celebrities</category>
+    </item>
+    <item>
+      <title>AI like it's 1999 or 1899</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+In an earlier note, I talked about the natural progression of technology which goes from [scarcity to abundance](/notes/ai-abundance-scarcity-cycle-repeats-rss-enclosure-use-case) over time and AI is no different. That was in the context of media on the internet and paying per minute with early cell phones. One of the original challenges with AI was context length and token limits. It's becoming less relevant as context sizes continue to increase. However, it's not like you can fit the entire Harry Potter series either. So you still need to cleverly manage your context size especially when using documents and chat history as part of that context. Historically, people have used abbreviations to compress messages either because of cost or medium constraints. That's what this post explores in the context of AI.
+
+## Compressing text like T9
+
+Below is a conversation Microsoft Copilot (formerly Bing Chat) using some information from the article [From 1890: The First Text Messages](https://sundaymagazine.org/2010/08/10/from-1890-the-first-text-messages/):
+
+&gt; **Me** 
+&gt; &gt; Summarize this text:
+&gt; &gt;   
+&gt; &gt; I’m trying something new today. Sometimes in my research I find an interesting old article that I wouldn’t normally post because it’s not from the Sunday Magazine section, or it’s from further than 100 years ago so I’ll never get to it. Instead of letting these go unused, I figure I’ll occasionally post them midweek during what would otherwise be slow weeks. Since this weekend I only have three articles to post, it seems like a good week to try it.
+&gt; &gt;   
+&gt; &gt; Telegraph operators on opposite sides of the country had some time to get to know each other when they weren’t busy sending other people’s messages. “Metaphorically they shake hands cordially twice a day — when they begin work and when they end it. And when business is dull they hold long conversations, with hundreds of miles — perhaps thousands — separating them, as two friends might do over a dinner table.”
+&gt; &gt;   
+&gt; &gt; What really caught my eye, though, is that the abbreviations they used seem a lot like the abbreviations used in today’s text messages.
+&gt; 
+&gt; **Copilot**
+&gt; &gt; Here is a possible summary of the text:
+&gt; &gt;   
+&gt; &gt; The author is trying a new feature of posting old articles from the Sunday Magazine section on midweek. The article is about how telegraph operators communicated with each other using abbreviations that are similar to today’s text messages. The author finds this interesting and wonders if there are other similarities between old and new forms of communication.
+&gt; 
+&gt; **Me**
+&gt; &gt; Now abbreviate it as if using a T9 keyboard for conciseness
+&gt; 
+&gt; **Copilot**
+&gt; &gt; That sounds like a fun challenge. Here is a possible abbreviation of the summary:
+&gt; &gt;   
+&gt; &gt; try new feat post old artcls midwk. artcl abt telgrph oprtrs chat w/ abbrvtns lk txt msgs. find intrstng n wndr othr smilrts btwn old n new comms.
+
+In this conversation, I first had Copilot summarize the original text. It's not a very long piece of text but it works for this example. You could imagine though how a longer piece of text would benefit even more from this summarization. Copilot does a good job of summarizing the text. However, what if I wanted to summarize it even more? 
+
+In comes T9 (kind of). T9 is short for "Text on 9 keys" and it was predictive text technology that made it easier to compose SMS text messages using only the 9 keys on the phone keypad. Before T9, it was cumbersome and time consuming to compose full sentences so you might abbreviate them. For example "See you later" might be abbreviated as "c u l8r". You can learn more in the [SMS language Wikipedia article](https://en.wikipedia.org/wiki/SMS_language). Not only would you abbreviate because it was tedious to compose messages one letter at a time, but also you were limited in the number of characters you could send in a single SMS. Somewhat related, in the early days of microblogging on Twitter, one of the ways you could compose and view tweets was through SMS. There was the cost aspects as well. You were charged per SMS so you wanted to send as much information in a single SMS as possible. Now SMS is only one example where this took place. Telegrams and telegraphs from yesteryear had similar constraints. Whether it was cost, size limits, or general UX challenges, people looked to abbreviations to draft their messages. 
+
+Now that we're caught up on this history, that's what you're seeing in this response from Copilot.
+
+&gt; try new feat post old artcls midwk. artcl abt telgrph oprtrs chat w/ abbrvtns lk txt msgs. find intrstng n wndr othr smilrts btwn old n new comms.
+
+It is an abbreviated form of the summarized message enabling you to use even less tokens as part of the prompts you submit to AI. 
+
+When looking at "word" counts, they are roughly the following:
+
+| Text | Word Count |
+| --- | --- |
+| Original | 58 |
+| Summarized | 25 |
+| T9 | 18 |
+
+We can see that the abbreviated version is ~3x smaller than the original message. 
+
+## Conclusion
+
+Given that models like GPT and others have been trained on the entire internet, it has some knowledge of these types of abbreviations to compose messages. Now, is it scalable and would you want to use this in your production applications, I can't say. Probably not because the abbreviations are lossy. While in general you could read and get the gist of the message using the abbreviations, there are things lost in translation. Now maybe the LLM might do a better job at interpreting the abbreviations. It'd be a fun experiment. 
+
+"n d mntm, il kp usng AI lk its 1999. c u l8r!"
+
+Translation: "In the meantime, I'll keep using AI like it's 1999. See you later!" :slightly_smiling_face:]]&gt;</description>
+      <link>https://www.lqdev.me/posts/ai-1999-1899</link>
+      <guid>https://www.lqdev.me/posts/ai-1999-1899</guid>
+      <pubDate>2023-12-15 08:56 -05:00</pubDate>
+      <category>ai</category>
+      <category>communication</category>
+      <category>sms</category>
+      <category>retro</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>Matrix 2.0: The Future of Matrix</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;TL;DR: If you want to play with a shiny new Matrix 2.0 client, head over to &lt;a href="https://element.io/blog/element-x-ignition/"&gt;Element X&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/matrix-2-0</link>
+      <guid>https://www.lqdev.me/bookmarks/matrix-2-0</guid>
+      <pubDate>2023-09-22 10:10 -05:00</pubDate>
+      <category>matrix</category>
+      <category>messaging</category>
+      <category>communication</category>
+      <category>opensource</category>
+      <category>protocols</category>
+      <category>decentralization</category>
+      <category>openweb</category>
+      <category>web</category>
+      <category>internet</category>
+    </item>
+    <item>
+      <title>Rethinking trust in direct messages in the AI era</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This blog post is a part of a series exploring our research in privacy, security, and cryptography. For the previous post, see &lt;a href="https://www.microsoft.com/en-us/research/blog/research-trends-in-privacy-security-and-cryptography"&gt;https://www.microsoft.com/en-us/research/blog/research-trends-in-privacy-security-and-cryptography&lt;/a&gt;. While AI has the potential to massively increase productivity, this power can be used equally well for malicious purposes, for example, to automate the creation of sophisticated scam messages. In this post, we explore threats AI can pose for online communication ecosystems and outline a high-level approach to mitigating these threats.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/rethinking-trust-dm-ai-era</link>
+      <guid>https://www.lqdev.me/bookmarks/rethinking-trust-dm-ai-era</guid>
+      <pubDate>2023-09-06 00:05 -05:00</pubDate>
+      <category>security</category>
+      <category>ai</category>
+      <category>privacy</category>
+      <category>cryptography</category>
+      <category>communication</category>
+      <category>messaging</category>
+      <category>socialmedia</category>
+      <category>trust</category>
+    </item>
+    <item>
+      <title>A slack clone in 5 lines of bash</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;suc provides Slack, Mattermost, etc.’s core features:&lt;/p&gt;
+&lt;p&gt;Real-time, rich-text chat,&lt;br /&gt;
+File sharing,&lt;br /&gt;
+Fine-grained access control,&lt;br /&gt;
+Straightforward automation and integration with other tools,&lt;br /&gt;
+Data encryption in transit&lt;br /&gt;
+and optionally at rest,&lt;br /&gt;
+state-of-the-art user authentication.&lt;/p&gt;
+&lt;p&gt;This paper shows how suc implements those features. suc stays small by leveraging the consistent and composable primitives offered by modern UNIX implementations&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/dam-slack-clone-bash</link>
+      <guid>https://www.lqdev.me/responses/dam-slack-clone-bash</guid>
+      <pubDate>2023-07-12 22:07 -05:00</pubDate>
+      <category>linux</category>
+      <category>bash</category>
+      <category>communication</category>
+    </item>
+    <item>
+      <title>Blog instead of e-mail?</title>
+      <description>&lt;![CDATA[&lt;p&gt;I've been thinking about shifting at least some of my communications from e-mails to blogs especially in the context of business communications.&lt;/p&gt;
+&lt;p&gt;Blogs are pull rather than push, so I'm not innundating other's inboxes. People who are interested in the projects or topics I'm working on can subscribe and consume the content as they wish. Also it's a way to be more expressive since it's a medium where ideas can be connected to provide more relevant context. That doesn't mean chats and even e-mail couldn't be used for urgent communication. For async non-urgent communciation though, blogs might be a good alternative to e-mail.&lt;/p&gt;
+&lt;p&gt;These two articles provide a good introduction into how individuals and companies have implemented similar practices:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://ideaspace.ystrickler.com/p/metablogging"&gt;Metablogging&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.fastcompany.com/3017396/is-there-life-after-email-yes-and-its-amazing"&gt;Is There Life After E-mail? Yes, and It's Amazing&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/metablogging-life-after-email</link>
+      <guid>https://www.lqdev.me/notes/metablogging-life-after-email</guid>
+      <pubDate>2023-06-18 21:20 -05:00</pubDate>
+      <category>blogging</category>
+      <category>email</category>
+      <category>communication</category>
+    </item>
+    <item>
+      <title>Skype Feature Request - Default Encrypted Conversations</title>
+      <description>&lt;![CDATA[&lt;p&gt;As the feedback post suggests, Skype offers the option to have &lt;a href="https://support.skype.com/en/faq/FA34824/what-are-skype-private-conversations"&gt;encrypted conversations (chat &amp;amp; calls) using the Signal protocol&lt;/a&gt;. However, it's not the detault. If you're using Skype and this is something you'd like added, feel free to upvote the feedback request.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://feedbackportal.microsoft.com/feedback/idea/0b770e9e-bca0-ed11-a81b-002248519701"&gt;https://feedbackportal.microsoft.com/feedback/idea/0b770e9e-bca0-ed11-a81b-002248519701&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/skype-feature-request-default-e2ee</link>
+      <guid>https://www.lqdev.me/notes/skype-feature-request-default-e2ee</guid>
+      <pubDate>2023-01-30 17:25 -05:00</pubDate>
+      <category>communication</category>
+      <category>messsaging</category>
+      <category>privacy</category>
+      <category>skype</category>
+    </item>
+    <item>
+      <title>Create a new Matrix user using the CLI</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;Create a new user in your &lt;a href="https://matrix.org/"&gt;Matrix&lt;/a&gt; &lt;a href="https://github.com/matrix-org/synapse/"&gt;Synapse homeserver&lt;/a&gt; using &lt;a href="https://manpages.debian.org/buster/matrix-synapse/register_new_matrix_user.1.en.html"&gt;register_new_matrix_user&lt;/a&gt; CLI utility. This is helpful when creating accounts on a homeserver where registrations are closed.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;p&gt;N/A&lt;/p&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;register_new_matrix_user --user user1 --password p@ssword --config homeserver-config.yaml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;--user&lt;/strong&gt;: Local part of the new user. Will prompt if omitted.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;--password&lt;/strong&gt;: New password for user. Will prompt if omitted. Supplying the password on the command line is not recommended. Use the STDIN instead.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;--config&lt;/strong&gt;: Path to server config file containing the shared secret.&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/create-matrix-user-cli</link>
+      <guid>https://www.lqdev.me/resources/snippets/create-matrix-user-cli</guid>
+      <pubDate>08/31/2022 19:40 -05:00</pubDate>
+      <category>bash</category>
+      <category>linux</category>
+      <category>matrix</category>
+      <category>synapse</category>
+      <category>communication</category>
+    </item>
+    <item>
+      <title>Early Radio History (U.S)</title>
+      <description>&lt;![CDATA[&lt;p&gt;While browsing the interwebs, I ran into the site &lt;a href="https://earlyradiohistory.us/"&gt;United States Early Radio History&lt;/a&gt; which contains events spanning different time periods. As an operator it's fascinating to learn about the history and see how radio continues to play a large role in our day-to-day.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/early-radio-history-us</link>
+      <guid>https://www.lqdev.me/notes/early-radio-history-us</guid>
+      <pubDate>10/29/2021 02:05 -05:00</pubDate>
+      <category>radio</category>
+      <category>communication</category>
+      <category>hamradion</category>
+      <category>history</category>
+      <category>unitedstates</category>
+    </item>
+  </channel>
+</rss>

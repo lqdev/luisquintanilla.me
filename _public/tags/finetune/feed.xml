@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - finetune</title>
+    <link>https://www.lqdev.me/tags/finetune</link>
+    <description>All content tagged with 'finetune' by Luis Quintanilla</description>
+    <lastBuildDate>2023-06-01 22:45 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>LoRA: Low-Rank Adaptation of Large Language Models</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;LoRA reduces the number of trainable parameters by learning pairs of rank-decompostion matrices while freezing the original weights. This vastly reduces the storage requirement for large language models adapted to specific tasks and enables efficient task-switching during deployment all without introducing inference latency. LoRA also outperforms several other adaptation methods including adapter, prefix-tuning, and fine-tuning.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://arxiv.org/abs/2106.09685"&gt;Paper&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/microsoft-lora-llm</link>
+      <guid>https://www.lqdev.me/bookmarks/microsoft-lora-llm</guid>
+      <pubDate>2023-06-01 22:45 -05:00</pubDate>
+      <category>ai</category>
+      <category>finetune</category>
+      <category>llm</category>
+    </item>
+  </channel>
+</rss>

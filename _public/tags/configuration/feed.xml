@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - configuration</title>
+    <link>https://www.lqdev.me/tags/configuration</link>
+    <description>All content tagged with 'configuration' by Luis Quintanilla</description>
+    <lastBuildDate>08/22/2023 18:45 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>NixOS Configuration</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;This is my NixOS Configuration file&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Update configuration file&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Run the following command to apply changes&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo nixos-rebuild switch
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-nix"&gt;# Edit this configuration file to define what should be installed on
+# your system.  Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).
+
+{ config, pkgs, ... }:
+
+{
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
+
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.hostName = &amp;quot;nixos&amp;quot;; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = &amp;quot;http://user:password@proxy:port/&amp;quot;;
+  # networking.proxy.noProxy = &amp;quot;127.0.0.1,localhost,internal.domain&amp;quot;;
+
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+  # Set your time zone.
+  time.timeZone = &amp;quot;America/New_York&amp;quot;;
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = &amp;quot;en_US.UTF-8&amp;quot;;
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = &amp;quot;en_US.UTF-8&amp;quot;;
+    LC_IDENTIFICATION = &amp;quot;en_US.UTF-8&amp;quot;;
+    LC_MEASUREMENT = &amp;quot;en_US.UTF-8&amp;quot;;
+    LC_MONETARY = &amp;quot;en_US.UTF-8&amp;quot;;
+    LC_NAME = &amp;quot;en_US.UTF-8&amp;quot;;
+    LC_NUMERIC = &amp;quot;en_US.UTF-8&amp;quot;;
+    LC_PAPER = &amp;quot;en_US.UTF-8&amp;quot;;
+    LC_TELEPHONE = &amp;quot;en_US.UTF-8&amp;quot;;
+    LC_TIME = &amp;quot;en_US.UTF-8&amp;quot;;
+  };
+
+  # Enable the X11 windowing system.
+  # services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+
+    desktopManager = {
+      xterm.enable = false;
+    };
+
+    displayManager = {
+      defaultSession = &amp;quot;none+i3&amp;quot;;
+    };
+
+    windowManager.i3 = {
+       enable = true;
+       extraPackages = with pkgs; [
+         dmenu
+	 i3status
+         j4-dmenu-desktop
+	 i3lock	
+       ];
+    };
+  };
+
+  # Enable the XFCE Desktop Environment.
+  # services.xserver.displayManager.lightdm.enable = true;
+  # services.xserver.desktopManager.xfce.enable = true;
+
+  # Configure keymap in X11
+  services.xserver = {
+    layout = &amp;quot;us&amp;quot;;
+    xkbVariant = &amp;quot;&amp;quot;;
+  };
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  # Enable sound with pipewire.
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
+
+  # Enable gvfs
+  services.gvfs.enable = true;
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.lqdev = {
+    isNormalUser = true;
+    description = &amp;quot;lqdev&amp;quot;;
+    extraGroups = [ &amp;quot;networkmanager&amp;quot; &amp;quot;wheel&amp;quot; &amp;quot;docker&amp;quot;];
+    packages = with pkgs; [
+      firefox
+      thunderbird
+      vscode
+      element-desktop
+    ];
+  };
+
+  #Enable docker
+  virtualisation.docker.enable = true;
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+
+  # Utilities
+    wget
+    emacs
+    alacritty
+    mc
+    du-dust
+    htop
+    feh
+    duf
+    shutter
+    gparted
+    keepassxc
+    bitwarden
+    git
+    yt-dlp
+    streamlink
+    ffmpeg
+    gnome.seahorse
+    xfce.thunar-volman
+    xfce.xfconf
+
+  # Media
+  
+    mpv
+    vlc
+    
+  # Dotnet
+    (with dotnetCorePackages; combinePackages [
+      dotnet-sdk
+      dotnet-sdk_7
+    ])
+  # Development
+  
+    docker
+    cargo
+    rustc
+
+  # Office
+  
+    libreoffice
+  ];
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+
+  # Bash Configuration
+  programs.bash = {
+    shellAliases = {
+      emacs=&amp;quot;emacs -nw&amp;quot;;
+    };
+  };
+
+  # Thunar
+  programs.thunar.enable = true;
+
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = &amp;quot;23.05&amp;quot;; # Did you read the comment?
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/nixos-configuration</link>
+      <guid>https://www.lqdev.me/resources/snippets/nixos-configuration</guid>
+      <pubDate>08/22/2023 18:45 -05:00</pubDate>
+      <category>nix</category>
+      <category>linux</category>
+      <category>configuration</category>
+      <category>nixos</category>
+      <category>os</category>
+    </item>
+    <item>
+      <title>Configure opacity - Manjaro</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This article shows how to configure background opacity for the kitty terminal emulator using picom and i3.&lt;/p&gt;
+&lt;p&gt;By defaut, i3 doesn't support composting. Programs like picom add support for it.&lt;/p&gt;
+&lt;p&gt;In addition, terminal emulators like kitty are hardware accelerated which means there's opportunities to offload from the CPU and save power.&lt;/p&gt;
+&lt;h2&gt;Install &amp;amp; configure picom&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Install picom&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo pacman -S picom
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Move default configuration file to &lt;em&gt;~/.config/picom/picom.conf&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Define opacity rule:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;opacity-rule = [&amp;quot;90:class_g = 'kitty'&amp;quot;];
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Save changes&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Install &amp;amp; configure kitty&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Install picom&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo pacman -S kitty
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Move default configuration file to &lt;em&gt;~/.config/kitty/kitty.conf&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Set background opacity:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;background_opacity 0.90
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Save changes&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Configure i3&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Open your i3 configuration and add the following line to it:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;exec_always picom
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Restart i3.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.org/title/Picom#Opacity"&gt;Picom&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.org/title/Kitty"&gt;Kitty&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.reddit.com/r/i3wm/comments/g62qy0/kitty_terminal_emulator_transparency_not_working/"&gt;Kitty emulator not working - Reddit&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/configure-opacity-manjaro</link>
+      <guid>https://www.lqdev.me/resources/wiki/configure-opacity-manjaro</guid>
+      <pubDate>12/11/2022 18:56 -05:00</pubDate>
+      <category>i3</category>
+      <category>wm</category>
+      <category>linux</category>
+      <category>manjaro</category>
+      <category>kitty</category>
+      <category>terminal</category>
+      <category>wiki</category>
+      <category>configuration</category>
+      <category>picom</category>
+    </item>
+  </channel>
+</rss>

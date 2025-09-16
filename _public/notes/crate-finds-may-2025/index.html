@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link rel="stylesheet" href="/assets/css/custom/main.css"><link rel="stylesheet" href="/assets/css/custom/timeline.css"><link rel="stylesheet" href="/assets/css/bootstrap-icons-1.5.0/bootstrap-icons.css"><link rel="stylesheet" href="/assets/css/highlight.github-dark-dimmed.min.css"><link rel="stylesheet" href="/assets/css/main.css"><link rel="stylesheet" href="/lib/revealjs/dist/reveal.css"><link rel="stylesheet" href="/lib/revealjs/dist/theme/black.css"><link rel="stylesheet" href="/lib/revealjs/plugin/highlight/monokai.css"><meta property="og:title" content="Crate Finds - May 2025"><meta property="og:type" content="website"><meta property="og:image" content="https://www.lqdev.me/avatar.png"><meta property="og:image:secure_url" content="https://www.lqdev.me/avatar.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="200"><meta property="og:image:height" content="200"><meta property="og:site_name" content="Luis Quintanilla Personal Website"><meta property="og:locale" content="en_US"><meta property="twitter:image" content="https://www.lqdev.me/avatar.png"><meta property="fediverse:creator" content="@lqdev@toot.lqdev.tech"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Blog RSS Feed" href="/blog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Microblog RSS Feed" href="/microblog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Response RSS Feed" href="/responses.rss"><link rel="webmention" title="Luis Quintanilla Webmention Endpoint" href="https://webmentions.lqdev.tech/api/inbox"><link rel="feeds" type="text/xml" title="Luis Quintanilla&#39;s Feeds" href="/feed/index.opml"><link rel="blogroll" type="text/xml" title="Luis Quintanilla&#39;s Blogroll" href="/collections/blogroll/index.opml"><link rel="podroll" type="text/xml" title="Luis Quintanilla&#39;s Podroll" href="/collections/podroll/index.opml"><link rel="youtuberoll" type="text/xml" title="Luis Quintanilla&#39;s YouTube Roll" href="/collections/youtube/index.opml"><meta name="robots" content="nosnippet"><title>Crate Finds - May 2025</title></head><body><button class="mobile-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"><div class="hamburger"><span></span><span></span><span></span></div></button><div class="nav-overlay" id="nav-overlay"></div><nav class="desert-nav" id="sidebar-menu" role="navigation" aria-label="Main navigation"><div class="nav-brand"><a href="/" class="brand-text"><img src="/avatar.png" alt="Luis Quintanilla avatar" loading="lazy">Luis Quintanilla</a></div><div class="nav-section"><a class="nav-link" href="/"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"></path></svg>Home</a><a class="nav-link" href="/about"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path></svg>About</a><a class="nav-link" href="/contact"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"></path></svg>Contact</a><a class="nav-link" href="/search"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path></svg>Search</a><a class="nav-link" href="/feed"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"></path></svg>Subscribe</a></div><div class="nav-section dropdown"><button class="nav-link dropdown-toggle" data-target="collections-dropdown"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"></path><path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"></path></svg>Collections<svg class="dropdown-arrow" viewBox="0 0 16 16" fill="currentColor"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path></svg></button><div class="dropdown-menu" id="collections-dropdown"><a class="dropdown-item" href="/collections/blogroll">Blogroll</a><a class="dropdown-item" href="/collections/podroll">Podroll</a><a class="dropdown-item" href="/collections/youtube">YouTube</a><a class="dropdown-item" href="/collections/forums">Forums</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/collections/starter-packs">Starter Packs</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/radio">Radio</a><a class="dropdown-item" href="/tags">Tags</a></div></div><div class="nav-section dropdown"><button class="nav-link dropdown-toggle" data-target="resources-dropdown"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"></path></svg>Resources<svg class="dropdown-arrow" viewBox="0 0 16 16" fill="currentColor"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path></svg></button><div class="dropdown-menu" id="resources-dropdown"><a class="dropdown-item" href="/resources/snippets">Snippets</a><a class="dropdown-item" href="/resources/wiki">Wiki</a><a class="dropdown-item" href="/resources/presentations">Presentations</a></div></div><div class="theme-toggle"><button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark mode"><span id="theme-toggle-icon">☀️</span><span>Theme</span></button></div></nav><main role="main" class="main-content" id="main-content"><div class="content-wrapper"><div class="mr-auto"><article class="h-entry individual-post"><header class="post-header"><h1 class="p-name post-title">Crate Finds - May 2025</h1><div class="post-meta"><time class="dt-published" datetime="2025-06-29 18:00 -05:00">June 29, 2025</time></div><div class="u-author h-card microformat-hidden"><img src="/avatar.png" class="u-photo" alt="Luis Quintanilla" /><a href="/about" class="u-url p-name">Luis Quintanilla</a></div></header><div class="e-content post-content"><p>Better late than never. Here's the May 2025 drop.</p>
+<p>Some of my favorites from last month:</p>
+<ul>
+<li>Prayer to the Stars by Vianney Lopez, Sam Bottner</li>
+<li>Diarabi by Viex Farka Toure, Khruangbin</li>
+<li>Everything &amp; Nothing, OHMA</li>
+<li>Bloom, Deya Dova</li>
+<li>Dance of the Seven Sisters, Deya Dova</li>
+<li>Wisdom Eye by Alice Coltrane</li>
+<li>Black Meditation by Shabaka</li>
+</ul>
+<h2>Tracks</h2>
+<ol>
+<li><p><strong>La Casita Blanca - Rebajada</strong> by Bilo Alban, Hector Manito Bonilla</p>
+<ul>
+<li>Album: <em>El Órgano Electrónico de Bilo Albán</em></li>
+<li>Duration: 3:02</li>
+<li><a href="https://www.youtube.com/watch?v=krROlxz2zdk">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/5NYBlbcxkmoYeJ2FlTZd7y">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>Cumbia Disco Energy</strong> by Sonido Gallo Negro, Polymarchs</p>
+<ul>
+<li>Album: <em>Cumbia Disco Energy</em></li>
+<li>Duration: 3:57</li>
+<li><a href="https://www.youtube.com/watch?v=x_GyD5u6Hdg">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/4I4JOjfW35xlyEgjiyswGJ">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>El Mercado De Los Brujos</strong> by Sonido Gallo Negro</p>
+<ul>
+<li>Album: <em>Cumbia Salvaje</em></li>
+<li>Duration: 3:31</li>
+<li><a href="https://www.youtube.com/watch?v=1dWcw0PzJeU">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/2gJbmtM85cCnHlBveHgDbP">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>Cumbia Triste</strong> by Sonido Gallo Negro, Grupo Kual?</p>
+<ul>
+<li>Album: <em>Paganismo</em></li>
+<li>Duration: 3:51</li>
+<li><a href="https://www.youtube.com/watch?v=iVkVY-M-LkI">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/2NagSRAuRKhczwC1hUhtB1">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>Mulberry Jam</strong> by Allah-Las</p>
+<ul>
+<li>Album: <em>Mulberry Jam (Peaking Lights Dub)</em></li>
+<li>Duration: 3:17</li>
+<li><a href="https://www.youtube.com/watch?v=l9t4GrJN5nE">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/5deHYI0KDEXkQsDkUui5m7">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>Sozin</strong> by Pedro Mizutani, Skinshape</p>
+<ul>
+<li>Album: <em>Sozin</em></li>
+<li>Duration: 3:28</li>
+<li><a href="https://www.youtube.com/watch?v=Y98TjNVi4Os">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/7hFx498UBDaX0RafWpscWd">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>TTT</strong> by Bluestaeb, Melodiesinfonie, S. Fidelity, douniah</p>
+<ul>
+<li>Album: <em>TTT</em></li>
+<li>Duration: 3:21</li>
+<li><a href="https://www.youtube.com/watch?v=DojEuMupecc">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/6gDDaGM8zIscNdtbWESvWl">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>Selenge</strong> by Céline Dessberg</p>
+<ul>
+<li>Album: <em>Selenge</em></li>
+<li>Duration: 3:21</li>
+<li><a href="https://www.youtube.com/watch?v=qL-k42eT10g">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/47yngLaqEr3z1lnk7ok0OV">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>Spring Has Sprung</strong> by СОЮЗ, Asha Puthli, Sven Wunder</p>
+<ul>
+<li>Album: <em>Spring Has Sprung</em></li>
+<li>Duration: 2:08</li>
+<li><a href="https://www.youtube.com/watch?v=Zw91r5pgYTI">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/6ljB4xE0PBnOoj769PJgdE">Backup: Listen on Spotify</a></li>
+</ul>
+</li>
+<li><p><strong>Voyage</strong> by anaiis, Grupo Cosmo, Sessa</p>
+</li>
+</ol>
+<ul>
+<li>Album: <em>anaiis &amp; Grupo Cosmo</em></li>
+<li>Duration: 3:46</li>
+<li><a href="https://www.youtube.com/watch?v=FBKYgMa-DjQ">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/4eutFav6aAuoLyCMlVsmPa">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="11">
+<li><strong>Toda Cor</strong> by anaiis, Grupo Cosmo, Luedji Luna</li>
+</ol>
+<ul>
+<li>Album: <em>anaiis &amp; Grupo Cosmo</em></li>
+<li>Duration: 3:51</li>
+<li><a href="https://www.youtube.com/watch?v=jNgnUoOU0Eg">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/2rxfuico35HgTvoD28LJ4B">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="12">
+<li><strong>São Só Palavras</strong> by Nyron Higor, alici, Bruno Berle</li>
+</ol>
+<ul>
+<li>Album: <em>Nyron Higor</em></li>
+<li>Duration: 1:30</li>
+<li><a href="https://www.youtube.com/watch?v=VxejWXqaVT8">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/10A2t3li8EQvr27lmJDIqy">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="13">
+<li><strong>Conversations</strong> by Carlos Niño &amp; Friends, André 3000, Nate Mercereau, Cavana Lee, Mia Doi Todd</li>
+</ol>
+<ul>
+<li>Album: <em>(I'm just) Chillin', on Fire</em></li>
+<li>Duration: 5:36</li>
+<li><a href="https://www.youtube.com/watch?v=Lo5wmBhvwA8">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/69dsbTG8YZWb7jxalOJalg">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="14">
+<li><strong>Together Is A Beautiful Place To Be - Nala Sinephro Remix</strong> by Nubya Garcia, Nala Sinephro</li>
+</ol>
+<ul>
+<li>Album: <em>SOURCE ⧺ WE MOVE</em></li>
+<li>Duration: 2:27</li>
+<li><a href="https://www.youtube.com/watch?v=DrN-kqMOgc4">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/4Wt7ZGzelNDUZCCZxgLsuK">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="15">
+<li><strong>Space 5</strong> by Nala Sinephro</li>
+</ol>
+<ul>
+<li>Album: <em>Space 1.8</em></li>
+<li>Duration: 4:00</li>
+<li><a href="https://www.youtube.com/watch?v=1ujTycpT9To">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/5qQiAyGH1zJtCwPDRvs1wa">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="16">
+<li><strong>Sun</strong> by Skinshape</li>
+</ol>
+<ul>
+<li>Album: <em>Umoja</em></li>
+<li>Duration: 3:41</li>
+<li><a href="https://www.youtube.com/watch?v=qVAckPZ0ZBo">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/7ISuVR7cR4kjxwkF5sUTy3">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="17">
+<li><strong>The Touch of You</strong> by The Equatics</li>
+</ol>
+<ul>
+<li>Album: <em>Doin It!!!!</em></li>
+<li>Duration: 3:36</li>
+<li><a href="https://www.youtube.com/watch?v=Z6_qvBO9pHw">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/4BPQA11N0hEYYH043S1fMT">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="18">
+<li><strong>manos ajenas (touch you every day)</strong> by Dos Santos</li>
+</ol>
+<ul>
+<li>Album: <em>Logos</em></li>
+<li>Duration: 2:34</li>
+<li><a href="https://www.youtube.com/watch?v=WVYAHfbvajs">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/71JFbeVEheDu3YwhOOxIPh">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="19">
+<li><strong>Prayer to the Stars</strong> by Vianney Lopez, Sam Bottner</li>
+</ol>
+<ul>
+<li>Album: <em>Ceremonia</em></li>
+<li>Duration: 3:26</li>
+<li><a href="https://www.youtube.com/watch?v=H7naazaSSfM">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/1o6DRTTUzcVlOwXWYKaNEG">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="20">
+<li><strong>Moving Through</strong> by Alexa Sunshine Rose, Aimée Ringle</li>
+</ol>
+<ul>
+<li>Album: <em>Come Receive</em></li>
+<li>Duration: 4:40</li>
+<li><a href="https://www.youtube.com/watch?v=TgKucJ5J4DY">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/45Ml50QGvuH8oBXPjegYNE">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="21">
+<li><strong>Bloom</strong> by Deya Dova</li>
+</ol>
+<ul>
+<li>Album: <em>The Jasmani Garden</em></li>
+<li>Duration: 4:03</li>
+<li><a href="https://www.youtube.com/watch?v=Km0gKVOkO28">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/5thytQyWjWecUJY5FLFIy6">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="22">
+<li><strong>Turquoise Galaxy</strong> by Yussef Dayes</li>
+</ol>
+<ul>
+<li>Album: <em>Black Classical Music</em></li>
+<li>Duration: 3:11</li>
+<li><a href="https://www.youtube.com/watch?v=a9ImOdvh7LE">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/443JNQpv6lz4wxnHZKV7wH">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="23">
+<li><strong>Dive into the Medicine Within</strong> by Vianney Lopez</li>
+</ol>
+<ul>
+<li>Album: <em>Spirit Medicine</em></li>
+<li>Duration: 2:17</li>
+<li><a href="https://www.youtube.com/watch?v=XKJX7Aye-Eg">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/5o9138EZOCpr5N7RiLkL0N">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="24">
+<li><strong>Fingerprints</strong> by Hiatus Kaiyote</li>
+</ol>
+<ul>
+<li>Album: <em>Choose Your Weapon</em></li>
+<li>Duration: 4:16</li>
+<li><a href="https://www.youtube.com/watch?v=YUmSu_54478">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/3c7N2fCFB4JVKGF8cWfteh">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="25">
+<li><strong>La Puerta</strong> by Los Tres Ases</li>
+</ol>
+<ul>
+<li>Album: <em>Epoca De Oro</em></li>
+<li>Duration: 2:56</li>
+<li><a href="https://www.youtube.com/watch?v=qCD1c7DZ4Nc">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/7410XFJdR47lachsg3fkth">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="26">
+<li><strong>Dónde Estás</strong> by Los Tres Caballeros</li>
+</ol>
+<ul>
+<li>Album: <em>Los Tres Caballeros</em></li>
+<li>Duration: 2:49</li>
+<li><a href="https://www.youtube.com/watch?v=MibydTowH1A">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/0G35JrHAh7E6KtVC11eDv4">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="27">
+<li><strong>Sabra Dios</strong> by Los Tres Ases</li>
+</ol>
+<ul>
+<li>Album: <em>Tríos Del Mundo : 40 Éxitos</em></li>
+<li>Duration: 3:06</li>
+<li><a href="https://www.youtube.com/watch?v=5hwu19JLSTE">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/7fcXNUtZSgh9VrKW58Bjuz">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="28">
+<li><strong>Lovesong</strong> by Common Saints</li>
+</ol>
+<ul>
+<li>Album: <em>Idol Eyes</em></li>
+<li>Duration: 9:17</li>
+<li><a href="https://www.youtube.com/watch?v=DPMt6w1RaDI">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/1J7uPqs46vgRZZ5ZhiPG3Y">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="29">
+<li><strong>Sweetie</strong> by Kokoroko</li>
+</ol>
+<ul>
+<li>Album: <em>Sweetie</em></li>
+<li>Duration: 4:04</li>
+<li><a href="https://www.youtube.com/watch?v=VDrS1qrHllE">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/5rffvBl5fCAGCW6hdTZ3q9">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="30">
+<li><strong>Carta Ao Tom 74</strong> by Vinícius de Moraes, Toquinho, Quarteto Em Cy</li>
+</ol>
+<ul>
+<li>Album: <em>20 Grandes Sucessos De Vinicius De Moreas</em></li>
+<li>Duration: 2:41</li>
+<li><a href="https://www.youtube.com/watch?v=snL61YwwLCw">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/3pemsJqLI0GXY9tlQDn8yS">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="31">
+<li><strong>Iceland</strong> by Daniel Lanois</li>
+</ol>
+<ul>
+<li>Album: <em>Flesh And Machine</em></li>
+<li>Duration: 2:38</li>
+<li><a href="https://www.youtube.com/watch?v=DvWa62aQLhg">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/5i6DI0TPO8sYfCvOUhakve">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="32">
+<li><strong>Água</strong> by Zeep</li>
+</ol>
+<ul>
+<li>Album: <em>Nina Miranda &amp; Chris Franck Present: Zeep</em></li>
+<li>Duration: 3:36</li>
+<li><a href="https://www.youtube.com/watch?v=eijfKVG0aGk">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/4mULUGzxNVz5O10Fwzs4pf">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="33">
+<li><strong>Diarabi</strong> by Vieux Farka Touré, Khruangbin</li>
+</ol>
+<ul>
+<li>Album: <em>Ali</em></li>
+<li>Duration: 5:01</li>
+<li><a href="https://www.youtube.com/watch?v=NnE73tTRPmg">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/36huM0UOR9A17TYAape2Xg">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="34">
+<li><strong>Wisdom Eye</strong> by Alice Coltrane</li>
+</ol>
+<ul>
+<li>Album: <em>Eternity</em></li>
+<li>Duration: 3:10</li>
+<li><a href="https://www.youtube.com/watch?v=shOfu810phM">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/0XLH43dcYq2pOe7COx8gPT">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="35">
+<li><strong>Black meditation</strong> by Shabaka</li>
+</ol>
+<ul>
+<li>Album: <em>Afrikan Culture</em></li>
+<li>Duration: 3:58</li>
+<li><a href="https://www.youtube.com/watch?v=TSCagxxGMM0">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/0OK7oUUtjtUAVNxgXFtqsw">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="36">
+<li><strong>Everything &amp; Nothing</strong> by OHMA</li>
+</ol>
+<ul>
+<li>Album: <em>Between All Things</em></li>
+<li>Duration: 4:06</li>
+<li><a href="https://www.youtube.com/watch?v=kKe-4yF3Luo">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/1FabTpuGnm8TkCRYZHzb4J">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="37">
+<li><strong>Take It Slow</strong> by Ayla Nereo</li>
+</ol>
+<ul>
+<li>Album: <em>By the Light of the Dark Moon</em></li>
+<li>Duration: 3:06</li>
+<li><a href="https://www.youtube.com/watch?v=Zq-Jj0ReW1g">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/50i9oISMvbtdQyvgDJ0Wi1">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="38">
+<li><strong>Dance of the Seven Sisters</strong> by Deya Dova</li>
+</ol>
+<ul>
+<li>Album: <em>The Jasmani Garden</em></li>
+<li>Duration: 4:38</li>
+<li><a href="https://www.youtube.com/watch?v=HiKWBM4JSOw">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/1yI7aULDqSfW4zfjTV0xOK">Backup: Listen on Spotify</a></li>
+</ul>
+<ol start="39">
+<li><strong>Little Star</strong> by Little Whale, Danit</li>
+</ol>
+<ul>
+<li>Album: <em>Movement of the Dawn</em></li>
+<li>Duration: 3:05</li>
+<li><a href="https://www.youtube.com/watch?v=ljvUMVgznms">Listen on YouTube</a></li>
+<li><a href="https://open.spotify.com/track/3hibbtCtdisq4r4cj3Bxnb">Backup: Listen on Spotify</a></li>
+</ul>
+<hr />
+<p><strong>Original Spotify Playlist:</strong> <a href="https://open.spotify.com/playlist/0ETG3ZcVXCPqgHN4xFQ8qN">Listen on Spotify</a></p>
+</div><footer class="post-footer"><div class="permalink-info">Permalink: <a class="u-url permalink-link" href="/notes/crate-finds-may-2025/">/notes/crate-finds-may-2025/</a></div><div><script type="application/javascript">window.onload = function() { document.getElementById('webmention-target').value = window.location.href }</script><form action="https://webmentions.lqdev.tech/api/inbox" method="POST" enctype="application/x-www-form-urlencoded"><h5 class="text-center">Send me a <a href="/contact">message</a> or <a href="https://indieweb.org/webmentions">webmention</a></h5><div class="form-row justify-content-center"><div class="w-75"><input type="url" class="form-control" name="source" placeholder="Your URL (webmention source)" required /></div><div class="col-auto"><input type="submit" class="btn btn-primary" value="Send" /></div><input type="hidden" readonly name="target" id="webmention-target" /></div></form></div></footer></article></div></div></main><script src="/assets/lib/jquery/jquery.slim.min.js"></script><script src="/assets/lib/boostrap/bootstrap.min.js"></script><script src="/assets/lib/highlight/highlight.min.js"></script><script src="/assets/lib/highlight/highlight.fsharp.min.js"></script><script src="/assets/lib/highlight/highlight.nix.min.js"></script><script src="/assets/js/timeline.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script type="application/javascript">mermaid.initialize({startOnLoad:true});</script><script type="application/javascript">hljs.initHighlightingOnLoad();</script><script src="/lib/revealjs/dist/reveal.js"></script><script src="/lib/revealjs/plugin/markdown/markdown.js"></script><script src="/lib/revealjs/plugin/highlight/highlight.js"></script><script type="application/javascript">
+                    // Initialize Reveal.js when a presentation container is found on the page
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const presentationContainer = document.querySelector('.presentation-container');
+                        if (presentationContainer && typeof Reveal !== 'undefined') {
+                            Reveal.initialize({
+                                plugins: [RevealMarkdown, RevealHighlight],
+                                embedded: true
+                            });
+                        }
+                    });
+                    </script></body><footer><a rel="me" href="https://toot.lqdev.tech/@lqdev"></a><a rel="me" href="https://github.com/lqdev"></a><a rel="me" href="https://twitter.com/ljquintanilla"></a><a rel="me" href="https://www.linkedin.com/in/lquintanilla01/"></a><a rel="me" href="mailto:lqdev@outlook.com"></a></footer></html>

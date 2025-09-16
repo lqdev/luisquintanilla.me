@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>How to watch Twitch streams using VLC - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>How to watch Twitch streams using VLC</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2021-01-06">January 6, 2021</time><p>Tags: streaming, hacks, video, IT</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/how-to-watch-twitch-using-vlc">View Full Version</a></p><div class="content"><h2>Introduction</h2>
+<p>Twitch has become a tool for various creators to connect with audiences. Originally, streams were centered around gaming but now there is a wide variety of creators that include musicians, software developers, and craftspeople. One of my favorites is <a href="https://www.twitch.tv/brainfeeder">Brainfeeder</a>. I myself try (and often fail) to build software projects on stream. If you're interested in hanging out and talking machine learning, .NET and all things tech, feel free to join me at <a href="https://twitch.tv/lqdev1">https://twitch.tv/lqdev1</a>.</p>
+<p>Watching Twitch streams on the desktop via the browser can take a toll on compute resources. A more efficient solution to this problem is to use VLC. VLC is a free, open-source, cross-platform media player that supports various protocols. While it was possible to watch Twitch streams using VLC before, it often required additional software such as <a href="https://github.com/streamlink/streamlink">Streamlink</a>. More recent versions make this requirement redundant. In this post, I'll show how to use VLC to watch Twitch streams.</p>
+<p><a href="https://user-images.githubusercontent.com/11130940/103722126-4883f780-4f9d-11eb-8cc8-304d1a249ef9.png" target="_blank">[Image: Twitch iOS App on iPhoneX - Caspar Camille Rubin]</a></p>
+<h2>Prerequisites</h2>
+<ul>
+<li>VLC (version <strong>3.11.0 or higher</strong>)</li>
+</ul>
+<h2>Watch Twitch Stream</h2>
+<blockquote class="blockquote">
+<p><strong>Update 11/12/2021</strong><br />
+It's been a while since I've gotten the original steps to work, so feel free to skip them. You can still watch Twitch streams on VLC using Streamlink. To use Streamlink:</p>
+<ol>
+<li><p>Download and install <a href="https://streamlink.github.io/install.html">Streamlink</a></p>
+</li>
+<li><p>Open the terminal and run:</p>
+<pre><code>streamlink https://twitch.tv/&lt;username&gt; best
+</code></pre>
+</li>
+</ol>
+<p>For more information, see the <a href="https://streamlink.github.io/cli.html">Streamlink Command-Line Interface documentation</a></p>
+</blockquote>
+<ol>
+<li>Open VLC</li>
+<li>From the menu, Select <strong>Media &gt; Open Network Stream</strong></li>
+<li>Paste the URL to the stream you want to watch in the text box (i.e. https://twitch.tv/lqdev1)</li>
+</ol>
+<p>At this point, the stream should start playing.</p>
+<h3>CLI</h3>
+<p>Alternatively on Unix (Mac / Linux) systems, you can use the CLI. To watch a stream, open a terminal and enter the following command:</p>
+<pre><code class="language-bash">vlc https://twitch.tv/&lt;username&gt;
+</code></pre>
+<p>Make sure to replace the username with the streamer you want to watch.</p>
+<p>After a few seconds, VLC loads and starts playing the stream.</p>
+<h2>Performance comparison</h2>
+<p>Below is a comparison of the same stream playing on the browser vs VLC. These test were performed on a Surface Laptop 1 running Windows 10. By no means should you take this as a definitive performance comparison as there are many variables that may affect performance. However, it's a nice way to visualize each of the methods.</p>
+<h3>Browser</h3>
+<p>In the browser scenario, I only had a single tab playing the Twitch stream on Microsoft Edge (chromium).</p>
+<p><a href="https://user-images.githubusercontent.com/11130940/103723087-43c04300-4f9f-11eb-9969-df40541693bd.png" target="_blank">[Image: Browser task manager]</a></p>
+<h3>VLC</h3>
+<p><a href="https://user-images.githubusercontent.com/11130940/103721933-e1fed980-4f9c-11eb-92f3-0147f2c09134.png" target="_blank">[Image: VLC task manager]</a></p>
+<p>As it can be seen from this image, there's about a 4x decrease in CPU resource consumption when using VLC.</p>
+<h2>Conclusion</h2>
+<p>In this post I showed how you can use VLC to watch Twitch streams. One of the drawbacks is, you can't see the channels you follow and who's online. You also can't browse streams like you would on the Twitch web client. You also don't have access to chat, which is half the fun on many streams. However, if you're only interested in the content, VLC is an excellent and less resource-hungry way of watching Twitch streams. See you on Twitch!</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

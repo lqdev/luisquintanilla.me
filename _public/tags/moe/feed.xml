@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - moe</title>
+    <link>https://www.lqdev.me/tags/moe</link>
+    <description>All content tagged with 'moe' by Luis Quintanilla</description>
+    <lastBuildDate>2024-03-17 20:45 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Grok-1</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This repository contains JAX example code for loading and running the Grok-1 open-weights model.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/grok-1-open-release</link>
+      <guid>https://www.lqdev.me/responses/grok-1-open-release</guid>
+      <pubDate>2024-03-17 20:45 -05:00</pubDate>
+      <category>grok</category>
+      <category>ai</category>
+      <category>x</category>
+      <category>github</category>
+      <category>opensource</category>
+      <category>moe</category>
+    </item>
+  </channel>
+</rss>

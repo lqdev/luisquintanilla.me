@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - chicago</title>
+    <link>https://www.lqdev.me/tags/chicago</link>
+    <description>All content tagged with 'chicago' by Luis Quintanilla</description>
+    <lastBuildDate>2025-09-12 08:29 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Urban Toy Story</title>
+      <description>&lt;![CDATA[Album containing 0 photos]]&gt;</description>
+      <link>https://www.lqdev.me/media/toy-story-underpass</link>
+      <guid>https://www.lqdev.me/media/toy-story-underpass</guid>
+      <pubDate>2025-09-12 08:29 -05:00</pubDate>
+      <category>toy</category>
+      <category>chicago</category>
+      <category>art</category>
+    </item>
+    <item>
+      <title>Chicago Dust Storm</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Never change Chicago.&lt;/p&gt;
+&lt;p&gt;What felt like the first week of good weather since forever ends with a dust storm.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/chicago-dust-storm</link>
+      <guid>https://www.lqdev.me/responses/chicago-dust-storm</guid>
+      <pubDate>2025-05-16 19:49 -05:00</pubDate>
+      <category>chicago</category>
+      <category>weather</category>
+      <category>duststorm</category>
+    </item>
+  </channel>
+</rss>

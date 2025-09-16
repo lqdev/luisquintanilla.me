@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - atom</title>
+    <link>https://www.lqdev.me/tags/atom</link>
+    <description>All content tagged with 'atom' by Luis Quintanilla</description>
+    <lastBuildDate>2023-12-30 00:30 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Blogs + RSS - best decentralized social media we ever had</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Bring back self-hosted blogs, reinstall a feed reader, make your feed icon prominent on your blog.  Blogs + Atom/RSS is the best decentralized social media system we've ever had!&lt;br /&gt;
+&lt;br&gt;
+And yes I am saying that as co-author of ActivityPub: self hosted blogs is the best decentralized social networking we've had&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;💯 💯 💯 💯 💯 💯&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/blogs-rss-decentralized-social-media-lemmer-webber</link>
+      <guid>https://www.lqdev.me/responses/blogs-rss-decentralized-social-media-lemmer-webber</guid>
+      <pubDate>2023-12-30 00:30 -05:00</pubDate>
+      <category>rss</category>
+      <category>blog</category>
+      <category>decentralized</category>
+      <category>socialmedia</category>
+      <category>blogging</category>
+      <category>mastodon</category>
+      <category>fediverse</category>
+      <category>indieweb</category>
+      <category>atom</category>
+      <category>feed</category>
+    </item>
+    <item>
+      <title>ATOM Weather Alerts</title>
+      <description>&lt;![CDATA[&lt;p&gt;Yesterday I ran into more feed goodness. When going to a website to get the weather forecast, weather alerts are displayed (if there are any).&lt;/p&gt;
+&lt;p&gt;I thought, wouldn't it be great to be able to subscribe to those alerts without having to go to the website?&lt;/p&gt;
+&lt;p&gt;A quick search revealed the National Weather Service provides these alerts in ATOM format for each of the states in the U.S.
+You have the option of tracking updates at the national, state, zone, and county level.&lt;/p&gt;
+&lt;p&gt;Subscribing is as easy as adding the link for the respective feed to your favorite feed reader. If you're interested, you can find the list of feeds at &lt;a href="https://alerts.weather.gov/"&gt;https://alerts.weather.gov/&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/atom-rss-nws-weather-alerts</link>
+      <guid>https://www.lqdev.me/notes/atom-rss-nws-weather-alerts</guid>
+      <pubDate>04/27/2022 20:19 -05:00</pubDate>
+      <category>rss</category>
+      <category>atom</category>
+      <category>weather</category>
+      <category>alerts</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - gpt</title>
+    <link>https://www.lqdev.me/tags/gpt</link>
+    <description>All content tagged with 'gpt' by Luis Quintanilla</description>
+    <lastBuildDate>2025-04-24 19:50 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>GPT Image 1 - Image Generation API</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we’re bringing the natively multimodal model that powers this experience in ChatGPT to the API via &lt;code&gt;gpt-image-1&lt;/code&gt;, enabling developers and businesses to easily integrate high-quality, professional-grade image generation directly into their own tools and platforms.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The &lt;code&gt;gpt-image-1&lt;/code&gt; model is now available globally via the Images API, with support in the Responses API coming soon.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/gpt-image-1-api</link>
+      <guid>https://www.lqdev.me/responses/gpt-image-1-api</guid>
+      <pubDate>2025-04-24 19:50 -05:00</pubDate>
+      <category>openai</category>
+      <category>ai</category>
+      <category>gpt</category>
+    </item>
+    <item>
+      <title>Transformer Explainer: Interactive Learning of Text-Generative Models</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Transformers have revolutionized machine learning, yet their inner workings remain opaque to many. We present Transformer Explainer, an interactive visualization tool designed for non-experts to learn about Transformers through the GPT-2 model. Our tool helps users understand complex Transformer concepts by integrating a model overview and enabling smooth transitions across abstraction levels of mathematical operations and model structures. It runs a live GPT-2 instance locally in the user's browser, empowering users to experiment with their own input and observe in real-time how the internal components and parameters of the Transformer work together to predict the next tokens. Our tool requires no installation or special hardware, broadening the public's education access to modern generative AI techniques. Our open-sourced tool is available at this https URL. A video demo is available at this https URL.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://poloclub.github.io/transformer-explainer/"&gt;Tool&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://youtu.be/ECR4oAwocjs"&gt;Video&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/transformer-explainer-interactive-learning-text-generative-models</link>
+      <guid>https://www.lqdev.me/bookmarks/transformer-explainer-interactive-learning-text-generative-models</guid>
+      <pubDate>2024-08-14 21:51 -05:00</pubDate>
+      <category>ai</category>
+      <category>transformer</category>
+      <category>neuralnetwork</category>
+      <category>learning</category>
+      <category>gpt</category>
+    </item>
+    <item>
+      <title>Andrej Karpathy - Let's reproduce GPT-2 (124M)</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=l8pRSuU81PU" title="YouTube thumbnail of Karpathy Let's Preproduce GPT video tutorial"&gt;&lt;img src="http://img.youtube.com/vi/l8pRSuU81PU/0.jpg" class="img-fluid" alt="YouTube thumbnail of Karpathy Let's Preproduce GPT video tutorial" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/karpathy-reproduce-gpt-2-124m-tutorial</link>
+      <guid>https://www.lqdev.me/responses/karpathy-reproduce-gpt-2-124m-tutorial</guid>
+      <pubDate>2024-06-11 19:59 -05:00</pubDate>
+      <category>ai</category>
+      <category>gpt</category>
+      <category>transformer</category>
+      <category>tutorial</category>
+    </item>
+    <item>
+      <title>Reproducing GPT-2 (124M) in llm.c in 90 minutes for $20</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...the TLDR is that we're training a 12-layer GPT-2 (124M), from scratch, on 10B tokens of FineWeb, with max sequence length of 1024 tokens.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The 124M model is the smallest model in the GPT-2 series released by OpenAI in 2019, and is actually quite accessible today, even for the GPU poor. With llm.c, which is quite efficient at up to ~60% model flops utilization, reproducing this model on one 8X A100 80GB SXM node takes ~90 minutes. For example, on Lambda this node goes for ~$14/hr, so the total cost of reproducing this model today is about $20. You can train the model with a single GPU too, it would just take proportionally longer (e.g. ~4-24 hours depending on the GPU).&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/repro-gpt-2-llm-c-90-min-20-dollars-karpathy</link>
+      <guid>https://www.lqdev.me/responses/repro-gpt-2-llm-c-90-min-20-dollars-karpathy</guid>
+      <pubDate>2024-05-28 20:33 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>gpt</category>
+      <category>gpt2</category>
+      <category>llmc</category>
+      <category>c</category>
+      <category>slm</category>
+    </item>
+    <item>
+      <title>LLM training in simple, raw C/CUDA </title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;LLM training in simple, pure C/CUDA. There is no need for 245MB of PyTorch or 107MB of cPython. For example, training GPT-2 (CPU, fp32) is ~1,000 lines of clean code in a single file. It compiles and runs instantly, and exactly matches the PyTorch reference implementation. I chose GPT-2 as the first working example because it is the grand-daddy of LLMs, the first time the modern stack was put together.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/llm-c-karpathy</link>
+      <guid>https://www.lqdev.me/responses/llm-c-karpathy</guid>
+      <pubDate>2024-04-09 22:15 -05:00</pubDate>
+      <category>llm</category>
+      <category>gpt</category>
+      <category>c</category>
+      <category>programming</category>
+      <category>learning</category>
+      <category>tutorial</category>
+    </item>
+    <item>
+      <title>ReALM: Reference Resolution As Language Modeling</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Reference resolution is an important problem, one that is essential to understand and successfully handle context of different kinds. This context includes both previous turns and context that pertains to non-conversational entities, such as entities on the user's screen or those running in the background. While LLMs have been shown to be extremely powerful for a variety of tasks, their use in reference resolution, particularly for non-conversational entities, remains underutilized. This paper demonstrates how LLMs can be used to create an extremely effective system to resolve references of various types, by showing how reference resolution can be converted into a language modeling problem, despite involving forms of entities like those on screen that are not traditionally conducive to being reduced to a text-only modality. We demonstrate large improvements over an existing system with similar functionality across different types of references, with our smallest model obtaining absolute gains of over 5% for on-screen references. We also benchmark against GPT-3.5 and GPT-4, with our smallest model achieving performance comparable to that of GPT-4, and our larger models substantially outperforming it.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/apple-realm-research-paper</link>
+      <guid>https://www.lqdev.me/bookmarks/apple-realm-research-paper</guid>
+      <pubDate>2024-04-04 11:04 -05:00</pubDate>
+      <category>ai</category>
+      <category>research</category>
+      <category>apple</category>
+      <category>gpt</category>
+    </item>
+    <item>
+      <title>GPT in 500 lines of SQL</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;&lt;a href="https://github.com/quassnoi/explain-extended-2024"&gt;GitHub Repo&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/gpt-500-lines-sql</link>
+      <guid>https://www.lqdev.me/responses/gpt-500-lines-sql</guid>
+      <pubDate>2024-02-24 12:06 -05:00</pubDate>
+      <category>sql</category>
+      <category>gpt</category>
+      <category>ai</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Memory and new controls for ChatGPT</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We’re testing memory with ChatGPT. Remembering things you discuss across all chats saves you from having to repeat information and makes future conversations more helpful.&lt;br /&gt;
+&lt;br&gt;
+You're in control of ChatGPT's memory. You can explicitly tell it to remember something, ask it what it remembers, and tell it to forget conversationally or through settings. You can also turn it off entirely.&lt;br /&gt;
+&lt;br&gt;
+We are rolling out to a small portion of ChatGPT free and Plus users this week to learn how useful it is. We will share plans for broader roll out soon.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/openai-chatgpt-memory</link>
+      <guid>https://www.lqdev.me/responses/openai-chatgpt-memory</guid>
+      <pubDate>2024-02-13 21:00 -05:00</pubDate>
+      <category>openai</category>
+      <category>chatgpt</category>
+      <category>memory</category>
+      <category>ai</category>
+      <category>llm</category>
+      <category>gpt</category>
+    </item>
+    <item>
+      <title>LangChain - OpenGPTs</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A little over two months ago, on the heels of OpenAI dev day, we launched OpenGPTs: a take on what an open-source GPT store may look like. It was powered by an early version of LangGraph - an extension of LangChain aimed at building agents as graphs. At the time, we did not highlight this new package much, as we had not publicly launched it and were still figuring out the interface. We finally got around to launching LangGraph two weeks ago, and over the past weekend we updated OpenGPTs to fully use LangGraph (as well as added some new features). We figure now is as good of time as any to do a technical deep-dive on OpenGPTs and what powers it.&lt;br /&gt;
+&lt;br&gt;
+In this blog, we will talk about:&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MessageGraph: A particular type of graph that OpenGPTs runs on&lt;/li&gt;
+&lt;li&gt;Cognitive architectures: What the 3 different types of cognitive architectures OpenGPTs supports are, and how they differ&lt;/li&gt;
+&lt;li&gt;Persistence: How persistence is baked in OpenGPTs via LangGraph checkpoints.&lt;/li&gt;
+&lt;li&gt;Configuration: How we use LangChain primitives to configure all these different bots.&lt;/li&gt;
+&lt;li&gt;New models: what new models we support&lt;/li&gt;
+&lt;li&gt;New tools: what new tools we support&lt;/li&gt;
+&lt;li&gt;astream_events: How we are using this new method to stream tokens and intermediate steps&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/langchain-opengpts</link>
+      <guid>https://www.lqdev.me/bookmarks/langchain-opengpts</guid>
+      <pubDate>2024-01-31 21:30 -05:00</pubDate>
+      <category>langchain</category>
+      <category>gpt</category>
+      <category>ai</category>
+      <category>opengpt</category>
+      <category>langgraph</category>
+      <category>messagegraph</category>
+    </item>
+    <item>
+      <title>New OpenAI embedding models and API updates</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We are launching a new generation of embedding models, new GPT-4 Turbo and moderation models, new API usage management tools, and soon, lower pricing on GPT-3.5 Turbo.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/new-openai-text-embedding-models-3</link>
+      <guid>https://www.lqdev.me/responses/new-openai-text-embedding-models-3</guid>
+      <pubDate>2024-01-25 21:20 -05:00</pubDate>
+      <category>openai</category>
+      <category>llm</category>
+      <category>embedding</category>
+      <category>openai</category>
+      <category>gpt</category>
+    </item>
+    <item>
+      <title>AI for economists - prompts and resources</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This page contains example prompts and responses intended to showcase how generative AI, namely LLMs like GPT-4, can benefit economists.
+&lt;br&gt;
+Example prompts are shown from six domains: ideation and feedback; writing; background research; coding; data analysis; and mathematical derivations.
+&lt;br&gt;
+The framework as well as some of the prompts and related notes come from Korinek, A. 2023. &lt;a href="https://www.aeaweb.org/articles?id=10.1257/jel.20231736"&gt;“Generative AI for Economic Research: Use Cases and Implications for Economists“&lt;/a&gt;, Journal of Economic Literature, 61 (4): 1281–1317.
+&lt;br&gt;
+Each application area includes 1-3 prompts and responses from an LLM, often from the field of development economics, along with brief notes. The prompts will be updated periodically.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/ai-for-economists-prompts</link>
+      <guid>https://www.lqdev.me/bookmarks/ai-for-economists-prompts</guid>
+      <pubDate>2024-01-15 16:49 -05:00</pubDate>
+      <category>ai</category>
+      <category>economy</category>
+      <category>promptengineering</category>
+      <category>llm</category>
+      <category>gpt</category>
+    </item>
+    <item>
+      <title>Introducing the GPT Store</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;It’s been two months since we announced GPTs, and users have already created over 3 million custom versions of ChatGPT. Many builders have shared their GPTs for others to use. Today, we're starting to roll out the GPT Store to ChatGPT Plus, Team and Enterprise users so you can find useful and popular GPTs.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/introducing-gpt-store</link>
+      <guid>https://www.lqdev.me/bookmarks/introducing-gpt-store</guid>
+      <pubDate>2024-01-11 10:01 -05:00</pubDate>
+      <category>openai</category>
+      <category>gpt</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>AI abundance after scarcity cycles</title>
+      <description>&lt;![CDATA[&lt;p&gt;While writing the post &lt;a href="https://www.lqdev.me/notes/rss-community-calendars-new-events"&gt;RSS for new event notifications&lt;/a&gt; I mentioned how the flow of getting new event notifications through RSS might work:&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;When a new event is added to the calendar, the RSS feed can be updated. The &lt;code&gt;channel&lt;/code&gt;property has the link to the shared calendar you can subscribe to and the individual events have &lt;em&gt;.ics&lt;/em&gt; files embedded in the &lt;code&gt;enclosure&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I actually didn't know if that was possible until I looked at the &lt;a href="https://en.wikipedia.org/wiki/RSS_enclosure"&gt;RSS enclosure syntax&lt;/a&gt;. Based on that page, as long as you provide the URL to the &lt;em&gt;.ics&lt;/em&gt; file, length of the file, and the MIME type (text/calendar), you can link to your events inside enclosures. So it is possible.&lt;/p&gt;
+&lt;p&gt;That's not the point of this post though. When I was looking at the references, I came across this post talking about the &lt;a href="https://www.rssboard.org/rss-enclosures-use-case"&gt;use case for RSS enclosures&lt;/a&gt;. I don't know when this post was published but given the problems mentioned with accessing high quality video, I assume it was in the days when the internet was on dial-up or DSL speeds. At that time, downloading webpages or e-mail was slow. Forget about downloading multimedia. As that post mentions, with enclosures, you could schedule your RSS client to download content like videos during off-peak hours so any content you'd want to access would download overnight and be available to you in the morning. About 30 years later, in many places, even with a connection that has 1MB download speeds, downloading a podcast that's 100MB or a video that's 2GB is relatively fast. It might take a while, but compared to 30 years ago, it's &amp;quot;instant&amp;quot;. So at this point, it's not really technical challenge as much as it is an access challenge.&lt;/p&gt;
+&lt;p&gt;Low bandwith speeds forced people to get creative in how they utilized their resources. The internet was not the only time this happened. About 30 years ago or so when cell phones were just becoming mainstream they too suffered from scarcity. Cell phones and plans were very expensive. You had limited minutes and when SMS became a thing, those too were limited. If you wanted to have hour long conversations with friends and loved ones, you'd have to wait until off-peak hours so you could use your &amp;quot;free&amp;quot; minutes. Fast-forward 30 years later, cell phones and cell phone plans are relatively affordable. When you purchase these plans, you get access to unlimited minutes, messages, and data. So again, the technical limitations aren't as prevalent. It's mainly a matter of access and whether your cell phone provider offers good coverage in your area.&lt;/p&gt;
+&lt;p&gt;This brings me to my point. We're seeing this cycle again with AI. Large Language Models today are expensive to run and I'm not overindexing on the financial perspective. You pay per call, access to these models can be throttled at times, there's only so many GPUs you can get access to in a data center to run them, you pay the latency penalty by going through the network as well as the cost of inferencing, and you also have token limits. About a year into the release of ChatGPT, access to these models has been expanded, the models have gotten more capable (&lt;a href="https://openai.com/research/gpt-4v-system-card"&gt;GPT-4V&lt;/a&gt; and GPT4 with 128k tokens), it's become &lt;a href="https://openai.com/blog/new-models-and-developer-products-announced-at-devday"&gt;cheaper to run these models&lt;/a&gt;. At the same time, &lt;a href="https://www.qualcomm.com/news/onq/2023/10/rethink-whats-possible-with-new-snapdragon-x-elite-platform"&gt;computing is becoming more efficient&lt;/a&gt; and &lt;a href="https://ai.meta.com/llama/#inside-the-model"&gt;smaller &amp;quot;open-source&amp;quot; models&lt;/a&gt; are becoming more capable. Today, we have to be creative with how we utilize our resources, but we're only a year in. If we extrapolate how these cycles play out though, in 30 years we'll forget how challenging it was to use and access early AI technologies and AI will become more abundant like the internet, cell phones, and other technologies before it.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/ai-abundance-scarcity-cycle-repeats-rss-enclosure-use-case</link>
+      <guid>https://www.lqdev.me/notes/ai-abundance-scarcity-cycle-repeats-rss-enclosure-use-case</guid>
+      <pubDate>2023-11-12 10:37 -05:00</pubDate>
+      <category>ai</category>
+      <category>internet</category>
+      <category>history</category>
+      <category>rss</category>
+      <category>openai</category>
+      <category>llm</category>
+      <category>gpt</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>Orca: Progressive Learning from Complex Explanation Traces of GPT-4</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Recent research has focused on enhancing the capability of smaller models
+through imitation learning, drawing on the outputs generated by large
+foundation models (LFMs). A number of issues impact the quality of these
+models, ranging from limited imitation signals from shallow LFM outputs;
+small scale homogeneous training data; and most notably a lack of rigorous
+evaluation resulting in overestimating the small model’s capability as they
+tend to learn to imitate the style, but not the reasoning process of LFMs. To
+address these challenges, we develop Orca, a 13-billion parameter model
+that learns to imitate the reasoning process of LFMs. Orca learns from
+rich signals from GPT-4 including explanation traces; step-by-step thought
+processes; and other complex instructions, guided by teacher assistance from
+ChatGPT. To promote this progressive learning, we tap into large-scale and
+diverse imitation data with judicious sampling and selection. Orca surpasses
+conventional state-of-the-art instruction-tuned models such as Vicuna-13B
+by more than 100% in complex zero-shot reasoning benchmarks like Big-
+Bench Hard (BBH) and 42% on AGIEval. Moreover, Orca reaches parity
+with ChatGPT on the BBH benchmark and shows competitive performance
+(4 pts gap with optimized system message) in professional and academic
+examinations like the SAT, LSAT, GRE, and GMAT, both in zero-shot
+settings without CoT; while trailing behind GPT-4. Our research indicates
+that learning from step-by-step explanations, whether these are generated
+by humans or more advanced AI models, is a promising direction to improve
+model capabilities and skills.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/orca-lm-progressive-learning-gpt-4</link>
+      <guid>https://www.lqdev.me/bookmarks/orca-lm-progressive-learning-gpt-4</guid>
+      <pubDate>2023-06-06 23:29 -05:00</pubDate>
+      <category>ai</category>
+      <category>finetuning</category>
+      <category>gpt</category>
+    </item>
+    <item>
+      <title>ChatGPT Prompt Engineering for Developers</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In ChatGPT Prompt Engineering for Developers, you will learn how to use a large language model (LLM) to quickly build new and powerful applications.  Using the OpenAI API, you’ll be able to quickly build capabilities that learn to innovate and create value in ways that were cost-prohibitive, highly technical, or simply impossible before now.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/chatgpt-prompt-engineering-developers</link>
+      <guid>https://www.lqdev.me/bookmarks/chatgpt-prompt-engineering-developers</guid>
+      <pubDate>2023-05-11 20:29 -05:00</pubDate>
+      <category>ai</category>
+      <category>gpt</category>
+      <category>promptengineering</category>
+    </item>
+  </channel>
+</rss>

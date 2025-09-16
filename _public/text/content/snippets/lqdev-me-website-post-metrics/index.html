@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>lqdev.me Post Metrics - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>lqdev.me Post Metrics</h1><div class="content-meta"><div class="content-type">snippets</div><time datetime="2023-12-23">December 23, 2023</time><p>Tags: analytics, website, blog, blogging, pkm, indieweb, dotnet, windows, linux, mac</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/snippets/">← All snippets</a> | <a href="https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics">View Full Version</a></p><div class="content"><h2>Description</h2>
+<p>Generates an aggregate analysis of posts on <a href="https://www.lqdev.me">lqdev.me / luisquintanilla.me</a>.</p>
+<h2>Usage</h2>
+<pre><code class="language-bash">dotnet fsi stats.fsx 
+</code></pre>
+<h2>Snippet</h2>
+<h3>stats.fsx</h3>
+<pre><code class="language-fsharp">// Reference DLL
+#r &quot;../bin/Debug/net8.0/PersonalSite.dll&quot;
+<p>// Add modules
+open Domain
+open Builder
+open System</p>
+<p>// Load posts
+let posts = loadPosts()
+let notes = loadFeed ()
+let responses = loadReponses ()</p>
+<p>// Organize posts by year
+let postCountsByYear =
+posts
+|&gt; Array.countBy (fun (x:Post) -&gt; DateTime.Parse(x.Metadata.Date) |&gt; _.Year)
+|&gt; Array.sortByDescending fst</p>
+<p>let noteCountsByYear =
+notes
+|&gt; Array.countBy (fun (x:Post) -&gt; DateTime.Parse(x.Metadata.Date) |&gt; _.Year)
+|&gt; Array.sortByDescending fst</p>
+<p>let responseCountsByYear =
+responses
+|&gt; Array.countBy (fun (x:Response) -&gt; DateTime.Parse(x.Metadata.DatePublished) |&gt; _.Year)
+|&gt; Array.sortByDescending fst</p>
+<p>// Organize responses by type
+let responsesByType =
+responses
+|&gt; Array.filter(fun x -&gt; (DateTime.Parse(x.Metadata.DatePublished) |&gt; _.Year) = DateTime.UtcNow.Year)
+|&gt; Array.countBy(fun x -&gt; x.Metadata.ResponseType)
+|&gt; Array.sortByDescending(snd)</p>
+<p>// Organize responses by tag
+let responsesByTag =
+responses
+|&gt; Array.filter(fun x -&gt; (DateTime.Parse(x.Metadata.DatePublished) |&gt; _.Year) = DateTime.UtcNow.Year)
+|&gt; Array.collect(fun x -&gt;
+match x.Metadata.Tags with
+| null -&gt; [|&quot;untagged&quot;|]
+| [||] -&gt; [|&quot;untagged&quot;|]
+| _ -&gt; x.Metadata.Tags
+)
+|&gt; Array.countBy(fun x -&gt; x)
+|&gt; Array.sortByDescending(snd)</p>
+<p>// Organize responses by host name (domain)
+let responsesByDomain =
+responses
+|&gt; Array.filter(fun x -&gt; (DateTime.Parse(x.Metadata.DatePublished) |&gt; _.Year) = DateTime.UtcNow.Year)
+|&gt; Array.countBy(fun x -&gt; Uri(x.Metadata.TargetUrl).Host)
+|&gt; Array.sortByDescending(snd)</p>
+<p>// Utility function to display counts
+let printEntryCounts&lt;'a&gt; (title:string) (entryCounts:('a * int) array) (n:int) =
+printfn $&quot;{title}&quot;</p>
+<pre><code>match entryCounts.Length with
+| 0 -&amp;gt; 
+    printfn $&amp;quot;No entries&amp;quot;
+    printfn $&amp;quot;&amp;quot;
+| a when a &amp;gt; 0 -&amp;gt; 
+    match n with 
+    | n when n = -1 || n &amp;gt; entryCounts.Length -&amp;gt; 
+        entryCounts
+        |&amp;gt; Array.iter(fun x -&amp;gt; printfn $&amp;quot;{fst x} {snd x}&amp;quot;)
+        |&amp;gt; fun _ -&amp;gt; printfn $&amp;quot;&amp;quot;
+    | n when n &amp;gt; 0 -&amp;gt; 
+        entryCounts
+        |&amp;gt; Array.take n
+        |&amp;gt; Array.iter(fun x -&amp;gt; printfn $&amp;quot;{fst x} {snd x}&amp;quot;)
+        |&amp;gt; fun _ -&amp;gt; printfn $&amp;quot;&amp;quot;
+</code></pre>
+<p>// Print yearly counts
+printEntryCounts &quot;Blogs&quot; postCountsByYear 2</p>
+<p>printEntryCounts &quot;Notes&quot; noteCountsByYear 2</p>
+<p>printEntryCounts &quot;Responses&quot; responseCountsByYear 2</p>
+<p>// Print response types
+printEntryCounts &quot;Response Types&quot; responsesByType -1</p>
+<p>// Print response tag counts
+printEntryCounts &quot;Response Tags&quot; responsesByTag 5</p>
+<p>// Print response by host name
+printEntryCounts &quot;Domains&quot; responsesByDomain 5
+</code></pre></p>
+<h2>Expected Output</h2>
+<pre><code class="language-text">Blogs
+2023 5
+2022 7
+<p>Notes
+2023 34
+2022 36</p>
+<p>Responses
+2023 216
+2022 146</p>
+<p>Response Types
+bookmark 151
+reshare 48
+reply 10
+star 7</p>
+<p>Response Tags
+ai 104
+llm 42
+untagged 41
+opensource 31
+internet 17</p>
+<p>Domains
+github.com 15
+huggingface.co 11
+arxiv.org 10
+openai.com 6
+www.theverge.com 4
+</code></pre></p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - webdev</title>
+    <link>https://www.lqdev.me/tags/webdev</link>
+    <description>All content tagged with 'webdev' by Luis Quintanilla</description>
+    <lastBuildDate>2023-04-04 23:30 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Testing tagged responses</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;My response&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/test-tagged-response</link>
+      <guid>https://www.lqdev.me/responses/test-tagged-response</guid>
+      <pubDate>2023-04-04 23:30 -05:00</pubDate>
+      <category>webdev</category>
+    </item>
+  </channel>
+</rss>

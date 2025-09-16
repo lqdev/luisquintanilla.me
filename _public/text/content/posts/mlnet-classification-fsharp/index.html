@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Classification with F# ML.NET Models - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Classification with F# ML.NET Models</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2018-06-13">June 13, 2018</time><p>Tags: fsharp, dotnet, dotnetcore, programming, development, mlnet, machinelearning, artificialintelligence, functionalprogramming</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/mlnet-classification-fsharp">View Full Version</a></p><div class="content"><h1>Introduction</h1>
+<p>In a previous <a href="http://luisquintanilla.me/2018/05/11/deploy-netml-docker-aci/">post</a>, I detailed how to build and deploy C# <code>ML.NET</code> models with <code>Docker</code> and <code>ASP.NET Core</code>. With inspiration from <a href="https://twitter.com/csharpfritz">Jeff Fritz</a>, I have been learning F# for the past week and a half or so. When trying to think of projects to start practicing my F#, porting over the code I had built in C# naturally came to mind. After overcoming many obstacles and with much guidance from <a href="https://github.com/voronoipotato">Alan Ball</a> and <a href="https://twitter.com/isaac_abraham">Isaac Abraham</a> whose F# <a href="https://www.amazon.com/Get-Programming-guide-NET-developers/dp/1617293997/ref=sr_1_1?ie=UTF8&amp;qid=1528929802&amp;sr=8-1&amp;keywords=get+programming+with+F%23">book</a> I highly recommend, I was able to successfully port over the main parts of my code which highlight <code>ML.NET</code> functionality. In this writeup, I will port a C# <code>ML.NET</code> classification model to F# which predicts the type of flower based on four numerical measurement inputs. I tried to keep the organization of this post nearly identical to that of the C# article where possible. Sample code for this project can be found at the following <a href="https://github.com/lqdev/fsmlnetdemo">link</a>.</p>
+<h2>Prerequisites</h2>
+<p>This project was built on a Linux PC but should work cross-platform on Mac and Windows.</p>
+<ul>
+<li><a href="https://www.microsoft.com/net/download/linux">.NET Core SDK 2.0+</a></li>
+<li><a href="https://fsharp.org/use/linux/">Ionide Extension - Option 1</a></li>
+<li><a href="https://www.nuget.org/packages/Microsoft.ML/">ML.NET v 0.2.0</a></li>
+</ul>
+<h2>Setting Up The Project</h2>
+<p>The first thing we want to do is create a folder for our solution.</p>
+<pre><code class="language-bash">mkdir fsharpmlnetdemo
+</code></pre>
+<p>Then, we want to create a solution inside our newly created folder.</p>
+<pre><code class="language-bash">cd fsharpmlnetdemo
+dotnet new sln
+</code></pre>
+<h2>Building The Model</h2>
+<h3>Setting Up The Model Project</h3>
+<p>First, we want to create the project. From the solution folder enter:</p>
+<pre><code class="language-bash">dotnet new console -o model -lang f#
+</code></pre>
+<p>Now we want to add this new project to our solution.</p>
+<pre><code class="language-bash">dotnet sln add model/model.fsproj
+</code></pre>
+<h3>Adding Dependencies</h3>
+<p>Since we’ll be using the <code>ML.NET</code> framework, we need to add it to our <code>model</code> project.</p>
+<pre><code class="language-bash">dotnet add model/model.fsproj package Microsoft.ML
+</code></pre>
+<h3>Download The Data</h3>
+<p>Before we start training the model, we need to download the data we’ll be using to train. We do so by downloading the data file into our root solution directory.</p>
+<pre><code class="language-bash">curl -o iris-data.txt https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data
+</code></pre>
+<p>If we take a look at the data file, it should look something like this:</p>
+<pre><code class="language-bash">5.1,3.5,1.4,0.2,Iris-setosa
+4.9,3.0,1.4,0.2,Iris-setosa
+4.7,3.2,1.3,0.2,Iris-setosa
+4.6,3.1,1.5,0.2,Iris-setosa
+5.0,3.6,1.4,0.2,Iris-setosa
+5.4,3.9,1.7,0.4,Iris-setosa
+4.6,3.4,1.4,0.3,Iris-setosa
+5.0,3.4,1.5,0.2,Iris-setosa
+4.4,2.9,1.4,0.2,Iris-setosa
+4.9,3.1,1.5,0.1,Iris-setosa
+</code></pre>
+<h3>Train Model</h3>
+<p>Now that we have all our dependencies set up, it’s time to build our model. I leveraged the demo that is used on the <code>ML.NET</code> Getting-Started <a href="https://www.microsoft.com/net/learn/apps/machine-learning-and-ai/ml-dotnet/get-started/linux/ubuntu16-04">website</a>.</p>
+<h4>Defining Data Structures</h4>
+<p>At the time of this writing, <code>ML.NET</code> version <code>0.2.0</code> does not fully support F# Records. A workaround for this are mutable classes. Not really inline with F# paradigms, but it should be good enough.</p>
+<p>In the <code>Program.fs</code> file of our <code>model</code> project directory, let’s create two mutable classes called <code>IrisData</code> and <code>IrisPrediction</code> which will define our features and predicted attribute respectively. Both of them will use <code>Microsoft.ML.Runtime.Api</code> to add the property attributes.</p>
+<p>Here is what our <code>IrisData</code> class looks like:</p>
+<pre><code class="language-fsharp">type IrisData() =
+    [&lt;Column(ordinal = &quot;0&quot;);DefaultValue&gt;]
+    val mutable public SepalLength: float32
+
+    [&lt;Column(ordinal = &quot;1&quot;);DefaultValue&gt;]
+    val mutable public SepalWidth: float32
+
+    [&lt;Column(ordinal = &quot;2&quot;);DefaultValue&gt;]
+    val mutable public PetalLength:float32
+
+    [&lt;Column(ordinal = &quot;3&quot;);DefaultValue&gt;]
+    val mutable public PetalWidth:float32
+
+    [&lt;Column(ordinal = &quot;4&quot;,name=&quot;Label&quot;);DefaultValue&gt;]
+    val mutable public Label: string
+</code></pre>
+<p>Similarly, here is the <code>IrisPrediction</code> class:</p>
+<pre><code class="language-fsharp">type IrisPrediction() =
+    [&lt;ColumnName &quot;PredictedLabel&quot;;DefaultValue&gt;] val mutable public PredictedLabel : string
+</code></pre>
+<h4>Building Training Pipeline</h4>
+<p>The way the <code>ML.NET</code> computations process is via a sequential pipeline of steps that are performed eventually leading up to the training of the model. We can add that logic inside the <code>main</code> function of our <code>Program.fs</code> file.</p>
+<pre><code class="language-fsharp">let dataPath = &quot;./iris-data.txt&quot;
+
+// Initialize Compute Graph
+let pipeline = new LearningPipeline()
+
+// Load Data
+pipeline.Add((new TextLoader(dataPath).CreateFrom&lt;IrisData&gt;separator=','))
+
+// Transform Data
+// Assign numeric values to text in the &quot;Label&quot; column, because
+// only numbers can be processed during model training
+pipeline.Add(new Transforms.Dictionarizer(&quot;Label&quot;))
+
+// Vectorize Features
+pipeline.Add(new ColumnConcatenator(&quot;Features&quot;,&quot;SepalLength&quot;, &quot;SepalWidth&quot;, &quot;PetalLength&quot;, &quot;PetalWidth&quot;))
+
+// Add Learner
+pipeline.Add(new StochasticDualCoordinateAscentClassifier())
+
+// Convert Label back to text
+pipeline.Add(new ransforms.PredictedLabelColumnOriginalValueConverterPredictedLabelColumn = &quot;PredictedLabel&quot;))
+
+//Train the model
+let model = pipeline.Train&lt;IrisData, IrisPrediction&gt;()
+</code></pre>
+<h4>Testing Our Model</h4>
+<p>Now that we have our data structures and model trained, it’s time to test it to make sure it's working. Following our training operation, we can add the following code.</p>
+<pre><code class="language-fsharp">// Test data for prediction
+let testInstance = IrisData()
+testInstance.SepalLength &lt;- 3.3f
+testInstance.SepalWidth &lt;- 1.6f
+testInstance.PetalLength &lt;- 0.2f
+testInstance.PetalWidth &lt;- 5.1f
+
+//Get Prediction
+let prediction = model.Predict(testInstance)
+
+//Output Prediction
+printfn &quot;Predicted flower type is: %s&quot; prediction.PredictedLabel
+</code></pre>
+<p>Our final <code>Program.fs</code> file should contain content similar to that below:</p>
+<pre><code class="language-fsharp">open System
+open Microsoft.ML
+open Microsoft.ML.Runtime
+open Microsoft.ML.Runtime.Api
+open Microsoft.ML.Data
+open Microsoft.ML.Transforms
+open Microsoft.ML.Trainers
+
+type IrisData() =
+
+    [&lt;Column(ordinal = &quot;0&quot;);DefaultValue&gt;] val mutable public SepalLength: float32
+    [&lt;Column(ordinal = &quot;1&quot;);DefaultValue&gt;] val mutable public SepalWidth: float32
+    [&lt;Column(ordinal = &quot;2&quot;);DefaultValue&gt;] val mutable public PetalLength:float32
+    [&lt;Column(ordinal = &quot;3&quot;);DefaultValue&gt;] val mutable public PetalWidth:float32
+    [&lt;Column(ordinal = &quot;4&quot;,name=&quot;Label&quot;);DefaultValue&gt;] val mutable public Label: string
+
+
+type IrisPrediction() =
+
+    [&lt;ColumnName &quot;PredictedLabel&quot;;DefaultValue&gt;] val mutable public PredictedLabel : string
+
+[&lt;EntryPoint&gt;]
+let main argv =
+
+    let dataPath = &quot;./iris-data.txt&quot;
+
+    // Initialize Compute Graph
+    let pipeline = new LearningPipeline()
+
+    // Load Data
+    pipeline.Add((new TextLoader(dataPath)).CreateFrom&lt;IrisData&gt;(separator=','))
+
+    // Transform Data
+    // Assign numeric values to text in the &quot;Label&quot; column, because
+    // only numbers can be processed during model training
+    pipeline.Add(new Transforms.Dictionarizer(&quot;Label&quot;))
+
+    // Vectorize Features
+    pipeline.Add(new ColumnConcatenator(&quot;Features&quot;,&quot;SepalLength&quot;, &quot;SepalWidth&quot;, &quot;PetalLength&quot;, &quot;PetalWidth&quot;))
+
+    // Add Learner
+    pipeline.Add(new StochasticDualCoordinateAscentClassifier())
+
+    // Convert Label back to text
+    pipeline.Add(new Transforms.PredictedLabelColumnOriginalValueConverter(PredictedLabelColumn = &quot;PredictedLabel&quot;))
+
+    //Train the model
+    let model = pipeline.Train&lt;IrisData, IrisPrediction&gt;()
+
+    // Test data for prediction
+    let testInstance = IrisData()
+    testInstance.SepalLength &lt;- 3.3f
+    testInstance.SepalWidth &lt;- 1.6f
+    testInstance.PetalLength &lt;- 0.2f
+    testInstance.PetalWidth &lt;- 5.1f
+
+    //Get Prediction
+    let prediction = model.Predict(testInstance)
+
+    //Output Prediction
+    printfn &quot;Predicted flower type is: %s&quot; prediction.PredictedLabel
+    0 // return an integer exit code
+</code></pre>
+<p>All set to run. We can do so by entering the following command from our solution directory:</p>
+<pre><code class="language-fsharp">dotnet run -p model/model.fsproj
+</code></pre>
+<p>Once the application has been run, the following output should display on the console.</p>
+<pre><code class="language-bash">Automatically adding a MinMax normalization transform, use 'norm=Warn' or 'norm=No' to turn this behavior off.
+Using 2 threads to train.
+Automatically choosing a check frequency of 2.
+Auto-tuning parameters: maxIterations = 9998.
+Auto-tuning parameters: L2 = 2.667734E-05.Auto-tuning parameters: L1Threshold (L1/L2) = 0.
+Using best model from iteration 1066.Not training a calibrator because it is not needed.
+Predicted flower type is: Iris-virginica
+</code></pre>
+<h2>Conclusion</h2>
+<p>In this post, we ported over a C# <code>ML.NET</code> classification model to F# which predicts the class of flower based on numerical measurement inputs. While several workarounds needed to be made, <code>ML.NET</code> is still in its infancy. As more people become involved and provide feedback hopefully in the near future, F# support and functionality will become more stable. Happy coding!</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

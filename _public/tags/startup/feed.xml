@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - startup</title>
+    <link>https://www.lqdev.me/tags/startup</link>
+    <description>All content tagged with 'startup' by Luis Quintanilla</description>
+    <lastBuildDate>2024-03-07 21:10 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Training great LLMs entirely from ground up in the wilderness as a startup</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Given that we’ve successfully trained pretty strong multimodal language models at Reka, many people have been particularly curious about the experiences of building infrastructure and training large language &amp;amp; multimodal models from scratch from a completely clean slate.&lt;br /&gt;
+&lt;br&gt;
+I complain a lot about external (outside Google) infrastructure and code on my social media, leading people to really be curious about what are the things I miss and what I hate/love in the wilderness. So here’s a post (finally). This blogpost sheds light on the challenges and lessons learned.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Figuring out things in the wilderness was an interesting experience. It was unfortunately not painless. Compute scarcity and also unreliable compute providers made things significantly harder than expected but we’re glad we pulled through with brute technical strength.&lt;br /&gt;
+&lt;br&gt;
+All in all, this is only a small part of the story of how we started a company, raised some money, bought some chips and matched Gemini pro/GPT 3.5 and outperformed many others in less than a year having to build everything from scratch.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/training-llms-ground-up-wilderness-startup</link>
+      <guid>https://www.lqdev.me/responses/training-llms-ground-up-wilderness-startup</guid>
+      <pubDate>2024-03-07 21:10 -05:00</pubDate>
+      <category>llm</category>
+      <category>ai</category>
+      <category>startup</category>
+      <category>compute</category>
+      <category>gpu</category>
+      <category>training</category>
+    </item>
+  </channel>
+</rss>

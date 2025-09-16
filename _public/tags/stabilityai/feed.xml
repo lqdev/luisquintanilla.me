@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - stabilityai"</title>
+    <link>https://www.lqdev.me/tags/stabilityai</link>
+    <description>All content tagged with 'stabilityai"' by Luis Quintanilla</description>
+    <lastBuildDate>2024-01-17 20:36 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Stable Code 3B - Coding on the Edge</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Stable Code 3B is a 3 billion parameter Large Language Model (LLM), allowing accurate and responsive code completion at a level on par with models such as CodeLLaMA 7b that are 2.5x larger.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Operates offline even without a GPU on common laptops such as a MacBook Air.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/stable-code-3b-stability</link>
+      <guid>https://www.lqdev.me/bookmarks/stable-code-3b-stability</guid>
+      <pubDate>2024-01-17 20:36 -05:00</pubDate>
+      <category>ai</category>
+      <category>stabilityai"</category>
+      <category>code</category>
+      <category>software</category>
+      <category>softwaredevelopment</category>
+      <category>llm</category>
+    </item>
+  </channel>
+</rss>

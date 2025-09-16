@@ -1,0 +1,1 @@
+MECARD:N:Luis Quintanilla;EMAIL:contact@lqdev.me;URL:https://www.lqdev.me/;URL:https://www.lqdev.me/linkedin;URL:https://www.lqdev.me/bluesky;URL:https://www.lqdev.me/twitter;URL:https://www.lqdev.me/mastodon;URL:https://www.lqdev.me/github;;

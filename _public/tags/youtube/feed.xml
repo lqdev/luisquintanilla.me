@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - youtube</title>
+    <link>https://www.lqdev.me/tags/youtube</link>
+    <description>All content tagged with 'youtube' by Luis Quintanilla</description>
+    <lastBuildDate>2025-09-12 19:57 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Filter YouTube RSS Feeds</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;As someone who subscribes to YouTube channels using RSS feeds, I found this incredibly useful.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;https://www.youtube.com/feeds/videos.xml?playlist_id=UU&amp;lt;channel id&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Notice the UU and look below what you can replace it with.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;UU - all public uploads (same as the channel_id= url)
+UULF - all public videos
+UUMO - all member videos 
+UULV - all live streams
+UUSH - all shorts
+UULP - popular videos
+UUPV - popular live streams
+UUPS - popular shorts
+UUMV - member live streams
+UUMS - member shorts
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/filter-youtube-video-rss-feed</link>
+      <guid>https://www.lqdev.me/responses/filter-youtube-video-rss-feed</guid>
+      <pubDate>2025-09-12 19:57 -05:00</pubDate>
+      <category>rss</category>
+      <category>youtube</category>
+      <category>feed</category>
+    </item>
+    <item>
+      <title>Simulcasting to Owncast and YouTube</title>
+      <description>&lt;![CDATA[&lt;p&gt;About a week ago, I was telling &lt;a href="https://maho.dev/"&gt;maho.dev&lt;/a&gt; about Owncast and my &lt;a href="https://www.lqdev.me/posts/deploy-owncast-azure"&gt;self-hosted setup&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;During our chat, the question of simulcasting came up.&lt;/p&gt;
+&lt;p&gt;Using the &lt;a href="https://obsproject.com/forum/resources/obs-studio-stream-to-multiple-platforms-or-channels-at-once.932/"&gt;guidance from the OBS community&lt;/a&gt; as a starting point, I decided to try it out for myself.&lt;/p&gt;
+&lt;p&gt;It didn't work as-is but after using an AI assistant to help me tweak the ffmpeg command, I was able to get it working.&lt;/p&gt;
+&lt;p&gt;I posted the command to my &lt;a href="https://www.lqdev.me/resources/wiki/owncast"&gt;Wiki&lt;/a&gt; and plan on writing a more detailed post at a later time.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/owncast-simulcast-youtube</link>
+      <guid>https://www.lqdev.me/notes/owncast-simulcast-youtube</guid>
+      <pubDate>2025-01-30 20:25 -05:00</pubDate>
+      <category>owncast</category>
+      <category>obs</category>
+      <category>youtube</category>
+      <category>livestream</category>
+      <category>fediverse</category>
+      <category>opensource</category>
+    </item>
+    <item>
+      <title>Build a YouTube chat app with .NET</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Great post from &lt;a href="https://jordanmatthiesen.me/"&gt;jordanmatthiesen.me&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Recently on a trip for a tech conference I created a YouTube chat app using .NET and AI. This is part of my exploration into creating a larger app for chatting about .NET AI development (leveraging docs, presentations, and sample code my team has been working on at Microsoft).&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/youtube-chat-app-ai-dotnet</link>
+      <guid>https://www.lqdev.me/responses/youtube-chat-app-ai-dotnet</guid>
+      <pubDate>2024-12-16 21:22 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>ai</category>
+      <category>youtube</category>
+      <category>chat</category>
+      <category>microsoft.extensions.ai</category>
+      <category>openai</category>
+    </item>
+    <item>
+      <title>Build your own self-hosted live streaming application with Owncast and .NET Aspire</title>
+      <description>&lt;![CDATA[
+Platforms come and go. As a result, I'm a strong advocate for [owning your data](https://indieweb.org/own_your_data) (when possible). Self-hosting is a way for you to do that. Owning your data could mean self-hosting [your website](https://buttondown.com/ownyourweb/archive/issue-06/), [password manager](https://bitwarden.com/blog/host-your-own-open-source-password-manager/), [media server](https://jellyfin.org/docs/), or [social media](https://docs.joinmastodon.org/user/run-your-own/). However, self-hosting comes with its own challenges, primarily cost (time and money) and in cases where software isn't provided as an appliance on your hosting provider of choice, some technical knowledge may be required. 
+
+As I got more into self-hosting applications such as my [Mastodon instance](/mastodon), I came across Owncast.   
+
+During peak COVID lockdowns, like many others, live streaming is one of the ways I passed the time. While Twitch and YouTube got the job done, self-hosting was always in the back of my mind.  
+
+It's been a while since I've live-streamed, so I never really went through the process of evaluating the self-hosted route with Owncast. 
+
+While browsing for something on YouTube the other day, I ran into some of my [old live-stream recordings](https://www.youtube.com/playlist?list=PLsdMoYmuvh9ZtgB8U7FECR_8wKMYXJNAm). This got me thinking again, how difficult would it be to put together my own live-streaming setup. 
+
+This post is the result of that exploration. 
+
+In this post, I'll modify a .NET Aspire Starter Application template and show how to set up a self-hosted live-streaming application using Owncast and .NET Aspire.  
+
+You can find the source code in the [lqdev/BYOwncastAspire](/github/BYOwncastAspire) repository.
+
+![BYOwnCastAspire Web Frontend](https://github.com/user-attachments/assets/bdd9f901-8d8f-45be-9e37-4dce8459e481)
+
+## What is Owncast?
+
+The Owncast website describes the project as, "...a free and open source live video and web chat server for use with existing popular broadcasting software."
+
+![Owncast admin server page](https://github.com/user-attachments/assets/769ec2d8-a3d1-4ec3-8271-c2de6e11ddd3)
+
+It goes on to further describe some of the reasons I like Owncast, which are:
+
+- **Self-hosting** - I'm in complete control over the service and my data
+- **Open-source** - I can freely use and contribute to the project. Free in this case meaning both as in freedom and pizza.
+- **Builds on top of open standards like RMTP** - Software that supports the Real-Time Messaging Protocol (RMTP) like OBS can immediately be leveraged. 
+- **Fediverse compatible** - Your content and network federated across [the Fediverse](https://joinfediverse.wiki/What_is_the_Fediverse%3F). 
+
+To learn more, check out the [Owncast website](https://owncast.online/). 
+
+## What is .NET Aspire?
+
+The .NET Aspire documentation describes it as, "...an opinionated, cloud ready stack for building observable, production ready, distributed applications.​ .NET Aspire is delivered through a collection of NuGet packages that handle specific cloud-native concerns."
+
+Personally, the parts of .NET Aspire that matter to me are:
+
+- **App composition** - The .NET Aspire programming model makes it easy to define and compose a variety of resources such as .NET projects, containers, and much more in a single place. In many cases, for commonly used services, these resources are exposed in the form of [integrations](https://learn.microsoft.com/dotnet/aspire/fundamentals/integrations-overview). These integrations further simplify the composition of applications.  
+- **Tooling (Dashboard)** - .NET Aspire provides a set of tools and templates. However, my favorite is the dashboard. The dashboard provides me with a single place to view my resources, their configurations, and logs. 
+
+Although in this post, I don't cover deployment, there is also the provisioning component provided by .NET Aspire which in many cases can [simplify your application deployments](https://learn.microsoft.com/dotnet/aspire/deployment/overview). 
+
+To learn more, check out the [.NET Aspire documentation](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview). 
+
+## Build your application
+
+This application makes a few modifications to the [.NET Aspire Starter Application template](https://learn.microsoft.com/dotnet/aspire/fundamentals/setup-tooling?tabs=linux&amp;pivots=dotnet-cli#net-aspire-project-templates). 
+
+The application consists of a few projects:
+
+- **BYOwncastAspire.AppHost** - This project is the entrypoint for .NET Aspire applications. This is where we'll configure the Owncast server as a container resource. 
+- **BYOwncastAspire.Web** - Blazor web application. Although Owncast provides its own page where viewers can tune into your stream, by having a separate web application, preferably your own personal website, you can further enrich and customize how and where you publish content. 
+- **BYOwncastAspire.ServiceDefaults** - This project contains default configurations for telemetry, health checks, resiliency, etc. No changes or updates required here. 
+
+### Configure Owncast
+
+There are many ways to host an Owncast server, with one of them being a container. 
+
+In the context of Aspire which has built-in container support, you can easily add Owncast as a resource in your application. 
+
+From the [Owncast documentation](https://owncast.online/quickstart/container/), once you've pulled the Owncast container image, you can start it with the following command.
+
+```bash
+docker run -v `pwd`/data:/app/data -p 8080:8080 -p 1935:1935 owncast/owncast:latest
+```
+
+This translates to the following in the *Program.cs* of the *BYOwncastAspire.AppHost* project.
+
+```csharp
+var owncast = builder
+    .AddContainer(name: "owncast", image:"owncast/owncast")
+    .WithBindMount("./data","/app/data")
+    .WithHttpEndpoint(port:8080,targetPort:8080,name:"admin")
+    .WithHttpEndpoint(port:1935,targetPort:1935,name:"streaming")
+    .WithExternalHttpEndpoints();
+```
+
+This code:
+
+- Adds the owncast container image
+- Mounts a local *data* directory to the */app/data* directory in the container
+- Maps port `8080` for the Owncast admin server and `1935` for RMTP server.
+- Exposes the endpoints publicly
+
+### Embed your stream
+
+Owncast provides the ability to [embed your video stream onto a website](https://owncast.online/docs/embed/). 
+
+Although we don't need a frontend because one is already provided by Owncast, by embedding your stream on your website you can provide a single place for your viewers to consume your content. 
+
+In this case, we can treat the *BYOwncastAspire.Web* project as our website. 
+
+To embed your stream to the website, add the following code to your *Home.razor* page.
+
+```csharp
+&lt;iframe
+  src="http://localhost:8080/embed/video"
+  title="Owncast"
+  height="350px" width="550px"
+  referrerpolicy="origin"
+  allowfullscreen&gt;
+&lt;/iframe&gt;
+```
+
+In this case, we're pointing to the endpoint listening on port `8080` of our `localhost`. When you deploy the application, you'd replace `src` with your domain. 
+
+## Start your application
+
+That's all there is in terms of configuration. 
+
+To start the application:
+
+1. Open the terminal 
+2. Navigate to the *BYOwncastAspire.AppHost* project and run the following command.
+
+    ```bash
+    dotnet run
+    ```
+
+This will launch you into the .NET Aspire dashboard. At this point, you can further customize your Owncast server as well as the website.  
+
+![BYOwncastAspire .NET Aspire Dashboard Resource Page](https://github.com/user-attachments/assets/c20d84d8-925a-4f80-9058-622466cb08e9)
+
+## What next?
+
+Now that you have your application running, in its current form, this application is only meant to serve as a sample of what you can do with Owncast and .NET Aspire. 
+
+Some next steps might include:
+
+- [Change your admin password and customize your Owncast server](https://owncast.online/docs/configuration/)
+- [Configure object storage](https://owncast.online/docs/storage/)
+- [Set up your steaming software](https://owncast.online/docs/broadcasting/obs/)
+- [Deploy your application](https://learn.microsoft.com/dotnet/aspire/deployment/azure/aca-deployment)
+- [Extend the app's functionality by building custom plugins and extensions](https://owncast.online/thirdparty/)
+
+The plugins and extensions are particularly interesting to me because there may even be opportunities to experiment and insert AI capabilities at various layers such as moderation, translation, accessibility, show notes, chat summaries, etc. 
+
+## Conclusion
+
+In this post, I showed how you can combine the powerful live-steaming features of Owncast with the app orchestration and tooling in .NET Aspire to create rich self-hosted live-steaming applications.
+
+If you use this sample as a starting point for your own live-streaming or self-hosting explorations, [send me a message](/contact). I'd love to hear about it.  
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire</link>
+      <guid>https://www.lqdev.me/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire</guid>
+      <pubDate>2024-10-20 14:01 -05:00</pubDate>
+      <category>owncast</category>
+      <category>dotnet</category>
+      <category>indieweb</category>
+      <category>fediverse</category>
+      <category>aspire</category>
+      <category>livestreaming</category>
+      <category>twitch</category>
+      <category>youtube</category>
+      <category>blazor</category>
+    </item>
+    <item>
+      <title>Cosmohedron by Duncan Hatch</title>
+      <description>&lt;![CDATA[[star] &lt;p&gt;I love the visuals on this video.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=3pxrECZYEAA" title="Cosmohedron Animated Short Thumbnail"&gt;&lt;img src="http://img.youtube.com/vi/3pxrECZYEAA/0.jpg" class="img-fluid" alt="Cosmohedron Animated Short Thumbnail" /&gt;&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/cosmohedron-duncan-hatch</link>
+      <guid>https://www.lqdev.me/responses/cosmohedron-duncan-hatch</guid>
+      <pubDate>2024-09-14 22:06 -05:00</pubDate>
+      <category>short</category>
+      <category>animation</category>
+      <category>psychidelic</category>
+      <category>duncanhatch</category>
+      <category>video</category>
+      <category>youtube</category>
+    </item>
+    <item>
+      <title>Google Podcasts is gone — and so is my faith in Google</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;Good article. I felt this way when Google Reader and a few other services were shut down.&lt;/p&gt;
+&lt;p&gt;That being said, this is kind of a good thing.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Luckily, there are plenty of good podcast apps out there, like Pocket Casts, Overcast, Antennapod, and even Apple Podcasts.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This line basically says it all. Podcasts, like blogging, continue to be an open ecosystem and where the saying,&amp;quot;wherever you get your podcasts&amp;quot;, is still going strong.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/google-podcasts-gone-youtube-cant-replace-it-verge</link>
+      <guid>https://www.lqdev.me/responses/google-podcasts-gone-youtube-cant-replace-it-verge</guid>
+      <pubDate>2024-04-02 22:54 -05:00</pubDate>
+      <category>google</category>
+      <category>podcasts</category>
+      <category>youtube</category>
+      <category>audio</category>
+      <category>opensource</category>
+      <category>rss</category>
+    </item>
+    <item>
+      <title>Podcasting is in its YouTube era</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, YouTube at very long last debuts RSS integration.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This means more hosts saying &amp;quot;...or wherever you get your podcasts.&amp;quot; 🙂&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://support.google.com/youtube/answer/13973017"&gt;Support Post&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/podcast-youtube-era</link>
+      <guid>https://www.lqdev.me/responses/podcast-youtube-era</guid>
+      <pubDate>2024-01-17 20:24 -05:00</pubDate>
+      <category>rss</category>
+      <category>podcasts</category>
+      <category>youtube</category>
+    </item>
+  </channel>
+</rss>

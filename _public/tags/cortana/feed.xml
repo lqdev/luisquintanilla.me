@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - cortana</title>
+    <link>https://www.lqdev.me/tags/cortana</link>
+    <description>All content tagged with 'cortana' by Luis Quintanilla</description>
+    <lastBuildDate>2024-02-27 21:04 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>The latest Microsoft Copilot update on Android makes me mourn the death of Cortana</title>
+      <description>&lt;![CDATA[[reply] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Microsoft Copilot will soon be able to be your default assistant app on Android.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;It's a shame that Cortana never worked out for Microsoft. If things had lined up differently, we may have seen Copilot gain access to smart devices and commands like Gemini has with Google Assistant (though that setup isn't perfect). While Copilot has a place on a computer, I think an assistant on your smartphone needs to be able to do more day-to-day tasks.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So many things were ahead of their time. I just want a &lt;a href="https://www.lqdev.me/responses/windows-12-mobile-concept/"&gt;Windows Mobile PC (Windows Phone?) with an LLM-backed Cortana&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/copilot-android-update-mourn-cortana-death</link>
+      <guid>https://www.lqdev.me/responses/copilot-android-update-mourn-cortana-death</guid>
+      <pubDate>2024-02-27 21:04 -05:00</pubDate>
+      <category>cortana</category>
+      <category>copilot</category>
+      <category>ai</category>
+      <category>microsoft</category>
+      <category>virtualassistant</category>
+      <category>assistant</category>
+      <category>chatbot</category>
+    </item>
+  </channel>
+</rss>

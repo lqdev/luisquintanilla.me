@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - videopoet</title>
+    <link>https://www.lqdev.me/tags/videopoet</link>
+    <description>All content tagged with 'videopoet' by Luis Quintanilla</description>
+    <lastBuildDate>2023-12-23 19:06 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>VideoPoet: A large language model for zero-shot video generation</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;VideoPoet is a simple modeling method that can convert any autoregressive language model or large language model (LLM) into a high-quality video generator. It contains a few simple components:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A pre-trained MAGVIT V2 video tokenizer and a SoundStream audio tokenizer transform images, video, and audio clips with variable lengths into a sequence of discrete codes in a unified vocabulary. These codes are compatible with text-based language models, facilitating an integration with other modalities, such as text.&lt;/li&gt;
+&lt;li&gt;An autoregressive language model learns across video, image, audio, and text modalities to autoregressively predict the next video or audio token in the sequence.&lt;/li&gt;
+&lt;li&gt;A mixture of multimodal generative learning objectives are introduced into the LLM training framework, including text-to-video, text-to-image, image-to-video, video frame continuation, video inpainting and outpainting, video stylization, and video-to-audio. Furthermore, such tasks can be composed together for additional zero-shot capabilities (e.g., text-to-audio).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This simple recipe shows that language models can synthesize and edit videos with a high degree of temporal consistency. VideoPoet demonstrates state-of-the-art video generation, in particular in producing a wide range of large, interesting, and high-fidelity motions. The VideoPoet model supports generating videos in square orientation, or portrait to tailor generations towards short-form content, as well as supporting audio generation from a video input.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://blog.research.google/2023/12/videopoet-large-language-model-for-zero.html"&gt;Blog Post&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/videopoet-llm-zero-shot-video-generation</link>
+      <guid>https://www.lqdev.me/bookmarks/videopoet-llm-zero-shot-video-generation</guid>
+      <pubDate>2023-12-23 19:06 -05:00</pubDate>
+      <category>ai</category>
+      <category>genai</category>
+      <category>videopoet</category>
+      <category>generativeai</category>
+      <category>google</category>
+    </item>
+  </channel>
+</rss>

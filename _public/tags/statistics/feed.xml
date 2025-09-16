@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - statistics</title>
+    <link>https://www.lqdev.me/tags/statistics</link>
+    <description>All content tagged with 'statistics' by Luis Quintanilla</description>
+    <lastBuildDate>2024-01-17 20:32 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Sampling for Text Generation</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;ML models are probabilistic. Imagine that you want to know what’s the best cuisine in the world. If you ask someone this question twice, a minute apart, their answers both times should be the same. If you ask a model the same question twice, its answer can change.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;This probabilistic nature makes AI great for creative tasks.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;However, this probabilistic nature also causes inconsistency and hallucinations. It’s fatal for tasks that depend on factuality. Recently, I went over 3 months’ worth of customer support requests of an AI startup I advise and found that ⅕ of the questions are because users don’t understand or don’t know how to work with this probabilistic nature.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;To understand why AI’s responses are probabilistic, we need to understand how models generate responses, a process known as sampling (or decoding). This post consists of 3 parts.
+&lt;br&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1. Sampling: sampling strategies and sampling variables including temperature, top-k, and top-p.
+2. Test time sampling: sampling multiple outputs to help improve a model’s performance.
+3. Structured outputs: how to get models to generate outputs in a certain format.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/sampling-text-generation-huyen</link>
+      <guid>https://www.lqdev.me/bookmarks/sampling-text-generation-huyen</guid>
+      <pubDate>2024-01-17 20:32 -05:00</pubDate>
+      <category>ai</category>
+      <category>generativeai</category>
+      <category>statistics</category>
+      <category>llm</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Install .NET packages on NixOS from GitHub - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Install .NET packages on NixOS from GitHub</h1><div class="content-meta"><div class="content-type">wiki</div><time datetime="2023-12-17">December 17, 2023</time><p>Tags: dotnet, nixos, linux, sysadmin, </p></div><p><a href="/text/">← Home</a> | <a href="/text/content/wiki/">← All wiki</a> | <a href="https://www.lqdev.me/resources/wiki/nixos-dotnet-packages-source">View Full Version</a></p><div class="content"><h2>Overview</h2>
+<p>This guide shows how to build a .NET package from GitHub source. The project used to illustrate the process can be found on <a href="https://github.com/lqdev/fitch">GitHub</a>.</p>
+<h2>Create derivation</h2>
+<p>The first thing you'll want to do is create a derivation for your package.</p>
+<p>Create a file for your package. In this case, I called mine <em>fitch.nix</em>.</p>
+<p>Since I'm building a .NET package from the GitHub source, I use <code>buildDotnetModule</code>, <code>dotnetCorePackages</code>, and <code>fetchFromGithub</code>.</p>
+<p>To get the rev, use the <code>git log</code> command. It's the hash of the latest commit.</p>
+<h2>Fake SHA</h2>
+<pre><code class="language-nix">{
+  fetchFromGitHub,
+  buildDotnetModule,
+  dotnetCorePackages
+}:
+<p>buildDotnetModule {
+name = &quot;fitch&quot;;</p>
+<p>src = fetchFromGitHub {
+owner = &quot;lqdev&quot;;
+repo = &quot;fitch&quot;;
+rev = &quot;e5fb91ddf57eb5611e0e313af29126e590cd149f&quot;;
+sha256 = &quot;&quot;;
+};</p>
+<p>projectFile = &quot;src/fitch.fsproj&quot;;
+executables = &quot;fitch&quot;;
+dotnet-sdk = dotnetCorePackages.sdk_8_0;
+dotnet-runtime = dotnetCorePackages.runtime_8_0;
+nugetDeps = ./deps.nix;
+}
+</code></pre></p>
+<p>At this point the sha256 will be empty because you'll get it later in the process.</p>
+<h2>Create default.nix</h2>
+<pre><code class="language-nix">let
+  pkgs = import &lt;nixpkgs&gt; { };
+in
+{
+  fitch = pkgs.callPackage ./fitch.nix { };
+}
+</code></pre>
+<h2>Fetch dependencies</h2>
+<p>Create a file called <code>deps.nix</code>. This will contain the dependencies you need for your application.</p>
+<pre><code class="language-bash">touch deps.nix
+</code></pre>
+<p>Then, run <code>nix-build -A fitch.fetch-deps</code>. This should fail because of the empty SHA.</p>
+<h2>Update SHA</h2>
+<p>The empty SHA will fail. However, the error message will contain the actual SHA value. Copy that and paste it into the sha256 property.</p>
+<pre><code class="language-nix">{
+  lib    
+  fetchFromGitHub,
+  buildDotnetModule,
+  dotnetCorePackages
+}:
+<p>buildDotnetModule {
+name = &quot;fitch&quot;;</p>
+<p>src = fetchFromGitHub {
+owner = &quot;lqdev&quot;;
+repo = &quot;fitch&quot;;
+rev = &quot;e5fb91ddf57eb5611e0e313af29126e590cd149f&quot;;
+sha256 = &quot;74xddAUGQNVliVs5o3zQQEAUAoF9r8iBmiiBr4qrUgw=&quot;;
+};</p>
+<p>projectFile = &quot;src/fitch.fsproj&quot;;
+executables = &quot;fitch&quot;;
+dotnet-sdk = dotnetCorePackages.sdk_7_0;
+dotnet-runtime = dotnetCorePackages.runtime_7_0;
+nugetDeps = ./deps.nix;
+}
+</code></pre></p>
+<h2>Get dependencies</h2>
+<p>Now that you have the correct SHA, try getting the dependencies again. These dependencies are created in a series of steps:</p>
+<ol>
+<li>Run the following command <code>sudo nix-build -A fitch.fetch-deps</code>. The result of this command is an executable script called <em>result</em>.</li>
+<li>Run the <em>result</em> script. <code>sudo ./result deps.nix</code>. This will generate the lockfile called <em>deps.nix</em> and is referenced by the <code>nugetDeps</code> property.</li>
+</ol>
+<h2>Build package</h2>
+<p>Once everything is set up, run <code>nix-build -A fitch</code>. This will package and install the package onto your system.</p>
+<h2>Add to configuration</h2>
+<p>To add the newly built package to your <em>configuration.nix</em>, add it to your packages:</p>
+<pre><code class="language-nix">environment.systemPackages = with pkgs; [
+    #...
+    (callPackage ./fitch.nix {})
+    #...
+];
+</code></pre>
+<p>Then, run <code>nixos-rebuild switch</code>. This should now install the package onto your PC.</p>
+<h2>(Optional) Initialize when shell starts</h2>
+<p>In my case, since I want fitch to run when the terminal starts, I edit my bash configuration in the <em>configuration.nix</em> file.</p>
+<pre><code class="language-nix">programs.bash = {
+    interactiveShellInit = &quot;fitch&quot;;
+}
+</code></pre>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://ryantm.github.io/nixpkgs/languages-frameworks/dotnet/">Dotnet Nixpkgs</a></li>
+<li><a href="https://wuffs.org/blog/joining-the-nixos-pyramid-scheme">Joining the NixOS Pyramid Scheme</a></li>
+<li><a href="https://nix.dev/tutorials/learning-journey/packaging-existing-software">Packaging existing software with Nix</a></li>
+</ul>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

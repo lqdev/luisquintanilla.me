@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - code</title>
+    <link>https://www.lqdev.me/tags/code</link>
+    <description>All content tagged with 'code' by Luis Quintanilla</description>
+    <lastBuildDate>2024-07-28 17:00 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Note to Self: Useful Emacs Commands Pt. 1</title>
+      <description>&lt;![CDATA[&lt;p&gt;I still need to set up an org-capture template for snippets, so writing a note to myself to remember these commands I'll eventually want to come back to.&lt;/p&gt;
+&lt;h2&gt;Capture elfeed link&lt;/h2&gt;
+&lt;p&gt;In this custom function, &lt;code&gt;elfeed-show-yank&lt;/code&gt; extracts the link element in an elfeed entry. &lt;code&gt;org-capture&lt;/code&gt; then just invokes the org-capture template selection prompt. At this point, I can move forward with creating a response entry on the website and since the link to the entry I was viewing in elfeed is in the kill-ring, I can easily paste the URL while filling out the org-capture template.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-lisp"&gt;(defun capture-elfeed-entry ()
+  (elfeed-show-yank)
+  (org-capture))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Org capture contexts&lt;/h2&gt;
+&lt;p&gt;I recently found out, I can add filters to org-capture templates based on the mode I'm in Emacs. Here's an example:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-lisp"&gt;(setq org-capture-templates-contexts
+      '((&amp;quot;wrn&amp;quot; ((in-mode . &amp;quot;elfeed-show-mode&amp;quot;)))))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;org-capture-templates-contexts&lt;/code&gt; defines a set of conditions that defines which contexts certain org-capture templates appear under.&lt;/p&gt;
+&lt;p&gt;For example, the org-capture template mapped to &lt;code&gt;wrn&lt;/code&gt; will only be visible when org-capture is invoked from a buffer in &lt;code&gt;elfeed-show-mode&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;More information can be found in the &lt;a href="https://orgmode.org/manual/Templates-in-contexts.html"&gt;org-capture templates in context documentation&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/useful-emacs-commands-pt-1</link>
+      <guid>https://www.lqdev.me/notes/useful-emacs-commands-pt-1</guid>
+      <pubDate>2024-07-28 17:00 -05:00</pubDate>
+      <category>emacs</category>
+      <category>lisp</category>
+      <category>elisp</category>
+      <category>programming</category>
+      <category>code</category>
+      <category>notetoself</category>
+    </item>
+    <item>
+      <title>Magic.dev</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Magic is working on frontier-scale code models to build a coworker, not just a copilot.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/magic-dev</link>
+      <guid>https://www.lqdev.me/bookmarks/magic-dev</guid>
+      <pubDate>2024-02-15 20:18 -05:00</pubDate>
+      <category>ai</category>
+      <category>copilot</category>
+      <category>magic</category>
+      <category>code</category>
+      <category>agi</category>
+    </item>
+    <item>
+      <title>Stable Code 3B - Coding on the Edge</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Stable Code 3B is a 3 billion parameter Large Language Model (LLM), allowing accurate and responsive code completion at a level on par with models such as CodeLLaMA 7b that are 2.5x larger.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Operates offline even without a GPU on common laptops such as a MacBook Air.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/stable-code-3b-stability</link>
+      <guid>https://www.lqdev.me/bookmarks/stable-code-3b-stability</guid>
+      <pubDate>2024-01-17 20:36 -05:00</pubDate>
+      <category>ai</category>
+      <category>stabilityai"</category>
+      <category>code</category>
+      <category>software</category>
+      <category>softwaredevelopment</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Introducing Code Llama, a state-of-the-art large language model for coding</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Takeaways&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Code Llama is a state-of-the-art LLM capable of generating code, and natural language about code, from both code and natural language prompts.&lt;/li&gt;
+&lt;li&gt;Code Llama is free for research and commercial use.&lt;/li&gt;
+&lt;li&gt;Code Llama is built on top of Llama 2 and is available in three models:
+&lt;ul&gt;
+&lt;li&gt;Code Llama, the foundational code model;&lt;/li&gt;
+&lt;li&gt;Codel Llama - Python specialized for Python;&lt;/li&gt;
+&lt;li&gt;and Code Llama - Instruct, which is fine-tuned for understanding natural language instructions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;In our own benchmark testing, Code Llama outperformed state-of-the-art publicly available LLMs on code tasks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/meta-code-llama</link>
+      <guid>https://www.lqdev.me/bookmarks/meta-code-llama</guid>
+      <pubDate>2023-08-24 12:43 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>llama</category>
+      <category>code</category>
+      <category>opensource</category>
+      <category>meta</category>
+    </item>
+    <item>
+      <title>StarCoder: A State-of-the-Art LLM for Code </title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;StarCoder and StarCoderBase are Large Language Models for Code (Code LLMs) trained on permissively licensed data from GitHub, including from 80+ programming languages, Git commits, GitHub issues, and Jupyter notebooks. Similar to LLaMA, we trained a ~15B parameter model for 1 trillion tokens. We fine-tuned StarCoderBase model for 35B Python tokens, resulting in a new model that we call StarCoder.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/hf-starcoder-llm</link>
+      <guid>https://www.lqdev.me/bookmarks/hf-starcoder-llm</guid>
+      <pubDate>2023-06-01 22:50 -05:00</pubDate>
+      <category>ai</category>
+      <category>code</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - finetuning</title>
+    <link>https://www.lqdev.me/tags/finetuning</link>
+    <description>All content tagged with 'finetuning' by Luis Quintanilla</description>
+    <lastBuildDate>2024-11-04 21:28 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>In-Context LoRA for Diffusion Transformers</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Recent research arXiv:2410.15027 has explored the use of diffusion transformers (DiTs) for task-agnostic image generation by simply concatenating attention tokens across images. However, despite substantial computational resources, the fidelity of the generated images remains suboptimal. In this study, we reevaluate and streamline this framework by hypothesizing that text-to-image DiTs inherently possess in-context generation capabilities, requiring only minimal tuning to activate them. Through diverse task experiments, we qualitatively demonstrate that existing text-to-image DiTs can effectively perform in-context generation without any tuning. Building on this insight, we propose a remarkably simple pipeline to leverage the in-context abilities of DiTs: (1) concatenate images instead of tokens, (2) perform joint captioning of multiple images, and (3) apply task-specific LoRA tuning using small datasets (e.g., 20∼100 samples) instead of full-parameter tuning with large datasets. We name our models In-Context LoRA (IC-LoRA). This approach requires no modifications to the original DiT models, only changes to the training data. Remarkably, our pipeline generates high-fidelity image sets that better adhere to prompts. While task-specific in terms of tuning data, our framework remains task-agnostic in architecture and pipeline, offering a powerful tool for the community and providing valuable insights for further research on product-level task-agnostic generation systems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Repo: https://github.com/ali-vilab/In-Context-LoRA&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/in-context-lora</link>
+      <guid>https://www.lqdev.me/responses/in-context-lora</guid>
+      <pubDate>2024-11-04 21:28 -05:00</pubDate>
+      <category>ai</category>
+      <category>transformers</category>
+      <category>diffusers</category>
+      <category>imagegeneration</category>
+      <category>lora</category>
+      <category>finetuning</category>
+    </item>
+    <item>
+      <title>Thinking LLMs: General Instruction Following with Thought Generation</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;LLMs are typically trained to answer user questions or follow instructions similarly to how human experts respond. However, in the standard alignment framework they lack the basic ability of explicit thinking before answering. Thinking is important for complex questions that require reasoning and planning -- but can be applied to any task. We propose a training method for equipping existing LLMs with such thinking abilities for general instruction following without use of additional human data. We achieve this by an iterative search and optimization procedure that explores the space of possible thought generations, allowing the model to learn how to think without direct supervision. For each instruction, the thought candidates are scored using a judge model to evaluate their responses only, and then optimized via preference optimization. We show that this procedure leads to superior performance on AlpacaEval and Arena-Hard, and shows gains from thinking on non-reasoning categories such as marketing, health and general knowledge, in addition to more traditional reasoning &amp;amp; problem-solving tasks.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/thinking-llms-instruction-following-thought-generation</link>
+      <guid>https://www.lqdev.me/responses/thinking-llms-instruction-following-thought-generation</guid>
+      <pubDate>2024-11-04 21:24 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>research</category>
+      <category>meta</category>
+      <category>chainofthought</category>
+      <category>training</category>
+      <category>finetuning</category>
+    </item>
+    <item>
+      <title>OpenAI - Introducing improvements to the fine-tuning API and expanding our custom models program</title>
+      <description>&lt;![CDATA[[reshare] &lt;h2&gt;New fine-tuning API features&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we’re introducing new features to give developers even more control over their fine-tuning jobs, including:&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Epoch-based Checkpoint Creation: Automatically produce one full fine-tuned model checkpoint during each training epoch, which reduces the need for subsequent retraining, especially in the cases of overfitting&lt;/li&gt;
+&lt;li&gt;Comparative Playground: A new side-by-side Playground UI for comparing model quality and performance, allowing human evaluation of the outputs of multiple models or fine-tune snapshots against a single prompt&lt;/li&gt;
+&lt;li&gt;Third-party Integration: Support for integrations with third-party platforms (starting with Weights and Biases this week) to let developers share detailed fine-tuning data to the rest of their stack&lt;/li&gt;
+&lt;li&gt;Comprehensive Validation Metrics: The ability to compute metrics like loss and accuracy over the entire validation dataset instead of a sampled batch, providing better insight on model quality&lt;/li&gt;
+&lt;li&gt;Hyperparameter Configuration: The ability to configure available hyperparameters from the Dashboard (rather than only through the API or SDK)&lt;/li&gt;
+&lt;li&gt;Fine-Tuning Dashboard Improvements: Including the ability to configure hyperparameters, view more detailed training metrics, and rerun jobs from previous configurations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Expanding our Custom Models Program&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Assisted Fine-Tuning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we are formally announcing our assisted fine-tuning offering as part of the Custom Model program. Assisted fine-tuning is a collaborative effort with our technical teams to leverage techniques beyond the fine-tuning API, such as additional hyperparameters and various parameter efficient fine-tuning (PEFT) methods at a larger scale. It’s particularly helpful for organizations that need support setting up efficient training data pipelines, evaluation systems, and bespoke parameters and methods to maximize model performance for their use case or task.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Custom-Trained Model&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In some cases, organizations need to train a purpose-built model from scratch that understands their business, industry, or domain. Fully custom-trained models imbue new knowledge from a specific domain by modifying key steps of the model training process using novel mid-training and post-training techniques. Organizations that see success with a fully custom-trained model often have large quantities of proprietary data—millions of examples or billions of tokens—that they want to use to teach the model new knowledge or complex, unique behaviors for highly specific use cases.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/openai-introducing-fine-tuning-improvements</link>
+      <guid>https://www.lqdev.me/responses/openai-introducing-fine-tuning-improvements</guid>
+      <pubDate>2024-04-04 22:58 -05:00</pubDate>
+      <category>openai</category>
+      <category>finetuning</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>You can now train a 70b language model at home</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today, we’re releasing Answer.AI’s first project: a fully open source system that, for the first time, can efficiently train a 70b large language model on a regular desktop computer with two or more standard gaming GPUs (RTX 3090 or 4090). This system, which combines FSDP and QLoRA, is the result of a collaboration between Answer.AI, Tim Dettmers (U Washington), and Hugging Face’s Titus von Koeller and Sourab Mangrulkar.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/answer-ai-train-70b-llm-at-home</link>
+      <guid>https://www.lqdev.me/responses/answer-ai-train-70b-llm-at-home</guid>
+      <pubDate>2024-03-08 12:13 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>qlora</category>
+      <category>gpu</category>
+      <category>nvidia</category>
+      <category>finetuning</category>
+    </item>
+    <item>
+      <title>Can LLMs learn from a single example?</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Summary: recently while fine-tuning a large language model (LLM) on multiple-choice science exam questions, we observed some highly unusual training loss curves. In particular, it appeared the model was able to rapidly memorize examples from the dataset after seeing them just once. This astonishing feat contradicts most prior wisdom about neural network sample efficiency. Intrigued by this result, we conducted a series of experiments to validate and better understand this phenomenon. It’s early days, but the experiments support the hypothesis that the models are able to rapidly remember inputs. This might mean we have to re-think how we train and use LLMs.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/can-llms-learn-single-example</link>
+      <guid>https://www.lqdev.me/bookmarks/can-llms-learn-single-example</guid>
+      <pubDate>2023-09-05 23:59 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>finetuning</category>
+      <category>fastai</category>
+    </item>
+    <item>
+      <title>Orca: Progressive Learning from Complex Explanation Traces of GPT-4</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Recent research has focused on enhancing the capability of smaller models
+through imitation learning, drawing on the outputs generated by large
+foundation models (LFMs). A number of issues impact the quality of these
+models, ranging from limited imitation signals from shallow LFM outputs;
+small scale homogeneous training data; and most notably a lack of rigorous
+evaluation resulting in overestimating the small model’s capability as they
+tend to learn to imitate the style, but not the reasoning process of LFMs. To
+address these challenges, we develop Orca, a 13-billion parameter model
+that learns to imitate the reasoning process of LFMs. Orca learns from
+rich signals from GPT-4 including explanation traces; step-by-step thought
+processes; and other complex instructions, guided by teacher assistance from
+ChatGPT. To promote this progressive learning, we tap into large-scale and
+diverse imitation data with judicious sampling and selection. Orca surpasses
+conventional state-of-the-art instruction-tuned models such as Vicuna-13B
+by more than 100% in complex zero-shot reasoning benchmarks like Big-
+Bench Hard (BBH) and 42% on AGIEval. Moreover, Orca reaches parity
+with ChatGPT on the BBH benchmark and shows competitive performance
+(4 pts gap with optimized system message) in professional and academic
+examinations like the SAT, LSAT, GRE, and GMAT, both in zero-shot
+settings without CoT; while trailing behind GPT-4. Our research indicates
+that learning from step-by-step explanations, whether these are generated
+by humans or more advanced AI models, is a promising direction to improve
+model capabilities and skills.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/orca-lm-progressive-learning-gpt-4</link>
+      <guid>https://www.lqdev.me/bookmarks/orca-lm-progressive-learning-gpt-4</guid>
+      <pubDate>2023-06-06 23:29 -05:00</pubDate>
+      <category>ai</category>
+      <category>finetuning</category>
+      <category>gpt</category>
+    </item>
+    <item>
+      <title>PEFT: Parameter-Efficient Fine-Tuning of Billion-Scale Models on Low-Resource Hardware</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...as models get larger and larger, full fine-tuning becomes infeasible to train on consumer hardware. In addition, storing and deploying fine-tuned models independently for each downstream task becomes very expensive, because fine-tuned models are the same size as the original pretrained model. Parameter-Efficient Fine-tuning (PEFT) approaches are meant to address both problems!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;PEFT approaches only fine-tune a small number of (extra) model parameters while freezing most parameters of the pretrained LLMs, thereby greatly decreasing the computational and storage costs. This also overcomes the issues of catastrophic forgetting, a behaviour observed during the full finetuning of LLMs. PEFT approaches have also shown to be better than fine-tuning in the low-data regimes and generalize better to out-of-domain scenarios. It can be applied to various modalities, e.g., image classification and stable diffusion dreambooth.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/peft-parameter-efficient-fine-tuning</link>
+      <guid>https://www.lqdev.me/bookmarks/peft-parameter-efficient-fine-tuning</guid>
+      <pubDate>2023-04-20 21:32 -05:00</pubDate>
+      <category>ai</category>
+      <category>finetuning</category>
+    </item>
+  </channel>
+</rss>

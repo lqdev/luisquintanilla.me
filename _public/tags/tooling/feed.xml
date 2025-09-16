@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - tooling</title>
+    <link>https://www.lqdev.me/tags/tooling</link>
+    <description>All content tagged with 'tooling' by Luis Quintanilla</description>
+    <lastBuildDate>10/04/2021 19:58 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Automate YAML front-matter generation with custom Visual Studio Code snippets</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+When creating content with static site generators such as Jekyll, Hexo, and many others, page metadata such as publish date, title, tags, and other details is created using YAML front-matter. Typically these pages are authored in markdown. At the top of each page, there's a YAML formatted section containing all of these details. Sometimes these static site generators include tooling to make it easier to scaffold new pages. In the case of my website, I created my own static site generator. Therefore, scaffolding a new page, especially writing the boilerplate YAML front-matter is cumbersome and time consuming. Since I use Visual Studio Code for authoring content and developing the static site generator, I've decided to use [snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets) to help me automate YAML front-matter generation. In this post, I'll show the general process. 
+
+## Create snippets file
+
+The first thing you'll want to do is create a snippets file. You can have one or as many as you want. For this website, I have a single snippets file called *metadata.code-snippets* for all my YAML front-matter. To create a snippets file:
+
+1. Open the Visual Studio Code command palette.
+1. Enter the command `&gt;Preferences: Configure User Snippets` into the text box.
+1. Select the **New Snippets file for \&lt;REPO-OR-DIRECTORY-NAME\&gt;** from the list of options. 
+
+    ![Create snippet file from Visual Studio Code command palette](https://user-images.githubusercontent.com/11130940/135934846-a76dfa16-caed-4489-9e50-95183add673d.png)
+
+1. Provide a name for your snippets file and press **Enter**.
+1. A file with the *.code-snippets* extension is created in the *.vscode* directory inside your project. 
+
+One benefit of creating a snippets file and saving it in the *.vscode* directory is you can check it into source control and use it anywhere, even github.dev. 
+
+## Create snippets
+
+Now that you've created the file, it's time to define your snippets.
+
+1. Open your snippets file.
+
+    ![Snippet file for luisquintanilla.me](https://user-images.githubusercontent.com/11130940/135935306-1cbd48e1-6e48-423c-b87f-cb6f7a8eb085.png)
+
+1. Create a new JSON object and define your snippet.
+
+    For example, the snippet for blog posts on this site looks like the following.
+
+    ```json
+    "Article Post metadata": {
+        "scope": "markdown",
+        "prefix": "article",
+        "body": [
+            "---",
+            "post_type: \"article\" ",
+            "title: \"\"",
+            "published_date: \"$CURRENT_MONTH/$CURRENT_DATE/$CURRENT_YEAR $CURRENT_HOUR:$CURRENT_MINUTE\"",
+            "tags: ",
+            "---"
+        ],
+        "description": "Blog post article metadata"
+    }
+    ```
+
+    Let's break down each of the properties:
+
+    - `scope`: By default, snippets apply to all languages and projects. In my case, since I intend only to use these snippets in markdown files, I set the scope to `markdown`. 
+    - `prefix`: The prefix is the word in the page that is associated with. When I type `article` in a markdown page, a recommendation to use the snippet appears.
+    - `body`: The code or content of my snippet. In this case, the expected output is similar to the following.
+
+        ```yaml
+        ---
+        post_type: "article" 
+        title: ""
+        published_date: "10/04/2021 18:58 -05:00"
+        tags: 
+        ---
+        ```
+
+        VS Code also has built-in variables that you can use to automatically set date, time, and other values.
+
+    - `description`: A text description of your snippet.
+
+For more information on creating snippets, see [Create your own snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets).
+
+## Use your snippets
+
+1. Create a new markdown file.
+1. Type your prefix into the file. In my case, for blog posts my prefix is `article`.
+1. Press **Ctrl + Space**. For Macs you might have to use Cmd instead of Ctrl. 
+
+    ![Populate article front-matter using snippet](https://user-images.githubusercontent.com/11130940/135935808-46ca8314-c2be-47f1-9c9b-9b722e37d908.png)
+
+1. A tooltip with your snippet's description appears. Press **Enter**. 
+
+At this point, your snippet's prefix is replaced with the content defined in the snippet's body.
+
+## Conclusion
+
+In this post I've shown how you can use Visual Studio Code snippets to automate YAML front-matter generation when working with common static site generators that don't provide tooling to scaffold new pages. Snippets can be used for a variety of scenarios and if there's any boilerplate code or content you constantly have to write, they can save you a lot of time. 
+
+Happy writing!
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/automate-yaml-front-matter-vs-code-snippets</link>
+      <guid>https://www.lqdev.me/posts/automate-yaml-front-matter-vs-code-snippets</guid>
+      <pubDate>10/04/2021 19:58 -05:00</pubDate>
+      <category>blogging</category>
+      <category>tooling</category>
+      <category>visual-studio</category>
+      <category>visual-studio-code</category>
+      <category>markdown</category>
+      <category>yaml</category>
+    </item>
+    <item>
+      <title>Automate ML.NET model schema generation from sample JSON data with Visual Studio</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+When using ML.NET models to make predictions, you often have to define classes for the model's input and output schema. In a previous post, I showed how you can [use Netron to inspect ML.NET models](/posts/inspect-mlnet-models-netron/) and manually define classes to represent the input and output schema for your model. That works for models that don't have a lot of features / columns. However, as the number of columns grows, it can become cumbersome to define these classes. Visual Studio has a feature that can help automate that process. Assuming you have a sample of your input and output data in JSON format, you can leverage a built-in feature "Paste JSON As Classes" to take the sample and convert it to a class. In this post, I'll show how to do that.
+
+## Prerequisites
+
+- Visual Studio 2019. Though I haven't tested with VS2022, I assume "Paste JSON As Classes" is also available there.
+
+## Convert sample JSON data to C# classes
+
+In this post, I'll work with the *sentiment_model.zip* model to classify sentiment, which you can find in the [dotnet/samples](https://github.com/dotnet/samples/blob/main/machine-learning/models/sentimentanalysis/sentiment_model.zip) repo.
+
+The model input has 3 columns:
+
+- SentimentText (string)
+- Label (boolean)
+- SamplingKeyColumn (float32)
+
+The model output has at least 2 columns since it uses a binary classification algorithm. For information on expected output columns based on the machine learning algorithm/task, see the [ML.NET tasks article](https://docs.microsoft.com/dotnet/machine-learning/resources/tasks#binary-classification-inputs-and-outputs).
+
+- Score (Single). Single is a single-precision floating-point number.
+- PredictedLabel (boolean)
+
+With that in mind, let's then assume that we have sample input data in JSON format that looks as follows.
+
+```json
+{
+    "SentimentText": "This was a very bad steak",
+    "Label": false,
+    "SamplingKeyColumn": 1.0
+}
+```
+
+Inside a C# project in Visual Studio:
+
+1. Create a C# class
+   1. Right-click your project.
+   2. Select **Add &gt; Class**.
+   3. Provide a name for your class in the New Item dialog.
+2. Copy the input JSON data sample to your clipboard.
+3. Place your cursor inside the namespace block of your newly created class.
+4. In the Visual Studio toolbar, select **Edit &gt; Paste Special &gt; Paste JSON as Classes**.
+5. The result should look similar to the following:
+
+    ```csharp
+    public class Rootobject
+    {
+        public string SentimentText { get; set; }
+        public bool Label { get; set; }
+        public float SamplingKeyColumn { get; set; }
+    }
+    ```
+
+6. Rename the class to something more descriptive like `ModelInput`. The class should look similar to the following:
+
+    ```csharp
+    public class ModelInput
+    {
+        public string SentimentText { get; set; }
+        public bool Label { get; set; }
+        public float SamplingKeyColumn { get; set; }
+    }
+    ```
+
+7. Create a JSON data sample for your output. In this case it'd look something like:
+
+    ```json
+    {
+        "Score": 1.0,
+        "PredictedLabel": false
+    }
+    ```
+
+8. Repeat steps 1-6 for your output JSON data sample. The resulting class should look similar to the following:
+
+    ```csharp
+    public class ModelOutput
+    {
+        public float Score { get; set; }
+        public bool PredictedLabel { get; set; }
+    }
+    ```
+
+It's important to note that the name of the class does not matter as long as the column names and types are the same the ones the model expects.
+
+At this point, you can go through the process of [using the model to make predictions on new data](https://docs.microsoft.com/dotnet/machine-learning/how-to-guides/machine-learning-model-predictions-ml-net).
+
+## Conclusion
+
+Although the model used in this post does not have many columns, when you have many columns "Paste JSON As Classes" can significantly simplify the process of creating your input and output schema classes for ML.NET models. Happy coding!
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/vs-automate-mlnet-schema-generation</link>
+      <guid>https://www.lqdev.me/posts/vs-automate-mlnet-schema-generation</guid>
+      <pubDate>2021-08-26 18:00:00 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>machine learning</category>
+      <category>mlnet</category>
+      <category>artificial intelligence</category>
+      <category>tooling</category>
+      <category>visual studio</category>
+    </item>
+    <item>
+      <title>Inspect ML.NET models with Netron</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+Once you've trained a machine learning model, you typically serialize it and save it to a file. This serialized file contains information such as the model inputs and output schema (names, data types), the transformations and algorithms used by the model,  weights / coefficients, hyperparameters, and all other sorts of information about the model. The model file is then embedded in an end-user application such as a web API which deserializes the contents of the file and uses the model to make predictions on new data.
+
+How the model is serialized depends on the framework you use to train your model. To standardize model serialization and interoperability, you can use something like Open Neural Network Exchange (ONNX) to represent your models if supported by the framework you're using. That's beyond the scope of this post though.
+
+Regardless of which framework or serialization format is used, if you were to open up the model file, the contents of the model file are often not human readable or difficult to interpret. When the person who trains the model is also putting it into production, they know the format input data needs to be in to make predictions. That's not often the case though. As a result, the people putting models into production need the ability to inspect a model to get a sense of how they need to collect and preprocess input data before making predictions. That's where Netron comes in. [Netron](https://github.com/lutzroeder/Netron) is a "visualizer for neural network, deep learning, and machine learning models". In this post, I'll show how you can use Netron to inspect ML.NET models and use that information to define the model input and output schemas.
+
+## Inspecting an ML.NET model
+
+ML.NET models are typically serialized and saved to files with the *.zip* file extension. Using the *.zip* file extension is standard convention. However, the extension can be whatever makes the most sense to you.
+
+A common question is, what's in the *zip* file? The easy but vague answer to that question is, a serialized version of the model. Using Netron, you can go deeper and see exactly what is inside the *zip* file. 
+
+In this post, I'm using a pretrained ML.NET model that classifies sentiment. The model can be found in the [dotnet/samples](https://github.com/dotnet/samples/blob/main/machine-learning/models/sentimentanalysis/sentiment_model.zip) repo. The same concept applies to any other ML.NET model.
+
+To inspect the ML.NET model using Netron:
+
+1. [Download the model](https://github.com/dotnet/samples/raw/main/machine-learning/models/sentimentanalysis/sentiment_model.zip)
+2. Navigate to [https://netron.app](https://netron.app/). Alternatively, if you'd prefer to use Netron offline, you can also [download the latest version of Netron](https://github.com/lutzroeder/netron/releases) for your operating system (Windows, Mac, or Linux). In this post, I use the web app.
+3. Select **Open Model...** and use the file browser to select your ML.NET model. In this case, our model is *sentiment_model.zip*.
+4. After a few seconds, a graph describing you model appears. How long it takes for your model depends on its size. The larger your model, the longer it takes to load. The nodes in the graph represent the model inputs, transformations, algorithm, and outputs.
+5. Usually the top nodes represent the model inputs and the last node represents the algorithm or trainer. Click on any of the top nodes to display more information about the inputs.
+
+    ![Sentiment Classification ML.NET model in netron](https://user-images.githubusercontent.com/11130940/130704589-61ebb612-d65f-4364-b275-bd0d4991d3cf.png)
+
+    For this model, we see that there are 3 input properties or columns:
+
+    - SentimentText (string)
+    - Label (boolean)
+    - SamplingKeyColumn (float32)
+
+    Using this information, we can represent the model inputs as a Plain-Old-CLR-Object (POCO) in our end-user application.
+
+    ```csharp
+    public class ModelInput
+    {
+        public string SentimentText {get;set;}
+        public bool Label {get;set;}
+        public float SamplingKeyColumn {get;set;} 
+    }
+    ```
+
+    ![ML.NET Netron Binary Predictor](https://user-images.githubusercontent.com/11130940/130705880-0baea2f7-7b45-408a-b60c-16acceb54079.png)
+
+    Looking at the last node `BinaryPredXfer`, we see that the algorithm used is for binary classification or predictions. Looking at the [ML.NET tasks documentation](https://docs.microsoft.com/dotnet/machine-learning/resources/tasks#binary-classification-inputs-and-outputs), we expect to get at least two columns in the prediction output:
+
+    - Score (Single)
+    - PredictedLabel (boolean)
+
+    Like the input, we can also represent model outputs or predictions as follows:
+
+    ```csharp
+    public class ModelOutput
+    {
+        public float Score {get;set;}
+        public bool PredictedLabel {get;set;}
+    }
+    ```
+
+    Keep in mind that the name of the class can be anything so long as the properties or column names and types match with those expected by the model.
+
+Once you have your model inputs and outputs defined in your end-user application, you can follow the standard process of [loading your model and using it to make predictions](https://docs.microsoft.com/dotnet/machine-learning/how-to-guides/machine-learning-model-predictions-ml-net).
+
+## Conclusion
+
+Inspecting ML.NET models can be difficult since their serialized version is not human readable. When making predictions with ML.NET models but you're not familiar with what the input and output data should look like, use Netron to inspect the model. Then, use the information about the input data names and types, machine learning task, and algorithm to define model input and output schema classes in your end-user application. Once you've defined your model input and output, you can use the model to make predictions on new data.
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/inspect-mlnet-models-netron</link>
+      <guid>https://www.lqdev.me/posts/inspect-mlnet-models-netron</guid>
+      <pubDate>2021-08-25 18:00:00 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>machine learning</category>
+      <category>mlnet</category>
+      <category>netron</category>
+      <category>artificial intelligence</category>
+      <category>tooling</category>
+    </item>
+  </channel>
+</rss>

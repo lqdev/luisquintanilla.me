@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - images</title>
+    <link>https://www.lqdev.me/tags/images</link>
+    <description>All content tagged with 'images' by Luis Quintanilla</description>
+    <lastBuildDate>2024-03-05 12:55 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Stable Diffusion 3: Research Paper</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Key Takeaways:&lt;br /&gt;
+&lt;br&gt;
+Today, we’re publishing our research paper that dives into the underlying technology powering Stable Diffusion 3.&lt;br /&gt;
+&lt;br&gt;
+Stable Diffusion 3 outperforms state-of-the-art text-to-image generation systems such as DALL·E 3, Midjourney v6, and Ideogram v1 in typography and prompt adherence, based on human preference evaluations.&lt;br /&gt;
+&lt;br&gt;
+Our new Multimodal Diffusion Transformer (MMDiT) architecture uses separate sets of weights for image and language representations, which improves text understanding and spelling capabilities compared to previous versions of SD3.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/stable-diffusion-3-research-paper</link>
+      <guid>https://www.lqdev.me/responses/stable-diffusion-3-research-paper</guid>
+      <pubDate>2024-03-05 12:55 -05:00</pubDate>
+      <category>stabilityai</category>
+      <category>stablediffusion</category>
+      <category>ai</category>
+      <category>generativeai</category>
+      <category>genai</category>
+      <category>images</category>
+    </item>
+    <item>
+      <title>DALL·E 3</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;DALL·E 3 understands significantly more nuance and detail than our previous systems, allowing you to easily translate your ideas into exceptionally accurate images.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/dall-e-3</link>
+      <guid>https://www.lqdev.me/bookmarks/dall-e-3</guid>
+      <pubDate>2023-09-22 10:18 -05:00</pubDate>
+      <category>dalle</category>
+      <category>ai</category>
+      <category>openai</category>
+      <category>images</category>
+      <category>llm</category>
+      <category>ml</category>
+    </item>
+  </channel>
+</rss>

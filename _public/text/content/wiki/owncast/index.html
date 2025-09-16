@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Owncast - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Owncast</h1><div class="content-meta"><div class="content-type">wiki</div><time datetime="2025-01-31">January 31, 2025</time><p>Tags: owncast, fediverse, livestream</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/wiki/">← All wiki</a> | <a href="https://www.lqdev.me/resources/wiki/owncast">View Full Version</a></p><div class="content"><h2>Overview</h2>
+<p>Owncast is a free and open source live video and web chat server for use with existing popular broadcasting software.</p>
+<h2>Simulcast</h2>
+<p>By default, when you set up streaming software, it will only stream to your Owncast instance. If you want to simultaneously broadcast to various services, you'll have to either use something like Restream or you can also use FFMPEG.</p>
+<h3>YouTube</h3>
+<p>With your brodcast stream started, use the following FFMPEG command to simulcast to YouTube.</p>
+<pre><code class="language-bash">ffmpeg -v verbose -re -i https://YOUR-OWNCAST-SERVER/hls/stream.m3u8 -c:v libx264 -c:a aac -f flv rtmp://a.rtmp.youtube.com/live2/YOUR-STREAM-KEY
+</code></pre>
+<p>This command will copy the video and audio feeds from your HLS Owncast live stream and forward them to YouTube.</p>
+<h2>Ressources</h2>
+<ul>
+<li><a href="https://owncast.online/">Owncast</a></li>
+<li><a href="https://obsproject.com/forum/resources/obs-studio-stream-to-multiple-platforms-or-channels-at-once.932/">OBS Studio: Stream to multiple platforms or channels at once</a></li>
+</ul>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - speech</title>
+    <link>https://www.lqdev.me/tags/speech</link>
+    <description>All content tagged with 'speech' by Luis Quintanilla</description>
+    <lastBuildDate>2025-06-03 20:19 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Introducing ElevenLabs Conversational AI 2.0</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Conversational AI 2.0 launches with advanced features and enterprise readiness.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Natural turn-taking to understand the flow of conversation.&lt;/li&gt;
+&lt;li&gt;Multilingual communication with integrated language detection&lt;/li&gt;
+&lt;li&gt;Integrated RAG: knowledgeable agents, minimum latency, maximum privacy&lt;/li&gt;
+&lt;li&gt;Multimodality&lt;/li&gt;
+&lt;li&gt;Batch calls&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/elevenlabs-conversational-ai-2-0</link>
+      <guid>https://www.lqdev.me/responses/elevenlabs-conversational-ai-2-0</guid>
+      <pubDate>2025-06-03 20:19 -05:00</pubDate>
+      <category>ai</category>
+      <category>speech</category>
+      <category>elevenlabs</category>
+    </item>
+    <item>
+      <title>Coqui 🐸 XTTS</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;&lt;a href="https://huggingface.co/coqui/XTTS-v1"&gt;XTTS&lt;/a&gt; is a Voice generation model that lets you clone voices into different languages by using just a quick 3-second audio clip.&lt;/p&gt;
+&lt;p&gt;XTTS is built on previous research, like Tortoise, with additional architectural innovations and training to make cross-language voice cloning and multilingual speech generation possible.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/coqui-xtts-text-to-speech</link>
+      <guid>https://www.lqdev.me/bookmarks/coqui-xtts-text-to-speech</guid>
+      <pubDate>2023-09-17 12:25 -05:00</pubDate>
+      <category>ai</category>
+      <category>generativeai</category>
+      <category>speech</category>
+      <category>huggingface</category>
+      <category>ml</category>
+      <category>tts</category>
+      <category>opensource</category>
+    </item>
+  </channel>
+</rss>

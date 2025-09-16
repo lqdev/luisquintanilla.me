@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Sending Webmentions with F# - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Sending Webmentions with F#</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2021-12-14">December 14, 2021</time></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/sending-webmentions-fsharp-fsadvent">View Full Version</a></p><div class="content"><h2>Introduction</h2>
+<blockquote class="blockquote">
+<p>This post is part of the <a href="https://sergeytihon.com/2021/10/18/f-advent-calendar-2021">F# Advent 2021</a>.</p>
+</blockquote>
+<p>Webmentions is a W3C specification that defines a standard way of implementing notifications between websites. It enables rich interactions between websites using standard protocols. According to the spec, &quot;Webmention is a simple way to notify any URL when you mention it on your site. From the receiver's perspective, it's a way to request notifications when other sites mention it&quot;.</p>
+<p>If you're interested in learning more about the spec and overall use cases, see the following links:</p>
+<ul>
+<li><a href="https://boffosocko.com/2018/07/19/webmentions-enabling-better-communication-on-the-internet-2/">Webmentions: Enabling better communication on the internet</a></li>
+<li><a href="https://aaronparecki.com/2018/06/30/11/your-first-webmention">Sending your first Webmention from scratch</a></li>
+<li><a href="https://www.w3.org/TR/webmention/">Webmentions W3C specification</a></li>
+<li><a href="https://webmention.rocks/">Webmentions implementation tests</a></li>
+</ul>
+<p>The Webmentions protocol has send and receive components. In this post, I'll go over a lightweight implementation for sending Webmentions using F# and test it using the <a href="https://webmention.rocks/">webmention.rocks</a> website. Source code for this post can be found at the <a href="https://github.com/lqdev/fsadvent-2021-webmentions">fsadvent-2021-webmentions GitHub repository</a>.</p>
+<h2>Sending Webmention workflow</h2>
+<p>Let's say you want to use webmentions to reply to or mention content from another site. The general workflow works as follows:</p>
+<ol>
+<li><p>You create a document (source) that mentions content from another website (target).</p>
+</li>
+<li><p>You perform discovery on the target website for the webmention endpoint URL. The URL might be in one of three places:</p>
+<ol>
+<li>HTTP response headers.</li>
+<li><code>&lt;link&gt;</code> tag with <code>rel=webmention</code> attribute.</li>
+<li><code>&lt;a&gt;</code> tag with <code>rel=webmention</code> attribute.</li>
+</ol>
+<p>The discovery is performed in order and each subsequent option works as a fallback of the other.</p>
+</li>
+<li><p>You make an HTTP POST request notifying the source that you've mentioned their article on your site. The request body is in <code>x-www-form-urlencoded</code> form containing the <code>source</code> and <code>target</code> parameters where source is the URL of your article and the target is the URL of article being mentioned.</p>
+</li>
+</ol>
+<p>For more details on this workflow, see the <a href="https://www.w3.org/TR/webmention/#sending-webmentions">Sending Webmentions section</a> of the specification.</p>
+<h2>Create a document</h2>
+<p>The document can be any publicly hosted HTML document as long as you have a source URL to provide during your notification request.</p>
+<p>For example, you can have something like the following:</p>
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;F# Advent 2021 - Webmentions&lt;/title&gt;
+&lt;/head&gt;
+    &lt;body&gt;
+        &lt;a href=&quot;https://webmention.rocks/test/1&quot;&gt;F# Advent 2021 - This is a great post&lt;/a&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Using <a href="http://microformats.org/wiki/h-entry">microformats</a> though, you can annotate your HTML to provide more context to the receiver. The same document with microformats providing the author, content, and source document being replied to might look like the following with microformats:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;F# Advent 2021 - Webmentions&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;h-entry&quot;&gt;
+        &lt;div class=&quot;u-author h-card&quot;&gt;
+            &lt;a href=&quot;http://lqdev.me&quot; class=&quot;u-url p-name&quot;&gt;lqdev&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;p&gt;In reply to: &lt;a href=&quot;https://webmention.rocks/test/1&quot; class=&quot;u-in-reply-to&quot;&gt;@webmention.rocks&lt;/a&gt;&lt;/p&gt;
+        &lt;p class=&quot;e-content&quot;&gt;F# Advent 2021 - This is a great post&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Receiving Webmentions is beyond the scope of this post, so I'll skip over them. Once you have a document and make it publicly accessible to the web, it's time to find where to send notifications to.</p>
+<h2>Discover Webmention endpoint URL</h2>
+<p>To discover where to send the Webmention to, send an HTTP GET or HTTP HEAD request to the target URL. Once you get the response, the Webmention endpoint URL should be in one of three places:</p>
+<ul>
+<li><p>HTTP headers</p>
+<pre><code class="language-text">GET /test/1 HTTP/1.1
+Host: webmention.rocks
+HTTP/1.1 200 OK
+Link: &lt;https://webmebtion.rocks/test/1/webmention&gt;; rel=&quot;webmention&quot;
+</code></pre>
+</li>
+<li><p><code>&lt;link&gt;</code> tag</p>
+<pre><code class="language-html">&lt;html&gt;
+    &lt;head&gt;
+    ...
+        &lt;link href=&quot;http://webmention.rocks/test/1/webmention&quot; rel=&quot;webmention&quot; /&gt;
+    ...
+    &lt;/head&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+<li><p><code>&lt;a&gt;</code> tag</p>
+<pre><code class="language-html">&lt;html&gt;
+    &lt;body&gt;
+    ....
+    &lt;a href=&quot;http://webmention.rocks/test/1/webmention&quot; rel=&quot;webmention&quot;&gt;webmention&lt;/a&gt;
+    ...
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+</ul>
+<p>The following examples show how you'd implement the discovery process for each of these scenarios in F#.</p>
+<h3>Discover Webmention URL in header</h3>
+<p>The <code>discoverUrlInHeaderAsync</code> function uses the .NET HttpClient to make an HTTP HEAD request to get the headers from the target URL provided. Then, a search is performed for a &quot;link&quot; header containing the text &quot;webmention&quot;. Once the header is found, it's sanitized to extract the Webmention endpoint URL of the target site.</p>
+<pre><code class="language-fsharp">let discoverUrlInHeaderAsync (url:string) =
+    async {
+        // Initialize HttpClient
+        use client = new HttpClient()
+
+        // Prepare request message
+        let reqMessage = new HttpRequestMessage(new HttpMethod(&quot;HEAD&quot;), url)
+        
+        // Send request
+        let! response = client.SendAsync(reqMessage) |&gt; Async.AwaitTask
+
+        // Get request headers
+        let responseHeaders = 
+            [
+                for header in response.Headers do
+                    header.Key.ToLower(), header.Value
+            ]
+
+        // Look for webmention header
+        try
+            // Find &quot;link&quot; header that contains &quot;webmention&quot;
+            let webmentionHeader =
+                responseHeaders
+                |&gt; Seq.filter(fun (k,_) -&gt; k = &quot;link&quot;)
+                |&gt; Seq.map(fun (_,v) -&gt; v |&gt; Seq.filter(fun header -&gt; header.Contains(&quot;webmention&quot;)))
+                |&gt; Seq.head
+                |&gt; List.ofSeq
+                |&gt; List.head
+
+            // Get first part of &quot;link&quot; header
+            let webmentionUrl = 
+                webmentionHeader.Split(';')
+                |&gt; Array.head
+
+            // Remove angle brackets from URL
+            let sanitizedWebmentionUrl = 
+                webmentionUrl
+                    .Replace(&quot;&lt;&quot;,&quot;&quot;)
+                    .Replace(&quot;&gt;&quot;,&quot;&quot;)
+                    .Trim()
+
+            return Some sanitizedWebmentionUrl                    
+
+        with
+            | _ -&gt; return None
+        
+    }
+</code></pre>
+<h3>Discover Webmention URL endpoint in link tag</h3>
+<p>The next place to check for a Webmention endpoint URL is a <code>&lt;link&gt;</code> tag in the document. In this example, the <code>discoverUrlInLinkTagAsync</code> function uses <code>FSharp.Data</code> library to get the contents of the target URL and parse the HTML contents to find a link tag with a <code>rel=webmention</code> attribute value.</p>
+<pre><code class="language-fsharp">let discoverUrlInLinkTagAsync (url:string) = 
+    async {
+        // Load HTML document
+        let! htmlDoc = HtmlDocument.AsyncLoad(url)
+
+        // Get webmention URL from &quot;&lt;link&gt;&quot; tag
+        try
+            let webmentionUrl = 
+                htmlDoc.CssSelect(&quot;link[rel='webmention']&quot;)
+                |&gt; List.map(fun link -&gt; link.AttributeValue(&quot;href&quot;))
+                |&gt; List.head
+
+            return Some webmentionUrl
+        with
+            | _ -&gt; return None
+    }
+</code></pre>
+<h3>Discover Webmention endpoint URL in anchor tag</h3>
+<p>The last place to check for the Webmention endpoint URL is in an anchor tag in the contents of the target URL. In this example, the <code>discoverUrlInAnchorTagAsync</code> uses the <code>FSharp.Data</code> library to get the contents of the target URL and parse the HTML contents to find an anchor tag with a <code>rel=webmention</code> attribute value.</p>
+<pre><code class="language-fsharp">let discoverUrlInAnchorTagAsync (url:string) = 
+    async {
+        // Load HTML document
+        let!  htmlDoc = HtmlDocument.AsyncLoad(url)
+
+        // Get webmention URL from &quot;&lt;a&gt;&quot; tag
+        try
+            let webmentionUrl = 
+                htmlDoc.CssSelect(&quot;a[rel='webmention'&quot;)
+                |&gt; List.map(fun a -&gt; a.AttributeValue(&quot;href&quot;))
+                |&gt; List.head
+
+            return Some webmentionUrl
+        with
+            | _ -&gt; return None
+    }
+</code></pre>
+<p>Once the utility functions are in place to handle the different scenarios, create a new function to perform the discovery workflow.</p>
+<pre><code class="language-fsharp">// Apply webmention URL discovery workflow
+// 1. Check header
+// 2. Check link tag
+// 3. Check anchor tag
+let discoverWebmentionUrlAsync (url:string) = 
+    async {
+        let! headerUrl = discoverUrlInHeaderAsync url
+        let! linkUrl = discoverUrlInLinkTagAsync url
+        let! anchorUrl = discoverUrlInAnchorTagAsync url
+
+        // Aggregate results
+        let discoveryResults = [headerUrl; linkUrl; anchorUrl]
+
+        // Unwrap and take the first entry containing a value
+        let webmentionUrl = 
+            discoveryResults
+            |&gt; List.choose(fun url -&gt; url)
+            |&gt; List.head
+
+        return webmentionUrl
+    }
+</code></pre>
+<p>The <code>discoverWebmentionUrlAsync</code> calls all of the discovery utility methods and chooses only the results that successfully extracted a Webmention endpoint URL. In the event of multiple endpoints, the first one is takes precedence.</p>
+<h2>Send Webmention</h2>
+<p>Now that you have a publicly accessible document and the Webmention URL endpoint to send your Webmention to, it's time to send it.</p>
+<pre><code class="language-fsharp">let sendWebMentionAsync (url:string) (req:IDictionary&lt;string,string&gt;) = 
+    async {
+        use client = new HttpClient()
+        let content = new FormUrlEncodedContent(req)
+        let! response = client.PostAsync(url, content) |&gt; Async.AwaitTask
+        return response.IsSuccessStatusCode
+    }
+</code></pre>
+<p>The <code>sendWebMentionAsync</code> function uses the .NET HttpClient to send an HTTP POST request to the Webmention endpoint URL you just extracted.</p>
+<p>Define your source and target URLs</p>
+<pre><code class="language-fsharp">let sourceUrl = new Uri(&quot;https://raw.githubusercontent.com/lqdev/fsadvent-2021-webmentions/main/reply.html&quot;)
+let targetUrl = new Uri(&quot;https://webmention.rocks/test/1&quot;)
+</code></pre>
+<p>The source URL I used in this example is hosted on <a href="https://raw.githubusercontent.com/lqdev/fsadvent-2021-webmentions/main/reply.html">GitHub</a> and the target URL is the first implementation test in the <a href="https://webmention.rocks/test/1">webmention.rocks</a> website.</p>
+<p>Then, create a function to run the entire workflow end-to-end.</p>
+<pre><code class="language-fsharp">let runWebmentionWorkflow () = 
+    async {
+        // Discover webmention endpoint URL of target URL
+        let! discoveredUrl = 
+            targetUrl.OriginalString
+            |&gt; discoverWebmentionUrlAsync
+
+        // Construct URL depending on whether it's absolute or relative
+        let authority = targetUrl.GetLeftPart(UriPartial.Authority)
+
+        let constructedUrl = 
+            match (discoveredUrl.Contains(&quot;http&quot;)) with
+            | true -&gt; discoveredUrl
+            | false -&gt; 
+                let noQueryUrl = 
+                    discoveredUrl.Split('?')
+                    |&gt; Array.head
+                    
+                $&quot;{authority}{noQueryUrl}&quot;
+
+        // Prepare webmention request data
+        let reqData = 
+            dict [
+                (&quot;source&quot;, sourceUrl.OriginalString)
+                (&quot;target&quot;, targetUrl.OriginalString)
+            ]
+
+        // Send web mentions
+        return! sendWebMentionAsync constructedUrl reqData
+    }
+</code></pre>
+<p>Now that you have everything set up, you're ready to send your webmention!</p>
+<pre><code class="language-fsharp">runWebmentionWorkflow ()
+|&gt; Async.RunSynchronously
+</code></pre>
+<p>If your post is successful, you should see it on the target URL.</p>
+<p><a href="https://user-images.githubusercontent.com/11130940/145919398-2576bfef-3a5d-44f4-9813-9cf933539ede.png" target="_blank">[Image: Display of Webmention post on webmention.rocks]</a></p>
+<h2>Conclusion</h2>
+<p>In this post, I showed how you can use F# to implement sending webmentions using F#. This is not a full implementation as there are still scenarios I need to account for like receiving webmentions. There are community maintained <a href="https://indieweb.org/Webmention-developer#Libraries">libraries</a>, <a href="https://indieweb.org/Webmention#Publishing_Software">plugins</a>, and <a href="https://indieweb.org/Webmention#Services">services</a> to simplify the process, but because the specification is built on open protocols and standards, it's possible to build your own implementation in F# and integrate it into your website. Happy coding!</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

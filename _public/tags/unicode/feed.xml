@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - unicode</title>
+    <link>https://www.lqdev.me/tags/unicode</link>
+    <description>All content tagged with 'unicode' by Luis Quintanilla</description>
+    <lastBuildDate>09/03/2022 19:26 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Unicode Emojis</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Unicode emoji characters and sequences.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;h3&gt;Unicode&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;span&amp;gt;&amp;amp;#x1F642;&amp;lt;/span&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;span&gt;🙂&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;CLDR Name&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-markdown"&gt;I am :slightly_smiling_face:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I am 🙂&lt;/p&gt;
+&lt;h2&gt;Emoji List&lt;/h2&gt;
+&lt;p&gt;Emoji&lt;/p&gt;
+&lt;p&gt;Unicode&lt;/p&gt;
+&lt;p&gt;CLDR Name&lt;/p&gt;
+&lt;p&gt;🙂&lt;/p&gt;
+&lt;p&gt;U+1F642&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:slightly_smiling_face:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;😂&lt;/p&gt;
+&lt;p&gt;U+1F602&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:joy:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🙃&lt;/p&gt;
+&lt;p&gt;U+1F643&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:upside_down_face:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;😑&lt;/p&gt;
+&lt;p&gt;U+1F611&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:expressionless:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🙄&lt;/p&gt;
+&lt;p&gt;U+1F644&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:roll_eyes:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🤮&lt;/p&gt;
+&lt;p&gt;U+1F92E&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:vomiting_face:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🤯&lt;/p&gt;
+&lt;p&gt;U+1F92F&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:exploding_head:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;😕&lt;/p&gt;
+&lt;p&gt;U+1F615&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:confused:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🙁&lt;/p&gt;
+&lt;p&gt;U+1F641&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:slightly_frowning_face:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;😮&lt;/p&gt;
+&lt;p&gt;U+1F62E&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:open_mouth:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;😡&lt;/p&gt;
+&lt;p&gt;U+1F621&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:rage:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;👻&lt;/p&gt;
+&lt;p&gt;U+1F47B&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:ghost:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;👽&lt;/p&gt;
+&lt;p&gt;U+1F47D&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:alien:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🤖&lt;/p&gt;
+&lt;p&gt;U+1F916&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:robot:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;❤️&lt;/p&gt;
+&lt;p&gt;U+2764&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:heart:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;:bison:&lt;/p&gt;
+&lt;p&gt;U+1F9AC&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:bison:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;:bagel:&lt;/p&gt;
+&lt;p&gt;U+1F96F&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:bagel:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🍿&lt;/p&gt;
+&lt;p&gt;U+1F37F&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:popcorn:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🍺&lt;/p&gt;
+&lt;p&gt;U+1F37A&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:beer:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🏜️&lt;/p&gt;
+&lt;p&gt;U+1F3DC&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:desert:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🚀&lt;/p&gt;
+&lt;p&gt;U+1F680&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:rocket:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🛸&lt;/p&gt;
+&lt;p&gt;U+1F6F8&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:flying_saucer:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;⏰&lt;/p&gt;
+&lt;p&gt;U+23F0&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:alarm_clock:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🌌&lt;/p&gt;
+&lt;p&gt;U+1F30C&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:milky_way:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🔥&lt;/p&gt;
+&lt;p&gt;U+1F525&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:fire:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🎃&lt;/p&gt;
+&lt;p&gt;U+1F383&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:jack_o_lantern:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🏈&lt;/p&gt;
+&lt;p&gt;U+1F3C8&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:football:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🎧&lt;/p&gt;
+&lt;p&gt;U+1F3A7&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:headphones:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;📻&lt;/p&gt;
+&lt;p&gt;U+1F4FB&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:radio:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;💻&lt;/p&gt;
+&lt;p&gt;U+1F4BB&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:computer:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;📖&lt;/p&gt;
+&lt;p&gt;U+1F4D6&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:book:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;📓&lt;/p&gt;
+&lt;p&gt;U+1F4D3&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:notebook:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🔖&lt;/p&gt;
+&lt;p&gt;U+1F516&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:bookmark:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;📰&lt;/p&gt;
+&lt;p&gt;U+1F4F0&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:newspaper:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🏷️&lt;/p&gt;
+&lt;p&gt;U+1F3F7&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:label:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;✉️&lt;/p&gt;
+&lt;p&gt;U+2709&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:envelope:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;✏️&lt;/p&gt;
+&lt;p&gt;U+270F&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:pencil2:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;📝&lt;/p&gt;
+&lt;p&gt;U+1F4DD&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:memo:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;📍&lt;/p&gt;
+&lt;p&gt;U+1F4CD&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:round_pushpin:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🔒&lt;/p&gt;
+&lt;p&gt;U+1F512&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:lock:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🔐&lt;/p&gt;
+&lt;p&gt;U+1F510&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:closed_lock_with_key:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🔗&lt;/p&gt;
+&lt;p&gt;U+1F517&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:link:&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;🙋‍♂️&lt;/p&gt;
+&lt;p&gt;U+1F64B&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:raising_hand_man:&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://unicode.org/emoji/charts/full-emoji-list.html"&gt;Full Emojis List, v14.0&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/unicode-emojis</link>
+      <guid>https://www.lqdev.me/resources/wiki/unicode-emojis</guid>
+      <pubDate>09/03/2022 19:26 -05:00</pubDate>
+      <category>technology</category>
+      <category>web</category>
+      <category>unicode</category>
+      <category>internet</category>
+      <category>opensource</category>
+      <category>emojis</category>
+    </item>
+  </channel>
+</rss>

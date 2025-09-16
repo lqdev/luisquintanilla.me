@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - tech</title>
+    <link>https://www.lqdev.me/tags/tech</link>
+    <description>All content tagged with 'tech' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-19 20:51 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>The Opt Out Project</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;I have built up a treasure trove of knowledge, devices, and services aimed at keeping me and my family away from the evils of data-collecting algorithmic systems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;That's why I started this site. I've decided to put information about these tools and alternatives in one spot for others to find and use. Many of these tools are reviewed in the tech press, others are more bespoke but there is information out there if you know where to look. My goal is to bring it all together in one place, to guide you through the process, and help you opt out as well.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...there are alternatives out there, better visions of what our lives could be like. There are systems that don't require capturing and storing all our data, mining us exploitatively for profit, and serving us the kinds of misinformation and advertising that has us hating our neighbors.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/out-out-project</link>
+      <guid>https://www.lqdev.me/bookmarks/out-out-project</guid>
+      <pubDate>2025-08-19 20:51 -05:00</pubDate>
+      <category>optout</category>
+      <category>alternative</category>
+      <category>tech</category>
+    </item>
+    <item>
+      <title>CNET purchased for JUST $100 million</title>
+      <description>&lt;![CDATA[[reply] &lt;p&gt;JUST $100 million. That's pocket change 🙃&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Red Ventures paid $500 million for the tech property once valued at $1.8 billion.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Given previous valuations though, I see why the headline was phrased that way.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/cnet-bought-for-just-100-million</link>
+      <guid>https://www.lqdev.me/responses/cnet-bought-for-just-100-million</guid>
+      <pubDate>2024-08-06 09:06 -05:00</pubDate>
+      <category>cnet</category>
+      <category>tech</category>
+      <category>acquisition</category>
+      <category>news</category>
+    </item>
+    <item>
+      <title>DevContainer configurations</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;A collection of DevContainer configurations&lt;/p&gt;
+&lt;h2&gt;Base Debian Image&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Base Debian DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;                
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python (GPU)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python (GPU) DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },
+        &amp;quot;ghcr.io/devcontainers/features/nvidia-cuda:1&amp;quot;: {},
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;                
+            ]
+        }
+    },
+    &amp;quot;runArgs&amp;quot;: [
+        &amp;quot;--gpus&amp;quot;, 
+        &amp;quot;all&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;.NET&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me .NET DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        }
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;                                
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;.NET (GPU)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me .NET (GPU) DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        },
+        &amp;quot;ghcr.io/devcontainers/features/nvidia-cuda:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;                
+            ]
+        }
+    },
+    &amp;quot;runArgs&amp;quot;: [
+        &amp;quot;--gpus&amp;quot;, 
+        &amp;quot;all&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python and .NET&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python and .NET DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },        
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        },
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;                
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python and .NET (GPU)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python and .NET (GPU) DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },        
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        },
+        &amp;quot;ghcr.io/devcontainers/features/nvidia-cuda:1&amp;quot;: {},
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;               
+            ]
+        }
+    },
+    &amp;quot;runArgs&amp;quot;: [
+        &amp;quot;--gpus&amp;quot;, 
+        &amp;quot;all&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Additional Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://code.visualstudio.com/docs/devcontainers/containers"&gt;Developing inside a DevContainer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/devcontainers/images"&gt;Pre-built DevContainer images&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/devcontainers/features"&gt;Pre-built DevContainer features&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.github.com/en/codespaces/overview"&gt;GitHub Codespaces overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://marketplace.visualstudio.com/vscode"&gt;VS Code Extensions Marketplace&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/devcontainers-configurations</link>
+      <guid>https://www.lqdev.me/resources/wiki/devcontainers-configurations</guid>
+      <pubDate>06/29/2024 14:48 -05:00</pubDate>
+      <category>devcontainer</category>
+      <category>vscode</category>
+      <category>codespaces</category>
+      <category>development</category>
+      <category>software</category>
+      <category>tech</category>
+      <category>programming</category>
+      <category>python</category>
+      <category>dotnet</category>
+      <category>csharp</category>
+      <category>fsharp</category>
+      <category>docker</category>
+      <category>git</category>
+      <category>debian</category>
+    </item>
+    <item>
+      <title>Physical media week - Exploring the importance of discs and cartridges in an increasingly digital age</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The bright promise of streaming and digital stores has given way to a darker reality: we rarely have ownership over the art we love, and much is getting lost in the process. Only a fraction of movies released over the last century are available on streaming services, while a staggering 90 percent of classic video games are considered “critically endangered” by archivists. As these platforms continue to dominate the media landscape, a whole lot of cultural history is being abandoned.&lt;br /&gt;
+&lt;br&gt;
+In this special issue, The Verge will explore how physical media factors into this and its importance in keeping art alive and accessible. That could mean boutique publishers releasing beautiful special editions of games and movies, foundations dedicated to preserving the physical history of video games, or musicians releasing their latest albums on floppy discs. We’ll also be looking at some cautionary tales in the shift to subscription services and offering tips on building bookshelf-worthy collections.&lt;br /&gt;
+&lt;br&gt;
+Cartridges and discs have been hurtling toward obsolescence — but it turns out, they may be more important than ever.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/verge-physical-media-week</link>
+      <guid>https://www.lqdev.me/responses/verge-physical-media-week</guid>
+      <pubDate>2024-02-27 12:21 -05:00</pubDate>
+      <category>media</category>
+      <category>verge</category>
+      <category>disc</category>
+      <category>dvd</category>
+      <category>cd</category>
+      <category>floppy</category>
+      <category>tech</category>
+      <category>technology</category>
+    </item>
+    <item>
+      <title>Podcast - localfirst.fm</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A podcast about local-first software development&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/localfirstfm-podcast</link>
+      <guid>https://www.lqdev.me/responses/localfirstfm-podcast</guid>
+      <pubDate>2024-02-20 21:38 -05:00</pubDate>
+      <category>development</category>
+      <category>software</category>
+      <category>podcast</category>
+      <category>tech</category>
+      <category>podcast</category>
+      <category>localfirst</category>
+      <category>local</category>
+    </item>
+    <item>
+      <title>Club TWiT Shows Now Open to Everyone!</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We are thrilled to announce that our Club TWiT shows are now available to everyone in audio form. That's right, you can now listen to your favorite shows anytime, anywhere, and it's all starting as early as the end of this week.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/club-twit-shows-available-to-all</link>
+      <guid>https://www.lqdev.me/responses/club-twit-shows-available-to-all</guid>
+      <pubDate>2024-02-14 22:37 -05:00</pubDate>
+      <category>twit</category>
+      <category>podcast</category>
+      <category>tech</category>
+      <category>community</category>
+    </item>
+    <item>
+      <title>TWiT's Lesser Known RSS Feeds</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;Subscribed!&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Many people are unaware that TWiT also has RSS feeds designed for news aggregators like Feedly, NetNewsWire, Mozilla Thunderbird, and Akregator. These feeds are not meant for podcast apps but are specifically designed for news aggregators. You can copy any of the RSS feed links below into your RSS feed reader of choice and get updates on the latest TWiT blog posts, articles, or podcasts as soon as they are published.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/twit-lesser-known-rss-feeds</link>
+      <guid>https://www.lqdev.me/bookmarks/twit-lesser-known-rss-feeds</guid>
+      <pubDate>2024-02-14 22:35 -05:00</pubDate>
+      <category>twit</category>
+      <category>rss</category>
+      <category>tech</category>
+      <category>news</category>
+      <category>community</category>
+    </item>
+    <item>
+      <title>Classic Palmtop</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;&lt;img src="https://cdna.artstation.com/p/files/images/images/070/172/228/large/michal-kalisz-classicpalmtop-xen200-mk-scene07.jpg?1701906705" class="img-fluid" alt="Cyberdeck radio concept art rendering with display closed front and back profile" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://cdnb.artstation.com/p/files/images/images/070/172/345/large/michal-kalisz-classicpalmtop-xen200-mk-bright-03.jpg?1701907028" class="img-fluid" alt="Cyberdeck radio concept art rendering with display open and keyboard showing" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://media.giphy.com/media/cALkoAIov3Y9a/giphy.gif" class="img-fluid" alt="Robert Downey Jr. as Tony Stark saying I need it" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/classic-palmtop-concept</link>
+      <guid>https://www.lqdev.me/responses/classic-palmtop-concept</guid>
+      <pubDate>2023-12-22 09:28 -05:00</pubDate>
+      <category>concept</category>
+      <category>tech</category>
+      <category>cyberpunk</category>
+    </item>
+    <item>
+      <title>Newspapers, CDs, and MP3 players - Am I in 2006?</title>
+      <description>&lt;![CDATA[&lt;p&gt;While flipping through a local (physical) newspaper, I came across an ad for a sale happening at a nearby record store.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/newspaper_ad.JPG" class="img-fluid" alt="Newpaper ad for a memorial day CD and vinyl sale" /&gt;&lt;/p&gt;
+&lt;p&gt;Having nothing planned, I decided to check it out and ended up with a nice haul of about 15 CDs and 2 DVDs.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://cdn.lqdev.tech/files/images/cds_mp3.JPG" class="img-fluid" alt="3 CDs on a wooden table with an portable MP3 player" /&gt;&lt;/p&gt;
+&lt;p&gt;I fired up my &lt;a href="https://www.bestbuy.com/site/lg-8x-external-usb-double-layer-dvdrw-cd-rw-drive-black/5852919.p?skuId=5852919"&gt;portable CD/DVD drive&lt;/a&gt; to transfer my new purchases to my &lt;a href="https://www.fiio.com/m6"&gt;portable MP3 player&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Once finished, I popped one of the DVDs into the drive, made popcorn, and settled in. If I didn't know any better, this could easily be a scene from 2006.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/am-i-in-2006-newspapers-cds-mp3s</link>
+      <guid>https://www.lqdev.me/notes/am-i-in-2006-newspapers-cds-mp3s</guid>
+      <pubDate>2023-05-29 19:50 -05:00</pubDate>
+      <category>tech</category>
+      <category>media</category>
+      <category>retro</category>
+      <category>cds</category>
+      <category>dvds</category>
+    </item>
+    <item>
+      <title>Power Management Manjaro</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The following shows how you can optimize your computer using Powertop to generate runing recommendations and apply those optimizations at boot using an rc-local service.&lt;/p&gt;
+&lt;h2&gt;Powertop&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Install powertop&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo pacman -S powertop
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Run powertop report (on battery power)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo powertop -r
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After a few seconds, a file called &lt;em&gt;powertop.html&lt;/em&gt; is created.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Open the &lt;em&gt;powertop.html&lt;/em&gt; file in your browser and inspect the &lt;strong&gt;Tuning&lt;/strong&gt; tab for tuning recommendations.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Configure rc-local service&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Create &lt;em&gt;rc.local&lt;/em&gt; file in &lt;code&gt;/etc&lt;/code&gt; directory with the following content&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;#!/bin/sh -e
+
+echo &amp;quot;Hello World&amp;quot;
+
+# Insert powertop optimization scripts here. 
+
+exit 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Create &lt;em&gt;rc-local.service&lt;/em&gt; file in &lt;code&gt;/etc/systemd/system&lt;/code&gt; directory with the following content&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=/etc/rc.local Compatibility
+ConditionPathExists=/etc/rc.local
+
+[Service]
+Type=oneshot
+ExecStart=/etc/rc.local
+TimeoutSec=0
+StandardOutput=tty
+RemainAfterExit=yes
+SysVStartPriority=99
+
+[Install]
+WantedBy=multi-user.target
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Enable and start rc-local service&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo systemctl enable rc-local
+sudo systemctl start rc-local
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Confirm that the service has successfully started&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo systemctl status rc-local
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.org/title/Powertop"&gt;Arch Wiki - Powertop&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/power-management-manjaro</link>
+      <guid>https://www.lqdev.me/resources/wiki/power-management-manjaro</guid>
+      <pubDate>12/11/2022 16:15 -05:00</pubDate>
+      <category>manjaro</category>
+      <category>bash</category>
+      <category>powermanagement</category>
+      <category>tech</category>
+      <category>wiki</category>
+      <category>linux</category>
+    </item>
+  </channel>
+</rss>

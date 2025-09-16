@@ -1,0 +1,2013 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - csharp</title>
+    <link>https://www.lqdev.me/tags/csharp</link>
+    <description>All content tagged with 'csharp' by Luis Quintanilla</description>
+    <lastBuildDate>06/29/2024 14:48 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>DevContainer configurations</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;A collection of DevContainer configurations&lt;/p&gt;
+&lt;h2&gt;Base Debian Image&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Base Debian DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;                
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python (GPU)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python (GPU) DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },
+        &amp;quot;ghcr.io/devcontainers/features/nvidia-cuda:1&amp;quot;: {},
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;                
+            ]
+        }
+    },
+    &amp;quot;runArgs&amp;quot;: [
+        &amp;quot;--gpus&amp;quot;, 
+        &amp;quot;all&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;.NET&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me .NET DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        }
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;                                
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;.NET (GPU)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me .NET (GPU) DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        },
+        &amp;quot;ghcr.io/devcontainers/features/nvidia-cuda:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;                
+            ]
+        }
+    },
+    &amp;quot;runArgs&amp;quot;: [
+        &amp;quot;--gpus&amp;quot;, 
+        &amp;quot;all&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python and .NET&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python and .NET DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },        
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        },
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;                
+            ]
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Python and .NET (GPU)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;name&amp;quot;: &amp;quot;lqdev.me Python and .NET (GPU) DevContainer&amp;quot;,
+    &amp;quot;image&amp;quot;: &amp;quot;mcr.microsoft.com/devcontainers/base:debian&amp;quot;,
+    &amp;quot;features&amp;quot;: {
+        &amp;quot;ghcr.io/devcontainers/features/git:1&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/docker-in-docker:2&amp;quot;: {},
+        &amp;quot;ghcr.io/devcontainers/features/python:1&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;3.11&amp;quot;
+        },        
+        &amp;quot;ghcr.io/devcontainers/features/dotnet:2&amp;quot;: {
+            &amp;quot;version&amp;quot;: &amp;quot;9.0&amp;quot;
+        },
+        &amp;quot;ghcr.io/devcontainers/features/nvidia-cuda:1&amp;quot;: {},
+        &amp;quot;ghcr.io/va-h/devcontainers-features/uv:1&amp;quot;: {}
+    },
+    &amp;quot;customizations&amp;quot;: {
+        &amp;quot;vscode&amp;quot;: {
+            &amp;quot;extensions&amp;quot;: [
+                &amp;quot;ms-vscode-remote.vscode-remote-extensionpack&amp;quot;,
+                &amp;quot;ms-azuretools.vscode-docker&amp;quot;,
+                &amp;quot;ms-python.python&amp;quot;,
+                &amp;quot;ms-dotnettools.csharp&amp;quot;,
+                &amp;quot;Ionide.Ionide-fsharp&amp;quot;,
+                &amp;quot;GitHub.copilot&amp;quot;,
+                &amp;quot;GitHub.copilot-chat&amp;quot;,
+                &amp;quot;saoudrizwan.claude-dev&amp;quot;,
+                &amp;quot;ms-dotnettools.csdevkit&amp;quot;               
+            ]
+        }
+    },
+    &amp;quot;runArgs&amp;quot;: [
+        &amp;quot;--gpus&amp;quot;, 
+        &amp;quot;all&amp;quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Additional Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://code.visualstudio.com/docs/devcontainers/containers"&gt;Developing inside a DevContainer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/devcontainers/images"&gt;Pre-built DevContainer images&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/devcontainers/features"&gt;Pre-built DevContainer features&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.github.com/en/codespaces/overview"&gt;GitHub Codespaces overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://marketplace.visualstudio.com/vscode"&gt;VS Code Extensions Marketplace&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/devcontainers-configurations</link>
+      <guid>https://www.lqdev.me/resources/wiki/devcontainers-configurations</guid>
+      <pubDate>06/29/2024 14:48 -05:00</pubDate>
+      <category>devcontainer</category>
+      <category>vscode</category>
+      <category>codespaces</category>
+      <category>development</category>
+      <category>software</category>
+      <category>tech</category>
+      <category>programming</category>
+      <category>python</category>
+      <category>dotnet</category>
+      <category>csharp</category>
+      <category>fsharp</category>
+      <category>docker</category>
+      <category>git</category>
+      <category>debian</category>
+    </item>
+    <item>
+      <title>TIOBE Index for January 2024</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;For the first time in the history of the TIOBE index, C# has won the programming language of the year award. Congratulations! C# has been a top 10 player for more than 2 decades and now that it is catching up with the big 4 languages, it won the well-deserved award by being the language with the biggest uptick in one year (+1.43%).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Exciting to see F# almost break into the Top 20 at number 22 with 0.77%.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/tiobe-index-january-2024</link>
+      <guid>https://www.lqdev.me/bookmarks/tiobe-index-january-2024</guid>
+      <pubDate>2024-01-07 22:52 -05:00</pubDate>
+      <category>programming</category>
+      <category>dotnet</category>
+      <category>technology</category>
+      <category>fsharp</category>
+      <category>csharp</category>
+      <category>programminglanguages</category>
+    </item>
+    <item>
+      <title>Markdig Advanced Extensions</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Markdig advanced extensions are a series of CommonMark compliant syntax extensions for the markdown language.&lt;/p&gt;
+&lt;h2&gt;Task lists&lt;/h2&gt;
+&lt;p&gt;Tasks lists allow you to create unorder list items with checkboxes.&lt;/p&gt;
+&lt;h3&gt;Syntax&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-markdown"&gt;- [ ] Item1
+- [x] Item2
+- [ ] Item3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Output&lt;/h3&gt;
+&lt;ul class="contains-task-list"&gt;
+&lt;li class="task-list-item"&gt; Item1&lt;/li&gt;
+&lt;li class="task-list-item"&gt; Item2&lt;/li&gt;
+&lt;li class="task-list-item"&gt; Item3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Tables&lt;/h2&gt;
+&lt;h3&gt;Pipe tables&lt;/h3&gt;
+&lt;h4&gt;Syntax&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="language-markdown"&gt;| a | b | c
+| - | - | - 
+| 1 | 2 | 3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Output&lt;/h4&gt;
+&lt;p&gt;a&lt;/p&gt;
+&lt;p&gt;b&lt;/p&gt;
+&lt;p&gt;c&lt;/p&gt;
+&lt;p&gt;1&lt;/p&gt;
+&lt;p&gt;2&lt;/p&gt;
+&lt;p&gt;3&lt;/p&gt;
+&lt;h2&gt;Diagrams&lt;/h2&gt;
+&lt;p&gt;Support for diagram syntax such as &lt;a href="https://mermaid-js.github.io/mermaid/"&gt;Mermaid&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Syntax&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-markdown"&gt;```mermaid
+flowchart LR
+    Start --&amp;gt; Stop
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Output&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-mermaid"&gt;flowchart LR;
+    Start --&amp;gt; Stop;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Emojis&lt;/h2&gt;
+&lt;p&gt;Support for emojis.&lt;/p&gt;
+&lt;h3&gt;Syntax&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-markdown"&gt;We all need :), it makes us :muscle:. (and :ok_hand:).
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Output&lt;/h3&gt;
+&lt;p&gt;We all need 😃, it makes us 💪. (and 👌).&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/xoofx/markdig/tree/master/src/Markdig.Tests/Specs"&gt;Markdig Specs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/markdig-advanced-extensions</link>
+      <guid>https://www.lqdev.me/resources/wiki/markdig-advanced-extensions</guid>
+      <pubDate>09/03/2022 19:26 -05:00</pubDate>
+      <category>markdown</category>
+      <category>markdig</category>
+      <category>dotnet</category>
+      <category>fsharp</category>
+      <category>csharp</category>
+      <category>website</category>
+    </item>
+    <item>
+      <title>Serverless Machine Learning with ML.NET and Azure Functions</title>
+      <description>&lt;![CDATA[
+## Introduction
+
+In a previous blog [post](http://luisquintanilla.me/2018/05/11/deploy-netml-docker-aci/), I explored how to build and deploy machine learning models built with the `ML.NET` framework using an ASP.NET Core Web API, Docker and Azure Container Instances. While this is certainly a good way to deploy such models especially those that are critical and require high availability and/or consist of long-running processes, it's not the case when those requirements are not needed. In such cases serverless computing makes more sense from a cost and resource utilization standpoint. Therefore, in this blog post I will go over how to train a classification model with `ML.NET` and deploy it using Azure Functions. Source code for this post can be found at the following [link](https://github.com/lqdev/azfnmlnetdemo).
+
+## Prerequisites
+
+Prior to starting, make sure you have all of the necessary software to build this project. Although this project was built on a system running Ubuntu 16.04 it should work cross-platform.
+
+- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+- [Azure Functions Core Tools Version 2.x](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local)
+- [.NET Core SDK 2.0+](https://www.microsoft.com/net/download)
+
+## Set Up Azure Environment
+
+Before writing any code we want to configure our Azure environment. To do so we'll be using the Azure CLI. Although in these examples I am providing the resource group name, storage account name and function application name feel free to use one of your choosing. Naming is not as important for resource group or storage account but definitely is the case for the application.
+
+Fist we want to log into our account using the following command
+
+```bash
+az login
+```
+
+This will guide you through a series of prompts that will eventually result in you being logged in. To make sure you are logged in you can use the `account` command.
+
+```bash
+az account list
+```
+
+The following output should appear if successfull.
+
+```bash
+[
+  {
+    "cloudName": "AzureCloud",
+    "id": "&lt;YOUR-ID&gt;",
+    "isDefault": true,
+    "name": "Pay-As-You-Go",
+    "state": "Enabled",
+    "tenantId": "&lt;YOUR-TENANT-ID&gt;",
+    "user": {
+      "name": "&lt;YOUR-USERNAME&gt;",
+      "type": "user"
+    }
+  }
+]
+```
+
+Next, we want to create a resource group to contain all of our Azure resources for this application.
+
+```bash
+az group create --name azfnmlnetdemo --location eastus
+```
+
+Once our resource group is created, it's time to start adding resources for it. First we'll add a storage account which will contain our trained model.
+
+```bash
+az storage account create --name azfnmlnetdemostorage --location eastus --resource-group azfnmlnetdemo --sku Standard_LRS
+```
+
+Then we'll create an Serverless Function Application and link it to our storage account. We'll want to create a unique name for it. An easy way to do so is to add the date to the end of the name of our application (i.e. myappname20180816).
+
+```bash
+az functionapp create --name azfnmlnetdemo20180821 --storage-account azfnmlnetdemostorage --consumption-plan-location eastus --resource-group azfnmlnetdemo
+```
+
+The final step in the environment setup is to set the runtime of our Serverless Function Application in the Application Settings to `beta` which supports `.NET Core`.
+
+```bash
+az functionapp config appsettings set --name azfnmlnetdemo20180821 --resource-group azfnmlnetdemo --settings FUNCTIONS_EXTENSION_VERSION=beta
+```
+
+Now we're ready to build our machine learning model and upload it to our storage account
+
+## Building The Model
+
+Once our environment is set up we can start building our solution. The first step is to create a directory and initialize our solution inside of it.
+
+### Set Up The Solution
+
+```bash
+mkdir azfnmlnetdemo
+cd azfnmlnetdemo
+dotnet new sln
+```
+
+### Create The Model Project
+
+Then we want to create a console project for our model and add it to our solution.
+
+```bash
+dotnet new console -o model
+dotnet sln add model/model.csproj
+```
+
+### Add Dependencies
+
+Since we’ll be using the `ML.NET` framework, we need to add it to our model project.
+
+```
+cd model
+dotnet add package Microsoft.ML
+dotnet restore
+```
+
+### Download The Data
+
+Before we start training the model, we need to download the data we’ll be using to train. We do so by creating a directory called `data` and downloading the data file onto there.
+
+```bash
+mkdir data
+curl -o data/iris.txt https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data
+```
+
+If we take a look at the data file, it should look something like this:
+
+```bash
+5.1,3.5,1.4,0.2,Iris-setosa
+4.9,3.0,1.4,0.2,Iris-setosa
+4.7,3.2,1.3,0.2,Iris-setosa
+4.6,3.1,1.5,0.2,Iris-setosa
+5.0,3.6,1.4,0.2,Iris-setosa
+5.4,3.9,1.7,0.4,Iris-setosa
+4.6,3.4,1.4,0.3,Iris-setosa
+5.0,3.4,1.5,0.2,Iris-setosa
+4.4,2.9,1.4,0.2,Iris-setosa
+4.9,3.1,1.5,0.1,Iris-setosa
+```
+
+### Train The Model
+
+Now that we have all our dependencies set up, it’s time to train our model. I leveraged the demo that is used on the [ML.NET Getting-Started website](https://www.microsoft.com/net/learn/machine-learning-and-ai/get-started-with-ml-dotnet-tutorial).
+
+#### Define Data Structures
+
+In the root directory of our `model` project, let’s create two classes called `IrisData` and `IrisPrediction` which will define our features and predicted attribute respectively. Both of them will use `Microsoft.ML.Runtime.Api` to add the property attributes.
+
+Here is what our `IrisData` class looks like:
+
+```csharp
+using Microsoft.ML.Runtime.Api;
+
+namespace model
+{
+    public class IrisData
+    {
+        [Column("0")]
+        public float SepalLength;
+
+        [Column("1")]
+        public float SepalWidth;
+
+        [Column("2")]
+        public float PetalLength;
+
+        [Column("3")]
+        public float PetalWidth;
+
+        [Column("4")]
+        [ColumnName("Label")]
+        public string Label;
+    }
+}
+```
+
+Similarly, here is the `IrisPrediction` class:
+
+```csharp
+using Microsoft.ML.Runtime.Api;
+
+namespace model
+{
+    public class IrisPrediction
+    {
+        [ColumnName("PredictedLabel")]
+        public string PredictedLabels;
+    }
+}
+```
+
+#### Build the Training Pipeline
+
+The way the `ML.NET` computations process data is via a sequential pipeline of steps that are performed eventually leading up to the training of the model. Therefore, we can create a class called `Model` to perform all of these tasks for us.
+
+```csharp
+using Microsoft.ML.Data;
+using Microsoft.ML;
+using Microsoft.ML.Runtime.Api;
+using Microsoft.ML.Trainers;
+using Microsoft.ML.Transforms;
+using Microsoft.ML.Models;
+using System;
+using System.Threading.Tasks;
+
+namespace model
+{
+    class Model
+    {
+
+        public static async Task&lt;PredictionModel&lt;IrisData,IrisPrediction&gt;&gt; Train(LearningPipeline pipeline, string dataPath, string modelPath)
+        {
+            // Load Data
+            pipeline.Add(new TextLoader(dataPath).CreateFrom&lt;IrisData&gt;(separator:','));
+
+            // Transform Data
+            // Assign numeric values to text in the "Label" column, because
+            // only numbers can be processed during model training
+            pipeline.Add(new Dictionarizer("Label"));
+
+            // Vectorize Features
+            pipeline.Add(new ColumnConcatenator("Features", "SepalLength", "SepalWidth", "PetalLength", "PetalWidth"));
+
+            // Add Learner
+            pipeline.Add(new StochasticDualCoordinateAscentClassifier());
+
+            // Convert Label back to text
+            pipeline.Add(new PredictedLabelColumnOriginalValueConverter() {PredictedLabelColumn = "PredictedLabel"});
+
+            // Train Model
+            var model = pipeline.Train&lt;IrisData,IrisPrediction&gt;();
+
+            // Persist Model
+            await model.WriteAsync(modelPath);
+
+            return model;
+        }
+    }
+}
+```
+
+In addition to building our pipeline and training our machine learning model, the `Model` class also serialized and persisted the model for future use in a file called `model.zip`.
+
+### Test The Model
+
+Now that we have our data structures and model training pipeline set up, it’s time to test everything to make sure it’s working. We’ll put our logic inside of our `Program.cs` file.
+
+```csharp
+using System;
+using Microsoft.ML;
+
+namespace model
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string dataPath = "model/data/iris.txt";
+
+            string modelPath = "model/model.zip";
+
+            var model = Model.Train(new LearningPipeline(),dataPath,modelPath).Result;
+
+            // Test data for prediction
+            var prediction = model.Predict(new IrisData()
+            {
+                SepalLength = 3.3f,
+                SepalWidth = 1.6f,
+                PetalLength = 0.2f,
+                PetalWidth = 5.1f
+            });
+
+            Console.WriteLine($"Predicted flower type is: {prediction.PredictedLabels}");
+        }
+    }
+}
+```
+
+All set to run. We can do so by entering the following command from our solution directory:
+
+```bash
+dotnet run -p model/model.csproj
+```
+
+Once the application has been run, the following output should display on the console.
+
+```bash
+Automatically adding a MinMax normalization transform, use 'norm=Warn' or
+'norm=No' to turn this behavior off.Using 2 threads to train.
+Automatically choosing a check frequency of 2.Auto-tuning parameters: maxIterations = 9998.
+Auto-tuning parameters: L2 = 2.667734E-05.
+Auto-tuning parameters: L1Threshold (L1/L2) = 0.Using best model from iteration 882.
+Not training a calibrator because it is not needed.
+Predicted flower type is: Iris-virginica
+```
+
+Additionally, you’ll notice that a file called `model.zip` was created in the root directory of our model project. This persisted model can now be used outside of our application to make predictions, but first we need to upload it to our Azure Storage account.
+
+### Upload The Model
+
+Now that we have a trained model and it has been persisted to the `model.zip` file, it's time to upload it to Azure Storage so that it is available to our Azure Functions application.
+
+To get started with that, first we need the access keys for our storage account. You can get those by using the following command.
+
+```bash
+az storage account keys list --account-name azfnmlnetdemostorage --resource-group azfnmlnetdemo
+```
+
+The result of that command should return your primary and secondary keys. You can use either one for the following steps.
+
+Although we can upload directly to the account, it's best to create a container to upload our model to. To keep it simple, I'll call the container `models`.
+
+```bash
+az storage container create --name models --account-key &lt;YOUR-ACCOUNT-KEY&gt; --account-name azfnmlnetdemostorage --fail-on-exist
+```
+
+Once our container's created, we can upload our `model.zip` file to it.
+
+```bash
+az storage blob upload --container-name models --account-name azfnmlnetdemostorage --file model/model.zip --name model.zip
+```
+
+To verify that the file has been uploaded, you can list the files inside the `models` storage container.
+
+```bash
+az storage blob list --container-name models --account-name azfnmlnetdemostorage --output table
+```
+
+That command should produce output similar to that below:
+
+```bash
+Name       Blob Type    Blob Tier    Length    Content Type     Last Modified              Snapshot
+---------  -----------  -----------  --------  ---------------  -------------------------  ----------
+model.zip  BlockBlob                 4373      application/zip  2018-08-21T19:26:09+00:00
+```
+
+That's all there is to the upload process. It's now time to build our Azure Functions Application
+
+## Build The Azure Functions Application
+
+### Initialize Azure Function Project
+
+In our solution directory, we want to create a new directory for our Azure Function project
+
+```bash
+mkdir serverlessfunctionapp
+dotnet sln add serverlessfunctionapp/serverlessfunctionapp.csproj
+```
+
+Then, we can scaffold an Azure Functions project inside our newly created `serverlessfunctionapp` project directory using Azure Functions Core Tools
+
+```bash
+cd serverlessfunctionapp
+func init
+```
+
+At this point you will be prompted to select the runtime for your application. For this application select `dotnet`.
+
+This will generate a few files in the `serverlessfunctionapp` directory. Keep in mind though that this does not create the function.
+
+### Add Dependencies
+
+Before we create any functions, we need to add the dependencies for our Azure Functions application. Since we'll be using `Microsoft.ML` in our Azure Function application, we'll need to add it as a dependency. From the `serverlessfunctionapp` enter the following command:
+
+```bash
+dotnet add package Microsoft.ML
+dotnet restore
+```
+
+### Create Serverless Function
+
+Once we've added the dependencies it's time to create a new function. To do so we'll use the Azure Functions Core Tools `new` command. Although not required, it's good practice to separate functions and related files into their own directory.
+
+```bash
+mkdir Predict
+cd Predict
+func new
+```
+
+At this time you will be prompted to select a template. For our classification model, we'll be using an HttpTrigger which is exactly what it sounds like. An HTTP request is what calls or invokes our function. With that being said, select the `HttpTrigger` option.
+
+You will then be prompted to enter a name for your function. You can use any name but to make things easy, name it the same as the directory the function is in. Once that process is complete, there should be a file called `Predict.cs` inside our `serverlessfunctionapp/Predict` directory. This is where we'll write the logic for our application.
+
+### Define Data Structures
+
+We'll also be making use of the IrisData and IrisPrediction classes inside our `Predict` function. Therefore, we need to create classes for them inside our `Predict` directory. The content will be the same as when we trained our model with the exception of the namespace which will now be `serverlessfunctionapp.Predict`. The content of those files should look like the code below:
+
+```csharp
+//IrisData.cs
+using Microsoft.ML.Runtime.Api;
+
+namespace serverlessfunctionapp.Predict
+{
+    public class IrisData
+    {
+        [Column("0")]
+        public float SepalLength;
+
+        [Column("1")]
+        public float SepalWidth;
+
+        [Column("2")]
+        public float PetalLength;
+
+        [Column("3")]
+        public float PetalWidth;
+
+        [Column("4")]
+        [ColumnName("Label")]
+        public string Label;
+    }
+}
+
+//IrisPrediction.cs
+using Microsoft.ML.Runtime.Api;
+
+namespace serverlessfunctionapp.Predict
+{
+    public class IrisPrediction
+    {
+        [ColumnName("PredictedLabel")]
+        public string PredictedLabels;
+    }
+}
+```
+
+### Write Function Logic
+
+With our dependencies and data structures set up, it's time to write our function logic to make predictions. The first thing we want to do is replace the `Run` method inside the `Predict` class with the following code.
+
+```csharp
+public static IActionResult Run(
+    [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequest req,
+    [Blob("models/model.zip", FileAccess.Read, Connection = "AzureWebJobsStorage")] Stream serializedModel,
+    TraceWriter log)
+{
+    // Workaround for Azure Functions Host
+    if (typeof(Microsoft.ML.Runtime.Data.LoadTransform) == null ||
+        typeof(Microsoft.ML.Runtime.Learners.LinearClassificationTrainer) == null ||
+        typeof(Microsoft.ML.Runtime.Internal.CpuMath.SseUtils) == null ||
+        typeof(Microsoft.ML.Runtime.FastTree.FastTree) == null)
+    {
+        log.Error("Error loading ML.NET");
+        return new StatusCodeResult(500);
+    }
+
+    //Read incoming request body
+    string requestBody = new StreamReader(req.Body).ReadToEnd();
+
+    log.Info(requestBody);
+
+    //Bind request body to IrisData object
+    IrisData data = JsonConvert.DeserializeObject&lt;IrisData&gt;(requestBody);
+
+    //Load prediction model
+    var model = PredictionModel.ReadAsync&lt;IrisData, IrisPrediction&gt;(serializedModel).Result;
+
+    //Make prediction
+    IrisPrediction prediction = model.Predict(data);
+
+    //Return prediction
+    return (IActionResult)new OkObjectResult(prediction.PredictedLabels);
+}
+```
+
+There are a few notable change worth looking at. One of them is the workaround at the beginning of the function.
+
+```csharp
+if (typeof(Microsoft.ML.Runtime.Data.LoadTransform) == null ||
+    typeof(Microsoft.ML.Runtime.Learners.LinearClassificationTrainer) == null ||
+    typeof(Microsoft.ML.Runtime.Internal.CpuMath.SseUtils) == null ||
+    typeof(Microsoft.ML.Runtime.FastTree.FastTree) == null)
+{
+    log.Error("Error loading ML.NET");
+    return new StatusCodeResult(500);
+}
+```
+
+There are some issues with Azure Functions and ML.NET Assemblies which are being worked on by both teams at Microsoft (see [Github Issue](https://github.com/Azure/azure-functions-host/issues/3190)). In the meantime, it's safe to just include that code in there.
+
+The other addition to note is the method signature. As you can see, I have added an additional parameter called `serializedModel` which is decorated by the `Blob` attribute.
+
+```csharp
+[Blob("models/model.zip", FileAccess.Read, Connection = "AzureWebJobsStorage")] Stream serializedModel
+```
+
+What this code is doing is telling the function to import the blob `model.zip` as a `Stream` and bind it to `serializedModel`. Using additional arguments, I tell my function to only have `Read` access to the `model.zip` blob inside the `models` container which can be accessed with the `AzureWebJobsStorage` connection string. Right now that last part might seem confusing, but this is something we configured when we set up the Azure environment and linked `azfnmlnetdemostorage` account with our `azfnmlnetdemo20180821` serverless function app using the `--storage-account` option. Although the production environment is configured, if we try to test our application locally we won't be able to access our storage account because we have not configured the connection string locally. We can do so by looking in the `local.settings.json` file inside our `serverlessfunctionapp` directory. The contents should look like the following.
+
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "AzureWebJobsDashboard": "",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+  }
+}
+```
+
+Our function running locally will look in this file, try to find `AzureWebJobsStorage` and use the connection string value in the `Predict` function. To get the connection string for our `azfnmlnetdemostorage` account, enter the following command.
+
+```bash
+az storage account show-connection-string --name azfnmlnetdemostorage
+```
+
+The output of that command should look like the following:
+
+```json
+{
+  "connectionString": "&lt;YOUR-CONNECTION-STRING&gt;"
+}
+```
+
+At this point, you just need to copy the value of `connectionString` to your `local.settings.json` file and replace the current empty string for `AzureWebJobsStorage`. It's important to note that it's okay to paste the connection string in here since the `local.settings.json` file is not committed to version control. (See `.gitignore` inside `serverlessfunctionapp` directory). Now the application is ready to be tested locally.
+
+### Testing The Function Locally
+
+To test the application, first build your project by entering the following command from the `serverlessfunctionapp` directory.
+
+```bash
+dotnet build
+```
+
+Then, navigate to the build directory `./bin/Debug/netstandard2.0` and enter the following command:
+
+```bash
+func host start
+```
+
+Finally, using a tool like Postman or Insomnia make an HTTP POST request to the `http://localhost:7071/api/Predict` endpoint with the following body:
+
+```json
+{
+  "SepalLength": 3.3,
+  "SepalWidth": 1.6,
+  "PetalLength": 0.2,
+  "PetalWidth": 5.1
+}
+```
+
+If everything is set up correctly, you should receive the following output
+
+```bash
+Iris-virginica
+```
+
+Once satisfied with testing, press `Ctrl + C` to stop the application.
+
+## Deploy To Azure
+
+### Push Build
+
+Great! Now on to the final step, deploying our application to production. Since we already configured everything it should only require a few commands to do so.
+
+First, make sure you are logged in. Using Azure Functions Core Tools log in with the following command:
+
+```bash
+func azure login
+```
+
+Like with the Azure CLI, you will follow a series of prompts to log into your account.
+
+Once you have successfully logged in, it's time to publish our application to Azure. From the `serverlessfunctionapp` directory enter the following command.
+
+```bash
+func azure functionapp publish azfnmlnetdemo20180821
+```
+
+When our deployment is complete, we can check whether our function was published successfully by using the following command.
+
+```bash
+func azure functionapp list-functions azfnmlnetdemo20180821
+```
+
+The output should look similar to that below.
+
+```bash
+Functions in azfnmlnetdemo20180821:
+    Predict - [httpTrigger]
+```
+
+### Configure Platform
+
+For the last part of the deployment step, we'll need to head over to the Azure Portal. To do so, visit [https://portal.azure.com](https://portal.azure.com) and log in.
+
+Once logged in, type the name of your application into the search bar at the top of the page and select your Azure Function application of type `App Service`
+
+![](http://cdn.lqdev.tech/files/images/azfnmlnetdemo1.png)
+
+Then, from the accordion element on the left, select the top-most item with your appplication name on it. Then, select the `Platform features` tab and open the `Application settings` option.
+
+![](http://cdn.lqdev.tech/files/images/azfnmlnetdemo2.png)
+
+When the `Application settings` page loads, change the `Platform` setting to `64-bit`. The reason for this is `ML.NET` has to be built and run on a 64-bit environment due to some of its native dependencies. 
+
+![](http://cdn.lqdev.tech/files/images/azfnmlnetdemo3.png)
+
+That's all there is to it.
+
+### Test The Deployed Function
+
+Now it's time to test our deployed function. We can do so from the portal by going back to the accordion and selecting the function name below the `Functions` parent element and clicking on the `Test` button on the far right. Doing so will show a form that will allow us to test our application. Make sure the `HTTP method` option is set to POST. In the text area for the `Request body` paste the following content:
+
+```json
+{
+  "SepalLength": 3.3,
+  "SepalWidth": 1.6,
+  "PetalLength": 0.2,
+  "PetalWidth": 5.1
+}
+```
+
+Once the form is filled in, click `Run` at the top of the page and if successful `Iris-virginica` should show up in the `Output` area.
+
+![](http://cdn.lqdev.tech/files/images/azfnmlnetdemo4.png)
+
+To test the function outside the portal, you can click on the `Get function URL` link next to the `Run` button and make an HTTP POST request using that link.
+
+## Conclusion
+
+In this writeup, we trained a classification model that predicts a class of flower using Microsoft's `ML.NET` framework. Then, we exposed this model for inference via an Azure Functions serverless application. In doing so, we can more efficiently manage our cost as well as our resource utilization. Happy coding!
+
+###### Resources
+
+[Create a function app for serverless code execution](https://docs.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-serverless)  
+[Using the Azure CLI 2.0 with Azure Storage](https://docs.microsoft.com/en-us/azure/storage/common/storage-azure-cli)  
+[Work with Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local)
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/serverless-machine-learning-mlnet-azure-functions</link>
+      <guid>https://www.lqdev.me/posts/serverless-machine-learning-mlnet-azure-functions</guid>
+      <pubDate>2018-08-21 19:13:47 -05:00</pubDate>
+      <category>serverless</category>
+      <category>azurefunctions</category>
+      <category>mlnet</category>
+      <category>machinelearning</category>
+      <category>dotnet</category>
+      <category>dotnetcore</category>
+      <category>csharp</category>
+      <category>microsoft</category>
+      <category>devops</category>
+      <category>artificialintelligence</category>
+      <category>ai</category>
+    </item>
+    <item>
+      <title>Deploy .NET Machine Learning Models with ML.NET, ASP.NET Core, Docker and Azure Container Instances</title>
+      <description>&lt;![CDATA[
+
+# Introduction
+
+Leading up to and during MS Build 2018 Microsoft has released a wide range of products that reduce the complexity that comes with building and deploying software. The focus this year was on Machine Learning and Artificial Intelligence. Some of the products I found particularly interesting are [Azure Container Instances](https://azure.microsoft.com/en-us/services/container-instances/) which makes it easier to run containerized applications without provisioning or managing servers and [ML.NET](https://www.microsoft.com/net/learn/apps/machine-learning-and-ai/ml-dotnet) which is a .NET cross-platform machine learning framework. In this writeup, I will make use of both these products by creating a machine learning classification model with `ML.NET`, exposing it via an ASP.NET Core Web API, packaging it into a Docker container and deploying it to the cloud via Azure Container Instances. Source code for this project can be found [here](https://github.com/lqdev/mlnetacidemo).
+
+## Prerequisites
+
+This writeup assumes that you have some familiarity with Docker. The following software/dependencies are also required to build and deploy the sample application. It's important to note the application was built on a Ubuntu 16.04 PC, but all the software is cross-platform and should work on any environment.
+
+- [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+- [.NET Core 2.0](https://www.microsoft.com/net/download/linux)
+- [Docker Hub Account](https://hub.docker.com/)
+
+## Setting Up The Project
+
+The first thing we want to do is create a folder for our solution.
+
+```bash
+mkdir mlnetacidemo
+```
+
+Then, we want to create a solution inside our newly created folder.
+
+```bash
+cd mlnetacidemo
+dotnet new sln
+```
+
+## Building The Model
+
+Inside our solution folder, we want to create a new console application which is where we'll build and test our machine learning model.
+
+### Setting Up the Model Project
+
+First, we want to create the project. From the solution folder enter:
+
+```bash
+dotnet new console -o model
+```
+
+Now we want to add this new project to our solution.
+
+```bash
+dotnet sln mlnetacidemo.sln add model/model.csproj
+```
+
+### Adding Dependencies
+
+Since we'll be using the `ML.NET` framework, we need to add it to our `model` project.
+
+```bash
+cd model
+dotnet add package Microsoft.ML
+dotnet restore
+```
+
+### Download The Data
+
+Before we start training the model, we need to download the data we'll be using to train. We do so by creating a directory called `data` and downloading the data file onto there.
+
+```bash
+mkdir data
+curl -o data/iris.txt https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data
+```
+
+If we take a look at the data file, it should look something like this:
+
+```text
+5.1,3.5,1.4,0.2,Iris-setosa
+4.9,3.0,1.4,0.2,Iris-setosa
+4.7,3.2,1.3,0.2,Iris-setosa
+4.6,3.1,1.5,0.2,Iris-setosa
+5.0,3.6,1.4,0.2,Iris-setosa
+5.4,3.9,1.7,0.4,Iris-setosa
+4.6,3.4,1.4,0.3,Iris-setosa
+5.0,3.4,1.5,0.2,Iris-setosa
+4.4,2.9,1.4,0.2,Iris-setosa
+4.9,3.1,1.5,0.1,Iris-setosa
+```
+
+### Train Model
+
+Now that we have all our dependencies set up, it's time to build our model. I leveraged the demo that is used on the [ML.NET Getting-Started website](https://www.microsoft.com/net/learn/apps/machine-learning-and-ai/ml-dotnet/get-started/linux/ubuntu16-04).
+
+#### Defining Data Structures
+
+In the root directory of our `model` project, let's create two classes called `IrisData` and `IrisPrediction` which will define our features and predicted attribute respectively. Both of them will use `Microsoft.ML.Runtime.Api` to add the property attributes.
+
+Here is what our `IrisData` class looks like: 
+```csharp
+using Microsoft.ML.Runtime.Api;
+
+namespace model
+{
+public class IrisData
+    {
+        [Column("0")]
+        public float SepalLength;
+
+        [Column("1")]
+        public float SepalWidth;
+
+        [Column("2")]
+        public float PetalLength;
+        
+        [Column("3")]
+        public float PetalWidth;
+
+        [Column("4")]
+        [ColumnName("Label")]
+        public string Label;
+    }       
+}
+```
+
+Similarly, here is the `IrisPrediction` class:
+
+```csharp
+using Microsoft.ML.Runtime.Api;
+
+namespace model
+{
+    public class IrisPrediction
+    {
+        [ColumnName("PredictedLabel")]
+        public string PredictedLabels;
+    }
+}
+```
+
+#### Building Training Pipeline
+
+The way the `ML.NET` computations process is via a sequential pipeline of steps that are performed eventually leading up to the training of the model. Therefore, we can create a class called `Model` to perform all of these tasks for us.
+
+```csharp
+using Microsoft.ML.Data;
+using Microsoft.ML;
+using Microsoft.ML.Runtime.Api;
+using Microsoft.ML.Trainers;
+using Microsoft.ML.Transforms;
+using Microsoft.ML.Models;
+using System;
+using System.Threading.Tasks;
+
+namespace model
+{
+    class Model
+    {
+        
+        public static async Task&lt;PredictionModel&lt;IrisData,IrisPrediction&gt;&gt; Train(LearningPipeline pipeline, string dataPath, string modelPath)
+        {
+            // Load Data
+            pipeline.Add(new TextLoader(dataPath).CreateFrom&lt;IrisData&gt;(separator:',')); 
+
+            // Transform Data
+            // Assign numeric values to text in the "Label" column, because 
+            // only numbers can be processed during model training   
+            pipeline.Add(new Dictionarizer("Label"));
+
+            // Vectorize Features
+            pipeline.Add(new ColumnConcatenator("Features", "SepalLength", "SepalWidth", "PetalLength", "PetalWidth"));
+
+            // Add Learner
+            pipeline.Add(new StochasticDualCoordinateAscentClassifier());
+
+            // Convert Label back to text 
+            pipeline.Add(new PredictedLabelColumnOriginalValueConverter() {PredictedLabelColumn = "PredictedLabel"});
+
+            // Train Model
+            var model = pipeline.Train&lt;IrisData,IrisPrediction&gt;();
+
+            // Persist Model
+            await model.WriteAsync(modelPath);
+
+            return model;
+        }
+    }
+}
+```
+
+In addition to building our pipeline and training our machine learning model, the `Model` class also serialized and persisted the model for future use in a file called `model.zip`.
+
+#### Testing Our Model
+
+Now that we have our data structures and model training pipeline set up, it's time to test everything to make sure it's working. We'll put our logic inside of our `Program.cs` file.
+
+```csharp
+using System;
+using Microsoft.ML;
+
+namespace model
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string dataPath = "model/data/iris.txt";
+
+            string modelPath = "model/model.zip";
+
+            var model = Model.Train(new LearningPipeline(),dataPath,modelPath).Result;
+
+            // Test data for prediction
+            var prediction = model.Predict(new IrisData() 
+            {
+                SepalLength = 3.3f,
+                SepalWidth = 1.6f,
+                PetalLength = 0.2f,
+                PetalWidth = 5.1f
+            });
+
+            Console.WriteLine($"Predicted flower type is: {prediction.PredictedLabels}");
+        }
+    }
+}
+```
+
+All set to run. We can do so by entering the following command from our solution directory:
+
+```bash
+dotnet run -p model/model.csproj
+```
+
+Once the application has been run, the following output should display on the console. 
+
+```text
+Automatically adding a MinMax normalization transform, use 'norm=Warn' or
+'norm=No' to turn this behavior off.Using 2 threads to train.
+Automatically choosing a check frequency of 2.Auto-tuning parameters: maxIterations = 9998.
+Auto-tuning parameters: L2 = 2.667734E-05.
+Auto-tuning parameters: L1Threshold (L1/L2) = 0.Using best model from iteration 882.
+Not training a calibrator because it is not needed.
+Predicted flower type is: Iris-virginica
+```
+
+Additionally, you'll notice that a file called `model.zip` was created in the root directory of our `model` project. This persisted model can now be used outside of our application to make predictions, which is what we'll do next via an API.
+
+## Exposing The Model
+
+Once a machine learning model is built, you want to deploy it so it can start making predictions. One way to do that is via a REST API. At it's core, all our API needs to do is accept data input from the client and respond back with a prediction. To help us do that, we'll be using an ASP.NET Core API.
+
+### Setting Up The API Project
+
+The first thing we want to do is create the project.
+
+```bash
+dotnet new webapi -o api
+```
+
+Then we want to add this new project to our solution
+
+```bash
+dotnet sln mlnetacidemo.sln add api/api.csproj
+```
+
+### Adding Dependencies
+
+Because we'll be loading our model and making predictions via our API, we need to add the `ML.NET` package to our `api` project.
+
+```bash
+cd api
+dotnet add package Microsoft.ML
+dotnet restore
+```
+
+### Referencing Our Model
+
+In the previous step when we built our machine learning model, it was saved to a file called `model.zip`. This is the file we'll be referencing in our API to help us make predictions. To reference it in our API, simply copy it from the model project directory into our `api` project directory.
+
+### Creating Data Models
+
+Our model was built using data structures `IrisData` and `IrisPrediction` to define the features as well as the predicted attribute. Therefore, when our model makes predictions via our API, it needs to reference these data types as well. As a result, we need to define `IrisData` and `IrisPrediction` classes inside of our `api` project. The contents of the classes will be nearly identical to those in the `model` project with the only exception of our namespace changing from `model` to `api`.
+
+```csharp
+using Microsoft.ML.Runtime.Api;
+
+namespace api
+{
+    public class IrisData
+    {
+        [Column("0")]
+        public float SepalLength;
+
+        [Column("1")]
+        public float SepalWidth;
+
+        [Column("2")]
+        public float PetalLength;
+        
+        [Column("3")]
+        public float PetalWidth;
+
+        [Column("4")]
+        [ColumnName("Label")]
+        public string Label;
+    }    
+}
+```
+
+```csharp
+using Microsoft.ML.Runtime.Api;
+
+namespace api
+{
+    public class IrisPrediction
+    {
+        [ColumnName("PredictedLabel")]
+        public string PredictedLabels;
+    }
+}
+```
+
+### Building Endpoints
+
+Now that our project is set up, it's time to add a controller that will handle prediction requests from the client. In the `Controllers` directory of our `api` project we can create a new class called `PredictController` with a single `POST` endpoint. The contents of the file should look like the code below:
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.ML;
+
+namespace api.Controllers
+{
+    [Route("api/[controller]")]
+    public class PredictController : Controller
+    {
+        // POST api/predict
+        [HttpPost]
+        public string Post([FromBody] IrisData instance)
+        {
+            var model = PredictionModel.ReadAsync&lt;IrisData,IrisPrediction&gt;("model.zip").Result;
+            var prediction = model.Predict(instance);
+            return prediction.PredictedLabels;
+        }
+    }
+}
+```
+
+### Testing The API
+
+Once our `predict` endpoint is set up, it's time to test it. From the root directory of our `mlnetacidemo` solution, enter the following command.
+
+```bash
+dotnet run -p api/api.csproj
+```
+
+In a client like POSTMAN or Insomnia, send an HHTP POST request to the endpoint `http://localhost:5000/api/predict`.
+
+The body our request should look similar to the snippet below:
+
+```json
+{
+	"SepalLength": 3.3,
+	"SepalWidth": 1.6,
+	"PetalLength": 0.2,
+	"PetalWidth": 5.1,
+}
+```
+
+If successful, the output returned should equal `Iris-virginica` just like our console application.
+
+## Packaging The Application
+
+Great! Now that our application is successfully running locally, it's time to package it up into a Docker container and push it to Docker Hub.
+
+### Creating The Dockerfile
+
+In our `mlnetacidemo` solution directory, create a `Dockerfile` with the following content:
+
+```Dockerfile
+FROM microsoft/dotnet:2.0-sdk AS build
+WORKDIR /app
+
+# copy csproj and restore as distinct layers
+COPY *.sln .
+COPY api/*.csproj ./api/
+RUN dotnet restore
+
+# copy everything else and build app
+COPY api/. ./api/
+WORKDIR /app/api
+RUN dotnet publish -c release -o out
+
+
+FROM microsoft/aspnetcore:2.0 AS runtime
+WORKDIR /app
+COPY api/model.zip .
+COPY --from=build /app/api/out ./
+ENTRYPOINT ["dotnet", "api.dll"]
+```
+
+### Building Our Image
+
+To build the image, we need to enter the following command into the command prompt. This make take a while because it needs to download the .NET Core SDK and ASP.NET Core runtime Docker images.
+
+```bash
+docker build -t &lt;DOCKERUSERNAME&gt;/&lt;IMAGENAME&gt;:latest .
+```
+
+### Test Image Locally
+
+We need to test our image locally to make sure it can run on the cloud. To do so, we can use the `docker run` command. 
+
+```bash
+docker run -d -p 5000:80 &lt;DOCKERUSERNAME&gt;/&lt;IMAGENAME&gt;:latest
+```
+
+Although the API is exposing port 80, we bind it to the local port 5000 just to keep our prior API request intact. When sending a POST request to `http://localhost:5000/api/predict` with the appropriate body, the response should again equal `Iris-virginica`.
+
+To stop the container, use `Ctrl + C`.
+
+### Push to Docker Hub
+
+Now that the Docker image is successfully running locally, it's time to push to Docker Hub. Again, we use the Docker CLI to do this.
+
+```bash
+docker login
+docker push &lt;DOCKERUSERNAME&gt;/&lt;IMAGENAME&gt;:latest
+```
+
+## Deploying To The Cloud
+
+Now comes the final step which is to deploy and expose our machine learning model and API to the world. Our deployment will occur via Azure Container Instances because it requires almost no provisioning or management of servers. 
+
+### Prepare Deployment Manifest
+
+Although deployments can be performed inline in the command line, it's usually best to place all the configurations in a file for documentation and to save time not having to type in the parameters every time. With Azure, we can do that via a JSON file. 
+
+```json
+{
+  "$schema":
+    "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "containerGroupName": {
+      "type": "string",
+      "defaultValue": "mlnetacicontainergroup",
+      "metadata": {
+        "description": "Container Group name."
+      }
+    }
+  },
+  "variables": {
+    "containername": "mlnetacidemo",
+    "containerimage": "&lt;DOCKERUSERNAME&gt;/&lt;IMAGENAME&gt;:latest"
+  },
+  "resources": [
+    {
+      "name": "[parameters('containerGroupName')]",
+      "type": "Microsoft.ContainerInstance/containerGroups",
+      "apiVersion": "2018-04-01",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "containers": [
+          {
+            "name": "[variables('containername')]",
+            "properties": {
+              "image": "[variables('containerimage')]",
+              "resources": {
+                "requests": {
+                  "cpu": 1,
+                  "memoryInGb": 1.5
+                }
+              },
+              "ports": [
+                {
+                  "port": 80
+                }
+              ]
+            }
+          }
+        ],
+        "osType": "Linux",
+        "ipAddress": {
+          "type": "Public",
+          "ports": [
+            {
+              "protocol": "tcp",
+              "port": "80"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "containerIPv4Address": {
+      "type": "string",
+      "value":
+        "[reference(resourceId('Microsoft.ContainerInstance/containerGroups/', parameters('containerGroupName'))).ipAddress.ip]"
+    }
+  }
+}
+```
+
+It's a lot to look at but for now we can use this template and save it to the file `azuredeploy.json` in the root directory of our `mlnetacidemo` solution. The only thing that needs to be changed is the value of the `containerimage` property. Replace it with your Docker Hub username and the name of the image you just pushed to Docker Hub.
+
+### Deploy
+
+In order to deploy our application we need to make sure to log into our Azure account. To do so via the Azure CLI, type into the command prompt:
+
+```bash
+az login
+```
+
+Follow the prompts to log in. Once logged in, it's time to create a resource group for our container.
+
+```bash
+az group create --name mlnetacidemogroup --location eastus
+```
+
+After the group has been successfully created it's time to deploy our application.
+
+```bash
+az group deployment create --resource-group mlnetacidemogroup --template-file azuredeploy.json
+```
+
+Give it a few minutes for your deployment to initialize. If the deployment was successful, you should see some output on the command line. Look for the `ContainerIPv4Address` property. This is the IP Address where your container is accessible. In POSTMAN or Insomnia, replace the URL to which you previously made a POST request to with `http://&lt;ContainerIPv4Address&gt;/api/predict` where `ContainerIPv4Address` is the value that was returned to the command line after the deployment. If successful, the response should be just like previous requests `Iris-virginica`.
+
+Once you're finished, you can clean up resources with the following command:
+
+```bash
+az group delete --name mlnetacidemogroup
+```
+
+## Conclusion
+
+In this writeup, we built a classification machine learning model using `ML.NET` that predicts the class of an iris plant given four measurement features, exposed it via an ASP.NET Core REST API, packaged it into a container and deployed it to the cloud using Azure Container Instances. As the model changes and becomes more complex, the process is standardized enough that extending this example would require minimal changes to our existing application. Happy Coding!
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/deploy-netml-docker-aci</link>
+      <guid>https://www.lqdev.me/posts/deploy-netml-docker-aci</guid>
+      <pubDate>2018-05-11 21:17:00 -05:00</pubDate>
+      <category>azure</category>
+      <category>devops</category>
+      <category>dotnet</category>
+      <category>ml</category>
+      <category>ai</category>
+      <category>microsoft</category>
+      <category>programming</category>
+      <category>development</category>
+      <category>csharp</category>
+      <category>aci</category>
+      <category>docker</category>
+      <category>mlnet</category>
+      <category>webapi</category>
+      <category>aspnetcore</category>
+      <category>aspnet</category>
+      <category>machinelearning</category>
+      <category>artificialintelligence</category>
+    </item>
+    <item>
+      <title>Transcribing Podcasts with Microsoft Speech API</title>
+      <description>&lt;![CDATA[
+
+# Introduction
+
+I enjoy listening to podcasts in a wide range of topics that include but are not limited to politics, software development, history, comedy and true crime. While some of the more entertainment related podcasts are best enjoyed through audio, those that are related to software development or other type of hands-on topics would benefit greatly from having a transcript. Having a transcript allows me to go back after having listened to an interesting discussion and look directly at the content I am interested in without having to listen to the podcast again. This however is not always feasible given that it costs both time and money to produce a transcript. Fortunately, there are tools out there such as Google Cloud Speech and Microsoft Speech API which allow users to convert speech to text. For this writeup, I will be focusing on the Microsoft Speech API. Because podcasts tend to be long-form, I will be using the C# client library because it allows for long audio (greater than 15 seconds) to be transcribed. The purpose of this exercise is to create a console application that takes audio segments, converts them to text and stores the results in a text file with the goal of evaluating how well the Microsoft Speech API works. The source code for the console application can be found on [GitHub](https://github.com/lqdev/PodcastsBingSpeechAPIDemo)
+
+## Prerequisites
+
+- [Visual Studio Community](https://www.visualstudio.com/vs/community/)
+- [Windows Subsystem for Linux (Ubuntu)](https://www.microsoft.com/store/productId/9NBLGGH4MSV6)
+- [ffmpeg](https://ffmpeg.org/)
+
+## Install/Enable Windows Subsystem for Linux
+1. Open Powershell as Administrator and input
+```powershell
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+```
+2. Restart your computer
+3. Open the Microsoft Store and install [Ubuntu](https://www.microsoft.com/store/productId/9NBLGGH4MSV6) Linux distribution
+4. Once installed, click `Launch`
+5. Create your LINUX user account (Keep in mind that this is not the same as your Windows account therefore it can be different).
+
+## Install ffmpeg
+
+Once Ubuntu is installed on your computer and you have created your LINUX user account, it's time to install `ffmpeg`. This will allow us to convert our file from `mp3` which is usually the format podcasts are in to `wav` which is the format accepted by the Microsoft Speech API
+
+```bash
+sudo apt install -y ffmpeg
+```
+
+## Get Bing Speech API Key
+
+In order to use the Microsoft Speech API, an API key is required. This can be obtained using the following steps.
+
+1. Navigate to the [Azure Cognitive Services](https://azure.microsoft.com/en-us/try/cognitive-services/) page.
+2. Select the `Speech` tab
+3. Click `Get API Key` and follow the instructions
+4. Once you have an API key, make sure to store it somewhere like a text file in your computer for future use.
+
+# File Prep
+
+Before transcribing the files, they need to be converted to `wav` format if they are not already in it. In order to ease processing, they should be split into segments as opposed to having the API process an entire multi megabyte file. To do all this, inside the Ubuntu shell, first navigate to your `Documents` folder and create a new directory for the project.
+
+```bash
+cd /mnt/c/Users/&lt;USERNAME&gt;/Documents
+mkdir testspeechapi
+```
+
+`USERNAME` is your Windows user name. This can be found by typing the following command into the Windows `CMD` prompt
+
+```bash
+echo %USERNAME%
+```
+
+## Download Audio Files
+
+One of the podcasts I listen to is [Talk Python To Me](https://talkpython.fm/) by [Michael Kennedy](https://twitter.com/mkennedy). For the purpose of this exercise, aside from having great content, all of the episodes are transcribed and a link is provided to the `mp3` file. 
+
+The file I will be using is from episode [#149](https://talkpython.fm/episodes/show/149/4-python-web-frameworks-compared), but it can easily be any of the episodes.
+
+In the Ubuntu shell, download the file into the `testspeechapi` directory that was recently created using `wget`.
+
+```bash
+wget https://talkpython.fm/episodes/download/149/4-python-web-frameworks-compared.mp3 -O originalinput.mp3
+```
+
+## Download Transcripts
+
+The transcripts can be found in GitHub at this [link](https://github.com/mikeckennedy/talk-python-transcripts/tree/master/transcripts). The original transcript will allow me to compare it to the output of the Microsoft Speech API and evaluate the accuracy.
+
+We can download this file into the `testspeechapi` directory just like the audio file
+
+```bash
+wget https://raw.githubusercontent.com/mikeckennedy/talk-python-transcripts/master/transcripts/149.txt -O originaltranscript.txt
+```
+
+## Convert MP3 to WAV
+
+Now that we have both the original audio file and transcript, it's time to convert the format from `mp3` to `wav`. To do this, we can use `ffmpeg`. In the Ubuntu shell, enter the following command.
+
+```bash
+ffmpeg -i originalinput.mp3 -f wav originalinput.wav
+```
+
+## Create Audio Segments
+
+Once we have the proper format, it's time to make the files more manageable for processing. This can be done by splitting them up into equal segments using `ffmpeg`. In this case I'll be splitting it up into sixty second segments and storing them into a directory called `input` with the name `filexxxx.wav`. The `%04d` indicates that there will be 4 digits in the file name. Inside the Ubuntu shell and `testspeechapi` directory enter the following commands.
+
+```bash
+mkdir input
+ffmpeg -i originalinput.wav -f segment -segment_time 60 -c copy input/file%04d.wav
+```
+
+# Building The Console Application
+
+To get started building the console application, we can leverage the [Cognitive-Speech-STT-ServiceLibrary](https://github.com/Azure-Samples/Cognitive-Speech-STT-ServiceLibrary) sample program.
+
+## Download The Sample Program
+
+The first step will be to clone the sample program from GitHub onto your computer. In the Windows `CMD` prompt navigate to the `testspeechapi` folder and enter the following command.
+
+```bash
+git clone https://github.com/Azure-Samples/Cognitive-Speech-STT-ServiceLibrary
+```
+
+Once the project is on your computer, open the directory and launch the `SpeechClient.sln` solution in the `sample` directory
+
+When the solution launches, open the `Program.cs` file and begin making modifications.
+
+## Reading Files
+
+To read files, we can create a function that will return the list of files in the specified directory.
+
+```csharp
+private static string[] GetFiles(string directory)
+{
+    string[] files = Directory.GetFiles(directory);
+    return files;
+}
+```
+
+## Process Files
+
+Once we have the list of files, we can then process each file individually using the `Run` method. To do so, we need to make a slight modification to our `Main` method so that it iterates over each file and calls the `Run` method on it. To store the responses from the API, we'll also need a `StringBuilder` object which is declared at the top of our `Program.cs` file.
+
+```csharp
+finalResponse = new StringBuilder();
+string[] files = GetFiles(args[0]);
+foreach(var file in files)
+{
+    p.Run(file,"en-us",LongDictationUrl,args[1]).Wait();
+    Console.WriteLine("File {0} processed",file);
+}
+```
+
+## Transcribe Audio
+
+The `Run` method can be left intact. However, the `Run` method uses the `OnRecognitionResult` method to handle the result of API responses. In the `OnRecognitionResult` method, we can remove almost everything that is originally there and replace it. The response from the API returns various results of potential phrases as well as a confidence value. Generally, most of the phrases are alike and the first value is good enough for our purposes. The code for this part will take the response from the API, append it to a `StringBuilder` object and return when completed.
+
+```csharp
+public Task OnRecognitionResult(RecognitionResult args)
+{
+
+    var response = args;
+
+    if(response.Phrases != null)
+    {
+	finalResponse.Append(response.Phrases[0].DisplayText);
+	finalResponse.Append("\n");
+    }
+
+    return CompletedTask;
+}
+```
+
+## Output Transcribed Speech
+
+When all the audio files have been processed, we can save the final output to a text file in the `testspeechapi` directory. This can be done with the `SaveOutput` function to which we pass in a file name and the `StringBuilder` object that captured responses from the API.
+
+```csharp
+private static void SaveOutput(string filename,StringBuilder content)
+{
+    StreamWriter writer = new StreamWriter(filename);
+    writer.Write(content.ToString());
+    writer.Close();
+}
+```
+
+`SaveOutput` can then be called from our `Main` method like so.
+
+```csharp
+string username = Environment.GetEnvironmentVariable("USERNAME", EnvironmentVariableTarget.Process);
+SaveOutput(String.Format(@"C:\\Users\\{0}\\Documents\\testspeechapi\\apitranscript.txt",username), finalResponse);
+```
+
+The final `Main` method should look similar to the code below
+
+```csharp
+public static void Main(string[] args)
+{
+    // Send a speech recognition request for the audio.
+    finalResponse = new StringBuilder();
+
+    string[] files = GetFiles(args[0]);
+
+    var p = new Program();
+
+    foreach (var file in files)
+    {
+	p.Run(file, "en-us", LongDictationUrl, args[1]).Wait();
+	Console.WriteLine("File {0} processed", file);
+    }
+
+    string username = Environment.GetEnvironmentVariable("USERNAME", EnvironmentVariableTarget.Process);
+
+    SaveOutput(String.Format(@"C:\\Users\\{0}\\Documents\\testspeechapi\\apitranscript.txt",username), finalResponse);
+}
+```
+
+# Output
+
+The program will save the output of the `StringBuilder` object `finalResponse` to the file `apitranscript.txt`.
+
+Prior to running the program it needs to be built. In Visual Studio change the Solutions Configurations option from `Debug` to `Release` and build the application.
+
+To run the program, navigate to the `C:\Users\%USERNAME%\Documents\testspeechapi\Cognitive-Speech-STT-ServiceLibrary\sample\SpeechClientSample\bin\Release` directory in the Windows `CMD` prompt and enter the following command and pass in the `input` directory where all the audio segments are stored and your API Key.
+
+```bash
+SpeechClientSample.exe C:\\Users\\%USERNAME%\\Documents\\testspeechapi\\input &lt;YOUR-API-KEY&gt;
+```
+This process may take a while due to the number of files being processed, so be patient.
+
+## Sample Output
+
+Original
+
+&gt; Are you considering getting into web programming? Choosing a web framework like Pyramid, Flask, or Django can be daunting. It would be great to see them all build out the same application and compare the results side-by-side. That's why when I heard what Nicholas Hunt-Walker was up to, I had to have him on the podcast. He and I chat about four web frameworks compared. He built a data-driven web app with Flask, Tornado, Pyramid, and Django and then put it all together in a presentation. We're going to dive into that right now. This is Talk Python To Me, Episode 149, recorded January 30th, 2018. Welcome to Talk Python to Me, a weekly podcast on Python, the language, the libraries, the ecosystem, and the personalities. This is your host, Michael Kennedy, follow me on Twitter where I'm @mkennedy. Keep up with the show and listen to past episodes at talkpython.fm, and follow the show on Twitter via @talkpython. Nick, welcome to Talk Python.
+
+API Response
+
+&gt; Are you considering getting into web programming cheese in the web framework like plaster. Django can be daunting. It would be great to see them. Although that the same application and compare the results side by side. That's Why? When I heard. But Nicholas Hunt. Walker was up to, I had him on the podcast. He night chat about 4 web frameworks, compared he built a data driven web app with last tornado. Peermade Angangueo and then put it all together in a presentation. We have dive into that right now. This is talk by the to me, I was 149 recorded January 30th 2018. Welcome to talk python to me a weekly podcast on Python Language the library ecosystem in the personalities. Did you host Michael Kennedy? Follow me on Twitter where I'm at in Kennedy keep up with the show in the past episodes at talk python. Damn info, the show on Twitter via at Popeyes on. Nick Welcome to talk by phone.
+
+# Conclusion
+
+In this writeup, I converted an `mp3` podcast file to `wav` format and split it into sixty second segments using `ffmpeg`. The segments were then processed by a console application which uses the Microsoft Speech API to convert speech to text and the results were saved to a text file. When compared to the original transcript, the result produced by the API is inconsistent and at times incomprehensible. This does not mean that overall the API is unusable or inaccurate as many things could have contributed to the inaccuracy. However, the results were not as good as I would have hoped for.
+
+###### Sources
+- [Windows Subsystem for Linux Install Instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+- [Microsoft Speech API](https://docs.microsoft.com/en-us/azure/cognitive-services/speech/home)
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/transcribing-podcasts-microsoft-speech-api</link>
+      <guid>https://www.lqdev.me/posts/transcribing-podcasts-microsoft-speech-api</guid>
+      <pubDate>2018-02-11 20:34:37 -05:00</pubDate>
+      <category>azure</category>
+      <category>csharp</category>
+      <category>apis</category>
+      <category>nlp</category>
+      <category>machine-learning</category>
+      <category>artificial-intelligence</category>
+      <category>microsoft</category>
+    </item>
+    <item>
+      <title>Real-Time Sentiment Analysis with C#</title>
+      <description>&lt;![CDATA[
+###### This is strictly for use with the .NET Framework. With Mono it might be able to work on other platforms. `SimpleNetNlp` does not currently work with .NET Core/Standard
+
+In this project, I will demonstate how to perform sentiment analysis on tweets using various C# libraries.
+
+## Dependencies
+
+- TweetInviAPI
+- SimpleNetNlp
+- SimpleNetNlp.Models.LexParser
+- SimpleNetNlP.Models.Sentiment
+
+## Create Console Application
+
+In Visual Studio, Click File &gt; New &gt; New Project &gt; Console Application
+
+All of the code below will be placed in the `Program` class.
+
+## Creating A Stream
+
+### Authenticate
+
+Thanks to the `Tweetinvi` library, the authentication with the Twitter API is a breeze. Assuming that an application has been registered at [http://apps.twitter.com](http://apps.twitter.com), the `SetUserCredentials` method can be used and the `Consumer Key`, `Consumer Secret`,`Access Token` and `Access Token Secret` can be passed into it. This type of global authentication makes it easy to perform authenticated calls throughout the entire application.
+
+```csharp
+Auth.SetUserCredentials("consumer-key","consumer-secret","access-token","access-token-secret");
+```
+
+### Build Stream
+
+Like the authentication, creating a stream is seamless.
+
+We can create a stream by calling the `CreateFilteredStream` method.
+
+```csharp
+var stream = Stream.CreateFilteredStream();
+```
+
+We can then add conditions to filter on using the `AddTrack` method. In this case, I will be filtering for cryptocurrencies, ether, bitcoin, and litecoin.
+
+```csharp
+stream.AddTrack("cryptocurrencies");
+stream.AddTrack("bitcoin");
+stream.AddTrack("ether");
+stream.AddTrack("Litecoin");
+```
+
+Additionally, we can filter by language. In my case, I will only be filtering on English. This can be done by using the `AddTweetLanguageFilter` method.
+
+```csharp
+stream.AddTweetLanguageFilter("en");
+```
+
+Once we have all the filters set up, we need to handle what will happen when a matching tweet is detected. This will be handled by an `EventHandler` called `MatchingTweetReceived`.
+
+```csharp
+stream.MatchingTweetReceived += OnMatchedTweet;
+```
+
+`MatchingTweetReceived` will be bound to the `OnMatchedTweet` method which I created.
+
+```csharp
+private static void OnMatchedTweet(object sender, MatchedTweetReceivedEventArgs args)
+{
+  //Do Stuff
+}
+```
+
+The logic inside of this method will perform sentiment analysis and output the sentiment as well as the full text of the tweet.
+
+## Data Cleaning
+
+Tweets can contain many non-ascii characters. Therefore, we need to sanitize it as best as possible so that it can be processed by the sentiment analyzer. To help with that, I used regular expresions to replace non-ascii characters inside of the `sanitize` method.
+
+```csharp
+private static string sanitize(string raw)
+{
+  return Regex.Replace(raw, @"(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ").ToString();
+}
+```
+
+## Sentiment Analysis
+
+In order to perform sentiment analysis, we will be using the `SimpleNetNlp` library. This library is built on top of the Stanford CoreNLP library. In order to get the sentiment of a piece of text, we need to create a `Sentence` object which takes a string as a parameter and then get the `Sentiment` property. In our case, the parameter that will be used to instantiate a new `Sentence` object will be the sanitized text of a tweet.
+
+```csharp
+var sanitized = sanitize(args.Tweet.FullText);
+string sentence = new Sentence(sanitized);
+```
+
+The code above will be placed inside of the `OnMatchedTweet` method.
+
+## Produce Output
+
+Now that we have everything set up, we can just output to the console the sentiment and raw text of the tweet. To do that, we can place the code below inside the `OnMatchedTweet` method.
+
+```csharp
+Console.WriteLine(sentence.Sentiment + "|" + args.Tweet);
+```
+
+The final `OnMatchedTweet` method looks as follows:
+
+```csharp
+private static void OnMatchedTweet(object sender, MatchedTweetReceivedEventArgs args)
+{
+    var sanitized = sanitize(args.Tweet.FullText); //Sanitize Tweet
+    var sentence = new Sentence(sanitized); //Get Sentiment
+
+    //Output Tweet and Sentiment
+    Console.WriteLine(sentence.Sentiment + "|" + args.Tweet);
+}
+```
+## Run
+
+Once we run the application, our console application should look something like this:
+
+![](http://cdn.lqdev.tech/files/images/sentiment-analysis-1.png)
+
+
+## Conclusion
+
+C# is not always the first language that comes to mind when doing analytics and machine learning. However, tasks such as sentiment analysis can be trivially performed thanks to libraries such as `Tweetinvi` and `SimpleNetNlp`. In its current state, this application is not very useful because it just outputs to the console sentiments and the respective tweets. In order to make it more useful, we can collect and aggregate the data someplace for more robust analysis. 
+]]&gt;</description>
+      <link>https://www.lqdev.me/posts/real-time-sentiment-analysis-csharp</link>
+      <guid>https://www.lqdev.me/posts/real-time-sentiment-analysis-csharp</guid>
+      <pubDate>2018-01-18 03:41:47 -05:00</pubDate>
+      <category>data analysis</category>
+      <category>sentiment analysis</category>
+      <category>nlp</category>
+      <category>machine learning</category>
+      <category>csharp</category>
+      <category>c#</category>
+      <category>twitter</category>
+      <category>api</category>
+      <category>.net</category>
+      <category>dotnet</category>
+    </item>
+    <item>
+      <title>Client Credentials Authorization in C#</title>
+      <description>&lt;![CDATA[
+
+# Getting Started
+
+For this writeup, I'm going to use the Spotify API. Spotify API supports different authorization flows. In this writeup, I will be using the client credentials authorization flow. Generally this works for server-to-server authentication. Because this does not allow users the ability to provide their own credentials, there is no access to endpoints that contain user data.
+
+![](http://cdn.lqdev.tech/files/images/clientcredentialsflowdiagram.png)
+
+# Create a new .NET Core Console Application
+
+```bash
+dotnet new console -o authtest
+```
+
+# Add Dependencies
+
+```bash
+dotnet add package Newtonsoft.Json --version 10.0.3
+```
+
+# Access Token Model
+
+When a request is made, it needs to be parsed. To better capture the data into a Plain Old CLR Object (POCO), a model can be created.
+
+```csharp
+using System;
+
+namespace authtest
+{
+    class AccessToken
+    {
+        public string access_token { get; set; }
+        public string token_type { get; set; }
+        public long expires_in { get; set; }
+    }
+}
+```
+
+# Request Token
+
+In order to extract our token, an HTTP Request needs to be made to the Spotify API in order to get an access token. To do so, we can leverage the `HTTPClient` functionalities.
+
+```csharp
+private static async Task&lt;string&gt; GetToken()
+{
+    string clientId = "YOUR CLIENT ID";
+    string clientSecret = "YOUR CLIENT SECRET";
+    string credentials = String.Format("{0}:{1}",clientId,clientSecret);
+
+    using(var client = new HttpClient())
+    {
+        //Define Headers
+        client.DefaultRequestHeaders.Accept.Clear();
+        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",Convert.ToBase64String(Encoding.UTF8.GetBytes(credentials)));
+
+        //Prepare Request Body
+        List&lt;KeyValuePair&lt;string,string&gt;&gt; requestData = new List&lt;KeyValuePair&lt;string,string&gt;&gt;();
+        requestData.Add(new KeyValuePair&lt;string,string&gt;("grant_type","client_credentials"));
+
+        FormUrlEncodedContent requestBody = new FormUrlEncodedContent(requestData);
+
+        //Request Token
+        var request = await client.PostAsync("https://accounts.spotify.com/api/token",requestBody);
+        var response = await request.Content.ReadAsStringAsync();
+        return JsonConvert.DeserializeObject&lt;AccessToken&gt;(response);   
+    }
+}
+```
+
+
+We can then use this function in our main method to request the token.
+
+```csharp
+static void Main(string[] args)
+{
+    Console.WriteLine("Spotify API");
+    AccessToken token = GetToken().Result;
+    Console.WriteLine(String.Format("Access Token: {0}",token.access_token));
+}
+```
+
+This should produce the following output
+
+```bash
+Spotify API
+Getting Token
+Access Token: "YOUR ACCESS TOKEN"
+```
+
+The token can now be used to make requests to the Spotify API.
+
+Source Code can be found here [Source Code](https://gist.github.com/lqdev/5e82a5c856fcf0818e0b5e002deb0c28)
+
+###### Sources
+[Spotify Authorization Guide](https://developer.spotify.com/web-api/authorization-guide/#client_credentials_flow)]]&gt;</description>
+      <link>https://www.lqdev.me/posts/client-credentials-authentication-csharp</link>
+      <guid>https://www.lqdev.me/posts/client-credentials-authentication-csharp</guid>
+      <pubDate>2017-12-25 19:28:48 -05:00</pubDate>
+      <category>csharp</category>
+      <category>authentication</category>
+      <category>web applications</category>
+      <category>.net</category>
+      <category>api</category>
+      <category>.net core</category>
+    </item>
+  </channel>
+</rss>

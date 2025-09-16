@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - analytics</title>
+    <link>https://www.lqdev.me/tags/analytics</link>
+    <description>All content tagged with 'analytics' by Luis Quintanilla</description>
+    <lastBuildDate>2024-02-15 20:48 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Observable 2.0 - Announcing Observable Framework</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Today we’re launching Observable 2.0 with a bold new vision: an open-source static site generator for building fast, beautiful data apps, dashboards, and reports.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Our mission is to help teams communicate more effectively with data. Effective presentation of data is critical for deep insight, nuanced understanding, and informed decisions. Observable notebooks are great for ephemeral, ad hoc data exploration. But notebooks aren’t well-suited for polished dashboards and apps.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/observable-2-0</link>
+      <guid>https://www.lqdev.me/responses/observable-2-0</guid>
+      <pubDate>2024-02-15 20:48 -05:00</pubDate>
+      <category>data</category>
+      <category>analytics</category>
+      <category>observable</category>
+    </item>
+    <item>
+      <title>Where is all of the Fediverse?</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Here we can see that Fastly and Cloudflare make up over 50% of the entire fediverse network.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...for the population using Cloudflare, a fair number of them (30%) appear to be hosting the instances behind a home broadband connection.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...the German hosting provider Hetzner hosts over 51% of the entire network!&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/where-is-all-fediverse</link>
+      <guid>https://www.lqdev.me/bookmarks/where-is-all-fediverse</guid>
+      <pubDate>2024-01-13 10:15 -05:00</pubDate>
+      <category>fediverse</category>
+      <category>analytics</category>
+      <category>web</category>
+    </item>
+    <item>
+      <title>One more blog post for 2023?</title>
+      <description>&lt;![CDATA[&lt;p&gt;Update from &lt;a href="https://www.lqdev.me/notes/weblogging-rewind-2023/"&gt;yesterday&lt;/a&gt;. 2023 is still not over. I think I can squeeze out at least one more post for the year 🙂.&lt;/p&gt;
+&lt;h2&gt;Blog post counts&lt;/h2&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;h2&gt;Note counts&lt;/h2&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;37&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;36&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/one-more-post-2023</link>
+      <guid>https://www.lqdev.me/notes/one-more-post-2023</guid>
+      <pubDate>2023-12-24 14:31 -05:00</pubDate>
+      <category>weblogging</category>
+      <category>quantifiedself</category>
+      <category>indieweb</category>
+      <category>stats</category>
+      <category>analytics</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>opensource</category>
+      <category>community</category>
+      <category>selfhost</category>
+      <category>fsharp</category>
+      <category>spotify</category>
+      <category>antennapod</category>
+      <category>microblog</category>
+      <category>analytics</category>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+    </item>
+    <item>
+      <title>(We)blogging Rewind 2023 Continued</title>
+      <description>&lt;![CDATA[&lt;p&gt;Yesterday I posted aggregate statistics about this website in the post &lt;a href="https://www.lqdev.me/notes/weblogging-rewind-2023/"&gt;(We)blogging Rewind 2023&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I thought it'd be cool to see which domains I referenced most in my responses. Here's the breakdown of the top 5.&lt;/p&gt;
+&lt;p&gt;Domain&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;github.com&lt;/p&gt;
+&lt;p&gt;15&lt;/p&gt;
+&lt;p&gt;huggingface.co&lt;/p&gt;
+&lt;p&gt;11&lt;/p&gt;
+&lt;p&gt;arxiv.org&lt;/p&gt;
+&lt;p&gt;10&lt;/p&gt;
+&lt;p&gt;openai.com&lt;/p&gt;
+&lt;p&gt;6&lt;/p&gt;
+&lt;p&gt;www.theverge.com&lt;/p&gt;
+&lt;p&gt;4&lt;/p&gt;
+&lt;p&gt;No surprise here given that AI was one of the top tags in my responses.&lt;/p&gt;
+&lt;p&gt;Updated script is here &lt;a href="https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics"&gt;stats.fsx&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/weblogging-rewind-2023-continued</link>
+      <guid>https://www.lqdev.me/notes/weblogging-rewind-2023-continued</guid>
+      <pubDate>2023-12-24 09:39 -05:00</pubDate>
+      <category>weblogging</category>
+      <category>quantifiedself</category>
+      <category>indieweb</category>
+      <category>stats</category>
+      <category>analytics</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>opensource</category>
+      <category>community</category>
+      <category>selfhost</category>
+      <category>fsharp</category>
+      <category>spotify</category>
+      <category>antennapod</category>
+      <category>microblog</category>
+      <category>analytics</category>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+    </item>
+    <item>
+      <title>lqdev.me Post Metrics</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Description&lt;/h2&gt;
+&lt;p&gt;Generates an aggregate analysis of posts on &lt;a href="https://www.lqdev.me"&gt;lqdev.me / luisquintanilla.me&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet fsi stats.fsx 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Snippet&lt;/h2&gt;
+&lt;h3&gt;stats.fsx&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;// Reference DLL
+#r &amp;quot;../bin/Debug/net8.0/PersonalSite.dll&amp;quot;
+
+// Add modules
+open Domain
+open Builder
+open System
+
+// Load posts
+let posts = loadPosts()
+let notes = loadFeed ()
+let responses = loadReponses ()
+
+// Organize posts by year
+let postCountsByYear = 
+    posts
+    |&amp;gt; Array.countBy (fun (x:Post) -&amp;gt; DateTime.Parse(x.Metadata.Date) |&amp;gt; _.Year)
+    |&amp;gt; Array.sortByDescending fst 
+
+let noteCountsByYear = 
+    notes
+    |&amp;gt; Array.countBy (fun (x:Post) -&amp;gt; DateTime.Parse(x.Metadata.Date) |&amp;gt; _.Year)
+    |&amp;gt; Array.sortByDescending fst
+
+let responseCountsByYear = 
+    responses
+    |&amp;gt; Array.countBy (fun (x:Response) -&amp;gt; DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year)
+    |&amp;gt; Array.sortByDescending fst
+
+// Organize responses by type
+let responsesByType = 
+    responses
+    |&amp;gt; Array.filter(fun x -&amp;gt; (DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year) = DateTime.UtcNow.Year)
+    |&amp;gt; Array.countBy(fun x -&amp;gt; x.Metadata.ResponseType)
+    |&amp;gt; Array.sortByDescending(snd)
+
+// Organize responses by tag
+let responsesByTag = 
+    responses
+    |&amp;gt; Array.filter(fun x -&amp;gt; (DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year) = DateTime.UtcNow.Year)
+    |&amp;gt; Array.collect(fun x -&amp;gt; 
+            match x.Metadata.Tags with
+            | null -&amp;gt; [|&amp;quot;untagged&amp;quot;|]
+            | [||] -&amp;gt; [|&amp;quot;untagged&amp;quot;|]
+            | _ -&amp;gt; x.Metadata.Tags
+        )
+    |&amp;gt; Array.countBy(fun x -&amp;gt; x)
+    |&amp;gt; Array.sortByDescending(snd)
+
+// Organize responses by host name (domain)
+let responsesByDomain = 
+    responses
+    |&amp;gt; Array.filter(fun x -&amp;gt; (DateTime.Parse(x.Metadata.DatePublished) |&amp;gt; _.Year) = DateTime.UtcNow.Year)
+    |&amp;gt; Array.countBy(fun x -&amp;gt; Uri(x.Metadata.TargetUrl).Host)
+    |&amp;gt; Array.sortByDescending(snd)
+
+// Utility function to display counts
+let printEntryCounts&amp;lt;'a&amp;gt; (title:string) (entryCounts:('a * int) array) (n:int) = 
+    printfn $&amp;quot;{title}&amp;quot;
+
+    match entryCounts.Length with
+    | 0 -&amp;gt; 
+        printfn $&amp;quot;No entries&amp;quot;
+        printfn $&amp;quot;&amp;quot;
+    | a when a &amp;gt; 0 -&amp;gt; 
+        match n with 
+        | n when n = -1 || n &amp;gt; entryCounts.Length -&amp;gt; 
+            entryCounts
+            |&amp;gt; Array.iter(fun x -&amp;gt; printfn $&amp;quot;{fst x} {snd x}&amp;quot;)
+            |&amp;gt; fun _ -&amp;gt; printfn $&amp;quot;&amp;quot;
+        | n when n &amp;gt; 0 -&amp;gt; 
+            entryCounts
+            |&amp;gt; Array.take n
+            |&amp;gt; Array.iter(fun x -&amp;gt; printfn $&amp;quot;{fst x} {snd x}&amp;quot;)
+            |&amp;gt; fun _ -&amp;gt; printfn $&amp;quot;&amp;quot;
+
+// Print yearly counts
+printEntryCounts &amp;quot;Blogs&amp;quot; postCountsByYear 2
+
+printEntryCounts &amp;quot;Notes&amp;quot; noteCountsByYear 2
+
+printEntryCounts &amp;quot;Responses&amp;quot; responseCountsByYear 2
+
+// Print response types
+printEntryCounts &amp;quot;Response Types&amp;quot; responsesByType -1
+
+// Print response tag counts
+printEntryCounts &amp;quot;Response Tags&amp;quot; responsesByTag 5
+
+// Print response by host name
+printEntryCounts &amp;quot;Domains&amp;quot; responsesByDomain 5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Expected Output&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Blogs
+2023 5
+2022 7
+
+Notes
+2023 34
+2022 36
+
+Responses
+2023 216
+2022 146
+
+Response Types
+bookmark 151
+reshare 48
+reply 10
+star 7
+
+Response Tags
+ai 104
+llm 42
+untagged 41
+opensource 31
+internet 17
+
+Domains
+github.com 15
+huggingface.co 11
+arxiv.org 10
+openai.com 6
+www.theverge.com 4
+&lt;/code&gt;&lt;/pre&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics</link>
+      <guid>https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics</guid>
+      <pubDate>12/23/2023 13:13 -05:00</pubDate>
+      <category>analytics</category>
+      <category>website</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>pkm</category>
+      <category>indieweb</category>
+      <category>dotnet</category>
+      <category>windows</category>
+      <category>linux</category>
+      <category>mac</category>
+    </item>
+    <item>
+      <title>(We)blogging Rewind 2023</title>
+      <description>&lt;![CDATA[&lt;p&gt;Inspired by &lt;a href="https://www.lqdev.me/notes/spotify-wrapped-2023"&gt;Spotify Wrapped&lt;/a&gt; and &lt;a href="https://www.lqdev.me/notes/antennapod-echo-2023"&gt;Antennapod Echo&lt;/a&gt;, I decided to look back at my activity on this website for 2023. Here is the &lt;a href="https://www.lqdev.me/resources/snippets/lqdev-me-website-post-metrics"&gt;snippet&lt;/a&gt; I used to generate these metrics.&lt;/p&gt;
+&lt;h2&gt;Posts by Year&lt;/h2&gt;
+&lt;h3&gt;Blog&lt;/h3&gt;
+&lt;p&gt;Blog posts are my more formal, long-form content. This year, I published less blog posts than last year.&lt;/p&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;5&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;Part of that includes me getting in my head about what these posts &amp;quot;should be&amp;quot;. Historically, they have been detailed technical posts related to a project I've worked on like &lt;a href="https://www.lqdev.me/posts/receive-webmentions-fsharp-az-functions-fsadvent"&gt;Accept Webmentions using F#, Azure Functions, and RSS&lt;/a&gt;. I haven't stopped experimenting and tinkering, but because they aren't end-to-end solutions, I don't think of them as &amp;quot;blog post worthy&amp;quot;. That doesn't mean though that learnings and growth haven't come from them. In more recent blog posts like &lt;a href="https://www.lqdev.me/posts/ai-1999-1899"&gt;AI like it's 1999 or 1899&lt;/a&gt; and &lt;a href="https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023"&gt;Quick thoughts about Snapdragon Summit 2023&lt;/a&gt;, I've started experimenting more with just posting. In 2024, I want to be more flexible in my posting and not worry too much about whether the blog posts are &amp;quot;good enough&amp;quot;.&lt;/p&gt;
+&lt;h3&gt;Microblog&lt;/h3&gt;
+&lt;p&gt;This site also contains a microblog feed, one for &lt;a href="https://www.lqdev.me/feed"&gt;notes&lt;/a&gt; and another for &lt;a href="https://www.lqdev.me/feed/responses"&gt;responses&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Notes&lt;/h4&gt;
+&lt;p&gt;Notes tend to be original content that although can include links to external content, they are short-form and informal versions of blog posts. This post is an example of a note. This year, I posted less notes than last year.&lt;/p&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;33&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;36&lt;/p&gt;
+&lt;p&gt;Usually, when these notes start to get long, I turn them into blog posts. &lt;a href="https://www.lqdev.me/posts/quick-thoughts-snapdragon-summit-2023"&gt;Quick thoughts about Snapdragon Summit 2023&lt;/a&gt; is an example of that. However, I haven't set a criteria for what makes a note &amp;quot;long&amp;quot;. This post for example I think is getting to the &amp;quot;blog post&amp;quot; length. I can't tell you why though, it's just &amp;quot;vibes&amp;quot;. One of the benefits of starting with notes types of posts is that the frame of mind is more informal which lets me just write and post without thinking too much about what the post &amp;quot;should be&amp;quot;. In 2024, I want to continue using notes as the starting point for these types of posts. Maybe later in the future, I just merge them both.&lt;/p&gt;
+&lt;h4&gt;Responses&lt;/h4&gt;
+&lt;p&gt;Responses are reactions to content created / published by someone else. These can include bookmarks, replies, likes (star), and reposts (reshare). This year, I posted significantly more responses than last year.&lt;/p&gt;
+&lt;p&gt;Year&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;2023&lt;/p&gt;
+&lt;p&gt;216&lt;/p&gt;
+&lt;p&gt;2022&lt;/p&gt;
+&lt;p&gt;146&lt;/p&gt;
+&lt;p&gt;I'm very happy with this, especially my bookmark use explained later. Not only am I happy because I'm actually making use of my website and the work I put in previous years that enabled me to publish all types of content but also because these responses create a log of my interactions with the internet over the years I can look back at.&lt;/p&gt;
+&lt;h2&gt;Responses by Type&lt;/h2&gt;
+&lt;p&gt;Looking deeper into my responses and breaking them down by type, bookmarks take up the top spot with more than half of my responses being bookmarks. That makes sense since I'm usually bookmarking articles, papers, and other content I come across on the internet.&lt;/p&gt;
+&lt;p&gt;Type&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;bookmark&lt;/p&gt;
+&lt;p&gt;151&lt;/p&gt;
+&lt;p&gt;reshare&lt;/p&gt;
+&lt;p&gt;48&lt;/p&gt;
+&lt;p&gt;reply&lt;/p&gt;
+&lt;p&gt;10&lt;/p&gt;
+&lt;p&gt;star&lt;/p&gt;
+&lt;p&gt;7&lt;/p&gt;
+&lt;p&gt;Let me start off with bookmarks. Bookmark style reponses on my website have slowly become my default capture system. Now, not everything I read and come across makes it onto my bookmarks. I'm experimenting with the first pass which I might just turn into another post. Generally, the things that are interesting or thought provoking, I post. Bookmark posts generally include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Post title - Gives me a readable way to see what the post is about&lt;/li&gt;
+&lt;li&gt;Source link - Provides a direct link to the source material&lt;/li&gt;
+&lt;li&gt;Tags - Enable me to index and organize related topics&lt;/li&gt;
+&lt;li&gt;Quotes / Notes - Provide highlights and things I thought were interesting about the post&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When all these pieces come together, they provide me with distilled bits of information that are organized in a way that enable quick retrieval and action when needed.&lt;/p&gt;
+&lt;p&gt;Moving on to other posts. Since the post type is effectively just metadata, the line between reshare, star, and reply is often blurry. It's not as blurry with replies because I use that to draft replies / comments to other posts and content on the internet. My &lt;a href="https://www.lqdev.me/responses/tracy-durnell-20-blogging-anniversary"&gt;Tracy Durnell 20th anniversary of blogging&lt;/a&gt; post is an example of a reply. In these examples, the replies were directed at someone. However, for star and reshare, I'm still trying to understand where they fit in my flow. Today other than visually expressing the post type, the role these post types serve is webmentions. However, I'm not sure how many websites I create these post types for actually use webmentions. Maybe some analysis worth doing for 2025.&lt;/p&gt;
+&lt;h2&gt;Responses by Tag (Top 5)&lt;/h2&gt;
+&lt;p&gt;AI and LLMs took the top spots which I think in general aligns with what was top of mind for everyone in 2023.&lt;/p&gt;
+&lt;p&gt;Tag&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;ai&lt;/p&gt;
+&lt;p&gt;104&lt;/p&gt;
+&lt;p&gt;llm&lt;/p&gt;
+&lt;p&gt;42&lt;/p&gt;
+&lt;p&gt;untagged&lt;/p&gt;
+&lt;p&gt;41&lt;/p&gt;
+&lt;p&gt;opensource&lt;/p&gt;
+&lt;p&gt;31&lt;/p&gt;
+&lt;p&gt;internet&lt;/p&gt;
+&lt;p&gt;17&lt;/p&gt;
+&lt;p&gt;Not much commentary here. Tags have helped me organize related content on my website. I do think that I get too high level with my tags and could do a better job of being more specific. Ultimately, there's no limit to the number of tags I can use so why not be liberal with it. The only self-imposed limitation I've placed on myself is the first 3 tags should be the most important because they're the ones that show up when my articles are automatically cross-posted to Mastodon.&lt;/p&gt;
+&lt;h2&gt;Conclusions&lt;/h2&gt;
+&lt;p&gt;Overall, I'm happy with my activity and heavy use of my own website this year. I plan to make even more use of the bookmark type of posts in 2024 and plan on posting more whether that's as a note or blog post, just posting is something I want to work towards.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/weblogging-rewind-2023</link>
+      <guid>https://www.lqdev.me/notes/weblogging-rewind-2023</guid>
+      <pubDate>2023-12-23 02:28 -05:00</pubDate>
+      <category>weblogging</category>
+      <category>quantifiedself</category>
+      <category>indieweb</category>
+      <category>stats</category>
+      <category>analytics</category>
+      <category>blog</category>
+      <category>blogging</category>
+      <category>internet</category>
+      <category>opensource</category>
+      <category>community</category>
+      <category>selfhost</category>
+      <category>fsharp</category>
+      <category>spotify</category>
+      <category>antennapod</category>
+      <category>microblog</category>
+      <category>analytics</category>
+      <category>pkm</category>
+      <category>personalknowledgemanagement</category>
+    </item>
+    <item>
+      <title>Personal Site Stats - GoatCounter</title>
+      <description>&lt;![CDATA[&lt;p&gt;I've been looking at different alternatives to Google Analytics for website stats. I don't need anything fancy, just basic page counts. Eventually I settled on &lt;a href="https://www.goatcounter.com/"&gt;GoatCounter&lt;/a&gt; because it's lightweight, open-source, and privacy-friendly. You can either use their managed service or self-host. Deployment with Docker felt a bit much so I did a standalone deployment to a VM. The Linode StackScript is probably the easiest way to do it.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/personal-site-stats-goatcounter</link>
+      <guid>https://www.lqdev.me/notes/personal-site-stats-goatcounter</guid>
+      <pubDate>10/31/2021 11:57 -05:00</pubDate>
+      <category>analytics</category>
+      <category>web</category>
+      <category>goatcounter</category>
+      <category>indieweb</category>
+      <category>internet</category>
+    </item>
+  </channel>
+</rss>

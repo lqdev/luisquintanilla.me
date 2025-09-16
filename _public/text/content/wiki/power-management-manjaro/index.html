@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Power Management Manjaro - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Power Management Manjaro</h1><div class="content-meta"><div class="content-type">wiki</div><time datetime="2022-12-11">December 11, 2022</time><p>Tags: manjaro, bash, powermanagement, tech, wiki, linux</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/wiki/">← All wiki</a> | <a href="https://www.lqdev.me/resources/wiki/power-management-manjaro">View Full Version</a></p><div class="content"><h2>Overview</h2>
+<p>The following shows how you can optimize your computer using Powertop to generate runing recommendations and apply those optimizations at boot using an rc-local service.</p>
+<h2>Powertop</h2>
+<ol>
+<li><p>Install powertop</p>
+<pre><code class="language-bash">sudo pacman -S powertop
+</code></pre>
+</li>
+<li><p>Run powertop report (on battery power)</p>
+<pre><code>sudo powertop -r
+</code></pre>
+<p>After a few seconds, a file called <em>powertop.html</em> is created.</p>
+</li>
+<li><p>Open the <em>powertop.html</em> file in your browser and inspect the <strong>Tuning</strong> tab for tuning recommendations.</p>
+</li>
+</ol>
+<h2>Configure rc-local service</h2>
+<ol>
+<li><p>Create <em>rc.local</em> file in <code>/etc</code> directory with the following content</p>
+<pre><code class="language-bash">#!/bin/sh -e
+<p>echo &quot;Hello World&quot;</p>
+<h1>Insert powertop optimization scripts here.</h1>
+<p>exit 0
+</code></pre></p>
+</li>
+<li><p>Create <em>rc-local.service</em> file in <code>/etc/systemd/system</code> directory with the following content</p>
+<pre><code class="language-bash">#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+<p>[Unit]
+Description=/etc/rc.local Compatibility
+ConditionPathExists=/etc/rc.local</p>
+<p>[Service]
+Type=oneshot
+ExecStart=/etc/rc.local
+TimeoutSec=0
+StandardOutput=tty
+RemainAfterExit=yes
+SysVStartPriority=99</p>
+<p>[Install]
+WantedBy=multi-user.target
+</code></pre></p>
+</li>
+<li><p>Enable and start rc-local service</p>
+<pre><code class="language-bash">sudo systemctl enable rc-local
+sudo systemctl start rc-local
+</code></pre>
+</li>
+<li><p>Confirm that the service has successfully started</p>
+<pre><code class="language-bash">sudo systemctl status rc-local
+</code></pre>
+</li>
+</ol>
+<h2>References</h2>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/Powertop">Arch Wiki - Powertop</a></li>
+</ul>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

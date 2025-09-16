@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - directory</title>
+    <link>https://www.lqdev.me/tags/directory</link>
+    <description>All content tagged with 'directory' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-10 23:26 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>URL Town</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;Love to see projects like this.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;url.town doesn’t have any overly lofty ambitions; we’re just building our own directory of really nice websites. We’re not trying to fully recreate the original Yahoo! or DMOZ directories. We’re not aiming for some astronomical number of links. This is just one space on the web, tied to a community that loves to share neat things with one another. Quality matters much more than quantity. There’s no need to share everything just for the shake of sharing it; it’s much better to share things that are useful or interesting.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/url-town</link>
+      <guid>https://www.lqdev.me/bookmarks/url-town</guid>
+      <pubDate>2025-08-10 23:26 -05:00</pubDate>
+      <category>indieweb</category>
+      <category>websites</category>
+      <category>directory</category>
+    </item>
+  </channel>
+</rss>

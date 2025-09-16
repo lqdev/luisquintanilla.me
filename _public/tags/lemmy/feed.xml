@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - lemmy</title>
+    <link>https://www.lqdev.me/tags/lemmy</link>
+    <description>All content tagged with 'lemmy' by Luis Quintanilla</description>
+    <lastBuildDate>2024-12-16 22:00 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Tumblr adds Reddit-like ‘communities’</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Tumblr is introducing a new Community feature — in-app groups organized by topic or interest.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Communities are similar to subreddits or Facebook groups and had previously been in beta.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Given recent announcements like &lt;a href="https://www.lqdev.me/responses/shipping-wordpress-tumblr/"&gt;Tumblr replatforming on top of WordPress&lt;/a&gt; and &lt;a href="https://www.lqdev.me/responses/wordpress-activitypub-plugin/"&gt;WordPress adding support for ActivityPub&lt;/a&gt;, I could see communities becoming not only an alternative to Reddit, but also Lemmy in the Fediverse.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/tumblr-adding-reddit-like-communities</link>
+      <guid>https://www.lqdev.me/responses/tumblr-adding-reddit-like-communities</guid>
+      <pubDate>2024-12-16 22:00 -05:00</pubDate>
+      <category>tumblr</category>
+      <category>reddit</category>
+      <category>communities</category>
+      <category>automattic</category>
+      <category>wordpress</category>
+      <category>activitypub</category>
+      <category>fediverse</category>
+      <category>lemmy</category>
+    </item>
+  </channel>
+</rss>

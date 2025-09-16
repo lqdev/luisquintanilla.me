@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - transformers</title>
+    <link>https://www.lqdev.me/tags/transformers</link>
+    <description>All content tagged with 'transformers' by Luis Quintanilla</description>
+    <lastBuildDate>2024-11-04 21:28 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>In-Context LoRA for Diffusion Transformers</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Recent research arXiv:2410.15027 has explored the use of diffusion transformers (DiTs) for task-agnostic image generation by simply concatenating attention tokens across images. However, despite substantial computational resources, the fidelity of the generated images remains suboptimal. In this study, we reevaluate and streamline this framework by hypothesizing that text-to-image DiTs inherently possess in-context generation capabilities, requiring only minimal tuning to activate them. Through diverse task experiments, we qualitatively demonstrate that existing text-to-image DiTs can effectively perform in-context generation without any tuning. Building on this insight, we propose a remarkably simple pipeline to leverage the in-context abilities of DiTs: (1) concatenate images instead of tokens, (2) perform joint captioning of multiple images, and (3) apply task-specific LoRA tuning using small datasets (e.g., 20∼100 samples) instead of full-parameter tuning with large datasets. We name our models In-Context LoRA (IC-LoRA). This approach requires no modifications to the original DiT models, only changes to the training data. Remarkably, our pipeline generates high-fidelity image sets that better adhere to prompts. While task-specific in terms of tuning data, our framework remains task-agnostic in architecture and pipeline, offering a powerful tool for the community and providing valuable insights for further research on product-level task-agnostic generation systems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Repo: https://github.com/ali-vilab/In-Context-LoRA&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/in-context-lora</link>
+      <guid>https://www.lqdev.me/responses/in-context-lora</guid>
+      <pubDate>2024-11-04 21:28 -05:00</pubDate>
+      <category>ai</category>
+      <category>transformers</category>
+      <category>diffusers</category>
+      <category>imagegeneration</category>
+      <category>lora</category>
+      <category>finetuning</category>
+    </item>
+    <item>
+      <title>Transformers in music recommendation</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We present a music recommendation ranking system that uses Transformer models to better understand the sequential nature of user actions based on the current user context.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/transformers-music-recommendation-google</link>
+      <guid>https://www.lqdev.me/responses/transformers-music-recommendation-google</guid>
+      <pubDate>2024-08-21 20:16 -05:00</pubDate>
+      <category>google</category>
+      <category>ai</category>
+      <category>transformers</category>
+      <category>deeplearning</category>
+      <category>neuralneworks</category>
+      <category>recommendation</category>
+      <category>research</category>
+      <category>music</category>
+    </item>
+    <item>
+      <title>Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Recurrent neural networks (RNNs) have fast inference and scale efficiently on long sequences, but they are difficult to train and hard to scale. We propose Hawk, an RNN with gated linear recurrences, and Griffin, a hybrid model that mixes gated linear recurrences with local attention. Hawk exceeds the reported performance of Mamba on downstream tasks, while Griffin matches the performance of Llama-2 despite being trained on over 6 times fewer tokens. We also show that Griffin can extrapolate on sequences significantly longer than those seen during training. Our models match the hardware efficiency of Transformers during training, and during inference they have lower latency and significantly higher throughput. We scale Griffin up to 14B parameters, and explain how to shard our models for efficient distributed training.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/griffin-mix-linear-recurrence-local-attention-language-models</link>
+      <guid>https://www.lqdev.me/bookmarks/griffin-mix-linear-recurrence-local-attention-language-models</guid>
+      <pubDate>2024-04-10 22:02 -05:00</pubDate>
+      <category>griffin</category>
+      <category>ai</category>
+      <category>research</category>
+      <category>architecture</category>
+      <category>rnn</category>
+      <category>attention</category>
+      <category>transformers</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>Spreadsheets are all you need</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;A low-code way to learn AI - Learn how AI works from a real LLM implemented entirely in Excel&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/spreadsheets-are-all-you-need</link>
+      <guid>https://www.lqdev.me/responses/spreadsheets-are-all-you-need</guid>
+      <pubDate>2024-03-17 21:18 -05:00</pubDate>
+      <category>excel</category>
+      <category>tutorial</category>
+      <category>ai</category>
+      <category>genai</category>
+      <category>tokenizers</category>
+      <category>transformers</category>
+    </item>
+    <item>
+      <title>Phi-2 now on HuggingFace</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;When &lt;a href="https://www.lqdev.me/responses/microsoft-phi-2"&gt;Phi-2 initially released&lt;/a&gt;, it was on the Azure AI Studio Model Catalog. It's nice to see it's now in HuggingFace as well.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/phi-2-huggingface</link>
+      <guid>https://www.lqdev.me/responses/phi-2-huggingface</guid>
+      <pubDate>2023-12-20 18:37 -05:00</pubDate>
+      <category>opensource</category>
+      <category>ai</category>
+      <category>phi</category>
+      <category>languagemodel</category>
+      <category>smalllanguagemodel</category>
+      <category>huggingface</category>
+      <category>transformers</category>
+      <category>microsoft</category>
+    </item>
+    <item>
+      <title>Transformers Agent</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Transformers Agent...provides a natural language API on top of transformers: we define a set of curated tools and design an agent to interpret natural language and to use these tools. It is extensible by design; we curated some relevant tools, but we’ll show you how the system can be extended easily to use any tool developed by the community.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/huggingface-transformer-agents</link>
+      <guid>https://www.lqdev.me/bookmarks/huggingface-transformer-agents</guid>
+      <pubDate>2023-05-11 20:35 -05:00</pubDate>
+      <category>transformers</category>
+      <category>ai</category>
+    </item>
+  </channel>
+</rss>

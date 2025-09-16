@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - microsoft.extensions.ai</title>
+    <link>https://www.lqdev.me/tags/microsoftdotextensionsdotai</link>
+    <description>All content tagged with 'microsoft.extensions.ai' by Luis Quintanilla</description>
+    <lastBuildDate>2024-12-16 21:22 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Build a YouTube chat app with .NET</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Great post from &lt;a href="https://jordanmatthiesen.me/"&gt;jordanmatthiesen.me&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Recently on a trip for a tech conference I created a YouTube chat app using .NET and AI. This is part of my exploration into creating a larger app for chatting about .NET AI development (leveraging docs, presentations, and sample code my team has been working on at Microsoft).&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/youtube-chat-app-ai-dotnet</link>
+      <guid>https://www.lqdev.me/responses/youtube-chat-app-ai-dotnet</guid>
+      <pubDate>2024-12-16 21:22 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>ai</category>
+      <category>youtube</category>
+      <category>chat</category>
+      <category>microsoft.extensions.ai</category>
+      <category>openai</category>
+    </item>
+  </channel>
+</rss>

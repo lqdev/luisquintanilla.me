@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - templates</title>
+    <link>https://www.lqdev.me/tags/templates</link>
+    <description>All content tagged with 'templates' by Luis Quintanilla</description>
+    <lastBuildDate>2024-07-29 21:45 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>User-provided target file names in Org Capture</title>
+      <description>&lt;![CDATA[&lt;p&gt;I finally got my website note org-capture template working for new files.&lt;/p&gt;
+&lt;p&gt;Originally, I only had it working on existing files using this snippet.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-elisp"&gt;(&amp;quot;wne&amp;quot;
+ &amp;quot;Creates a note in an existing file&amp;quot;
+ plain
+ (file buffer-file-name)
+ (file ,(file-name-concat website-template-dir &amp;quot;note.txt&amp;quot;)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This template uses the file name of the current buffer to select the insertion target.&lt;/p&gt;
+&lt;p&gt;Getting it to work with a new file specified by the user, requires a small tweak.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-elisp"&gt;(&amp;quot;wnn&amp;quot;
+ &amp;quot;Creates a note in a new file&amp;quot;
+ plain
+ (file (lambda () (file-name-concat website-note-dir (format &amp;quot;%s.md&amp;quot; (read-string &amp;quot;Enter file name: &amp;quot;)))))
+ (file ,(file-name-concat website-template-dir &amp;quot;note.txt&amp;quot;)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At first, I thought I had to use the &lt;code&gt;function&lt;/code&gt; target type since I wanted to use a function to capture the file name. That didn't work.&lt;/p&gt;
+&lt;p&gt;I then realized, I could still keep the &lt;code&gt;file&lt;/code&gt; target type. However, to fill in the file name, I could use a function which takes in user input.&lt;/p&gt;
+&lt;p&gt;Now that I got this working, I've also done the same for my reponse template.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/org-capture-functions-file-target</link>
+      <guid>https://www.lqdev.me/notes/org-capture-functions-file-target</guid>
+      <pubDate>2024-07-29 21:45 -05:00</pubDate>
+      <category>emacs</category>
+      <category>orgmode</category>
+      <category>capture</category>
+      <category>org</category>
+      <category>website</category>
+      <category>templates</category>
+      <category>gnu</category>
+    </item>
+    <item>
+      <title>Nyxt Emacs Hacks</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;Saving this guide for future reference as I set up my elfeed / Nyxt capture workflows for the website.&lt;/p&gt;
+&lt;p&gt;Additional articles that might be helpful.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://ag91.github.io/blog/2021/07/09/org-capture-in-nyxt-taking-notes-while-browsing/"&gt;Org capture in Nyxt: Taking Notes While Browsing&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/nyxt-emacs-hacks</link>
+      <guid>https://www.lqdev.me/bookmarks/nyxt-emacs-hacks</guid>
+      <pubDate>2024-07-28 16:53 -05:00</pubDate>
+      <category>nyxt</category>
+      <category>emacs</category>
+      <category>orgmode</category>
+      <category>capture</category>
+      <category>templates</category>
+      <category>workflow</category>
+      <category>lisp</category>
+    </item>
+    <item>
+      <title>Test response using org capture templates</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;Testing org-capture template generated response file&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/test-emacs-capture-response-org</link>
+      <guid>https://www.lqdev.me/responses/test-emacs-capture-response-org</guid>
+      <pubDate>2024-07-14 13:47 -05:00</pubDate>
+      <category>org</category>
+      <category>emacs</category>
+      <category>blogging</category>
+      <category>automation</category>
+      <category>orgmode</category>
+      <category>templates</category>
+      <category>capturetemplates</category>
+      <category>website</category>
+      <category>personalweb</category>
+      <category>capture</category>
+    </item>
+  </channel>
+</rss>

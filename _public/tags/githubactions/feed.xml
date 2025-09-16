@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - githubactions</title>
+    <link>https://www.lqdev.me/tags/githubactions</link>
+    <description>All content tagged with 'githubactions' by Luis Quintanilla</description>
+    <lastBuildDate>9/14/2025 10:31 PM -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Copilot, add new features. But first, coffee</title>
+      <description>&lt;![CDATA[&lt;p&gt;Something I've tried to make a habit of on a weekly basis is compiling a post which aggregates all posts on my website from the past week. Because right now it's not fully automated and I haven't been posting as much, there are gaps.&lt;/p&gt;
+&lt;p&gt;The process is fairly straightforward. I run a script that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Collects all of the previous week's posts&lt;/li&gt;
+&lt;li&gt;Drafts a note with links to all the posts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then, I publish the post.&lt;/p&gt;
+&lt;p&gt;Given this is mostly automated, I decided it was something I could just create a GitHub Action to do the post generation and publishing on my behalf.&lt;/p&gt;
+&lt;p&gt;However, there were some issues with the original file generation and formatting that were annoying, but easy enough to fix manually so I never invested time in fixing them.&lt;/p&gt;
+&lt;p&gt;This morning, I created a few issues describing the features and improvements I wanted to make. Worth noting, I did this from my phone.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/lqdev/luisquintanilla.me/issues/213"&gt;#213&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/lqdev/luisquintanilla.me/issues/215"&gt;#215&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Rather than working on them though, I assigned them to GitHub Coding Agent and stepped out to grab coffee.&lt;/p&gt;
+&lt;p&gt;The agent worked on solutions in the background and by the time I got back, I had working solutions. They weren't perfect but with no input from me, it got 90-95% of it right. The rest were minor refinements.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/copilot-add-new-features-but-first-coffee</link>
+      <guid>https://www.lqdev.me/notes/copilot-add-new-features-but-first-coffee</guid>
+      <pubDate>9/14/2025 10:31 PM -05:00</pubDate>
+      <category>github</category>
+      <category>copilot</category>
+      <category>ai</category>
+      <category>indieweb</category>
+      <category>blogging</category>
+      <category>githubactions</category>
+    </item>
+    <item>
+      <title>Testing my GH mobile publishing flow</title>
+      <description>&lt;![CDATA[&lt;h2&gt;This is a post&lt;/h2&gt;
+&lt;p&gt;As far as posts go it's &lt;strong&gt;bold&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I can write &lt;em&gt;code&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-fsharp"&gt;let x = 1
+x * x
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;To be or not to be&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Maybe one day we will&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add responses&lt;/li&gt;
+&lt;li&gt;Add bookmarks&lt;/li&gt;
+&lt;li&gt;Add media posts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here are some attachments?&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/user-attachments/assets/5ae15c0b-fac2-4ec5-be39-15fe6db277ca" class="img-fluid" alt="Image" /&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/test-github-mobile-post</link>
+      <guid>https://www.lqdev.me/notes/test-github-mobile-post</guid>
+      <pubDate>9/14/2025 9:50 PM -05:00</pubDate>
+      <category>github</category>
+      <category>blogging</category>
+      <category>githubactions</category>
+      <category>cicd</category>
+      <category>indieweb</category>
+      <category>website</category>
+    </item>
+    <item>
+      <title>Website Post Statistics - June 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;I haven't published much this past month. Notes and responses are significantly down from last year.&lt;/p&gt;
+&lt;p&gt;That said, I'm happy that so far I've published seven long-form blog posts, which is how many I published all of last year.&lt;/p&gt;
+&lt;p&gt;I haven't spent as much time bookmarking and resharing content. Partially due to the fact that I'm still working on the redesign. So far &lt;a href="https://www.lqdev.me/posts/vibe-specing-prompt-to-spec/"&gt;vibe-specing&lt;/a&gt; the redesign hasn't yielded good enough results. Maybe I need to break down my problem further. That experience on its own might make a good blog post.&lt;/p&gt;
+&lt;p&gt;Part of the challenge with the redesign is that I'm trying to find a balance between standardizing my front-matter YAML schemas so that I can simplify my code and just have a single function handle the parsing of the front-matter, while at the same time enabling custom rendering depending on the post type. I think in the end what I'll end up doing is having different schemas per post type and maybe refactoring some of my code to remove redundancies.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/post-statistics-june-2025</link>
+      <guid>https://www.lqdev.me/notes/post-statistics-june-2025</guid>
+      <pubDate>2025-07-01 20:00 -05:00</pubDate>
+      <category>githubactions</category>
+      <category>cicd</category>
+      <category>blogging</category>
+      <category>stats</category>
+      <category>github</category>
+    </item>
+    <item>
+      <title>Website Post Statistics - January 2025</title>
+      <description>&lt;![CDATA[&lt;p&gt;Off to a good start.&lt;/p&gt;
+&lt;p&gt;In the month of January, I wrote two long-form posts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/posts/listen-audiobooks-librivox-antennapod/"&gt;Building a Reading Habit with Audiobooks, LibriVox, and AntennaPod&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/posts/deploy-owncast-azure/"&gt;Deploy your own Owncast server&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Last year, I published about seven of them.&lt;/p&gt;
+&lt;p&gt;As I tinker some more &lt;a href="https://www.lqdev.me/notes/first-owncast-stream/"&gt;live on stream&lt;/a&gt; and use blog posts as a more structured way to orgqanize my explorations, I expect this year to have a healthy number of longer-form blog posts.&lt;/p&gt;
+&lt;p&gt;Notes and responses are not too far behind either. Both of them are at 14 in January. That's about 10% and 5% the number of posts in both of those categories last year. I haven't been reposting things I'm reading as often, but I'd like to start doing that some more.&lt;/p&gt;
+&lt;p&gt;Similar to long-form posts, as I &lt;a href="https://www.lqdev.me/notes/tinkering-deepseek-r1-dotnet-github-models"&gt;reflect on each stream and publish the recordings&lt;/a&gt;, I expect at least one note every one or two weeks just for the stream.&lt;/p&gt;
+&lt;p&gt;No surprise, tags on my posts continue to be related to AI.&lt;/p&gt;
+&lt;p&gt;This month I didn't really do the monthly &lt;a href="https://www.lqdev.me/tags/cratefinds"&gt;music playlist&lt;/a&gt; kind of posts. If I were to quickly summarize the music on repeat this month, it'd be the &lt;a href="https://www.lqdev.me/responses/andre-3000-listening-to-the-sun"&gt;Andre 3000 album, New Blue Sun&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/post-statistics-jan-2025</link>
+      <guid>https://www.lqdev.me/notes/post-statistics-jan-2025</guid>
+      <pubDate>2025-02-02 18:06 -05:00</pubDate>
+      <category>githubactions</category>
+      <category>cicd</category>
+      <category>blogging</category>
+      <category>stats</category>
+      <category>github</category>
+    </item>
+    <item>
+      <title>Upgraded to .NET 9</title>
+      <description>&lt;![CDATA[&lt;p&gt;Obligatory upgrade post. Just upgraded the website to .NET 9. As with all the previous years, it involved no code changes, and all I had to do was updade the version I'm using in my project file and GitHub Actions file.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/website-upgraded-dotnet-9</link>
+      <guid>https://www.lqdev.me/notes/website-upgraded-dotnet-9</guid>
+      <pubDate>2024-11-14 00:38 -05:00</pubDate>
+      <category>dotnet</category>
+      <category>net9</category>
+      <category>githubactions</category>
+      <category>github</category>
+      <category>indieweb</category>
+      <category>upgrade</category>
+    </item>
+    <item>
+      <title>Website Post Statistics - October 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;It's been a while since I've done one of these.&lt;/p&gt;
+&lt;p&gt;One thing I'm changing is the titles. For the other posts, the titles don't match up with the date for the metrics. For example the post for &amp;quot;July 2024&amp;quot; was actually talking about June metrics. Kind of confusing, so fixing that this month.&lt;/p&gt;
+&lt;p&gt;This is my post&lt;/p&gt;
+&lt;p&gt;Post Type&lt;/p&gt;
+&lt;p&gt;Count&lt;/p&gt;
+&lt;p&gt;Blogs&lt;/p&gt;
+&lt;p&gt;4&lt;/p&gt;
+&lt;p&gt;Notes&lt;/p&gt;
+&lt;p&gt;83&lt;/p&gt;
+&lt;p&gt;Responses&lt;/p&gt;
+&lt;p&gt;251&lt;/p&gt;
+&lt;p&gt;Overall the trend is nice. I'm just under 1 response a day. Not like that's the goal, but in general I think it shows a steady stream of content I'm posting on the website.&lt;/p&gt;
+&lt;p&gt;With two recent blog posts published, that brings me to 5. The script ran just before I hit publish on the last blog which is why you only see four.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/posts/build-your-own-live-streaming-app-owncast-dotnet-aspire/"&gt;Build your own self-hosted live streaming application with Owncast and .NET Aspire&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lqdev.me/posts/digitize-analog-bookmarks-with-ai-dotnet/"&gt;Digitize Analog Bookmarks using AI, .NET, and GitHub Models&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There's a few other ideas I'm tinkering with, which might easily get me close to or past the 8 blog posts from last year.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/post-statistics-october-2024</link>
+      <guid>https://www.lqdev.me/notes/post-statistics-october-2024</guid>
+      <pubDate>2024-11-01 09:25 -05:00</pubDate>
+      <category>githubactions</category>
+      <category>cicd</category>
+      <category>blogging</category>
+      <category>stats</category>
+      <category>github</category>
+    </item>
+    <item>
+      <title>Website Post Statistics - September 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;The most significant update from last month is that I have now passed the number of responses compared to last year.&lt;/p&gt;
+&lt;p&gt;The top tag continues to be AI and The Verge is the top domain I link to.&lt;/p&gt;
+&lt;p&gt;I'm in the process of redesigning the website, so that's probably one of the things I'll be focusing the next few months.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/post-statistics-september-2024</link>
+      <guid>https://www.lqdev.me/notes/post-statistics-september-2024</guid>
+      <pubDate>2024-09-15 09:19 -05:00</pubDate>
+      <category>githubactions</category>
+      <category>cicd</category>
+      <category>blogging</category>
+      <category>stats</category>
+      <category>github</category>
+    </item>
+    <item>
+      <title>Website Post Statistics - August 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;Finished July with more regular posting.&lt;/p&gt;
+&lt;p&gt;Only 4 posts away from passing last year's response count.&lt;/p&gt;
+&lt;p&gt;As mentioned on &lt;a href="https://www.lqdev.me/notes/org-capture-functions-file-target"&gt;another post&lt;/a&gt;, I've been slowly working on transitioning authoring workflows to Emacs using org-capture templates.&lt;/p&gt;
+&lt;p&gt;This month, I want to work on making capturing content from Nyxt more seamless, especially since responses are the types of posts I use most.&lt;/p&gt;
+&lt;p&gt;The other thing I'd like to start doing is consolidating the structure of my posts. Right now the YAML front-matter for the various posts types is significantly different. However, it doesn't have to be.&lt;/p&gt;
+&lt;p&gt;For most posts, I need:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Title&lt;/li&gt;
+&lt;li&gt;Date published&lt;/li&gt;
+&lt;li&gt;Data updated&lt;/li&gt;
+&lt;li&gt;Tags&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Responses are a little different because I also need to include the link to the original content I'm referencing in the post.&lt;/p&gt;
+&lt;p&gt;Once that's done, at some point, I'd also like to consolidate my URLs.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/posts&lt;/code&gt; captures long-form blog posts&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/feed&lt;/code&gt; captures microblog posts and responses&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Since everything is a post, consolidating under one of them for all my posts and providing additional urls like &lt;code&gt;/notes&lt;/code&gt;, &lt;code&gt;/photos&lt;/code&gt;, &lt;code&gt;/articles&lt;/code&gt; for the individual types of posts might make more sense.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/post-statistics-august-2024</link>
+      <guid>https://www.lqdev.me/notes/post-statistics-august-2024</guid>
+      <pubDate>2024-08-01 20:19 -05:00</pubDate>
+      <category>githubactions</category>
+      <category>cicd</category>
+      <category>blogging</category>
+      <category>stats</category>
+      <category>github</category>
+    </item>
+    <item>
+      <title>Website Post Statistics - July 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;Better late than never.&lt;/p&gt;
+&lt;p&gt;Nothing too interesting this month. I haven't been posting as much.&lt;/p&gt;
+&lt;p&gt;I think part of that is because I've been creating DayOne posts more.&lt;/p&gt;
+&lt;p&gt;I've been relying on DayOne to share articles from my RSS reader. That's worked really well for bookmarking.&lt;/p&gt;
+&lt;p&gt;As far as my authoring process, when working locally, I've been using Emacs more.&lt;/p&gt;
+&lt;p&gt;One reason for Emacs is &lt;a href="https://github.com/lqdev/luisquintanilla.me/tree/main/.templates"&gt;capture templates&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Technically, I already have something similar with &lt;a href="https://github.com/lqdev/luisquintanilla.me/tree/main/.vscode"&gt;VS Code Snippets&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I like the richness of the Emacs experience more though.&lt;/p&gt;
+&lt;p&gt;The future workflow I'm thinking of involves two components:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Elfeed&lt;/li&gt;
+&lt;li&gt;Nyxt&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When reading articles using Elfeed, I can create a function that takes the information from the entry I'm on and converts it into an entry on my site using capture templates.&lt;/p&gt;
+&lt;p&gt;Similarly, in Nyxt while browsing the internet, I can create a similar function which uses capture templates to create website entries.&lt;/p&gt;
+&lt;p&gt;Maybe I can get a long-form post out of that experiment.&lt;/p&gt;
+&lt;p&gt;As far as numbers go, I'm at 56 notes for the year which is 15 more than last year.&lt;/p&gt;
+&lt;p&gt;I'm closing in on passing last year's response count at 210.&lt;/p&gt;
+&lt;p&gt;Most of the content shared continues to be mainly about AI.&lt;/p&gt;
+&lt;p&gt;Top linked domain is still The Verge.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/post-statistics-july-2024</link>
+      <guid>https://www.lqdev.me/notes/post-statistics-july-2024</guid>
+      <pubDate>2024-07-18 18:26 -05:00</pubDate>
+      <category>githubactions</category>
+      <category>cicd</category>
+      <category>blogging</category>
+      <category>stats</category>
+      <category>github</category>
+    </item>
+    <item>
+      <title>Website Post Statistics - June 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;6 months in and these are the main takeaways.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;At 51 notes, I'm 10 over last year's total notes.&lt;/li&gt;
+&lt;li&gt;Responses are healthy. I'm closing in on 200. I wasn't as active the month of May so I'm still shy of last year's mark, but given it's still only halfway through the year, it seems like good progress so far.&lt;/li&gt;
+&lt;li&gt;Most of my posts continue to be related to AI. While I can believe it, I also think I could be more specific and get more creative with my tags. Given the lead AI has though in terms of tag numbers, it'll be harder for those more fine-grained tags to come through.&lt;/li&gt;
+&lt;li&gt;I won't use the word struggle, but I have paid less attention to long form posts. There's a few that I have planned for June, so that should help bump those numbers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Overall I'm happy with the progress and use I'm getting out of the website.&lt;/p&gt;
+&lt;p&gt;Some things I'd like to work on are simplifying my authoring process. Although github.dev and Codespaces can be convenient, it's a hassle. Authoring content locally reduces some of that friction. However, I'm still bound to my laptop.&lt;/p&gt;
+&lt;p&gt;As a Day One subscriber, I haven't maximized my subscription. This past week I've started to use it more for bookmarking articles I'm reading. Maybe that's a way that I can bookmark articles when on the go and when I'm ready to reshare them on the website, I can just copy from there.&lt;/p&gt;
+&lt;p&gt;Something else I can use Day One for are to start longer form blog or note drafts. Then, when I'm ready to do more serious work and publish them, I can continue on my laptop.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/post-statistics-june-2024</link>
+      <guid>https://www.lqdev.me/notes/post-statistics-june-2024</guid>
+      <pubDate>2024-06-06 22:26 -05:00</pubDate>
+      <category>githubactions</category>
+      <category>cicd</category>
+      <category>blogging</category>
+      <category>stats</category>
+      <category>github</category>
+    </item>
+    <item>
+      <title>Website Post Statistics - May 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;Still not mid-year and I'm making progress on publishing to the website. Some notable observations this month:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;At 43 notes, I'm already past the total number of notes posted in 2023. Weekly summary posts like &lt;a href="https://www.lqdev.me/tags/cratefinds"&gt;Create Finds&lt;/a&gt; and &lt;a href="https://www.lqdev.me/tags/weeklysummary"&gt;Weekly Summary&lt;/a&gt; continue to contribute towards this number.&lt;/li&gt;
+&lt;li&gt;Despite a slow last week of April with no posts, I was still able to manage adding nearly 40 new posts. At 184, I'm closing in and expect to surpass last year's response posts within the next two months.&lt;/li&gt;
+&lt;li&gt;I'm still working through how to go about publishing longer-form content to the blog. I'm still only at 3 posts. Given that I posted 8 last year, it's not an elusive target. Still, I haven't figured out what some good topics / experiments I'm doing today would be interesting to expand upon in the blog. I'm in no rush though. I'm enjoying the shorter form posts both notes and responses.&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/post-statistics-may-2024</link>
+      <guid>https://www.lqdev.me/notes/post-statistics-may-2024</guid>
+      <pubDate>2024-05-05 20:31 -05:00</pubDate>
+      <category>githubactions</category>
+      <category>cicd</category>
+      <category>blogging</category>
+      <category>stats</category>
+      <category>github</category>
+    </item>
+    <item>
+      <title>GitHub Actions for Azure</title>
+      <description>&lt;![CDATA[&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;How to use GitHub Actions with Azure&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://learn.microsoft.com/azure/developer/github/github-actions"&gt;Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Authenticate to Azure from GitHub&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://learn.microsoft.com/azure/developer/github/connect-from-azure?tabs=azure-cli%2Clinux"&gt;Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This workflow is useful when using the &lt;a href="https://github.com/azure/login?tab=readme-ov-file#github-actions-for-deploying-to-azure"&gt;az login action in GitHub Actions&lt;/a&gt;.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/resources/wiki/github-actions-azure</link>
+      <guid>https://www.lqdev.me/resources/wiki/github-actions-azure</guid>
+      <pubDate>04/23/2024 23:04 -05:00</pubDate>
+      <category>github</category>
+      <category>cicd</category>
+      <category>githubactions</category>
+      <category>azure</category>
+    </item>
+    <item>
+      <title>GitHub Actions Publishing Workflow Fixed</title>
+      <description>&lt;![CDATA[&lt;p&gt;The website had been out of comission for a few days because my credentials had expired. I could still add posts and make updates. However, none of them were published to Azure.&lt;/p&gt;
+&lt;p&gt;Figuring out the right incantations wasn't straightforward, so &lt;a href="https://www.lqdev.me/resources/wiki/github-actions-azure/"&gt;saving the fix&lt;/a&gt; for future reference.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/gha-publishing-workflow-fixed</link>
+      <guid>https://www.lqdev.me/notes/gha-publishing-workflow-fixed</guid>
+      <pubDate>2024-04-23 22:51 -05:00</pubDate>
+      <category>github</category>
+      <category>blogging</category>
+      <category>azure</category>
+      <category>githubactions</category>
+      <category>cicd</category>
+    </item>
+    <item>
+      <title>Website Post Statistics - April 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;My &lt;a href="https://www.lqdev.me/posts/website-metrics-github-actions/"&gt;website stats script&lt;/a&gt; seems to be running as expected.&lt;/p&gt;
+&lt;p&gt;Some highlights from last month:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;With 33 notes posted in the microblog, I'm about 80% of the way to the number of total notes posted last year. These monthly summary posts, as well as my &lt;a href="https://www.lqdev.me/notes/crate-finds-march-2024"&gt;Crate Finds&lt;/a&gt; and &lt;a href="https://www.lqdev.me/notes/2024-04-01-weekly-post-summary/"&gt;Weekly Summary&lt;/a&gt; posts have somewhat contributed to this number but I like the pace I'm setting. Not even halfway through the year and it looks promising.&lt;/li&gt;
+&lt;li&gt;While most of my responses are reshares (93), there's still a broader distribution across bookmarks and other type of reponses posts.&lt;/li&gt;
+&lt;li&gt;AI continue to be the main topic I share posts around.&lt;/li&gt;
+&lt;li&gt;The Verge is still one of the main sources I reshare. Personally, the redesign has contributed to the way I consume content from The Verge but also, the topics covered align with many of the things I'm interested in.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I have yet to make progress on the long-form posts, but there are some experiments I've been tinkering with that will eventually make it on there.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/post-statistics-april-2024</link>
+      <guid>https://www.lqdev.me/notes/post-statistics-april-2024</guid>
+      <pubDate>2024-04-01 23:20 -05:00</pubDate>
+      <category>githubactions</category>
+      <category>cicd</category>
+      <category>blogging</category>
+      <category>stats</category>
+      <category>github</category>
+    </item>
+    <item>
+      <title>Website Post Statistics - March 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;Another successful run of my &lt;a href="https://www.lqdev.me/posts/website-metrics-github-actions/"&gt;monthly script to track post statistics&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Some highlights:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Over 100 responses through the month of February. That's basically halfway through the total number of responses I posted in 2023.&lt;/li&gt;
+&lt;li&gt;Almost 20 notes. Similar to responses, I'm halfway through the total number of notes posted last year.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I've never done &lt;a href="https://100daystooffload.com/"&gt;100 days to offload&lt;/a&gt;. Unintentionally though, between notes and responses, I'm well past it.&lt;/p&gt;
+&lt;p&gt;When it comes to more long-form posts, I haven't posted as many. Still only at 1 for the year. However, there's a few projects I'm looking to undertake that involve some of my publishing practices and AI. That should result in a healthy number of longer blog posts.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/post-statistics-march-2024</link>
+      <guid>https://www.lqdev.me/notes/post-statistics-march-2024</guid>
+      <pubDate>2024-03-02 15:57 -05:00</pubDate>
+      <category>githubactions</category>
+      <category>cicd</category>
+      <category>blogging</category>
+      <category>stats</category>
+      <category>github</category>
+    </item>
+    <item>
+      <title>Website Post Statistics - February 2024</title>
+      <description>&lt;![CDATA[&lt;p&gt;Success!&lt;/p&gt;
+&lt;p&gt;At the end of last year, I &lt;a href="https://www.lqdev.me/posts/website-metrics-github-actions/"&gt;created an automated script to tally some basic stats about my posts&lt;/a&gt; on this site.&lt;/p&gt;
+&lt;p&gt;Last month, due to user error, it &lt;a href="https://www.lqdev.me/notes/post-statistics-gh-actions-working-almost"&gt;triggered but failed to run susccessfully&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This month though, it ran as expected!&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/lqdev/luisquintanilla.me/assets/11130940/888121b7-5e0d-45ca-a688-b46039bdb45e" class="img-fluid" alt="Image of Successful GitHub Actions Workflow Run" /&gt;&lt;/p&gt;
+&lt;p&gt;Some highlights:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I'm posting more notes (short micro-blog style content). Through January, I'm already over 30% of total notes posted last year which is what I'm working towards.&lt;/li&gt;
+&lt;li&gt;I've already posted 50 response posts through January. This is already over 20% of total responses published last year (223)!&lt;/li&gt;
+&lt;li&gt;I'm resharing more than bookmarking. Still figuring that one out but I think this is a good start.&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/post-statistics-february-2024</link>
+      <guid>https://www.lqdev.me/notes/post-statistics-february-2024</guid>
+      <pubDate>2024-02-03 12:29 -05:00</pubDate>
+      <category>githubactions</category>
+      <category>cicd</category>
+      <category>blogging</category>
+      <category>stats</category>
+    </item>
+    <item>
+      <title>GitHub Actions workflow for post metrics almost works</title>
+      <description>&lt;![CDATA[&lt;p&gt;A few days ago, I posted about a script I wrote. The &lt;a href="https://www.lqdev.me/posts/website-metrics-github-actions/"&gt;script computes computes post metrics on my website&lt;/a&gt;. That's what I used to author my &lt;a href="https://www.lqdev.me/notes/weblogging-rewind-2023-continued/"&gt;(We)blogging Rewind 2023&lt;/a&gt; posts. Because I want the script to run at periodic intervals, I automated the process using GitHub Actions.&lt;/p&gt;
+&lt;p&gt;The script is scheduled to run on the first of every month and I'm happy to report that it works! Kind of.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/lqdev/luisquintanilla.me/assets/11130940/bd413326-cc7b-44f7-a287-4580f1268cb2" class="img-fluid" alt="Image of an unsuccessful run of a GitHub Actions workflow" /&gt;&lt;/p&gt;
+&lt;p&gt;The GitHub Action was successfully triggered at the defined interval. Unfortunately, the script failed due to a &lt;a href="https://github.com/lqdev/luisquintanilla.me/commit/1296c3f929e3ad2834a8b7963c9ed66421a4fb8a"&gt;user error which I've since fixed&lt;/a&gt;. Come February 1st, everything should work as expected though, so I'm happy about that.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/post-statistics-gh-actions-working-almost</link>
+      <guid>https://www.lqdev.me/notes/post-statistics-gh-actions-working-almost</guid>
+      <pubDate>2024-01-03 00:26 -05:00</pubDate>
+      <category>github</category>
+      <category>cicd</category>
+      <category>blogging</category>
+      <category>automation</category>
+      <category>githubactions</category>
+      <category>fsharp</category>
+      <category>cron</category>
+    </item>
+  </channel>
+</rss>

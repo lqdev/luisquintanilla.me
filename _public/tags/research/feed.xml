@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - research</title>
+    <link>https://www.lqdev.me/tags/research</link>
+    <description>All content tagged with 'research' by Luis Quintanilla</description>
+    <lastBuildDate>2025-09-15 19:48 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>How people use ChatGPT</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Despite the rapid adoption of LLM chatbots, little is known about how they are used. We document the growth of ChatGPT’s consumer product from its launch in November 2022 through July 2025, when it had been adopted by around 10% of the world’s adult population. Early adopters were disproportionately male but the gender gap has narrowed dramatically, and we find higher growth rates in lower-income countries. Using a privacy-preserving automated pipeline, we classify usage patterns within a representative sample of ChatGPT conversations. We find steady growth in work-related messages but even faster growth in non-work-related messages, which have grown from 53% to more than 70% of all usage. Work usage is more common for educated users in highly-paid professional occupations. We classify messages by conversation topic and find that “Practical Guidance,” “Seeking Information,” and “Writing” are the three most common topics and collectively account for nearly 80% of all conversations. Writing dominates work-related tasks, highlighting chatbots’ unique ability to generate digital outputs compared to traditional search engines. Computer programming and self-expression both represent relatively small shares of use. Overall, we find that ChatGPT provides economic value through decision support, which is especially important in knowledge-intensive jobs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.nber.org/system/files/working_papers/w34255/w34255.pdf"&gt;PDF&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/how-people-use-chatgpt-national-bureau-economic-research</link>
+      <guid>https://www.lqdev.me/bookmarks/how-people-use-chatgpt-national-bureau-economic-research</guid>
+      <pubDate>2025-09-15 19:48 -05:00</pubDate>
+      <category>ai</category>
+      <category>openai</category>
+      <category>research</category>
+      <category>chatgpt</category>
+      <category>economics</category>
+    </item>
+    <item>
+      <title>Crescent library brings privacy to digital identity systems</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Digital identities, the electronic credentials embedded in phone wallets, workplace logins, and other apps, are becoming ubiquitous. While they offer unprecedented convenience, they also create new privacy risks, particularly around tracking and surveillance.&lt;br /&gt;
+&lt;br&gt;
+One of these risks is linkability, the ability to associate one or more uses of a credential to a specific person. Currently, when people use their mobile driver’s license or log into various apps, hidden identifiers can link these separate activities together, building detailed profiles of user behavior.&lt;br /&gt;
+&lt;br&gt;
+To address this, we have released &lt;a href="https://eprint.iacr.org/2024/2013"&gt;Crescent&lt;/a&gt;, a cryptographic library that adds unlinkability to widely used identity formats, protecting privacy. These include JSON Web Tokens (the authentication standard behind many app logins) and mobile driver’s licenses. Crescent also works without requiring the organizations that issue these credentials to update their systems.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/microsoft/crescent-credentials"&gt;GitHub Repo&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/crescent-msr-privacy-digital-identity</link>
+      <guid>https://www.lqdev.me/responses/crescent-msr-privacy-digital-identity</guid>
+      <pubDate>2025-08-26 19:40 -05:00</pubDate>
+      <category>research</category>
+      <category>privacy</category>
+      <category>microsoft</category>
+    </item>
+    <item>
+      <title>Self-Adapting Language Models (SEAL)</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Large language models (LLMs) are powerful but static; they lack mechanisms to adapt their weights in response to new tasks, knowledge, or examples. &lt;strong&gt;We introduce Self-Adapting LLMs (SEAL) 🦭, a framework that enables LLMs to self-adapt by generating their own finetuning data and update directives.&lt;/strong&gt; Given a new input, the model produces a self-edit — a generation that may restructure the information in different ways, specify optimization hyperparameters, or invoke tools for data augmentation and gradient-based updates. Through supervised finetuning (SFT), these self-edits result in persistent weight updates, enabling lasting adaptation. To train the model to produce effective self-edits, we use a reinforcement learning loop, using the downstream performance of the updated model as the reward signal. Unlike prior approaches that rely on separate adaptation modules or auxiliary networks, SEAL directly uses the model's generation to parameterize and control its own adaptation process. Experiments on knowledge incorporation and few-shot generalization show that SEAL is a promising step toward language models capable of self-directed adaptation in response to new data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We demonstrate SEAL in two domains: (1) &lt;strong&gt;Knowledge Incorporation&lt;/strong&gt;, where the model integrates new factual information by generating logical implications as synthetic data, and (2) &lt;strong&gt;Few-Shot Learning&lt;/strong&gt;, where the model autonomously selects data augmentations and training hyperparameters to adapt to new abstract reasoning tasks.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/Continual-Intelligence"&gt;Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://arxiv.org/abs/2506.10943"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/self-adapting-language-models-seal</link>
+      <guid>https://www.lqdev.me/responses/self-adapting-language-models-seal</guid>
+      <pubDate>2025-06-16 20:33 -05:00</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>llm</category>
+      <category>mit</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>Introducing Locate 3D</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Locate 3D transforms how AI understands physical space, delivering &lt;strong&gt;state-of-the-art object localization in complex 3D environments&lt;/strong&gt;.&lt;br /&gt;
+&lt;br&gt;
+Operating directly on standard sensor data, Locate 3D brings spatial intelligence to robotics and augmented reality applications in real-world settings.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://ai.meta.com/research/publications/locate-3d-real-world-object-localization-via-self-supervised-learning-in-3d/"&gt;Paper&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We present Locate 3D, a model for localizing objects in 3D scenes from referring expressions like “the small coffee table between the sofa and the lamp.” Locate 3D sets a new state-of-the-art on standard referential grounding benchmarks and showcases robust generalization capabilities. Notably, Locate 3D operates directly on sensor observation streams (posed RGB-D frames), enabling real-world deployment on robots and AR devices. Key to our approach is 3D-JEPA, a novel self-supervised learning (SSL) algorithm applicable to sensor point clouds. It takes as input a 3D pointcloud featurized using 2D foundation models (CLIP, DINO). Subsequently, masked prediction in latent space is employed as a pretext task to aid the self-supervised learning of contextualized pointcloud features. Once trained, the 3D-JEPA encoder is finetuned alongside a language-conditioned decoder to jointly predict 3D masks and bounding boxes. Additionally, we introduce Locate 3D Dataset, a new dataset for 3D referential grounding, spanning multiple capture setups with over 130K annotations. This enables a systematic study of generalization capabilities as well as a stronger model.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/meta-locate3d</link>
+      <guid>https://www.lqdev.me/bookmarks/meta-locate3d</guid>
+      <pubDate>2025-05-09 20:33 -05:00</pubDate>
+      <category>meta</category>
+      <category>ai</category>
+      <category>3d</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>ZeroSearch - Incentivize the Search Capability of LLMs without Searching</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Effective information searching is essential for enhancing the reasoning and generation capabilities of large language models (LLMs). Recent research has explored using reinforcement learning (RL) to improve LLMs' search capabilities by interacting with live search engines in real-world environments. While these approaches show promising results, they face two major challenges: (1) &lt;strong&gt;Uncontrolled Document Quality&lt;/strong&gt;: The quality of documents returned by search engines is often unpredictable, introducing noise and instability into the training process. (2) &lt;strong&gt;Prohibitively High API Costs&lt;/strong&gt;: RL training requires frequent rollouts, potentially involving hundreds of thousands of search requests, which incur substantial API expenses and severely constrain scalability. To address these challenges, we introduce &lt;strong&gt;ZeroSearch&lt;/strong&gt;, a reinforcement learning framework that &lt;strong&gt;enhances the search capabilities of LLMs without interacting with real search engines&lt;/strong&gt;. Our approach begins with lightweight supervised fine-tuning to transform the LLM into a retrieval module capable of generating both relevant and noisy documents in response to a query. During RL training, we employ a curriculum-based rollout strategy that incrementally degrades the quality of generated documents, progressively eliciting the model’s reasoning ability by exposing it to increasingly challenging retrieval scenarios. Extensive experiments demonstrate that &lt;strong&gt;ZeroSearch effectively incentivizes the search capabilities of LLMs using a 3B LLM as the retrieval module&lt;/strong&gt;. Remarkably, &lt;strong&gt;a 7B retrieval module achieves comparable performance to the real search engine, while a 14B retrieval module even surpasses it&lt;/strong&gt;. Furthermore, it generalizes well across both base and instruction-tuned models of varying sizes and is compatible with a wide range of RL algorithms.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/zero-search-alibaba</link>
+      <guid>https://www.lqdev.me/bookmarks/zero-search-alibaba</guid>
+      <pubDate>2025-05-09 20:31 -05:00</pubDate>
+      <category>ai</category>
+      <category>search</category>
+      <category>llm</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>A Survey of AI Agent Protocols</title>
+      <description>&lt;![CDATA[[bookmark] &lt;p&gt;It'll be interesting to see once many of the exiting protocols begin to converge towards a standard. There's a ton of existing well-adopted protocol standards out there that when stitched together could create a compelling and native experience. I think eventually we'll get to a place where agents are native parts of the OSI stack and the world wide web.&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The rapid development of large language models (LLMs) has led to the widespread deployment of LLM agents across diverse industries, including customer service, content generation, data analysis, and even healthcare. However, as more LLM agents are deployed, a major issue has emerged: &lt;strong&gt;there is no standard way for these agents to communicate with external tools or data sources. This lack of standardized protocols makes it difficult for agents to work together or scale effectively, and it limits their ability to tackle complex, real-world tasks. A unified communication protocol for LLM agents could change this. It would allow agents and tools to interact more smoothly, encourage collaboration, and triggering the formation of collective intelligence.&lt;/strong&gt; In this paper, we provide the first comprehensive analysis of existing agent protocols, proposing a systematic two-dimensional classification that differentiates context-oriented versus inter-agent protocols and general-purpose versus domain-specific protocols. Additionally, we conduct a comparative performance analysis of these protocols across key dimensions such as security, scalability, and latency. Finally, we explore the future landscape of agent protocols by identifying critical research directions and characteristics necessary for next-generation protocols. These characteristics include adaptability, privacy preservation, and group-based interaction, as well as trends toward layered architectures and collective intelligence infrastructures. We expect this work to serve as a practical reference for both researchers and engineers seeking to design, evaluate, or integrate robust communication infrastructures for intelligent agents.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/survey-ai-agent-protocols</link>
+      <guid>https://www.lqdev.me/bookmarks/survey-ai-agent-protocols</guid>
+      <pubDate>2025-05-09 20:23 -05:00</pubDate>
+      <category>ai</category>
+      <category>agents</category>
+      <category>protocols</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>TeLoGraF: Temporal Logic Planning via Graph-encoded Flow Matching</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Learning to solve complex tasks with signal temporal logic (STL) specifications is crucial to many real-world applications. However, most previous works only consider fixed or parametrized STL specifications due to the lack of a diverse STL dataset and encoders to effectively extract temporal logic information for downstream tasks. &lt;strong&gt;In this paper, we propose TeLoGraF, Temporal Logic Graph-encoded Flow, which utilizes Graph Neural Networks (GNN) encoder and flow-matching to learn solutions for general STL specifications.&lt;/strong&gt; We identify four commonly used STL templates and collect a total of 200K specifications with paired demonstrations. We conduct extensive experiments in five simulation environments ranging from simple dynamical models in the 2D space to high-dimensional 7DoF Franka Panda robot arm and Ant quadruped navigation. Results show that our method outperforms other baselines in the STL satisfaction rate. Compared to classical STL planning algorithms, our approach is 10-100X faster in inference and can work on any system dynamics. Besides, we show our graph-encoding method's capability to solve complex STLs and robustness to out-distribution STL specifications. Code is available at &lt;a href="https://github.com/mengyuest/TeLoGraF"&gt;this https URL&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/telograf</link>
+      <guid>https://www.lqdev.me/bookmarks/telograf</guid>
+      <pubDate>2025-05-05 20:03 -05:00</pubDate>
+      <category>ai</category>
+      <category>graphs</category>
+      <category>neuralnetworks</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>CORG: Generating Answers from Complex, Interrelated Contexts</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;In a real-world corpus, knowledge frequently recurs across documents but often contains inconsistencies due to ambiguous naming, outdated information, or errors, leading to complex interrelationships between contexts. Previous research has shown that language models struggle with these complexities, typically focusing on single factors in isolation. We classify these relationships into four types: distracting, ambiguous, counterfactual, and duplicated. Our analysis reveals that no single approach effectively addresses all these interrelationships simultaneously. Therefore, &lt;strong&gt;we introduce Context Organizer (CORG), a framework that organizes multiple contexts into independently processed groups. This design allows the model to efficiently find all relevant answers while ensuring disambiguation. CORG consists of three key components: a graph constructor, a reranker, and an aggregator.&lt;/strong&gt; Our results demonstrate that CORG balances performance and efficiency effectively, outperforming existing grouping methods and achieving comparable results to more computationally intensive, single-context approaches.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/corg-context-organizer-framework</link>
+      <guid>https://www.lqdev.me/bookmarks/corg-context-organizer-framework</guid>
+      <pubDate>2025-05-05 19:53 -05:00</pubDate>
+      <category>rag</category>
+      <category>ai</category>
+      <category>knowledge</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>Self-Generated In-Context Examples Improve LLM Agents for Sequential Decision-Making Tasks</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Many methods for improving Large Language Model (LLM) agents for sequential decision-making tasks depend on task-specific knowledge engineering--such as prompt tuning, curated in-context examples, or customized observation and action spaces. Using these approaches, agent performance improves with the quality or amount of knowledge engineering invested. Instead, we investigate how LLM agents can automatically improve their performance by learning in-context from their own successful experiences on similar tasks. Rather than relying on task-specific knowledge engineering, we focus on constructing and refining a database of self-generated examples. We demonstrate that even a naive accumulation of successful trajectories across training tasks boosts test performance on three benchmarks: ALFWorld (73% to 89%), Wordcraft (55% to 64%), and InterCode-SQL (75% to 79%)--matching the performance the initial agent achieves if allowed two to three attempts per task. We then introduce two extensions: (1) database-level selection through population-based training to identify high-performing example collections, and (2) exemplar-level selection that retains individual trajectories based on their empirical utility as in-context examples. These extensions further enhance performance, achieving 91% on ALFWorld--matching more complex approaches that employ task-specific components and prompts. Our results demonstrate that &lt;strong&gt;automatic trajectory database construction offers a compelling alternative to labor-intensive knowledge engineering.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/self-generate-incontext-examples-llm-agents-improve-sequential-decision-making</link>
+      <guid>https://www.lqdev.me/bookmarks/self-generate-incontext-examples-llm-agents-improve-sequential-decision-making</guid>
+      <pubDate>2025-05-05 19:50 -05:00</pubDate>
+      <category>ai</category>
+      <category>agents</category>
+      <category>planning</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>s1: Simple test-time scaling</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Test-time scaling is a promising new approach to language modeling that uses extra test-time compute to improve performance. Recently, OpenAI's o1 model showed this capability but did not publicly share its methodology, leading to many replication efforts. We seek the simplest approach to achieve test-time scaling and strong reasoning performance. First, we curate a small dataset s1K of 1,000 questions paired with reasoning traces relying on three criteria we validate through ablations: difficulty, diversity, and quality. Second, we develop budget forcing to control test-time compute by forcefully terminating the model's thinking process or lengthening it by appending &amp;quot;Wait&amp;quot; multiple times to the model's generation when it tries to end. This can lead the model to double-check its answer, often fixing incorrect reasoning steps. After supervised finetuning the Qwen2.5-32B-Instruct language model on s1K and equipping it with budget forcing, our model s1-32B exceeds o1-preview on competition math questions by up to 27% (MATH and AIME24). Further, scaling s1-32B with budget forcing allows extrapolating beyond its performance without test-time intervention: from 50% to 57% on AIME24. Our model, data, and code are open-source at &lt;a href="https://github.com/simplescaling/s1"&gt;this https URL&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/s1-simple-test-time-scaling</link>
+      <guid>https://www.lqdev.me/bookmarks/s1-simple-test-time-scaling</guid>
+      <pubDate>2025-02-24 20:54 -05:00</pubDate>
+      <category>ai</category>
+      <category>research</category>
+      <category>s1</category>
+    </item>
+    <item>
+      <title>Introducing deep research</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;An agent that uses reasoning to synthesize large amounts of online information and complete multi-step research tasks for you.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Powered by a version of the upcoming OpenAI o3 model that’s optimized for web browsing and data analysis, it leverages reasoning to search, interpret, and analyze massive amounts of text, images, and PDFs on the internet, pivoting as needed in reaction to information it encounters.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;How it works&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Deep research was trained using end-to-end reinforcement learning on hard browsing and reasoning tasks across a range of domains. Through that training, it learned to plan and execute a multi-step trajectory to find the data it needs, backtracking and reacting to real-time information where necessary. The model is also able to browse over user uploaded files, plot and iterate on graphs using the python tool, embed both generated graphs and images from websites in its responses, and cite specific sentences or passages from its sources. As a result of this training, it reaches new highs on a number of public evaluations focused on real-world problems.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/openai-deep-research</link>
+      <guid>https://www.lqdev.me/responses/openai-deep-research</guid>
+      <pubDate>2025-02-03 20:17 -05:00</pubDate>
+      <category>ai</category>
+      <category>openai</category>
+      <category>agent</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>Microsoft Research: Introducing DRIFT Search</title>
+      <description>&lt;![CDATA[[reshare] &lt;h2&gt;Introducing DRIFT Search: Combining global and local search methods to improve quality and efficiency&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;DRIFT search (Dynamic Reasoning and Inference with Flexible Traversal)...builds upon Microsoft’s GraphRAG technique, combining characteristics of both global and local search to generate detailed responses in a method that balances computational costs with quality outcomes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;DRIFT Search: A step-by-step process&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Primer&lt;/strong&gt;: When a user submits a query, DRIFT compares it to the top K most semantically relevant community reports. This generates an initial answer along with several follow-up questions, which act as a lighter version of global search. To do this, we expand the query using Hypothetical Document Embeddings (HyDE), to increase sensitivity (recall), embed the query, look up the query against all community reports, select the top K and then use the top K to try to answer the query. The aim is to leverage high-level abstractions to guide further exploration.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Follow-Up&lt;/strong&gt;: With the primer in place, DRIFT executes each follow-up using a local search variant. This yields additional intermediate answers and follow-up questions, creating a loop of refinement that continues until the search engine meets its termination criteria, which is currently configured for two iterations (further research will investigate reward functions to guide terminations). This phase represents a globally informed query refinement. Using global data structures, DRIFT navigates toward specific, relevant information within the knowledge graph even when the initial query diverges from the indexing persona. This follow-up process enables DRIFT to adjust its approach based on emerging information.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Output Hierarchy&lt;/strong&gt;: The final output is a hierarchy of questions and answers ranked on their relevance to the original query. This hierarchical structure can be customized to fit specific user needs. During benchmark testing, a naive map-reduce approach aggregated all intermediate answers, with each answer weighted equally.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/introducing-drift-search</link>
+      <guid>https://www.lqdev.me/responses/introducing-drift-search</guid>
+      <pubDate>2024-11-04 21:59 -05:00</pubDate>
+      <category>ai</category>
+      <category>search</category>
+      <category>RAG</category>
+      <category>llm</category>
+      <category>microsoft</category>
+      <category>research</category>
+      <category>msr</category>
+      <category>graphrag</category>
+    </item>
+    <item>
+      <title>Microsoft Research Focus: Week of October 28, 2024</title>
+      <description>&lt;![CDATA[[reshare] &lt;h2&gt;METAREFLECTION: Learning Instructions for Language Agents using Past Reflections&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Language agents are AI systems that can understand, reason and respond in natural language to complete various tasks. While the latest LLMs are capable enough to power reasonably good language agents, the closed-API model makes it hard to improve them when they perform sub-optimally. Recent studies have explored using techniques like self-reflection and prompt optimization to improve performance. Unfortunately, self-reflection can be used only during the agent’s current run, while contemporary prompt optimization techniques are designed and tested to work on simple single-step agents.&lt;/p&gt;
+&lt;p&gt;In a recent paper: METAREFLECTION: Learning Instructions for Language Agents using Past Reflections, researchers from Microsoft introduce a novel offline reinforcement learning technique that enhances the performance of language agents by augmenting a semantic memory based on experiential learnings from past trials. They demonstrate the efficacy of METAREFLECTION across multiple domains, including complex logical reasoning, biomedical semantic similarity, open world question answering, and vulnerability threat detection, in Infrastructure-as-Code, spanning different agent designs. METAREFLECTION boosts language agents’ performance by 4% to 16.82% over the baseline agent implementations and performs on par with existing state-of-the-art prompt optimization techniques while requiring fewer LLM calls.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Domino: Eliminating Communication in LLM Training via Generic Tensor Slicing and Overlapping&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Generative AI applications rely on large, foundation models, particularly LLMs. LLMs often have tens to hundreds of billions of parameters, making them too large for a single graphics processing unit (GPU) to handle in terms of both memory and computation. Because of their size, training these models requires distributing the workload across hundreds or even thousands of GPUs. This can lead to significant communication overhead, a challenge that arises when data needs to be shared between different GPUs.&lt;/p&gt;
+&lt;p&gt;In a recent paper: Domino: Eliminating Communication in LLM Training via Generic Tensor Slicing and Overlapping, researchers from Microsoft introduce a system designed to enhance the efficiency of LLM training by reducing the time lost to communication between GPUs.&lt;/p&gt;
+&lt;p&gt;Domino breaks down data dependencies in a single batch of training into smaller, independent pieces. These smaller pieces are processed in parallel, and communication between GPUs happens simultaneously with computation, minimizing delays.&lt;/p&gt;
+&lt;p&gt;Test results comparing Domino to Megatron-LM show that Domino speeds up the training process by up to 1.3x on Nvidia DGX-H100 GPUs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;OmniParser for pure vision-based GUI agent&lt;/h2&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Large vision-language models (VLMs) such as GPT-4V and GPT-4o show promise in driving intelligent agent systems that operate within user interfaces (UI). However, VLMs’ full potential remains underexplored in real-world applications, particularly when it comes to acting as general agents across diverse operating systems and applications with only vision input. One limiting factor is the absence of a robust technique for screen parsing which is capable of 1) reliably identifying interactable icons within the user interface, and 2) understanding the semantics of various elements in a screenshot and accurately associating the intended action with the corresponding region on the screen.&lt;/p&gt;
+&lt;p&gt;In a recent article: OmniParser for pure vision-based GUI agent, researchers from Microsoft present a compact screen parsing module that can convert UI screenshots into structured elements. OmniParser can be used with a variety of models to create agents capable of taking actions on UIs. When used with GPT-4V, OmniParser significantly improves the agent capability to generate precisely grounded actions for interface regions.&lt;/p&gt;
+&lt;p&gt;OmniParser with GPT-4V agent achieved the best performance on the recently released  WindowsAgentArena (opens in new tab) benchmark.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/microsoft-research-focus-oct-28-2024</link>
+      <guid>https://www.lqdev.me/responses/microsoft-research-focus-oct-28-2024</guid>
+      <pubDate>2024-11-04 21:39 -05:00</pubDate>
+      <category>ai</category>
+      <category>microsoft</category>
+      <category>research</category>
+      <category>msr</category>
+      <category>microsoftresearch</category>
+    </item>
+    <item>
+      <title>Thinking LLMs: General Instruction Following with Thought Generation</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;LLMs are typically trained to answer user questions or follow instructions similarly to how human experts respond. However, in the standard alignment framework they lack the basic ability of explicit thinking before answering. Thinking is important for complex questions that require reasoning and planning -- but can be applied to any task. We propose a training method for equipping existing LLMs with such thinking abilities for general instruction following without use of additional human data. We achieve this by an iterative search and optimization procedure that explores the space of possible thought generations, allowing the model to learn how to think without direct supervision. For each instruction, the thought candidates are scored using a judge model to evaluate their responses only, and then optimized via preference optimization. We show that this procedure leads to superior performance on AlpacaEval and Arena-Hard, and shows gains from thinking on non-reasoning categories such as marketing, health and general knowledge, in addition to more traditional reasoning &amp;amp; problem-solving tasks.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/thinking-llms-instruction-following-thought-generation</link>
+      <guid>https://www.lqdev.me/responses/thinking-llms-instruction-following-thought-generation</guid>
+      <pubDate>2024-11-04 21:24 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>research</category>
+      <category>meta</category>
+      <category>chainofthought</category>
+      <category>training</category>
+      <category>finetuning</category>
+    </item>
+    <item>
+      <title>Transformers in music recommendation</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;We present a music recommendation ranking system that uses Transformer models to better understand the sequential nature of user actions based on the current user context.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/transformers-music-recommendation-google</link>
+      <guid>https://www.lqdev.me/responses/transformers-music-recommendation-google</guid>
+      <pubDate>2024-08-21 20:16 -05:00</pubDate>
+      <category>google</category>
+      <category>ai</category>
+      <category>transformers</category>
+      <category>deeplearning</category>
+      <category>neuralneworks</category>
+      <category>recommendation</category>
+      <category>research</category>
+      <category>music</category>
+    </item>
+    <item>
+      <title>LongROPE: Extending LLM Context Window Beyond 2 Million Tokens</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Large context window is a desirable feature in large language models (LLMs). However, due to high fine-tuning costs, scarcity of long texts, and catastrophic values introduced by new token positions, current extended context windows are limited to around 128k tokens. This paper introduces LongRoPE that, for the first time, extends the context window of pre-trained LLMs to an impressive 2048k tokens, with up to only 1k fine-tuning steps at within 256k training lengths, while maintaining performance at the original short context window. This is achieved by three key innovations: (i) we identify and exploit two forms of non-uniformities in positional interpolation through an efficient search, providing a better initialization for fine-tuning and enabling an 8x extension in non-fine-tuning scenarios; (ii) we introduce a progressive extension strategy that first fine-tunes a 256k length LLM and then conducts a second positional interpolation on the fine-tuned extended LLM to achieve a 2048k context window; (iii) we readjust LongRoPE on 8k length to recover the short context window performance. Extensive experiments on LLaMA2 and Mistral across various tasks demonstrate the effectiveness of our method. Models extended via LongRoPE retain the original architecture with minor modifications to the positional embedding, and can reuse most pre-existing optimizations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/jshuadvd/LongRoPE"&gt;GitHub Repo&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/longrope-extending-llm-context-2m-tokens</link>
+      <guid>https://www.lqdev.me/bookmarks/longrope-extending-llm-context-2m-tokens</guid>
+      <pubDate>2024-07-30 14:16 -05:00</pubDate>
+      <category>ai</category>
+      <category>llm</category>
+      <category>longrope</category>
+      <category>microsoft</category>
+      <category>research</category>
+      <category>msr</category>
+    </item>
+    <item>
+      <title>TinyAgent: Function Calling at the Edge</title>
+      <description>&lt;![CDATA[[reshare] &lt;p&gt;&lt;img src="https://bair.berkeley.edu/static/blog/tiny-agent/Figure2.png" class="img-fluid" alt="High level conceptual diagram of TinyAgent system" /&gt;&lt;/p&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;The ability of LLMs to execute commands through plain language (e.g. English) has enabled agentic systems that can complete a user query by orchestrating the right set of tools...recent multi-modal efforts such as the GPT-4o or Gemini-1.5 model, has expanded the realm of possibilities with AI agents. While this is quite exciting, the large model size and computational requirements of these models often requires their inference to be performed on the cloud. This can create several challenges for their widespread adoption. First and foremost, uploading data such as video, audio, or text documents to a third party vendor on the cloud, can result in privacy issues. Second, this requires cloud/Wi-Fi connectivity which is not always possible...latency could also be an issue as uploading large amounts of data to the cloud and waiting for the response could slow down response time, resulting in unacceptable time-to-solution. These challenges could be solved if we deploy the LLM models locally at the edge.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...current LLMs like GPT-4o or Gemini-1.5 are too large for local deployment. One contributing factor is that a lot of the model size ends up memorizing general information about the world into its parametric memory which may not be necessary for a specialized downstream application.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;...this leads to an intriguing research question:&lt;br /&gt;
+&lt;br&gt;
+Can a smaller language model with significantly less parametric memory emulate such emergent ability of these larger language models?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Achieving this would significantly reduce the computational footprint of agentic systems and thus enable efficient and privacy-preserving edge deployment. Our study demonstrates that this is feasible for small language models through training with specialized, high-quality data that does not require recalling generic world knowledge.&lt;br /&gt;
+&lt;br&gt;
+Such a system could particularly be useful for semantic systems where the AI agent’s role is to understand the user query in natural language and, instead of responding with a ChatGPT-type question answer response, orchestrate the right set of tools and APIs to accomplish the user’s command. For example, in a Siri-like application, a user may ask a language model to create a calendar invite with particular attendees. If a predefined script for creating calendar items already exists, the LLM simply needs to learn how to invoke this script with the correct input arguments (such as attendees’ email addresses, event title, and time). This process does not require recalling/memorization of world knowledge from sources like Wikipedia, but rather requires reasoning and learning to call the right functions and to correctly orchestrate them.&lt;br /&gt;
+&lt;br&gt;
+Our goal is to develop Small Language Models (SLM) that are capable of complex reasoning that could be deployed securely and privately at the edge. Here we will discuss the research directions that we are pursuing to that end. First, we discuss how we can enable small open-source models to perform accurate function calling, which is a key component of agentic systems. It turns out that off-the-shelf small models have very low function calling capabilities. We discuss how we address this by systematically curating high-quality data for function calling, using a specialized Mac assistant agent as our driving application. We then show that fine-tuning the model on this high quality curated dataset, can enable SLMs to even exceed GPT-4-Turbo’s function calling performance. We then show that this could be further improved and made efficient through a new Tool RAG method. Finally, we show how the final models could be deployed efficiently at the edge with real time responses.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/TinyAgent-function-calling-edge</link>
+      <guid>https://www.lqdev.me/responses/TinyAgent-function-calling-edge</guid>
+      <pubDate>2024-06-11 19:43 -05:00</pubDate>
+      <category>agent</category>
+      <category>ai</category>
+      <category>slm</category>
+      <category>function</category>
+      <category>edge</category>
+      <category>local</category>
+      <category>languagemodel</category>
+      <category>smalllanguagemodel</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>SAMMO: A general-purpose framework for prompt optimization</title>
+      <description>&lt;![CDATA[[reshare] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Large language models (LLMs) have revolutionized a wide range of tasks and applications that were previously reliant on manually crafted machine learning (ML) solutions, streamlining through automation. However, despite these advances, a notable challenge persists: the need for extensive prompt engineering to adapt these models to new tasks. New generations of language models like GPT-4 and Mixtral 8x7B advance the capability to process long input texts. This progress enables the use of longer inputs, providing richer context and detailed instructions to language models. A common technique that uses this enhanced capacity is the Retrieval Augmented Generation (RAG) approach. RAG dynamically incorporates information into the prompt based on the specific input example.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote class="blockquote"&gt;
+&lt;p&gt;To address these challenges, we developed the Structure-Aware Multi-objective Metaprompt Optimization (SAMMO) framework. SAMMO is a new open-source tool that streamlines the optimization of prompts, particularly those that combine different types of structural information like in the RAG example above. It can make structural changes, such as removing entire components or replacing them with different ones. These features enable AI practitioners and researchers to efficiently refine their prompts with little manual effort.&lt;br /&gt;
+&lt;br&gt;
+Central to SAMMO’s innovation is its approach to treating prompts not just as static text inputs but as dynamic, programmable entities—metaprompts. SAMMO represents these metaprompts as function graphs, where individual components and substructures can be modified to optimize performance, similar to the optimization process that occurs during traditional program compilation.&lt;br /&gt;
+&lt;br&gt;
+The following key features contribute to SAMMO’s effectiveness:&lt;br /&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Structured optimization: Unlike current methods that focus on text-level changes, SAMMO focuses on optimizing the structure of metaprompts. This granular approach facilitates precise modifications and enables the straightforward integration of domain knowledge, for instance, through rewrite operations targeting specific stylistic objectives.&lt;br /&gt;
+&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;Multi-objective search: SAMMO’s flexibility enables it to simultaneously address multiple objectives, such as improving accuracy and computational efficiency. Our paper illustrates how SAMMO can be used to compress prompts without compromising their accuracy.&lt;br /&gt;
+&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;General purpose application: SAMMO has proven to deliver significant performance improvements across a variety of tasks, including instruction tuning, RAG, and prompt compression.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/responses/sammo-prompt-optimization-framework</link>
+      <guid>https://www.lqdev.me/responses/sammo-prompt-optimization-framework</guid>
+      <pubDate>2024-04-25 22:48 -05:00</pubDate>
+      <category>ai</category>
+      <category>microsoft</category>
+      <category>research</category>
+      <category>prompt</category>
+      <category>optimization</category>
+      <category>sammo</category>
+    </item>
+    <item>
+      <title>Griffin: Mixing Gated Linear Recurrences with Local Attention for Efficient Language Models</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Recurrent neural networks (RNNs) have fast inference and scale efficiently on long sequences, but they are difficult to train and hard to scale. We propose Hawk, an RNN with gated linear recurrences, and Griffin, a hybrid model that mixes gated linear recurrences with local attention. Hawk exceeds the reported performance of Mamba on downstream tasks, while Griffin matches the performance of Llama-2 despite being trained on over 6 times fewer tokens. We also show that Griffin can extrapolate on sequences significantly longer than those seen during training. Our models match the hardware efficiency of Transformers during training, and during inference they have lower latency and significantly higher throughput. We scale Griffin up to 14B parameters, and explain how to shard our models for efficient distributed training.&lt;/p&gt;
+&lt;/blockquote&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/griffin-mix-linear-recurrence-local-attention-language-models</link>
+      <guid>https://www.lqdev.me/bookmarks/griffin-mix-linear-recurrence-local-attention-language-models</guid>
+      <pubDate>2024-04-10 22:02 -05:00</pubDate>
+      <category>griffin</category>
+      <category>ai</category>
+      <category>research</category>
+      <category>architecture</category>
+      <category>rnn</category>
+      <category>attention</category>
+      <category>transformers</category>
+      <category>llm</category>
+    </item>
+    <item>
+      <title>DE-COP: Detecting Copyrighted Content in Language Models Training Data</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;How can we detect if copyrighted content was used in the training process of a language model, considering that the training data is typically undisclosed? We are motivated by the premise that a language model is likely to identify verbatim excerpts from its training text. We propose DE-COP, a method to determine whether a piece of copyrighted content was included in training. DE-COP's core approach is to probe an LLM with multiple-choice questions, whose options include both verbatim text and their paraphrases. We construct BookTection, a benchmark with excerpts from 165 books published prior and subsequent to a model's training cutoff, along with their paraphrases. Our experiments show that DE-COP surpasses the prior best method by 9.6% in detection performance (AUC) on models with logits available. Moreover, DE-COP also achieves an average accuracy of 72% for detecting suspect books on fully black-box models where prior methods give ≈ 4% accuracy. Our code and datasets are available at this https URL&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://github.com/avduarte333/DE-COP_Method"&gt;Repo&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/decop-detecting-copyright-llm-training-data</link>
+      <guid>https://www.lqdev.me/bookmarks/decop-detecting-copyright-llm-training-data</guid>
+      <pubDate>2024-04-10 22:00 -05:00</pubDate>
+      <category>ai</category>
+      <category>copyright</category>
+      <category>research</category>
+      <category>llm</category>
+      <category>data</category>
+    </item>
+  </channel>
+</rss>

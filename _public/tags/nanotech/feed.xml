@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - nanotech</title>
+    <link>https://www.lqdev.me/tags/nanotech</link>
+    <description>All content tagged with 'nanotech' by Luis Quintanilla</description>
+    <lastBuildDate>2024-03-02 23:44 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Book Review - Agency</title>
+      <description>&lt;![CDATA[&lt;p&gt;Just finished reading Agency by William Gibson. I was not a big fan. I posted my review with more details.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.lqdev.me/reviews/agency-gibson"&gt;Agency Review&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/agency-gibson-review</link>
+      <guid>https://www.lqdev.me/notes/agency-gibson-review</guid>
+      <pubDate>2024-03-02 23:44 -05:00</pubDate>
+      <category>book</category>
+      <category>review</category>
+      <category>agency</category>
+      <category>scifi</category>
+      <category>future</category>
+      <category>nanotech</category>
+      <category>ai</category>
+      <category>gibson</category>
+    </item>
+  </channel>
+</rss>

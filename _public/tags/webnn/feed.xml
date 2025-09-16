@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - webnn</title>
+    <link>https://www.lqdev.me/tags/webnn</link>
+    <description>All content tagged with 'webnn' by Luis Quintanilla</description>
+    <lastBuildDate>10/24/2021 20:36 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Web Neural Network API - Working Draft</title>
+      <description>&lt;![CDATA[&lt;p&gt;While browsing the interwebs I came across the &lt;a href="https://www.w3.org/TR/webnn/"&gt;Web Neural Network API&lt;/a&gt; spec from the &lt;a href="https://www.w3.org/groups/wg/webmachinelearning"&gt;W3C Web Machine Learning Working Group&lt;/a&gt;. The abstract defines it as &amp;quot;a dedicated low-level API for neural network inference hardware acceleration.&amp;quot;. Although there are already a few frameworks like ONNX &amp;amp; TensorFlow.js that allow you to inference in the browser, this spec looks interesting because it provides an abstraction that allows you to take advantage of hardware acceleration using the framework of your choice. As the &lt;a href="https://github.com/webmachinelearning/webnn/blob/main/explainer.md"&gt;explainer document&lt;/a&gt; mentions, &amp;quot;this architecture allows JavaScript frameworks to tap into cutting-edge machine learning innovations in the operating system and the hardware platform underneath it without being tied to platform-specific capabilities, bridging the gap between software and hardware through a hardware-agnostic abstraction layer.&amp;quot;. It's just a working draft for now but I'm looking forward to how this develops.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/web-neural-network-api-working-draft</link>
+      <guid>https://www.lqdev.me/notes/web-neural-network-api-working-draft</guid>
+      <pubDate>10/24/2021 20:36 -05:00</pubDate>
+      <category>webnn</category>
+      <category>ai</category>
+      <category>neuralnetwork</category>
+      <category>w3c</category>
+      <category>standards</category>
+      <category>api</category>
+      <category>protocol</category>
+    </item>
+  </channel>
+</rss>

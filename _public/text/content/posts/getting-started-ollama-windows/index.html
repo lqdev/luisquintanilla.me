@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Getting started with Ollama on Windows - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Getting started with Ollama on Windows</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2024-03-05">March 5, 2024</time><p>Tags: ai, ollama, windows, llm, opensource, llama, openai, generativeai, genai</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/getting-started-ollama-windows">View Full Version</a></p><div class="content"><p>Recently <a href="/responses/ollama-windows-preview">Ollama announced support for Windows</a> in preview. In doing so, people who want to use AI models like Llama, Phi, and many others can do so locally on their PC. In this post, I'll go over how you can get started with Ollama on Windows.</p>
+<h2>Install Ollama</h2>
+<p>The first thing you'll want to do is install Ollama.</p>
+<p>You can do so by <a href="https://ollama.com/download/windows">downloading the installer from the website</a> and following the installation prompts.</p>
+<h2>Get a model</h2>
+<p>Once you've installed Ollama, it's time to get a model.</p>
+<ol>
+<li><p>Open PowerShell</p>
+</li>
+<li><p>Run the following command</p>
+<pre><code class="language-powershell">ollama pull llama2
+</code></pre>
+</li>
+</ol>
+<p>In this case, I'm using llama2. However, you can choose another model. You could even download many models at once and switch between them. For a full list of supported models, see the <a href="https://ollama.com/library">Ollama model documentation</a>.</p>
+<h2>Use the model</h2>
+<p>Now that you have the model, it's time to use it. The easiest way to use the model is using the REST API. When you install Ollama, it starts up a server to host your model. One other neat thing is, the REST API is <a href="https://ollama.com/blog/openai-compatibility">OpenAI API compatible</a>.</p>
+<ol>
+<li><p>Open PowerShell</p>
+</li>
+<li><p>Send the following request:</p>
+<pre><code class="language-powershell">(Invoke-WebRequest -method POST -Body '{&quot;model&quot;:&quot;llama2&quot;, &quot;prompt&quot;:&quot;Why is the sky blue?&quot;, &quot;stream&quot;: false}' -uri http://localhost:11434/api/generate ).Content | ConvertFrom-json
+</code></pre>
+<p>This command will issue an HTTP POST request to the server listening on port 11434.</p>
+<p>The main things to highlight in the body:</p>
+<ul>
+<li><em>model</em>: The model you'll use. Make sure this is one of the models you pulled.</li>
+<li><em>prompt</em>: The input to the model</li>
+<li><em>stream</em>: Whether to stream responses back to the client</li>
+</ul>
+<p>For more details on the REST API, see the <a href="https://github.com/ollama/ollama/blob/main/docs/api.md">Ollama REST API documentation</a>.</p>
+</li>
+</ol>
+<h2>Conclusion</h2>
+<p>In this post, I went over how you can quickly install Ollama to start using generative AI models like Llama and Phi locally on your Windows PC. If you use Mac or Linux, you can perform similar steps as those outlined in this guide to get started on those operating systems. Happy coding!</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

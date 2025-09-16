@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/text/assets/text-only.css"><meta name="description" content="Text-only accessible version of Luis Quintanilla&#39;s website"><meta name="robots" content="noindex, nofollow"><title>Configure Ollama on Dev Containers and VS Code - Text-Only Site</title></head><body><a href="#main-content" class="skip-link">Skip to main content</a><header role="banner"><h1><a href="/text/">Luis Quintanilla</a></h1><p>Text-Only Accessible Website</p></header><nav role="navigation" aria-label="Main navigation"><ul><li><a href="/text/">Home</a></li><li><a href="/text/about/">About</a></li><li><a href="/text/contact/">Contact</a></li><li><a href="/text/content/">All Content</a></li><li><a href="/text/feeds/">RSS Feeds</a></li><li><a href="/text/help/">Help</a></li></ul></nav><main role="main" id="main-content"><div><h1>Configure Ollama on Dev Containers and VS Code</h1><div class="content-meta"><div class="content-type">posts</div><time datetime="2024-03-06">March 6, 2024</time><p>Tags: ollama, vscode, devcontainer, ai, llm, opensource, development</p></div><p><a href="/text/">← Home</a> | <a href="/text/content/posts/">← All posts</a> | <a href="https://www.lqdev.me/posts/install-ollama-vscode-devcontainer">View Full Version</a></p><div class="content"><p>The source for my website is <a href="/github/luisquintanilla.me">hosted on GitHub</a>. As a result, I use VS Code as the text editor to author my posts. Typically, I use <a href="/colophon">Codespaces or github.dev</a> to quickly draft and publish articles to simplify the process.</p>
+<p>As part of my authoring and publishing posts, there's a few things I do like:</p>
+<ol>
+<li>Coming up with a title</li>
+<li>Creating relevant tags to help with discovery and connecting related information on my website.</li>
+<li>For long-form blog posts, I also include a description.</li>
+</ol>
+<p>This is generally relatively easy to do. However, sometimes I spend too much time coming up with something that truly summarizes and condenses the information in the post. It'd be nice if I had an assistant to help me brainstorm and workshop some of these items.</p>
+<p>In comes AI. Now, I could use something like <a href="https://code.visualstudio.com/docs/copilot/overview">Copilot</a> which would work wonderfully and easily plug into my workflow. However, my website is a labor of love and I don't make any money from it. In many instances, I've designed <a href="/posts/receive-webmentions-fsharp-az-functions-fsadvent">various components to be as low-cost as possible</a>.</p>
+<p>Recently, I created a post which showed <a href="/posts/getting-started-ollama-windows">how to get started with Ollama on Windows</a>. In this post, I'll show how you can do the same for your Dev Container environments.</p>
+<h2>Install Ollama</h2>
+<p>Assuming you already have a <a href="https://code.visualstudio.com/docs/devcontainers/create-dev-container">Dev Container configuration file</a>, add the following line to it:</p>
+<pre><code class="language-json">&quot;postCreateCommand&quot;: &quot;curl -fsSL https://ollama.com/install.sh | sh&quot;
+</code></pre>
+<p>This command triggers when the container environment is created. This will install Ollama in your development environment. For more details, see the <a href="https://ollama.com/download/linux">Ollama download instructions</a>.</p>
+<h2>Start Ollama</h2>
+<p>Now that Ollama is installed, it's time to start the service so you can get models and use them. To start the Ollama service on your Dev Conatiner environment, add the following line to your Dev Container configuration file.</p>
+<pre><code class="language-json">&quot;postStartCommand&quot;: &quot;ollama serve&quot;
+</code></pre>
+<p>This command will run <code>ollama serve</code> when the Dev Container environment starts.</p>
+<h2>Pull a model</h2>
+<p>To use Ollama, you're going to need a model. In my case, I went with <a href="https://ollama.com/library/phi">Phi-2</a> because it's lightweight and space on Codespaces is limited.</p>
+<p>To get the model:</p>
+<ol>
+<li><p>Open the terminal</p>
+</li>
+<li><p>Enter the following command:</p>
+<pre><code class="language-bash">ollama pull phi
+</code></pre>
+<p>After a few minutes, the model is downloaded and ready to use.</p>
+</li>
+<li><p>Enter the following command to ensure that your model is now available</p>
+<pre><code class="language-bash">ollama list
+</code></pre>
+<p>The result should look like the following:</p>
+<pre><code class="language-text">NAME            ID              SIZE    MODIFIED      
+phi:latest      e2fd6321a5fe    1.6 GB  6 seconds ago
+</code></pre>
+</li>
+</ol>
+<p>For more details, see the <a href="https://ollama.com/library">Ollama model library</a>.</p>
+<h2>Conclusion</h2>
+<p>In this post, I showed how you can configure Ollama with Dev Containers to use AI models locally in your projects. In subsequent posts, I'll show how once the service is running, I use it as part of my authoring and publishing posts. You can see a preview of it in my <a href="https://github.com/lqdev/luisquintanilla.me/blob/main/Scripts/ai.fsx">scripts directory</a>. Happy coding!</p>
+</div></div></main><footer role="contentinfo"><hr><p><a href="/">Full Site</a> | <a href="/text/accessibility/">Accessibility</a></p></footer></body></html>

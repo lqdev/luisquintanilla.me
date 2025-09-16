@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luis Quintanilla - windows10</title>
+    <link>https://www.lqdev.me/tags/windows10</link>
+    <description>All content tagged with 'windows10' by Luis Quintanilla</description>
+    <lastBuildDate>2025-08-23 20:11 -05:00</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Windows 11 upgrade?</title>
+      <description>&lt;![CDATA[Album containing 0 photos]]&gt;</description>
+      <link>https://www.lqdev.me/media/windows-11-upgrade</link>
+      <guid>https://www.lqdev.me/media/windows-11-upgrade</guid>
+      <pubDate>2025-08-23 20:11 -05:00</pubDate>
+      <category>windows</category>
+      <category>windows10</category>
+    </item>
+    <item>
+      <title>Windows 11 upgrade</title>
+      <description>&lt;![CDATA[&lt;p&gt;No Windows 11 upgrade for me. 😥&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://user-images.githubusercontent.com/11130940/135946651-d4d9acee-5618-4846-85aa-8387077a4785.png" class="img-fluid" alt="PC doesn't meet windows 11 upgrade requirements message" /&gt;&lt;/p&gt;
+&lt;p&gt;Just because I can't doesn't mean you can't though. Go and check if you're eligible at Windows Update&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Start &amp;gt; Settings &amp;gt; Update &amp;amp; Security &amp;gt; Windows Update&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;See &lt;a href="https://support.microsoft.com/windows/manage-updates-in-windows-643e9ea7-3cf6-7da6-a25c-95d4f7f099fe#WindowsVersion=Windows_10"&gt;Manage updates in Windows&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;p&gt;For alternative install options, check out the &lt;a href="https://www.microsoft.com/software-download/windows11"&gt;Download Windows 11&lt;/a&gt; page.&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/notes/windows-11-upgrade</link>
+      <guid>https://www.lqdev.me/notes/windows-11-upgrade</guid>
+      <pubDate>10/05/2021 08:55 AM -05:00</pubDate>
+      <category>windows10</category>
+      <category>windows</category>
+      <category>windows11</category>
+      <category>microsoft</category>
+    </item>
+  </channel>
+</rss>

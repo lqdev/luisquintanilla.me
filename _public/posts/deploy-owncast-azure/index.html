@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link rel="stylesheet" href="/assets/css/custom/main.css"><link rel="stylesheet" href="/assets/css/custom/timeline.css"><link rel="stylesheet" href="/assets/css/bootstrap-icons-1.5.0/bootstrap-icons.css"><link rel="stylesheet" href="/assets/css/highlight.github-dark-dimmed.min.css"><link rel="stylesheet" href="/assets/css/main.css"><link rel="stylesheet" href="/lib/revealjs/dist/reveal.css"><link rel="stylesheet" href="/lib/revealjs/dist/theme/black.css"><link rel="stylesheet" href="/lib/revealjs/plugin/highlight/monokai.css"><meta property="og:title" content="Deploy your own Owncast server - Luis Quintanilla"><meta property="og:type" content="website"><meta property="og:image" content="https://www.lqdev.me/avatar.png"><meta property="og:image:secure_url" content="https://www.lqdev.me/avatar.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="200"><meta property="og:image:height" content="200"><meta property="og:site_name" content="Luis Quintanilla Personal Website"><meta property="og:locale" content="en_US"><meta property="twitter:image" content="https://www.lqdev.me/avatar.png"><meta property="fediverse:creator" content="@lqdev@toot.lqdev.tech"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Blog RSS Feed" href="/blog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Microblog RSS Feed" href="/microblog.rss"><link rel="alternate" type="application/rss+xml" title="Luis Quintanilla Response RSS Feed" href="/responses.rss"><link rel="webmention" title="Luis Quintanilla Webmention Endpoint" href="https://webmentions.lqdev.tech/api/inbox"><link rel="feeds" type="text/xml" title="Luis Quintanilla&#39;s Feeds" href="/feed/index.opml"><link rel="blogroll" type="text/xml" title="Luis Quintanilla&#39;s Blogroll" href="/collections/blogroll/index.opml"><link rel="podroll" type="text/xml" title="Luis Quintanilla&#39;s Podroll" href="/collections/podroll/index.opml"><link rel="youtuberoll" type="text/xml" title="Luis Quintanilla&#39;s YouTube Roll" href="/collections/youtube/index.opml"><meta name="robots" content="nosnippet"><title>Deploy your own Owncast server - Luis Quintanilla</title></head><body><button class="mobile-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"><div class="hamburger"><span></span><span></span><span></span></div></button><div class="nav-overlay" id="nav-overlay"></div><nav class="desert-nav" id="sidebar-menu" role="navigation" aria-label="Main navigation"><div class="nav-brand"><a href="/" class="brand-text"><img src="/avatar.png" alt="Luis Quintanilla avatar" loading="lazy">Luis Quintanilla</a></div><div class="nav-section"><a class="nav-link" href="/"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"></path></svg>Home</a><a class="nav-link" href="/about"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path></svg>About</a><a class="nav-link" href="/contact"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"></path></svg>Contact</a><a class="nav-link" href="/search"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path></svg>Search</a><a class="nav-link" href="/feed"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"></path></svg>Subscribe</a></div><div class="nav-section dropdown"><button class="nav-link dropdown-toggle" data-target="collections-dropdown"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"></path><path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"></path></svg>Collections<svg class="dropdown-arrow" viewBox="0 0 16 16" fill="currentColor"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path></svg></button><div class="dropdown-menu" id="collections-dropdown"><a class="dropdown-item" href="/collections/blogroll">Blogroll</a><a class="dropdown-item" href="/collections/podroll">Podroll</a><a class="dropdown-item" href="/collections/youtube">YouTube</a><a class="dropdown-item" href="/collections/forums">Forums</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/collections/starter-packs">Starter Packs</a><div class="dropdown-divider"></div><a class="dropdown-item" href="/radio">Radio</a><a class="dropdown-item" href="/tags">Tags</a></div></div><div class="nav-section dropdown"><button class="nav-link dropdown-toggle" data-target="resources-dropdown"><svg class="nav-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"></path></svg>Resources<svg class="dropdown-arrow" viewBox="0 0 16 16" fill="currentColor"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path></svg></button><div class="dropdown-menu" id="resources-dropdown"><a class="dropdown-item" href="/resources/snippets">Snippets</a><a class="dropdown-item" href="/resources/wiki">Wiki</a><a class="dropdown-item" href="/resources/presentations">Presentations</a></div></div><div class="theme-toggle"><button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark mode"><span id="theme-toggle-icon">☀️</span><span>Theme</span></button></div></nav><main role="main" class="main-content" id="main-content"><div class="content-wrapper"><div class="mr-auto"><article class="h-entry individual-post"><header class="post-header"><h1 class="p-name post-title">Deploy your own Owncast server</h1><div class="post-meta"><time class="dt-published" datetime="2025-01-09 20:47 -05:00">January 9, 2025</time></div><div class="u-author h-card microformat-hidden"><img src="/avatar.png" class="u-photo" alt="Luis Quintanilla" /><a href="/about" class="u-url p-name">Luis Quintanilla</a></div></header><div class="e-content post-content"><p>I'm a fan of learning in public. One way I do that is writing these types of posts. Another is live-streaming. It's been about four years since the last time I streamed. You can check out some of those recordings on my <a href="/youtube">YouTube channel</a> if you're interested.</p>
+<p>Lately, I've been wanting to get back into live-streaming, but like many parts of my digital presence, it's an area I want ownership over. That means, I don't want to use Twitch, YouTube, Kick, or any other streaming platform. I want to self-host my own livestream server.</p>
+<p>For years, I've been following <a href="https://owncast.online/">Owncast</a>. I'm a big fan. Aside from being open-source and allowing me to self-host, it has <a href="https://owncast.online/docs/social/">Fediverse</a> and <a href="https://owncast.online/docs/chat/chat-authentication/#indieauth">IndieAuth</a> integrations.</p>
+<p>Because I don't plan to monetize my streams, I want to make sure I keep my costs down. Owncast offers a container deployment option. That means, I can deploy my application to <a href="https://learn.microsoft.com/azure/container-apps/overview">Azure Container Apps</a> using a <a href="https://learn.microsoft.com/azure/container-apps/plans#consumption">consumption plan</a>. By doing so, I only pay for compute and networking when I'm streaming. The rest of the time, I can scale down the application to zero and I'm not charged for it.</p>
+<p>In this post, I'll go over how to set up a self-hosted Owncast instance on Azure Container Apps and once deployed, how to configure it with <a href="https://obsproject.com/">OBS</a>.</p>
+<h2>Deploy owncast server</h2>
+<p>The deployment is fairly straightforward. You can use the <a href="https://learn.microsoft.com/azure/container-apps/vnet-custom?tabs=bash&amp;pivots=azure-portal">&quot;Provide a virtual network to an Azure Container Apps environment&quot;</a> tutorial. I'd recommend going through the portal if you don't want to install the Azure CLI or are not comfortable with the command line.</p>
+<p>The few configurations that tutorial doesn't guide you through is setting up your container and ingress since those are application specific.</p>
+<p>After you configure your environment and virtual network in the <em>Basics</em> tab, continue your setup using the steps below.</p>
+<h3>Container</h3>
+<p>To set up Owncast, you can use the <a href="https://hub.docker.com/r/owncast/owncast/tags">public docker image</a>.</p>
+<p>When you get to the <em>Container</em> tab in the setup process, fill in the fields with the following values:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>Enter a name for your container</td>
+</tr>
+<tr>
+<td>Image source</td>
+<td>Docker Hub or other registies</td>
+</tr>
+<tr>
+<td>Image type</td>
+<td>Public</td>
+</tr>
+<tr>
+<td>Registry login server</td>
+<td>docker.io</td>
+</tr>
+<tr>
+<td>Image and tag</td>
+<td>owncast/owncast:latest</td>
+</tr>
+<tr>
+<td>Command override</td>
+<td>You can leave this blank</td>
+</tr>
+<tr>
+<td>Arguments override</td>
+<td>You can leave this blank</td>
+</tr>
+<tr>
+<td>Deployment stack</td>
+<td>Generic</td>
+</tr>
+<tr>
+<td>Workload profile</td>
+<td>Consumption</td>
+</tr>
+<tr>
+<td>CPU and Memory</td>
+<td>2 CPU Cores, 4Gi Memory</td>
+</tr>
+</tbody>
+</table>
+<h3>Ingress</h3>
+<p>By setting up ingress on your deployment, you'll expose the ports Owncast listens on.</p>
+<p>The reason you need a virtual network is because Owncast listens on two ports:</p>
+<ul>
+<li><strong>8080</strong> - The web application and admin portal</li>
+<li><strong>1935</strong> - The RMTP server used for streaming</li>
+</ul>
+<p>By default, Azure Container Apps only allows you to expose one port. For more details, see the <a href="https://learn.microsoft.com/azure/container-apps/ingress-overview#additional-tcp-ports">Azure Container Apps documentation</a>.</p>
+<p>In the <em>Ingress</em> tab, check the box that says <strong>Enabled</strong>.</p>
+<p>Then, fill in the fields with the following values:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ingress traffic</td>
+<td>Accepting traffic from anywhere</td>
+</tr>
+<tr>
+<td>Ingress type</td>
+<td>HTTP</td>
+</tr>
+<tr>
+<td>Transport</td>
+<td>Auto</td>
+</tr>
+<tr>
+<td>Insecure connections</td>
+<td>Leave unchecked</td>
+</tr>
+<tr>
+<td>Target port</td>
+<td>8080</td>
+</tr>
+<tr>
+<td>Session affinity</td>
+<td>Leave unchecked</td>
+</tr>
+</tbody>
+</table>
+<p>Expand the Additional TCP ports section and configure the RMTP port</p>
+<table class="table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Target port</td>
+<td>1935</td>
+</tr>
+<tr>
+<td>Exposed port</td>
+<td>1935</td>
+</tr>
+<tr>
+<td>Ingress traffic</td>
+<td>Accepting traffic from anywhere</td>
+</tr>
+</tbody>
+</table>
+<p>Once you've configured ingress, you can select on <strong>Review + create</strong>.</p>
+<p>Review your configurations in the <em>Review + create</em> tab. If everything looks good, select <strong>Create</strong>.</p>
+<h2><strong>IMPORTANT</strong> Change admin password</h2>
+<p>Once your application deploys, make sure to change your admin password.</p>
+<ol>
+<li><p>In the portal, go to your container app resource and copy your application URL.</p>
+<p><img src="http://cdn.lqdev.tech/files/images/portal-container-resource.png" class="img-fluid" alt="Screenshot of Azure Container Apps resource in Azure Portal highlighting Application URL" /></p>
+<p>Make sure to keek your application URL around since you'll also be using it when configuring OBS.</p>
+</li>
+<li><p>Access the admin portal at the following URL - <code>&lt;YOUR-APPLICATION-URL&gt;/admin</code>. Replace <code>&lt;YOUR-APPLICATION-URL&gt;</code> with your application URL.</p>
+</li>
+<li><p>Log in with the default credentials.</p>
+</li>
+</ol>
+<p>| Field | Value |
+| Username | admin |
+| Password | abc123 |</p>
+<ol>
+<li>In the Owncast admin portal, select <strong>Configuration &gt; Server Setup</strong></li>
+<li>Change your admin password.</li>
+</ol>
+<p>For more details, see the <a href="https://owncast.online/docs/configuration/">Owncast documentation</a>.</p>
+<h2>Create stream key</h2>
+<p>Once you've changed your admin password, create a stream key. This will enable you to log into your server through OBS and begin streaming.</p>
+<ol>
+<li>In the Owncast admin portal, select <strong>Configuration &gt; Server Setup</strong></li>
+<li>Select the <strong>Stream Keys</strong> tab.</li>
+<li>Copy the default stream key or create a new one.</li>
+</ol>
+<h2>Configure OBS</h2>
+<p>Now that everything is configured, it's time to set up OBS.</p>
+<p>To do so, <a href="https://owncast.online/docs/broadcasting/obs/">follow the guidance in the Owncast documentattion</a>.</p>
+<p>Replace the server address with your application URL and use the stream key you copied or created. Note that the protocol is not <code>http</code> or <code>https</code>. <strong>Use <code>rmtp</code></strong>.</p>
+<p>That's it! If everything is configured correctly, you should be able to select <strong>Start Streaming</strong> in OBS.</p>
+<p>Go to your Owncast instance using your application URL and in a few seconds, your broadcast should start.</p>
+<h2>Conclusion</h2>
+<p>I want to end by thanking the Owncast contributors and community for making self-hosting a live-streaming server so easy.</p>
+<p>My plan in the next couple of weeks is to:</p>
+<ol>
+<li>Embed my stream on my website. Most likely, I'll make it a dedicated page. Something like <code>lqdev.me/live</code> or something like that.</li>
+<li>Do a few pilot streams to make sure my stream quality and configurations are all set up correctly.</li>
+<li>Evaluate what the costs are for this solution and whethere it's sustainable.</li>
+</ol>
+<p>If all goes as expected, I'll start streaming more regularly. As mentioned, I want to keep my costs down and video hosting is expensive, so I'll use YouTube to post recordings. I'll also keep backups though in case any of those videos get taken down, I can always have a local copy still available.</p>
+</div><footer class="post-footer"><div class="permalink-info">Permalink: <a class="u-url permalink-link" href="/posts/deploy-owncast-azure/">/posts/deploy-owncast-azure/</a></div><div><script type="application/javascript">window.onload = function() { document.getElementById('webmention-target').value = window.location.href }</script><form action="https://webmentions.lqdev.tech/api/inbox" method="POST" enctype="application/x-www-form-urlencoded"><h5 class="text-center">Send me a <a href="/contact">message</a> or <a href="https://indieweb.org/webmentions">webmention</a></h5><div class="form-row justify-content-center"><div class="w-75"><input type="url" class="form-control" name="source" placeholder="Your URL (webmention source)" required /></div><div class="col-auto"><input type="submit" class="btn btn-primary" value="Send" /></div><input type="hidden" readonly name="target" id="webmention-target" /></div></form></div></footer></article></div></div></main><script src="/assets/lib/jquery/jquery.slim.min.js"></script><script src="/assets/lib/boostrap/bootstrap.min.js"></script><script src="/assets/lib/highlight/highlight.min.js"></script><script src="/assets/lib/highlight/highlight.fsharp.min.js"></script><script src="/assets/lib/highlight/highlight.nix.min.js"></script><script src="/assets/js/timeline.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script type="application/javascript">mermaid.initialize({startOnLoad:true});</script><script type="application/javascript">hljs.initHighlightingOnLoad();</script><script src="/lib/revealjs/dist/reveal.js"></script><script src="/lib/revealjs/plugin/markdown/markdown.js"></script><script src="/lib/revealjs/plugin/highlight/highlight.js"></script><script type="application/javascript">
+                    // Initialize Reveal.js when a presentation container is found on the page
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const presentationContainer = document.querySelector('.presentation-container');
+                        if (presentationContainer && typeof Reveal !== 'undefined') {
+                            Reveal.initialize({
+                                plugins: [RevealMarkdown, RevealHighlight],
+                                embedded: true
+                            });
+                        }
+                    });
+                    </script></body><footer><a rel="me" href="https://toot.lqdev.tech/@lqdev"></a><a rel="me" href="https://github.com/lqdev"></a><a rel="me" href="https://twitter.com/ljquintanilla"></a><a rel="me" href="https://www.linkedin.com/in/lquintanilla01/"></a><a rel="me" href="mailto:lqdev@outlook.com"></a></footer></html>
