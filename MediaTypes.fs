@@ -48,13 +48,18 @@ module MediaTypeHelpers =
         let lowerUri = uri.ToLower()
         if lowerUri.Contains(".jpg") || lowerUri.Contains(".jpeg") || 
            lowerUri.Contains(".png") || lowerUri.Contains(".gif") || 
-           lowerUri.Contains(".webp") || lowerUri.Contains(".svg") then
+           lowerUri.Contains(".webp") || lowerUri.Contains(".svg") ||
+           lowerUri.Contains(".bmp") || lowerUri.Contains(".tiff") then
             MediaType.Image
         elif lowerUri.Contains(".mp4") || lowerUri.Contains(".webm") || 
-             lowerUri.Contains(".avi") || lowerUri.Contains(".mov") then
+             lowerUri.Contains(".avi") || lowerUri.Contains(".mov") ||
+             lowerUri.Contains(".mkv") || lowerUri.Contains(".wmv") ||
+             lowerUri.Contains(".flv") || lowerUri.Contains(".m4v") then
             MediaType.Video
         elif lowerUri.Contains(".mp3") || lowerUri.Contains(".wav") || 
-             lowerUri.Contains(".ogg") || lowerUri.Contains(".m4a") then
+             lowerUri.Contains(".ogg") || lowerUri.Contains(".m4a") ||
+             lowerUri.Contains(".flac") || lowerUri.Contains(".aac") ||
+             lowerUri.Contains(".wma") then
             MediaType.Audio
         elif lowerUri.Contains(".pdf") || lowerUri.Contains(".doc") || 
              lowerUri.Contains(".txt") then
@@ -110,9 +115,9 @@ module MediaTypeHelpers =
 /// Constants for common media configurations
 module MediaConstants = 
     
-    let CommonImageExtensions = [|".jpg"; ".jpeg"; ".png"; ".gif"; ".webp"; ".svg"|]
-    let CommonVideoExtensions = [|".mp4"; ".webm"; ".avi"; ".mov"; ".mkv"|]
-    let CommonAudioExtensions = [|".mp3"; ".wav"; ".ogg"; ".m4a"; ".flac"|]
+    let CommonImageExtensions = [|".jpg"; ".jpeg"; ".png"; ".gif"; ".webp"; ".svg"; ".bmp"; ".tiff"|]
+    let CommonVideoExtensions = [|".mp4"; ".webm"; ".avi"; ".mov"; ".mkv"; ".wmv"; ".flv"; ".m4v"|]
+    let CommonAudioExtensions = [|".mp3"; ".wav"; ".ogg"; ".m4a"; ".flac"; ".aac"; ".wma"|]
     let CommonDocumentExtensions = [|".pdf"; ".doc"; ".docx"; ".txt"; ".md"|]
     
     let DefaultImageAspectRatio = AspectRatio.Landscape

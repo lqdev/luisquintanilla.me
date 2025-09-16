@@ -107,8 +107,8 @@ let parseAllMediaAttachments (content: string) =
     
     // 4. Parse plain GitHub attachment URLs (common for videos)
     let githubAttachmentPattern = @"https://github\.com/user-attachments/assets/[a-zA-Z0-9\-]+"
-    let plainUrlMatches = Regex.Matches(content, githubAttachmentPattern)
-    for m in plainUrlMatches do
+    let plainGithubMatches = Regex.Matches(content, githubAttachmentPattern)
+    for m in plainGithubMatches do
         let url = m.Value.Trim()
         // Skip if already found in other formats
         if not (attachments |> Seq.exists (fun (existingUrl, _) -> existingUrl = url)) then
@@ -119,6 +119,27 @@ let parseAllMediaAttachments (content: string) =
                 with
                 | _ -> "media"
             attachments.Add((url, finalAltText))
+    
+    // 5. Parse other plain URLs that might be media files
+    let plainUrlPattern = @"https?://[^\s<>""')\]]+"
+    let plainUrlMatches = Regex.Matches(content, plainUrlPattern)
+    for m in plainUrlMatches do
+        let url = m.Value.Trim()
+        // Skip if already found in other formats
+        if not (attachments |> Seq.exists (fun (existingUrl, _) -> existingUrl = url)) then
+            // Only include URLs that look like they could be media files
+            let lowerUrl = url.ToLowerInvariant()
+            if lowerUrl.Contains(".jpg") || lowerUrl.Contains(".jpeg") || lowerUrl.Contains(".png") || 
+               lowerUrl.Contains(".gif") || lowerUrl.Contains(".webp") || lowerUrl.Contains(".mp4") || 
+               lowerUrl.Contains(".webm") || lowerUrl.Contains(".mov") || lowerUrl.Contains(".mp3") || 
+               lowerUrl.Contains(".wav") || lowerUrl.Contains(".ogg") then
+                let finalAltText = 
+                    try
+                        let uri = Uri(url)
+                        Path.GetFileNameWithoutExtension(uri.LocalPath)
+                    with
+                    | _ -> "media"
+                attachments.Add((url, finalAltText))
     
     attachments |> Seq.toArray
 
@@ -202,6 +223,9 @@ cleanContent <- Regex.Replace(cleanContent, @"!\[([^\]]*)\]\(([^)]+)\)", "")
 cleanContent <- Regex.Replace(cleanContent, @"<img[^>]*>", "")
 // Remove plain GitHub attachment URLs
 cleanContent <- Regex.Replace(cleanContent, @"https://github\.com/user-attachments/assets/[a-zA-Z0-9\-]+", "")
+// Remove other media URLs that were detected as attachments
+for (url, _) in mediaAttachments do
+    cleanContent <- cleanContent.Replace(url, "")
 cleanContent <- cleanContent.Trim()
 
 // Validate that we have at least one media attachment
@@ -222,14 +246,28 @@ for (url, altText) in mediaAttachments do
     let detectedType = detectMediaTypeFromUrl url |> Async.RunSynchronously
     
     // For GitHub attachment URLs where we can't determine the type definitively,
-    // use intelligent defaults or allow mixed types
+    // make intelligent guesses based on context and patterns
     let finalType = 
         if detectedType = MediaTypes.MediaType.Unknown && url.Contains("github.com/user-attachments/assets/") then
+            // For GitHub attachment URLs, try to determine type from attachment patterns
+            // Look for clues in the original content to see how this URL was referenced
+            let isReferencedAsMarkdownImage = contentWithAttachments.Contains($"![") && contentWithAttachments.Contains(url) && contentWithAttachments.Contains($"]({url})")
+            let isPlainUrl = not isReferencedAsMarkdownImage && contentWithAttachments.Contains(url)
+            
             match mediaType with
             | "image" -> MediaTypes.MediaType.Image
-            | "video" -> MediaTypes.MediaType.Video
+            | "video" -> MediaTypes.MediaType.Video  
             | "audio" -> MediaTypes.MediaType.Audio
-            | "mixed" -> MediaTypes.MediaType.Image // Default assumption for unknown GitHub attachments
+            | "mixed" -> 
+                // For mixed media, be smarter about detection
+                if isReferencedAsMarkdownImage then
+                    MediaTypes.MediaType.Image
+                elif isPlainUrl then
+                    // Plain URLs in GitHub issues are often videos/non-image content
+                    MediaTypes.MediaType.Video
+                else
+                    // Default fallback for unknown mixed media
+                    MediaTypes.MediaType.Image
             | _ -> detectedType
         else
             detectedType
