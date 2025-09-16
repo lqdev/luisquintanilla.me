@@ -4,8 +4,24 @@
     <title>Luis Quintanilla - All Updates</title>
     <link>https://www.lqdev.me/feed</link>
     <description>All content updates from Luis Quintanilla's website</description>
-    <lastBuildDate>2025-09-15 14:02 -05:00</lastBuildDate>
+    <lastBuildDate>2025-09-15 19:48 -05:00</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>How people use ChatGPT</title>
+      <description>&lt;![CDATA[[bookmark] &lt;blockquote class="blockquote"&gt;
+&lt;p&gt;Despite the rapid adoption of LLM chatbots, little is known about how they are used. We document the growth of ChatGPT’s consumer product from its launch in November 2022 through July 2025, when it had been adopted by around 10% of the world’s adult population. Early adopters were disproportionately male but the gender gap has narrowed dramatically, and we find higher growth rates in lower-income countries. Using a privacy-preserving automated pipeline, we classify usage patterns within a representative sample of ChatGPT conversations. We find steady growth in work-related messages but even faster growth in non-work-related messages, which have grown from 53% to more than 70% of all usage. Work usage is more common for educated users in highly-paid professional occupations. We classify messages by conversation topic and find that “Practical Guidance,” “Seeking Information,” and “Writing” are the three most common topics and collectively account for nearly 80% of all conversations. Writing dominates work-related tasks, highlighting chatbots’ unique ability to generate digital outputs compared to traditional search engines. Computer programming and self-expression both represent relatively small shares of use. Overall, we find that ChatGPT provides economic value through decision support, which is especially important in knowledge-intensive jobs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.nber.org/system/files/working_papers/w34255/w34255.pdf"&gt;PDF&lt;/a&gt;&lt;/p&gt;
+]]&gt;</description>
+      <link>https://www.lqdev.me/bookmarks/how-people-use-chatgpt-national-bureau-economic-research</link>
+      <guid>https://www.lqdev.me/bookmarks/how-people-use-chatgpt-national-bureau-economic-research</guid>
+      <pubDate>2025-09-15 19:48 -05:00</pubDate>
+      <category>ai</category>
+      <category>openai</category>
+      <category>research</category>
+      <category>chatgpt</category>
+      <category>economics</category>
+    </item>
     <item>
       <title>Bison herds 'reawaken' Yellowstone's prairies</title>
       <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
@@ -338,8 +354,8 @@ Robin Wall Kimmerer is donating her advance payments from this book as a recipro
 &lt;p&gt;The open content licensing standard for the AI-first Internet&lt;/p&gt;
 &lt;/blockquote&gt;
 ]]&gt;</description>
-      <link>https://www.lqdev.me/responses/real-simple-licensing-open-standard</link>
-      <guid>https://www.lqdev.me/responses/real-simple-licensing-open-standard</guid>
+      <link>https://www.lqdev.me/bookmarks/real-simple-licensing-open-standard</link>
+      <guid>https://www.lqdev.me/bookmarks/real-simple-licensing-open-standard</guid>
       <pubDate>2025-09-12 20:48 -05:00</pubDate>
       <category>rsl</category>
       <category>ai</category>
@@ -363,25 +379,6 @@ Robin Wall Kimmerer is donating her advance payments from this book as a recipro
       <category>socialweb</category>
       <category>socialmedia</category>
       <category>rss</category>
-    </item>
-    <item>
-      <title>The Return of the Cassette Tape</title>
-      <description>&lt;![CDATA[[star] &lt;blockquote class="blockquote"&gt;
-&lt;p&gt;Sales of cassettes are up more than &lt;a href="https://www.npr.org/2024/06/07/nx-s1-4976071/the-cassette-tape-is-making-a-comeback-thanks-to-a-family-run-company-in-missouri"&gt;440 percent&lt;/a&gt; over the past decade. Cassette players (think modernized Walkmans) are also back, with companies producing new versions of this decidedly retro tech.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote class="blockquote"&gt;
-&lt;p&gt;This “revenge of analog,”...is motivated by a combination of factors, from the practical to the more prosaic, and, ultimately, a more mindful use of technology. This approach rejects a binary of good vs. bad tech, and instead seeks a via media — a middle path — with its daily use.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Although I haven't done it as much with music, over the past few years I've been slowly rebuilding my analog media collection which includes movies and books. As the article mentions, part of that is ownership and actually owning the things I pay for. More importantly though, rather than scrolling through an endless catalog and never finding something to watch or read, I have a curated set of items to enjoy in a more mindful manner. If I feel the need to scroll through an endless catalog, there's always the library which has tons of media available. I find the library to be a heavily underutilized and almost forgotten community service we've all already paid for in some way, so why not use it.&lt;/p&gt;
-]]&gt;</description>
-      <link>https://www.lqdev.me/responses/return-cassette-tape-analog-media-comeback</link>
-      <guid>https://www.lqdev.me/responses/return-cassette-tape-analog-media-comeback</guid>
-      <pubDate>2025-09-12 20:32 -05:00</pubDate>
-      <category>media</category>
-      <category>music</category>
-      <category>analog</category>
-      <category>retro</category>
-      <category>vintage</category>
     </item>
   </channel>
 </rss>

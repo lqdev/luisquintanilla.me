@@ -541,12 +541,21 @@ module ResponseProcessor =
             RenderView.AsString.xmlNode viewNode
         
         OutputPath = fun response ->
-            sprintf "responses/%s.html" response.FileName
+            let pathPrefix = 
+                match response.Metadata.ResponseType with
+                | "bookmark" -> "bookmarks"
+                | _ -> "responses"
+            sprintf "%s/%s.html" pathPrefix response.FileName
         
         RenderCard = fun response ->
             let title = Html.escapeHtml response.Metadata.Title
             let targetUrl = Html.escapeHtml response.Metadata.TargetUrl
-            let url = sprintf "/responses/%s/" response.FileName
+            // Use correct path based on response type 
+            let urlPath = 
+                match response.Metadata.ResponseType with
+                | "bookmark" -> "bookmarks"
+                | _ -> "responses"
+            let url = sprintf "/%s/%s/" urlPath response.FileName
             
             // Include title, target URL, and content
             Html.element "article" (Html.attribute "class" "response-card h-entry")
@@ -556,8 +565,12 @@ module ResponseProcessor =
                  Html.element "div" (Html.attribute "class" "response-content") response.Content)
         
         RenderRss = fun response ->
-            // Create RSS item for response
-            let url = sprintf "https://www.lqdev.me/responses/%s" response.FileName
+            // Create RSS item for response with correct path based on response type
+            let urlPath = 
+                match response.Metadata.ResponseType with
+                | "bookmark" -> "bookmarks"
+                | _ -> "responses"
+            let url = sprintf "https://www.lqdev.me/%s/%s" urlPath response.FileName
             let description = sprintf "[%s] %s" response.Metadata.ResponseType response.Content
             
             // Normalize URLs in description for RSS compatibility

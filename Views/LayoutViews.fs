@@ -54,7 +54,7 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                         | "posts" -> $"/posts/{fileName}/"
                         | "notes" -> $"/notes/{fileName}/"
                         | "responses" -> $"/responses/{fileName}/"
-                        | "bookmarks" -> $"/responses/{fileName}/"  // Bookmarks are responses but filtered separately
+                        | "bookmarks" -> $"/bookmarks/{fileName}/"  // Bookmarks are responses but filtered separately
                         | "snippets" -> $"/resources/snippets/{fileName}/"
                         | "wiki" -> $"/resources/wiki/{fileName}/"
                         | "presentations" -> $"/resources/presentations/{fileName}/"
@@ -62,7 +62,7 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                         | "streams" -> $"/streams/{fileName}/"
                         | "media" -> $"/media/{fileName}/"
                         // Specific response types also route to /responses/
-                        | "star" | "reply" | "reshare" | "bookmark" -> $"/responses/{fileName}/"
+                        | "star" | "reply" | "reshare" | "bookmark" -> $"/bookmarks/{fileName}/"
                         | _ -> $"/{contentType}/{fileName}/"
                     
                     let properPermalink = getProperPermalink item.ContentType fileName
@@ -160,7 +160,7 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                                     | "posts" -> $"/posts/{fileName}/"
                                     | "notes" -> $"/notes/{fileName}/"
                                     | "responses" -> $"/responses/{fileName}/"
-                                    | "bookmarks" -> $"/responses/{fileName}/"
+                                    | "bookmarks" -> $"/bookmarks/{fileName}/"
                                     | "snippets" -> $"/resources/snippets/{fileName}/"
                                     | "wiki" -> $"/resources/wiki/{fileName}/"
                                     | "presentations" -> $"/resources/presentations/{fileName}/"
@@ -267,7 +267,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                         | "posts" -> $"/posts/{fileName}/"
                         | "notes" -> $"/notes/{fileName}/"
                         | "responses" -> $"/responses/{fileName}/"
-                        | "bookmarks" -> $"/responses/{fileName}/"  // Bookmarks are responses but filtered separately
+                        | "bookmarks" -> $"/bookmarks/{fileName}/"  // Bookmarks are responses but filtered separately
                         | "snippets" -> $"/resources/snippets/{fileName}/"
                         | "wiki" -> $"/resources/wiki/{fileName}/"
                         | "presentations" -> $"/resources/presentations/{fileName}/"
@@ -275,7 +275,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                         | "streams" -> $"/streams/{fileName}/"
                         | "media" -> $"/media/{fileName}/"
                         // Specific response types also route to /responses/
-                        | "star" | "reply" | "reshare" | "bookmark" -> $"/responses/{fileName}/"
+                        | "star" | "reply" | "reshare" | "bookmark" -> $"/bookmarks/{fileName}/"
                         | _ -> $"/{contentType}/{fileName}/"
                     
                     let properPermalink = getProperPermalink item.ContentType fileName
@@ -374,7 +374,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                             | "posts" -> $"/posts/{fileName}/"
                             | "notes" -> $"/notes/{fileName}/"
                             | "responses" -> $"/responses/{fileName}/"
-                            | "bookmarks" -> $"/responses/{fileName}/"
+                            | "bookmarks" -> $"/bookmarks/{fileName}/"
                             | "snippets" -> $"/resources/snippets/{fileName}/"
                             | "wiki" -> $"/resources/wiki/{fileName}/"
                             | "presentations" -> $"/resources/presentations/{fileName}/"
