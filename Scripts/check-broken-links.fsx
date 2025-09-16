@@ -3,8 +3,6 @@
 // Usage: dotnet fsi Scripts/check-broken-links.fsx
 
 #r "nuget: System.Net.Http"
-// Temporarily disable FSharp.Data to test
-// #r "nuget: FSharp.Data"
 
 open System
 open System.IO
