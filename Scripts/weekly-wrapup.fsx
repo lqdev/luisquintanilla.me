@@ -76,7 +76,7 @@ let generateContentSection (contentType: string) (items: UnifiedFeedItem list) =
         match contentType with
         | "posts" -> "/posts/"
         | "notes" -> "/notes/"
-        | "bookmarks" -> "/responses/"  // bookmarks are stored as responses
+        | "bookmarks" -> "/bookmarks/"  // bookmarks get their own routing
         | "snippets" -> "/resources/snippets/"
         | "wiki" -> "/resources/wiki/"
         | "presentations" -> "/resources/presentations/"

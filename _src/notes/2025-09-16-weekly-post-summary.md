@@ -1,19 +1,22 @@
 ---
 post_type: "note"
-title: "Week of September 14, 2025 - Post Summary"
-published_date: "2025-09-14 23:03 +00:00"
+title: "Week of September 16, 2025 - Post Summary"
+published_date: "2025-09-16 20:17 +00:00"
 tags: ["weeklysummary","blogging","website","indieweb"]
 ---
 
 ## Notes
 
+- [Testing my GH mobile publishing flow](/notes/test-github-mobile-post)
+- [Copilot, add new features. But first, coffee](/notes/copilot-add-new-features-but-first-coffee)
+- [Week of September 14, 2025 - Post Summary](/notes/2025-09-14-weekly-post-summary)
 - [Crawford vs. Canelo](/notes/crawford-canelo-2025)
 - [Tennessee vs. Georgia](/notes/tennessee-georgia-2025)
-- [Crate Finds - August 2025](/notes/crate-finds-august-2025)
 
 ## Bookmarks
 
-- [Real Simple Licensing](/responses/real-simple-licensing-open-standard)
+- [How people use ChatGPT](/bookmarks/how-people-use-chatgpt-national-bureau-economic-research)
+- [Real Simple Licensing](/bookmarks/real-simple-licensing-open-standard)
 
 ## Replies
 
@@ -32,6 +35,7 @@ tags: ["weeklysummary","blogging","website","indieweb"]
 
 ## Stars
 
+- [Bison herds 'reawaken' Yellowstone's prairies](/responses/bison-herds-reawaken-yellowstone-prairies)
 - [Breathing with the forest](/responses/breathing-with-the-forest-emergence)
 - [Salmon Metal](/responses/salmon-metal-bear-national-park)
 - [Geek To Live - Tumblelog](/responses/geek-to-live-tumblelog)
