@@ -82,6 +82,12 @@ let httpTimeout = TimeSpan.FromSeconds(5.0)  // Shorter timeout for testing
 
 ## Link Detection
 
+### HTTP Request Method
+- **HEAD Requests**: Uses lightweight HEAD requests instead of GET for better performance
+- **Redirect Handling**: Automatically follows up to 10 redirects to handle moved content
+- **Success Detection**: Checks for 2xx status codes to determine link validity
+- **Error Reporting**: Captures HTTP status codes and detailed error messages
+
 ### Supported Link Formats
 - **Markdown links**: `[text](url)`
 - **Relative links**: `/posts/example` → `https://www.lqdev.me/posts/example`
@@ -152,13 +158,18 @@ Found **10 broken links** out of 150 total links checked across 5 files.
 
 ## Performance Considerations
 
+### HTTP Optimization
+- **HEAD Requests**: Lightweight HTTP HEAD requests instead of GET for faster checking
+- **Redirect Following**: Automatic redirect handling up to 10 hops
+- **Success Focus**: Optimized for detecting 2xx success and 4xx error responses
+
 ### Concurrency Control
 - **Semaphore**: Limits concurrent HTTP requests to prevent overwhelming servers
 - **Timeout**: Prevents hanging on slow/unresponsive links
 - **Chunked Processing**: Processes files in batches
 
 ### Resource Management
-- **HTTP Client**: Proper disposal with timeout configuration
+- **HTTP Client**: Proper disposal with timeout configuration and redirect handling
 - **Memory**: Efficient streaming for large files
 - **Network**: Respectful rate limiting
 

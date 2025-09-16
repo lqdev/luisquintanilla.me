@@ -30,8 +30,12 @@ type LinkResult = {
     ErrorMessage: string option
 }
 
-// HTTP client
-let httpClient = new HttpClient(Timeout = httpTimeout)
+// HTTP client with redirect handling
+let httpClientHandler = new HttpClientHandler()
+httpClientHandler.AllowAutoRedirect <- true
+httpClientHandler.MaxAutomaticRedirections <- 10
+
+let httpClient = new HttpClient(httpClientHandler, Timeout = httpTimeout)
 httpClient.DefaultRequestHeaders.Add("User-Agent", "LQDev-BrokenLinkChecker/1.0")
 
 // Regex patterns
@@ -62,13 +66,14 @@ let classifyAndResolveLink (url: string) : LinkType * string =
     else
         (Absolute url, url)
 
-// Simple sync check for testing
+// Simple HEAD request check for testing
 let checkUrl (url: string) : bool * int option * string option =
     try
         if url.StartsWith("mailto:") || url.StartsWith("#") then
             (true, None, None)
         else
-            use response = httpClient.GetAsync(url).Result
+            use requestMessage = new HttpRequestMessage(HttpMethod.Head, url)
+            use response = httpClient.SendAsync(requestMessage).Result
             let statusCode = int response.StatusCode
             let isWorking = response.IsSuccessStatusCode
             (isWorking, Some statusCode, None)
@@ -177,5 +182,6 @@ generateReport allResults
 
 // Cleanup
 httpClient.Dispose()
+httpClientHandler.Dispose()
 printfn ""
 printfn "✅ Simple checker completed!"

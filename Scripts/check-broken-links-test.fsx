@@ -33,8 +33,12 @@ type LinkResult = {
     ErrorMessage: string option
 }
 
-// HTTP client setup
-let httpClient = new HttpClient(Timeout = httpTimeout)
+// HTTP client setup with redirect handling
+let httpClientHandler = new HttpClientHandler()
+httpClientHandler.AllowAutoRedirect <- true
+httpClientHandler.MaxAutomaticRedirections <- 10
+
+let httpClient = new HttpClient(httpClientHandler, Timeout = httpTimeout)
 httpClient.DefaultRequestHeaders.Add("User-Agent", "LQDev-BrokenLinkChecker/1.0")
 
 // Regex patterns for finding links in markdown
@@ -69,14 +73,15 @@ let classifyAndResolveLink (url: string) : LinkType * string =
         // Skip fragments, mailto, etc.
         (Absolute url, url)
 
-// Check if URL is accessible
+// Check if URL is accessible using HEAD request
 let checkUrlAsync (url: string) : Task<bool * int option * string option> = 
     task {
         try
             if url.StartsWith("mailto:") || url.StartsWith("#") || url.StartsWith("javascript:") then
                 return (true, None, None) // Skip non-HTTP links
             
-            use! response = httpClient.GetAsync(url)
+            use requestMessage = new HttpRequestMessage(HttpMethod.Head, url)
+            use! response = httpClient.SendAsync(requestMessage)
             let statusCode = int response.StatusCode
             let isWorking = response.IsSuccessStatusCode
             return (isWorking, Some statusCode, None)
@@ -199,6 +204,7 @@ main().Wait()
 
 // Cleanup
 httpClient.Dispose()
+httpClientHandler.Dispose()
 
 printfn ""
 printfn "✅ Test broken link checker completed!"
