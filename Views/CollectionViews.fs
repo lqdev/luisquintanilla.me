@@ -202,7 +202,7 @@ let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedI
         | "posts" -> $"/posts/{fileName}/"
         | "notes" -> $"/notes/{fileName}/"
         | "responses" -> $"/responses/{fileName}/"
-        | "bookmarks" -> $"/responses/{fileName}/"
+        | "bookmarks" -> $"/bookmarks/{fileName}/"
         | "snippets" -> $"/resources/snippets/{fileName}/"
         | "wiki" -> $"/resources/wiki/{fileName}/"
         | "presentations" -> $"/resources/presentations/{fileName}/"
@@ -411,7 +411,7 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
         | "posts" -> $"/posts/{fileName}/"
         | "notes" -> $"/notes/{fileName}/"
         | "responses" -> $"/responses/{fileName}/"
-        | "bookmarks" -> $"/responses/{fileName}/"  // Bookmarks are responses but filtered separately
+        | "bookmarks" -> $"/bookmarks/{fileName}/"  // Bookmarks are responses but filtered separately
         | "snippets" -> $"/resources/snippets/{fileName}/"
         | "wiki" -> $"/resources/wiki/{fileName}/"
         | "presentations" -> $"/resources/presentations/{fileName}/"
