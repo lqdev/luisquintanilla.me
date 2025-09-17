@@ -186,10 +186,14 @@ let main argv =
     
     if useUnifiedTagSystem then
         // Enhanced unified tag system supporting all content types
+        // Combine regular responses with bookmark responses for complete tag coverage
+        let bookmarkResponses = bookmarksFeedData |> List.map (fun item -> item.Content) |> List.toArray
+        let allResponses = Array.append responses bookmarkResponses
+        
         let allTaggableContent = [
             ("posts", posts |> Array.map (fun p -> p :> ITaggable))
             ("notes", notesFromFeedData |> Array.map (fun n -> n :> ITaggable))
-            ("responses", responses |> Array.map (fun r -> r :> ITaggable))
+            ("responses", allResponses |> Array.map (fun r -> r :> ITaggable))
             ("snippets", snippetsFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun s -> s :> ITaggable))
             ("wikis", wikisFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun w -> w :> ITaggable))
             ("presentations", presentationsFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun p -> p :> ITaggable))
