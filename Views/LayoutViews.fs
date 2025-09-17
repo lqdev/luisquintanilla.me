@@ -111,7 +111,7 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                                     // Remove all article closing tags
                                     let removeArticleEnd = removeArticleStart.Replace("</article>", "")
                                     // Remove duplicate h1/h2 titles (common source of duplication)
-                                    let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+                                    let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h[12][^>]*>.*?</h[12]>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
                                     // Additional cleaning to prevent HTML parsing issues
                                     let safeCleaned = removeTitles.Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
                                     safeCleaned
@@ -177,7 +177,7 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                                     // Clean content similar to initial loading to ensure consistency
                                     let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
                                     let removeArticleEnd = removeArticleStart.Replace("</article>", "")
-                                    let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+                                    let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h[12][^>]*>.*?</h[12]>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
                                     let safeCleaned = removeTitles.Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
                                     escapeJson safeCleaned
                                 
@@ -325,7 +325,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                                     // Remove all article closing tags
                                     let removeArticleEnd = removeArticleStart.Replace("</article>", "")
                                     // Remove duplicate h1/h2 titles (common source of duplication)
-                                    let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+                                    let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h[12][^>]*>.*?</h[12]>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
                                     // Additional cleaning to prevent HTML parsing issues
                                     let safeCleaned = removeTitles.Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
                                     safeCleaned
@@ -392,7 +392,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                             // Clean content similar to initial loading to ensure consistency
                             let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
                             let removeArticleEnd = removeArticleStart.Replace("</article>", "")
-                            let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+                            let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h[12][^>]*>.*?</h[12]>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
                             let safeCleaned = removeTitles.Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
                             escapeJson safeCleaned
                         
