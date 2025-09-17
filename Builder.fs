@@ -526,18 +526,38 @@ module Builder
             // Prepare content arrays with proper prefixes and display names
             let taggedContentForView = 
                 contentByType
-                |> Array.map (fun (contentType, items) -> 
-                    let (prefix, displayName) = 
-                        match contentType with
-                        | "posts" -> ("posts", "Blogs")
-                        | "notes" -> ("notes", "Notes") 
-                        | "responses" -> ("responses", "Responses")
-                        | "snippets" -> ("snippets", "Snippets")
-                        | "wikis" -> ("wiki", "Wiki")
-                        | "presentations" -> ("resources/presentations", "Presentations")
-                        | "albums" -> ("media/albums", "Albums")
-                        | _ -> (contentType, contentType)
-                    (items, prefix, displayName))
+                |> Array.collect (fun (contentType, items) -> 
+                    match contentType with
+                    | "responses" -> 
+                        // Handle bookmark responses separately
+                        let regularResponses = items |> Array.filter (fun item -> 
+                            match item with
+                            | :? Response as r -> r.Metadata.ResponseType <> "bookmark"
+                            | _ -> true)
+                        let bookmarkResponses = items |> Array.filter (fun item -> 
+                            match item with
+                            | :? Response as r -> r.Metadata.ResponseType = "bookmark"
+                            | _ -> false)
+                        
+                        // Create separate entries for regular responses and bookmarks
+                        let responseEntries = 
+                            if regularResponses.Length > 0 then [(regularResponses, "responses", "Responses")] else []
+                        let bookmarkEntries = 
+                            if bookmarkResponses.Length > 0 then [(bookmarkResponses, "bookmarks", "Bookmarks")] else []
+                        
+                        Array.ofList (responseEntries @ bookmarkEntries)
+                    | _ ->
+                        let (prefix, displayName) = 
+                            match contentType with
+                            | "posts" -> ("posts", "Blogs")
+                            | "notes" -> ("notes", "Notes") 
+                            | "snippets" -> ("snippets", "Snippets")
+                            | "wikis" -> ("wiki", "Wiki")
+                            | "presentations" -> ("resources/presentations", "Presentations")
+                            | "albums" -> ("media/albums", "Albums")
+                            | _ -> (contentType, contentType)
+                        [|(items, prefix, displayName)|]
+                    )
                 |> Array.toList
             
             let individualTagPage = generate (individualTagViewUnified tag taggedContentForView) "default" $"{tag} - Tags - Luis Quintanilla"
