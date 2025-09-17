@@ -87,9 +87,20 @@ let processFile (filePath: string) : LinkResult list =
         let content = File.ReadAllText(filePath)
         let links = extractLinksFromContent filePath content
         
-        printfn "Processing %s (%d links)" (filePath.Replace("_src/", "")) links.Length
+        // Filter to only process relative links (internal links)
+        let relativeLinks = 
+            links
+            |> List.filter (fun (_, _, url) -> 
+                Regex.IsMatch(url, relativeUrlPattern))
         
-        links
+        let totalLinks = links.Length
+        let relativeCount = relativeLinks.Length
+        let skippedCount = totalLinks - relativeCount
+        
+        printfn "Processing %s (%d total links, %d relative, %d external skipped)" 
+            (filePath.Replace("_src/", "")) totalLinks relativeCount skippedCount
+        
+        relativeLinks
         |> List.map (fun (lineNum, linkText, url) ->
             let (linkType, resolvedUrl) = classifyAndResolveLink url
             let (isWorking, statusCode, errorMessage) = checkUrl resolvedUrl
@@ -126,18 +137,21 @@ let generateReport (results: LinkResult list) : unit =
     
     printfn ""
     printfn "=== SIMPLE BROKEN LINK CHECKER RESULTS ==="
-    printfn "Total links checked: %d" totalLinks
-    printfn "Working links: %d" (totalLinks - brokenCount)
-    printfn "Broken links: %d" brokenCount
+    printfn "Relative links checked: %d" totalLinks
+    printfn "Working relative links: %d" (totalLinks - brokenCount)
+    printfn "Broken relative links: %d" brokenCount
+    printfn "📝 Note: External links skipped to avoid firewall false positives"
     printfn ""
     
     if brokenLinks.Length > 0 then
         printfn "=== GITHUB ISSUE FORMAT ==="
         printfn "## Broken Links Report - %s" (DateTime.Now.ToString("yyyy-MM-dd"))
         printfn ""
-        printfn "Found **%d broken links** out of %d total links checked." brokenCount totalLinks
+        printfn "Found **%d broken relative links** out of %d total relative links checked." brokenCount totalLinks
         printfn ""
-        printfn "### Broken Links"
+        printfn "**📝 Note:** This report focuses only on **relative/internal links** (starting with `/`) to avoid false positives from external links blocked by firewalls."
+        printfn ""
+        printfn "### Broken Relative Links"
         printfn ""
         
         brokenLinks |> List.iter (fun link ->
@@ -163,12 +177,14 @@ let generateReport (results: LinkResult list) : unit =
         printfn ""
         printfn "_Report generated on %s_" (DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss UTC"))
     else
-        printfn "🎉 No broken links found!"
+        printfn "🎉 No broken relative links found!"
+        printfn "📝 Note: External links are skipped to avoid firewall false positives"
 
 // Main execution
-printfn "🔍 Starting simple broken link checker (first %d files)..." maxFilesToCheck
+printfn "🔍 Starting simple broken link checker (first %d files, relative links only)..." maxFilesToCheck
 printfn "📂 Scanning: %s" srcDirectory
 printfn "🌐 Base URL: %s" baseUrl
+printfn "📝 Note: Only checking relative links (starting with '/') - external links skipped"
 printfn ""
 
 let markdownFiles = findMarkdownFiles srcDirectory

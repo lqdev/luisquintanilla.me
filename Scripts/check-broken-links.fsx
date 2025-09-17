@@ -113,10 +113,21 @@ let processMarkdownFile (filePath: string) : LinkResult list =
         let content = File.ReadAllText(filePath)
         let links = extractLinksFromContent filePath content
         
-        printfn "  Processing %s (%d links)" (filePath.Replace("_src/", "")) links.Length
+        // Filter to only process relative links (internal links)
+        let relativeLinks = 
+            links
+            |> List.filter (fun (_, _, url) -> 
+                Regex.IsMatch(url, relativeUrlPattern))
+        
+        let totalLinks = links.Length
+        let relativeCount = relativeLinks.Length
+        let skippedCount = totalLinks - relativeCount
+        
+        printfn "  Processing %s (%d total links, %d relative, %d external skipped)" 
+            (filePath.Replace("_src/", "")) totalLinks relativeCount skippedCount
         
         let results = 
-            links
+            relativeLinks
             |> List.map (fun (lineNum, linkText, url) ->
                 let (linkType, resolvedUrl) = classifyAndResolveLink url
                 let (isWorking, statusCode, errorMessage) = checkUrl resolvedUrl
@@ -155,13 +166,14 @@ let generateReport (results: LinkResult list) : unit =
     let workingCount = totalLinks - brokenCount
     
     printfn "=== BROKEN LINK CHECKER RESULTS ==="
-    printfn "Total links checked: %d" totalLinks
-    printfn "Working links: %d" workingCount
-    printfn "Broken links: %d" brokenCount
+    printfn "Relative links checked: %d" totalLinks
+    printfn "Working relative links: %d" workingCount
+    printfn "Broken relative links: %d" brokenCount
+    printfn "📝 Note: External links are skipped to avoid firewall false positives"
     printfn ""
     
     if brokenLinks.Length > 0 then
-        printfn "=== BROKEN LINKS BY FILE ==="
+        printfn "=== BROKEN RELATIVE LINKS BY FILE ==="
         brokenLinks
         |> List.groupBy (fun r -> r.File)
         |> List.iter (fun (file, links) ->
@@ -175,33 +187,28 @@ let generateReport (results: LinkResult list) : unit =
                     | None, Some err -> sprintf "(%s)" err
                     | None, None -> ""
                 
-                let linkTypeStr = 
-                    match link.LinkType with
-                    | Relative _ -> "Relative"
-                    | Absolute _ -> "Absolute"
-                
-                printfn "  ❌ Line %d: [%s](%s) %s %s" 
+                printfn "  ❌ Line %d: [%s](%s) Relative %s" 
                     link.LineNumber 
                     link.LinkText 
                     link.Url 
-                    linkTypeStr
                     statusInfo))
         
         printfn ""
         printfn "=== GITHUB ISSUE FORMAT ==="
         printfn "## Broken Links Report - %s" (DateTime.Now.ToString("yyyy-MM-dd"))
         printfn ""
-        printfn "Found **%d broken links** out of %d total links checked across %d files." 
+        printfn "Found **%d broken relative links** out of %d total relative links checked across %d files." 
             brokenCount totalLinks (brokenLinks |> List.distinctBy (fun r -> r.File) |> List.length)
+        printfn ""
+        printfn "**📝 Note:** This report focuses only on **relative/internal links** (starting with `/`) to avoid false positives from external links blocked by firewalls."
         printfn ""
         printfn "### Summary"
         printfn ""
-        printfn "- **Total files with broken links:** %d" (brokenLinks |> List.distinctBy (fun r -> r.File) |> List.length)
-        printfn "- **Total broken links:** %d" brokenCount
-        printfn "- **Relative links:** %d" (brokenLinks |> List.filter (fun r -> match r.LinkType with Relative _ -> true | _ -> false) |> List.length)
-        printfn "- **Absolute links:** %d" (brokenLinks |> List.filter (fun r -> match r.LinkType with Absolute _ -> true | _ -> false) |> List.length)
+        printfn "- **Total files with broken relative links:** %d" (brokenLinks |> List.distinctBy (fun r -> r.File) |> List.length)
+        printfn "- **Total broken relative links:** %d" brokenCount
+        printfn "- **External links:** Skipped (to reduce noise from firewall restrictions)"
         printfn ""
-        printfn "### Broken Links by File"
+        printfn "### Broken Relative Links by File"
         printfn ""
         
         brokenLinks
@@ -233,26 +240,28 @@ let generateReport (results: LinkResult list) : unit =
         printfn ""
         printfn "### Instructions"
         printfn ""
-        printfn "1. **Review each broken link** by clicking the \"Test Link\" to verify it's actually broken"
+        printfn "1. **Review each broken relative link** by clicking the \"Test Link\" to verify it's actually broken"
         printfn "2. **Check the checkboxes** ☑️ for links you've fixed or verified"
-        printfn "3. **Update the markdown files** in the `_src` directory to fix broken links"
+        printfn "3. **Update the markdown files** in the `_src` directory to fix broken relative links"
         printfn "4. **For relative links** - ensure they point to valid content in the repository"
-        printfn "5. **For absolute links** - update URLs or remove if the resource is permanently unavailable"
+        printfn "5. **External links are intentionally skipped** to avoid false positives from firewall restrictions"
         printfn ""
         printfn "_Automated report generated on %s by [broken-links GitHub Action](https://github.com/%s/%s/actions)_" 
             (DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss UTC"))
             "lqdev"
             "luisquintanilla.me"
     else
-        printfn "🎉 No broken links found!"
+        printfn "🎉 No broken relative links found!"
+        printfn "📝 Note: External links are skipped to avoid firewall false positives"
 
 // Main execution
-printfn "🔍 Starting broken link checker..."
+printfn "🔍 Starting broken link checker (relative links only)..."
 printfn "📂 Scanning directory: %s" srcDirectory
 printfn "🌐 Base URL for relative links: %s" baseUrl
 printfn "⏱️  HTTP timeout: %A" httpTimeout
 printfn "🔧 Verbose logging: %b" verboseLogging
 printfn "🌐 Environment: %s" (Environment.GetEnvironmentVariable("GITHUB_ACTIONS") |> function null -> "Local" | _ -> "GitHub Actions")
+printfn "📝 Note: Only checking relative links (starting with '/') - external links skipped"
 printfn ""
 
 logVerbose "Script configuration loaded successfully"
