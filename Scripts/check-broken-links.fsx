@@ -168,7 +168,7 @@ let generateReport (results: LinkResult list) : unit =
     printfn "=== BROKEN LINK CHECKER RESULTS ==="
     printfn "Relative links checked: %d" totalLinks
     printfn "Working relative links: %d" workingCount
-    printfn "Broken relative links: %d" brokenCount
+    printfn "Broken links: %d" brokenCount
     printfn "📝 Note: External links are skipped to avoid firewall false positives"
     printfn ""
     
