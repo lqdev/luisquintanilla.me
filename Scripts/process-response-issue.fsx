@@ -72,6 +72,44 @@ let generateSlugFromTitle (title: string) =
     elif slug.Length > 50 then slug.Substring(0, 50).TrimEnd('-')
     else slug
 
+// YouTube URL formatting functions
+let isYouTubeUrl (url: string) =
+    let patterns = [
+        @"^https?://(www\.)?youtube\.com/watch\?v=[\w-]+.*$"
+        @"^https?://(www\.)?youtu\.be/[\w-]+.*$"
+        @"^https?://(www\.)?youtube\.com/embed/[\w-]+.*$"
+    ]
+    patterns |> List.exists (fun pattern -> Regex.IsMatch(url, pattern, RegexOptions.IgnoreCase))
+
+let extractYouTubeVideoId (url: string) =
+    let patterns = [
+        (@"youtube\.com/watch\?v=([\w-]+)", 1)  // youtube.com/watch?v=VIDEO_ID
+        (@"youtu\.be/([\w-]+)", 1)             // youtu.be/VIDEO_ID  
+        (@"youtube\.com/embed/([\w-]+)", 1)    // youtube.com/embed/VIDEO_ID
+    ]
+    
+    patterns
+    |> List.tryPick (fun (pattern, groupIndex) ->
+        let match' = Regex.Match(url, pattern, RegexOptions.IgnoreCase)
+        if match'.Success && match'.Groups.Count > groupIndex then
+            Some match'.Groups.[groupIndex].Value
+        else
+            None)
+
+let formatYouTubeContent (title: string) (url: string) (content: string) =
+    match extractYouTubeVideoId url with
+    | Some videoId ->
+        let thumbnailUrl = sprintf "http://img.youtube.com/vi/%s/0.jpg" videoId
+        let youtubeMarkdown = sprintf "[![%s](%s)](%s \"%s\")" title thumbnailUrl url title
+        
+        // If there's additional content, add it after the YouTube thumbnail
+        if String.IsNullOrWhiteSpace(content) then
+            youtubeMarkdown
+        else
+            sprintf "%s\n\n%s" content youtubeMarkdown
+    | None ->
+        content // Return original content if video ID extraction fails
+
 // Determine final slug
 let finalSlug = 
     match customSlug with
@@ -115,12 +153,19 @@ let filename =
     | Some _ -> sprintf "%s.md" finalSlug  // Use slug as-is when custom slug provided
     | None -> sprintf "%s-%s.md" finalSlug (now.ToString("yyyy-MM-dd"))  // Append date when no custom slug
 
+// Process content - apply YouTube formatting if target URL is a YouTube video
+let processedContent = 
+    if isYouTubeUrl targetUrl then
+        formatYouTubeContent title targetUrl content
+    else
+        content
+
 // Combine frontmatter and content
 let fullContent = 
-    if String.IsNullOrWhiteSpace(content) then
+    if String.IsNullOrWhiteSpace(processedContent) then
         frontmatter // Just frontmatter for star responses with no content
     else
-        sprintf "%s\n\n%s" frontmatter content
+        sprintf "%s\n\n%s" frontmatter processedContent
 
 // Ensure _src/responses directory exists
 let responsesDir = Path.Combine("_src", "responses")
