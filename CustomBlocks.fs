@@ -28,13 +28,50 @@ type MediaItem = {
 
 [<CLIMutable>]
 type ReviewData = {
-    item_title: string
+    // Enhanced fields for comprehensive review support
+    [<YamlDotNet.Serialization.YamlMember(Alias="title")>]
+    title: string option
+    [<YamlDotNet.Serialization.YamlMember(Alias="item")>]
+    item: string option
+    [<YamlDotNet.Serialization.YamlMember(Alias="itemType")>]
+    item_type: string option
+    [<YamlDotNet.Serialization.YamlMember(Alias="rating")>]
     rating: float
-    max_rating: float
-    review_text: string
+    [<YamlDotNet.Serialization.YamlMember(Alias="scale")>]
+    scale: float option
+    [<YamlDotNet.Serialization.YamlMember(Alias="summary")>]
+    summary: string option
+    [<YamlDotNet.Serialization.YamlMember(Alias="pros")>]
+    pros: string array option
+    [<YamlDotNet.Serialization.YamlMember(Alias="cons")>]
+    cons: string array option
+    [<YamlDotNet.Serialization.YamlMember(Alias="additionalFields")>]
+    additional_fields: System.Collections.Generic.Dictionary<string, obj> option
+    
+    // Legacy fields for backward compatibility
+    [<YamlDotNet.Serialization.YamlMember(Alias="item_title")>]
+    item_title: string option
+    [<YamlDotNet.Serialization.YamlMember(Alias="max_rating")>]
+    max_rating: float option
+    [<YamlDotNet.Serialization.YamlMember(Alias="review_text")>]
+    review_text: string option
+    [<YamlDotNet.Serialization.YamlMember(Alias="item_url")>]
     item_url: string option
+    [<YamlDotNet.Serialization.YamlMember(Alias="review_date")>]
     review_date: string option
 }
+with
+    // Helper properties to get values with fallbacks
+    member this.GetTitle() = 
+        this.title |> Option.orElse this.item_title |> Option.defaultValue ""
+    member this.GetItem() = 
+        this.item |> Option.orElse this.item_title |> Option.defaultValue ""
+    member this.GetItemType() = 
+        this.item_type |> Option.defaultValue "unknown"
+    member this.GetScale() = 
+        this.scale |> Option.orElse this.max_rating |> Option.defaultValue 5.0
+    member this.GetSummary() = 
+        this.summary |> Option.orElse this.review_text |> Option.defaultValue ""
 
 [<CLIMutable>]
 type VenueData = {
