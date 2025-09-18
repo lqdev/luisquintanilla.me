@@ -35,8 +35,8 @@ if String.IsNullOrWhiteSpace(content) then
     printfn "❌ Error: Content is required and cannot be empty"
     exit 1
 
-if content.Replace(" ", "").Replace("\n", "").Replace("\t", "").Length < 10 then
-    printfn "❌ Error: Content must have at least 10 non-whitespace characters"
+if content.Replace(" ", "").Replace("\n", "").Replace("\t", "").Length < 3 then
+    printfn "❌ Error: Content must have at least 3 non-whitespace characters"
     exit 1
 
 // Slug generation and sanitization functions
