@@ -12,6 +12,60 @@ open MarkdownService
 let private sanitizeTagForUrl (tag: string) =
     tag.Replace("#", "sharp").Replace("/", "-").Replace(" ", "-").Replace("\"", "")
 
+/// Extract simplified review content for timeline cards
+/// Shows only: title, image, rating, scale, and summary
+let private createSimplifiedReviewContent (content: string) =
+    try
+        let htmlContent = convertMdToHtml content
+        
+        // Extract review block content using regex patterns
+        let reviewBlockPattern = @"<div class=""custom-review-block[^>]*>(.*?)</div>"
+        let reviewMatch = System.Text.RegularExpressions.Regex.Match(htmlContent, reviewBlockPattern, System.Text.RegularExpressions.RegexOptions.Singleline)
+        
+        if reviewMatch.Success then
+            let reviewBlock = reviewMatch.Groups.[1].Value
+            
+            // Extract individual components using the actual HTML structure
+            let titlePattern = @"<h3 class=""review-title[^>]*>(.*?)</h3>"
+            let imagePattern = @"<img[^>]*src=""([^""]*)""\s*alt=""([^""]*)""\s*class=""review-thumbnail[^>]*"
+            let ratingPattern = @"<div class=""review-rating[^>]*>(.*?)</div>"
+            let summaryPattern = @"<div class=""review-summary[^>]*>(.*?)</div>"
+            
+            let titleMatch = System.Text.RegularExpressions.Regex.Match(reviewBlock, titlePattern)
+            let imageMatch = System.Text.RegularExpressions.Regex.Match(reviewBlock, imagePattern)
+            let ratingMatch = System.Text.RegularExpressions.Regex.Match(reviewBlock, ratingPattern)
+            let summaryMatch = System.Text.RegularExpressions.Regex.Match(reviewBlock, summaryPattern)
+            
+            // Build simplified HTML showing only the essential information
+            let simplifiedContent = System.Text.StringBuilder()
+            
+            // Add title if found
+            if titleMatch.Success then
+                simplifiedContent.Append($"<h3 class=\"simplified-review-title\">{titleMatch.Groups.[1].Value}</h3>") |> ignore
+            
+            // Add image if found
+            if imageMatch.Success then
+                let imageUrl = imageMatch.Groups.[1].Value
+                let altText = imageMatch.Groups.[2].Value
+                simplifiedContent.Append($"<div class=\"simplified-review-image\"><img src=\"{imageUrl}\" alt=\"{altText}\" class=\"review-cover\" /></div>") |> ignore
+            
+            // Add rating if found - keep the original HTML formatting
+            if ratingMatch.Success then
+                simplifiedContent.Append($"<div class=\"simplified-review-rating\">{ratingMatch.Groups.[1].Value}</div>") |> ignore
+            
+            // Add summary if found
+            if summaryMatch.Success then
+                simplifiedContent.Append($"<div class=\"simplified-review-summary\">{summaryMatch.Groups.[1].Value}</div>") |> ignore
+            
+            simplifiedContent.ToString()
+        else
+            // Fallback: if no review block found, return empty content
+            ""
+    with
+    | ex -> 
+        // On any error, return empty content to avoid breaking the page
+        ""
+
 // New stratified timeline homepage view - takes 5 items from each content type initially
 // Progressive loading is content-type aware for better filtering experience
 let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) (remainingItemsByType: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
@@ -103,17 +157,11 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                                 a [ _class "u-url title-link"; _href properPermalink ] [ Text item.Title ]
                             ]
                             div [ _class "e-content card-content" ] [
-                                // Special handling for reviews to show custom review blocks
+                                // Special handling for reviews to show simplified content for timeline cards
                                 if item.ContentType = "reviews" then
-                                    // For reviews, use the processed content that includes custom review blocks
-                                    let reviewContent = 
-                                        let content = convertMdToHtml item.Content  // Convert markdown to HTML first
-                                        // Remove duplicate titles but preserve custom review blocks
-                                        let removeTitles = System.Text.RegularExpressions.Regex.Replace(content, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                                        let removeTitleLinks = System.Text.RegularExpressions.Regex.Replace(removeTitles, @"<h2[^>]*><a[^>]*>.*?</a></h2>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                                        // Don't remove review blocks - they contain the structured review data
-                                        removeTitleLinks
-                                    rawText reviewContent
+                                    // For reviews, create simplified timeline card content showing only essential info
+                                    let simplifiedReviewContent = createSimplifiedReviewContent item.Content
+                                    rawText simplifiedReviewContent
                                 else
                                     // Convert markdown content to HTML and clean it for other content types
                                     let cleanedContent = 
@@ -333,17 +381,11 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                                 a [ _class "u-url title-link"; _href properPermalink ] [ Text item.Title ]
                             ]
                             div [ _class "e-content card-content" ] [
-                                // Special handling for reviews to show custom review blocks
+                                // Special handling for reviews to show simplified content for timeline cards
                                 if item.ContentType = "reviews" then
-                                    // For reviews, use the processed content that includes custom review blocks
-                                    let reviewContent = 
-                                        let content = convertMdToHtml item.Content  // Convert markdown to HTML first
-                                        // Remove duplicate titles but preserve custom review blocks
-                                        let removeTitles = System.Text.RegularExpressions.Regex.Replace(content, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                                        let removeTitleLinks = System.Text.RegularExpressions.Regex.Replace(removeTitles, @"<h2[^>]*><a[^>]*>.*?</a></h2>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                                        // Don't remove review blocks - they contain the structured review data
-                                        removeTitleLinks
-                                    rawText reviewContent
+                                    // For reviews, create simplified timeline card content showing only essential info
+                                    let simplifiedReviewContent = createSimplifiedReviewContent item.Content
+                                    rawText simplifiedReviewContent
                                 else
                                     // Convert markdown content to HTML and clean it for other content types
                                     let cleanedContent = 
