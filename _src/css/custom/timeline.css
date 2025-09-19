@@ -540,7 +540,8 @@
 /* Enhanced blockquote visibility for both themes */
 .post-content blockquote,
 .post-content .blockquote,
-.response-content .blockquote {
+.response-content .blockquote,
+.card-content blockquote {
   border-left: 4px solid var(--accent-color);
   padding: var(--spacing-md) var(--spacing-lg);
   margin: var(--spacing-lg) 0;
@@ -557,7 +558,9 @@ body[data-theme="dark"] .post-content blockquote,
 [data-theme="dark"] .post-content .blockquote,
 body[data-theme="dark"] .post-content .blockquote,
 [data-theme="dark"] .response-content .blockquote,
-body[data-theme="dark"] .response-content .blockquote {
+body[data-theme="dark"] .response-content .blockquote,
+[data-theme="dark"] .card-content blockquote,
+body[data-theme="dark"] .card-content blockquote {
   font-weight: 500 !important; /* Slightly bolder for better contrast */
   color: #E8E8E8 !important; /* Brighter text for better readability */
   background: #3A4A5C !important; /* Slightly lighter background for better contrast */
@@ -566,7 +569,8 @@ body[data-theme="dark"] .response-content .blockquote {
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .post-content blockquote,
   :root:not([data-theme="light"]) .post-content .blockquote,
-  :root:not([data-theme="light"]) .response-content .blockquote {
+  :root:not([data-theme="light"]) .response-content .blockquote,
+  :root:not([data-theme="light"]) .card-content blockquote {
     font-weight: 500 !important;
     color: #E8E8E8 !important;
     background: #3A4A5C !important;
@@ -579,7 +583,9 @@ body[data-theme="light"] .post-content blockquote,
 [data-theme="light"] .post-content .blockquote,
 body[data-theme="light"] .post-content .blockquote,
 [data-theme="light"] .response-content .blockquote,
-body[data-theme="light"] .response-content .blockquote {
+body[data-theme="light"] .response-content .blockquote,
+[data-theme="light"] .card-content blockquote,
+body[data-theme="light"] .card-content blockquote {
   font-weight: 500 !important; /* Enhanced weight for better visibility */
   color: #2C3E50 !important; /* Darker, more prominent text */
   background: #F8F9FA !important; /* Subtle background for better separation */
