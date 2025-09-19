@@ -1,57 +1,90 @@
-# Review System Migration Specification
+# Simplified Review System Schema
 
-## Current State Analysis
+Based on feedback, the ReviewData schema has been simplified to remove unnecessary legacy fields and clarify the purpose of each field.
 
-### Existing ReviewData Schema
-The current `ReviewData` type in `CustomBlocks.fs` supports only basic review functionality:
-```fsharp
-type ReviewData = {
-    item_title: string
-    rating: float
-    max_rating: float
-    review_text: string
-    item_url: string option
-    review_date: string option
-}
-```
+## Simplified ReviewData Schema
 
-### Review Content Status
-- **39 book reviews** in `_src/reviews/library/` using frontmatter-only format
-- **No existing reviews** use custom review blocks (`:::review`)
-- **Test files demonstrate** sophisticated review blocks but current schema cannot support them
-
-## Enhanced ReviewData Schema
-
-### Implemented Schema (CustomBlocks.fs)
 ```fsharp
 [<CLIMutable>]
 type ReviewData = {
-    // Enhanced fields for comprehensive review support
-    title: string option
-    item: string option
-    item_type: string option  // Maps from "itemType" YAML
-    rating: float
-    scale: float option      // Maps from "scale" YAML
-    summary: string option
-    pros: string array option
-    cons: string array option
-    additional_fields: Dictionary<string, obj> option  // Maps from "additionalFields"
+    // Core review fields
+    item: string                    // Name of the item being reviewed (required)
+    item_type: string option        // Type: "book", "movie", "music", "business", "product"
+    rating: float                   // Numeric rating (required)
+    scale: float option             // Rating scale (defaults to 5.0)
+    summary: string option          // Brief review text
     
-    // Legacy fields for backward compatibility
-    item_title: string option
-    max_rating: float option
-    review_text: string option
-    item_url: string option
-    review_date: string option
+    // Optional structured feedback
+    pros: string array option       // List of positive aspects
+    cons: string array option       // List of negative aspects
+    
+    // Optional metadata and links
+    item_url: string option         // Link to item's website/page for reference
+    image_url: string option        // Thumbnail/cover image URL for display
+    additional_fields: Dictionary<string, obj> option  // Type-specific metadata
 }
-with
-    // Helper methods for clean API with fallbacks
-    member GetTitle() = title |> Option.orElse item_title |> Option.defaultValue ""
-    member GetItem() = item |> Option.orElse item_title |> Option.defaultValue ""
-    member GetItemType() = item_type |> Option.defaultValue "unknown"
-    member GetScale() = scale |> Option.orElse max_rating |> Option.defaultValue 5.0
-    member GetSummary() = summary |> Option.orElse review_text |> Option.defaultValue ""
 ```
+
+## Field Clarifications
+
+**Removed Fields** (based on feedback):
+- `title` - Use frontmatter `title` for the review post title instead
+- `review_date` - Use frontmatter `date_published` for review date instead  
+- Legacy fields (`item_title`, `max_rating`, `review_text`) - No existing content uses these
+
+**Key Fields**:
+- `item` - Name of what's being reviewed (e.g., "The Four Agreements", "Blade Runner 2049")
+- `itemType` - Review category for proper rendering and organization
+- `itemUrl` - Essential for linking to the item's official page/website
+- `imageUrl` - For displaying book covers, movie posters, product images, etc.
+
+## Updated Examples
+
+### Book Review
+```yaml
+:::review
+item: "The Four Agreements"
+itemType: "book"
+rating: 4.4
+scale: 5.0
+summary: "Ancient Toltec wisdom offering powerful code of conduct."
+pros:
+  - "Clear, actionable principles"
+  - "Practical daily application"
+cons:
+  - "Very brief treatment"
+itemUrl: "https://openlibrary.org/works/OL27203W/The_Four_Agreements"
+imageUrl: "https://covers.openlibrary.org/b/id/15101528-L.jpg"
+additionalFields:
+  author: "Don Miguel Ruiz"
+  isbn: "9781878424945"
+  genre: "Philosophy/Self-Help"
+:::
+```
+
+### Movie Review
+```yaml
+:::review
+item: "Blade Runner 2049"
+itemType: "movie"
+rating: 4.8
+scale: 5.0
+summary: "A masterpiece that honors the original."
+pros:
+  - "Stunning visuals"
+  - "Great performances"
+cons:
+  - "Lengthy runtime"
+itemUrl: "https://www.imdb.com/title/tt1856101/"
+imageUrl: "https://image.tmdb.org/t/p/w500/poster.jpg"
+additionalFields:
+  director: "Denis Villeneuve"
+  year: 2017
+  rotten_tomatoes: "88%"
+:::
+```
+
+The simplified schema maintains all requested functionality while removing unnecessary complexity and legacy compatibility that isn't being used.
 
 ## Multi-Type Review Support Analysis
 

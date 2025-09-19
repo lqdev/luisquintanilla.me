@@ -28,50 +28,40 @@ type MediaItem = {
 
 [<CLIMutable>]
 type ReviewData = {
-    // Enhanced fields for comprehensive review support
-    [<YamlDotNet.Serialization.YamlMember(Alias="title")>]
-    title: string option
+    // Core review fields
     [<YamlDotNet.Serialization.YamlMember(Alias="item")>]
-    item: string option
+    item: string  // Name of the item being reviewed (e.g., "The Four Agreements", "Blade Runner 2049")
     [<YamlDotNet.Serialization.YamlMember(Alias="itemType")>]
-    item_type: string option
+    item_type: string option  // Type of review: "book", "movie", "music", "business", "product"
     [<YamlDotNet.Serialization.YamlMember(Alias="rating")>]
     rating: float
     [<YamlDotNet.Serialization.YamlMember(Alias="scale")>]
-    scale: float option
+    scale: float option  // Rating scale (defaults to 5.0)
     [<YamlDotNet.Serialization.YamlMember(Alias="summary")>]
-    summary: string option
+    summary: string option  // Brief review summary
+    
+    // Optional structured feedback
     [<YamlDotNet.Serialization.YamlMember(Alias="pros")>]
     pros: string array option
     [<YamlDotNet.Serialization.YamlMember(Alias="cons")>]
     cons: string array option
-    [<YamlDotNet.Serialization.YamlMember(Alias="additionalFields")>]
-    additional_fields: System.Collections.Generic.Dictionary<string, obj> option
     
-    // Legacy fields for backward compatibility
-    [<YamlDotNet.Serialization.YamlMember(Alias="item_title")>]
-    item_title: string option
-    [<YamlDotNet.Serialization.YamlMember(Alias="max_rating")>]
-    max_rating: float option
-    [<YamlDotNet.Serialization.YamlMember(Alias="review_text")>]
-    review_text: string option
-    [<YamlDotNet.Serialization.YamlMember(Alias="item_url")>]
-    item_url: string option
-    [<YamlDotNet.Serialization.YamlMember(Alias="review_date")>]
-    review_date: string option
+    // Optional metadata and links
+    [<YamlDotNet.Serialization.YamlMember(Alias="itemUrl")>]
+    item_url: string option  // Link to the item's website or URL for reference
+    [<YamlDotNet.Serialization.YamlMember(Alias="imageUrl")>]
+    image_url: string option  // Thumbnail/cover image URL for display
+    [<YamlDotNet.Serialization.YamlMember(Alias="additionalFields")>]
+    additional_fields: System.Collections.Generic.Dictionary<string, obj> option  // Type-specific metadata
 }
 with
-    // Helper properties to get values with fallbacks
-    member this.GetTitle() = 
-        this.title |> Option.orElse this.item_title |> Option.defaultValue ""
-    member this.GetItem() = 
-        this.item |> Option.orElse this.item_title |> Option.defaultValue ""
+    // Helper methods for clean API
     member this.GetItemType() = 
         this.item_type |> Option.defaultValue "unknown"
     member this.GetScale() = 
-        this.scale |> Option.orElse this.max_rating |> Option.defaultValue 5.0
+        this.scale |> Option.defaultValue 5.0
     member this.GetSummary() = 
-        this.summary |> Option.orElse this.review_text |> Option.defaultValue ""
+        this.summary |> Option.defaultValue ""
 
 [<CLIMutable>]
 type VenueData = {

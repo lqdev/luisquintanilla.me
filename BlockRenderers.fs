@@ -100,7 +100,18 @@ module ReviewRenderer =
         let titleElement =
             Html.element "h3"
                 (Html.attribute "class" ("review-title " + Microformats.pName))
-                (Html.escapeHtml (review.GetTitle()))
+                (Html.escapeHtml review.item)
+        
+        let imageElement =
+            match review.image_url with
+            | Some imageUrl when not (String.IsNullOrWhiteSpace(imageUrl)) ->
+                Html.element "div" (Html.attribute "class" "review-image")
+                    (Html.element "img" 
+                        (Html.attribute "src" imageUrl + 
+                         Html.attribute "alt" review.item + 
+                         Html.attribute "class" "review-thumbnail")
+                        "")
+            | _ -> ""
         
         let itemTypeElement =
             let itemType = review.GetItemType()
@@ -164,7 +175,7 @@ module ReviewRenderer =
         
         Html.element "div" 
             (Html.attribute "class" ("custom-review-block " + Microformats.hEntry))
-            (titleElement + itemTypeElement + ratingElement + summaryElement + prosElement + consElement + additionalFieldsElement + urlElement)
+            (titleElement + imageElement + itemTypeElement + ratingElement + summaryElement + prosElement + consElement + additionalFieldsElement + urlElement)
 
 /// Renderer for VenueData
 module VenueRenderer =

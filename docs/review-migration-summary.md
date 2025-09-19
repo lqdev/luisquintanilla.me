@@ -13,49 +13,43 @@
 
 ## Implementation Results
 
-### 1. Enhanced ReviewData Schema ✅
+## 1. Simplified ReviewData Schema ✅
 
-**Before** (Limited functionality):
+**Based on @lqdev feedback** - removed unnecessary legacy fields and clarified field purposes:
+
 ```fsharp
 type ReviewData = {
-    item_title: string
-    rating: float
-    max_rating: float
-    review_text: string
-    item_url: string option
-    review_date: string option
-}
-```
-
-**After** (Comprehensive multi-type support):
-```fsharp
-type ReviewData = {
-    // Enhanced fields
-    title: string option
-    item: string option
+    // Core review fields
+    item: string                    // Name of the item being reviewed (required)
     item_type: string option        // "book", "movie", "music", "business", "product"
-    rating: float
-    scale: float option
-    summary: string option
-    pros: string array option
-    cons: string array option
-    additional_fields: Dictionary<string, obj> option
+    rating: float                   // Numeric rating (required)
+    scale: float option            // Rating scale, defaults to 5.0
+    summary: string option         // Brief review text
     
-    // Legacy compatibility
-    item_title: string option
-    max_rating: float option
-    review_text: string option
-    item_url: string option
-    review_date: string option
+    // Optional structured feedback
+    pros: string array option      // List of positive aspects
+    cons: string array option      // List of negative aspects
+    
+    // Optional metadata and links
+    item_url: string option        // Link to item's website/page for reference
+    image_url: string option       // Thumbnail/cover image URL for display
+    additional_fields: Dictionary<string, obj> option  // Type-specific metadata
 }
 ```
+
+**Key Changes**:
+- ❌ **Removed** `title` (use frontmatter title instead)
+- ❌ **Removed** `review_date` (use frontmatter date_published instead)
+- ❌ **Removed** legacy compatibility fields (no existing content uses them)
+- ✅ **Added** `image_url` for book covers, movie posters, product images
+- ✅ **Clarified** `item` vs `title` - item is what's being reviewed, title is in frontmatter
+- ✅ **Kept** `item_url` for linking to item's official page/website
 
 ### 2. Multi-Type Review Support Validation ✅
 
 #### Books ✅
 ```yaml
 :::review
-title: "Review: The Four Agreements"
 item: "The Four Agreements"
 itemType: "book"
 rating: 4.4
@@ -66,10 +60,11 @@ pros:
   - "Practical daily application"
 cons:
   - "Very brief treatment"
+itemUrl: "https://openlibrary.org/works/OL27203W/The_Four_Agreements"
+imageUrl: "https://covers.openlibrary.org/b/id/15101528-L.jpg"
 additionalFields:
   author: "Don Miguel Ruiz"
   isbn: "9781878424945"
-  pages: 138
   genre: "Philosophy/Self-Help"
 :::
 ```
@@ -77,7 +72,6 @@ additionalFields:
 #### Movies ✅
 ```yaml
 :::review
-title: "Excellent Sci-Fi Film"
 item: "Blade Runner 2049"
 itemType: "movie"
 rating: 4.8
@@ -88,10 +82,11 @@ pros:
   - "Great performances"
 cons:
   - "Lengthy runtime"
+itemUrl: "https://www.imdb.com/title/tt1856101/"
+imageUrl: "https://image.tmdb.org/t/p/w500/poster.jpg"
 additionalFields:
   director: "Denis Villeneuve"
   year: 2017
-  runtime: "164 minutes"
   rotten_tomatoes: "88%"
 :::
 ```
