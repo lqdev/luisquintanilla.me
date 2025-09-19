@@ -9,32 +9,94 @@ open CollectionViews
 open MarkdownService
 open Markdig
 open Markdig.Syntax
+open CustomBlocks
+open HtmlHelpers
 
 /// Sanitize tag names for URL usage while preserving display text
 let private sanitizeTagForUrl (tag: string) =
     tag.Replace("#", "sharp").Replace("/", "-").Replace(" ", "-").Replace("\"", "")
 
+/// Extract item type from review content for badge display
+let private extractReviewItemType (content: string) =
+    try
+        let pipeline = 
+            MarkdownPipelineBuilder()
+                .Use(CustomBlockExtension())
+                .Build()
+        let document = Markdown.Parse(content, pipeline)
+        let customBlocks = extractCustomBlocks document
+        
+        match customBlocks.TryFind("review") with
+        | Some reviewList when reviewList.Length > 0 ->
+            match reviewList.[0] with
+            | :? ReviewData as reviewData ->
+                let itemType = reviewData.GetItemType()
+                // Capitalize the first letter for display
+                if not (String.IsNullOrWhiteSpace(itemType)) then
+                    Some (itemType.Substring(0, 1).ToUpper() + itemType.Substring(1).ToLower())
+                else
+                    None
+            | _ -> None
+        | _ -> None
+    with
+    | _ -> None
+
 /// Extract simplified review content for timeline cards
-/// Shows only: title, image, rating, scale, and summary
+/// Shows only: title, image, rating, scale, and summary extracted from custom blocks
 let private createSimplifiedReviewContent (content: string) =
     try
-        // For now, create a simplified fallback that works with the book metadata structure
-        // The real review data from custom blocks would need to be passed differently
-        // This shows the structure is working - the actual data extraction will be improved later
-        """
-        <div class="simplified-review-card">
-            <h3 class="simplified-review-title">Book Review</h3>
-            <div class="simplified-review-image">
-                <img src="" alt="Book Cover" class="review-cover" style="max-width: 150px; height: auto;" />
-            </div>
-            <div class="simplified-review-rating">
-                <strong>Rating:</strong> ★★★★ (4.8/5.0)
-            </div>
-            <div class="simplified-review-summary">
-                Summary coming soon...
-            </div>
-        </div>
-        """
+        // Parse the markdown content to extract custom blocks
+        let pipeline = 
+            MarkdownPipelineBuilder()
+                .Use(CustomBlockExtension())
+                .Build()
+        let document = Markdown.Parse(content, pipeline)
+        let customBlocks = extractCustomBlocks document
+        
+        // Extract review data from custom blocks
+        match customBlocks.TryFind("review") with
+        | Some reviewList when reviewList.Length > 0 ->
+            match reviewList.[0] with
+            | :? ReviewData as reviewData ->
+                let itemType = reviewData.GetItemType()
+                let imageHtml = 
+                    match reviewData.image_url with
+                    | Some imageUrl when not (String.IsNullOrWhiteSpace(imageUrl)) ->
+                        $"""<div class="simplified-review-image">
+                <img src="{escapeHtml imageUrl}" alt="{escapeHtml reviewData.item}" class="review-cover" style="max-width: 150px; height: auto;" />
+            </div>"""
+                    | _ -> ""
+                
+                let ratingHtml = 
+                    if reviewData.rating > 0.0 then
+                        let scale = reviewData.GetScale()
+                        let stars = String.replicate (int reviewData.rating) "★" + String.replicate (int (scale - reviewData.rating)) "☆"
+                        $"""<div class="simplified-review-rating">
+                <strong>Rating:</strong> {stars} ({reviewData.rating:F1}/{scale:F1})
+            </div>"""
+                    else ""
+                
+                let summaryHtml = 
+                    let summary = reviewData.GetSummary()
+                    if not (String.IsNullOrWhiteSpace(summary)) then
+                        $"""<div class="simplified-review-summary">
+                {escapeHtml summary}
+            </div>"""
+                    else ""
+                
+                // Construct the simplified review card
+                $"""<div class="simplified-review-card">
+            <h3 class="simplified-review-title">{escapeHtml reviewData.item}</h3>
+            {imageHtml}
+            {ratingHtml}
+            {summaryHtml}
+        </div>"""
+            | _ -> 
+                // Fallback for non-ReviewData objects
+                ""
+        | _ -> 
+            // No review blocks found, return empty
+            ""
     with
     | ex -> 
         // On any error, return empty content to avoid breaking the page
@@ -113,7 +175,11 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                                           | "notes" -> "Note"
                                           | "responses" -> "Response"
                                           | "bookmarks" -> "Bookmark"
-                                          | "reviews" -> "Review"
+                                          | "reviews" -> 
+                                              // For reviews, try to extract the specific item type (Book, Movie, etc.)
+                                              match extractReviewItemType item.Content with
+                                              | Some itemType -> itemType
+                                              | None -> "Review"  // Fallback to generic "Review"
                                           | "streams" -> "Stream Recording"
                                           | "media" -> "Media"
                                           // Specific response types
@@ -337,7 +403,11 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                                           | "notes" -> "Note"
                                           | "responses" -> "Response"
                                           | "bookmarks" -> "Bookmark"
-                                          | "reviews" -> "Review"
+                                          | "reviews" -> 
+                                              // For reviews, try to extract the specific item type (Book, Movie, etc.)
+                                              match extractReviewItemType item.Content with
+                                              | Some itemType -> itemType
+                                              | None -> "Review"  // Fallback to generic "Review"
                                           | "streams" -> "Stream Recording"
                                           | "media" -> "Media"
                                           // Specific response types
