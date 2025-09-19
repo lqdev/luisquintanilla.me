@@ -11,6 +11,8 @@ open System
 open System.IO
 open Giraffe.ViewEngine
 open Giraffe.ViewEngine.HtmlElements
+open Markdig
+open Markdig.Syntax
 
 /// Data structure for feed generation with both card and RSS item
 type FeedData<'T> = {
@@ -438,9 +440,37 @@ module PresentationProcessor =
             Some item
     }
 
+/// Review data extractor for processing review blocks during parsing
+module ReviewDataExtractor =
+    /// Extract review data from raw markdown content
+    let extractReviewData (rawMarkdown: string) : (string option * float * float) =
+        if not (String.IsNullOrWhiteSpace(rawMarkdown)) && rawMarkdown.Contains(":::review") then
+            try
+                let pipeline = 
+                    MarkdownPipelineBuilder()
+                        |> useCustomBlocks
+                        |> fun builder -> builder.Build()
+                let document = Markdown.Parse(rawMarkdown, pipeline)
+                let customBlocks = extractCustomBlocks document
+                
+                match customBlocks.TryGetValue("review") with
+                | true, reviewList when reviewList.Length > 0 ->
+                    match reviewList.[0] with
+                    | :? ReviewData as reviewData -> 
+                        (reviewData.image_url, reviewData.rating, reviewData.GetScale())
+                    | _ -> (None, 0.0, 5.0)
+                | _ -> (None, 0.0, 5.0)
+            with
+            | _ -> (None, 0.0, 5.0)
+        else
+            (None, 0.0, 5.0)
+
 /// Book content processor
 module BookProcessor =
-    // Helper function to extract rating from custom review blocks using regex
+    // Cache for review data extracted during parsing
+    let private reviewDataCache = System.Collections.Concurrent.ConcurrentDictionary<string, (string option * float * float)>()
+    
+    // Helper function to extract rating from custom review blocks using regex (for backward compatibility)
     let private extractRatingFromContent (content: string) : float option =
         try
             // Use regex to find rating in :::review blocks
@@ -468,17 +498,26 @@ module BookProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
+                    let fileName = Path.GetFileNameWithoutExtension(filePath)
+                    
+                    // Extract all review data from raw markdown during parsing
+                    let (reviewImageUrl, reviewRating, reviewScale) = ReviewDataExtractor.extractReviewData parsedDoc.RawMarkdown
+                    
+                    // Store review data in cache for later use in rendering
+                    reviewDataCache.[fileName] <- (reviewImageUrl, reviewRating, reviewScale)
+                    
                     // Extract rating from custom review blocks if available in raw markdown
                     let rating = 
                         match extractRatingFromContent parsedDoc.RawMarkdown with
                         | Some customRating -> customRating
-                        | None -> metadata.Rating
+                        | None -> 
+                            if reviewRating > 0.0 then reviewRating else metadata.Rating
                     
                     // Update metadata with extracted rating
                     let updatedMetadata = { metadata with Rating = rating }
                     
                     Some {
-                        FileName = Path.GetFileNameWithoutExtension(filePath)
+                        FileName = fileName
                         Metadata = updatedMetadata
                         Content = parsedDoc.TextContent
                     }
@@ -495,46 +534,44 @@ module BookProcessor =
         
         RenderCard = fun book ->
             let title = Html.escapeHtml book.Metadata.Title
-            let author = Html.escapeHtml book.Metadata.Author
-            let status = Html.escapeHtml book.Metadata.Status
             let url = sprintf "/reviews/%s/" book.FileName
             
-            // Display rating if available
-            let ratingHtml = 
-                if book.Metadata.Rating > 0.0 then
-                    sprintf "<div class=\"rating\">Rating: %.1f/5</div>" book.Metadata.Rating
-                else ""
+            // Get review data from cache (extracted during parsing)
+            let (reviewImageUrlOpt, reviewRating, reviewScale) = 
+                match reviewDataCache.TryGetValue(book.FileName) with
+                | (true, data) -> data
+                | _ -> (None, book.Metadata.Rating, 5.0)
             
-            // Extract image URL from custom review blocks or fall back to cover metadata
-            let hasCustomReview = book.Content.Contains(":::review")
+            // Determine image URL with proper fallbacks
             let imageUrl = 
-                if hasCustomReview then
-                    match extractReviewImageUrl book.Content with
-                    | Some reviewImageUrl -> reviewImageUrl
-                    | None -> 
-                        if String.IsNullOrEmpty(book.Metadata.Cover) then
-                            "/assets/img/book-placeholder.png"  // Default book placeholder
-                        else
-                            book.Metadata.Cover
-                else
+                match reviewImageUrlOpt with
+                | Some reviewImageUrl -> reviewImageUrl
+                | None -> 
                     if String.IsNullOrEmpty(book.Metadata.Cover) then
-                        "/assets/img/book-placeholder.png"  // Default book placeholder
+                        "/assets/img/book-placeholder.png"
                     else
                         book.Metadata.Cover
             
-            // Create book card with cover, title, author, status
+            // Use review rating if available, otherwise use metadata rating
+            let (ratingValue, ratingScaleValue) = 
+                if reviewRating > 0.0 then (reviewRating, reviewScale)
+                else (book.Metadata.Rating, 5.0)
+            
+            // Display rating with scale if available
+            let ratingHtml = 
+                if ratingValue > 0.0 then
+                    sprintf "<div class=\"rating\">Rating: %.1f/%.1f</div>" ratingValue ratingScaleValue
+                else ""
+            
+            // Create simplified timeline card with only: image, rating (no duplicate title, no status, no author)
             let coverHtml = 
                 if not (String.IsNullOrEmpty(imageUrl)) then
-                    sprintf "<img src=\"%s\" alt=\"%s cover\" class=\"book-cover\">" 
+                    sprintf "<img src=\"%s\" alt=\"%s cover\" class=\"review-image img-fluid\">" 
                         (Html.escapeHtml imageUrl) (Html.escapeHtml book.Metadata.Title)
                 else ""
             
-            Html.element "article" (Html.attribute "class" "book-card")
-                (coverHtml +
-                 Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
-                 Html.element "div" (Html.attribute "class" "author") ("by " + author) +
-                 Html.element "div" (Html.attribute "class" "status") status +
-                 ratingHtml)
+            // Simple content div without duplicate title links or extra metadata
+            sprintf "<div class=\"review-timeline-card\">%s%s</div>" coverHtml ratingHtml
         
         RenderRss = fun book ->
             // Create RSS item for book
