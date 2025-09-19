@@ -7,6 +7,8 @@ open Domain
 open ComponentViews
 open CollectionViews
 open MarkdownService
+open Markdig
+open Markdig.Syntax
 
 /// Sanitize tag names for URL usage while preserving display text
 let private sanitizeTagForUrl (tag: string) =
@@ -16,24 +18,20 @@ let private sanitizeTagForUrl (tag: string) =
 /// Shows only: title, image, rating, scale, and summary
 let private createSimplifiedReviewContent (content: string) =
     try
-        let htmlContent = convertMdToHtml content
-        
-        // For now, just test with a hardcoded simplified review card
-        // since the regex patterns aren't working correctly
+        // For now, create a simplified fallback that works with the book metadata structure
+        // The real review data from custom blocks would need to be passed differently
+        // This shows the structure is working - the actual data extraction will be improved later
         """
         <div class="simplified-review-card">
             <h3 class="simplified-review-title">Book Review</h3>
             <div class="simplified-review-image">
-                <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781668072240/the-serviceberry-9781668072240_lg.jpg" 
-                     alt="Book Cover" 
-                     class="review-cover" 
-                     style="max-width: 150px; height: auto;" />
+                <img src="" alt="Book Cover" class="review-cover" style="max-width: 150px; height: auto;" />
             </div>
             <div class="simplified-review-rating">
                 <strong>Rating:</strong> ★★★★ (4.8/5.0)
             </div>
             <div class="simplified-review-summary">
-                "I'm happy my name is not Darren."
+                Summary coming soon...
             </div>
         </div>
         """
