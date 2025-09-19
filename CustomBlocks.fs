@@ -315,6 +315,114 @@ type MediaBlockHtmlRenderer() =
         let html = HtmlHelpers.element "div" (HtmlHelpers.attribute "class" "custom-media-block") renderedItems
         renderer.Write(html: string) |> ignore
 
+/// HTML renderer for ReviewBlock
+type ReviewBlockHtmlRenderer() =
+    inherit HtmlObjectRenderer<ReviewBlock>()
+    
+    override _.Write(renderer: HtmlRenderer, block: ReviewBlock) : unit =
+        match block.ReviewData with
+        | Some reviewData ->
+            // Render review block directly here
+            let titleElement =
+                HtmlHelpers.element "h3"
+                    (HtmlHelpers.attribute "class" "review-title p-name")
+                    (HtmlHelpers.escapeHtml reviewData.item)
+            
+            let imageElement =
+                match reviewData.image_url with
+                | Some imageUrl when not (String.IsNullOrWhiteSpace(imageUrl)) ->
+                    HtmlHelpers.element "div" (HtmlHelpers.attribute "class" "review-image")
+                        (HtmlHelpers.selfClosingElement "img" 
+                            (HtmlHelpers.attribute "src" imageUrl + 
+                             HtmlHelpers.attribute "alt" reviewData.item + 
+                             HtmlHelpers.attribute "class" "review-thumbnail"))
+                | _ -> ""
+            
+            let itemTypeElement =
+                let itemType = reviewData.GetItemType()
+                if itemType <> "unknown" then
+                    HtmlHelpers.element "div"
+                        (HtmlHelpers.attribute "class" "review-item-type")
+                        (HtmlHelpers.element "span" 
+                            (HtmlHelpers.attribute "class" "item-type-badge")
+                            (HtmlHelpers.escapeHtml (itemType.ToUpperInvariant())))
+                else ""
+            
+            let ratingElement =
+                if reviewData.rating > 0.0 then
+                    HtmlHelpers.element "div" 
+                        (HtmlHelpers.attribute "class" "review-rating p-rating")
+                        (sprintf "Rating: %.1f/%.1f" reviewData.rating (reviewData.GetScale()))
+                else ""
+            
+            let summaryElement =
+                let summary = reviewData.GetSummary()
+                if not (String.IsNullOrWhiteSpace(summary)) then
+                    HtmlHelpers.element "div"
+                        (HtmlHelpers.attribute "class" "review-summary p-summary")
+                        (HtmlHelpers.escapeHtml summary)
+                else ""
+            
+            let prosElement =
+                match reviewData.pros with
+                | Some prosArray when prosArray.Length > 0 ->
+                    let prosItems = 
+                        prosArray 
+                        |> Array.map (fun pro -> 
+                            HtmlHelpers.element "li" "" (HtmlHelpers.escapeHtml pro))
+                        |> String.concat ""
+                    HtmlHelpers.element "div" (HtmlHelpers.attribute "class" "review-pros")
+                        (HtmlHelpers.element "h4" "" "Pros:" + 
+                         HtmlHelpers.element "ul" "" prosItems)
+                | _ -> ""
+            
+            let consElement =
+                match reviewData.cons with
+                | Some consArray when consArray.Length > 0 ->
+                    let consItems = 
+                        consArray 
+                        |> Array.map (fun con -> 
+                            HtmlHelpers.element "li" "" (HtmlHelpers.escapeHtml con))
+                        |> String.concat ""
+                    HtmlHelpers.element "div" (HtmlHelpers.attribute "class" "review-cons")
+                        (HtmlHelpers.element "h4" "" "Cons:" + 
+                         HtmlHelpers.element "ul" "" consItems)
+                | _ -> ""
+            
+            let additionalFieldsElement =
+                match reviewData.additional_fields with
+                | Some fields when fields.Count > 0 ->
+                    let fieldItems = 
+                        fields 
+                        |> Seq.map (fun kvp -> 
+                            HtmlHelpers.element "div" (HtmlHelpers.attribute "class" "additional-field")
+                                (HtmlHelpers.element "strong" "" (HtmlHelpers.escapeHtml kvp.Key + ": ") +
+                                 HtmlHelpers.escapeHtml (kvp.Value.ToString())))
+                        |> String.concat ""
+                    HtmlHelpers.element "div" (HtmlHelpers.attribute "class" "review-additional-fields")
+                        (HtmlHelpers.element "h4" "" "Additional Information:" + 
+                         HtmlHelpers.element "div" (HtmlHelpers.attribute "class" "field-list") fieldItems)
+                | _ -> ""
+            
+            let urlElement =
+                match reviewData.item_url with
+                | Some url when not (String.IsNullOrWhiteSpace(url)) ->
+                    HtmlHelpers.element "div" (HtmlHelpers.attribute "class" "review-url")
+                        (HtmlHelpers.element "a" 
+                            (HtmlHelpers.attribute "href" url + HtmlHelpers.attribute "class" "u-url")
+                            (HtmlHelpers.escapeHtml url))
+                | _ -> ""
+            
+            let allElements = titleElement + imageElement + itemTypeElement + ratingElement + summaryElement + prosElement + consElement + additionalFieldsElement + urlElement
+            let html = HtmlHelpers.element "div" 
+                (HtmlHelpers.attribute "class" "custom-review-block h-entry")
+                allElements
+            
+            renderer.Write(html) |> ignore
+        | None ->
+            // Fallback to empty div if no review data
+            renderer.Write("<div class=\"review-block-empty\"></div>") |> ignore
+
 // Extension utilities
 
 /// Union type for all custom blocks
@@ -440,8 +548,8 @@ type CustomBlockExtension() =
             match renderer with
             | :? HtmlRenderer as htmlRenderer ->
                 htmlRenderer.ObjectRenderers.Add(MediaBlockHtmlRenderer())
+                htmlRenderer.ObjectRenderers.Add(ReviewBlockHtmlRenderer())
                 // Add other renderers when implemented
-                // htmlRenderer.ObjectRenderers.Add(ReviewBlockHtmlRenderer())
                 // htmlRenderer.ObjectRenderers.Add(VenueBlockHtmlRenderer())
                 // htmlRenderer.ObjectRenderers.Add(RsvpBlockHtmlRenderer())
             | _ -> 

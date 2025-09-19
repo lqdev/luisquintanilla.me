@@ -2,12 +2,25 @@
 title: "Palo Alto - A History of California, Capitalism, and the World"
 author: "Malcom Harris"
 isbn: "9780316592024"
-cover: "https://www.hachettebookgroup.com/wp-content/uploads/2024/01/9780316592024-1.jpg"
 status: "Wishlist"
-rating: 
-source: "https://www.hachettebookgroup.com/titles/malcolm-harris/palo-alto/9780316592024/"
 date_published: "01/15/2024 15:42 -05:00"
 ---
+
+# Palo Alto - A History of California, Capitalism, and the World Review
+
+:::review
+item: "Palo Alto - A History of California, Capitalism, and the World"
+itemType: "book"
+rating: 0.0
+scale: 5.0
+summary: "."
+itemUrl: "https://www.hachettebookgroup.com/titles/malcolm-harris/palo-alto/9780316592024/"
+imageUrl: "https://www.hachettebookgroup.com/wp-content/uploads/2024/01/9780316592024-1.jpg"
+additionalFields:
+  author: "Malcom Harris"
+  isbn: "9780316592024"
+  status: "Wishlist"
+:::
 
 ## Description
 

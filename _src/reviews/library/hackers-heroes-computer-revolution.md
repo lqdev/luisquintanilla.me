@@ -1,13 +1,26 @@
 ---
-title: "Hackers: Heroes of the Computer Revolution" 
-author: Steven Levy
-isbn: 9780140232691
-cover: https://covers.openlibrary.org/b/id/10512955-M.jpg
-status: InProgress
-rating: 
-source: https://openlibrary.org/works/OL21177324W/Hackers
+title: "Hackers: Heroes of the Computer Revolution"
+author: "Steven Levy"
+isbn: "9780140232691"
+status: "InProgress"
 date_published: "09/05/2022 18:19 -05:00"
 ---
+
+# Hackers: Heroes of the Computer Revolution Review
+
+:::review
+item: "Hackers: Heroes of the Computer Revolution"
+itemType: "book"
+rating: 0.0
+scale: 5.0
+summary: "Personal review of Hackers: Heroes of the Computer Revolution."
+itemUrl: "https://openlibrary.org/works/OL21177324W/Hackers"
+imageUrl: "https://covers.openlibrary.org/b/id/10512955-M.jpg"
+additionalFields:
+  author: "Steven Levy"
+  isbn: "9780140232691"
+  status: "InProgress"
+:::
 
 ## Description
 

@@ -2,12 +2,25 @@
 title: "Mycelium Running: How Mushrooms Can Help Save the World"
 author: "Paul Stamets"
 isbn: "9781580085793"
-cover: "https://covers.openlibrary.org/b/id/838922-L.jpg"
 status: "Read"
-rating: 4.75
-source: "https://openlibrary.org/works/OL3264349W/Mycelium_running?edition=key%3A/books/OL3401342M"
 date_published: "05/20/2023 22:10 -05:00"
 ---
+
+# Mycelium Running: How Mushrooms Can Help Save the World Review
+
+:::review
+item: "Mycelium Running: How Mushrooms Can Help Save the World"
+itemType: "book"
+rating: 4.8
+scale: 5.0
+summary: "Great intro into the intelligence of mushrooms and the different techniques for mycorestoration such..."
+itemUrl: "https://openlibrary.org/works/OL3264349W/Mycelium_running?edition=key%3A/books/OL3401342M"
+imageUrl: "https://covers.openlibrary.org/b/id/838922-L.jpg"
+additionalFields:
+  author: "Paul Stamets"
+  isbn: "9781580085793"
+  status: "Read"
+:::
 
 ## Description
 

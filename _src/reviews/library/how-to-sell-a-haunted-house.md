@@ -2,12 +2,25 @@
 title: "How to Sell a Haunted House"
 author: "Grady Hendrix"
 isbn: "9780593201275"
-cover: "https://images4.penguinrandomhouse.com/cover/9780593201275"
 status: "InProgress"
-rating: 
-source: "https://www.penguinrandomhouse.com/books/658407/how-to-sell-a-haunted-house-by-grady-hendrix/"
 date_published: "01/16/2024 19:52 -05:00"
 ---
+
+# How to Sell a Haunted House Review
+
+:::review
+item: "How to Sell a Haunted House"
+itemType: "book"
+rating: 0.0
+scale: 5.0
+summary: "."
+itemUrl: "https://www.penguinrandomhouse.com/books/658407/how-to-sell-a-haunted-house-by-grady-hendrix/"
+imageUrl: "https://images4.penguinrandomhouse.com/cover/9780593201275"
+additionalFields:
+  author: "Grady Hendrix"
+  isbn: "9780593201275"
+  status: "InProgress"
+:::
 
 ## Description
 
