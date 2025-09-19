@@ -2,10 +2,23 @@ module ContentViews
 
 open Giraffe.ViewEngine
 open System
+open System.Text.RegularExpressions
 open Domain
 open MarkdownService
 open ComponentViews
 open CustomBlocks
+
+// Helper function to extract image URL from processed review HTML content
+let extractImageFromReviewHtml (content: string) : string option =
+    try
+        // Look for img tags within custom-review-block divs
+        let pattern = @"<div class=""custom-review-block[^>]*>.*?<img[^>]*src=""([^""]+)""[^>]*>.*?</div>"
+        let match' = Regex.Match(content, pattern, RegexOptions.Singleline)
+        if match'.Success then
+            Some match'.Groups.[1].Value
+        else None
+    with
+    | _ -> None
 
 // Response body views for different IndieWeb response types
 let replyBodyView (post:Response) = 
@@ -175,25 +188,14 @@ let bookmarkPostView (bookmark: Bookmark) =
     ] 
 
 let bookPostView (book: Book) = 
-    // Try to extract review data from content if available
-    // For now, we'll use the processed content which includes custom blocks
-    let hasCustomReview = book.Content.Contains(":::review")
-    
     div [_class "card mb-4 mx-auto"] [
         div [_class "row"] [
             div [_class "col-md-4"] [
-                // For books with custom review blocks, try to extract imageUrl from the review block
-                // Otherwise fall back to cover from metadata
+                // Extract imageUrl from processed HTML review content, fall back to metadata, then to placeholder
                 let imageUrl = 
-                    if hasCustomReview then
-                        match extractReviewImageUrl book.Content with
-                        | Some reviewImageUrl -> reviewImageUrl
-                        | None -> 
-                            if String.IsNullOrWhiteSpace(book.Metadata.Cover) then
-                                "/assets/img/book-placeholder.png"  // Default book placeholder
-                            else
-                                book.Metadata.Cover
-                    else
+                    match extractImageFromReviewHtml book.Content with
+                    | Some reviewImageUrl -> reviewImageUrl
+                    | None -> 
                         if String.IsNullOrWhiteSpace(book.Metadata.Cover) then
                             "/assets/img/book-placeholder.png"  // Default book placeholder
                         else
@@ -210,7 +212,8 @@ let bookPostView (book: Book) =
                     // Rating should now come from updated metadata (includes custom block rating)
                     let displayRating = $"Rating: {book.Metadata.Rating:F1}/5"
                     
-                    if hasCustomReview then
+                    // Check if we have a custom review by looking for review HTML content
+                    if book.Content.Contains("custom-review-block") then
                         p [_class "card-text"] [
                             Text displayRating
                             Text " - "
