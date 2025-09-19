@@ -2,7 +2,6 @@
 title: "Agency"
 author: "William Gibson"
 isbn: "9781101986943"
-status: "Read"
 date_published: "02/19/2024 15:19 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://images4.penguinrandomhouse.com/cover/9781101986943"
 additionalFields:
   author: "William Gibson"
   isbn: "9781101986943"
-  status: "Read"
 :::
 
 ## Description

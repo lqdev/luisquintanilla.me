@@ -2,7 +2,6 @@
 title: "Simple: Conquering the Crisis of Complexity"
 author: "Alan Siegel and Irene Etzkorn"
 isbn: "9781455509683"
-status: "Read"
 date_published: "07/14/2024 13:19 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://www.hachettebookgroup.com/wp-content/uploads/2024/01/97814555
 additionalFields:
   author: "Alan Siegel and Irene Etzkorn"
   isbn: "9781455509683"
-  status: "Read"
 :::
 
 ## Description

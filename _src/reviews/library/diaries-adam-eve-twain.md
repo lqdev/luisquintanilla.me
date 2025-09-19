@@ -2,7 +2,6 @@
 title: "The Diaries of Adam and Eve"
 author: "Mark Twain"
 isbn: "9781420963748"
-status: "Read"
 date_published: "2025-01-19 18:45 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://prodimage.images-bn.com/pimages/9781420963748_p0_v1_s600x595.
 additionalFields:
   author: "Mark Twain"
   isbn: "9781420963748"
-  status: "Read"
 :::
 
 ## Description

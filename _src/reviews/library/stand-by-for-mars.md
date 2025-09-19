@@ -2,7 +2,6 @@
 title: "Stand by for Mars!"
 author: "Carey Rockwell"
 isbn: ""
-status: "Read"
 date_published: "09/05/2022 16:52 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://covers.openlibrary.org/b/id/12622152-M.jpg"
 additionalFields:
   author: "Carey Rockwell"
   isbn: ""
-  status: "Read"
 :::
 
 ## Description

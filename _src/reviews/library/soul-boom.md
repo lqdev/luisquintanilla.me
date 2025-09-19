@@ -2,7 +2,6 @@
 title: "Soul Boom: Why We Need a Spiritual Revolution"
 author: "Rainn Wilson"
 isbn: "9780306828287"
-status: "Read"
 date_published: "11/18/2024 16:59 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://www.hachettebookgroup.com/wp-content/uploads/2023/10/97803068
 additionalFields:
   author: "Rainn Wilson"
   isbn: "9780306828287"
-  status: "Read"
 :::
 
 ## Description

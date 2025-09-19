@@ -2,7 +2,6 @@
 title: "Slow Productivity: The Lost Art of Accomplishment Without Burnout"
 author: "Cal Newport"
 isbn: "9780593544853"
-status: "Read"
 date_published: "03/23/2024 12:42 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://images1.penguinrandomhouse.com/cover/9780593544853"
 additionalFields:
   author: "Cal Newport"
   isbn: "9780593544853"
-  status: "Read"
 :::
 
 ## Description

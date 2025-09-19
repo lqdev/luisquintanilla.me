@@ -2,7 +2,6 @@
 title: "Project Hail Mary"
 author: "Andy Weir"
 isbn: "9780593135211"
-status: "Read"
 date_published: "08/01/2024 20:12 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://images2.penguinrandomhouse.com/cover/9780593135211"
 additionalFields:
   author: "Andy Weir"
   isbn: "9780593135211"
-  status: "Read"
 :::
 
 ## Description

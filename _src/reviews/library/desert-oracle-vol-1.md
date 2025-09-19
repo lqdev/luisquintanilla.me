@@ -2,7 +2,6 @@
 title: "Desert Oracle: Volume 1"
 author: "Ken Layne"
 isbn: "9780374722388"
-status: "Read"
 date_published: "04/23/2024 22:03 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://s3.amazonaws.com/mcdbookimages/books/cover_images/000/000/224
 additionalFields:
   author: "Ken Layne"
   isbn: "9780374722388"
-  status: "Read"
 :::
 
 ## Description

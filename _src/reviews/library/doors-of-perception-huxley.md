@@ -2,7 +2,6 @@
 title: "The Doors of Perception"
 author: "Aldous Huxley"
 isbn: "9780061729072"
-status: "Read"
 date_published: "2025-01-12 19:35 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://prodimage.images-bn.com/pimages/9780061729072_p0_v4_s600x595.
 additionalFields:
   author: "Aldous Huxley"
   isbn: "9780061729072"
-  status: "Read"
 :::
 
 ## Description

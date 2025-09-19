@@ -2,7 +2,6 @@
 title: "AHH! That's What I Call Horror: An Anthology of '90s Horror"
 author: "Chelsea Pumpkins (Editor), S.E. Denton, Bridget D. Brave, Christopher O'Halloran, Caleb Stephens, Edith Lockwood, C.B. Jones, Mathew Wend, P.L. McMillan, Carson Winter, Patrick Barb, J.W. Donley, J.V. Gachs, Damien B.Raphael"
 isbn: "9798215796863"
-status: "Read"
 date_published: "06/18/2023 19:04 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goo
 additionalFields:
   author: "Chelsea Pumpkins (Editor), S.E. Denton, Bridget D. Brave, Christopher O'Halloran, Caleb Stephens, Edith Lockwood, C.B. Jones, Mathew Wend, P.L. McMillan, Carson Winter, Patrick Barb, J.W. Donley, J.V. Gachs, Damien B.Raphael"
   isbn: "9798215796863"
-  status: "Read"
 :::
 
 ## Description

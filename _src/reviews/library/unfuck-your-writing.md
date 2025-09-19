@@ -2,7 +2,6 @@
 title: "Unfuck Your Writing: Write Better, Reach Readers, & Share Your Inner World"
 author: "Joe Biel, Faith Harper"
 isbn: "9781648410147"
-status: "Read"
 date_published: "10/21/2022 20:57 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://microcosmpublishing.com/previews/unfuck-your-writing_lg.jpg"
 additionalFields:
   author: "Joe Biel, Faith Harper"
   isbn: "9781648410147"
-  status: "Read"
 :::
 
 ## Description

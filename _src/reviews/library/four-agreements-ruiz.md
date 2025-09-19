@@ -2,7 +2,6 @@
 title: "The Four Agreements"
 author: "Don Miguel Ruiz"
 isbn: "9781878424945"
-status: "Read"
 date_published: "08/30/2025 19:08 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://covers.openlibrary.org/b/id/15101528-L.jpg"
 additionalFields:
   author: "Don Miguel Ruiz"
   isbn: "9781878424945"
-  status: "Read"
 :::
 
 ## Description

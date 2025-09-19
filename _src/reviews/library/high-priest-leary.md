@@ -2,7 +2,6 @@
 title: "High Priest"
 author: "Timothy Leary"
 isbn: "9780914171805"
-status: "Read"
 date_published: "2025-02-16 20:50 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://prodimage.images-bn.com/pimages/9780914171805_p0_v3_s600x595.
 additionalFields:
   author: "Timothy Leary"
   isbn: "9780914171805"
-  status: "Read"
 :::
 
 ## Description

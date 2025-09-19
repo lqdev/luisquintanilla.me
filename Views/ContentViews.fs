@@ -208,7 +208,6 @@ let bookPostView (book: Book) =
                         h5 [_class "card-title"] [Text book.Metadata.Title]
                     ]
                     p [_class "card-text"] [Text $"Author: {book.Metadata.Author}"]
-                    p [_class "card-text"] [Text $"Status: {book.Metadata.Status}"]
                     // Rating should now come from updated metadata (includes custom block rating)
                     let displayRating = $"Rating: {book.Metadata.Rating:F1}/5"
                     

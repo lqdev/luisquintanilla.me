@@ -2,7 +2,6 @@
 title: "Lurking: How a Person Became a User"
 author: "Joanne McNeil"
 isbn: "9780374194338"
-status: "Read"
 date_published: "04/23/2024 22:03 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://s3.amazonaws.com/mcdbookimages/books/cover_images/000/000/155
 additionalFields:
   author: "Joanne McNeil"
   isbn: "9780374194338"
-  status: "Read"
 :::
 
 ## Description

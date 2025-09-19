@@ -2,7 +2,6 @@
 title: "Ten arguments for deleting your social media accounts right now"
 author: "Jaron Lanier"
 isbn: "9781250196682"
-status: "Read"
 date_published: "09/05/2022 16:52 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://covers.openlibrary.org/b/id/12504011-M.jpg"
 additionalFields:
   author: "Jaron Lanier"
   isbn: "9781250196682"
-  status: "Read"
 :::
 
 ## Description

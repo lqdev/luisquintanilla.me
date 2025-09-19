@@ -239,7 +239,6 @@ module Domain
         [<YamlMember(Alias="author")>] Author: string        
         [<YamlMember(Alias="isbn")>] Isbn: string
         [<YamlMember(Alias="cover")>] Cover: string
-        [<YamlMember(Alias="status")>] Status: string
         [<YamlMember(Alias="rating")>] Rating: float
         [<YamlMember(Alias="source")>] Source: string
         [<YamlMember(Alias="date_published")>] DatePublished: string

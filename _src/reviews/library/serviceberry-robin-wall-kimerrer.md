@@ -2,7 +2,6 @@
 title: "The Serviceberry"
 author: "Robin Wall Kimerrer"
 isbn: "9781668072240"
-status: "Read"
 date_published: "09/13/2025 14:03 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr97816680722
 additionalFields:
   author: "Robin Wall Kimerrer"
   isbn: "9781668072240"
-  status: "Read"
 :::
 
 ## Description
