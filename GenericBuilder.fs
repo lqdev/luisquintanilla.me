@@ -11,6 +11,8 @@ open System
 open System.IO
 open Giraffe.ViewEngine
 open Giraffe.ViewEngine.HtmlElements
+open Markdig
+open Markdig.Syntax
 
 /// Data structure for feed generation with both card and RSS item
 type FeedData<'T> = {
@@ -495,46 +497,75 @@ module BookProcessor =
         
         RenderCard = fun book ->
             let title = Html.escapeHtml book.Metadata.Title
-            let author = Html.escapeHtml book.Metadata.Author
-            let status = Html.escapeHtml book.Metadata.Status
             let url = sprintf "/reviews/%s/" book.FileName
             
-            // Display rating if available
+            // For image URL extraction, we need to read the raw file content since custom blocks are filtered out
+            let filePath = sprintf "_src/reviews/library/%s.md" book.FileName
+            let imageUrl = 
+                try
+                    if File.Exists(filePath) then
+                        let rawContent = File.ReadAllText(filePath)
+                        if rawContent.Contains(":::review") then
+                            match extractReviewImageUrl rawContent with
+                            | Some reviewImageUrl -> reviewImageUrl
+                            | None -> 
+                                if String.IsNullOrEmpty(book.Metadata.Cover) then
+                                    "/assets/img/book-placeholder.png"  // Default book placeholder
+                                else
+                                    book.Metadata.Cover
+                        else
+                            if String.IsNullOrEmpty(book.Metadata.Cover) then
+                                "/assets/img/book-placeholder.png"  // Default book placeholder
+                            else
+                                book.Metadata.Cover
+                    else
+                        "/assets/img/book-placeholder.png"  // Default when file not found
+                with
+                | _ -> "/assets/img/book-placeholder.png"  // Default on any error
+            
+            // Extract rating and scale from review blocks if available
+            let (ratingValue, ratingScale) = 
+                try
+                    if File.Exists(filePath) then
+                        let rawContent = File.ReadAllText(filePath)
+                        if rawContent.Contains(":::review") then
+                            // Try to get rating from review block
+                            let pipeline = 
+                                MarkdownPipelineBuilder()
+                                    |> useCustomBlocks
+                                    |> fun builder -> builder.Build()
+                            let document = Markdown.Parse(rawContent, pipeline)
+                            let customBlocks = extractCustomBlocks document
+                            
+                            match customBlocks.TryGetValue("review") with
+                            | true, reviewList when reviewList.Length > 0 ->
+                                match reviewList.[0] with
+                                | :? ReviewData as reviewData -> 
+                                    (reviewData.rating, reviewData.GetScale())
+                                | _ -> (book.Metadata.Rating, 5.0)
+                            | _ -> (book.Metadata.Rating, 5.0)
+                        else
+                            (book.Metadata.Rating, 5.0)
+                    else
+                        (book.Metadata.Rating, 5.0)
+                with
+                | _ -> (book.Metadata.Rating, 5.0)
+            
+            // Display rating with scale if available
             let ratingHtml = 
-                if book.Metadata.Rating > 0.0 then
-                    sprintf "<div class=\"rating\">Rating: %.1f/5</div>" book.Metadata.Rating
+                if ratingValue > 0.0 then
+                    sprintf "<div class=\"rating\">Rating: %.1f/%.1f</div>" ratingValue ratingScale
                 else ""
             
-            // Extract image URL from custom review blocks or fall back to cover metadata
-            let hasCustomReview = book.Content.Contains(":::review")
-            let imageUrl = 
-                if hasCustomReview then
-                    match extractReviewImageUrl book.Content with
-                    | Some reviewImageUrl -> reviewImageUrl
-                    | None -> 
-                        if String.IsNullOrEmpty(book.Metadata.Cover) then
-                            "/assets/img/book-placeholder.png"  // Default book placeholder
-                        else
-                            book.Metadata.Cover
-                else
-                    if String.IsNullOrEmpty(book.Metadata.Cover) then
-                        "/assets/img/book-placeholder.png"  // Default book placeholder
-                    else
-                        book.Metadata.Cover
-            
-            // Create book card with cover, title, author, status
+            // Create simplified timeline card with only: image, rating (no duplicate title, no status, no author)
             let coverHtml = 
                 if not (String.IsNullOrEmpty(imageUrl)) then
-                    sprintf "<img src=\"%s\" alt=\"%s cover\" class=\"book-cover\">" 
+                    sprintf "<img src=\"%s\" alt=\"%s cover\" class=\"review-image img-fluid\">" 
                         (Html.escapeHtml imageUrl) (Html.escapeHtml book.Metadata.Title)
                 else ""
             
-            Html.element "article" (Html.attribute "class" "book-card")
-                (coverHtml +
-                 Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
-                 Html.element "div" (Html.attribute "class" "author") ("by " + author) +
-                 Html.element "div" (Html.attribute "class" "status") status +
-                 ratingHtml)
+            // Simple content div without duplicate title links or extra metadata
+            sprintf "<div class=\"review-timeline-card\">%s%s</div>" coverHtml ratingHtml
         
         RenderRss = fun book ->
             // Create RSS item for book
