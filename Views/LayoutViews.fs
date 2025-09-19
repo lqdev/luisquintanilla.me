@@ -512,7 +512,14 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                         
                         // Clean content safely for JSON without truncation - full content display
                         let safeContent = 
-                            let content = convertMdToHtml item.Content  // Convert markdown to HTML first
+                            let content = 
+                                if item.ContentType = "reviews" then
+                                    // For reviews, use simplified content just like the initial timeline
+                                    createSimplifiedReviewContent item.Content
+                                else
+                                    // For other content types, use the standard processing
+                                    convertMdToHtml item.Content  // Convert markdown to HTML first
+                            
                             // Clean content similar to initial loading to ensure consistency
                             let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
                             let removeArticleEnd = removeArticleStart.Replace("</article>", "")

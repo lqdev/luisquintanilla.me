@@ -391,6 +391,29 @@ const TimelineProgressiveLoader = {
         return html;
     },
     
+    // Extract review item type from review content HTML (JavaScript version of F# extractReviewItemType)
+    extractReviewItemType(content) {
+        try {
+            if (content && content.includes('item-type-badge')) {
+                const startTag = 'item-type-badge badge bg-secondary">';
+                const endTag = '</span>';
+                const startIndex = content.indexOf(startTag);
+                if (startIndex >= 0) {
+                    const contentStart = startIndex + startTag.length;
+                    const endIndex = content.indexOf(endTag, contentStart);
+                    if (endIndex > contentStart) {
+                        const itemType = content.substring(contentStart, endIndex).trim();
+                        // Convert from uppercase back to proper case
+                        return itemType.charAt(0).toUpperCase() + itemType.slice(1).toLowerCase();
+                    }
+                }
+            }
+            return null;
+        } catch (ex) {
+            return null;
+        }
+    },
+
     generateContentCard(item) {
         const date = new Date(item.date);
         const formattedDate = date.toLocaleDateString('en-US', { 
@@ -399,23 +422,32 @@ const TimelineProgressiveLoader = {
             day: 'numeric' 
         });
         
-        const contentTypeBadge = {
-            'posts': 'Blog Post',
-            'notes': 'Note',
-            'responses': 'Response',
-            'bookmarks': 'Bookmark',
-            'reviews': 'Review',
-            'streams': 'Stream Recording',
-            'media': 'Media',
-            'snippets': 'Snippet',
-            'wiki': 'Wiki',
-            'presentations': 'Presentation',
-            // Specific response types
-            'star': 'Star',
-            'reply': 'Reply',
-            'reshare': 'Reshare',
-            'bookmark': 'Bookmark'
-        }[item.contentType] || item.contentType;
+        const contentTypeBadge = (() => {
+            if (item.contentType === 'reviews') {
+                // For reviews, try to extract the specific item type (Book, Movie, etc.)
+                const itemType = this.extractReviewItemType(item.content);
+                return itemType || 'Review';  // Fallback to generic "Review"
+            }
+            
+            // For other content types, use the standard mapping
+            return {
+                'posts': 'Blog Post',
+                'notes': 'Note',
+                'responses': 'Response',
+                'bookmarks': 'Bookmark',
+                'reviews': 'Review',
+                'streams': 'Stream Recording',
+                'media': 'Media',
+                'snippets': 'Snippet',
+                'wiki': 'Wiki',
+                'presentations': 'Presentation',
+                // Specific response types
+                'star': 'Star',
+                'reply': 'Reply',
+                'reshare': 'Reshare',
+                'bookmark': 'Bookmark'
+            }[item.contentType] || item.contentType;
+        })();
         
         const tagsHtml = item.tags && item.tags.length > 0 
             ? `<div class="p-category tags">
