@@ -19,83 +19,91 @@ let private sanitizeTagForUrl (tag: string) =
 /// Extract item type from review content for badge display
 let private extractReviewItemType (content: string) =
     try
-        let pipeline = 
-            MarkdownPipelineBuilder()
-                .Use(CustomBlockExtension())
-                .Build()
-        let document = Markdown.Parse(content, pipeline)
-        let customBlocks = extractCustomBlocks document
-        
-        match customBlocks.TryFind("review") with
-        | Some reviewList when reviewList.Length > 0 ->
-            match reviewList.[0] with
-            | :? ReviewData as reviewData ->
-                let itemType = reviewData.GetItemType()
-                // Capitalize the first letter for display
-                if not (String.IsNullOrWhiteSpace(itemType)) then
+        // The content is already HTML, so parse the rendered custom-review-block
+        if content.Contains("item-type-badge") then
+            // Extract the item type from the rendered HTML badge
+            let startTag = "item-type-badge badge bg-secondary\">"
+            let endTag = "</span>"
+            let startIndex = content.IndexOf(startTag)
+            if startIndex >= 0 then
+                let startIndex = startIndex + startTag.Length
+                let endIndex = content.IndexOf(endTag, startIndex)
+                if endIndex > startIndex then
+                    let itemType = content.Substring(startIndex, endIndex - startIndex).Trim()
+                    // Convert from uppercase back to proper case
                     Some (itemType.Substring(0, 1).ToUpper() + itemType.Substring(1).ToLower())
-                else
-                    None
-            | _ -> None
-        | _ -> None
+                else None
+            else None
+        else None
     with
-    | _ -> None
+    | ex -> 
+        None
 
 /// Extract simplified review content for timeline cards
-/// Shows only: title, image, rating, scale, and summary extracted from custom blocks
+/// Shows only: title, image, rating, scale, and summary extracted from already-rendered HTML
 let private createSimplifiedReviewContent (content: string) =
     try
-        // Parse the markdown content to extract custom blocks
-        let pipeline = 
-            MarkdownPipelineBuilder()
-                .Use(CustomBlockExtension())
-                .Build()
-        let document = Markdown.Parse(content, pipeline)
-        let customBlocks = extractCustomBlocks document
-        
-        // Extract review data from custom blocks
-        match customBlocks.TryFind("review") with
-        | Some reviewList when reviewList.Length > 0 ->
-            match reviewList.[0] with
-            | :? ReviewData as reviewData ->
-                let itemType = reviewData.GetItemType()
-                let imageHtml = 
-                    match reviewData.image_url with
-                    | Some imageUrl when not (String.IsNullOrWhiteSpace(imageUrl)) ->
+        // The content is already HTML with rendered custom-review-block
+        if content.Contains("custom-review-block") then
+            // Extract key information from the rendered HTML
+            let extractFromHtml (startPattern: string) (endPattern: string) =
+                let startIndex = content.IndexOf(startPattern)
+                if startIndex >= 0 then
+                    let startIndex = startIndex + startPattern.Length
+                    let endIndex = content.IndexOf(endPattern, startIndex)
+                    if endIndex > startIndex then
+                        Some (content.Substring(startIndex, endIndex - startIndex).Trim())
+                    else None
+                else None
+            
+            // Extract title
+            let title = extractFromHtml "review-title p-name\">" "</h3>"
+            
+            // Extract image
+            let imageHtml = 
+                if content.Contains("review-image") then
+                    extractFromHtml "review-image\"><img src=\"" "\" alt="
+                    |> Option.map (fun imgUrl -> 
+                        let altText = title |> Option.defaultValue "Review Item"
                         $"""<div class="simplified-review-image">
-                <img src="{escapeHtml imageUrl}" alt="{escapeHtml reviewData.item}" class="review-cover" style="max-width: 150px; height: auto;" />
-            </div>"""
-                    | _ -> ""
-                
-                let ratingHtml = 
-                    if reviewData.rating > 0.0 then
-                        let scale = reviewData.GetScale()
-                        let stars = String.replicate (int reviewData.rating) "★" + String.replicate (int (scale - reviewData.rating)) "☆"
+                <img src="{imgUrl}" alt="{altText}" class="review-cover" style="max-width: 150px; height: auto;" />
+            </div>""")
+                    |> Option.defaultValue ""
+                else ""
+            
+            // Extract rating
+            let ratingHtml = 
+                if content.Contains("review-rating") then
+                    extractFromHtml "review-rating p-rating\"><strong>Rating:</strong> " "</div>"
+                    |> Option.map (fun rating -> 
                         $"""<div class="simplified-review-rating">
-                <strong>Rating:</strong> {stars} ({reviewData.rating:F1}/{scale:F1})
-            </div>"""
-                    else ""
-                
-                let summaryHtml = 
-                    let summary = reviewData.GetSummary()
-                    if not (String.IsNullOrWhiteSpace(summary)) then
+                <strong>Rating:</strong> {rating}
+            </div>""")
+                    |> Option.defaultValue ""
+                else ""
+            
+            // Extract summary
+            let summaryHtml = 
+                if content.Contains("review-summary") then
+                    extractFromHtml "review-summary p-summary\">" "</div>"
+                    |> Option.map (fun summary -> 
                         $"""<div class="simplified-review-summary">
-                {escapeHtml summary}
-            </div>"""
-                    else ""
-                
-                // Construct the simplified review card
-                $"""<div class="simplified-review-card">
-            <h3 class="simplified-review-title">{escapeHtml reviewData.item}</h3>
+                {summary}
+            </div>""")
+                    |> Option.defaultValue ""
+                else ""
+            
+            let titleText = title |> Option.defaultValue "Review"
+            
+            // Construct the simplified review card
+            $"""<div class="simplified-review-card">
+            <h3 class="simplified-review-title">{titleText}</h3>
             {imageHtml}
             {ratingHtml}
             {summaryHtml}
         </div>"""
-            | _ -> 
-                // Fallback for non-ReviewData objects
-                ""
-        | _ -> 
-            // No review blocks found, return empty
+        else
+            // No custom review block found, return empty
             ""
     with
     | ex -> 
