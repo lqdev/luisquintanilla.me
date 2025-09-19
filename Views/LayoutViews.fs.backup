@@ -205,10 +205,11 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                                 a [ _class "u-url title-link"; _href properPermalink ] [ Text item.Title ]
                             ]
                             div [ _class "e-content card-content" ] [
-                                // Special handling for reviews - they already use simplified CardHtml from GenericBuilder
+                                // Special handling for reviews to show simplified content for timeline cards
                                 if item.ContentType = "reviews" then
-                                    // Reviews are already simplified in the unified feed processing, display as-is
-                                    rawText item.Content
+                                    // For reviews, create simplified timeline card content showing only essential info
+                                    let simplifiedReviewContent = createSimplifiedReviewContent item.Content
+                                    rawText simplifiedReviewContent
                                 else
                                     // Convert markdown content to HTML and clean it for other content types
                                     let cleanedContent = 
@@ -432,10 +433,12 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                                 a [ _class "u-url title-link"; _href properPermalink ] [ Text item.Title ]
                             ]
                             div [ _class "e-content card-content" ] [
-                                // Special handling for reviews - they already use simplified CardHtml from GenericBuilder
+                                // Special handling for reviews to show simplified content for timeline cards
                                 if item.ContentType = "reviews" then
-                                    // Reviews are already simplified in the unified feed processing, display as-is
-                                    rawText item.Content
+                                    // For reviews, create simplified timeline card content showing only essential info
+                                    let simplifiedReviewContent = createSimplifiedReviewContent item.Content
+                                    rawText simplifiedReviewContent
+                                else
                                     // Convert markdown content to HTML and clean it for other content types
                                     let cleanedContent = 
                                         let content = convertMdToHtml item.Content  // Convert markdown to HTML first
