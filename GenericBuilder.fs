@@ -505,11 +505,28 @@ module BookProcessor =
                     sprintf "<div class=\"rating\">Rating: %.1f/5</div>" book.Metadata.Rating
                 else ""
             
+            // Extract image URL from custom review blocks or fall back to cover metadata
+            let hasCustomReview = book.Content.Contains(":::review")
+            let imageUrl = 
+                if hasCustomReview then
+                    match extractReviewImageUrl book.Content with
+                    | Some reviewImageUrl -> reviewImageUrl
+                    | None -> 
+                        if String.IsNullOrEmpty(book.Metadata.Cover) then
+                            "/assets/img/book-placeholder.png"  // Default book placeholder
+                        else
+                            book.Metadata.Cover
+                else
+                    if String.IsNullOrEmpty(book.Metadata.Cover) then
+                        "/assets/img/book-placeholder.png"  // Default book placeholder
+                    else
+                        book.Metadata.Cover
+            
             // Create book card with cover, title, author, status
             let coverHtml = 
-                if not (String.IsNullOrEmpty(book.Metadata.Cover)) then
+                if not (String.IsNullOrEmpty(imageUrl)) then
                     sprintf "<img src=\"%s\" alt=\"%s cover\" class=\"book-cover\">" 
-                        (Html.escapeHtml book.Metadata.Cover) (Html.escapeHtml book.Metadata.Title)
+                        (Html.escapeHtml imageUrl) (Html.escapeHtml book.Metadata.Title)
                 else ""
             
             Html.element "article" (Html.attribute "class" "book-card")
