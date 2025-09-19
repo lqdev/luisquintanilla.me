@@ -180,7 +180,6 @@ type CustomBlockParser(blockType: string, createBlock: BlockParser -> ContainerB
         try
             let deserializer = 
                 DeserializerBuilder()
-                    .WithNamingConvention(UnderscoredNamingConvention.Instance)
                     .IgnoreUnmatchedProperties()
                     .Build()
             
@@ -207,7 +206,23 @@ type CustomBlockParser(blockType: string, createBlock: BlockParser -> ContainerB
                     mediaBlock.MediaItems <- mediaItems
             | :? ReviewBlock as reviewBlock ->
                 if not (String.IsNullOrWhiteSpace(reviewBlock.RawContent)) then
-                    let reviewData = deserializer.Deserialize<ReviewData>(reviewBlock.RawContent)
+                    // Fix indentation for YAML parsing (same as MediaBlock approach)
+                    let lines = reviewBlock.RawContent.Split([|'\n'|], StringSplitOptions.None)
+                    let fixedLines = 
+                        lines
+                        |> Array.filter (fun line -> not (String.IsNullOrWhiteSpace(line)))
+                        |> Array.map (fun line ->
+                            let trimmed = line.Trim()
+                            if trimmed.StartsWith("- ") then
+                                trimmed  // Keep list items at the beginning
+                            elif trimmed.Contains(":") && not (trimmed.StartsWith("- ")) then
+                                "  " + trimmed  // Indent properties with 2 spaces
+                            else
+                                trimmed
+                        )
+                    
+                    let cleanContent = String.concat "\n" fixedLines
+                    let reviewData = deserializer.Deserialize<ReviewData>(cleanContent)
                     reviewBlock.ReviewData <- Some reviewData
             | :? VenueBlock as venueBlock ->
                 if not (String.IsNullOrWhiteSpace(venueBlock.RawContent)) then
