@@ -441,8 +441,8 @@ module PresentationProcessor =
 
 /// Review data extractor for processing review blocks during parsing
 module ReviewDataExtractor =
-    /// Extract review data from raw markdown content
-    let extractReviewData (rawMarkdown: string) : (string option * float * float) =
+    /// Extract review data from raw markdown content including item type for badge display
+    let extractReviewData (rawMarkdown: string) : (string option * float * float * string option) =
         if not (String.IsNullOrWhiteSpace(rawMarkdown)) && rawMarkdown.Contains(":::review") then
             try
                 let pipeline = 
@@ -456,18 +456,18 @@ module ReviewDataExtractor =
                 | true, reviewList when reviewList.Length > 0 ->
                     match reviewList.[0] with
                     | :? ReviewData as reviewData -> 
-                        (reviewData.image_url, reviewData.rating, reviewData.GetScale())
-                    | _ -> (None, 0.0, 5.0)
-                | _ -> (None, 0.0, 5.0)
+                        (reviewData.image_url, reviewData.rating, reviewData.GetScale(), reviewData.item_type)
+                    | _ -> (None, 0.0, 5.0, None)
+                | _ -> (None, 0.0, 5.0, None)
             with
-            | _ -> (None, 0.0, 5.0)
+            | _ -> (None, 0.0, 5.0, None)
         else
-            (None, 0.0, 5.0)
+            (None, 0.0, 5.0, None)
 
 /// Book content processor
 module BookProcessor =
-    // Cache for review data extracted during parsing
-    let private reviewDataCache = System.Collections.Concurrent.ConcurrentDictionary<string, (string option * float * float)>()
+    // Cache for review data extracted during parsing - now includes item type
+    let private reviewDataCache = System.Collections.Concurrent.ConcurrentDictionary<string, (string option * float * float * string option)>()
     
     // Helper function to extract rating from custom review blocks using regex (for backward compatibility)
     let private extractRatingFromContent (content: string) : float option =
@@ -500,10 +500,10 @@ module BookProcessor =
                     let fileName = Path.GetFileNameWithoutExtension(filePath)
                     
                     // Extract all review data from raw markdown during parsing
-                    let (reviewImageUrl, reviewRating, reviewScale) = ReviewDataExtractor.extractReviewData parsedDoc.RawMarkdown
+                    let (reviewImageUrl, reviewRating, reviewScale, reviewItemType) = ReviewDataExtractor.extractReviewData parsedDoc.RawMarkdown
                     
                     // Store review data in cache for later use in rendering
-                    reviewDataCache.[fileName] <- (reviewImageUrl, reviewRating, reviewScale)
+                    reviewDataCache.[fileName] <- (reviewImageUrl, reviewRating, reviewScale, reviewItemType)
                     
                     // Extract rating from custom review blocks if available in raw markdown
                     let rating = 
@@ -536,10 +536,10 @@ module BookProcessor =
             let url = sprintf "/reviews/%s/" book.FileName
             
             // Get review data from cache (extracted during parsing)
-            let (reviewImageUrlOpt, reviewRating, reviewScale) = 
+            let (reviewImageUrlOpt, reviewRating, reviewScale, reviewItemType) = 
                 match reviewDataCache.TryGetValue(book.FileName) with
                 | (true, data) -> data
-                | _ -> (None, book.Metadata.Rating, 5.0)
+                | _ -> (None, book.Metadata.Rating, 5.0, None)
             
             // Determine image URL with proper fallbacks
             let imageUrl = 
@@ -562,7 +562,15 @@ module BookProcessor =
                     sprintf "<div class=\"rating\">Rating: %.1f/%.1f</div>" ratingValue ratingScaleValue
                 else ""
             
-            // Create simplified timeline card with only: image, rating (no duplicate title, no status, no author)
+            // Create item type badge for timeline if available
+            let itemTypeBadgeHtml = 
+                match reviewItemType with
+                | Some itemType when not (String.IsNullOrWhiteSpace(itemType)) ->
+                    let capitalizedType = itemType.ToUpper()
+                    sprintf "<span class=\"item-type-badge badge bg-secondary\">%s</span>" capitalizedType
+                | _ -> ""
+            
+            // Create simplified timeline card with only: image, rating, item type badge (no duplicate title, no status, no author)
             let coverHtml = 
                 if not (String.IsNullOrEmpty(imageUrl)) then
                     sprintf "<img src=\"%s\" alt=\"%s cover\" class=\"review-image img-fluid\">" 
@@ -570,7 +578,7 @@ module BookProcessor =
                 else ""
             
             // Simple content div without duplicate title links or extra metadata
-            sprintf "<div class=\"review-timeline-card\">%s%s</div>" coverHtml ratingHtml
+            sprintf "<div class=\"review-timeline-card\">%s%s%s</div>" itemTypeBadgeHtml coverHtml ratingHtml
         
         RenderRss = fun book ->
             // Create RSS item for book
