@@ -5,6 +5,7 @@ open System
 open Domain
 open MarkdownService
 open ComponentViews
+open CustomBlocks
 
 // Response body views for different IndieWeb response types
 let replyBodyView (post:Response) = 
@@ -181,13 +182,22 @@ let bookPostView (book: Book) =
     div [_class "card mb-4 mx-auto"] [
         div [_class "row"] [
             div [_class "col-md-4"] [
-                // For books with custom review blocks, try to use imageUrl if available
+                // For books with custom review blocks, try to extract imageUrl from the review block
                 // Otherwise fall back to cover from metadata
                 let imageUrl = 
-                    if String.IsNullOrWhiteSpace(book.Metadata.Cover) then
-                        "/assets/img/book-placeholder.png"  // Default book placeholder
+                    if hasCustomReview then
+                        match extractReviewImageUrl book.Content with
+                        | Some reviewImageUrl -> reviewImageUrl
+                        | None -> 
+                            if String.IsNullOrWhiteSpace(book.Metadata.Cover) then
+                                "/assets/img/book-placeholder.png"  // Default book placeholder
+                            else
+                                book.Metadata.Cover
                     else
-                        book.Metadata.Cover
+                        if String.IsNullOrWhiteSpace(book.Metadata.Cover) then
+                            "/assets/img/book-placeholder.png"  // Default book placeholder
+                        else
+                            book.Metadata.Cover
                 img [_src imageUrl; _class "img-fluid"; _alt book.Metadata.Title]
             ]
             div [_class "col-md-8"] [
@@ -197,17 +207,20 @@ let bookPostView (book: Book) =
                     ]
                     p [_class "card-text"] [Text $"Author: {book.Metadata.Author}"]
                     p [_class "card-text"] [Text $"Status: {book.Metadata.Status}"]
-                    // For books with custom review blocks, indicate that rating is in the full review
+                    // Rating should now come from updated metadata (includes custom block rating)
+                    let displayRating = $"Rating: {book.Metadata.Rating:F1}/5"
+                    
                     if hasCustomReview then
                         p [_class "card-text"] [
-                            Text "Rating: "
+                            Text displayRating
+                            Text " - "
                             a [_href $"/reviews/{book.FileName}"; _class "text-decoration-none"] [
                                 Text "View Review"
                                 span [_class "ms-1"] [Text "→"]
                             ]
                         ]
                     else
-                        p [_class "card-text"] [Text $"Rating: {book.Metadata.Rating}/5"]
+                        p [_class "card-text"] [Text displayRating]
                 ]                
             ]
         ]

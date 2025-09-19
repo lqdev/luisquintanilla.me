@@ -5,6 +5,7 @@ open ASTParsing
 open CustomBlocks
 open BlockRenderers
 open TagService
+open MarkdownService
 open System.Xml.Linq
 open System
 open System.IO
@@ -439,15 +440,46 @@ module PresentationProcessor =
 
 /// Book content processor
 module BookProcessor =
+    // Helper function to extract rating from custom review blocks using regex
+    let private extractRatingFromContent (content: string) : float option =
+        try
+            // Use regex to find rating in :::review blocks
+            let reviewBlockPattern = @":::review\s*\n(.*?)\n:::"
+            let ratingPattern = @"rating:\s*([\d.]+)"
+            
+            let reviewMatches = System.Text.RegularExpressions.Regex.Matches(content, reviewBlockPattern, System.Text.RegularExpressions.RegexOptions.Singleline)
+            
+            if reviewMatches.Count > 0 then
+                let reviewContent = reviewMatches.[0].Groups.[1].Value
+                let ratingMatch = System.Text.RegularExpressions.Regex.Match(reviewContent, ratingPattern)
+                
+                if ratingMatch.Success then
+                    match System.Double.TryParse(ratingMatch.Groups.[1].Value) with
+                    | (true, rating) -> Some rating
+                    | _ -> None
+                else None
+            else None
+        with
+        | _ -> None
+
     let create() : ContentProcessor<Book> = {
         Parse = fun filePath ->
             match parseBookFromFile filePath with
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
+                    // Extract rating from custom review blocks if available in raw markdown
+                    let rating = 
+                        match extractRatingFromContent parsedDoc.RawMarkdown with
+                        | Some customRating -> customRating
+                        | None -> metadata.Rating
+                    
+                    // Update metadata with extracted rating
+                    let updatedMetadata = { metadata with Rating = rating }
+                    
                     Some {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
-                        Metadata = metadata
+                        Metadata = updatedMetadata
                         Content = parsedDoc.TextContent
                     }
                 | None -> None
@@ -1183,7 +1215,8 @@ module UnifiedFeeds =
                 // Use clean CardHtml instead of RSS description
                 let title = feedData.Content.Metadata.Title
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.CardHtml  // Clean HTML instead of CDATA-wrapped RSS content
+                // For reviews, use the processed content that includes custom review blocks instead of CardHtml
+                let content = convertMdToHtml feedData.Content.Content
                 let date = feedData.Content.Metadata.DatePublished
                 let tags = [||]  // Books don't have explicit tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "reviews"; Tags = tags; RssXml = rssXml }

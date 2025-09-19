@@ -526,6 +526,25 @@ type CustomBlockExtension() =
 let useCustomBlocks (pipelineBuilder: MarkdownPipelineBuilder) =
     pipelineBuilder.Use<CustomBlockExtension>()
 
+// Helper function to extract image URL from review blocks in content
+let extractReviewImageUrl (content: string) : string option =
+    try
+        let pipeline = 
+            MarkdownPipelineBuilder()
+                |> useCustomBlocks
+                |> fun builder -> builder.Build()
+        let document = Markdown.Parse(content, pipeline)
+        let customBlocks = extractCustomBlocks document
+        
+        match customBlocks.TryGetValue("review") with
+        | true, reviewList when reviewList.Length > 0 ->
+            match reviewList.[0] with
+            | :? ReviewData as reviewData -> reviewData.image_url
+            | _ -> None
+        | _ -> None
+    with
+    | _ -> None
+
 /// Parse custom blocks using provided block parsers (Phase 1C specification)
 let parseCustomBlocks (blockParsers: Map<string, string -> obj list>) (doc: MarkdownDocument) : Map<string, obj list> =
     let results = System.Collections.Generic.Dictionary<string, obj list>()
