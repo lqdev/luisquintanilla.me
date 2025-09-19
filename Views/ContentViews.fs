@@ -174,10 +174,21 @@ let bookmarkPostView (bookmark: Bookmark) =
     ] 
 
 let bookPostView (book: Book) = 
+    // Try to extract review data from content if available
+    // For now, we'll use the processed content which includes custom blocks
+    let hasCustomReview = book.Content.Contains(":::review")
+    
     div [_class "card mb-4 mx-auto"] [
         div [_class "row"] [
             div [_class "col-md-4"] [
-                img [_src book.Metadata.Cover]
+                // For books with custom review blocks, try to use imageUrl if available
+                // Otherwise fall back to cover from metadata
+                let imageUrl = 
+                    if String.IsNullOrWhiteSpace(book.Metadata.Cover) then
+                        "/assets/img/book-placeholder.png"  // Default book placeholder
+                    else
+                        book.Metadata.Cover
+                img [_src imageUrl; _class "img-fluid"; _alt book.Metadata.Title]
             ]
             div [_class "col-md-8"] [
                 div [_class "card-body"] [
@@ -186,7 +197,17 @@ let bookPostView (book: Book) =
                     ]
                     p [_class "card-text"] [Text $"Author: {book.Metadata.Author}"]
                     p [_class "card-text"] [Text $"Status: {book.Metadata.Status}"]
-                    p [_class "card-text"] [Text $"Rating: {book.Metadata.Rating}/5"]
+                    // For books with custom review blocks, indicate that rating is in the full review
+                    if hasCustomReview then
+                        p [_class "card-text"] [
+                            Text "Rating: "
+                            a [_href $"/reviews/{book.FileName}"; _class "text-decoration-none"] [
+                                Text "View Review"
+                                span [_class "ms-1"] [Text "→"]
+                            ]
+                        ]
+                    else
+                        p [_class "card-text"] [Text $"Rating: {book.Metadata.Rating}/5"]
                 ]                
             ]
         ]

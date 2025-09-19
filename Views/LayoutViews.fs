@@ -589,6 +589,7 @@ let reviewPageView (title:string) (content:string) (date:string) (fileName:strin
             ]
             
             div [ _class "e-content post-content" ] [
+                // Use rawText for content since it's already processed through Markdown with custom blocks
                 rawText content
             ]
             
