@@ -613,8 +613,13 @@ let reviewPageView (title:string) (content:string) (date:string) (fileName:strin
             ]
             
             div [ _class "e-content post-content" ] [
-                // Use rawText for content since it's already processed through Markdown with custom blocks
-                rawText content
+                // For reviews, remove duplicate H1 titles from content to prevent duplication with page header
+                let cleanedContent = 
+                    let htmlContent = convertMdToHtml content
+                    // Remove H1 titles that would duplicate the page title
+                    let removeTitles = System.Text.RegularExpressions.Regex.Replace(htmlContent, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+                    removeTitles
+                rawText cleanedContent
             ]
             
             footer [ _class "post-footer" ] [
