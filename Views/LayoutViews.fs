@@ -9,32 +9,102 @@ open CollectionViews
 open MarkdownService
 open Markdig
 open Markdig.Syntax
+open CustomBlocks
+open HtmlHelpers
 
 /// Sanitize tag names for URL usage while preserving display text
 let private sanitizeTagForUrl (tag: string) =
     tag.Replace("#", "sharp").Replace("/", "-").Replace(" ", "-").Replace("\"", "")
 
+/// Extract item type from review content for badge display
+let private extractReviewItemType (content: string) =
+    try
+        // The content is already HTML, so parse the rendered custom-review-block
+        if content.Contains("item-type-badge") then
+            // Extract the item type from the rendered HTML badge
+            let startTag = "item-type-badge badge bg-secondary\">"
+            let endTag = "</span>"
+            let startIndex = content.IndexOf(startTag)
+            if startIndex >= 0 then
+                let startIndex = startIndex + startTag.Length
+                let endIndex = content.IndexOf(endTag, startIndex)
+                if endIndex > startIndex then
+                    let itemType = content.Substring(startIndex, endIndex - startIndex).Trim()
+                    // Convert from uppercase back to proper case
+                    Some (itemType.Substring(0, 1).ToUpper() + itemType.Substring(1).ToLower())
+                else None
+            else None
+        else None
+    with
+    | ex -> 
+        None
+
 /// Extract simplified review content for timeline cards
-/// Shows only: title, image, rating, scale, and summary
+/// Shows only: title, image, rating, scale, and summary extracted from already-rendered HTML
 let private createSimplifiedReviewContent (content: string) =
     try
-        // For now, create a simplified fallback that works with the book metadata structure
-        // The real review data from custom blocks would need to be passed differently
-        // This shows the structure is working - the actual data extraction will be improved later
-        """
-        <div class="simplified-review-card">
-            <h3 class="simplified-review-title">Book Review</h3>
-            <div class="simplified-review-image">
-                <img src="" alt="Book Cover" class="review-cover" style="max-width: 150px; height: auto;" />
-            </div>
-            <div class="simplified-review-rating">
-                <strong>Rating:</strong> ★★★★ (4.8/5.0)
-            </div>
-            <div class="simplified-review-summary">
-                Summary coming soon...
-            </div>
-        </div>
-        """
+        // The content is already HTML with rendered custom-review-block
+        if content.Contains("custom-review-block") then
+            // Extract key information from the rendered HTML
+            let extractFromHtml (startPattern: string) (endPattern: string) =
+                let startIndex = content.IndexOf(startPattern)
+                if startIndex >= 0 then
+                    let startIndex = startIndex + startPattern.Length
+                    let endIndex = content.IndexOf(endPattern, startIndex)
+                    if endIndex > startIndex then
+                        Some (content.Substring(startIndex, endIndex - startIndex).Trim())
+                    else None
+                else None
+            
+            // Extract title
+            let title = extractFromHtml "review-title p-name\">" "</h3>"
+            
+            // Extract image
+            let imageHtml = 
+                if content.Contains("review-image") then
+                    extractFromHtml "review-image\"><img src=\"" "\" alt="
+                    |> Option.map (fun imgUrl -> 
+                        let altText = title |> Option.defaultValue "Review Item"
+                        $"""<div class="simplified-review-image">
+                <img src="{imgUrl}" alt="{altText}" class="review-cover" style="max-width: 150px; height: auto;" />
+            </div>""")
+                    |> Option.defaultValue ""
+                else ""
+            
+            // Extract rating
+            let ratingHtml = 
+                if content.Contains("review-rating") then
+                    extractFromHtml "review-rating p-rating\"><strong>Rating:</strong> " "</div>"
+                    |> Option.map (fun rating -> 
+                        $"""<div class="simplified-review-rating">
+                <strong>Rating:</strong> {rating}
+            </div>""")
+                    |> Option.defaultValue ""
+                else ""
+            
+            // Extract summary
+            let summaryHtml = 
+                if content.Contains("review-summary") then
+                    extractFromHtml "review-summary p-summary\">" "</div>"
+                    |> Option.map (fun summary -> 
+                        $"""<div class="simplified-review-summary">
+                {summary}
+            </div>""")
+                    |> Option.defaultValue ""
+                else ""
+            
+            let titleText = title |> Option.defaultValue "Review"
+            
+            // Construct the simplified review card
+            $"""<div class="simplified-review-card">
+            <h3 class="simplified-review-title">{titleText}</h3>
+            {imageHtml}
+            {ratingHtml}
+            {summaryHtml}
+        </div>"""
+        else
+            // No custom review block found, return empty
+            ""
     with
     | ex -> 
         // On any error, return empty content to avoid breaking the page
@@ -113,7 +183,11 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                                           | "notes" -> "Note"
                                           | "responses" -> "Response"
                                           | "bookmarks" -> "Bookmark"
-                                          | "reviews" -> "Review"
+                                          | "reviews" -> 
+                                              // For reviews, try to extract the specific item type (Book, Movie, etc.)
+                                              match extractReviewItemType item.Content with
+                                              | Some itemType -> itemType
+                                              | None -> "Review"  // Fallback to generic "Review"
                                           | "streams" -> "Stream Recording"
                                           | "media" -> "Media"
                                           // Specific response types
@@ -337,7 +411,11 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                                           | "notes" -> "Note"
                                           | "responses" -> "Response"
                                           | "bookmarks" -> "Bookmark"
-                                          | "reviews" -> "Review"
+                                          | "reviews" -> 
+                                              // For reviews, try to extract the specific item type (Book, Movie, etc.)
+                                              match extractReviewItemType item.Content with
+                                              | Some itemType -> itemType
+                                              | None -> "Review"  // Fallback to generic "Review"
                                           | "streams" -> "Stream Recording"
                                           | "media" -> "Media"
                                           // Specific response types
