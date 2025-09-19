@@ -2,12 +2,25 @@
 title: "Notes From The Undergrond"
 author: "Fyodor Dostoyevsky"
 isbn: "9781400041916"
-cover: "https://images3.penguinrandomhouse.com/cover/9781400041916"
 status: "InProgress"
-rating: 
-source: "https://www.penguinrandomhouse.com/books/678714/notes-from-underground-by-fyodor-dostoevsky-translated-by-richard-pevear-and-larissa-volokhonsky-introduction-by-richard-pevear/"
 date_published: "03/31/2024 19:31 -05:00"
 ---
+
+# Notes From The Undergrond Review
+
+:::review
+item: "Notes From The Undergrond"
+itemType: "book"
+rating: 0.0
+scale: 5.0
+summary: "."
+itemUrl: "https://www.penguinrandomhouse.com/books/678714/notes-from-underground-by-fyodor-dostoevsky-translated-by-richard-pevear-and-larissa-volokhonsky-introduction-by-richard-pevear/"
+imageUrl: "https://images3.penguinrandomhouse.com/cover/9781400041916"
+additionalFields:
+  author: "Fyodor Dostoyevsky"
+  isbn: "9781400041916"
+  status: "InProgress"
+:::
 
 ## Description
 

@@ -1,13 +1,26 @@
 ---
 title: "On Writing"
-author: Stephen King
+author: "Stephen King"
 isbn: "9780606231862"
-cover: "https://covers.openlibrary.org/b/id/11942411-M.jpg"
-status: InProgress
-rating: 
-source: "https://openlibrary.org/works/OL25000790W/On_Writing"
+status: "InProgress"
 date_published: "10/09/2022 19:10 -05:00"
 ---
+
+# On Writing Review
+
+:::review
+item: "On Writing"
+itemType: "book"
+rating: 0.0
+scale: 5.0
+summary: "."
+itemUrl: "https://openlibrary.org/works/OL25000790W/On_Writing"
+imageUrl: "https://covers.openlibrary.org/b/id/11942411-M.jpg"
+additionalFields:
+  author: "Stephen King"
+  isbn: "9780606231862"
+  status: "InProgress"
+:::
 
 ## Description
 

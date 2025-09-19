@@ -2,12 +2,25 @@
 title: "The Internet Con: How to Seize the Means of Computation "
 author: "Cory Doctorow"
 isbn: "9781804291245"
-cover: "https://covers.openlibrary.org/b/id/14418873-L.jpg"
 status: "Read"
-rating: "4"
-source: "https://openlibrary.org/works/OL28800590W/The_Internet_Con?edition=key%3A/books/OL39552949M"
 date_published: "09/28/2023 20:27 -05:00"
 ---
+
+# The Internet Con: How to Seize the Means of Computation  Review
+
+:::review
+item: "The Internet Con: How to Seize the Means of Computation "
+itemType: "book"
+rating: 4.0
+scale: 5.0
+summary: "Good book on how user control has been eroding over time resulting in walled gardens and large corpo..."
+itemUrl: "https://openlibrary.org/works/OL28800590W/The_Internet_Con?edition=key%3A/books/OL39552949M"
+imageUrl: "https://covers.openlibrary.org/b/id/14418873-L.jpg"
+additionalFields:
+  author: "Cory Doctorow"
+  isbn: "9781804291245"
+  status: "Read"
+:::
 
 ## Description
 

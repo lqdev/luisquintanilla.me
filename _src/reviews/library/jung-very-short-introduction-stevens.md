@@ -2,12 +2,25 @@
 title: "Jung: A Very Short Introduction"
 author: "Anthony Stevens"
 isbn: "9780192854582"
-cover: "https://covers.powells.com/9780192854582.jpg"
 status: "Read"
-rating: 4.8
-source: "http://anthonystevens.co.uk/jung.htm"
 date_published: "09/27/2024 07:47 -05:00"
 ---
+
+# Jung: A Very Short Introduction Review
+
+:::review
+item: "Jung: A Very Short Introduction"
+itemType: "book"
+rating: 4.8
+scale: 5.0
+summary: "Anthony Stevens tries to capture Jung's complex work and distill it into less than 200 pages."
+itemUrl: "http://anthonystevens.co.uk/jung.htm"
+imageUrl: "https://covers.powells.com/9780192854582.jpg"
+additionalFields:
+  author: "Anthony Stevens"
+  isbn: "9780192854582"
+  status: "Read"
+:::
 
 ## Description
 

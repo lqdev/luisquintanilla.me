@@ -74,11 +74,12 @@ let private extractTextContentFromAst (doc: MarkdownDocument) : string =
     let writer = new StringWriter()
     let renderer = new Markdig.Renderers.HtmlRenderer(writer)
     
-    // Render all blocks except custom block types
-    // Note: Custom blocks will be handled separately in CustomBlocks.fs
+    // Add custom block renderers to ensure proper rendering
+    renderer.ObjectRenderers.Add(MediaBlockHtmlRenderer())
+    renderer.ObjectRenderers.Add(ReviewBlockHtmlRenderer())
+    
+    // Render all blocks including custom blocks
     for block in doc do
-        // For now, render all blocks - custom block filtering will be added
-        // when CustomBlocks.fs is implemented
         renderer.Render(block) |> ignore
     
     writer.ToString()

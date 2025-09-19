@@ -2,12 +2,25 @@
 title: "A City on Mars - Can we settle space, should we settle space, and have we really thought this through?"
 author: "Kelly Weinersmith and Zach Weinersmith"
 isbn: "9781984881724"
-cover: "https://images3.penguinrandomhouse.com/cover/9781984881724"
 status: "Wishlist"
-rating: 
-source: "https://www.penguinrandomhouse.com/books/639449/a-city-on-mars-by-kelly-and-zach-weinersmith/"
 date_published: "01/16/2024 19:52 -05:00"
 ---
+
+# A City on Mars - Can we settle space, should we settle space, and have we really thought this through? Review
+
+:::review
+item: "A City on Mars - Can we settle space, should we settle space, and have we really thought this through?"
+itemType: "book"
+rating: 0.0
+scale: 5.0
+summary: "."
+itemUrl: "https://www.penguinrandomhouse.com/books/639449/a-city-on-mars-by-kelly-and-zach-weinersmith/"
+imageUrl: "https://images3.penguinrandomhouse.com/cover/9781984881724"
+additionalFields:
+  author: "Kelly Weinersmith and Zach Weinersmith"
+  isbn: "9781984881724"
+  status: "Wishlist"
+:::
 
 ## Description
 

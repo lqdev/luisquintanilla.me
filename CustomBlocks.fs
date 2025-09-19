@@ -28,13 +28,40 @@ type MediaItem = {
 
 [<CLIMutable>]
 type ReviewData = {
-    item_title: string
+    // Core review fields
+    [<YamlDotNet.Serialization.YamlMember(Alias="item")>]
+    item: string  // Name of the item being reviewed (e.g., "The Four Agreements", "Blade Runner 2049")
+    [<YamlDotNet.Serialization.YamlMember(Alias="itemType")>]
+    item_type: string option  // Type of review: "book", "movie", "music", "business", "product"
+    [<YamlDotNet.Serialization.YamlMember(Alias="rating")>]
     rating: float
-    max_rating: float
-    review_text: string
-    item_url: string option
-    review_date: string option
+    [<YamlDotNet.Serialization.YamlMember(Alias="scale")>]
+    scale: float option  // Rating scale (defaults to 5.0)
+    [<YamlDotNet.Serialization.YamlMember(Alias="summary")>]
+    summary: string option  // Brief review summary
+    
+    // Optional structured feedback
+    [<YamlDotNet.Serialization.YamlMember(Alias="pros")>]
+    pros: string array option
+    [<YamlDotNet.Serialization.YamlMember(Alias="cons")>]
+    cons: string array option
+    
+    // Optional metadata and links
+    [<YamlDotNet.Serialization.YamlMember(Alias="itemUrl")>]
+    item_url: string option  // Link to the item's website or URL for reference
+    [<YamlDotNet.Serialization.YamlMember(Alias="imageUrl")>]
+    image_url: string option  // Thumbnail/cover image URL for display
+    [<YamlDotNet.Serialization.YamlMember(Alias="additionalFields")>]
+    additional_fields: System.Collections.Generic.Dictionary<string, obj> option  // Type-specific metadata
 }
+with
+    // Helper methods for clean API
+    member this.GetItemType() = 
+        this.item_type |> Option.defaultValue "unknown"
+    member this.GetScale() = 
+        this.scale |> Option.defaultValue 5.0
+    member this.GetSummary() = 
+        this.summary |> Option.defaultValue ""
 
 [<CLIMutable>]
 type VenueData = {
@@ -288,6 +315,80 @@ type MediaBlockHtmlRenderer() =
         let html = HtmlHelpers.element "div" (HtmlHelpers.attribute "class" "custom-media-block") renderedItems
         renderer.Write(html: string) |> ignore
 
+/// HTML renderer for ReviewBlock
+type ReviewBlockHtmlRenderer() =
+    inherit HtmlObjectRenderer<ReviewBlock>()
+    
+    override _.Write(renderer: HtmlRenderer, block: ReviewBlock) : unit =
+        match block.ReviewData with
+        | Some reviewData ->
+            // Enhanced HTML rendering with proper structure
+            let itemType = reviewData.GetItemType()
+            let scale = reviewData.GetScale()
+            let summary = reviewData.GetSummary()
+            
+            // Start review block container
+            renderer.Write("<div class=\"custom-review-block h-review\">") |> ignore
+            
+            // Item title with type badge
+            renderer.Write($"<div class=\"review-header\">") |> ignore
+            renderer.Write($"<h3 class=\"review-title p-name\">{HtmlHelpers.escapeHtml reviewData.item}</h3>") |> ignore
+            if itemType <> "unknown" then
+                renderer.Write($"<span class=\"item-type-badge badge bg-secondary\">{HtmlHelpers.escapeHtml (itemType.ToUpperInvariant())}</span>") |> ignore
+            renderer.Write("</div>") |> ignore
+            
+            // Image if available
+            match reviewData.image_url with
+            | Some imageUrl when not (String.IsNullOrWhiteSpace(imageUrl)) ->
+                renderer.Write($"<div class=\"review-image\"><img src=\"{HtmlHelpers.escapeHtml imageUrl}\" alt=\"{HtmlHelpers.escapeHtml reviewData.item}\" class=\"review-thumbnail img-fluid\" /></div>") |> ignore
+            | _ -> ()
+            
+            // Rating display
+            if reviewData.rating > 0.0 then
+                let stars = String.replicate (int reviewData.rating) "★" + String.replicate (int (scale - reviewData.rating)) "☆"
+                renderer.Write($"<div class=\"review-rating p-rating\"><strong>Rating:</strong> {stars} ({reviewData.rating:F1}/{scale:F1})</div>") |> ignore
+            
+            // Summary
+            if not (String.IsNullOrWhiteSpace(summary)) then
+                renderer.Write($"<div class=\"review-summary p-summary\">{HtmlHelpers.escapeHtml summary}</div>") |> ignore
+            
+            // Pros and cons
+            match reviewData.pros with
+            | Some prosArray when prosArray.Length > 0 ->
+                renderer.Write("<div class=\"review-pros\"><h4>Pros:</h4><ul>") |> ignore
+                for pro in prosArray do
+                    renderer.Write($"<li>{HtmlHelpers.escapeHtml pro}</li>") |> ignore
+                renderer.Write("</ul></div>") |> ignore
+            | _ -> ()
+            
+            match reviewData.cons with
+            | Some consArray when consArray.Length > 0 ->
+                renderer.Write("<div class=\"review-cons\"><h4>Cons:</h4><ul>") |> ignore
+                for con in consArray do
+                    renderer.Write($"<li>{HtmlHelpers.escapeHtml con}</li>") |> ignore
+                renderer.Write("</ul></div>") |> ignore
+            | _ -> ()
+            
+            // Additional fields
+            match reviewData.additional_fields with
+            | Some fields when fields.Count > 0 ->
+                renderer.Write("<div class=\"review-additional-fields\"><h4>Additional Information:</h4>") |> ignore
+                for kvp in fields do
+                    renderer.Write($"<div class=\"additional-field\"><strong>{HtmlHelpers.escapeHtml kvp.Key}:</strong> {HtmlHelpers.escapeHtml (kvp.Value.ToString())}</div>") |> ignore
+                renderer.Write("</div>") |> ignore
+            | _ -> ()
+            
+            // Item URL
+            match reviewData.item_url with
+            | Some url when not (String.IsNullOrWhiteSpace(url)) ->
+                renderer.Write($"<div class=\"review-url\"><a href=\"{HtmlHelpers.escapeHtml url}\" class=\"u-url\" target=\"_blank\">View Item</a></div>") |> ignore
+            | _ -> ()
+            
+            // Close review block container
+            renderer.Write("</div>") |> ignore
+        | None ->
+            renderer.Write("<div class=\"review-block-empty\"></div>") |> ignore
+
 // Extension utilities
 
 /// Union type for all custom blocks
@@ -413,8 +514,8 @@ type CustomBlockExtension() =
             match renderer with
             | :? HtmlRenderer as htmlRenderer ->
                 htmlRenderer.ObjectRenderers.Add(MediaBlockHtmlRenderer())
+                htmlRenderer.ObjectRenderers.Add(ReviewBlockHtmlRenderer())
                 // Add other renderers when implemented
-                // htmlRenderer.ObjectRenderers.Add(ReviewBlockHtmlRenderer())
                 // htmlRenderer.ObjectRenderers.Add(VenueBlockHtmlRenderer())
                 // htmlRenderer.ObjectRenderers.Add(RsvpBlockHtmlRenderer())
             | _ -> 
@@ -424,6 +525,25 @@ type CustomBlockExtension() =
 /// Helper function to add custom block extension to a pipeline builder
 let useCustomBlocks (pipelineBuilder: MarkdownPipelineBuilder) =
     pipelineBuilder.Use<CustomBlockExtension>()
+
+// Helper function to extract image URL from review blocks in content
+let extractReviewImageUrl (content: string) : string option =
+    try
+        let pipeline = 
+            MarkdownPipelineBuilder()
+                |> useCustomBlocks
+                |> fun builder -> builder.Build()
+        let document = Markdown.Parse(content, pipeline)
+        let customBlocks = extractCustomBlocks document
+        
+        match customBlocks.TryGetValue("review") with
+        | true, reviewList when reviewList.Length > 0 ->
+            match reviewList.[0] with
+            | :? ReviewData as reviewData -> reviewData.image_url
+            | _ -> None
+        | _ -> None
+    with
+    | _ -> None
 
 /// Parse custom blocks using provided block parsers (Phase 1C specification)
 let parseCustomBlocks (blockParsers: Map<string, string -> obj list>) (doc: MarkdownDocument) : Map<string, obj list> =
