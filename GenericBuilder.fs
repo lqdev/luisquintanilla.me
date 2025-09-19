@@ -1232,8 +1232,8 @@ module UnifiedFeeds =
                 // Use clean CardHtml instead of RSS description
                 let title = feedData.Content.Metadata.Title
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                // For reviews, use the processed content that includes custom review blocks instead of CardHtml
-                let content = convertMdToHtml feedData.Content.Content
+                // For reviews timeline display, use simplified CardHtml instead of full content
+                let content = feedData.CardHtml
                 let date = feedData.Content.Metadata.DatePublished
                 let tags = [||]  // Books don't have explicit tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "reviews"; Tags = tags; RssXml = rssXml }
