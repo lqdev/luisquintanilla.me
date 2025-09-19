@@ -440,9 +440,37 @@ module PresentationProcessor =
             Some item
     }
 
+/// Review data extractor for processing review blocks during parsing
+module ReviewDataExtractor =
+    /// Extract review data from raw markdown content
+    let extractReviewData (rawMarkdown: string) : (string option * float * float) =
+        if not (String.IsNullOrWhiteSpace(rawMarkdown)) && rawMarkdown.Contains(":::review") then
+            try
+                let pipeline = 
+                    MarkdownPipelineBuilder()
+                        |> useCustomBlocks
+                        |> fun builder -> builder.Build()
+                let document = Markdown.Parse(rawMarkdown, pipeline)
+                let customBlocks = extractCustomBlocks document
+                
+                match customBlocks.TryGetValue("review") with
+                | true, reviewList when reviewList.Length > 0 ->
+                    match reviewList.[0] with
+                    | :? ReviewData as reviewData -> 
+                        (reviewData.image_url, reviewData.rating, reviewData.GetScale())
+                    | _ -> (None, 0.0, 5.0)
+                | _ -> (None, 0.0, 5.0)
+            with
+            | _ -> (None, 0.0, 5.0)
+        else
+            (None, 0.0, 5.0)
+
 /// Book content processor
 module BookProcessor =
-    // Helper function to extract rating from custom review blocks using regex
+    // Cache for review data extracted during parsing
+    let private reviewDataCache = System.Collections.Concurrent.ConcurrentDictionary<string, (string option * float * float)>()
+    
+    // Helper function to extract rating from custom review blocks using regex (for backward compatibility)
     let private extractRatingFromContent (content: string) : float option =
         try
             // Use regex to find rating in :::review blocks
@@ -470,17 +498,26 @@ module BookProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
+                    let fileName = Path.GetFileNameWithoutExtension(filePath)
+                    
+                    // Extract all review data from raw markdown during parsing
+                    let (reviewImageUrl, reviewRating, reviewScale) = ReviewDataExtractor.extractReviewData parsedDoc.RawMarkdown
+                    
+                    // Store review data in cache for later use in rendering
+                    reviewDataCache.[fileName] <- (reviewImageUrl, reviewRating, reviewScale)
+                    
                     // Extract rating from custom review blocks if available in raw markdown
                     let rating = 
                         match extractRatingFromContent parsedDoc.RawMarkdown with
                         | Some customRating -> customRating
-                        | None -> metadata.Rating
+                        | None -> 
+                            if reviewRating > 0.0 then reviewRating else metadata.Rating
                     
                     // Update metadata with extracted rating
                     let updatedMetadata = { metadata with Rating = rating }
                     
                     Some {
-                        FileName = Path.GetFileNameWithoutExtension(filePath)
+                        FileName = fileName
                         Metadata = updatedMetadata
                         Content = parsedDoc.TextContent
                     }
@@ -499,62 +536,31 @@ module BookProcessor =
             let title = Html.escapeHtml book.Metadata.Title
             let url = sprintf "/reviews/%s/" book.FileName
             
-            // For image URL extraction, we need to read the raw file content since custom blocks are filtered out
-            let filePath = sprintf "_src/reviews/library/%s.md" book.FileName
-            let imageUrl = 
-                try
-                    if File.Exists(filePath) then
-                        let rawContent = File.ReadAllText(filePath)
-                        if rawContent.Contains(":::review") then
-                            match extractReviewImageUrl rawContent with
-                            | Some reviewImageUrl -> reviewImageUrl
-                            | None -> 
-                                if String.IsNullOrEmpty(book.Metadata.Cover) then
-                                    "/assets/img/book-placeholder.png"  // Default book placeholder
-                                else
-                                    book.Metadata.Cover
-                        else
-                            if String.IsNullOrEmpty(book.Metadata.Cover) then
-                                "/assets/img/book-placeholder.png"  // Default book placeholder
-                            else
-                                book.Metadata.Cover
-                    else
-                        "/assets/img/book-placeholder.png"  // Default when file not found
-                with
-                | _ -> "/assets/img/book-placeholder.png"  // Default on any error
+            // Get review data from cache (extracted during parsing)
+            let (reviewImageUrlOpt, reviewRating, reviewScale) = 
+                match reviewDataCache.TryGetValue(book.FileName) with
+                | (true, data) -> data
+                | _ -> (None, book.Metadata.Rating, 5.0)
             
-            // Extract rating and scale from review blocks if available
-            let (ratingValue, ratingScale) = 
-                try
-                    if File.Exists(filePath) then
-                        let rawContent = File.ReadAllText(filePath)
-                        if rawContent.Contains(":::review") then
-                            // Try to get rating from review block
-                            let pipeline = 
-                                MarkdownPipelineBuilder()
-                                    |> useCustomBlocks
-                                    |> fun builder -> builder.Build()
-                            let document = Markdown.Parse(rawContent, pipeline)
-                            let customBlocks = extractCustomBlocks document
-                            
-                            match customBlocks.TryGetValue("review") with
-                            | true, reviewList when reviewList.Length > 0 ->
-                                match reviewList.[0] with
-                                | :? ReviewData as reviewData -> 
-                                    (reviewData.rating, reviewData.GetScale())
-                                | _ -> (book.Metadata.Rating, 5.0)
-                            | _ -> (book.Metadata.Rating, 5.0)
-                        else
-                            (book.Metadata.Rating, 5.0)
+            // Determine image URL with proper fallbacks
+            let imageUrl = 
+                match reviewImageUrlOpt with
+                | Some reviewImageUrl -> reviewImageUrl
+                | None -> 
+                    if String.IsNullOrEmpty(book.Metadata.Cover) then
+                        "/assets/img/book-placeholder.png"
                     else
-                        (book.Metadata.Rating, 5.0)
-                with
-                | _ -> (book.Metadata.Rating, 5.0)
+                        book.Metadata.Cover
+            
+            // Use review rating if available, otherwise use metadata rating
+            let (ratingValue, ratingScaleValue) = 
+                if reviewRating > 0.0 then (reviewRating, reviewScale)
+                else (book.Metadata.Rating, 5.0)
             
             // Display rating with scale if available
             let ratingHtml = 
                 if ratingValue > 0.0 then
-                    sprintf "<div class=\"rating\">Rating: %.1f/%.1f</div>" ratingValue ratingScale
+                    sprintf "<div class=\"rating\">Rating: %.1f/%.1f</div>" ratingValue ratingScaleValue
                 else ""
             
             // Create simplified timeline card with only: image, rating (no duplicate title, no status, no author)
