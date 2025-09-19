@@ -2,7 +2,6 @@
 title: "Tiny Experiments"
 author: "Anne-Laure Le Cunff"
 isbn: "9780593715130"
-status: "Read"
 date_published: "2025-05-30 14:04 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://nesslabs.com/wp-content/uploads/elementor/thumbs/mockup-book-
 additionalFields:
   author: "Anne-Laure Le Cunff"
   isbn: "9780593715130"
-  status: "Read"
 :::
 
 ## Description

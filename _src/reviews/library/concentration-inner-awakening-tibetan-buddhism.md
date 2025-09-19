@@ -2,7 +2,6 @@
 title: "Concentration & Inner Awakening: According to Tibetan Buddhism"
 author: "Fernand Schwarz"
 isbn: "9788192019314"
-status: "Read"
 date_published: "11/18/2024 17:54 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://prodimage.images-bn.com/pimages/9788196472900_p0_v1_s600x595.
 additionalFields:
   author: "Fernand Schwarz"
   isbn: "9788192019314"
-  status: "Read"
 :::
 
 ## Description

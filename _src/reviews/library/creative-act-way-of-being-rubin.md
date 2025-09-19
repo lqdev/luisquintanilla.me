@@ -2,7 +2,6 @@
 title: "The Creative Act: A Way of Being"
 author: "Rick Rubin"
 isbn: "9780593653425"
-status: "Read"
 date_published: "09/27/2024 07:40 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://images2.penguinrandomhouse.com/cover/9780593653425"
 additionalFields:
   author: "Rick Rubin"
   isbn: "9780593653425"
-  status: "Read"
 :::
 
 ## Description

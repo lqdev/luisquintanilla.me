@@ -2,7 +2,6 @@
 title: "Jung: A Very Short Introduction"
 author: "Anthony Stevens"
 isbn: "9780192854582"
-status: "Read"
 date_published: "09/27/2024 07:47 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://covers.powells.com/9780192854582.jpg"
 additionalFields:
   author: "Anthony Stevens"
   isbn: "9780192854582"
-  status: "Read"
 :::
 
 ## Description

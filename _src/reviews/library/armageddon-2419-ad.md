@@ -2,7 +2,6 @@
 title: "Armageddon 2419 A.D."
 author: "Philip Francis Nowlan"
 isbn: "N/A"
-status: "Read"
 date_published: "01/22/2023 13:45 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://covers.openlibrary.org/b/id/12621838-L.jpg"
 additionalFields:
   author: "Philip Francis Nowlan"
   isbn: "N/A"
-  status: "Read"
 :::
 
 ## Description

@@ -2,7 +2,6 @@
 title: "The Meditative Mind: The Varieties of Meditative Experience"
 author: "Daniel Goleman"
 isbn: "9780874778335"
-status: "Read"
 date_published: "2025-02-24 20:42 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://images3.penguinrandomhouse.com/cover/9780874778335"
 additionalFields:
   author: "Daniel Goleman"
   isbn: "9780874778335"
-  status: "Read"
 :::
 
 ## Description

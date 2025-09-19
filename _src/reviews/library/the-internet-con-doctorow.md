@@ -2,7 +2,6 @@
 title: "The Internet Con: How to Seize the Means of Computation "
 author: "Cory Doctorow"
 isbn: "9781804291245"
-status: "Read"
 date_published: "09/28/2023 20:27 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://covers.openlibrary.org/b/id/14418873-L.jpg"
 additionalFields:
   author: "Cory Doctorow"
   isbn: "9781804291245"
-  status: "Read"
 :::
 
 ## Description

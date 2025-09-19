@@ -2,7 +2,6 @@
 title: "Eat That Frog!"
 author: "Brian Tracy"
 isbn: "9781626569416"
-status: "Read"
 date_published: "07/09/2024 21:05 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://images2.penguinrandomhouse.com/cover/9781626569416"
 additionalFields:
   author: "Brian Tracy"
   isbn: "9781626569416"
-  status: "Read"
 :::
 
 ## Description

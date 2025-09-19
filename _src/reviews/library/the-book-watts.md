@@ -2,7 +2,6 @@
 title: "The Book: On the Taboo Against Knowing Who You Are"
 author: "Alan Watts"
 isbn: "9780679723004"
-status: "Read"
 date_published: "2025-04-15 19:45 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://alanwatts.com/cdn/shop/products/41LZO0pUN7L_1024x1024@2x.jpg?
 additionalFields:
   author: "Alan Watts"
   isbn: "9780679723004"
-  status: "Read"
 :::
 
 ## Description

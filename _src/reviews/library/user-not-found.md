@@ -2,7 +2,6 @@
 title: "User Not Found"
 author: "Felicity Fenton"
 isbn: "9781892061850"
-status: "Read"
 date_published: "05/12/2023 21:17 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://futuretensebooks.com/wp-content/uploads/2018/10/cover4.png"
 additionalFields:
   author: "Felicity Fenton"
   isbn: "9781892061850"
-  status: "Read"
 :::
 
 ## Description

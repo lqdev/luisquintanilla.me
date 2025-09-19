@@ -2,7 +2,6 @@
 title: "Thrill Switch"
 author: "Tim Hawking"
 isbn: "9780645579109"
-status: "Read"
 date_published: "12/27/2023 14:08 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://images.squarespace-cdn.com/content/v1/5875f6a815d5dba00bbed0e
 additionalFields:
   author: "Tim Hawking"
   isbn: "9780645579109"
-  status: "Read"
 :::
 
 ## Description

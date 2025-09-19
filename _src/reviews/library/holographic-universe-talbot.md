@@ -2,7 +2,6 @@
 title: "The Holographic Universe: The Revolutionary Theory of Reality"
 author: "Michael Talbot"
 isbn: "9780062014108"
-status: "Read"
 date_published: "2025-01-12 19:45 -05:00"
 ---
 
@@ -19,7 +18,6 @@ imageUrl: "https://www.harpercollins.com/cdn/shop/files/9780062014108_7a36a0e4-2
 additionalFields:
   author: "Michael Talbot"
   isbn: "9780062014108"
-  status: "Read"
 :::
 
 ## Description
