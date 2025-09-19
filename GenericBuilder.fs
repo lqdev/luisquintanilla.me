@@ -357,9 +357,8 @@ module PresentationProcessor =
                 match parsedDoc.Metadata with
                 | Some metadata -> 
                     // For presentations, we need raw markdown content (not HTML) for reveal.js
-                    // Extract the content without frontmatter from the raw markdown
-                    let rawContent = System.IO.File.ReadAllText(filePath)
-                    let lines = rawContent.Split([|'\n'|], StringSplitOptions.None)
+                    // Extract the content without frontmatter from the already parsed raw markdown
+                    let lines = parsedDoc.RawMarkdown.Split([|'\n'|], StringSplitOptions.None)
                     
                     let markdownContent = 
                         if lines.Length > 0 && lines.[0].Trim() = "---" then
@@ -681,8 +680,57 @@ module ResponseProcessor =
             Some item
     }
 
+/// Media data extracted from album content for efficient rendering
+type AlbumMediaData = {
+    FirstImageUrl: string option
+    FirstImageAlt: string option
+    MediaCount: int
+}
+
+/// Media data extractor for processing :::media blocks during parsing
+module MediaDataExtractor =
+    /// Extract media data from raw markdown content
+    let extractAlbumMediaData (rawMarkdown: string) : AlbumMediaData =
+        try
+            // Parse the media block to extract the first media item
+            let mediaBlockPattern = System.Text.RegularExpressions.Regex(@":::media\s*\n(.*?)\n:::(?:media)?", System.Text.RegularExpressions.RegexOptions.Singleline)
+            let mediaMatches = mediaBlockPattern.Matches(rawMarkdown)
+            
+            if mediaMatches.Count > 0 then
+                let firstMediaContent = mediaMatches.[0].Groups.[1].Value
+                
+                // Extract first URL and alt text from YAML-like structure
+                let urlPattern = System.Text.RegularExpressions.Regex(@"uri:\s*[""']?([^""'\n]+)[""']?")
+                let urlMatch = urlPattern.Match(firstMediaContent)
+                let altPattern = System.Text.RegularExpressions.Regex(@"alt_text:\s*[""']?([^""'\n]+)[""']?")
+                let altMatch = altPattern.Match(firstMediaContent)
+                
+                let firstImageUrl = if urlMatch.Success then Some (urlMatch.Groups.[1].Value.Trim()) else None
+                let firstImageAlt = if altMatch.Success then Some (altMatch.Groups.[1].Value) else None
+                
+                {
+                    FirstImageUrl = firstImageUrl
+                    FirstImageAlt = firstImageAlt
+                    MediaCount = mediaMatches.Count
+                }
+            else
+                {
+                    FirstImageUrl = None
+                    FirstImageAlt = None
+                    MediaCount = 0
+                }
+        with
+        | _ -> 
+            {
+                FirstImageUrl = None
+                FirstImageAlt = None
+                MediaCount = 0
+            }
+
 /// Album content processor with :::media block conversion
 module AlbumProcessor =
+    // Cache for media data extracted during parsing
+    let private mediaDataCache = System.Collections.Concurrent.ConcurrentDictionary<string, AlbumMediaData>()
     
     /// Helper to extract markdown content without frontmatter
     let private extractContentWithoutFrontMatter (rawMarkdown: string) : string =
@@ -717,8 +765,16 @@ module AlbumProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
+                    let fileName = Path.GetFileNameWithoutExtension(filePath)
+                    
+                    // Extract media data from raw markdown during parsing
+                    let mediaData = MediaDataExtractor.extractAlbumMediaData parsedDoc.RawMarkdown
+                    
+                    // Store media data in cache for later use in rendering
+                    mediaDataCache.[fileName] <- mediaData
+                    
                     Some {
-                        FileName = Path.GetFileNameWithoutExtension(filePath)
+                        FileName = fileName
                         Metadata = metadata
                         Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown  // Use raw markdown without frontmatter
                     }
@@ -738,31 +794,19 @@ module AlbumProcessor =
             let url = sprintf "/media/%s/" album.FileName
             let date = album.Metadata.Date
             
-            // Extract first media item from the :::media block
+            // Get media data from cache (extracted during parsing)
+            let mediaData = 
+                match mediaDataCache.TryGetValue(album.FileName) with
+                | (true, data) -> data
+                | _ -> { FirstImageUrl = None; FirstImageAlt = None; MediaCount = 0 }
+            
+            // Generate content preview using cached data
             let contentPreview = 
-                try
-                    // Parse the media block to extract the first media item
-                    let mediaBlockPattern = System.Text.RegularExpressions.Regex(@":::media\s*\n(.*?)\n:::media", System.Text.RegularExpressions.RegexOptions.Singleline)
-                    let mediaMatch = mediaBlockPattern.Match(album.Content)
-                    
-                    if mediaMatch.Success then
-                        let mediaContent = mediaMatch.Groups.[1].Value
-                        // Extract first URL from YAML-like structure
-                        let urlPattern = System.Text.RegularExpressions.Regex(@"url:\s*[""']?([^""'\n]+)[""']?")
-                        let urlMatch = urlPattern.Match(mediaContent)
-                        let altPattern = System.Text.RegularExpressions.Regex(@"alt:\s*[""']([^""']+)[""']")
-                        let altMatch = altPattern.Match(mediaContent)
-                        
-                        if urlMatch.Success then
-                            let imageUrl = urlMatch.Groups.[1].Value.Trim()
-                            let altText = if altMatch.Success then altMatch.Groups.[1].Value else "Media preview"
-                            sprintf """<img src="%s" alt="%s" class="img-fluid" />""" imageUrl altText
-                        else
-                            "Photo album"
-                    else
-                        "Photo album"
-                with
-                | _ -> "Photo album"
+                match mediaData.FirstImageUrl with
+                | Some imageUrl ->
+                    let altText = mediaData.FirstImageAlt |> Option.defaultValue "Media preview"
+                    sprintf """<img src="%s" alt="%s" class="img-fluid" />""" imageUrl altText
+                | None -> "Photo album"
             
             let viewNode = 
                 article [ _class "album-card h-entry" ] [
