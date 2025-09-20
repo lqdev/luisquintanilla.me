@@ -1,0 +1,71 @@
+{
+  "title": "Rome Favorites",
+  "description": "My personal travel recommendations for Rome",
+  "places": [
+    {
+      "id": "colosseum",
+      "name": "Colosseum",
+      "lat": 41.8902,
+      "lon": 12.4922,
+      "category": "attraction",
+      "description": "Ancient amphitheater and iconic symbol of Imperial Rome. Even with crowds, it's absolutely breathtaking.",
+      "personalNote": "Get here early to avoid crowds - first entry is much more magical. The underground tour is worth the extra cost.",
+      "practicalInfo": {
+        "price": "€16",
+        "hours": "8:30am-7pm",
+        "phone": "+39 06 3996 7700"
+      }
+    },
+    {
+      "id": "trattoria-monti",
+      "name": "Trattoria Monti",
+      "lat": 41.8947,
+      "lon": 12.4839,
+      "category": "restaurant",
+      "description": "Family-run restaurant specializing in cuisine from Le Marche region. Absolutely incredible food and wine.",
+      "personalNote": "Ask Francesco about wine pairings - he has amazing knowledge. The carbonara here changed my life in 2019.",
+      "practicalInfo": {
+        "price": "€€",
+        "hours": "Dinner only, closed Sundays",
+        "phone": "+39 06 446 6573"
+      }
+    },
+    {
+      "id": "gianicolo-hill",
+      "name": "Gianicolo Hill",
+      "lat": 41.8919,
+      "lon": 12.4601,
+      "category": "hidden",
+      "description": "Best sunset spot in Rome with panoramic city views. Less touristy than other viewpoints.",
+      "personalNote": "Bring a beer from the shop below and watch the chaos of the city from above. Perfect for contemplation.",
+      "practicalInfo": {
+        "hours": "Always open"
+      }
+    },
+    {
+      "id": "santo-eustachio",
+      "name": "Sant'Eustachio Il Caffè",
+      "lat": 41.8986,
+      "lon": 12.4768,
+      "category": "restaurant",
+      "description": "Historic coffee roaster since 1938. Serves what many consider the best espresso in Rome.",
+      "personalNote": "Stand at the bar like locals do. Don't be intimidated by the crowds - the coffee is worth the wait.",
+      "practicalInfo": {
+        "price": "€",
+        "hours": "8:30am-1am daily"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "name": "Ancient Rome Day",
+      "description": "Walking tour of ancient sites",
+      "sequence": ["colosseum"]
+    },
+    {
+      "name": "Food Crawl",
+      "description": "My favorite eating spots",
+      "sequence": ["trattoria-monti", "santo-eustachio"]
+    }
+  ]
+}

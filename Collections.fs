@@ -167,10 +167,38 @@ module CollectionProcessor =
         if not (collection.Id.Contains("travel") || collection.Tags |> Array.contains "travel") then
             None
         else
-            // For now, return a basic GPX structure
-            // This will be enhanced when we have travel-specific data
-            let gpxContent = sprintf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<gpx version=\"1.1\" creator=\"Luis Quintanilla\">\n  <metadata>\n    <name>%s</name>\n    <desc>%s</desc>\n  </metadata>\n</gpx>" collection.Title collection.Description
-            Some gpxContent
+            try
+                // Check if this is a travel collection with travel data
+                let travelDataPath = Path.Join("Data", collection.DataFile)
+                if File.Exists(travelDataPath) then
+                    let jsonContent = File.ReadAllText(travelDataPath)
+                    let travelData = JsonSerializer.Deserialize<TravelRecommendationData>(jsonContent)
+                    
+                    // Generate waypoints from places
+                    let waypoints = 
+                        travelData.Places
+                        |> Array.map (fun place ->
+                            let description = 
+                                match place.PersonalNote with
+                                | Some note -> sprintf "%s\n\n%s" place.Description note
+                                | None -> place.Description
+                            
+                            let practicalInfo = ""  // Simplified for now
+                            
+                            sprintf "  <wpt lat=\"%.6f\" lon=\"%.6f\">\n    <name>%s</name>\n    <desc>%s%s</desc>\n    <type>%s</type>\n  </wpt>" place.Latitude place.Longitude place.Name description practicalInfo place.Category)
+                        |> String.concat "\n"
+                    
+                    let gpxContent = sprintf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<gpx version=\"1.1\" creator=\"Luis Quintanilla\">\n  <metadata>\n    <name>%s</name>\n    <desc>%s</desc>\n  </metadata>\n%s\n</gpx>" travelData.Title travelData.Description waypoints
+                    
+                    Some gpxContent
+                else
+                    // Fallback for non-travel collections marked as travel
+                    let gpxContent = sprintf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<gpx version=\"1.1\" creator=\"Luis Quintanilla\">\n  <metadata>\n    <name>%s</name>\n    <desc>%s</desc>\n  </metadata>\n</gpx>" collection.Title collection.Description
+                    Some gpxContent
+            with
+            | ex -> 
+                printfn "Warning: Failed to generate GPX for %s: %s" collection.Title ex.Message
+                None
     
     // Create unified collection processor
     let createCollectionProcessor (collection: Collection) : CollectionProcessor = 
@@ -244,6 +272,19 @@ module CollectionConfig =
                 UrlPath = "/collections/starter-packs/ai/"
                 DataFile = "ai-starter-pack.json"
                 Tags = [| "ai"; "machine-learning"; "technology" |]
+                LastUpdated = DateTime.Now.ToString("yyyy-MM-dd")
+                ItemCount = None
+            }
+            
+            // Travel collections  
+            {
+                Id = "rome-favorites"
+                Title = "Rome Favorites"
+                Description = "Personal travel recommendations for Rome from my time living there"
+                CollectionType = Other "travel"
+                UrlPath = "/collections/travel/rome-favorites/"
+                DataFile = "rome-favorites.json"
+                Tags = [| "travel"; "rome"; "italy"; "recommendations" |]
                 LastUpdated = DateTime.Now.ToString("yyyy-MM-dd")
                 ItemCount = None
             }
