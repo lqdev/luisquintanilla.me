@@ -87,6 +87,7 @@ module Layouts
                         div [_class "dropdown-divider"] []
                         // Starter Packs as direct link (like Radio/Tags)
                         a [_class "dropdown-item"; _href "/collections/starter-packs"] [Text "Starter Packs"]
+                        a [_class "dropdown-item"; _href "/collections/travel-guides"] [Text "Travel Guides"]
                         div [_class "dropdown-divider"] []
                         a [_class "dropdown-item"; _href "/radio"] [Text "Radio"]
                         a [_class "dropdown-item"; _href "/tags"] [Text "Tags"]
@@ -217,6 +218,7 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/tags"] [ Text "Tags" ]
                                 div [_class "dropdown-divider"] []
                                 a [_class "dropdown-item"; _href "/collections/starter-packs"] [Text "Starter Packs"]
+                                a [_class "dropdown-item"; _href "/collections/travel-guides"] [Text "Travel Guides"]
                                 a [_class "dropdown-item"; _href "/collections/blogroll"] [Text "Blogroll"]
                                 a [_class "dropdown-item"; _href "/collections/podroll"] [Text "Podroll"]
                                 a [_class "dropdown-item"; _href "/collections/forums"] [Text "Forums"]

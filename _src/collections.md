@@ -25,6 +25,9 @@ Curated collections focused on specific subjects and domains of interest.
 ### [Starter Packs](/collections/starter-packs/)
 Community-driven resource collections for getting started in various technologies and topics.
 
+### [Travel Guides](/collections/travel-guides/)
+Personal travel recommendations and curated location guides with GPS coordinates, practical information, and downloadable GPX files for offline use.
+
 ## About Collections
 
 These collections follow some of the principles of the [IndieWeb](https://indieweb.org/) and traditional web discovery. Each collection:

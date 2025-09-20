@@ -71,6 +71,7 @@ let main argv =
     buildContactPage ()
     buildSearchPage ()
     buildStarterPackPage ()
+    buildTravelGuidesPage ()
     buildIRLStackPage ()
     buildColophonPage ()
     buildOnlineRadioPage ()
