@@ -1,6 +1,7 @@
 module Domain
 
     open System
+    open System.Text.Json.Serialization
     open YamlDotNet.Serialization
 
     type YamlResult<'a> = {
@@ -216,6 +217,7 @@ module Domain
         HtmlPath: string        // "/collections/blogroll/index.html"
         RssPath: string         // "/collections/blogroll/index.rss"
         OpmlPath: string        // "/collections/blogroll/index.opml"
+        GpxPath: string option  // "/collections/travel/rome-favorites/rome-favorites.gpx"
         DataPath: string        // "/Data/blogroll.json"
     }
 
@@ -418,3 +420,61 @@ module Domain
             createTaggableRecord (getAlbumTags album) (getAlbumTitle album) (getAlbumDate album) (getAlbumFileName album) (getAlbumContentType album)
             
         // Note: Notes are processed as Post types through NoteProcessor, so noteAsTaggable = postAsTaggable
+
+    // GPX and Travel Recommendation Types
+    [<CLIMutable>]
+    type GpxPracticalInfo = {
+        [<JsonPropertyName("price")>] Price: string option
+        [<JsonPropertyName("hours")>] Hours: string option
+        [<JsonPropertyName("phone")>] Phone: string option
+        [<JsonPropertyName("website")>] Website: string option
+    }
+
+    type GpxCategory = 
+        | Restaurant
+        | Attraction  
+        | Shopping
+        | Hidden
+        | Practical
+        | GpxOther of string
+
+    [<CLIMutable>]
+    type GpxPlace = {
+        [<JsonPropertyName("id")>] Id: string
+        [<JsonPropertyName("name")>] Name: string
+        [<JsonPropertyName("lat")>] Latitude: float
+        [<JsonPropertyName("lon")>] Longitude: float
+        [<JsonPropertyName("category")>] Category: string
+        [<JsonPropertyName("description")>] Description: string
+        [<JsonPropertyName("personalNote")>] PersonalNote: string option
+        [<JsonPropertyName("practicalInfo")>] PracticalInfo: GpxPracticalInfo option
+    }
+
+    [<CLIMutable>]
+    type GpxRoute = {
+        [<JsonPropertyName("name")>] Name: string
+        [<JsonPropertyName("description")>] Description: string
+        [<JsonPropertyName("sequence")>] Sequence: string array
+    }
+
+    [<CLIMutable>]
+    type TravelRecommendationData = {
+        [<JsonPropertyName("title")>] Title: string
+        [<JsonPropertyName("description")>] Description: string
+        [<JsonPropertyName("places")>] Places: GpxPlace array
+        [<JsonPropertyName("routes")>] Routes: GpxRoute array option
+    }
+
+    // Enhanced CollectionItem for travel recommendations
+    [<CLIMutable>]
+    type TravelCollectionItem = {
+        [<YamlMember(Alias="Title")>] Title: string
+        [<YamlMember(Alias="Type")>] Type: string                 // "travel"
+        [<YamlMember(Alias="HtmlUrl")>] HtmlUrl: string
+        [<YamlMember(Alias="XmlUrl")>] XmlUrl: string            // RSS feed
+        [<YamlMember(Alias="GpxUrl")>] GpxUrl: string            // GPX download
+        [<YamlMember(Alias="Description")>] Description: string option
+        [<YamlMember(Alias="Tags")>] Tags: string array option
+        [<YamlMember(Alias="Added")>] Added: string option
+        [<YamlMember(Alias="TravelData")>] TravelData: TravelRecommendationData option
+    }

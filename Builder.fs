@@ -346,6 +346,19 @@ module Builder
                 let rssContent = Collections.CollectionBuilder.generateCollectionRssContent data
                 File.WriteAllText(Path.Join(outputDir, paths.RssPath), rssContent)
                 
+                // Generate and write GPX file (if applicable)
+                match paths.GpxPath with
+                | Some gpxRelativePath ->
+                    let processor = Collections.CollectionProcessor.createCollectionProcessor collection
+                    match processor.GenerateGpxFile data with
+                    | Some gpxContent ->
+                        File.WriteAllText(Path.Join(outputDir, gpxRelativePath), gpxContent)
+                        printfn "✅ Generated GPX file: %s" gpxRelativePath
+                    | None ->
+                        printfn "⚠️  No GPX content generated for %s" collection.Title
+                | None -> 
+                    () // No GPX file expected for this collection
+                
                 printfn "✅ Built collection: %s (%d items)" collection.Title (data.Items.Length)
                 
             with
