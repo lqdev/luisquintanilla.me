@@ -226,6 +226,10 @@ const TimelineProgressiveLoader = {
         this.setupIntersectionObserver();
         this.setupLoadMoreButton();
         this.setupFilterListener();
+        
+        // Sync with current filter state from TimelineFilter to handle cached filters
+        this.currentFilter = TimelineFilter.getCurrentFilter();
+        console.log(`🔄 Progressive loader synced with current filter: ${this.currentFilter}`);
     },
     
     loadRemainingContentByType() {
