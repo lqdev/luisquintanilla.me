@@ -117,8 +117,8 @@ module CollectionProcessor =
                 Items = [||]
             }
     
-    // Generate HTML page for collection
-    let generateCollectionPage (data: CollectionData) : XmlNode =
+    // Standard collection page generation (original logic)
+    let generateStandardCollectionPage (data: CollectionData) : XmlNode =
         let collection = data.Metadata
         let items = data.Items
         
@@ -159,19 +159,40 @@ module CollectionProcessor =
             // OPML download information
             p [] [
                 Text "You can subscribe to any of the individual feeds in your preferred RSS reader using the RSS feed links below. Want to subscribe to all of them? Use the "
-                a [ _href (collection.UrlPath + "index.opml") ] [ Text "OPML file" ]
+                a [ _href $"{collection.UrlPath}index.opml" ] [ Text "OPML file" ]
                 Text " if your RSS reader supports "
                 a [ _href "http://opml.org/" ] [ Text "OPML." ]
             ]
             
-            // Feed list using established pattern
             linkContent
         ]
+
+    // Generate HTML page for collection
+    let generateCollectionPage (data: CollectionData) : XmlNode =
+        let collection = data.Metadata
+        
+        // Check if this is a travel collection and use appropriate view
+        if collection.Tags |> Array.contains "travel" then
+            // For travel collections, we need the original travel data
+            try
+                let travelDataPath = Path.Join("Data", collection.DataFile)
+                if File.Exists(travelDataPath) then
+                    let jsonContent = File.ReadAllText(travelDataPath)
+                    let travelData = JsonSerializer.Deserialize<TravelRecommendationData>(jsonContent)
+                    TravelViews.generateTravelCollectionPage data travelData
+                else
+                    // Fallback to standard view if travel data not found
+                    generateStandardCollectionPage data
+            with
+            | ex ->
+                printfn "Warning: Failed to load travel data for %s, using standard view: %s" collection.Title ex.Message
+                generateStandardCollectionPage data
+        else
+            generateStandardCollectionPage data
     
-    // Generate RSS feed for collection (placeholder - could aggregate feeds)
+    // Generate RSS feed for collection
     let generateCollectionRss (data: CollectionData) : string =
-        // For now, collections don't have their own RSS content
-        // This could be enhanced to aggregate latest posts from all feeds
+        let collection = data.Metadata
         sprintf """<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
     <channel>
@@ -179,7 +200,7 @@ module CollectionProcessor =
         <description>%s</description>
         <link>https://www.lqdev.me%s</link>
     </channel>
-</rss>""" data.Metadata.Title data.Metadata.Description data.Metadata.UrlPath
+</rss>""" collection.Title collection.Description collection.UrlPath
     
     // Generate OPML file for collection
     let generateCollectionOpml (data: CollectionData) : string =

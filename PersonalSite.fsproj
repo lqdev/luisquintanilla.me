@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <Compile Include="Domain.fs" />
-    <Compile Include="Collections.fs" />
     <Compile Include="CustomBlocks.fs" />
     <Compile Include="MediaTypes.fs" />
     <Compile Include="ASTParsing.fs" />
@@ -23,11 +22,13 @@
     <Compile Include="Views\FeedViews.fs" />
     <Compile Include="Views\ContentViews.fs" />
     <Compile Include="Views\CollectionViews.fs" />
+    <Compile Include="Views\TravelViews.fs" />
     <Compile Include="Views\LayoutViews.fs" />
     <Compile Include="Views\Layouts.fs" />
     <Compile Include="Views\TextOnlyViews.fs" />
     <Compile Include="Views\Partials.fs" />
     <Compile Include="Views\Generator.fs" />
+    <Compile Include="Collections.fs" />
     <Compile Include="SearchIndex.fs" />
     <Compile Include="Loaders.fs" />
     <Compile Include="TextOnlyBuilder.fs" />
