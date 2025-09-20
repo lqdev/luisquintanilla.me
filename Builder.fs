@@ -185,6 +185,14 @@ module Builder
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), starterPage)
 
+    let buildTravelGuidesPage () = 
+
+        let travelContent = convertFileToHtml (Path.Join(srcDir,"travel-guides.md")) |> contentView
+        let travelPage = generate travelContent "default" "Travel Guides - Luis Quintanilla"
+        let saveDir = Path.Join(outputDir,"collections","travel-guides")
+        Directory.CreateDirectory(saveDir) |> ignore
+        File.WriteAllText(Path.Join(saveDir,"index.html"), travelPage)
+
     let buildBlogrollPage (links:Outline array) = 
         let blogRollContent = 
             links
