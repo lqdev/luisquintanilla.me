@@ -46,24 +46,69 @@ module CollectionProcessor =
     let loadCollectionData (dataPath: string) (collection: Collection) : CollectionData =
         try
             let jsonContent = File.ReadAllText(dataPath)
-            // Legacy support: load as Outline array first, then convert to CollectionItem array
-            let outlines = JsonSerializer.Deserialize<Outline array>(jsonContent)
-            let items = 
-                outlines 
-                |> Array.map (fun outline -> {
-                    Title = outline.Title
-                    Type = outline.Type
-                    HtmlUrl = outline.HtmlUrl
-                    XmlUrl = outline.XmlUrl
-                    Description = None
-                    Tags = None
-                    Added = None
-                })
             
-            {
-                Metadata = { collection with ItemCount = Some items.Length }
-                Items = items
-            }
+            // Special handling for travel collections
+            if collection.Tags |> Array.contains "travel" then
+                try
+                    // Try to load as TravelRecommendationData first
+                    let travelData = JsonSerializer.Deserialize<TravelRecommendationData>(jsonContent)
+                    // Convert travel data to CollectionItem array
+                    let items = 
+                        travelData.Places
+                        |> Array.map (fun place -> {
+                            Title = place.Name
+                            Type = "waypoint"
+                            HtmlUrl = "" // Not applicable for waypoints
+                            XmlUrl = ""  // Not applicable for waypoints
+                            Description = Some place.Description
+                            Tags = Some [| place.Category |]
+                            Added = None
+                        })
+                    
+                    {
+                        Metadata = { collection with ItemCount = Some items.Length }
+                        Items = items
+                    }
+                with
+                | ex ->
+                    printfn "Failed to load as travel data, trying standard format: %s" ex.Message
+                    // Fallback to standard Outline format
+                    let outlines = JsonSerializer.Deserialize<Outline array>(jsonContent)
+                    let items = 
+                        outlines 
+                        |> Array.map (fun outline -> {
+                            Title = outline.Title
+                            Type = outline.Type
+                            HtmlUrl = outline.HtmlUrl
+                            XmlUrl = outline.XmlUrl
+                            Description = None
+                            Tags = None
+                            Added = None
+                        })
+                    
+                    {
+                        Metadata = { collection with ItemCount = Some items.Length }
+                        Items = items
+                    }
+            else
+                // Legacy support: load as Outline array first, then convert to CollectionItem array
+                let outlines = JsonSerializer.Deserialize<Outline array>(jsonContent)
+                let items = 
+                    outlines 
+                    |> Array.map (fun outline -> {
+                        Title = outline.Title
+                        Type = outline.Type
+                        HtmlUrl = outline.HtmlUrl
+                        XmlUrl = outline.XmlUrl
+                        Description = None
+                        Tags = None
+                        Added = None
+                    })
+                
+                {
+                    Metadata = { collection with ItemCount = Some items.Length }
+                    Items = items
+                }
         with
         | ex -> 
             printfn "Error loading collection data from %s: %s" dataPath ex.Message
