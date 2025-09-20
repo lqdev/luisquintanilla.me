@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Luis Quintanilla">
+  <metadata>
+    <name>Rome Favorites</name>
+    <desc>My personal travel recommendations for Rome</desc>
+  </metadata>
+  <wpt lat="41.890200" lon="12.492200">
+    <name>Colosseum</name>
+    <desc>Ancient amphitheater and iconic symbol of Imperial Rome. Even with crowds, it's absolutely breathtaking.
+
+Get here early to avoid crowds - first entry is much more magical. The underground tour is worth the extra cost.</desc>
+    <type>attraction</type>
+  </wpt>
+  <wpt lat="41.894700" lon="12.483900">
+    <name>Trattoria Monti</name>
+    <desc>Family-run restaurant specializing in cuisine from Le Marche region. Absolutely incredible food and wine.
+
+Ask Francesco about wine pairings - he has amazing knowledge. The carbonara here changed my life in 2019.</desc>
+    <type>restaurant</type>
+  </wpt>
+  <wpt lat="41.891900" lon="12.460100">
+    <name>Gianicolo Hill</name>
+    <desc>Best sunset spot in Rome with panoramic city views. Less touristy than other viewpoints.
+
+Bring a beer from the shop below and watch the chaos of the city from above. Perfect for contemplation.</desc>
+    <type>hidden</type>
+  </wpt>
+  <wpt lat="41.898600" lon="12.476800">
+    <name>Sant'Eustachio Il Caffè</name>
+    <desc>Historic coffee roaster since 1938. Serves what many consider the best espresso in Rome.
+
+Stand at the bar like locals do. Don't be intimidated by the crowds - the coffee is worth the wait.</desc>
+    <type>restaurant</type>
+  </wpt>
+</gpx>
