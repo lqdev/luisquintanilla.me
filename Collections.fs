@@ -15,6 +15,7 @@ module CollectionProcessor =
         GenerateHtmlPage: CollectionData -> XmlNode
         GenerateRssFeed: CollectionData -> string
         GenerateOpmlFile: CollectionData -> string
+        GenerateGpxFile: CollectionData -> string option
         GetOutputPaths: Collection -> CollectionPaths
     }
     
@@ -26,10 +27,18 @@ module CollectionProcessor =
             | TopicFocused _ -> Path.Join("collections", "starter-packs", collection.Id)
             | Other _ -> Path.Join("collections", collection.Id)
         
+        let gpxPath = 
+            // Only generate GPX for travel collections
+            if collection.Id.Contains("travel") || collection.Tags |> Array.contains "travel" then
+                Some (Path.Join(baseDir, $"{collection.Id}.gpx"))
+            else
+                None
+        
         {
             HtmlPath = Path.Join(baseDir, "index.html")
             RssPath = Path.Join(baseDir, "index.rss") 
             OpmlPath = Path.Join(baseDir, "index.opml")
+            GpxPath = gpxPath
             DataPath = Path.Join("Data", collection.DataFile)
         }
     
@@ -149,6 +158,19 @@ module CollectionProcessor =
 %s
     </body>
 </opml>""" collection.Title outlines
+
+    // Generate GPX file for travel collections  
+    let generateCollectionGpx (data: CollectionData) : string option =
+        let collection = data.Metadata
+        
+        // Only generate GPX for travel collections
+        if not (collection.Id.Contains("travel") || collection.Tags |> Array.contains "travel") then
+            None
+        else
+            // For now, return a basic GPX structure
+            // This will be enhanced when we have travel-specific data
+            let gpxContent = sprintf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<gpx version=\"1.1\" creator=\"Luis Quintanilla\">\n  <metadata>\n    <name>%s</name>\n    <desc>%s</desc>\n  </metadata>\n</gpx>" collection.Title collection.Description
+            Some gpxContent
     
     // Create unified collection processor
     let createCollectionProcessor (collection: Collection) : CollectionProcessor = 
@@ -157,6 +179,7 @@ module CollectionProcessor =
             GenerateHtmlPage = generateCollectionPage
             GenerateRssFeed = generateCollectionRss
             GenerateOpmlFile = generateCollectionOpml
+            GenerateGpxFile = generateCollectionGpx
             GetOutputPaths = getCollectionPaths
         }
 

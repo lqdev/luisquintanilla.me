@@ -216,6 +216,7 @@ module Domain
         HtmlPath: string        // "/collections/blogroll/index.html"
         RssPath: string         // "/collections/blogroll/index.rss"
         OpmlPath: string        // "/collections/blogroll/index.opml"
+        GpxPath: string option  // "/collections/travel/rome-favorites/rome-favorites.gpx"
         DataPath: string        // "/Data/blogroll.json"
     }
 
@@ -418,3 +419,61 @@ module Domain
             createTaggableRecord (getAlbumTags album) (getAlbumTitle album) (getAlbumDate album) (getAlbumFileName album) (getAlbumContentType album)
             
         // Note: Notes are processed as Post types through NoteProcessor, so noteAsTaggable = postAsTaggable
+
+    // GPX and Travel Recommendation Types
+    [<CLIMutable>]
+    type GpxPracticalInfo = {
+        [<YamlMember(Alias="price")>] Price: string option
+        [<YamlMember(Alias="hours")>] Hours: string option
+        [<YamlMember(Alias="phone")>] Phone: string option
+        [<YamlMember(Alias="website")>] Website: string option
+    }
+
+    type GpxCategory = 
+        | Restaurant
+        | Attraction  
+        | Shopping
+        | Hidden
+        | Practical
+        | GpxOther of string
+
+    [<CLIMutable>]
+    type GpxPlace = {
+        [<YamlMember(Alias="id")>] Id: string
+        [<YamlMember(Alias="name")>] Name: string
+        [<YamlMember(Alias="lat")>] Latitude: float
+        [<YamlMember(Alias="lon")>] Longitude: float
+        [<YamlMember(Alias="category")>] Category: string
+        [<YamlMember(Alias="description")>] Description: string
+        [<YamlMember(Alias="personalNote")>] PersonalNote: string option
+        [<YamlMember(Alias="practicalInfo")>] PracticalInfo: GpxPracticalInfo option
+    }
+
+    [<CLIMutable>]
+    type GpxRoute = {
+        [<YamlMember(Alias="name")>] Name: string
+        [<YamlMember(Alias="description")>] Description: string
+        [<YamlMember(Alias="sequence")>] Sequence: string array
+    }
+
+    [<CLIMutable>]
+    type TravelRecommendationData = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="description")>] Description: string
+        [<YamlMember(Alias="places")>] Places: GpxPlace array
+        [<YamlMember(Alias="routes")>] Routes: GpxRoute array option
+    }
+
+    // Enhanced CollectionItem for travel recommendations
+    [<CLIMutable>]
+    type TravelCollectionItem = {
+        [<YamlMember(Alias="Title")>] Title: string
+        [<YamlMember(Alias="Type")>] Type: string                 // "travel"
+        [<YamlMember(Alias="HtmlUrl")>] HtmlUrl: string
+        [<YamlMember(Alias="XmlUrl")>] XmlUrl: string            // RSS feed
+        [<YamlMember(Alias="GpxUrl")>] GpxUrl: string            // GPX download
+        [<YamlMember(Alias="Description")>] Description: string option
+        [<YamlMember(Alias="Tags")>] Tags: string array option
+        [<YamlMember(Alias="Added")>] Added: string option
+        [<YamlMember(Alias="TravelData")>] TravelData: TravelRecommendationData option
+    }
