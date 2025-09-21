@@ -84,11 +84,6 @@ L.Map.prototype = {
     _render: function() {
         if (!this.element) return;
         
-        // Store initial state to maintain marker consistency
-        if (!this.initialBounds) {
-            this.initialBounds = this._getBboxAsNumbers();
-        }
-        
         // Create map with markers overlay using absolute positioning
         const markersHtml = this.markers.map((marker, index) => {
             const markerLat = marker.latlng[0];
@@ -119,7 +114,7 @@ L.Map.prototype = {
                     marginheight="0" 
                     marginwidth="0" 
                     src="https://www.openstreetmap.org/export/embed.html?bbox=${this._getBbox()}&amp;layer=mapnik&amp;marker=${this.center[0]},${this.center[1]}"
-                    style="border: none;">
+                    style="border: none; pointer-events: none;">
                 </iframe>
                 ${markersHtml}
                 <div class="leaflet-control-zoom" style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
@@ -148,9 +143,7 @@ L.Map.prototype = {
         // Add click handlers for markers and zoom controls
         this._addMarkerClickHandlers();
         this._addZoomControls();
-        
-        // Set up periodic marker position updates to handle iframe interactions
-        this._setupMarkerSynchronization();
+        this._addPanControls();
     },
     
     _addZoomControls: function() {
@@ -170,6 +163,66 @@ L.Map.prototype = {
                 this.setView(this.center, Math.max(this.zoom - 1, 1));
             });
         }
+    },
+    
+    _addPanControls: function() {
+        let isDragging = false;
+        let startX, startY;
+        let startCenter;
+        
+        // Add dragging functionality to the map container
+        this.element.addEventListener('mousedown', (e) => {
+            // Don't start dragging if clicking on a marker or control
+            if (e.target.closest('.leaflet-marker') || e.target.closest('.leaflet-control-zoom')) {
+                return;
+            }
+            
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            startCenter = [this.center[0], this.center[1]];
+            
+            // Prevent text selection during drag
+            e.preventDefault();
+            this.element.style.cursor = 'grabbing';
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            
+            const deltaX = e.clientX - startX;
+            const deltaY = e.clientY - startY;
+            
+            // Calculate the map dimensions and zoom level for proper scaling
+            const bbox = this._getBboxAsNumbers();
+            const mapWidth = this.element.offsetWidth;
+            const mapHeight = this.element.offsetHeight;
+            
+            // Convert pixel movement to geographic movement
+            const lngRange = bbox.maxLng - bbox.minLng;
+            const latRange = bbox.maxLat - bbox.minLat;
+            
+            const deltaLng = -(deltaX / mapWidth) * lngRange;
+            const deltaLat = (deltaY / mapHeight) * latRange;
+            
+            // Update center based on drag
+            const newCenter = [
+                startCenter[0] + deltaLat,
+                startCenter[1] + deltaLng
+            ];
+            
+            this.setView(newCenter, this.zoom);
+        });
+        
+        document.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                this.element.style.cursor = 'grab';
+            }
+        });
+        
+        // Set initial cursor
+        this.element.style.cursor = 'grab';
     },
     
     _addMarkerClickHandlers: function() {
@@ -348,65 +401,6 @@ L.Map.prototype = {
         const normalizedLng = (lng - bbox.minLng) / lngRange;
         
         return mapWidth * normalizedLng;
-    },
-    
-    _setupMarkerSynchronization: function() {
-        // Since we can't directly track iframe drag events due to cross-origin restrictions,
-        // we implement a different strategy: detect when the iframe gets focus (indicating user interaction)
-        // and temporarily disable marker positioning updates during interaction
-        const iframe = this.element.querySelector('#osm-iframe');
-        if (!iframe) return;
-        
-        let isInteracting = false;
-        let interactionTimeout;
-        
-        // Detect when user starts interacting with iframe
-        iframe.addEventListener('mouseenter', () => {
-            isInteracting = true;
-            clearTimeout(interactionTimeout);
-        });
-        
-        // Detect when user stops interacting with iframe
-        iframe.addEventListener('mouseleave', () => {
-            isInteracting = false;
-            // Delay marker position updates to allow iframe to settle
-            clearTimeout(interactionTimeout);
-            interactionTimeout = setTimeout(() => {
-                // Re-sync markers to current view if needed
-                this._syncMarkersToView();
-            }, 100);
-        });
-        
-        // For iframe focus/blur events
-        iframe.addEventListener('focus', () => {
-            isInteracting = true;
-        });
-        
-        iframe.addEventListener('blur', () => {
-            isInteracting = false;
-            clearTimeout(interactionTimeout);
-            interactionTimeout = setTimeout(() => {
-                this._syncMarkersToView();
-            }, 100);
-        });
-    },
-    
-    _syncMarkersToView: function() {
-        // Update marker positions to match current geographic coordinates
-        // This is called after iframe interactions settle
-        const markers = this.element.querySelectorAll('.leaflet-marker');
-        markers.forEach((markerElement) => {
-            const lat = parseFloat(markerElement.dataset.lat);
-            const lng = parseFloat(markerElement.dataset.lng);
-            
-            if (!isNaN(lat) && !isNaN(lng)) {
-                const pixelX = this._lngToPixel(lng);
-                const pixelY = this._latToPixel(lat);
-                
-                markerElement.style.left = pixelX + 'px';
-                markerElement.style.top = pixelY + 'px';
-            }
-        });
     },
 };
 
