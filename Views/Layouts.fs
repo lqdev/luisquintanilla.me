@@ -493,13 +493,6 @@ module Layouts
                                 if (fallback) {
                                     fallback.style.display = 'none';
                                 }
-
-                                // Initialize with "Show All Points" view
-                                setTimeout(() => {
-                                    if (typeof window.showAllPoints === "function") {
-                                        window.showAllPoints();
-                                    }
-                                }, 100);
                                 
                             } catch (error) {
                                 console.error('Error initializing Leaflet map:', error);
