@@ -383,6 +383,9 @@ module Layouts
                 for sheet in styleSheets do
                     sheet
 
+                // Leaflet.js CSS for travel maps
+                link [_rel "stylesheet"; _href "/lib/leaflet/leaflet.css"]
+
                 // Opengraph
                 let ogElements = buildOpenGraphElements pageTitle
 
@@ -418,6 +421,87 @@ module Layouts
                 for scr in scripts do
                     scr
 
+                // Conditionally load Leaflet.js for travel maps
+                script [_src "/lib/leaflet/leaflet.js"] []
+                script [_type "application/javascript"] [
+                    rawText """
+                    // Initialize Leaflet.js when a travel map container is found on the page
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const mapContainer = document.querySelector('.leaflet-map-container');
+                        if (mapContainer && typeof L !== 'undefined') {
+                            try {
+                                // Initialize the map
+                                const map = L.map('travel-map').setView([41.8902, 12.4922], 12);
+                                
+                                // Add OpenStreetMap tiles
+                                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                                    maxZoom: 19
+                                }).addTo(map);
+                                
+                                // Get places data from data attribute
+                                const placesData = mapContainer.getAttribute('data-places');
+                                if (placesData) {
+                                    const places = JSON.parse(placesData);
+                                    const bounds = [];
+                                    
+                                    // Add markers for each place
+                                    places.forEach(function(place) {
+                                        const marker = L.marker([place.lat, place.lon]).addTo(map);
+                                        bounds.push([place.lat, place.lon]);
+                                        
+                                        // Create popup content with place information
+                                        let popupContent = '<div class="travel-popup">';
+                                        popupContent += '<h5>' + place.name + '</h5>';
+                                        popupContent += '<p class="small text-muted">' + place.category + '</p>';
+                                        popupContent += '<p>' + place.description + '</p>';
+                                        
+                                        if (place.personalNote) {
+                                            popupContent += '<div class="alert alert-info small mt-2">';
+                                            popupContent += '<i class="bi bi-lightbulb"></i> <strong>Personal tip:</strong><br>';
+                                            popupContent += place.personalNote;
+                                            popupContent += '</div>';
+                                        }
+                                        
+                                        if (place.practicalInfo) {
+                                            popupContent += '<div class="small mt-2">';
+                                            if (place.practicalInfo.price) {
+                                                popupContent += '<span class="badge bg-secondary me-1">' + place.practicalInfo.price + '</span>';
+                                            }
+                                            if (place.practicalInfo.hours) {
+                                                popupContent += '<span class="badge bg-info me-1">' + place.practicalInfo.hours + '</span>';
+                                            }
+                                            popupContent += '</div>';
+                                        }
+                                        
+                                        popupContent += '<div class="mt-2">';
+                                        popupContent += '<a href="https://maps.google.com/?q=' + place.lat + ',' + place.lon + '" target="_blank" class="btn btn-sm btn-outline-primary">Open in Google Maps</a>';
+                                        popupContent += '</div>';
+                                        popupContent += '</div>';
+                                        
+                                        marker.bindPopup(popupContent, {maxWidth: 300});
+                                    });
+                                    
+                                    // Fit map to show all markers
+                                    if (bounds.length > 0) {
+                                        map.fitBounds(bounds, {padding: [20, 20]});
+                                    }
+                                }
+                                
+                                // Hide fallback content
+                                const fallback = mapContainer.querySelector('.text-center');
+                                if (fallback) {
+                                    fallback.style.display = 'none';
+                                }
+                                
+                            } catch (error) {
+                                console.error('Error initializing Leaflet map:', error);
+                            }
+                        }
+                    });
+                    """
+                ]
+
             ]
             footerContent
         ]
@@ -437,6 +521,9 @@ module Layouts
                 link [_rel "stylesheet"; _href "/lib/revealjs/dist/reveal.css"]
                 link [_rel "stylesheet"; _href "/lib/revealjs/dist/theme/black.css"]
                 link [_rel "stylesheet"; _href "/lib/revealjs/plugin/highlight/monokai.css"]
+
+                // Leaflet.js CSS for travel maps
+                link [_rel "stylesheet"; _href "/lib/leaflet/leaflet.css"]
 
                 // Opengraph
                 let ogElements = buildOpenGraphElements pageTitle
@@ -487,6 +574,87 @@ module Layouts
                                 plugins: [RevealMarkdown, RevealHighlight],
                                 embedded: true
                             });
+                        }
+                    });
+                    """
+                ]
+
+                // Conditionally load Leaflet.js for travel maps
+                script [_src "/lib/leaflet/leaflet.js"] []
+                script [_type "application/javascript"] [
+                    rawText """
+                    // Initialize Leaflet.js when a travel map container is found on the page
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const mapContainer = document.querySelector('.leaflet-map-container');
+                        if (mapContainer && typeof L !== 'undefined') {
+                            try {
+                                // Initialize the map
+                                const map = L.map('travel-map').setView([41.8902, 12.4922], 12);
+                                
+                                // Add OpenStreetMap tiles
+                                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                                    maxZoom: 19
+                                }).addTo(map);
+                                
+                                // Get places data from data attribute
+                                const placesData = mapContainer.getAttribute('data-places');
+                                if (placesData) {
+                                    const places = JSON.parse(placesData);
+                                    const bounds = [];
+                                    
+                                    // Add markers for each place
+                                    places.forEach(function(place) {
+                                        const marker = L.marker([place.lat, place.lon]).addTo(map);
+                                        bounds.push([place.lat, place.lon]);
+                                        
+                                        // Create popup content with place information
+                                        let popupContent = '<div class="travel-popup">';
+                                        popupContent += '<h5>' + place.name + '</h5>';
+                                        popupContent += '<p class="small text-muted">' + place.category + '</p>';
+                                        popupContent += '<p>' + place.description + '</p>';
+                                        
+                                        if (place.personalNote) {
+                                            popupContent += '<div class="alert alert-info small mt-2">';
+                                            popupContent += '<i class="bi bi-lightbulb"></i> <strong>Personal tip:</strong><br>';
+                                            popupContent += place.personalNote;
+                                            popupContent += '</div>';
+                                        }
+                                        
+                                        if (place.practicalInfo) {
+                                            popupContent += '<div class="small mt-2">';
+                                            if (place.practicalInfo.price) {
+                                                popupContent += '<span class="badge bg-secondary me-1">' + place.practicalInfo.price + '</span>';
+                                            }
+                                            if (place.practicalInfo.hours) {
+                                                popupContent += '<span class="badge bg-info me-1">' + place.practicalInfo.hours + '</span>';
+                                            }
+                                            popupContent += '</div>';
+                                        }
+                                        
+                                        popupContent += '<div class="mt-2">';
+                                        popupContent += '<a href="https://maps.google.com/?q=' + place.lat + ',' + place.lon + '" target="_blank" class="btn btn-sm btn-outline-primary">Open in Google Maps</a>';
+                                        popupContent += '</div>';
+                                        popupContent += '</div>';
+                                        
+                                        marker.bindPopup(popupContent, {maxWidth: 300});
+                                    });
+                                    
+                                    // Fit map to show all markers
+                                    if (bounds.length > 0) {
+                                        map.fitBounds(bounds, {padding: [20, 20]});
+                                    }
+                                }
+                                
+                                // Hide fallback content
+                                const fallback = mapContainer.querySelector('.text-center');
+                                if (fallback) {
+                                    fallback.style.display = 'none';
+                                }
+                                
+                            } catch (error) {
+                                console.error('Error initializing Leaflet map:', error);
+                            }
                         }
                     });
                     """

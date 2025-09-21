@@ -1,0 +1,106 @@
+/* Minimal Leaflet.css for travel maps */
+.leaflet-container {
+    height: 400px;
+    width: 100%;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    position: relative;
+    font-family: inherit;
+}
+
+.leaflet-map-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    flex-direction: column;
+}
+
+.leaflet-map-placeholder h4 {
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.leaflet-places-list {
+    padding: 1rem;
+    max-height: 300px;
+    overflow-y: auto;
+    background: white;
+}
+
+.leaflet-place-item {
+    border-bottom: 1px solid #eee;
+    padding: 0.75rem 0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.leaflet-place-item:hover {
+    background-color: #f8f9fa;
+}
+
+.leaflet-place-item:last-child {
+    border-bottom: none;
+}
+
+.leaflet-place-name {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.25rem;
+}
+
+.leaflet-place-category {
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+}
+
+.leaflet-place-coords {
+    font-size: 0.8rem;
+    color: #007bff;
+    font-family: monospace;
+}
+
+.leaflet-zoom-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 1000;
+}
+
+.leaflet-zoom-btn {
+    width: 32px;
+    height: 32px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.leaflet-zoom-btn:hover {
+    background: #f8f9fa;
+}
+
+.leaflet-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.9);
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
