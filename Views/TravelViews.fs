@@ -139,16 +139,25 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
         // Downloads section
         gpxDownloadSection
         
-        // Interactive map placeholder (for future Leaflet.js integration)
+        // Interactive map with Leaflet.js integration
         div [ _class "travel-map mb-4" ] [
             h3 [] [ Text "Interactive Map" ]
-            div [ _id "travel-map"; _class "map-container bg-light d-flex align-items-center justify-content-center"; _style "height: 400px; border: 1px solid #dee2e6; border-radius: 0.375rem;" ] [
-                div [ _class "text-center text-muted" ] [
-                    i [ _class "bi bi-map display-4 mb-2" ] []
-                    br []
-                    Text "Interactive map coming soon"
-                    br []
-                    small [] [ Text "Use GPX download for now" ]
+            div [ 
+                _id "travel-map"
+                _class "leaflet-map-container"
+                _style "height: 400px; border: 1px solid #dee2e6; border-radius: 0.375rem;"
+                attr "data-gpx-url" $"{collection.Id}.gpx"
+                attr "data-places" (System.Text.Json.JsonSerializer.Serialize(travelData.Places))
+            ] [
+                // Fallback content shown when JavaScript is disabled
+                div [ _class "text-center text-muted d-flex align-items-center justify-content-center h-100" ] [
+                    div [] [
+                        i [ _class "bi bi-map display-4 mb-2" ] []
+                        br []
+                        Text "Interactive map requires JavaScript"
+                        br []
+                        small [] [ Text "Use GPX download or coordinate links below" ]
+                    ]
                 ]
             ]
         ]
