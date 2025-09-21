@@ -156,27 +156,58 @@ L.Map.prototype = {
                 e.stopPropagation();
                 const marker = this.markers[index];
                 if (marker && marker.popup) {
-                    // Position popup near the marker
-                    const rect = markerElement.getBoundingClientRect();
-                    const containerRect = this.element.getBoundingClientRect();
-                    
-                    // Calculate popup position relative to map container
-                    const popupX = rect.left - containerRect.left + 10;
-                    const popupY = rect.top - containerRect.top - 10;
-                    
-                    // Ensure popup stays within map bounds
-                    const maxX = this.element.offsetWidth - 320; // popup max width + margin
-                    const maxY = this.element.offsetHeight - 200; // estimated popup height
-                    
-                    popup.style.left = Math.min(popupX, Math.max(10, maxX)) + 'px';
-                    popup.style.top = Math.max(10, Math.min(popupY, maxY)) + 'px';
-                    
-                    // Set popup content
+                    // Set popup content first to get accurate dimensions
                     popupTitle.textContent = marker.name || 'Location';
                     popupContent.innerHTML = marker.popup;
                     
-                    // Show popup
+                    // Show popup temporarily to measure dimensions
                     popup.style.display = 'block';
+                    popup.style.visibility = 'hidden';
+                    
+                    // Get actual popup dimensions
+                    const popupRect = popup.getBoundingClientRect();
+                    const popupWidth = popupRect.width;
+                    const popupHeight = popupRect.height;
+                    
+                    // Get marker and container positions
+                    const markerRect = markerElement.getBoundingClientRect();
+                    const containerRect = this.element.getBoundingClientRect();
+                    
+                    // Calculate initial popup position relative to marker
+                    let popupX = markerRect.left - containerRect.left + 25; // offset to right of marker
+                    let popupY = markerRect.top - containerRect.top - popupHeight - 10; // above marker
+                    
+                    // Get container dimensions for boundary checks
+                    const containerWidth = this.element.offsetWidth;
+                    const containerHeight = this.element.offsetHeight;
+                    
+                    // Horizontal boundary checks and adjustments
+                    const margin = 10;
+                    if (popupX + popupWidth > containerWidth - margin) {
+                        // Would go off right edge, position to left of marker
+                        popupX = markerRect.left - containerRect.left - popupWidth - 10;
+                    }
+                    if (popupX < margin) {
+                        // Would go off left edge, clamp to margin
+                        popupX = margin;
+                    }
+                    
+                    // Vertical boundary checks and adjustments
+                    if (popupY < margin) {
+                        // Would go off top edge, position below marker
+                        popupY = markerRect.bottom - containerRect.top + 10;
+                    }
+                    if (popupY + popupHeight > containerHeight - margin) {
+                        // Would go off bottom edge, adjust upward
+                        popupY = containerHeight - popupHeight - margin;
+                    }
+                    
+                    // Apply final position
+                    popup.style.left = popupX + 'px';
+                    popup.style.top = popupY + 'px';
+                    
+                    // Make popup visible
+                    popup.style.visibility = 'visible';
                 }
             });
         });
@@ -236,39 +267,45 @@ L.Map.prototype = {
     },
     
     _latToPixel: function(lat) {
-        // Proper geographic projection that responds to zoom level
+        // Improved Web Mercator projection matching OpenStreetMap's implementation
         const mapHeight = this.element ? this.element.offsetHeight : 400;
         
-        // Web Mercator projection (EPSG:3857) - simplified for small areas
-        // Calculate the pixel range based on zoom level
+        // Web Mercator projection (EPSG:3857) - more accurate implementation
         const scale = Math.pow(2, this.zoom);
+        
+        // Convert latitude to Web Mercator Y coordinate
         const latRad = lat * Math.PI / 180;
         const centerLatRad = this.center[0] * Math.PI / 180;
         
-        // Convert to Web Mercator Y coordinates
-        const y = Math.log(Math.tan(Math.PI / 4 + latRad / 2));
-        const centerY = Math.log(Math.tan(Math.PI / 4 + centerLatRad / 2));
+        // Use proper Web Mercator Y calculation
+        const mercY = Math.log(Math.tan(Math.PI / 4 + latRad / 2));
+        const centerMercY = Math.log(Math.tan(Math.PI / 4 + centerLatRad / 2));
         
-        // Scale to pixel space
-        const pixelsPerRadian = scale * 256 / (2 * Math.PI);
-        const pixelY = (centerY - y) * pixelsPerRadian;
+        // Convert to pixel coordinates with proper scaling
+        // At zoom level z, the world is 256 * 2^z pixels wide/high
+        const worldSize = 256 * scale;
+        const pixelsPerMercUnit = worldSize / (2 * Math.PI);
         
-        return mapHeight / 2 + pixelY;
+        // Calculate pixel offset from center
+        const pixelOffsetY = (centerMercY - mercY) * pixelsPerMercUnit;
+        
+        return mapHeight / 2 + pixelOffsetY;
     },
     
     _lngToPixel: function(lng) {
-        // Proper geographic projection that responds to zoom level
+        // Improved longitude to pixel conversion
         const mapWidth = this.element ? this.element.offsetWidth : 400;
         
-        // Calculate the pixel range based on zoom level
+        // Web Mercator projection for longitude is simple
         const scale = Math.pow(2, this.zoom);
+        const worldSize = 256 * scale;
         
-        // Convert longitude difference to pixel space
+        // Convert longitude difference to pixels
         const lngDiff = lng - this.center[1];
-        const pixelsPerDegree = scale * 256 / 360;
-        const pixelX = lngDiff * pixelsPerDegree;
+        const pixelsPerDegree = worldSize / 360;
+        const pixelOffsetX = lngDiff * pixelsPerDegree;
         
-        return mapWidth / 2 + pixelX;
+        return mapWidth / 2 + pixelOffsetX;
     }
 };
 
