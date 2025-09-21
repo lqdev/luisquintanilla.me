@@ -48,15 +48,24 @@ L.Map.prototype = {
         const centerLat = (minLat + maxLat) / 2;
         const centerLng = (minLng + maxLng) / 2;
         
-        // Simple zoom calculation based on bounds size
+        // Calculate zoom level based on bounds size and map dimensions
         const latDiff = maxLat - minLat;
         const lngDiff = maxLng - minLng;
         const maxDiff = Math.max(latDiff, lngDiff);
         
+        // Improved zoom calculation
         let zoom = 16;
-        if (maxDiff > 0.1) zoom = 10;
+        if (maxDiff > 0.2) zoom = 9;
+        else if (maxDiff > 0.1) zoom = 10;
         else if (maxDiff > 0.05) zoom = 12;
+        else if (maxDiff > 0.02) zoom = 13;
         else if (maxDiff > 0.01) zoom = 14;
+        else if (maxDiff > 0.005) zoom = 15;
+        
+        // Apply padding if specified
+        if (options && options.padding) {
+            zoom = Math.max(zoom - 1, 8); // Reduce zoom by 1 for padding
+        }
         
         this.setView([centerLat, centerLng], zoom);
         return this;
@@ -66,9 +75,9 @@ L.Map.prototype = {
         if (!this.element) return;
         
         // Create map with markers overlay
-        const markersHtml = this.markers.map(marker => `
-            <div style="position: absolute; top: ${this._latToPixel(marker.latlng[0])}px; left: ${this._lngToPixel(marker.latlng[1])}px; transform: translate(-50%, -100%); z-index: 100; cursor: pointer;" onclick="alert('${marker.name}\\n\\n${marker.description || 'Click for details'}')">
-                <div style="background: #FF6B6B; color: white; width: 20px; height: 20px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); display: flex; align-items: center; justify-content: center; font-size: 12px; border: 2px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+        const markersHtml = this.markers.map((marker, index) => `
+            <div class="leaflet-marker" data-marker-index="${index}" style="position: absolute; top: ${this._latToPixel(marker.latlng[0])}px; left: ${this._lngToPixel(marker.latlng[1])}px; transform: translate(-50%, -100%); z-index: 100; cursor: pointer;">
+                <div class="marker-icon" style="background: #FF6B6B; color: white; width: 20px; height: 20px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); display: flex; align-items: center; justify-content: center; font-size: 12px; border: 2px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
                     <span style="transform: rotate(45deg);">${this._getCategoryIcon(marker.category)}</span>
                 </div>
             </div>
@@ -88,24 +97,121 @@ L.Map.prototype = {
                     style="border: none;">
                 </iframe>
                 ${markersHtml}
+                <div class="leaflet-control-zoom" style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
+                    <button class="leaflet-control-zoom-in" style="display: block; width: 32px; height: 32px; background: white; border: 1px solid #ccc; cursor: pointer; font-weight: bold; color: #333; margin-bottom: 1px;">+</button>
+                    <button class="leaflet-control-zoom-out" style="display: block; width: 32px; height: 32px; background: white; border: 1px solid #ccc; cursor: pointer; font-weight: bold; color: #333;">−</button>
+                </div>
                 <div style="position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.9); padding: 8px; border-radius: 4px; font-size: 12px; font-family: Arial, sans-serif;">
                     <a href="https://www.openstreetmap.org/?mlat=${this.center[0]}&mlon=${this.center[1]}&zoom=${this.zoom}" target="_blank" style="color: #0078A8; text-decoration: none;">View Larger Map</a>
                 </div>
                 <div style="position: absolute; bottom: 10px; right: 10px; background: rgba(255,255,255,0.9); padding: 4px 8px; border-radius: 4px; font-size: 11px; font-family: Arial, sans-serif;">
                     <a href="https://www.openstreetmap.org/copyright" target="_blank" style="color: #0078A8; text-decoration: none;">© OpenStreetMap</a>
                 </div>
+                <div id="leaflet-popup" style="position: absolute; display: none; background: white; border: 1px solid #ccc; border-radius: 8px; padding: 0; box-shadow: 0 3px 14px rgba(0,0,0,0.4); z-index: 1000; max-width: 300px; min-width: 200px;">
+                    <div style="background: #f8f9fa; padding: 8px 12px; border-bottom: 1px solid #dee2e6; border-radius: 8px 8px 0 0; font-weight: 600; font-size: 14px;">
+                        <button id="popup-close" style="float: right; background: none; border: none; font-size: 18px; cursor: pointer; color: #666; line-height: 1;">&times;</button>
+                        <span id="popup-title"></span>
+                    </div>
+                    <div id="popup-content" style="padding: 12px; font-size: 14px; line-height: 1.4;"></div>
+                </div>
             </div>
         `;
         
         this.element.innerHTML = mapHtml;
         this.initialized = true;
+        
+        // Add click handlers for markers and zoom controls
+        this._addMarkerClickHandlers();
+        this._addZoomControls();
+    },
+    
+    _addZoomControls: function() {
+        const zoomInBtn = this.element.querySelector('.leaflet-control-zoom-in');
+        const zoomOutBtn = this.element.querySelector('.leaflet-control-zoom-out');
+        
+        if (zoomInBtn) {
+            zoomInBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.setView(this.center, Math.min(this.zoom + 1, 18));
+            });
+        }
+        
+        if (zoomOutBtn) {
+            zoomOutBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.setView(this.center, Math.max(this.zoom - 1, 1));
+            });
+        }
+    },
+    
+    _addMarkerClickHandlers: function() {
+        const markerElements = this.element.querySelectorAll('.leaflet-marker');
+        const popup = this.element.querySelector('#leaflet-popup');
+        const popupTitle = this.element.querySelector('#popup-title');
+        const popupContent = this.element.querySelector('#popup-content');
+        const closeButton = this.element.querySelector('#popup-close');
+        
+        markerElements.forEach((markerElement, index) => {
+            markerElement.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const marker = this.markers[index];
+                if (marker && marker.popup) {
+                    // Position popup near the marker
+                    const rect = markerElement.getBoundingClientRect();
+                    const containerRect = this.element.getBoundingClientRect();
+                    
+                    // Calculate popup position relative to map container
+                    const popupX = rect.left - containerRect.left + 10;
+                    const popupY = rect.top - containerRect.top - 10;
+                    
+                    // Ensure popup stays within map bounds
+                    const maxX = this.element.offsetWidth - 320; // popup max width + margin
+                    const maxY = this.element.offsetHeight - 200; // estimated popup height
+                    
+                    popup.style.left = Math.min(popupX, Math.max(10, maxX)) + 'px';
+                    popup.style.top = Math.max(10, Math.min(popupY, maxY)) + 'px';
+                    
+                    // Set popup content
+                    popupTitle.textContent = marker.name || 'Location';
+                    popupContent.innerHTML = marker.popup;
+                    
+                    // Show popup
+                    popup.style.display = 'block';
+                }
+            });
+        });
+        
+        // Close popup handlers
+        if (closeButton) {
+            closeButton.addEventListener('click', () => {
+                popup.style.display = 'none';
+            });
+        }
+        
+        // Close popup when clicking outside
+        this.element.addEventListener('click', (e) => {
+            if (!e.target.closest('.leaflet-marker') && !e.target.closest('#leaflet-popup')) {
+                popup.style.display = 'none';
+            }
+        });
     },
     
     _getBbox: function() {
-        // Calculate bounding box based on center and zoom
-        const zoomFactor = Math.pow(2, 15 - this.zoom) * 0.01;
-        const latOffset = zoomFactor;
-        const lngOffset = zoomFactor;
+        // Calculate bounding box based on center and zoom level
+        // Use proper geographic calculations for better accuracy
+        const scale = Math.pow(2, this.zoom);
+        
+        // Calculate degrees per pixel at this zoom level
+        // At zoom 0, the world is 256 pixels wide and covers 360 degrees
+        const degreesPerPixel = 360 / (256 * scale);
+        
+        // Get map dimensions
+        const mapWidth = this.element ? this.element.offsetWidth : 400;
+        const mapHeight = this.element ? this.element.offsetHeight : 400;
+        
+        // Calculate lat/lng offsets based on map size and zoom
+        const lngOffset = (mapWidth / 2) * degreesPerPixel;
+        const latOffset = (mapHeight / 2) * degreesPerPixel;
         
         const minLng = this.center[1] - lngOffset;
         const minLat = this.center[0] - latOffset;
@@ -130,21 +236,39 @@ L.Map.prototype = {
     },
     
     _latToPixel: function(lat) {
-        // Simple projection for visualization (not geographically accurate)
+        // Proper geographic projection that responds to zoom level
         const mapHeight = this.element ? this.element.offsetHeight : 400;
-        const latRange = 0.1; // Approximate range for Rome area
-        const centerLat = this.center[0];
-        const relativePos = (lat - centerLat) / latRange;
-        return mapHeight / 2 - (relativePos * mapHeight * 0.8);
+        
+        // Web Mercator projection (EPSG:3857) - simplified for small areas
+        // Calculate the pixel range based on zoom level
+        const scale = Math.pow(2, this.zoom);
+        const latRad = lat * Math.PI / 180;
+        const centerLatRad = this.center[0] * Math.PI / 180;
+        
+        // Convert to Web Mercator Y coordinates
+        const y = Math.log(Math.tan(Math.PI / 4 + latRad / 2));
+        const centerY = Math.log(Math.tan(Math.PI / 4 + centerLatRad / 2));
+        
+        // Scale to pixel space
+        const pixelsPerRadian = scale * 256 / (2 * Math.PI);
+        const pixelY = (centerY - y) * pixelsPerRadian;
+        
+        return mapHeight / 2 + pixelY;
     },
     
     _lngToPixel: function(lng) {
-        // Simple projection for visualization (not geographically accurate)
+        // Proper geographic projection that responds to zoom level
         const mapWidth = this.element ? this.element.offsetWidth : 400;
-        const lngRange = 0.1; // Approximate range for Rome area
-        const centerLng = this.center[1];
-        const relativePos = (lng - centerLng) / lngRange;
-        return mapWidth / 2 + (relativePos * mapWidth * 0.8);
+        
+        // Calculate the pixel range based on zoom level
+        const scale = Math.pow(2, this.zoom);
+        
+        // Convert longitude difference to pixel space
+        const lngDiff = lng - this.center[1];
+        const pixelsPerDegree = scale * 256 / 360;
+        const pixelX = lngDiff * pixelsPerDegree;
+        
+        return mapWidth / 2 + pixelX;
     }
 };
 
