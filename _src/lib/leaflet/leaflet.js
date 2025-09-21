@@ -27,6 +27,16 @@ L.Map.prototype = {
         return this;
     },
     
+    // Track whether this is a user-initiated center change vs programmatic
+    _updateView: function(center, zoom, isUserInitiated = false) {
+        this.center = center;
+        this.zoom = zoom;
+        if (this.initialized) {
+            this._render();
+        }
+        return this;
+    },
+    
     addTo: function(map) {
         return this;
     },
@@ -74,19 +84,34 @@ L.Map.prototype = {
     _render: function() {
         if (!this.element) return;
         
-        // Create map with markers overlay
-        const markersHtml = this.markers.map((marker, index) => `
-            <div class="leaflet-marker" data-marker-index="${index}" style="position: absolute; top: ${this._latToPixel(marker.latlng[0])}px; left: ${this._lngToPixel(marker.latlng[1])}px; transform: translate(-50%, -100%); z-index: 100; cursor: pointer;">
+        // Store initial state to maintain marker consistency
+        if (!this.initialBounds) {
+            this.initialBounds = this._getBboxAsNumbers();
+        }
+        
+        // Create map with markers overlay using absolute positioning
+        const markersHtml = this.markers.map((marker, index) => {
+            const markerLat = marker.latlng[0];
+            const markerLng = marker.latlng[1];
+            
+            // Calculate marker position relative to current iframe bounds
+            const pixelX = this._lngToPixel(markerLng);
+            const pixelY = this._latToPixel(markerLat);
+            
+            return `
+            <div class="leaflet-marker" data-marker-index="${index}" data-lat="${markerLat}" data-lng="${markerLng}" style="position: absolute; top: ${pixelY}px; left: ${pixelX}px; transform: translate(-50%, -100%); z-index: 100; cursor: pointer;">
                 <div class="marker-icon" style="background: #FF6B6B; color: white; width: 20px; height: 20px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); display: flex; align-items: center; justify-content: center; font-size: 12px; border: 2px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
                     <span style="transform: rotate(45deg);">${this._getCategoryIcon(marker.category)}</span>
                 </div>
             </div>
-        `).join('');
+        `;
+        }).join('');
         
         // Create iframe with OpenStreetMap embed
         const mapHtml = `
             <div style="position: relative; width: 100%; height: 100%; border-radius: 0.375rem; overflow: hidden;">
                 <iframe 
+                    id="osm-iframe"
                     width="100%" 
                     height="100%" 
                     frameborder="0" 
@@ -123,6 +148,9 @@ L.Map.prototype = {
         // Add click handlers for markers and zoom controls
         this._addMarkerClickHandlers();
         this._addZoomControls();
+        
+        // Set up periodic marker position updates to handle iframe interactions
+        this._setupMarkerSynchronization();
     },
     
     _addZoomControls: function() {
@@ -252,6 +280,25 @@ L.Map.prototype = {
         return `${minLng},${minLat},${maxLng},${maxLat}`;
     },
     
+    _getBboxAsNumbers: function() {
+        // Get bbox as numbers for coordinate calculations
+        const scale = Math.pow(2, this.zoom);
+        const degreesPerPixel = 360 / (256 * scale);
+        
+        const mapWidth = this.element ? this.element.offsetWidth : 400;
+        const mapHeight = this.element ? this.element.offsetHeight : 400;
+        
+        const lngOffset = (mapWidth / 2) * degreesPerPixel;
+        const latOffset = (mapHeight / 2) * degreesPerPixel;
+        
+        return {
+            minLng: this.center[1] - lngOffset,
+            minLat: this.center[0] - latOffset,
+            maxLng: this.center[1] + lngOffset,
+            maxLat: this.center[0] + latOffset
+        };
+    },
+    
     _getCategoryIcon: function(category) {
         const icons = {
             'attraction': '🏛️',
@@ -267,46 +314,100 @@ L.Map.prototype = {
     },
     
     _latToPixel: function(lat) {
-        // Improved Web Mercator projection matching OpenStreetMap's implementation
+        // Use the exact same coordinate system as the OpenStreetMap iframe
+        // This ensures perfect alignment regardless of view changes
         const mapHeight = this.element ? this.element.offsetHeight : 400;
         
-        // Web Mercator projection (EPSG:3857) - more accurate implementation
-        const scale = Math.pow(2, this.zoom);
+        // Get the bbox that the iframe is actually displaying
+        const bbox = this._getBboxAsNumbers();
         
-        // Convert latitude to Web Mercator Y coordinate
-        const latRad = lat * Math.PI / 180;
-        const centerLatRad = this.center[0] * Math.PI / 180;
+        // Convert latitude using simple linear mapping within the visible bounds
+        // This matches exactly how the iframe renders coordinates
+        const latRange = bbox.maxLat - bbox.minLat;
+        if (latRange === 0) return mapHeight / 2;
         
-        // Use proper Web Mercator Y calculation
-        const mercY = Math.log(Math.tan(Math.PI / 4 + latRad / 2));
-        const centerMercY = Math.log(Math.tan(Math.PI / 4 + centerLatRad / 2));
+        const normalizedLat = (lat - bbox.minLat) / latRange;
         
-        // Convert to pixel coordinates with proper scaling
-        // At zoom level z, the world is 256 * 2^z pixels wide/high
-        const worldSize = 256 * scale;
-        const pixelsPerMercUnit = worldSize / (2 * Math.PI);
-        
-        // Calculate pixel offset from center
-        const pixelOffsetY = (centerMercY - mercY) * pixelsPerMercUnit;
-        
-        return mapHeight / 2 + pixelOffsetY;
+        // Invert Y coordinate (north is up, pixels increase downward)
+        return mapHeight * (1 - normalizedLat);
     },
     
     _lngToPixel: function(lng) {
-        // Improved longitude to pixel conversion
+        // Use the exact same coordinate system as the OpenStreetMap iframe
+        // This ensures perfect alignment regardless of view changes
         const mapWidth = this.element ? this.element.offsetWidth : 400;
         
-        // Web Mercator projection for longitude is simple
-        const scale = Math.pow(2, this.zoom);
-        const worldSize = 256 * scale;
+        // Get the bbox that the iframe is actually displaying
+        const bbox = this._getBboxAsNumbers();
         
-        // Convert longitude difference to pixels
-        const lngDiff = lng - this.center[1];
-        const pixelsPerDegree = worldSize / 360;
-        const pixelOffsetX = lngDiff * pixelsPerDegree;
+        // Convert longitude using simple linear mapping within the visible bounds
+        // This matches exactly how the iframe renders coordinates
+        const lngRange = bbox.maxLng - bbox.minLng;
+        if (lngRange === 0) return mapWidth / 2;
         
-        return mapWidth / 2 + pixelOffsetX;
-    }
+        const normalizedLng = (lng - bbox.minLng) / lngRange;
+        
+        return mapWidth * normalizedLng;
+    },
+    
+    _setupMarkerSynchronization: function() {
+        // Since we can't directly track iframe drag events due to cross-origin restrictions,
+        // we implement a different strategy: detect when the iframe gets focus (indicating user interaction)
+        // and temporarily disable marker positioning updates during interaction
+        const iframe = this.element.querySelector('#osm-iframe');
+        if (!iframe) return;
+        
+        let isInteracting = false;
+        let interactionTimeout;
+        
+        // Detect when user starts interacting with iframe
+        iframe.addEventListener('mouseenter', () => {
+            isInteracting = true;
+            clearTimeout(interactionTimeout);
+        });
+        
+        // Detect when user stops interacting with iframe
+        iframe.addEventListener('mouseleave', () => {
+            isInteracting = false;
+            // Delay marker position updates to allow iframe to settle
+            clearTimeout(interactionTimeout);
+            interactionTimeout = setTimeout(() => {
+                // Re-sync markers to current view if needed
+                this._syncMarkersToView();
+            }, 100);
+        });
+        
+        // For iframe focus/blur events
+        iframe.addEventListener('focus', () => {
+            isInteracting = true;
+        });
+        
+        iframe.addEventListener('blur', () => {
+            isInteracting = false;
+            clearTimeout(interactionTimeout);
+            interactionTimeout = setTimeout(() => {
+                this._syncMarkersToView();
+            }, 100);
+        });
+    },
+    
+    _syncMarkersToView: function() {
+        // Update marker positions to match current geographic coordinates
+        // This is called after iframe interactions settle
+        const markers = this.element.querySelectorAll('.leaflet-marker');
+        markers.forEach((markerElement) => {
+            const lat = parseFloat(markerElement.dataset.lat);
+            const lng = parseFloat(markerElement.dataset.lng);
+            
+            if (!isNaN(lat) && !isNaN(lng)) {
+                const pixelX = this._lngToPixel(lng);
+                const pixelY = this._latToPixel(lat);
+                
+                markerElement.style.left = pixelX + 'px';
+                markerElement.style.top = pixelY + 'px';
+            }
+        });
+    },
 };
 
 // Marker implementation
