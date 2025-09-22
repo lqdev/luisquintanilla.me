@@ -9,4 +9,4 @@ tags: ["fediverse","mastodon","microblog","indieweb","openweb"]
 
 > Today we’re announcing support for [Mastodon quote posts](https://blog.joinmastodon.org/2025/09/introducing-quote-posts/) in Micro.blog.
 
-Congrats to Manton on making this feature available so quickly after the public Mastodon nnouncement.
+Congrats to Manton on making this feature available so quickly after the public Mastodon announcement.
