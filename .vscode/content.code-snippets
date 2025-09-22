@@ -66,5 +66,239 @@
         "body": [
             "[${1:Link Text}](${2:URL})"
         ]
+    },
+    "Media Block - Single Image": {
+        "scope": "markdown",
+        "prefix": "media-image",
+        "description": "Add media block with single image",
+        "body": [
+            ":::media",
+            "- url: \"${1:URL}\"",
+            "  alt: \"${2:Alt text}\"",
+            "  mediaType: \"image\"",
+            "  aspectRatio: \"${3|landscape,portrait,square,cinematic|}\"",
+            "  caption: \"${4:Caption}\"",
+            ":::media"
+        ]
+    },
+    "Media Block - Single Video": {
+        "scope": "markdown",
+        "prefix": "media-video",
+        "description": "Add media block with single video",
+        "body": [
+            ":::media",
+            "- url: \"${1:URL}\"",
+            "  alt: \"${2:Alt text}\"",
+            "  mediaType: \"video\"",
+            "  aspectRatio: \"${3|landscape,portrait,square,cinematic|}\"",
+            "  caption: \"${4:Caption}\"",
+            ":::media"
+        ]
+    },
+    "Media Block - Single Audio": {
+        "scope": "markdown",
+        "prefix": "media-audio",
+        "description": "Add media block with single audio",
+        "body": [
+            ":::media",
+            "- url: \"${1:URL}\"",
+            "  alt: \"${2:Alt text description}\"",
+            "  mediaType: \"audio\"",
+            "  aspectRatio: \"${3|landscape,portrait,square,cinematic|}\"",
+            "  caption: \"${4:Caption}\"",
+            ":::media"
+        ]
+    },
+    "Media Block - Single Document": {
+        "scope": "markdown",
+        "prefix": "media-document",
+        "description": "Add media block with single document",
+        "body": [
+            ":::media",
+            "- url: \"${1:URL}\"",
+            "  alt: \"${2:Document description}\"",
+            "  mediaType: \"document\"",
+            "  aspectRatio: \"${3|landscape,portrait,square,cinematic|}\"",
+            "  caption: \"${4:Caption}\"",
+            ":::media"
+        ]
+    },
+    "Media Block - Single Link": {
+        "scope": "markdown",
+        "prefix": "media-link",
+        "description": "Add media block with single link",
+        "body": [
+            ":::media",
+            "- url: \"${1:URL}\"",
+            "  alt: \"${2:Link description}\"",
+            "  mediaType: \"link\"",
+            "  aspectRatio: \"${3|landscape,portrait,square,cinematic|}\"",
+            "  caption: \"${4:Caption}\"",
+            ":::media"
+        ]
+    },
+    "Media Block - Multiple Items": {
+        "scope": "markdown",
+        "prefix": "media-multiple",
+        "description": "Add media block with multiple items",
+        "body": [
+            ":::media",
+            "- url: \"${1:First URL}\"",
+            "  alt: \"${2:First alt text}\"",
+            "  mediaType: \"${3|image,video,audio,document,link|}\"",
+            "  aspectRatio: \"${4|landscape,portrait,square,cinematic|}\"",
+            "  caption: \"${5:First caption}\"",
+            "- url: \"${6:Second URL}\"",
+            "  alt: \"${7:Second alt text}\"",
+            "  mediaType: \"${8|image,video,audio,document,link|}\"",
+            "  aspectRatio: \"${9|landscape,portrait,square,cinematic|}\"",
+            "  caption: \"${10:Second caption}\"",
+            ":::media"
+        ]
+    },
+    "Review Block - Book": {
+        "scope": "markdown",
+        "prefix": "review-book",
+        "description": "Add review block for book",
+        "body": [
+            ":::review",
+            "item: \"${1:Book Title}\"",
+            "itemType: \"book\"",
+            "rating: ${2:4.0}",
+            "scale: 5.0",
+            "summary: \"${3:Brief review summary}\"",
+            "pros:",
+            "  - \"${4:First positive point}\"",
+            "  - \"${5:Second positive point}\"",
+            "cons:",
+            "  - \"${6:First negative point}\"",
+            "itemUrl: \"${7:Book URL}\"",
+            "imageUrl: \"${8:Cover image URL}\"",
+            "additionalFields:",
+            "  author: \"${9:Author Name}\"",
+            "  isbn: \"${10:ISBN}\"",
+            "  genre: \"${11:Genre}\"",
+            ":::"
+        ]
+    },
+    "Review Block - Movie": {
+        "scope": "markdown",
+        "prefix": "review-movie",
+        "description": "Add review block for movie",
+        "body": [
+            ":::review",
+            "item: \"${1:Movie Title}\"",
+            "itemType: \"movie\"",
+            "rating: ${2:4.0}",
+            "scale: 5.0",
+            "summary: \"${3:Brief review summary}\"",
+            "pros:",
+            "  - \"${4:First positive point}\"",
+            "  - \"${5:Second positive point}\"",
+            "cons:",
+            "  - \"${6:First negative point}\"",
+            "itemUrl: \"${7:Movie URL (IMDB/etc)}\"",
+            "imageUrl: \"${8:Poster image URL}\"",
+            "additionalFields:",
+            "  director: \"${9:Director Name}\"",
+            "  year: ${10:2024}",
+            "  genre: \"${11:Genre}\"",
+            ":::"
+        ]
+    },
+    "Review Block - Music": {
+        "scope": "markdown",
+        "prefix": "review-music",
+        "description": "Add review block for music",
+        "body": [
+            ":::review",
+            "item: \"${1:Album/Song Title}\"",
+            "itemType: \"music\"",
+            "rating: ${2:4.0}",
+            "scale: 5.0",
+            "summary: \"${3:Brief review summary}\"",
+            "pros:",
+            "  - \"${4:First positive point}\"",
+            "  - \"${5:Second positive point}\"",
+            "cons:",
+            "  - \"${6:First negative point}\"",
+            "itemUrl: \"${7:Music URL (Spotify/Apple Music/etc)}\"",
+            "imageUrl: \"${8:Album art URL}\"",
+            "additionalFields:",
+            "  artist: \"${9:Artist Name}\"",
+            "  album: \"${10:Album Name}\"",
+            "  year: ${11:2024}",
+            ":::"
+        ]
+    },
+    "Review Block - Business": {
+        "scope": "markdown",
+        "prefix": "review-business",
+        "description": "Add review block for business",
+        "body": [
+            ":::review",
+            "item: \"${1:Business Name}\"",
+            "itemType: \"business\"",
+            "rating: ${2:4.0}",
+            "scale: 5.0",
+            "summary: \"${3:Brief review summary}\"",
+            "pros:",
+            "  - \"${4:First positive point}\"",
+            "  - \"${5:Second positive point}\"",
+            "cons:",
+            "  - \"${6:First negative point}\"",
+            "itemUrl: \"${7:Business website URL}\"",
+            "imageUrl: \"${8:Business image URL}\"",
+            "additionalFields:",
+            "  location: \"${9:Location}\"",
+            "  category: \"${10:Business category}\"",
+            "  visited: \"${11:Visit date}\"",
+            ":::"
+        ]
+    },
+    "Review Block - Product": {
+        "scope": "markdown",
+        "prefix": "review-product",
+        "description": "Add review block for product",
+        "body": [
+            ":::review",
+            "item: \"${1:Product Name}\"",
+            "itemType: \"product\"",
+            "rating: ${2:4.0}",
+            "scale: 5.0",
+            "summary: \"${3:Brief review summary}\"",
+            "pros:",
+            "  - \"${4:First positive point}\"",
+            "  - \"${5:Second positive point}\"",
+            "cons:",
+            "  - \"${6:First negative point}\"",
+            "itemUrl: \"${7:Product URL}\"",
+            "imageUrl: \"${8:Product image URL}\"",
+            "additionalFields:",
+            "  brand: \"${9:Brand Name}\"",
+            "  model: \"${10:Model}\"",
+            "  price: \"${11:Price}\"",
+            ":::"
+        ]
+    },
+    "Review Block - Generic": {
+        "scope": "markdown",
+        "prefix": "review",
+        "description": "Add generic review block",
+        "body": [
+            ":::review",
+            "item: \"${1:Item Name}\"",
+            "itemType: \"${2|book,movie,music,business,product|}\"",
+            "rating: ${3:4.0}",
+            "scale: 5.0",
+            "summary: \"${4:Brief review summary}\"",
+            "pros:",
+            "  - \"${5:First positive point}\"",
+            "cons:",
+            "  - \"${6:First negative point}\"",
+            "itemUrl: \"${7:Item URL}\"",
+            "imageUrl: \"${8:Image URL}\"",
+            ":::"
+        ]
     }    
 }
