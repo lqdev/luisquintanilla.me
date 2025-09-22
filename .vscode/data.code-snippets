@@ -36,5 +36,121 @@
 			"},"
 		],
 		"description": "Event entry"
+	},
+	"Starter Pack Feed Entry": {
+		"scope": "json",
+		"prefix": "starter-pack-feed",
+		"description": "RSS feed entry for starter pack data files",
+		"body": [
+			"{",
+			"    \"Title\": \"$1\",",
+			"    \"Type\": \"rss\",",
+			"    \"HtmlUrl\": \"$2\",",
+			"    \"XmlUrl\": \"$3\"",
+			"}$4"
+		]
+	},
+	"Starter Pack Data File": {
+		"scope": "json",
+		"prefix": "starter-pack-data",
+		"description": "Complete starter pack JSON data file template",
+		"body": [
+			"[",
+			"    {",
+			"        \"Title\": \"$1\",",
+			"        \"Type\": \"rss\",",
+			"        \"HtmlUrl\": \"$2\",",
+			"        \"XmlUrl\": \"$3\"",
+			"    },",
+			"    {",
+			"        \"Title\": \"$4\",",
+			"        \"Type\": \"rss\",",
+			"        \"HtmlUrl\": \"$5\",",
+			"        \"XmlUrl\": \"$6\"",
+			"    }",
+			"]"
+		]
+	},
+	"Travel Guide Place Entry": {
+		"scope": "json",
+		"prefix": "travel-place",
+		"description": "Travel guide place entry with full details",
+		"body": [
+			"{",
+			"    \"id\": \"$1\",",
+			"    \"name\": \"$2\",",
+			"    \"lat\": $3,",
+			"    \"lon\": $4,",
+			"    \"category\": \"$5\",",
+			"    \"description\": \"$6\",",
+			"    \"personalNote\": \"$7\",",
+			"    \"practicalInfo\": {",
+			"        \"price\": \"$8\",",
+			"        \"hours\": \"$9\",",
+			"        \"phone\": \"$10\",",
+			"        \"website\": \"$11\"",
+			"    }",
+			"}$12"
+		]
+	},
+	"Travel Guide Practical Info": {
+		"scope": "json",
+		"prefix": "travel-practical",
+		"description": "Practical information object for travel places",
+		"body": [
+			"\"practicalInfo\": {",
+			"    \"price\": \"$1\",",
+			"    \"hours\": \"$2\",",
+			"    \"phone\": \"$3\",",
+			"    \"website\": \"$4\"",
+			"}"
+		]
+	},
+	"Travel Guide Route": {
+		"scope": "json",
+		"prefix": "travel-route",
+		"description": "Travel guide route entry for walking tours",
+		"body": [
+			"{",
+			"    \"name\": \"$1\",",
+			"    \"description\": \"$2\",",
+			"    \"sequence\": [\"$3\", \"$4\", \"$5\"]",
+			"}$6"
+		]
+	},
+	"Travel Guide Data File": {
+		"scope": "json",
+		"prefix": "travel-guide-data",
+		"description": "Complete travel guide JSON data file template",
+		"body": [
+			"{",
+			"    \"title\": \"$1\",",
+			"    \"description\": \"$2\",",
+			"    \"places\": [",
+			"        {",
+			"            \"id\": \"$3\",",
+			"            \"name\": \"$4\",",
+			"            \"lat\": $5,",
+			"            \"lon\": $6,",
+			"            \"category\": \"$7\",",
+			"            \"description\": \"$8\",",
+			"            \"personalNote\": \"$9\",",
+			"            \"practicalInfo\": {",
+			"                \"price\": \"$10\",",
+			"                \"hours\": \"$11\",",
+			"                \"phone\": \"$12\",",
+			"                \"website\": \"$13\"",
+			"            }",
+			"        }",
+			"    ],",
+			"    \"routes\": [",
+			"        {",
+			"            \"name\": \"$14\",",
+			"            \"description\": \"$15\",",
+			"            \"sequence\": [\"$16\"]",
+			"        }",
+			"    ]",
+			"}"
+		]
 	}
 }
