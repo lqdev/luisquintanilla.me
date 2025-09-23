@@ -112,7 +112,7 @@ Add your travel collection to the `Collections.fs` file in the `defaultCollectio
     Id = "your-collection-id"
     Title = "Your Travel Guide Title"
     Description = "Brief description matching your JSON file"
-    CollectionType = Other "travel"
+    CollectionType = Travel "city-guide"
     UrlPath = "/collections/travel/your-collection-id/"
     DataFile = "your-collection-id.json"
     Tags = [| "travel"; "location"; "category"; "recommendations" |]
@@ -125,7 +125,7 @@ Add your travel collection to the `Collections.fs` file in the `defaultCollectio
 - `Id`: Must match your JSON filename (without .json)
 - `Title`: Displayed title on the website
 - `Description`: Brief overview for navigation
-- `CollectionType`: Must be `Other "travel"` for travel collections
+- `CollectionType`: Must be `Travel "category"` for travel collections (e.g., `Travel "city-guide"`, `Travel "national-parks"`)
 - `UrlPath`: URL structure following `/collections/travel/[id]/`
 - `DataFile`: Your JSON filename
 - `Tags`: Include "travel" tag + location/theme tags
@@ -304,7 +304,7 @@ Include comprehensive practical details:
 
 **Missing Features**:
 - Travel collections must include "travel" tag
-- Collection type must be `Other "travel"`
+- Collection type must be `Travel "category"`
 - GPX only generates for properly tagged collections
 
 **Display Issues**:
@@ -379,7 +379,7 @@ Before publishing:
     Id = "paris-favorites"
     Title = "Paris Favorites"
     Description = "Personal recommendations for Paris from multiple visits"
-    CollectionType = Other "travel"
+    CollectionType = Travel "city-guide"
     UrlPath = "/collections/travel/paris-favorites/"
     DataFile = "paris-favorites.json"
     Tags = [| "travel"; "paris"; "france"; "recommendations" |]

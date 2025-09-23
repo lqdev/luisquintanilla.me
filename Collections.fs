@@ -25,15 +25,14 @@ module CollectionProcessor =
             match collection.CollectionType with
             | MediumFocused _ -> Path.Join("collections", collection.Id)
             | TopicFocused _ -> Path.Join("collections", "starter-packs", collection.Id)
-            | Other "travel" -> Path.Join("collections", "travel", collection.Id)
+            | Travel _ -> Path.Join("collections", "travel", collection.Id)
             | Other _ -> Path.Join("collections", collection.Id)
         
         let gpxPath = 
             // Only generate GPX for travel collections
-            if collection.Id.Contains("travel") || collection.Tags |> Array.contains "travel" then
-                Some (Path.Join(baseDir, $"{collection.Id}.gpx"))
-            else
-                None
+            match collection.CollectionType with
+            | Travel _ -> Some (Path.Join(baseDir, $"{collection.Id}.gpx"))
+            | _ -> None
         
         {
             HtmlPath = Path.Join(baseDir, "index.html")
@@ -49,7 +48,8 @@ module CollectionProcessor =
             let jsonContent = File.ReadAllText(dataPath)
             
             // Special handling for travel collections
-            if collection.Tags |> Array.contains "travel" then
+            match collection.CollectionType with
+            | Travel _ -> 
                 try
                     // Try to load as TravelRecommendationData first
                     let travelData = JsonSerializer.Deserialize<TravelRecommendationData>(jsonContent)
@@ -91,7 +91,7 @@ module CollectionProcessor =
                         Metadata = { collection with ItemCount = Some items.Length }
                         Items = items
                     }
-            else
+            | _ ->
                 // Legacy support: load as Outline array first, then convert to CollectionItem array
                 let outlines = JsonSerializer.Deserialize<Outline array>(jsonContent)
                 let items = 
@@ -173,7 +173,8 @@ module CollectionProcessor =
         let collection = data.Metadata
         
         // Check if this is a travel collection and use appropriate view
-        if collection.Tags |> Array.contains "travel" then
+        match collection.CollectionType with
+        | Travel _ ->
             // For travel collections, we need the original travel data
             try
                 let travelDataPath = Path.Join("Data", collection.DataFile)
@@ -188,7 +189,7 @@ module CollectionProcessor =
             | ex ->
                 printfn "Warning: Failed to load travel data for %s, using standard view: %s" collection.Title ex.Message
                 generateStandardCollectionPage data
-        else
+        | _ ->
             generateStandardCollectionPage data
     
     // Generate RSS feed for collection
@@ -231,9 +232,8 @@ module CollectionProcessor =
         let collection = data.Metadata
         
         // Only generate GPX for travel collections
-        if not (collection.Id.Contains("travel") || collection.Tags |> Array.contains "travel") then
-            None
-        else
+        match collection.CollectionType with
+        | Travel _ ->
             try
                 // Check if this is a travel collection with travel data
                 let travelDataPath = Path.Join("Data", collection.DataFile)
@@ -266,6 +266,8 @@ module CollectionProcessor =
             | ex -> 
                 printfn "Warning: Failed to generate GPX for %s: %s" collection.Title ex.Message
                 None
+        | _ ->
+            None
     
     // Create unified collection processor
     let createCollectionProcessor (collection: Collection) : CollectionProcessor = 
@@ -344,23 +346,23 @@ module CollectionConfig =
             }
             
             // Travel collections  
-            {
-                Id = "rome-favorites"
-                Title = "Rome Favorites"
-                Description = "Personal travel recommendations for Rome from my time living there"
-                CollectionType = Other "travel"
-                UrlPath = "/collections/travel/rome-favorites/"
-                DataFile = "rome-favorites.json"
-                Tags = [| "travel"; "rome"; "italy"; "recommendations" |]
-                LastUpdated = DateTime.Now.ToString("yyyy-MM-dd")
-                ItemCount = None
-            }
+            // {
+            //     Id = "rome-favorites"
+            //     Title = "Rome Favorites"
+            //     Description = "Personal travel recommendations for Rome from my time living there"
+            //     CollectionType = Other "travel"
+            //     UrlPath = "/collections/travel/rome-favorites/"
+            //     DataFile = "rome-favorites.json"
+            //     Tags = [| "travel"; "rome"; "italy"; "recommendations" |]
+            //     LastUpdated = DateTime.Now.ToString("yyyy-MM-dd")
+            //     ItemCount = None
+            // }
 
             {
                 Id = "chicago-favorites"
                 Title = "Chicago Favorites"
                 Description = "Personal travel recommendations for Chicago"
-                CollectionType = Other "travel"
+                CollectionType = Travel "city-guide"
                 UrlPath = "/collections/travel/chicago-favorites/"
                 DataFile = "chicago-favorites.json"
                 Tags = [| "travel"; "chicago"; "illinois"; "recommendations" |]
@@ -389,7 +391,7 @@ module CollectionConfig =
         
         let otherCollections = 
             collections 
-            |> Array.filter (fun c -> match c.CollectionType with Other _ -> true | _ -> false)
+            |> Array.filter (fun c -> match c.CollectionType with Other _ | Travel _ -> true | _ -> false)
             |> Array.toList
         
         {

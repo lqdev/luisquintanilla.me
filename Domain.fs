@@ -178,6 +178,7 @@ module Domain
     type CollectionType = 
         | MediumFocused of medium: string  // "blogs", "podcasts", "youtube", "forums"
         | TopicFocused of topic: string    // "ai", "privacy", "fsharp", "indieweb"
+        | Travel of category: string       // "city-guide", "national-parks", "restaurants", "bars"
         | Other of category: string        // "tags", "radio", etc.
 
     // Individual collection item (RSS feed source) - enhanced Outline
