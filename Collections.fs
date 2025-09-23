@@ -354,6 +354,18 @@ module CollectionConfig =
                 LastUpdated = DateTime.Now.ToString("yyyy-MM-dd")
                 ItemCount = None
             }
+
+            {
+                Id = "chicago-favorites"
+                Title = "Chicago Favorites"
+                Description = "Personal travel recommendations for Chicago"
+                CollectionType = Other "travel"
+                UrlPath = "/collections/travel/chicago-favorites/"
+                DataFile = "chicago-favorites.json"
+                Tags = [| "travel"; "chicago"; "illinois"; "recommendations" |]
+                LastUpdated = DateTime.Now.ToString("yyyy-MM-dd")
+                ItemCount = None
+            }
         |]
     
     // Load collections configuration (for future JSON-based config)

@@ -13,6 +13,7 @@ Whether you're planning a trip or exploring virtually, these travel guides provi
 ## Guides
 
 - [Rome Favorites](/collections/rome-favorites/)
+- [Chicago Favorites](/collections/chicago-favorites)
 
 ## About Travel Guides
 
