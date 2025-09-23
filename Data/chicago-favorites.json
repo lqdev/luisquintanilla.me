@@ -1,0 +1,56 @@
+{
+    "title": "Chicago Favorites",
+    "description": "A curated list of favorite places in Chicago.",
+    "places": [
+        {
+            "id": "chicago-ovengrinder-piza",
+            "name": "Chicago Pizza and Oven Grinder Company",
+            "lat": 41.9206743,
+            "lon": -87.6376624,
+            "category": "restaurant",
+            "description": "Cash-only eatery in a historic brownstone serving its famous pizza-pot-pies plus grinders & more.",
+            "personalNote": "",
+            "practicalInfo": {
+                "website": "https://www.chicagopizzaandovengrinder.com/food-menu"
+            }
+        },
+        {
+            "id": "bryn-mawr-breakfast",
+            "name": "Bryn Mawr Breakfast Club",
+            "lat": 41.9387375,
+            "lon": -87.7443912,
+            "category": "restaurant",
+            "description": "Breakfast and lunch spot.",
+            "personalNote": "",
+            "practicalInfo": {
+                "website": "https://www.brynmawrbreakfastclub.net/"
+            }
+        },
+        {
+            "id": "do-rite-donuts",
+            "name": "Do-Rite Donuts",
+            "lat": 41.9470026,
+            "lon": -87.6565993,
+            "category": "restaurant",
+            "description": "Popular donut shop.",
+            "personalNote": "",
+            "practicalInfo": {
+                "website": "http://doritedonuts.com/"
+            }
+        },
+        {
+            "id": "la-catedral",
+            "name": "La Catedral Cafe",
+            "lat": 41.862587,
+            "lon": -87.6982053,
+            "category": "restaurant",
+            "description": "Good breakfast spot.",
+            "personalNote": "Get the cafe de olla",
+            "practicalInfo": {
+                "website": "http://lacatedralcafe.com/"
+            }
+        }
+    ],
+    "routes": [
+    ]
+}
