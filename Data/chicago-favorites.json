@@ -41,8 +41,8 @@
         {
             "id": "la-catedral",
             "name": "La Catedral Cafe",
-            "lat": 41.862689929334906, 
-            "lon": -87.69254173663968,
+            "lat": 41.86261219306498,  
+            "lon": -87.69304453270654,
             "category": "restaurant",
             "description": "Good breakfast spot.",
             "personalNote": "Get the cafe de olla",
