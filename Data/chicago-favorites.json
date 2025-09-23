@@ -5,8 +5,8 @@
         {
             "id": "chicago-ovengrinder-piza",
             "name": "Chicago Pizza and Oven Grinder Company",
-            "lat": 41.9206743,
-            "lon": -87.6376624,
+            "lat": 41.92079124723916, 
+            "lon": -87.6372743803602,
             "category": "restaurant",
             "description": "Cash-only eatery in a historic brownstone serving its famous pizza-pot-pies plus grinders & more.",
             "personalNote": "",
@@ -17,8 +17,8 @@
         {
             "id": "bryn-mawr-breakfast",
             "name": "Bryn Mawr Breakfast Club",
-            "lat": 41.9387375,
-            "lon": -87.7443912,
+            "lat": 41.938813019450876,  
+            "lon": -87.73929847287762,
             "category": "restaurant",
             "description": "Breakfast and lunch spot.",
             "personalNote": "",
@@ -29,8 +29,8 @@
         {
             "id": "do-rite-donuts",
             "name": "Do-Rite Donuts",
-            "lat": 41.9470026,
-            "lon": -87.6565993,
+            "lat": 41.947091441851576, 
+            "lon": -87.654830353105,
             "category": "restaurant",
             "description": "Popular donut shop.",
             "personalNote": "",
@@ -41,8 +41,8 @@
         {
             "id": "la-catedral",
             "name": "La Catedral Cafe",
-            "lat": 41.862587,
-            "lon": -87.6982053,
+            "lat": 41.862689929334906, 
+            "lon": -87.69254173663968,
             "category": "restaurant",
             "description": "Good breakfast spot.",
             "personalNote": "Get the cafe de olla",
