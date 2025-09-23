@@ -383,8 +383,7 @@ module Layouts
                 for sheet in styleSheets do
                     sheet
 
-                // Leaflet.js CSS for travel maps
-                link [_rel "stylesheet"; _href "/lib/leaflet/leaflet.css"]
+                // Leaflet.js CSS loaded from CDN in travel-map.js
 
                 // Opengraph
                 let ogElements = buildOpenGraphElements pageTitle
@@ -421,8 +420,7 @@ module Layouts
                 for scr in scripts do
                     scr
 
-                // Conditionally load Leaflet.js for travel maps
-                script [_src "/lib/leaflet/leaflet.js"] []
+                // Travel map functionality (Leaflet.js loaded from CDN)
                 script [_src "/assets/js/travel-map.js"] []
 
             ]
@@ -444,9 +442,7 @@ module Layouts
                 link [_rel "stylesheet"; _href "/lib/revealjs/dist/reveal.css"]
                 link [_rel "stylesheet"; _href "/lib/revealjs/dist/theme/black.css"]
                 link [_rel "stylesheet"; _href "/lib/revealjs/plugin/highlight/monokai.css"]
-
-                // Leaflet.js CSS for travel maps
-                link [_rel "stylesheet"; _href "/lib/leaflet/leaflet.css"]
+                // Leaflet.js CSS loaded from CDN in travel-map.js
 
                 // Opengraph
                 let ogElements = buildOpenGraphElements pageTitle
@@ -502,8 +498,7 @@ module Layouts
                     """
                 ]
 
-                // Conditionally load Leaflet.js for travel maps
-                script [_src "/lib/leaflet/leaflet.js"] []
+                // Travel map functionality (Leaflet.js loaded from CDN)
                 script [_src "/assets/js/travel-map.js"] []
 
             ]

@@ -21,8 +21,10 @@ L.Map.prototype = {
     setView: function(center, zoom) {
         this.center = center;
         this.zoom = zoom;
-        if (this.initialized) {
+        // Always trigger render when view is set, regardless of initialized state
+        if (this.element) {
             this._render();
+            this.initialized = true;
         }
         return this;
     },
