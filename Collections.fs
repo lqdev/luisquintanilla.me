@@ -25,6 +25,7 @@ module CollectionProcessor =
             match collection.CollectionType with
             | MediumFocused _ -> Path.Join("collections", collection.Id)
             | TopicFocused _ -> Path.Join("collections", "starter-packs", collection.Id)
+            | Other "travel" -> Path.Join("collections", "travel", collection.Id)
             | Other _ -> Path.Join("collections", collection.Id)
         
         let gpxPath = 
