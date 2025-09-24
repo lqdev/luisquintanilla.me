@@ -1,59 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Tags</title>
+    <title>All Tags - IndieWeb Microformat Support</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Browse content by tags with IndieWeb microformat support">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: #333;
+        }
+        .p-name {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+        .tag-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.5rem;
+        }
+        .tag-item {
+            background: #f8f9fa;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border-left: 3px solid #28a745;
+        }
+        .tag-item .u-url {
+            color: #28a745;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .tag-item .u-url:hover {
+            text-decoration: underline;
+        }
+        .tag-count {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        nav {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        nav a {
+            color: #3498db;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .stats {
+            background: #e8f5e8;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <main>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/feed/">Feeds</a>
+    </nav>
+    
+    <main class="h-feed">
         <header>
-            <h1>All Tags</h1>
+            <h1 class="p-name">All Tags</h1>
+            <div class="stats">
+                <p><strong>0</strong> tags available | IndieWeb microformat support enabled</p>
+                <p><small>Each tag page includes h-feed, h-entry, and h-card microformats</small></p>
+            </div>
         </header>
+        
         <ul class="tag-list">
-            <li><a href="/tags/First/">First</a> (0
-0)</li>
-<li><a href="/tags/note/">note</a> (4)</li>
-<li><a href="/tags/in/">in</a> (0
-0)</li>
-<li><a href="/tags/the/">the</a> (0
-0)</li>
-<li><a href="/tags/Unix/">Unix</a> (0
-0)</li>
-<li><a href="/tags/SSG/">SSG</a> (0
-0)</li>
-<li><a href="/tags/Hello/">Hello</a> (0
-0)</li>
-<li><a href="/tags/World/">World</a> (0
-0)</li>
-<li><a href="/tags/Unix/">Unix</a> (0
-0)</li>
-<li><a href="/tags/Philosophy/">Philosophy</a> (0
-0)</li>
-<li><a href="/tags/Explained/">Explained</a> (0
-0)</li>
-<li><a href="/tags/Welcome/">Welcome</a> (0
-0)</li>
-<li><a href="/tags/to/">to</a> (0
-0)</li>
-<li><a href="/tags/Unix/">Unix</a> (0
-0)</li>
-<li><a href="/tags/SSG/">SSG</a> (0
-0)</li>
-<li><a href="/tags/article/">article</a> (5)</li>
-<li><a href="/tags/date/">date</a> (13)</li>
-<li><a href="/tags/feed/unix-philosophy-video.md/">feed/unix-philosophy-video.md</a> (4)</li>
-<li><a href="/tags/file/">file</a> (13)</li>
-<li><a href="/tags/note/">note</a> (4)</li>
-<li><a href="/tags/notes/first-note.md/">notes/first-note.md</a> (4)</li>
-<li><a href="/tags/posts/hello-world.md/">posts/hello-world.md</a> (1)</li>
-<li><a href="/tags/posts/welcome.md/">posts/welcome.md</a> (4)</li>
-<li><a href="/tags/tags/">tags</a> (13)</li>
-<li><a href="/tags/title/">title</a> (13)</li>
-<li><a href="/tags/type/">type</a> (13)</li>
-<li><a href="/tags/url/">url</a> (13)</li>
-<li><a href="/tags/video/">video</a> (4)</li>
+            
         </ul>
+        
+        <!-- IndieWeb microformat author info -->
+        <div class="u-author h-card" style="display: none;">
+            <a class="p-name u-url" href="https://www.luisquintanilla.me">Luis Quintanilla</a>
+        </div>
     </main>
 </body>
 </html>

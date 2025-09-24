@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" 
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:webmention="http://webmention.org/"
+     xmlns:indie="http://indieweb.org/rss">
 <channel>
     <title>My Personal Website - All</title>
     <link>https://example.com</link>
-    <description>Personal blog and digital garden</description>
+    <description>Personal blog and digital garden with IndieWeb support</description>
     <atom:link href="https://example.com/feed/all.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Wed, 24 Sep 2025 05:51:00 +0000</lastBuildDate>
-    <item>
-        <title><![CDATA[Welcome to Unix SSG]]></title>
-        <link>https://example.com/posts/welcome/</link>
-        <guid>https://example.com/posts/welcome/</guid>
-        <pubDate>Mon, 13 Jan 2025 15:00:00 +0000</pubDate>
-    </item>
+    <lastBuildDate>Wed, 24 Sep 2025 06:12:42 +0000</lastBuildDate>
+    <webmention:hub>https://webmention.io/hub</webmention:hub>
+    <indie:microformats>true</indie:microformats>
