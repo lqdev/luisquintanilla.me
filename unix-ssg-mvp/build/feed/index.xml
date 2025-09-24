@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+    <title>My Personal Website - All</title>
+    <link>https://example.com</link>
+    <description>Personal blog and digital garden</description>
+    <atom:link href="https://example.com/feed/all.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 Sep 2025 05:51:00 +0000</lastBuildDate>
+    <item>
+        <title><![CDATA[Welcome to Unix SSG]]></title>
+        <link>https://example.com/posts/welcome/</link>
+        <guid>https://example.com/posts/welcome/</guid>
+        <pubDate>Mon, 13 Jan 2025 15:00:00 +0000</pubDate>
+    </item>
