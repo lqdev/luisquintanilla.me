@@ -35,6 +35,12 @@ jobs:
       - name: Generate website
         run: dotnet run
 
+      - name: Minify and compress website
+        run: |
+          echo "🗜️ Minifying and compressing generated website..."
+          chmod +x ./Scripts/minify-and-compress.sh
+          ./Scripts/minify-and-compress.sh
+
       - name: Generate ActivityPub files
         run: |
           dotnet fsi ./Scripts/rss-to-activitypub.fsx -- \
