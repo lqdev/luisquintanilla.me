@@ -186,18 +186,27 @@ Complete example in `docs/custom-plugin-example.md`.
 ### ✅ Reusability Across Sites
 - **SSG.Core library**: Packaged for multiple projects
 - **Template system**: Blog, portfolio, documentation site templates
-- **Plugin ecosystem**: Shareable content processors and extensions
+- **NuGet plugin ecosystem**: Third-party plugins without local code
 
 ### ✅ Extensibility Without Code Changes
 - **Configuration-driven**: New content types via JSON
-- **Plugin-based**: Custom processing through interfaces
+- **NuGet plugin consumption**: Plugins installed via package manager
 - **Feature toggles**: Enable/disable functionality declaratively
 
 ### ✅ Developer Experience
 - **Clear interfaces**: Well-defined plugin development patterns
+- **Third-party plugin support**: NuGet package distribution and consumption
+- **Zero local plugin code**: Plugins consumed via configuration only
 - **Comprehensive documentation**: Implementation guides and examples
 - **Helpful tooling**: CLI with validation and error messages
 - **Good defaults**: Working examples and templates
+
+### ✅ Plugin Ecosystem
+- **NuGet distribution**: Plugins published as standard .NET packages
+- **Version management**: Semantic versioning and dependency resolution
+- **Community contributions**: Searchable plugins on NuGet.org
+- **Private feeds**: Organizational plugin distribution
+- **Independent development**: Plugin and site development completely decoupled
 
 ## Technical Metrics
 
@@ -207,7 +216,93 @@ Complete example in `docs/custom-plugin-example.md`.
 - **Documentation Completeness**: 3 comprehensive guides + working examples
 - **Validation Coverage**: All current functionality mapped and tested
 
-## Usage Examples
+## Third-Party Plugin Development (Zero Code in Site Repo)
+
+### Question: How can I create and publish plugins without any code in my site repository?
+
+**Answer**: The SSG.Core plugin architecture supports complete separation of plugin development and site development through NuGet package distribution.
+
+### Plugin Development Workflow
+1. **Separate Repository**: Create plugin in independent repository
+2. **NuGet Package**: Build and publish plugin as standard .NET package  
+3. **Configuration Consumption**: Site consumes plugin via JSON configuration only
+
+### Example: Creating Third-Party Plugin
+
+**Plugin Repository** (`SSG.Plugins.Tutorial`):
+```fsharp
+// TutorialProcessor.fs - separate repository
+type TutorialProcessor() =
+    interface IContentProcessor<Tutorial> with
+        member _.Name = "TutorialProcessor"
+        // Full plugin implementation
+```
+
+**Package Configuration** (`SSG.Plugins.Tutorial.csproj`):
+```xml
+<PackageId>SSG.Plugins.Tutorial</PackageId>
+<PackageVersion>1.0.0</PackageVersion>
+<PackageDescription>Tutorial content plugin for SSG.Core</PackageDescription>
+```
+
+**Publish to NuGet**:
+```bash
+dotnet pack --configuration Release
+dotnet nuget push bin/Release/SSG.Plugins.Tutorial.1.0.0.nupkg
+```
+
+### Site Consumption (No Local Code)
+
+**Site Repository** (only configuration and content):
+```
+my-site/
+├── site-config.json    # Plugin configuration
+├── _src/tutorials/     # Content only
+└── (no plugin code)
+```
+
+**Configuration** (`site-config.json`):
+```json
+{
+  "plugins": {
+    "sources": [
+      {
+        "type": "nuget",
+        "packages": [
+          { "id": "SSG.Plugins.Tutorial", "version": "1.0.0" }
+        ]
+      }
+    ]
+  },
+  "contentTypes": [
+    {
+      "name": "tutorials",
+      "processor": "TutorialProcessor",
+      "enabled": true
+    }
+  ]
+}
+```
+
+**Build Process**:
+```bash
+# No local plugin code - everything resolved via NuGet
+ssg build --config site-config.json
+
+# Plugin automatically downloaded and loaded
+# Site contains zero plugin source code
+```
+
+### Benefits of Third-Party Plugin Model
+
+- **✅ Zero Local Code**: Site repository contains only configuration and content
+- **✅ Plugin Ecosystem**: Community-contributed plugins on NuGet.org  
+- **✅ Version Management**: Semantic versioning and easy updates
+- **✅ Private Distribution**: Corporate plugins via private NuGet feeds
+- **✅ Independent Development**: Plugin and site evolution completely decoupled
+
+See `docs/third-party-plugin-nuget-guide.md` for comprehensive implementation details.
+
 
 ### New Site Creation
 ```bash
@@ -225,22 +320,36 @@ edit site-config.json
 ssg build
 ```
 
-### Plugin Development  
+### Third-Party Plugin Development (No Code in Site Repo)
 ```bash
-# Create plugin project
-dotnet new classlib -n MyPlugin
-dotnet add MyPlugin package SSG.Core
+# Create plugin project in separate repository
+dotnet new classlib -n SSG.Plugins.MyPlugin
+dotnet add package SSG.Core
 
 # Implement IContentProcessor<MyType>
-# Build plugin assembly  
-dotnet build
+# Build and publish as NuGet package
+dotnet pack --configuration Release
+dotnet nuget push bin/Release/SSG.Plugins.MyPlugin.1.0.0.nupkg
 
-# Register in configuration
+# Consume in site via configuration only (no local code)
 {
+  "plugins": {
+    "sources": [
+      {
+        "type": "nuget", 
+        "packages": [
+          { "id": "SSG.Plugins.MyPlugin", "version": "1.0.0" }
+        ]
+      }
+    ]
+  },
   "contentTypes": [
     { "name": "mytype", "processor": "MyProcessor", "enabled": true }
   ]
 }
+
+# Build site - plugin automatically downloaded and loaded
+ssg build --config site-config.json
 ```
 
 ## Conclusion
