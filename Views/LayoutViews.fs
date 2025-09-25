@@ -624,7 +624,7 @@ let contentViewWithTitle (title:string) (content:string) =
         rawText content
     ]    
 
-let snippetPageView (title:string) (content:string) (date:string) (fileName:string) = 
+let snippetPageView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -653,12 +653,13 @@ let snippetPageView (title:string) (content:string) (date:string) (fileName:stri
                         Text $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                 ]
+                postTagsSection tags
                 webmentionForm
             ]
         ]
     ]
 
-let wikiPageView (title:string) (content:string) (date:string) (fileName:string) = 
+let wikiPageView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -687,6 +688,7 @@ let wikiPageView (title:string) (content:string) (date:string) (fileName:string)
                         Text $"/resources/wiki/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                 ]
+                postTagsSection tags
                 webmentionForm
             ]
         ]
@@ -799,7 +801,7 @@ let liveStreamView (title:string) =
         ] []
     ]
 
-let blogPostView (title:string) (content:string) (date:string) (fileName:string) = 
+let blogPostView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -828,12 +830,13 @@ let blogPostView (title:string) (content:string) (date:string) (fileName:string)
                         Text $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                 ]
+                postTagsSection tags
                 webmentionForm
             ]
         ]
     ]
 
-let notePostView (title:string) (content:string) (date:string) (fileName:string) = 
+let notePostView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -862,12 +865,13 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
                         Text $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                 ]
+                postTagsSection tags
                 webmentionForm
             ]
         ]
     ]
 
-let responsePostView (title:string) (content:string) (date:string) (fileName:string) (targetUrl:string) = 
+let responsePostView (title:string) (content:string) (date:string) (fileName:string) (targetUrl:string) (tags: string array) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -907,6 +911,7 @@ let responsePostView (title:string) (content:string) (date:string) (fileName:str
                         Text $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                 ]
+                postTagsSection tags
                 webmentionForm
             ]
         ]
