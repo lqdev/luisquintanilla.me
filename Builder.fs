@@ -646,7 +646,10 @@ module Builder
             let saveDir = Path.Join(outputDir, "resources", "snippets", snippet.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = snippetPageView snippet.Metadata.Title (snippet.Content |> convertMdToHtml) snippet.Metadata.CreatedDate snippet.FileName
+            let snippetTags = 
+                if String.IsNullOrEmpty(snippet.Metadata.Tags) then [||]
+                else snippet.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+            let html = snippetPageView snippet.Metadata.Title (snippet.Content |> convertMdToHtml) snippet.Metadata.CreatedDate snippet.FileName snippetTags
             let snippetView = generate html "defaultindex" $"Snippet | {snippet.Metadata.Title} | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, snippetView))
@@ -678,7 +681,10 @@ module Builder
             let saveDir = Path.Join(outputDir, "resources", "wiki", wiki.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = wikiPageView wiki.Metadata.Title (wiki.Content |> convertMdToHtml) wiki.Metadata.LastUpdatedDate wiki.FileName
+            let wikiTags = 
+                if String.IsNullOrEmpty(wiki.Metadata.Tags) then [||]
+                else wiki.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+            let html = wikiPageView wiki.Metadata.Title (wiki.Content |> convertMdToHtml) wiki.Metadata.LastUpdatedDate wiki.FileName wikiTags
             let wikiView = generate html "defaultindex" $"{wiki.Metadata.Title} | Wiki | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, wikiView))
@@ -775,7 +781,7 @@ module Builder
             let saveDir = Path.Join(outputDir, "posts", post.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = blogPostView post.Metadata.Title (post.Content |> convertMdToHtml) post.Metadata.Date post.FileName
+            let html = blogPostView post.Metadata.Title (post.Content |> convertMdToHtml) post.Metadata.Date post.FileName post.Metadata.Tags
             let postView = generate html "defaultindex" $"{post.Metadata.Title} - Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, postView))
@@ -808,7 +814,7 @@ module Builder
             let saveDir = Path.Join(outputDir, "notes", note.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = LayoutViews.notePostView note.Metadata.Title (note.Content |> convertMdToHtml) note.Metadata.Date note.FileName
+            let html = LayoutViews.notePostView note.Metadata.Title (note.Content |> convertMdToHtml) note.Metadata.Date note.FileName note.Metadata.Tags
             let noteView = generate html "defaultindex" note.Metadata.Title
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, noteView))

@@ -97,6 +97,23 @@ let albumCardFooter (fileName:string) (tags: string array)=
         ]
     ]
 
+/// Tags section for individual post pages - shows tags as clickable hashtags
+let postTagsSection (tags: string array) =
+    if tags.Length > 0 then
+        let tagElements = 
+            tags
+            |> cleanTags
+            |> Array.map(fun tag -> a [_href $"/tags/{sanitizeTagForUrl tag}"; _class "p-category tag-link"] [Text $"#{tag}"])
+        
+        div [_class "post-tags-section"] [
+            str "Tags: "
+            for tag in tagElements do
+                tag
+                Text " "
+        ]
+    else
+        div [] [] // Empty div if no tags
+
 // Navigation and backlink components
 let feedBacklink (url:string) = 
     div [_class "text-center"] [
