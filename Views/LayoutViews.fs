@@ -871,7 +871,7 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
         ]
     ]
 
-let responsePostView (title:string) (content:string) (date:string) (fileName:string) (targetUrl:string) = 
+let responsePostView (title:string) (content:string) (date:string) (fileName:string) (targetUrl:string) (tags: string array) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -911,6 +911,7 @@ let responsePostView (title:string) (content:string) (date:string) (fileName:str
                         Text $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                 ]
+                postTagsSection tags
                 webmentionForm
             ]
         ]
