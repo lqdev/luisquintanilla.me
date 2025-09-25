@@ -99,7 +99,7 @@ let albumCardFooter (fileName:string) (tags: string array)=
 
 /// Tags section for individual post pages - shows tags as clickable hashtags
 let postTagsSection (tags: string array) =
-    if tags.Length > 0 then
+    if not (isNull tags) && tags.Length > 0 then
         let tagElements = 
             tags
             |> cleanTags
