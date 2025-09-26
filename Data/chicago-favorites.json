@@ -155,6 +155,19 @@
                 "phone": "+13128810168",
                 "website": "https://www.mccbchicago.com/"
             }
+        },
+        {
+            "id": "chicago-botanic-garden",
+            "name": "Chicago Botanic Garden",
+            "lat": 42.1490320686473,
+            "lon": -87.78954440371169,
+            "category": "attraction",
+            "description": "385 acres of landscaped gardens displaying millions of plants & flowers in a variety of settings.",
+            "personalNote": "Nice place to spend the day outdoors. My favorite is the Dwarf Conifer Garden.",
+            "practicalInfo": {
+                "phone": "+18478356801",
+                "website": "https://www.chicagobotanic.org/"
+            }
         }
     ],
     "routes": [
