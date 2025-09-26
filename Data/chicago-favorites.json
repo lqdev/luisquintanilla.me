@@ -117,6 +117,19 @@
                 "phone": "+17736381766",
                 "website": "https://garfieldconservatory.org/"
             }
+        },
+        {
+            "id": "small-cheval",
+            "name": "Small Cheval",
+            "lat": 41.912814556308675,
+            "lon": -87.68147808401757,
+            "category": "restaurant",
+            "description": "Popular burgers, shakes, beer, and cocktails in rustic digs and a patio, plus offers takeouts.",
+            "personalNote": "Decent burgers. The patio is family friendly and there's enough room for you to spread out.",
+            "practicalInfo": {
+                "phone": "+13128373859",
+                "website": "https://smallcheval.com/"
+            }
         }
     ],
     "routes": [
