@@ -192,6 +192,19 @@
             "practicalInfo": {
                 "website": "http://sugarmoonchicago.com/"
             }
+        },
+        {
+            "id": "chicago-pickle-eatery",
+            "name": "Chicago Pickle Eatery",
+            "lat": 41.936788331858324,
+            "lon": -87.71974268198109,
+            "category": "restaurant",
+            "description": "From our East Coast roots to our commitment to quality, we’re passionate about bringing the best of New York-inspired deli and comfort food to Chicago.",
+            "personalNote": "The giant sandwiches are...giant. You can probably split one between 2+ people.",
+            "practicalInfo": {
+                "phone": "+17737998306",
+                "website": "https://cp-eatery.com/"
+            }
         }
     ],
     "routes": [
