@@ -115,6 +115,14 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
                                             a [ _href $"tel:{phone}" ] [ Text phone ]
                                         ]
                                     | None -> ()
+                                    
+                                    match info.Website with
+                                    | Some website ->
+                                        span [ _class "info-item me-3 mb-1" ] [
+                                            i [ _class "bi bi-globe me-1" ] []
+                                            a [ _href website; _target "_blank" ] [ Text "Website" ]
+                                        ]
+                                    | None -> ()
                                 ]
                             ]
                         | None -> ()
