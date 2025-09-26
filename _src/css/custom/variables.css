@@ -31,6 +31,15 @@
   --button-text: #FFFFFF;
   --button-hover: var(--cactus-flower);
   
+  /* Tag Colors */
+  --tag-background: var(--saguaro-green-light);
+  --tag-text: #FFFFFF;
+  
+  /* Background and Text Variants */
+  --background-subtle: #F8F9FA;
+  --text-muted: #6C757D;
+  --border-color: var(--saguaro-green-dark);
+  
   /* Sidebar Colors */
   --sidebar-background: var(--saguaro-green);
   --sidebar-text: var(--desert-sand);
@@ -92,6 +101,15 @@ body[data-theme="dark"] {
   --button-text: #FFFFFF;
   --button-hover: var(--cactus-green);
   
+  /* Tag Colors - Dark Mode */
+  --tag-background: var(--cactus-green);
+  --tag-text: var(--desert-moonlight);
+  
+  /* Background and Text Variants - Dark Mode */
+  --background-subtle: #3A4A5C;
+  --text-muted: #95A5B7;
+  --border-color: #5C6E7E;
+  
   /* Sidebar Colors - Dark Mode */
   --sidebar-background: var(--midnight-indigo);
   --sidebar-text: var(--desert-moonlight);
@@ -110,6 +128,11 @@ body[data-theme="dark"] {
     --card-border: var(--desert-moonlight, #BDC3C7);
     --button-background: var(--ocotillo-bloom, #FF6347);
     --button-hover: var(--cactus-green, #4B6F44);
+    --tag-background: var(--cactus-green, #4B6F44);
+    --tag-text: var(--desert-moonlight, #BDC3C7);
+    --background-subtle: #3A4A5C;
+    --text-muted: #95A5B7;
+    --border-color: #5C6E7E;
     --sidebar-background: var(--midnight-indigo, #2C3E50);
     --sidebar-text: var(--desert-moonlight, #BDC3C7);
   }
