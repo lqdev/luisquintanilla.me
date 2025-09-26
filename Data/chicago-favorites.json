@@ -130,6 +130,18 @@
                 "phone": "+13128373859",
                 "website": "https://smallcheval.com/"
             }
+        },
+        {
+            "id": "architecture-tour",
+            "name": "Shoreline Architecture Boats Tours",
+            "lat": 41.89106263096392,
+            "lon": -87.60896541225083,
+            "category": "attraction",
+            "description": "From hidden treasures to the city’s most well-known sights, you’ll view over 40 Chicago landmarks on our 75-minute Architecture River Boat Tours.",
+            "personalNote": "This is a different way to see the city and learn a few things along the way.",
+            "practicalInfo": {
+                "website": "https://shorelinesightseeing.com/"
+            }
         }
     ],
     "routes": [
