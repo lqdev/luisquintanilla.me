@@ -136,6 +136,7 @@
   border: 1px solid var(--border-color);
   border-radius: 12px;
   margin-bottom: var(--spacing-lg);
+  margin-top: 2rem; /* Space for absolutely positioned badges */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   opacity: 1;
@@ -168,6 +169,7 @@
   align-items: center;
   min-width: 0;
   flex-shrink: 0;
+  position: relative; /* Contains absolutely positioned badges */
 }
 
 /* Content Type Badges with Desert Color Coding */
@@ -179,11 +181,6 @@
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  max-width: 120px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  flex-shrink: 0;
 }
 
 .content-type-badge[data-type="posts"] {
