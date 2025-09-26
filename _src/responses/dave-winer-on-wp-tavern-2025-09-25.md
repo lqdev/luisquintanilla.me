@@ -7,6 +7,6 @@ dt_updated: "2025-09-25 23:00 -05:00"
 tags: ["indieweb","openweb","socialweb","opensource","blogging"]
 ---
 
-I had a chance to listen to the episode yesterday and it was great. 
+I had a chance to listen to the [episode](https://wptavern.com/podcast/186-dave-winer-on-decentralisation-wordpress-and-open-publishing) yesterday and I thought it was great. 
 
-That vision of an open web is one I can get behind.
+That vision of the web is one I can get behind.
