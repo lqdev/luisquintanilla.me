@@ -655,6 +655,37 @@ body[data-theme="light"] .card-content blockquote {
   text-decoration: underline;
 }
 
+/* Post Tags Section - Improved Layout */
+.post-tags-section {
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.post-tags-section .tag-link {
+  display: inline-block;
+  background: var(--tag-background);
+  color: var(--tag-text);
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-right: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+  transition: all 0.2s ease;
+}
+
+.post-tags-section .tag-link:hover {
+  background: var(--accent-color);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.post-tags-section .tag-link:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 1px;
+}
+
 /* Responsive adjustments for individual posts */
 @media (max-width: 768px) {
   .individual-post {
