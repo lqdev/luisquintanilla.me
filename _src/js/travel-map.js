@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (info.price) details.push(`💰 ${escapeHtml(info.price)}`);
             if (info.hours) details.push(`🕒 ${escapeHtml(info.hours)}`);
             if (info.phone) details.push(`📞 ${escapeHtml(info.phone)}`);
+            if (info.website) details.push(`🌐 <a href="${escapeHtml(info.website)}" target="_blank">Website</a>`);
             
             if (details.length > 0) {
                 content += `<div class="mt-2">${details.map(d => `<span class="badge bg-secondary me-1">${d}</span>`).join('')}</div>`;
