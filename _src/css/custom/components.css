@@ -190,8 +190,8 @@
 
 .tag,
 .p-category {
-  background-color: var(--accent-color);
-  color: var(--button-text);
+  background-color: var(--tag-background);
+  color: var(--tag-text);
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-sm);
   font-size: 0.75rem;
@@ -203,7 +203,7 @@
 
 .tag:hover,
 .p-category:hover {
-  background-color: var(--button-hover);
+  background-color: var(--accent-color);
   color: var(--button-text);
 }
 
