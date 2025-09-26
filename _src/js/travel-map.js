@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add coordinate links
         content += `
             <div class="mt-2">
-                <a href="geo:${place.lat},${place.lon}" class="btn btn-sm btn-primary me-1">📱 Open in App</a>
+                <a href="geo:${place.lat},${place.lon}" class="btn btn-sm btn-primary me-1 d-none-desktop">📱 Open in App</a>
                 <a href="https://www.openstreetmap.org/?mlat=${place.lat}&mlon=${place.lon}&zoom=18" target="_blank" class="btn btn-sm btn-outline-secondary">🗺️ Map</a>
             </div>
         `;

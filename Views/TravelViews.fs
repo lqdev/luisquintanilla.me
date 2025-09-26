@@ -60,7 +60,7 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
                             ]
                             
                             div [ _class "coordinate-links mt-1" ] [
-                                a [ _href $"geo:{place.Latitude},{place.Longitude}"; _class "btn btn-sm btn-outline-primary me-1" ] [
+                                a [ _href $"geo:{place.Latitude},{place.Longitude}"; _class "btn btn-sm btn-outline-primary me-1 d-none-desktop" ] [
                                     Text "📱 Open in App"
                                 ]
                                 a [ _href $"https://www.openstreetmap.org/?mlat={place.Latitude}&mlon={place.Longitude}&zoom=18"; _target "_blank"; _class "btn btn-sm btn-outline-secondary me-1" ] [
