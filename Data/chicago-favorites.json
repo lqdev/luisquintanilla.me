@@ -205,6 +205,18 @@
                 "phone": "+17737998306",
                 "website": "https://cp-eatery.com/"
             }
+        },
+        {
+            "id": "moonwalker-cafe",
+            "name": "Moonwalker Cafe",
+            "lat": 41.93897300826107,
+            "lon": -87.72978144080943,
+            "category": "restaurant",
+            "description": "We are a neighborhood cafe known for our made to order sandwiches and Dark Matter Coffee drinks.",
+            "personalNote": "Great local spot. Their breakfast burrito and bacon egg and cheese bagels are good.",
+            "practicalInfo": {
+                "website": "https://moonwalkercafe.com/"
+            }
         }
     ],
     "routes": [
