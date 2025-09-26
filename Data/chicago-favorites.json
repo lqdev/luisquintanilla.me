@@ -168,6 +168,18 @@
                 "phone": "+18478356801",
                 "website": "https://www.chicagobotanic.org/"
             }
+        },
+        {
+            "id": "gotham-bagels",
+            "name": "Gotham Bagels",
+            "lat": 41.89598817648135,
+            "lon": -87.62298409350424,
+            "category": "restaurant",
+            "description": "New York style bagels",
+            "personalNote": "Close enough to NY bagels",
+            "practicalInfo": {
+                "website": "https://www.gothambagels.com/"
+            }
         }
     ],
     "routes": [
