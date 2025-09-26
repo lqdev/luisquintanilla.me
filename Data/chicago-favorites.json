@@ -180,6 +180,18 @@
             "practicalInfo": {
                 "website": "https://www.gothambagels.com/"
             }
+        },
+        {
+            "id": "sugar-moon",
+            "name": "Sugar Moon",
+            "lat": 41.92840329916016, 
+            "lon": -87.7178312590352,
+            "category": "",
+            "description": "Sugar Moon is a small neighborhood bakeshop located in Logan Square. We offer elevated home-style pastries with an appreciation for old-school techniques.",
+            "personalNote": "Get here before opening time. Line starts to form quickly",
+            "practicalInfo": {
+                "website": "http://sugarmoonchicago.com/"
+            }
         }
     ],
     "routes": [
