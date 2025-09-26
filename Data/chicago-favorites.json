@@ -142,6 +142,19 @@
             "practicalInfo": {
                 "website": "https://shorelinesightseeing.com/"
             }
+        },
+        {
+            "id": "mccb-chicago",
+            "name": "MCCB Chicago",
+            "lat": 41.853884197964625,
+            "lon": -87.6336341723952,
+            "category": "restaurant",
+            "description": "Warm, casual outlet offering elevated & modern Sichuan & Canton fare such as charcoal grilled fish.",
+            "personalNote": "",
+            "practicalInfo": {
+                "phone": "+13128810168",
+                "website": "https://www.mccbchicago.com/"
+            }
         }
     ],
     "routes": [
