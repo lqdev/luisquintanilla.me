@@ -94,7 +94,7 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
                                 div [ _class "info-row d-flex flex-wrap" ] [
                                     match info.Price with
                                     | Some price -> 
-                                        span [ _class "info-item me-3 mb-1" ] [
+                                        span [ _class "info-item me-4 mb-1" ] [
                                             i [ _class "bi bi-currency-euro me-1" ] []
                                             Text price
                                         ]
@@ -102,7 +102,7 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
                                     
                                     match info.Hours with
                                     | Some hours ->
-                                        span [ _class "info-item me-3 mb-1" ] [
+                                        span [ _class "info-item me-4 mb-1" ] [
                                             i [ _class "bi bi-clock me-1" ] []
                                             Text hours
                                         ]
@@ -110,7 +110,7 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
                                     
                                     match info.Phone with
                                     | Some phone ->
-                                        span [ _class "info-item me-3 mb-1" ] [
+                                        span [ _class "info-item me-4 mb-1" ] [
                                             i [ _class "bi bi-telephone me-1" ] []
                                             a [ _href $"tel:{phone}" ] [ Text phone ]
                                         ]
@@ -118,7 +118,7 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
                                     
                                     match info.Website with
                                     | Some website ->
-                                        span [ _class "info-item me-3 mb-1" ] [
+                                        span [ _class "info-item me-4 mb-1" ] [
                                             i [ _class "bi bi-globe me-1" ] []
                                             a [ _href website; _target "_blank" ] [ Text "Website" ]
                                         ]
