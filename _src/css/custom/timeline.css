@@ -142,6 +142,7 @@
   opacity: 1;
   transform: translateY(0);
   overflow: visible; /* Allow badges to extend above card */
+  position: relative; /* Positioning context for absolutely positioned badges */
 }
 
 .content-card:hover {
@@ -169,19 +170,10 @@
   align-items: center;
   min-width: 0;
   flex-shrink: 0;
-  position: relative; /* Contains absolutely positioned badges */
+  position: static; /* Don't contain the badge, let it position relative to card */
 }
 
-/* Content Type Badges with Desert Color Coding */
-.content-type-badge {
-  padding: 0.25rem 0.75rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
+/* Content Type Badge Colors - inherit positioning from components.css */
 
 .content-type-badge[data-type="posts"] {
   background: #FF4500; /* Sunset Orange */
