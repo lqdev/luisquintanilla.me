@@ -647,11 +647,12 @@ let snippetPageView (title:string) (content:string) (date:string) (fileName:stri
             ]
             
             footer [ _class "post-footer" ] [
-                div [ _class "permalink-info" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
                     Text "Permalink: "
                     a [ _class "u-url permalink-link"; _href $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
                         Text $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
+                    copyPermalinkButton $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 postTagsSection tags
                 webmentionForm
@@ -682,11 +683,12 @@ let wikiPageView (title:string) (content:string) (date:string) (fileName:string)
             ]
             
             footer [ _class "post-footer" ] [
-                div [ _class "permalink-info" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
                     Text "Permalink: "
                     a [ _class "u-url permalink-link"; _href $"/resources/wiki/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
                         Text $"/resources/wiki/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
+                    copyPermalinkButton $"/resources/wiki/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 postTagsSection tags
                 webmentionForm
@@ -723,11 +725,12 @@ let reviewPageView (title:string) (content:string) (date:string) (fileName:strin
             ]
             
             footer [ _class "post-footer" ] [
-                div [ _class "permalink-info" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
                     Text "Permalink: "
                     a [ _class "u-url permalink-link"; _href $"/reviews/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
                         Text $"/reviews/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
+                    copyPermalinkButton $"/reviews/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 webmentionForm
             ]
@@ -776,11 +779,12 @@ let presentationPageView (presentation:Presentation) =
             ]
             
             footer [ _class "post-footer" ] [
-                div [ _class "permalink-info" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
                     Text "Permalink: "
                     a [ _class "u-url permalink-link"; _href $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/" ] [
                         Text $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/"
                     ]
+                    copyPermalinkButton $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/"
                 ]
                 webmentionForm
             ]
@@ -824,11 +828,12 @@ let blogPostView (title:string) (content:string) (date:string) (fileName:string)
             ]
             
             footer [ _class "post-footer" ] [
-                div [ _class "permalink-info" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
                     Text "Permalink: "
                     a [ _class "u-url permalink-link"; _href $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
                         Text $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
+                    copyPermalinkButton $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 postTagsSection tags
                 webmentionForm
@@ -859,11 +864,12 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
             ]
             
             footer [ _class "post-footer" ] [
-                div [ _class "permalink-info" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
                     Text "Permalink: "
                     a [ _class "u-url permalink-link"; _href $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
                         Text $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
+                    copyPermalinkButton $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 postTagsSection tags
                 webmentionForm
@@ -905,11 +911,12 @@ let responsePostView (title:string) (content:string) (date:string) (fileName:str
             ]
             
             footer [ _class "post-footer" ] [
-                div [ _class "permalink-info" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
                     Text "Permalink: "
                     a [ _class "u-url permalink-link"; _href $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
                         Text $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
+                    copyPermalinkButton $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 postTagsSection tags
                 webmentionForm

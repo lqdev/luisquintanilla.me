@@ -290,11 +290,12 @@ let presentationPageView (presentation:Presentation) =
             
             footer [ _class "presentation-footer" ] [
                 hr []
-                div [ _class "permalink-info" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
                     Text "Permalink: "
                     a [ _class "u-url permalink-link"; _href $"/resources/presentations/{presentation.FileName}/" ] [
                         Text $"/resources/presentations/{presentation.FileName}/"
                     ]
+                    copyPermalinkButton $"/resources/presentations/{presentation.FileName}/"
                 ]
                 h3 [] [Text "Resources"]
                 ul [] [

@@ -187,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     setupDropdownListeners();
     initializeTheme();
+    setupCopyToClipboard();
 });
 
 // Handle theme changes from system preferences
@@ -195,6 +196,60 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
         applyTheme(e.matches ? 'dark' : 'light');
     }
 });
+
+// Copy to Clipboard Functionality
+function setupCopyToClipboard() {
+    document.querySelectorAll('.copy-permalink-btn').forEach(button => {
+        button.addEventListener('click', async (e) => {
+            e.preventDefault();
+            
+            const url = button.dataset.url;
+            const icon = button.querySelector('.copy-icon');
+            
+            try {
+                // Use modern Clipboard API if available
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(url);
+                } else {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = url;
+                    textArea.style.position = 'fixed';
+                    textArea.style.left = '-999999px';
+                    textArea.style.top = '-999999px';
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    document.execCommand('copy');
+                    textArea.remove();
+                }
+                
+                // Visual feedback - change icon temporarily
+                const originalIcon = icon.className;
+                icon.className = icon.className.replace('bi-clipboard', 'bi-check');
+                button.title = 'Copied!';
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    icon.className = originalIcon;
+                    button.title = 'Copy to clipboard';
+                }, 2000);
+                
+            } catch (err) {
+                console.warn('Failed to copy to clipboard:', err);
+                // Visual feedback for error
+                const originalIcon = icon.className;
+                icon.className = icon.className.replace('bi-clipboard', 'bi-x');
+                button.title = 'Copy failed';
+                
+                setTimeout(() => {
+                    icon.className = originalIcon;
+                    button.title = 'Copy to clipboard';
+                }, 2000);
+            }
+        });
+    });
+}
 
 // Legacy function for backward compatibility (if needed)
 function switchTheme() {
