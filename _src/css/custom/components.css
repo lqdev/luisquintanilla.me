@@ -510,3 +510,75 @@ textarea.form-control {
     padding: var(--spacing-sm);
   }
 }
+
+/* Copy Permalink Button Styles */
+.copy-permalink-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  margin-left: 8px;
+  font-size: 0.75rem;
+  background-color: transparent;
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-sm);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  opacity: 0.7;
+  vertical-align: middle;
+}
+
+.copy-permalink-btn:hover {
+  opacity: 1;
+  background-color: var(--card-background);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: translateY(-1px);
+}
+
+.copy-permalink-btn:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 1px;
+}
+
+.copy-permalink-btn .copy-icon {
+  font-size: 0.875rem;
+  transition: all var(--transition-fast);
+}
+
+/* Success state (when copied) */
+.copy-permalink-btn .bi-check {
+  color: var(--saguaro-green);
+}
+
+/* Error state (when copy failed) */
+.copy-permalink-btn .bi-x {
+  color: #ff4444;
+}
+
+/* Permalink section layout improvements */
+.permalink-section,
+.permalink-info {
+  align-items: center;
+  gap: 4px;
+}
+
+.permalink-section .u-url,
+.permalink-info .u-url {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+/* Responsive adjustments for copy button */
+@media (max-width: 576px) {
+  .copy-permalink-btn {
+    margin-left: 4px;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+  }
+  
+  .copy-permalink-btn .copy-icon {
+    font-size: 0.75rem;
+  }
+}

@@ -59,6 +59,19 @@ let cardHeader (date:string) =
 let private sanitizeTagForUrl (tag: string) =
     tag.Replace("#", "sharp").Replace("/", "-").Replace(" ", "-").Replace("\"", "")
 
+/// Generate copy-to-clipboard button for permalinks
+let copyPermalinkButton (relativeUrl: string) =
+    let fullUrl = $"https://www.luisquintanilla.me{relativeUrl}"
+    button [
+        _class "copy-permalink-btn btn btn-sm btn-outline-secondary ms-2"
+        _type "button"
+        _title "Copy to clipboard"
+        attr "data-url" fullUrl
+        attr "aria-label" $"Copy {fullUrl} to clipboard"
+    ] [
+        tag "i" [_class "copy-icon bi bi-clipboard"; attr "aria-hidden" "true"] []
+    ]
+
 let cardFooter (contentType:string) (fileName:string) (tags: string array)= 
     let tagElements = 
         tags
@@ -67,8 +80,11 @@ let cardFooter (contentType:string) (fileName:string) (tags: string array)=
 
     div [_class "card-footer"] [
         let permalink = $"/{contentType}/{fileName}/" 
-        Text "Permalink: " 
-        a [_href permalink; _class "u-url"] [Text $"{permalink}"] 
+        div [_class "permalink-section d-flex align-items-center"] [
+            Text "Permalink: " 
+            a [_href permalink; _class "u-url"] [Text $"{permalink}"]
+            copyPermalinkButton permalink
+        ]
         
         div [] [
             str "Tags: "
@@ -86,8 +102,11 @@ let albumCardFooter (fileName:string) (tags: string array)=
 
     div [_class "card-footer"] [
         let permalink = $"/media/{fileName}/" 
-        Text "Permalink: " 
-        a [_href permalink; _class "u-url"] [Text $"{permalink}"] 
+        div [_class "permalink-section d-flex align-items-center"] [
+            Text "Permalink: " 
+            a [_href permalink; _class "u-url"] [Text $"{permalink}"]
+            copyPermalinkButton permalink
+        ]
         
         div [] [
             str "Tags: "

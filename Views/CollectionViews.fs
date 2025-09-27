@@ -501,8 +501,11 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
             
             // Add footer with permalink and tags
             div [ _class "mt-3 pt-2 border-top text-muted small" ] [
-                Text "Permalink: " 
-                a [_href properPermalink; _class "u-url text-decoration-none"] [Text properPermalink] 
+                div [ _class "d-flex align-items-center mb-1" ] [
+                    Text "Permalink: " 
+                    a [_href properPermalink; _class "u-url text-decoration-none"] [Text properPermalink]
+                    copyPermalinkButton properPermalink
+                ]
                 
                 div [ _class "mt-1" ] [
                     str "Tags: "
