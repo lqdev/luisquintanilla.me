@@ -652,6 +652,21 @@ body[data-theme="light"] .card-content blockquote {
   text-decoration: underline;
 }
 
+/* Post tags section */
+.post-tags-section {
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--background-subtle);
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.post-tags-section .tag-link {
+  display: inline-block;
+  margin-right: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
 /* Responsive adjustments for individual posts */
 @media (max-width: 768px) {
   .individual-post {
