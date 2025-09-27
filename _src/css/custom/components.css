@@ -201,8 +201,7 @@
   transition: background-color var(--transition-fast);
 }
 
-.tag:hover,
-.p-category:hover {
+.tag:hover {
   background-color: var(--accent-color);
   color: var(--button-text);
 }
