@@ -141,7 +141,7 @@
   transition: all 0.3s ease;
   opacity: 1;
   transform: translateY(0);
-  overflow: hidden;
+  overflow: visible; /* Allow badges to extend above card */
 }
 
 .content-card:hover {
