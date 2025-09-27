@@ -166,7 +166,7 @@
   background-color: var(--accent-color);
   color: var(--button-text);
   padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--border-radius-sm);
+  border-radius: 50px; /* Pill-shaped badges */
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
