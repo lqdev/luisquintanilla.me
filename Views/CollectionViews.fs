@@ -508,7 +508,7 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
                     str "Tags: "
                     for tag in item.Tags do
                         let sanitizedTag = tag.Replace("#", "sharp").Replace("/", "-").Replace(" ", "-").Replace("\"", "")
-                        a [_href $"/tags/{sanitizedTag}"; _class "p-category text-decoration-none me-2"] [Text $"#{tag}"]
+                        a [_href $"/tags/{sanitizedTag}"; _class "tag-link text-decoration-none me-2"] [Text $"#{tag}"]
                 ]
             ]
         ]
