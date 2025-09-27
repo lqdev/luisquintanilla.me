@@ -9,7 +9,7 @@ tags: ["indieweb","socialweb","openweb","socialmedia","protocol","atproto","acti
 
 > Open social frees the web we’re creating from somebody else’s boxes. Our profiles, likes, follows, recipes, scrobbles, and other content meaningfully belong to us
 
-> As more products are built in the open social paradigm, [there’s going to be a shift.](https://knotbin.leaflet.pub/3lx3uqveyj22f/). 
+> As more products are built in the open social paradigm, [there’s going to be a shift.](https://knotbin.leaflet.pub/3lx3uqveyj22f/).  
 > <br>
 > People might not ever start using technical concepts like “decentralization” but they do understand when data from one app can seamlessly flow into other apps.  
 > <br>
