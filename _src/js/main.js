@@ -203,7 +203,8 @@ function setupCopyToClipboard() {
         button.addEventListener('click', async (e) => {
             e.preventDefault();
             
-            const url = button.dataset.url;
+            const relativeUrl = button.dataset.url;
+            const url = window.location.origin + relativeUrl;
             const icon = button.querySelector('.copy-icon');
             
             try {
