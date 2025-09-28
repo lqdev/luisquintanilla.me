@@ -350,7 +350,9 @@ module Layouts
         script [_src "/assets/lib/highlight/highlight.fsharp.min.js"] [] // 11.8.0
         script [_src "/assets/lib/highlight/highlight.nix.min.js"] [] // 11.8.0
 
-        // Use only timeline.js (includes theme management + filtering + navigation)
+        // Main JavaScript functionality (theme management, copy-to-clipboard, etc.)
+        script [_src "/assets/js/main.js"] []
+        // Timeline functionality (filtering, progressive loading, etc.)
         script [_src "/assets/js/timeline.js"] []
 
         script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] []
