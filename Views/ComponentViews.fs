@@ -61,13 +61,12 @@ let private sanitizeTagForUrl (tag: string) =
 
 /// Generate copy-to-clipboard button for permalinks
 let copyPermalinkButton (relativeUrl: string) =
-    let fullUrl = $"https://www.luisquintanilla.me{relativeUrl}"
     button [
         _class "copy-permalink-btn btn btn-sm btn-outline-secondary ms-2"
         _type "button"
         _title "Copy to clipboard"
-        attr "data-url" fullUrl
-        attr "aria-label" $"Copy {fullUrl} to clipboard"
+        attr "data-url" relativeUrl
+        attr "aria-label" $"Copy permalink to clipboard"
     ] [
         tag "i" [_class "copy-icon bi bi-clipboard"; attr "aria-hidden" "true"] []
     ]
