@@ -4,6 +4,7 @@ targeturl: https://sethw.xyz/blog/2025/09/26/streaming-will-eat-itself/
 response_type: reshare
 dt_published: "2025-09-27 18:57 -05:00"
 dt_updated: "2025-09-27 18:57 -05:00"
+tags: ["streaming","mp3","media","music","movies"]
 ---
 
 > The streaming music platforms will soon follow the lead of the streaming video platforms and continue to raise their rates
