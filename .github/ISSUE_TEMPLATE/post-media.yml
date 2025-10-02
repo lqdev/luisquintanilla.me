@@ -15,7 +15,7 @@ body:
         **Media Type Detection**: The system will automatically detect media types (image, video, audio) based on file extensions and content patterns. You can mix different media types in the same post.
 
   - type: input
-    id: title
+    id: post_title
     attributes:
       label: Title
       description: The title of your media post
