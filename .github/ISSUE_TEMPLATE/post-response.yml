@@ -21,6 +21,7 @@ body:
         - reply
         - reshare
         - star
+      default: 0
     validations:
       required: true
 
