@@ -13,7 +13,7 @@ body:
         **Note**: This will create a new note post in the `_src/notes/` directory and generate a PR for review.
 
   - type: input
-    id: title
+    id: post_title
     attributes:
       label: Title
       description: The title of your note post
