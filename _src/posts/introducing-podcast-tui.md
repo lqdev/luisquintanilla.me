@@ -62,11 +62,11 @@ Given what I learned from building podnet, I decided to build a more robust vers
 
 ### Add or remove podcast feeds
 
-![Podcasts screen displaying 6 subscribed podcasts with their full names](https://cdn.lqdev.tech/files/images/podcast-tui-podcasts.png)
+![Podcasts screen displaying 6 subscribed podcasts with their full names](https://cdn.lqdev.tech/files/images/podcast-tui-podcast-list.png)
 
 ### Browse podcasts episodes
 
-![List of 10 Windows Weekly podcast episodes with titles and publication dates](https://cdn.lqdev.tech/files/images/podcast-tui-episodes.png)
+![List of 10 Windows Weekly podcast episodes with titles and publication dates](https://cdn.lqdev.tech/files/images/podcast-tui-episode-list.png)
 
 ### Download podcasts
 
