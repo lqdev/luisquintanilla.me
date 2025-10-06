@@ -122,6 +122,17 @@ function setupDropdownListeners() {
             });
         }
     });
+    
+    // Close mobile nav when clicking dropdown items (actual navigation links)
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const nav = document.getElementById('sidebar-menu');
+            if (nav?.classList.contains('active')) {
+                toggleMobileNav();
+            }
+        });
+    });
 }
 
 // Event Listeners Setup
@@ -172,8 +183,14 @@ function setupEventListeners() {
             link.classList.remove('focused');
         });
         
-        // Close nav when clicking regular nav links
-        link.addEventListener('click', () => {
+        // Close nav when clicking regular nav links (but not dropdown toggles)
+        link.addEventListener('click', (e) => {
+            // Don't close nav if this is a dropdown toggle button
+            // Check both the clicked element and its parent in case we clicked a child element (icon, text, etc.)
+            if (link.classList.contains('dropdown-toggle') || e.target.closest('.dropdown-toggle')) {
+                return;
+            }
+            
             const nav = document.getElementById('sidebar-menu');
             if (nav?.classList.contains('active')) {
                 toggleMobileNav();
