@@ -20,6 +20,11 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
+          cache: true
+          cache-dependency-path: '**/packages.lock.json'
+
+      - name: Restore dependencies
+        run: dotnet restore --locked-mode
           
       - name: Parse issue and extract form data
         id: extract-data
@@ -61,7 +66,7 @@ jobs:
             }
           
       - name: Build F# project
-        run: dotnet build
+        run: dotnet build --no-restore
         
       - name: Process issue with F# script
         id: process-issue
@@ -170,6 +175,11 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
+          cache: true
+          cache-dependency-path: '**/packages.lock.json'
+
+      - name: Restore dependencies
+        run: dotnet restore --locked-mode
           
       - name: Parse issue and extract form data
         id: extract-data
@@ -217,7 +227,7 @@ jobs:
             }
           
       - name: Build F# project
-        run: dotnet build
+        run: dotnet build --no-restore
         
       - name: Process issue with F# script
         id: process-issue
@@ -332,6 +342,11 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
+          cache: true
+          cache-dependency-path: '**/packages.lock.json'
+
+      - name: Restore dependencies
+        run: dotnet restore --locked-mode
           
       - name: Parse issue and extract form data
         id: extract-data
@@ -376,7 +391,7 @@ jobs:
             }
           
       - name: Build F# project
-        run: dotnet build
+        run: dotnet build --no-restore
         
       - name: Process issue with F# script
         id: process-issue
@@ -488,6 +503,11 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
+          cache: true
+          cache-dependency-path: '**/packages.lock.json'
+
+      - name: Restore dependencies
+        run: dotnet restore --locked-mode
           
       - name: Parse issue and extract form data
         id: extract-data
@@ -533,7 +553,7 @@ jobs:
             }
           
       - name: Build F# project
-        run: dotnet build
+        run: dotnet build --no-restore
         
       - name: Process issue with F# script
         id: process-issue

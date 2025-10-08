@@ -25,9 +25,11 @@ jobs:
         uses: actions/setup-dotnet@v4
         with: 
           dotnet-version: '9.0.x'
+          cache: true
+          cache-dependency-path: '**/packages.lock.json'
       
       - name: Install Dependencies
-        run: dotnet restore
+        run: dotnet restore --locked-mode
       
       - name: Build project
         run: dotnet build --no-restore
