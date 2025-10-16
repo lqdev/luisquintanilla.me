@@ -7,6 +7,6 @@ dt_updated: "2025-10-15 23:15 -05:00"
 tags: ["nfl","football","giants","ny"]
 ---
 
-I'm really liking this new QB / RB combo from the Giants. I don't remember watching Skattebo back in college but the dude can ball. You can even see it rubbing off on the rest of the team with others running hard and lowering their shoulders on contact.
+I'm really liking this new QB / RB combo from the Giants. I don't remember watching Skattebo back in college but the dude can ball. You can even see it rubbing off on the rest of the team with others running hard, lowering their shoulders, and playing smashmouth football.
 
 [![Highlights: Giants vs. Eagles](http://img.youtube.com/vi/TspgAfeNcIc/0.jpg)](https://www.youtube.com/watch?v=TspgAfeNcIc "Highlights: Giants vs. Eagles")
