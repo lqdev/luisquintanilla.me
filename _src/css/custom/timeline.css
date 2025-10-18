@@ -801,3 +801,44 @@ body[data-theme="light"] .card-content blockquote {
     }
   }
 }
+
+/* Pinned Posts Styles */
+.pinned-post {
+  border-left: 4px solid var(--accent-color);
+  background-color: var(--card-bg-pinned, rgba(139, 69, 19, 0.05));
+}
+
+[data-theme="dark"] .pinned-post {
+  background-color: rgba(139, 69, 19, 0.1);
+}
+
+.pin-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--accent-color);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+[data-theme="dark"] .pin-indicator {
+  background-color: rgba(139, 69, 19, 0.3);
+}
+
+.pin-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.pin-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .pin-label {
+  color: var(--accent-color);
+}

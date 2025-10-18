@@ -174,6 +174,14 @@ module Domain
             XmlUrl: string
         }
 
+    [<CLIMutable>]
+    type PinnedPost = {
+        [<JsonPropertyName("fileName")>] FileName: string
+        [<JsonPropertyName("contentType")>] ContentType: string
+        [<JsonPropertyName("order")>] Order: int
+        [<JsonPropertyName("note")>] Note: string option
+    }
+
     // Collection organizational approach
     type CollectionType = 
         | MediumFocused of medium: string  // "blogs", "podcasts", "youtube", "forums"

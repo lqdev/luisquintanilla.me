@@ -116,3 +116,12 @@ module Loaders
         let processor = GenericBuilder.ResponseProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor responseFiles
         feedData |> List.map (fun item -> item.Content) |> List.toArray
+
+    let loadPinnedPosts () = 
+        let pinnedPostsPath = Path.Join("Data", "pinned-posts.json")
+        if File.Exists(pinnedPostsPath) then
+            File.ReadAllText(pinnedPostsPath)
+            |> JsonSerializer.Deserialize<PinnedPost array>
+            |> Array.sortBy (fun p -> p.Order)
+        else
+            [||]
