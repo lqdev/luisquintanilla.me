@@ -112,7 +112,7 @@ let private createSimplifiedReviewContent (content: string) =
 
 // New stratified timeline homepage view - takes 5 items from each content type initially
 // Progressive loading is content-type aware for better filtering experience
-let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) (remainingItemsByType: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
+let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) (remainingItemsByType: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) (pinnedUrls: Set<string>) =
     
     div [ _class "h-feed unified-timeline" ] [
         // Header with personal intro and content filters
@@ -166,12 +166,22 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                     
                     let properPermalink = getProperPermalink item.ContentType fileName
                     
+                    // Check if this item is pinned
+                    let isPinned = pinnedUrls.Contains(item.Url)
+                    
                     // Content card with desert theme and filtering attributes
                     article [ 
-                        _class "h-entry content-card"
+                        _class (if isPinned then "h-entry content-card pinned-post" else "h-entry content-card")
                         attr "data-type" item.ContentType
                         attr "data-date" item.Date
                     ] [
+                        // Add pin indicator if pinned
+                        if isPinned then
+                            div [ _class "pin-indicator" ] [
+                                span [ _class "pin-icon" ] [ Text "📌" ]
+                                span [ _class "pin-label" ] [ Text "Pinned" ]
+                            ]
+                        
                         header [ _class "card-header" ] [
                             time [ _class "dt-published publication-date"; attr "datetime" item.Date ] [
                                 Text (DateTimeOffset.Parse(item.Date).ToString("MMM dd, yyyy"))

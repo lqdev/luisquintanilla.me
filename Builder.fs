@@ -13,6 +13,7 @@ module Builder
     open ViewGenerator
     open PartialViews
     open TagViews
+    open Loaders
     
     let private srcDir = "_src"
     let private outputDir = "_public"
@@ -129,37 +130,67 @@ module Builder
 
     // New timeline homepage for Phase 3 - Feed-as-Homepage Interface
     let buildTimelineHomePage (allUnifiedItems: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
-        // True chronological approach: Take the most recent items across ALL content types
-        // This ensures proper chronological order instead of forcing representation from old content types
+        // Load pinned posts configuration
+        let pinnedPostsConfig = loadPinnedPosts()
+        
+        // Flatten all items
         let allItemsFlattened = 
             allUnifiedItems
             |> List.collect snd
             |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
         
-        let chronologicalInitialItems = 
+        // Extract pinned items based on configuration (using filename matching)
+        let pinnedItems = 
+            pinnedPostsConfig
+            |> Array.choose (fun (config: PinnedPost) ->
+                allItemsFlattened 
+                |> List.tryFind (fun item -> 
+                    // Extract filename from URL: /posts/my-post/ -> my-post
+                    let urlFileName = 
+                        item.Url.TrimEnd('/').Split('/')
+                        |> Array.last
+                    urlFileName = config.FileName && 
+                    item.ContentType = config.ContentType))
+            |> Array.toList
+        
+        // Remove pinned items from chronological list
+        let unpinnedItemsFlattened = 
             allItemsFlattened
-            |> List.take (min 50 allItemsFlattened.Length) // Take top 50 most recent items regardless of type
+            |> List.filter (fun item ->
+                not (pinnedItems |> List.exists (fun pinned -> pinned.Url = item.Url)))
+        
+        // Take initial items from unpinned list
+        let chronologicalInitialItems = 
+            unpinnedItemsFlattened
+            |> List.take (min 50 unpinnedItemsFlattened.Length)
+        
+        // Combine: pinned first, then chronological
+        let initialItems = pinnedItems @ chronologicalInitialItems
         
         // Group remaining items by content type for type-aware progressive loading
         let remainingItemsByType = 
             allUnifiedItems
             |> List.map (fun (contentType, items) ->
                 let sortedItems = items |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
-                // Skip items that are already in the initial chronological load
+                // Skip items that are already in the initial load (pinned + chronological)
                 let remainingItems = 
                     sortedItems 
                     |> List.filter (fun item -> 
-                        not (chronologicalInitialItems |> List.exists (fun initial -> initial.Url = item.Url)))
+                        not (initialItems |> List.exists (fun initial -> initial.Url = item.Url)))
                 (contentType, remainingItems)
             )
             |> List.filter (fun (_, items) -> not items.IsEmpty)
         
-        // Generate the timeline homepage with chronological approach
-        let timelineHomePage = generate (LayoutViews.timelineHomeViewStratified (chronologicalInitialItems |> List.toArray) remainingItemsByType) "default" "Luis Quintanilla - Personal Website"
+        // Create set of pinned URLs for efficient lookup
+        let pinnedUrls = pinnedItems |> List.map (fun item -> item.Url) |> Set.ofList
+        
+        // Generate the timeline homepage with pinned posts support
+        let timelineHomePage = generate (LayoutViews.timelineHomeViewStratified (initialItems |> List.toArray) remainingItemsByType pinnedUrls) "default" "Luis Quintanilla - Personal Website"
         File.WriteAllText(Path.Join(outputDir,"index.html"), timelineHomePage)
         
         let totalItems = allUnifiedItems |> List.sumBy (fun (_, items) -> items.Length)
-        printfn "✅ Timeline homepage created with %d initial items (chronological) from %d total items across all content types" chronologicalInitialItems.Length totalItems
+        let pinnedCount = pinnedItems.Length
+        printfn "✅ Timeline homepage created with %d pinned posts, %d chronological items from %d total items across all content types" pinnedCount chronologicalInitialItems.Length totalItems
 
     let buildAboutPage () = 
 
