@@ -31,7 +31,7 @@ type UnifiedFeedItem = {
 
 ### Option 1: JSON Configuration File (RECOMMENDED ⭐)
 
-**Approach**: Create a `Data/pinned-posts.json` file with an ordered list of posts to pin.
+**Approach**: Create a `Data/pinned-posts.json` file with an ordered list of posts to pin using **filenames** instead of URLs.
 
 #### Advantages
 ✅ **Centralized Management**: Single location to manage all pinned posts
@@ -41,6 +41,7 @@ type UnifiedFeedItem = {
 ✅ **Flexible Ordering**: Explicit index-based ordering
 ✅ **Multi-Content-Type Support**: Can pin any content type (posts, notes, responses)
 ✅ **Aligns with Existing Patterns**: Follows the site's pattern of using JSON configs in `Data/` directory
+✅ **Permalink-Safe**: Uses filename matching, so changing permalinks doesn't require config updates
 
 #### Implementation Details
 
@@ -48,24 +49,30 @@ type UnifiedFeedItem = {
 ```json
 [
     {
-        "url": "/posts/automate-yaml-front-matter-vs-code-snippets/",
+        "fileName": "automate-yaml-front-matter-vs-code-snippets",
         "contentType": "posts",
         "order": 1,
         "note": "Popular VS Code snippets post"
     },
     {
-        "url": "/posts/authorization-code-flow-python/",
+        "fileName": "authorization-code-flow-python",
         "contentType": "posts",
         "order": 2
     }
 ]
 ```
 
+**Why filename instead of URL?**
+- Filenames are stable and don't change (they're the markdown file names without `.md` extension)
+- Permalinks are generated from filenames at build time, so no duplication
+- If you ever change the URL structure (e.g., from `/posts/filename/` to `/blog/filename/`), the config doesn't need updates
+- The filename is what's stored in the `Post.FileName` property anyway
+
 **Domain Type** (add to `Domain.fs`):
 ```fsharp
 [<CLIMutable>]
 type PinnedPost = {
-    [<JsonPropertyName("url")>] Url: string
+    [<JsonPropertyName("fileName")>] FileName: string
     [<JsonPropertyName("contentType")>] ContentType: string
     [<JsonPropertyName("order")>] Order: int
     [<JsonPropertyName("note")>] Note: string option
@@ -96,13 +103,17 @@ let buildTimelineHomePage (allUnifiedItems: (string * GenericBuilder.UnifiedFeed
         |> List.collect snd
         |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
     
-    // Extract pinned items based on configuration
+    // Extract pinned items based on configuration (using filename matching)
     let pinnedItems = 
         pinnedPostsConfig
         |> Array.choose (fun config ->
             allItemsFlattened 
             |> List.tryFind (fun item -> 
-                item.Url.TrimEnd('/') = config.Url.TrimEnd('/') && 
+                // Extract filename from URL: /posts/my-post/ -> my-post
+                let urlFileName = 
+                    item.Url.TrimEnd('/').Split('/')
+                    |> Array.last
+                urlFileName = config.FileName && 
                 item.ContentType = config.ContentType))
         |> Array.toList
     
@@ -264,13 +275,13 @@ User creates/edits `Data/pinned-posts.json`:
 ```json
 [
     {
-        "url": "/posts/automate-yaml-front-matter-vs-code-snippets/",
+        "fileName": "automate-yaml-front-matter-vs-code-snippets",
         "contentType": "posts",
         "order": 1,
         "note": "VS Code snippets guide - popular"
     },
     {
-        "url": "/posts/authorization-code-flow-python/",
+        "fileName": "authorization-code-flow-python",
         "contentType": "posts",
         "order": 2,
         "note": "OAuth tutorial"
@@ -278,7 +289,53 @@ User creates/edits `Data/pinned-posts.json`:
 ]
 ```
 
+**How to find the filename?**
+- It's the markdown filename without the `.md` extension
+- For `/posts/my-awesome-post/`, the filename is `my-awesome-post`
+- Located in `_src/posts/my-awesome-post.md`
+
 Then rebuild the site. The pinned posts will appear at the top of the timeline with a pin indicator.
+
+### Addressing Permalink Concerns
+
+**The Problem**: If URLs are used in the config, changing permalink structure requires updates in two places:
+1. The URL generation logic in the code
+2. The pinned posts JSON config
+
+**The Solution**: Use **filename-based matching** instead:
+- Filenames are stable and rarely change (they're the source markdown files)
+- URLs are generated from filenames at build time
+- If you change URL structure (e.g., `/posts/` → `/blog/`), only the code changes, not the config
+- The config references the source of truth (the markdown file), not the derived URL
+
+**Example scenario**:
+- Filename: `automate-yaml-front-matter-vs-code-snippets.md`
+- Current URL: `/posts/automate-yaml-front-matter-vs-code-snippets/`
+- Config uses: `"fileName": "automate-yaml-front-matter-vs-code-snippets"`
+- If you later decide URLs should be `/blog/...`, the config doesn't need updating!
+
+### Alternative: Title-Based Matching
+
+If you're concerned about filename changes, an alternative approach is **title-based matching**:
+
+```json
+[
+    {
+        "title": "Automate YAML front-matter generation with custom Visual Studio Code snippets",
+        "contentType": "posts",
+        "order": 1
+    }
+]
+```
+
+**Pros**: Titles are even more stable than filenames
+**Cons**: Longer strings, potential for typos, title changes require config updates
+
+However, **filename-based is still recommended** because:
+1. Filenames are the actual source files and rarely change
+2. Shorter and easier to type
+3. Easy to find (just look at `_src/posts/` directory)
+4. If you rename a file, you'd need to update Git history/redirects anyway
 
 ### Future Enhancements
 - Admin UI for managing pinned posts (if needed)
