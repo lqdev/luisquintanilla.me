@@ -149,14 +149,21 @@ let relatedPostsSection (relatedPosts: Post array) (currentContentType: string) 
             div [_class "related-posts-list"] [
                 for post in relatedPosts do
                     let postUrl = sprintf "/%s/%s/" currentContentType post.FileName
-                    let publishDate = DateTimeOffset.Parse(post.Metadata.Date)
+                    // Safe date parsing with fallback
+                    let dateDisplay = 
+                        try
+                            let publishDate = DateTimeOffset.Parse(post.Metadata.Date)
+                            publishDate.ToString("MMMM d, yyyy")
+                        with
+                        | _ -> post.Metadata.Date  // Fallback to raw date string
+                    
                     article [_class "related-post-item"] [
                         h4 [_class "related-post-title"] [
                             a [_href postUrl] [Text post.Metadata.Title]
                         ]
                         div [_class "related-post-meta"] [
                             time [_datetime post.Metadata.Date] [
-                                Text (publishDate.ToString("MMMM d, yyyy"))
+                                Text dateDisplay
                             ]
                             if not (isNull post.Metadata.Tags) && post.Metadata.Tags.Length > 0 then
                                 span [_class "related-post-tags"] [
