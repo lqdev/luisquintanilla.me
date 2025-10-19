@@ -1343,6 +1343,13 @@ module UnifiedFeeds =
                 OutputPath = "collections/albums/feed.xml"
                 ContentType = Some "album-collection"
             })
+            ("playlist-collection", {
+                Title = "Luis Quintanilla - Playlists"
+                Link = "https://www.lqdev.me/collections/playlists"
+                Description = "Music playlist collections by Luis Quintanilla"
+                OutputPath = "collections/playlists/feed.xml"
+                ContentType = Some "playlist-collection"
+            })
         ]
         
         // Generate type-specific feeds

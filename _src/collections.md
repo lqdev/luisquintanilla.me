@@ -35,6 +35,9 @@ Photo and media collections organized by events, themes, and projects.
 ### [Albums](/collections/albums/)
 Curated photo album collections from events, trips, and memorable moments. Each album is a themed collection of media with descriptions and metadata.
 
+### [Playlists](/collections/playlists/)
+Monthly music discoveries and favorites. Crate Finds features music I've discovered for the first time or listened to consistently throughout the month - like digging through records at your local record store. Each playlist includes YouTube and Spotify links for maximum accessibility.
+
 ## About Collections
 
 These collections follow some of the principles of the [IndieWeb](https://indieweb.org/) and traditional web discovery. Each collection:

@@ -1,7 +1,6 @@
 ---
-post_type: "note" 
 title: "Crate Finds - Fall 2023"
-published_date: "2023-12-17 14:59 -05:00"
+date: "2023-12-17 14:59 -05:00"
 tags: ["cratefinds","music","playlist","spotify"]
 ---
 
