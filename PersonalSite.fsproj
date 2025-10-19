@@ -15,6 +15,7 @@
     <Compile Include="OutputComparison.fs" />
     <Compile Include="Services\Markdown.fs" />
     <Compile Include="Services\Tag.fs" />
+    <Compile Include="Services\ReadingTime.fs" />
     <Compile Include="Services\Opml.fs" />    
     <Compile Include="Services\Webmention.fs" /> 
     <Compile Include="GenericBuilder.fs" />

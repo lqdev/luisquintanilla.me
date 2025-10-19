@@ -6,6 +6,7 @@ open CustomBlocks
 open BlockRenderers
 open TagService
 open MarkdownService
+open ReadingTimeService
 open System.Xml.Linq
 open System
 open System.IO
@@ -94,10 +95,12 @@ module PostProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
+                    let contentWithoutFrontmatter = extractContentWithoutFrontMatter parsedDoc.RawMarkdown
+                    let readingTime = ReadingTimeService.calculateReadingTime contentWithoutFrontmatter
                     Some {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
-                        Metadata = metadata
-                        Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown  // Use raw markdown without frontmatter
+                        Metadata = { metadata with ReadingTimeMinutes = readingTime }
+                        Content = contentWithoutFrontmatter  // Use raw markdown without frontmatter
                     }
                 | None -> None
             | Error _ -> None
@@ -157,9 +160,10 @@ module NoteProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
+                    let readingTime = ReadingTimeService.calculateReadingTime parsedDoc.TextContent
                     Some {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
-                        Metadata = metadata
+                        Metadata = { metadata with ReadingTimeMinutes = readingTime }
                         Content = parsedDoc.TextContent  // Raw markdown content
                     }
                 | None -> None
@@ -606,9 +610,10 @@ module ResponseProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
+                    let readingTime = ReadingTimeService.calculateReadingTime parsedDoc.TextContent
                     Some {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
-                        Metadata = metadata
+                        Metadata = { metadata with ReadingTimeMinutes = readingTime }
                         Content = parsedDoc.TextContent
                     }
                 | None -> None

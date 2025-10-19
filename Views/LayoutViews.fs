@@ -815,7 +815,7 @@ let liveStreamView (title:string) =
         ] []
     ]
 
-let blogPostView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) = 
+let blogPostView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) (readingTimeMinutes: int option) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -825,6 +825,13 @@ let blogPostView (title:string) (content:string) (date:string) (fileName:string)
                     time [ _class "dt-published"; attr "datetime" date ] [
                         Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
+                    match readingTimeMinutes with
+                    | Some minutes when minutes >= 1 ->
+                        span [ _class "reading-time" ] [
+                            span [ _class "bi bi-clock"; _style "margin-left: 10px; margin-right: 5px;" ] []
+                            Text $"{minutes} min read"
+                        ]
+                    | _ -> ()
                 ]
                 // Hidden IndieWeb author information for microformats compliance
                 div [ _class "u-author h-card microformat-hidden" ] [
@@ -851,7 +858,7 @@ let blogPostView (title:string) (content:string) (date:string) (fileName:string)
         ]
     ]
 
-let notePostView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) = 
+let notePostView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) (readingTimeMinutes: int option) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -861,6 +868,13 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
                     time [ _class "dt-published"; attr "datetime" date ] [
                         Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
+                    match readingTimeMinutes with
+                    | Some minutes when minutes >= 1 ->
+                        span [ _class "reading-time" ] [
+                            span [ _class "bi bi-clock"; _style "margin-left: 10px; margin-right: 5px;" ] []
+                            Text $"{minutes} min read"
+                        ]
+                    | _ -> ()
                 ]
                 // Hidden IndieWeb author information for microformats compliance
                 div [ _class "u-author h-card microformat-hidden" ] [
@@ -887,7 +901,7 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
         ]
     ]
 
-let responsePostView (title:string) (content:string) (date:string) (fileName:string) (targetUrl:string) (tags: string array) = 
+let responsePostView (title:string) (content:string) (date:string) (fileName:string) (targetUrl:string) (tags: string array) (readingTimeMinutes: int option) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -897,6 +911,13 @@ let responsePostView (title:string) (content:string) (date:string) (fileName:str
                     time [ _class "dt-published"; attr "datetime" date ] [
                         Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
+                    match readingTimeMinutes with
+                    | Some minutes when minutes >= 1 ->
+                        span [ _class "reading-time" ] [
+                            span [ _class "bi bi-clock"; _style "margin-left: 10px; margin-right: 5px;" ] []
+                            Text $"{minutes} min read"
+                        ]
+                    | _ -> ()
                 ]
                 // Hidden IndieWeb author information for microformats compliance
                 div [ _class "u-author h-card microformat-hidden" ] [
