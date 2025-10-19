@@ -358,6 +358,8 @@ module Layouts
         script [_src "/assets/js/main.js"] []
         // Timeline functionality (filtering, progressive loading, etc.)
         script [_src "/assets/js/timeline.js"] []
+        // UFO Cursor enhancement (dynamic direction-based tilting)
+        script [_src "/assets/js/ufo-cursor.js"] []
 
         script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] []
 
