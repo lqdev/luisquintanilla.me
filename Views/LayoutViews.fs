@@ -828,7 +828,7 @@ let blogPostView (title:string) (content:string) (date:string) (fileName:string)
                     match readingTimeMinutes with
                     | Some minutes when minutes >= 1 ->
                         span [ _class "reading-time" ] [
-                            span [ _class "bi bi-clock"; _style "margin-left: 10px; margin-right: 5px;" ] []
+                            span [ _class "bi bi-clock" ] []
                             Text $"{minutes} min read"
                         ]
                     | _ -> ()
@@ -871,7 +871,7 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
                     match readingTimeMinutes with
                     | Some minutes when minutes >= 1 ->
                         span [ _class "reading-time" ] [
-                            span [ _class "bi bi-clock"; _style "margin-left: 10px; margin-right: 5px;" ] []
+                            span [ _class "bi bi-clock" ] []
                             Text $"{minutes} min read"
                         ]
                     | _ -> ()
@@ -914,7 +914,7 @@ let responsePostView (title:string) (content:string) (date:string) (fileName:str
                     match readingTimeMinutes with
                     | Some minutes when minutes >= 1 ->
                         span [ _class "reading-time" ] [
-                            span [ _class "bi bi-clock"; _style "margin-left: 10px; margin-right: 5px;" ] []
+                            span [ _class "bi bi-clock" ] []
                             Text $"{minutes} min read"
                         ]
                     | _ -> ()

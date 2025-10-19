@@ -35,9 +35,4 @@ let calculateReadingTime (content: string) : int option =
         else
             None
 
-/// Determine if content should display reading time based on word count
-/// Only show for content with 200+ words (1+ minute read time)
-let shouldShowReadingTime (content: string) : bool =
-    match calculateReadingTime content with
-    | Some minutes -> minutes >= 1
-    | None -> false
+
