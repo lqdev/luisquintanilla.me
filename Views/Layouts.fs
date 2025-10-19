@@ -89,6 +89,10 @@ module Layouts
                         a [_class "dropdown-item"; _href "/collections/starter-packs"] [Text "Starter Packs"]
                         a [_class "dropdown-item"; _href "/collections/travel-guides"] [Text "Travel Guides"]
                         div [_class "dropdown-divider"] []
+                        // Media Collections
+                        a [_class "dropdown-item"; _href "/collections/albums"] [Text "Albums"]
+                        a [_class "dropdown-item"; _href "/collections/playlists"] [Text "Playlists"]
+                        div [_class "dropdown-divider"] []
                         a [_class "dropdown-item"; _href "/radio"] [Text "Radio"]
                         a [_class "dropdown-item"; _href "/tags"] [Text "Tags"]
                     ]
