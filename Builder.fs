@@ -1057,7 +1057,11 @@ module Builder
         
         // Generate playlist collections index page
         try
-            let playlistCollections = feedData |> List.map (fun item -> item.Content) |> List.toArray
+            let playlistCollections = 
+                feedData 
+                |> List.map (fun item -> item.Content) 
+                |> List.toArray
+                |> Array.sortByDescending (fun x -> DateTimeOffset.Parse(x.Metadata.Date))
             let playlistsIndexHtml = generate (playlistCollectionsPageView playlistCollections) "defaultindex" "Playlists | Luis Quintanilla"
             let indexSaveDir = Path.Join(outputDir, "collections", "playlists")
             Directory.CreateDirectory(indexSaveDir) |> ignore
