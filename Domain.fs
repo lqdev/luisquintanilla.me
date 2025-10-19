@@ -24,6 +24,7 @@ module Domain
         [<YamlMember(Alias="description")>] Description: string
         [<YamlMember(Alias="published_date")>] Date: string
         [<YamlMember(Alias="tags")>] Tags: string array
+        [<YamlMember(Alias="reading_time_minutes")>] ReadingTimeMinutes: int option
     }
 
     type Post = {
@@ -313,6 +314,7 @@ module Domain
         [<YamlMember(Alias="dt_published")>] DatePublished: string        
         [<YamlMember(Alias="dt_updated")>] DateUpdated: string
         [<YamlMember(Alias="tags")>] Tags: string array
+        [<YamlMember(Alias="reading_time_minutes")>] ReadingTimeMinutes: int option
     }
 
     type Response = {

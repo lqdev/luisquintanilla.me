@@ -487,6 +487,14 @@
   font-weight: 600;
 }
 
+.post-meta .reading-time {
+  margin-left: 10px;
+}
+
+.post-meta .reading-time .bi-clock {
+  margin-right: 5px;
+}
+
 /* Post Content */
 .post-content {
   color: var(--text-color);
