@@ -815,7 +815,7 @@ let liveStreamView (title:string) =
         ] []
     ]
 
-let blogPostView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) (readingTimeMinutes: int option) = 
+let blogPostView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) (readingTimeMinutes: int option) (relatedPosts: Post array) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -853,6 +853,7 @@ let blogPostView (title:string) (content:string) (date:string) (fileName:string)
                     copyPermalinkButton $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 postTagsSection tags
+                relatedPostsSection relatedPosts "posts"
                 webmentionForm
             ]
         ]

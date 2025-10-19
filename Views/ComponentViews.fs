@@ -141,6 +141,45 @@ let feedBacklink (url:string) =
         ]
     ]
 
+// Related posts component for individual post pages
+let relatedPostsSection (relatedPosts: Post array) (currentContentType: string) =
+    if relatedPosts.Length > 0 then
+        div [_class "related-posts-section"] [
+            h3 [_class "related-posts-title"] [Text "Related Content"]
+            div [_class "related-posts-list"] [
+                for post in relatedPosts do
+                    let postUrl = sprintf "/%s/%s/" currentContentType post.FileName
+                    let publishDate = DateTimeOffset.Parse(post.Metadata.Date)
+                    article [_class "related-post-item"] [
+                        h4 [_class "related-post-title"] [
+                            a [_href postUrl] [Text post.Metadata.Title]
+                        ]
+                        div [_class "related-post-meta"] [
+                            time [_datetime post.Metadata.Date] [
+                                Text (publishDate.ToString("MMMM d, yyyy"))
+                            ]
+                            if not (isNull post.Metadata.Tags) && post.Metadata.Tags.Length > 0 then
+                                span [_class "related-post-tags"] [
+                                    Text " • "
+                                    for i, tag in post.Metadata.Tags |> Array.mapi (fun i t -> (i, t)) do
+                                        let cleanedTag = processTagName tag
+                                        a [_href $"/tags/{sanitizeTagForUrl cleanedTag}"; _class "tag-link"] [
+                                            Text $"#{cleanedTag}"
+                                        ]
+                                        if i < post.Metadata.Tags.Length - 1 then
+                                            Text " "
+                                ]
+                        ]
+                        if not (String.IsNullOrWhiteSpace(post.Metadata.Description)) then
+                            p [_class "related-post-description"] [
+                                Text post.Metadata.Description
+                            ]
+                    ]
+            ]
+        ]
+    else
+        div [] [] // Empty div if no related posts
+
 // Webmention form component
 let webmentionForm = 
     div [ ] [

@@ -10,6 +10,7 @@ module Builder
     open MarkdownService
     open TagService
     open OpmlService
+    open RelatedContentService
     open ViewGenerator
     open PartialViews
     open TagViews
@@ -805,6 +806,9 @@ module Builder
         let processor = GenericBuilder.PostProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor postFiles
         
+        // Get all posts for related content calculation
+        let allPosts = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        
         // Generate individual post pages
         feedData
         |> List.iter (fun item ->
@@ -812,7 +816,10 @@ module Builder
             let saveDir = Path.Join(outputDir, "posts", post.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = blogPostView post.Metadata.Title (post.Content |> convertMdToHtml) post.Metadata.Date post.FileName post.Metadata.Tags post.Metadata.ReadingTimeMinutes
+            // Find related posts for this post (limit to 5)
+            let relatedPosts = RelatedContentService.findRelatedContent post allPosts 5
+            
+            let html = blogPostView post.Metadata.Title (post.Content |> convertMdToHtml) post.Metadata.Date post.FileName post.Metadata.Tags post.Metadata.ReadingTimeMinutes relatedPosts
             let postView = generate html "defaultindex" $"{post.Metadata.Title} - Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, postView))
