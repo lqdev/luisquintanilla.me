@@ -637,28 +637,7 @@ textarea.form-control {
 .related-post-meta {
   font-size: 0.875rem;
   color: var(--text-muted);
-  margin-bottom: var(--spacing-xs);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--spacing-xs);
-}
-
-.related-post-tags {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-xs);
-}
-
-.related-post-tags .tag-link {
-  font-size: 0.875rem;
-}
-
-.related-post-description {
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--text-color);
-  margin: var(--spacing-sm) 0 0 0;
+  margin: 0;
 }
 
 /* Responsive adjustments for related posts */

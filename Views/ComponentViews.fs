@@ -165,22 +165,7 @@ let relatedPostsSection (relatedPosts: Post array) (currentContentType: string) 
                             time [_datetime post.Metadata.Date] [
                                 Text dateDisplay
                             ]
-                            if not (isNull post.Metadata.Tags) && post.Metadata.Tags.Length > 0 then
-                                span [_class "related-post-tags"] [
-                                    Text " • "
-                                    for i, tag in post.Metadata.Tags |> Array.mapi (fun i t -> (i, t)) do
-                                        let cleanedTag = processTagName tag
-                                        a [_href $"/tags/{sanitizeTagForUrl cleanedTag}"; _class "tag-link"] [
-                                            Text $"#{cleanedTag}"
-                                        ]
-                                        if i < post.Metadata.Tags.Length - 1 then
-                                            Text " "
-                                ]
                         ]
-                        if not (String.IsNullOrWhiteSpace(post.Metadata.Description)) then
-                            p [_class "related-post-description"] [
-                                Text post.Metadata.Description
-                            ]
                     ]
             ]
         ]
