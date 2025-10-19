@@ -28,6 +28,13 @@ Community-driven resource collections for getting started in various technologie
 ### [Travel Guides](/collections/travel-guides/)
 Personal travel recommendations and curated location guides with GPS coordinates, practical information, and downloadable GPX files for offline use.
 
+## Media Collections
+
+Photo and media collections organized by events, themes, and projects.
+
+### [Albums](/collections/albums/)
+Curated photo album collections from events, trips, and memorable moments. Each album is a themed collection of media with descriptions and metadata.
+
 ## About Collections
 
 These collections follow some of the principles of the [IndieWeb](https://indieweb.org/) and traditional web discovery. Each collection:

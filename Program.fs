@@ -94,6 +94,7 @@ let main argv =
     let presentationsFeedData = buildPresentations()
     let booksFeedData = buildBooks()
     let mediaFeedData = buildMedia()
+    let albumCollectionsFeedData = buildAlbumCollections()
     
     // Convert to unified feed items - Timeline feed (main content)
     let timelineFeedItems = [
@@ -103,6 +104,7 @@ let main argv =
         ("bookmarks", GenericBuilder.UnifiedFeeds.convertBookmarkResponsesToUnified bookmarksFeedData)
         ("reviews", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
         ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
+        ("album-collection", GenericBuilder.UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData)
     ]
     
     // All unified items for RSS feeds and search (includes resources content)
@@ -116,6 +118,7 @@ let main argv =
         ("presentations", GenericBuilder.UnifiedFeeds.convertPresentationsToUnified presentationsFeedData)
         ("reviews", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
         ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
+        ("album-collection", GenericBuilder.UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData)
     ]
     
     // Prepare unified content for text-only site and search indexes

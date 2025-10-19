@@ -192,6 +192,48 @@ let albumPageView (images:AlbumImage array) =
             ]
     ]
 
+// Album Collections listing page
+let albumCollectionsPageView (albumCollections: AlbumCollection array) = 
+    div [ _class "d-grip gap-3" ] [
+        h2[] [Text "Albums"]
+        p [] [Text "Curated photo and media collections from events, trips, and themes"]
+        ul [] [
+            for album in albumCollections do
+                li [] [
+                    a [ _href $"/collections/albums/{album.FileName}"] [ Text album.Metadata.Title ]
+                    if not (String.IsNullOrEmpty(album.Metadata.Description)) then
+                        Text " - "
+                        Text album.Metadata.Description
+                    if not (String.IsNullOrEmpty(album.Metadata.Date)) then
+                        Text " • "
+                        Text (DateTimeOffset.Parse(album.Metadata.Date).ToString("MMM dd, yyyy"))
+                ]
+        ]
+    ]
+
+// Individual album collection detail page (with processed media content)
+let albumCollectionDetailView (albumCollection: AlbumCollection) (processedContent: string) =
+    div [ _class "album-collection-detail" ] [
+        h1 [] [ Text albumCollection.Metadata.Title ]
+        if not (String.IsNullOrEmpty(albumCollection.Metadata.Description)) then
+            p [ _class "lead" ] [ Text albumCollection.Metadata.Description ]
+        if not (String.IsNullOrEmpty(albumCollection.Metadata.Date)) then
+            p [ _class "text-muted" ] [ Text (DateTimeOffset.Parse(albumCollection.Metadata.Date).ToString("MMMM dd, yyyy")) ]
+        if albumCollection.Metadata.Location.IsSome then
+            let loc = albumCollection.Metadata.Location.Value
+            p [ _class "text-muted" ] [ 
+                Text (sprintf "Location: %.6f, %.6f" loc.Latitude loc.Longitude)
+            ]
+        if not (isNull albumCollection.Metadata.Tags) && albumCollection.Metadata.Tags.Length > 0 then
+            div [ _class "tags mb-3" ] [
+                for tag in albumCollection.Metadata.Tags do
+                    a [ _href $"/tags/{tag}/"; _class "badge bg-secondary me-1" ] [ Text tag ]
+            ]
+        div [ _class "album-content mt-4" ] [
+            rawText processedContent
+        ]
+    ]
+
 // Enhanced subscription hub with content discovery
 let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
     // Take recent 8-10 items for preview
@@ -296,6 +338,14 @@ let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedI
                 Text "Feed URL: "
                 a [ _href "/media.rss" ] [ Text "/media.rss" ]
                 Text " (includes media posts)"
+            ]
+            
+            // Albums Feed
+            h3 [] [ a [ _href "/collections/albums/" ] [ Text "Albums" ] ]
+            p [] [ Text "Curated photo album collections from events, trips, and themes." ]
+            p [] [
+                Text "Feed URL: "
+                a [ _href "/collections/albums/feed.xml" ] [ Text "/collections/albums/feed.xml" ]
             ]
             
             // Reviews Feed
