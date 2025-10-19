@@ -61,9 +61,9 @@ Albums use the existing `:::media:::` block syntax for content:
 ### Using VS Code Snippets
 
 1. Create a new file in `_src/albums/your-album-name.md`
-2. Type `album-collection` to trigger the snippet
+2. Type `album-collection` to trigger the "Album Collection metadata" snippet (defined in `.vscode/metadata.code-snippets`)
 3. Fill in the required fields
-4. Add media items using the `:::media:::` block
+4. Add additional media items to the `:::media:::` block as needed
 
 ### Manual Creation
 
@@ -242,6 +242,6 @@ Potential future features (not currently implemented):
 
 ## Related Documentation
 
-- [Custom Blocks Documentation](CUSTOM_BLOCKS.md) - Details on `:::media:::` syntax
-- [Collections System](COLLECTIONS.md) - Overall collections architecture
-- [Search Integration](SEARCH.md) - How albums are indexed for search
+- [Media Publishing Workflow](media-publishing-workflow.md) - Publishing individual media posts
+- [Collections System](how-to-create-collections.md) - Overall collections architecture
+- [Enhanced Content Discovery](enhanced-content-discovery-implementation.md) - Search functionality
