@@ -1,7 +1,6 @@
 ---
-post_type: "note" 
 title: "Crate Finds - June 2025"
-published_date: "2025-07-01 20:00 -05:00"
+date: "2025-07-01 20:00 -05:00"
 tags: ["cratefinds","music","playlist","spotify"]
 ---
 

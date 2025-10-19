@@ -376,5 +376,20 @@
 			"",
 			"$0"
 		]
+	},
+	"Playlist Collection metadata": {
+		"scope": "markdown",
+		"prefix": "playlist-collection",
+		"description": "Playlist collection metadata for curated music playlists",
+		"body": [
+			"---",
+			"title: \"$1\"",
+			"description: \"$2\"",
+			"date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
+			"tags: [\"$3\"]",
+			"---",
+			"",
+			"$0"
+		]
 	}
 }

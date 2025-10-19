@@ -362,6 +362,86 @@
       "route": "/feed/2023-state-of-ai-report",
       "redirect": "/responses/2023-state-of-ai-report/",
       "statusCode": 301
+    },
+    {
+      "route": "/notes/crate-finds-april-2024/",
+      "redirect": "/collections/playlists/crate-finds-april-2024/",
+      "statusCode": 301
+    },
+    {
+      "route": "/notes/crate-finds-april-2025/",
+      "redirect": "/collections/playlists/crate-finds-april-2025/",
+      "statusCode": 301
+    },
+    {
+      "route": "/notes/crate-finds-august-2024/",
+      "redirect": "/collections/playlists/crate-finds-august-2024/",
+      "statusCode": 301
+    },
+    {
+      "route": "/notes/crate-finds-august-2025/",
+      "redirect": "/collections/playlists/crate-finds-august-2025/",
+      "statusCode": 301
+    },
+    {
+      "route": "/notes/crate-finds-fall-2023/",
+      "redirect": "/collections/playlists/crate-finds-fall-2023/",
+      "statusCode": 301
+    },
+    {
+      "route": "/notes/crate-finds-february-2024/",
+      "redirect": "/collections/playlists/crate-finds-february-2024/",
+      "statusCode": 301
+    },
+    {
+      "route": "/notes/crate-finds-february-2025/",
+      "redirect": "/collections/playlists/crate-finds-february-2025/",
+      "statusCode": 301
+    },
+    {
+      "route": "/notes/crate-finds-january-2024/",
+      "redirect": "/collections/playlists/crate-finds-january-2024/",
+      "statusCode": 301
+    },
+    {
+      "route": "/notes/crate-finds-july-2024/",
+      "redirect": "/collections/playlists/crate-finds-july-2024/",
+      "statusCode": 301
+    },
+    {
+      "route": "/notes/crate-finds-june-2024/",
+      "redirect": "/collections/playlists/crate-finds-june-2024/",
+      "statusCode": 301
+    },
+    {
+      "route": "/notes/crate-finds-june-2025/",
+      "redirect": "/collections/playlists/crate-finds-june-2025/",
+      "statusCode": 301
+    },
+    {
+      "route": "/notes/crate-finds-march-2024/",
+      "redirect": "/collections/playlists/crate-finds-march-2024/",
+      "statusCode": 301
+    },
+    {
+      "route": "/notes/crate-finds-may-2024/",
+      "redirect": "/collections/playlists/crate-finds-may-2024/",
+      "statusCode": 301
+    },
+    {
+      "route": "/notes/crate-finds-may-2025/",
+      "redirect": "/collections/playlists/crate-finds-may-2025/",
+      "statusCode": 301
+    },
+    {
+      "route": "/notes/crate-finds-october-2024/",
+      "redirect": "/collections/playlists/crate-finds-october-2024/",
+      "statusCode": 301
+    },
+    {
+      "route": "/notes/crate-finds-september-2024/",
+      "redirect": "/collections/playlists/crate-finds-september-2024/",
+      "statusCode": 301
     }
   ],
   "navigationFallback": {

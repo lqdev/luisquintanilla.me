@@ -215,6 +215,9 @@ let parseAlbumFromFile (filePath: string) : Result<ParsedDocument<AlbumDetails>,
 let parseAlbumCollectionFromFile (filePath: string) : Result<ParsedDocument<AlbumCollectionDetails>, ParseError> =
     parseDocumentFromFile<AlbumCollectionDetails> filePath
 
+let parsePlaylistCollectionFromFile (filePath: string) : Result<ParsedDocument<PlaylistDetails>, ParseError> =
+    parseDocumentFromFile<PlaylistDetails> filePath
+
 let parseResponseFromFile (filePath: string) : Result<ParsedDocument<ResponseDetails>, ParseError> =
     parseDocumentFromFile<ResponseDetails> filePath
 

@@ -66,6 +66,8 @@ let albumsPageView = CollectionViews.albumsPageView
 let albumPageView = CollectionViews.albumPageView
 let albumCollectionsPageView = CollectionViews.albumCollectionsPageView
 let albumCollectionDetailView = CollectionViews.albumCollectionDetailView
+let playlistCollectionsPageView = CollectionViews.playlistCollectionsPageView
+let playlistCollectionDetailView = CollectionViews.playlistCollectionDetailView
 let unifiedFeedView = CollectionViews.unifiedFeedView
 let enhancedSubscriptionHubView = CollectionViews.enhancedSubscriptionHubView
 

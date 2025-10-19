@@ -1,7 +1,6 @@
 ---
-post_type: "note"
 title: Crate Finds - July 2024
-published_date: 2024-08-01 20:06 -05:00
+date: 2024-08-01 20:06 -05:00
 tags: ["cratefinds","music","playlist","spotify"]
 ---
 

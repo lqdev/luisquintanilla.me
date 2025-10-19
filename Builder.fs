@@ -1027,6 +1027,50 @@ module Builder
         // Return feed data for unified RSS generation
         feedData
 
+    let buildPlaylistCollections() = 
+        let playlistCollectionFiles = 
+            let playlistPath = Path.Join(srcDir, "playlists")
+            if Directory.Exists(playlistPath) then
+                Directory.GetFiles(playlistPath)
+                |> Array.filter (fun f -> f.EndsWith(".md"))
+                |> Array.toList
+            else
+                []
+        
+        let processor = GenericBuilder.PlaylistCollectionProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor playlistCollectionFiles
+        
+        // Generate individual playlist collection pages at /collections/playlists/[slug]/
+        feedData
+        |> List.iter (fun item ->
+            let playlistCollection = item.Content
+            let saveDir = Path.Join(outputDir, "collections", "playlists", playlistCollection.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+
+            // Use AST-based markdown processing
+            let rawContent = processor.Render playlistCollection
+            let processedContent = MarkdownService.convertMdToHtml rawContent
+            let html = playlistCollectionDetailView playlistCollection processedContent
+            let playlistView = generate html "defaultindex" $"{playlistCollection.Metadata.Title} | Playlists | Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, playlistView))
+        
+        // Generate playlist collections index page
+        try
+            let playlistCollections = feedData |> List.map (fun item -> item.Content) |> List.toArray
+            let playlistsIndexHtml = generate (playlistCollectionsPageView playlistCollections) "defaultindex" "Playlists | Luis Quintanilla"
+            let indexSaveDir = Path.Join(outputDir, "collections", "playlists")
+            Directory.CreateDirectory(indexSaveDir) |> ignore
+            File.WriteAllText(Path.Join(indexSaveDir, "index.html"), playlistsIndexHtml)
+            printfn "✅ Playlist collections index page created with %d playlists" playlistCollections.Length
+        with
+        | ex -> 
+            printfn $"Error creating playlist collections index: {ex.Message}"
+            reraise()
+        
+        // Return feed data for unified RSS generation
+        feedData
+
     // Build unified feed HTML page with all content types
     let buildUnifiedFeedPage (allUnifiedItems: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
         // Flatten all feed items and sort chronologically
