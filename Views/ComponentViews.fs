@@ -172,6 +172,68 @@ let relatedPostsSection (relatedPosts: Post array) (currentContentType: string) 
     else
         div [] [] // Empty div if no related posts
 
+// Related snippets component for individual snippet pages
+let relatedSnippetsSection (relatedSnippets: Snippet array) =
+    if relatedSnippets.Length > 0 then
+        div [_class "related-posts-section"] [
+            h3 [_class "related-posts-title"] [Text "Related Snippets"]
+            div [_class "related-posts-list"] [
+                for snippet in relatedSnippets do
+                    let snippetUrl = sprintf "/resources/snippets/%s/" snippet.FileName
+                    // Safe date parsing with fallback
+                    let dateDisplay = 
+                        try
+                            let publishDate = DateTimeOffset.Parse(snippet.Metadata.CreatedDate)
+                            publishDate.ToString("MMMM d, yyyy")
+                        with
+                        | _ -> snippet.Metadata.CreatedDate  // Fallback to raw date string
+                    
+                    article [_class "related-post-item"] [
+                        h4 [_class "related-post-title"] [
+                            a [_href snippetUrl] [Text snippet.Metadata.Title]
+                        ]
+                        div [_class "related-post-meta"] [
+                            time [_datetime snippet.Metadata.CreatedDate] [
+                                Text dateDisplay
+                            ]
+                        ]
+                    ]
+            ]
+        ]
+    else
+        div [] [] // Empty div if no related snippets
+
+// Related wikis component for individual wiki pages
+let relatedWikisSection (relatedWikis: Wiki array) =
+    if relatedWikis.Length > 0 then
+        div [_class "related-posts-section"] [
+            h3 [_class "related-posts-title"] [Text "Related Wiki Pages"]
+            div [_class "related-posts-list"] [
+                for wiki in relatedWikis do
+                    let wikiUrl = sprintf "/resources/wiki/%s/" wiki.FileName
+                    // Safe date parsing with fallback
+                    let dateDisplay = 
+                        try
+                            let publishDate = DateTimeOffset.Parse(wiki.Metadata.LastUpdatedDate)
+                            publishDate.ToString("MMMM d, yyyy")
+                        with
+                        | _ -> wiki.Metadata.LastUpdatedDate  // Fallback to raw date string
+                    
+                    article [_class "related-post-item"] [
+                        h4 [_class "related-post-title"] [
+                            a [_href wikiUrl] [Text wiki.Metadata.Title]
+                        ]
+                        div [_class "related-post-meta"] [
+                            time [_datetime wiki.Metadata.LastUpdatedDate] [
+                                Text dateDisplay
+                            ]
+                        ]
+                    ]
+            ]
+        ]
+    else
+        div [] [] // Empty div if no related wikis
+
 // Webmention form component
 let webmentionForm = 
     div [ ] [

@@ -671,6 +671,9 @@ module Builder
         let processor = GenericBuilder.SnippetProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor snippetFiles
         
+        // Get all snippets for related content calculation
+        let allSnippets = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        
         // Generate individual snippet pages
         feedData
         |> List.iter (fun item ->
@@ -681,7 +684,11 @@ module Builder
             let snippetTags = 
                 if String.IsNullOrEmpty(snippet.Metadata.Tags) then [||]
                 else snippet.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-            let html = snippetPageView snippet.Metadata.Title (snippet.Content |> convertMdToHtml) snippet.Metadata.CreatedDate snippet.FileName snippetTags
+            
+            // Find related snippets for this snippet (limit to 5)
+            let relatedSnippets = RelatedContentService.findRelatedContent snippet allSnippets 5
+            
+            let html = snippetPageView snippet.Metadata.Title (snippet.Content |> convertMdToHtml) snippet.Metadata.CreatedDate snippet.FileName snippetTags relatedSnippets
             let snippetView = generate html "defaultindex" $"Snippet | {snippet.Metadata.Title} | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, snippetView))
@@ -706,6 +713,9 @@ module Builder
         let processor = GenericBuilder.WikiProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor wikiFiles
         
+        // Get all wikis for related content calculation
+        let allWikis = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        
         // Generate individual wiki pages
         feedData
         |> List.iter (fun item ->
@@ -716,7 +726,11 @@ module Builder
             let wikiTags = 
                 if String.IsNullOrEmpty(wiki.Metadata.Tags) then [||]
                 else wiki.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-            let html = wikiPageView wiki.Metadata.Title (wiki.Content |> convertMdToHtml) wiki.Metadata.LastUpdatedDate wiki.FileName wikiTags
+            
+            // Find related wikis for this wiki (limit to 5)
+            let relatedWikis = RelatedContentService.findRelatedContent wiki allWikis 5
+            
+            let html = wikiPageView wiki.Metadata.Title (wiki.Content |> convertMdToHtml) wiki.Metadata.LastUpdatedDate wiki.FileName wikiTags relatedWikis
             let wikiView = generate html "defaultindex" $"{wiki.Metadata.Title} | Wiki | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, wikiView))
@@ -845,6 +859,9 @@ module Builder
         let processor = GenericBuilder.NoteProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor noteFiles
         
+        // Get all notes for related content calculation
+        let allNotes = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        
         // Generate individual note pages at /notes/[slug]/
         feedData
         |> List.iter (fun item ->
@@ -852,7 +869,10 @@ module Builder
             let saveDir = Path.Join(outputDir, "notes", note.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = LayoutViews.notePostView note.Metadata.Title (note.Content |> convertMdToHtml) note.Metadata.Date note.FileName note.Metadata.Tags note.Metadata.ReadingTimeMinutes
+            // Find related notes for this note (limit to 5)
+            let relatedNotes = RelatedContentService.findRelatedContent note allNotes 5
+            
+            let html = LayoutViews.notePostView note.Metadata.Title (note.Content |> convertMdToHtml) note.Metadata.Date note.FileName note.Metadata.Tags note.Metadata.ReadingTimeMinutes relatedNotes
             let noteView = generate html "defaultindex" note.Metadata.Title
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, noteView))

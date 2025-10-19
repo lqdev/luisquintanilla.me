@@ -634,7 +634,7 @@ let contentViewWithTitle (title:string) (content:string) =
         rawText content
     ]    
 
-let snippetPageView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) = 
+let snippetPageView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) (relatedSnippets: Snippet array) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -665,12 +665,13 @@ let snippetPageView (title:string) (content:string) (date:string) (fileName:stri
                     copyPermalinkButton $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 postTagsSection tags
+                relatedSnippetsSection relatedSnippets
                 webmentionForm
             ]
         ]
     ]
 
-let wikiPageView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) = 
+let wikiPageView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) (relatedWikis: Wiki array) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -701,6 +702,7 @@ let wikiPageView (title:string) (content:string) (date:string) (fileName:string)
                     copyPermalinkButton $"/resources/wiki/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 postTagsSection tags
+                relatedWikisSection relatedWikis
                 webmentionForm
             ]
         ]
@@ -859,7 +861,7 @@ let blogPostView (title:string) (content:string) (date:string) (fileName:string)
         ]
     ]
 
-let notePostView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) (readingTimeMinutes: int option) = 
+let notePostView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) (readingTimeMinutes: int option) (relatedPosts: Post array) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -897,6 +899,7 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
                     copyPermalinkButton $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 postTagsSection tags
+                relatedPostsSection relatedPosts "notes"
                 webmentionForm
             ]
         ]
