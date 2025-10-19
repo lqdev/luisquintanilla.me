@@ -983,6 +983,50 @@ module Builder
         // Return feed data for unified RSS generation
         feedData
 
+    let buildAlbumCollections() = 
+        let albumCollectionFiles = 
+            let albumPath = Path.Join(srcDir, "albums")
+            if Directory.Exists(albumPath) then
+                Directory.GetFiles(albumPath)
+                |> Array.filter (fun f -> f.EndsWith(".md"))
+                |> Array.toList
+            else
+                []
+        
+        let processor = GenericBuilder.AlbumCollectionProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor albumCollectionFiles
+        
+        // Generate individual album collection pages at /collections/albums/[slug]/
+        feedData
+        |> List.iter (fun item ->
+            let albumCollection = item.Content
+            let saveDir = Path.Join(outputDir, "collections", "albums", albumCollection.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+
+            // Use AST-based markdown processing for custom blocks
+            let rawContent = processor.Render albumCollection
+            let processedContent = MarkdownService.convertMdToHtml rawContent
+            let html = albumCollectionDetailView albumCollection processedContent
+            let albumView = generate html "defaultindex" $"{albumCollection.Metadata.Title} | Albums | Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, albumView))
+        
+        // Generate album collections index page
+        try
+            let albumCollections = feedData |> List.map (fun item -> item.Content) |> List.toArray
+            let albumsIndexHtml = generate (albumCollectionsPageView albumCollections) "defaultindex" "Albums | Luis Quintanilla"
+            let indexSaveDir = Path.Join(outputDir, "collections", "albums")
+            Directory.CreateDirectory(indexSaveDir) |> ignore
+            File.WriteAllText(Path.Join(indexSaveDir, "index.html"), albumsIndexHtml)
+            printfn "✅ Album collections index page created with %d albums" albumCollections.Length
+        with
+        | ex -> 
+            printfn $"Error creating album collections index: {ex.Message}"
+            reraise()
+        
+        // Return feed data for unified RSS generation
+        feedData
+
     // Build unified feed HTML page with all content types
     let buildUnifiedFeedPage (allUnifiedItems: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
         // Flatten all feed items and sort chronologically

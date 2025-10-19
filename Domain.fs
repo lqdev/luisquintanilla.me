@@ -300,6 +300,37 @@ module Domain
             member this.FileName = this.FileName
             member this.ContentType = "album"
 
+    // Album Collection - Curated media groupings (events, themes, projects)
+    [<CLIMutable>]
+    type AlbumCollectionLocation = {
+        [<YamlMember(Alias="lat")>] Latitude: float
+        [<YamlMember(Alias="lon")>] Longitude: float
+    }
+
+    [<CLIMutable>]
+    type AlbumCollectionDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="description")>] Description: string
+        [<YamlMember(Alias="date")>] Date: string
+        [<YamlMember(Alias="location")>] Location: AlbumCollectionLocation option
+        [<YamlMember(Alias="tags")>] Tags: string array
+    }
+
+    type AlbumCollection = {
+        FileName: string
+        Metadata: AlbumCollectionDetails
+        Content: string
+    }
+    with
+        interface ITaggable with
+            member this.Tags = 
+                if isNull this.Metadata.Tags then [||]
+                else this.Metadata.Tags
+            member this.Title = this.Metadata.Title
+            member this.Date = this.Metadata.Date
+            member this.FileName = this.FileName
+            member this.ContentType = "album-collection"
+
     type ResponseType = 
         | Reply
         | Star // Like / Favorite
@@ -400,6 +431,13 @@ module Domain
         let getAlbumFileName (album: Album) = album.FileName
         let getAlbumContentType (_: Album) = "album"
         
+        let getAlbumCollectionTags (albumCollection: AlbumCollection) = 
+            if isNull albumCollection.Metadata.Tags then [||] else albumCollection.Metadata.Tags
+        let getAlbumCollectionTitle (albumCollection: AlbumCollection) = albumCollection.Metadata.Title
+        let getAlbumCollectionDate (albumCollection: AlbumCollection) = albumCollection.Metadata.Date
+        let getAlbumCollectionFileName (albumCollection: AlbumCollection) = albumCollection.FileName
+        let getAlbumCollectionContentType (_: AlbumCollection) = "album-collection"
+        
         // Generic function to work with any ITaggable-like object
         let createTaggableRecord (tags: string array) (title: string) (date: string) (fileName: string) (contentType: string) =
             { new ITaggable with
@@ -429,6 +467,9 @@ module Domain
             
         let albumAsTaggable (album: Album) = 
             createTaggableRecord (getAlbumTags album) (getAlbumTitle album) (getAlbumDate album) (getAlbumFileName album) (getAlbumContentType album)
+            
+        let albumCollectionAsTaggable (albumCollection: AlbumCollection) = 
+            createTaggableRecord (getAlbumCollectionTags albumCollection) (getAlbumCollectionTitle albumCollection) (getAlbumCollectionDate albumCollection) (getAlbumCollectionFileName albumCollection) (getAlbumCollectionContentType albumCollection)
             
         // Note: Notes are processed as Post types through NoteProcessor, so noteAsTaggable = postAsTaggable
 

@@ -97,6 +97,16 @@ module Loaders
 
         albums
 
+    let loadAlbumCollections (srcDir: string) = 
+        let albumPath = Path.Join(srcDir, "albums")
+        
+        // Check if directory exists, if not return empty array
+        if not (Directory.Exists(albumPath)) then
+            [||]
+        else
+            let albumCollectionPaths = Directory.GetFiles(albumPath)
+            albumCollectionPaths |> Array.map(parseAlbumCollection)
+
     let loadFeed (srcDir: string) =
         // Load notes using AST-based system (same as Program.fs)
         let noteFiles = 
