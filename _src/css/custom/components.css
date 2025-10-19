@@ -630,7 +630,7 @@ textarea.form-control {
 }
 
 .related-post-title a:hover {
-  color: var(--link-hover-color);
+  color: var(--hover-color);
   text-decoration: underline;
 }
 
