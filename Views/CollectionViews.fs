@@ -211,6 +211,27 @@ let albumCollectionsPageView (albumCollections: AlbumCollection array) =
         ]
     ]
 
+// Playlist Collections page (collection index)
+let playlistCollectionsPageView (playlistCollections: PlaylistCollection array) = 
+    div [ _class "d-grip gap-3" ] [
+        h2[] [Text "Playlists"]
+        p [] [Text "Monthly music discoveries and favorites. Crate Finds features music I've discovered for the first time or listened to consistently throughout the month - like digging through records at your local record store. Each playlist includes YouTube and Spotify links for maximum accessibility."]
+        ul [] [
+            for playlist in playlistCollections do
+                li [] [
+                    a [ _href $"/collections/playlists/{playlist.FileName}"] [ Text playlist.Metadata.Title ]
+                    match playlist.Metadata.Description with
+                    | Some desc when not (String.IsNullOrEmpty(desc)) ->
+                        Text " - "
+                        Text desc
+                    | _ -> ()
+                    if not (String.IsNullOrEmpty(playlist.Metadata.Date)) then
+                        Text " • "
+                        Text (DateTimeOffset.Parse(playlist.Metadata.Date).ToString("MMM dd, yyyy"))
+                ]
+        ]
+    ]
+
 // Individual album collection detail page (with processed media content)
 let albumCollectionDetailView (albumCollection: AlbumCollection) (processedContent: string) =
     div [ _class "album-collection-detail" ] [
@@ -230,6 +251,26 @@ let albumCollectionDetailView (albumCollection: AlbumCollection) (processedConte
                     a [ _href $"/tags/{tag}/"; _class "badge bg-secondary me-1" ] [ Text tag ]
             ]
         div [ _class "album-content mt-4" ] [
+            rawText processedContent
+        ]
+    ]
+
+// Individual playlist collection detail page (with processed content)
+let playlistCollectionDetailView (playlistCollection: PlaylistCollection) (processedContent: string) =
+    div [ _class "playlist-collection-detail" ] [
+        h1 [] [ Text playlistCollection.Metadata.Title ]
+        match playlistCollection.Metadata.Description with
+        | Some desc when not (String.IsNullOrEmpty(desc)) ->
+            p [ _class "lead" ] [ Text desc ]
+        | _ -> ()
+        if not (String.IsNullOrEmpty(playlistCollection.Metadata.Date)) then
+            p [ _class "text-muted" ] [ Text (DateTimeOffset.Parse(playlistCollection.Metadata.Date).ToString("MMMM dd, yyyy")) ]
+        if not (isNull playlistCollection.Metadata.Tags) && playlistCollection.Metadata.Tags.Length > 0 then
+            div [ _class "tags mb-3" ] [
+                for tag in playlistCollection.Metadata.Tags do
+                    a [ _href $"/tags/{tag}/"; _class "badge bg-secondary me-1" ] [ Text tag ]
+            ]
+        div [ _class "playlist-content mt-4" ] [
             rawText processedContent
         ]
     ]

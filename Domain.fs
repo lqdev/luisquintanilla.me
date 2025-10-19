@@ -331,6 +331,30 @@ module Domain
             member this.FileName = this.FileName
             member this.ContentType = "album-collection"
 
+    // Playlist Collection - Curated music playlists (monthly discoveries, themed mixes)
+    [<CLIMutable>]
+    type PlaylistDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="description")>] Description: string option
+        [<YamlMember(Alias="date")>] Date: string
+        [<YamlMember(Alias="tags")>] Tags: string array
+    }
+
+    type PlaylistCollection = {
+        FileName: string
+        Metadata: PlaylistDetails
+        Content: string  // Raw markdown content with track lists
+    }
+    with
+        interface ITaggable with
+            member this.Tags = 
+                if isNull this.Metadata.Tags then [||]
+                else this.Metadata.Tags
+            member this.Title = this.Metadata.Title
+            member this.Date = this.Metadata.Date
+            member this.FileName = this.FileName
+            member this.ContentType = "playlist-collection"
+
     type ResponseType = 
         | Reply
         | Star // Like / Favorite

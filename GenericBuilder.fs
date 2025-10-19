@@ -985,6 +985,93 @@ module AlbumCollectionProcessor =
             Some item
     }
 
+/// Playlist Collection content processor for curated music playlists
+module PlaylistCollectionProcessor =
+    /// Helper to extract markdown content without frontmatter
+    let private extractContentWithoutFrontMatter (rawMarkdown: string) : string =
+        let lines = rawMarkdown.Split([|'\n'|], StringSplitOptions.None)
+        if lines.Length > 0 && lines.[0].Trim() = "---" then
+            // Find the closing ---
+            let closingIndex = 
+                lines 
+                |> Array.skip 1
+                |> Array.findIndex (fun line -> line.Trim() = "---")
+            // Return everything after the second ---
+            lines 
+            |> Array.skip (closingIndex + 2)
+            |> String.concat "\n"
+        else
+            rawMarkdown
+    
+    let create() : ContentProcessor<PlaylistCollection> = {
+        Parse = fun filePath ->
+            match parsePlaylistCollectionFromFile filePath with
+            | Ok parsedDoc -> 
+                match parsedDoc.Metadata with
+                | Some metadata -> 
+                    let fileName = Path.GetFileNameWithoutExtension(filePath)
+                    
+                    Some {
+                        FileName = fileName
+                        Metadata = metadata
+                        Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown
+                    }
+                | None -> None
+            | Error _ -> None
+        
+        Render = fun playlistCollection ->
+            // Return raw markdown content to be processed by Builder.fs through MarkdownService
+            playlistCollection.Content
+        
+        OutputPath = fun playlistCollection ->
+            sprintf "collections/playlists/%s/index.html" playlistCollection.FileName
+        
+        RenderCard = fun playlistCollection ->
+            let title = playlistCollection.Metadata.Title
+            let description = playlistCollection.Metadata.Description |> Option.defaultValue ""
+            let url = sprintf "/collections/playlists/%s/" playlistCollection.FileName
+            let date = playlistCollection.Metadata.Date
+            
+            let viewNode = 
+                article [ _class "playlist-collection-card h-entry" ] [
+                    h2 [] [ a [ _href url ] [ Text title ] ]
+                    if not (String.IsNullOrEmpty(description)) then
+                        p [ _class "content-preview" ] [ Text description ]
+                    div [ _class "mt-2" ] [
+                        a [ _href url; _class "btn btn-outline-primary btn-sm" ] [ Text "View Playlist →" ]
+                    ]
+                ]
+            RenderView.AsString.xmlNode viewNode
+        
+        RenderRss = fun playlistCollection ->
+            // Create RSS item for playlist collection
+            let url = sprintf "https://www.lqdev.me/collections/playlists/%s/" playlistCollection.FileName
+            let description = playlistCollection.Metadata.Description |> Option.defaultValue ""
+            
+            // Normalize URLs in description for RSS compatibility
+            let normalizedDescription = normalizeUrlsForRss description "https://www.lqdev.me"
+            
+            // Create RSS category elements for tags
+            let categories = 
+                playlistCollection.Metadata.Tags
+                |> Array.map (fun tag -> XElement(XName.Get "category", tag))
+                |> Array.toList
+            
+            let item = 
+                XElement(XName.Get "item",
+                    XElement(XName.Get "title", playlistCollection.Metadata.Title),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedDescription),
+                    XElement(XName.Get "link", url),
+                    XElement(XName.Get "guid", url),
+                    XElement(XName.Get "pubDate", playlistCollection.Metadata.Date))
+            
+            // Add categories if they exist
+            if not (List.isEmpty categories) then
+                item.Add(categories |> List.toArray)
+                
+            Some item
+    }
+
 /// Bookmark content processor for IndieWeb bookmarks
 module BookmarkProcessor =
     let create() : ContentProcessor<Bookmark> = {
@@ -1486,6 +1573,18 @@ module UnifiedFeeds =
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "album-collection"; Tags = tags; RssXml = rssXml }
+            | None -> None)
+    
+    let convertPlaylistCollectionsToUnified (feedDataList: FeedData<PlaylistCollection> list) : UnifiedFeedItem list =
+        feedDataList |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let title = feedData.Content.Metadata.Title
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = feedData.Content.Content  // Use full content
+                let date = feedData.Content.Metadata.Date
+                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "playlist-collection"; Tags = tags; RssXml = rssXml }
             | None -> None)
     
     let convertBookmarksToUnified (feedDataList: FeedData<Bookmark> list) : UnifiedFeedItem list =
