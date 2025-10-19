@@ -1,8 +1,20 @@
 [
     {
-        "fileName": "automate-yaml-front-matter-vs-code-snippets",
+        "fileName": "how-i-keep-up-with-ai",
         "contentType": "posts",
         "order": 1,
-        "note": "Popular VS Code snippets guide - demonstrates custom snippet creation"
+        "note": ""
+    },
+    {
+        "fileName": "rss-opml-starter-packs",
+        "contentType": "posts",
+        "order": 2,
+        "note": ""
+    },
+    {
+        "fileName": "website-feeds-opml",
+        "contentType": "notes",
+        "order": 3,
+        "note": ""
     }
 ]
