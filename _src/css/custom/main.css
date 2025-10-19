@@ -39,6 +39,9 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  
+  /* Custom flying saucer cursor - tilted with aliens */
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><g transform="rotate(-25 16 16)"><ellipse cx="16" cy="15" rx="13" ry="7" fill="%237a8fa3" stroke="%234a5568" stroke-width="1.5"/><ellipse cx="16" cy="13" rx="13" ry="6" fill="none" stroke="%239db3cc" stroke-width="0.8" opacity="0.6"/><ellipse cx="16" cy="8" rx="7" ry="6" fill="%234db8ff" stroke="%232a7fa8" stroke-width="1.5"/><ellipse cx="16" cy="6" rx="5" ry="3" fill="%237dd3ff" opacity="0.7"/><g><circle cx="10" cy="10" r="2.2" fill="%23333"/><circle cx="9.2" cy="9.5" r="0.6" fill="%2390ee90"/><circle cx="10.8" cy="9.5" r="0.6" fill="%2390ee90"/><circle cx="9.2" cy="9.5" r="0.25" fill="%23000"/><circle cx="10.8" cy="9.5" r="0.25" fill="%23000"/><circle cx="16" cy="8.5" r="2.2" fill="%23333"/><circle cx="15.2" cy="8" r="0.6" fill="%2390ee90"/><circle cx="16.8" cy="8" r="0.6" fill="%2390ee90"/><circle cx="15.2" cy="8" r="0.25" fill="%23000"/><circle cx="16.8" cy="8" r="0.25" fill="%23000"/><circle cx="22" cy="10" r="2.2" fill="%23333"/><circle cx="21.2" cy="9.5" r="0.6" fill="%2390ee90"/><circle cx="22.8" cy="9.5" r="0.6" fill="%2390ee90"/><circle cx="21.2" cy="9.5" r="0.25" fill="%23000"/><circle cx="22.8" cy="9.5" r="0.25" fill="%23000"/></g><ellipse cx="16" cy="20" rx="5" ry="3" fill="%23ffeb3b" stroke="%23fbc02d" stroke-width="1"/><line x1="14" y1="23" x2="12" y2="30" stroke="%23ffeb3b" stroke-width="0.8" opacity="0.5"/><line x1="16" y1="23" x2="16" y2="31" stroke="%23ffeb3b" stroke-width="1" opacity="0.6"/><line x1="18" y1="23" x2="20" y2="30" stroke="%23ffeb3b" stroke-width="0.8" opacity="0.5"/></g></svg>') 16 16, auto;
 }
 
 @media (min-width: 768px) {
