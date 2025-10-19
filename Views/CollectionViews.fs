@@ -340,6 +340,14 @@ let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedI
                 Text " (includes media posts)"
             ]
             
+            // Albums Feed
+            h3 [] [ a [ _href "/collections/albums/" ] [ Text "Albums" ] ]
+            p [] [ Text "Curated photo album collections from events, trips, and themes." ]
+            p [] [
+                Text "Feed URL: "
+                a [ _href "/collections/albums/feed.xml" ] [ Text "/collections/albums/feed.xml" ]
+            ]
+            
             // Reviews Feed
             h3 [] [ a [ _href "/reviews/" ] [ Text "Reviews" ] ]
             p [] [ Text "Book reviews and other content critiques." ]
