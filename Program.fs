@@ -106,7 +106,6 @@ let main argv =
         ("reviews", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
         ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
         ("album-collection", GenericBuilder.UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData)
-        ("playlist-collection", GenericBuilder.UnifiedFeeds.convertPlaylistCollectionsToUnified playlistCollectionsFeedData)
     ]
     
     // All unified items for RSS feeds and search (includes resources content)
