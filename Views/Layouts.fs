@@ -300,6 +300,7 @@ module Layouts
         // Desert Theme CSS - Custom design system (Phase 1)
         link [_rel "stylesheet";_href "/assets/css/custom/main.css"]
         link [_rel "stylesheet";_href "/assets/css/custom/timeline.css"]  // Timeline styles for feed-as-homepage
+        link [_rel "stylesheet";_href "/assets/css/custom/cursor.css"]  // Custom UFO cursor with dynamic tilting
         
         // Keep essential external stylesheets
         link [_rel "stylesheet";_href "/assets/css/bootstrap-icons-1.5.0/bootstrap-icons.css"]

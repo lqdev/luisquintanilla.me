@@ -151,7 +151,6 @@
 .dropdown-toggle {
   background: none;
   border: none;
-  cursor: pointer;
   justify-content: space-between;
   width: 100%;
 }
@@ -222,7 +221,6 @@
   border-radius: 8px;
   color: var(--nav-text) !important;
   font-weight: 500;
-  cursor: pointer;
   transition: all 0.2s ease;
 }
 
@@ -242,7 +240,6 @@
   border: 2px solid var(--nav-border);
   border-radius: 8px;
   padding: 0.5rem;
-  cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
