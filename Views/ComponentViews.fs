@@ -72,11 +72,12 @@ let copyPermalinkButton (relativeUrl: string) =
     ]
 
 /// Generate web share button for sharing via native share
-let webShareButton () =
+let webShareButton (relativeUrl: string) =
     button [
         _class "web-share-btn btn btn-sm btn-outline-secondary ms-2"
         _type "button"
         _title "Share via Web Share API"
+        attr "data-url" relativeUrl
         attr "aria-label" "Share this page"
     ] [
         tag "i" [_class "bi bi-share"; attr "aria-hidden" "true"] []
@@ -94,7 +95,7 @@ let cardFooter (contentType:string) (fileName:string) (tags: string array)=
             Text "Permalink: "
             a [_href permalink; _class "u-url"] [Text $"{permalink}"]
             copyPermalinkButton permalink
-            webShareButton ()
+            webShareButton permalink
         ]
         
         div [] [

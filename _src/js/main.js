@@ -295,12 +295,13 @@ function setupWebShare() {
     document.querySelectorAll('.web-share-btn').forEach(button => {
         button.addEventListener('click', async (e) => {
             e.preventDefault();
-            await shareCurrentPage();
+            const relativeUrl = button.dataset.url;
+            await shareContent(relativeUrl);
         });
     });
 }
 
-async function shareCurrentPage() {
+async function shareContent(relativeUrl) {
     try {
         // Get the page title
         const title = document.title;
@@ -312,8 +313,8 @@ async function shareCurrentPage() {
         // Use selected text or default message
         const text = selectedText || 'I found this interesting';
 
-        // Get current page URL
-        const url = window.location.href;
+        // Build full URL from relative URL
+        const url = relativeUrl ? window.location.origin + relativeUrl : window.location.href;
 
         // Share using Web Share API
         await navigator.share({
@@ -329,4 +330,9 @@ async function shareCurrentPage() {
             console.warn('Error sharing:', err);
         }
     }
+}
+
+async function shareCurrentPage() {
+    // Share the current page without a specific URL (uses window.location.href)
+    await shareContent(null);
 }
