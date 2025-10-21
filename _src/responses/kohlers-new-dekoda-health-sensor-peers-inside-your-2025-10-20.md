@@ -9,6 +9,6 @@ tags: ["southpark","funny","health","tech","privacy"]
 
 > Kohler’s new toilet camera provides health insights based on your bathroom breaks
 
-When I saw this article, this is immediately what came to mind
+When I saw this article, this is immediately what came to mind.
 
-https://youtu.be/QK3YkCjk8_o
+[![Clip of South Park Toilet Security Administration](http://img.youtube.com/vi/QK3YkCjk8_o/0.jpg)](https://www.youtube.com/watch?v=QK3YkCjk8_o "Clip of South Park Toilet Security Administration")
