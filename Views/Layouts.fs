@@ -308,6 +308,10 @@ module Layouts
         // Preserve existing custom styles during transition
         link [_rel "stylesheet";_href "/assets/css/main.css"]
         
+        // Web API enhancements
+        link [_rel "stylesheet";_href "/assets/css/custom/clipboard.css"]  // Code copy buttons
+        link [_rel "stylesheet";_href "/assets/css/custom/share.css"]      // Content sharing
+        
         // Note: Bootstrap removed in Phase 1 - replaced with desert theme CSS
         // Note: customthemes.css removed - functionality integrated into custom CSS
     ]
@@ -360,6 +364,11 @@ module Layouts
         script [_src "/assets/js/timeline.js"] []
         // UFO Cursor enhancement (dynamic direction-based tilting)
         script [_src "/assets/js/ufo-cursor.js"] []
+        
+        // Web API enhancements (progressive enhancement pattern)
+        script [_src "/assets/js/clipboard.js"] []    // Code snippet copy buttons
+        script [_src "/assets/js/share.js"] []        // Native content sharing
+        script [_src "/assets/js/lazy-images.js"] []  // Image lazy loading
 
         script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] []
 
