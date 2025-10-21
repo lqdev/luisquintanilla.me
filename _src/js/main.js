@@ -205,6 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupDropdownListeners();
     initializeTheme();
     setupCopyToClipboard();
+    setupWebShare();
 });
 
 // Handle theme changes from system preferences
@@ -272,4 +273,60 @@ function setupCopyToClipboard() {
 // Legacy function for backward compatibility (if needed)
 function switchTheme() {
     toggleTheme();
+}
+
+// Web Share API Functionality
+function setupWebShare() {
+    // Check if Web Share API is supported
+    if (!navigator.share) {
+        console.info('Web Share API not supported in this browser');
+        return;
+    }
+
+    // Add keyboard shortcut for sharing (Ctrl/Cmd + Shift + S)
+    document.addEventListener('keydown', async (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'S') {
+            e.preventDefault();
+            await shareCurrentPage();
+        }
+    });
+
+    // Setup share buttons if they exist
+    document.querySelectorAll('.web-share-btn').forEach(button => {
+        button.addEventListener('click', async (e) => {
+            e.preventDefault();
+            await shareCurrentPage();
+        });
+    });
+}
+
+async function shareCurrentPage() {
+    try {
+        // Get the page title
+        const title = document.title;
+
+        // Get selected text if any
+        const selection = window.getSelection();
+        const selectedText = selection.toString().trim();
+
+        // Use selected text or default message
+        const text = selectedText || 'I found this interesting';
+
+        // Get current page URL
+        const url = window.location.href;
+
+        // Share using Web Share API
+        await navigator.share({
+            title: title,
+            text: text,
+            url: url
+        });
+
+        console.log('Content shared successfully');
+    } catch (err) {
+        // User cancelled or share failed
+        if (err.name !== 'AbortError') {
+            console.warn('Error sharing:', err);
+        }
+    }
 }
