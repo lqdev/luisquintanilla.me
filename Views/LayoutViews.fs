@@ -663,6 +663,7 @@ let snippetPageView (title:string) (content:string) (date:string) (fileName:stri
                         Text $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                     copyPermalinkButton $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    webShareButton $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 postTagsSection tags
                 relatedSnippetsSection relatedSnippets
@@ -700,6 +701,7 @@ let wikiPageView (title:string) (content:string) (date:string) (fileName:string)
                         Text $"/resources/wiki/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                     copyPermalinkButton $"/resources/wiki/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    webShareButton $"/resources/wiki/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 postTagsSection tags
                 relatedWikisSection relatedWikis
@@ -743,6 +745,7 @@ let reviewPageView (title:string) (content:string) (date:string) (fileName:strin
                         Text $"/reviews/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                     copyPermalinkButton $"/reviews/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    webShareButton $"/reviews/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 webmentionForm
             ]
@@ -797,6 +800,7 @@ let presentationPageView (presentation:Presentation) =
                         Text $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/"
                     ]
                     copyPermalinkButton $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/"
+                    webShareButton $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/"
                 ]
                 webmentionForm
             ]
@@ -853,6 +857,7 @@ let blogPostView (title:string) (content:string) (date:string) (fileName:string)
                         Text $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                     copyPermalinkButton $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    webShareButton $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 postTagsSection tags
                 relatedPostsSection relatedPosts "posts"
@@ -897,6 +902,7 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
                         Text $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                     copyPermalinkButton $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    webShareButton $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 postTagsSection tags
                 relatedPostsSection relatedPosts "notes"
@@ -952,6 +958,7 @@ let responsePostView (title:string) (content:string) (date:string) (fileName:str
                         Text $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
                     copyPermalinkButton $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    webShareButton $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 postTagsSection tags
                 webmentionForm
