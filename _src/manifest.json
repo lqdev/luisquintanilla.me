@@ -1,0 +1,64 @@
+{
+  "name": "Luis Quintanilla - Tech Blog",
+  "short_name": "Luis Q",
+  "description": "Personal website and blog by Luis Quintanilla - Software Engineer, ML Enthusiast, and Tech Content Creator",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#2d4a5c",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/avatar.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "blog",
+    "technology",
+    "education"
+  ],
+  "lang": "en-US",
+  "dir": "ltr",
+  "shortcuts": [
+    {
+      "name": "Blog Posts",
+      "short_name": "Posts",
+      "description": "Read latest blog posts",
+      "url": "/posts",
+      "icons": [
+        {
+          "src": "/avatar.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Search",
+      "short_name": "Search",
+      "description": "Search content",
+      "url": "/search",
+      "icons": [
+        {
+          "src": "/avatar.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Subscribe",
+      "short_name": "RSS",
+      "description": "View RSS feeds",
+      "url": "/feed",
+      "icons": [
+        {
+          "src": "/avatar.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

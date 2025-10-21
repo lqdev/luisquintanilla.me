@@ -311,6 +311,7 @@ module Layouts
         // Web API enhancements
         link [_rel "stylesheet";_href "/assets/css/custom/clipboard.css"]  // Code copy buttons
         link [_rel "stylesheet";_href "/assets/css/custom/share.css"]      // Content sharing
+        link [_rel "stylesheet";_href "/assets/css/pwa.css"]              // PWA notifications and install prompts
         
         // Note: Bootstrap removed in Phase 1 - replaced with desert theme CSS
         // Note: customthemes.css removed - functionality integrated into custom CSS
@@ -369,6 +370,9 @@ module Layouts
         script [_src "/assets/js/clipboard.js"] []    // Code snippet copy buttons
         script [_src "/assets/js/share.js"] []        // Native content sharing
         script [_src "/assets/js/lazy-images.js"] []  // Image lazy loading
+        
+        // PWA Service Worker registration (offline support, caching)
+        script [_src "/assets/js/sw-registration.js"] []
 
         script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] []
 
@@ -418,6 +422,13 @@ module Layouts
                 // Rolls
                 for roll in rollLinks do
                     roll
+                
+                // PWA Manifest
+                link [_rel "manifest"; _href "/manifest.json"]
+                meta [_name "theme-color"; _content "#2d4a5c"]
+                meta [_name "apple-mobile-web-app-capable"; _content "yes"]
+                meta [_name "apple-mobile-web-app-status-bar-style"; _content "black-translucent"]
+                meta [_name "apple-mobile-web-app-title"; _content "Luis Quintanilla"]
 
                 // Robots
                 meta [_name "robots"; _content "nosnippet"]
@@ -477,6 +488,13 @@ module Layouts
                 // Rolls
                 for roll in rollLinks do
                     roll
+                
+                // PWA Manifest
+                link [_rel "manifest"; _href "/manifest.json"]
+                meta [_name "theme-color"; _content "#2d4a5c"]
+                meta [_name "apple-mobile-web-app-capable"; _content "yes"]
+                meta [_name "apple-mobile-web-app-status-bar-style"; _content "black-translucent"]
+                meta [_name "apple-mobile-web-app-title"; _content "Luis Quintanilla"]
 
                 // Robots
                 meta [_name "robots"; _content "nosnippet"]
@@ -609,6 +627,13 @@ module Layouts
                 // Rolls
                 for roll in rollLinks do
                     roll
+                
+                // PWA Manifest
+                link [_rel "manifest"; _href "/manifest.json"]
+                meta [_name "theme-color"; _content "#2d4a5c"]
+                meta [_name "apple-mobile-web-app-capable"; _content "yes"]
+                meta [_name "apple-mobile-web-app-status-bar-style"; _content "black-translucent"]
+                meta [_name "apple-mobile-web-app-title"; _content "Luis Quintanilla"]
 
                 // Robots                
                 meta [_name "robots"; _content "nosnippet"]
