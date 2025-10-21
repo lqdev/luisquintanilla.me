@@ -9,4 +9,4 @@ tags: ["eink","boox","palma","ereader","enote","digitalminimalism"]
 
 > ﻿The Palma 2 Pro is now available for preorder for $400 and is expected to ship to US customers in early November
 
-![gif of child throwing money out window](https://github.com/user-attachments/assets/5e4d8a47-4c90-4700-8b4c-947cc31896b8)
+![gif of child throwing money out window](https://giphy.com/gifs/funny-hUVybAnJlnp7O)
