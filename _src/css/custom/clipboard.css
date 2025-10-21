@@ -1,0 +1,169 @@
+/* Clipboard API - Code Copy Button Styles
+ * Provides visual styling for code block copy buttons
+ * Follows desert theme and accessibility guidelines
+ */
+
+/* Code block wrapper for positioning */
+.code-block-wrapper {
+  position: relative;
+  margin: var(--spacing-lg) 0;
+}
+
+.code-block-wrapper pre {
+  margin: 0;
+}
+
+/* Copy button styling */
+.code-copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  
+  /* Button appearance */
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  
+  /* Colors from theme */
+  background-color: var(--accent-color);
+  color: var(--card-background);
+  border: 1px solid var(--accent-color);
+  border-radius: var(--border-radius-sm);
+  
+  /* Typography */
+  font-family: var(--font-family-base);
+  font-size: 0.813rem;
+  font-weight: 500;
+  
+  /* Interaction */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  /* Accessibility */
+  z-index: 10;
+}
+
+/* Icon sizing */
+.code-copy-btn .copy-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+/* Text sizing */
+.code-copy-btn .copy-text {
+  font-size: 0.813rem;
+  white-space: nowrap;
+}
+
+/* Hover state */
+.code-copy-btn:hover {
+  background-color: var(--hover-color);
+  border-color: var(--hover-color);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Active/pressed state */
+.code-copy-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus state for keyboard navigation */
+.code-copy-btn:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.code-copy-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.code-copy-btn:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Copied success state */
+.code-copy-btn.copied {
+  background-color: #28a745; /* Success green */
+  border-color: #28a745;
+  color: white;
+}
+
+.code-copy-btn.copied:hover {
+  background-color: #218838;
+  border-color: #218838;
+}
+
+/* Error state */
+.code-copy-btn.copy-error {
+  background-color: #dc3545; /* Error red */
+  border-color: #dc3545;
+  color: white;
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .code-copy-btn {
+  background-color: var(--accent-color);
+  color: var(--background-color);
+  border-color: var(--accent-color);
+}
+
+[data-theme="dark"] .code-copy-btn:hover {
+  background-color: var(--hover-color);
+  border-color: var(--hover-color);
+}
+
+[data-theme="dark"] .code-copy-btn.copied {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .code-copy-btn {
+    top: 0.375rem;
+    right: 0.375rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .code-copy-btn .copy-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  
+  .code-copy-btn .copy-text {
+    font-size: 0.75rem;
+  }
+}
+
+/* Ensure code blocks have proper spacing for button */
+.code-block-wrapper pre {
+  padding-top: 2.5rem; /* Make room for button */
+}
+
+@media (max-width: 768px) {
+  .code-block-wrapper pre {
+    padding-top: 2rem;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .code-copy-btn {
+    transition: none;
+  }
+  
+  .code-copy-btn:hover {
+    transform: none;
+  }
+  
+  .code-copy-btn:active {
+    transform: none;
+  }
+}
