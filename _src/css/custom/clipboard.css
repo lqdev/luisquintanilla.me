@@ -7,6 +7,7 @@
 .code-block-wrapper {
   position: relative;
   margin: var(--spacing-lg) 0;
+  padding-top: 2.5rem; /* Make room for button above code block */
 }
 
 .code-block-wrapper pre {
@@ -16,8 +17,8 @@
 /* Copy button styling */
 .code-copy-btn {
   position: absolute;
-  top: 0.25rem;
-  right: 0.25rem;
+  top: -2.5rem;
+  right: 0;
   
   /* Button appearance */
   display: flex;
@@ -25,7 +26,7 @@
   gap: 0.375rem;
   padding: 0.375rem 0.75rem;
   
-  /* Colors from theme - with slight transparency for better code visibility */
+  /* Colors from theme */
   background-color: var(--accent-color);
   color: var(--card-background);
   border: 1px solid var(--accent-color);
@@ -43,7 +44,7 @@
   /* Accessibility */
   z-index: 10;
   
-  /* Improved shadow for better separation from code */
+  /* Improved shadow for better separation */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -129,8 +130,6 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .code-copy-btn {
-    top: 0.375rem;
-    right: 0.375rem;
     padding: 0.25rem 0.5rem;
     font-size: 0.75rem;
   }
@@ -145,19 +144,9 @@
   }
 }
 
-/* Ensure code blocks have proper spacing for button */
+/* Ensure code blocks have natural padding */
 .code-block-wrapper pre {
-  padding-top: 0.75rem; /* Minimal padding - button floats above */
-  padding-right: 6rem; /* Reserve space on right for button */
-  padding-bottom: 0.75rem;
-  padding-left: 0.75rem;
-}
-
-@media (max-width: 768px) {
-  .code-block-wrapper pre {
-    padding-top: 0.5rem;
-    padding-right: 5rem; /* Smaller button on mobile */
-  }
+  padding: 1rem; /* Natural padding all around */
 }
 
 /* Reduced motion support */
