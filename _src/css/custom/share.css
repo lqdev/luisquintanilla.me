@@ -1,197 +1,37 @@
 /* Web Share API - Share Button Styles
- * Provides visual styling for content share buttons
- * Follows desert theme and accessibility guidelines
+ * Share buttons are now only in footers (via F# templates)
+ * Bootstrap provides base button styling (.btn, .btn-sm, .btn-outline-secondary)
+ * This file only adds success/error state styling
  */
 
-/* Share container positioning */
-.share-container {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-left: auto;
+/* Shared success state for web share buttons */
+.web-share-btn.shared {
+  background-color: #28a745 !important; /* Success green */
+  border-color: #28a745 !important;
+  color: white !important;
 }
 
-/* Share button styling */
-.share-btn {
-  /* Button appearance */
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.375rem 0.75rem;
-  
-  /* Colors from theme */
-  background-color: transparent;
-  color: var(--accent-color);
-  border: 1px solid var(--accent-color);
-  border-radius: var(--border-radius-sm);
-  
-  /* Typography */
-  font-family: var(--font-family-base);
-  font-size: 0.875rem;
-  font-weight: 500;
-  
-  /* Interaction */
-  cursor: pointer;
-  transition: all 0.2s ease;
+.web-share-btn.shared:hover {
+  background-color: #218838 !important;
+  border-color: #218838 !important;
 }
 
-/* Icon sizing */
-.share-btn .share-icon {
-  width: 1rem;
-  height: 1rem;
-  flex-shrink: 0;
+/* Error state for web share buttons */
+.web-share-btn.share-error {
+  background-color: #dc3545 !important; /* Error red */
+  border-color: #dc3545 !important;
+  color: white !important;
 }
 
-/* Text sizing */
-.share-btn .share-text {
-  font-size: 0.875rem;
-  white-space: nowrap;
+/* Dark theme adjustments for success/error states */
+[data-theme="dark"] .web-share-btn.shared {
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+  color: white !important;
 }
 
-/* Hover state */
-.share-btn:hover {
-  background-color: var(--accent-color);
-  color: var(--card-background);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* Active/pressed state */
-.share-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Focus state for keyboard navigation */
-.share-btn:focus {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
-}
-
-.share-btn:focus:not(:focus-visible) {
-  outline: none;
-}
-
-.share-btn:focus-visible {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
-}
-
-/* Shared success state */
-.share-btn.shared {
-  background-color: #28a745; /* Success green */
-  border-color: #28a745;
-  color: white;
-}
-
-.share-btn.shared:hover {
-  background-color: #218838;
-  border-color: #218838;
-}
-
-/* Error state */
-.share-btn.share-error {
-  background-color: #dc3545; /* Error red */
-  border-color: #dc3545;
-  color: white;
-}
-
-/* Post header layout - ensure share button aligns properly */
-.post-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.post-header .share-container {
-  margin-left: auto;
-}
-
-/* Card header layout for timeline cards */
-.card-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.card-header .share-container {
-  margin-left: auto;
-}
-
-/* Dark theme adjustments */
-[data-theme="dark"] .share-btn {
-  color: var(--accent-color);
-  border-color: var(--accent-color);
-}
-
-[data-theme="dark"] .share-btn:hover {
-  background-color: var(--accent-color);
-  color: var(--background-color);
-}
-
-[data-theme="dark"] .share-btn.shared {
-  background-color: #28a745;
-  border-color: #28a745;
-  color: white;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .share-btn {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.813rem;
-  }
-  
-  .share-btn .share-icon {
-    width: 0.875rem;
-    height: 0.875rem;
-  }
-  
-  .share-btn .share-text {
-    font-size: 0.813rem;
-  }
-  
-  /* Stack on very small screens */
-  .card-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .card-header .share-container {
-    margin-left: 0;
-  }
-}
-
-/* Ensure button doesn't break layout on narrow screens */
-@media (max-width: 480px) {
-  .share-btn .share-text {
-    /* Hide text on very small screens, keep icon only */
-    display: none;
-  }
-  
-  .share-btn {
-    padding: 0.375rem;
-  }
-  
-  .share-btn .share-icon {
-    width: 1.125rem;
-    height: 1.125rem;
-  }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .share-btn {
-    transition: none;
-  }
-  
-  .share-btn:hover {
-    transform: none;
-  }
-  
-  .share-btn:active {
-    transform: none;
-  }
+[data-theme="dark"] .web-share-btn.share-error {
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+  color: white !important;
 }
