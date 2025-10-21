@@ -108,6 +108,11 @@ module Builder
 
         // Copy ActivityPub actor file
         File.Copy(Path.Join(srcDir,"lqdev.activitypub"),Path.Join(outputDir,"lqdev.activitypub"),true)
+        
+        // Copy PWA files
+        File.Copy(Path.Join(srcDir,"service-worker.js"),Path.Join(outputDir,"service-worker.js"),true)
+        File.Copy(Path.Join(srcDir,"manifest.json"),Path.Join(outputDir,"manifest.json"),true)
+        File.Copy(Path.Join(srcDir,"offline.html"),Path.Join(outputDir,"offline.html"),true)
 
     let buildHomePage (blogPosts:Post array) (feedPosts:Post array) (responsePosts:Response array)= 
         let recentBlog = 
