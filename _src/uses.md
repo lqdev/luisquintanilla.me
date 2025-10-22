@@ -24,6 +24,7 @@ When using a sling bag:
 
 When using a larger bag:
 
+- **Bag**: [Timbuk2 Parkside Laptop Backpack 2.0](https://www.timbuk2.com/collections/laptop-backpacks/products/3840-parkside-laptop-backpack-20)
 - **Laptop**: 
     - **Linux**: [Lenovo Thinkpad X1 Titanium](https://www.lenovo.com/us/en/p/laptops/thinkpad/thinkpadx1/x1-titanium-g1/22tp2x1x1t1)
     - **Windows**: [HP Omnibook X Laptop](https://www.bestbuy.com/product/hp-omnibook-x-copilot-pc-14-2-2k-touch-screen-laptop-snapdragon-x-elite-16gb-memory-1tb-sdd-meteor-silver/JJGS9WKS4Q/sku/6583279)
