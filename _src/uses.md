@@ -52,7 +52,7 @@ The main apps I use in my day-to-day on desktop and mobile:
     - **Desktop**: 
         - [NixOS](https://nixos.org/)
         - [Windows](https://www.microsoft.com/en-us/windows/) 
-    - **Mobile**: [Android](https://www.android.com/) (Mobile)
+    - **Mobile**: [Android](https://www.android.com/)
 - **E-Mail**: [Thunderbird](https://www.thunderbird.net/) (Desktop) / [Outlook](https://www.microsoft.com/en-us/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook) (Mobile)
 - **Feed Reader**: [NewsBlur](https://www.newsblur.com/)
 - **Podcasts**: [AntennaPod](https://antennapod.org/)
