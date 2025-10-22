@@ -6,7 +6,7 @@ Devices, apps, and services I use day-to-day.
 
 The essentials:
 
-- **Phone**: [Nokia 2780](https://www.motorola.com/us/en/p/phones/motorola-edge/edge-gen-5/pmipmgm36mw?pn=PB0T0003US)
+- **Phone**: [Motorola Edge Gen 5](https://www.motorola.com/us/en/p/phones/motorola-edge/edge-gen-5/pmipmgm36mw?pn=PB0T0003US)
 - **Watch / Wearable**: [Casio TRT-110H](https://www.casio.com/us/watches/casio/product.TRT-110H-8AV/)
 
 ## Every Day Carry (EDC) M
