@@ -3,7 +3,7 @@ post_type: "article"
 title: "Taking Claude Code on the web for a spin"
 description: "First steps with Claude Code for Web"
 published_date: "2025-10-21 16:35 -05:00"
-tags: ["ai","claudecode","programming","claude","anthropic","agents"]
+tags: ["ai","claudecode","programming","claude","anthropic","agents","rss","atom","browser","javascript","indieweb"]
 ---
 
 Yesterday, Anthropic announced [Claude Code on the web](/responses/claude-code-on-the-web-2025-10-20), a way of using Claude Code in your browser.
@@ -53,3 +53,5 @@ From here, with a click, you can subscribe using a variety of RSS readers such a
 Overall I like being able to kick off jobs and have them running in the background as I go about my day. Claude Code on the web is a step in the right direction. Given it's still early days, I suspect many if not all of the items on my wishlist will eventually be addressed.
 
 For now, I'm still partial to GitHub Copilot Coding Agent, mainly because of its seamless integration with GitHub. That said, I'm open to exploring Claude Code on the web further to see where it fits into my workflows as it matures.
+
+In the meantime, feel free to use the [RSS Browser Extension](https://github.com/lqdev/rss-browser-extension/tree/main?tab=readme-ov-file#installation) and if you find it useful or run into issues, [send me a message](/contact).
