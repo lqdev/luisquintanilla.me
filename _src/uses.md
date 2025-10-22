@@ -67,4 +67,6 @@ The main apps I use in my day-to-day on desktop and mobile:
 - **Reading**: [Libby](https://libbyapp.com/)
 - **Video**: [mpv](https://mpv.io/) / [VLC](https://www.videolan.org/vlc/)
 - **Authenticator**: [Aegis](https://getaegis.app/)
+- **AI Assistant**: [Claude](https://www.claude.com/product/overview)
 - **AI Coding Assistant**: [GitHub Copilot](https://github.com/features/copilot)
+- **AI Coding CLI**: [Claude Code](https://www.claude.com/product/claude-code)
