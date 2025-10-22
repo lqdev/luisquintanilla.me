@@ -13,7 +13,7 @@ The essentials:
 
 When using a sling bag:
 
-- **Bag**: [Adidas Rectangle Crossbody Bag](https://www.adidas.com/us/originals-rectangle-crossbody/GA5090.html)
+- **Bag**: [The North Face Berkeley Field Bag](https://www.thenorthface.com/en-us/p/bags-and-gear/bags/mini-backpacks-and-slings-829875/berkeley-field-bag-NF0A52WA)
 - **MP3 Player**: [Innioasis Y1](https://www.innioasis.com/products/y1)
 - **E-Reader**: [Onyx Boox Nova Air 2](https://shop.boox.com/products/novaair2)
 - **Headphones**: [Apple Earpods (3.5mm)](https://www.apple.com/shop/product/MNHF2AM/A/earpods-35mm-headphone-plug)
