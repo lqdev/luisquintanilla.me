@@ -26,11 +26,6 @@ class QRCodeManager {
         this.attachQRHandlers();
     }
 
-    hideQRButtons() {
-        // This function is no longer used, but kept for compatibility
-        // Buttons are now always visible
-    }
-
     createModal() {
         // Check if modal already exists
         if (document.getElementById('qr-modal-overlay')) {
