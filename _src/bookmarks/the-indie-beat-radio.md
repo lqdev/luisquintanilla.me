@@ -1,5 +1,5 @@
 ---
-title: "THE INDIE BEAT RADIO"
+title: "The Indie Beat Radio"
 targeturl: https://theindiebeat.fm/
 response_type: bookmark
 dt_published: "2025-10-22 23:13 -05:00"
