@@ -311,6 +311,7 @@ module Layouts
         // Web API enhancements
         link [_rel "stylesheet";_href "/assets/css/custom/clipboard.css"]  // Code copy buttons
         link [_rel "stylesheet";_href "/assets/css/custom/share.css"]      // Content sharing
+        link [_rel "stylesheet";_href "/assets/css/custom/qrcode.css"]     // QR code modal
         link [_rel "stylesheet";_href "/assets/css/pwa.css"]              // PWA notifications and install prompts
         
         // Note: Bootstrap removed in Phase 1 - replaced with desert theme CSS
@@ -359,6 +360,9 @@ module Layouts
         script [_src "/assets/lib/highlight/highlight.fsharp.min.js"] [] // 11.8.0
         script [_src "/assets/lib/highlight/highlight.nix.min.js"] [] // 11.8.0
 
+        // QR Code generation library
+        script [_src "https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.min.js"] []
+
         // Main JavaScript functionality (theme management, copy-to-clipboard, etc.)
         script [_src "/assets/js/main.js"] []
         // Timeline functionality (filtering, progressive loading, etc.)
@@ -369,6 +373,7 @@ module Layouts
         // Web API enhancements (progressive enhancement pattern)
         script [_src "/assets/js/clipboard.js"] []    // Code snippet copy buttons
         script [_src "/assets/js/share.js"] []        // Native content sharing
+        script [_src "/assets/js/qrcode.js"] []       // QR code generation
         script [_src "/assets/js/lazy-images.js"] []  // Image lazy loading
         script [_src "/assets/js/page-visibility.js"] []  // Resource optimization when tab hidden
         
