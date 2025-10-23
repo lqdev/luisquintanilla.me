@@ -1,0 +1,286 @@
+/**
+ * QR Code Modal - Desert Theme Integration
+ * Provides modal interface for generating and sharing QR codes
+ * Follows progressive enhancement pattern
+ */
+
+/* QR Code Button Styling */
+.qr-code-btn {
+    background: transparent;
+    border: 1px solid var(--accent-color, #FF6347);
+    color: var(--accent-color, #FF6347);
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.qr-code-btn:hover {
+    background: var(--accent-color, #FF6347);
+    color: var(--background-color, #2C3E50);
+    transform: translateY(-2px);
+}
+
+.qr-code-btn:active {
+    transform: translateY(0);
+}
+
+/* Modal Overlay */
+.qr-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.qr-modal-overlay.active {
+    display: flex;
+}
+
+/* Modal Container */
+.qr-modal {
+    background: var(--card-background, #34495E);
+    border: 1px solid var(--card-border, #BDC3C7);
+    border-radius: 16px;
+    max-width: 450px;
+    width: 90%;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Modal Header */
+.qr-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.qr-modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color, #BDC3C7);
+    margin: 0;
+}
+
+.qr-modal-close {
+    background: transparent;
+    border: none;
+    color: var(--text-color, #BDC3C7);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.qr-modal-close:hover {
+    background: var(--accent-color, #FF6347);
+    color: var(--background-color, #2C3E50);
+}
+
+/* URL Display */
+.qr-url-display {
+    font-family: var(--font-family-mono, monospace);
+    font-size: 0.875rem;
+    color: var(--text-color, #BDC3C7);
+    background: var(--background-color, #2C3E50);
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    word-break: break-all;
+    border: 1px solid var(--card-border, #BDC3C7);
+}
+
+/* QR Code Container */
+.qr-code-container {
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 280px;
+}
+
+.qr-code-container canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Loading State */
+.qr-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-color, #BDC3C7);
+}
+
+.qr-loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--card-border, #BDC3C7);
+    border-top-color: var(--accent-color, #FF6347);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Action Buttons */
+.qr-modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.qr-action-btn {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.qr-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.qr-action-btn:active {
+    transform: translateY(0);
+}
+
+.qr-copy-btn {
+    background: var(--accent-color, #FF6347);
+    color: #ffffff;
+}
+
+.qr-copy-btn:hover {
+    background: var(--button-hover, #FF8555);
+}
+
+.qr-copy-btn.copied {
+    background: #4CAF50;
+}
+
+.qr-download-btn {
+    background: var(--card-border, #BDC3C7);
+    color: var(--background-color, #2C3E50);
+}
+
+.qr-download-btn:hover {
+    background: var(--text-color, #BDC3C7);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .qr-modal {
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    .qr-modal-title {
+        font-size: 1.25rem;
+    }
+
+    .qr-code-container {
+        padding: 1rem;
+        min-height: 240px;
+    }
+
+    .qr-modal-actions {
+        flex-direction: column;
+    }
+
+    .qr-action-btn {
+        width: 100%;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .qr-modal {
+        animation: none;
+    }
+
+    .qr-loading-spinner {
+        animation: none;
+        border-top-color: var(--card-border, #BDC3C7);
+    }
+
+    .qr-code-btn:hover,
+    .qr-action-btn:hover {
+        transform: none;
+    }
+}
+
+/* Dark Theme Adjustments */
+[data-theme="dark"] .qr-code-container {
+    background: #ffffff;
+}
+
+/* Light Theme Adjustments */
+[data-theme="light"] .qr-modal {
+    background: #ffffff;
+    border-color: #e5e7eb;
+}
+
+[data-theme="light"] .qr-url-display {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+    color: #374151;
+}
+
+[data-theme="light"] .qr-modal-title,
+[data-theme="light"] .qr-modal-close {
+    color: #1f2937;
+}
+
+[data-theme="light"] .qr-loading {
+    color: #374151;
+}

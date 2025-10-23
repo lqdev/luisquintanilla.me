@@ -83,6 +83,18 @@ let webShareButton (relativeUrl: string) =
         tag "i" [_class "bi bi-share"; attr "aria-hidden" "true"] []
     ]
 
+/// Generate QR code button for generating QR codes
+let qrCodeButton (relativeUrl: string) =
+    button [
+        _class "qr-code-btn btn btn-sm btn-outline-secondary ms-2"
+        _type "button"
+        _title "Generate QR Code"
+        attr "data-url" relativeUrl
+        attr "aria-label" "Generate QR code for this page"
+    ] [
+        tag "i" [_class "bi bi-qr-code"; attr "aria-hidden" "true"] []
+    ]
+
 let cardFooter (contentType:string) (fileName:string) (tags: string array)= 
     let tagElements = 
         tags
@@ -96,6 +108,7 @@ let cardFooter (contentType:string) (fileName:string) (tags: string array)=
             a [_href permalink; _class "u-url"] [Text $"{permalink}"]
             copyPermalinkButton permalink
             webShareButton permalink
+            qrCodeButton permalink
         ]
         
         div [] [
@@ -118,6 +131,7 @@ let albumCardFooter (fileName:string) (tags: string array)=
             Text "Permalink: " 
             a [_href permalink; _class "u-url"] [Text $"{permalink}"]
             copyPermalinkButton permalink
+            qrCodeButton permalink
         ]
         
         div [] [
