@@ -309,6 +309,7 @@ module Layouts
         link [_rel "stylesheet";_href "/assets/css/main.css"]
         
         // Web API enhancements
+        link [_rel "stylesheet";_href "/assets/css/custom/permalink-buttons.css"]  // Permalink action buttons
         link [_rel "stylesheet";_href "/assets/css/custom/clipboard.css"]  // Code copy buttons
         link [_rel "stylesheet";_href "/assets/css/custom/share.css"]      // Content sharing
         link [_rel "stylesheet";_href "/assets/css/custom/qrcode.css"]     // QR code modal

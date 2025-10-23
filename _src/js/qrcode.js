@@ -15,9 +15,8 @@ class QRCodeManager {
     init() {
         // Check if QRCodeStyling library is available
         if (typeof QRCodeStyling === 'undefined') {
-            console.log('QRCodeStyling library not available - QR buttons will be hidden');
-            this.hideQRButtons();
-            return;
+            console.log('QRCodeStyling library not available - QR buttons will still be visible but functionality limited');
+            // Don't hide buttons, they'll show a helpful message when clicked
         }
 
         // Create modal structure
@@ -25,12 +24,6 @@ class QRCodeManager {
 
         // Attach handlers to QR code buttons
         this.attachQRHandlers();
-    }
-
-    hideQRButtons() {
-        document.querySelectorAll('.qr-code-btn').forEach(btn => {
-            btn.style.display = 'none';
-        });
     }
 
     createModal() {
@@ -127,6 +120,12 @@ class QRCodeManager {
     }
 
     async generateQRCode(relativeUrl) {
+        // Check if library is available
+        if (typeof QRCodeStyling === 'undefined') {
+            alert('QR Code generation requires an external library that is not currently loaded. Please check your internet connection or try again later.');
+            return;
+        }
+        
         // Convert relative URL to absolute
         const absoluteUrl = new URL(relativeUrl, window.location.origin).href;
         this.currentUrl = absoluteUrl;
