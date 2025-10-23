@@ -223,7 +223,10 @@ function setupCopyToClipboard() {
             
             const relativeUrl = button.dataset.url;
             const url = window.location.origin + relativeUrl;
-            const icon = button.querySelector('.copy-icon');
+            const iconSpan = button.querySelector('.button-icon');
+            const labelSpan = button.querySelector('.button-label');
+            const originalIcon = iconSpan ? iconSpan.textContent : '📋';
+            const originalLabel = labelSpan ? labelSpan.textContent : 'Copy';
             
             try {
                 // Use modern Clipboard API if available
@@ -243,26 +246,32 @@ function setupCopyToClipboard() {
                     textArea.remove();
                 }
                 
-                // Visual feedback - change icon temporarily
-                const originalIcon = icon.className;
-                icon.className = icon.className.replace('bi-clipboard', 'bi-check');
+                // Visual feedback - change icon and label temporarily
+                button.classList.add('copied');
+                if (iconSpan) iconSpan.textContent = '✓';
+                if (labelSpan) labelSpan.textContent = 'Copied!';
                 button.title = 'Copied!';
                 
                 // Reset after 2 seconds
                 setTimeout(() => {
-                    icon.className = originalIcon;
+                    button.classList.remove('copied');
+                    if (iconSpan) iconSpan.textContent = originalIcon;
+                    if (labelSpan) labelSpan.textContent = originalLabel;
                     button.title = 'Copy to clipboard';
                 }, 2000);
                 
             } catch (err) {
                 console.warn('Failed to copy to clipboard:', err);
                 // Visual feedback for error
-                const originalIcon = icon.className;
-                icon.className = icon.className.replace('bi-clipboard', 'bi-x');
+                button.classList.add('copy-error');
+                if (iconSpan) iconSpan.textContent = '✗';
+                if (labelSpan) labelSpan.textContent = 'Failed';
                 button.title = 'Copy failed';
                 
                 setTimeout(() => {
-                    icon.className = originalIcon;
+                    button.classList.remove('copy-error');
+                    if (iconSpan) iconSpan.textContent = originalIcon;
+                    if (labelSpan) labelSpan.textContent = originalLabel;
                     button.title = 'Copy to clipboard';
                 }, 2000);
             }

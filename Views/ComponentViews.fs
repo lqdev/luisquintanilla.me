@@ -62,37 +62,40 @@ let private sanitizeTagForUrl (tag: string) =
 /// Generate copy-to-clipboard button for permalinks
 let copyPermalinkButton (relativeUrl: string) =
     button [
-        _class "copy-permalink-btn btn btn-sm btn-outline-secondary ms-2"
+        _class "copy-permalink-btn permalink-action-btn"
         _type "button"
         _title "Copy to clipboard"
         attr "data-url" relativeUrl
         attr "aria-label" $"Copy permalink to clipboard"
     ] [
-        tag "i" [_class "copy-icon bi bi-clipboard"; attr "aria-hidden" "true"] []
+        tag "span" [_class "button-icon"; attr "aria-hidden" "true"] [str "📋"]
+        tag "span" [_class "button-label"] [str "Copy"]
     ]
 
 /// Generate web share button for sharing via native share
 let webShareButton (relativeUrl: string) =
     button [
-        _class "web-share-btn btn btn-sm btn-outline-secondary ms-2"
+        _class "web-share-btn permalink-action-btn"
         _type "button"
         _title "Share via Web Share API"
         attr "data-url" relativeUrl
         attr "aria-label" "Share this page"
     ] [
-        tag "i" [_class "bi bi-share"; attr "aria-hidden" "true"] []
+        tag "span" [_class "button-icon"; attr "aria-hidden" "true"] [str "🔗"]
+        tag "span" [_class "button-label"] [str "Share"]
     ]
 
 /// Generate QR code button for generating QR codes
 let qrCodeButton (relativeUrl: string) =
     button [
-        _class "qr-code-btn btn btn-sm btn-outline-secondary ms-2"
+        _class "qr-code-btn permalink-action-btn"
         _type "button"
         _title "Generate QR Code"
         attr "data-url" relativeUrl
         attr "aria-label" "Generate QR code for this page"
     ] [
-        tag "i" [_class "bi bi-qr-code"; attr "aria-hidden" "true"] []
+        tag "span" [_class "button-icon"; attr "aria-hidden" "true"] [str "📱"]
+        tag "span" [_class "button-label"] [str "QR Code"]
     ]
 
 let cardFooter (contentType:string) (fileName:string) (tags: string array)= 

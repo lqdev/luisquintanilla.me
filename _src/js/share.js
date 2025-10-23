@@ -10,14 +10,11 @@ class ShareManager {
     }
 
     init() {
-        // Feature detection
+        // Check if Web Share API is available
         if (!navigator.share) {
-            console.log('Web Share API not available - share buttons will be hidden');
-            // Hide share buttons if they exist
-            document.querySelectorAll('.web-share-btn').forEach(btn => {
-                btn.style.display = 'none';
-            });
-            return;
+            console.log('Web Share API not available - share buttons will still be visible but may not function');
+            // Don't hide buttons, just log the info
+            // Users can still see the button and get feedback if they try to use it
         }
 
         // Attach handlers to footer share buttons
@@ -84,6 +81,13 @@ class ShareManager {
     }
 
     async shareContent(metadata, button) {
+        // Check if Web Share API is available at time of use
+        if (!navigator.share) {
+            console.warn('Web Share API not available');
+            this.showShareError(button);
+            return;
+        }
+        
         try {
             // Prepare share data
             const shareData = {
@@ -116,51 +120,49 @@ class ShareManager {
 
     showShareSuccess(button) {
         const originalTitle = button.getAttribute('title');
+        const iconSpan = button.querySelector('.button-icon');
+        const labelSpan = button.querySelector('.button-label');
+        const originalIcon = iconSpan ? iconSpan.textContent : '🔗';
+        const originalLabel = labelSpan ? labelSpan.textContent : 'Share';
         
         // Update button appearance
         button.classList.add('shared');
         button.setAttribute('title', 'Shared!');
         
-        // Find icon element and update
-        const icon = button.querySelector('.bi-share');
-        if (icon) {
-            icon.classList.remove('bi-share');
-            icon.classList.add('bi-check');
-        }
+        // Update icon and label
+        if (iconSpan) iconSpan.textContent = '✓';
+        if (labelSpan) labelSpan.textContent = 'Shared!';
 
         // Reset after 2 seconds
         setTimeout(() => {
             button.classList.remove('shared');
             button.setAttribute('title', originalTitle);
-            if (icon) {
-                icon.classList.remove('bi-check');
-                icon.classList.add('bi-share');
-            }
+            if (iconSpan) iconSpan.textContent = originalIcon;
+            if (labelSpan) labelSpan.textContent = originalLabel;
         }, 2000);
     }
 
     showShareError(button) {
         const originalTitle = button.getAttribute('title');
+        const iconSpan = button.querySelector('.button-icon');
+        const labelSpan = button.querySelector('.button-label');
+        const originalIcon = iconSpan ? iconSpan.textContent : '🔗';
+        const originalLabel = labelSpan ? labelSpan.textContent : 'Share';
         
         // Update button to show error
         button.classList.add('share-error');
         button.setAttribute('title', 'Share failed');
         
-        // Find icon element and update
-        const icon = button.querySelector('.bi-share');
-        if (icon) {
-            icon.classList.remove('bi-share');
-            icon.classList.add('bi-x-circle');
-        }
+        // Update icon and label
+        if (iconSpan) iconSpan.textContent = '✗';
+        if (labelSpan) labelSpan.textContent = 'Failed';
 
         // Reset after 2 seconds
         setTimeout(() => {
             button.classList.remove('share-error');
             button.setAttribute('title', originalTitle);
-            if (icon) {
-                icon.classList.remove('bi-x-circle');
-                icon.classList.add('bi-share');
-            }
+            if (iconSpan) iconSpan.textContent = originalIcon;
+            if (labelSpan) labelSpan.textContent = originalLabel;
         }, 2000);
     }
 }
