@@ -4,13 +4,17 @@ A modern F# static site generator implementing IndieWeb principles with unified 
 
 ## ✨ Quick Publishing
 
-**New**: You can now create note posts directly through GitHub Issues! 
+**GitHub Issue Publishing**: Create content directly through GitHub Issues with automated workflows! 
 
-👉 [**Create a Note Post**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-note.yml) - Use our GitHub Issue Template for quick publishing
+### Available Issue Templates
+- 📝 [**Post a Note**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-note.yml) - Quick note publishing
+- 🔖 [**Post a Bookmark**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-bookmark.yml) - Share interesting links
+- 💬 [**Post a Response**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-response.yml) - Replies, likes, and reposts
+- 📸 [**Post Media**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-media.yml) - Photos and media content
 
-📖 [**Publishing Guide**](docs/github-issue-posting-guide.md) - Complete documentation on how to use GitHub Issue Template posting
+📖 [**Publishing Guide**](docs/github-issue-posting-guide.md) - Complete documentation on GitHub Issue Template posting
 
-This replaces the previous Discord-based publishing workflow with a native GitHub solution that provides better version control and review capabilities.
+GitHub Issue publishing provides native version control, better review workflows, and automated PR creation, replacing the previous Discord-based publishing system.
 
 ## 🏗️ Architecture Overview
 
@@ -36,6 +40,10 @@ This is a production-ready IndieWeb site built with F# featuring:
 - **BlockRenderers.fs** - HTML rendering for custom block types
 - **MediaTypes.fs** - Media type detection and handling
 - **OutputComparison.fs** - Build validation and output comparison utilities
+- **SearchIndex.fs** - Build-time search index generation for client-side search
+- **TextOnlyBuilder.fs** - Accessibility-first text-only site generation
+- **Collections.fs** - Collections system (travel guides, starter packs, blogroll)
+- **StarterPackSystem.fs** - Starter pack configuration and generation
 
 ### Views Architecture (Modular)
 - **Views/LayoutViews.fs** - Page-level layouts and structural views
@@ -44,6 +52,8 @@ This is a production-ready IndieWeb site built with F# featuring:
 - **Views/ComponentViews.fs** - Reusable UI components and utilities
 - **Views/FeedViews.fs** - RSS feed and aggregation views
 - **Views/TagViews.fs** - Tag-related view functions
+- **Views/TextOnlyViews.fs** - Accessibility-first text-only site views
+- **Views/TravelViews.fs** - Travel collection-specific views with GPS integration
 - **Views/Partials.fs** - Re-export layer maintaining backward compatibility
 - **Views/Layouts.fs** - Base layout components
 - **Views/Generator.fs** - View generation utilities
@@ -61,8 +71,9 @@ This is a production-ready IndieWeb site built with F# featuring:
   - **responses/** - Social responses (replies, likes, bookmarks, reposts)
   - **snippets/** - Code snippets with syntax highlighting
   - **wiki/** - Knowledge base and reference notes
-  - **presentations/** - Reveal.js presentations with resources
+  - **resources/presentations/** - Reveal.js presentations with custom layouts and resources
   - **media/** - Photo albums and media collections
+  - **albums/** - Curated media collections with location metadata
   - **resources/** - Books, tools, and reference materials
   - **streams/** - Live stream recordings and resources
 
@@ -72,6 +83,9 @@ This is a production-ready IndieWeb site built with F# featuring:
   - RSS feeds for all content types and tags
   - Progressive loading assets and JSON data files
   - Optimized CSS and JavaScript assets
+  - `/text/` - Text-only accessibility site (<50KB pages)
+  - `/collections/` - Curated collections (starter packs, travel guides, albums)
+  - Service worker and PWA manifest for offline functionality
 
 ### Development Support
 - **Data/** - JSON data files (blogroll, events, feeds, etc.)
@@ -83,28 +97,55 @@ This is a production-ready IndieWeb site built with F# featuring:
 
 ## 🔧 Key Features
 
-### Content Processing
-- **8 Content Types**: Posts, notes, responses, snippets, wiki, presentations, media, resources
+### Content Management & Publishing
+- **9 Content Types**: Posts, notes, responses, snippets, wiki, presentations, media, albums, resources
+- **GitHub Issue Publishing**: Create note posts directly through GitHub Issues with automated PR workflow
+- **Pinned Posts**: Pin important content to the top of your timeline via JSON configuration
+- **Album Collections**: Curated photo/media groupings with location metadata and timeline integration
 - **AST-Based Processing**: Unified GenericBuilder pattern replacing legacy repetitive functions
 - **Custom Blocks**: Media galleries, reviews, venue information, RSVP responses
 - **Tag System**: Automatic tag extraction and RSS feed generation (1,187+ tag feeds)
+- **Untagged Content Discovery**: Automatic detection and organization of content needing tags
 
-### Feed Architecture
+### Feed Architecture & Discovery
 - **Comprehensive RSS**: Individual feeds for each content type
 - **Tag-Based Filtering**: RSS feeds for every tag with proper category metadata
 - **Unified Feed**: Combined feed of all content types
 - **OPML Support**: Subscription management with feed discovery
+- **Starter Packs System**: Curated RSS feed collections for easy topic-based subscriptions
+- **Site-wide Search**: Client-side fuzzy search with Fuse.js for 1,130+ content items
+
+### Collections & Organization
+- **Travel Collections**: GPS-enabled travel guides with GPX file generation and map integration
+- **Blogroll/Podroll**: Curated link collections with RSS/OPML export
+- **Starter Packs**: Topic-based RSS feed collections inspired by BlueSky
+- **Content Collections**: Flexible grouping system for any content organization
 
 ### Performance & UX
 - **Progressive Loading**: Client-side chunked loading for large content volumes
+- **Progressive Web App (PWA)**: Offline-first functionality with service worker caching
+- **Back to Top Button**: Scroll-based navigation with mobile optimization
+- **Explicit Home Navigation**: Research-backed navigation improvements for mixed audiences
 - **Desert Theme**: Modern responsive design with accessibility features
 - **IndieWeb Compliance**: Full microformats2 markup and webmention support
-- **External Libraries**: Proven integration patterns (Reveal.js, syntax highlighting)
+- **Timezone-Aware Parsing**: Consistent date handling across all environments
+
+### Accessibility & Universal Design
+- **Text-Only Site**: Complete accessibility-first website at `/text/` subdirectory
+- **WCAG 2.1 AA Compliance**: Full keyboard navigation, screen reader support, reduced motion
+- **2G Network Optimization**: <50KB page loads for universal device compatibility
+- **Flip Phone Support**: Core functionality accessible through basic mobile browsers
+
+### Presentations
+- **Custom Layout System**: 15 pre-built CSS layout classes for Reveal.js presentations
+- **VS Code Snippets**: Quick slide creation with layout templates
+- **Responsive Design**: Mobile-optimized presentation viewing
 
 ### Development Workflow
-- **VS Code Integration**: Complete snippet library aligned with Domain.fs
+- **VS Code Integration**: Complete snippet library aligned with Domain.fs (17 content types + layout snippets)
 - **Build Validation**: Automated testing and output comparison
-- **Hot Reload**: Development server with live reloading
+- **Azure Integration**: Native redirects via Static Web Apps configuration
+- **GitHub Actions**: Automated workflows for content publishing, broken link checking, and deployments
 - **Migration Patterns**: Proven feature flag approach for safe updates
 
 ## 🚀 Getting Started
@@ -132,15 +173,29 @@ Use VS Code snippets for efficient content creation:
 - `response` - Social response (bookmark, like, reply)
 - `snippet` - Code snippet
 - `wiki` - Knowledge base entry
-- Plus 12 more content types with full metadata templates
+- `album-collection` - Photo/media album with location metadata
+- `travel-collection` - Travel guide with GPS coordinates
+- `presentation` - Reveal.js presentation with custom layouts
+- Plus 9 more content types with full metadata templates
+
+### Presentation Layouts
+Create professional presentations with 15 custom layout classes:
+- `layout-two-column` / `layout-three-column` - Multi-column layouts
+- `layout-split-70-30` / `layout-split-30-70` - Asymmetric splits
+- `layout-image-left` / `layout-image-right` - Image + content layouts
+- `layout-centered` / `layout-big-text` - Impact layouts
+- And 7 more specialized layouts with VS Code snippets
 
 ## 📊 Project Stats
 
-- **Build Performance**: ~1.3s build times (79% improvement from architecture cleanup)
-- **Content Scale**: 1,129+ content items across 8 content types  
+- **Build Performance**: ~1.3s build times (89% improvement from architecture cleanup)
+- **Content Scale**: 1,130+ content items across 9 content types  
 - **Feed Generation**: 1,187+ RSS feeds (content types + tags + unified)
 - **Code Quality**: 445+ lines of legacy code removed, unified patterns throughout
 - **URL Health**: 97.8% reduction in broken links through comprehensive redirect strategy
+- **Search Capability**: Site-wide search across all 1,130+ content items with sub-100ms performance
+- **Accessibility**: Complete text-only site with <50KB page loads for universal device compatibility
+- **PWA Support**: Offline-first functionality with intelligent caching strategies
 
 ## 🔗 Links
 
