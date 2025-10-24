@@ -74,6 +74,7 @@ This is a production-ready IndieWeb site built with F# featuring:
   - **resources/presentations/** - Reveal.js presentations with custom layouts and resources
   - **media/** - Photo albums and media collections
   - **albums/** - Curated media collections with location metadata
+  - **playlists/** - Music playlist collections with YouTube/Spotify links
   - **resources/** - Books, tools, and reference materials
   - **streams/** - Live stream recordings and resources
 
@@ -98,10 +99,11 @@ This is a production-ready IndieWeb site built with F# featuring:
 ## 🔧 Key Features
 
 ### Content Management & Publishing
-- **9 Content Types**: Posts, notes, responses, snippets, wiki, presentations, media, albums, resources
+- **9 Content Types**: Posts, notes, responses, snippets, wiki, presentations, media, albums, playlists, resources
 - **GitHub Issue Publishing**: Create note posts directly through GitHub Issues with automated PR workflow
 - **Pinned Posts**: Pin important content to the top of your timeline via JSON configuration
 - **Album Collections**: Curated photo/media groupings with location metadata and timeline integration
+- **Playlist Collections**: Monthly music discoveries with YouTube/Spotify dual links for platform-agnostic listening
 - **AST-Based Processing**: Unified GenericBuilder pattern replacing legacy repetitive functions
 - **Custom Blocks**: Media galleries, reviews, venue information, RSVP responses
 - **Tag System**: Automatic tag extraction and RSS feed generation (1,187+ tag feeds)
@@ -119,6 +121,8 @@ This is a production-ready IndieWeb site built with F# featuring:
 - **Travel Collections**: GPS-enabled travel guides with GPX file generation and map integration
 - **Blogroll/Podroll**: Curated link collections with RSS/OPML export
 - **Starter Packs**: Topic-based RSS feed collections inspired by BlueSky
+- **Album Collections**: Photo/media galleries with location metadata
+- **Playlist Collections**: Monthly music discoveries ("Crate Finds") with YouTube/Spotify links
 - **Content Collections**: Flexible grouping system for any content organization
 
 ### Performance & UX

@@ -17,6 +17,7 @@ This directory contains comprehensive guides and documentation for the website's
 - **[PWA Implementation](PWA_IMPLEMENTATION.md)** - Progressive Web App with offline functionality
 - **[Content Sharing Features](content-sharing-features.md)** - QR code generation, Web Share API, and permalink buttons
 - **[Album Collections](ALBUM_COLLECTIONS.md)** - Photo/media collections with location metadata
+- **[Playlist Collections](playlist-collections.md)** - Monthly music discoveries with YouTube/Spotify dual links
 - **[Starter Packs System](starter-packs-system.md)** - Curated RSS feed collections
 - **[Enhanced Content Discovery](enhanced-content-discovery-implementation.md)** - Site-wide search functionality
 - **[Text-Only Site](text-only-site.md)** - Complete accessibility-first website (<50KB pages)
