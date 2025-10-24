@@ -477,6 +477,7 @@ module Layouts
                 link [_rel "stylesheet"; _href "/lib/revealjs/dist/reveal.css"]
                 link [_rel "stylesheet"; _href "/lib/revealjs/dist/theme/black.css"]
                 link [_rel "stylesheet"; _href "/lib/revealjs/plugin/highlight/monokai.css"]
+                link [_rel "stylesheet"; _href "/assets/css/presentation-layouts.css"]
                 // Leaflet.js CSS loaded from CDN in travel-map.js
 
                 // Opengraph
@@ -617,6 +618,7 @@ module Layouts
 
                 link [_rel "stylesheet"; _href "/assets/lib/revealjs/dist/reveal.css"]
                 link [_rel "stylesheet"; _href "/assets/lib/revealjs/dist/theme/black.css"]
+                link [_rel "stylesheet"; _href "/assets/css/presentation-layouts.css"]
 
                 // Opengraph
                 let ogElements = buildOpenGraphElements pageTitle
