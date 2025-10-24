@@ -18,6 +18,8 @@ This directory contains comprehensive guides and documentation for the website's
 - **[Album Collections](ALBUM_COLLECTIONS.md)** - Photo/media collections with location metadata
 - **[Starter Packs System](starter-packs-system.md)** - Curated RSS feed collections
 - **[Enhanced Content Discovery](enhanced-content-discovery-implementation.md)** - Site-wide search functionality
+- **[Text-Only Site](text-only-site.md)** - Complete accessibility-first website (<50KB pages)
+- **[Pinned Posts Feature](pinned-posts-feature.md)** - Pin important content to timeline top
 - **[Back to Top Button](back-to-top-button-implementation.md)** - Scroll-based navigation
 
 ### 📖 Content Creation Guides
