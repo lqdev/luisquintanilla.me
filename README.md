@@ -124,6 +124,7 @@ This is a production-ready IndieWeb site built with F# featuring:
 ### Performance & UX
 - **Progressive Loading**: Client-side chunked loading for large content volumes
 - **Progressive Web App (PWA)**: Offline-first functionality with service worker caching
+- **Content Sharing**: QR code generation, Web Share API, and copy permalink buttons on every page
 - **Back to Top Button**: Scroll-based navigation with mobile optimization
 - **Explicit Home Navigation**: Research-backed navigation improvements for mixed audiences
 - **Desert Theme**: Modern responsive design with accessibility features

@@ -15,6 +15,7 @@ This directory contains comprehensive guides and documentation for the website's
 
 - **[Custom Presentation Layouts](custom-presentation-layouts.md)** - 15 CSS layout classes for Reveal.js presentations
 - **[PWA Implementation](PWA_IMPLEMENTATION.md)** - Progressive Web App with offline functionality
+- **[Content Sharing Features](content-sharing-features.md)** - QR code generation, Web Share API, and permalink buttons
 - **[Album Collections](ALBUM_COLLECTIONS.md)** - Photo/media collections with location metadata
 - **[Starter Packs System](starter-packs-system.md)** - Curated RSS feed collections
 - **[Enhanced Content Discovery](enhanced-content-discovery-implementation.md)** - Site-wide search functionality
