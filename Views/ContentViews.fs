@@ -432,7 +432,7 @@ module ResumeView =
                                 | Some date -> Some (date.ToString("yyyy-MM-dd"))
                             block.Content <- 
                                 match exp.Highlights with
-                                | Some highlights -> String.concat "\n" (highlights |> List.map (fun h -> sprintf "- %s" h))
+                                | Some highlights -> String.concat "\n" highlights
                                 | None -> ""
                             rawText (ExperienceRenderer.render block)
                     ]

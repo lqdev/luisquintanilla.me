@@ -704,7 +704,14 @@ type ResumeBlockParser<'T when 'T :> ContainerBlock and 'T :> ICustomBlock>(bloc
             // If we have content marker and this isn't separator, it's content
             elif block'.RawContent <> "" then
                 let currentContent = block'.RawContent
-                let newContent = if currentContent = " " then lineText else currentContent + "\n" + lineText
+                // Preserve original indentation by accessing the full slice
+                let originalLineText = 
+                    let slice = processor.Line
+                    if slice.Text <> null then
+                        slice.Text.Substring(slice.Start, slice.Length)
+                    else
+                        slice.ToString()
+                let newContent = if currentContent = " " then originalLineText else currentContent + "\n" + originalLineText
                 setContent block' newContent
                 BlockState.Continue
             // Otherwise, it's a field definition
