@@ -306,16 +306,8 @@ module ExperienceRenderer =
         
         let highlightsHtml = 
             if not (String.IsNullOrWhiteSpace(block.Content)) then
-                let lines = block.Content.Split('\n') |> Array.filter (fun s -> not (String.IsNullOrWhiteSpace s))
-                if lines.Length > 0 then
-                    let listItems = 
-                        lines 
-                        |> Array.map (fun line -> 
-                            let cleanLine = line.Trim().TrimStart('-', '*').Trim()
-                            Html.element "li" "" (Markdig.Markdown.ToHtml(cleanLine)))
-                        |> String.concat ""
-                    Html.element "ul" "" listItems
-                else ""
+                // Process the entire content as markdown to preserve list structure
+                Markdig.Markdown.ToHtml(block.Content.Trim())
             else ""
         
         Html.element "div" (Html.attribute "class" "experience-item")

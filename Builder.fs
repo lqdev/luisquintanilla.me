@@ -425,7 +425,8 @@ module Builder
                                 else 
                                     block.Content.Split('\n')
                                     |> Array.filter (fun s -> not (String.IsNullOrWhiteSpace s))
-                                    |> Array.map (fun s -> s.Trim())
+                                    |> Array.map (fun s -> s.Trim().TrimStart('-', '*').Trim())
+                                    |> Array.filter (fun s -> not (String.IsNullOrWhiteSpace s))
                                     |> Array.toList
                                     |> Some
                         } : Domain.Experience)
