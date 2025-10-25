@@ -13,6 +13,7 @@ This directory contains comprehensive guides and documentation for the website's
 
 ### 🎯 Core Features (July 2025+)
 
+- **[Resume Feature](resume-feature.md)** - Professional resume with custom Markdig blocks
 - **[Custom Presentation Layouts](custom-presentation-layouts.md)** - 15 CSS layout classes for Reveal.js presentations
 - **[PWA Implementation](PWA_IMPLEMENTATION.md)** - Progressive Web App with offline functionality
 - **[Content Sharing Features](content-sharing-features.md)** - QR code generation, Web Share API, and permalink buttons
@@ -26,6 +27,7 @@ This directory contains comprehensive guides and documentation for the website's
 
 ### 📖 Content Creation Guides
 
+- **[Resume Feature](resume-feature.md)** - Create and maintain professional resume
 - **[How to Create Starter Packs](how-to-create-starter-packs.md)** - RSS/OPML feed collections
 - **[How to Create Collections](how-to-create-collections.md)** - Blogroll, podroll, and custom collections
 - **[Travel Guide How-To](travel-guide-howto.md)** - Travel guides with GPS and GPX generation
