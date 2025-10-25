@@ -307,7 +307,8 @@ The resume system recognizes standard markdown headings to organize sections:
 ```markdown
 ## About
 Your professional summary and introduction written directly in markdown.
-Multiple paragraphs and markdown formatting supported.
+Supports standard markdown formatting including **bold**, *italic*, links, 
+lists, code, and multiple paragraphs.
 
 ## Experience
 :::experience blocks here:::
@@ -326,13 +327,14 @@ Multiple paragraphs and markdown formatting supported.
 
 ## Currently Interested In
 Your current interests, career goals, and what you're looking for.
-Written directly in markdown with full formatting support.
+Supports standard markdown formatting including **bold**, *italic*, links, 
+lists, code, and multiple paragraphs.
 ```
 
 **Section Rendering**:
 - Sections appear only if they contain content
 - The "About" section extracts content from the `## About` markdown heading
-- The "Interests" section extracts content from `## Currently Interested In` or `## Interests` heading
+- The "Interests" section extracts content from `## Currently Interested In` heading (or `## Interests` as a fallback)
 - Experience, Skills, Projects, Education, and Testimonials are populated from their custom blocks
 - Sections can use any markdown heading text
 - Order sections as you prefer in the markdown file
