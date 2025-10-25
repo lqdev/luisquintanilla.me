@@ -75,6 +75,7 @@ let main argv =
     buildIRLStackPage ()
     buildColophonPage ()
     buildOnlineRadioPage ()
+    buildResumePage ()
 
     // =============================================================================
     // Unified Feed System - Collect all feed data and generate unified feeds

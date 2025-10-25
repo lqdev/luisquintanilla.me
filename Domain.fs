@@ -554,3 +554,74 @@ module Domain
         [<YamlMember(Alias="Added")>] Added: string option
         [<YamlMember(Alias="TravelData")>] TravelData: TravelRecommendationData option
     }
+
+    // =====================================================================
+    // Resume Domain Model
+    // =====================================================================
+
+    /// Availability status for resume
+    type AvailabilityStatus =
+        | OpenToOpportunities
+        | NotLooking
+        | NotSpecified
+
+    /// Work experience entry
+    type Experience = {
+        Role: string
+        Company: string  // Can contain markdown links
+        StartDate: DateTime
+        EndDate: DateTime option  // None = current position
+        Highlights: string list option
+    }
+
+    /// Project entry
+    type Project = {
+        Title: string
+        Description: string
+        Url: string option
+        Technologies: string list option
+        Highlights: string list option
+    }
+
+    /// Skill category grouping
+    type SkillCategory = {
+        Category: string
+        Skills: string list  // Can contain markdown links
+    }
+
+    /// Education entry
+    type Education = {
+        Degree: string
+        Institution: string  // Can contain markdown links
+        GraduationYear: int option
+        Details: string option
+    }
+
+    /// Testimonial/recommendation
+    type Testimonial = {
+        Quote: string
+        Author: string  // Can contain markdown links
+    }
+
+    /// Complete resume data
+    [<CLIMutable>]
+    type ResumeMetadata = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="lastUpdated")>] LastUpdated: string
+        [<YamlMember(Alias="status")>] Status: string option
+        [<YamlMember(Alias="summary")>] Summary: string
+        [<YamlMember(Alias="currentRole")>] CurrentRole: string
+        [<YamlMember(Alias="contactLinks")>] ContactLinks: System.Collections.Generic.Dictionary<string, string>
+        [<YamlMember(Alias="interests")>] Interests: string
+    }
+
+    type Resume = {
+        FileName: string
+        Metadata: ResumeMetadata
+        Content: string  // Full markdown content
+        Experience: Experience list
+        Skills: SkillCategory list
+        Projects: Project list
+        Education: Education list
+        Testimonials: Testimonial list
+    }
