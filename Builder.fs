@@ -326,6 +326,61 @@ module Builder
     // Resume Page Builder
     // =====================================================================
     
+    /// Extract content between headings in markdown document
+    let private extractSectionContent (doc: Markdig.Syntax.MarkdownDocument) (headingText: string) =
+        let headings = 
+            Markdig.Syntax.MarkdownObjectExtensions.Descendants<Markdig.Syntax.HeadingBlock>(doc)
+            |> Seq.toList
+        
+        // Helper to extract text from heading inline content
+        let getHeadingText (h: Markdig.Syntax.HeadingBlock) =
+            if h.Inline <> null then
+                // Get first child literal if it exists
+                let literals = 
+                    Markdig.Syntax.MarkdownObjectExtensions.Descendants<Markdig.Syntax.Inlines.LiteralInline>(h.Inline)
+                    |> Seq.toList
+                if not literals.IsEmpty then
+                    literals |> List.map (fun l -> l.Content.ToString()) |> String.concat ""
+                else
+                    ""
+            else
+                ""
+        
+        // Find the heading that matches the target text (case-insensitive)
+        let targetHeadingOpt = 
+            headings 
+            |> List.tryFind (fun h -> 
+                let text = getHeadingText h
+                text.Trim().Equals(headingText, StringComparison.OrdinalIgnoreCase))
+        
+        match targetHeadingOpt with
+        | None -> None
+        | Some targetHeading ->
+            // Find all blocks that come after this heading until the next heading of same or higher level
+            let allBlocks = doc |> Seq.toList
+            let targetIndex = allBlocks |> List.findIndex (fun b -> Object.ReferenceEquals(b, targetHeading))
+            let targetLevel = targetHeading.Level
+            
+            // Get blocks until next heading of same or higher level
+            let contentBlocks = 
+                allBlocks
+                |> List.skip (targetIndex + 1)
+                |> List.takeWhile (fun block ->
+                    match block with
+                    | :? Markdig.Syntax.HeadingBlock as h -> h.Level > targetLevel
+                    | _ -> true)
+            
+            if contentBlocks.IsEmpty then
+                None
+            else
+                // Convert blocks back to markdown using Markdig renderer
+                use writer = new System.IO.StringWriter()
+                let renderer = Markdig.Renderers.HtmlRenderer(writer)
+                for block in contentBlocks do
+                    renderer.Write(block)
+                let html = writer.ToString().Trim()
+                if String.IsNullOrWhiteSpace(html) then None else Some html
+    
     let buildResumePage () =
         let resumePath = Path.Join(srcDir, "resume", "resume.md")
         
@@ -444,9 +499,18 @@ module Builder
                         } : Domain.Education)
                     |> Seq.toList
                 
+                // Extract About and Interests sections from markdown
+                let aboutSection = extractSectionContent doc "About"
+                let interestsSection = 
+                    match extractSectionContent doc "Currently Interested In" with
+                    | Some content -> Some content
+                    | None -> extractSectionContent doc "Interests"
+                
                 // Build complete resume with extracted data
                 let completeResume = 
                     { baseResume with
+                        AboutSection = aboutSection
+                        InterestsSection = interestsSection
                         Experience = experiences
                         Projects = projects
                         Skills = skills

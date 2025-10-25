@@ -3,28 +3,20 @@ title: Professional Resume
 status: open-to-opportunities
 lastUpdated: 2025-10-25
 currentRole: Senior Software Engineer & Machine Learning Specialist
-summary: |
-  I'm a passionate software engineer with expertise in machine learning, .NET development, 
-  and building scalable applications. I specialize in making AI/ML accessible to developers 
-  and creating tools that empower others to build intelligent systems.
 contactLinks:
   Email: hello@example.com
   LinkedIn: https://www.linkedin.com/in/luisquintanilla
   GitHub: https://github.com/lqdev
   Website: https://www.luisquintanilla.me
-interests: |
-  I'm exploring advances in large language models, retrieval-augmented generation (RAG), 
-  and how AI can enhance developer productivity. Always excited to discuss machine learning 
-  infrastructure, F# functional programming, and sustainable software practices.
-  
-  Open to opportunities in machine learning engineering, developer advocacy, and technical 
-  leadership roles where I can help teams adopt AI/ML technologies effectively.
 ---
 
 # Professional Resume
 
 ## About
-{Summary content with markdown support}
+
+I'm a passionate software engineer with expertise in machine learning, .NET development, 
+and building scalable applications. I specialize in making AI/ML accessible to developers 
+and creating tools that empower others to build intelligent systems.
 
 ## Experience
 
@@ -119,3 +111,12 @@ author: John Smith, Developer Advocate
 Working with Luis on ML.NET samples was fantastic. His attention to detail and 
 commitment to quality made our collaboration highly productive.
 :::
+
+## Currently Interested In
+
+I'm exploring advances in large language models, retrieval-augmented generation (RAG), 
+and how AI can enhance developer productivity. Always excited to discuss machine learning 
+infrastructure, F# functional programming, and sustainable software practices.
+
+Open to opportunities in machine learning engineering, developer advocacy, and technical 
+leadership roles where I can help teams adopt AI/ML technologies effectively.

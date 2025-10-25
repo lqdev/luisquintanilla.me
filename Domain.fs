@@ -609,16 +609,18 @@ module Domain
         [<YamlMember(Alias="title")>] Title: string
         [<YamlMember(Alias="lastUpdated")>] LastUpdated: string
         [<YamlMember(Alias="status")>] Status: string option
-        [<YamlMember(Alias="summary")>] Summary: string
+        [<YamlMember(Alias="summary")>] Summary: string option
         [<YamlMember(Alias="currentRole")>] CurrentRole: string
         [<YamlMember(Alias="contactLinks")>] ContactLinks: System.Collections.Generic.Dictionary<string, string>
-        [<YamlMember(Alias="interests")>] Interests: string
+        [<YamlMember(Alias="interests")>] Interests: string option
     }
 
     type Resume = {
         FileName: string
         Metadata: ResumeMetadata
         Content: string  // Full markdown content
+        AboutSection: string option  // Extracted from ## About heading
+        InterestsSection: string option  // Extracted from ## Interests or ## Currently Interested In heading
         Experience: Experience list
         Skills: SkillCategory list
         Projects: Project list
