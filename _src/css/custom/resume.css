@@ -257,7 +257,6 @@
 /* Testimonials */
 .testimonial {
     border-left: 4px solid var(--accent-color, #007bff);
-    padding-left: 24px;
     padding: 20px 24px;
     background: var(--testimonial-bg, #f8f9fa);
     border-radius: 4px;

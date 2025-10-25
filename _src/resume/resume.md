@@ -8,7 +8,7 @@ summary: |
   and building scalable applications. I specialize in making AI/ML accessible to developers 
   and creating tools that empower others to build intelligent systems.
 contactLinks:
-  Email: luis@example.com
+  Email: hello@example.com
   LinkedIn: https://www.linkedin.com/in/luisquintanilla
   GitHub: https://github.com/lqdev
   Website: https://www.luisquintanilla.me
