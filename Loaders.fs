@@ -135,3 +135,30 @@ module Loaders
             |> Array.sortBy (fun p -> p.Order)
         else
             [||]
+
+    // =====================================================================
+    // Resume Loader
+    // =====================================================================
+    
+    let loadResume (filePath: string) : Resume option =
+        if not (File.Exists(filePath)) then
+            None
+        else
+            try
+                let result = MarkdownService.getContentAndMetadata<ResumeMetadata>(filePath)
+                let fileName = Path.GetFileNameWithoutExtension(filePath)
+                
+                Some {
+                    FileName = fileName
+                    Metadata = result.Yaml
+                    Content = result.Content
+                    Experience = []  // Will be populated by builder
+                    Skills = []
+                    Projects = []
+                    Education = []
+                    Testimonials = []
+                }
+            with
+            | ex ->
+                printfn "Warning: Failed to load resume from %s: %s" filePath ex.Message
+                None
