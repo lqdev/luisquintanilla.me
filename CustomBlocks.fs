@@ -788,7 +788,9 @@ type EducationBlockParser() =
 type ResumeBlockExtension() =
     interface IMarkdownExtension with
         member _.Setup(pipeline: MarkdownPipelineBuilder) =
-            // Insert parsers at the beginning for proper priority (same pattern as other custom blocks)
+            // Insert parsers at index 0 for proper priority (same pattern as other custom blocks)
+            // Note: Inserting at index 0 means later insertions appear first in the parser list,
+            // so we insert in reverse order of desired evaluation priority
             if not (pipeline.BlockParsers.Contains<EducationBlockParser>()) then
                 pipeline.BlockParsers.Insert(0, EducationBlockParser())
             if not (pipeline.BlockParsers.Contains<TestimonialBlockParser>()) then
