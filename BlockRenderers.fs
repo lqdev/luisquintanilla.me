@@ -276,3 +276,149 @@ module BlockRenderer =
         else
             let content = renderCustomBlocks blocks
             Html.element "div" (Html.attribute "class" "custom-blocks") content
+
+// =====================================================================
+// Resume Block Renderers
+// =====================================================================
+
+/// Renderer for ExperienceBlock
+module ExperienceRenderer =
+    let render (block: CustomBlocks.ExperienceBlock) =
+        let endDateStr = 
+            match block.End with
+            | Some "current" -> "Present"
+            | Some date -> 
+                try
+                    let dt = DateTime.Parse(date)
+                    dt.ToString("MMM yyyy")
+                with
+                | _ -> date
+            | None -> "Present"
+        
+        let startDateStr = 
+            try
+                let dt = DateTime.Parse(block.Start)
+                dt.ToString("MMM yyyy")
+            with
+            | _ -> block.Start
+        
+        let companyHtml = Markdig.Markdown.ToHtml(block.Company)
+        
+        let highlightsHtml = 
+            if not (String.IsNullOrWhiteSpace(block.Content)) then
+                let lines = block.Content.Split('\n') |> Array.filter (fun s -> not (String.IsNullOrWhiteSpace s))
+                if lines.Length > 0 then
+                    let listItems = 
+                        lines 
+                        |> Array.map (fun line -> 
+                            let cleanLine = line.Trim().TrimStart('-', '*').Trim()
+                            Html.element "li" "" (Markdig.Markdown.ToHtml(cleanLine)))
+                        |> String.concat ""
+                    Html.element "ul" "" listItems
+                else ""
+            else ""
+        
+        Html.element "div" (Html.attribute "class" "experience-item")
+            (Html.element "div" (Html.attribute "class" "experience-header")
+                (Html.element "h3" "" (Html.escapeHtml block.Role) +
+                 Html.element "span" (Html.attribute "class" "duration") (Html.escapeHtml (startDateStr + " - " + endDateStr))) +
+             Html.element "div" (Html.attribute "class" "company") companyHtml +
+             highlightsHtml)
+
+/// Renderer for ProjectBlock
+module ProjectRenderer =
+    let render (block: CustomBlocks.ProjectBlock) =
+        let titleHtml = 
+            match block.Url with
+            | Some url when not (String.IsNullOrWhiteSpace url) ->
+                Html.element "h3" ""
+                    (Html.element "a" 
+                        (Html.attribute "href" url + Html.attribute "target" "_blank")
+                        (Html.escapeHtml block.Title))
+            | _ ->
+                Html.element "h3" "" (Html.escapeHtml block.Title)
+        
+        let techHtml = 
+            match block.Tech with
+            | Some tech when not (String.IsNullOrWhiteSpace tech) ->
+                Html.element "div" (Html.attribute "class" "tech-stack") (Html.escapeHtml tech)
+            | _ -> ""
+        
+        let descriptionHtml = 
+            if not (String.IsNullOrWhiteSpace(block.Content)) then
+                Html.element "div" (Html.attribute "class" "project-description") 
+                    (Markdig.Markdown.ToHtml(block.Content))
+            else ""
+        
+        Html.element "div" (Html.attribute "class" "project-item")
+            (Html.element "div" (Html.attribute "class" "project-header") titleHtml +
+             techHtml +
+             descriptionHtml)
+
+/// Renderer for SkillsBlock
+module SkillsRenderer =
+    let render (block: CustomBlocks.SkillsBlock) =
+        let skillsHtml = 
+            if not (String.IsNullOrWhiteSpace(block.Content)) then
+                // Check if content is comma-separated or bullet list
+                if block.Content.Contains(",") && not (block.Content.Contains("\n-") || block.Content.Contains("\n*")) then
+                    // Comma-separated format
+                    let skills = block.Content.Split(',') |> Array.map (fun s -> s.Trim())
+                    let listItems = 
+                        skills 
+                        |> Array.map (fun skill -> Html.element "li" "" (Markdig.Markdown.ToHtml(skill)))
+                        |> String.concat ""
+                    Html.element "ul" "" listItems
+                else
+                    // Bullet list format
+                    let lines = block.Content.Split('\n') |> Array.filter (fun s -> not (String.IsNullOrWhiteSpace s))
+                    let listItems = 
+                        lines 
+                        |> Array.map (fun line -> 
+                            let cleanLine = line.Trim().TrimStart('-', '*').Trim()
+                            Html.element "li" "" (Markdig.Markdown.ToHtml(cleanLine)))
+                        |> String.concat ""
+                    Html.element "ul" "" listItems
+            else ""
+        
+        Html.element "div" (Html.attribute "class" "skill-category")
+            (Html.element "h3" "" (Html.escapeHtml block.Category) +
+             skillsHtml)
+
+/// Renderer for TestimonialBlock
+module TestimonialRenderer =
+    let render (block: CustomBlocks.TestimonialBlock) =
+        let quoteHtml = 
+            if not (String.IsNullOrWhiteSpace(block.Content)) then
+                Html.element "p" (Html.attribute "class" "quote") (Html.escapeHtml block.Content)
+            else ""
+        
+        let authorHtml = 
+            Html.element "p" (Html.attribute "class" "testimonial-author")
+                ("— " + (Markdig.Markdown.ToHtml(block.Author)))
+        
+        Html.element "div" (Html.attribute "class" "testimonial")
+            (quoteHtml + authorHtml)
+
+/// Renderer for EducationBlock
+module EducationRenderer =
+    let render (block: CustomBlocks.EducationBlock) =
+        let institutionHtml = Markdig.Markdown.ToHtml(block.Institution)
+        
+        let yearHtml = 
+            match block.Year with
+            | Some year when not (String.IsNullOrWhiteSpace year) ->
+                Html.element "div" (Html.attribute "class" "year") (Html.escapeHtml year)
+            | _ -> ""
+        
+        let detailsHtml = 
+            if not (String.IsNullOrWhiteSpace(block.Content)) then
+                Html.element "div" (Html.attribute "class" "details") 
+                    (Markdig.Markdown.ToHtml(block.Content))
+            else ""
+        
+        Html.element "div" (Html.attribute "class" "education-item")
+            (Html.element "h3" "" (Html.escapeHtml block.Degree) +
+             Html.element "div" (Html.attribute "class" "institution") institutionHtml +
+             yearHtml +
+             detailsHtml)
