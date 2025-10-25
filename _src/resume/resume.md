@@ -1,13 +1,13 @@
 ---
 title: Professional Resume
-status: open-to-opportunities
+status: not-looking
 lastUpdated: 2025-10-25
-currentRole: Senior Software Engineer & Machine Learning Specialist
+currentRole: Product Manager
 contactLinks:
-  Email: hello@example.com
+  Email: contact@lqdev.me
   LinkedIn: https://www.linkedin.com/in/luisquintanilla
   GitHub: https://github.com/lqdev
-  Website: https://www.luisquintanilla.me
+  Website: https://www.lqdev.me
 ---
 
 # Professional Resume
@@ -21,26 +21,32 @@ and creating tools that empower others to build intelligent systems.
 ## Experience
 
 :::experience
-role: Senior Software Engineer
-company: [Microsoft](https://microsoft.com)
-start: 2020-01-15
+role: Product Manager
+company: [Microsoft](https://www.microsoft.com/)
+start: 2022-01-01
 end: current
 ---
-- Led development of ML.NET features and documentation
-- Created tutorials and samples for machine learning in .NET
-- Presented at conferences on AI/ML best practices
-- Mentored junior engineers on ML workflows
+- .NET AI Libraries
+  - Microsoft Agent Framework
+  - ML.NET
+  - Microsoft.Extensions.AI
+  - Tokenizers
+  - Tensors
+- .NET Data
+  - Microsoft.Extensions.VectorData
+  - Entity Framework
 :::
 
 :::experience
-role: Software Engineer
-company: [Previous Company](https://example.com)
-start: 2017-06-01
-end: 2019-12-31
+role: Content Developer
+company: [Microsoft](https://www.microsoft.com/)
+start: 2019-01-01
+end: 2022-01-01
 ---
-- Built data processing pipelines
-- Implemented machine learning models
-- Optimized application performance
+- AI product documentation
+  - ML.NET
+  - .NET for Apache Spark
+  - Azure Machine Learning
 :::
 
 ## Skills & Expertise
@@ -52,7 +58,7 @@ F#, C#, Python, JavaScript
 :::
 
 :::skills
-category: Machine Learning
+category: Machine Learning Libraries
 ---
 ML.NET, TensorFlow, PyTorch, Scikit-learn
 :::
@@ -60,21 +66,10 @@ ML.NET, TensorFlow, PyTorch, Scikit-learn
 :::skills
 category: Web Development
 ---
-ASP.NET Core, React, Node.js
+ASP.NET Core, FastAPI, Node.js, Vue
 :::
 
 ## Notable Projects
-
-:::project
-title: ML.NET Documentation & Samples
-url: https://docs.microsoft.com/dotnet/machine-learning
-tech: F#, C#, ML.NET, Markdown
----
-Comprehensive documentation and code samples for ML.NET, including tutorials on 
-classification, regression, and deep learning scenarios.
-
-Helped thousands of developers get started with machine learning in .NET.
-:::
 
 :::project
 title: Personal Website & Blog
@@ -89,11 +84,17 @@ and comprehensive content organization.
 ## Education
 
 :::education
-degree: Bachelor of Science in Computer Science
-institution: [University Name](https://university.edu)
-year: 2016
+degree: Master of Science in Computer Science
+institution: [DePaul University](https://www.depaul.edu/)
+year: 2017
 ---
-Summa Cum Laude - Focus on Machine Learning and Software Engineering
+:::
+
+:::education
+degree: Bachelor of Arts in Finance and Management Information Technology
+institution: [Aurora University](https://aurora.edu/)
+year: 2013
+---
 :::
 
 ## What People Say
