@@ -788,15 +788,15 @@ type EducationBlockParser() =
 type ResumeBlockExtension() =
     interface IMarkdownExtension with
         member _.Setup(pipeline: MarkdownPipelineBuilder) =
-            // Add parsers to the pipeline
-            if not (pipeline.BlockParsers.Contains<ExperienceBlockParser>()) then
-                pipeline.BlockParsers.Add(ExperienceBlockParser())
-            if not (pipeline.BlockParsers.Contains<ProjectBlockParser>()) then
-                pipeline.BlockParsers.Add(ProjectBlockParser())
-            if not (pipeline.BlockParsers.Contains<SkillsBlockParser>()) then
-                pipeline.BlockParsers.Add(SkillsBlockParser())
-            if not (pipeline.BlockParsers.Contains<TestimonialBlockParser>()) then
-                pipeline.BlockParsers.Add(TestimonialBlockParser())
+            // Insert parsers at the beginning for proper priority (same pattern as other custom blocks)
             if not (pipeline.BlockParsers.Contains<EducationBlockParser>()) then
-                pipeline.BlockParsers.Add(EducationBlockParser())
+                pipeline.BlockParsers.Insert(0, EducationBlockParser())
+            if not (pipeline.BlockParsers.Contains<TestimonialBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, TestimonialBlockParser())
+            if not (pipeline.BlockParsers.Contains<SkillsBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, SkillsBlockParser())
+            if not (pipeline.BlockParsers.Contains<ProjectBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, ProjectBlockParser())
+            if not (pipeline.BlockParsers.Contains<ExperienceBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, ExperienceBlockParser())
         member _.Setup(_pipeline, _renderer) = ()
