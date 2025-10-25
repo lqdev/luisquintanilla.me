@@ -33,20 +33,18 @@ title: Professional Resume
 status: open-to-opportunities
 lastUpdated: 2025-10-25
 currentRole: Software Engineer
-summary: |
-  Brief professional summary with markdown support.
 contactLinks:
   Email: you@example.com
   LinkedIn: https://linkedin.com/in/yourprofile
   GitHub: https://github.com/yourusername
-interests: |
-  Your interests and what you're looking for.
 ---
 
 # Professional Resume
 
 ## About
-Your detailed introduction with markdown support.
+
+I'm a passionate software engineer with expertise in building scalable applications. 
+I specialize in making technology accessible and creating tools that empower others.
 
 ## Experience
 
@@ -68,6 +66,11 @@ category: Programming Languages
 ---
 F#, C#, Python, JavaScript
 :::
+
+## Currently Interested In
+
+I'm exploring advances in cloud architecture and distributed systems. Always excited 
+to discuss software best practices and how technology can solve real-world problems.
 ```
 
 ## YAML Frontmatter Reference
@@ -79,9 +82,7 @@ F#, C#, Python, JavaScript
 | `title` | string | Resume page title | `"Professional Resume"` |
 | `lastUpdated` | date | Last update date (YYYY-MM-DD) | `2025-10-25` |
 | `currentRole` | string | Current job title | `"Senior Software Engineer"` |
-| `summary` | string | Professional summary (markdown) | Multi-line summary text |
 | `contactLinks` | object | Contact information | See below |
-| `interests` | string | Career interests (markdown) | Multi-line interests text |
 
 ### Optional Fields
 
@@ -305,7 +306,8 @@ The resume system recognizes standard markdown headings to organize sections:
 
 ```markdown
 ## About
-Content here (uses `summary` from frontmatter)
+Your professional summary and introduction written directly in markdown.
+Multiple paragraphs and markdown formatting supported.
 
 ## Experience
 :::experience blocks here:::
@@ -322,17 +324,24 @@ Content here (uses `summary` from frontmatter)
 ## What People Say
 :::testimonial blocks here:::
 
-## Interests
-Content here (uses `interests` from frontmatter)
+## Currently Interested In
+Your current interests, career goals, and what you're looking for.
+Written directly in markdown with full formatting support.
 ```
 
 **Section Rendering**:
 - Sections appear only if they contain content
-- The "About" section uses the `summary` field from frontmatter
-- The "Interests" section uses the `interests` field from frontmatter
-- Other sections are automatically populated from their custom blocks
+- The "About" section extracts content from the `## About` markdown heading
+- The "Interests" section extracts content from `## Currently Interested In` or `## Interests` heading
+- Experience, Skills, Projects, Education, and Testimonials are populated from their custom blocks
 - Sections can use any markdown heading text
 - Order sections as you prefer in the markdown file
+- Write About and Interests content directly in markdown for easy editing
+
+**Content vs. Metadata**:
+- **Frontmatter (metadata)**: Resume metadata like title, current role, status, contact links
+- **Markdown content**: Your professional summary, interests, and all other content
+- This separation keeps metadata clean and content easy to edit
 
 ## Styling and Customization
 
@@ -563,6 +572,17 @@ status: open-to-opportunities  # Update status
 ---
 ```
 
+**Update About Section**:
+```markdown
+## About
+
+I'm a passionate software engineer specializing in distributed systems and cloud 
+architecture. With 10+ years of experience, I focus on building scalable solutions 
+that solve real-world problems.
+
+I believe in continuous learning and sharing knowledge with the developer community.
+```
+
 **Add New Experience**:
 ```markdown
 ## Experience
@@ -607,6 +627,17 @@ Project description with impact and outcomes.
 :::
 ```
 
+**Update Interests Section**:
+```markdown
+## Currently Interested In
+
+I'm exploring advances in AI/ML and how they can enhance developer productivity. 
+Always excited to discuss cloud architecture, functional programming, and building 
+resilient distributed systems.
+
+Open to opportunities where I can lead technical teams and drive innovation.
+```
+
 ### 3. Preview Locally
 
 Build and preview your changes:
@@ -630,7 +661,8 @@ Check for:
 - ✅ Date formats are YYYY-MM-DD
 - ✅ Markdown links are properly formatted
 - ✅ No missing separators (`---`)
-- ✅ Content renders correctly
+- ✅ About and Interests sections use markdown headings (not frontmatter)
+- ✅ Content renders correctly with proper formatting
 
 ### 5. Deploy
 
