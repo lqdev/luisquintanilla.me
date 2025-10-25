@@ -152,6 +152,8 @@ module Loaders
                     FileName = fileName
                     Metadata = result.Yaml
                     Content = result.Content
+                    AboutSection = None  // Will be populated by builder
+                    InterestsSection = None  // Will be populated by builder
                     Experience = []  // Will be populated by builder
                     Skills = []
                     Projects = []

@@ -397,13 +397,24 @@ module ResumeView =
                 renderContactLinks resume.Metadata.ContactLinks
             ]
             
-            // Summary section
-            section [ _class "resume-section" ] [
-                h2 [] [ str "About" ]
-                div [ _class "summary" ] [ 
-                    rawText (MarkdownService.convertMdToHtml resume.Metadata.Summary) 
+            // Summary/About section - use extracted content from markdown or fallback to frontmatter
+            let aboutContent = 
+                match resume.AboutSection with
+                | Some content -> Some content
+                | None -> 
+                    match resume.Metadata.Summary with
+                    | Some summary -> Some (MarkdownService.convertMdToHtml summary)
+                    | None -> None
+            
+            match aboutContent with
+            | Some content ->
+                section [ _class "resume-section" ] [
+                    h2 [] [ str "About" ]
+                    div [ _class "summary" ] [ 
+                        rawText content
+                    ]
                 ]
-            ]
+            | None -> emptyText
             
             // Experience section
             if not (List.isEmpty resume.Experience) then
@@ -492,13 +503,24 @@ module ResumeView =
                     ]
                 ]
             
-            // Interests section
-            section [ _class "resume-section" ] [
-                h2 [] [ str "Currently Interested In" ]
-                div [ _class "interests" ] [
-                    rawText (MarkdownService.convertMdToHtml resume.Metadata.Interests)
+            // Interests section - use extracted content from markdown or fallback to frontmatter
+            let interestsContent = 
+                match resume.InterestsSection with
+                | Some content -> Some content
+                | None -> 
+                    match resume.Metadata.Interests with
+                    | Some interests -> Some (MarkdownService.convertMdToHtml interests)
+                    | None -> None
+            
+            match interestsContent with
+            | Some content ->
+                section [ _class "resume-section" ] [
+                    h2 [] [ str "Currently Interested In" ]
+                    div [ _class "interests" ] [
+                        rawText content
+                    ]
                 ]
-            ]
+            | None -> emptyText
             
             // Footer
             footer [ _class "resume-footer" ] [
