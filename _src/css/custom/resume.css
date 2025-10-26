@@ -64,10 +64,10 @@
 
 @keyframes pulse-subtle {
     0%, 100% {
-        box-shadow: 0 2px 6px rgba(75, 111, 68, 0.3);
+        box-shadow: 0 2px 6px rgba(75, 111, 68, 0.3); /* rgba of --saguaro-green (#4B6F44) */
     }
     50% {
-        box-shadow: 0 2px 12px rgba(75, 111, 68, 0.6);
+        box-shadow: 0 2px 12px rgba(75, 111, 68, 0.6); /* rgba of --saguaro-green (#4B6F44) */
     }
 }
 
@@ -400,7 +400,7 @@
     .year,
     .tech-stack,
     .testimonial-author {
-        color: var(--saguaro-green-dark);
+        color: var(--desert-moonlight);
     }
 
     .summary,
