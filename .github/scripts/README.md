@@ -8,7 +8,7 @@ Python script that handles media file uploads from GitHub Issue Forms to Linode 
 
 ### Purpose
 
-When creating media posts via GitHub Issue Forms, users can upload files that are automatically processed:
+When creating media posts via GitHub Issue Forms, users can upload files and include video URLs that are automatically processed:
 
 **For uploaded files (GitHub attachments):**
 1. Downloads from GitHub's temporary storage
@@ -16,10 +16,11 @@ When creating media posts via GitHub Issue Forms, users can upload files that ar
 3. Transforms content to use permanent CDN URLs
 4. Creates `:::media` blocks for the site generator
 
-**For direct URLs (YouTube, Vimeo, etc.):**
-- Left as-is in the content (not processed by this script)
-- Can be included alongside uploaded files
-- Site rendering handles display of direct video URLs
+**For YouTube URLs:**
+- Automatically converted to clickable thumbnail format
+- Format: `<a href="VIDEO_URL"><img src="THUMBNAIL_URL"></a>`
+- Enables easy mobile publishing without manual formatting
+- Uses YouTube's thumbnail service for preview images
 
 ### Supported Upload Formats
 
@@ -28,8 +29,12 @@ When creating media posts via GitHub Issue Forms, users can upload files that ar
 - HTML img tags: `<img src="url" alt="alt">` (from drag-and-drop/paste)
 - Plain URLs: `https://github.com/user-attachments/assets/...`
 
+**YouTube URLs (converted to thumbnail format):**
+- `https://www.youtube.com/watch?v=VIDEO_ID`
+- `https://youtu.be/VIDEO_ID`
+
 **Other URLs (left unchanged):**
-- YouTube, Vimeo, and other video platform URLs remain in content
+- Vimeo and other video platform URLs remain in content
 - External image URLs remain in content
 
 ### Usage
@@ -120,7 +125,7 @@ My vacation photo:
 :::media
 ```
 
-**Example 3: Direct video URLs (not processed)**
+**Example 3: YouTube URL (automatic thumbnail formatting)**
 
 **Input:**
 ```markdown
@@ -135,12 +140,12 @@ Really interesting content!
 ```markdown
 Check out this video:
 
-https://www.youtube.com/watch?v=dQw4w9WgXcQ
+<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="http://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg"></a>
 
 Really interesting content!
 ```
 
-*Note: YouTube and other direct video URLs are left unchanged in the content. They are not converted to `:::media` blocks by this script.*
+*Note: YouTube URLs are automatically converted to clickable thumbnail format for easy mobile publishing.*
 
 ### Integration
 

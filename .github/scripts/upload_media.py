@@ -181,6 +181,41 @@ def extract_github_attachments(content):
     return attachments
 
 
+def extract_and_format_youtube_urls(content):
+    """
+    Extract YouTube URLs and convert them to thumbnail syntax.
+    
+    Input:  https://youtube.com/watch?v=abc123
+    Output: <a href="https://youtube.com/watch?v=abc123"><img src="http://img.youtube.com/vi/abc123/0.jpg"></a>
+    
+    Returns list of (original_url, formatted_html, video_id) tuples.
+    """
+    youtube_urls = []
+    
+    # YouTube patterns
+    youtube_patterns = [
+        (r'https?://(?:www\.)?youtube\.com/watch\?v=([a-zA-Z0-9_-]+)', 'youtube.com'),
+        (r'https?://(?:www\.)?youtu\.be/([a-zA-Z0-9_-]+)', 'youtu.be'),
+    ]
+    
+    for pattern, source_type in youtube_patterns:
+        for match in re.finditer(pattern, content):
+            url = match.group(0)
+            video_id = match.group(1)
+            
+            # Skip if already found
+            if any(url == existing_url for existing_url, _, _ in youtube_urls):
+                continue
+            
+            # Generate thumbnail HTML
+            thumbnail_url = f"http://img.youtube.com/vi/{video_id}/0.jpg"
+            formatted_html = f'<a href="{url}"><img src="{thumbnail_url}"></a>'
+            
+            youtube_urls.append((url, formatted_html, video_id))
+    
+    return youtube_urls
+
+
 def transform_content_to_media_blocks(content, url_mapping):
     """
     Transform content by replacing GitHub URLs with permanent CDN URLs
@@ -229,85 +264,97 @@ def main():
     print("🔍 Extracting GitHub attachments...")
     attachments = extract_github_attachments(content)
     
-    if not attachments:
-        print("ℹ️  No GitHub attachments found. Skipping upload.")
+    # Extract and format YouTube URLs
+    print("🔍 Extracting YouTube URLs...")
+    youtube_urls = extract_and_format_youtube_urls(content)
+    
+    if not attachments and not youtube_urls:
+        print("ℹ️  No GitHub attachments or YouTube URLs found. Skipping processing.")
         # Write original content back (no transformation needed)
         with open(content_file, 'w', encoding='utf-8') as f:
             f.write(content)
         sys.exit(0)
     
     print(f"✅ Found {len(attachments)} GitHub attachment(s)")
+    print(f"✅ Found {len(youtube_urls)} YouTube URL(s)")
     
-    # Get S3 configuration from environment
-    access_key = os.environ.get('LINODE_STORAGE_ACCESS_KEY_ID')
-    secret_key = os.environ.get('LINODE_STORAGE_SECRET_ACCESS_KEY')
-    endpoint_url = os.environ.get('LINODE_STORAGE_ENDPOINT_URL')
-    bucket_name = os.environ.get('LINODE_STORAGE_BUCKET_NAME')
-    custom_domain = os.environ.get('LINODE_STORAGE_CUSTOM_DOMAIN')
-    
-    if not all([access_key, secret_key, endpoint_url, bucket_name]):
-        print("❌ Missing required environment variables:")
-        print("   - LINODE_STORAGE_ACCESS_KEY_ID")
-        print("   - LINODE_STORAGE_SECRET_ACCESS_KEY")
-        print("   - LINODE_STORAGE_ENDPOINT_URL")
-        print("   - LINODE_STORAGE_BUCKET_NAME")
-        sys.exit(1)
-    
-    # Initialize S3 client
-    print("🔧 Initializing S3 client...")
-    s3_client = boto3.client(
-        's3',
-        aws_access_key_id=access_key,
-        aws_secret_access_key=secret_key,
-        endpoint_url=endpoint_url
-    )
-    
-    # Process each attachment
+    # Process GitHub attachments (upload to S3)
     url_mapping = {}
     
-    for i, (github_url, alt_text) in enumerate(attachments, 1):
-        print(f"\n📦 Processing attachment {i}/{len(attachments)}")
+    if attachments:
+        # Get S3 configuration from environment
+        access_key = os.environ.get('LINODE_STORAGE_ACCESS_KEY_ID')
+        secret_key = os.environ.get('LINODE_STORAGE_SECRET_ACCESS_KEY')
+        endpoint_url = os.environ.get('LINODE_STORAGE_ENDPOINT_URL')
+        bucket_name = os.environ.get('LINODE_STORAGE_BUCKET_NAME')
+        custom_domain = os.environ.get('LINODE_STORAGE_CUSTOM_DOMAIN')
         
-        try:
-            # Download from GitHub
-            file_content = download_from_github(github_url)
-            
-            # Extract filename from URL or generate one
-            parsed_url = urlparse(github_url)
-            path_parts = parsed_url.path.split('/')
-            filename = path_parts[-1] if path_parts else f'attachment-{i}'
-            
-            # If filename doesn't have extension, try to detect from content
-            if '.' not in filename:
-                # Default to .jpg for images, but this should be rare
-                filename += '.jpg'
-            
-            # Upload to S3
-            s3_key = upload_to_s3(file_content, filename, s3_client, bucket_name)
-            
-            # Generate permanent URL
-            permanent_url = generate_permanent_url(s3_key, endpoint_url, bucket_name, custom_domain)
-            
-            # Determine media type from S3 key
-            if '/images/' in s3_key:
-                media_type = 'image'
-            elif '/videos/' in s3_key:
-                media_type = 'video'
-            elif '/audio/' in s3_key:
-                media_type = 'audio'
-            else:
-                media_type = 'file'
-            
-            url_mapping[github_url] = (permanent_url, alt_text, media_type)
-            print(f"  🔗 Permanent URL: {permanent_url}")
-            
-        except Exception as e:
-            print(f"  ❌ Error processing attachment: {e}")
+        if not all([access_key, secret_key, endpoint_url, bucket_name]):
+            print("❌ Missing required environment variables:")
+            print("   - LINODE_STORAGE_ACCESS_KEY_ID")
+            print("   - LINODE_STORAGE_SECRET_ACCESS_KEY")
+            print("   - LINODE_STORAGE_ENDPOINT_URL")
+            print("   - LINODE_STORAGE_BUCKET_NAME")
             sys.exit(1)
+        
+        # Initialize S3 client
+        print("🔧 Initializing S3 client...")
+        s3_client = boto3.client(
+            's3',
+            aws_access_key_id=access_key,
+            aws_secret_access_key=secret_key,
+            endpoint_url=endpoint_url
+        )
+        
+        # Process each attachment
+        for i, (github_url, alt_text) in enumerate(attachments, 1):
+            print(f"\n📦 Processing attachment {i}/{len(attachments)}")
+            
+            try:
+                # Download from GitHub
+                file_content = download_from_github(github_url)
+                
+                # Extract filename from URL or generate one
+                parsed_url = urlparse(github_url)
+                path_parts = parsed_url.path.split('/')
+                filename = path_parts[-1] if path_parts else f'attachment-{i}'
+                
+                # If filename doesn't have extension, try to detect from content
+                if '.' not in filename:
+                    # Default to .jpg for images, but this should be rare
+                    filename += '.jpg'
+                
+                # Upload to S3
+                s3_key = upload_to_s3(file_content, filename, s3_client, bucket_name)
+                
+                # Generate permanent URL
+                permanent_url = generate_permanent_url(s3_key, endpoint_url, bucket_name, custom_domain)
+                
+                # Determine media type from S3 key
+                if '/images/' in s3_key:
+                    media_type = 'image'
+                elif '/videos/' in s3_key:
+                    media_type = 'video'
+                elif '/audio/' in s3_key:
+                    media_type = 'audio'
+                else:
+                    media_type = 'file'
+                
+                url_mapping[github_url] = (permanent_url, alt_text, media_type)
+                print(f"  🔗 Permanent URL: {permanent_url}")
+                
+            except Exception as e:
+                print(f"  ❌ Error processing attachment: {e}")
+                sys.exit(1)
     
     # Transform content to use permanent URLs
     print("\n🔄 Transforming content...")
     transformed_content = transform_content_to_media_blocks(content, url_mapping)
+    
+    # Replace YouTube URLs with thumbnail syntax
+    for original_url, formatted_html, video_id in youtube_urls:
+        print(f"🎬 Formatting YouTube URL: {video_id}")
+        transformed_content = transformed_content.replace(original_url, formatted_html)
     
     # Generate media blocks for uploaded files
     media_blocks = []
@@ -333,6 +380,7 @@ def main():
     
     print("\n✅ Media upload and transformation complete!")
     print(f"📊 Uploaded {len(url_mapping)} file(s) to S3")
+    print(f"📊 Formatted {len(youtube_urls)} YouTube URL(s)")
     print(f"📄 Transformed content written to: {content_file}")
 
 
