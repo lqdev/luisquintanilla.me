@@ -15,6 +15,7 @@ import sys
 import re
 import requests
 import boto3
+from botocore.config import Config
 from datetime import datetime
 from urllib.parse import urlparse
 from pathlib import Path
@@ -347,11 +348,24 @@ def main():
         
         # Initialize S3 client
         print("🔧 Initializing S3 client...")
+        
+        # Extract region from endpoint URL (e.g., us-east-1 from us-east-1.linodeobjects.com)
+        parsed_endpoint = urlparse(endpoint_url)
+        region = parsed_endpoint.hostname.split('.')[0] if parsed_endpoint.hostname else 'us-east-1'
+        
+        # Configure boto3 for S3-compatible storage (Linode Object Storage)
+        s3_config = Config(
+            signature_version='s3v4',
+            s3={'addressing_style': 'virtual'}
+        )
+        
         s3_client = boto3.client(
             's3',
             aws_access_key_id=access_key,
             aws_secret_access_key=secret_key,
-            endpoint_url=endpoint_url
+            endpoint_url=endpoint_url,
+            region_name=region,
+            config=s3_config
         )
         
         # Process each attachment
