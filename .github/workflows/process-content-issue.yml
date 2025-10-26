@@ -640,21 +640,21 @@ jobs:
             ## New Media Post
             
             **Title:** ${{ steps.extract-data.outputs.title }}
-            **Type:** auto-detected
-            **Content:** ${{ steps.extract-data.outputs.content }}
+            **Type:** media
             **Orientation:** ${{ steps.extract-data.outputs.orientation }}
             **File:** `_src/media/${{ steps.process-issue.outputs.filename }}`
             
-            ### Frontmatter Validation
+            ### Processing Details
             - ✅ Title: ${{ steps.extract-data.outputs.title }}
-            - ✅ Media Type: auto-detected from attachments
-            - ✅ Content with Attachments: ${{ steps.extract-data.outputs.content }}
+            - ✅ Media files uploaded to Linode S3 storage
+            - ✅ Content transformed to use permanent CDN URLs
+            - ✅ Media blocks created with proper metadata
             - ✅ Orientation: ${{ steps.extract-data.outputs.orientation }}
             - ✅ Custom Slug: ${{ steps.extract-data.outputs.slug }}
             - ✅ Tags: ${{ steps.extract-data.outputs.tags }}
             
             **Created via GitHub Issue Template #${{ github.event.issue.number }}**
-            **Processed by F# script using .NET 9**
+            **Processed by Python upload script + F# markdown generator**
           branch: content/issue-${{ github.event.issue.number }}/media/fsharp-processed
           delete-branch: true
           
@@ -674,7 +674,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.issue.number,
-              body: '🎉 Your media post has been processed using F# and .NET 9! A pull request has been created with your content. Media types have been automatically detected from your attachments. You can track the progress in the pull requests tab.'
+              body: '🎉 Your media post has been processed successfully!\n\n**What happened:**\n- ✅ Media files downloaded from GitHub\n- ✅ Files uploaded to Linode S3 storage with permanent URLs\n- ✅ Markdown file created with proper :::media blocks\n- ✅ Pull request created for review\n\nYou can track the progress in the pull requests tab.'
             });
             
       - name: Handle processing errors
