@@ -8,12 +8,34 @@ Python script that handles media file uploads from GitHub Issue Forms to Linode 
 
 ### Purpose
 
-When creating media posts via GitHub Issue Forms, users can drag and drop files directly into the issue. GitHub temporarily hosts these files and generates markdown like `![filename](https://github.com/user-attachments/...)`. This script:
+When creating media posts via GitHub Issue Forms, users can:
+1. **Upload files** - Drag and drop or attach images/videos/audio
+2. **Paste YouTube/Vimeo URLs** - Direct video links for easy mobile publishing
 
-1. Downloads the files from GitHub's temporary storage
-2. Uploads them to permanent Linode S3 storage with date-based organization
-3. Transforms the content to use permanent CDN URLs
+The script handles both types:
+
+**For uploaded files:**
+1. Downloads from GitHub's temporary storage
+2. Uploads to permanent Linode S3 storage with timestamp-based organization
+3. Transforms content to use permanent CDN URLs
 4. Creates `:::media` blocks for the site generator
+
+**For direct video URLs (YouTube, Vimeo):**
+1. Detects video platform URLs
+2. Formats them into proper `:::media` blocks
+3. Adds platform-specific metadata (videoId, platform)
+4. No upload needed - videos stay on their platforms
+
+### Supported Upload Formats
+
+**GitHub Attachments:**
+- Markdown syntax: `![alt text](url)`
+- HTML img tags: `<img src="url" alt="alt">` (from drag-and-drop/paste)
+- Plain URLs: `https://github.com/user-attachments/assets/...`
+
+**Direct Video URLs:**
+- YouTube: `https://www.youtube.com/watch?v=...` or `https://youtu.be/...`
+- Vimeo: `https://vimeo.com/...`
 
 ### Usage
 
@@ -57,7 +79,9 @@ The timestamp prefix format is `YYYYMMDD_HHMMSS_` which:
 
 ### Example Input/Output
 
-**Input** (content with GitHub attachment):
+**Example 1: GitHub Attachment (uploaded file)**
+
+**Input:**
 ```markdown
 Here's my photo:
 
@@ -66,7 +90,7 @@ Here's my photo:
 Beautiful evening!
 ```
 
-**Output** (transformed content):
+**Output:**
 ```markdown
 Here's my photo:
 
@@ -77,6 +101,55 @@ Beautiful evening!
   mediaType: "image"
   aspectRatio: "landscape"
   caption: "sunset.jpg"
+:::media
+```
+
+**Example 2: Direct YouTube URL**
+
+**Input:**
+```markdown
+Check out this video:
+
+https://www.youtube.com/watch?v=dQw4w9WgXcQ
+
+Really interesting content!
+```
+
+**Output:**
+```markdown
+Check out this video:
+
+Really interesting content!
+
+:::media
+- url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  mediaType: "video"
+  platform: "youtube"
+  videoId: "dQw4w9WgXcQ"
+  aspectRatio: "landscape"
+:::media
+```
+
+**Example 3: HTML img tag (drag-and-drop upload)**
+
+**Input:**
+```markdown
+My vacation photo:
+
+<img src="https://github.com/user-attachments/assets/def456" alt="beach">
+```
+
+**Output:**
+```markdown
+Here's my photo:
+
+Beautiful evening!
+
+:::media
+- url: "https://cdn.luisquintanilla.me/files/images/20251026_140530_beach.jpg"
+  mediaType: "image"
+  aspectRatio: "landscape"
+  caption: "beach"
 :::media
 ```
 

@@ -143,6 +143,11 @@ def generate_permanent_url(s3_key, endpoint_url, bucket_name, custom_domain=None
 def extract_github_attachments(content):
     """
     Extract all GitHub attachment URLs from content.
+    Supports multiple GitHub upload formats:
+    - Markdown: ![alt](url)
+    - HTML img tags: <img src="url" alt="alt">
+    - Plain URLs: https://github.com/user-attachments/...
+    
     Returns list of (url, alt_text) tuples.
     """
     attachments = []
@@ -154,14 +159,16 @@ def extract_github_attachments(content):
         url = match.group(2).strip()
         attachments.append((url, alt_text or 'media'))
     
-    # Pattern 2: HTML img tags
+    # Pattern 2: HTML img tags (for drag-and-drop and paste uploads)
     html_pattern = r'<img[^>]*src=["\'](https://github\.com/user-attachments/[^"\']+)["\'][^>]*>'
     for match in re.finditer(html_pattern, content):
         url = match.group(1).strip()
         # Try to extract alt text if present
         alt_match = re.search(r'alt=["\']([^"\']+)["\']', match.group(0))
         alt_text = alt_match.group(1) if alt_match else 'media'
-        attachments.append((url, alt_text))
+        # Skip if already found in markdown pattern
+        if not any(url == existing_url for existing_url, _ in attachments):
+            attachments.append((url, alt_text))
     
     # Pattern 3: Plain GitHub attachment URLs (for videos/audio)
     plain_pattern = r'(https://github\.com/user-attachments/assets/[a-zA-Z0-9\-]+)'
@@ -172,6 +179,41 @@ def extract_github_attachments(content):
             attachments.append((url, 'media'))
     
     return attachments
+
+
+def extract_direct_video_urls(content):
+    """
+    Extract direct video URLs (YouTube, Vimeo, etc.) from content.
+    These don't need uploading - just formatting into media blocks.
+    
+    Returns list of (url, platform, title) tuples.
+    """
+    direct_videos = []
+    
+    # YouTube patterns
+    youtube_patterns = [
+        r'https?://(?:www\.)?youtube\.com/watch\?v=([a-zA-Z0-9_-]+)',
+        r'https?://(?:www\.)?youtu\.be/([a-zA-Z0-9_-]+)',
+        r'https?://(?:www\.)?youtube\.com/embed/([a-zA-Z0-9_-]+)',
+    ]
+    
+    for pattern in youtube_patterns:
+        for match in re.finditer(pattern, content):
+            url = match.group(0)
+            video_id = match.group(1)
+            # Skip if already found
+            if not any(url == existing_url for existing_url, _, _ in direct_videos):
+                direct_videos.append((url, 'youtube', video_id))
+    
+    # Vimeo pattern
+    vimeo_pattern = r'https?://(?:www\.)?vimeo\.com/(\d+)'
+    for match in re.finditer(vimeo_pattern, content):
+        url = match.group(0)
+        video_id = match.group(1)
+        if not any(url == existing_url for existing_url, _, _ in direct_videos):
+            direct_videos.append((url, 'vimeo', video_id))
+    
+    return direct_videos
 
 
 def transform_content_to_media_blocks(content, url_mapping):
@@ -222,87 +264,94 @@ def main():
     print("🔍 Extracting GitHub attachments...")
     attachments = extract_github_attachments(content)
     
-    if not attachments:
-        print("ℹ️  No GitHub attachments found. Skipping upload.")
+    # Extract direct video URLs (YouTube, Vimeo, etc.)
+    print("🔍 Extracting direct video URLs...")
+    direct_videos = extract_direct_video_urls(content)
+    
+    if not attachments and not direct_videos:
+        print("ℹ️  No attachments or video URLs found. Skipping processing.")
         # Write original content back (no transformation needed)
         with open(content_file, 'w', encoding='utf-8') as f:
             f.write(content)
         sys.exit(0)
     
-    print(f"✅ Found {len(attachments)} attachment(s)")
+    print(f"✅ Found {len(attachments)} GitHub attachment(s)")
+    print(f"✅ Found {len(direct_videos)} direct video URL(s)")
     
-    # Get S3 configuration from environment
-    access_key = os.environ.get('LINODE_STORAGE_ACCESS_KEY_ID')
-    secret_key = os.environ.get('LINODE_STORAGE_SECRET_ACCESS_KEY')
-    endpoint_url = os.environ.get('LINODE_STORAGE_ENDPOINT_URL')
-    bucket_name = os.environ.get('LINODE_STORAGE_BUCKET_NAME')
-    custom_domain = os.environ.get('LINODE_STORAGE_CUSTOM_DOMAIN')
-    
-    if not all([access_key, secret_key, endpoint_url, bucket_name]):
-        print("❌ Missing required environment variables:")
-        print("   - LINODE_STORAGE_ACCESS_KEY_ID")
-        print("   - LINODE_STORAGE_SECRET_ACCESS_KEY")
-        print("   - LINODE_STORAGE_ENDPOINT_URL")
-        print("   - LINODE_STORAGE_BUCKET_NAME")
-        sys.exit(1)
-    
-    # Initialize S3 client
-    print("🔧 Initializing S3 client...")
-    s3_client = boto3.client(
-        's3',
-        aws_access_key_id=access_key,
-        aws_secret_access_key=secret_key,
-        endpoint_url=endpoint_url
-    )
-    
-    # Process each attachment
+    # Process GitHub attachments (upload to S3)
     url_mapping = {}
     
-    for i, (github_url, alt_text) in enumerate(attachments, 1):
-        print(f"\n📦 Processing attachment {i}/{len(attachments)}")
+    if attachments:
+        # Get S3 configuration from environment
+        access_key = os.environ.get('LINODE_STORAGE_ACCESS_KEY_ID')
+        secret_key = os.environ.get('LINODE_STORAGE_SECRET_ACCESS_KEY')
+        endpoint_url = os.environ.get('LINODE_STORAGE_ENDPOINT_URL')
+        bucket_name = os.environ.get('LINODE_STORAGE_BUCKET_NAME')
+        custom_domain = os.environ.get('LINODE_STORAGE_CUSTOM_DOMAIN')
         
-        try:
-            # Download from GitHub
-            file_content = download_from_github(github_url)
-            
-            # Extract filename from URL or generate one
-            parsed_url = urlparse(github_url)
-            path_parts = parsed_url.path.split('/')
-            filename = path_parts[-1] if path_parts else f'attachment-{i}'
-            
-            # If filename doesn't have extension, try to detect from content
-            if '.' not in filename:
-                # Default to .jpg for images, but this should be rare
-                filename += '.jpg'
-            
-            # Upload to S3
-            s3_key = upload_to_s3(file_content, filename, s3_client, bucket_name)
-            
-            # Generate permanent URL
-            permanent_url = generate_permanent_url(s3_key, endpoint_url, bucket_name, custom_domain)
-            
-            # Determine media type from S3 key
-            if '/images/' in s3_key:
-                media_type = 'image'
-            elif '/videos/' in s3_key:
-                media_type = 'video'
-            elif '/audio/' in s3_key:
-                media_type = 'audio'
-            else:
-                media_type = 'file'
-            
-            url_mapping[github_url] = (permanent_url, alt_text, media_type)
-            print(f"  🔗 Permanent URL: {permanent_url}")
-            
-        except Exception as e:
-            print(f"  ❌ Error processing attachment: {e}")
+        if not all([access_key, secret_key, endpoint_url, bucket_name]):
+            print("❌ Missing required environment variables:")
+            print("   - LINODE_STORAGE_ACCESS_KEY_ID")
+            print("   - LINODE_STORAGE_SECRET_ACCESS_KEY")
+            print("   - LINODE_STORAGE_ENDPOINT_URL")
+            print("   - LINODE_STORAGE_BUCKET_NAME")
             sys.exit(1)
+        
+        # Initialize S3 client
+        print("🔧 Initializing S3 client...")
+        s3_client = boto3.client(
+            's3',
+            aws_access_key_id=access_key,
+            aws_secret_access_key=secret_key,
+            endpoint_url=endpoint_url
+        )
+        
+        # Process each attachment
+        for i, (github_url, alt_text) in enumerate(attachments, 1):
+            print(f"\n📦 Processing attachment {i}/{len(attachments)}")
+            
+            try:
+                # Download from GitHub
+                file_content = download_from_github(github_url)
+                
+                # Extract filename from URL or generate one
+                parsed_url = urlparse(github_url)
+                path_parts = parsed_url.path.split('/')
+                filename = path_parts[-1] if path_parts else f'attachment-{i}'
+                
+                # If filename doesn't have extension, try to detect from content
+                if '.' not in filename:
+                    # Default to .jpg for images, but this should be rare
+                    filename += '.jpg'
+                
+                # Upload to S3
+                s3_key = upload_to_s3(file_content, filename, s3_client, bucket_name)
+                
+                # Generate permanent URL
+                permanent_url = generate_permanent_url(s3_key, endpoint_url, bucket_name, custom_domain)
+                
+                # Determine media type from S3 key
+                if '/images/' in s3_key:
+                    media_type = 'image'
+                elif '/videos/' in s3_key:
+                    media_type = 'video'
+                elif '/audio/' in s3_key:
+                    media_type = 'audio'
+                else:
+                    media_type = 'file'
+                
+                url_mapping[github_url] = (permanent_url, alt_text, media_type)
+                print(f"  🔗 Permanent URL: {permanent_url}")
+                
+            except Exception as e:
+                print(f"  ❌ Error processing attachment: {e}")
+                sys.exit(1)
     
     # Transform content to use permanent URLs
     print("\n🔄 Transforming content...")
     transformed_content = transform_content_to_media_blocks(content, url_mapping)
     
-    # Generate media blocks
+    # Generate media blocks for uploaded files
     media_blocks = []
     for github_url, (permanent_url, alt_text, media_type) in url_mapping.items():
         # Create media block for each file
@@ -313,6 +362,40 @@ def main():
   caption: "{alt_text}"
 :::media'''
         media_blocks.append(media_block)
+    
+    # Generate media blocks for direct video URLs (YouTube, Vimeo, etc.)
+    for video_url, platform, video_id in direct_videos:
+        # Remove the URL from content
+        transformed_content = transformed_content.replace(video_url, '')
+        
+        # Create media block for video platform
+        if platform == 'youtube':
+            media_block = f''':::media
+- url: "{video_url}"
+  mediaType: "video"
+  platform: "youtube"
+  videoId: "{video_id}"
+  aspectRatio: "landscape"
+:::media'''
+        elif platform == 'vimeo':
+            media_block = f''':::media
+- url: "{video_url}"
+  mediaType: "video"
+  platform: "vimeo"
+  videoId: "{video_id}"
+  aspectRatio: "landscape"
+:::media'''
+        else:
+            media_block = f''':::media
+- url: "{video_url}"
+  mediaType: "video"
+  aspectRatio: "landscape"
+:::media'''
+        
+        media_blocks.append(media_block)
+    
+    # Clean up extra whitespace after removing URLs
+    transformed_content = re.sub(r'\n\n+', '\n\n', transformed_content).strip()
     
     # Combine transformed content with media blocks
     if transformed_content:
@@ -325,7 +408,8 @@ def main():
         f.write(final_content)
     
     print("\n✅ Media upload and transformation complete!")
-    print(f"📊 Uploaded {len(url_mapping)} file(s)")
+    print(f"📊 Uploaded {len(url_mapping)} file(s) to S3")
+    print(f"📊 Processed {len(direct_videos)} direct video URL(s)")
     print(f"📄 Transformed content written to: {content_file}")
 
 
