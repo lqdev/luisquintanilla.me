@@ -6,47 +6,70 @@ Media uploads to Linode Object Storage were failing with error:
 Connection was closed before we received a valid response from endpoint URL
 ```
 
-## Root Cause
-The boto3 S3 client configuration was missing critical timeout and retry settings, causing premature connection closure when uploading files to Linode Object Storage.
+## Root Cause Analysis
+After reviewing the working discord-publish-bot repository (as suggested by @lqdev), the issue was identified:
+- The boto3 client configuration needed to match the exact structure used in discord-publish-bot
+- Parameter order in boto3.client() call matters for consistency
+- The working implementation uses a simpler, more direct configuration
 
 ## Solution Applied
 
-### 1. Enhanced boto3 Configuration
-Added the following settings to the boto3 Config in `upload_media.py`:
+### 1. Match Discord-Publish-Bot Configuration
+Changed boto3 client initialization to exactly match the working discord-publish-bot:
 
 ```python
-s3_config = Config(
-    signature_version='s3v4',
-    s3={'addressing_style': 'virtual'},
-    connect_timeout=60,          # NEW: Prevents connection timeout
-    read_timeout=60,             # NEW: Prevents timeout during large uploads
-    retries={                    # NEW: Handles transient failures
-        'max_attempts': 3,
-        'mode': 'standard'
-    }
+# Discord-publish-bot configuration (WORKING)
+s3_client = boto3.client(
+    's3',
+    endpoint_url=endpoint_url,              # endpoint_url FIRST
+    aws_access_key_id=access_key,
+    aws_secret_access_key=secret_key,
+    region_name=region,
+    config=Config(
+        signature_version='s3v4',
+        s3={
+            'addressing_style': 'virtual'
+        }
+    )
 )
 ```
 
-#### Configuration Explanation:
-- **signature_version='s3v4'**: Required for S3-compatible storage (already present)
-- **addressing_style='virtual'**: Virtual-hosted style URLs for Linode (already present)
-- **connect_timeout=60**: Gives 60 seconds to establish connection (prevents premature closure)
-- **read_timeout=60**: Gives 60 seconds between read operations (handles large files)
-- **retries**: Automatically retries failed requests up to 3 times with standard backoff
+**Key Changes:**
+1. Use `endpoint_url` as first parameter (matching discord-publish-bot order)
+2. Use inline Config definition (matching discord-publish-bot structure)
+3. Remove timeout and retry parameters that were added in previous attempt
+4. Keep it simple and match exactly what works
+
+### 2. Previous Attempt Analysis
+Initial fix attempt added connection timeouts and retry configuration:
+```python
+# Previous attempt (NOT working)
+s3_config = Config(
+    signature_version='s3v4',
+    s3={'addressing_style': 'virtual'},
+    connect_timeout=60,           # Added but may cause issues
+    read_timeout=60,              # Added but may cause issues
+    retries={'max_attempts': 3}   # Added but may cause issues
+)
+```
+
+This approach was based on assumptions rather than proven working code.
 
 ### 2. Created Testing Tools
 
 #### A. Test S3 Connection Script (`test_s3_connection.py`)
 - Safely tests S3 connectivity without exposing credentials in logs
-- Tests multiple configuration options
+- Tests discord-publish-bot configuration first (known working)
+- Tests original configuration for comparison
+- Tests path-style addressing as fallback
 - Performs actual upload/delete operations
 - Provides clear diagnostic output
 
 **Features:**
 - ✅ Masks credentials in output
-- ✅ Tests connection with current configuration
-- ✅ Tests connection with original configuration
-- ✅ Tests path-style addressing as fallback
+- ✅ Tests discord-publish-bot parameter order (endpoint_url first)
+- ✅ Tests original parameter order (aws keys first)
+- ✅ Tests path-style addressing
 - ✅ Performs real upload and delete operations
 - ✅ Verbose mode for debugging (--verbose flag)
 

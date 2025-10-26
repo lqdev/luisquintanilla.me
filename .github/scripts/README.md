@@ -207,16 +207,15 @@ Dependencies are installed via `uv` in the GitHub Actions workflow.
 
 ### S3 Configuration
 
-The script is configured to work with Linode Object Storage (S3-compatible):
+The script is configured to work with Linode Object Storage (S3-compatible) using the exact same configuration as the discord-publish-bot (which works successfully):
 
 - **Region Detection**: Automatically extracts region from endpoint URL (e.g., `us-east-1` from `https://us-east-1.linodeobjects.com`)
 - **Signature Version**: Uses `s3v4` for compatibility with Linode
 - **Addressing Style**: Virtual-hosted style addressing for proper URL formation
-- **Connection Timeouts**: 60-second connect and read timeouts to prevent premature connection closure
-- **Retry Configuration**: Standard retry mode with up to 3 attempts for transient failures
+- **Parameter Order**: Uses `endpoint_url` first, matching discord-publish-bot implementation
 - **boto3 Config**: Properly configured via `botocore.config.Config` for S3-compatible storage
 
-This configuration is required for boto3 to successfully connect to Linode Object Storage. The timeout and retry settings prevent connection errors like "Connection was closed before we received a valid response from endpoint URL".
+This configuration matches the working discord-publish-bot implementation. The key is using the same parameter order and configuration structure that has been proven to work.
 
 ### Troubleshooting
 
@@ -227,8 +226,7 @@ This configuration is required for boto3 to successfully connect to Linode Objec
 **Causes**:
 - Missing `region_name` parameter in boto3 client initialization
 - Missing or incorrect boto3 Config settings
-- Missing connection timeout configuration
-- Missing retry configuration
+- Incorrect parameter order in boto3.client() call
 - Invalid endpoint URL format
 - Incorrect credentials
 
@@ -239,9 +237,8 @@ This configuration is required for boto3 to successfully connect to Linode Objec
 - Verify boto3 Config includes:
   - `signature_version='s3v4'`
   - `addressing_style='virtual'`
-  - `connect_timeout=60` (prevents premature connection closure)
-  - `read_timeout=60` (prevents timeout during large file uploads)
-  - `retries={'max_attempts': 3, 'mode': 'standard'}` (handles transient failures)
+- Use the same parameter order as discord-publish-bot (endpoint_url first)
+- Verify credentials are correct and have proper permissions
 
 #### Upload Failures
 

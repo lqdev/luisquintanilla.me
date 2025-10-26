@@ -68,31 +68,28 @@ def test_s3_connection():
     # Test configurations
     test_configs = [
         {
-            "name": "Current Configuration (with timeouts)",
-            "config": Config(
-                signature_version='s3v4',
-                s3={'addressing_style': 'virtual'},
-                connect_timeout=60,
-                read_timeout=60,
-                retries={'max_attempts': 3, 'mode': 'standard'}
-            )
-        },
-        {
-            "name": "Original Configuration (without timeouts)",
+            "name": "Discord-Publish-Bot Configuration (Known Working)",
             "config": Config(
                 signature_version='s3v4',
                 s3={'addressing_style': 'virtual'}
-            )
+            ),
+            "param_order": "discord"  # endpoint_url first
+        },
+        {
+            "name": "Original Upload Media Configuration",
+            "config": Config(
+                signature_version='s3v4',
+                s3={'addressing_style': 'virtual'}
+            ),
+            "param_order": "original"  # aws keys first
         },
         {
             "name": "Path-style Addressing",
             "config": Config(
                 signature_version='s3v4',
-                s3={'addressing_style': 'path'},
-                connect_timeout=60,
-                read_timeout=60,
-                retries={'max_attempts': 3, 'mode': 'standard'}
-            )
+                s3={'addressing_style': 'path'}
+            ),
+            "param_order": "discord"
         }
     ]
     
@@ -105,14 +102,26 @@ def test_s3_connection():
         
         try:
             # Initialize S3 client with test configuration
-            s3_client = boto3.client(
-                's3',
-                aws_access_key_id=access_key,
-                aws_secret_access_key=secret_key,
-                endpoint_url=endpoint_url,
-                region_name=region,
-                config=test_config['config']
-            )
+            if test_config.get("param_order") == "discord":
+                # Discord-publish-bot parameter order (endpoint_url first)
+                s3_client = boto3.client(
+                    's3',
+                    endpoint_url=endpoint_url,
+                    aws_access_key_id=access_key,
+                    aws_secret_access_key=secret_key,
+                    region_name=region,
+                    config=test_config['config']
+                )
+            else:
+                # Original parameter order (aws keys first)
+                s3_client = boto3.client(
+                    's3',
+                    aws_access_key_id=access_key,
+                    aws_secret_access_key=secret_key,
+                    endpoint_url=endpoint_url,
+                    region_name=region,
+                    config=test_config['config']
+                )
             
             # Test 1: List buckets
             print("\n📋 Test 1: Listing buckets...")
