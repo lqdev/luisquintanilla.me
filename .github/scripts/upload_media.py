@@ -282,10 +282,152 @@ def extract_direct_media_urls(content):
     return direct_media
 
 
+def find_all_media_positions(content, github_attachments, youtube_urls, direct_media_urls):
+    """
+    Find all media items in the content with their positions.
+    Returns a list of (position, match_text, media_type, data) tuples sorted by position.
+    
+    This is used to replace media items in-place while preserving their order.
+    """
+    media_items = []
+    
+    # Find GitHub attachments
+    for github_url, alt_text in github_attachments:
+        # Pattern 1: Markdown images ![alt](url)
+        markdown_pattern = rf'!\[[^\]]*\]\({re.escape(github_url)}\)'
+        for match in re.finditer(markdown_pattern, content):
+            media_items.append((
+                match.start(),
+                match.group(0),
+                'github_attachment',
+                {'url': github_url, 'alt_text': alt_text}
+            ))
+        
+        # Pattern 2: HTML img tags
+        html_pattern = rf'<img[^>]*src=["\']({re.escape(github_url)})["\'][^>]*>'
+        for match in re.finditer(html_pattern, content):
+            # Skip if already found as markdown
+            if not any(item[0] == match.start() for item in media_items):
+                media_items.append((
+                    match.start(),
+                    match.group(0),
+                    'github_attachment',
+                    {'url': github_url, 'alt_text': alt_text}
+                ))
+        
+        # Pattern 3: Plain URLs
+        # Use word boundaries to avoid matching partial URLs
+        plain_pattern = rf'(?<!["\']){re.escape(github_url)}(?!["\'])'
+        for match in re.finditer(plain_pattern, content):
+            # Skip if already found in other patterns
+            if not any(item[0] == match.start() for item in media_items):
+                media_items.append((
+                    match.start(),
+                    match.group(0),
+                    'github_attachment',
+                    {'url': github_url, 'alt_text': alt_text}
+                ))
+    
+    # Find YouTube URLs
+    for original_url, formatted_markdown, video_id in youtube_urls:
+        # Find plain YouTube URL (not already in markdown)
+        plain_pattern = rf'(?<!["\(]){re.escape(original_url)}(?!["\)])'
+        for match in re.finditer(plain_pattern, content):
+            media_items.append((
+                match.start(),
+                match.group(0),
+                'youtube',
+                {'formatted': formatted_markdown}
+            ))
+    
+    # Find direct media URLs
+    for direct_url, media_type in direct_media_urls:
+        # Find plain URL
+        plain_pattern = rf'(?<!["\(]){re.escape(direct_url)}(?!["\)])'
+        for match in re.finditer(plain_pattern, content):
+            media_items.append((
+                match.start(),
+                match.group(0),
+                'direct_media',
+                {'url': direct_url, 'media_type': media_type}
+            ))
+    
+    # Sort by position (descending, so we can replace from end to start)
+    media_items.sort(key=lambda x: x[0], reverse=True)
+    
+    return media_items
+
+
+def transform_content_preserving_positions(content, url_mapping, youtube_urls, direct_media_urls):
+    """
+    Transform content by replacing media items in-place with their corresponding
+    media blocks or formatted syntax, preserving the original position of each item.
+    
+    Args:
+        content: Original content string
+        url_mapping: dict of {github_url: (permanent_url, alt_text, media_type)}
+        youtube_urls: list of (original_url, formatted_markdown, video_id) tuples
+        direct_media_urls: list of (url, media_type) tuples
+    
+    Returns:
+        Transformed content with media items replaced in-place
+    """
+    # Build list of GitHub attachments from url_mapping
+    github_attachments = [(url, data[1]) for url, data in url_mapping.items()]
+    
+    # Find all media items with their positions
+    media_items = find_all_media_positions(content, github_attachments, youtube_urls, direct_media_urls)
+    
+    # Replace media items from end to start (to maintain string positions)
+    transformed = content
+    for position, match_text, media_type, data in media_items:
+        if media_type == 'github_attachment':
+            # Replace with :::media block
+            github_url = data['url']
+            permanent_url, alt_text, media_type_str = url_mapping[github_url]
+            media_block = f''':::media
+- url: "{permanent_url}"
+  mediaType: "{media_type_str}"
+  aspectRatio: "landscape"
+  caption: "{alt_text}"
+:::media'''
+            transformed = transformed[:position] + media_block + transformed[position + len(match_text):]
+        
+        elif media_type == 'youtube':
+            # Replace with formatted YouTube thumbnail markdown
+            formatted = data['formatted']
+            transformed = transformed[:position] + formatted + transformed[position + len(match_text):]
+        
+        elif media_type == 'direct_media':
+            # Replace with :::media block
+            direct_url = data['url']
+            media_type_str = data['media_type']
+            filename = direct_url.split('/')[-1].split('?')[0]  # Extract filename from URL
+            media_block = f''':::media
+- url: "{direct_url}"
+  mediaType: "{media_type_str}"
+  aspectRatio: "landscape"
+  caption: "{filename}"
+:::media'''
+            transformed = transformed[:position] + media_block + transformed[position + len(match_text):]
+    
+    # Remove ALL remaining img tags (including empty src, malformed HTML, etc.)
+    # This catches GitHub-generated img tags that remain after URL extraction
+    # Examples: <img width=1080 height=463 alt=Image src= />
+    #           <img src="" alt="Image" />
+    transformed = re.sub(r'<img[^>]*>', '', transformed)
+    
+    # Clean up extra whitespace but preserve intentional line breaks
+    transformed = re.sub(r'\n\n\n+', '\n\n', transformed).strip()
+    
+    return transformed
+
+
 def transform_content_to_media_blocks(content, url_mapping):
     """
-    Transform content by replacing GitHub URLs with permanent CDN URLs
-    and converting to :::media blocks.
+    Legacy function for backward compatibility with tests.
+    This function only removes GitHub attachments and img tags.
+    For new code, use transform_content_preserving_positions instead.
     
     url_mapping: dict of {github_url: (permanent_url, alt_text, media_type)}
     """
@@ -451,52 +593,9 @@ def main():
                 print(f"  ❌ Error processing attachment: {e}")
                 sys.exit(1)
     
-    # Transform content to use permanent URLs
+    # Transform content to use permanent URLs and preserve positions
     print("\n🔄 Transforming content...")
-    transformed_content = transform_content_to_media_blocks(content, url_mapping)
-    
-    # Replace YouTube URLs with Markdown thumbnail syntax
-    for original_url, formatted_markdown, video_id in youtube_urls:
-        print(f"🎬 Formatting YouTube URL: {video_id}")
-        transformed_content = transformed_content.replace(original_url, formatted_markdown)
-    
-    # Remove direct media URLs from content (they'll be added as media blocks)
-    for direct_url, media_type in direct_media_urls:
-        print(f"📎 Processing direct {media_type} URL")
-        transformed_content = transformed_content.replace(direct_url, '')
-    
-    # Clean up extra whitespace after removing URLs
-    transformed_content = re.sub(r'\n\n+', '\n\n', transformed_content).strip()
-    
-    # Generate media blocks for uploaded files
-    media_blocks = []
-    for github_url, (permanent_url, alt_text, media_type) in url_mapping.items():
-        # Create media block for each file
-        media_block = f''':::media
-- url: "{permanent_url}"
-  mediaType: "{media_type}"
-  aspectRatio: "landscape"
-  caption: "{alt_text}"
-:::media'''
-        media_blocks.append(media_block)
-    
-    # Generate media blocks for direct media URLs
-    for direct_url, media_type in direct_media_urls:
-        # Create media block for direct URL
-        filename = direct_url.split('/')[-1].split('?')[0]  # Extract filename from URL
-        media_block = f''':::media
-- url: "{direct_url}"
-  mediaType: "{media_type}"
-  aspectRatio: "landscape"
-  caption: "{filename}"
-:::media'''
-        media_blocks.append(media_block)
-    
-    # Combine transformed content with media blocks
-    if transformed_content:
-        final_content = transformed_content + '\n\n' + '\n\n'.join(media_blocks)
-    else:
-        final_content = '\n\n'.join(media_blocks)
+    final_content = transform_content_preserving_positions(content, url_mapping, youtube_urls, direct_media_urls)
     
     # Write transformed content back
     with open(content_file, 'w', encoding='utf-8') as f:
@@ -506,6 +605,7 @@ def main():
     print(f"📊 Uploaded {len(url_mapping)} file(s) to S3")
     print(f"📊 Formatted {len(youtube_urls)} YouTube URL(s)")
     print(f"📊 Created {len(direct_media_urls)} media block(s) for direct URLs")
+    print(f"📊 All media items replaced in-place, preserving original positions")
     print(f"📄 Transformed content written to: {content_file}")
 
 
