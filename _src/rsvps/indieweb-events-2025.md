@@ -1,8 +1,7 @@
 ---
-post_type: "article"
 title: "RSVPs for Upcoming IndieWeb Events"
-description: "Sample post demonstrating RSVP functionality with multiple event responses"
-published_date: "2025-10-26 03:30 -05:00"
+dt_published: "2025-10-26 03:30 -05:00"
+dt_updated: "2025-10-26 03:30 -05:00"
 tags: ["indieweb", "events", "rsvp", "sample"]
 ---
 

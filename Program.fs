@@ -86,6 +86,7 @@ let main argv =
     let notesFeedData = buildNotes()
     let responsesFeedData = buildResponses()
     let bookmarksFeedData = buildBookmarks()
+    let rsvpsFeedData = buildRsvps()
     
     // Create bookmarks landing page using the bookmarks data
     buildBookmarksLandingPage bookmarksFeedData
@@ -104,6 +105,7 @@ let main argv =
         ("notes", GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData)
         ("responses", GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData)
         ("bookmarks", GenericBuilder.UnifiedFeeds.convertBookmarkResponsesToUnified bookmarksFeedData)
+        ("rsvps", GenericBuilder.UnifiedFeeds.convertRsvpsToUnified rsvpsFeedData)
         ("reviews", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
         ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
         ("album-collection", GenericBuilder.UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData)
@@ -115,6 +117,7 @@ let main argv =
         ("notes", GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData)
         ("responses", GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData)
         ("bookmarks", GenericBuilder.UnifiedFeeds.convertBookmarkResponsesToUnified bookmarksFeedData)
+        ("rsvps", GenericBuilder.UnifiedFeeds.convertRsvpsToUnified rsvpsFeedData)
         ("snippets", GenericBuilder.UnifiedFeeds.convertSnippetsToUnified snippetsFeedData)
         ("wiki", GenericBuilder.UnifiedFeeds.convertWikisToUnified wikisFeedData)
         ("presentations", GenericBuilder.UnifiedFeeds.convertPresentationsToUnified presentationsFeedData)

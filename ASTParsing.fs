@@ -224,3 +224,7 @@ let parseResponseFromFile (filePath: string) : Result<ParsedDocument<ResponseDet
 
 let parseBookmarkFromFile (filePath: string) : Result<ParsedDocument<BookmarkDetails>, ParseError> =
     parseDocumentFromFile<BookmarkDetails> filePath
+
+let parseRsvpFromFile (filePath: string) : Result<ParsedDocument<RsvpDetails>, ParseError> =
+    parseDocumentFromFile<RsvpDetails> filePath
+

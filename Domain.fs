@@ -401,6 +401,29 @@ module Domain
         Content: string
     }
 
+    [<CLIMutable>]
+    type RsvpDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="dt_published")>] DatePublished: string        
+        [<YamlMember(Alias="dt_updated")>] DateUpdated: string
+        [<YamlMember(Alias="tags")>] Tags: string array
+    }
+
+    type Rsvp = {
+        FileName: string
+        Metadata: RsvpDetails
+        Content: string
+    }
+    with
+        interface ITaggable with
+            member this.Tags = 
+                if isNull this.Metadata.Tags then [||]
+                else this.Metadata.Tags
+            member this.Title = this.Metadata.Title
+            member this.Date = this.Metadata.DatePublished
+            member this.FileName = this.FileName
+            member this.ContentType = "rsvp"
+
     type TaggedPosts = { Posts:Post array; Notes:Post array; Responses:Response array }
 
     // ITaggable helper functions for unified tag processing
