@@ -370,18 +370,18 @@ module ResumeView =
             emptyText
     
     let private renderContactLinks (links: System.Collections.Generic.Dictionary<string, string>) =
-        let getIconClass (linkName: string) =
+        let getIcon (linkName: string) =
             match linkName.ToLower() with
-            | "email" -> "bi bi-envelope-fill"
-            | "linkedin" -> "bi bi-linkedin"
-            | "github" -> "bi bi-github"
-            | "website" | "portfolio" -> "bi bi-globe"
-            | _ -> "bi bi-link-45deg"
+            | "email" -> "✉️"
+            | "linkedin" -> "💼"
+            | "github" -> "💻"
+            | "website" | "portfolio" -> "🌐"
+            | _ -> "🔗"
         
         div [ _class "contact-links" ] [
             for kvp in links do
                 a [ _href kvp.Value; _target "_blank"; _rel "noopener noreferrer" ] [
-                    span [ _class (getIconClass kvp.Key); _style "margin-right: 8px;" ] []
+                    span [ _style "margin-right: 8px;" ] [ str (getIcon kvp.Key) ]
                     str kvp.Key
                 ]
         ]
