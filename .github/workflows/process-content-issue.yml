@@ -575,45 +575,41 @@ jobs:
           LINODE_STORAGE_BUCKET_NAME: ${{ secrets.LINODE_STORAGE_BUCKET_NAME }}
           LINODE_STORAGE_CUSTOM_DOMAIN: ${{ secrets.LINODE_STORAGE_CUSTOM_DOMAIN }}
         run: |
-          # Save content to temporary file
-          echo "${{ steps.extract-data.outputs.content }}" > /tmp/media_content.txt
+          # Save content to temporary file using printf to preserve special characters
+          printf '%s' "${{ steps.extract-data.outputs.content }}" > /tmp/media_content.txt
           
           # Run upload script using uv (transforms content in place)
+          # The script modifies /tmp/media_content.txt directly
           uv run python .github/scripts/upload_media.py /tmp/media_content.txt
           
-          # Read transformed content
-          TRANSFORMED_CONTENT=$(cat /tmp/media_content.txt)
-          
-          # Set output (escape for GitHub Actions)
-          echo "transformed_content<<EOF" >> $GITHUB_OUTPUT
-          echo "$TRANSFORMED_CONTENT" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          # No need to read and pass through GitHub Actions output
+          # The F# script will read directly from /tmp/media_content.txt
+          # to avoid issues with secret masking in multi-line content
         
       - name: Process issue with F# script
         id: process-issue
         env:
           ISSUE_MEDIA_TYPE: ${{ steps.extract-data.outputs.media_type }}
           ISSUE_TITLE: ${{ steps.extract-data.outputs.title }}
-          ISSUE_CONTENT: ${{ steps.upload-media.outputs.transformed_content }}
           ISSUE_ORIENTATION: ${{ steps.extract-data.outputs.orientation }}
           ISSUE_SLUG: ${{ steps.extract-data.outputs.slug }}
           ISSUE_TAGS: ${{ steps.extract-data.outputs.tags }}
         run: |
-          # Use environment variables to avoid shell escaping issues
           # Create temporary files for safe parameter passing
+          # Content is already in /tmp/media_content.txt from the upload step
           echo "$ISSUE_MEDIA_TYPE" > /tmp/media_type.txt
           echo "$ISSUE_TITLE" > /tmp/title.txt
-          echo "$ISSUE_CONTENT" > /tmp/content.txt
           echo "$ISSUE_ORIENTATION" > /tmp/orientation.txt
           echo "$ISSUE_SLUG" > /tmp/slug.txt
           echo "$ISSUE_TAGS" > /tmp/tags.txt
           
           # Run F# script with file-based parameters
-          OUTPUT=$(dotnet fsi Scripts/process-media-issue.fsx -- "$(cat /tmp/media_type.txt)" "$(cat /tmp/title.txt)" "$(cat /tmp/content.txt)" "$(cat /tmp/orientation.txt)" "$(cat /tmp/slug.txt)" "$(cat /tmp/tags.txt)" 2>&1)
+          # Read content directly from /tmp/media_content.txt to avoid secret masking issues
+          OUTPUT=$(dotnet fsi Scripts/process-media-issue.fsx -- "$(cat /tmp/media_type.txt)" "$(cat /tmp/title.txt)" "$(cat /tmp/media_content.txt)" "$(cat /tmp/orientation.txt)" "$(cat /tmp/slug.txt)" "$(cat /tmp/tags.txt)" 2>&1)
           EXIT_CODE=$?
           
-          # Clean up temporary files
-          rm -f /tmp/media_type.txt /tmp/title.txt /tmp/content.txt /tmp/orientation.txt /tmp/slug.txt /tmp/tags.txt
+          # Clean up temporary files (keep media_content.txt for debugging if needed)
+          rm -f /tmp/media_type.txt /tmp/title.txt /tmp/orientation.txt /tmp/slug.txt /tmp/tags.txt
           
           echo "Script output:"
           echo "$OUTPUT"
