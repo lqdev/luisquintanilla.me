@@ -578,9 +578,8 @@ jobs:
           # Save content to temporary file
           echo "${{ steps.extract-data.outputs.content }}" > /tmp/media_content.txt
           
-          # Run upload script (transforms content in place)
-          source .venv/bin/activate
-          python .github/scripts/upload_media.py /tmp/media_content.txt
+          # Run upload script using uv (transforms content in place)
+          uv run python .github/scripts/upload_media.py /tmp/media_content.txt
           
           # Read transformed content
           TRANSFORMED_CONTENT=$(cat /tmp/media_content.txt)
