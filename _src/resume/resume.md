@@ -27,14 +27,14 @@ start: 2022-01-01
 end: current
 ---
 - .NET AI Libraries
-  - Microsoft Agent Framework
-  - ML.NET
-  - Microsoft.Extensions.AI
-  - Tokenizers
-  - Tensors
+- Microsoft Agent Framework
+- ML.NET
+- Microsoft.Extensions.AI
+- Tokenizers
+- Tensors
 - .NET Data
-  - Microsoft.Extensions.VectorData
-  - Entity Framework
+- Microsoft.Extensions.VectorData
+- Entity Framework
 :::
 
 :::experience
@@ -44,9 +44,9 @@ start: 2019-01-01
 end: 2022-01-01
 ---
 - AI product documentation
-  - ML.NET
-  - .NET for Apache Spark
-  - Azure Machine Learning
+- ML.NET
+- .NET for Apache Spark
+- Azure Machine Learning
 :::
 
 ## Skills & Expertise

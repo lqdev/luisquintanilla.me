@@ -704,7 +704,14 @@ type ResumeBlockParser<'T when 'T :> ContainerBlock and 'T :> ICustomBlock>(bloc
             // If we have content marker and this isn't separator, it's content
             elif block'.RawContent <> "" then
                 let currentContent = block'.RawContent
-                let newContent = if currentContent = " " then lineText else currentContent + "\n" + lineText
+                // Preserve original indentation by accessing the full slice
+                let originalLineText = 
+                    let slice = processor.Line
+                    if slice.Text <> null then
+                        slice.Text.Substring(slice.Start, slice.Length)
+                    else
+                        slice.ToString()
+                let newContent = if currentContent = " " then originalLineText else currentContent + "\n" + originalLineText
                 setContent block' newContent
                 BlockState.Continue
             // Otherwise, it's a field definition
@@ -788,15 +795,17 @@ type EducationBlockParser() =
 type ResumeBlockExtension() =
     interface IMarkdownExtension with
         member _.Setup(pipeline: MarkdownPipelineBuilder) =
-            // Add parsers to the pipeline
-            if not (pipeline.BlockParsers.Contains<ExperienceBlockParser>()) then
-                pipeline.BlockParsers.Add(ExperienceBlockParser())
-            if not (pipeline.BlockParsers.Contains<ProjectBlockParser>()) then
-                pipeline.BlockParsers.Add(ProjectBlockParser())
-            if not (pipeline.BlockParsers.Contains<SkillsBlockParser>()) then
-                pipeline.BlockParsers.Add(SkillsBlockParser())
-            if not (pipeline.BlockParsers.Contains<TestimonialBlockParser>()) then
-                pipeline.BlockParsers.Add(TestimonialBlockParser())
+            // Insert parsers at index 0 for proper priority (same pattern as other custom blocks)
+            // Note: Inserting at index 0 means later insertions appear first in the parser list,
+            // so we insert in reverse order of desired evaluation priority
             if not (pipeline.BlockParsers.Contains<EducationBlockParser>()) then
-                pipeline.BlockParsers.Add(EducationBlockParser())
+                pipeline.BlockParsers.Insert(0, EducationBlockParser())
+            if not (pipeline.BlockParsers.Contains<TestimonialBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, TestimonialBlockParser())
+            if not (pipeline.BlockParsers.Contains<SkillsBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, SkillsBlockParser())
+            if not (pipeline.BlockParsers.Contains<ProjectBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, ProjectBlockParser())
+            if not (pipeline.BlockParsers.Contains<ExperienceBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, ExperienceBlockParser())
         member _.Setup(_pipeline, _renderer) = ()
