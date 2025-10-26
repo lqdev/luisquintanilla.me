@@ -27,7 +27,7 @@ https://cdn.lqdev.tech/files/images/20251026_214154_4e8bfb4a-3a33-4ad9-a28c-d17c
     
     # Before fix (wrong)
     print("\n" + "-" * 100)
-    print("❌ BEFORE FIX (PR #694 - WRONG - Media at End):")
+    print("❌ BEFORE FIX (WRONG - Media at End):")
     print("-" * 100)
     before_fix = '''Here is another post
 
@@ -110,5 +110,7 @@ And direct links
     print("End of Visual Demonstration")
     print("=" * 100 + "\n")
 
+
 if __name__ == '__main__':
     main()
+
