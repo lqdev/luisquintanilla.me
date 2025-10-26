@@ -271,13 +271,13 @@ def transform_content_to_media_blocks(content, url_mapping):
     
     # Remove all GitHub attachment references
     for github_url in url_mapping.keys():
-        # Remove markdown images
+        # Remove markdown images with this GitHub URL
         transformed = re.sub(
             rf'!\[[^\]]*\]\({re.escape(github_url)}\)',
             '',
             transformed
         )
-        # Remove HTML img tags
+        # Remove HTML img tags with this specific GitHub URL
         transformed = re.sub(
             rf'<img[^>]*src=["\']({re.escape(github_url)})["\'][^>]*>',
             '',
@@ -285,6 +285,12 @@ def transform_content_to_media_blocks(content, url_mapping):
         )
         # Remove plain URLs
         transformed = transformed.replace(github_url, '')
+    
+    # Remove ALL remaining img tags (including empty src, malformed HTML, etc.)
+    # This catches GitHub-generated img tags that remain after URL extraction
+    # Examples: <img width=1080 height=463 alt=Image src= />
+    #           <img src="" alt="Image" />
+    transformed = re.sub(r'<img[^>]*>', '', transformed)
     
     # Clean up extra whitespace
     transformed = re.sub(r'\n\n+', '\n\n', transformed).strip()
