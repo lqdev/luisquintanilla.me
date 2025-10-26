@@ -183,12 +183,12 @@ def extract_github_attachments(content):
 
 def extract_and_format_youtube_urls(content):
     """
-    Extract YouTube URLs and convert them to thumbnail syntax.
+    Extract YouTube URLs and convert them to Markdown thumbnail syntax.
     
     Input:  https://youtube.com/watch?v=abc123
-    Output: <a href="https://youtube.com/watch?v=abc123"><img src="http://img.youtube.com/vi/abc123/0.jpg"></a>
+    Output: [![Video](http://img.youtube.com/vi/abc123/0.jpg)](https://youtube.com/watch?v=abc123 "Video")
     
-    Returns list of (original_url, formatted_html, video_id) tuples.
+    Returns list of (original_url, formatted_markdown, video_id) tuples.
     """
     youtube_urls = []
     
@@ -207,13 +207,56 @@ def extract_and_format_youtube_urls(content):
             if any(url == existing_url for existing_url, _, _ in youtube_urls):
                 continue
             
-            # Generate thumbnail HTML
+            # Generate Markdown thumbnail syntax
             thumbnail_url = f"http://img.youtube.com/vi/{video_id}/0.jpg"
-            formatted_html = f'<a href="{url}"><img src="{thumbnail_url}"></a>'
+            formatted_markdown = f'[![Video]({thumbnail_url})]({url} "Video")'
             
-            youtube_urls.append((url, formatted_html, video_id))
+            youtube_urls.append((url, formatted_markdown, video_id))
     
     return youtube_urls
+
+
+def extract_direct_media_urls(content):
+    """
+    Extract direct media URLs (images, videos, audio) that are not GitHub attachments.
+    These will be wrapped in :::media blocks.
+    
+    Detects URLs ending with common media extensions.
+    
+    Returns list of (url, media_type) tuples.
+    """
+    direct_media = []
+    
+    # Media file extensions by type
+    image_extensions = r'\.(jpg|jpeg|png|gif|webp|bmp|svg|ico)'
+    video_extensions = r'\.(mp4|webm|mov|avi|mkv|flv|wmv|m4v)'
+    audio_extensions = r'\.(mp3|wav|ogg|m4a|flac|aac|wma)'
+    
+    # Pattern for direct media URLs (not GitHub attachments)
+    # Must be a complete URL and not already part of markdown image syntax
+    patterns = [
+        (rf'https?://(?!github\.com/user-attachments)[^\s<>\[\]()]+{image_extensions}', 'image'),
+        (rf'https?://(?!github\.com/user-attachments)[^\s<>\[\]()]+{video_extensions}', 'video'),
+        (rf'https?://(?!github\.com/user-attachments)[^\s<>\[\]()]+{audio_extensions}', 'audio'),
+    ]
+    
+    for pattern, media_type in patterns:
+        for match in re.finditer(pattern, content, re.IGNORECASE):
+            url = match.group(0)
+            
+            # Skip if already found
+            if any(url == existing_url for existing_url, _ in direct_media):
+                continue
+            
+            # Check if URL is already wrapped in markdown image syntax
+            # Look for ![...](...url...)
+            markdown_img_pattern = rf'!\[[^\]]*\]\([^)]*{re.escape(url)}[^)]*\)'
+            if re.search(markdown_img_pattern, content):
+                continue
+            
+            direct_media.append((url, media_type))
+    
+    return direct_media
 
 
 def transform_content_to_media_blocks(content, url_mapping):
@@ -268,8 +311,12 @@ def main():
     print("🔍 Extracting YouTube URLs...")
     youtube_urls = extract_and_format_youtube_urls(content)
     
-    if not attachments and not youtube_urls:
-        print("ℹ️  No GitHub attachments or YouTube URLs found. Skipping processing.")
+    # Extract direct media URLs (non-GitHub, non-YouTube)
+    print("🔍 Extracting direct media URLs...")
+    direct_media_urls = extract_direct_media_urls(content)
+    
+    if not attachments and not youtube_urls and not direct_media_urls:
+        print("ℹ️  No GitHub attachments, YouTube URLs, or direct media URLs found. Skipping processing.")
         # Write original content back (no transformation needed)
         with open(content_file, 'w', encoding='utf-8') as f:
             f.write(content)
@@ -277,6 +324,7 @@ def main():
     
     print(f"✅ Found {len(attachments)} GitHub attachment(s)")
     print(f"✅ Found {len(youtube_urls)} YouTube URL(s)")
+    print(f"✅ Found {len(direct_media_urls)} direct media URL(s)")
     
     # Process GitHub attachments (upload to S3)
     url_mapping = {}
@@ -351,10 +399,18 @@ def main():
     print("\n🔄 Transforming content...")
     transformed_content = transform_content_to_media_blocks(content, url_mapping)
     
-    # Replace YouTube URLs with thumbnail syntax
-    for original_url, formatted_html, video_id in youtube_urls:
+    # Replace YouTube URLs with Markdown thumbnail syntax
+    for original_url, formatted_markdown, video_id in youtube_urls:
         print(f"🎬 Formatting YouTube URL: {video_id}")
-        transformed_content = transformed_content.replace(original_url, formatted_html)
+        transformed_content = transformed_content.replace(original_url, formatted_markdown)
+    
+    # Remove direct media URLs from content (they'll be added as media blocks)
+    for direct_url, media_type in direct_media_urls:
+        print(f"📎 Processing direct {media_type} URL")
+        transformed_content = transformed_content.replace(direct_url, '')
+    
+    # Clean up extra whitespace after removing URLs
+    transformed_content = re.sub(r'\n\n+', '\n\n', transformed_content).strip()
     
     # Generate media blocks for uploaded files
     media_blocks = []
@@ -365,6 +421,18 @@ def main():
   mediaType: "{media_type}"
   aspectRatio: "landscape"
   caption: "{alt_text}"
+:::media'''
+        media_blocks.append(media_block)
+    
+    # Generate media blocks for direct media URLs
+    for direct_url, media_type in direct_media_urls:
+        # Create media block for direct URL
+        filename = direct_url.split('/')[-1].split('?')[0]  # Extract filename from URL
+        media_block = f''':::media
+- url: "{direct_url}"
+  mediaType: "{media_type}"
+  aspectRatio: "landscape"
+  caption: "{filename}"
 :::media'''
         media_blocks.append(media_block)
     
@@ -381,6 +449,7 @@ def main():
     print("\n✅ Media upload and transformation complete!")
     print(f"📊 Uploaded {len(url_mapping)} file(s) to S3")
     print(f"📊 Formatted {len(youtube_urls)} YouTube URL(s)")
+    print(f"📊 Created {len(direct_media_urls)} media block(s) for direct URLs")
     print(f"📄 Transformed content written to: {content_file}")
 
 

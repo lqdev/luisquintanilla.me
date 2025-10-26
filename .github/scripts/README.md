@@ -8,7 +8,7 @@ Python script that handles media file uploads from GitHub Issue Forms to Linode 
 
 ### Purpose
 
-When creating media posts via GitHub Issue Forms, users can upload files and include video URLs that are automatically processed:
+When creating media posts via GitHub Issue Forms, users can upload files and include media URLs that are automatically processed:
 
 **For uploaded files (GitHub attachments):**
 1. Downloads from GitHub's temporary storage
@@ -17,10 +17,16 @@ When creating media posts via GitHub Issue Forms, users can upload files and inc
 4. Creates `:::media` blocks for the site generator
 
 **For YouTube URLs:**
-- Automatically converted to clickable thumbnail format
-- Format: `<a href="VIDEO_URL"><img src="THUMBNAIL_URL"></a>`
+- Automatically converted to Markdown clickable thumbnail format
+- Format: `[![Video](THUMBNAIL_URL)](VIDEO_URL "Video")`
 - Enables easy mobile publishing without manual formatting
 - Uses YouTube's thumbnail service for preview images
+
+**For direct media URLs (non-GitHub, non-YouTube):**
+- Detects direct URLs to images, videos, and audio files
+- Wraps them in `:::media` blocks for proper rendering
+- Overcomes GitHub file size and type restrictions
+- Supports any publicly accessible media URL
 
 ### Supported Upload Formats
 
@@ -29,13 +35,18 @@ When creating media posts via GitHub Issue Forms, users can upload files and inc
 - HTML img tags: `<img src="url" alt="alt">` (from drag-and-drop/paste)
 - Plain URLs: `https://github.com/user-attachments/assets/...`
 
-**YouTube URLs (converted to thumbnail format):**
+**YouTube URLs (converted to Markdown thumbnail format):**
 - `https://www.youtube.com/watch?v=VIDEO_ID`
 - `https://youtu.be/VIDEO_ID`
 
-**Other URLs (left unchanged):**
-- Vimeo and other video platform URLs remain in content
-- External image URLs remain in content
+**Direct Media URLs (wrapped in :::media blocks):**
+- Images: `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`, `.bmp`, `.svg`, `.ico`
+- Videos: `.mp4`, `.webm`, `.mov`, `.avi`, `.mkv`, `.flv`, `.wmv`, `.m4v`
+- Audio: `.mp3`, `.wav`, `.ogg`, `.m4a`, `.flac`, `.aac`, `.wma`
+
+**Other URLs:**
+- Vimeo and other video platform URLs remain unchanged
+- URLs without media extensions remain unchanged
 
 ### Usage
 
@@ -125,7 +136,7 @@ My vacation photo:
 :::media
 ```
 
-**Example 3: YouTube URL (automatic thumbnail formatting)**
+**Example 3: YouTube URL (Markdown thumbnail formatting)**
 
 **Input:**
 ```markdown
@@ -140,12 +151,48 @@ Really interesting content!
 ```markdown
 Check out this video:
 
-<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="http://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg"></a>
+[![Video](http://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ "Video")
 
 Really interesting content!
 ```
 
-*Note: YouTube URLs are automatically converted to clickable thumbnail format for easy mobile publishing.*
+*Note: YouTube URLs are automatically converted to Markdown clickable thumbnail format for easy mobile publishing.*
+
+**Example 4: Direct media URL (wrapped in :::media block)**
+
+**Input:**
+```markdown
+Check out this diagram:
+
+https://example.com/architecture-diagram.png
+
+And this tutorial video:
+
+https://example.com/tutorial.mp4
+```
+
+**Output:**
+```markdown
+Check out this diagram:
+
+And this tutorial video:
+
+:::media
+- url: "https://example.com/architecture-diagram.png"
+  mediaType: "image"
+  aspectRatio: "landscape"
+  caption: "architecture-diagram.png"
+:::media
+
+:::media
+- url: "https://example.com/tutorial.mp4"
+  mediaType: "video"
+  aspectRatio: "landscape"
+  caption: "tutorial.mp4"
+:::media
+```
+
+*Note: Direct media URLs are detected by file extension and wrapped in :::media blocks. This overcomes GitHub file size and type restrictions.*
 
 ### Integration
 
