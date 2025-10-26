@@ -555,12 +555,47 @@ jobs:
       - name: Build F# project
         run: dotnet build --no-restore
         
+      - name: Install uv (Python package manager)
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: "latest"
+          
+      - name: Setup Python environment
+        run: uv venv
+        
+      - name: Install Python dependencies
+        run: uv pip install boto3 requests
+        
+      - name: Upload media to Linode S3
+        id: upload-media
+        env:
+          LINODE_STORAGE_ACCESS_KEY_ID: ${{ secrets.LINODE_STORAGE_ACCESS_KEY_ID }}
+          LINODE_STORAGE_SECRET_ACCESS_KEY: ${{ secrets.LINODE_STORAGE_SECRET_ACCESS_KEY }}
+          LINODE_STORAGE_ENDPOINT_URL: ${{ secrets.LINODE_STORAGE_ENDPOINT_URL }}
+          LINODE_STORAGE_BUCKET_NAME: ${{ secrets.LINODE_STORAGE_BUCKET_NAME }}
+          LINODE_STORAGE_CUSTOM_DOMAIN: ${{ secrets.LINODE_STORAGE_CUSTOM_DOMAIN }}
+        run: |
+          # Save content to temporary file
+          echo "${{ steps.extract-data.outputs.content }}" > /tmp/media_content.txt
+          
+          # Run upload script (transforms content in place)
+          source .venv/bin/activate
+          python .github/scripts/upload_media.py /tmp/media_content.txt
+          
+          # Read transformed content
+          TRANSFORMED_CONTENT=$(cat /tmp/media_content.txt)
+          
+          # Set output (escape for GitHub Actions)
+          echo "transformed_content<<EOF" >> $GITHUB_OUTPUT
+          echo "$TRANSFORMED_CONTENT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+        
       - name: Process issue with F# script
         id: process-issue
         env:
           ISSUE_MEDIA_TYPE: ${{ steps.extract-data.outputs.media_type }}
           ISSUE_TITLE: ${{ steps.extract-data.outputs.title }}
-          ISSUE_CONTENT: ${{ steps.extract-data.outputs.content }}
+          ISSUE_CONTENT: ${{ steps.upload-media.outputs.transformed_content }}
           ISSUE_ORIENTATION: ${{ steps.extract-data.outputs.orientation }}
           ISSUE_SLUG: ${{ steps.extract-data.outputs.slug }}
           ISSUE_TAGS: ${{ steps.extract-data.outputs.tags }}
