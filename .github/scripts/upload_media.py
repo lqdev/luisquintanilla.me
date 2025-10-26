@@ -223,6 +223,7 @@ def extract_direct_media_urls(content):
     These will be wrapped in :::media blocks.
     
     Detects URLs ending with common media extensions.
+    Excludes URLs already in :::media blocks.
     
     Returns list of (url, media_type) tuples.
     """
@@ -255,6 +256,27 @@ def extract_direct_media_urls(content):
             if re.search(markdown_img_pattern, content):
                 continue
             
+            # Check if URL is already in a :::media block
+            # Look for :::media...url: "..."...:::media
+            # Use specific pattern to match media blocks efficiently
+            media_block_start = content.find(':::media')
+            while media_block_start != -1:
+                media_block_end = content.find(':::media', media_block_start + 8)
+                if media_block_end == -1:
+                    break
+                media_block = content[media_block_start:media_block_end + 8]
+                if url in media_block:
+                    # URL is already in a media block, skip it
+                    break
+                media_block_start = content.find(':::media', media_block_end + 8)
+            else:
+                # URL not found in any media block
+                direct_media.append((url, media_type))
+                continue
+            
+            # If we broke out of the while loop, URL was found in a media block
+            continue
+            
             direct_media.append((url, media_type))
     
     return direct_media
@@ -271,13 +293,13 @@ def transform_content_to_media_blocks(content, url_mapping):
     
     # Remove all GitHub attachment references
     for github_url in url_mapping.keys():
-        # Remove markdown images
+        # Remove markdown images with this GitHub URL
         transformed = re.sub(
             rf'!\[[^\]]*\]\({re.escape(github_url)}\)',
             '',
             transformed
         )
-        # Remove HTML img tags
+        # Remove HTML img tags with this specific GitHub URL
         transformed = re.sub(
             rf'<img[^>]*src=["\']({re.escape(github_url)})["\'][^>]*>',
             '',
@@ -285,6 +307,12 @@ def transform_content_to_media_blocks(content, url_mapping):
         )
         # Remove plain URLs
         transformed = transformed.replace(github_url, '')
+    
+    # Remove ALL remaining img tags (including empty src, malformed HTML, etc.)
+    # This catches GitHub-generated img tags that remain after URL extraction
+    # Examples: <img width=1080 height=463 alt=Image src= />
+    #           <img src="" alt="Image" />
+    transformed = re.sub(r'<img[^>]*>', '', transformed)
     
     # Clean up extra whitespace
     transformed = re.sub(r'\n\n+', '\n\n', transformed).strip()
@@ -317,10 +345,23 @@ def main():
     direct_media_urls = extract_direct_media_urls(content)
     
     if not attachments and not youtube_urls and not direct_media_urls:
-        print("ℹ️  No GitHub attachments, YouTube URLs, or direct media URLs found. Skipping processing.")
-        # Write original content back (no transformation needed)
+        print("ℹ️  No GitHub attachments, YouTube URLs, or direct media URLs found.")
+        
+        # However, we still need to clean up any leftover img tags
+        # (e.g., from GitHub drag-and-drop that had src extracted already)
+        cleaned_content = content
+        
+        # Remove any remaining img tags (including empty src, malformed HTML, etc.)
+        img_count_before = len(re.findall(r'<img[^>]*>', cleaned_content))
+        if img_count_before > 0:
+            print(f"🧹 Cleaning up {img_count_before} leftover img tag(s)...")
+            cleaned_content = re.sub(r'<img[^>]*>', '', cleaned_content)
+            cleaned_content = re.sub(r'\n\n+', '\n\n', cleaned_content).strip()
+            print("✅ Cleanup complete")
+        
+        # Write cleaned content back
         with open(content_file, 'w', encoding='utf-8') as f:
-            f.write(content)
+            f.write(cleaned_content)
         sys.exit(0)
     
     print(f"✅ Found {len(attachments)} GitHub attachment(s)")
