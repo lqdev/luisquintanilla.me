@@ -209,13 +209,14 @@ Dependencies are installed via `uv` in the GitHub Actions workflow.
 
 The script is configured to work with Linode Object Storage (S3-compatible) using the exact same configuration as the discord-publish-bot (which works successfully):
 
+- **boto3 Version**: Uses boto3==1.34.0 and botocore==1.34.0 (same versions as discord-publish-bot)
 - **Region Detection**: Automatically extracts region from endpoint URL (e.g., `us-east-1` from `https://us-east-1.linodeobjects.com`)
 - **Signature Version**: Uses `s3v4` for compatibility with Linode
 - **Addressing Style**: Virtual-hosted style addressing for proper URL formation
 - **Parameter Order**: Uses `endpoint_url` first, matching discord-publish-bot implementation
 - **boto3 Config**: Properly configured via `botocore.config.Config` for S3-compatible storage
 
-This configuration matches the working discord-publish-bot implementation. The key is using the same parameter order and configuration structure that has been proven to work.
+This configuration matches the working discord-publish-bot implementation exactly, including using the same boto3/botocore versions to ensure consistent behavior.
 
 ### Troubleshooting
 

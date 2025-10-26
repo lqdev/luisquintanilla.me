@@ -24,7 +24,7 @@ jobs:
           
       - name: Install dependencies
         run: |
-          pip install boto3 requests
+          pip install boto3==1.34.0 botocore==1.34.0 requests
           
       - name: Test S3 Connection
         env:

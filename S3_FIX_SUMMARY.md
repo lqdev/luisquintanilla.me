@@ -14,9 +14,16 @@ After reviewing the working discord-publish-bot repository (as suggested by @lqd
 
 ## Solution Applied
 
-### 1. Match Discord-Publish-Bot Configuration
-Changed boto3 client initialization to exactly match the working discord-publish-bot:
+### 1. Match Discord-Publish-Bot Configuration Exactly
+Changed boto3 client initialization and dependencies to exactly match the working discord-publish-bot:
 
+**boto3/botocore Versions:**
+```yaml
+# GitHub Actions workflow
+uv pip install boto3==1.34.0 botocore==1.34.0 requests
+```
+
+**S3 Client Configuration:**
 ```python
 # Discord-publish-bot configuration (WORKING)
 s3_client = boto3.client(
@@ -35,10 +42,14 @@ s3_client = boto3.client(
 ```
 
 **Key Changes:**
-1. Use `endpoint_url` as first parameter (matching discord-publish-bot order)
-2. Use inline Config definition (matching discord-publish-bot structure)
-3. Remove timeout and retry parameters that were added in previous attempt
-4. Keep it simple and match exactly what works
+1. Pin boto3==1.34.0 and botocore==1.34.0 (same as discord-publish-bot)
+2. Use `endpoint_url` as first parameter (matching discord-publish-bot order)
+3. Use inline Config definition (matching discord-publish-bot structure)
+4. Remove timeout and retry parameters that were added in previous attempt
+5. Keep it simple and match exactly what works
+
+### Why Version Pinning Matters
+Discord-publish-bot uses specific versions of boto3 (1.34.0) and botocore (1.34.0). Newer versions may have different default behaviors or breaking changes. By pinning to the same versions, we ensure identical behavior.
 
 ### 2. Previous Attempt Analysis
 Initial fix attempt added connection timeouts and retry configuration:
