@@ -391,5 +391,22 @@
 			"",
 			"$0"
 		]
+	},
+	"RSVP custom block": {
+		"scope": "markdown",
+		"prefix": "rsvp",
+		"body": [
+			":::rsvp",
+			"event_name: \"$1\"",
+			"event_url: \"$2\"",
+			"event_date: \"$3\"",
+			"rsvp_status: \"$4\"",
+			"event_location: \"$5\"",
+			"notes: \"$6\"",
+			":::",
+			"",
+			"$0"
+		],
+		"description": "RSVP custom block for event responses"
 	}
 }

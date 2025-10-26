@@ -77,6 +77,7 @@ let private extractTextContentFromAst (doc: MarkdownDocument) : string =
     // Add custom block renderers to ensure proper rendering
     renderer.ObjectRenderers.Add(MediaBlockHtmlRenderer())
     renderer.ObjectRenderers.Add(ReviewBlockHtmlRenderer())
+    renderer.ObjectRenderers.Add(RsvpBlockHtmlRenderer())
     
     // Render all blocks including custom blocks
     for block in doc do
