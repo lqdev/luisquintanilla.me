@@ -204,3 +204,63 @@ This script is called by the `process-content-issue.yml` workflow as part of the
 - `requests` - HTTP library for downloading files
 
 Dependencies are installed via `uv` in the GitHub Actions workflow.
+
+### S3 Configuration
+
+The script is configured to work with Linode Object Storage (S3-compatible):
+
+- **Region Detection**: Automatically extracts region from endpoint URL (e.g., `us-east-1` from `https://us-east-1.linodeobjects.com`)
+- **Signature Version**: Uses `s3v4` for compatibility with Linode
+- **Addressing Style**: Virtual-hosted style addressing for proper URL formation
+- **boto3 Config**: Properly configured via `botocore.config.Config` for S3-compatible storage
+
+This configuration is required for boto3 to successfully connect to Linode Object Storage. Without it, you may see connection errors like "Connection was closed before we received a valid response from endpoint URL".
+
+### Troubleshooting
+
+#### S3 Connection Errors
+
+**Error**: `Connection was closed before we received a valid response from endpoint URL`
+
+**Causes**:
+- Missing `region_name` parameter in boto3 client initialization
+- Missing or incorrect boto3 Config settings
+- Invalid endpoint URL format
+- Incorrect credentials
+
+**Solutions**:
+- Verify endpoint URL format: `https://REGION.linodeobjects.com` (e.g., `https://us-east-1.linodeobjects.com`)
+- Ensure all required environment variables are set
+- Check that region is being extracted correctly from endpoint URL
+- Verify boto3 Config includes `signature_version='s3v4'` and `addressing_style='virtual'`
+
+#### Upload Failures
+
+**Error**: `Error processing attachment: <various boto3 errors>`
+
+**Common causes**:
+- Invalid S3 credentials
+- Incorrect bucket name
+- Missing bucket permissions
+- Bucket does not exist
+
+**Solutions**:
+- Verify all secrets are correctly configured in GitHub repository settings
+- Check bucket exists and is accessible with provided credentials
+- Ensure bucket has proper CORS and ACL settings for public-read access
+- Test credentials using AWS CLI or boto3 directly
+
+#### No Attachments Detected
+
+**Issue**: Script reports "No GitHub attachments found" but files were uploaded
+
+**Causes**:
+- GitHub Issue Form content not in expected format
+- Files uploaded but markdown not generated
+- Unsupported markdown syntax
+
+**Solutions**:
+- Ensure files are dragged into the "Content and Attachments" field
+- Check that GitHub generated proper markdown (should see `![filename](url)` or `<img src="url">`)
+- Review workflow logs to see actual issue content
+- Verify attachment URLs match expected patterns (`https://github.com/user-attachments/...`)
