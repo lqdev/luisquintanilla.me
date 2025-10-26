@@ -564,7 +564,7 @@ jobs:
         run: uv venv
         
       - name: Install Python dependencies
-        run: uv pip install boto3 requests
+        run: uv pip install boto3==1.34.0 botocore==1.34.0 requests
         
       - name: Upload media to Linode S3
         id: upload-media

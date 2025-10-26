@@ -354,18 +354,19 @@ def main():
         region = parsed_endpoint.hostname.split('.')[0] if parsed_endpoint.hostname else 'us-east-1'
         
         # Configure boto3 for S3-compatible storage (Linode Object Storage)
-        s3_config = Config(
-            signature_version='s3v4',
-            s3={'addressing_style': 'virtual'}
-        )
-        
+        # Using exact configuration from discord-publish-bot which is known to work
         s3_client = boto3.client(
             's3',
+            endpoint_url=endpoint_url,
             aws_access_key_id=access_key,
             aws_secret_access_key=secret_key,
-            endpoint_url=endpoint_url,
             region_name=region,
-            config=s3_config
+            config=Config(
+                signature_version='s3v4',
+                s3={
+                    'addressing_style': 'virtual'
+                }
+            )
         )
         
         # Process each attachment
