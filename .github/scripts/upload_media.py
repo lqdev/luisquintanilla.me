@@ -258,9 +258,24 @@ def extract_direct_media_urls(content):
             
             # Check if URL is already in a :::media block
             # Look for :::media...url: "..."...:::media
-            media_block_pattern = r':::media.*?' + re.escape(url) + r'.*?:::media'
-            if re.search(media_block_pattern, content, re.DOTALL):
+            # Use specific pattern to match media blocks efficiently
+            media_block_start = content.find(':::media')
+            while media_block_start != -1:
+                media_block_end = content.find(':::media', media_block_start + 8)
+                if media_block_end == -1:
+                    break
+                media_block = content[media_block_start:media_block_end + 8]
+                if url in media_block:
+                    # URL is already in a media block, skip it
+                    break
+                media_block_start = content.find(':::media', media_block_end + 8)
+            else:
+                # URL not found in any media block
+                direct_media.append((url, media_type))
                 continue
+            
+            # If we broke out of the while loop, URL was found in a media block
+            continue
             
             direct_media.append((url, media_type))
     

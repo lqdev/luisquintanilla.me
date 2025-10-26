@@ -15,31 +15,20 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '.github', 'scr
 
 def test_issue_688_scenario():
     """
-    Test the exact scenario from issue #688 and PR #690
+    Test the exact scenario from issue #688
     
-    Original problem content:
-    ```
-    My post
-
-    <img width=1080 height=463 alt=Image src= />
-
-    :::media
-    - url: "https://cdn.lqdev.tech/files/images/20251026_214154_4e8bfb4a-3a33-4ad9-a28c-d17c60fa3615.jpg"
-      mediaType: "image"
-      aspectRatio: "landscape"
-      caption: "media"
-    :::media
-    ```
+    Original problem content had an img tag with empty src that remained
+    after the Python script processed the GitHub attachments.
     
     Expected behavior: The <img> tag should be removed
     """
     
     print("=" * 80)
-    print("Testing Issue #688/#690 Scenario")
+    print("Testing Issue #688 Scenario")
     print("=" * 80)
     print()
     
-    # This is the exact content that was in the original PR commit
+    # This is example content showing the problem from issue #688
     original_content = '''My post
 
 <img width=1080 height=463 alt=Image src= />
@@ -51,7 +40,7 @@ def test_issue_688_scenario():
   caption: "media"
 :::media'''
     
-    print("Original content (from PR #690 commit):")
+    print("Original content (demonstrating issue #688):")
     print("-" * 80)
     print(original_content)
     print("-" * 80)
