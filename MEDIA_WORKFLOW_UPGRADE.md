@@ -70,33 +70,24 @@ Media files are organized by type and date:
 bucket/
 └── files/
     ├── images/
-    │   └── 2025/
-    │       └── 10/
-    │           └── 26/
-    │               ├── sunset.jpg
-    │               └── beach-photo.jpg
+    │   ├── 20251026_140530_sunset.jpg
+    │   └── 20251026_141205_beach-photo.jpg
     ├── videos/
-    │   └── 2025/
-    │       └── 10/
-    │           └── 26/
-    │               └── demo-video.mp4
+    │   └── 20251026_142015_demo-video.mp4
     └── audio/
-        └── 2025/
-            └── 10/
-                └── 26/
-                    └── podcast-episode.mp3
+        └── 20251026_143020_podcast-episode.mp3
 ```
 
 ## CDN URL Structure
 
 With custom domain configured:
 ```
-https://cdn.luisquintanilla.me/files/images/2025/10/26/sunset.jpg
+https://cdn.luisquintanilla.me/files/images/20251026_140530_sunset.jpg
 ```
 
 Without custom domain:
 ```
-https://bucket-name.us-east-1.linodeobjects.com/files/images/2025/10/26/sunset.jpg
+https://bucket-name.us-east-1.linodeobjects.com/files/images/20251026_140530_sunset.jpg
 ```
 
 ## Content Transformation Example
@@ -124,7 +115,7 @@ Here's my photo:
 Beautiful evening!
 
 :::media
-- url: "https://cdn.luisquintanilla.me/files/images/2025/10/26/sunset.jpg"
+- url: "https://cdn.luisquintanilla.me/files/images/20251026_140530_sunset.jpg"
   mediaType: "image"
   aspectRatio: "landscape"
   caption: "sunset.jpg"
@@ -135,10 +126,11 @@ Beautiful evening!
 
 1. **Permanent Storage**: Files hosted on Linode S3, not GitHub's temporary storage
 2. **CDN Performance**: Custom domain support for optimal delivery
-3. **Organized Structure**: Date-based folders make management easy
+3. **Organized Structure**: Timestamp-prefixed filenames ensure chronological ordering and prevent conflicts
 4. **Automatic Processing**: No manual upload or URL management needed
 5. **Clean Separation**: Python handles uploads, F# handles markdown generation
 6. **Type Detection**: Automatic detection of images, videos, audio
+7. **Consistency**: Same structure as Discord bot uploads for unified media management
 7. **Maintainable**: Clear separation of concerns, well-documented code
 
 ## Environment Configuration

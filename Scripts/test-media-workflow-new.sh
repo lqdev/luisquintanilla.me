@@ -23,7 +23,7 @@ CONTENT1='Here is my photo:
 Beautiful evening!
 
 :::media
-- url: "https://cdn.luisquintanilla.me/files/images/2025/10/26/sunset.jpg"
+- url: "https://cdn.luisquintanilla.me/files/images/20251026_140530_sunset.jpg"
   mediaType: "image"
   aspectRatio: "landscape"
   caption: "sunset.jpg"
@@ -71,14 +71,14 @@ echo "🧪 Test 2: Multiple media blocks"
 CONTENT2='My collection:
 
 :::media
-- url: "https://cdn.luisquintanilla.me/files/images/2025/10/26/photo1.jpg"
+- url: "https://cdn.luisquintanilla.me/files/images/20251026_140530_photo1.jpg"
   mediaType: "image"
   aspectRatio: "landscape"
   caption: "photo1.jpg"
 :::media
 
 :::media
-- url: "https://cdn.luisquintanilla.me/files/videos/2025/10/26/video1.mp4"
+- url: "https://cdn.luisquintanilla.me/files/videos/20251026_140531_video1.mp4"
   mediaType: "video"
   aspectRatio: "landscape"
   caption: "video1.mp4"
@@ -113,7 +113,7 @@ echo
 # Test 3: Frontmatter generation
 echo "🧪 Test 3: Frontmatter generation"
 CONTENT3=':::media
-- url: "https://cdn.luisquintanilla.me/files/images/2025/10/26/test.jpg"
+- url: "https://cdn.luisquintanilla.me/files/images/20251026_140532_test.jpg"
   mediaType: "image"
   aspectRatio: "portrait"
   caption: "test.jpg"

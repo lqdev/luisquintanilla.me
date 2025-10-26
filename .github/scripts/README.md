@@ -35,13 +35,19 @@ Required environment variables (set as GitHub Secrets):
 
 ### File Organization
 
-Uploaded files are organized by media type and date:
+Uploaded files are organized by media type with timestamp-prefixed filenames:
 
 ```
-/files/images/YYYY/MM/DD/filename.jpg
-/files/videos/YYYY/MM/DD/filename.mp4
-/files/audio/YYYY/MM/DD/filename.mp3
+/files/images/20251026_140530_filename.jpg
+/files/videos/20251026_140530_filename.mp4
+/files/audio/20251026_140530_filename.mp3
 ```
+
+The timestamp prefix format is `YYYYMMDD_HHMMSS_` which:
+- Ensures chronological ordering
+- Prevents filename conflicts
+- Makes browsing media chronologically easy
+- Maintains consistency with Discord bot uploads
 
 ### Supported Media Types
 
@@ -67,7 +73,7 @@ Here's my photo:
 Beautiful evening!
 
 :::media
-- url: "https://cdn.luisquintanilla.me/files/images/2025/10/26/sunset.jpg"
+- url: "https://cdn.luisquintanilla.me/files/images/20251026_140530_sunset.jpg"
   mediaType: "image"
   aspectRatio: "landscape"
   caption: "sunset.jpg"

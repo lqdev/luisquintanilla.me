@@ -88,14 +88,12 @@ def download_from_github(url):
 
 def upload_to_s3(file_content, filename, s3_client, bucket_name):
     """
-    Upload file to Linode S3 with date-based directory structure.
+    Upload file to Linode S3 with timestamp-prefixed filename.
     Returns the S3 key (path) where the file was uploaded.
     """
-    # Get current date for directory structure
+    # Get current timestamp for filename prefix
     now = datetime.now()
-    year = now.strftime('%Y')
-    month = now.strftime('%m')
-    day = now.strftime('%d')
+    timestamp = now.strftime('%Y%m%d_%H%M%S')
     
     # Sanitize filename
     clean_filename = sanitize_filename(filename)
@@ -103,8 +101,11 @@ def upload_to_s3(file_content, filename, s3_client, bucket_name):
     # Determine media type folder
     media_folder = get_media_type_folder(filename, clean_filename)
     
-    # Create S3 key with date-based structure: /files/{type}/YYYY/MM/DD/{filename}
-    s3_key = f"files/{media_folder}/{year}/{month}/{day}/{clean_filename}"
+    # Create timestamp-prefixed filename to prevent conflicts
+    timestamped_filename = f"{timestamp}_{clean_filename}"
+    
+    # Create S3 key with flat structure: /files/{type}/{timestamp}_{filename}
+    s3_key = f"files/{media_folder}/{timestamped_filename}"
     
     print(f"  📤 Uploading to S3: {s3_key}")
     
