@@ -323,10 +323,23 @@ def main():
     direct_media_urls = extract_direct_media_urls(content)
     
     if not attachments and not youtube_urls and not direct_media_urls:
-        print("ℹ️  No GitHub attachments, YouTube URLs, or direct media URLs found. Skipping processing.")
-        # Write original content back (no transformation needed)
+        print("ℹ️  No GitHub attachments, YouTube URLs, or direct media URLs found.")
+        
+        # However, we still need to clean up any leftover img tags
+        # (e.g., from GitHub drag-and-drop that had src extracted already)
+        cleaned_content = content
+        
+        # Remove any remaining img tags (including empty src, malformed HTML, etc.)
+        img_count_before = len(re.findall(r'<img[^>]*>', cleaned_content))
+        if img_count_before > 0:
+            print(f"🧹 Cleaning up {img_count_before} leftover img tag(s)...")
+            cleaned_content = re.sub(r'<img[^>]*>', '', cleaned_content)
+            cleaned_content = re.sub(r'\n\n+', '\n\n', cleaned_content).strip()
+            print("✅ Cleanup complete")
+        
+        # Write cleaned content back
         with open(content_file, 'w', encoding='utf-8') as f:
-            f.write(content)
+            f.write(cleaned_content)
         sys.exit(0)
     
     print(f"✅ Found {len(attachments)} GitHub attachment(s)")
