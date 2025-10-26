@@ -370,9 +370,20 @@ module ResumeView =
             emptyText
     
     let private renderContactLinks (links: System.Collections.Generic.Dictionary<string, string>) =
+        let getIcon (linkName: string) =
+            match linkName.ToLower() with
+            | "email" -> "✉️"
+            | "linkedin" -> "💼"
+            | "github" -> "💻"
+            | "website" | "portfolio" -> "🌐"
+            | _ -> "🔗"
+        
         div [ _class "contact-links" ] [
             for kvp in links do
-                a [ _href kvp.Value; _target "_blank"; _rel "noopener noreferrer" ] [ str kvp.Key ]
+                a [ _href kvp.Value; _target "_blank"; _rel "noopener noreferrer" ] [
+                    span [ _style "margin-right: 8px;" ] [ str (getIcon kvp.Key) ]
+                    str kvp.Key
+                ]
         ]
     
     let private formatDateRange (start: DateTime) (endOpt: DateTime option) =
