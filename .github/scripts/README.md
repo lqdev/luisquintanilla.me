@@ -8,34 +8,29 @@ Python script that handles media file uploads from GitHub Issue Forms to Linode 
 
 ### Purpose
 
-When creating media posts via GitHub Issue Forms, users can:
-1. **Upload files** - Drag and drop or attach images/videos/audio
-2. **Paste YouTube/Vimeo URLs** - Direct video links for easy mobile publishing
+When creating media posts via GitHub Issue Forms, users can upload files that are automatically processed:
 
-The script handles both types:
-
-**For uploaded files:**
+**For uploaded files (GitHub attachments):**
 1. Downloads from GitHub's temporary storage
 2. Uploads to permanent Linode S3 storage with timestamp-based organization
 3. Transforms content to use permanent CDN URLs
 4. Creates `:::media` blocks for the site generator
 
-**For direct video URLs (YouTube, Vimeo):**
-1. Detects video platform URLs
-2. Formats them into proper `:::media` blocks
-3. Adds platform-specific metadata (videoId, platform)
-4. No upload needed - videos stay on their platforms
+**For direct URLs (YouTube, Vimeo, etc.):**
+- Left as-is in the content (not processed by this script)
+- Can be included alongside uploaded files
+- Site rendering handles display of direct video URLs
 
 ### Supported Upload Formats
 
-**GitHub Attachments:**
+**GitHub Attachments (processed and uploaded to S3):**
 - Markdown syntax: `![alt text](url)`
 - HTML img tags: `<img src="url" alt="alt">` (from drag-and-drop/paste)
 - Plain URLs: `https://github.com/user-attachments/assets/...`
 
-**Direct Video URLs:**
-- YouTube: `https://www.youtube.com/watch?v=...` or `https://youtu.be/...`
-- Vimeo: `https://vimeo.com/...`
+**Other URLs (left unchanged):**
+- YouTube, Vimeo, and other video platform URLs remain in content
+- External image URLs remain in content
 
 ### Usage
 
@@ -104,7 +99,28 @@ Beautiful evening!
 :::media
 ```
 
-**Example 2: Direct YouTube URL**
+**Example 2: HTML img tag (drag-and-drop upload)**
+
+**Input:**
+```markdown
+My vacation photo:
+
+<img src="https://github.com/user-attachments/assets/def456" alt="beach">
+```
+
+**Output:**
+```markdown
+My vacation photo:
+
+:::media
+- url: "https://cdn.luisquintanilla.me/files/images/20251026_140530_beach.jpg"
+  mediaType: "image"
+  aspectRatio: "landscape"
+  caption: "beach"
+:::media
+```
+
+**Example 3: Direct video URLs (not processed)**
 
 **Input:**
 ```markdown
@@ -119,39 +135,12 @@ Really interesting content!
 ```markdown
 Check out this video:
 
+https://www.youtube.com/watch?v=dQw4w9WgXcQ
+
 Really interesting content!
-
-:::media
-- url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-  mediaType: "video"
-  platform: "youtube"
-  videoId: "dQw4w9WgXcQ"
-  aspectRatio: "landscape"
-:::media
 ```
 
-**Example 3: HTML img tag (drag-and-drop upload)**
-
-**Input:**
-```markdown
-My vacation photo:
-
-<img src="https://github.com/user-attachments/assets/def456" alt="beach">
-```
-
-**Output:**
-```markdown
-Here's my photo:
-
-Beautiful evening!
-
-:::media
-- url: "https://cdn.luisquintanilla.me/files/images/20251026_140530_beach.jpg"
-  mediaType: "image"
-  aspectRatio: "landscape"
-  caption: "beach"
-:::media
-```
+*Note: YouTube and other direct video URLs are left unchanged in the content. They are not converted to `:::media` blocks by this script.*
 
 ### Integration
 
