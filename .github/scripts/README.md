@@ -212,9 +212,11 @@ The script is configured to work with Linode Object Storage (S3-compatible):
 - **Region Detection**: Automatically extracts region from endpoint URL (e.g., `us-east-1` from `https://us-east-1.linodeobjects.com`)
 - **Signature Version**: Uses `s3v4` for compatibility with Linode
 - **Addressing Style**: Virtual-hosted style addressing for proper URL formation
+- **Connection Timeouts**: 60-second connect and read timeouts to prevent premature connection closure
+- **Retry Configuration**: Standard retry mode with up to 3 attempts for transient failures
 - **boto3 Config**: Properly configured via `botocore.config.Config` for S3-compatible storage
 
-This configuration is required for boto3 to successfully connect to Linode Object Storage. Without it, you may see connection errors like "Connection was closed before we received a valid response from endpoint URL".
+This configuration is required for boto3 to successfully connect to Linode Object Storage. The timeout and retry settings prevent connection errors like "Connection was closed before we received a valid response from endpoint URL".
 
 ### Troubleshooting
 
@@ -225,6 +227,8 @@ This configuration is required for boto3 to successfully connect to Linode Objec
 **Causes**:
 - Missing `region_name` parameter in boto3 client initialization
 - Missing or incorrect boto3 Config settings
+- Missing connection timeout configuration
+- Missing retry configuration
 - Invalid endpoint URL format
 - Incorrect credentials
 
@@ -232,7 +236,12 @@ This configuration is required for boto3 to successfully connect to Linode Objec
 - Verify endpoint URL format: `https://REGION.linodeobjects.com` (e.g., `https://us-east-1.linodeobjects.com`)
 - Ensure all required environment variables are set
 - Check that region is being extracted correctly from endpoint URL
-- Verify boto3 Config includes `signature_version='s3v4'` and `addressing_style='virtual'`
+- Verify boto3 Config includes:
+  - `signature_version='s3v4'`
+  - `addressing_style='virtual'`
+  - `connect_timeout=60` (prevents premature connection closure)
+  - `read_timeout=60` (prevents timeout during large file uploads)
+  - `retries={'max_attempts': 3, 'mode': 'standard'}` (handles transient failures)
 
 #### Upload Failures
 

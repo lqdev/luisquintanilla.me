@@ -354,9 +354,13 @@ def main():
         region = parsed_endpoint.hostname.split('.')[0] if parsed_endpoint.hostname else 'us-east-1'
         
         # Configure boto3 for S3-compatible storage (Linode Object Storage)
+        # Add connection timeouts and retry configuration to prevent connection closure errors
         s3_config = Config(
             signature_version='s3v4',
-            s3={'addressing_style': 'virtual'}
+            s3={'addressing_style': 'virtual'},
+            connect_timeout=60,
+            read_timeout=60,
+            retries={'max_attempts': 3, 'mode': 'standard'}
         )
         
         s3_client = boto3.client(

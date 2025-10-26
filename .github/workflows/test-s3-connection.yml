@@ -1,0 +1,57 @@
+name: Test S3 Connection
+
+on:
+  workflow_dispatch:
+    inputs:
+      verbose:
+        description: 'Enable verbose output (shows full tracebacks)'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  test-s3:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          
+      - name: Install dependencies
+        run: |
+          pip install boto3 requests
+          
+      - name: Test S3 Connection
+        env:
+          LINODE_STORAGE_ACCESS_KEY_ID: ${{ secrets.LINODE_STORAGE_ACCESS_KEY_ID }}
+          LINODE_STORAGE_SECRET_ACCESS_KEY: ${{ secrets.LINODE_STORAGE_SECRET_ACCESS_KEY }}
+          LINODE_STORAGE_ENDPOINT_URL: ${{ secrets.LINODE_STORAGE_ENDPOINT_URL }}
+          LINODE_STORAGE_BUCKET_NAME: ${{ secrets.LINODE_STORAGE_BUCKET_NAME }}
+          LINODE_STORAGE_CUSTOM_DOMAIN: ${{ secrets.LINODE_STORAGE_CUSTOM_DOMAIN }}
+        run: |
+          if [ "${{ inputs.verbose }}" = "true" ]; then
+            python .github/scripts/test_s3_connection.py --verbose
+          else
+            python .github/scripts/test_s3_connection.py
+          fi
+          
+      - name: Report Results
+        if: always()
+        run: |
+          if [ $? -eq 0 ]; then
+            echo "✅ S3 connection test PASSED"
+            echo "The media upload workflow should work correctly."
+          else
+            echo "❌ S3 connection test FAILED"
+            echo "Check the logs above for details on what went wrong."
+            echo "Common issues:"
+            echo "  - Incorrect credentials"
+            echo "  - Wrong endpoint URL"
+            echo "  - Bucket does not exist"
+            echo "  - Network connectivity issues"
+          fi
