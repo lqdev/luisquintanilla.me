@@ -223,6 +223,7 @@ def extract_direct_media_urls(content):
     These will be wrapped in :::media blocks.
     
     Detects URLs ending with common media extensions.
+    Excludes URLs already in :::media blocks.
     
     Returns list of (url, media_type) tuples.
     """
@@ -253,6 +254,12 @@ def extract_direct_media_urls(content):
             # Look for ![...](...url...)
             markdown_img_pattern = rf'!\[[^\]]*\]\([^)]*{re.escape(url)}[^)]*\)'
             if re.search(markdown_img_pattern, content):
+                continue
+            
+            # Check if URL is already in a :::media block
+            # Look for :::media...url: "..."...:::media
+            media_block_pattern = r':::media.*?' + re.escape(url) + r'.*?:::media'
+            if re.search(media_block_pattern, content, re.DOTALL):
                 continue
             
             direct_media.append((url, media_type))
