@@ -6,10 +6,11 @@ Run this to validate the fix after any changes to upload_media.py
 
 import sys
 import os
+from pathlib import Path
 
-# Add the scripts directory to path
-script_dir = os.path.join(os.path.dirname(__file__), '..', '.github', 'scripts')
-sys.path.insert(0, script_dir)
+# Add the scripts directory to path using robust path resolution
+script_dir = Path(__file__).parent.parent / '.github' / 'scripts'
+sys.path.insert(0, str(script_dir))
 
 from upload_media import extract_github_attachments, transform_content_preserving_positions
 

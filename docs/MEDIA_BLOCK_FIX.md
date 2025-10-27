@@ -52,9 +52,12 @@ html_pattern = r'<img[^>]*src=(["\']?)(https://github\.com/user-attachments/[^"\
 ```
 
 **Explanation:**
-- `(["\']?)` - Captures optional quote (group 1)
+- `(["\']?)` - Captures optional opening quote character (group 1) - either double quote, single quote, or nothing
 - `(https://...)` - Captures URL (group 2)
-- `\1` - Backreference to match the same quote type (or empty)
+- `\1` - Backreference that matches exactly what was captured in group 1
+  - If group 1 captured `"`, then `\1` requires a closing `"`
+  - If group 1 captured `'`, then `\1` requires a closing `'`
+  - If group 1 captured nothing (empty string), then `\1` requires nothing
 
 This pattern now matches:
 - `src="URL"` (double quotes)
@@ -77,6 +80,18 @@ if alt_match:
 else:
     alt_text = 'media'
 ```
+
+**Explanation:**
+This pattern uses alternation (`|`) to handle two cases:
+1. **Quoted alt text**: `alt=(["\'])([^\1]+?)\1`
+   - `(["\'])` - Captures the opening quote (group 1)
+   - `([^\1]+?)` - Captures the alt text content (group 2)
+     - Note: `[^\1]` literally means "not backslash or digit 1", but this works fine for capturing quoted text
+   - `\1` - Backreference ensures the closing quote matches the opening quote
+2. **Unquoted alt text**: `alt=([^\s>]+)`
+   - `([^\s>]+)` - Captures non-whitespace, non-> characters (group 3)
+
+The code then checks group 2 (quoted) first, falling back to group 3 (unquoted) if group 2 is None.
 
 This handles:
 - `alt="Text with spaces"` (quoted with spaces)
