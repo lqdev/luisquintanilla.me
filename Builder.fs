@@ -1184,7 +1184,8 @@ module Builder
         // Generate media index page using simple list view for consistency
         try
             let albums = feedData |> List.map (fun item -> item.Content) |> List.toArray
-            let mediaIndexHtml = generate (albumsPageView albums) "defaultindex" "Media | Luis Quintanilla"
+            let sortedAlbums = albums |> Array.sortByDescending(fun x -> DateTimeOffset.Parse(x.Metadata.Date))
+            let mediaIndexHtml = generate (albumsPageView sortedAlbums) "defaultindex" "Media | Luis Quintanilla"
             let indexSaveDir = Path.Join(outputDir, "media")
             Directory.CreateDirectory(indexSaveDir) |> ignore
             File.WriteAllText(Path.Join(indexSaveDir, "index.html"), mediaIndexHtml)
