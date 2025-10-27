@@ -75,16 +75,163 @@ def get_media_type_folder(url, filename):
     return 'files'
 
 
+def detect_file_extension_from_content(content):
+    """
+    Detect file extension from file content using magic numbers (file signatures).
+    Returns the detected extension (e.g., '.mp4', '.jpg') or None if unknown.
+    """
+    if not content:
+        return None
+    
+    # Video file signatures
+    # MP4 files start with ftyp box (need at least 12 bytes)
+    if len(content) >= 12 and content[4:8] == b'ftyp':
+        # Check common MP4 subtypes
+        subtype = content[8:12]
+        if subtype in (b'isom', b'iso2', b'mp41', b'mp42', b'avc1', b'M4V ', b'M4A '):
+            return '.mp4'
+        elif subtype == b'M4V ':
+            return '.m4v'
+        elif subtype == b'M4A ':
+            return '.m4a'
+        return '.mp4'  # Default to .mp4 for other ftyp variants
+    
+    # WebM/MKV (Matroska) - need at least 4 bytes
+    if len(content) >= 4 and content[:4] == b'\x1a\x45\xdf\xa3':
+        return '.mkv'
+    
+    # AVI - need at least 12 bytes
+    if len(content) >= 12 and content[:4] == b'RIFF' and content[8:12] == b'AVI ':
+        return '.avi'
+    
+    # MOV (QuickTime) - similar to MP4 but with different atoms - need at least 4 bytes
+    if len(content) >= 4 and content[:4] in (b'moov', b'mdat', b'wide', b'free'):
+        return '.mov'
+    
+    # Image file signatures
+    # JPEG - need at least 3 bytes
+    if len(content) >= 3 and content[:3] == b'\xff\xd8\xff':
+        return '.jpg'
+    
+    # PNG - need at least 8 bytes
+    if len(content) >= 8 and content[:8] == b'\x89PNG\r\n\x1a\n':
+        return '.png'
+    
+    # GIF - need at least 6 bytes
+    if len(content) >= 6 and content[:6] in (b'GIF87a', b'GIF89a'):
+        return '.gif'
+    
+    # WebP - need at least 12 bytes
+    if len(content) >= 12 and content[:4] == b'RIFF' and content[8:12] == b'WEBP':
+        return '.webp'
+    
+    # BMP - need at least 2 bytes
+    if len(content) >= 2 and content[:2] == b'BM':
+        return '.bmp'
+    
+    # Audio file signatures
+    # MP3 - ID3 tag is 3 bytes, frame sync is 2 bytes
+    if len(content) >= 3 and content[:3] == b'ID3':
+        return '.mp3'
+    if len(content) >= 2 and content[:2] in (b'\xff\xfb', b'\xff\xf3', b'\xff\xf2'):
+        return '.mp3'
+    
+    # WAV - need at least 12 bytes
+    if len(content) >= 12 and content[:4] == b'RIFF' and content[8:12] == b'WAVE':
+        return '.wav'
+    
+    # OGG - need at least 4 bytes
+    if len(content) >= 4 and content[:4] == b'OggS':
+        return '.ogg'
+    
+    # FLAC - need at least 4 bytes
+    if len(content) >= 4 and content[:4] == b'fLaC':
+        return '.flac'
+    
+    return None
+
+
+def detect_extension_from_content_type(content_type):
+    """
+    Detect file extension from HTTP Content-Type header.
+    Returns the detected extension (e.g., '.mp4', '.jpg') or None if unknown.
+    """
+    if not content_type:
+        return None
+    
+    # Normalize content type (remove parameters like charset)
+    content_type = content_type.split(';')[0].strip().lower()
+    
+    # Video types
+    video_types = {
+        'video/mp4': '.mp4',
+        'video/mpeg': '.mp4',
+        'video/quicktime': '.mov',
+        'video/x-msvideo': '.avi',
+        'video/x-matroska': '.mkv',
+        'video/webm': '.webm',
+        'video/x-flv': '.flv',
+        'video/x-ms-wmv': '.wmv',
+    }
+    
+    # Image types
+    image_types = {
+        'image/jpeg': '.jpg',
+        'image/png': '.png',
+        'image/gif': '.gif',
+        'image/webp': '.webp',
+        'image/bmp': '.bmp',
+        'image/svg+xml': '.svg',
+        'image/x-icon': '.ico',
+    }
+    
+    # Audio types
+    audio_types = {
+        'audio/mpeg': '.mp3',
+        'audio/mp3': '.mp3',
+        'audio/wav': '.wav',
+        'audio/wave': '.wav',
+        'audio/x-wav': '.wav',
+        'audio/ogg': '.ogg',
+        'audio/flac': '.flac',
+        'audio/aac': '.aac',
+        'audio/x-m4a': '.m4a',
+    }
+    
+    # Check all type mappings
+    for mapping in (video_types, image_types, audio_types):
+        if content_type in mapping:
+            return mapping[content_type]
+    
+    return None
+
+
 def download_from_github(url):
     """
     Download a file from GitHub CDN.
-    Returns the file content as bytes.
+    Returns a tuple of (file_content, detected_extension).
+    The detected_extension is determined from Content-Type header and/or file content.
     """
     print(f"  📥 Downloading from: {url}")
     response = requests.get(url, timeout=30)
     response.raise_for_status()
     print(f"  ✅ Downloaded {len(response.content)} bytes")
-    return response.content
+    
+    # Try to detect extension from Content-Type header
+    content_type = response.headers.get('Content-Type', '')
+    detected_ext = detect_extension_from_content_type(content_type)
+    
+    if detected_ext:
+        print(f"  🔍 Detected extension from Content-Type '{content_type}': {detected_ext}")
+    else:
+        # Fall back to content-based detection
+        detected_ext = detect_file_extension_from_content(response.content)
+        if detected_ext:
+            print(f"  🔍 Detected extension from file content: {detected_ext}")
+        else:
+            print(f"  ⚠️  Could not detect file type from Content-Type or content")
+    
+    return response.content, detected_ext
 
 
 def upload_to_s3(file_content, filename, s3_client, bucket_name):
@@ -585,18 +732,25 @@ def main():
             print(f"\n📦 Processing attachment {i}/{len(attachments)}")
             
             try:
-                # Download from GitHub
-                file_content = download_from_github(github_url)
+                # Download from GitHub (now returns content and detected extension)
+                file_content, detected_ext = download_from_github(github_url)
                 
                 # Extract filename from URL or generate one
                 parsed_url = urlparse(github_url)
                 path_parts = parsed_url.path.split('/')
-                filename = path_parts[-1] if path_parts else f'attachment-{i}'
+                base_filename = path_parts[-1] if path_parts else f'attachment-{i}'
                 
-                # If filename doesn't have extension, try to detect from content
-                if '.' not in filename:
-                    # Default to .jpg for images, but this should be rare
-                    filename += '.jpg'
+                # If filename doesn't have extension, use detected extension
+                if '.' not in base_filename:
+                    if detected_ext:
+                        filename = base_filename + detected_ext
+                        print(f"  ✅ Using detected extension: {detected_ext}")
+                    else:
+                        # Only default to .jpg if detection completely failed
+                        filename = base_filename + '.jpg'
+                        print(f"  ⚠️  No extension detected, defaulting to .jpg")
+                else:
+                    filename = base_filename
                 
                 # Upload to S3
                 s3_key = upload_to_s3(file_content, filename, s3_client, bucket_name)
@@ -616,6 +770,7 @@ def main():
                 
                 url_mapping[github_url] = (permanent_url, alt_text, media_type)
                 print(f"  🔗 Permanent URL: {permanent_url}")
+                print(f"  📁 Media type: {media_type}")
                 
             except Exception as e:
                 print(f"  ❌ Error processing attachment: {e}")
