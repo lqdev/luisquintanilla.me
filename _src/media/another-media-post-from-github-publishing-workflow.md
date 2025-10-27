@@ -20,9 +20,9 @@ This is a direct link
 
 This is an upload
 
-<img width=1080 height=463 alt=Image src=:::media
+:::media
 - url: "https://cdn.lqdev.tech/files/images/20251027_004729_d5017208-9919-4387-99e1-77a96f3ec654.jpg"
   mediaType: "image"
   aspectRatio: "landscape"
-  caption: "media"
-:::media />
+  caption: "Image"
+:::media
