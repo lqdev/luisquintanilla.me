@@ -11,5 +11,5 @@ Just when I was wrapping up the design for media publishing migration from Disco
 - url: "https://cdn.lqdev.tech/files/images/20251027_022505_d2bd7cf5-d5a5-485d-9b8d-0457f5f92911.jpg"
   mediaType: "image"
   aspectRatio: "landscape"
-  caption: "ScreenshotofClaudeCodeontheweb"
+  caption: "Screenshot of Claude Code on the web"
 :::media
