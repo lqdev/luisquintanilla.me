@@ -76,6 +76,7 @@ let homeView = LayoutViews.homeView
 let timelineHomeView = LayoutViews.timelineHomeView
 let contentView = LayoutViews.contentView
 let contentViewWithTitle = LayoutViews.contentViewWithTitle
+let mediaPageView = LayoutViews.mediaPageView
 let snippetPageView = LayoutViews.snippetPageView
 let wikiPageView = LayoutViews.wikiPageView
 let reviewPageView = LayoutViews.reviewPageView

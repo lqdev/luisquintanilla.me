@@ -634,6 +634,44 @@ let contentViewWithTitle (title:string) (content:string) =
         rawText content
     ]    
 
+let mediaPageView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) = 
+    let publishDate = DateTimeOffset.Parse(date)
+    div [ _class "mr-auto" ] [
+        article [ _class "h-entry individual-post" ] [
+            header [ _class "post-header" ] [
+                h1 [ _class "p-name post-title" ] [ Text title ]
+                div [ _class "post-meta" ] [
+                    time [ _class "dt-published"; attr "datetime" date ] [
+                        Text (publishDate.ToString("MMMM d, yyyy"))
+                    ]
+                ]
+                // Hidden IndieWeb author information for microformats compliance
+                div [ _class "u-author h-card microformat-hidden" ] [
+                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
+                ]
+            ]
+            
+            div [ _class "e-content post-content" ] [
+                rawText content
+            ]
+            
+            footer [ _class "post-footer" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
+                    Text "Permalink: "
+                    a [ _class "u-url permalink-link"; _href $"/media/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
+                        Text $"/media/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    ]
+                    copyPermalinkButton $"/media/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    webShareButton $"/media/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    qrCodeButton $"/media/{Path.GetFileNameWithoutExtension(fileName)}/"
+                ]
+                postTagsSection tags
+                webmentionForm
+            ]
+        ]
+    ]
+
 let snippetPageView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) (relatedSnippets: Snippet array) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
