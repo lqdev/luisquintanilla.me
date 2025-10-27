@@ -295,17 +295,22 @@ def find_all_media_positions(content, github_attachments, youtube_urls, direct_m
     for github_url, alt_text in github_attachments:
         # Pattern 1: Markdown images ![alt](url)
         markdown_pattern = rf'!\[[^\]]*\]\({re.escape(github_url)}\)'
-        for match in re.finditer(markdown_pattern, content):
+        markdown_matches = list(re.finditer(markdown_pattern, content))
+        print(f"📝 DEBUG find_positions: GitHub URL {github_url[:60]}... - Markdown pattern matches: {len(markdown_matches)}")
+        for match in markdown_matches:
             media_items.append((
                 match.start(),
                 match.group(0),
                 'github_attachment',
                 {'url': github_url, 'alt_text': alt_text}
             ))
+            print(f"  - Found at position {match.start()} via markdown pattern")
         
         # Pattern 2: HTML img tags
         html_pattern = rf'<img[^>]*src=["\']({re.escape(github_url)})["\'][^>]*>'
-        for match in re.finditer(html_pattern, content):
+        html_matches = list(re.finditer(html_pattern, content))
+        print(f"📝 DEBUG find_positions: GitHub URL {github_url[:60]}... - HTML pattern matches: {len(html_matches)}")
+        for match in html_matches:
             # Skip if already found as markdown
             if not any(item[0] == match.start() for item in media_items):
                 media_items.append((
@@ -314,11 +319,16 @@ def find_all_media_positions(content, github_attachments, youtube_urls, direct_m
                     'github_attachment',
                     {'url': github_url, 'alt_text': alt_text}
                 ))
+                print(f"  - Found at position {match.start()} via HTML pattern, match text: {match.group(0)[:80]}...")
+            else:
+                print(f"  - Skipped duplicate at position {match.start()}")
         
         # Pattern 3: Plain URLs
         # Use word boundaries to avoid matching partial URLs
         plain_pattern = rf'(?<!["\']){re.escape(github_url)}(?!["\'])'
-        for match in re.finditer(plain_pattern, content):
+        plain_matches = list(re.finditer(plain_pattern, content))
+        print(f"📝 DEBUG find_positions: GitHub URL {github_url[:60]}... - Plain pattern matches: {len(plain_matches)}")
+        for match in plain_matches:
             # Skip if already found in other patterns
             if not any(item[0] == match.start() for item in media_items):
                 media_items.append((
@@ -327,6 +337,9 @@ def find_all_media_positions(content, github_attachments, youtube_urls, direct_m
                     'github_attachment',
                     {'url': github_url, 'alt_text': alt_text}
                 ))
+                print(f"  - Found at position {match.start()} via plain pattern")
+            else:
+                print(f"  - Skipped duplicate at position {match.start()}")
     
     # Find YouTube URLs
     for original_url, formatted_markdown, video_id in youtube_urls:
@@ -354,6 +367,10 @@ def find_all_media_positions(content, github_attachments, youtube_urls, direct_m
     
     # Sort by position (descending, so we can replace from end to start)
     media_items.sort(key=lambda x: x[0], reverse=True)
+    
+    print(f"📝 DEBUG find_positions: Total media items found: {len(media_items)}")
+    for pos, match_text, media_type, data in media_items:
+        print(f"  - Position {pos}: type={media_type}, text={match_text[:50]}...")
     
     return media_items
 
@@ -595,11 +612,34 @@ def main():
     
     # Transform content to use permanent URLs and preserve positions
     print("\n🔄 Transforming content...")
+    print(f"📝 DEBUG: Original content length: {len(content)} chars")
+    print(f"📝 DEBUG: GitHub attachments to replace: {len(url_mapping)}")
+    for gh_url in url_mapping.keys():
+        print(f"  - {gh_url[:80]}...")
+    
     final_content = transform_content_preserving_positions(content, url_mapping, youtube_urls, direct_media_urls)
+    
+    print(f"📝 DEBUG: Transformed content length: {len(final_content)} chars")
+    
+    # Debug: Check if media blocks are present in final content
+    media_block_count = final_content.count(':::media')
+    print(f"📝 DEBUG: Media blocks in final content: {media_block_count}")
+    if media_block_count > 0:
+        print(f"📝 DEBUG: First 500 chars of transformed content:")
+        print(final_content[:500])
+        print(f"📝 DEBUG: Last 500 chars of transformed content:")
+        print(final_content[-500:])
     
     # Write transformed content back
     with open(content_file, 'w', encoding='utf-8') as f:
         f.write(final_content)
+    
+    # Verify file was written
+    with open(content_file, 'r', encoding='utf-8') as f:
+        written_content = f.read()
+    
+    print(f"📝 DEBUG: File written successfully, length: {len(written_content)} chars")
+    print(f"📝 DEBUG: Media blocks in written file: {written_content.count(':::media')}")
     
     print("\n✅ Media upload and transformation complete!")
     print(f"📊 Uploaded {len(url_mapping)} file(s) to S3")
