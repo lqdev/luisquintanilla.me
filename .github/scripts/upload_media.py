@@ -617,7 +617,14 @@ def main():
     for gh_url in url_mapping.keys():
         print(f"  - {gh_url[:80]}...")
     
-    final_content = transform_content_preserving_positions(content, url_mapping, youtube_urls, direct_media_urls)
+    try:
+        final_content = transform_content_preserving_positions(content, url_mapping, youtube_urls, direct_media_urls)
+        print(f"📝 DEBUG: Transformation completed successfully")
+    except Exception as e:
+        print(f"❌ ERROR during transformation: {e}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
     
     print(f"📝 DEBUG: Transformed content length: {len(final_content)} chars")
     
@@ -631,15 +638,34 @@ def main():
         print(final_content[-500:])
     
     # Write transformed content back
-    with open(content_file, 'w', encoding='utf-8') as f:
-        f.write(final_content)
+    try:
+        with open(content_file, 'w', encoding='utf-8') as f:
+            f.write(final_content)
+        print(f"📝 DEBUG: File write completed")
+    except Exception as e:
+        print(f"❌ ERROR writing file: {e}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
     
     # Verify file was written
-    with open(content_file, 'r', encoding='utf-8') as f:
-        written_content = f.read()
-    
-    print(f"📝 DEBUG: File written successfully, length: {len(written_content)} chars")
-    print(f"📝 DEBUG: Media blocks in written file: {written_content.count(':::media')}")
+    try:
+        with open(content_file, 'r', encoding='utf-8') as f:
+            written_content = f.read()
+        
+        print(f"📝 DEBUG: File written successfully, length: {len(written_content)} chars")
+        print(f"📝 DEBUG: Media blocks in written file: {written_content.count(':::media')}")
+        
+        if len(written_content) != len(final_content):
+            print(f"⚠️  WARNING: File length mismatch! Expected {len(final_content)}, got {len(written_content)}")
+        
+        if written_content != final_content:
+            print(f"⚠️  WARNING: File content doesn't match transformed content!")
+    except Exception as e:
+        print(f"❌ ERROR verifying file: {e}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
     
     print("\n✅ Media upload and transformation complete!")
     print(f"📊 Uploaded {len(url_mapping)} file(s) to S3")
