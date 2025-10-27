@@ -428,12 +428,6 @@ def transform_content_preserving_positions(content, url_mapping, youtube_urls, d
 :::media'''
             transformed = transformed[:position] + media_block + transformed[position + len(match_text):]
     
-    # Remove ALL remaining img tags (including empty src, malformed HTML, etc.)
-    # This catches GitHub-generated img tags that remain after URL extraction
-    # Examples: <img width=1080 height=463 alt=Image src= />
-    #           <img src="" alt="Image" />
-    transformed = re.sub(r'<img[^>]*>', '', transformed)
-    
     # Clean up extra whitespace but preserve intentional line breaks
     transformed = re.sub(r'\n\n\n+', '\n\n', transformed).strip()
     
