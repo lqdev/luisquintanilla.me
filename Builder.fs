@@ -1176,7 +1176,7 @@ module Builder
             // Use AST-based markdown processing for custom blocks
             let rawContent = processor.Render album
             let processedContent = MarkdownService.convertMdToHtml rawContent
-            let html = contentViewWithTitle album.Metadata.Title processedContent
+            let html = mediaPageView album.Metadata.Title processedContent album.Metadata.Date album.FileName album.Metadata.Tags
             let albumView = generate html "defaultindex" $"{album.Metadata.Title} | Media | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, albumView))
