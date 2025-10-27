@@ -161,12 +161,19 @@ def extract_github_attachments(content):
         attachments.append((url, alt_text or 'media'))
     
     # Pattern 2: HTML img tags (for drag-and-drop and paste uploads)
-    html_pattern = r'<img[^>]*src=["\'](https://github\.com/user-attachments/[^"\']+)["\'][^>]*>'
+    # Match both quoted and unquoted src attributes
+    # Handles: src="URL", src='URL', and src=URL
+    html_pattern = r'<img[^>]*src=(["\']?)(https://github\.com/user-attachments/[^"\'\s>]+)\1[^>]*>'
     for match in re.finditer(html_pattern, content):
-        url = match.group(1).strip()
-        # Try to extract alt text if present
-        alt_match = re.search(r'alt=["\']([^"\']+)["\']', match.group(0))
-        alt_text = alt_match.group(1) if alt_match else 'media'
+        url = match.group(2).strip()  # URL is now in group 2
+        # Try to extract alt text if present (handle both quoted and unquoted)
+        # For quoted: match everything inside quotes
+        # For unquoted: match non-whitespace, non-quote, non-> characters
+        alt_match = re.search(r'alt=(["\'])([^\1]+?)\1|alt=([^\s>]+)', match.group(0))
+        if alt_match:
+            alt_text = alt_match.group(2) if alt_match.group(2) else alt_match.group(3)
+        else:
+            alt_text = 'media'
         # Skip if already found in markdown pattern
         if not any(url == existing_url for existing_url, _ in attachments):
             attachments.append((url, alt_text))
@@ -306,8 +313,9 @@ def find_all_media_positions(content, github_attachments, youtube_urls, direct_m
             ))
             print(f"  - Found at position {match.start()} via markdown pattern")
         
-        # Pattern 2: HTML img tags
-        html_pattern = rf'<img[^>]*src=["\']({re.escape(github_url)})["\'][^>]*>'
+        # Pattern 2: HTML img tags (handle both quoted and unquoted src)
+        # Matches: src="URL", src='URL', and src=URL
+        html_pattern = rf'<img[^>]*src=(["\']?)({re.escape(github_url)})\1[^>]*>'
         html_matches = list(re.finditer(html_pattern, content))
         print(f"📝 DEBUG find_positions: GitHub URL {github_url[:60]}... - HTML pattern matches: {len(html_matches)}")
         for match in html_matches:
@@ -315,7 +323,7 @@ def find_all_media_positions(content, github_attachments, youtube_urls, direct_m
             if not any(item[0] == match.start() for item in media_items):
                 media_items.append((
                     match.start(),
-                    match.group(0),
+                    match.group(0),  # Full HTML tag
                     'github_attachment',
                     {'url': github_url, 'alt_text': alt_text}
                 ))
@@ -329,8 +337,17 @@ def find_all_media_positions(content, github_attachments, youtube_urls, direct_m
         plain_matches = list(re.finditer(plain_pattern, content))
         print(f"📝 DEBUG find_positions: GitHub URL {github_url[:60]}... - Plain pattern matches: {len(plain_matches)}")
         for match in plain_matches:
-            # Skip if already found in other patterns
-            if not any(item[0] == match.start() for item in media_items):
+            # Skip if this position is already covered by an HTML tag match
+            # Check if match position falls within any existing media_item range
+            is_inside_existing = False
+            for existing_pos, existing_text, _, _ in media_items:
+                existing_end = existing_pos + len(existing_text)
+                if existing_pos <= match.start() < existing_end:
+                    is_inside_existing = True
+                    print(f"  - Skipped plain match at {match.start()} (inside HTML tag at {existing_pos})")
+                    break
+            
+            if not is_inside_existing and not any(item[0] == match.start() for item in media_items):
                 media_items.append((
                     match.start(),
                     match.group(0),
@@ -338,7 +355,7 @@ def find_all_media_positions(content, github_attachments, youtube_urls, direct_m
                     {'url': github_url, 'alt_text': alt_text}
                 ))
                 print(f"  - Found at position {match.start()} via plain pattern")
-            else:
+            elif not is_inside_existing:
                 print(f"  - Skipped duplicate at position {match.start()}")
     
     # Find YouTube URLs
