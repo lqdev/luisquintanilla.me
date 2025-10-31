@@ -1,5 +1,5 @@
 ---
-title: "Including link: https://blog.mozilla.ai/"
+title: "llamafile Returns"
 targeturl: https://blog.mozilla.ai/llamafile-returns/
 response_type: reshare
 dt_published: "2025-10-29 17:45 -05:00"
