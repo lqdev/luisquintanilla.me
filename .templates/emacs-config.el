@@ -97,7 +97,7 @@
         ;; Resources (lo*)
         ("lo" "Resources")
         ("lov" "Review" plain
-         (file (lambda () (concat lqdev-site-path "_src/reviews/library/" 
+         (file (lambda () (concat lqdev-site-path "_src/reviews/" 
                                   (format-time-string "%Y-%m-%d-")
                                   (read-string "Filename slug: ") ".md")))
          (file (lambda () (concat lqdev-site-path ".templates/review.txt")))

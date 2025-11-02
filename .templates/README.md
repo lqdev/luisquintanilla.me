@@ -20,7 +20,7 @@ This directory contains **Emacs org-capture templates** for rapid content creati
 - `bookmark.txt` - Bookmark links (separate directory)
 
 ### 📚 Reviews (1 template)
-- `review.txt` - Reviews using :::review::: blocks in _src/reviews
+- `review.txt` - Reviews using :::review::: blocks for all review types (book/movie/music/business/product) in _src/reviews
 
 ### 🎨 Custom Blocks (15 templates)
 

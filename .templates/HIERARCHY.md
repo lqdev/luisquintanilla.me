@@ -74,7 +74,7 @@ C-c c (org-capture)
 ### Reviews (1 file)
 | Template File | Purpose | Target Directory |
 |--------------|---------|------------------|
-| review.txt | Reviews using :::review::: blocks | _src/reviews/library/ |
+| review.txt | Reviews using :::review::: blocks (book/movie/music/business/product) | _src/reviews/ |
 
 ### Custom Blocks (15 files)
 These templates insert content blocks at cursor position (no new file):

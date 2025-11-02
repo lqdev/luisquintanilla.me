@@ -168,7 +168,7 @@ Add this to your Emacs configuration file (`~/.emacs.d/init.el` or `~/.emacs`):
         ;; Resources (lo*)
         ("lo" "Resources")
         ("lov" "Review" plain
-         (file (lambda () (concat lqdev-site-path "_src/reviews/library/" 
+         (file (lambda () (concat lqdev-site-path "_src/reviews/" 
                                   (format-time-string "%Y-%m-%d-")
                                   (read-string "Filename slug: ") ".md")))
          (file (lambda () (concat lqdev-site-path ".templates/review.txt")))
@@ -239,8 +239,7 @@ _src/
 ├── snippets/        # Code snippets (los)
 ├── wiki/            # Knowledge base (low)
 ├── streams/         # Livestreams (lol)
-└── reviews/
-    └── library/     # Reviews (lov)
+└── reviews/         # Reviews (lov) - book/movie/music/business/product
 ```
 
 ## Using Templates
