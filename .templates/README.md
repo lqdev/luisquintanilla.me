@@ -74,11 +74,19 @@ See **[docs/org-capture-templates.md](../docs/org-capture-templates.md)** for:
 
 ## Quick Start
 
-1. Add the Emacs configuration from `docs/org-capture-templates.md` to your `~/.emacs.d/init.el`
+### Option 1: Use Standalone Config File
+1. Copy `emacs-config.el` to your Emacs configuration directory
+2. Update `lqdev-site-path` in the file to point to this repository
+3. Add `(load-file "~/.emacs.d/org-capture-templates.el")` to your `init.el`
+
+### Option 2: Add to Existing Config
+1. Copy the configuration from `docs/org-capture-templates.md` to your `~/.emacs.d/init.el`
 2. Set `lqdev-site-path` to point to this repository
-3. Press `C-c c l` to access the template hierarchy
-4. Navigate: `l` (lqdev) → category → specific type
-5. Fill prompts and create content!
+
+### Usage
+1. Press `C-c c l` to access the template hierarchy
+2. Navigate: `l` (lqdev) → category → specific type
+3. Fill prompts and create content!
 
 ## Template Syntax
 

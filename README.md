@@ -147,6 +147,7 @@ This is a production-ready IndieWeb site built with F# featuring:
 - **Responsive Design**: Mobile-optimized presentation viewing
 
 ### Development Workflow
+- **Emacs Org-capture Templates**: 40 hierarchical templates for rapid content creation with 3-key navigation (see `docs/org-capture-templates.md`)
 - **VS Code Integration**: Complete snippet library aligned with Domain.fs (17 content types + layout snippets)
 - **Build Validation**: Automated testing and output comparison
 - **Azure Integration**: Native redirects via Static Web Apps configuration
@@ -172,7 +173,21 @@ dotnet run
 ```
 
 ### Content Creation
-Use VS Code snippets for efficient content creation:
+
+**Two powerful authoring systems** for your editor preference:
+
+#### Emacs Org-capture (40 templates)
+Hierarchical 3-key navigation with automatic file creation:
+- **Content Types** (13): articles, notes, photos, videos, albums, presentations, wiki, etc.
+- **Response Types** (5): replies, stars, bookmarks, reshares
+- **Custom Blocks** (15): media, reviews, resume components
+- **Markdown Helpers** (6): code blocks, blockquotes, links, images
+
+**Setup:** See `docs/org-capture-templates.md` for complete Emacs configuration
+**Usage:** `C-c c l` → category → specific type
+
+#### VS Code Snippets (17+ templates)
+Visual editor snippets for inline expansion:
 - `post` - Blog post template
 - `note` - Microblog note
 - `response` - Social response (bookmark, like, reply)
@@ -181,7 +196,7 @@ Use VS Code snippets for efficient content creation:
 - `album-collection` - Photo/media album with location metadata
 - `travel-collection` - Travel guide with GPS coordinates
 - `presentation` - Reveal.js presentation with custom layouts
-- Plus 9 more content types with full metadata templates
+- Plus content blocks, metadata helpers, and presentation layouts
 
 ### Presentation Layouts
 Create professional presentations with 15 custom layout classes:
