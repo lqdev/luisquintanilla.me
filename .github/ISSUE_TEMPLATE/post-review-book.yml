@@ -1,0 +1,172 @@
+name: 📚 Post a Book Review
+description: Create a new book review post for the website
+title: "[Book Review] "
+labels: ["review", "book"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Create a New Book Review
+        
+        Use this form to create a book review that will automatically generate a pull request with a properly formatted markdown file including review metadata and custom blocks.
+        
+        **Note**: This will create a new review post in the `_src/reviews/` directory and generate a PR for review.
+
+  - type: input
+    id: book_title
+    attributes:
+      label: Book Title
+      description: The title of the book you're reviewing
+      placeholder: "e.g., The Four Agreements"
+    validations:
+      required: true
+
+  - type: input
+    id: author
+    attributes:
+      label: Author
+      description: The book's author(s)
+      placeholder: "e.g., Don Miguel Ruiz"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: rating
+    attributes:
+      label: Rating
+      description: Your overall rating for this book
+      options:
+        - "5.0"
+        - "4.5"
+        - "4.0"
+        - "3.5"
+        - "3.0"
+        - "2.5"
+        - "2.0"
+        - "1.5"
+        - "1.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Review Summary
+      description: A brief summary of your review (will appear in the review block)
+      placeholder: "A concise summary of your thoughts on this book..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: content
+    attributes:
+      label: Detailed Review Content
+      description: Your full review content (supports Markdown)
+      placeholder: |
+        Write your detailed review here. You can use Markdown formatting.
+        
+        ## What I Liked
+        - Point 1
+        - Point 2
+        
+        ## What Could Be Better
+        - Point 1
+        - Point 2
+        
+        ## Final Thoughts
+        Your concluding thoughts...
+    validations:
+      required: true
+
+  - type: textarea
+    id: pros
+    attributes:
+      label: Pros (Optional)
+      description: Positive aspects, one per line
+      placeholder: |
+        Clear writing style
+        Practical advice
+        Well-structured content
+    validations:
+      required: false
+
+  - type: textarea
+    id: cons
+    attributes:
+      label: Cons (Optional)  
+      description: Areas for improvement, one per line
+      placeholder: |
+        Could be longer
+        Limited examples
+        Repetitive in places
+    validations:
+      required: false
+
+  - type: input
+    id: isbn
+    attributes:
+      label: ISBN (Optional)
+      description: The book's ISBN for reference
+      placeholder: "e.g., 9781878424945"
+    validations:
+      required: false
+
+  - type: input
+    id: book_url
+    attributes:
+      label: Book URL (Optional)
+      description: Link to the book (Open Library, Amazon, etc.)
+      placeholder: "https://openlibrary.org/works/OL27203W/The_Four_Agreements"
+    validations:
+      required: false
+
+  - type: input
+    id: cover_image_url
+    attributes:
+      label: Cover Image URL (Optional)
+      description: URL to book cover image
+      placeholder: "https://covers.openlibrary.org/b/id/15101528-L.jpg"
+    validations:
+      required: false
+
+  - type: input
+    id: genre
+    attributes:
+      label: Genre (Optional)
+      description: Book genre/category
+      placeholder: "e.g., Philosophy, Self-Help, Fiction"
+    validations:
+      required: false
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags (Optional)
+      description: Comma-separated tags for categorizing your review
+      placeholder: "e.g., philosophy, personal-development, spirituality"
+    validations:
+      required: false
+
+  - type: input
+    id: slug
+    attributes:
+      label: Custom Slug (Optional)
+      description: Custom URL slug for your review. If not provided, one will be generated from the book title.
+      placeholder: "e.g., four-agreements-review (leave blank to auto-generate)"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        **What happens next?**
+        
+        1. 🤖 A GitHub Action will process this issue
+        2. 📄 Generate a properly formatted markdown file in `_src/reviews/`
+        3. 🔀 Create a pull request with your review content
+        4. ✅ The issue will be closed automatically
+        5. 🚀 After PR review and merge, your book review will be live on the website
+        
+        The generated content will include proper frontmatter, structured review metadata, and a custom `:::review` block with your rating and feedback.

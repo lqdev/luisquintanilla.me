@@ -1,0 +1,236 @@
+(*
+    Process GitHub Issue Template for Review Creation
+    
+    This script processes GitHub issue template data to create a review post.
+    Usage: dotnet fsi process-review-issue.fsx -- "review_type" "item_name" "rating" "summary" "content" "pros" "cons" "item_url" "image_url" "additional_fields_json" "tags" "slug"
+*)
+
+#r "../bin/Debug/net9.0/PersonalSite.dll"
+
+open System
+open System.IO
+open System.Text.RegularExpressions
+open System.Text.Json
+
+// Get command line arguments
+let args = fsi.CommandLineArgs |> Array.skip 1
+
+// Validate arguments
+if args.Length < 5 then
+    printfn "❌ Error: Missing required arguments"
+    printfn "Usage: dotnet fsi process-review-issue.fsx -- \"review_type\" \"item_name\" \"rating\" \"summary\" \"content\" \"pros\" \"cons\" \"item_url\" \"image_url\" \"additional_fields_json\" \"tags\" \"slug\""
+    exit 1
+
+let reviewType = args.[0].Trim()
+let itemName = args.[1].Trim()
+let ratingStr = args.[2].Trim()
+let summary = args.[3].Trim()
+let content = args.[4].Trim()
+let prosInput = if args.Length > 5 && not (String.IsNullOrWhiteSpace(args.[5])) then Some(args.[5].Trim()) else None
+let consInput = if args.Length > 6 && not (String.IsNullOrWhiteSpace(args.[6])) then Some(args.[6].Trim()) else None
+let itemUrl = if args.Length > 7 && not (String.IsNullOrWhiteSpace(args.[7])) then Some(args.[7].Trim()) else None
+let imageUrl = if args.Length > 8 && not (String.IsNullOrWhiteSpace(args.[8])) then Some(args.[8].Trim()) else None
+let additionalFieldsJson = if args.Length > 9 && not (String.IsNullOrWhiteSpace(args.[9])) then Some(args.[9].Trim()) else None
+let tagsInput = if args.Length > 10 && not (String.IsNullOrWhiteSpace(args.[10])) then Some(args.[10].Trim()) else None
+let customSlug = if args.Length > 11 && not (String.IsNullOrWhiteSpace(args.[11])) then Some(args.[11].Trim()) else None
+
+// Validation
+if String.IsNullOrWhiteSpace(reviewType) then
+    printfn "❌ Error: Review type is required"
+    exit 1
+
+if String.IsNullOrWhiteSpace(itemName) then
+    printfn "❌ Error: Item name is required"
+    exit 1
+
+if String.IsNullOrWhiteSpace(ratingStr) then
+    printfn "❌ Error: Rating is required"
+    exit 1
+
+// Parse rating (should be a simple float like "4.5")
+let rating = 
+    match Double.TryParse(ratingStr) with
+    | true, r -> r
+    | false, _ -> 
+        printfn "❌ Error: Invalid rating format: %s" ratingStr
+        exit 1
+
+// Validate rating range
+if rating < 1.0 || rating > 5.0 then
+    printfn "❌ Error: Rating must be between 1.0 and 5.0, got: %f" rating
+    exit 1
+
+// Validate content
+if String.IsNullOrWhiteSpace(content) then
+    printfn "❌ Error: Review content is required"
+    exit 1
+
+if content.Replace(" ", "").Replace("\n", "").Replace("\t", "").Length < 10 then
+    printfn "❌ Error: Review content must have at least 10 non-whitespace characters"
+    exit 1
+
+// Slug generation and sanitization
+let sanitizeSlug (slug: string) =
+    slug.ToLowerInvariant()
+        .Replace(" ", "-")
+        .Replace("_", "-")
+    |> fun s -> Regex.Replace(s, @"[^a-z0-9\-]", "")
+    |> fun s -> Regex.Replace(s, @"-+", "-")
+    |> fun s -> s.Trim('-')
+
+let generateSlug (title: string) =
+    let baseSlug = sanitizeSlug title
+    let timestamp = DateTimeOffset.Now.ToString("yyyy-MM-dd")
+    sprintf "%s-%s" baseSlug timestamp
+
+let slug = 
+    match customSlug with
+    | Some s when not (String.IsNullOrWhiteSpace(s)) -> sanitizeSlug s
+    | _ -> generateSlug itemName
+
+// Process tags
+let tags = 
+    match tagsInput with
+    | Some t when not (String.IsNullOrWhiteSpace(t)) ->
+        t.Split(',') 
+        |> Array.map (fun tag -> tag.Trim().ToLowerInvariant())
+        |> Array.filter (fun tag -> not (String.IsNullOrWhiteSpace(tag)))
+    | _ -> [||]
+
+// Process pros and cons
+let pros = 
+    match prosInput with
+    | Some p -> 
+        p.Split('\n') 
+        |> Array.map (fun line -> line.Trim())
+        |> Array.filter (fun line -> not (String.IsNullOrWhiteSpace(line)))
+    | None -> [||]
+
+let cons = 
+    match consInput with
+    | Some c -> 
+        c.Split('\n') 
+        |> Array.map (fun line -> line.Trim())
+        |> Array.filter (fun line -> not (String.IsNullOrWhiteSpace(line)))
+    | None -> [||]
+
+// Parse additional fields from JSON
+let additionalFields = 
+    match additionalFieldsJson with
+    | Some json when not (String.IsNullOrWhiteSpace(json)) ->
+        try
+            let doc = JsonDocument.Parse(json)
+            let mutable fields = []
+            for prop in doc.RootElement.EnumerateObject() do
+                if not (String.IsNullOrWhiteSpace(prop.Value.ToString())) then
+                    fields <- (prop.Name, prop.Value.ToString()) :: fields
+            fields |> List.rev
+        with
+        | ex -> 
+            printfn "⚠️ Warning: Could not parse additional fields JSON: %s" ex.Message
+            []
+    | _ -> []
+
+// Generate current timestamp in EST
+let now = DateTimeOffset.Now.ToOffset(TimeSpan.FromHours(-5.0))
+let timestamp = now.ToString("M/d/yyyy h:mm tt zzz")
+
+// Generate frontmatter
+let tagsString = 
+    if tags.Length = 0 then "[]"
+    else sprintf "[%s]" (tags |> Array.map (sprintf "\"%s\"") |> String.concat ",")
+
+let frontmatter = 
+    sprintf """---
+title: "%s Review"
+post_type: "review"
+published_date: "%s"
+tags: %s
+---""" (itemName.Replace("\"", "\\\"")) timestamp tagsString
+
+// Generate review block YAML
+let generateReviewBlock () =
+    let lines = ResizeArray<string>()
+    
+    lines.Add(":::review")
+    lines.Add(sprintf "item: \"%s\"" (itemName.Replace("\"", "\\\"")))
+    lines.Add(sprintf "itemType: \"%s\"" reviewType)
+    lines.Add(sprintf "rating: %.1f" rating)
+    lines.Add("scale: 5.0")
+    
+    if not (String.IsNullOrWhiteSpace(summary)) then
+        lines.Add(sprintf "summary: \"%s\"" (summary.Replace("\"", "\\\"").Replace("\n", " ")))
+    
+    if pros.Length > 0 then
+        lines.Add("pros:")
+        for pro in pros do
+            lines.Add(sprintf "  - \"%s\"" (pro.Replace("\"", "\\\"")))
+    
+    if cons.Length > 0 then
+        lines.Add("cons:")
+        for con in cons do
+            lines.Add(sprintf "  - \"%s\"" (con.Replace("\"", "\\\"")))
+    
+    match itemUrl with
+    | Some url -> lines.Add(sprintf "itemUrl: \"%s\"" url)
+    | None -> ()
+    
+    match imageUrl with
+    | Some url -> lines.Add(sprintf "imageUrl: \"%s\"" url)
+    | None -> ()
+    
+    if additionalFields.Length > 0 then
+        lines.Add("additionalFields:")
+        for (key, value) in additionalFields do
+            lines.Add(sprintf "  %s: \"%s\"" key (value.Replace("\"", "\\\"")))
+    
+    lines.Add(":::")
+    String.concat "\n" lines
+
+// Generate the complete file content
+let fileContent = sprintf """%s
+
+# %s Review
+
+%s
+
+%s""" frontmatter itemName (generateReviewBlock()) content
+
+// Determine output directory and filename
+let outputDir = Path.Join(Directory.GetCurrentDirectory(), "_src", "reviews")
+let filename = sprintf "%s.md" slug
+let fullPath = Path.Join(outputDir, filename)
+
+// Ensure directory exists
+if not (Directory.Exists(outputDir)) then
+    Directory.CreateDirectory(outputDir) |> ignore
+
+// Check if file already exists
+if File.Exists(fullPath) then
+    printfn "❌ Error: File already exists: %s" fullPath
+    printfn "Try using a different slug or the file may have been created already."
+    exit 1
+
+// Write the file
+try
+    File.WriteAllText(fullPath, fileContent)
+    
+    // Success output
+    printfn "✅ %s review created successfully!" (reviewType.Substring(0, 1).ToUpper() + reviewType.Substring(1))
+    printfn "📁 File: %s" (Path.Combine("_src", "reviews", filename))
+    printfn "📖 Item: %s" itemName
+    printfn "⭐ Rating: %.1f/5.0" rating
+    printfn "🏷️ Tags: %s" (if tags.Length > 0 then String.concat ", " tags else "none")
+    printfn "🔗 URL: %s" (match itemUrl with Some url -> url | None -> "none")
+    
+    if pros.Length > 0 then
+        printfn "👍 Pros: %d items" pros.Length
+    if cons.Length > 0 then
+        printfn "👎 Cons: %d items" cons.Length
+    if additionalFields.Length > 0 then
+        printfn "📊 Additional fields: %d items" additionalFields.Length
+
+with
+| ex -> 
+    printfn "❌ Error writing file: %s" ex.Message
+    exit 1
