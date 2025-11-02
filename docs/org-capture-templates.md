@@ -110,7 +110,7 @@ Add this to your Emacs configuration file (`~/.emacs.d/init.el` or `~/.emacs`):
         ;; Main content types hierarchy
         ("l" "lqdev.me Content")
         
-        ;; Posts and Articles (lp*)
+        ;; Posts (lp*)
         ("lp" "Post Types")
         ("lpa" "Article" plain
          (file (lambda () (concat lqdev-site-path "_src/posts/" 
@@ -119,9 +119,7 @@ Add this to your Emacs configuration file (`~/.emacs.d/init.el` or `~/.emacs`):
          (file (lambda () (concat lqdev-site-path ".templates/article.txt")))
          :empty-lines-after 1)
         
-        ;; Notes (ln*)
-        ("ln" "Note Types")
-        ("lnn" "Note" plain
+        ("lpn" "Note" plain
          (file (lambda () (concat lqdev-site-path "_src/notes/" 
                                   (format-time-string "%Y-%m-%d-")
                                   (read-string "Filename slug: ") ".md")))
@@ -212,8 +210,7 @@ The configuration uses a **hierarchical 3-key system**:
 
 1. **First key: `l`** - All lqdev.me content
 2. **Second key**: Content category
-   - `p` - Posts and articles
-   - `n` - Notes
+   - `p` - Posts (articles & notes)
    - `m` - Media (media posts, albums, playlists)
    - `r` - Responses (IndieWeb social)
    - `o` - Resources (reviews, wiki, presentations)
@@ -221,9 +218,9 @@ The configuration uses a **hierarchical 3-key system**:
 
 **Examples:**
 - `C-c c l p a` - Create article
-- `C-c c l n n` - Create note
+- `C-c c l p n` - Create note
+- `C-c c l m m` - Create media post
 - `C-c c l r b` - Create bookmark
-- `C-c c l m p` - Create photo post
 - `C-c c l o w` - Create wiki entry
 
 ### Directory Structure Reference
@@ -232,8 +229,8 @@ Templates automatically create files in the correct directories:
 
 ```
 _src/
-├── posts/           # Articles and blog posts (lpa, lpp)
-├── notes/           # Microblog notes (lnn)
+├── posts/           # Articles (lpa)
+├── notes/           # Microblog notes (lpn)
 ├── responses/       # Social responses (lrr)
 ├── bookmarks/       # Bookmarks (lrb)
 ├── media/           # Media posts (lmm)
@@ -258,7 +255,7 @@ _src/
 
 ### Example Workflow: Creating a Note
 
-1. Press `C-c c l n n` (Capture → lqdev → note → note)
+1. Press `C-c c l p n` (Capture → lqdev → posts → note)
 2. Enter filename slug: `my-first-note`
 3. Prompted for: Title, Tags
 4. File created at: `_src/notes/2024-11-02-my-first-note.md`

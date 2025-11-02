@@ -8,9 +8,7 @@ This shows the complete 3-key navigation structure for Emacs org-capture.
 C-c c (org-capture)
 └── l (lqdev.me Content)
     ├── p (Post Types)
-    │   └── a → article.txt      (Article)
-    │
-    ├── n (Note Types)
+    │   ├── a → article.txt      (Article)
     │   └── n → note.txt         (Note)
     │
     ├── m (Media Types)
@@ -32,11 +30,9 @@ C-c c (org-capture)
 
 ## Keybinding Reference
 
-### Posts & Articles
+### Posts
 - `C-c c l p a` → Create Article
-
-### Notes
-- `C-c c l n n` → Create Note
+- `C-c c l p n` → Create Note
 
 ### Media
 - `C-c c l m m` → Create Media Post (image/video/audio)
@@ -116,17 +112,17 @@ Quick insertion helpers (no new file):
 ## Mnemonic Key System
 
 The second-level keys use mnemonics for easy recall:
-- **p** = Posts
-- **n** = Notes
+- **p** = Posts (articles & notes)
 - **m** = Media
 - **r** = Responses
-- **o** = Other/Resources (can't use 'r')
+- **o** = Other/Resources
 
 Third-level keys match the first letter of content type:
 - **a** = Article
-- **p** = Post/Photo/Presentation
 - **n** = Note
-- **v** = Video
+- **p** = Presentation/Playlist
+- **m** = Media
+- **v** = Video/reView
 - **r** = Reply
 - **s** = Star/Snippet
 - **h** = resHare (reshare)

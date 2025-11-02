@@ -39,7 +39,7 @@
         ;; Main content types hierarchy
         ("l" "lqdev.me Content")
         
-        ;; Posts and Articles (lp*)
+        ;; Posts (lp*)
         ("lp" "Post Types")
         ("lpa" "Article" plain
          (file (lambda () (concat lqdev-site-path "_src/posts/" 
@@ -48,9 +48,7 @@
          (file (lambda () (concat lqdev-site-path ".templates/article.txt")))
          :empty-lines-after 1)
         
-        ;; Notes (ln*)
-        ("ln" "Note Types")
-        ("lnn" "Note" plain
+        ("lpn" "Note" plain
          (file (lambda () (concat lqdev-site-path "_src/notes/" 
                                   (format-time-string "%Y-%m-%d-")
                                   (read-string "Filename slug: ") ".md")))
