@@ -1,0 +1,224 @@
+{
+    "title": "Chicago Favorites",
+    "description": "A curated list of favorite places in Chicago.",
+    "places": [
+        {
+            "id": "chicago-ovengrinder-piza",
+            "name": "Chicago Pizza and Oven Grinder Company",
+            "lat": 41.92077959243043,  
+            "lon": -87.63735951154375,
+            "category": "restaurant",
+            "description": "Cash-only eatery in a historic brownstone serving its famous pizza-pot-pies plus grinders & more.",
+            "personalNote": "",
+            "practicalInfo": {
+                "phone": "+17732482570",
+                "website": "https://www.chicagopizzaandovengrinder.com/food-menu"
+            }
+        },
+        {
+            "id": "bryn-mawr-breakfast",
+            "name": "Bryn Mawr Breakfast Club",
+            "lat": 41.93881228098167,
+            "lon": -87.73934701596598,
+            "category": "restaurant",
+            "description": "Breakfast and lunch spot.",
+            "personalNote": "",
+            "practicalInfo": {
+                "phone": "+17739303068",
+                "website": "https://www.brynmawrbreakfastclub.net/"
+            }
+        },
+        {
+            "id": "do-rite-donuts",
+            "name": "Do-Rite Donuts",
+            "lat": 41.94707054574927, 
+            "lon": -87.65493472760632,
+            "category": "restaurant",
+            "description": "Popular donut shop.",
+            "personalNote": "",
+            "practicalInfo": {
+                "website": "http://doritedonuts.com/"
+            }
+        },
+        {
+            "id": "la-catedral",
+            "name": "La Catedral Cafe",
+            "lat": 41.86259445714117,  
+            "lon": -87.69313161167184,
+            "category": "restaurant",
+            "description": "Good breakfast spot.",
+            "personalNote": "Cafe de olla and chilaquiles are my go-to.",
+            "practicalInfo": {
+                "phone": "+17734757196",
+                "website": "http://lacatedralcafe.com/"
+            }
+        },
+        {
+            "id": "stay-and-play",
+            "name": "Stay and Play Game Cafe",
+            "lat": 41.953877244683454,
+            "lon": -87.7265359217517,
+            "category": "restaurant",
+            "description": "Good Food + Tasty Drinks + Fun Board Games = Stay and Play Game Cafe Experience!",
+            "personalNote": "",
+            "practicalInfo": {
+                "phone": "+13126852255",
+                "website": "https://stayandplaygamecafe.com/"
+            }
+        },
+        {
+            "id": "jibaritos",
+            "name": "Jibaritos Y Mas",
+            "lat": 41.92482359065623,
+            "lon": -87.71225910043316,
+            "category": "restaurant",
+            "description": "Relaxed counter-serve joint preparing Puerto Rican bites to eat in or take-out.",
+            "personalNote": "I usually order the steak sandwich. Prices are reasonable too.",
+            "practicalInfo": {
+                "phone": "+17737998601",
+                "website": "https://www.orderjibaritosymas.com/"
+            }
+        },
+        {
+            "id": "longman-and-eagle",
+            "name": "Longman & Eagle",
+            "lat": 41.93005854540888,
+            "lon": -87.70714561208152,
+            "category": "restaurant",
+            "description": "Longman & Eagle is a contemporary take on a traditional Chicago inn—offering considered, inspired drinking, eating and sleeping options—located in the Logan Square neighborhood in Chicago, USA.",
+            "personalNote": "Great Whiskey selection",
+            "practicalInfo": {
+                "phone": "+17732767110",
+                "website": "https://www.longmanandeagle.com/"
+            }
+        },
+        {
+            "id": "tempesta",
+            "name": "Tempesta Market",
+            "lat": 41.8911727077329,
+            "lon": -87.66182334586199,
+            "category": "restaurant",
+            "description": "Hybrid deli, sandwich shop & grocery market with artisanal fare, full bar & prepared foods to go.",
+            "personalNote": "Good meatball and chicken parm sandwiches",
+            "practicalInfo": {
+                "phone": "+13129292551",
+                "website": "https://tempestamarket.com/"
+            }
+        },
+        {
+            "id": "garfield-park-conservatory",
+            "name": "Garfield Park Conservatory",
+            "lat": 41.88628322316542,
+            "lon": -87.71725808169961,
+            "category": "attraction",
+            "description": "184-acre park with a swimming pool, fishing lagoon, athletic fields & tennis courts.",
+            "personalNote": "Nice place especially during the winter months if you want access to nature indoors.",
+            "practicalInfo": {
+                "phone": "+17736381766",
+                "website": "https://garfieldconservatory.org/"
+            }
+        },
+        {
+            "id": "small-cheval",
+            "name": "Small Cheval",
+            "lat": 41.912814556308675,
+            "lon": -87.68147808401757,
+            "category": "restaurant",
+            "description": "Popular burgers, shakes, beer, and cocktails in rustic digs and a patio, plus offers takeouts.",
+            "personalNote": "Decent burgers. The patio is family friendly and there's enough room for you to spread out.",
+            "practicalInfo": {
+                "phone": "+13128373859",
+                "website": "https://smallcheval.com/"
+            }
+        },
+        {
+            "id": "architecture-tour",
+            "name": "Shoreline Architecture Boats Tours",
+            "lat": 41.89106263096392,
+            "lon": -87.60896541225083,
+            "category": "attraction",
+            "description": "From hidden treasures to the city’s most well-known sights, you’ll view over 40 Chicago landmarks on our 75-minute Architecture River Boat Tours.",
+            "personalNote": "This is a different way to see the city and learn a few things along the way.",
+            "practicalInfo": {
+                "website": "https://shorelinesightseeing.com/"
+            }
+        },
+        {
+            "id": "mccb-chicago",
+            "name": "MCCB Chicago",
+            "lat": 41.853884197964625,
+            "lon": -87.6336341723952,
+            "category": "restaurant",
+            "description": "Warm, casual outlet offering elevated & modern Sichuan & Canton fare such as charcoal grilled fish.",
+            "personalNote": "",
+            "practicalInfo": {
+                "phone": "+13128810168",
+                "website": "https://www.mccbchicago.com/"
+            }
+        },
+        {
+            "id": "chicago-botanic-garden",
+            "name": "Chicago Botanic Garden",
+            "lat": 42.1490320686473,
+            "lon": -87.78954440371169,
+            "category": "attraction",
+            "description": "385 acres of landscaped gardens displaying millions of plants & flowers in a variety of settings.",
+            "personalNote": "Nice place to spend the day outdoors. My favorite is the Dwarf Conifer Garden.",
+            "practicalInfo": {
+                "phone": "+18478356801",
+                "website": "https://www.chicagobotanic.org/"
+            }
+        },
+        {
+            "id": "gotham-bagels",
+            "name": "Gotham Bagels",
+            "lat": 41.89598817648135,
+            "lon": -87.62298409350424,
+            "category": "restaurant",
+            "description": "New York style bagels",
+            "personalNote": "Close enough to NY bagels",
+            "practicalInfo": {
+                "website": "https://www.gothambagels.com/"
+            }
+        },
+        {
+            "id": "sugar-moon",
+            "name": "Sugar Moon",
+            "lat": 41.92840329916016, 
+            "lon": -87.7178312590352,
+            "category": "",
+            "description": "Sugar Moon is a small neighborhood bakeshop located in Logan Square. We offer elevated home-style pastries with an appreciation for old-school techniques.",
+            "personalNote": "Get here before opening time. Line starts to form quickly",
+            "practicalInfo": {
+                "website": "http://sugarmoonchicago.com/"
+            }
+        },
+        {
+            "id": "chicago-pickle-eatery",
+            "name": "Chicago Pickle Eatery",
+            "lat": 41.936788331858324,
+            "lon": -87.71974268198109,
+            "category": "restaurant",
+            "description": "From our East Coast roots to our commitment to quality, we’re passionate about bringing the best of New York-inspired deli and comfort food to Chicago.",
+            "personalNote": "The giant sandwiches are...giant. You can probably split one between 2+ people.",
+            "practicalInfo": {
+                "phone": "+17737998306",
+                "website": "https://cp-eatery.com/"
+            }
+        },
+        {
+            "id": "moonwalker-cafe",
+            "name": "Moonwalker Cafe",
+            "lat": 41.93897300826107,
+            "lon": -87.72978144080943,
+            "category": "restaurant",
+            "description": "We are a neighborhood cafe known for our made to order sandwiches and Dark Matter Coffee drinks.",
+            "personalNote": "Great local spot. Their breakfast burrito and bacon egg and cheese bagels are good.",
+            "practicalInfo": {
+                "website": "https://moonwalkercafe.com/"
+            }
+        }
+    ],
+    "routes": [
+    ]
+}

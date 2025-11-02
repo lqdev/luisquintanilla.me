@@ -112,7 +112,7 @@ let private createSimplifiedReviewContent (content: string) =
 
 // New stratified timeline homepage view - takes 5 items from each content type initially
 // Progressive loading is content-type aware for better filtering experience
-let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) (remainingItemsByType: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
+let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) (remainingItemsByType: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) (pinnedUrls: Set<string>) =
     
     div [ _class "h-feed unified-timeline" ] [
         // Header with personal intro and content filters
@@ -166,12 +166,22 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                     
                     let properPermalink = getProperPermalink item.ContentType fileName
                     
+                    // Check if this item is pinned
+                    let isPinned = pinnedUrls.Contains(item.Url)
+                    
                     // Content card with desert theme and filtering attributes
                     article [ 
-                        _class "h-entry content-card"
+                        _class (if isPinned then "h-entry content-card pinned-post" else "h-entry content-card")
                         attr "data-type" item.ContentType
                         attr "data-date" item.Date
                     ] [
+                        // Add pin indicator if pinned
+                        if isPinned then
+                            div [ _class "pin-indicator" ] [
+                                span [ _class "pin-icon" ] [ Text "📌" ]
+                                span [ _class "pin-label" ] [ Text "Pinned" ]
+                            ]
+                        
                         header [ _class "card-header" ] [
                             time [ _class "dt-published publication-date"; attr "datetime" item.Date ] [
                                 Text (DateTimeOffset.Parse(item.Date).ToString("MMM dd, yyyy"))
@@ -624,7 +634,7 @@ let contentViewWithTitle (title:string) (content:string) =
         rawText content
     ]    
 
-let snippetPageView (title:string) (content:string) (date:string) (fileName:string) = 
+let mediaPageView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -647,18 +657,22 @@ let snippetPageView (title:string) (content:string) (date:string) (fileName:stri
             ]
             
             footer [ _class "post-footer" ] [
-                div [ _class "permalink-info" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
                     Text "Permalink: "
-                    a [ _class "u-url permalink-link"; _href $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
-                        Text $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    a [ _class "u-url permalink-link"; _href $"/media/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
+                        Text $"/media/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
+                    copyPermalinkButton $"/media/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    webShareButton $"/media/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    qrCodeButton $"/media/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
+                postTagsSection tags
                 webmentionForm
             ]
         ]
     ]
 
-let wikiPageView (title:string) (content:string) (date:string) (fileName:string) = 
+let snippetPageView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) (relatedSnippets: Snippet array) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -681,12 +695,56 @@ let wikiPageView (title:string) (content:string) (date:string) (fileName:string)
             ]
             
             footer [ _class "post-footer" ] [
-                div [ _class "permalink-info" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
+                    Text "Permalink: "
+                    a [ _class "u-url permalink-link"; _href $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
+                        Text $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    ]
+                    copyPermalinkButton $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    webShareButton $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    qrCodeButton $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/"
+                ]
+                postTagsSection tags
+                relatedSnippetsSection relatedSnippets
+                webmentionForm
+            ]
+        ]
+    ]
+
+let wikiPageView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) (relatedWikis: Wiki array) = 
+    let publishDate = DateTimeOffset.Parse(date)
+    div [ _class "mr-auto" ] [
+        article [ _class "h-entry individual-post" ] [
+            header [ _class "post-header" ] [
+                h1 [ _class "p-name post-title" ] [ Text title ]
+                div [ _class "post-meta" ] [
+                    time [ _class "dt-published"; attr "datetime" date ] [
+                        Text (publishDate.ToString("MMMM d, yyyy"))
+                    ]
+                ]
+                // Hidden IndieWeb author information for microformats compliance
+                div [ _class "u-author h-card microformat-hidden" ] [
+                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
+                ]
+            ]
+            
+            div [ _class "e-content post-content" ] [
+                rawText content
+            ]
+            
+            footer [ _class "post-footer" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
                     Text "Permalink: "
                     a [ _class "u-url permalink-link"; _href $"/resources/wiki/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
                         Text $"/resources/wiki/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
+                    copyPermalinkButton $"/resources/wiki/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    webShareButton $"/resources/wiki/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    qrCodeButton $"/resources/wiki/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
+                postTagsSection tags
+                relatedWikisSection relatedWikis
                 webmentionForm
             ]
         ]
@@ -721,11 +779,14 @@ let reviewPageView (title:string) (content:string) (date:string) (fileName:strin
             ]
             
             footer [ _class "post-footer" ] [
-                div [ _class "permalink-info" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
                     Text "Permalink: "
                     a [ _class "u-url permalink-link"; _href $"/reviews/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
                         Text $"/reviews/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
+                    copyPermalinkButton $"/reviews/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    webShareButton $"/reviews/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    qrCodeButton $"/reviews/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
                 webmentionForm
             ]
@@ -774,11 +835,14 @@ let presentationPageView (presentation:Presentation) =
             ]
             
             footer [ _class "post-footer" ] [
-                div [ _class "permalink-info" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
                     Text "Permalink: "
                     a [ _class "u-url permalink-link"; _href $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/" ] [
                         Text $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/"
                     ]
+                    copyPermalinkButton $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/"
+                    webShareButton $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/"
+                    qrCodeButton $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/"
                 ]
                 webmentionForm
             ]
@@ -799,7 +863,7 @@ let liveStreamView (title:string) =
         ] []
     ]
 
-let blogPostView (title:string) (content:string) (date:string) (fileName:string) = 
+let blogPostView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) (readingTimeMinutes: int option) (relatedPosts: Post array) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -809,6 +873,13 @@ let blogPostView (title:string) (content:string) (date:string) (fileName:string)
                     time [ _class "dt-published"; attr "datetime" date ] [
                         Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
+                    match readingTimeMinutes with
+                    | Some minutes when minutes >= 1 ->
+                        span [ _class "reading-time" ] [
+                            span [ _class "bi bi-clock" ] []
+                            Text $"{minutes} min read"
+                        ]
+                    | _ -> ()
                 ]
                 // Hidden IndieWeb author information for microformats compliance
                 div [ _class "u-author h-card microformat-hidden" ] [
@@ -822,18 +893,23 @@ let blogPostView (title:string) (content:string) (date:string) (fileName:string)
             ]
             
             footer [ _class "post-footer" ] [
-                div [ _class "permalink-info" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
                     Text "Permalink: "
                     a [ _class "u-url permalink-link"; _href $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
                         Text $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
+                    copyPermalinkButton $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    webShareButton $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    qrCodeButton $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
+                postTagsSection tags
+                relatedPostsSection relatedPosts "posts"
                 webmentionForm
             ]
         ]
     ]
 
-let notePostView (title:string) (content:string) (date:string) (fileName:string) = 
+let notePostView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) (readingTimeMinutes: int option) (relatedPosts: Post array) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -843,6 +919,13 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
                     time [ _class "dt-published"; attr "datetime" date ] [
                         Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
+                    match readingTimeMinutes with
+                    | Some minutes when minutes >= 1 ->
+                        span [ _class "reading-time" ] [
+                            span [ _class "bi bi-clock" ] []
+                            Text $"{minutes} min read"
+                        ]
+                    | _ -> ()
                 ]
                 // Hidden IndieWeb author information for microformats compliance
                 div [ _class "u-author h-card microformat-hidden" ] [
@@ -856,18 +939,23 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
             ]
             
             footer [ _class "post-footer" ] [
-                div [ _class "permalink-info" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
                     Text "Permalink: "
                     a [ _class "u-url permalink-link"; _href $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
                         Text $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
+                    copyPermalinkButton $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    webShareButton $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    qrCodeButton $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
+                postTagsSection tags
+                relatedPostsSection relatedPosts "notes"
                 webmentionForm
             ]
         ]
     ]
 
-let responsePostView (title:string) (content:string) (date:string) (fileName:string) (targetUrl:string) = 
+let responsePostView (title:string) (content:string) (date:string) (fileName:string) (targetUrl:string) (tags: string array) (readingTimeMinutes: int option) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
@@ -877,6 +965,13 @@ let responsePostView (title:string) (content:string) (date:string) (fileName:str
                     time [ _class "dt-published"; attr "datetime" date ] [
                         Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
+                    match readingTimeMinutes with
+                    | Some minutes when minutes >= 1 ->
+                        span [ _class "reading-time" ] [
+                            span [ _class "bi bi-clock" ] []
+                            Text $"{minutes} min read"
+                        ]
+                    | _ -> ()
                 ]
                 // Hidden IndieWeb author information for microformats compliance
                 div [ _class "u-author h-card microformat-hidden" ] [
@@ -901,12 +996,16 @@ let responsePostView (title:string) (content:string) (date:string) (fileName:str
             ]
             
             footer [ _class "post-footer" ] [
-                div [ _class "permalink-info" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
                     Text "Permalink: "
                     a [ _class "u-url permalink-link"; _href $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/" ] [
                         Text $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/"
                     ]
+                    copyPermalinkButton $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    webShareButton $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/"
+                    qrCodeButton $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/"
                 ]
+                postTagsSection tags
                 webmentionForm
             ]
         ]

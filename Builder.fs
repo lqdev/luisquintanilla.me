@@ -10,9 +10,13 @@ module Builder
     open MarkdownService
     open TagService
     open OpmlService
+    open RelatedContentService
     open ViewGenerator
     open PartialViews
     open TagViews
+    open Loaders
+    open Markdig
+    open Markdig.Parsers
     
     let private srcDir = "_src"
     let private outputDir = "_public"
@@ -106,6 +110,11 @@ module Builder
 
         // Copy ActivityPub actor file
         File.Copy(Path.Join(srcDir,"lqdev.activitypub"),Path.Join(outputDir,"lqdev.activitypub"),true)
+        
+        // Copy PWA files
+        File.Copy(Path.Join(srcDir,"service-worker.js"),Path.Join(outputDir,"service-worker.js"),true)
+        File.Copy(Path.Join(srcDir,"manifest.json"),Path.Join(outputDir,"manifest.json"),true)
+        File.Copy(Path.Join(srcDir,"offline.html"),Path.Join(outputDir,"offline.html"),true)
 
     let buildHomePage (blogPosts:Post array) (feedPosts:Post array) (responsePosts:Response array)= 
         let recentBlog = 
@@ -129,37 +138,67 @@ module Builder
 
     // New timeline homepage for Phase 3 - Feed-as-Homepage Interface
     let buildTimelineHomePage (allUnifiedItems: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
-        // True chronological approach: Take the most recent items across ALL content types
-        // This ensures proper chronological order instead of forcing representation from old content types
+        // Load pinned posts configuration
+        let pinnedPostsConfig = loadPinnedPosts()
+        
+        // Flatten all items
         let allItemsFlattened = 
             allUnifiedItems
             |> List.collect snd
             |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
         
-        let chronologicalInitialItems = 
+        // Extract pinned items based on configuration (using filename matching)
+        let pinnedItems = 
+            pinnedPostsConfig
+            |> Array.choose (fun (config: PinnedPost) ->
+                allItemsFlattened 
+                |> List.tryFind (fun item -> 
+                    // Extract filename from URL: /posts/my-post/ -> my-post
+                    let urlFileName = 
+                        item.Url.TrimEnd('/').Split('/')
+                        |> Array.last
+                    urlFileName = config.FileName && 
+                    item.ContentType = config.ContentType))
+            |> Array.toList
+        
+        // Remove pinned items from chronological list
+        let unpinnedItemsFlattened = 
             allItemsFlattened
-            |> List.take (min 50 allItemsFlattened.Length) // Take top 50 most recent items regardless of type
+            |> List.filter (fun item ->
+                not (pinnedItems |> List.exists (fun pinned -> pinned.Url = item.Url)))
+        
+        // Take initial items from unpinned list
+        let chronologicalInitialItems = 
+            unpinnedItemsFlattened
+            |> List.take (min 50 unpinnedItemsFlattened.Length)
+        
+        // Combine: pinned first, then chronological
+        let initialItems = pinnedItems @ chronologicalInitialItems
         
         // Group remaining items by content type for type-aware progressive loading
         let remainingItemsByType = 
             allUnifiedItems
             |> List.map (fun (contentType, items) ->
                 let sortedItems = items |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
-                // Skip items that are already in the initial chronological load
+                // Skip items that are already in the initial load (pinned + chronological)
                 let remainingItems = 
                     sortedItems 
                     |> List.filter (fun item -> 
-                        not (chronologicalInitialItems |> List.exists (fun initial -> initial.Url = item.Url)))
+                        not (initialItems |> List.exists (fun initial -> initial.Url = item.Url)))
                 (contentType, remainingItems)
             )
             |> List.filter (fun (_, items) -> not items.IsEmpty)
         
-        // Generate the timeline homepage with chronological approach
-        let timelineHomePage = generate (LayoutViews.timelineHomeViewStratified (chronologicalInitialItems |> List.toArray) remainingItemsByType) "default" "Luis Quintanilla - Personal Website"
+        // Create set of pinned URLs for efficient lookup
+        let pinnedUrls = pinnedItems |> List.map (fun item -> item.Url) |> Set.ofList
+        
+        // Generate the timeline homepage with pinned posts support
+        let timelineHomePage = generate (LayoutViews.timelineHomeViewStratified (initialItems |> List.toArray) remainingItemsByType pinnedUrls) "default" "Luis Quintanilla - Personal Website"
         File.WriteAllText(Path.Join(outputDir,"index.html"), timelineHomePage)
         
         let totalItems = allUnifiedItems |> List.sumBy (fun (_, items) -> items.Length)
-        printfn "✅ Timeline homepage created with %d initial items (chronological) from %d total items across all content types" chronologicalInitialItems.Length totalItems
+        let pinnedCount = pinnedItems.Length
+        printfn "✅ Timeline homepage created with %d pinned posts, %d chronological items from %d total items across all content types" pinnedCount chronologicalInitialItems.Length totalItems
 
     let buildAboutPage () = 
 
@@ -184,6 +223,14 @@ module Builder
         let saveDir = Path.Join(outputDir,"collections","starter-packs")
         Directory.CreateDirectory(saveDir) |> ignore
         File.WriteAllText(Path.Join(saveDir,"index.html"), starterPage)
+
+    let buildTravelGuidesPage () = 
+
+        let travelContent = convertFileToHtml (Path.Join(srcDir,"travel-guides.md")) |> contentView
+        let travelPage = generate travelContent "default" "Travel Guides - Luis Quintanilla"
+        let saveDir = Path.Join(outputDir,"collections","travel-guides")
+        Directory.CreateDirectory(saveDir) |> ignore
+        File.WriteAllText(Path.Join(saveDir,"index.html"), travelPage)
 
     let buildBlogrollPage (links:Outline array) = 
         let blogRollContent = 
@@ -275,6 +322,214 @@ module Builder
         // Write out page
         File.WriteAllText(Path.Join(saveDir,"index.html"), onlineRadioPage)        
 
+    // =====================================================================
+    // Resume Page Builder
+    // =====================================================================
+    
+    /// Extract content between headings in markdown document
+    let private extractSectionContent (doc: Markdig.Syntax.MarkdownDocument) (headingText: string) =
+        let headings = 
+            Markdig.Syntax.MarkdownObjectExtensions.Descendants<Markdig.Syntax.HeadingBlock>(doc)
+            |> Seq.toList
+        
+        // Helper to extract text from heading inline content
+        let getHeadingText (h: Markdig.Syntax.HeadingBlock) =
+            if h.Inline <> null then
+                // Get first child literal if it exists
+                let literals = 
+                    Markdig.Syntax.MarkdownObjectExtensions.Descendants<Markdig.Syntax.Inlines.LiteralInline>(h.Inline)
+                    |> Seq.toList
+                if not literals.IsEmpty then
+                    literals |> List.map (fun l -> l.Content.ToString()) |> String.concat ""
+                else
+                    ""
+            else
+                ""
+        
+        // Find the heading that matches the target text (case-insensitive)
+        let targetHeadingOpt = 
+            headings 
+            |> List.tryFind (fun h -> 
+                let text = getHeadingText h
+                text.Trim().Equals(headingText, StringComparison.OrdinalIgnoreCase))
+        
+        match targetHeadingOpt with
+        | None -> None
+        | Some targetHeading ->
+            // Find all blocks that come after this heading until the next heading of same or higher level
+            let allBlocks = doc |> Seq.toList
+            let targetIndex = allBlocks |> List.findIndex (fun b -> Object.ReferenceEquals(b, targetHeading))
+            let targetLevel = targetHeading.Level
+            
+            // Get blocks until next heading of same or higher level
+            let contentBlocks = 
+                allBlocks
+                |> List.skip (targetIndex + 1)
+                |> List.takeWhile (fun block ->
+                    match block with
+                    | :? Markdig.Syntax.HeadingBlock as h -> h.Level > targetLevel
+                    | _ -> true)
+            
+            if contentBlocks.IsEmpty then
+                None
+            else
+                // Convert blocks back to markdown using Markdig renderer
+                use writer = new System.IO.StringWriter()
+                let renderer = Markdig.Renderers.HtmlRenderer(writer)
+                for block in contentBlocks do
+                    renderer.Write(block)
+                let html = writer.ToString().Trim()
+                if String.IsNullOrWhiteSpace(html) then None else Some html
+    
+    let buildResumePage () =
+        let resumePath = Path.Join(srcDir, "resume", "resume.md")
+        
+        match Loaders.loadResume resumePath with
+        | None ->
+            printfn "⚠ No resume found at %s - skipping resume page" resumePath
+        | Some baseResume ->
+            try
+                // Parse the markdown with resume block extensions
+                let pipeline = 
+                    MarkdownPipelineBuilder()
+                        .UseYamlFrontMatter()
+                        .UsePipeTables()
+                        .UseTaskLists()
+                        .UseDiagrams()
+                        .UseMediaLinks()
+                        .UseMathematics()
+                        .UseEmojiAndSmiley()
+                        .UseEmphasisExtras()
+                        .UseBootstrap()
+                        .UseFigures()
+                        .Use(CustomBlocks.ResumeBlockExtension())
+                        .Build()
+                
+                let doc = Markdown.Parse(baseResume.Content, pipeline)
+                
+                // Extract resume blocks from AST
+                let experiences = 
+                    Markdig.Syntax.MarkdownObjectExtensions.Descendants<CustomBlocks.ExperienceBlock>(doc)
+                    |> Seq.map (fun (block: CustomBlocks.ExperienceBlock) ->
+                        {
+                            Role = block.Role
+                            Company = block.Company
+                            StartDate = DateTime.Parse(block.Start)
+                            EndDate = 
+                                match block.End with
+                                | Some "current" -> None
+                                | Some date -> Some (DateTime.Parse(date))
+                                | None -> None
+                            Highlights = 
+                                if String.IsNullOrWhiteSpace(block.Content) || block.Content = " " then None
+                                else 
+                                    block.Content.Split('\n')
+                                    |> Array.filter (fun s -> not (String.IsNullOrWhiteSpace s))
+                                    |> Array.toList
+                                    |> Some
+                        } : Domain.Experience)
+                    |> Seq.toList
+                
+                let projects = 
+                    Markdig.Syntax.MarkdownObjectExtensions.Descendants<CustomBlocks.ProjectBlock>(doc)
+                    |> Seq.map (fun (block: CustomBlocks.ProjectBlock) ->
+                        let description = if String.IsNullOrWhiteSpace(block.Content) || block.Content = " " then "" else block.Content
+                        let techs = 
+                            match block.Tech with
+                            | Some t when not (String.IsNullOrWhiteSpace t) ->
+                                t.Split(',') |> Array.map (fun s -> s.Trim()) |> Array.toList |> Some
+                            | _ -> None
+                        {
+                            Title = block.Title
+                            Description = description
+                            Url = block.Url
+                            Technologies = techs
+                            Highlights = None  // Not used in current design
+                        } : Domain.Project)
+                    |> Seq.toList
+                
+                let skills = 
+                    Markdig.Syntax.MarkdownObjectExtensions.Descendants<CustomBlocks.SkillsBlock>(doc)
+                    |> Seq.map (fun (block: CustomBlocks.SkillsBlock) ->
+                        let skillList = 
+                            if String.IsNullOrWhiteSpace(block.Content) || block.Content = " " then []
+                            elif block.Content.Contains(",") && not (block.Content.Contains("\n-") || block.Content.Contains("\n*")) then
+                                // Comma-separated
+                                block.Content.Split(',') |> Array.map (fun s -> s.Trim()) |> Array.toList
+                            else
+                                // Bullet list
+                                block.Content.Split('\n') 
+                                |> Array.filter (fun s -> not (String.IsNullOrWhiteSpace s))
+                                |> Array.map (fun s -> s.Trim().TrimStart('-', '*').Trim())
+                                |> Array.toList
+                        {
+                            Category = block.Category
+                            Skills = skillList
+                        } : Domain.SkillCategory)
+                    |> Seq.toList
+                
+                let testimonials = 
+                    Markdig.Syntax.MarkdownObjectExtensions.Descendants<CustomBlocks.TestimonialBlock>(doc)
+                    |> Seq.map (fun (block: CustomBlocks.TestimonialBlock) ->
+                        {
+                            Quote = if String.IsNullOrWhiteSpace(block.Content) || block.Content = " " then "" else block.Content
+                            Author = block.Author
+                        } : Domain.Testimonial)
+                    |> Seq.toList
+                
+                let education = 
+                    Markdig.Syntax.MarkdownObjectExtensions.Descendants<CustomBlocks.EducationBlock>(doc)
+                    |> Seq.map (fun (block: CustomBlocks.EducationBlock) ->
+                        let yearOpt = 
+                            match block.Year with
+                            | Some y when not (String.IsNullOrWhiteSpace y) ->
+                                match Int32.TryParse(y) with
+                                | (true, year) -> Some year
+                                | _ -> None
+                            | _ -> None
+                        let details = 
+                            if String.IsNullOrWhiteSpace(block.Content) || block.Content = " " then None
+                            else Some block.Content
+                        {
+                            Degree = block.Degree
+                            Institution = block.Institution
+                            GraduationYear = yearOpt
+                            Details = details
+                        } : Domain.Education)
+                    |> Seq.toList
+                
+                // Extract About and Interests sections from markdown
+                let aboutSection = extractSectionContent doc "About"
+                let interestsSection = 
+                    match extractSectionContent doc "Currently Interested In" with
+                    | Some content -> Some content
+                    | None -> extractSectionContent doc "Interests"
+                
+                // Build complete resume with extracted data
+                let completeResume = 
+                    { baseResume with
+                        AboutSection = aboutSection
+                        InterestsSection = interestsSection
+                        Experience = experiences
+                        Projects = projects
+                        Skills = skills
+                        Testimonials = testimonials
+                        Education = education
+                    }
+                
+                // Generate HTML (will add view in next phase)
+                let html = ContentViews.ResumeView.render completeResume
+                let resumePage = generate html "default" "Resume - Luis Quintanilla"
+                
+                let saveDir = Path.Join(outputDir, "resume")
+                Directory.CreateDirectory(saveDir) |> ignore
+                File.WriteAllText(Path.Join(saveDir, "index.html"), resumePage)
+                
+                printfn "✅ Resume page built successfully"
+            with
+            | ex ->
+                printfn "❌ Error building resume page: %s" ex.Message
+
     let buildFeedsOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Feeds" "https://www.lqdev.me" links
         let saveDir = Path.Join(outputDir,"feed")
@@ -345,6 +600,19 @@ module Builder
                 // Generate and write RSS file
                 let rssContent = Collections.CollectionBuilder.generateCollectionRssContent data
                 File.WriteAllText(Path.Join(outputDir, paths.RssPath), rssContent)
+                
+                // Generate and write GPX file (if applicable)
+                match paths.GpxPath with
+                | Some gpxRelativePath ->
+                    let processor = Collections.CollectionProcessor.createCollectionProcessor collection
+                    match processor.GenerateGpxFile data with
+                    | Some gpxContent ->
+                        File.WriteAllText(Path.Join(outputDir, gpxRelativePath), gpxContent)
+                        printfn "✅ Generated GPX file: %s" gpxRelativePath
+                    | None ->
+                        printfn "⚠️  No GPX content generated for %s" collection.Title
+                | None -> 
+                    () // No GPX file expected for this collection
                 
                 printfn "✅ Built collection: %s (%d items)" collection.Title (data.Items.Length)
                 
@@ -618,6 +886,9 @@ module Builder
         let processor = GenericBuilder.SnippetProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor snippetFiles
         
+        // Get all snippets for related content calculation
+        let allSnippets = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        
         // Generate individual snippet pages
         feedData
         |> List.iter (fun item ->
@@ -625,7 +896,14 @@ module Builder
             let saveDir = Path.Join(outputDir, "resources", "snippets", snippet.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = snippetPageView snippet.Metadata.Title (snippet.Content |> convertMdToHtml) snippet.Metadata.CreatedDate snippet.FileName
+            let snippetTags = 
+                if String.IsNullOrEmpty(snippet.Metadata.Tags) then [||]
+                else snippet.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+            
+            // Find related snippets for this snippet (limit to 5)
+            let relatedSnippets = RelatedContentService.findRelatedContent snippet allSnippets 5
+            
+            let html = snippetPageView snippet.Metadata.Title (snippet.Content |> convertMdToHtml) snippet.Metadata.CreatedDate snippet.FileName snippetTags relatedSnippets
             let snippetView = generate html "defaultindex" $"Snippet | {snippet.Metadata.Title} | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, snippetView))
@@ -650,6 +928,9 @@ module Builder
         let processor = GenericBuilder.WikiProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor wikiFiles
         
+        // Get all wikis for related content calculation
+        let allWikis = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        
         // Generate individual wiki pages
         feedData
         |> List.iter (fun item ->
@@ -657,7 +938,14 @@ module Builder
             let saveDir = Path.Join(outputDir, "resources", "wiki", wiki.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = wikiPageView wiki.Metadata.Title (wiki.Content |> convertMdToHtml) wiki.Metadata.LastUpdatedDate wiki.FileName
+            let wikiTags = 
+                if String.IsNullOrEmpty(wiki.Metadata.Tags) then [||]
+                else wiki.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+            
+            // Find related wikis for this wiki (limit to 5)
+            let relatedWikis = RelatedContentService.findRelatedContent wiki allWikis 5
+            
+            let html = wikiPageView wiki.Metadata.Title (wiki.Content |> convertMdToHtml) wiki.Metadata.LastUpdatedDate wiki.FileName wikiTags relatedWikis
             let wikiView = generate html "defaultindex" $"{wiki.Metadata.Title} | Wiki | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, wikiView))
@@ -747,6 +1035,9 @@ module Builder
         let processor = GenericBuilder.PostProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor postFiles
         
+        // Get all posts for related content calculation
+        let allPosts = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        
         // Generate individual post pages
         feedData
         |> List.iter (fun item ->
@@ -754,7 +1045,10 @@ module Builder
             let saveDir = Path.Join(outputDir, "posts", post.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = blogPostView post.Metadata.Title (post.Content |> convertMdToHtml) post.Metadata.Date post.FileName
+            // Find related posts for this post (limit to 5)
+            let relatedPosts = RelatedContentService.findRelatedContent post allPosts 5
+            
+            let html = blogPostView post.Metadata.Title (post.Content |> convertMdToHtml) post.Metadata.Date post.FileName post.Metadata.Tags post.Metadata.ReadingTimeMinutes relatedPosts
             let postView = generate html "defaultindex" $"{post.Metadata.Title} - Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, postView))
@@ -780,6 +1074,9 @@ module Builder
         let processor = GenericBuilder.NoteProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor noteFiles
         
+        // Get all notes for related content calculation
+        let allNotes = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        
         // Generate individual note pages at /notes/[slug]/
         feedData
         |> List.iter (fun item ->
@@ -787,7 +1084,10 @@ module Builder
             let saveDir = Path.Join(outputDir, "notes", note.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = LayoutViews.notePostView note.Metadata.Title (note.Content |> convertMdToHtml) note.Metadata.Date note.FileName
+            // Find related notes for this note (limit to 5)
+            let relatedNotes = RelatedContentService.findRelatedContent note allNotes 5
+            
+            let html = LayoutViews.notePostView note.Metadata.Title (note.Content |> convertMdToHtml) note.Metadata.Date note.FileName note.Metadata.Tags note.Metadata.ReadingTimeMinutes relatedNotes
             let noteView = generate html "defaultindex" note.Metadata.Title
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, noteView))
@@ -820,7 +1120,7 @@ module Builder
             let saveDir = Path.Join(outputDir, "responses", response.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName response.Metadata.TargetUrl
+            let html = LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName response.Metadata.TargetUrl response.Metadata.Tags response.Metadata.ReadingTimeMinutes
             let responseView = generate html "defaultindex" response.Metadata.Title
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, responseView))
@@ -876,7 +1176,7 @@ module Builder
             // Use AST-based markdown processing for custom blocks
             let rawContent = processor.Render album
             let processedContent = MarkdownService.convertMdToHtml rawContent
-            let html = contentViewWithTitle album.Metadata.Title processedContent
+            let html = mediaPageView album.Metadata.Title processedContent album.Metadata.Date album.FileName album.Metadata.Tags
             let albumView = generate html "defaultindex" $"{album.Metadata.Title} | Media | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, albumView))
@@ -884,7 +1184,8 @@ module Builder
         // Generate media index page using simple list view for consistency
         try
             let albums = feedData |> List.map (fun item -> item.Content) |> List.toArray
-            let mediaIndexHtml = generate (albumsPageView albums) "defaultindex" "Media | Luis Quintanilla"
+            let sortedAlbums = albums |> Array.sortByDescending(fun x -> DateTimeOffset.Parse(x.Metadata.Date))
+            let mediaIndexHtml = generate (albumsPageView sortedAlbums) "defaultindex" "Media | Luis Quintanilla"
             let indexSaveDir = Path.Join(outputDir, "media")
             Directory.CreateDirectory(indexSaveDir) |> ignore
             File.WriteAllText(Path.Join(indexSaveDir, "index.html"), mediaIndexHtml)
@@ -893,6 +1194,98 @@ module Builder
             printfn $"Error in media unified feed view: {ex.Message}"
             printfn $"Stack trace: {ex.StackTrace}"
             printfn $"Feed data count: {feedData.Length}"
+            reraise()
+        
+        // Return feed data for unified RSS generation
+        feedData
+
+    let buildAlbumCollections() = 
+        let albumCollectionFiles = 
+            let albumPath = Path.Join(srcDir, "albums")
+            if Directory.Exists(albumPath) then
+                Directory.GetFiles(albumPath)
+                |> Array.filter (fun f -> f.EndsWith(".md"))
+                |> Array.toList
+            else
+                []
+        
+        let processor = GenericBuilder.AlbumCollectionProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor albumCollectionFiles
+        
+        // Generate individual album collection pages at /collections/albums/[slug]/
+        feedData
+        |> List.iter (fun item ->
+            let albumCollection = item.Content
+            let saveDir = Path.Join(outputDir, "collections", "albums", albumCollection.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+
+            // Use AST-based markdown processing for custom blocks
+            let rawContent = processor.Render albumCollection
+            let processedContent = MarkdownService.convertMdToHtml rawContent
+            let html = albumCollectionDetailView albumCollection processedContent
+            let albumView = generate html "defaultindex" $"{albumCollection.Metadata.Title} | Albums | Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, albumView))
+        
+        // Generate album collections index page
+        try
+            let albumCollections = feedData |> List.map (fun item -> item.Content) |> List.toArray
+            let albumsIndexHtml = generate (albumCollectionsPageView albumCollections) "defaultindex" "Albums | Luis Quintanilla"
+            let indexSaveDir = Path.Join(outputDir, "collections", "albums")
+            Directory.CreateDirectory(indexSaveDir) |> ignore
+            File.WriteAllText(Path.Join(indexSaveDir, "index.html"), albumsIndexHtml)
+            printfn "✅ Album collections index page created with %d albums" albumCollections.Length
+        with
+        | ex -> 
+            printfn $"Error creating album collections index: {ex.Message}"
+            reraise()
+        
+        // Return feed data for unified RSS generation
+        feedData
+
+    let buildPlaylistCollections() = 
+        let playlistCollectionFiles = 
+            let playlistPath = Path.Join(srcDir, "playlists")
+            if Directory.Exists(playlistPath) then
+                Directory.GetFiles(playlistPath)
+                |> Array.filter (fun f -> f.EndsWith(".md"))
+                |> Array.toList
+            else
+                []
+        
+        let processor = GenericBuilder.PlaylistCollectionProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor playlistCollectionFiles
+        
+        // Generate individual playlist collection pages at /collections/playlists/[slug]/
+        feedData
+        |> List.iter (fun item ->
+            let playlistCollection = item.Content
+            let saveDir = Path.Join(outputDir, "collections", "playlists", playlistCollection.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+
+            // Use AST-based markdown processing
+            let rawContent = processor.Render playlistCollection
+            let processedContent = MarkdownService.convertMdToHtml rawContent
+            let html = playlistCollectionDetailView playlistCollection processedContent
+            let playlistView = generate html "defaultindex" $"{playlistCollection.Metadata.Title} | Playlists | Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, playlistView))
+        
+        // Generate playlist collections index page
+        try
+            let playlistCollections = 
+                feedData 
+                |> List.map (fun item -> item.Content) 
+                |> List.toArray
+                |> Array.sortByDescending (fun x -> DateTimeOffset.Parse(x.Metadata.Date))
+            let playlistsIndexHtml = generate (playlistCollectionsPageView playlistCollections) "defaultindex" "Playlists | Luis Quintanilla"
+            let indexSaveDir = Path.Join(outputDir, "collections", "playlists")
+            Directory.CreateDirectory(indexSaveDir) |> ignore
+            File.WriteAllText(Path.Join(indexSaveDir, "index.html"), playlistsIndexHtml)
+            printfn "✅ Playlist collections index page created with %d playlists" playlistCollections.Length
+        with
+        | ex -> 
+            printfn $"Error creating playlist collections index: {ex.Message}"
             reraise()
         
         // Return feed data for unified RSS generation
@@ -935,7 +1328,7 @@ module Builder
             let saveDir = Path.Join(outputDir, "bookmarks", response.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
             
-            let html = LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName response.Metadata.TargetUrl
+            let html = LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName response.Metadata.TargetUrl response.Metadata.Tags response.Metadata.ReadingTimeMinutes
             let responseView = generate html "defaultindex" response.Metadata.Title
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, responseView))

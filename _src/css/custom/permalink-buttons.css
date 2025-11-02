@@ -1,0 +1,210 @@
+/**
+ * Permalink Action Buttons - Unified Button Styling
+ * Consistent styling for Copy, Share, and QR Code buttons
+ * Follows desert theme and accessibility guidelines
+ */
+
+/* Base button styling */
+.permalink-action-btn {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  margin-left: 0.5rem;
+  
+  /* Visual styling */
+  background-color: transparent;
+  color: var(--accent-color, #FF6347);
+  border: 1px solid var(--accent-color, #FF6347);
+  border-radius: 6px;
+  
+  /* Typography */
+  font-family: var(--font-family-base, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  
+  /* Interaction */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+  
+  /* Accessibility */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* Button icon styling */
+.permalink-action-btn .button-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+/* Button label styling */
+.permalink-action-btn .button-label {
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+/* Hover state */
+.permalink-action-btn:hover {
+  background-color: var(--accent-color, #FF6347);
+  color: var(--background-color, #2C3E50);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 99, 71, 0.3);
+}
+
+/* Active/pressed state */
+.permalink-action-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Focus state for keyboard navigation */
+.permalink-action-btn:focus {
+  outline: 2px solid var(--accent-color, #FF6347);
+  outline-offset: 2px;
+}
+
+.permalink-action-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.permalink-action-btn:focus-visible {
+  outline: 2px solid var(--accent-color, #FF6347);
+  outline-offset: 2px;
+}
+
+/* Success state (for copy actions) */
+.permalink-action-btn.copied,
+.permalink-action-btn.shared {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: white;
+}
+
+.permalink-action-btn.copied:hover,
+.permalink-action-btn.shared:hover {
+  background-color: #218838;
+  border-color: #218838;
+  transform: translateY(-1px);
+}
+
+/* Error state */
+.permalink-action-btn.copy-error,
+.permalink-action-btn.share-error {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .permalink-action-btn {
+  color: var(--accent-color, #FF6347);
+  border-color: var(--accent-color, #FF6347);
+}
+
+[data-theme="dark"] .permalink-action-btn:hover {
+  background-color: var(--accent-color, #FF6347);
+  color: var(--background-color, #2C3E50);
+}
+
+/* Light theme adjustments */
+[data-theme="light"] .permalink-action-btn {
+  color: var(--accent-color, #FF6347);
+  border-color: var(--accent-color, #FF6347);
+}
+
+[data-theme="light"] .permalink-action-btn:hover {
+  background-color: var(--accent-color, #FF6347);
+  color: #ffffff;
+}
+
+/* Permalink section container */
+.permalink-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.permalink-link {
+  color: var(--accent-color, #FF6347);
+  text-decoration: none;
+  word-break: break-all;
+  margin-right: 0.5rem;
+}
+
+.permalink-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .permalink-action-btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.813rem;
+    margin-left: 0.375rem;
+  }
+  
+  .permalink-action-btn .button-icon {
+    font-size: 1rem;
+  }
+  
+  .permalink-action-btn .button-label {
+    font-size: 0.813rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .permalink-info {
+    /* Keep buttons inline/horizontal on mobile */
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+  
+  .permalink-action-btn {
+    margin-left: 0;
+    margin-top: 0;
+    min-width: 2.5rem;
+    justify-content: center;
+    padding: 0.4rem 0.6rem;
+  }
+  
+  /* Show only icons on very small screens */
+  .permalink-action-btn .button-label {
+    display: none;
+  }
+  
+  .permalink-action-btn .button-icon {
+    font-size: 1.25rem;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .permalink-action-btn {
+    transition: none;
+  }
+  
+  .permalink-action-btn:hover {
+    transform: none;
+  }
+  
+  .permalink-action-btn:active {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .permalink-action-btn {
+    border-width: 2px;
+  }
+}

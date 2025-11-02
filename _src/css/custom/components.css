@@ -14,7 +14,6 @@
   text-decoration: none;
   border: none;
   border-radius: var(--border-radius-md);
-  cursor: pointer;
   transition: all var(--transition-normal);
   user-select: none;
   vertical-align: middle;
@@ -29,7 +28,6 @@
 
 .btn:disabled {
   opacity: 0.6;
-  cursor: not-allowed;
   transform: none;
 }
 
@@ -166,7 +164,7 @@
   background-color: var(--accent-color);
   color: var(--button-text);
   padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--border-radius-sm);
+  border-radius: 50px; /* Pill-shaped badges */
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -190,8 +188,8 @@
 
 .tag,
 .p-category {
-  background-color: var(--accent-color);
-  color: var(--button-text);
+  background-color: var(--tag-background);
+  color: var(--tag-text);
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-sm);
   font-size: 0.75rem;
@@ -201,9 +199,8 @@
   transition: background-color var(--transition-fast);
 }
 
-.tag:hover,
-.p-category:hover {
-  background-color: var(--button-hover);
+.tag:hover {
+  background-color: var(--accent-color);
   color: var(--button-text);
 }
 
@@ -260,6 +257,47 @@ textarea.form-control {
 .webmention-form h5 {
   color: var(--accent-color);
   margin-bottom: var(--spacing-md);
+}
+
+/* Post footer form layout improvements */
+.post-footer form {
+  margin-top: var(--spacing-lg);
+}
+
+.post-footer form h5 {
+  text-align: center;
+  color: var(--accent-color);
+  margin-bottom: var(--spacing-md);
+}
+
+.post-footer .form-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.post-footer .form-row .w-75 {
+  flex: 1;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+.post-footer .form-row .col-auto {
+  flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .post-footer .form-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .post-footer .form-row .w-75 {
+    max-width: 100%;
+  }
 }
 
 /* Alert components */
@@ -468,5 +506,153 @@ textarea.form-control {
   
   .form-control {
     padding: var(--spacing-sm);
+  }
+}
+
+/* Copy Permalink Button Styles */
+.copy-permalink-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  margin-left: 8px;
+  font-size: 0.75rem;
+  background-color: transparent;
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-sm);
+  color: var(--text-color);
+  transition: all var(--transition-fast);
+  opacity: 0.7;
+  vertical-align: middle;
+}
+
+.copy-permalink-btn:hover {
+  opacity: 1;
+  background-color: var(--card-background);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: translateY(-1px);
+}
+
+.copy-permalink-btn:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 1px;
+}
+
+.copy-permalink-btn .copy-icon {
+  font-size: 0.875rem;
+  transition: all var(--transition-fast);
+}
+
+/* Success state (when copied) */
+.copy-permalink-btn .bi-check {
+  color: var(--saguaro-green);
+}
+
+/* Error state (when copy failed) */
+.copy-permalink-btn .bi-x {
+  color: #ff4444;
+}
+
+/* Permalink section layout improvements */
+.permalink-section,
+.permalink-info {
+  align-items: center;
+  gap: 4px;
+}
+
+.permalink-section .u-url,
+.permalink-info .u-url {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+/* Responsive adjustments for copy button */
+@media (max-width: 576px) {
+  .copy-permalink-btn {
+    margin-left: 4px;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+  }
+  
+  .copy-permalink-btn .copy-icon {
+    font-size: 0.75rem;
+  }
+}
+
+/* Related Posts Section - Desert Theme */
+.related-posts-section {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 2px solid var(--card-border);
+}
+
+.related-posts-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+  color: var(--heading-color);
+}
+
+.related-posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.related-post-item {
+  padding: var(--spacing-md);
+  background-color: var(--card-background);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-normal);
+}
+
+.related-post-item:hover {
+  border-color: var(--accent-color);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.related-post-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.related-post-title a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.related-post-title a:hover {
+  color: var(--hover-color);
+  text-decoration: underline;
+}
+
+.related-post-meta {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Responsive adjustments for related posts */
+@media (max-width: 768px) {
+  .related-posts-section {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+  }
+  
+  .related-posts-title {
+    font-size: 1.25rem;
+  }
+  
+  .related-post-title {
+    font-size: 1rem;
+  }
+  
+  .related-posts-list {
+    gap: var(--spacing-md);
   }
 }

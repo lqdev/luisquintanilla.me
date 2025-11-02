@@ -73,7 +73,6 @@ select {
 button {
   background: none;
   border: none;
-  cursor: pointer;
 }
 
 /* Text wrapping */

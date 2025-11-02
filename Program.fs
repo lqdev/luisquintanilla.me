@@ -71,9 +71,11 @@ let main argv =
     buildContactPage ()
     buildSearchPage ()
     buildStarterPackPage ()
+    buildTravelGuidesPage ()
     buildIRLStackPage ()
     buildColophonPage ()
     buildOnlineRadioPage ()
+    buildResumePage ()
 
     // =============================================================================
     // Unified Feed System - Collect all feed data and generate unified feeds
@@ -93,6 +95,8 @@ let main argv =
     let presentationsFeedData = buildPresentations()
     let booksFeedData = buildBooks()
     let mediaFeedData = buildMedia()
+    let albumCollectionsFeedData = buildAlbumCollections()
+    let playlistCollectionsFeedData = buildPlaylistCollections()
     
     // Convert to unified feed items - Timeline feed (main content)
     let timelineFeedItems = [
@@ -102,6 +106,7 @@ let main argv =
         ("bookmarks", GenericBuilder.UnifiedFeeds.convertBookmarkResponsesToUnified bookmarksFeedData)
         ("reviews", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
         ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
+        ("album-collection", GenericBuilder.UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData)
     ]
     
     // All unified items for RSS feeds and search (includes resources content)
@@ -115,6 +120,8 @@ let main argv =
         ("presentations", GenericBuilder.UnifiedFeeds.convertPresentationsToUnified presentationsFeedData)
         ("reviews", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
         ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
+        ("album-collection", GenericBuilder.UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData)
+        ("playlist-collection", GenericBuilder.UnifiedFeeds.convertPlaylistCollectionsToUnified playlistCollectionsFeedData)
     ]
     
     // Prepare unified content for text-only site and search indexes

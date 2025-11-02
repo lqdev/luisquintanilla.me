@@ -1,6 +1,7 @@
 module Domain
 
     open System
+    open System.Text.Json.Serialization
     open YamlDotNet.Serialization
 
     type YamlResult<'a> = {
@@ -23,6 +24,7 @@ module Domain
         [<YamlMember(Alias="description")>] Description: string
         [<YamlMember(Alias="published_date")>] Date: string
         [<YamlMember(Alias="tags")>] Tags: string array
+        [<YamlMember(Alias="reading_time_minutes")>] ReadingTimeMinutes: int option
     }
 
     type Post = {
@@ -173,10 +175,19 @@ module Domain
             XmlUrl: string
         }
 
+    [<CLIMutable>]
+    type PinnedPost = {
+        [<JsonPropertyName("fileName")>] FileName: string
+        [<JsonPropertyName("contentType")>] ContentType: string
+        [<JsonPropertyName("order")>] Order: int
+        [<JsonPropertyName("note")>] Note: string option
+    }
+
     // Collection organizational approach
     type CollectionType = 
         | MediumFocused of medium: string  // "blogs", "podcasts", "youtube", "forums"
         | TopicFocused of topic: string    // "ai", "privacy", "fsharp", "indieweb"
+        | Travel of category: string       // "city-guide", "national-parks", "restaurants", "bars"
         | Other of category: string        // "tags", "radio", etc.
 
     // Individual collection item (RSS feed source) - enhanced Outline
@@ -216,6 +227,7 @@ module Domain
         HtmlPath: string        // "/collections/blogroll/index.html"
         RssPath: string         // "/collections/blogroll/index.rss"
         OpmlPath: string        // "/collections/blogroll/index.opml"
+        GpxPath: string option  // "/collections/travel/rome-favorites/rome-favorites.gpx"
         DataPath: string        // "/Data/blogroll.json"
     }
 
@@ -288,6 +300,61 @@ module Domain
             member this.FileName = this.FileName
             member this.ContentType = "album"
 
+    // Album Collection - Curated media groupings (events, themes, projects)
+    [<CLIMutable>]
+    type AlbumCollectionLocation = {
+        [<YamlMember(Alias="lat")>] Latitude: float
+        [<YamlMember(Alias="lon")>] Longitude: float
+    }
+
+    [<CLIMutable>]
+    type AlbumCollectionDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="description")>] Description: string
+        [<YamlMember(Alias="date")>] Date: string
+        [<YamlMember(Alias="location")>] Location: AlbumCollectionLocation option
+        [<YamlMember(Alias="tags")>] Tags: string array
+    }
+
+    type AlbumCollection = {
+        FileName: string
+        Metadata: AlbumCollectionDetails
+        Content: string
+    }
+    with
+        interface ITaggable with
+            member this.Tags = 
+                if isNull this.Metadata.Tags then [||]
+                else this.Metadata.Tags
+            member this.Title = this.Metadata.Title
+            member this.Date = this.Metadata.Date
+            member this.FileName = this.FileName
+            member this.ContentType = "album-collection"
+
+    // Playlist Collection - Curated music playlists (monthly discoveries, themed mixes)
+    [<CLIMutable>]
+    type PlaylistDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="description")>] Description: string option
+        [<YamlMember(Alias="date")>] Date: string
+        [<YamlMember(Alias="tags")>] Tags: string array
+    }
+
+    type PlaylistCollection = {
+        FileName: string
+        Metadata: PlaylistDetails
+        Content: string  // Raw markdown content with track lists
+    }
+    with
+        interface ITaggable with
+            member this.Tags = 
+                if isNull this.Metadata.Tags then [||]
+                else this.Metadata.Tags
+            member this.Title = this.Metadata.Title
+            member this.Date = this.Metadata.Date
+            member this.FileName = this.FileName
+            member this.ContentType = "playlist-collection"
+
     type ResponseType = 
         | Reply
         | Star // Like / Favorite
@@ -302,6 +369,7 @@ module Domain
         [<YamlMember(Alias="dt_published")>] DatePublished: string        
         [<YamlMember(Alias="dt_updated")>] DateUpdated: string
         [<YamlMember(Alias="tags")>] Tags: string array
+        [<YamlMember(Alias="reading_time_minutes")>] ReadingTimeMinutes: int option
     }
 
     type Response = {
@@ -387,6 +455,13 @@ module Domain
         let getAlbumFileName (album: Album) = album.FileName
         let getAlbumContentType (_: Album) = "album"
         
+        let getAlbumCollectionTags (albumCollection: AlbumCollection) = 
+            if isNull albumCollection.Metadata.Tags then [||] else albumCollection.Metadata.Tags
+        let getAlbumCollectionTitle (albumCollection: AlbumCollection) = albumCollection.Metadata.Title
+        let getAlbumCollectionDate (albumCollection: AlbumCollection) = albumCollection.Metadata.Date
+        let getAlbumCollectionFileName (albumCollection: AlbumCollection) = albumCollection.FileName
+        let getAlbumCollectionContentType (_: AlbumCollection) = "album-collection"
+        
         // Generic function to work with any ITaggable-like object
         let createTaggableRecord (tags: string array) (title: string) (date: string) (fileName: string) (contentType: string) =
             { new ITaggable with
@@ -417,4 +492,138 @@ module Domain
         let albumAsTaggable (album: Album) = 
             createTaggableRecord (getAlbumTags album) (getAlbumTitle album) (getAlbumDate album) (getAlbumFileName album) (getAlbumContentType album)
             
+        let albumCollectionAsTaggable (albumCollection: AlbumCollection) = 
+            createTaggableRecord (getAlbumCollectionTags albumCollection) (getAlbumCollectionTitle albumCollection) (getAlbumCollectionDate albumCollection) (getAlbumCollectionFileName albumCollection) (getAlbumCollectionContentType albumCollection)
+            
         // Note: Notes are processed as Post types through NoteProcessor, so noteAsTaggable = postAsTaggable
+
+    // GPX and Travel Recommendation Types
+    [<CLIMutable>]
+    type GpxPracticalInfo = {
+        [<JsonPropertyName("price")>] Price: string option
+        [<JsonPropertyName("hours")>] Hours: string option
+        [<JsonPropertyName("phone")>] Phone: string option
+        [<JsonPropertyName("website")>] Website: string option
+    }
+
+    type GpxCategory = 
+        | Restaurant
+        | Attraction  
+        | Shopping
+        | Hidden
+        | Practical
+        | GpxOther of string
+
+    [<CLIMutable>]
+    type GpxPlace = {
+        [<JsonPropertyName("id")>] Id: string
+        [<JsonPropertyName("name")>] Name: string
+        [<JsonPropertyName("lat")>] Latitude: float
+        [<JsonPropertyName("lon")>] Longitude: float
+        [<JsonPropertyName("category")>] Category: string
+        [<JsonPropertyName("description")>] Description: string
+        [<JsonPropertyName("personalNote")>] PersonalNote: string option
+        [<JsonPropertyName("practicalInfo")>] PracticalInfo: GpxPracticalInfo option
+    }
+
+    [<CLIMutable>]
+    type GpxRoute = {
+        [<JsonPropertyName("name")>] Name: string
+        [<JsonPropertyName("description")>] Description: string
+        [<JsonPropertyName("sequence")>] Sequence: string array
+    }
+
+    [<CLIMutable>]
+    type TravelRecommendationData = {
+        [<JsonPropertyName("title")>] Title: string
+        [<JsonPropertyName("description")>] Description: string
+        [<JsonPropertyName("places")>] Places: GpxPlace array
+        [<JsonPropertyName("routes")>] Routes: GpxRoute array option
+    }
+
+    // Enhanced CollectionItem for travel recommendations
+    [<CLIMutable>]
+    type TravelCollectionItem = {
+        [<YamlMember(Alias="Title")>] Title: string
+        [<YamlMember(Alias="Type")>] Type: string                 // "travel"
+        [<YamlMember(Alias="HtmlUrl")>] HtmlUrl: string
+        [<YamlMember(Alias="XmlUrl")>] XmlUrl: string            // RSS feed
+        [<YamlMember(Alias="GpxUrl")>] GpxUrl: string            // GPX download
+        [<YamlMember(Alias="Description")>] Description: string option
+        [<YamlMember(Alias="Tags")>] Tags: string array option
+        [<YamlMember(Alias="Added")>] Added: string option
+        [<YamlMember(Alias="TravelData")>] TravelData: TravelRecommendationData option
+    }
+
+    // =====================================================================
+    // Resume Domain Model
+    // =====================================================================
+
+    /// Availability status for resume
+    type AvailabilityStatus =
+        | OpenToOpportunities
+        | NotLooking
+        | NotSpecified
+
+    /// Work experience entry
+    type Experience = {
+        Role: string
+        Company: string  // Can contain markdown links
+        StartDate: DateTime
+        EndDate: DateTime option  // None = current position
+        Highlights: string list option
+    }
+
+    /// Project entry
+    type Project = {
+        Title: string
+        Description: string
+        Url: string option
+        Technologies: string list option
+        Highlights: string list option
+    }
+
+    /// Skill category grouping
+    type SkillCategory = {
+        Category: string
+        Skills: string list  // Can contain markdown links
+    }
+
+    /// Education entry
+    type Education = {
+        Degree: string
+        Institution: string  // Can contain markdown links
+        GraduationYear: int option
+        Details: string option
+    }
+
+    /// Testimonial/recommendation
+    type Testimonial = {
+        Quote: string
+        Author: string  // Can contain markdown links
+    }
+
+    /// Complete resume data
+    [<CLIMutable>]
+    type ResumeMetadata = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="lastUpdated")>] LastUpdated: string
+        [<YamlMember(Alias="status")>] Status: string option
+        [<YamlMember(Alias="summary")>] Summary: string option
+        [<YamlMember(Alias="currentRole")>] CurrentRole: string
+        [<YamlMember(Alias="contactLinks")>] ContactLinks: System.Collections.Generic.Dictionary<string, string>
+        [<YamlMember(Alias="interests")>] Interests: string option
+    }
+
+    type Resume = {
+        FileName: string
+        Metadata: ResumeMetadata
+        Content: string  // Full markdown content
+        AboutSection: string option  // Extracted from ## About heading
+        InterestsSection: string option  // Extracted from ## Interests or ## Currently Interested In heading
+        Experience: Experience list
+        Skills: SkillCategory list
+        Projects: Project list
+        Education: Education list
+        Testimonials: Testimonial list
+    }

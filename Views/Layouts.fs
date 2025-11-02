@@ -87,6 +87,11 @@ module Layouts
                         div [_class "dropdown-divider"] []
                         // Starter Packs as direct link (like Radio/Tags)
                         a [_class "dropdown-item"; _href "/collections/starter-packs"] [Text "Starter Packs"]
+                        a [_class "dropdown-item"; _href "/collections/travel-guides"] [Text "Travel Guides"]
+                        div [_class "dropdown-divider"] []
+                        // Media Collections
+                        a [_class "dropdown-item"; _href "/collections/albums"] [Text "Albums"]
+                        a [_class "dropdown-item"; _href "/collections/playlists"] [Text "Playlists"]
                         div [_class "dropdown-divider"] []
                         a [_class "dropdown-item"; _href "/radio"] [Text "Radio"]
                         a [_class "dropdown-item"; _href "/tags"] [Text "Tags"]
@@ -217,6 +222,7 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/tags"] [ Text "Tags" ]
                                 div [_class "dropdown-divider"] []
                                 a [_class "dropdown-item"; _href "/collections/starter-packs"] [Text "Starter Packs"]
+                                a [_class "dropdown-item"; _href "/collections/travel-guides"] [Text "Travel Guides"]
                                 a [_class "dropdown-item"; _href "/collections/blogroll"] [Text "Blogroll"]
                                 a [_class "dropdown-item"; _href "/collections/podroll"] [Text "Podroll"]
                                 a [_class "dropdown-item"; _href "/collections/forums"] [Text "Forums"]
@@ -294,6 +300,7 @@ module Layouts
         // Desert Theme CSS - Custom design system (Phase 1)
         link [_rel "stylesheet";_href "/assets/css/custom/main.css"]
         link [_rel "stylesheet";_href "/assets/css/custom/timeline.css"]  // Timeline styles for feed-as-homepage
+        link [_rel "stylesheet";_href "/assets/css/custom/resume.css"]    // Resume page styles
         
         // Keep essential external stylesheets
         link [_rel "stylesheet";_href "/assets/css/bootstrap-icons-1.5.0/bootstrap-icons.css"]
@@ -301,6 +308,13 @@ module Layouts
         
         // Preserve existing custom styles during transition
         link [_rel "stylesheet";_href "/assets/css/main.css"]
+        
+        // Web API enhancements
+        link [_rel "stylesheet";_href "/assets/css/custom/permalink-buttons.css"]  // Permalink action buttons
+        link [_rel "stylesheet";_href "/assets/css/custom/clipboard.css"]  // Code copy buttons
+        link [_rel "stylesheet";_href "/assets/css/custom/share.css"]      // Content sharing
+        link [_rel "stylesheet";_href "/assets/css/custom/qrcode.css"]     // QR code modal
+        link [_rel "stylesheet";_href "/assets/css/pwa.css"]              // PWA notifications and install prompts
         
         // Note: Bootstrap removed in Phase 1 - replaced with desert theme CSS
         // Note: customthemes.css removed - functionality integrated into custom CSS
@@ -348,8 +362,25 @@ module Layouts
         script [_src "/assets/lib/highlight/highlight.fsharp.min.js"] [] // 11.8.0
         script [_src "/assets/lib/highlight/highlight.nix.min.js"] [] // 11.8.0
 
-        // Use only timeline.js (includes theme management + filtering + navigation)
+        // QR Code generation library
+        script [_src "https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.min.js"] []
+
+        // Main JavaScript functionality (theme management, copy-to-clipboard, etc.)
+        script [_src "/assets/js/main.js"] []
+        // Timeline functionality (filtering, progressive loading, etc.)
         script [_src "/assets/js/timeline.js"] []
+        // UFO Cursor enhancement (dynamic direction-based tilting)
+        script [_src "/assets/js/ufo-cursor.js"] []
+        
+        // Web API enhancements (progressive enhancement pattern)
+        script [_src "/assets/js/clipboard.js"] []    // Code snippet copy buttons
+        script [_src "/assets/js/share.js"] []        // Native content sharing
+        script [_src "/assets/js/qrcode.js"] []       // QR code generation
+        script [_src "/assets/js/lazy-images.js"] []  // Image lazy loading
+        script [_src "/assets/js/page-visibility.js"] []  // Resource optimization when tab hidden
+        
+        // PWA Service Worker registration (offline support, caching)
+        script [_src "/assets/js/sw-registration.js"] []
 
         script [_src "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"] []
 
@@ -381,6 +412,8 @@ module Layouts
                 for sheet in styleSheets do
                     sheet
 
+                // Leaflet.js CSS loaded from CDN in travel-map.js
+
                 // Opengraph
                 let ogElements = buildOpenGraphElements pageTitle
 
@@ -397,6 +430,13 @@ module Layouts
                 // Rolls
                 for roll in rollLinks do
                     roll
+                
+                // PWA Manifest
+                link [_rel "manifest"; _href "/manifest.json"]
+                meta [_name "theme-color"; _content "#2d4a5c"]
+                meta [_name "apple-mobile-web-app-capable"; _content "yes"]
+                meta [_name "apple-mobile-web-app-status-bar-style"; _content "black-translucent"]
+                meta [_name "apple-mobile-web-app-title"; _content "Luis Quintanilla"]
 
                 // Robots
                 meta [_name "robots"; _content "nosnippet"]
@@ -415,6 +455,9 @@ module Layouts
 
                 for scr in scripts do
                     scr
+
+                // Travel map functionality (Leaflet.js loaded from CDN)
+                script [_src "/assets/js/travel-map.js"] []
 
             ]
             footerContent
@@ -435,6 +478,8 @@ module Layouts
                 link [_rel "stylesheet"; _href "/lib/revealjs/dist/reveal.css"]
                 link [_rel "stylesheet"; _href "/lib/revealjs/dist/theme/black.css"]
                 link [_rel "stylesheet"; _href "/lib/revealjs/plugin/highlight/monokai.css"]
+                link [_rel "stylesheet"; _href "/assets/css/presentation-layouts.css"]
+                // Leaflet.js CSS loaded from CDN in travel-map.js
 
                 // Opengraph
                 let ogElements = buildOpenGraphElements pageTitle
@@ -452,6 +497,13 @@ module Layouts
                 // Rolls
                 for roll in rollLinks do
                     roll
+                
+                // PWA Manifest
+                link [_rel "manifest"; _href "/manifest.json"]
+                meta [_name "theme-color"; _content "#2d4a5c"]
+                meta [_name "apple-mobile-web-app-capable"; _content "yes"]
+                meta [_name "apple-mobile-web-app-status-bar-style"; _content "black-translucent"]
+                meta [_name "apple-mobile-web-app-title"; _content "Luis Quintanilla"]
 
                 // Robots
                 meta [_name "robots"; _content "nosnippet"]
@@ -489,6 +541,9 @@ module Layouts
                     });
                     """
                 ]
+
+                // Travel map functionality (Leaflet.js loaded from CDN)
+                script [_src "/assets/js/travel-map.js"] []
 
             ]
             footerContent
@@ -564,6 +619,7 @@ module Layouts
 
                 link [_rel "stylesheet"; _href "/assets/lib/revealjs/dist/reveal.css"]
                 link [_rel "stylesheet"; _href "/assets/lib/revealjs/dist/theme/black.css"]
+                link [_rel "stylesheet"; _href "/assets/css/presentation-layouts.css"]
 
                 // Opengraph
                 let ogElements = buildOpenGraphElements pageTitle
@@ -581,6 +637,13 @@ module Layouts
                 // Rolls
                 for roll in rollLinks do
                     roll
+                
+                // PWA Manifest
+                link [_rel "manifest"; _href "/manifest.json"]
+                meta [_name "theme-color"; _content "#2d4a5c"]
+                meta [_name "apple-mobile-web-app-capable"; _content "yes"]
+                meta [_name "apple-mobile-web-app-status-bar-style"; _content "black-translucent"]
+                meta [_name "apple-mobile-web-app-title"; _content "Luis Quintanilla"]
 
                 // Robots                
                 meta [_name "robots"; _content "nosnippet"]

@@ -199,6 +199,14 @@
   justify-content: space-around;
 }
 
+/* Form layout utilities */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
 .align-items-start {
   align-items: flex-start;
 }

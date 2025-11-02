@@ -17,6 +17,7 @@
 @import url('./navigation.css');
 @import url('./components.css');
 @import url('./timeline.css');
+@import url('./cursor.css');
 
 /* Global body setup */
 body {
@@ -39,6 +40,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  
+  /* UFO cursor now handled in cursor.css for dynamic tilting */
 }
 
 @media (min-width: 768px) {

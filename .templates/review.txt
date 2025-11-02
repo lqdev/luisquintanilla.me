@@ -1,0 +1,31 @@
+---
+title: "%^{Title}"
+author: "%^{Author/Creator}"
+isbn: "%^{ISBN (or N/A)}"
+date_published: %<%m/%d/%Y %H:%M -05:00>
+---
+
+# %^{Title} Review
+
+:::review
+item: "%^{Item Name}"
+itemType: "%^{Item Type|book|movie|music|business|product}"
+rating: %^{Rating (1-5)}
+scale: 5.0
+summary: "%^{Brief Summary}"
+itemUrl: "%^{Item URL}"
+imageUrl: "%^{Cover/Poster Image URL}"
+additionalFields:
+  author: "%^{Author/Creator}"
+  isbn: "%^{ISBN or identifier}"
+:::
+
+## Description
+
+%^{Description or quote}
+
+## Review
+
+%?
+
+## Notes

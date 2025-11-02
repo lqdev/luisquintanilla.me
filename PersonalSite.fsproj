@@ -3,11 +3,11 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="Domain.fs" />
-    <Compile Include="Collections.fs" />
     <Compile Include="CustomBlocks.fs" />
     <Compile Include="MediaTypes.fs" />
     <Compile Include="ASTParsing.fs" />
@@ -15,19 +15,23 @@
     <Compile Include="OutputComparison.fs" />
     <Compile Include="Services\Markdown.fs" />
     <Compile Include="Services\Tag.fs" />
+    <Compile Include="Services\ReadingTime.fs" />
     <Compile Include="Services\Opml.fs" />    
-    <Compile Include="Services\Webmention.fs" /> 
+    <Compile Include="Services\Webmention.fs" />
+    <Compile Include="Services\RelatedContent.fs" /> 
     <Compile Include="GenericBuilder.fs" />
     <Compile Include="Views\ComponentViews.fs" />
     <Compile Include="Views\TagViews.fs" />
     <Compile Include="Views\FeedViews.fs" />
     <Compile Include="Views\ContentViews.fs" />
     <Compile Include="Views\CollectionViews.fs" />
+    <Compile Include="Views\TravelViews.fs" />
     <Compile Include="Views\LayoutViews.fs" />
     <Compile Include="Views\Layouts.fs" />
     <Compile Include="Views\TextOnlyViews.fs" />
     <Compile Include="Views\Partials.fs" />
     <Compile Include="Views\Generator.fs" />
+    <Compile Include="Collections.fs" />
     <Compile Include="SearchIndex.fs" />
     <Compile Include="Loaders.fs" />
     <Compile Include="TextOnlyBuilder.fs" />

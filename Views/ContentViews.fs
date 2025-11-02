@@ -290,11 +290,12 @@ let presentationPageView (presentation:Presentation) =
             
             footer [ _class "presentation-footer" ] [
                 hr []
-                div [ _class "permalink-info" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
                     Text "Permalink: "
                     a [ _class "u-url permalink-link"; _href $"/resources/presentations/{presentation.FileName}/" ] [
                         Text $"/resources/presentations/{presentation.FileName}/"
                     ]
+                    copyPermalinkButton $"/resources/presentations/{presentation.FileName}/"
                 ]
                 h3 [] [Text "Resources"]
                 ul [] [
@@ -345,3 +346,201 @@ let albumPostViewWithBacklink (albumPostView:XmlNode) =
         albumPostView        
         albumBacklink
     ]
+
+// =====================================================================
+// Resume View Module
+// =====================================================================
+
+module ResumeView =
+    open BlockRenderers
+    
+    let private parseStatus (status: string option) =
+        match status with
+        | Some "open-to-opportunities" -> Domain.OpenToOpportunities
+        | Some "not-looking" -> Domain.NotLooking
+        | _ -> Domain.NotSpecified
+    
+    let private renderStatusBadge (status: Domain.AvailabilityStatus) =
+        match status with
+        | Domain.OpenToOpportunities -> 
+            span [ _class "status-badge open" ] [ str "Open to opportunities" ]
+        | Domain.NotLooking -> 
+            span [ _class "status-badge not-looking" ] [ str "Not currently looking" ]
+        | Domain.NotSpecified -> 
+            emptyText
+    
+    let private renderContactLinks (links: System.Collections.Generic.Dictionary<string, string>) =
+        let getIcon (linkName: string) =
+            match linkName.ToLower() with
+            | "email" -> "✉️"
+            | "linkedin" -> "💼"
+            | "github" -> "💻"
+            | "website" | "portfolio" -> "🌐"
+            | _ -> "🔗"
+        
+        div [ _class "contact-links" ] [
+            for kvp in links do
+                a [ _href kvp.Value; _target "_blank"; _rel "noopener noreferrer" ] [
+                    span [ _style "margin-right: 8px;" ] [ str (getIcon kvp.Key) ]
+                    str kvp.Key
+                ]
+        ]
+    
+    let private formatDateRange (start: DateTime) (endOpt: DateTime option) =
+        let startStr = start.ToString("MMM yyyy")
+        match endOpt with
+        | None -> sprintf "%s - Present" startStr
+        | Some endDate -> 
+            let endStr = endDate.ToString("MMM yyyy")
+            sprintf "%s - %s" startStr endStr
+    
+    let render (resume: Domain.Resume) =
+        let status = parseStatus resume.Metadata.Status
+        
+        div [ _class "resume-container" ] [
+            // Header section
+            header [ _class "resume-header" ] [
+                div [ _class "header-content" ] [
+                    h1 [] [ str "Luis Quintanilla" ]  // TODO: Could make this configurable
+                    div [ _class "current-role" ] [ str resume.Metadata.CurrentRole ]
+                    renderStatusBadge status
+                ]
+                renderContactLinks resume.Metadata.ContactLinks
+            ]
+            
+            // Summary/About section - use extracted content from markdown or fallback to frontmatter
+            let aboutContent = 
+                match resume.AboutSection with
+                | Some content -> Some content
+                | None -> 
+                    match resume.Metadata.Summary with
+                    | Some summary -> Some (MarkdownService.convertMdToHtml summary)
+                    | None -> None
+            
+            match aboutContent with
+            | Some content ->
+                section [ _class "resume-section" ] [
+                    h2 [] [ str "About" ]
+                    div [ _class "summary" ] [ 
+                        rawText content
+                    ]
+                ]
+            | None -> emptyText
+            
+            // Experience section
+            if not (List.isEmpty resume.Experience) then
+                section [ _class "resume-section" ] [
+                    h2 [] [ str "Experience" ]
+                    div [ _class "experience-list" ] [
+                        for exp in resume.Experience do
+                            let block = CustomBlocks.ExperienceBlock(null)
+                            block.Role <- exp.Role
+                            block.Company <- exp.Company
+                            block.Start <- exp.StartDate.ToString("yyyy-MM-dd")
+                            block.End <- 
+                                match exp.EndDate with
+                                | None -> Some "current"
+                                | Some date -> Some (date.ToString("yyyy-MM-dd"))
+                            block.Content <- 
+                                match exp.Highlights with
+                                | Some highlights -> String.concat "\n" highlights
+                                | None -> ""
+                            rawText (ExperienceRenderer.render block)
+                    ]
+                ]
+            
+            // Skills section
+            if not (List.isEmpty resume.Skills) then
+                section [ _class "resume-section" ] [
+                    h2 [] [ str "Skills & Expertise" ]
+                    div [ _class "skills-grid" ] [
+                        for skillCat in resume.Skills do
+                            let block = CustomBlocks.SkillsBlock(null)
+                            block.Category <- skillCat.Category
+                            block.Content <- String.concat ", " skillCat.Skills
+                            rawText (SkillsRenderer.render block)
+                    ]
+                ]
+            
+            // Projects section
+            if not (List.isEmpty resume.Projects) then
+                section [ _class "resume-section" ] [
+                    h2 [] [ str "Notable Projects" ]
+                    div [ _class "projects-list" ] [
+                        for proj in resume.Projects do
+                            let block = CustomBlocks.ProjectBlock(null)
+                            block.Title <- proj.Title
+                            block.Url <- proj.Url
+                            block.Tech <- 
+                                match proj.Technologies with
+                                | Some techs -> Some (String.concat ", " techs)
+                                | None -> None
+                            block.Content <- proj.Description
+                            rawText (ProjectRenderer.render block)
+                    ]
+                ]
+            
+            // Education section
+            if not (List.isEmpty resume.Education) then
+                section [ _class "resume-section" ] [
+                    h2 [] [ str "Education" ]
+                    div [ _class "education-list" ] [
+                        for edu in resume.Education do
+                            let block = CustomBlocks.EducationBlock(null)
+                            block.Degree <- edu.Degree
+                            block.Institution <- edu.Institution
+                            block.Year <- 
+                                match edu.GraduationYear with
+                                | Some year -> Some (string year)
+                                | None -> None
+                            block.Content <- 
+                                match edu.Details with
+                                | Some details -> details
+                                | None -> ""
+                            rawText (EducationRenderer.render block)
+                    ]
+                ]
+            
+            // Testimonials section
+            if not (List.isEmpty resume.Testimonials) then
+                section [ _class "resume-section" ] [
+                    h2 [] [ str "What People Say" ]
+                    div [ _class "testimonials-list" ] [
+                        for testimonial in resume.Testimonials do
+                            let block = CustomBlocks.TestimonialBlock(null)
+                            block.Author <- testimonial.Author
+                            block.Content <- testimonial.Quote
+                            rawText (TestimonialRenderer.render block)
+                    ]
+                ]
+            
+            // Interests section - use extracted content from markdown or fallback to frontmatter
+            let interestsContent = 
+                match resume.InterestsSection with
+                | Some content -> Some content
+                | None -> 
+                    match resume.Metadata.Interests with
+                    | Some interests -> Some (MarkdownService.convertMdToHtml interests)
+                    | None -> None
+            
+            match interestsContent with
+            | Some content ->
+                section [ _class "resume-section" ] [
+                    h2 [] [ str "Currently Interested In" ]
+                    div [ _class "interests" ] [
+                        rawText content
+                    ]
+                ]
+            | None -> emptyText
+            
+            // Footer
+            footer [ _class "resume-footer" ] [
+                p [] [ 
+                    str $"Last updated: "
+                    str (DateTimeOffset.Parse(resume.Metadata.LastUpdated).ToString("MMMM yyyy"))
+                ]
+                p [] [ 
+                    a [ _href "/" ] [ str "← Back to home" ]
+                ]
+            ]
+        ]

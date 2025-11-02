@@ -1,0 +1,18 @@
+:::review
+item: "%^{Book Title}"
+itemType: "book"
+rating: %^{Rating (1-5)}
+scale: 5.0
+summary: "%^{Review Summary}"
+pros:
+  - "%^{First positive point}"
+  - "%^{Second positive point}"
+cons:
+  - "%^{First negative point}"
+itemUrl: "%^{Book URL}"
+imageUrl: "%^{Cover Image URL}"
+additionalFields:
+  author: "%^{Author Name}"
+  isbn: "%^{ISBN}"
+  genre: "%^{Genre}"
+:::

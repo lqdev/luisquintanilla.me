@@ -1,0 +1,10 @@
+---
+title: "%^{Title}"
+date: %<%Y-%m-%d %H:%M -05:00>
+tags: "%^{Tags (comma-separated)}"
+resources:
+  - text: "%^{Resource Title}"
+    url: "%^{Resource URL}"
+---
+
+%?

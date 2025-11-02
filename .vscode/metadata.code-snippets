@@ -310,5 +310,86 @@
 			"$0"
 		],
 		"description": "Livestream post metadata"
+	},
+	"Starter Pack F# Configuration": {
+		"scope": "fsharp",
+		"prefix": "starter-pack-config",
+		"description": "F# configuration entry for StarterPackSystem.fs",
+		"body": [
+			"{",
+			"    Metadata = {",
+			"        Id = \"$1\"",
+			"        Title = \"$2\"",
+			"        Description = \"$3\"",
+			"        Category = Some \"$4\"",
+			"        Tags = [\"$5\"; \"$6\"; \"$7\"]",
+			"        Author = Some \"Luis Quintanilla\"",
+			"        Created = Some (DateTime($CURRENT_YEAR, $CURRENT_MONTH, $CURRENT_DATE))",
+			"        Updated = None",
+			"        Featured = $8",
+			"        SortOrder = Some $9",
+			"    }",
+			"    DataFile = \"$10\"",
+			"    OutputPath = \"collections/starter-packs/$11\"",
+			"    UrlPath = \"/collections/starter-packs/$12\"",
+			"    OpmlFilename = Some \"index.opml\"",
+			"}$0"
+		]
+	},
+	"Travel Guide F# Collection": {
+		"scope": "fsharp",
+		"prefix": "travel-collection",
+		"description": "F# travel collection configuration for Collections.fs",
+		"body": [
+			"{",
+			"    Title = \"$1\"",
+			"    Type = \"travel\"",
+			"    HtmlUrl = \"/collections/travel-guides/$2/\"",
+			"    XmlUrl = \"/collections/travel-guides/$3/index.xml\"",
+			"    GpxUrl = \"/collections/travel-guides/$4/index.gpx\"",
+			"    Description = Some \"$5\"",
+			"    Tags = Some [|\"$6\"; \"$7\"; \"travel\"|]",
+			"    Added = Some \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
+			"    TravelData = Some travelData",
+			"}$0"
+		]
+	},
+	"Album Collection metadata": {
+		"scope": "markdown",
+		"prefix": "album-collection",
+		"description": "Album collection metadata for curated media groupings",
+		"body": [
+			"---",
+			"title: \"$1\"",
+			"description: \"$2\"",
+			"date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
+			"tags: [\"$3\"]",
+			"---",
+			"",
+			":::media",
+			"- url: \"$4\"",
+			"  alt: \"$5\"",
+			"  mediaType: \"image\"",
+			"  aspectRatio: \"landscape\"",
+			"  caption: \"$6\"",
+			":::media",
+			"",
+			"$0"
+		]
+	},
+	"Playlist Collection metadata": {
+		"scope": "markdown",
+		"prefix": "playlist-collection",
+		"description": "Playlist collection metadata for curated music playlists",
+		"body": [
+			"---",
+			"title: \"$1\"",
+			"description: \"$2\"",
+			"date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE -05:00\"",
+			"tags: [\"$3\"]",
+			"---",
+			"",
+			"$0"
+		]
 	}
 }

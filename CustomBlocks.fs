@@ -611,3 +611,201 @@ let parseCustomBlocks (blockParsers: Map<string, string -> obj list>) (doc: Mark
         | _ -> ()
     
     results |> Seq.map (fun kvp -> kvp.Key, kvp.Value) |> Map.ofSeq
+
+// =====================================================================
+// Resume Custom Blocks
+// =====================================================================
+
+/// Block for :::experience syntax
+type ExperienceBlock(parser: BlockParser) =
+    inherit ContainerBlock(parser)
+    member val Role = "" with get, set
+    member val Company = "" with get, set
+    member val Start = "" with get, set
+    member val End : string option = None with get, set
+    member val Content = "" with get, set
+    interface ICustomBlock with
+        member _.BlockType = "experience"
+        member this.RawContent = this.Content
+
+/// Block for :::project syntax
+type ProjectBlock(parser: BlockParser) =
+    inherit ContainerBlock(parser)
+    member val Title = "" with get, set
+    member val Url : string option = None with get, set
+    member val Tech : string option = None with get, set
+    member val Content = "" with get, set
+    interface ICustomBlock with
+        member _.BlockType = "project"
+        member this.RawContent = this.Content
+
+/// Block for :::skills syntax
+type SkillsBlock(parser: BlockParser) =
+    inherit ContainerBlock(parser)
+    member val Category = "" with get, set
+    member val Content = "" with get, set
+    interface ICustomBlock with
+        member _.BlockType = "skills"
+        member this.RawContent = this.Content
+
+/// Block for :::testimonial syntax
+type TestimonialBlock(parser: BlockParser) =
+    inherit ContainerBlock(parser)
+    member val Author = "" with get, set
+    member val Content = "" with get, set
+    interface ICustomBlock with
+        member _.BlockType = "testimonial"
+        member this.RawContent = this.Content
+
+/// Block for :::education syntax
+type EducationBlock(parser: BlockParser) =
+    inherit ContainerBlock(parser)
+    member val Degree = "" with get, set
+    member val Institution = "" with get, set
+    member val Year : string option = None with get, set
+    member val Content = "" with get, set
+    interface ICustomBlock with
+        member _.BlockType = "education"
+        member this.RawContent = this.Content
+
+/// Parser for resume blocks with field: value and markdown content pattern
+type ResumeBlockParser<'T when 'T :> ContainerBlock and 'T :> ICustomBlock>(blockType: string, createBlock: BlockParser -> 'T, setField: 'T -> string -> string -> unit, setContent: 'T -> string -> unit) =
+    inherit BlockParser()
+    
+    let startMarker = $":::{blockType}"
+    let endMarker = ":::"
+    let contentSeparator = "---"
+    
+    override this.TryOpen(processor) =
+        let line = processor.Line.ToString().TrimStart()
+        if line.StartsWith(startMarker) then
+            let block = createBlock this
+            processor.NewBlocks.Push(block)
+            BlockState.ContinueDiscard
+        else
+            BlockState.None
+    
+    override _.TryContinue(processor, block) =
+        let line = processor.Line
+        let lineText = line.ToString().TrimStart()
+        
+        if lineText = endMarker then
+            processor.Close(block)
+            BlockState.BreakDiscard
+        else
+            let block' = block :?> 'T
+            
+            // Check if this is the content separator
+            if lineText = contentSeparator then
+                // Mark that we're now in content mode (we'll track this via Content being non-empty initially)
+                if block'.RawContent = "" then
+                    setContent block' " "  // Use space as marker that we're in content mode
+                BlockState.Continue
+            // If we have content marker and this isn't separator, it's content
+            elif block'.RawContent <> "" then
+                let currentContent = block'.RawContent
+                // Preserve original indentation by accessing the full slice
+                let originalLineText = 
+                    let slice = processor.Line
+                    if slice.Text <> null then
+                        slice.Text.Substring(slice.Start, slice.Length)
+                    else
+                        slice.ToString()
+                let newContent = if currentContent = " " then originalLineText else currentContent + "\n" + originalLineText
+                setContent block' newContent
+                BlockState.Continue
+            // Otherwise, it's a field definition
+            elif lineText.Contains(":") then
+                let parts = lineText.Split([|':'|], 2)
+                if parts.Length = 2 then
+                    let fieldName = parts.[0].Trim()
+                    let fieldValue = parts.[1].Trim()
+                    setField block' fieldName fieldValue
+                BlockState.Continue
+            else
+                BlockState.Continue
+    
+    override _.Close(processor, block) = true
+
+/// Specific parsers for each resume block type
+
+type ExperienceBlockParser() =
+    inherit ResumeBlockParser<ExperienceBlock>(
+        "experience",
+        (fun parser -> ExperienceBlock(parser)),
+        (fun block field value ->
+            match field.ToLower() with
+            | "role" -> block.Role <- value
+            | "company" -> block.Company <- value
+            | "start" -> block.Start <- value
+            | "end" -> block.End <- Some value
+            | _ -> ()),
+        (fun block content -> block.Content <- content)
+    )
+
+type ProjectBlockParser() =
+    inherit ResumeBlockParser<ProjectBlock>(
+        "project",
+        (fun parser -> ProjectBlock(parser)),
+        (fun block field value ->
+            match field.ToLower() with
+            | "title" -> block.Title <- value
+            | "url" -> block.Url <- Some value
+            | "tech" -> block.Tech <- Some value
+            | _ -> ()),
+        (fun block content -> block.Content <- content)
+    )
+
+type SkillsBlockParser() =
+    inherit ResumeBlockParser<SkillsBlock>(
+        "skills",
+        (fun parser -> SkillsBlock(parser)),
+        (fun block field value ->
+            match field.ToLower() with
+            | "category" -> block.Category <- value
+            | _ -> ()),
+        (fun block content -> block.Content <- content)
+    )
+
+type TestimonialBlockParser() =
+    inherit ResumeBlockParser<TestimonialBlock>(
+        "testimonial",
+        (fun parser -> TestimonialBlock(parser)),
+        (fun block field value ->
+            match field.ToLower() with
+            | "author" -> block.Author <- value
+            | _ -> ()),
+        (fun block content -> block.Content <- content)
+    )
+
+type EducationBlockParser() =
+    inherit ResumeBlockParser<EducationBlock>(
+        "education",
+        (fun parser -> EducationBlock(parser)),
+        (fun block field value ->
+            match field.ToLower() with
+            | "degree" -> block.Degree <- value
+            | "institution" -> block.Institution <- value
+            | "year" -> block.Year <- Some value
+            | _ -> ()),
+        (fun block content -> block.Content <- content)
+    )
+
+// Extension for Markdig pipeline
+type ResumeBlockExtension() =
+    interface IMarkdownExtension with
+        member _.Setup(pipeline: MarkdownPipelineBuilder) =
+            // Insert parsers at index 0 for proper priority (same pattern as other custom blocks)
+            // Note: Inserting at index 0 means later insertions appear first in the parser list,
+            // so we insert in reverse order of desired evaluation priority
+            if not (pipeline.BlockParsers.Contains<EducationBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, EducationBlockParser())
+            if not (pipeline.BlockParsers.Contains<TestimonialBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, TestimonialBlockParser())
+            if not (pipeline.BlockParsers.Contains<SkillsBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, SkillsBlockParser())
+            if not (pipeline.BlockParsers.Contains<ProjectBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, ProjectBlockParser())
+            if not (pipeline.BlockParsers.Contains<ExperienceBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, ExperienceBlockParser())
+        member _.Setup(_pipeline, _renderer) = ()

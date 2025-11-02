@@ -122,6 +122,17 @@ function setupDropdownListeners() {
             });
         }
     });
+    
+    // Close mobile nav when clicking dropdown items (actual navigation links)
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const nav = document.getElementById('sidebar-menu');
+            if (nav?.classList.contains('active')) {
+                toggleMobileNav();
+            }
+        });
+    });
 }
 
 // Event Listeners Setup
@@ -172,8 +183,14 @@ function setupEventListeners() {
             link.classList.remove('focused');
         });
         
-        // Close nav when clicking regular nav links
-        link.addEventListener('click', () => {
+        // Close nav when clicking regular nav links (but not dropdown toggles)
+        link.addEventListener('click', (e) => {
+            // Don't close nav if this is a dropdown toggle button
+            // Check both the clicked element and its parent in case we clicked a child element (icon, text, etc.)
+            if (link.classList.contains('dropdown-toggle') || e.target.closest('.dropdown-toggle')) {
+                return;
+            }
+            
             const nav = document.getElementById('sidebar-menu');
             if (nav?.classList.contains('active')) {
                 toggleMobileNav();
@@ -187,6 +204,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     setupDropdownListeners();
     initializeTheme();
+    setupCopyToClipboard();
+    setupWebShare();
 });
 
 // Handle theme changes from system preferences
@@ -196,7 +215,133 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
     }
 });
 
+// Copy to Clipboard Functionality
+function setupCopyToClipboard() {
+    document.querySelectorAll('.copy-permalink-btn').forEach(button => {
+        button.addEventListener('click', async (e) => {
+            e.preventDefault();
+            
+            const relativeUrl = button.dataset.url;
+            const url = window.location.origin + relativeUrl;
+            const iconSpan = button.querySelector('.button-icon');
+            const labelSpan = button.querySelector('.button-label');
+            const originalIcon = iconSpan ? iconSpan.textContent : '📋';
+            const originalLabel = labelSpan ? labelSpan.textContent : 'Copy';
+            
+            try {
+                // Use modern Clipboard API if available
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(url);
+                } else {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = url;
+                    textArea.style.position = 'fixed';
+                    textArea.style.left = '-999999px';
+                    textArea.style.top = '-999999px';
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    document.execCommand('copy');
+                    textArea.remove();
+                }
+                
+                // Visual feedback - change icon and label temporarily
+                button.classList.add('copied');
+                if (iconSpan) iconSpan.textContent = '✓';
+                if (labelSpan) labelSpan.textContent = 'Copied!';
+                button.title = 'Copied!';
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    if (iconSpan) iconSpan.textContent = originalIcon;
+                    if (labelSpan) labelSpan.textContent = originalLabel;
+                    button.title = 'Copy to clipboard';
+                }, 2000);
+                
+            } catch (err) {
+                console.warn('Failed to copy to clipboard:', err);
+                // Visual feedback for error
+                button.classList.add('copy-error');
+                if (iconSpan) iconSpan.textContent = '✗';
+                if (labelSpan) labelSpan.textContent = 'Failed';
+                button.title = 'Copy failed';
+                
+                setTimeout(() => {
+                    button.classList.remove('copy-error');
+                    if (iconSpan) iconSpan.textContent = originalIcon;
+                    if (labelSpan) labelSpan.textContent = originalLabel;
+                    button.title = 'Copy to clipboard';
+                }, 2000);
+            }
+        });
+    });
+}
+
 // Legacy function for backward compatibility (if needed)
 function switchTheme() {
     toggleTheme();
+}
+
+// Web Share API Functionality
+function setupWebShare() {
+    // Check if Web Share API is supported
+    if (!navigator.share) {
+        console.info('Web Share API not supported in this browser');
+        return;
+    }
+
+    // Add keyboard shortcut for sharing (Ctrl/Cmd + Shift + S)
+    document.addEventListener('keydown', async (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'S') {
+            e.preventDefault();
+            await shareCurrentPage();
+        }
+    });
+
+    // Setup share buttons if they exist
+    document.querySelectorAll('.web-share-btn').forEach(button => {
+        button.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const relativeUrl = button.dataset.url;
+            await shareContent(relativeUrl);
+        });
+    });
+}
+
+async function shareContent(relativeUrl) {
+    try {
+        // Get the page title
+        const title = document.title;
+
+        // Get selected text if any
+        const selection = window.getSelection();
+        const selectedText = selection.toString().trim();
+
+        // Use selected text or default message
+        const text = selectedText || 'I found this interesting';
+
+        // Build full URL from relative URL
+        const url = relativeUrl ? window.location.origin + relativeUrl : window.location.href;
+
+        // Share using Web Share API
+        await navigator.share({
+            title: title,
+            text: text,
+            url: url
+        });
+
+        console.log('Content shared successfully');
+    } catch (err) {
+        // User cancelled or share failed
+        if (err.name !== 'AbortError') {
+            console.warn('Error sharing:', err);
+        }
+    }
+}
+
+async function shareCurrentPage() {
+    // Share the current page without a specific URL (uses window.location.href)
+    await shareContent(null);
 }

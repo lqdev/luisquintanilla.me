@@ -97,6 +97,16 @@ module Loaders
 
         albums
 
+    let loadAlbumCollections (srcDir: string) = 
+        let albumPath = Path.Join(srcDir, "albums")
+        
+        // Check if directory exists, if not return empty array
+        if not (Directory.Exists(albumPath)) then
+            [||]
+        else
+            let albumCollectionPaths = Directory.GetFiles(albumPath)
+            albumCollectionPaths |> Array.map(parseAlbumCollection)
+
     let loadFeed (srcDir: string) =
         // Load notes using AST-based system (same as Program.fs)
         let noteFiles = 
@@ -116,3 +126,41 @@ module Loaders
         let processor = GenericBuilder.ResponseProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor responseFiles
         feedData |> List.map (fun item -> item.Content) |> List.toArray
+
+    let loadPinnedPosts () = 
+        let pinnedPostsPath = Path.Join("Data", "pinned-posts.json")
+        if File.Exists(pinnedPostsPath) then
+            File.ReadAllText(pinnedPostsPath)
+            |> JsonSerializer.Deserialize<PinnedPost array>
+            |> Array.sortBy (fun p -> p.Order)
+        else
+            [||]
+
+    // =====================================================================
+    // Resume Loader
+    // =====================================================================
+    
+    let loadResume (filePath: string) : Resume option =
+        if not (File.Exists(filePath)) then
+            None
+        else
+            try
+                let result = MarkdownService.getContentAndMetadata<ResumeMetadata>(filePath)
+                let fileName = Path.GetFileNameWithoutExtension(filePath)
+                
+                Some {
+                    FileName = fileName
+                    Metadata = result.Yaml
+                    Content = result.Content
+                    AboutSection = None  // Will be populated by builder
+                    InterestsSection = None  // Will be populated by builder
+                    Experience = []  // Will be populated by builder
+                    Skills = []
+                    Projects = []
+                    Education = []
+                    Testimonials = []
+                }
+            with
+            | ex ->
+                printfn "Warning: Failed to load resume from %s: %s" filePath ex.Message
+                None

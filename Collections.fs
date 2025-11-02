@@ -15,6 +15,7 @@ module CollectionProcessor =
         GenerateHtmlPage: CollectionData -> XmlNode
         GenerateRssFeed: CollectionData -> string
         GenerateOpmlFile: CollectionData -> string
+        GenerateGpxFile: CollectionData -> string option
         GetOutputPaths: Collection -> CollectionPaths
     }
     
@@ -24,12 +25,20 @@ module CollectionProcessor =
             match collection.CollectionType with
             | MediumFocused _ -> Path.Join("collections", collection.Id)
             | TopicFocused _ -> Path.Join("collections", "starter-packs", collection.Id)
+            | Travel _ -> Path.Join("collections", "travel", collection.Id)
             | Other _ -> Path.Join("collections", collection.Id)
+        
+        let gpxPath = 
+            // Only generate GPX for travel collections
+            match collection.CollectionType with
+            | Travel _ -> Some (Path.Join(baseDir, $"{collection.Id}.gpx"))
+            | _ -> None
         
         {
             HtmlPath = Path.Join(baseDir, "index.html")
             RssPath = Path.Join(baseDir, "index.rss") 
             OpmlPath = Path.Join(baseDir, "index.opml")
+            GpxPath = gpxPath
             DataPath = Path.Join("Data", collection.DataFile)
         }
     
@@ -37,24 +46,70 @@ module CollectionProcessor =
     let loadCollectionData (dataPath: string) (collection: Collection) : CollectionData =
         try
             let jsonContent = File.ReadAllText(dataPath)
-            // Legacy support: load as Outline array first, then convert to CollectionItem array
-            let outlines = JsonSerializer.Deserialize<Outline array>(jsonContent)
-            let items = 
-                outlines 
-                |> Array.map (fun outline -> {
-                    Title = outline.Title
-                    Type = outline.Type
-                    HtmlUrl = outline.HtmlUrl
-                    XmlUrl = outline.XmlUrl
-                    Description = None
-                    Tags = None
-                    Added = None
-                })
             
-            {
-                Metadata = { collection with ItemCount = Some items.Length }
-                Items = items
-            }
+            // Special handling for travel collections
+            match collection.CollectionType with
+            | Travel _ -> 
+                try
+                    // Try to load as TravelRecommendationData first
+                    let travelData = JsonSerializer.Deserialize<TravelRecommendationData>(jsonContent)
+                    // Convert travel data to CollectionItem array
+                    let items = 
+                        travelData.Places
+                        |> Array.map (fun place -> {
+                            Title = place.Name
+                            Type = "waypoint"
+                            HtmlUrl = "" // Not applicable for waypoints
+                            XmlUrl = ""  // Not applicable for waypoints
+                            Description = Some place.Description
+                            Tags = Some [| place.Category |]
+                            Added = None
+                        })
+                    
+                    {
+                        Metadata = { collection with ItemCount = Some items.Length }
+                        Items = items
+                    }
+                with
+                | ex ->
+                    printfn "Failed to load as travel data, trying standard format: %s" ex.Message
+                    // Fallback to standard Outline format
+                    let outlines = JsonSerializer.Deserialize<Outline array>(jsonContent)
+                    let items = 
+                        outlines 
+                        |> Array.map (fun outline -> {
+                            Title = outline.Title
+                            Type = outline.Type
+                            HtmlUrl = outline.HtmlUrl
+                            XmlUrl = outline.XmlUrl
+                            Description = None
+                            Tags = None
+                            Added = None
+                        })
+                    
+                    {
+                        Metadata = { collection with ItemCount = Some items.Length }
+                        Items = items
+                    }
+            | _ ->
+                // Legacy support: load as Outline array first, then convert to CollectionItem array
+                let outlines = JsonSerializer.Deserialize<Outline array>(jsonContent)
+                let items = 
+                    outlines 
+                    |> Array.map (fun outline -> {
+                        Title = outline.Title
+                        Type = outline.Type
+                        HtmlUrl = outline.HtmlUrl
+                        XmlUrl = outline.XmlUrl
+                        Description = None
+                        Tags = None
+                        Added = None
+                    })
+                
+                {
+                    Metadata = { collection with ItemCount = Some items.Length }
+                    Items = items
+                }
         with
         | ex -> 
             printfn "Error loading collection data from %s: %s" dataPath ex.Message
@@ -63,8 +118,8 @@ module CollectionProcessor =
                 Items = [||]
             }
     
-    // Generate HTML page for collection
-    let generateCollectionPage (data: CollectionData) : XmlNode =
+    // Standard collection page generation (original logic)
+    let generateStandardCollectionPage (data: CollectionData) : XmlNode =
         let collection = data.Metadata
         let items = data.Items
         
@@ -105,19 +160,41 @@ module CollectionProcessor =
             // OPML download information
             p [] [
                 Text "You can subscribe to any of the individual feeds in your preferred RSS reader using the RSS feed links below. Want to subscribe to all of them? Use the "
-                a [ _href (collection.UrlPath + "index.opml") ] [ Text "OPML file" ]
+                a [ _href $"{collection.UrlPath}index.opml" ] [ Text "OPML file" ]
                 Text " if your RSS reader supports "
                 a [ _href "http://opml.org/" ] [ Text "OPML." ]
             ]
             
-            // Feed list using established pattern
             linkContent
         ]
+
+    // Generate HTML page for collection
+    let generateCollectionPage (data: CollectionData) : XmlNode =
+        let collection = data.Metadata
+        
+        // Check if this is a travel collection and use appropriate view
+        match collection.CollectionType with
+        | Travel _ ->
+            // For travel collections, we need the original travel data
+            try
+                let travelDataPath = Path.Join("Data", collection.DataFile)
+                if File.Exists(travelDataPath) then
+                    let jsonContent = File.ReadAllText(travelDataPath)
+                    let travelData = JsonSerializer.Deserialize<TravelRecommendationData>(jsonContent)
+                    TravelViews.generateTravelCollectionPage data travelData
+                else
+                    // Fallback to standard view if travel data not found
+                    generateStandardCollectionPage data
+            with
+            | ex ->
+                printfn "Warning: Failed to load travel data for %s, using standard view: %s" collection.Title ex.Message
+                generateStandardCollectionPage data
+        | _ ->
+            generateStandardCollectionPage data
     
-    // Generate RSS feed for collection (placeholder - could aggregate feeds)
+    // Generate RSS feed for collection
     let generateCollectionRss (data: CollectionData) : string =
-        // For now, collections don't have their own RSS content
-        // This could be enhanced to aggregate latest posts from all feeds
+        let collection = data.Metadata
         sprintf """<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
     <channel>
@@ -125,7 +202,7 @@ module CollectionProcessor =
         <description>%s</description>
         <link>https://www.lqdev.me%s</link>
     </channel>
-</rss>""" data.Metadata.Title data.Metadata.Description data.Metadata.UrlPath
+</rss>""" collection.Title collection.Description collection.UrlPath
     
     // Generate OPML file for collection
     let generateCollectionOpml (data: CollectionData) : string =
@@ -149,6 +226,48 @@ module CollectionProcessor =
 %s
     </body>
 </opml>""" collection.Title outlines
+
+    // Generate GPX file for travel collections  
+    let generateCollectionGpx (data: CollectionData) : string option =
+        let collection = data.Metadata
+        
+        // Only generate GPX for travel collections
+        match collection.CollectionType with
+        | Travel _ ->
+            try
+                // Check if this is a travel collection with travel data
+                let travelDataPath = Path.Join("Data", collection.DataFile)
+                if File.Exists(travelDataPath) then
+                    let jsonContent = File.ReadAllText(travelDataPath)
+                    let travelData = JsonSerializer.Deserialize<TravelRecommendationData>(jsonContent)
+                    
+                    // Generate waypoints from places
+                    let waypoints = 
+                        travelData.Places
+                        |> Array.map (fun place ->
+                            let description = 
+                                match place.PersonalNote with
+                                | Some note -> sprintf "%s\n\n%s" place.Description note
+                                | None -> place.Description
+                            
+                            let practicalInfo = ""  // Simplified for now
+                            
+                            sprintf "  <wpt lat=\"%.6f\" lon=\"%.6f\">\n    <name>%s</name>\n    <desc>%s%s</desc>\n    <type>%s</type>\n  </wpt>" place.Latitude place.Longitude place.Name description practicalInfo place.Category)
+                        |> String.concat "\n"
+                    
+                    let gpxContent = sprintf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<gpx version=\"1.1\" creator=\"Luis Quintanilla\">\n  <metadata>\n    <name>%s</name>\n    <desc>%s</desc>\n  </metadata>\n%s\n</gpx>" travelData.Title travelData.Description waypoints
+                    
+                    Some gpxContent
+                else
+                    // Fallback for non-travel collections marked as travel
+                    let gpxContent = sprintf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<gpx version=\"1.1\" creator=\"Luis Quintanilla\">\n  <metadata>\n    <name>%s</name>\n    <desc>%s</desc>\n  </metadata>\n</gpx>" collection.Title collection.Description
+                    Some gpxContent
+            with
+            | ex -> 
+                printfn "Warning: Failed to generate GPX for %s: %s" collection.Title ex.Message
+                None
+        | _ ->
+            None
     
     // Create unified collection processor
     let createCollectionProcessor (collection: Collection) : CollectionProcessor = 
@@ -157,6 +276,7 @@ module CollectionProcessor =
             GenerateHtmlPage = generateCollectionPage
             GenerateRssFeed = generateCollectionRss
             GenerateOpmlFile = generateCollectionOpml
+            GenerateGpxFile = generateCollectionGpx
             GetOutputPaths = getCollectionPaths
         }
 
@@ -224,6 +344,31 @@ module CollectionConfig =
                 LastUpdated = DateTime.Now.ToString("yyyy-MM-dd")
                 ItemCount = None
             }
+            
+            // Travel collections  
+            // {
+            //     Id = "rome-favorites"
+            //     Title = "Rome Favorites"
+            //     Description = "Personal travel recommendations for Rome from my time living there"
+            //     CollectionType = Other "travel"
+            //     UrlPath = "/collections/travel/rome-favorites/"
+            //     DataFile = "rome-favorites.json"
+            //     Tags = [| "travel"; "rome"; "italy"; "recommendations" |]
+            //     LastUpdated = DateTime.Now.ToString("yyyy-MM-dd")
+            //     ItemCount = None
+            // }
+
+            {
+                Id = "chicago-favorites"
+                Title = "Chicago Favorites"
+                Description = "Personal travel recommendations for Chicago"
+                CollectionType = Travel "city-guide"
+                UrlPath = "/collections/travel/chicago-favorites/"
+                DataFile = "chicago-favorites.json"
+                Tags = [| "travel"; "chicago"; "illinois"; "recommendations" |]
+                LastUpdated = DateTime.Now.ToString("yyyy-MM-dd")
+                ItemCount = None
+            }
         |]
     
     // Load collections configuration (for future JSON-based config)
@@ -246,7 +391,7 @@ module CollectionConfig =
         
         let otherCollections = 
             collections 
-            |> Array.filter (fun c -> match c.CollectionType with Other _ -> true | _ -> false)
+            |> Array.filter (fun c -> match c.CollectionType with Other _ | Travel _ -> true | _ -> false)
             |> Array.toList
         
         {

@@ -1,6 +1,6 @@
 # Hi!
 
-I'm Luis Quintanilla. I'm a technologist, developer, and content creator based out of the NYC area. Currently at Microsoft working on Machine Learning for .NET. 
+I'm Luis Quintanilla. I'm a creator based out of Chicago. Currently at Microsoft working on Machine Learning and AI for .NET. 
 
 I'm passionate about:
 
