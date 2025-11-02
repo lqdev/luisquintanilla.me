@@ -1,0 +1,7 @@
+:::media
+- url: "%^{Document URL}"
+  alt: "%^{Document Description}"
+  mediaType: "document"
+  aspectRatio: "landscape"
+  caption: "%^{Caption}"
+:::media

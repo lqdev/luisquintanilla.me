@@ -1,0 +1,1 @@
+[![%^{Alt Text}](http://img.youtube.com/vi/%^{Video ID}/0.jpg)](https://www.youtube.com/watch?v=%^{Video ID} "%^{Alt Text}")

@@ -1,7 +1,7 @@
 ---
 title: "%^{Title}"
 targeturl: "%^{Target URL}"
-response_type: "%^{Response Type|reshare|star|reply|bookmark}"
+response_type: "star"
 dt_published: %<%Y-%m-%d %H:%M -05:00>
 dt_updated: %<%Y-%m-%d %H:%M -05:00>
 tags: [%^{Tags (comma-separated)}]

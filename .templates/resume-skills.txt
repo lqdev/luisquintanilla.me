@@ -1,0 +1,5 @@
+:::skills
+category: %^{Skill Category}
+---
+%^{Skill 1, Skill 2, Skill 3}
+:::

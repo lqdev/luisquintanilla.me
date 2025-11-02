@@ -1,0 +1,7 @@
+:::education
+degree: %^{Degree Name}
+institution: [%^{Institution Name}](%^{Institution URL})
+year: %^{Graduation Year}
+---
+%^{Additional details (honors, focus areas, achievements)}
+:::

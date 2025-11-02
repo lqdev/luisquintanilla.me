@@ -1,0 +1,7 @@
+:::media
+- url: "%^{Video URL}"
+  alt: "%^{Alt Text}"
+  mediaType: "video"
+  aspectRatio: "%^{Aspect Ratio|landscape|portrait|square|cinematic}"
+  caption: "%^{Caption}"
+:::media

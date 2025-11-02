@@ -1,0 +1,12 @@
+---
+post_type: "album"
+title: "%^{Title}"
+published_date: %<%Y-%m-%d %H:%M -05:00>
+tags: [%^{Tags (comma-separated)}]
+images:
+  - imagepath: "%^{Image Path}"
+    description: "%^{Description}"
+    alttext: "%^{Alt Text}"
+---
+
+%?
