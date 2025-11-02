@@ -1,0 +1,7 @@
+:::media
+- url: "%^{Image URL}"
+  alt: "%^{Alt Text}"
+  mediaType: "image"
+  aspectRatio: "%^{Aspect Ratio|landscape|portrait|square|cinematic}"
+  caption: "%^{Caption}"
+:::media

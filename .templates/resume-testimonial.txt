@@ -1,0 +1,7 @@
+:::testimonial
+author: %^{Name, Title} at [%^{Company}](%^{Company URL})
+---
+%^{Quote text with the person's recommendation or feedback}
+
+%?
+:::

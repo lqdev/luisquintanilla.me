@@ -1,0 +1,10 @@
+:::experience
+role: %^{Job Title}
+company: [%^{Company Name}](%^{Company URL})
+start: %^{Start Date (YYYY-MM-DD)}
+end: %^{End Date (current or YYYY-MM-DD)}
+---
+- %^{Key achievement or responsibility}
+- %^{Another accomplishment}
+- %^{Use bullet points for highlights}
+:::

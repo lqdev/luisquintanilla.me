@@ -1,0 +1,10 @@
+---
+title: "%^{Title}"
+video_url: "%^{Video URL}"
+published_date: %<%Y-%m-%d %H:%M -05:00>
+resources:
+  - text: "%^{Resource Title}"
+    url: "%^{Resource URL}"
+---
+
+%?

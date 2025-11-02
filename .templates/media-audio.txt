@@ -1,0 +1,7 @@
+:::media
+- url: "%^{Audio URL}"
+  alt: "%^{Description}"
+  mediaType: "audio"
+  aspectRatio: "landscape"
+  caption: "%^{Caption}"
+:::media

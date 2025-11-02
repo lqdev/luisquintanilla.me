@@ -1,8 +1,7 @@
 ---
-post_type: "article"
 title: "%^{Title}"
 description: "%^{Description}"
-published_date: %<%Y-%m-%d %H:%M -05:00>
+date: %<%Y-%m-%d %H:%M -05:00>
 tags: [%^{Tags (comma-separated)}]
 ---
 

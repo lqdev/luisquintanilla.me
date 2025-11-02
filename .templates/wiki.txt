@@ -1,8 +1,10 @@
 ---
 post_type: "wiki"
-title: %^{TITLE}
-last_updated_date: %<%F %R -05:00>
-tags: %^{TAGS}
+title: "%^{Title}"
+last_updated_date: %<%Y-%m-%d %H:%M -05:00>
+tags: "%^{Tags (comma-separated)}"
 ---
 
 ## Overview
+
+%?
