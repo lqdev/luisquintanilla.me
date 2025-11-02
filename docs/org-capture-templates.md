@@ -16,31 +16,28 @@ Org-capture templates enable:
 
 The templates are organized into four main categories:
 
-### 1. Content Types (17 templates)
+### 1. Content Types (9 templates)
 Primary content types for posts, notes, and media:
 - `article.txt` - Long-form blog articles
-- `post.txt` - General blog posts
 - `note.txt` - Microblog notes (IndieWeb)
-- `photo.txt` - Photo posts
-- `video.txt` - Video posts
-- `album.txt` - Photo album with metadata
+- `media.txt` - Media posts (images, videos, audio) in _src/media
+- `album-collection.txt` - Album collections
 - `playlist-collection.txt` - Music playlist collections
 - `snippet.txt` - Code snippets with syntax highlighting
 - `wiki.txt` - Knowledge base entries
-- `book.txt` - Book reviews and tracking
 - `presentation.txt` - Reveal.js presentations
 - `livestream.txt` - Live stream recordings
-- `note-crate-finds.txt` - Monthly music discovery posts
 
-### 2. Response Types (5 templates)
+### 2. Response Types (2 templates)
 IndieWeb social responses:
-- `response.txt` - Generic response with type selection
-- `reply.txt` - Reply to another post
-- `reshare.txt` - Reshare/repost content
-- `star.txt` - Favorite/like a post
-- `bookmark.txt` - Bookmark links
+- `response.txt` - Generic response with type selection (reply/star/reshare)
+- `bookmark.txt` - Bookmark links (separate directory)
 
-### 3. Custom Blocks (15 templates)
+### 3. Reviews (1 template)
+Reviews using the :::review::: custom block:
+- `review.txt` - Reviews for books, movies, music, products, businesses
+
+### 4. Custom Blocks (15 templates)
 Markdown custom block syntax for rich content:
 
 **Media Blocks:**
@@ -64,7 +61,7 @@ Markdown custom block syntax for rich content:
 - `resume-education.txt` - Education history
 - `resume-testimonial.txt` - Testimonials and recommendations
 
-### 4. Markdown Helpers (6 templates)
+### 5. Markdown Helpers (6 templates)
 Common markdown patterns:
 - `helper-datetime.txt` - Current datetime with timezone
 - `helper-blockquote.txt` - Blockquote formatting
@@ -122,13 +119,6 @@ Add this to your Emacs configuration file (`~/.emacs.d/init.el` or `~/.emacs`):
          (file (lambda () (concat lqdev-site-path ".templates/article.txt")))
          :empty-lines-after 1)
         
-        ("lpp" "Post" plain
-         (file (lambda () (concat lqdev-site-path "_src/posts/" 
-                                  (format-time-string "%Y-%m-%d-")
-                                  (read-string "Filename slug: ") ".md")))
-         (file (lambda () (concat lqdev-site-path ".templates/post.txt")))
-         :empty-lines-after 1)
-        
         ;; Notes (ln*)
         ("ln" "Note Types")
         ("lnn" "Note" plain
@@ -138,61 +128,40 @@ Add this to your Emacs configuration file (`~/.emacs.d/init.el` or `~/.emacs`):
          (file (lambda () (concat lqdev-site-path ".templates/note.txt")))
          :empty-lines-after 1)
         
-        ("lnc" "Crate Finds Note" plain
-         (file (lambda () (concat lqdev-site-path "_src/notes/" 
-                                  (format-time-string "%Y-%m-")
-                                  "crate-finds.md")))
-         (file (lambda () (concat lqdev-site-path ".templates/note-crate-finds.txt")))
-         :empty-lines-after 1)
-        
         ;; Media (lm*)
         ("lm" "Media Types")
-        ("lmp" "Photo" plain
-         (file (lambda () (concat lqdev-site-path "_src/feed/" 
+        ("lmm" "Media Post" plain
+         (file (lambda () (concat lqdev-site-path "_src/media/" 
                                   (format-time-string "%Y-%m-%d-")
                                   (read-string "Filename slug: ") ".md")))
-         (file (lambda () (concat lqdev-site-path ".templates/photo.txt")))
+         (file (lambda () (concat lqdev-site-path ".templates/media.txt")))
          :empty-lines-after 1)
         
-        ("lmv" "Video" plain
-         (file (lambda () (concat lqdev-site-path "_src/feed/" 
-                                  (format-time-string "%Y-%m-%d-")
-                                  (read-string "Filename slug: ") ".md")))
-         (file (lambda () (concat lqdev-site-path ".templates/video.txt")))
-         :empty-lines-after 1)
-        
-        ("lma" "Album" plain
+        ("lma" "Album Collection" plain
          (file (lambda () (concat lqdev-site-path "_src/albums/" 
                                   (format-time-string "%Y-%m-%d-")
                                   (read-string "Filename slug: ") ".md")))
-         (file (lambda () (concat lqdev-site-path ".templates/album.txt")))
+         (file (lambda () (concat lqdev-site-path ".templates/album-collection.txt")))
+         :empty-lines-after 1)
+        
+        ("lmp" "Playlist Collection" plain
+         (file (lambda () (concat lqdev-site-path "_src/playlists/" 
+                                  (format-time-string "%Y-%m-%d-")
+                                  (read-string "Filename slug: ") ".md")))
+         (file (lambda () (concat lqdev-site-path ".templates/playlist-collection.txt")))
          :empty-lines-after 1)
         
         ;; Responses (lr*)
         ("lr" "Response Types")
-        ("lrr" "Reply" plain
+        ("lrr" "Response" plain
          (file (lambda () (concat lqdev-site-path "_src/responses/" 
                                   (format-time-string "%Y-%m-%d-")
                                   (read-string "Filename slug: ") ".md")))
-         (file (lambda () (concat lqdev-site-path ".templates/reply.txt")))
-         :empty-lines-after 1)
-        
-        ("lrs" "Star/Favorite" plain
-         (file (lambda () (concat lqdev-site-path "_src/responses/" 
-                                  (format-time-string "%Y-%m-%d-")
-                                  (read-string "Filename slug: ") ".md")))
-         (file (lambda () (concat lqdev-site-path ".templates/star.txt")))
-         :empty-lines-after 1)
-        
-        ("lrh" "Reshare" plain
-         (file (lambda () (concat lqdev-site-path "_src/responses/" 
-                                  (format-time-string "%Y-%m-%d-")
-                                  (read-string "Filename slug: ") ".md")))
-         (file (lambda () (concat lqdev-site-path ".templates/reshare.txt")))
+         (file (lambda () (concat lqdev-site-path ".templates/response.txt")))
          :empty-lines-after 1)
         
         ("lrb" "Bookmark" plain
-         (file (lambda () (concat lqdev-site-path "_src/responses/" 
+         (file (lambda () (concat lqdev-site-path "_src/bookmarks/" 
                                   (format-time-string "%Y-%m-%d-")
                                   (read-string "Filename slug: ") ".md")))
          (file (lambda () (concat lqdev-site-path ".templates/bookmark.txt")))
@@ -200,10 +169,11 @@ Add this to your Emacs configuration file (`~/.emacs.d/init.el` or `~/.emacs`):
         
         ;; Resources (lo*)
         ("lo" "Resources")
-        ("lob" "Book" plain
-         (file (lambda () (concat lqdev-site-path "_src/resources/books/" 
+        ("lov" "Review" plain
+         (file (lambda () (concat lqdev-site-path "_src/reviews/library/" 
+                                  (format-time-string "%Y-%m-%d-")
                                   (read-string "Filename slug: ") ".md")))
-         (file (lambda () (concat lqdev-site-path ".templates/book.txt")))
+         (file (lambda () (concat lqdev-site-path ".templates/review.txt")))
          :empty-lines-after 1)
         
         ("los" "Snippet" plain
@@ -244,9 +214,9 @@ The configuration uses a **hierarchical 3-key system**:
 2. **Second key**: Content category
    - `p` - Posts and articles
    - `n` - Notes
-   - `m` - Media (photos, videos, albums)
+   - `m` - Media (media posts, albums, playlists)
    - `r` - Responses (IndieWeb social)
-   - `o` - Resources (books, wiki, presentations)
+   - `o` - Resources (reviews, wiki, presentations)
 3. **Third key**: Specific content type
 
 **Examples:**
@@ -263,17 +233,17 @@ Templates automatically create files in the correct directories:
 ```
 _src/
 ├── posts/           # Articles and blog posts (lpa, lpp)
-├── notes/           # Microblog notes (lnn, lnc)
-├── responses/       # Social responses (lrr, lrs, lrh, lrb)
-├── feed/            # Photo and video posts (lmp, lmv)
-├── albums/          # Photo albums (lma)
-├── playlists/       # Music playlists
+├── notes/           # Microblog notes (lnn)
+├── responses/       # Social responses (lrr)
+├── bookmarks/       # Bookmarks (lrb)
+├── media/           # Media posts (lmm)
+├── albums/          # Album collections (lma)
+├── playlists/       # Music playlists (lmp)
 ├── snippets/        # Code snippets (los)
 ├── wiki/            # Knowledge base (low)
 ├── streams/         # Livestreams (lol)
-└── resources/
-    ├── books/       # Book reviews (lob)
-    └── presentations/  # Presentations (lop)
+└── reviews/
+    └── library/     # Reviews (lov)
 ```
 
 ## Using Templates
@@ -299,7 +269,7 @@ _src/
 1. Press `C-c c l r b` (Capture → lqdev → response → bookmark)
 2. Enter filename slug: `interesting-article`
 3. Prompted for: Title, Target URL, Tags
-4. File created at: `_src/responses/2024-11-02-interesting-article.md`
+4. File created at: `_src/bookmarks/2024-11-02-interesting-article.md`
 5. Add optional commentary after frontmatter
 
 ### Using Custom Block Templates
@@ -498,6 +468,6 @@ Templates should be **repository-specific** and focused on this static site's co
 
 ---
 
-**Template Count:** 43 templates across 4 categories
+**Template Count:** 33 templates across 5 categories
 **Last Updated:** 2024-11-02
 **Maintained by:** Site content contributors

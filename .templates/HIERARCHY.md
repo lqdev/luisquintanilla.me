@@ -8,26 +8,22 @@ This shows the complete 3-key navigation structure for Emacs org-capture.
 C-c c (org-capture)
 └── l (lqdev.me Content)
     ├── p (Post Types)
-    │   ├── a → article.txt      (Article)
-    │   └── p → post.txt         (Post)
+    │   └── a → article.txt      (Article)
     │
     ├── n (Note Types)
-    │   ├── n → note.txt         (Note)
-    │   └── c → note-crate-finds.txt (Crate Finds)
+    │   └── n → note.txt         (Note)
     │
     ├── m (Media Types)
-    │   ├── p → photo.txt        (Photo)
-    │   ├── v → video.txt        (Video)
-    │   └── a → album.txt        (Album)
+    │   ├── m → media.txt        (Media - image/video/audio)
+    │   ├── a → album-collection.txt (Album Collection)
+    │   └── p → playlist-collection.txt (Playlist Collection)
     │
     ├── r (Response Types)
-    │   ├── r → reply.txt        (Reply)
-    │   ├── s → star.txt         (Star/Favorite)
-    │   ├── h → reshare.txt      (Reshare)
+    │   ├── r → response.txt     (Response - reply/star/reshare)
     │   └── b → bookmark.txt     (Bookmark)
     │
     └── o (Resources)
-        ├── b → book.txt         (Book)
+        ├── v → review.txt       (Review)
         ├── s → snippet.txt      (Snippet)
         ├── w → wiki.txt         (Wiki)
         ├── p → presentation.txt (Presentation)
@@ -38,25 +34,21 @@ C-c c (org-capture)
 
 ### Posts & Articles
 - `C-c c l p a` → Create Article
-- `C-c c l p p` → Create Post
 
 ### Notes
 - `C-c c l n n` → Create Note
-- `C-c c l n c` → Create Crate Finds Note
 
 ### Media
-- `C-c c l m p` → Create Photo Post
-- `C-c c l m v` → Create Video Post
-- `C-c c l m a` → Create Album
+- `C-c c l m m` → Create Media Post (image/video/audio)
+- `C-c c l m a` → Create Album Collection
+- `C-c c l m p` → Create Playlist Collection
 
 ### Responses (IndieWeb Social)
-- `C-c c l r r` → Create Reply
-- `C-c c l r s` → Create Star/Favorite
-- `C-c c l r h` → Create Reshare
+- `C-c c l r r` → Create Response (with type selection)
 - `C-c c l r b` → Create Bookmark
 
 ### Resources
-- `C-c c l o b` → Create Book Review
+- `C-c c l o v` → Create Review
 - `C-c c l o s` → Create Code Snippet
 - `C-c c l o w` → Create Wiki Entry
 - `C-c c l o p` → Create Presentation
@@ -64,16 +56,12 @@ C-c c (org-capture)
 
 ## Template File Mapping
 
-### Content Types (13 files)
+### Content Types (9 files)
 | Template File | Purpose | Target Directory |
 |--------------|---------|------------------|
 | article.txt | Long-form articles | _src/posts/ |
-| post.txt | General posts | _src/posts/ |
 | note.txt | Microblog notes | _src/notes/ |
-| note-crate-finds.txt | Music discoveries | _src/notes/ |
-| photo.txt | Photo posts | _src/feed/ |
-| video.txt | Video posts | _src/feed/ |
-| album.txt | Photo albums | _src/albums/ |
+| media.txt | Media posts (image/video/audio) | _src/media/ |
 | album-collection.txt | Album collections | _src/albums/ |
 | playlist-collection.txt | Music playlists | _src/playlists/ |
 | snippet.txt | Code snippets | _src/snippets/ |
@@ -81,19 +69,16 @@ C-c c (org-capture)
 | presentation.txt | Presentations | _src/resources/presentations/ |
 | livestream.txt | Livestreams | _src/streams/ |
 
-### Response Types (5 files)
+### Response Types (2 files)
 | Template File | Purpose | Target Directory |
 |--------------|---------|------------------|
-| response.txt | Generic response | _src/responses/ |
-| reply.txt | Reply to posts | _src/responses/ |
-| reshare.txt | Reshare content | _src/responses/ |
-| star.txt | Favorite posts | _src/responses/ |
-| bookmark.txt | Bookmark links | _src/responses/ |
+| response.txt | Generic response (reply/star/reshare) | _src/responses/ |
+| bookmark.txt | Bookmark links | _src/bookmarks/ |
 
-### Book Reviews (1 file)
+### Reviews (1 file)
 | Template File | Purpose | Target Directory |
 |--------------|---------|------------------|
-| book.txt | Book reviews | _src/resources/books/ |
+| review.txt | Reviews using :::review::: blocks | _src/reviews/library/ |
 
 ### Custom Blocks (15 files)
 These templates insert content blocks at cursor position (no new file):
@@ -159,6 +144,6 @@ Third-level keys match the first letter of content type:
 
 ---
 
-**Total Templates:** 40
+**Total Templates:** 33
 **Navigation Depth:** 3 keys maximum
-**Coverage:** All content types in Domain.fs
+**Coverage:** All active content types aligned with current architecture

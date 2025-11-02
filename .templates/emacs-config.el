@@ -48,13 +48,6 @@
          (file (lambda () (concat lqdev-site-path ".templates/article.txt")))
          :empty-lines-after 1)
         
-        ("lpp" "Post" plain
-         (file (lambda () (concat lqdev-site-path "_src/posts/" 
-                                  (format-time-string "%Y-%m-%d-")
-                                  (read-string "Filename slug: ") ".md")))
-         (file (lambda () (concat lqdev-site-path ".templates/post.txt")))
-         :empty-lines-after 1)
-        
         ;; Notes (ln*)
         ("ln" "Note Types")
         ("lnn" "Note" plain
@@ -64,61 +57,40 @@
          (file (lambda () (concat lqdev-site-path ".templates/note.txt")))
          :empty-lines-after 1)
         
-        ("lnc" "Crate Finds Note" plain
-         (file (lambda () (concat lqdev-site-path "_src/notes/" 
-                                  (format-time-string "%Y-%m-")
-                                  "crate-finds.md")))
-         (file (lambda () (concat lqdev-site-path ".templates/note-crate-finds.txt")))
-         :empty-lines-after 1)
-        
         ;; Media (lm*)
         ("lm" "Media Types")
-        ("lmp" "Photo" plain
-         (file (lambda () (concat lqdev-site-path "_src/feed/" 
+        ("lmm" "Media Post" plain
+         (file (lambda () (concat lqdev-site-path "_src/media/" 
                                   (format-time-string "%Y-%m-%d-")
                                   (read-string "Filename slug: ") ".md")))
-         (file (lambda () (concat lqdev-site-path ".templates/photo.txt")))
+         (file (lambda () (concat lqdev-site-path ".templates/media.txt")))
          :empty-lines-after 1)
         
-        ("lmv" "Video" plain
-         (file (lambda () (concat lqdev-site-path "_src/feed/" 
-                                  (format-time-string "%Y-%m-%d-")
-                                  (read-string "Filename slug: ") ".md")))
-         (file (lambda () (concat lqdev-site-path ".templates/video.txt")))
-         :empty-lines-after 1)
-        
-        ("lma" "Album" plain
+        ("lma" "Album Collection" plain
          (file (lambda () (concat lqdev-site-path "_src/albums/" 
                                   (format-time-string "%Y-%m-%d-")
                                   (read-string "Filename slug: ") ".md")))
-         (file (lambda () (concat lqdev-site-path ".templates/album.txt")))
+         (file (lambda () (concat lqdev-site-path ".templates/album-collection.txt")))
+         :empty-lines-after 1)
+        
+        ("lmp" "Playlist Collection" plain
+         (file (lambda () (concat lqdev-site-path "_src/playlists/" 
+                                  (format-time-string "%Y-%m-%d-")
+                                  (read-string "Filename slug: ") ".md")))
+         (file (lambda () (concat lqdev-site-path ".templates/playlist-collection.txt")))
          :empty-lines-after 1)
         
         ;; Responses (lr*)
         ("lr" "Response Types")
-        ("lrr" "Reply" plain
+        ("lrr" "Response" plain
          (file (lambda () (concat lqdev-site-path "_src/responses/" 
                                   (format-time-string "%Y-%m-%d-")
                                   (read-string "Filename slug: ") ".md")))
-         (file (lambda () (concat lqdev-site-path ".templates/reply.txt")))
-         :empty-lines-after 1)
-        
-        ("lrs" "Star/Favorite" plain
-         (file (lambda () (concat lqdev-site-path "_src/responses/" 
-                                  (format-time-string "%Y-%m-%d-")
-                                  (read-string "Filename slug: ") ".md")))
-         (file (lambda () (concat lqdev-site-path ".templates/star.txt")))
-         :empty-lines-after 1)
-        
-        ("lrh" "Reshare" plain
-         (file (lambda () (concat lqdev-site-path "_src/responses/" 
-                                  (format-time-string "%Y-%m-%d-")
-                                  (read-string "Filename slug: ") ".md")))
-         (file (lambda () (concat lqdev-site-path ".templates/reshare.txt")))
+         (file (lambda () (concat lqdev-site-path ".templates/response.txt")))
          :empty-lines-after 1)
         
         ("lrb" "Bookmark" plain
-         (file (lambda () (concat lqdev-site-path "_src/responses/" 
+         (file (lambda () (concat lqdev-site-path "_src/bookmarks/" 
                                   (format-time-string "%Y-%m-%d-")
                                   (read-string "Filename slug: ") ".md")))
          (file (lambda () (concat lqdev-site-path ".templates/bookmark.txt")))
@@ -126,10 +98,11 @@
         
         ;; Resources (lo*)
         ("lo" "Resources")
-        ("lob" "Book" plain
-         (file (lambda () (concat lqdev-site-path "_src/resources/books/" 
+        ("lov" "Review" plain
+         (file (lambda () (concat lqdev-site-path "_src/reviews/library/" 
+                                  (format-time-string "%Y-%m-%d-")
                                   (read-string "Filename slug: ") ".md")))
-         (file (lambda () (concat lqdev-site-path ".templates/book.txt")))
+         (file (lambda () (concat lqdev-site-path ".templates/review.txt")))
          :empty-lines-after 1)
         
         ("los" "Snippet" plain

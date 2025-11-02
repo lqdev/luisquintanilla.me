@@ -1,8 +1,0 @@
----
-post_type: "video"
-title: "%^{Title}"
-published_date: %<%Y-%m-%d %H:%M -05:00>
-tags: [%^{Tags (comma-separated)}]
----
-
-%?

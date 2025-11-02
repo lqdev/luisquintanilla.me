@@ -4,14 +4,10 @@ This directory contains **Emacs org-capture templates** for rapid content creati
 
 ## Quick Reference
 
-### 📄 Content Types (13 templates)
+### 📄 Content Types (9 templates)
 - `article.txt` - Long-form blog articles
-- `post.txt` - General blog posts  
 - `note.txt` - Microblog notes
-- `note-crate-finds.txt` - Monthly music discoveries
-- `photo.txt` - Photo posts
-- `video.txt` - Video posts
-- `album.txt` - Photo albums with metadata
+- `media.txt` - Media posts (images, videos, audio) in _src/media
 - `album-collection.txt` - Album collections
 - `playlist-collection.txt` - Music playlist collections
 - `snippet.txt` - Code snippets
@@ -19,15 +15,12 @@ This directory contains **Emacs org-capture templates** for rapid content creati
 - `presentation.txt` - Reveal.js presentations
 - `livestream.txt` - Live stream recordings
 
-### 💬 Response Types (5 templates)
-- `response.txt` - Generic response (with type selection)
-- `reply.txt` - Reply to posts
-- `reshare.txt` - Reshare/repost content
-- `star.txt` - Favorite/like posts
-- `bookmark.txt` - Bookmark links
+### 💬 Response Types (2 templates)
+- `response.txt` - Generic response with type selection (reply/star/reshare)
+- `bookmark.txt` - Bookmark links (separate directory)
 
-### 📚 Book Reviews (1 template)
-- `book.txt` - Book reviews with ratings and notes
+### 📚 Reviews (1 template)
+- `review.txt` - Reviews using :::review::: blocks in _src/reviews
 
 ### 🎨 Custom Blocks (15 templates)
 
@@ -60,7 +53,7 @@ This directory contains **Emacs org-capture templates** for rapid content creati
 - `helper-image.txt` - Image embedding
 - `helper-youtube.txt` - YouTube video embedding
 
-## Total: 40 Templates
+## Total: 33 Templates
 
 ## Documentation
 
