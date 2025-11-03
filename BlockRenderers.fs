@@ -83,14 +83,14 @@ module MediaRenderer =
 module ReviewRenderer =
     let render (review: ReviewData) =
         let ratingElement =
-            if review.rating > 0.0 then
+            if review.Rating > 0.0 then
                 Html.element "div" 
                     (Html.attribute "class" ("review-rating " + Microformats.pRating))
-                    (sprintf "Rating: %.1f/%.1f" review.rating (review.GetScale()))
+                    (sprintf "Rating: %.1f/%.1f" review.Rating review.Scale)
             else ""
         
         let summaryElement =
-            let summary = review.GetSummary()
+            let summary = review.Summary
             if not (String.IsNullOrWhiteSpace(summary)) then
                 Html.element "div"
                     (Html.attribute "class" ("review-summary " + Microformats.pSummary))
@@ -100,22 +100,22 @@ module ReviewRenderer =
         let titleElement =
             Html.element "h3"
                 (Html.attribute "class" ("review-title " + Microformats.pName))
-                (Html.escapeHtml review.item)
+                (Html.escapeHtml review.Item)
         
         let imageElement =
-            match review.image_url with
+            match review.ImageUrl with
             | Some imageUrl when not (String.IsNullOrWhiteSpace(imageUrl)) ->
                 Html.element "div" (Html.attribute "class" "review-image")
                     (Html.element "img" 
                         (Html.attribute "src" imageUrl + 
-                         Html.attribute "alt" review.item + 
+                         Html.attribute "alt" review.Item + 
                          Html.attribute "class" "review-thumbnail")
                         "")
             | _ -> ""
         
         let itemTypeElement =
-            let itemType = review.GetItemType()
-            if itemType <> "unknown" then
+            let itemType = review.ItemType
+            if not (String.IsNullOrWhiteSpace(itemType)) then
                 Html.element "div"
                     (Html.attribute "class" "review-item-type")
                     (Html.element "span" 
@@ -124,8 +124,8 @@ module ReviewRenderer =
             else ""
         
         let prosElement =
-            match review.pros with
-            | Some prosArray when prosArray.Length > 0 ->
+            match review.Pros with
+            | Some (prosArray: string array) when prosArray.Length > 0 ->
                 let prosItems = 
                     prosArray 
                     |> Array.map (fun pro -> 
@@ -137,8 +137,8 @@ module ReviewRenderer =
             | _ -> ""
         
         let consElement =
-            match review.cons with
-            | Some consArray when consArray.Length > 0 ->
+            match review.Cons with
+            | Some (consArray: string array) when consArray.Length > 0 ->
                 let consItems = 
                     consArray 
                     |> Array.map (fun con -> 
@@ -149,23 +149,8 @@ module ReviewRenderer =
                      Html.element "ul" "" consItems)
             | _ -> ""
         
-        let additionalFieldsElement =
-            match review.additional_fields with
-            | Some fields when fields.Count > 0 ->
-                let fieldItems = 
-                    fields 
-                    |> Seq.map (fun kvp -> 
-                        Html.element "div" (Html.attribute "class" "additional-field")
-                            (Html.element "strong" "" (Html.escapeHtml kvp.Key + ": ") +
-                             Html.escapeHtml (kvp.Value.ToString())))
-                    |> String.concat ""
-                Html.element "div" (Html.attribute "class" "review-additional-fields")
-                    (Html.element "h4" "" "Additional Information:" + 
-                     Html.element "div" (Html.attribute "class" "field-list") fieldItems)
-            | _ -> ""
-        
         let urlElement =
-            match review.item_url with
+            match review.ItemUrl with
             | Some url when not (String.IsNullOrWhiteSpace(url)) ->
                 Html.element "div" (Html.attribute "class" "review-url")
                     (Html.element "a" 
@@ -175,7 +160,7 @@ module ReviewRenderer =
         
         Html.element "div" 
             (Html.attribute "class" ("custom-review-block " + Microformats.hEntry))
-            (titleElement + imageElement + itemTypeElement + ratingElement + summaryElement + prosElement + consElement + additionalFieldsElement + urlElement)
+            (titleElement + imageElement + itemTypeElement + ratingElement + summaryElement + prosElement + consElement + urlElement)
 
 /// Renderer for VenueData
 module VenueRenderer =

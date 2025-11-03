@@ -459,8 +459,8 @@ module ReviewDataExtractor =
                 match customBlocks.TryGetValue("review") with
                 | true, reviewList when reviewList.Length > 0 ->
                     match reviewList.[0] with
-                    | :? ReviewData as reviewData -> 
-                        (reviewData.image_url, reviewData.rating, reviewData.GetScale(), reviewData.item_type)
+                    | :? CustomBlocks.ReviewData as reviewData -> 
+                        (reviewData.ImageUrl, reviewData.Rating, reviewData.Scale, Some reviewData.ItemType)
                     | _ -> (None, 0.0, 5.0, None)
                 | _ -> (None, 0.0, 5.0, None)
             with
@@ -508,7 +508,7 @@ module BookProcessor =
                         match parsedDoc.CustomBlocks.TryGetValue("review") with
                         | true, reviewList when reviewList.Length > 0 ->
                             match reviewList.[0] with
-                            | :? ReviewData as reviewData -> Some reviewData
+                            | :? CustomBlocks.ReviewData as reviewData -> Some reviewData
                             | _ -> None
                         | _ -> None
                     
@@ -523,12 +523,8 @@ module BookProcessor =
                                 Author = reviewData.GetAuthor()
                                 Isbn = reviewData.GetIsbn()
                                 Cover = reviewData.GetCover()
-                                Rating = reviewData.rating
-                                DatePublished = 
-                                    // Use date_published from review block if available, otherwise frontmatter
-                                    match reviewData.date_published with
-                                    | Some date -> date
-                                    | None -> metadata.DatePublished
+                                Rating = reviewData.Rating
+                                DatePublished = reviewData.GetDatePublished()
                             }
                         | None ->
                             // Fallback to frontmatter (backward compatibility)
@@ -537,10 +533,10 @@ module BookProcessor =
                     // Store review data in cache for later use in rendering
                     match reviewDataOpt with
                     | Some reviewData ->
-                        let reviewImageUrl = reviewData.image_url
-                        let reviewRating = reviewData.rating
-                        let reviewScale = reviewData.GetScale()
-                        let reviewItemType = reviewData.item_type
+                        let reviewImageUrl = reviewData.ImageUrl
+                        let reviewRating = reviewData.Rating
+                        let reviewScale = reviewData.Scale
+                        let reviewItemType = Some reviewData.ItemType
                         reviewDataCache.[fileName] <- (reviewImageUrl, reviewRating, reviewScale, reviewItemType)
                     | None ->
                         // Use old extraction method for backward compatibility
