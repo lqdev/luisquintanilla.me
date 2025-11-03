@@ -113,16 +113,6 @@ module ReviewRenderer =
                         "")
             | _ -> ""
         
-        let itemTypeElement =
-            let itemType = review.ItemType
-            if not (String.IsNullOrWhiteSpace(itemType)) then
-                Html.element "div"
-                    (Html.attribute "class" "review-item-type")
-                    (Html.element "span" 
-                        (Html.attribute "class" "item-type-badge")
-                        (Html.escapeHtml (itemType.ToUpperInvariant())))
-            else ""
-        
         let prosElement =
             match review.Pros with
             | Some (prosArray: string array) when prosArray.Length > 0 ->
@@ -160,7 +150,7 @@ module ReviewRenderer =
         
         Html.element "div" 
             (Html.attribute "class" ("custom-review-block " + Microformats.hEntry))
-            (titleElement + imageElement + itemTypeElement + ratingElement + summaryElement + prosElement + consElement + urlElement)
+            (titleElement + imageElement + ratingElement + summaryElement + prosElement + consElement + urlElement)
 
 /// Renderer for VenueData
 module VenueRenderer =
