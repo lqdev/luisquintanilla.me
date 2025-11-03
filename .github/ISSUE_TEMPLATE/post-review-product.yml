@@ -22,11 +22,11 @@ body:
   - type: input
     id: manufacturer
     attributes:
-      label: Manufacturer/Brand
+      label: Manufacturer/Brand (Optional)
       description: The company that makes this product
       placeholder: "e.g., Apple"
     validations:
-      required: true
+      required: false
 
   - type: dropdown
     id: product_category
@@ -65,17 +65,17 @@ body:
   - type: textarea
     id: summary
     attributes:
-      label: Review Summary
+      label: Review Summary (Optional)
       description: Brief summary of your experience with the product
       placeholder: "Quick overview of the product and your main impressions..."
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: content
     attributes:
-      label: Detailed Review
-      description: Full product review
+      label: Detailed Review (Optional)
+      description: Full product review. Can be added later if you just want to capture the rating quickly.
       placeholder: |
         ## First Impressions
         Initial thoughts and setup experience...
@@ -92,7 +92,7 @@ body:
         ## Who Should Buy This?
         Recommendations for potential buyers...
     validations:
-      required: true
+      required: false
 
   - type: input
     id: model_version

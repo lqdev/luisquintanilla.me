@@ -22,20 +22,20 @@ body:
   - type: input
     id: director
     attributes:
-      label: Director
+      label: Director (Optional)
       description: The movie's director(s)
       placeholder: "e.g., Denis Villeneuve"
     validations:
-      required: true
+      required: false
 
   - type: input
     id: year
     attributes:
-      label: Release Year
+      label: Release Year (Optional)
       description: Year the movie was released
       placeholder: "e.g., 2017"
     validations:
-      required: true
+      required: false
 
   - type: dropdown
     id: rating
@@ -58,17 +58,17 @@ body:
   - type: textarea
     id: summary
     attributes:
-      label: Review Summary
+      label: Review Summary (Optional)
       description: A brief summary of your review
       placeholder: "A concise summary of your thoughts on this movie..."
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: content
     attributes:
-      label: Detailed Review Content
-      description: Your full review content (supports Markdown)
+      label: Detailed Review Content (Optional)
+      description: Your full review content (supports Markdown). Can be added later if you just want to capture the rating quickly.
       placeholder: |
         Write your detailed movie review here...
         
@@ -84,7 +84,7 @@ body:
         ## Final Verdict
         Your concluding thoughts...
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: pros

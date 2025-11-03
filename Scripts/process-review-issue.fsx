@@ -60,14 +60,8 @@ if rating < 1.0 || rating > 5.0 then
     printfn "❌ Error: Rating must be between 1.0 and 5.0, got: %f" rating
     exit 1
 
-// Validate content
-if String.IsNullOrWhiteSpace(content) then
-    printfn "❌ Error: Review content is required"
-    exit 1
-
-if content.Replace(" ", "").Replace("\n", "").Replace("\t", "").Length < 10 then
-    printfn "❌ Error: Review content must have at least 10 non-whitespace characters"
-    exit 1
+// Content is now optional - can be added later
+// If content is provided, it will be used; if not, we'll generate a minimal post
 
 // Slug generation and sanitization
 let sanitizeSlug (slug: string) =
@@ -188,13 +182,17 @@ let generateReviewBlock () =
     String.concat "\n" lines
 
 // Generate the complete file content
+let contentSection = 
+    if String.IsNullOrWhiteSpace(content) then 
+        "" // No content provided - just the review block is fine
+    else 
+        sprintf "\n\n%s" content
+
 let fileContent = sprintf """%s
 
 # %s Review
 
-%s
-
-%s""" frontmatter itemName (generateReviewBlock()) content
+%s%s""" frontmatter itemName (generateReviewBlock()) contentSection
 
 // Determine output directory and filename
 let outputDir = Path.Join(Directory.GetCurrentDirectory(), "_src", "reviews")

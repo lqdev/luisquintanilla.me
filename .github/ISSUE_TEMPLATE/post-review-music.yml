@@ -36,20 +36,20 @@ body:
   - type: input
     id: artist
     attributes:
-      label: Artist/Band
+      label: Artist/Band (Optional)
       description: The performing artist or band
       placeholder: "e.g., Radiohead"
     validations:
-      required: true
+      required: false
 
   - type: input
     id: release_year
     attributes:
-      label: Release Year
+      label: Release Year (Optional)
       description: Year of release
       placeholder: "e.g., 1997"
     validations:
-      required: true
+      required: false
 
   - type: dropdown
     id: rating
@@ -72,17 +72,17 @@ body:
   - type: textarea
     id: summary
     attributes:
-      label: Review Summary
+      label: Review Summary (Optional)
       description: Brief summary of your review
       placeholder: "Your concise thoughts on this music..."
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: content
     attributes:
-      label: Detailed Review
-      description: Full review content
+      label: Detailed Review (Optional)
+      description: Full review content. Can be added later if you just want to capture the rating quickly.
       placeholder: |
         ## Musical Style & Genre
         Description of the musical approach...
@@ -96,16 +96,16 @@ body:
         ## Overall Impact
         Your final assessment...
     validations:
-      required: true
+      required: false
 
   - type: input
     id: genre
     attributes:
-      label: Genre
+      label: Genre (Optional)
       description: Musical genre(s)
       placeholder: "e.g., Alternative Rock, Electronic"
     validations:
-      required: true
+      required: false
 
   - type: input
     id: label

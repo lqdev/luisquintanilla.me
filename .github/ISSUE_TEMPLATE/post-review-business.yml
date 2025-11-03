@@ -38,11 +38,11 @@ body:
   - type: input
     id: location
     attributes:
-      label: Location
+      label: Location (Optional)
       description: City, state/region where the business is located
       placeholder: "e.g., San Francisco, CA"
     validations:
-      required: true
+      required: false
 
   - type: dropdown
     id: rating
@@ -65,17 +65,17 @@ body:
   - type: textarea
     id: summary
     attributes:
-      label: Review Summary
+      label: Review Summary (Optional)
       description: Brief summary of your experience
       placeholder: "Quick summary of your visit and overall impression..."
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: content
     attributes:
-      label: Detailed Review
-      description: Full review content
+      label: Detailed Review (Optional)
+      description: Full review content. Can be added later if you just want to capture the rating quickly.
       placeholder: |
         ## The Experience
         Describe your visit...
@@ -92,7 +92,7 @@ body:
         ## Would I Return?
         Final thoughts and recommendation...
     validations:
-      required: true
+      required: false
 
   - type: input
     id: website_url
