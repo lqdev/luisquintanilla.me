@@ -129,10 +129,24 @@ let additionalFields =
 let now = DateTimeOffset.Now.ToOffset(TimeSpan.FromHours(-5.0))
 let timestamp = now.ToString("M/d/yyyy h:mm tt zzz")
 
-// Generate frontmatter - use Book schema for book reviews, Post schema for others
+// Generate frontmatter - use simplified Post schema for all review types (metadata goes in review block)
 let frontmatter = 
+    let tagsString = 
+        if tags.Length = 0 then "[]"
+        else sprintf "[%s]" (tags |> Array.map (sprintf "\"%s\"") |> String.concat ",")
+    let titleEsc = itemName.Replace("\"", "\\\"")
+    sprintf "---\ntitle: \"%s Review\"\npost_type: \"review\"\npublished_date: \"%s\"\ntags: %s\n---" titleEsc timestamp tagsString
+
+// Generate review block YAML with top-level book fields
+let generateReviewBlock () =
+    let lines = ResizeArray<string>()
+    
+    lines.Add(":::review")
+    lines.Add(sprintf "item: \"%s\"" (itemName.Replace("\"", "\\\"")))
+    lines.Add(sprintf "itemType: \"%s\"" reviewType)
+    
+    // Add book-specific fields at top level (not in additionalFields)
     if reviewType.ToLower() = "book" then
-        // Extract author and isbn from additional fields if provided
         let author = 
             match additionalFields |> List.tryFind (fun (k, _) -> k.ToLower() = "author") with
             | Some (_, v) -> v
@@ -141,29 +155,19 @@ let frontmatter =
             match additionalFields |> List.tryFind (fun (k, _) -> k.ToLower() = "isbn") with
             | Some (_, v) -> v
             | None -> ""
-        let cover = match imageUrl with | Some url -> url | None -> ""
         
-        // Book schema (BookDetails)
-        let titleEsc = itemName.Replace("\"", "\\\"")
-        let authorEsc = author.Replace("\"", "\\\"")
-        let isbnEsc = isbn.Replace("\"", "\\\"")
-        let coverEsc = cover.Replace("\"", "\\\"")
-        sprintf "---\ntitle: \"%s\"\nauthor: \"%s\"\nisbn: \"%s\"\ncover: \"%s\"\nrating: %.1f\nsource: \"review\"\ndate_published: \"%s\"\n---" titleEsc authorEsc isbnEsc coverEsc rating timestamp
-    else
-        // Post schema for other review types
-        let tagsString = 
-            if tags.Length = 0 then "[]"
-            else sprintf "[%s]" (tags |> Array.map (sprintf "\"%s\"") |> String.concat ",")
-        let titleEsc = itemName.Replace("\"", "\\\"")
-        sprintf "---\ntitle: \"%s Review\"\npost_type: \"review\"\npublished_date: \"%s\"\ntags: %s\n---" titleEsc timestamp tagsString
-
-// Generate review block YAML
-let generateReviewBlock () =
-    let lines = ResizeArray<string>()
+        lines.Add(sprintf "author: \"%s\"" (author.Replace("\"", "\\\"")))
+        if not (String.IsNullOrWhiteSpace(isbn)) then
+            lines.Add(sprintf "isbn: \"%s\"" (isbn.Replace("\"", "\\\"")))
+        
+        // Add cover field if imageUrl provided for books
+        match imageUrl with
+        | Some url -> lines.Add(sprintf "cover: \"%s\"" url)
+        | None -> ()
+        
+        // Add datePublished for books
+        lines.Add(sprintf "datePublished: \"%s\"" timestamp)
     
-    lines.Add(":::review")
-    lines.Add(sprintf "item: \"%s\"" (itemName.Replace("\"", "\\\"")))
-    lines.Add(sprintf "itemType: \"%s\"" reviewType)
     lines.Add(sprintf "rating: %.1f" rating)
     lines.Add("scale: 5.0")
     
@@ -184,11 +188,14 @@ let generateReviewBlock () =
     | Some url -> lines.Add(sprintf "itemUrl: \"%s\"" url)
     | None -> ()
     
-    match imageUrl with
-    | Some url -> lines.Add(sprintf "imageUrl: \"%s\"" url)
-    | None -> ()
+    // Add imageUrl for non-book reviews
+    if reviewType.ToLower() <> "book" then
+        match imageUrl with
+        | Some url -> lines.Add(sprintf "imageUrl: \"%s\"" url)
+        | None -> ()
     
-    if additionalFields.Length > 0 then
+    // Keep non-book additionalFields for other review types
+    if reviewType.ToLower() <> "book" && additionalFields.Length > 0 then
         lines.Add("additionalFields:")
         for (key, value) in additionalFields do
             lines.Add(sprintf "  %s: \"%s\"" key (value.Replace("\"", "\\\"")))
