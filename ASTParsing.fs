@@ -84,38 +84,43 @@ let private extractTextContentFromAst (doc: MarkdownDocument) : string =
     
     writer.ToString()
 
-/// Extract custom blocks from AST using CustomContainer blocks
+/// Extract custom blocks from AST using our custom block types
 let private extractCustomBlocks (doc: MarkdownDocument) : Map<string, obj list> =
-    let customContainers = 
-        doc.Descendants<Markdig.Extensions.CustomContainers.CustomContainer>()
-        |> Seq.toList
+    let blocks = System.Collections.Generic.Dictionary<string, obj list>()
     
-    let groupedBlocks = 
-        customContainers
-        |> List.choose (fun container ->
-            let blockType = 
-                match container.Info with
-                | null -> ""
-                | info -> info.ToString()
-            
-            if not (String.IsNullOrEmpty(blockType)) then
-                // Extract the content of the custom container
-                let contentLines = 
-                    container.Descendants<Markdig.Syntax.LeafBlock>()
-                    |> Seq.map (fun leaf -> leaf.ToString())
-                    |> Seq.toList
-                    |> List.filter (fun line -> not (String.IsNullOrWhiteSpace(line)))
-                
-                let yamlContent = String.concat "\n" contentLines
-                Some (blockType, yamlContent)
-            else
-                None)
-        |> List.groupBy fst
-        |> List.map (fun (blockType, items) -> 
-            blockType, items |> List.map snd |> List.map box)
-        |> Map.ofList
+    // Collect all custom blocks by type
+    for descendant in doc.Descendants() do
+        let block = descendant :> Block
+        match block with
+        | :? MediaBlock as mediaBlock ->
+            let blockType = "media"
+            if not (blocks.ContainsKey(blockType)) then
+                blocks.[blockType] <- []
+            blocks.[blockType] <- (mediaBlock.MediaItems |> List.toSeq |> Seq.cast<obj> |> Seq.toList) @ blocks.[blockType]
+        | :? ReviewBlock as reviewBlock ->
+            let blockType = "review"
+            if not (blocks.ContainsKey(blockType)) then
+                blocks.[blockType] <- []
+            match reviewBlock.ReviewData with
+            | Some data -> blocks.[blockType] <- (data :> obj) :: blocks.[blockType]
+            | None -> ()
+        | :? VenueBlock as venueBlock ->
+            let blockType = "venue"
+            if not (blocks.ContainsKey(blockType)) then
+                blocks.[blockType] <- []
+            match venueBlock.VenueData with
+            | Some data -> blocks.[blockType] <- (data :> obj) :: blocks.[blockType]
+            | None -> ()
+        | :? RsvpBlock as rsvpBlock ->
+            let blockType = "rsvp"
+            if not (blocks.ContainsKey(blockType)) then
+                blocks.[blockType] <- []
+            match rsvpBlock.RsvpData with
+            | Some data -> blocks.[blockType] <- (data :> obj) :: blocks.[blockType]
+            | None -> ()
+        | _ -> ()
     
-    groupedBlocks
+    blocks |> Seq.map (fun kvp -> kvp.Key, kvp.Value) |> Map.ofSeq
 
 /// Create markdown pipeline with extensions
 /// Uses same configuration as existing MarkdownService for consistency
