@@ -459,11 +459,9 @@ type ReviewBlockHtmlRenderer() =
             // Start review block container
             renderer.Write("<div class=\"custom-review-block h-review\">") |> ignore
             
-            // Item title with type badge
+            // Item title
             renderer.Write($"<div class=\"review-header\">") |> ignore
             renderer.Write($"<h3 class=\"review-title p-name\">{HtmlHelpers.escapeHtml reviewData.Item}</h3>") |> ignore
-            if not (String.IsNullOrWhiteSpace(itemType)) then
-                renderer.Write($"<span class=\"item-type-badge badge bg-secondary\">{HtmlHelpers.escapeHtml (itemType.ToUpperInvariant())}</span>") |> ignore
             renderer.Write("</div>") |> ignore
             
             // Image if available
