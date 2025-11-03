@@ -1,0 +1,169 @@
+name: 🎬 Post a Movie Review
+description: Create a new movie review post for the website
+title: "[Movie Review] "
+labels: ["review", "movie"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Create a New Movie Review
+        
+        Use this form to create a movie review that will automatically generate a pull request with properly formatted content.
+
+  - type: input
+    id: movie_title
+    attributes:
+      label: Movie Title
+      description: The title of the movie you're reviewing
+      placeholder: "e.g., Blade Runner 2049"
+    validations:
+      required: true
+
+  - type: input
+    id: director
+    attributes:
+      label: Director (Optional)
+      description: The movie's director(s)
+      placeholder: "e.g., Denis Villeneuve"
+    validations:
+      required: false
+
+  - type: input
+    id: year
+    attributes:
+      label: Release Year (Optional)
+      description: Year the movie was released
+      placeholder: "e.g., 2017"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: rating
+    attributes:
+      label: Rating
+      description: Your overall rating for this movie
+      options:
+        - "5.0"
+        - "4.5"
+        - "4.0"
+        - "3.5"
+        - "3.0"
+        - "2.5"
+        - "2.0"
+        - "1.5"
+        - "1.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Review Summary (Optional)
+      description: A brief summary of your review
+      placeholder: "A concise summary of your thoughts on this movie..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: content
+    attributes:
+      label: Detailed Review Content (Optional)
+      description: Your full review content (supports Markdown). Can be added later if you just want to capture the rating quickly.
+      placeholder: |
+        Write your detailed movie review here...
+        
+        ## Plot & Story
+        Your thoughts on the plot...
+        
+        ## Performances
+        Thoughts on acting...
+        
+        ## Direction & Cinematography
+        Visual and directorial elements...
+        
+        ## Final Verdict
+        Your concluding thoughts...
+    validations:
+      required: false
+
+  - type: textarea
+    id: pros
+    attributes:
+      label: What Worked Well
+      description: Positive aspects, one per line
+      placeholder: |
+        Stunning visuals
+        Strong performances
+        Thought-provoking themes
+    validations:
+      required: false
+
+  - type: textarea
+    id: cons
+    attributes:
+      label: Areas for Improvement
+      description: Weaker aspects, one per line
+      placeholder: |
+        Slow pacing in middle
+        Overly long runtime
+        Confusing subplot
+    validations:
+      required: false
+
+  - type: input
+    id: movie_url
+    attributes:
+      label: Movie URL (Optional)
+      description: Link to the movie's IMDB or other page
+      placeholder: "https://www.imdb.com/title/tt1856101/"
+    validations:
+      required: false
+
+  - type: input
+    id: poster_url
+    attributes:
+      label: Movie Poster URL (Optional)
+      description: URL to movie poster image
+      placeholder: "https://image.tmdb.org/t/p/w500/poster.jpg"
+    validations:
+      required: false
+
+  - type: input
+    id: genre
+    attributes:
+      label: Genre (Optional)
+      description: Movie genre(s)
+      placeholder: "e.g., Sci-Fi, Drama, Thriller"
+    validations:
+      required: false
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags (Optional)
+      description: Comma-separated tags
+      placeholder: "e.g., sci-fi, cyberpunk, sequel"
+    validations:
+      required: false
+
+  - type: input
+    id: slug
+    attributes:
+      label: Custom Slug (Optional)
+      description: Custom URL slug for your review
+      placeholder: "e.g., blade-runner-2049-review"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        **What happens next?**
+        
+        1. 🤖 A GitHub Action will process this issue
+        2. 📄 Generate a properly formatted markdown file in `_src/reviews/`
+        3. 🔀 Create a pull request with your review content
+        4. ✅ The issue will be closed automatically
+        5. 🚀 After PR review and merge, your movie review will be live on the website

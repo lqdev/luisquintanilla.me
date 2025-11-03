@@ -1,0 +1,153 @@
+name: 📦 Post a Product Review
+description: Create a new product review post for the website
+title: "[Product Review] "
+labels: ["review", "product"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Create a New Product Review
+        
+        Review technology, books, tools, gadgets, or any other products you've used.
+
+  - type: input
+    id: product_name
+    attributes:
+      label: Product Name
+      description: Name of the product you're reviewing
+      placeholder: "e.g., MacBook Pro M2"
+    validations:
+      required: true
+
+  - type: input
+    id: manufacturer
+    attributes:
+      label: Manufacturer/Brand (Optional)
+      description: The company that makes this product
+      placeholder: "e.g., Apple"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: product_category
+    attributes:
+      label: Product Category
+      description: What type of product is this?
+      options:
+        - "Technology/Electronics"
+        - "Software/Apps"
+        - "Books/Media"
+        - "Tools/Equipment"
+        - "Home/Lifestyle"
+        - "Health/Fitness"
+        - "Other"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: rating
+    attributes:
+      label: Rating
+      description: Your overall rating
+      options:
+        - "5.0"
+        - "4.5"
+        - "4.0"
+        - "3.5"
+        - "3.0"
+        - "2.5"
+        - "2.0"
+        - "1.5"
+        - "1.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Review Summary (Optional)
+      description: Brief summary of your experience with the product
+      placeholder: "Quick overview of the product and your main impressions..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: content
+    attributes:
+      label: Detailed Review (Optional)
+      description: Full product review. Can be added later if you just want to capture the rating quickly.
+      placeholder: |
+        ## First Impressions
+        Initial thoughts and setup experience...
+        
+        ## Features & Performance
+        How well does it work? Key features...
+        
+        ## Build Quality & Design
+        Physical aspects and durability...
+        
+        ## Value for Money
+        Price vs. features assessment...
+        
+        ## Who Should Buy This?
+        Recommendations for potential buyers...
+    validations:
+      required: false
+
+  - type: input
+    id: model_version
+    attributes:
+      label: Model/Version (Optional)
+      description: Specific model or version reviewed
+      placeholder: "e.g., 13-inch M2, Version 2.0"
+    validations:
+      required: false
+
+  - type: input
+    id: price
+    attributes:
+      label: Price (Optional)
+      description: Current or purchase price
+      placeholder: "e.g., $1999"
+    validations:
+      required: false
+
+  - type: input
+    id: product_url
+    attributes:
+      label: Product URL (Optional)
+      description: Link to product page (official site, Amazon, etc.)
+      placeholder: "https://www.apple.com/macbook-pro/"
+    validations:
+      required: false
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags (Optional)
+      description: Comma-separated tags
+      placeholder: "e.g., laptop, development, m2-chip"
+    validations:
+      required: false
+
+  - type: input
+    id: slug
+    attributes:
+      label: Custom Slug (Optional)
+      description: Custom URL slug
+      placeholder: "e.g., macbook-pro-m2-review"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        **What happens next?**
+        
+        1. 🤖 A GitHub Action will process this issue
+        2. 📄 Generate a properly formatted markdown file in `_src/reviews/`
+        3. 🔀 Create a pull request with your review content
+        4. ✅ The issue will be closed automatically
+        5. 🚀 After PR review and merge, your product review will be live on the website
