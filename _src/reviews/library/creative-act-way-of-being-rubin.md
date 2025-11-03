@@ -1,8 +1,8 @@
 ---
-title: "The Creative Act: A Way of Being"
-author: "Rick Rubin"
-isbn: "9780593653425"
-date_published: "09/27/2024 07:40 -05:00"
+title: "The Creative Act: A Way of Being Review"
+post_type: "review"
+published_date: "09/27/2024 07:40 -05:00"
+tags: []
 ---
 
 # The Creative Act: A Way of Being Review
@@ -10,16 +10,15 @@ date_published: "09/27/2024 07:40 -05:00"
 :::review
 item: "The Creative Act: A Way of Being"
 itemType: "book"
+author: "Rick Rubin"
+isbn: "9780593653425"
+datePublished: "09/27/2024 07:40 -05:00"
 rating: 4.8
 scale: 5.0
 summary: "I really enjoyed this book."
 itemUrl: "https://www.penguinrandomhouse.com/books/717356/the-creative-act-by-rick-rubin/"
 imageUrl: "https://images2.penguinrandomhouse.com/cover/9780593653425"
-additionalFields:
-  author: "Rick Rubin"
-  isbn: "9780593653425"
 :::
-
 ## Description
 
 > From the legendary music producer, a master at helping people connect with the wellsprings of their creativity, comes a beautifully crafted book many years in the making that offers that same deep wisdom to all of us.
@@ -31,4 +30,3 @@ additionalFields:
 ## Review
 
 I really enjoyed this book. My favorite sections were the beginning and end of the book. The middle section is good too but it's more about process. 
-

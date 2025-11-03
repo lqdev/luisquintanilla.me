@@ -1,8 +1,8 @@
 ---
-title: "Ten arguments for deleting your social media accounts right now"
-author: "Jaron Lanier"
-isbn: "9781250196682"
-date_published: "09/05/2022 16:52 -05:00"
+title: "Ten arguments for deleting your social media accounts right now Review"
+post_type: "review"
+published_date: "09/05/2022 16:52 -05:00"
+tags: []
 ---
 
 # Ten arguments for deleting your social media accounts right now Review
@@ -10,16 +10,15 @@ date_published: "09/05/2022 16:52 -05:00"
 :::review
 item: "Ten arguments for deleting your social media accounts right now"
 itemType: "book"
+author: "Jaron Lanier"
+isbn: "9781250196682"
+datePublished: "09/05/2022 16:52 -05:00"
 rating: 3.2
 scale: 5.0
 summary: "Personal review of Ten arguments for deleting your social media accounts right now."
 itemUrl: "https://openlibrary.org/works/OL19744680W/Ten_arguments_for_deleting_your_social_media_accounts_right_now"
 imageUrl: "https://covers.openlibrary.org/b/id/12504011-M.jpg"
-additionalFields:
-  author: "Jaron Lanier"
-  isbn: "9781250196682"
 :::
-
 ## Description
 
 > You might have trouble imagining life without your social media accounts, but virtual reality pioneer Jaron Lanier insists that we’re better off without them. In Ten Arguments for Deleting Your Social Media Accounts Right Now, Lanier, who participates in no social media, offers powerful and personal reasons for all of us to leave these dangerous online platforms.
@@ -33,4 +32,3 @@ additionalFields:
 ## Notes
 
 Book to look into - *Beyond Freedom and Dignity, B. F. Skinner*
-

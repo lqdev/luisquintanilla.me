@@ -1,8 +1,8 @@
 ---
-title: "The Internet Con: How to Seize the Means of Computation "
-author: "Cory Doctorow"
-isbn: "9781804291245"
-date_published: "09/28/2023 20:27 -05:00"
+title: "The Internet Con: How to Seize the Means of Computation  Review"
+post_type: "review"
+published_date: "09/28/2023 20:27 -05:00"
+tags: []
 ---
 
 # The Internet Con: How to Seize the Means of Computation  Review
@@ -10,16 +10,15 @@ date_published: "09/28/2023 20:27 -05:00"
 :::review
 item: "The Internet Con: How to Seize the Means of Computation "
 itemType: "book"
+author: "Cory Doctorow"
+isbn: "9781804291245"
+datePublished: "09/28/2023 20:27 -05:00"
 rating: 4.0
 scale: 5.0
 summary: "Good book on how user control has been eroding over time resulting in walled gardens and large corpo..."
 itemUrl: "https://openlibrary.org/works/OL28800590W/The_Internet_Con?edition=key%3A/books/OL39552949M"
 imageUrl: "https://covers.openlibrary.org/b/id/14418873-L.jpg"
-additionalFields:
-  author: "Cory Doctorow"
-  isbn: "9781804291245"
 :::
-
 ## Description
 
 > The platforms locked us into their systems and made us easy pickings, ripe for extraction. Twitter, Facebook and other Big Tech platforms hard to leave by design. They hold hostage the people we love, the communities that matter to us, the audiences and customers we rely on. The impossibility of staying connected to these people after you delete your account has nothing to do with technological limitations: it’s a business strategy in service to commodifying your personal life and relationships.

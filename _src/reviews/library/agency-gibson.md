@@ -1,8 +1,8 @@
 ---
-title: "Agency"
-author: "William Gibson"
-isbn: "9781101986943"
-date_published: "02/19/2024 15:19 -05:00"
+title: "Agency Review"
+post_type: "review"
+published_date: "02/19/2024 15:19 -05:00"
+tags: []
 ---
 
 # Agency Review
@@ -10,16 +10,15 @@ date_published: "02/19/2024 15:19 -05:00"
 :::review
 item: "Agency"
 itemType: "book"
+author: "William Gibson"
+isbn: "9781101986943"
+datePublished: "02/19/2024 15:19 -05:00"
 rating: 2.5
 scale: 5.0
 summary: "I really wanted to like this book but didn't."
 itemUrl: "https://www.penguinrandomhouse.com/books/530536/agency-by-william-gibson/"
 imageUrl: "https://images4.penguinrandomhouse.com/cover/9781101986943"
-additionalFields:
-  author: "William Gibson"
-  isbn: "9781101986943"
 :::
-
 ## Description
 
 > William Gibson has trained his eye on the future for decades, ever since coining the term “cyberspace” and then popularizing it in his classic speculative novel Neuromancer in the early 1980s. Cory Doctorow raved that The Peripheral is “spectacular, a piece of trenchant, far-future speculation that features all the eyeball kicks of Neuromancer.” Now Gibson is back with Agency—a science fiction thriller heavily influenced by our most current events.  

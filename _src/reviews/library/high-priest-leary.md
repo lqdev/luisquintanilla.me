@@ -1,8 +1,8 @@
 ---
-title: "High Priest"
-author: "Timothy Leary"
-isbn: "9780914171805"
-date_published: "2025-02-16 20:50 -05:00"
+title: "High Priest Review"
+post_type: "review"
+published_date: "2025-02-16 20:50 -05:00"
+tags: []
 ---
 
 # High Priest Review
@@ -10,16 +10,15 @@ date_published: "2025-02-16 20:50 -05:00"
 :::review
 item: "High Priest"
 itemType: "book"
+author: "Timothy Leary"
+isbn: "9780914171805"
+datePublished: "2025-02-16 20:50 -05:00"
 rating: 4.0
 scale: 5.0
 summary: "I picked this book up (in a town near Woodstock, NY of all places) not knowing what I was in for."
 itemUrl: "https://www.barnesandnoble.com/w/high-priest-timothy-leary/1102225589"
 imageUrl: "https://prodimage.images-bn.com/pimages/9780914171805_p0_v3_s600x595.jpg"
-additionalFields:
-  author: "Timothy Leary"
-  isbn: "9780914171805"
 :::
-
 ## Description
 
 > Back in print after 20 years, this text from the earliest days of psychedelia chronicles the experiences on 16 acid trips taken before LSD was illegal. The trip guides or "high priests" included Aldous Huxley, Ram Dass, Ralph Meltzner, Huston Smith and a junkie from New York City named Willy. It tells of the goings-on and freaking out at the Millbrook mansion in New York State that became the Mecca of psychedelia during the 1960s, and of the many luminaries who made their pilgrimage there to trip with Leary and his group. Chapters include an I Ching reading and a chronicle of what happened during those "spacewalks" of the mind.

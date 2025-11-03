@@ -459,8 +459,8 @@ module ReviewDataExtractor =
                 match customBlocks.TryGetValue("review") with
                 | true, reviewList when reviewList.Length > 0 ->
                     match reviewList.[0] with
-                    | :? ReviewData as reviewData -> 
-                        (reviewData.image_url, reviewData.rating, reviewData.GetScale(), reviewData.item_type)
+                    | :? CustomBlocks.ReviewData as reviewData -> 
+                        (reviewData.ImageUrl, reviewData.Rating, reviewData.Scale, Some reviewData.ItemType)
                     | _ -> (None, 0.0, 5.0, None)
                 | _ -> (None, 0.0, 5.0, None)
             with
@@ -503,25 +503,49 @@ module BookProcessor =
                 | Some metadata -> 
                     let fileName = Path.GetFileNameWithoutExtension(filePath)
                     
-                    // Extract all review data from raw markdown during parsing
-                    let (reviewImageUrl, reviewRating, reviewScale, reviewItemType) = ReviewDataExtractor.extractReviewData parsedDoc.RawMarkdown
+                    // Try to extract review data from parsed custom blocks (new approach)
+                    let reviewDataOpt = 
+                        match parsedDoc.CustomBlocks.TryGetValue("review") with
+                        | true, reviewList when reviewList.Length > 0 ->
+                            match reviewList.[0] with
+                            | :? CustomBlocks.ReviewData as reviewData -> Some reviewData
+                            | _ -> None
+                        | _ -> None
+                    
+                    // Populate metadata from review block if available, otherwise use frontmatter
+                    let finalMetadata = 
+                        match reviewDataOpt with
+                        | Some reviewData ->
+                            // Use review block as source of truth
+                            // Note: Keep existing title from frontmatter to maintain consistency with views
+                            // that expect "Book Title Review" format rather than just "Book Title"
+                            { metadata with
+                                Author = reviewData.GetAuthor()
+                                Isbn = reviewData.GetIsbn()
+                                Cover = reviewData.GetCover()
+                                Rating = reviewData.Rating
+                                DatePublished = reviewData.GetDatePublished()
+                            }
+                        | None ->
+                            // Fallback to frontmatter (backward compatibility)
+                            metadata
                     
                     // Store review data in cache for later use in rendering
-                    reviewDataCache.[fileName] <- (reviewImageUrl, reviewRating, reviewScale, reviewItemType)
-                    
-                    // Extract rating from custom review blocks if available in raw markdown
-                    let rating = 
-                        match extractRatingFromContent parsedDoc.RawMarkdown with
-                        | Some customRating -> customRating
-                        | None -> 
-                            if reviewRating > 0.0 then reviewRating else metadata.Rating
-                    
-                    // Update metadata with extracted rating
-                    let updatedMetadata = { metadata with Rating = rating }
+                    match reviewDataOpt with
+                    | Some reviewData ->
+                        let reviewImageUrl = reviewData.ImageUrl
+                        let reviewRating = reviewData.Rating
+                        let reviewScale = reviewData.Scale
+                        let reviewItemType = Some reviewData.ItemType
+                        reviewDataCache.[fileName] <- (reviewImageUrl, reviewRating, reviewScale, reviewItemType)
+                    | None ->
+                        // Use old extraction method for backward compatibility
+                        let (reviewImageUrl, reviewRating, reviewScale, reviewItemType) = ReviewDataExtractor.extractReviewData parsedDoc.RawMarkdown
+                        reviewDataCache.[fileName] <- (reviewImageUrl, reviewRating, reviewScale, reviewItemType)
                     
                     Some {
                         FileName = fileName
-                        Metadata = updatedMetadata
+                        Metadata = finalMetadata
                         Content = parsedDoc.TextContent
                     }
                 | None -> None

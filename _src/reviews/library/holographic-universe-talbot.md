@@ -1,8 +1,8 @@
 ---
-title: "The Holographic Universe: The Revolutionary Theory of Reality"
-author: "Michael Talbot"
-isbn: "9780062014108"
-date_published: "2025-01-12 19:45 -05:00"
+title: "The Holographic Universe: The Revolutionary Theory of Reality Review"
+post_type: "review"
+published_date: "2025-01-12 19:45 -05:00"
+tags: []
 ---
 
 # The Holographic Universe: The Revolutionary Theory of Reality Review
@@ -10,16 +10,15 @@ date_published: "2025-01-12 19:45 -05:00"
 :::review
 item: "The Holographic Universe: The Revolutionary Theory of Reality"
 itemType: "book"
+author: "Michael Talbot"
+isbn: "9780062014108"
+datePublished: "2025-01-12 19:45 -05:00"
 rating: 4.0
 scale: 5.0
 summary: "The book starts by using science and the understanding of physics at the time to establish the thesi..."
 itemUrl: "https://www.harpercollins.com/products/the-holographic-universe-michael-talbot?variant=32130731737122"
 imageUrl: "https://www.harpercollins.com/cdn/shop/files/9780062014108_7a36a0e4-28b5-4682-8f34-8e65c11c356e.jpg?v=1727712600&width=350"
-additionalFields:
-  author: "Michael Talbot"
-  isbn: "9780062014108"
 :::
-
 ## Description
 
 > Nearly everyone is familiar with holograms—three-dimensional images projected into space with the aid of a laser. Two of the world's most eminent thinkers believe that the universe itself may be a giant hologram, quite literally a kind of image or construct created, at least in part, by the human mind. University of London physicist David Bohm, a protégé of Einstein and one of the world's most respected quantum physicists, and Stanford neurophysiologist Karl Pribram, an architect of our modern understanding of the brain, have developed a remarkable new way of looking at the universe. Their theory explains not only many of the unsolved puzzles of physics but also such mysterious occurrences as telepathy, out-of-body and near-death experiences, "lucid" dreams, and even religious and mystical experiences such as feelings of cosmic unity and miraculous healings.
