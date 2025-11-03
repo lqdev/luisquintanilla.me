@@ -194,8 +194,22 @@ let fileContent = sprintf """%s
 
 %s%s""" frontmatter itemName (generateReviewBlock()) contentSection
 
-// Determine output directory and filename
-let outputDir = Path.Join(Directory.GetCurrentDirectory(), "_src", "reviews")
+// Determine output directory and filename based on review type
+let subdirectory = 
+    match reviewType.ToLower() with
+    | "book" -> "library"
+    | "movie" -> "movies"
+    | "music" -> "music"
+    | "business" -> "business"
+    | "product" -> "products"
+    | _ -> "" // fallback to root reviews directory
+
+let outputDir = 
+    if String.IsNullOrWhiteSpace(subdirectory) then
+        Path.Join(Directory.GetCurrentDirectory(), "_src", "reviews")
+    else
+        Path.Join(Directory.GetCurrentDirectory(), "_src", "reviews", subdirectory)
+
 let filename = sprintf "%s.md" slug
 let fullPath = Path.Join(outputDir, filename)
 
@@ -215,7 +229,12 @@ try
     
     // Success output
     printfn "✅ %s review created successfully!" (reviewType.Substring(0, 1).ToUpper() + reviewType.Substring(1))
-    printfn "📁 File: %s" (Path.Combine("_src", "reviews", filename))
+    let displayPath = 
+        if String.IsNullOrWhiteSpace(subdirectory) then
+            Path.Combine("_src", "reviews", filename)
+        else
+            Path.Combine("_src", "reviews", subdirectory, filename)
+    printfn "📁 File: %s" displayPath
     printfn "📖 Item: %s" itemName
     printfn "⭐ Rating: %.1f/5.0" rating
     printfn "🏷️ Tags: %s" (if tags.Length > 0 then String.concat ", " tags else "none")
