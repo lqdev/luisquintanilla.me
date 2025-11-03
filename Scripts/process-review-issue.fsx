@@ -168,7 +168,7 @@ let generateReviewBlock () =
         // Add datePublished for books
         lines.Add(sprintf "datePublished: \"%s\"" timestamp)
     
-    lines.Add(sprintf "rating: %.1f" rating)
+    lines.Add(sprintf "rating: %.2f" rating)
     lines.Add("scale: 5.0")
     
     if not (String.IsNullOrWhiteSpace(summary)) then
@@ -255,7 +255,7 @@ try
             Path.Combine("_src", "reviews", subdirectory, filename)
     printfn "📁 File: %s" displayPath
     printfn "📖 Item: %s" itemName
-    printfn "⭐ Rating: %.1f/5.0" rating
+    printfn "⭐ Rating: %.2f/5.0" rating
     printfn "🏷️ Tags: %s" (if tags.Length > 0 then String.concat ", " tags else "none")
     printfn "🔗 URL: %s" (match itemUrl with Some url -> url | None -> "none")
     
