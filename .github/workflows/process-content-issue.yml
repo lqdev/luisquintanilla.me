@@ -723,8 +723,39 @@ jobs:
             console.log('Detected review type:', reviewType);
             core.setOutput('review_type', reviewType);
           
+      - name: Validate review type
+        if: steps.determine-type.outputs.review_type == 'unknown'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const validTypes = ['book', 'movie', 'music', 'business', 'product'];
+            const errorMessage = `❌ **Missing Required Label**
+            
+            Your review issue needs a specific review type label in addition to the "review" label.
+            
+            **Please add ONE of these labels to your issue:**
+            - \`book\` - For book reviews
+            - \`movie\` - For movie reviews  
+            - \`music\` - For music (album/song) reviews
+            - \`business\` - For business/restaurant reviews
+            - \`product\` - For product reviews
+            
+            **Current labels:** ${context.payload.issue.labels.map(l => l.name).join(', ')}
+            
+            Once you add the appropriate label, the workflow will automatically process your review.`;
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: errorMessage
+            });
+            
+            core.setFailed('Review type label is required. Please add one of: book, movie, music, business, or product');
+          
       - name: Parse issue and extract form data
         id: extract-data
+        if: steps.determine-type.outputs.review_type != 'unknown'
         uses: actions/github-script@v7
         with:
           script: |
@@ -829,10 +860,12 @@ jobs:
             }
           
       - name: Build F# project
+        if: steps.determine-type.outputs.review_type != 'unknown'
         run: dotnet build --no-restore
         
       - name: Process issue with F# script
         id: process-issue
+        if: steps.determine-type.outputs.review_type != 'unknown'
         env:
           ISSUE_REVIEW_TYPE: ${{ steps.extract-data.outputs.review_type }}
           ISSUE_ITEM_NAME: ${{ steps.extract-data.outputs.item_name }}

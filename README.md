@@ -11,6 +11,13 @@ A modern F# static site generator implementing IndieWeb principles with unified 
 - 🔖 [**Post a Bookmark**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-bookmark.yml) - Share interesting links
 - 💬 [**Post a Response**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-response.yml) - Replies, likes, and reposts
 - 📸 [**Post Media**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-media.yml) - Photos and media content
+- 📚 [**Post a Book Review**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-book.yml) - Share book reviews
+- 🎬 [**Post a Movie Review**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-movie.yml) - Share movie reviews
+- 🎵 [**Post a Music Review**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-music.yml) - Share music reviews
+- 🏢 [**Post a Business Review**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-business.yml) - Share business reviews
+- 🛍️ [**Post a Product Review**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-product.yml) - Share product reviews
+
+> **Note for Reviews**: Use the appropriate review template link above - each template automatically applies the correct labels. The workflow validates that both labels are present before processing.
 
 📖 [**Publishing Guide**](docs/github-issue-posting-guide.md) - Complete documentation on GitHub Issue Template posting
 
