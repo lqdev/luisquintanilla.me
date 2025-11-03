@@ -503,25 +503,52 @@ module BookProcessor =
                 | Some metadata -> 
                     let fileName = Path.GetFileNameWithoutExtension(filePath)
                     
-                    // Extract all review data from raw markdown during parsing
-                    let (reviewImageUrl, reviewRating, reviewScale, reviewItemType) = ReviewDataExtractor.extractReviewData parsedDoc.RawMarkdown
+                    // Try to extract review data from parsed custom blocks (new approach)
+                    let reviewDataOpt = 
+                        match parsedDoc.CustomBlocks.TryGetValue("review") with
+                        | true, reviewList when reviewList.Length > 0 ->
+                            match reviewList.[0] with
+                            | :? ReviewData as reviewData -> Some reviewData
+                            | _ -> None
+                        | _ -> None
+                    
+                    // Populate metadata from review block if available, otherwise use frontmatter
+                    let finalMetadata = 
+                        match reviewDataOpt with
+                        | Some reviewData ->
+                            // Use review block as source of truth
+                            { metadata with
+                                Title = reviewData.item  // Use item name as title
+                                Author = reviewData.GetAuthor()
+                                Isbn = reviewData.GetIsbn()
+                                Cover = reviewData.GetCover()
+                                Rating = reviewData.rating
+                                DatePublished = 
+                                    // Use date_published from review block if available, otherwise frontmatter
+                                    match reviewData.date_published with
+                                    | Some date -> date
+                                    | None -> metadata.DatePublished
+                            }
+                        | None ->
+                            // Fallback to frontmatter (backward compatibility)
+                            metadata
                     
                     // Store review data in cache for later use in rendering
-                    reviewDataCache.[fileName] <- (reviewImageUrl, reviewRating, reviewScale, reviewItemType)
-                    
-                    // Extract rating from custom review blocks if available in raw markdown
-                    let rating = 
-                        match extractRatingFromContent parsedDoc.RawMarkdown with
-                        | Some customRating -> customRating
-                        | None -> 
-                            if reviewRating > 0.0 then reviewRating else metadata.Rating
-                    
-                    // Update metadata with extracted rating
-                    let updatedMetadata = { metadata with Rating = rating }
+                    match reviewDataOpt with
+                    | Some reviewData ->
+                        let reviewImageUrl = reviewData.image_url
+                        let reviewRating = reviewData.rating
+                        let reviewScale = reviewData.GetScale()
+                        let reviewItemType = reviewData.item_type
+                        reviewDataCache.[fileName] <- (reviewImageUrl, reviewRating, reviewScale, reviewItemType)
+                    | None ->
+                        // Use old extraction method for backward compatibility
+                        let (reviewImageUrl, reviewRating, reviewScale, reviewItemType) = ReviewDataExtractor.extractReviewData parsedDoc.RawMarkdown
+                        reviewDataCache.[fileName] <- (reviewImageUrl, reviewRating, reviewScale, reviewItemType)
                     
                     Some {
                         FileName = fileName
-                        Metadata = updatedMetadata
+                        Metadata = finalMetadata
                         Content = parsedDoc.TextContent
                     }
                 | None -> None

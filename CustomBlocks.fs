@@ -52,7 +52,17 @@ type ReviewData = {
     [<YamlDotNet.Serialization.YamlMember(Alias="imageUrl")>]
     image_url: string option  // Thumbnail/cover image URL for display
     [<YamlDotNet.Serialization.YamlMember(Alias="additionalFields")>]
-    additional_fields: System.Collections.Generic.Dictionary<string, obj> option  // Type-specific metadata
+    additional_fields: System.Collections.Generic.Dictionary<string, obj> option  // Type-specific metadata (deprecated - use top-level fields)
+    
+    // Book-specific fields (moved from additionalFields for cleaner parsing)
+    [<YamlDotNet.Serialization.YamlMember(Alias="author")>]
+    author: string option  // Book author
+    [<YamlDotNet.Serialization.YamlMember(Alias="isbn")>]
+    isbn: string option  // Book ISBN
+    [<YamlDotNet.Serialization.YamlMember(Alias="cover")>]
+    cover: string option  // Book cover URL (alternative to imageUrl)
+    [<YamlDotNet.Serialization.YamlMember(Alias="datePublished")>]
+    date_published: string option  // Review publication date
 }
 with
     // Helper methods for clean API
@@ -62,6 +72,17 @@ with
         this.scale |> Option.defaultValue 5.0
     member this.GetSummary() = 
         this.summary |> Option.defaultValue ""
+    member this.GetAuthor() =
+        this.author |> Option.defaultValue "Unknown"
+    member this.GetIsbn() =
+        this.isbn |> Option.defaultValue ""
+    member this.GetCover() =
+        // Use cover if provided, otherwise fall back to image_url
+        match this.cover with
+        | Some c -> c
+        | None -> this.image_url |> Option.defaultValue ""
+    member this.GetDatePublished() =
+        this.date_published |> Option.defaultValue ""
 
 [<CLIMutable>]
 type VenueData = {
