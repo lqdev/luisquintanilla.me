@@ -17,7 +17,7 @@ A modern F# static site generator implementing IndieWeb principles with unified 
 - 🏢 [**Post a Business Review**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-business.yml) - Share business reviews
 - 🛍️ [**Post a Product Review**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-product.yml) - Share product reviews
 
-> **Note for Reviews**: Each review template automatically adds both the `review` label and a specific type label (e.g., `book`, `movie`). Both labels are required for the workflow to process your review correctly.
+> **Note for Reviews**: Use the appropriate review template link above - each template automatically applies the correct labels. The workflow validates that both labels are present before processing.
 
 📖 [**Publishing Guide**](docs/github-issue-posting-guide.md) - Complete documentation on GitHub Issue Template posting
 
