@@ -92,8 +92,19 @@ let migrateFile (filePath: string) : bool =
                 
                 match reviewBlockOpt with
                 | Some reviewData ->
-                    // Check if already in new format (has author field in review block)
-                    if reviewData.author.IsSome then
+                    // Check if already in new format by looking at raw content
+                    let rawContent = File.ReadAllText(filePath)
+                    let hasTopLevelAuthor = 
+                        let reviewBlockPattern = @":::review\s*\n(.*?)\n:::"
+                        let match' = Regex.Match(rawContent, reviewBlockPattern, RegexOptions.Singleline)
+                        if match'.Success then
+                            let blockContent = match'.Groups.[1].Value
+                            // Check if author is a top-level field (not under additionalFields)
+                            blockContent.Contains("author:") && not (blockContent.Contains("additionalFields:"))
+                        else
+                            false
+                    
+                    if hasTopLevelAuthor then
                         printfn "  ⏭️  %s - Already in new format" fileName
                         false  // Don't need to migrate
                     else
@@ -131,18 +142,16 @@ let migrateFile (filePath: string) : bool =
                                 ""
                         
                         // Generate new frontmatter
-                        let newFrontmatter = sprintf """---
-title: "%s Review"
-post_type: "review"
-published_date: "%s"
-tags: []
----""" (metadata.Title.Replace("\"", "\\\"")) metadata.DatePublished
+                        let newFrontmatter = 
+                            let title = metadata.Title.Replace("\"", "\\\"")
+                            let publishedDate = metadata.DatePublished
+                            sprintf "---\ntitle: \"%s Review\"\npost_type: \"review\"\npublished_date: \"%s\"\ntags: []\n---" title publishedDate
                         
                         // Generate new review block with top-level fields
                         let newReviewBlock = 
                             let lines = ResizeArray<string>()
                             lines.Add(":::review")
-                            lines.Add(sprintf "item: \"%s\"" (reviewData.item.Replace("\"", "\\\"")))
+                            lines.Add(sprintf "item: \"%s\"" (reviewData.Item.Replace("\"", "\\\"")))
                             lines.Add("itemType: \"book\"")
                             lines.Add(sprintf "author: \"%s\"" (metadata.Author.Replace("\"", "\\\"")))
                             if not (String.IsNullOrWhiteSpace(metadata.Isbn)) then
@@ -150,18 +159,18 @@ tags: []
                             if not (String.IsNullOrWhiteSpace(metadata.Cover)) then
                                 lines.Add(sprintf "cover: \"%s\"" metadata.Cover)
                             lines.Add(sprintf "datePublished: \"%s\"" metadata.DatePublished)
-                            lines.Add(sprintf "rating: %.1f" reviewData.rating)
-                            lines.Add(sprintf "scale: %.1f" (reviewData.GetScale()))
+                            lines.Add(sprintf "rating: %.1f" reviewData.Rating)
+                            lines.Add(sprintf "scale: %.1f" reviewData.Scale)
                             
-                            match reviewData.summary with
-                            | Some summary -> lines.Add(sprintf "summary: \"%s\"" (summary.Replace("\"", "\\\"").Replace("\n", " ")))
-                            | None -> ()
+                            let summary = reviewData.Summary
+                            if not (String.IsNullOrWhiteSpace(summary)) then
+                                lines.Add(sprintf "summary: \"%s\"" (summary.Replace("\"", "\\\"").Replace("\n", " ")))
                             
-                            match reviewData.item_url with
+                            match reviewData.ItemUrl with
                             | Some url -> lines.Add(sprintf "itemUrl: \"%s\"" url)
                             | None -> ()
                             
-                            match reviewData.image_url with
+                            match reviewData.ImageUrl with
                             | Some url -> lines.Add(sprintf "imageUrl: \"%s\"" url)
                             | None -> ()
                             

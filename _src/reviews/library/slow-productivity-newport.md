@@ -1,8 +1,8 @@
 ---
-title: "Slow Productivity: The Lost Art of Accomplishment Without Burnout"
-author: "Cal Newport"
-isbn: "9780593544853"
-date_published: "03/23/2024 12:42 -05:00"
+title: "Slow Productivity: The Lost Art of Accomplishment Without Burnout Review"
+post_type: "review"
+published_date: "03/23/2024 12:42 -05:00"
+tags: []
 ---
 
 # Slow Productivity: The Lost Art of Accomplishment Without Burnout Review
@@ -10,16 +10,15 @@ date_published: "03/23/2024 12:42 -05:00"
 :::review
 item: "Slow Productivity: The Lost Art of Accomplishment Without Burnout"
 itemType: "book"
+author: "Cal Newport"
+isbn: "9780593544853"
+datePublished: "03/23/2024 12:42 -05:00"
 rating: 4.2
 scale: 5.0
 summary: "This was a quick and easy read full of biographies and relevant examples of how people have applied..."
 itemUrl: "https://www.penguinrandomhouse.com/books/722732/slow-productivity-by-cal-newport/"
 imageUrl: "https://images1.penguinrandomhouse.com/cover/9780593544853"
-additionalFields:
-  author: "Cal Newport"
-  isbn: "9780593544853"
 :::
-
 ## Description
 
 > Our current definition of “productivity” is broken. It pushes us to treat busyness as a proxy for useful effort, leading to impossibly lengthy task lists and ceaseless meetings. We’re overwhelmed by all we have to do and on the edge of  burnout, left to decide between giving into soul-sapping hustle culture or rejecting ambition altogether. But are these really our only choices?  

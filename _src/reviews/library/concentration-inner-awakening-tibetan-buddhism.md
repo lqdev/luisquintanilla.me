@@ -1,8 +1,8 @@
 ---
-title: "Concentration & Inner Awakening: According to Tibetan Buddhism"
-author: "Fernand Schwarz"
-isbn: "9788192019314"
-date_published: "11/18/2024 17:54 -05:00"
+title: "Concentration & Inner Awakening: According to Tibetan Buddhism Review"
+post_type: "review"
+published_date: "11/18/2024 17:54 -05:00"
+tags: []
 ---
 
 # Concentration & Inner Awakening: According to Tibetan Buddhism Review
@@ -10,16 +10,15 @@ date_published: "11/18/2024 17:54 -05:00"
 :::review
 item: "Concentration & Inner Awakening: According to Tibetan Buddhism"
 itemType: "book"
+author: "Fernand Schwarz"
+isbn: "9788192019314"
+datePublished: "11/18/2024 17:54 -05:00"
 rating: 2.7
 scale: 5.0
 summary: "The book mainly concerns itself with the interpretation of a drawing inspired by an engraving done b..."
 itemUrl: "https://www.barnesandnoble.com/w/concentration-inner-awakening-fernand-schwarz/1144428894"
 imageUrl: "https://prodimage.images-bn.com/pimages/9788196472900_p0_v1_s600x595.jpg"
-additionalFields:
-  author: "Fernand Schwarz"
-  isbn: "9788192019314"
 :::
-
 ## Description
 
 > The practice of concentration is essential so that each of us can freely build our destiny. It allows us to get out of confusion and helps us to better control ourselves. Concentration exercises in daily life facilitate the development of our ability to overcome obstacles without repression or violence in order to obtain a more harmonious daily life. Concentration promotes the reappropriation of our memory and the rediscovery of our true identity.  
