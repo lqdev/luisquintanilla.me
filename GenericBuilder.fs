@@ -517,8 +517,9 @@ module BookProcessor =
                         match reviewDataOpt with
                         | Some reviewData ->
                             // Use review block as source of truth
+                            // Note: Keep existing title from frontmatter to maintain consistency with views
+                            // that expect "Book Title Review" format rather than just "Book Title"
                             { metadata with
-                                Title = reviewData.item  // Use item name as title
                                 Author = reviewData.GetAuthor()
                                 Isbn = reviewData.GetIsbn()
                                 Cover = reviewData.GetCover()

@@ -188,7 +188,8 @@ let generateReviewBlock () =
     | Some url -> lines.Add(sprintf "itemUrl: \"%s\"" url)
     | None -> ()
     
-    // Add imageUrl for non-book reviews
+    // Note: Books use 'cover' field (added above) for consistency with BookDetails schema
+    // Other review types use 'imageUrl' for thumbnail/cover images
     if reviewType.ToLower() <> "book" then
         match imageUrl with
         | Some url -> lines.Add(sprintf "imageUrl: \"%s\"" url)

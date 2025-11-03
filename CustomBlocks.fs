@@ -52,7 +52,7 @@ type ReviewData = {
     [<YamlDotNet.Serialization.YamlMember(Alias="imageUrl")>]
     image_url: string option  // Thumbnail/cover image URL for display
     [<YamlDotNet.Serialization.YamlMember(Alias="additionalFields")>]
-    additional_fields: System.Collections.Generic.Dictionary<string, obj> option  // Type-specific metadata (deprecated - use top-level fields)
+    additional_fields: System.Collections.Generic.Dictionary<string, obj> option  // Type-specific metadata (deprecated for books - use author, isbn, cover, datePublished fields instead; still used for other review types)
     
     // Book-specific fields (moved from additionalFields for cleaner parsing)
     [<YamlDotNet.Serialization.YamlMember(Alias="author")>]
