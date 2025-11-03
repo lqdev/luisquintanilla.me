@@ -1,0 +1,101 @@
+name: Sync Issue Labels
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/ISSUE_TEMPLATE/*.yml'
+      - '.github/workflows/sync-issue-labels.yml'
+  workflow_dispatch:
+
+jobs:
+  sync-labels:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Create or update labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Define all labels used in issue templates with descriptions and colors
+            const labels = [
+              { name: 'note', description: 'Quick note post', color: '0E8A16' },
+              { name: 'bookmark', description: 'Bookmark post', color: '1D76DB' },
+              { name: 'response', description: 'Response post (reply, like, repost)', color: 'FBCA04' },
+              { name: 'media', description: 'Media post (photo, video)', color: 'D93F0B' },
+              { name: 'review', description: 'Review post', color: '5319E7' },
+              { name: 'book', description: 'Book review', color: 'B60205' },
+              { name: 'movie', description: 'Movie review', color: 'D93F0B' },
+              { name: 'music', description: 'Music review', color: 'FBCA04' },
+              { name: 'business', description: 'Business/establishment review', color: '0E8A16' },
+              { name: 'product', description: 'Product review', color: '1D76DB' }
+            ];
+            
+            console.log('Starting label sync...');
+            
+            for (const label of labels) {
+              try {
+                // Try to get the label
+                await github.rest.issues.getLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: label.name
+                });
+                
+                // Label exists, update it
+                await github.rest.issues.updateLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: label.name,
+                  description: label.description,
+                  color: label.color
+                });
+                
+                console.log(`✅ Updated label: ${label.name}`);
+                
+              } catch (error) {
+                if (error.status === 404) {
+                  // Label doesn't exist, create it
+                  await github.rest.issues.createLabel({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    name: label.name,
+                    description: label.description,
+                    color: label.color
+                  });
+                  
+                  console.log(`✨ Created label: ${label.name}`);
+                } else {
+                  console.error(`❌ Error processing label ${label.name}:`, error.message);
+                  throw error;
+                }
+              }
+            }
+            
+            console.log('Label sync completed successfully!');
+      
+      - name: Summary
+        run: |
+          echo "## Label Sync Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "All required labels for issue templates have been synced:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Content Type Labels" >> $GITHUB_STEP_SUMMARY
+          echo "- \`note\` - Quick note posts" >> $GITHUB_STEP_SUMMARY
+          echo "- \`bookmark\` - Bookmark posts" >> $GITHUB_STEP_SUMMARY
+          echo "- \`response\` - Response posts (reply, like, repost)" >> $GITHUB_STEP_SUMMARY
+          echo "- \`media\` - Media posts (photo, video)" >> $GITHUB_STEP_SUMMARY
+          echo "- \`review\` - Review posts" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Review Type Labels" >> $GITHUB_STEP_SUMMARY
+          echo "- \`book\` - Book reviews" >> $GITHUB_STEP_SUMMARY
+          echo "- \`movie\` - Movie reviews" >> $GITHUB_STEP_SUMMARY
+          echo "- \`music\` - Music reviews" >> $GITHUB_STEP_SUMMARY
+          echo "- \`business\` - Business/establishment reviews" >> $GITHUB_STEP_SUMMARY
+          echo "- \`product\` - Product reviews" >> $GITHUB_STEP_SUMMARY
