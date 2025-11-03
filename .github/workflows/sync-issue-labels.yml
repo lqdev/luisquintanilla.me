@@ -24,6 +24,17 @@ jobs:
         with:
           script: |
             // Define all labels used in issue templates with descriptions and colors
+            // NOTE: Keep this list in sync with labels defined in .github/ISSUE_TEMPLATE/*.yml
+            // Labels from templates:
+            //   - post-note.yml: ["note"]
+            //   - post-bookmark.yml: ["bookmark"]
+            //   - post-response.yml: ["response"]
+            //   - post-media.yml: ["media"]
+            //   - post-review-book.yml: ["review", "book"]
+            //   - post-review-movie.yml: ["review", "movie"]
+            //   - post-review-music.yml: ["review", "music"]
+            //   - post-review-business.yml: ["review", "business"]
+            //   - post-review-product.yml: ["review", "product"]
             const labels = [
               { name: 'note', description: 'Quick note post', color: '0E8A16' },
               { name: 'bookmark', description: 'Bookmark post', color: '1D76DB' },
