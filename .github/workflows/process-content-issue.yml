@@ -772,12 +772,12 @@ jobs:
               
               // Common fields
               const rating = extractFormValue(issueBody, 'Rating');
-              const summary = extractFormValue(issueBody, '(Review )?Summary');
-              const content = extractFormValue(issueBody, '(Detailed )?(Review )?Content');
-              const pros = extractFormValue(issueBody, 'Pros|What Worked Well');
-              const cons = extractFormValue(issueBody, 'Cons|Areas for Improvement|What Could Be Better');
+              const summary = extractFormValue(issueBody, 'Review Summary \\(Optional\\)');
+              const content = extractFormValue(issueBody, 'Detailed Review Content \\(Optional\\)|Detailed Review \\(Optional\\)');
+              const pros = extractFormValue(issueBody, 'Pros \\(Optional\\)|What Worked Well');
+              const cons = extractFormValue(issueBody, 'Cons \\(Optional\\)|Areas for Improvement|What Could Be Better');
               const tags = extractFormValue(issueBody, 'Tags \\(Optional\\)');
-              const slug = extractFormValue(issueBody, '(Custom )?Slug \\(Optional\\)');
+              const slug = extractFormValue(issueBody, 'Custom Slug \\(Optional\\)');
               
               // Type-specific fields
               let itemName = '';
@@ -791,7 +791,7 @@ jobs:
                   itemUrl = extractFormValue(issueBody, 'Book URL \\(Optional\\)');
                   imageUrl = extractFormValue(issueBody, 'Cover Image URL \\(Optional\\)');
                   additionalFields = {
-                    author: extractFormValue(issueBody, 'Author'),
+                    author: extractFormValue(issueBody, 'Author \\(Optional\\)'),
                     isbn: extractFormValue(issueBody, 'ISBN \\(Optional\\)'),
                     genre: extractFormValue(issueBody, 'Genre \\(Optional\\)')
                   };
@@ -799,10 +799,10 @@ jobs:
                 case 'movie':
                   itemName = extractFormValue(issueBody, 'Movie Title');
                   itemUrl = extractFormValue(issueBody, 'Movie URL \\(Optional\\)');
-                  imageUrl = extractFormValue(issueBody, 'Movie Poster URL \\(Optional\\)|Poster URL \\(Optional\\)');
+                  imageUrl = extractFormValue(issueBody, 'Movie Poster URL \\(Optional\\)');
                   additionalFields = {
-                    director: extractFormValue(issueBody, 'Director'),
-                    year: extractFormValue(issueBody, 'Release Year'),
+                    director: extractFormValue(issueBody, 'Director \\(Optional\\)'),
+                    year: extractFormValue(issueBody, 'Release Year \\(Optional\\)'),
                     genre: extractFormValue(issueBody, 'Genre \\(Optional\\)')
                   };
                   break;
@@ -810,10 +810,10 @@ jobs:
                   itemName = extractFormValue(issueBody, 'Album/Song Title');
                   itemUrl = extractFormValue(issueBody, 'Music URL \\(Optional\\)');
                   additionalFields = {
-                    artist: extractFormValue(issueBody, 'Artist/Band'),
+                    artist: extractFormValue(issueBody, 'Artist/Band \\(Optional\\)'),
                     music_type: extractFormValue(issueBody, 'Music Type'),
-                    release_year: extractFormValue(issueBody, 'Release Year'),
-                    genre: extractFormValue(issueBody, 'Genre'),
+                    release_year: extractFormValue(issueBody, 'Release Year \\(Optional\\)'),
+                    genre: extractFormValue(issueBody, 'Genre \\(Optional\\)'),
                     label: extractFormValue(issueBody, 'Record Label \\(Optional\\)')
                   };
                   break;
@@ -822,7 +822,7 @@ jobs:
                   itemUrl = extractFormValue(issueBody, 'Business Website \\(Optional\\)');
                   additionalFields = {
                     business_type: extractFormValue(issueBody, 'Business Type'),
-                    location: extractFormValue(issueBody, 'Location'),
+                    location: extractFormValue(issueBody, 'Location \\(Optional\\)'),
                     price_range: extractFormValue(issueBody, 'Price Range \\(Optional\\)')
                   };
                   break;
@@ -830,7 +830,7 @@ jobs:
                   itemName = extractFormValue(issueBody, 'Product Name');
                   itemUrl = extractFormValue(issueBody, 'Product URL \\(Optional\\)');
                   additionalFields = {
-                    manufacturer: extractFormValue(issueBody, 'Manufacturer/Brand'),
+                    manufacturer: extractFormValue(issueBody, 'Manufacturer/Brand \\(Optional\\)'),
                     product_category: extractFormValue(issueBody, 'Product Category'),
                     model_version: extractFormValue(issueBody, 'Model/Version \\(Optional\\)'),
                     price: extractFormValue(issueBody, 'Price \\(Optional\\)')

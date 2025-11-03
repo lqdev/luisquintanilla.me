@@ -188,11 +188,7 @@ let contentSection =
     else 
         sprintf "\n\n%s" content
 
-let fileContent = sprintf """%s
-
-# %s Review
-
-%s%s""" frontmatter itemName (generateReviewBlock()) contentSection
+let fileContent = sprintf "%s\n\n# %s Review\n\n%s%s" frontmatter itemName (generateReviewBlock()) contentSection
 
 // Determine output directory and filename based on review type
 let subdirectory = 
