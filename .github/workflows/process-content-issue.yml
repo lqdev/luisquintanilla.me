@@ -763,7 +763,7 @@ jobs:
               function extractFormValue(body, label) {
                 const regex = new RegExp(`### ${label}\\s*\\n\\s*\\n([\\s\\S]*?)(?=\\n\\n###|\\n\\n---|\$)`, 'i');
                 const match = body.match(regex);
-                const value = match ? match[1].trim() : '';
+                const value = (match && match[1]) ? match[1].trim() : '';
                 return value.replace(/^_No response_$/i, '').trim();
               }
               
