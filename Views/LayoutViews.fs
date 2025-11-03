@@ -751,13 +751,27 @@ let wikiPageView (title:string) (content:string) (date:string) (fileName:string)
     ]
 
 let reviewPageView (title:string) (content:string) (date:string) (fileName:string) = 
-    let publishDate = DateTimeOffset.Parse(date)
+    // Handle null/empty dates gracefully - use current date as fallback
+    let (publishDate, dateTimeStr) = 
+        if String.IsNullOrWhiteSpace(date) then
+            let now = DateTimeOffset.Now
+            (now, now.ToString("yyyy-MM-dd HH:mm zzz"))
+        else
+            try
+                let parsed = DateTimeOffset.Parse(date)
+                (parsed, date)
+            with
+            | _ ->
+                // If date parsing fails, use current date
+                let now = DateTimeOffset.Now
+                (now, now.ToString("yyyy-MM-dd HH:mm zzz"))
+    
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
             header [ _class "post-header" ] [
                 h1 [ _class "p-name post-title" ] [ Text title ]
                 div [ _class "post-meta" ] [
-                    time [ _class "dt-published"; attr "datetime" date ] [
+                    time [ _class "dt-published"; attr "datetime" dateTimeStr ] [
                         Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
                 ]

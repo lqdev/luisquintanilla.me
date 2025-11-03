@@ -129,18 +129,33 @@ let additionalFields =
 let now = DateTimeOffset.Now.ToOffset(TimeSpan.FromHours(-5.0))
 let timestamp = now.ToString("M/d/yyyy h:mm tt zzz")
 
-// Generate frontmatter
-let tagsString = 
-    if tags.Length = 0 then "[]"
-    else sprintf "[%s]" (tags |> Array.map (sprintf "\"%s\"") |> String.concat ",")
-
+// Generate frontmatter - use Book schema for book reviews, Post schema for others
 let frontmatter = 
-    sprintf """---
-title: "%s Review"
-post_type: "review"
-published_date: "%s"
-tags: %s
----""" (itemName.Replace("\"", "\\\"")) timestamp tagsString
+    if reviewType.ToLower() = "book" then
+        // Extract author and isbn from additional fields if provided
+        let author = 
+            match additionalFields |> List.tryFind (fun (k, _) -> k.ToLower() = "author") with
+            | Some (_, v) -> v
+            | None -> "Unknown"
+        let isbn = 
+            match additionalFields |> List.tryFind (fun (k, _) -> k.ToLower() = "isbn") with
+            | Some (_, v) -> v
+            | None -> ""
+        let cover = match imageUrl with | Some url -> url | None -> ""
+        
+        // Book schema (BookDetails)
+        let titleEsc = itemName.Replace("\"", "\\\"")
+        let authorEsc = author.Replace("\"", "\\\"")
+        let isbnEsc = isbn.Replace("\"", "\\\"")
+        let coverEsc = cover.Replace("\"", "\\\"")
+        sprintf "---\ntitle: \"%s\"\nauthor: \"%s\"\nisbn: \"%s\"\ncover: \"%s\"\nrating: %.1f\nsource: \"review\"\ndate_published: \"%s\"\n---" titleEsc authorEsc isbnEsc coverEsc rating timestamp
+    else
+        // Post schema for other review types
+        let tagsString = 
+            if tags.Length = 0 then "[]"
+            else sprintf "[%s]" (tags |> Array.map (sprintf "\"%s\"") |> String.concat ",")
+        let titleEsc = itemName.Replace("\"", "\\\"")
+        sprintf "---\ntitle: \"%s Review\"\npost_type: \"review\"\npublished_date: \"%s\"\ntags: %s\n---" titleEsc timestamp tagsString
 
 // Generate review block YAML
 let generateReviewBlock () =

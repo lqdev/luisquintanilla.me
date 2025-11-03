@@ -1,8 +1,11 @@
 ---
-title: "How to Focus Review"
-post_type: "review"
-published_date: "11/3/2025 10:37 AM -05:00"
-tags: ["mindfulness","focus","personaldevelopment","philosophy"]
+title: "How to Focus"
+author: "Thich Nhat Hanh"
+isbn: "9781952692178"
+cover: "https://images-us.bookshop.org/ingram/9781952692178.jpg?v=f7ed8f89f7f31ef0a58201d34dd19908"
+rating: 4.0
+source: "review"
+date_published: "11/3/2025 10:37 AM -05:00"
 ---
 
 # How to Focus Review

@@ -1248,10 +1248,18 @@ module UnifiedFeeds =
     /// Build unified feeds from all content types with proper type conversion
     let buildAllFeeds (feedDataSets: (string * (UnifiedFeedItem list)) list) (outputDirectory: string) =
         // Flatten all feed items and sort chronologically
+        // Handle null/empty dates gracefully by using a very old date for items with missing dates
         let allUnifiedItems = 
             feedDataSets
             |> List.collect snd
-            |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
+            |> List.sortByDescending (fun item -> 
+                if String.IsNullOrWhiteSpace(item.Date) then
+                    DateTimeOffset.MinValue
+                else
+                    try
+                        DateTimeOffset.Parse(item.Date)
+                    with
+                    | _ -> DateTimeOffset.MinValue)
         
         // Fire-hose feed configuration (all content types)
         let fireHoseConfig = {
