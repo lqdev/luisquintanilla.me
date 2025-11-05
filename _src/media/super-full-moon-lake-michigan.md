@@ -2,7 +2,7 @@
 title: Super Full Moon Over Lake Michigan
 post_type: media
 published_date: "2025-11-05 17:56 -05:00"
-tags: ["moon","chicago"]
+tags: ["moon","chicago","city"]
 ---
 
 :::media
