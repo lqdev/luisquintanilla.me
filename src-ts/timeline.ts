@@ -1,5 +1,19 @@
 // Timeline Content System - Desert Theme with Stratified Progressive Loading
 // Optimized for feed-as-homepage with type-aware chunked loading
+
+// @ts-nocheck - Large legacy file being migrated incrementally to TypeScript
+// TODO: Add proper type annotations incrementally
+
+// Make this a module  
+export {};
+
+// Extend Window interface
+declare global {
+    interface Window {
+        TimelineInterface?: any;
+    }
+}
+
 console.log('🚀 Timeline.js loading - stratified version');
 const any = {
     // Initialize filtering system
@@ -783,6 +797,5 @@ window.TimelineInterface = {
 };
 console.log('🏁 Timeline.js loaded successfully - stratified version');
 export {};
-//# sourceMappingURL=timeline.js.map
 //# sourceMappingURL=timeline.js.map
 //# sourceMappingURL=timeline.js.map
