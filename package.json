@@ -9,6 +9,7 @@
     "clean:ts": "rm -rf _src/js/*.js _src/js/*.js.map && rm -f api/*/index.js api/*/index.js.map"
   },
   "devDependencies": {
+    "@azure/functions": "^4.9.0",
     "@types/node": "^20.10.0",
     "typescript": "^5.3.3"
   },
