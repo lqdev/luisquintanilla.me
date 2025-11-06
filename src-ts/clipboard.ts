@@ -1,49 +1,61 @@
-"use strict";
 /**
  * Clipboard API - Code Snippet Copy Enhancement
  * Adds "Copy to Clipboard" buttons to all code blocks
  * Progressive enhancement with graceful degradation
  */
+
 class ClipboardManager {
+    private copiedTimeout: number | null = null;
+
     constructor() {
-        this.copiedTimeout = null;
         this.init();
     }
-    init() {
+
+    private init(): void {
         // Feature detection
         if (!navigator.clipboard) {
             console.log('Clipboard API not available - skipping code copy buttons');
             return;
         }
+
         // Add copy buttons to all code blocks
         this.addCopyButtonsToCodeBlocks();
     }
-    addCopyButtonsToCodeBlocks() {
+
+    private addCopyButtonsToCodeBlocks(): void {
         // Find all pre > code blocks (the pattern used in the site)
-        const codeBlocks = document.querySelectorAll('pre > code');
+        const codeBlocks = document.querySelectorAll<HTMLElement>('pre > code');
+        
         codeBlocks.forEach((codeElement) => {
-            const preElement = codeElement.parentElement;
+            const preElement = codeElement.parentElement as HTMLPreElement;
+            
             // Skip if already has a copy button
             if (preElement.querySelector('.code-copy-btn')) {
                 return;
             }
+
             // Create wrapper div for positioning
             const wrapper = document.createElement('div');
             wrapper.className = 'code-block-wrapper';
+            
             // Wrap the pre element
             preElement.parentNode?.insertBefore(wrapper, preElement);
             wrapper.appendChild(preElement);
+
             // Create copy button
             const copyButton = this.createCopyButton(codeElement);
             wrapper.appendChild(copyButton);
         });
+
         console.log(`✅ Added copy buttons to ${codeBlocks.length} code blocks`);
     }
-    createCopyButton(codeElement) {
+
+    private createCopyButton(codeElement: HTMLElement): HTMLButtonElement {
         const button = document.createElement('button');
         button.className = 'code-copy-btn';
         button.setAttribute('aria-label', 'Copy code to clipboard');
         button.setAttribute('type', 'button');
+        
         // Use SVG icon for copy
         button.innerHTML = `
             <svg class="copy-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -52,30 +64,37 @@ class ClipboardManager {
             </svg>
             <span class="copy-text">Copy</span>
         `;
+
         // Add click handler
         button.addEventListener('click', async (e) => {
             e.preventDefault();
             await this.copyCode(button, codeElement);
         });
+
         return button;
     }
-    async copyCode(button, codeElement) {
+
+    private async copyCode(button: HTMLButtonElement, codeElement: HTMLElement): Promise<void> {
         try {
             // Get the code text
             const code = codeElement.textContent || '';
+
             // Copy to clipboard
             await navigator.clipboard.writeText(code);
+
             // Show success feedback
             this.showCopySuccess(button);
-        }
-        catch (err) {
+
+        } catch (err) {
             console.error('Failed to copy code:', err);
             this.showCopyError(button);
         }
     }
-    showCopySuccess(button) {
+
+    private showCopySuccess(button: HTMLButtonElement): void {
         // Update button appearance
         button.classList.add('copied');
+        
         // Change icon to checkmark
         button.innerHTML = `
             <svg class="copy-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -83,20 +102,25 @@ class ClipboardManager {
             </svg>
             <span class="copy-text">Copied!</span>
         `;
+
         // Update aria-label
         button.setAttribute('aria-label', 'Code copied to clipboard');
+
         // Clear any existing timeout
         if (this.copiedTimeout !== null) {
             clearTimeout(this.copiedTimeout);
         }
+
         // Reset after 2 seconds
         this.copiedTimeout = window.setTimeout(() => {
             this.resetCopyButton(button);
         }, 2000);
     }
-    showCopyError(button) {
+
+    private showCopyError(button: HTMLButtonElement): void {
         // Update button to show error
         button.classList.add('copy-error');
+        
         const originalHTML = button.innerHTML;
         button.innerHTML = `
             <svg class="copy-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -105,6 +129,7 @@ class ClipboardManager {
             </svg>
             <span class="copy-text">Failed</span>
         `;
+
         // Reset after 2 seconds
         setTimeout(() => {
             button.classList.remove('copy-error');
@@ -112,8 +137,10 @@ class ClipboardManager {
             button.setAttribute('aria-label', 'Copy code to clipboard');
         }, 2000);
     }
-    resetCopyButton(button) {
+
+    private resetCopyButton(button: HTMLButtonElement): void {
         button.classList.remove('copied');
+        
         // Reset to original icon
         button.innerHTML = `
             <svg class="copy-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -122,18 +149,18 @@ class ClipboardManager {
             </svg>
             <span class="copy-text">Copy</span>
         `;
+
         // Reset aria-label
         button.setAttribute('aria-label', 'Copy code to clipboard');
     }
 }
+
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         new ClipboardManager();
     });
-}
-else {
+} else {
     // DOM already loaded
     new ClipboardManager();
 }
-//# sourceMappingURL=clipboard.js.map

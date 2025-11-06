@@ -364,3 +364,8 @@ FodyWeavers.xsd
 # Remove _public folder
 _public/
 backups/
+
+# TypeScript
+*.tsbuildinfo
+_src/js/*.js.map
+api/*/*.js.map

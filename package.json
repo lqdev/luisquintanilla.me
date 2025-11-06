@@ -1,4 +1,17 @@
 {
+  "name": "luisquintanilla.me",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:ts": "tsc && tsc -p tsconfig.api.json",
+    "build:ts:watch": "tsc --watch",
+    "build:api": "tsc -p tsconfig.api.json",
+    "clean:ts": "rm -rf _src/js/*.js _src/js/*.js.map && rm -f api/*/index.js api/*/index.js.map"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  },
   "dependencies": {
     "@playwright/test": "^1.54.1"
   }
