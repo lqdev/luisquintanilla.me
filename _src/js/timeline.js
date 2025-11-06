@@ -1,7 +1,8 @@
 // Timeline Content System - Desert Theme with Stratified Progressive Loading
 // Optimized for feed-as-homepage with type-aware chunked loading
+// DEBUG - Immediate execution logging
 console.log('🚀 Timeline.js loading - stratified version');
-const any = {
+const TimelineFilter = {
     // Initialize filtering system
     init() {
         this.setupFilterButtons();
@@ -134,7 +135,7 @@ const any = {
     }
 };
 // Theme Manager
-const any = {
+const TimelineThemeManager = {
     init() {
         this.initializeTheme();
         this.setupThemeToggle();
@@ -180,7 +181,7 @@ const any = {
     }
 };
 // Progressive Loading Manager - Stratified Content Support
-const any = {
+const TimelineProgressiveLoader = {
     // Configuration
     config: {
         chunkSize: 10,
@@ -531,7 +532,7 @@ const any = {
     }
 };
 // Mobile Navigation Manager
-const any = {
+const TimelineMobileNav = {
     init() {
         this.setupMobileToggle();
         this.setupOverlayClose();
@@ -606,7 +607,7 @@ const any = {
     }
 };
 // Navigation Dropdown Manager
-const any = {
+const TimelineDropdownNav = {
     init() {
         this.setupDropdownListeners();
     },
@@ -655,7 +656,7 @@ const any = {
     }
 };
 // Back to Top Button Manager - UX Best Practices Implementation
-const any = {
+const BackToTopManager = {
     button: null,
     scrollThreshold: 200, // Pixels to scroll before showing button
     init() {
@@ -783,6 +784,4 @@ window.TimelineInterface = {
 };
 console.log('🏁 Timeline.js loaded successfully - stratified version');
 export {};
-//# sourceMappingURL=timeline.js.map
-//# sourceMappingURL=timeline.js.map
 //# sourceMappingURL=timeline.js.map
