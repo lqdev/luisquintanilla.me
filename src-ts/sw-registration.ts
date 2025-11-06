@@ -3,63 +3,75 @@
  * Progressive Web App (PWA) capabilities
  * Progressive enhancement with feature detection
  */
+
+// Make this a module
+export {};
+
 class ServiceWorkerManager {
+    private registration: ServiceWorkerRegistration | null = null;
+    private updateAvailable: boolean = false;
+
     constructor() {
-        this.registration = null;
-        this.updateAvailable = false;
         this.init();
     }
-    async init() {
+
+    private async init(): Promise<void> {
         // Check if service workers are supported
         if (!('serviceWorker' in navigator)) {
             console.log('[PWA] Service Workers not supported in this browser');
             return;
         }
+
         try {
             // Register service worker
             await this.registerServiceWorker();
+            
             // Setup update handling
             this.setupUpdateHandling();
+            
             // Check for updates periodically
             this.checkForUpdates();
+            
             console.log('[PWA] Service Worker initialization complete');
-        }
-        catch (error) {
+        } catch (error) {
             console.error('[PWA] Service Worker initialization failed:', error);
         }
     }
-    async registerServiceWorker() {
+
+    private async registerServiceWorker(): Promise<ServiceWorkerRegistration> {
         try {
             this.registration = await navigator.serviceWorker.register('/service-worker.js', {
                 scope: '/'
             });
+            
             console.log('[PWA] Service Worker registered successfully:', this.registration.scope);
+            
             // Log registration state
             if (this.registration.installing) {
                 console.log('[PWA] Service Worker installing');
-            }
-            else if (this.registration.waiting) {
+            } else if (this.registration.waiting) {
                 console.log('[PWA] Service Worker waiting');
-            }
-            else if (this.registration.active) {
+            } else if (this.registration.active) {
                 console.log('[PWA] Service Worker active');
             }
+            
             return this.registration;
-        }
-        catch (error) {
+        } catch (error) {
             console.error('[PWA] Service Worker registration failed:', error);
             throw error;
         }
     }
-    setupUpdateHandling() {
-        if (!this.registration)
-            return;
+
+    private setupUpdateHandling(): void {
+        if (!this.registration) return;
+
         // Handle updates
         this.registration.addEventListener('updatefound', () => {
             console.log('[PWA] Service Worker update found');
             const newWorker = this.registration?.installing;
-            if (!newWorker)
-                return;
+            
+            if (!newWorker) return;
+            
             newWorker.addEventListener('statechange', () => {
                 if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
                     // New service worker is ready
@@ -69,6 +81,7 @@ class ServiceWorkerManager {
                 }
             });
         });
+
         // Handle controller change (after skipWaiting)
         navigator.serviceWorker.addEventListener('controllerchange', () => {
             console.log('[PWA] Service Worker controller changed');
@@ -78,11 +91,12 @@ class ServiceWorkerManager {
             }
         });
     }
-    showUpdateNotification() {
+
+    private showUpdateNotification(): void {
         // Check if user wants to see update notifications
         const hideNotifications = localStorage.getItem('pwa-hide-update-notifications') === 'true';
-        if (hideNotifications)
-            return;
+        if (hideNotifications) return;
+
         // Create update notification
         const notification = document.createElement('div');
         notification.className = 'pwa-update-notification';
@@ -95,6 +109,7 @@ class ServiceWorkerManager {
                 </div>
             </div>
         `;
+
         // Add styles
         const styles = document.createElement('style');
         styles.textContent = `
@@ -167,17 +182,21 @@ class ServiceWorkerManager {
                 }
             }
         `;
+
         document.head.appendChild(styles);
         document.body.appendChild(notification);
+
         // Handle update button
         document.getElementById('pwa-update-now')?.addEventListener('click', () => {
             this.applyUpdate();
             notification.remove();
         });
+
         // Handle later button
         document.getElementById('pwa-update-later')?.addEventListener('click', () => {
             notification.remove();
         });
+
         // Auto-hide after 30 seconds
         setTimeout(() => {
             if (notification.parentElement) {
@@ -185,18 +204,22 @@ class ServiceWorkerManager {
             }
         }, 30000);
     }
-    applyUpdate() {
+
+    private applyUpdate(): void {
         if (!this.registration || !this.registration.waiting) {
             console.warn('[PWA] No service worker waiting to activate');
             return;
         }
+
         // Tell service worker to skip waiting and activate immediately
         this.registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+        
         console.log('[PWA] Applying update...');
     }
-    checkForUpdates() {
-        if (!this.registration)
-            return;
+
+    private checkForUpdates(): void {
+        if (!this.registration) return;
+
         // Check for updates every hour
         setInterval(() => {
             console.log('[PWA] Checking for Service Worker updates...');
@@ -205,63 +228,81 @@ class ServiceWorkerManager {
             });
         }, 60 * 60 * 1000); // 1 hour
     }
+
     /**
      * Prefetch specific URLs for offline access
      */
-    async prefetchUrls(urls) {
+    public async prefetchUrls(urls: string[]): Promise<void> {
         if (!this.registration || !this.registration.active) {
             console.warn('[PWA] Service Worker not active, cannot prefetch');
             return;
         }
+
         // Send message to service worker to cache these URLs
         this.registration.active.postMessage({
             type: 'CACHE_URLS',
             urls: urls
         });
+
         console.log(`[PWA] Requested prefetch of ${urls.length} URLs`);
     }
+
     /**
      * Check if app is running in standalone mode (installed PWA)
      */
-    isStandalone() {
-        return (window.matchMedia('(display-mode: standalone)').matches ||
-            window.navigator.standalone === true);
+    public isStandalone(): boolean {
+        return (
+            window.matchMedia('(display-mode: standalone)').matches ||
+            (window.navigator as any).standalone === true
+        );
     }
+
     /**
      * Show install prompt if available
      * DISABLED: Custom install banner removed per user preference
      * Browsers provide native install prompts which are sufficient
      */
-    setupInstallPrompt() {
+    public setupInstallPrompt(): void {
         // Install banner functionality has been disabled
         // Users can still install the PWA via browser's native install prompt
+
         window.addEventListener('beforeinstallprompt', (e) => {
             // Prevent default install prompt - but don't show custom banner
             e.preventDefault();
+
             console.log('[PWA] Install prompt available via browser');
         });
+
         // Track if app was installed
         window.addEventListener('appinstalled', () => {
             console.log('[PWA] App installed successfully');
         });
     }
+
+    // showInstallPromotion method removed - custom install banner disabled
 }
+
+// Extend Window interface for global service worker manager
+declare global {
+    interface Window {
+        swManager?: ServiceWorkerManager;
+    }
+}
+
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         const swManager = new ServiceWorkerManager();
         // Install banner disabled - browser's native install prompt is sufficient
         // swManager.setupInstallPrompt();
+        
         // Make available globally if needed
         window.swManager = swManager;
     });
-}
-else {
+} else {
     // DOM already loaded
     const swManager = new ServiceWorkerManager();
     // Install banner disabled - browser's native install prompt is sufficient
     // swManager.setupInstallPrompt();
     window.swManager = swManager;
 }
-export {};
-//# sourceMappingURL=sw-registration.js.map
