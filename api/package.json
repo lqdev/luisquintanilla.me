@@ -5,6 +5,7 @@
   "main": "files/index.js",
   "scripts": {
     "start": "func start",
+    "build": "tsc -p ../tsconfig.api.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
@@ -12,6 +13,11 @@
   },
   "dependencies": {
     "rss-parser": "^3.13.0"
+  },
+  "devDependencies": {
+    "@azure/functions": "^4.5.0",
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
   },
   "keywords": [
     "azure-functions",

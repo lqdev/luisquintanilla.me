@@ -1,0 +1,27 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // Node.js environment for Azure Functions
+    "target": "ES2020",
+    "module": "CommonJS",
+    "lib": ["ES2020"],
+    
+    // Output to api folder structure
+    "outDir": "./api",
+    "rootDir": "./src-ts-api",
+    
+    // Node.js types
+    "types": ["node"],
+    "moduleResolution": "node",
+    
+    // Azure Functions compatibility
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "src-ts-api/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

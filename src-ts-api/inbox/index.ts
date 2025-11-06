@@ -1,41 +1,13 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-const fs_1 = require("fs");
-const path = __importStar(require("path"));
-const httpTrigger = async function (context, req) {
+import { promises as fs } from 'fs';
+import * as path from 'path';
+import { AzureFunction, Context, HttpRequest } from '../types';
+
+interface ActivityPubActivity {
+    type?: string;
+    [key: string]: any;
+}
+
+const httpTrigger: AzureFunction = async function (context: Context, req?: HttpRequest): Promise<void> {
     try {
         if (!req) {
             context.res = {
@@ -45,6 +17,7 @@ const httpTrigger = async function (context, req) {
             };
             return;
         }
+
         if (req.method === 'GET') {
             // Return inbox as empty collection for now
             const emptyInbox = {
@@ -54,6 +27,7 @@ const httpTrigger = async function (context, req) {
                 "totalItems": 0,
                 "orderedItems": []
             };
+            
             context.res = {
                 status: 200,
                 headers: {
@@ -64,22 +38,26 @@ const httpTrigger = async function (context, req) {
             };
             return;
         }
+
         if (req.method === 'POST') {
             // Log incoming activities for Phase 3 implementation
-            const activityData = req.body;
+            const activityData: ActivityPubActivity = req.body as ActivityPubActivity;
             const timestamp = new Date().toISOString();
+            
             // Ensure activities directory exists
             const activitiesDir = path.join(__dirname, '../data/activities');
             try {
-                await fs_1.promises.mkdir(activitiesDir, { recursive: true });
-            }
-            catch (mkdirError) {
+                await fs.mkdir(activitiesDir, { recursive: true });
+            } catch (mkdirError) {
                 // Directory might already exist
             }
+            
             // Log activity to file
             const logFile = path.join(activitiesDir, `${timestamp.replace(/[:.]/g, '-')}.json`);
-            await fs_1.promises.writeFile(logFile, JSON.stringify(activityData, null, 2));
+            await fs.writeFile(logFile, JSON.stringify(activityData, null, 2));
+            
             context.log(`Received activity: ${activityData.type || 'Unknown'}`);
+            
             // Return 202 Accepted for now (Phase 3 will implement processing)
             context.res = {
                 status: 202,
@@ -90,6 +68,7 @@ const httpTrigger = async function (context, req) {
             };
             return;
         }
+
         // Method not allowed
         context.res = {
             status: 405,
@@ -98,8 +77,7 @@ const httpTrigger = async function (context, req) {
             },
             body: { error: 'Method not allowed' }
         };
-    }
-    catch (error) {
+    } catch (error) {
         const errorMessage = error instanceof Error ? error.message : 'Unknown error';
         context.log.error(`Inbox error: ${errorMessage}`);
         context.res = {
@@ -111,5 +89,5 @@ const httpTrigger = async function (context, req) {
         };
     }
 };
-exports.default = httpTrigger;
-//# sourceMappingURL=index.js.map
+
+export default httpTrigger;
