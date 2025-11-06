@@ -16,6 +16,8 @@ class UfoCursorManager {
         // Performance optimization: throttle interval in ms
         this.throttleDelay = 50; // Update every 50ms max
         this.throttleTimeout = null;
+        // Store bound event handler for proper cleanup
+        this.boundHandleMouseMove = null;
     }
     /**
      * Initialize the UFO cursor tracking
@@ -39,7 +41,8 @@ class UfoCursorManager {
             return;
         }
         // Add event listener with throttling
-        document.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+        this.boundHandleMouseMove = (e) => this.handleMouseMove(e);
+        document.addEventListener('mousemove', this.boundHandleMouseMove);
         this.isInitialized = true;
         console.log('UFO Cursor: Dynamic tilting initialized');
     }
@@ -95,7 +98,10 @@ class UfoCursorManager {
         if (this.throttleTimeout) {
             clearTimeout(this.throttleTimeout);
         }
-        document.removeEventListener('mousemove', (e) => this.handleMouseMove(e));
+        if (this.boundHandleMouseMove) {
+            document.removeEventListener('mousemove', this.boundHandleMouseMove);
+            this.boundHandleMouseMove = null;
+        }
         this.reset();
         this.isInitialized = false;
     }

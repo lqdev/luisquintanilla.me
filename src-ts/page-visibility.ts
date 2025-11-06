@@ -7,6 +7,14 @@
 // Make this a module
 export {};
 
+// Extend Document interface for vendor-specific visibility properties
+declare global {
+    interface Document {
+        msHidden?: boolean;
+        webkitHidden?: boolean;
+    }
+}
+
 type VisibilityHandler = (isVisible: boolean) => void;
 
 class PageVisibilityManager {
@@ -35,28 +43,28 @@ class PageVisibilityManager {
     }
 
     private isSupported(): boolean {
-        return typeof (document as any).hidden !== 'undefined' ||
-               typeof (document as any).msHidden !== 'undefined' ||
-               typeof (document as any).webkitHidden !== 'undefined';
+        return typeof document.hidden !== 'undefined' ||
+               typeof document.msHidden !== 'undefined' ||
+               typeof document.webkitHidden !== 'undefined';
     }
 
     private getHiddenProperty(): string | null {
-        if (typeof (document as any).hidden !== 'undefined') {
+        if (typeof document.hidden !== 'undefined') {
             return 'hidden';
-        } else if (typeof (document as any).msHidden !== 'undefined') {
+        } else if (typeof document.msHidden !== 'undefined') {
             return 'msHidden';
-        } else if (typeof (document as any).webkitHidden !== 'undefined') {
+        } else if (typeof document.webkitHidden !== 'undefined') {
             return 'webkitHidden';
         }
         return null;
     }
 
     private getVisibilityChangeEvent(): string | null {
-        if (typeof (document as any).hidden !== 'undefined') {
+        if (typeof document.hidden !== 'undefined') {
             return 'visibilitychange';
-        } else if (typeof (document as any).msHidden !== 'undefined') {
+        } else if (typeof document.msHidden !== 'undefined') {
             return 'msvisibilitychange';
-        } else if (typeof (document as any).webkitHidden !== 'undefined') {
+        } else if (typeof document.webkitHidden !== 'undefined') {
             return 'webkitvisibilitychange';
         }
         return null;

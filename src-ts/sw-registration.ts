@@ -7,6 +7,13 @@
 // Make this a module
 export {};
 
+// Extend Navigator interface for standalone property
+declare global {
+    interface Navigator {
+        standalone?: boolean;
+    }
+}
+
 class ServiceWorkerManager {
     private registration: ServiceWorkerRegistration | null = null;
     private updateAvailable: boolean = false;
@@ -253,7 +260,7 @@ class ServiceWorkerManager {
     public isStandalone(): boolean {
         return (
             window.matchMedia('(display-mode: standalone)').matches ||
-            (window.navigator as any).standalone === true
+            window.navigator.standalone === true
         );
     }
 
