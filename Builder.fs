@@ -48,6 +48,11 @@ module Builder
         Directory.CreateDirectory(dir) |> ignore
         File.WriteAllText(Path.Join(dir, filename), content)
     
+    /// Helper: Write file content to a directory, ensuring directory exists
+    let private writeFileToDir (dir: string) (filename: string) (content: string) =
+        Directory.CreateDirectory(dir) |> ignore
+        File.WriteAllText(Path.Join(dir, filename), content)
+    
     /// Helper: Get markdown files from a source directory
     let private getContentFiles (relativePath: string) =
         Directory.GetFiles(Path.Join(srcDir, relativePath))
@@ -525,39 +530,42 @@ module Builder
     let buildFeedsOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Feeds" "https://www.lqdev.me" links
         let saveDir = Path.Join(outputDir,"feed")
-        // File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
-        File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
+        writeFileToDir saveDir "index.opml" (feed.ToString())
 
     let buildBlogrollOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Blogroll" "https://www.lqdev.me" links
         let saveDir = Path.Join(outputDir,"collections","blogroll")
-        File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
-        File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
+        let content = feed.ToString()
+        writeFileToDir saveDir "index.xml" content
+        writeFileToDir saveDir "index.opml" content
 
     let buildPodrollOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Podroll" "https://www.lqdev.me" links
         let saveDir = Path.Join(outputDir,"collections","podroll")
-        File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
-        File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
+        let content = feed.ToString()
+        writeFileToDir saveDir "index.xml" content
+        writeFileToDir saveDir "index.opml" content
 
     let buildForumsOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla Forums" "https://www.lqdev.me" links
         let saveDir = Path.Join(outputDir,"collections","forums")
-        File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
-        File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
+        let content = feed.ToString()
+        writeFileToDir saveDir "index.xml" content
+        writeFileToDir saveDir "index.opml" content
 
     let buildYouTubeOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla YouTube Channels" "https://www.lqdev.me" links
         let saveDir = Path.Join(outputDir,"collections","youtube")
-        File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
-        File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
+        let content = feed.ToString()
+        writeFileToDir saveDir "index.xml" content
+        writeFileToDir saveDir "index.opml" content
 
     let buildAIStarterPackOpml (links:Outline array) = 
         let feed = buildOpmlFeed "Luis Quintanilla AI Starter Pack" "https://www.lqdev.me" links
         let saveDir = Path.Join(outputDir,"collections","starter-packs","ai")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.xml"), feed.ToString())
-        File.WriteAllText(Path.Join(saveDir,"index.opml"), feed.ToString())
+        let content = feed.ToString()
+        writeFileToDir saveDir "index.xml" content
+        writeFileToDir saveDir "index.opml" content
 
     // =============================================================================
     // Unified Collection Processing - New composable collection system
