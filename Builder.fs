@@ -217,114 +217,82 @@ module Builder
         printfn "✅ Timeline homepage created with %d pinned posts, %d chronological items from %d total items across all content types" pinnedCount chronologicalInitialItems.Length totalItems
 
     let buildAboutPage () = 
-
         let aboutContent = convertFileToHtml (Path.Join(srcDir,"about.md")) |> contentView
         let aboutPage = generate aboutContent "default" "About - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"about")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"), aboutPage)
+        writePageToDir saveDir "index.html" aboutPage
 
     let buildCollectionsPage () = 
-
         let collectionsContent = convertFileToHtml (Path.Join(srcDir,"collections.md")) |> contentView
         let collectionsPage = generate collectionsContent "default" "Collections - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"collections")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"), collectionsPage)
+        writePageToDir saveDir "index.html" collectionsPage
 
     let buildStarterPackPage () = 
-
         let starterContent = convertFileToHtml (Path.Join(srcDir,"starter-packs.md")) |> contentView
         let starterPage = generate starterContent "default" "Starter Packs - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"collections","starter-packs")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"), starterPage)
+        writePageToDir saveDir "index.html" starterPage
 
     let buildTravelGuidesPage () = 
-
         let travelContent = convertFileToHtml (Path.Join(srcDir,"travel-guides.md")) |> contentView
         let travelPage = generate travelContent "default" "Travel Guides - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"collections","travel-guides")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"), travelPage)
+        writePageToDir saveDir "index.html" travelPage
 
     let buildBlogrollPage (links:Outline array) = 
-        let blogRollContent = 
-            links
-            |> blogRollView
-            
+        let blogRollContent = links |> blogRollView
         let blogRollPage = generate blogRollContent "default" "Blogroll - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"collections","blogroll")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"), blogRollPage)
+        writePageToDir saveDir "index.html" blogRollPage
 
     let buildPodrollPage (links:Outline array) = 
-        let podrollContent = 
-            links
-            |> podRollView
-            
+        let podrollContent = links |> podRollView
         let podrollPage = generate podrollContent "default" "Podroll - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"collections","podroll")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"), podrollPage)
+        writePageToDir saveDir "index.html" podrollPage
 
     let buildForumsPage (links:Outline array) = 
-        let forumContent = 
-            links
-            |> forumsView
-            
+        let forumContent = links |> forumsView
         let forumsPage = generate forumContent "default" "Forums - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"collections","forums")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"), forumsPage)
+        writePageToDir saveDir "index.html" forumsPage
 
     let buildYouTubeChannelsPage (links:Outline array) = 
-        let ytContent = 
-            links
-            |> youTubeFeedView
-
+        let ytContent = links |> youTubeFeedView
         let ytFeedPage = generate ytContent "default" "YouTube Channels - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"collections","youtube")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"), ytFeedPage)
+        writePageToDir saveDir "index.html" ytFeedPage
 
     let buildAIStarterPackPage (links:Outline array) = 
-        let aiStarterPackContent = 
-            links
-            |> aiStarterPackFeedView
-
+        let aiStarterPackContent = links |> aiStarterPackFeedView
         let ytFeedPage = generate aiStarterPackContent "default" "AI Starter Pack - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"collections","starter-packs","ai")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir,"index.html"), ytFeedPage)
+        writePageToDir saveDir "index.html" ytFeedPage
 
     let buildIRLStackPage () = 
         let irlStackContent = Path.Join(srcDir,"uses.md") |> convertFileToHtml |> contentView
         let irlStackPage = generate irlStackContent "default" "In Real Life Stack - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"uses")
-        Directory.CreateDirectory(saveDir) |> ignore   
-        File.WriteAllText(Path.Join(saveDir,"index.html"), irlStackPage)
+        writePageToDir saveDir "index.html" irlStackPage
 
     let buildColophonPage () = 
         let colophonContent = Path.Join(srcDir,"colophon.md") |> convertFileToHtml |> contentView
         let colophonPage = generate colophonContent "default" "Colophon - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"colophon")
-        Directory.CreateDirectory(saveDir) |> ignore               
-        File.WriteAllText(Path.Join(saveDir,"index.html"), colophonPage)        
+        writePageToDir saveDir "index.html" colophonPage
 
     let buildContactPage () = 
         let contactContent = convertFileToHtml (Path.Join(srcDir,"contact.md")) |> contentView
         let contactPage = generate contactContent "default" "Contact - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"contact")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir, "index.html"), contactPage)
+        writePageToDir saveDir "index.html" contactPage
 
     let buildSearchPage () = 
         let searchContent = convertFileToHtml (Path.Join(srcDir,"search.md")) |> contentView
         let searchPage = generate searchContent "default" "Search - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"search")
-        Directory.CreateDirectory(saveDir) |> ignore
-        File.WriteAllText(Path.Join(saveDir, "index.html"), searchPage)
+        writePageToDir saveDir "index.html" searchPage
 
     let buildOnlineRadioPage () = 
         let onlineRadioContent = convertFileToHtml (Path.Join(srcDir,"radio.md")) |> contentView
@@ -336,7 +304,7 @@ module Builder
         File.Copy(Path.Join(srcDir,"OnlineRadioPlaylist.m3u"),Path.Join(saveDir,"OnlineRadioPlaylist.m3u"),true)
         
         // Write out page
-        File.WriteAllText(Path.Join(saveDir,"index.html"), onlineRadioPage)        
+        writePageToDir saveDir "index.html" onlineRadioPage        
 
     // =====================================================================
     // Generic Static Page Builders Using Pipeline
@@ -1129,10 +1097,8 @@ module Builder
 
     // AST-based responses processing using GenericBuilder infrastructure
     let buildResponses() = 
-        let responseFiles = 
-            Directory.GetFiles(Path.Join(srcDir, "responses"))
-            |> Array.filter (fun f -> f.EndsWith(".md"))
-            |> Array.toList
+        // Use helper to get files
+        let responseFiles = getContentFiles "responses"
         
         let processor = GenericBuilder.ResponseProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor responseFiles
@@ -1142,22 +1108,21 @@ module Builder
         |> List.iter (fun item ->
             let response = item.Content
             let saveDir = Path.Join(outputDir, "responses", response.FileName)
-            Directory.CreateDirectory(saveDir) |> ignore
             
             let html = LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName response.Metadata.TargetUrl response.Metadata.Tags response.Metadata.ReadingTimeMinutes
-            let responseView = generate html "defaultindex" response.Metadata.Title
-            let saveFileName = Path.Join(saveDir, "index.html")
-            File.WriteAllText(saveFileName, responseView))
+            let page = generate html "defaultindex" response.Metadata.Title
+            // Use helper to write file
+            writePageToDir saveDir "index.html" page)
         
         // Generate responses index page at /responses/
         let responses = feedData |> List.map (fun item -> item.Content) |> List.toArray
         let sortedResponses = responses |> Array.sortByDescending(fun (x: Response) -> DateTime.Parse(x.Metadata.DatePublished))
         
         // Create HTML index page for responses
-        let responsesIndexHtml = generate (responseView sortedResponses) "defaultindex" "Responses - Luis Quintanilla"
-        let responsesIndexSaveDir = Path.Join(outputDir, "responses")
-        Directory.CreateDirectory(responsesIndexSaveDir) |> ignore
-        File.WriteAllText(Path.Join(responsesIndexSaveDir, "index.html"), responsesIndexHtml)
+        let indexHtml = generate (responseView sortedResponses) "defaultindex" "Responses - Luis Quintanilla"
+        let indexDir = Path.Join(outputDir, "responses")
+        // Use helper to write file
+        writePageToDir indexDir "index.html" indexHtml
         
         // Return feed data for unified RSS generation
         feedData
@@ -1174,9 +1139,9 @@ module Builder
         
         // Create the bookmarks landing page using bookmarkResponseView (which handles Response arrays but displays as bookmarks)
         let bookmarksLandingHtml = generate (bookmarkResponseView bookmarkResponses) "defaultindex" "Bookmarks - Luis Quintanilla"
-        let bookmarksIndexSaveDir = Path.Join(outputDir, "bookmarks")
-        Directory.CreateDirectory(bookmarksIndexSaveDir) |> ignore
-        File.WriteAllText(Path.Join(bookmarksIndexSaveDir, "index.html"), bookmarksLandingHtml)
+        let bookmarksIndexDir = Path.Join(outputDir, "bookmarks")
+        // Use helper to write file
+        writePageToDir bookmarksIndexDir "index.html" bookmarksLandingHtml
         
         printfn "✅ Bookmarks landing page created with %d bookmark responses" bookmarkResponses.Length
 
@@ -1336,10 +1301,8 @@ module Builder
     // AST-based bookmark processing using GenericBuilder infrastructure
     // Note: Bookmarks are Response objects with response_type: "bookmark"
     let buildBookmarks() = 
-        let bookmarkFiles = 
-            Directory.GetFiles(Path.Join(srcDir, "bookmarks"))
-            |> Array.filter (fun f -> f.EndsWith(".md"))
-            |> Array.toList
+        // Use helper to get files
+        let bookmarkFiles = getContentFiles "bookmarks"
         
         // Use Response processor since bookmarks are Response objects
         let processor = GenericBuilder.ResponseProcessor.create()
@@ -1350,12 +1313,11 @@ module Builder
         |> List.iter (fun item ->
             let response = item.Content
             let saveDir = Path.Join(outputDir, "bookmarks", response.FileName)
-            Directory.CreateDirectory(saveDir) |> ignore
             
             let html = LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName response.Metadata.TargetUrl response.Metadata.Tags response.Metadata.ReadingTimeMinutes
-            let responseView = generate html "defaultindex" response.Metadata.Title
-            let saveFileName = Path.Join(saveDir, "index.html")
-            File.WriteAllText(saveFileName, responseView))
+            let page = generate html "defaultindex" response.Metadata.Title
+            // Use helper to write file
+            writePageToDir saveDir "index.html" page)
         
         // Return feed data for unified RSS generation (converted to Response feed data format)
         feedData
