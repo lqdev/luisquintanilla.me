@@ -312,14 +312,6 @@ module Builder
         writePageToDir saveDir "index.html" onlineRadioPage        
 
     // =====================================================================
-    // Generic Static Page Builders Using Pipeline
-    // =====================================================================
-    
-    /// Build all static pages using the pipeline configuration
-    let buildStaticPagesFromConfigs () =
-        StaticPagePipeline.buildStaticPages srcDir outputDir StaticPageConfigs.staticPageConfigs
-
-    // =====================================================================
     // Resume Page Builder
     // =====================================================================
     

@@ -35,10 +35,6 @@
     <Compile Include="SearchIndex.fs" />
     <Compile Include="Loaders.fs" />
     <Compile Include="TextOnlyBuilder.fs" />
-    <Compile Include="Builders\IOUtils.fs" />
-    <Compile Include="Builders\ContentPipeline.fs" />
-    <Compile Include="Builders\StaticPagePipeline.fs" />
-    <Compile Include="Builders\StaticPageConfigs.fs" />
     <Compile Include="Builder.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
