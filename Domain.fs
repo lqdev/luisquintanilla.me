@@ -31,6 +31,7 @@ module Domain
         FileName: string
         Metadata: PostDetails
         Content: string
+        MarkdownSource: string option
     }
     with
         interface ITaggable with
@@ -81,6 +82,7 @@ module Domain
         FileName: string
         Metadata: PresentationDetails
         Content: string
+        MarkdownSource: string option
     }
     with
         interface ITaggable with
@@ -110,6 +112,7 @@ module Domain
         FileName: string
         Metadata: LivestreamDetails
         Content: string
+        MarkdownSource: string option
     }
 
     [<CLIMutable>]
@@ -124,6 +127,7 @@ module Domain
         FileName: string
         Metadata: SnippetDetails
         Content: string
+        MarkdownSource: string option
     }
     with
         interface ITaggable with
@@ -148,6 +152,7 @@ module Domain
         FileName: string
         Metadata: WikiDetails
         Content: string
+        MarkdownSource: string option
     }
     with
         interface ITaggable with
@@ -260,6 +265,7 @@ module Domain
         FileName: string
         Metadata: BookDetails
         Content: string
+        MarkdownSource: string option
     }
     with
         interface ITaggable with
@@ -289,6 +295,7 @@ module Domain
         FileName: string
         Metadata: AlbumDetails
         Content: string
+        MarkdownSource: string option
     }
     with
         interface ITaggable with
@@ -320,6 +327,7 @@ module Domain
         FileName: string
         Metadata: AlbumCollectionDetails
         Content: string
+        MarkdownSource: string option
     }
     with
         interface ITaggable with
@@ -344,6 +352,7 @@ module Domain
         FileName: string
         Metadata: PlaylistDetails
         Content: string  // Raw markdown content with track lists
+        MarkdownSource: string option
     }
     with
         interface ITaggable with
@@ -376,6 +385,7 @@ module Domain
         FileName: string
         Metadata: ResponseDetails
         Content: string
+        MarkdownSource: string option
     }
     with
         interface ITaggable with
@@ -399,6 +409,7 @@ module Domain
         FileName: string
         Metadata: BookmarkDetails
         Content: string
+        MarkdownSource: string option
     }
 
     type TaggedPosts = { Posts:Post array; Notes:Post array; Responses:Response array }
