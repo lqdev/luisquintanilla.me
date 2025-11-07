@@ -954,6 +954,7 @@ module Builder
 
     // AST-based presentation processing using GenericBuilder infrastructure
     let buildPresentations() = 
+        // Use helper to get files
         let presentationFiles = 
             Directory.GetFiles(Path.Join(srcDir, "resources", "presentations"))
             |> Array.filter (fun f -> f.EndsWith(".md"))
@@ -967,26 +968,26 @@ module Builder
         |> List.iter (fun item ->
             let presentation = item.Content
             let saveDir = Path.Join(outputDir, "resources", "presentations", presentation.FileName)
-            Directory.CreateDirectory(saveDir) |> ignore
             
             // Use standard individual post layout like other content types
             let html = LayoutViews.presentationPageView presentation
-            let presentationView = generate html "defaultindex" $"{presentation.Metadata.Title} | Presentation | Luis Quintanilla"
-            let saveFileName = Path.Join(saveDir, "index.html")
-            File.WriteAllText(saveFileName, presentationView))
+            let page = generate html "defaultindex" $"{presentation.Metadata.Title} | Presentation | Luis Quintanilla"
+            // Use helper to write file
+            writePageToDir saveDir "index.html" page)
         
         // Generate presentation index page
         let presentations = feedData |> List.map (fun item -> item.Content) |> List.toArray
         let presentationIndexHtml = generate (presentationsView presentations) "defaultindex" "Presentations | Luis Quintanilla"
-        let indexSaveDir = Path.Join(outputDir, "resources", "presentations")
-        Directory.CreateDirectory(indexSaveDir) |> ignore
-        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), presentationIndexHtml)
+        let indexDir = Path.Join(outputDir, "resources", "presentations")
+        // Use helper to write file
+        writePageToDir indexDir "index.html" presentationIndexHtml
         
         // Return feed data for unified RSS generation
         feedData
 
     // AST-based book processing using GenericBuilder infrastructure
     let buildBooks() = 
+        // Use helper to get files (reviews/library is a subdirectory)
         let bookFiles = 
             Directory.GetFiles(Path.Join(srcDir, "reviews", "library"))
             |> Array.filter (fun f -> f.EndsWith(".md"))
@@ -1000,19 +1001,18 @@ module Builder
         |> List.iter (fun item ->
             let book = item.Content
             let saveDir = Path.Join(outputDir, "reviews", book.FileName)
-            Directory.CreateDirectory(saveDir) |> ignore
             
             let html = reviewPageView book.Metadata.Title (book.Content |> convertMdToHtml) book.Metadata.DatePublished book.FileName
-            let bookView = generate html "defaultindex" $"{book.Metadata.Title} | Reviews | Luis Quintanilla"
-            let saveFileName = Path.Join(saveDir, "index.html")
-            File.WriteAllText(saveFileName, bookView))
+            let page = generate html "defaultindex" $"{book.Metadata.Title} | Reviews | Luis Quintanilla"
+            // Use helper to write file
+            writePageToDir saveDir "index.html" page)
         
         // Generate reviews index page using existing libraryView (rename later)
         let books = feedData |> List.map (fun item -> item.Content) |> List.toArray
         let reviewsIndexHtml = generate (libraryView books) "defaultindex" "Reviews | Luis Quintanilla"
-        let indexSaveDir = Path.Join(outputDir, "reviews")
-        Directory.CreateDirectory(indexSaveDir) |> ignore
-        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), reviewsIndexHtml)
+        let indexDir = Path.Join(outputDir, "reviews")
+        // Use helper to write file
+        writePageToDir indexDir "index.html" reviewsIndexHtml
         
         // Return feed data for unified RSS generation
         feedData
@@ -1147,10 +1147,8 @@ module Builder
 
     // AST-based media processing using GenericBuilder infrastructure
     let buildMedia() = 
-        let mediaFiles = 
-            Directory.GetFiles(Path.Join(srcDir, "media"))
-            |> Array.filter (fun f -> f.EndsWith(".md"))
-            |> Array.toList
+        // Use helper to get files
+        let mediaFiles = getContentFiles "media"
         
         let processor = GenericBuilder.AlbumProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor mediaFiles
@@ -1160,24 +1158,23 @@ module Builder
         |> List.iter (fun item ->
             let album = item.Content
             let saveDir = Path.Join(outputDir, "media", album.FileName)
-            Directory.CreateDirectory(saveDir) |> ignore
 
             // Use AST-based markdown processing for custom blocks
             let rawContent = processor.Render album
             let processedContent = MarkdownService.convertMdToHtml rawContent
             let html = mediaPageView album.Metadata.Title processedContent album.Metadata.Date album.FileName album.Metadata.Tags
-            let albumView = generate html "defaultindex" $"{album.Metadata.Title} | Media | Luis Quintanilla"
-            let saveFileName = Path.Join(saveDir, "index.html")
-            File.WriteAllText(saveFileName, albumView))
+            let page = generate html "defaultindex" $"{album.Metadata.Title} | Media | Luis Quintanilla"
+            // Use helper to write file
+            writePageToDir saveDir "index.html" page)
         
         // Generate media index page using simple list view for consistency
         try
             let albums = feedData |> List.map (fun item -> item.Content) |> List.toArray
             let sortedAlbums = albums |> Array.sortByDescending(fun x -> DateTimeOffset.Parse(x.Metadata.Date))
             let mediaIndexHtml = generate (albumsPageView sortedAlbums) "defaultindex" "Media | Luis Quintanilla"
-            let indexSaveDir = Path.Join(outputDir, "media")
-            Directory.CreateDirectory(indexSaveDir) |> ignore
-            File.WriteAllText(Path.Join(indexSaveDir, "index.html"), mediaIndexHtml)
+            let indexDir = Path.Join(outputDir, "media")
+            // Use helper to write file
+            writePageToDir indexDir "index.html" mediaIndexHtml
         with
         | ex -> 
             printfn $"Error in media unified feed view: {ex.Message}"
@@ -1206,23 +1203,22 @@ module Builder
         |> List.iter (fun item ->
             let albumCollection = item.Content
             let saveDir = Path.Join(outputDir, "collections", "albums", albumCollection.FileName)
-            Directory.CreateDirectory(saveDir) |> ignore
 
             // Use AST-based markdown processing for custom blocks
             let rawContent = processor.Render albumCollection
             let processedContent = MarkdownService.convertMdToHtml rawContent
             let html = albumCollectionDetailView albumCollection processedContent
-            let albumView = generate html "defaultindex" $"{albumCollection.Metadata.Title} | Albums | Luis Quintanilla"
-            let saveFileName = Path.Join(saveDir, "index.html")
-            File.WriteAllText(saveFileName, albumView))
+            let page = generate html "defaultindex" $"{albumCollection.Metadata.Title} | Albums | Luis Quintanilla"
+            // Use helper to write file
+            writePageToDir saveDir "index.html" page)
         
         // Generate album collections index page
         try
             let albumCollections = feedData |> List.map (fun item -> item.Content) |> List.toArray
             let albumsIndexHtml = generate (albumCollectionsPageView albumCollections) "defaultindex" "Albums | Luis Quintanilla"
-            let indexSaveDir = Path.Join(outputDir, "collections", "albums")
-            Directory.CreateDirectory(indexSaveDir) |> ignore
-            File.WriteAllText(Path.Join(indexSaveDir, "index.html"), albumsIndexHtml)
+            let indexDir = Path.Join(outputDir, "collections", "albums")
+            // Use helper to write file
+            writePageToDir indexDir "index.html" albumsIndexHtml
             printfn "✅ Album collections index page created with %d albums" albumCollections.Length
         with
         | ex -> 
@@ -1250,15 +1246,14 @@ module Builder
         |> List.iter (fun item ->
             let playlistCollection = item.Content
             let saveDir = Path.Join(outputDir, "collections", "playlists", playlistCollection.FileName)
-            Directory.CreateDirectory(saveDir) |> ignore
 
             // Use AST-based markdown processing
             let rawContent = processor.Render playlistCollection
             let processedContent = MarkdownService.convertMdToHtml rawContent
             let html = playlistCollectionDetailView playlistCollection processedContent
-            let playlistView = generate html "defaultindex" $"{playlistCollection.Metadata.Title} | Playlists | Luis Quintanilla"
-            let saveFileName = Path.Join(saveDir, "index.html")
-            File.WriteAllText(saveFileName, playlistView))
+            let page = generate html "defaultindex" $"{playlistCollection.Metadata.Title} | Playlists | Luis Quintanilla"
+            // Use helper to write file
+            writePageToDir saveDir "index.html" page)
         
         // Generate playlist collections index page
         try
@@ -1268,9 +1263,9 @@ module Builder
                 |> List.toArray
                 |> Array.sortByDescending (fun x -> DateTimeOffset.Parse(x.Metadata.Date))
             let playlistsIndexHtml = generate (playlistCollectionsPageView playlistCollections) "defaultindex" "Playlists | Luis Quintanilla"
-            let indexSaveDir = Path.Join(outputDir, "collections", "playlists")
-            Directory.CreateDirectory(indexSaveDir) |> ignore
-            File.WriteAllText(Path.Join(indexSaveDir, "index.html"), playlistsIndexHtml)
+            let indexDir = Path.Join(outputDir, "collections", "playlists")
+            // Use helper to write file
+            writePageToDir indexDir "index.html" playlistsIndexHtml
             printfn "✅ Playlist collections index page created with %d playlists" playlistCollections.Length
         with
         | ex -> 
