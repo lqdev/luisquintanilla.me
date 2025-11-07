@@ -17,6 +17,7 @@ module Builder
     open Loaders
     open Markdig
     open Markdig.Parsers
+    open Giraffe.ViewEngine
     
     let private srcDir = "_src"
     let private outputDir = "_public"
@@ -37,6 +38,21 @@ module Builder
             .Replace(">", "gt")      // Replace greater than
             .Replace("|", "pipe")    // Replace pipes
             .ToLowerInvariant()      // Make lowercase for consistency
+
+    // =====================================================================
+    // Common Build Helper Functions - Reduce Duplication
+    // =====================================================================
+    
+    /// Helper: Write HTML page to a directory, ensuring directory exists
+    let private writePageToDir (dir: string) (filename: string) (content: string) =
+        Directory.CreateDirectory(dir) |> ignore
+        File.WriteAllText(Path.Join(dir, filename), content)
+    
+    /// Helper: Get markdown files from a source directory
+    let private getContentFiles (relativePath: string) =
+        Directory.GetFiles(Path.Join(srcDir, relativePath))
+        |> Array.filter (fun f -> f.EndsWith(".md"))
+        |> Array.toList
 
     let rec cleanOutputDirectory (outputDir:string) = 
         if Directory.Exists(outputDir) then
@@ -321,6 +337,14 @@ module Builder
         
         // Write out page
         File.WriteAllText(Path.Join(saveDir,"index.html"), onlineRadioPage)        
+
+    // =====================================================================
+    // Generic Static Page Builders Using Pipeline
+    // =====================================================================
+    
+    /// Build all static pages using the pipeline configuration
+    let buildStaticPagesFromConfigs () =
+        StaticPagePipeline.buildStaticPages srcDir outputDir StaticPageConfigs.staticPageConfigs
 
     // =====================================================================
     // Resume Page Builder
