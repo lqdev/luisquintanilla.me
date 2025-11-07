@@ -44,6 +44,17 @@ let normalizeUrlsForRss (content: string) (baseUrl: string) =
     
     normalizedLinks
 
+/// Generate source:markdown element for RSS feeds
+let generateSourceMarkdown (markdownSource: string option) : XElement option =
+    match markdownSource with
+    | Some md when not (String.IsNullOrWhiteSpace md) ->
+        // Escape any ]]> that might break CDATA
+        let escaped = md.Replace("]]>", "]]]]><![CDATA[>")
+        // Create XElement with source namespace
+        let sourceNs = XNamespace.Get("http://source.scripting.com/")
+        Some (XElement(sourceNs + "markdown", XCData(escaped)))
+    | _ -> None
+
 /// Generic content processor pattern for consistent content handling
 type ContentProcessor<'T> = {
     /// Parse content from file path to domain type
@@ -101,6 +112,7 @@ module PostProcessor =
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = { metadata with ReadingTimeMinutes = readingTime }
                         Content = contentWithoutFrontmatter  // Use raw markdown without frontmatter
+                        MarkdownSource = Some contentWithoutFrontmatter
                     }
                 | None -> None
             | Error _ -> None
@@ -149,6 +161,11 @@ module PostProcessor =
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
             
+            // Add source:markdown if available
+            match generateSourceMarkdown post.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
+            
             Some item
     }
 
@@ -165,6 +182,7 @@ module NoteProcessor =
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = { metadata with ReadingTimeMinutes = readingTime }
                         Content = parsedDoc.TextContent  // Raw markdown content
+                        MarkdownSource = Some parsedDoc.RawMarkdown
                     }
                 | None -> None
             | Error _ -> None
@@ -225,6 +243,11 @@ module NoteProcessor =
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
             
+            // Add source:markdown if available
+            match generateSourceMarkdown note.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
+            
             Some item
     }
 
@@ -240,6 +263,7 @@ module SnippetProcessor =
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = parsedDoc.TextContent
+                        MarkdownSource = Some parsedDoc.RawMarkdown
                     }
                 | None -> None
             | Error _ -> None
@@ -286,6 +310,11 @@ module SnippetProcessor =
             // Add categories if they exist
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown snippet.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
                 
             Some item
     }
@@ -302,6 +331,7 @@ module WikiProcessor =
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = parsedDoc.TextContent
+                        MarkdownSource = Some parsedDoc.RawMarkdown
                     }
                 | None -> None
             | Error _ -> None
@@ -348,6 +378,11 @@ module WikiProcessor =
             // Add categories if they exist
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown wiki.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
                 
             Some item
     }
@@ -381,6 +416,7 @@ module PresentationProcessor =
                         FileName = System.IO.Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = markdownContent  // Store raw markdown for reveal.js
+                        MarkdownSource = Some markdownContent
                     }
                 | None -> None
             | Error _ -> None
@@ -439,6 +475,11 @@ module PresentationProcessor =
             // Add categories if they exist
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown presentation.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
                 
             Some item
     }
@@ -547,6 +588,7 @@ module BookProcessor =
                         FileName = fileName
                         Metadata = finalMetadata
                         Content = parsedDoc.TextContent
+                        MarkdownSource = Some parsedDoc.RawMarkdown
                     }
                 | None -> None
             | Error _ -> None
@@ -622,6 +664,11 @@ module BookProcessor =
             // Add pubDate if date exists
             if not (String.IsNullOrEmpty(book.Metadata.DatePublished)) then
                 item.Add(XElement(XName.Get "pubDate", book.Metadata.DatePublished))
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown book.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
                 
             Some item
     }
@@ -639,6 +686,7 @@ module ResponseProcessor =
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = { metadata with ReadingTimeMinutes = readingTime }
                         Content = parsedDoc.TextContent
+                        MarkdownSource = Some parsedDoc.RawMarkdown
                     }
                 | None -> None
             | Error _ -> None
@@ -713,6 +761,11 @@ module ResponseProcessor =
             // Add categories if they exist
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown response.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
                 
             Some item
     }
@@ -814,6 +867,7 @@ module AlbumProcessor =
                         FileName = fileName
                         Metadata = metadata
                         Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown  // Use raw markdown without frontmatter
+                        MarkdownSource = Some (extractContentWithoutFrontMatter parsedDoc.RawMarkdown)
                     }
                 | None -> None
             | Error _ -> None
@@ -881,6 +935,11 @@ module AlbumProcessor =
             // Add categories if they exist
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown album.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
                 
             Some item
     }
@@ -924,6 +983,7 @@ module AlbumCollectionProcessor =
                         FileName = fileName
                         Metadata = metadata
                         Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown
+                        MarkdownSource = Some (extractContentWithoutFrontMatter parsedDoc.RawMarkdown)
                     }
                 | None -> None
             | Error _ -> None
@@ -1005,6 +1065,11 @@ module AlbumCollectionProcessor =
             // Add categories if they exist
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown albumCollection.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
                 
             Some item
     }
@@ -1039,6 +1104,7 @@ module PlaylistCollectionProcessor =
                         FileName = fileName
                         Metadata = metadata
                         Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown
+                        MarkdownSource = Some (extractContentWithoutFrontMatter parsedDoc.RawMarkdown)
                     }
                 | None -> None
             | Error _ -> None
@@ -1092,6 +1158,11 @@ module PlaylistCollectionProcessor =
             // Add categories if they exist
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown playlistCollection.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
                 
             Some item
     }
@@ -1108,6 +1179,7 @@ module BookmarkProcessor =
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = parsedDoc.TextContent
+                        MarkdownSource = Some parsedDoc.RawMarkdown
                     }
                 | None -> None
             | Error _ -> None
@@ -1152,6 +1224,12 @@ module BookmarkProcessor =
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url),
                     XElement(XName.Get "pubDate", bookmark.Metadata.DatePublished))
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown bookmark.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
+            
             Some item
     }
 
@@ -1255,6 +1333,7 @@ module UnifiedFeeds =
         let channel = 
             XElement(XName.Get "rss",
                 XAttribute(XName.Get "version", "2.0"),
+                XAttribute(XName.Get("{http://www.w3.org/2000/xmlns/}source"), "http://source.scripting.com/"),
                 XElement(XName.Get "channel",
                     XElement(XName.Get "title", config.Title),
                     XElement(XName.Get "link", config.Link),
