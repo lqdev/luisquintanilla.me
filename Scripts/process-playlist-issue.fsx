@@ -96,6 +96,30 @@ date: "%s"
 tags: %s
 ---""" (title.Replace("\"", "\\\"")) timestamp tagsString
 
+// Process playlist content: strip debug output before "## Tracks"
+let cleanedPlaylistContent =
+    if String.IsNullOrWhiteSpace(playlistContent) then
+        ""
+    else
+        // Split lines but keep empty lines to preserve formatting
+        let lines = playlistContent.Split([|"\r\n"; "\n"|], StringSplitOptions.None)
+        let tracksIndex = 
+            lines 
+            |> Array.tryFindIndex (fun line -> line.TrimStart().StartsWith("## Tracks"))
+        
+        match tracksIndex with
+        | Some idx ->
+            // Include everything from "## Tracks" onwards, preserving empty lines
+            lines.[idx..] |> String.concat "\n"
+        | None ->
+            // If no "## Tracks" header found, keep original content
+            playlistContent
+
+// Check if playlist content already has a footer with "Generated using..."
+let hasGeneratedFooter = 
+    not (String.IsNullOrWhiteSpace(cleanedPlaylistContent)) && 
+    cleanedPlaylistContent.Contains("*Generated using")
+
 // Build content body
 let contentParts = 
     [
@@ -104,15 +128,23 @@ let contentParts =
         | Some text -> yield text
         | None -> ()
         
-        // Add playlist content if provided
-        if not (String.IsNullOrWhiteSpace(playlistContent)) then
+        // Add cleaned playlist content if provided
+        if not (String.IsNullOrWhiteSpace(cleanedPlaylistContent)) then
             yield ""
-            yield playlistContent
+            yield cleanedPlaylistContent
         
-        // Add Spotify link footer
-        yield ""
-        yield "---"
-        yield ""
+        // Only add footer separator if playlist content doesn't already have one
+        if not hasGeneratedFooter then
+            yield ""
+            yield "---"
+        
+        // Add blank line before Spotify link if footer exists
+        if hasGeneratedFooter then
+            yield ""
+        else
+            yield ""
+        
+        // Always add the Spotify link
         yield sprintf "**Original Spotify Playlist:** [Listen on Spotify](%s)." spotifyUrl
     ]
 
