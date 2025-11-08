@@ -1,0 +1,69 @@
+---
+name: Analyze External Domains
+
+on:
+  workflow_dispatch:
+    # Allow manual triggering
+
+jobs:
+  analyze-domains:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run domain analysis script
+        id: analyze
+        run: |
+          echo "🔍 Running external domain analysis..."
+          
+          # Make script executable (in case permissions weren't preserved)
+          chmod +x Scripts/analyze-external-domains.sh
+          
+          # Run the analysis script
+          # Progress messages go to stderr (displayed in logs)
+          # TSV data goes to stdout (captured in file)
+          ./Scripts/analyze-external-domains.sh > domain_analysis.tsv
+          
+          echo "✅ Analysis complete"
+          
+          # Count unique domains (excluding header)
+          UNIQUE_DOMAINS=$(tail -n +2 domain_analysis.tsv | wc -l)
+          echo "unique_domains=$UNIQUE_DOMAINS" >> $GITHUB_OUTPUT
+          
+          # Get top 10 domains
+          echo "top_domains<<EOF" >> $GITHUB_OUTPUT
+          head -11 domain_analysis.tsv >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Display results summary
+        run: |
+          echo "📊 External Domain Analysis Results"
+          echo "===================================="
+          echo ""
+          echo "Total unique domains: ${{ steps.analyze.outputs.unique_domains }}"
+          echo ""
+          echo "Top 10 domains:"
+          echo "${{ steps.analyze.outputs.top_domains }}"
+
+      - name: Upload results as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-domains-report-${{ github.run_number }}
+          path: domain_analysis.tsv
+          retention-days: 90
+
+      - name: Add job summary
+        run: |
+          echo "# 🔍 External Domain Analysis Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Total unique domains:** ${{ steps.analyze.outputs.unique_domains }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Top 10 Domains" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          head -11 domain_analysis.tsv >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📥 **Download full report:** Check the workflow artifacts section" >> $GITHUB_STEP_SUMMARY
