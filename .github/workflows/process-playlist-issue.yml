@@ -91,11 +91,23 @@ jobs:
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
         run: |
           # Run playlist-creator to generate markdown content
-          # The tool outputs markdown with track list and YouTube links
+          # The tool creates a markdown file in the output/ directory
           # Use --choice 1 for markdown output (batch mode is implicit via python -m)
-          uv run python -m playlist_creator.main --url "${{ steps.extract-data.outputs.spotify_url }}" --choice 1 > /tmp/playlist_tracks.md
+          uv run python -m playlist_creator.main --url "${{ steps.extract-data.outputs.spotify_url }}" --choice 1
+          
+          # Find the generated markdown file in output/ directory
+          MARKDOWN_FILE=$(find output -name "*.md" -type f | head -n 1)
+          
+          if [ -z "$MARKDOWN_FILE" ]; then
+            echo "❌ Error: No markdown file found in output/ directory"
+            exit 1
+          fi
+          
+          # Copy the generated markdown to a known location
+          cp "$MARKDOWN_FILE" /tmp/playlist_tracks.md
           
           echo "✅ Playlist content generated successfully"
+          echo "📄 Found markdown file: $MARKDOWN_FILE"
           echo "Generated content preview:"
           head -20 /tmp/playlist_tracks.md
         
@@ -129,8 +141,9 @@ jobs:
             "$(cat /tmp/playlist_content.txt)" 2>&1)
           EXIT_CODE=$?
           
-          # Clean up temporary files
+          # Clean up temporary files and output directory
           rm -f /tmp/title.txt /tmp/spotify_url.txt /tmp/commentary.txt /tmp/slug.txt /tmp/tags.txt /tmp/playlist_content.txt /tmp/playlist_tracks.md
+          rm -rf output/
           
           echo "Script output:"
           echo "$OUTPUT"
