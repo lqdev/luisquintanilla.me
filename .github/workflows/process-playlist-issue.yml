@@ -92,7 +92,8 @@ jobs:
         run: |
           # Run playlist-creator to generate markdown content
           # The tool outputs markdown with track list and YouTube links
-          uv run playlist-creator "${{ steps.extract-data.outputs.spotify_url }}" > /tmp/playlist_tracks.md
+          # Use --batch mode for non-interactive execution and --choice 1 for markdown output
+          .venv/bin/playlist-creator --url "${{ steps.extract-data.outputs.spotify_url }}" --choice 1 --batch > /tmp/playlist_tracks.md
           
           echo "✅ Playlist content generated successfully"
           echo "Generated content preview:"
