@@ -157,6 +157,7 @@ This is a production-ready IndieWeb site built with F# featuring:
 - **Responsive Design**: Mobile-optimized presentation viewing
 
 ### Development Workflow
+- **Custom Copilot Agents**: Multi-agentic system with orchestrator + 5 specialist agents for enhanced development assistance (see `.github/agents/`)
 - **Emacs Org-capture Templates**: 33 hierarchical templates for rapid content creation with 3-key navigation (see `docs/org-capture-templates.md`)
 - **VS Code Integration**: Complete snippet library aligned with Domain.fs (17 content types + layout snippets)
 - **Build Validation**: Automated testing and output comparison
@@ -216,6 +217,66 @@ Create professional presentations with 15 custom layout classes:
 - `layout-image-left` / `layout-image-right` - Image + content layouts
 - `layout-centered` / `layout-big-text` - Impact layouts
 - And 7 more specialized layouts with VS Code snippets
+
+## 🤖 Custom Copilot Agents
+
+This repository features a **multi-agentic Copilot workflow system** with specialized agents for enhanced development assistance. The system includes an orchestrator agent that routes tasks to domain specialists, enabling contextually-aware code suggestions and automated workflows.
+
+### Agent Architecture
+
+**Orchestrator Agent** (`@orchestrator`)
+- Meta-coordinator that analyzes requests and routes to appropriate specialists
+- Coordinates multi-step workflows across multiple agents
+- Maintains architectural consistency across changes
+- Provides decision trees for single vs multi-agent tasks
+
+**Specialist Agents**:
+1. **Content Creator** (`@content-creator`) - Content types, markdown blocks, YAML frontmatter, IndieWeb standards
+2. **F# Generator** (`@fsharp-generator`) - F# codebase, GenericBuilder pattern, AST processing, RSS feeds, ViewEngine rendering
+3. **Issue Publisher** (`@issue-publisher`) - GitHub Actions workflows, issue templates, S3 integration, automation pipelines
+4. **Build Automation** (`@build-automation`) - Build scripts, validation, testing, performance optimization, orchestration
+
+### Usage Examples
+
+**Content-Only Changes**:
+```
+"Create a new presentation with custom layout blocks" → @content-creator
+```
+
+**F# Code Changes**:
+```
+"Add a new content type to GenericBuilder" → @fsharp-generator
+```
+
+**GitHub Workflow Changes**:
+```
+"Fix the S3 upload workflow for media files" → @issue-publisher
+```
+
+**Build & Testing**:
+```
+"Add validation for RSS feed generation" → @build-automation
+```
+
+**Multi-Agent Workflows**:
+```
+"Implement a new content type"
+→ @orchestrator coordinates:
+  1. @content-creator: Define YAML schema and custom blocks
+  2. @fsharp-generator: Implement Domain type and processor
+  3. @build-automation: Create validation tests
+  4. @issue-publisher: Create GitHub issue template (optional)
+```
+
+### Agent Configuration
+
+All agents are defined in `.github/agents/` with YAML frontmatter following GitHub's Custom Agents specification. Each agent includes:
+- Domain expertise and responsibilities
+- Integration patterns with other agents
+- Code examples and validation checklists
+- Reference resources and documentation links
+
+**Documentation**: See individual agent files in `.github/agents/` for complete specifications and usage patterns.
 
 ## 📊 Project Stats
 
