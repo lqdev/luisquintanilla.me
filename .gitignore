@@ -364,3 +364,6 @@ FodyWeavers.xsd
 # Remove _public folder
 _public/
 backups/
+
+# Playlist creator output directory
+output/
