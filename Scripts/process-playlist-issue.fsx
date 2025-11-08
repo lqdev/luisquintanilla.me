@@ -120,6 +120,11 @@ let hasGeneratedFooter =
     not (String.IsNullOrWhiteSpace(cleanedPlaylistContent)) && 
     cleanedPlaylistContent.Contains("*Generated using")
 
+// Check if playlist content already includes the Spotify link
+let hasSpotifyLink = 
+    not (String.IsNullOrWhiteSpace(cleanedPlaylistContent)) &&
+    cleanedPlaylistContent.Contains("**Original Spotify Playlist:**")
+
 // Build content body
 let contentParts = 
     [
@@ -137,15 +142,13 @@ let contentParts =
         if not hasGeneratedFooter then
             yield ""
             yield "---"
-        
-        // Add blank line before Spotify link if footer exists
-        if hasGeneratedFooter then
             yield ""
-        else
+            // Add the Spotify link only if it's not already in the playlist content
+            yield sprintf "**Original Spotify Playlist:** [Listen on Spotify](%s)." spotifyUrl
+        // If the footer exists but somehow doesn't have the Spotify link, add it
+        elif not hasSpotifyLink then
             yield ""
-        
-        // Always add the Spotify link
-        yield sprintf "**Original Spotify Playlist:** [Listen on Spotify](%s)." spotifyUrl
+            yield sprintf "**Original Spotify Playlist:** [Listen on Spotify](%s)." spotifyUrl
     ]
 
 let contentBody = String.concat "\n" contentParts
