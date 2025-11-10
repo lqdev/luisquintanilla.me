@@ -81,6 +81,13 @@ module Loaders
     
         links
 
+    let loadReadLaterLinks () =
+        let links =  
+            File.ReadAllText(Path.Join("Data","read-later.json"))
+            |> JsonSerializer.Deserialize<ReadLaterLink array>
+    
+        links
+
     let loadBooks (srcDir: string) = 
         let bookPaths = 
             Directory.GetFiles(Path.Join(srcDir,"reviews", "library"))

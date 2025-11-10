@@ -148,6 +148,21 @@ let presentationsView (presentations: Presentation array) =
         ]
     ]
 
+let readLaterView (links: ReadLaterLink array) = 
+    div [ _class "d-grip gap-3" ] [
+        h2[] [Text "Read Later"]
+        p [] [Text "Links saved for later reading, displayed chronologically"]
+        ul [] [
+            // Display in chronological order (oldest first)
+            for link in links do
+                li [] [
+                    a [ _href link.Url; _target "_blank" ] [ Text link.Title ]
+                    Text " • "
+                    Text (DateTimeOffset.Parse(link.DateAdded).ToString("MMM dd, yyyy"))
+                ]
+        ]
+    ]
+
 let liveStreamsView (livestreams: Livestream array) = 
     div [ _class "d-grip gap-3" ] [
         h2[] [Text "Live Stream Recordings"]

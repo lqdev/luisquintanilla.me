@@ -113,6 +113,7 @@ module Layouts
                         a [_class "dropdown-item"; _href "/resources/snippets"] [Text "Snippets"]
                         a [_class "dropdown-item"; _href "/resources/wiki"] [Text "Wiki"]
                         a [_class "dropdown-item"; _href "/resources/presentations"] [Text "Presentations"]
+                        a [_class "dropdown-item"; _href "/resources/read-later"] [Text "Read Later"]
                     ]
                 ]
                 
@@ -250,6 +251,7 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/resources/snippets"] [ Text "Snippets" ]
                                 a [_class "dropdown-item"; _href "/resources/wiki"] [ Text "Wiki" ]
                                 a [_class "dropdown-item"; _href "/resources/presentations"] [ Text "Presentations" ]
+                                a [_class "dropdown-item"; _href "/resources/read-later"] [ Text "Read Later" ]
                         ]
                     ]
 
