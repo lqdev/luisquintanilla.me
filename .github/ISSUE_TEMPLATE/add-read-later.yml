@@ -41,8 +41,9 @@ body:
         2. 📄 If you didn't provide a title, it will be fetched from the webpage's `<title>` tag
         3. 🔍 The URL will be checked for duplicates in the existing list
         4. ➕ If it's not a duplicate, it will be added to `Data/read-later.json` with the current timestamp
-        5. 🔀 A pull request will be created with your changes
+        5. 🔀 A pull request will be created with auto-merge enabled
         6. ✅ This issue will be closed automatically
-        7. 🚀 After PR review and merge, your link will appear on the Read Later page
+        7. 🤖 The PR will be automatically merged when there are no conflicts
+        8. 🚀 Your link will appear on the Read Later page after the auto-merge completes
         
         Links are displayed chronologically (oldest first) on the Read Later page.
