@@ -36,6 +36,7 @@ jobs:
             //   - post-review-music.yml: ["review", "music"]
             //   - post-review-business.yml: ["review", "business"]
             //   - post-review-product.yml: ["review", "product"]
+            //   - add-read-later.yml: ["read-later"]
             const labels = [
               { name: 'note', description: 'Quick note post', color: '0E8A16' },
               { name: 'bookmark', description: 'Bookmark post', color: '1D76DB' },
@@ -47,7 +48,8 @@ jobs:
               { name: 'movie', description: 'Movie review', color: 'D93F0B' },
               { name: 'music', description: 'Music review', color: 'FBCA04' },
               { name: 'business', description: 'Business/establishment review', color: '0E8A16' },
-              { name: 'product', description: 'Product review', color: '1D76DB' }
+              { name: 'product', description: 'Product review', color: '1D76DB' },
+              { name: 'read-later', description: 'Read later list addition', color: '7057FF' }
             ];
             
             console.log('Starting label sync...');
@@ -106,6 +108,7 @@ jobs:
           echo "- \`media\` - Media posts (photo, video)" >> $GITHUB_STEP_SUMMARY
           echo "- \`playlist\` - Playlist content creation and management" >> $GITHUB_STEP_SUMMARY
           echo "- \`review\` - Review posts" >> $GITHUB_STEP_SUMMARY
+          echo "- \`read-later\` - Read later list additions" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Review Type Labels" >> $GITHUB_STEP_SUMMARY
           echo "- \`book\` - Book reviews" >> $GITHUB_STEP_SUMMARY
