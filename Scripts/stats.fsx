@@ -96,9 +96,12 @@ let responsesByType =
     |> Array.countBy(fun x -> x.Metadata.ResponseType)
     |> Array.sortByDescending(snd)
 
-// Organize responses by tag
+// Combine responses and bookmarks for tag and domain analysis
+let allResponsesIncludingBookmarks = Array.append responses bookmarkResponses
+
+// Organize responses by tag (includes both responses and bookmarks)
 let responsesByTag = 
-    responses
+    allResponsesIncludingBookmarks
     |> Array.filter(fun x -> (DateTime.Parse(x.Metadata.DatePublished) |> _.Year) = DateTime.UtcNow.Year)
     |> Array.collect(fun x -> 
             match x.Metadata.Tags with
@@ -109,9 +112,9 @@ let responsesByTag =
     |> Array.countBy(fun x -> x)
     |> Array.sortByDescending(snd)
 
-// Organize responses by host name (domain)
+// Organize responses by host name (domain) (includes both responses and bookmarks)
 let responsesByDomain = 
-    responses
+    allResponsesIncludingBookmarks
     |> Array.filter(fun x -> (DateTime.Parse(x.Metadata.DatePublished) |> _.Year) = DateTime.UtcNow.Year)
     |> Array.countBy(fun x -> Uri(x.Metadata.TargetUrl).Host)
     |> Array.sortByDescending(snd)
@@ -144,6 +147,20 @@ printfn "# 📊 Content Statistics"
 printfn ""
 let timestamp = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm")
 printfn $"Generated on: {timestamp} UTC"
+printfn ""
+printfn "## 📋 Measurement Coverage"
+printfn ""
+printfn "This report analyzes content from the following directories and types:"
+printfn ""
+printfn "- **Blogs**: `_src/posts/` - Long-form blog posts"
+printfn "- **Notes**: `_src/feed/` - Short-form notes and updates"
+printfn "- **Responses**: `_src/responses/` - Replies, stars, and reshares"
+printfn "- **Bookmarks**: `_src/bookmarks/` - Saved links and bookmarks"
+printfn "- **Reviews**: `_src/reviews/library/` - Book reviews"
+printfn "- **Media**: `_src/media/` - Photo albums and media collections"
+printfn "- **Timeline (All)**: Aggregation of all content types above"
+printfn ""
+printfn "**Note**: Popular Tags and Top Domains sections include both direct responses (`_src/responses/`) and bookmarks (`_src/bookmarks/`) to provide comprehensive external content interaction statistics."
 printfn ""
 
 // Print yearly counts
