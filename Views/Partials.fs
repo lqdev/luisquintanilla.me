@@ -61,6 +61,7 @@ let libraryView = CollectionViews.libraryView
 let snippetsView = CollectionViews.snippetsView
 let wikisView = CollectionViews.wikisView
 let presentationsView = CollectionViews.presentationsView
+let readLaterView = CollectionViews.readLaterView
 let liveStreamsView = CollectionViews.liveStreamsView
 let albumsPageView = CollectionViews.albumsPageView
 let albumPageView = CollectionViews.albumPageView

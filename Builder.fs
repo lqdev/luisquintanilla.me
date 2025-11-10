@@ -275,6 +275,12 @@ module Builder
         let saveDir = Path.Join(outputDir,"collections","starter-packs","ai")
         writePageToDir saveDir "index.html" ytFeedPage
 
+    let buildReadLaterPage (links:ReadLaterLink array) = 
+        let readLaterContent = links |> readLaterView
+        let readLaterPage = generate readLaterContent "default" "Read Later - Luis Quintanilla"
+        let saveDir = Path.Join(outputDir,"resources","read-later")
+        writePageToDir saveDir "index.html" readLaterPage
+
     let buildIRLStackPage () = 
         let irlStackContent = Path.Join(srcDir,"uses.md") |> convertFileToHtml |> contentView
         let irlStackPage = generate irlStackContent "default" "In Real Life Stack - Luis Quintanilla"

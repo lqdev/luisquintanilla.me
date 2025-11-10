@@ -56,6 +56,13 @@ module Domain
         DateAdded: string
     }
 
+    [<CLIMutable>]
+    type ReadLaterLink = {
+        [<JsonPropertyName("url")>] Url: string
+        [<JsonPropertyName("title")>] Title: string
+        [<JsonPropertyName("dateAdded")>] DateAdded: string
+    }
+
     type FeedPost = {
         Title: string
         PostType: string

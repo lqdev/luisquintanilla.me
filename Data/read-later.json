@@ -1,0 +1,12 @@
+[
+    {
+        "url": "https://example.com/test-article",
+        "title": "Test Article for Read Later Feature",
+        "dateAdded": "2025-01-15T10:30:00Z"
+    },
+    {
+        "url": "https://example.com/older-article",
+        "title": "An Older Article",
+        "dateAdded": "2025-01-10T08:00:00Z"
+    }
+]

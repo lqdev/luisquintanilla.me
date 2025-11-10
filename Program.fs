@@ -177,6 +177,10 @@ let main argv =
     let _ = buildWikis()
     ()
 
+    // Build Read Later Page
+    let readLaterLinks = loadReadLaterLinks()
+    buildReadLaterPage readLaterLinks
+
     // Build Books
     let _ = buildBooks()
     ()
