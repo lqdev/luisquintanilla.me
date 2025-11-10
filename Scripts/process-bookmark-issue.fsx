@@ -10,6 +10,44 @@
 open System
 open System.IO
 open System.Text.RegularExpressions
+open System.Diagnostics
+
+// Function to remove URL from read-later.json using jq via shell
+let removeFromReadLater (url: string) =
+    let readLaterPath = Path.Combine("Data", "read-later.json")
+    
+    if File.Exists(readLaterPath) then
+        try
+            // Create temp file for output
+            let tempFile = Path.GetTempFileName()
+            
+            // Use shell to properly handle jq command with proper quoting
+            let psi = ProcessStartInfo()
+            psi.FileName <- "/bin/bash"
+            psi.Arguments <- sprintf """-c "jq --arg url '%s' 'map(select(.url != $url))' '%s' > '%s' && mv '%s' '%s'" """ 
+                                url readLaterPath tempFile tempFile readLaterPath
+            psi.RedirectStandardOutput <- true
+            psi.RedirectStandardError <- true
+            psi.UseShellExecute <- false
+            
+            use proc = Process.Start(psi)
+            
+            let output = proc.StandardOutput.ReadToEnd()
+            let errorOutput = proc.StandardError.ReadToEnd()
+            proc.WaitForExit()
+            
+            if proc.ExitCode = 0 then
+                printfn "🗑️  Removed URL from read-later list (if it existed)"
+                true
+            else
+                printfn "⚠️  Failed to update read-later.json: %s" errorOutput
+                false
+        with ex ->
+            printfn "⚠️  Error updating read-later.json: %s" ex.Message
+            false
+    else
+        // File doesn't exist, nothing to remove
+        true
 
 // Get command line arguments
 let args = fsi.CommandLineArgs |> Array.skip 1
@@ -111,6 +149,9 @@ let fullContent =
 let bookmarksDir = Path.Combine("_src", "bookmarks")
 if not (Directory.Exists(bookmarksDir)) then
     Directory.CreateDirectory(bookmarksDir) |> ignore
+
+// Remove URL from read-later list if it exists
+removeFromReadLater targetUrl |> ignore
 
 // Write file
 let filePath = Path.Combine(bookmarksDir, filename)
