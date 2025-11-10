@@ -204,6 +204,20 @@ jobs:
 
               console.log('✅ PR merged successfully');
 
+              // Trigger the build and deploy workflow
+              try {
+                await github.rest.actions.createWorkflowDispatch({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  workflow_id: 'publish-azure-static-web-apps.yml',
+                  ref: 'main'
+                });
+                console.log('✅ Build and deploy workflow triggered successfully');
+              } catch (dispatchError) {
+                console.error('⚠️ Could not trigger build workflow:', dispatchError.message);
+                // This is not critical - the workflow will run on next manual push
+              }
+
               // Delete the branch after successful merge
               try {
                 await github.rest.git.deleteRef({
