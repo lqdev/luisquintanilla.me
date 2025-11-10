@@ -1,5 +1,5 @@
 ---
-title: "110 Files You Should Have on Your Desktop for Higher Productivity"
+title: "10 Files You Should Have on Your Desktop for Higher Productivity"
 targeturl: https://zapier.com/blog/plain-text-files-for-productivity/
 response_type: reshare
 dt_published: "2025-11-09 19:59 -05:00"
