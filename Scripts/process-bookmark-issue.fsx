@@ -10,38 +10,36 @@
 open System
 open System.IO
 open System.Text.RegularExpressions
-open System.Diagnostics
+open System.Text.Json
 
-// Function to remove URL from read-later.json using jq via shell
+// Type to represent read-later entries
+type ReadLaterEntry = {
+    url: string
+    title: string
+    dateAdded: string
+}
+
+// Function to remove URL from read-later.json using System.Text.Json
 let removeFromReadLater (url: string) =
     let readLaterPath = Path.Combine("Data", "read-later.json")
     
     if File.Exists(readLaterPath) then
         try
-            // Create temp file for output
-            let tempFile = Path.GetTempFileName()
+            // Read and parse the JSON file
+            let jsonContent = File.ReadAllText(readLaterPath)
+            let entries = JsonSerializer.Deserialize<ReadLaterEntry[]>(jsonContent)
             
-            // Use shell to properly handle jq command with proper quoting
-            let psi = ProcessStartInfo()
-            psi.FileName <- "/bin/bash"
-            psi.Arguments <- sprintf """-c "jq --arg url '%s' 'map(select(.url != $url))' '%s' > '%s' && mv '%s' '%s'" """ 
-                                url readLaterPath tempFile tempFile readLaterPath
-            psi.RedirectStandardOutput <- true
-            psi.RedirectStandardError <- true
-            psi.UseShellExecute <- false
+            // Filter out the matching URL
+            let filteredEntries = entries |> Array.filter (fun entry -> entry.url <> url)
             
-            use proc = Process.Start(psi)
+            // Write back to file with pretty printing
+            let options = JsonSerializerOptions()
+            options.WriteIndented <- true
+            let updatedJson = JsonSerializer.Serialize(filteredEntries, options)
+            File.WriteAllText(readLaterPath, updatedJson)
             
-            let output = proc.StandardOutput.ReadToEnd()
-            let errorOutput = proc.StandardError.ReadToEnd()
-            proc.WaitForExit()
-            
-            if proc.ExitCode = 0 then
-                printfn "🗑️  Removed URL from read-later list (if it existed)"
-                true
-            else
-                printfn "⚠️  Failed to update read-later.json: %s" errorOutput
-                false
+            printfn "🗑️  Removed URL from read-later list (if it existed)"
+            true
         with ex ->
             printfn "⚠️  Error updating read-later.json: %s" ex.Message
             false
