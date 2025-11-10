@@ -204,6 +204,18 @@ jobs:
 
               console.log('✅ PR merged successfully');
 
+              // Delete the branch after successful merge
+              try {
+                await github.rest.git.deleteRef({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  ref: `heads/${pr.head.ref}`
+                });
+                console.log(`✅ Branch ${pr.head.ref} deleted successfully`);
+              } catch (deleteError) {
+                console.log(`⚠️ Could not delete branch: ${deleteError.message}`);
+              }
+
             } catch (error) {
               console.error('Error merging PR:', error);
               // Don't fail the workflow if merge fails
