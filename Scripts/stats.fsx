@@ -116,46 +116,58 @@ let responsesByDomain =
     |> Array.countBy(fun x -> Uri(x.Metadata.TargetUrl).Host)
     |> Array.sortByDescending(snd)
 
-// Utility function to display counts
+// Utility function to display counts in markdown format
 let printEntryCounts<'a> (title:string) (entryCounts:('a * int) array) (n:int) = 
-    printfn $"{title}"
+    printfn $"### {title}"
+    printfn ""
 
     match entryCounts.Length with
     | 0 -> 
-        printfn $"No entries"
-        printfn $""
+        printfn "No entries"
+        printfn ""
     | a when a > 0 -> 
+        printfn "| Item | Count |"
+        printfn "|------|-------|"
         match n with 
         | n when n = -1 || n > entryCounts.Length -> 
             entryCounts
-            |> Array.iter(fun x -> printfn $"{fst x} {snd x}")
-            |> fun _ -> printfn $""
+            |> Array.iter(fun x -> printfn $"| {fst x} | {snd x} |")
+            |> fun _ -> printfn ""
         | n when n > 0 -> 
             entryCounts
             |> Array.take n
-            |> Array.iter(fun x -> printfn $"{fst x} {snd x}")
-            |> fun _ -> printfn $""
+            |> Array.iter(fun x -> printfn $"| {fst x} | {snd x} |")
+            |> fun _ -> printfn ""
+
+// Print header
+printfn "# 📊 Content Statistics"
+printfn ""
+let timestamp = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm")
+printfn $"Generated on: {timestamp} UTC"
+printfn ""
 
 // Print yearly counts
+printfn "## 📅 Content by Year (Top 2)"
+printfn ""
 printEntryCounts "Blogs" postCountsByYear 2
-
 printEntryCounts "Notes" noteCountsByYear 2
-
 printEntryCounts "Responses" responseCountsByYear 2
-
 printEntryCounts "Bookmarks" bookmarkCountsByYear 2
-
 printEntryCounts "Reviews" reviewCountsByYear 2
-
 printEntryCounts "Media" mediaCountsByYear 2
-
 printEntryCounts "Timeline (All)" timelineCountsByYear 2
 
 // Print response types
+printfn "## 🔖 Response Analysis"
+printfn ""
 printEntryCounts "Response Types" responsesByType -1
 
 // Print response tag counts
+printfn "## 🏷️ Popular Tags (Top 5)"
+printfn ""
 printEntryCounts "Response Tags" responsesByTag 5
 
 // Print response by host name
+printfn "## 🌐 Top Domains (Top 5)"
+printfn ""
 printEntryCounts "Domains" responsesByDomain 5
