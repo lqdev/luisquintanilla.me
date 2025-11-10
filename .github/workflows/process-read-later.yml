@@ -1,0 +1,205 @@
+name: Process Read Later Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  process-read-later:
+    # Only run if issue has "read-later" label AND issue author is @lqdev
+    if: contains(github.event.issue.labels.*.name, 'read-later') && github.event.issue.user.login == 'lqdev'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Parse issue and extract form data
+        id: extract-data
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              // Extract form responses using regex patterns
+              function extractFormValue(body, label) {
+                // GitHub issue forms format: ### Label\n\nValue
+                const regex = new RegExp(`### ${label}\\s*\\n\\s*\\n([\\s\\S]*?)(?=\\n\\n###|\\n\\n---|\$)`, 'i');
+                const match = body.match(regex);
+                const value = (match && match[1]) ? match[1].trim() : '';
+                
+                // Remove common artifacts from GitHub issue forms
+                return value.replace(/^_No response_$/i, '').trim();
+              }
+              
+              const issueBody = context.payload.issue.body;
+              const url = extractFormValue(issueBody, 'URL');
+              const title = extractFormValue(issueBody, 'Title \\(Optional\\)');
+              
+              console.log('Extracted URL:', url);
+              console.log('Extracted title:', title);
+              
+              // Validate URL format
+              if (!url) {
+                throw new Error('URL is required');
+              }
+              
+              // Basic URL validation
+              try {
+                new URL(url);
+              } catch (e) {
+                throw new Error(`Invalid URL format: ${url}`);
+              }
+              
+              // Set outputs
+              core.setOutput('url', url);
+              core.setOutput('title', title);
+              
+            } catch (error) {
+              console.error('Error extracting issue data:', error);
+              throw error;
+            }
+          
+      - name: Fetch title from URL if not provided
+        id: fetch-title
+        if: steps.extract-data.outputs.title == ''
+        run: |
+          URL="${{ steps.extract-data.outputs.url }}"
+          echo "Fetching title from: $URL"
+          
+          # Fetch the page and extract title
+          TITLE=$(curl -sSL "$URL" | grep -oP '(?<=<title>).*?(?=</title>)' | head -1 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+          
+          if [ -z "$TITLE" ]; then
+            echo "Failed to fetch title, using URL as title"
+            TITLE="$URL"
+          fi
+          
+          echo "Fetched title: $TITLE"
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+          
+      - name: Determine final title
+        id: final-title
+        run: |
+          if [ -n "${{ steps.extract-data.outputs.title }}" ]; then
+            FINAL_TITLE="${{ steps.extract-data.outputs.title }}"
+            echo "Using provided title: $FINAL_TITLE"
+          else
+            FINAL_TITLE="${{ steps.fetch-title.outputs.title }}"
+            echo "Using fetched title: $FINAL_TITLE"
+          fi
+          echo "title=$FINAL_TITLE" >> $GITHUB_OUTPUT
+          
+      - name: Check for duplicates and add to JSON
+        id: update-json
+        run: |
+          URL="${{ steps.extract-data.outputs.url }}"
+          TITLE="${{ steps.final-title.outputs.title }}"
+          JSON_FILE="Data/read-later.json"
+          
+          # Check if URL already exists in the JSON file
+          if grep -q "\"$URL\"" "$JSON_FILE"; then
+            echo "duplicate=true" >> $GITHUB_OUTPUT
+            echo "URL already exists in read-later list"
+            exit 0
+          fi
+          
+          echo "duplicate=false" >> $GITHUB_OUTPUT
+          
+          # Generate ISO 8601 timestamp
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          
+          # Create new entry
+          NEW_ENTRY=$(cat <<EOF
+          {
+            "url": "$URL",
+            "title": "$TITLE",
+            "dateAdded": "$TIMESTAMP"
+          }
+          EOF
+          )
+          
+          # Read existing JSON, add new entry, and write back
+          # Use jq to properly handle JSON manipulation
+          TMP_FILE=$(mktemp)
+          jq --argjson entry "$NEW_ENTRY" '. += [$entry]' "$JSON_FILE" > "$TMP_FILE"
+          mv "$TMP_FILE" "$JSON_FILE"
+          
+          echo "Added new entry to $JSON_FILE"
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+          echo "timestamp=$TIMESTAMP" >> $GITHUB_OUTPUT
+          
+      - name: Create Pull Request
+        if: steps.update-json.outputs.duplicate == 'false'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Add to read later: ${{ steps.final-title.outputs.title }}"
+          title: "Add to read later: ${{ steps.final-title.outputs.title }}"
+          body: |
+            ## New Read Later Link
+            
+            **URL:** ${{ steps.extract-data.outputs.url }}
+            **Title:** ${{ steps.final-title.outputs.title }}
+            **Date Added:** ${{ steps.update-json.outputs.timestamp }}
+            
+            ### Details
+            - ✅ URL validated
+            - ✅ No duplicate found
+            - ✅ Added to `Data/read-later.json`
+            - ✅ Will appear on `/resources/read-later` after merge
+            
+            **Created via GitHub Issue Template #${{ github.event.issue.number }}**
+          branch: content/issue-${{ github.event.issue.number }}/read-later
+          delete-branch: true
+          
+      - name: Close issue on success
+        if: steps.update-json.outputs.duplicate == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              state: 'closed'
+            });
+            
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: '🎉 Your link has been added to the Read Later list! A pull request has been created. After it\'s merged, the link will appear at `/resources/read-later`.'
+            });
+            
+      - name: Handle duplicate
+        if: steps.update-json.outputs.duplicate == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              state: 'closed'
+            });
+            
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: '⚠️ This URL already exists in your Read Later list. No changes were made.'
+            });
+            
+      - name: Handle processing errors
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: `❌ **Error processing read later request**\n\nAn error occurred while processing your request. Please check the workflow logs for details.\n\nCommon issues:\n- Invalid URL format\n- Failed to fetch page title\n- Network connectivity issues\n\nThe issue will remain open for you to retry or fix.`
+            });
