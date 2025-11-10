@@ -149,7 +149,7 @@ jobs:
             - ✅ URL validated
             - ✅ No duplicate found
             - ✅ Added to `Data/read-later.json`
-            - ✅ Will appear on `/resources/read-later` after auto-merge
+            - ✅ Will appear on `/resources/read-later` after merge
             
             **Created via GitHub Issue Template #${{ github.event.issue.number }}**
             
@@ -157,58 +157,69 @@ jobs:
           branch: content/issue-${{ github.event.issue.number }}/read-later
           delete-branch: true
           
-      - name: Enable auto-merge on Pull Request
+      - name: Auto-merge Pull Request
         if: steps.create-pr.outputs.pull-request-number != ''
         uses: actions/github-script@v7
         with:
           script: |
             try {
-              // Enable auto-merge using GraphQL API
               const prNumber = ${{ steps.create-pr.outputs.pull-request-number }};
               
-              // First, get the PR node ID
+              console.log(`Attempting to merge PR #${prNumber}`);
+              
+              // Wait a moment for GitHub to process the PR
+              await new Promise(resolve => setTimeout(resolve, 2000));
+              
+              // Get the PR details to check mergeable state
               const { data: pr } = await github.rest.pulls.get({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 pull_number: prNumber
               });
               
-              console.log(`Enabling auto-merge for PR #${prNumber} (${pr.node_id})`);
+              console.log(`PR mergeable state: ${pr.mergeable_state}`);
+              console.log(`PR mergeable: ${pr.mergeable}`);
               
-              // Enable auto-merge using GraphQL mutation
-              const mutation = `
-                mutation($pullRequestId: ID!) {
-                  enablePullRequestAutoMerge(input: {
-                    pullRequestId: $pullRequestId,
-                    mergeMethod: SQUASH
-                  }) {
-                    pullRequest {
-                      autoMergeRequest {
-                        enabledAt
-                      }
-                    }
-                  }
-                }
-              `;
+              // Check if PR is mergeable
+              if (pr.mergeable === false) {
+                console.log('⚠️ PR has conflicts and cannot be automatically merged.');
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: prNumber,
+                  body: '⚠️ This PR has conflicts and cannot be automatically merged. Please resolve conflicts manually.'
+                });
+                return;
+              }
               
-              await github.graphql(mutation, {
-                pullRequestId: pr.node_id
-              });
-              
-              console.log('✅ Auto-merge enabled successfully');
-              
-              // Add a comment to the PR
-              await github.rest.issues.createComment({
+              // Merge the PR using squash merge
+              await github.rest.pulls.merge({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                issue_number: prNumber,
-                body: '🤖 Auto-merge has been enabled for this PR. It will be automatically merged when all checks pass and there are no conflicts.'
+                pull_number: prNumber,
+                merge_method: 'squash',
+                commit_title: `Add to read later: ${{ steps.final-title.outputs.title }} (#${prNumber})`,
+                commit_message: `Automated merge of read later link\n\nURL: ${{ steps.extract-data.outputs.url }}\nTitle: ${{ steps.final-title.outputs.title }}`
               });
               
+              console.log('✅ PR merged successfully');
+              
             } catch (error) {
-              console.error('Error enabling auto-merge:', error);
-              // Don't fail the workflow if auto-merge fails
-              console.log('⚠️ Auto-merge could not be enabled, but the PR was created successfully. Manual merge will be required.');
+              console.error('Error merging PR:', error);
+              // Don't fail the workflow if merge fails
+              console.log('⚠️ Could not automatically merge PR. Manual merge may be required.');
+              
+              // Add a comment explaining the issue
+              try {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: ${{ steps.create-pr.outputs.pull-request-number }},
+                  body: '⚠️ Automatic merge failed. The PR was created successfully but requires manual merge.'
+                });
+              } catch (commentError) {
+                console.error('Could not add comment:', commentError);
+              }
             }
           
       - name: Close issue on success
@@ -227,7 +238,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.issue.number,
-              body: '🎉 Your link has been added to the Read Later list! A pull request has been created with auto-merge enabled. It will be automatically merged when there are no conflicts, and the link will appear at `/resources/read-later`.'
+              body: '🎉 Your link has been added to the Read Later list! A pull request has been created and will be automatically merged if there are no conflicts. The link will appear at `/resources/read-later`.'
             });
             
       - name: Handle duplicate
