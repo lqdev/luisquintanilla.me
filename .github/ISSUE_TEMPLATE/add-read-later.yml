@@ -22,9 +22,9 @@ body:
       required: true
 
   - type: input
-    id: title
+    id: url_title
     attributes:
-      label: Title (Optional)
+      label: URL Title (Optional)
       description: Custom title for the link. If not provided, the title will be fetched from the webpage.
       placeholder: "e.g., Interesting Article About Web Development"
     validations:

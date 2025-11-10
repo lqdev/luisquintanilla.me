@@ -35,10 +35,10 @@ jobs:
               
               const issueBody = context.payload.issue.body;
               const url = extractFormValue(issueBody, 'URL');
-              const title = extractFormValue(issueBody, 'Title \\(Optional\\)');
+              const title = extractFormValue(issueBody, 'URL Title \\(Optional\\)');
               
               console.log('Extracted URL:', url);
-              console.log('Extracted title:', title);
+              console.log('Extracted URL title:', title);
               
               // Validate URL format
               if (!url) {
