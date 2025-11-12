@@ -1,5 +1,5 @@
 ---
-title: "Agentic AI on Kubernetes and GKE"
+title: "Agent Sandbox - Agentic AI on Kubernetes and GKE"
 targeturl: https://cloud.google.com/blog/products/containers-kubernetes/agentic-ai-on-kubernetes-and-gke
 response_type: reshare
 dt_published: "2025-11-12 11:36 -05:00"
