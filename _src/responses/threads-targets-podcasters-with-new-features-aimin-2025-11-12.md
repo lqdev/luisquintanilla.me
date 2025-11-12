@@ -1,5 +1,5 @@
 ---
-title: "Threads targets podcasters with new features, aiming to become the home for show discussions | TechCrunch"
+title: "Threads targets podcasters with new features, aiming to become the home for show discussions"
 targeturl: https://techcrunch.com/2025/11/11/threads-targets-podcasters-with-new-features-aiming-to-become-the-place-fans-discuss-shows/
 response_type: reshare
 dt_published: "2025-11-12 02:11 -05:00"
