@@ -1,5 +1,5 @@
 // Test script to verify bookmarks are included in stats calculations
-#r "../bin/Debug/net10.0/PersonalSite.dll"
+#r "../bin/Debug/net9.0/PersonalSite.dll"
 
 open Domain
 open Loaders

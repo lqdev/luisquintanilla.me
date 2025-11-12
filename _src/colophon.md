@@ -20,7 +20,7 @@ In a gist, it's static web site built with .NET and hosted on Azure.
 
 ### Static Site Generator
 
-I built the generator for this website myself. It's a .NET 10 console application built with [F#](https://dotnet.microsoft.com/languages/fsharp). The application depends on a few libraries:
+I built the generator for this website myself. It's a .NET 6 console application built with [F#](https://dotnet.microsoft.com/languages/fsharp). The application depends on a few libraries:
 
 - [Markdig](https://www.nuget.org/packages/Markdig/) - Parse markdown content.
 - [Giraffe.ViewEngine](https://www.nuget.org/packages/Giraffe.ViewEngine/) - Develop statically typed HTML using F#.

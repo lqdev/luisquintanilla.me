@@ -5,7 +5,7 @@
     Usage: dotnet fsi process-review-issue.fsx -- "review_type" "item_name" "rating" "summary" "content" "pros" "cons" "item_url" "image_url" "additional_fields_json" "tags" "slug"
 *)
 
-#r "../bin/Debug/net10.0/PersonalSite.dll"
+#r "../bin/Debug/net9.0/PersonalSite.dll"
 
 open System
 open System.IO

@@ -1,5 +1,5 @@
 // Test that non-book review types are not affected by book-specific fields
-#r "../bin/Debug/net10.0/PersonalSite.dll"
+#r "../bin/Debug/net9.0/PersonalSite.dll"
 #r "nuget: YamlDotNet"
 
 open System

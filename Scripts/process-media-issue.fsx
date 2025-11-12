@@ -7,7 +7,7 @@
     Usage: dotnet fsi process-media-issue.fsx -- "media_type" "title" "content_with_media_blocks" "orientation" "optional-slug" "optional,tags"
 *)
 
-#r "../bin/Debug/net10.0/PersonalSite.dll"
+#r "../bin/Debug/net9.0/PersonalSite.dll"
 
 open System
 open System.IO

@@ -1,5 +1,5 @@
 // Reference DLL
-#r "../bin/Debug/net10.0/PersonalSite.dll"
+#r "../bin/Debug/net9.0/PersonalSite.dll"
 
 // Add modules
 open Domain
