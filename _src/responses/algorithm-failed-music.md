@@ -1,5 +1,5 @@
 ---
-title: The algorithm failed music"
+title: The algorithm failed music
 targeturl: https://www.theverge.com/column/815744/music-recommendation-algorithms
 response_type: star
 dt_published: "2025-11-12 00:04 -05:00"
