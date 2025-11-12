@@ -1,5 +1,5 @@
 ---
-title: "Including link: https://www.theverge.com/"
+title: The algorithm failed music"
 targeturl: https://www.theverge.com/column/815744/music-recommendation-algorithms
 response_type: star
 dt_published: "2025-11-12 00:04 -05:00"
@@ -15,4 +15,4 @@ tags: ["culture","music","algorithms","ai"]
 
 > At this stage, anti-algorithm is itself an entire genre of content. Particularly on YouTube, where creators make videos about ditching streaming, stopping doomscrolling, and how the algorithm has flattened culture.
 
-It's not either, or. Human curation and algorithms can coexist. The problem is end users often not given a choice.
+It's not either, or. Human curation and algorithms can coexist. The problem is end users are seldom given a choice.
