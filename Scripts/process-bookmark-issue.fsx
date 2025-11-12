@@ -5,7 +5,7 @@
     Usage: dotnet fsi process-bookmark-issue.fsx -- "target_url" "title" "content" "optional-slug" "optional,tags"
 *)
 
-#r "../bin/Debug/net9.0/PersonalSite.dll"
+#r "../bin/Debug/net10.0/PersonalSite.dll"
 
 open System
 open System.IO
