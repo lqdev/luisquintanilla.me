@@ -2,7 +2,7 @@
     This script loads all content types from the unified feed system and creates a comprehensive weekly markdown summary.
 *)
 
-#r "../bin/Debug/net9.0/PersonalSite.dll"
+#r "../bin/Debug/net10.0/PersonalSite.dll"
 
 open System
 open System.IO
