@@ -24,7 +24,7 @@ jobs:
           cache-dependency-path: '**/packages.lock.json'
 
       - name: Restore dependencies
-        run: dotnet restore --locked-mode
+        run: dotnet restore
           
       - name: Parse issue and extract form data
         id: extract-data
@@ -179,7 +179,7 @@ jobs:
           cache-dependency-path: '**/packages.lock.json'
 
       - name: Restore dependencies
-        run: dotnet restore --locked-mode
+        run: dotnet restore
           
       - name: Parse issue and extract form data
         id: extract-data
@@ -346,7 +346,7 @@ jobs:
           cache-dependency-path: '**/packages.lock.json'
 
       - name: Restore dependencies
-        run: dotnet restore --locked-mode
+        run: dotnet restore
           
       - name: Parse issue and extract form data
         id: extract-data
@@ -507,7 +507,7 @@ jobs:
           cache-dependency-path: '**/packages.lock.json'
 
       - name: Restore dependencies
-        run: dotnet restore --locked-mode
+        run: dotnet restore
           
       - name: Parse issue and extract form data
         id: extract-data
@@ -703,7 +703,7 @@ jobs:
           cache-dependency-path: '**/packages.lock.json'
 
       - name: Restore dependencies
-        run: dotnet restore --locked-mode
+        run: dotnet restore
           
       - name: Determine review type
         id: determine-type
