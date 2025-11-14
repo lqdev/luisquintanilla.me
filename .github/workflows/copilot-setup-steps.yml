@@ -28,15 +28,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Setup .NET 9
+      - name: Setup .NET 10
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
-          cache: true
-          cache-dependency-path: '**/packages.lock.json'
+          dotnet-version: '10.0.x'
+          cache: false
 
       - name: Restore .NET dependencies
-        run: dotnet restore --locked-mode
+        run: dotnet restore
 
       - name: Verify .NET installation
         run: |

@@ -1,5 +1,5 @@
 // Test script to validate migrated book review files
-#r "../bin/Debug/net9.0/PersonalSite.dll"
+#r "../bin/Debug/net10.0/PersonalSite.dll"
 
 open System.IO
 open GenericBuilder

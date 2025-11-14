@@ -9,14 +9,13 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
-      - name: Setup .NET SDK 9.x
+      - name: Setup .NET SDK 10.x
         uses: actions/setup-dotnet@v4
         with: 
-          dotnet-version: '9.0.x'
-          cache: true
-          cache-dependency-path: '**/packages.lock.json'
+          dotnet-version: '10.0.x'
+          cache: false
       - name: Install dependencies
-        run: dotnet restore --locked-mode
+        run: dotnet restore
       - name: Build project
         run: dotnet build --no-restore          
       - name: Display Post Metrics

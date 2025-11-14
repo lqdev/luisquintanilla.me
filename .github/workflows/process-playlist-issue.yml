@@ -16,15 +16,14 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Setup .NET 9
+      - name: Setup .NET 10
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
-          cache: true
-          cache-dependency-path: '**/packages.lock.json'
+          dotnet-version: '10.0.x'
+          cache: false
 
       - name: Restore dependencies
-        run: dotnet restore --locked-mode
+        run: dotnet restore
           
       - name: Parse issue and extract form data
         id: extract-data

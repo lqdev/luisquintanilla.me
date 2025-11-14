@@ -1,5 +1,5 @@
 // Test script to check additionalFields in review blocks
-#r "../bin/Debug/net9.0/PersonalSite.dll"
+#r "../bin/Debug/net10.0/PersonalSite.dll"
 
 open System
 open System.IO
