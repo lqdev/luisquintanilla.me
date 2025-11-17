@@ -1,5 +1,5 @@
 ---
-title: "Stereogum soldiers on in the era of streaming and AI | The Verge"
+title: "Stereogum soldiers on in the era of streaming and AI"
 targeturl: https://www.theverge.com/entertainment/821767/stereogum-scott-lapatine-independent-music-media-streaming-ai
 response_type: star
 dt_published: "2025-11-16 21:27 -05:00"
