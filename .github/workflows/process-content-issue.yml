@@ -377,11 +377,25 @@ jobs:
               }
               
               const issueBody = context.payload.issue.body;
-              const targetUrl = extractFormValue(issueBody, 'Target URL');
-              const title = extractFormValue(issueBody, 'Title');
+              let targetUrl = extractFormValue(issueBody, 'Target URL');
+              let title = extractFormValue(issueBody, 'Title');
               const content = extractFormValue(issueBody, 'Content \\(Optional\\)');
               const customSlug = extractFormValue(issueBody, 'Slug \\(Optional\\)');
               const tagsInput = extractFormValue(issueBody, 'Tags \\(Optional\\)');
+              
+              // Auto-detect and fix swapped title/URL fields
+              // If title looks like a URL and targetUrl doesn't, swap them
+              const urlPattern = /^https?:\/\/.+/i;
+              const titleLooksLikeUrl = urlPattern.test(title);
+              const targetUrlLooksLikeUrl = urlPattern.test(targetUrl);
+              
+              if (titleLooksLikeUrl && !targetUrlLooksLikeUrl) {
+                console.log('⚠️  Detected swapped title and URL fields - auto-correcting...');
+                const temp = targetUrl;
+                targetUrl = title;
+                title = temp;
+                console.log('✅ Auto-corrected: Title and URL fields have been swapped back');
+              }
               
               console.log('Extracted target URL:', targetUrl);
               console.log('Extracted title:', title);
