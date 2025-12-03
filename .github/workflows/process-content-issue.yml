@@ -206,6 +206,7 @@ jobs:
               
               // Auto-detect and fix swapped title/URL fields
               // If title looks like a URL and targetUrl doesn't, swap them
+              // Note: If both are URLs or neither are URLs, no swap is performed (edge cases handled by F# validation)
               const urlPattern = /^https?:\/\/.+/i;
               const titleLooksLikeUrl = urlPattern.test(title);
               const targetUrlLooksLikeUrl = urlPattern.test(targetUrl);
@@ -385,6 +386,7 @@ jobs:
               
               // Auto-detect and fix swapped title/URL fields
               // If title looks like a URL and targetUrl doesn't, swap them
+              // Note: If both are URLs or neither are URLs, no swap is performed (edge cases handled by F# validation)
               const urlPattern = /^https?:\/\/.+/i;
               const titleLooksLikeUrl = urlPattern.test(title);
               const targetUrlLooksLikeUrl = urlPattern.test(targetUrl);
