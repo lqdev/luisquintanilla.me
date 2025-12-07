@@ -326,6 +326,10 @@ jobs:
           ORIGINAL_COUNT=$(jq 'length' "$JSON_FILE")
           echo "Original entry count: $ORIGINAL_COUNT"
           
+          # Extract removed entries before filtering (entries older than cutoff)
+          REMOVED_ENTRIES_FILE=$(mktemp)
+          jq --arg cutoff "$CUTOFF_DATE" '[.[] | select(.dateAdded < $cutoff)]' "$JSON_FILE" > "$REMOVED_ENTRIES_FILE"
+          
           # Filter entries to keep only those newer than 14 days
           TMP_FILE=$(mktemp)
           jq --arg cutoff "$CUTOFF_DATE" '[.[] | select(.dateAdded >= $cutoff)]' "$JSON_FILE" > "$TMP_FILE"
@@ -342,6 +346,7 @@ jobs:
           echo "removed_count=$REMOVED_COUNT" >> $GITHUB_OUTPUT
           echo "original_count=$ORIGINAL_COUNT" >> $GITHUB_OUTPUT
           echo "new_count=$NEW_COUNT" >> $GITHUB_OUTPUT
+          echo "removed_entries_file=$REMOVED_ENTRIES_FILE" >> $GITHUB_OUTPUT
           
           # Only update file if entries were removed
           if [ "$REMOVED_COUNT" -gt 0 ]; then
@@ -350,6 +355,7 @@ jobs:
             echo "✅ Removed $REMOVED_COUNT old entries"
           else
             rm "$TMP_FILE"
+            rm "$REMOVED_ENTRIES_FILE"
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "✅ No old entries to remove"
           fi
@@ -472,6 +478,20 @@ jobs:
           
           if [ "${{ steps.cleanup.outputs.has_changes }}" = "true" ]; then
             echo "✅ Old entries were removed and a PR was created." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 🗑️ Removed Entries" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
+            # Read and display removed entries
+            REMOVED_ENTRIES_FILE="${{ steps.cleanup.outputs.removed_entries_file }}"
+            if [ -f "$REMOVED_ENTRIES_FILE" ]; then
+              # Process each removed entry and format as markdown list
+              # Use URL as link text if title is empty or null
+              jq -r '.[] | if (.title == "" or .title == null) then "- [\(.url)](\(.url))" else "- [\(.title)](\(.url))" end' "$REMOVED_ENTRIES_FILE" >> $GITHUB_STEP_SUMMARY
+              
+              # Clean up the temp file
+              rm "$REMOVED_ENTRIES_FILE"
+            fi
           else
             echo "✅ No old entries found - list is up to date!" >> $GITHUB_STEP_SUMMARY
           fi
