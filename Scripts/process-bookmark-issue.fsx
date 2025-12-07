@@ -10,42 +10,6 @@
 open System
 open System.IO
 open System.Text.RegularExpressions
-open System.Text.Json
-
-// Type to represent read-later entries
-type ReadLaterEntry = {
-    url: string
-    title: string
-    dateAdded: string
-}
-
-// Function to remove URL from read-later.json using System.Text.Json
-let removeFromReadLater (url: string) =
-    let readLaterPath = Path.Combine("Data", "read-later.json")
-    
-    if File.Exists(readLaterPath) then
-        try
-            // Read and parse the JSON file
-            let jsonContent = File.ReadAllText(readLaterPath)
-            let entries = JsonSerializer.Deserialize<ReadLaterEntry[]>(jsonContent)
-            
-            // Filter out the matching URL
-            let filteredEntries = entries |> Array.filter (fun entry -> entry.url <> url)
-            
-            // Write back to file with pretty printing
-            let options = JsonSerializerOptions()
-            options.WriteIndented <- true
-            let updatedJson = JsonSerializer.Serialize(filteredEntries, options)
-            File.WriteAllText(readLaterPath, updatedJson)
-            
-            printfn "🗑️  Removed URL from read-later list (if it existed)"
-            true
-        with ex ->
-            printfn "⚠️  Error updating read-later.json: %s" ex.Message
-            false
-    else
-        // File doesn't exist, nothing to remove
-        true
 
 // Get command line arguments
 let args = fsi.CommandLineArgs |> Array.skip 1
@@ -147,9 +111,6 @@ let fullContent =
 let bookmarksDir = Path.Combine("_src", "bookmarks")
 if not (Directory.Exists(bookmarksDir)) then
     Directory.CreateDirectory(bookmarksDir) |> ignore
-
-// Remove URL from read-later list if it exists
-removeFromReadLater targetUrl |> ignore
 
 // Write file
 let filePath = Path.Combine(bookmarksDir, filename)
