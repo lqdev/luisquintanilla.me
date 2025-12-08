@@ -6,7 +6,7 @@ tags: ["cratefinds","music","playlist","spotify","youtube"]
 
 Slow month but still managed to find a few gems. 
 
-I really liked Suite: Judy Blue Eyes by Crosby, Stills* Nash & Young
+I really liked Suite: Judy Blue Eyes by Crosby, Stills, Nash & Young
 
 ## Tracks
 
