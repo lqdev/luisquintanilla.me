@@ -173,5 +173,10 @@
     "url": "https://openai.com/index/shipping-sora-for-android-with-codex/",
     "title": "How we used Codex to build Sora for Android in 28 days",
     "dateAdded": "2025-12-15T15:20:41Z"
+  },
+  {
+    "url": "https://aws.amazon.com/blogs/machine-learning/applying-data-loading-best-practices-for-ml-training-with-amazon-s3-clients/",
+    "title": "Applying data loading best practices for ML training with Amazon S3 clients",
+    "dateAdded": "2025-12-15T23:59:44Z"
   }
 ]
