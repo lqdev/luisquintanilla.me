@@ -223,5 +223,10 @@
     "url": "https://www.scd31.com/posts/programming-on-the-subway",
     "title": "I Program on the Subway",
     "dateAdded": "2025-12-16T23:01:21Z"
+  },
+  {
+    "url": "https://tailscale.com/blog/chat-tails-terminal-chat",
+    "title": "Chat-tails is a terminal-based chat app, made secure with Tailscale",
+    "dateAdded": "2025-12-16T23:27:39Z"
   }
 ]
