@@ -1,7 +1,7 @@
 ---
 title: "Native and Compact Structured Latents for 3D Generation"
 targeturl: https://github.com/microsoft/TRELLIS.2
-response_type: reply
+response_type: reshare
 dt_published: "2025-12-16 17:55 -05:00"
 dt_updated: "2025-12-16 17:55 -05:00"
 tags: ["microsoft","ai","3d"]
