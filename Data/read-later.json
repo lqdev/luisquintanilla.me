@@ -233,5 +233,10 @@
     "url": "https://ngrok.com/blog/prompt-caching/",
     "title": "Prompt caching: 10x cheaper LLM tokens, but how?",
     "dateAdded": "2025-12-20T03:26:58Z"
+  },
+  {
+    "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
+    "title": "2025 LLM Year in Review",
+    "dateAdded": "2025-12-20T04:05:37Z"
   }
 ]
