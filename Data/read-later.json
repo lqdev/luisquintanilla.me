@@ -263,5 +263,10 @@
     "url": "https://blog.google/products/google-cloud/ai-business-trends-report-2026/",
     "title": "Google Cloud’s Business Trends Report 2026: Key findings",
     "dateAdded": "2025-12-21T02:57:55Z"
+  },
+  {
+    "url": "https://developers.googleblog.com/en/introducing-metrax-performant-efficient-and-robust-model-evaluation-metrics-in-jax/",
+    "title": "Introducing Metrax: performant, efficient, and robust model evaluation metrics in JAX",
+    "dateAdded": "2025-12-21T03:06:21Z"
   }
 ]
