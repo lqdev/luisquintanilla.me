@@ -21,7 +21,7 @@ https://ice4.somafm.com/bootliquor-64-aac
 https://playerservices.streamtheworld.com/api/livestream-redirect/WWWQH3AAC.aac
 
 #EXTINF: 0, WBGO 88.3 Jazz Newark
-https://wbgo.streamguys1.com/wbgo128
+https://ais-sa8.cdnstream1.com/3629_128.mp3
 
 #EXTINF: 0, KHOL 89.1 Jackson Hole
 http://peridot.streamguys.com:6010/live
@@ -36,7 +36,7 @@ https://stream.revma.ihrhls.com/zc1337
 https://kexp.streamguys1.com/kexp64.aac
 
 #EXTINF: 0, KNDD 107.7 The End
-https://prod-44-203-251-114.amperwave.net/audacy-knddfmaac-hlsc.m3u8?apv=a2&streamsource=Amperwave&dist=Audacy&source=webA2&gpp=DBABrGA%7EBVQqAAAACWA.QA%7EBUoAAAJY.QA%7EBVoAABY%7EBVoAAFg.QA%7EBVKAAAWA%7EBVoAAAFg.QA&c_user_id=f8k%3Aa61b2ebe0ee2d238b75d455d7b12ea57&t_partner_ids=eyJhY3UtdWlkIjoiNzk5OTUyMDk3OTMyIiwiZHluLXVpZCI6IjM4MzQzMjg4NDU2MzkyMzI0NDYiLCJhbi11aWQiOiIwIiwibW0tdWlkIjoiMzNjOTY0YjEtN2IyOS00ZjAwLThlNTItMjMxMDM3NjNjODM1IiwidHJpdG9uLXVpZCI6ImNvb2tpZTo2MzQ1N2MyOS01ZThmLTQ4MDgtOTVlMi01YTFhYjE4ZTRiNTAiLCJhbWItdWlkIjoiNDMzMDIxMTI4MTIyMDU4MTU1OSJ9
+https://live.amperwave.net/direct/audacy-knddfmaac-imc
 
 #EXTINF: 0, Dance UK
 https://dancestream.danceradiouk.com/stream
@@ -48,7 +48,7 @@ https://azuracast.tilderadio.org/radio/8000/radio.ogg
 https://live.amperwave.net/direct/alphacorporate-kleyfmaac-ibc4
 
 #EXTINF: 0, 95.7 The Vibe
-https://24503.live.streamtheworld.com/KSZRFMAAC.aac
+https://playerservices.streamtheworld.com/api/livestream-redirect/KSZRFM.mp3
 
 #EXTINF: 0, Nightride FM Nightride
 https://stream.nightride.fm:8443/nightride/aac_hifi.m3u8
