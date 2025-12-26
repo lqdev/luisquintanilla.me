@@ -14,14 +14,14 @@ TARGET_URLS_FILE=$(mktemp)
 
 # Extract from responses (check if any .md files exist first)
 if [ -d "$RESPONSES_DIR" ] && compgen -G "$RESPONSES_DIR/*.md" > /dev/null; then
-  grep -h "^targeturl:" "$RESPONSES_DIR"/*.md 2>/dev/null | sed 's/^targeturl: *//' | sed 's/ *$//' >> "$TARGET_URLS_FILE" || true
+  grep -h "^[[:space:]]*targeturl:[[:space:]]*" "$RESPONSES_DIR"/*.md 2>/dev/null | sed 's/^[[:space:]]*targeturl:[[:space:]]*//' | sed 's/[[:space:]]*$//' >> "$TARGET_URLS_FILE" || true
 else
   echo "   Warning: No response markdown files found in $RESPONSES_DIR"
 fi
 
 # Extract from bookmarks (check if any .md files exist first)
 if [ -d "$BOOKMARKS_DIR" ] && compgen -G "$BOOKMARKS_DIR/*.md" > /dev/null; then
-  grep -h "^targeturl:" "$BOOKMARKS_DIR"/*.md 2>/dev/null | sed 's/^targeturl: *//' | sed 's/ *$//' >> "$TARGET_URLS_FILE" || true
+  grep -h "^[[:space:]]*targeturl:[[:space:]]*" "$BOOKMARKS_DIR"/*.md 2>/dev/null | sed 's/^[[:space:]]*targeturl:[[:space:]]*//' | sed 's/[[:space:]]*$//' >> "$TARGET_URLS_FILE" || true
 else
   echo "   Warning: No bookmark markdown files found in $BOOKMARKS_DIR"
 fi
@@ -37,13 +37,14 @@ echo "2. Checking read-later.json for matching entries..."
 ORIGINAL_COUNT=$(jq 'length' "$JSON_FILE")
 echo "   Original entry count: $ORIGINAL_COUNT"
 
-# Build jq filter using more efficient index lookup
+# Build jq filter using optimized O(1) object lookup
 TARGET_URLS_ARRAY=$(cat "$TARGET_URLS_FILE" | jq -R -s -c 'split("\n") | map(select(length > 0))')
 
-# Find matching entries using more efficient jq expression
+# Find matching entries using optimized jq expression with object lookup
 MATCHING_ENTRIES=$(mktemp)
 jq --argjson urls "$TARGET_URLS_ARRAY" '
-  [.[] | select(.url as $u | $urls | index($u) | . != null)]
+  ($urls | map({key: ., value: true}) | from_entries) as $url_set |
+  [.[] | select($url_set[.url])]
 ' "$JSON_FILE" > "$MATCHING_ENTRIES"
 
 MATCHING_COUNT=$(jq 'length' "$MATCHING_ENTRIES")

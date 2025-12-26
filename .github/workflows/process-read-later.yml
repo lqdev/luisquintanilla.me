@@ -519,14 +519,14 @@ jobs:
           
           # Extract from responses (check if any .md files exist first)
           if [ -d "$RESPONSES_DIR" ] && compgen -G "$RESPONSES_DIR/*.md" > /dev/null; then
-            grep -h "^targeturl:" "$RESPONSES_DIR"/*.md 2>/dev/null | sed 's/^targeturl: *//' | sed 's/ *$//' >> "$TARGET_URLS_FILE" || true
+            grep -h "^[[:space:]]*targeturl:[[:space:]]*" "$RESPONSES_DIR"/*.md 2>/dev/null | sed 's/^[[:space:]]*targeturl:[[:space:]]*//' | sed 's/[[:space:]]*$//' >> "$TARGET_URLS_FILE" || true
           else
             echo "No response markdown files found in $RESPONSES_DIR"
           fi
           
           # Extract from bookmarks (check if any .md files exist first)
           if [ -d "$BOOKMARKS_DIR" ] && compgen -G "$BOOKMARKS_DIR/*.md" > /dev/null; then
-            grep -h "^targeturl:" "$BOOKMARKS_DIR"/*.md 2>/dev/null | sed 's/^targeturl: *//' | sed 's/ *$//' >> "$TARGET_URLS_FILE" || true
+            grep -h "^[[:space:]]*targeturl:[[:space:]]*" "$BOOKMARKS_DIR"/*.md 2>/dev/null | sed 's/^[[:space:]]*targeturl:[[:space:]]*//' | sed 's/[[:space:]]*$//' >> "$TARGET_URLS_FILE" || true
           else
             echo "No bookmark markdown files found in $BOOKMARKS_DIR"
           fi
@@ -559,11 +559,12 @@ jobs:
           TARGET_URLS_ARRAY=$(cat "$TARGET_URLS_FILE" | jq -R -s -c 'split("\n") | map(select(length > 0))')
           
           # Single pass: partition entries into removed and kept
-          # This is more efficient than processing the file twice
+          # Convert URL array to object for O(1) lookup performance
           jq --argjson urls "$TARGET_URLS_ARRAY" '
+            ($urls | map({key: ., value: true}) | from_entries) as $url_set |
             reduce .[] as $item (
               {removed: [], kept: []};
-              if ($item.url as $u | $urls | index($u) | . != null) then
+              if $url_set[$item.url] then
                 .removed += [$item]
               else
                 .kept += [$item]
