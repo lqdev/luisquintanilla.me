@@ -60,11 +60,6 @@
     "dateAdded": "2025-12-15T15:20:41Z"
   },
   {
-    "url": "https://aws.amazon.com/blogs/machine-learning/applying-data-loading-best-practices-for-ml-training-with-amazon-s3-clients/",
-    "title": "Applying data loading best practices for ML training with Amazon S3 clients",
-    "dateAdded": "2025-12-15T23:59:44Z"
-  },
-  {
     "url": "https://www.microsoft.com/en-us/research/podcast/ideas-community-building-machine-learning-and-the-future-of-ai/",
     "title": "Ideas: Community building, machine learning, and the future of AI - Microsoft Research",
     "dateAdded": "2025-12-16T03:09:55Z"
@@ -115,31 +110,6 @@
     "dateAdded": "2025-12-16T23:01:21Z"
   },
   {
-    "url": "https://tailscale.com/blog/chat-tails-terminal-chat",
-    "title": "Chat-tails is a terminal-based chat app, made secure with Tailscale",
-    "dateAdded": "2025-12-16T23:27:39Z"
-  },
-  {
-    "url": "https://fivetwelvethirteen.substack.com/p/how-i-trained-my-memory",
-    "title": "How I Trained My Memory",
-    "dateAdded": "2025-12-17T00:19:17Z"
-  },
-  {
-    "url": "https://www.figma.com/blog/prototypes-are-the-new-prds/",
-    "title": "Prototypes Are the New PRDs",
-    "dateAdded": "2025-12-17T00:57:31Z"
-  },
-  {
-    "url": "https://www.bentoml.com/blog/the-best-open-source-small-language-models",
-    "title": "The Best Open-Source Small Language Models (SLMs) in 2026",
-    "dateAdded": "2025-12-17T04:09:22Z"
-  },
-  {
-    "url": "https://ma.tt/2025/12/beware-unearned-wisdom/",
-    "title": "Beware Unearned Wisdom",
-    "dateAdded": "2025-12-17T05:01:33Z"
-  },
-  {
     "url": "https://learn.microsoft.com/en-us/entra/agent-id/identity-professional/microsoft-entra-agent-identities-for-ai-agents",
     "title": "What is Microsoft Entra Agent ID? - Microsoft Entra Agent ID",
     "dateAdded": "2025-12-18T02:14:16Z"
@@ -160,21 +130,6 @@
     "dateAdded": "2025-12-19T17:10:49Z"
   },
   {
-    "url": "https://huggingface.co/blog/transformers-v5",
-    "title": "Transformers v5: Simple model definitions powering the AI ecosystem",
-    "dateAdded": "2025-12-19T17:11:41Z"
-  },
-  {
-    "url": "https://ngrok.com/blog/prompt-caching/",
-    "title": "Prompt caching: 10x cheaper LLM tokens, but how?",
-    "dateAdded": "2025-12-20T03:26:58Z"
-  },
-  {
-    "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
-    "title": "2025 LLM Year in Review",
-    "dateAdded": "2025-12-20T04:05:37Z"
-  },
-  {
     "url": "https://cybercultural.com/p/indie-web-report-2025/",
     "title": "My 2025 Indie Web Report and Thoughts on the Open Web",
     "dateAdded": "2025-12-20T20:00:40Z"
@@ -190,61 +145,6 @@
     "dateAdded": "2025-12-20T21:38:59Z"
   },
   {
-    "url": "https://www.mcsweeneys.net/articles/i-work-for-an-evil-company-but-outside-work-im-actually-a-really-good-person",
-    "title": "I Work For an Evil Company, but Outside Work, I’m Actually a Really Good Person",
-    "dateAdded": "2025-12-21T02:49:25Z"
-  },
-  {
-    "url": "https://blog.google/products/google-cloud/ai-business-trends-report-2026/",
-    "title": "Google Cloud’s Business Trends Report 2026: Key findings",
-    "dateAdded": "2025-12-21T02:57:55Z"
-  },
-  {
-    "url": "https://developers.googleblog.com/en/introducing-metrax-performant-efficient-and-robust-model-evaluation-metrics-in-jax/",
-    "title": "Introducing Metrax: performant, efficient, and robust model evaluation metrics in JAX",
-    "dateAdded": "2025-12-21T03:06:21Z"
-  },
-  {
-    "url": "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/",
-    "title": "Measuring AI Ability to Complete Long Tasks",
-    "dateAdded": "2025-12-21T16:58:45Z"
-  },
-  {
-    "url": "https://www.theverge.com/podcast/848744/aim-aol-instant-messenger-version-history",
-    "title": "How AIM taught the internet to chat",
-    "dateAdded": "2025-12-21T19:50:56Z"
-  },
-  {
-    "url": "https://factory.ai/news/evaluating-compression",
-    "title": "Evaluating Context Compression for AI Agents",
-    "dateAdded": "2025-12-22T15:41:01Z"
-  },
-  {
-    "url": "https://www.cloudnativedeepdive.com/multiplexing-mcp-servers-for-agentic-specialization/",
-    "title": "Multiplexing MCP Servers For Agentic Specialization",
-    "dateAdded": "2025-12-22T15:44:23Z"
-  },
-  {
-    "url": "https://annas-archive.li/blog/backing-up-spotify.html",
-    "title": "Backing up Spotify",
-    "dateAdded": "2025-12-22T15:47:33Z"
-  },
-  {
-    "url": "https://fmind.medium.com/da2a-the-future-of-data-platforms-is-agentic-distributed-and-collaborative-741d5aa96fc4",
-    "title": "Da2a: The Future of Data Platforms is Agentic, Distributed, and Collaborative",
-    "dateAdded": "2025-12-23T00:33:16Z"
-  },
-  {
-    "url": "https://hackernoon.com/the-seven-pillars-of-a-production-grade-agent-architecture",
-    "title": "The Seven Pillars of a Production-Grade Agent Architecture",
-    "dateAdded": "2025-12-23T00:34:44Z"
-  },
-  {
-    "url": "https://dropbox.tech/machine-learning/feature-store-powering-realtime-ai-in-dropbox-dash",
-    "title": "Inside the feature store powering real-time AI in Dropbox Dash",
-    "dateAdded": "2025-12-23T04:29:46Z"
-  },
-  {
     "url": "https://huggingface.co/papers/2512.16676",
     "title": "DataFlow: An LLM-Driven Framework for Unified Data Preparation and Workflow Automation in the Era of Data-Centric AI",
     "dateAdded": "2025-12-23T05:04:20Z"
@@ -255,28 +155,8 @@
     "dateAdded": "2025-12-23T05:05:13Z"
   },
   {
-    "url": "https://mongodb.com/company/blog/engineering/token-count-based-batching-faster-cheaper-embedding-inference-for-queries",
-    "title": "Token-count-based Batching: Faster, Cheaper Embedding Inference for Queries",
-    "dateAdded": "2025-12-24T00:33:07Z"
-  },
-  {
     "url": "https://werd.io/my-2026-open-social-web-predictions/",
     "title": "My 2026 Open Social Web Predictions",
     "dateAdded": "2025-12-24T18:54:12Z"
-  },
-  {
-    "url": "https://sfalexandria.com/posts/rileys-ideas/",
-    "title": "Training the Idea Muscle",
-    "dateAdded": "2025-12-24T18:57:09Z"
-  },
-  {
-    "url": "https://blog.google/technology/ai/2025-research-breakthroughs/",
-    "title": "Google 2025 recap: Research breakthroughs of the year",
-    "dateAdded": "2025-12-25T05:14:37Z"
-  },
-  {
-    "url": "https://www.kaggle.com/whitepaper-introduction-to-agents",
-    "title": "Introduction to Agents",
-    "dateAdded": "2025-12-25T17:29:41Z"
   }
 ]
