@@ -1,5 +1,5 @@
 ---
-title: "The Technium: How Will the Miracle Happen Today?"
+title: "How Will the Miracle Happen Today?"
 targeturl: https://kk.org/thetechnium/how-will-the-miracle-happen-today/
 response_type: reshare
 dt_published: "2026-01-04 19:07 -05:00"
