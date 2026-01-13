@@ -31,7 +31,7 @@ clean:
 # Create directory structure
 dirs:
 	@echo "📁 Creating build directories..."
-	mkdir -p $(BUILD_DIR)/{posts,feed,assets,tags}
+	mkdir -p $(BUILD_DIR)/{posts,feed,assets,tags,playlists,reviews,notes,.metadata}
 	@echo "✅ Directories created"
 
 # Process markdown content
@@ -62,8 +62,14 @@ generate-tags:
 	$(BIN_DIR)/generate-tags.sh
 	@echo "✅ Tag pages generated"
 
+# Process enhanced content types (playlists, reviews)
+process-enhanced: dirs
+	@echo "🎵 Processing enhanced content types..."
+	$(BIN_DIR)/process-content-types.sh $(BUILD_DIR) $(SRC_DIR)
+	@echo "✅ Enhanced content processing complete"
+
 # Main build target
-build: check-deps clean process-content generate-feeds copy-assets generate-tags
+build: check-deps clean process-content process-enhanced generate-feeds copy-assets generate-tags
 	@echo "🎉 Build complete! Output in $(BUILD_DIR)/"
 
 # Development server (if python3 available)
@@ -75,7 +81,7 @@ serve:
 # Parallel build (experimental)
 build-parallel: check-deps clean dirs
 	@echo "⚡ Running parallel build..."
-	@$(MAKE) -j4 process-content generate-feeds copy-assets generate-tags
+	@$(MAKE) -j4 process-content process-enhanced generate-feeds copy-assets generate-tags
 	@echo "🎉 Parallel build complete!"
 
-.PHONY: check-deps clean dirs process-content generate-feeds copy-assets generate-tags build serve build-parallel
+.PHONY: check-deps clean dirs process-content process-enhanced generate-feeds copy-assets generate-tags build serve build-parallel
