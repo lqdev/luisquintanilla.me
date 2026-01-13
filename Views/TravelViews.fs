@@ -60,7 +60,7 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
                             ]
                             
                             div [ _class "coordinate-links mt-1" ] [
-                                a [ _href $"geo:{place.Latitude},{place.Longitude}"; _class "btn btn-sm btn-outline-primary me-1" ] [
+                                a [ _href $"geo:{place.Latitude},{place.Longitude}"; _class "btn btn-sm btn-outline-primary me-1 d-none-desktop" ] [
                                     Text "📱 Open in App"
                                 ]
                                 a [ _href $"https://www.openstreetmap.org/?mlat={place.Latitude}&mlon={place.Longitude}&zoom=18"; _target "_blank"; _class "btn btn-sm btn-outline-secondary me-1" ] [
@@ -94,7 +94,7 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
                                 div [ _class "info-row d-flex flex-wrap" ] [
                                     match info.Price with
                                     | Some price -> 
-                                        span [ _class "info-item me-3 mb-1" ] [
+                                        span [ _class "info-item me-4 mb-1" ] [
                                             i [ _class "bi bi-currency-euro me-1" ] []
                                             Text price
                                         ]
@@ -102,7 +102,7 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
                                     
                                     match info.Hours with
                                     | Some hours ->
-                                        span [ _class "info-item me-3 mb-1" ] [
+                                        span [ _class "info-item me-4 mb-1" ] [
                                             i [ _class "bi bi-clock me-1" ] []
                                             Text hours
                                         ]
@@ -110,9 +110,17 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
                                     
                                     match info.Phone with
                                     | Some phone ->
-                                        span [ _class "info-item me-3 mb-1" ] [
+                                        span [ _class "info-item me-4 mb-1" ] [
                                             i [ _class "bi bi-telephone me-1" ] []
                                             a [ _href $"tel:{phone}" ] [ Text phone ]
+                                        ]
+                                    | None -> ()
+                                    
+                                    match info.Website with
+                                    | Some website ->
+                                        span [ _class "info-item me-4 mb-1" ] [
+                                            i [ _class "bi bi-globe me-1" ] []
+                                            a [ _href website; _target "_blank" ] [ Text "Website" ]
                                         ]
                                     | None -> ()
                                 ]

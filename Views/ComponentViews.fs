@@ -59,16 +59,60 @@ let cardHeader (date:string) =
 let private sanitizeTagForUrl (tag: string) =
     tag.Replace("#", "sharp").Replace("/", "-").Replace(" ", "-").Replace("\"", "")
 
+/// Generate copy-to-clipboard button for permalinks
+let copyPermalinkButton (relativeUrl: string) =
+    button [
+        _class "copy-permalink-btn permalink-action-btn"
+        _type "button"
+        _title "Copy to clipboard"
+        attr "data-url" relativeUrl
+        attr "aria-label" $"Copy permalink to clipboard"
+    ] [
+        tag "span" [_class "button-icon"; attr "aria-hidden" "true"] [str "📋"]
+        tag "span" [_class "button-label"] [str "Copy"]
+    ]
+
+/// Generate web share button for sharing via native share
+let webShareButton (relativeUrl: string) =
+    button [
+        _class "web-share-btn permalink-action-btn"
+        _type "button"
+        _title "Share via Web Share API"
+        attr "data-url" relativeUrl
+        attr "aria-label" "Share this page"
+    ] [
+        tag "span" [_class "button-icon"; attr "aria-hidden" "true"] [str "🔗"]
+        tag "span" [_class "button-label"] [str "Share"]
+    ]
+
+/// Generate QR code button for generating QR codes
+let qrCodeButton (relativeUrl: string) =
+    button [
+        _class "qr-code-btn permalink-action-btn"
+        _type "button"
+        _title "Generate QR Code"
+        attr "data-url" relativeUrl
+        attr "aria-label" "Generate QR code for this page"
+    ] [
+        tag "span" [_class "button-icon"; attr "aria-hidden" "true"] [str "📱"]
+        tag "span" [_class "button-label"] [str "QR Code"]
+    ]
+
 let cardFooter (contentType:string) (fileName:string) (tags: string array)= 
     let tagElements = 
         tags
         |> cleanTags
-        |> Array.map(fun tag -> a [_href $"/tags/{sanitizeTagForUrl tag}"; _class "p-category"] [Text $"#{tag}"])
+        |> Array.map(fun tag -> a [_href $"/tags/{sanitizeTagForUrl tag}"; _class "tag-link"] [Text $"#{tag}"])
 
     div [_class "card-footer"] [
-        let permalink = $"/{contentType}/{fileName}/" 
-        Text "Permalink: " 
-        a [_href permalink; _class "u-url"] [Text $"{permalink}"] 
+        let permalink = $"/{contentType}/{fileName}/"
+        div [_class "permalink-section d-flex align-items-center"] [
+            Text "Permalink: "
+            a [_href permalink; _class "u-url"] [Text $"{permalink}"]
+            copyPermalinkButton permalink
+            webShareButton permalink
+            qrCodeButton permalink
+        ]
         
         div [] [
             str "Tags: "
@@ -82,12 +126,16 @@ let albumCardFooter (fileName:string) (tags: string array)=
     let tagElements = 
         tags
         |> cleanTags
-        |> Array.map(fun tag -> a [_href $"/tags/{sanitizeTagForUrl tag}"; _class "p-category"] [Text $"#{tag}"])
+        |> Array.map(fun tag -> a [_href $"/tags/{sanitizeTagForUrl tag}"; _class "tag-link"] [Text $"#{tag}"])
 
     div [_class "card-footer"] [
         let permalink = $"/media/{fileName}/" 
-        Text "Permalink: " 
-        a [_href permalink; _class "u-url"] [Text $"{permalink}"] 
+        div [_class "permalink-section d-flex align-items-center"] [
+            Text "Permalink: " 
+            a [_href permalink; _class "u-url"] [Text $"{permalink}"]
+            copyPermalinkButton permalink
+            qrCodeButton permalink
+        ]
         
         div [] [
             str "Tags: "
@@ -97,6 +145,23 @@ let albumCardFooter (fileName:string) (tags: string array)=
         ]
     ]
 
+/// Tags section for individual post pages - shows tags as clickable hashtags
+let postTagsSection (tags: string array) =
+    if not (isNull tags) && tags.Length > 0 then
+        let tagElements = 
+            tags
+            |> cleanTags
+            |> Array.map(fun tag -> a [_href $"/tags/{sanitizeTagForUrl tag}"; _class "tag-link"] [Text $"#{tag}"])
+        
+        div [_class "post-tags-section"] [
+            str "Tags: "
+            for tag in tagElements do
+                tag
+                Text " "
+        ]
+    else
+        div [] [] // Empty div if no tags
+
 // Navigation and backlink components
 let feedBacklink (url:string) = 
     div [_class "text-center"] [
@@ -105,6 +170,99 @@ let feedBacklink (url:string) =
             a [_href url] [Text "feed"]
         ]
     ]
+
+// Related posts component for individual post pages
+let relatedPostsSection (relatedPosts: Post array) (currentContentType: string) =
+    if relatedPosts.Length > 0 then
+        div [_class "related-posts-section"] [
+            h3 [_class "related-posts-title"] [Text "Related Content"]
+            div [_class "related-posts-list"] [
+                for post in relatedPosts do
+                    let postUrl = sprintf "/%s/%s/" currentContentType post.FileName
+                    // Safe date parsing with fallback
+                    let dateDisplay = 
+                        try
+                            let publishDate = DateTimeOffset.Parse(post.Metadata.Date)
+                            publishDate.ToString("MMMM d, yyyy")
+                        with
+                        | _ -> post.Metadata.Date  // Fallback to raw date string
+                    
+                    article [_class "related-post-item"] [
+                        h4 [_class "related-post-title"] [
+                            a [_href postUrl] [Text post.Metadata.Title]
+                        ]
+                        div [_class "related-post-meta"] [
+                            time [_datetime post.Metadata.Date] [
+                                Text dateDisplay
+                            ]
+                        ]
+                    ]
+            ]
+        ]
+    else
+        div [] [] // Empty div if no related posts
+
+// Related snippets component for individual snippet pages
+let relatedSnippetsSection (relatedSnippets: Snippet array) =
+    if relatedSnippets.Length > 0 then
+        div [_class "related-posts-section"] [
+            h3 [_class "related-posts-title"] [Text "Related Snippets"]
+            div [_class "related-posts-list"] [
+                for snippet in relatedSnippets do
+                    let snippetUrl = sprintf "/resources/snippets/%s/" snippet.FileName
+                    // Safe date parsing with fallback
+                    let dateDisplay = 
+                        try
+                            let publishDate = DateTimeOffset.Parse(snippet.Metadata.CreatedDate)
+                            publishDate.ToString("MMMM d, yyyy")
+                        with
+                        | _ -> snippet.Metadata.CreatedDate  // Fallback to raw date string
+                    
+                    article [_class "related-post-item"] [
+                        h4 [_class "related-post-title"] [
+                            a [_href snippetUrl] [Text snippet.Metadata.Title]
+                        ]
+                        div [_class "related-post-meta"] [
+                            time [_datetime snippet.Metadata.CreatedDate] [
+                                Text dateDisplay
+                            ]
+                        ]
+                    ]
+            ]
+        ]
+    else
+        div [] [] // Empty div if no related snippets
+
+// Related wikis component for individual wiki pages
+let relatedWikisSection (relatedWikis: Wiki array) =
+    if relatedWikis.Length > 0 then
+        div [_class "related-posts-section"] [
+            h3 [_class "related-posts-title"] [Text "Related Wiki Pages"]
+            div [_class "related-posts-list"] [
+                for wiki in relatedWikis do
+                    let wikiUrl = sprintf "/resources/wiki/%s/" wiki.FileName
+                    // Safe date parsing with fallback
+                    let dateDisplay = 
+                        try
+                            let publishDate = DateTimeOffset.Parse(wiki.Metadata.LastUpdatedDate)
+                            publishDate.ToString("MMMM d, yyyy")
+                        with
+                        | _ -> wiki.Metadata.LastUpdatedDate  // Fallback to raw date string
+                    
+                    article [_class "related-post-item"] [
+                        h4 [_class "related-post-title"] [
+                            a [_href wikiUrl] [Text wiki.Metadata.Title]
+                        ]
+                        div [_class "related-post-meta"] [
+                            time [_datetime wiki.Metadata.LastUpdatedDate] [
+                                Text dateDisplay
+                            ]
+                        ]
+                    ]
+            ]
+        ]
+    else
+        div [] [] // Empty div if no related wikis
 
 // Webmention form component
 let webmentionForm = 

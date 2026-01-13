@@ -148,6 +148,21 @@ let presentationsView (presentations: Presentation array) =
         ]
     ]
 
+let readLaterView (links: ReadLaterLink array) = 
+    div [ _class "d-grip gap-3" ] [
+        h2[] [Text "Read Later"]
+        p [] [Text "Links saved for later reading, displayed chronologically"]
+        ul [] [
+            // Display in chronological order (oldest first)
+            for link in links do
+                li [] [
+                    a [ _href link.Url; _target "_blank" ] [ Text link.Title ]
+                    Text " • "
+                    Text (DateTimeOffset.Parse(link.DateAdded).ToString("MMM dd, yyyy"))
+                ]
+        ]
+    ]
+
 let liveStreamsView (livestreams: Livestream array) = 
     div [ _class "d-grip gap-3" ] [
         h2[] [Text "Live Stream Recordings"]
@@ -190,6 +205,89 @@ let albumPageView (images:AlbumImage array) =
                         ]
                     ]
             ]
+    ]
+
+// Album Collections listing page
+let albumCollectionsPageView (albumCollections: AlbumCollection array) = 
+    div [ _class "d-grip gap-3" ] [
+        h2[] [Text "Albums"]
+        p [] [Text "Curated photo and media collections from events, trips, and themes"]
+        ul [] [
+            for album in albumCollections do
+                li [] [
+                    a [ _href $"/collections/albums/{album.FileName}"] [ Text album.Metadata.Title ]
+                    if not (String.IsNullOrEmpty(album.Metadata.Description)) then
+                        Text " - "
+                        Text album.Metadata.Description
+                    if not (String.IsNullOrEmpty(album.Metadata.Date)) then
+                        Text " • "
+                        Text (DateTimeOffset.Parse(album.Metadata.Date).ToString("MMM dd, yyyy"))
+                ]
+        ]
+    ]
+
+// Playlist Collections page (collection index)
+let playlistCollectionsPageView (playlistCollections: PlaylistCollection array) = 
+    div [ _class "d-grip gap-3" ] [
+        h2[] [Text "Playlists"]
+        p [] [Text "Monthly music discoveries and favorites. Crate Finds features music I've discovered for the first time or listened to consistently throughout the month - like digging through records at your local record store. Each playlist includes YouTube and Spotify links for maximum accessibility."]
+        ul [] [
+            for playlist in playlistCollections do
+                li [] [
+                    a [ _href $"/collections/playlists/{playlist.FileName}"] [ Text playlist.Metadata.Title ]
+                    match playlist.Metadata.Description with
+                    | Some desc when not (String.IsNullOrEmpty(desc)) ->
+                        Text " - "
+                        Text desc
+                    | _ -> ()
+                    if not (String.IsNullOrEmpty(playlist.Metadata.Date)) then
+                        Text " • "
+                        Text (DateTimeOffset.Parse(playlist.Metadata.Date).ToString("MMM dd, yyyy"))
+                ]
+        ]
+    ]
+
+// Individual album collection detail page (with processed media content)
+let albumCollectionDetailView (albumCollection: AlbumCollection) (processedContent: string) =
+    div [ _class "album-collection-detail" ] [
+        h1 [] [ Text albumCollection.Metadata.Title ]
+        if not (String.IsNullOrEmpty(albumCollection.Metadata.Description)) then
+            p [ _class "lead" ] [ Text albumCollection.Metadata.Description ]
+        if not (String.IsNullOrEmpty(albumCollection.Metadata.Date)) then
+            p [ _class "text-muted" ] [ Text (DateTimeOffset.Parse(albumCollection.Metadata.Date).ToString("MMMM dd, yyyy")) ]
+        if albumCollection.Metadata.Location.IsSome then
+            let loc = albumCollection.Metadata.Location.Value
+            p [ _class "text-muted" ] [ 
+                Text (sprintf "Location: %.6f, %.6f" loc.Latitude loc.Longitude)
+            ]
+        if not (isNull albumCollection.Metadata.Tags) && albumCollection.Metadata.Tags.Length > 0 then
+            div [ _class "tags mb-3" ] [
+                for tag in albumCollection.Metadata.Tags do
+                    a [ _href $"/tags/{tag}/"; _class "badge bg-secondary me-1" ] [ Text tag ]
+            ]
+        div [ _class "album-content mt-4" ] [
+            rawText processedContent
+        ]
+    ]
+
+// Individual playlist collection detail page (with processed content)
+let playlistCollectionDetailView (playlistCollection: PlaylistCollection) (processedContent: string) =
+    div [ _class "playlist-collection-detail" ] [
+        h1 [] [ Text playlistCollection.Metadata.Title ]
+        match playlistCollection.Metadata.Description with
+        | Some desc when not (String.IsNullOrEmpty(desc)) ->
+            p [ _class "lead" ] [ Text desc ]
+        | _ -> ()
+        if not (String.IsNullOrEmpty(playlistCollection.Metadata.Date)) then
+            p [ _class "text-muted" ] [ Text (DateTimeOffset.Parse(playlistCollection.Metadata.Date).ToString("MMMM dd, yyyy")) ]
+        if not (isNull playlistCollection.Metadata.Tags) && playlistCollection.Metadata.Tags.Length > 0 then
+            div [ _class "tags mb-3" ] [
+                for tag in playlistCollection.Metadata.Tags do
+                    a [ _href $"/tags/{tag}/"; _class "badge bg-secondary me-1" ] [ Text tag ]
+            ]
+        div [ _class "playlist-content mt-4" ] [
+            rawText processedContent
+        ]
     ]
 
 // Enhanced subscription hub with content discovery
@@ -296,6 +394,14 @@ let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedI
                 Text "Feed URL: "
                 a [ _href "/media.rss" ] [ Text "/media.rss" ]
                 Text " (includes media posts)"
+            ]
+            
+            // Albums Feed
+            h3 [] [ a [ _href "/collections/albums/" ] [ Text "Albums" ] ]
+            p [] [ Text "Curated photo album collections from events, trips, and themes." ]
+            p [] [
+                Text "Feed URL: "
+                a [ _href "/collections/albums/feed.xml" ] [ Text "/collections/albums/feed.xml" ]
             ]
             
             // Reviews Feed
@@ -501,14 +607,17 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
             
             // Add footer with permalink and tags
             div [ _class "mt-3 pt-2 border-top text-muted small" ] [
-                Text "Permalink: " 
-                a [_href properPermalink; _class "u-url text-decoration-none"] [Text properPermalink] 
+                div [ _class "d-flex align-items-center mb-1" ] [
+                    Text "Permalink: " 
+                    a [_href properPermalink; _class "u-url text-decoration-none"] [Text properPermalink]
+                    copyPermalinkButton properPermalink
+                ]
                 
                 div [ _class "mt-1" ] [
                     str "Tags: "
                     for tag in item.Tags do
                         let sanitizedTag = tag.Replace("#", "sharp").Replace("/", "-").Replace(" ", "-").Replace("\"", "")
-                        a [_href $"/tags/{sanitizedTag}"; _class "p-category text-decoration-none me-2"] [Text $"#{tag}"]
+                        a [_href $"/tags/{sanitizedTag}"; _class "tag-link text-decoration-none me-2"] [Text $"#{tag}"]
                 ]
             ]
         ]

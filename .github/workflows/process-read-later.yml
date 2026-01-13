@@ -1,0 +1,745 @@
+name: Process Read Later Issue
+
+on:
+  issues:
+    types: [opened]
+  schedule:
+    # Run cleanup daily at midnight UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allow manual trigger for testing
+
+jobs:
+  process-read-later:
+    # Only run if issue has "read-later" label AND issue author is @lqdev
+    if: contains(github.event.issue.labels.*.name, 'read-later') && github.event.issue.user.login == 'lqdev'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Parse issue and extract form data
+        id: extract-data
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              // Extract form responses using regex patterns
+              function extractFormValue(body, label) {
+                // GitHub issue forms format: ### Label\n\nValue
+                const regex = new RegExp(`### ${label}\\s*\\n\\s*\\n([\\s\\S]*?)(?=\\n\\n###|\\n\\n---|\$)`, 'i');
+                const match = body.match(regex);
+                const value = (match && match[1]) ? match[1].trim() : '';
+
+                // Remove common artifacts from GitHub issue forms
+                return value.replace(/^_No response_$/i, '').trim();
+              }
+
+              const issueBody = context.payload.issue.body;
+              const url = extractFormValue(issueBody, 'URL');
+              const title = extractFormValue(issueBody, 'URL Title \\(Optional\\)');
+
+              console.log('Extracted URL:', url);
+              console.log('Extracted URL title:', title);
+
+              // Validate URL format
+              if (!url) {
+                throw new Error('URL is required');
+              }
+
+              // Basic URL validation
+              try {
+                new URL(url);
+              } catch (e) {
+                throw new Error(`Invalid URL format: ${url}`);
+              }
+
+              // Set outputs
+              core.setOutput('url', url);
+              core.setOutput('title', title);
+
+            } catch (error) {
+              console.error('Error extracting issue data:', error);
+              throw error;
+            }
+
+      - name: Fetch title from URL if not provided
+        id: fetch-title
+        if: steps.extract-data.outputs.title == ''
+        run: |
+          URL="${{ steps.extract-data.outputs.url }}"
+          echo "Fetching title from: $URL"
+
+          # Fetch the page and extract title
+          TITLE=$(curl -sSL "$URL" | grep -oP '(?<=<title>).*?(?=</title>)' | head -1 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+
+          if [ -z "$TITLE" ]; then
+            echo "Failed to fetch title, using URL as title"
+            TITLE="$URL"
+          fi
+
+          echo "Fetched title: $TITLE"
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+
+      - name: Determine final title
+        id: final-title
+        run: |
+          if [ -n "${{ steps.extract-data.outputs.title }}" ]; then
+            FINAL_TITLE="${{ steps.extract-data.outputs.title }}"
+            echo "Using provided title: $FINAL_TITLE"
+          else
+            FINAL_TITLE="${{ steps.fetch-title.outputs.title }}"
+            echo "Using fetched title: $FINAL_TITLE"
+          fi
+          echo "title=$FINAL_TITLE" >> $GITHUB_OUTPUT
+
+      - name: Check for duplicates and add to JSON
+        id: update-json
+        run: |
+          URL="${{ steps.extract-data.outputs.url }}"
+          TITLE="${{ steps.final-title.outputs.title }}"
+          JSON_FILE="Data/read-later.json"
+
+          # Check if URL already exists in the JSON file
+          if grep -q "\"$URL\"" "$JSON_FILE"; then
+            echo "duplicate=true" >> $GITHUB_OUTPUT
+            echo "URL already exists in read-later list"
+            exit 0
+          fi
+
+          echo "duplicate=false" >> $GITHUB_OUTPUT
+
+          # Generate ISO 8601 timestamp
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          # Create new entry
+          NEW_ENTRY=$(cat <<EOF
+          {
+            "url": "$URL",
+            "title": "$TITLE",
+            "dateAdded": "$TIMESTAMP"
+          }
+          EOF
+          )
+
+          # Read existing JSON, add new entry, and write back
+          # Use jq to properly handle JSON manipulation
+          TMP_FILE=$(mktemp)
+          jq --argjson entry "$NEW_ENTRY" '. += [$entry]' "$JSON_FILE" > "$TMP_FILE"
+          mv "$TMP_FILE" "$JSON_FILE"
+
+          echo "Added new entry to $JSON_FILE"
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+          echo "timestamp=$TIMESTAMP" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        id: create-pr
+        if: steps.update-json.outputs.duplicate == 'false'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Add to read later: ${{ steps.final-title.outputs.title }}"
+          title: "Add to read later: ${{ steps.final-title.outputs.title }}"
+          body: |
+            ## New Read Later Link
+
+            **URL:** ${{ steps.extract-data.outputs.url }}
+            **Title:** ${{ steps.final-title.outputs.title }}
+            **Date Added:** ${{ steps.update-json.outputs.timestamp }}
+
+            ### Details
+            - ✅ URL validated
+            - ✅ No duplicate found
+            - ✅ Added to `Data/read-later.json`
+            - ✅ Will appear on `/resources/read-later` after merge
+
+            **Created via GitHub Issue Template #${{ github.event.issue.number }}**
+
+            🤖 _This PR will be automatically merged if there are no conflicts._
+          branch: content/issue-${{ github.event.issue.number }}/read-later
+          delete-branch: true
+
+      - name: Auto-merge Pull Request
+        if: steps.create-pr.outputs.pull-request-number != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              const prNumber = ${{ steps.create-pr.outputs.pull-request-number }};
+
+              console.log(`Attempting to merge PR #${prNumber}`);
+
+              // Wait a moment for GitHub to process the PR
+              await new Promise(resolve => setTimeout(resolve, 2000));
+
+              // Get the PR details to check mergeable state
+              const { data: pr } = await github.rest.pulls.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: prNumber
+              });
+
+              console.log(`PR mergeable state: ${pr.mergeable_state}`);
+              console.log(`PR mergeable: ${pr.mergeable}`);
+
+              // Check if PR is mergeable
+              if (pr.mergeable === false) {
+                console.log('⚠️ PR has conflicts and cannot be automatically merged.');
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: prNumber,
+                  body: '⚠️ This PR has conflicts and cannot be automatically merged. Please resolve conflicts manually.'
+                });
+                return;
+              }
+
+              // Merge the PR using squash merge
+              await github.rest.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: prNumber,
+                merge_method: 'squash',
+                commit_title: `Add to read later: ${{ steps.final-title.outputs.title }} (#${prNumber})`,
+                commit_message: `Automated merge of read later link\n\nURL: ${{ steps.extract-data.outputs.url }}\nTitle: ${{ steps.final-title.outputs.title }}`
+              });
+
+              console.log('✅ PR merged successfully');
+
+              // Trigger the build and deploy workflow
+              try {
+                await github.rest.actions.createWorkflowDispatch({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  workflow_id: 'publish-azure-static-web-apps.yml',
+                  ref: 'main'
+                });
+                console.log('✅ Build and deploy workflow triggered successfully');
+              } catch (dispatchError) {
+                console.error('⚠️ Could not trigger build workflow:', dispatchError.message);
+                // This is not critical - the workflow will run on next manual push
+              }
+
+              // Delete the branch after successful merge
+              try {
+                await github.rest.git.deleteRef({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  ref: `heads/${pr.head.ref}`
+                });
+                console.log(`✅ Branch ${pr.head.ref} deleted successfully`);
+              } catch (deleteError) {
+                console.log(`⚠️ Could not delete branch: ${deleteError.message}`);
+              }
+
+            } catch (error) {
+              console.error('Error merging PR:', error);
+              // Don't fail the workflow if merge fails
+              console.log('⚠️ Could not automatically merge PR. Manual merge may be required.');
+
+              // Add a comment explaining the issue
+              try {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: ${{ steps.create-pr.outputs.pull-request-number }},
+                  body: '⚠️ Automatic merge failed. The PR was created successfully but requires manual merge.'
+                });
+              } catch (commentError) {
+                console.error('Could not add comment:', commentError);
+              }
+            }
+
+      - name: Close issue on success
+        if: steps.update-json.outputs.duplicate == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              state: 'closed'
+            });
+
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: '🎉 Your link has been added to the Read Later list! A pull request has been created and will be automatically merged if there are no conflicts. The link will appear at `/resources/read-later`.'
+            });
+
+      - name: Handle duplicate
+        if: steps.update-json.outputs.duplicate == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              state: 'closed'
+            });
+
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: '⚠️ This URL already exists in your Read Later list. No changes were made.'
+            });
+
+      - name: Handle processing errors
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: `❌ **Error processing read later request**\n\nAn error occurred while processing your request. Please check the workflow logs for details.\n\nCommon issues:\n- Invalid URL format\n- Failed to fetch page title\n- Network connectivity issues\n\nThe issue will remain open for you to retry or fix.`
+            });
+
+  cleanup-old-entries:
+    # Run on schedule or manual trigger (not on issue events)
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Clean up entries older than 14 days
+        id: cleanup
+        run: |
+          JSON_FILE="Data/read-later.json"
+          
+          # Calculate the cutoff date (14 days ago)
+          CUTOFF_DATE=$(date -u -d '14 days ago' +"%Y-%m-%dT%H:%M:%SZ")
+          echo "Cutoff date (14 days ago): $CUTOFF_DATE"
+          
+          # Count original entries
+          ORIGINAL_COUNT=$(jq 'length' "$JSON_FILE")
+          echo "Original entry count: $ORIGINAL_COUNT"
+          
+          # Extract removed entries before filtering (entries older than cutoff)
+          REMOVED_ENTRIES_FILE=$(mktemp)
+          jq --arg cutoff "$CUTOFF_DATE" '[.[] | select(.dateAdded < $cutoff)]' "$JSON_FILE" > "$REMOVED_ENTRIES_FILE"
+          
+          # Filter entries to keep only those newer than 14 days
+          TMP_FILE=$(mktemp)
+          jq --arg cutoff "$CUTOFF_DATE" '[.[] | select(.dateAdded >= $cutoff)]' "$JSON_FILE" > "$TMP_FILE"
+          
+          # Count remaining entries
+          NEW_COUNT=$(jq 'length' "$TMP_FILE")
+          echo "Remaining entry count: $NEW_COUNT"
+          
+          # Calculate removed count
+          REMOVED_COUNT=$((ORIGINAL_COUNT - NEW_COUNT))
+          echo "Entries removed: $REMOVED_COUNT"
+          
+          # Set outputs
+          echo "removed_count=$REMOVED_COUNT" >> $GITHUB_OUTPUT
+          echo "original_count=$ORIGINAL_COUNT" >> $GITHUB_OUTPUT
+          echo "new_count=$NEW_COUNT" >> $GITHUB_OUTPUT
+          echo "removed_entries_file=$REMOVED_ENTRIES_FILE" >> $GITHUB_OUTPUT
+          
+          # Only update file if entries were removed
+          if [ "$REMOVED_COUNT" -gt 0 ]; then
+            mv "$TMP_FILE" "$JSON_FILE"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "✅ Removed $REMOVED_COUNT old entries"
+          else
+            rm "$TMP_FILE"
+            rm "$REMOVED_ENTRIES_FILE"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "✅ No old entries to remove"
+          fi
+
+      - name: Create Pull Request
+        id: create-pr
+        if: steps.cleanup.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Clean up read later entries older than 14 days"
+          title: "🧹 Clean up old read later entries"
+          body: |
+            ## Automatic Read Later Cleanup
+            
+            This PR removes read later entries that are older than 14 days.
+            
+            ### Summary
+            - 📊 Original entries: ${{ steps.cleanup.outputs.original_count }}
+            - 🗑️ Entries removed: ${{ steps.cleanup.outputs.removed_count }}
+            - ✅ Remaining entries: ${{ steps.cleanup.outputs.new_count }}
+            
+            ### Details
+            - ⏰ Cleanup triggered: Scheduled daily cleanup
+            - 📅 Cutoff: Entries older than 14 days
+            - 📁 File updated: `Data/read-later.json`
+            
+            **Entries are automatically removed after 14 days to keep the Read Later list fresh and relevant.**
+            
+            🤖 _This PR will be automatically merged if there are no conflicts._
+          branch: automation/cleanup-read-later
+          delete-branch: true
+
+      - name: Auto-merge Pull Request
+        if: steps.create-pr.outputs.pull-request-number != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              const prNumber = ${{ steps.create-pr.outputs.pull-request-number }};
+              
+              console.log(`Attempting to merge PR #${prNumber}`);
+              
+              // Wait a moment for GitHub to process the PR
+              await new Promise(resolve => setTimeout(resolve, 2000));
+              
+              // Get the PR details to check mergeable state
+              const { data: pr } = await github.rest.pulls.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: prNumber
+              });
+              
+              console.log(`PR mergeable state: ${pr.mergeable_state}`);
+              console.log(`PR mergeable: ${pr.mergeable}`);
+              
+              // Check if PR is mergeable
+              if (pr.mergeable === false) {
+                console.log('⚠️ PR has conflicts and cannot be automatically merged.');
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: prNumber,
+                  body: '⚠️ This PR has conflicts and cannot be automatically merged. Please resolve conflicts manually.'
+                });
+                return;
+              }
+              
+              // Merge the PR using squash merge
+              await github.rest.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: prNumber,
+                merge_method: 'squash',
+                commit_title: `Clean up old read later entries (#${prNumber})`,
+                commit_message: `Automated cleanup of read later entries older than 14 days\n\nRemoved: ${{ steps.cleanup.outputs.removed_count }} entries\nRemaining: ${{ steps.cleanup.outputs.new_count }} entries`
+              });
+              
+              console.log('✅ PR merged successfully');
+              
+              // Delete the branch after successful merge
+              try {
+                await github.rest.git.deleteRef({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  ref: `heads/${pr.head.ref}`
+                });
+                console.log(`✅ Branch ${pr.head.ref} deleted successfully`);
+              } catch (deleteError) {
+                console.log(`⚠️ Could not delete branch: ${deleteError.message}`);
+              }
+              
+            } catch (error) {
+              console.error('Error merging PR:', error);
+              // Don't fail the workflow if merge fails
+              console.log('⚠️ Could not automatically merge PR. Manual merge may be required.');
+              
+              // Add a comment explaining the issue
+              try {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: ${{ steps.create-pr.outputs.pull-request-number }},
+                  body: '⚠️ Automatic merge failed. The PR was created successfully but requires manual merge.'
+                });
+              } catch (commentError) {
+                console.error('Could not add comment:', commentError);
+              }
+            }
+
+      - name: Log cleanup summary
+        if: always()
+        run: |
+          echo "## 🧹 Read Later Cleanup Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Original entries:** ${{ steps.cleanup.outputs.original_count }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Entries removed:** ${{ steps.cleanup.outputs.removed_count }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Remaining entries:** ${{ steps.cleanup.outputs.new_count }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.cleanup.outputs.has_changes }}" = "true" ]; then
+            echo "✅ Old entries were removed and a PR was created." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 🗑️ Removed Entries" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
+            # Read and display removed entries
+            REMOVED_ENTRIES_FILE="${{ steps.cleanup.outputs.removed_entries_file }}"
+            if [ -f "$REMOVED_ENTRIES_FILE" ]; then
+              # Process each removed entry and format as markdown list
+              # Use URL as link text if title is empty or null
+              jq -r '.[] | if (.title == "" or .title == null) then "- [\(.url)](\(.url))" else "- [\(.title)](\(.url))" end' "$REMOVED_ENTRIES_FILE" >> $GITHUB_STEP_SUMMARY
+              
+              # Clean up the temp file
+              rm "$REMOVED_ENTRIES_FILE"
+            fi
+          else
+            echo "✅ No old entries found - list is up to date!" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  cleanup-by-responses-bookmarks:
+    # Run on schedule or manual trigger (not on issue events)
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write       # Required to checkout and push changes
+      pull-requests: write  # Required to create and merge PRs
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract target URLs from responses and bookmarks
+        id: extract-urls
+        run: |
+          # Extract targeturl from all response and bookmark markdown files
+          RESPONSES_DIR="_src/responses"
+          BOOKMARKS_DIR="_src/bookmarks"
+          TARGET_URLS_FILE=$(mktemp)
+          
+          echo "Extracting target URLs from responses and bookmarks..."
+          
+          # Extract from responses (check if any .md files exist first)
+          if [ -d "$RESPONSES_DIR" ] && compgen -G "$RESPONSES_DIR/*.md" > /dev/null; then
+            grep -h "^[[:space:]]*targeturl:[[:space:]]*" "$RESPONSES_DIR"/*.md 2>/dev/null | sed 's/^[[:space:]]*targeturl:[[:space:]]*//' | sed 's/[[:space:]]*$//' >> "$TARGET_URLS_FILE" || true
+          else
+            echo "No response markdown files found in $RESPONSES_DIR"
+          fi
+          
+          # Extract from bookmarks (check if any .md files exist first)
+          if [ -d "$BOOKMARKS_DIR" ] && compgen -G "$BOOKMARKS_DIR/*.md" > /dev/null; then
+            grep -h "^[[:space:]]*targeturl:[[:space:]]*" "$BOOKMARKS_DIR"/*.md 2>/dev/null | sed 's/^[[:space:]]*targeturl:[[:space:]]*//' | sed 's/[[:space:]]*$//' >> "$TARGET_URLS_FILE" || true
+          else
+            echo "No bookmark markdown files found in $BOOKMARKS_DIR"
+          fi
+          
+          # Sort and deduplicate URLs
+          sort -u "$TARGET_URLS_FILE" -o "$TARGET_URLS_FILE"
+          
+          URL_COUNT=$(wc -l < "$TARGET_URLS_FILE")
+          echo "Found $URL_COUNT unique target URLs"
+          echo "target_urls_file=$TARGET_URLS_FILE" >> $GITHUB_OUTPUT
+          echo "url_count=$URL_COUNT" >> $GITHUB_OUTPUT
+
+      - name: Clean up entries matching responses/bookmarks
+        id: cleanup
+        run: |
+          JSON_FILE="Data/read-later.json"
+          TARGET_URLS_FILE="${{ steps.extract-urls.outputs.target_urls_file }}"
+          
+          # Count original entries
+          ORIGINAL_COUNT=$(jq 'length' "$JSON_FILE")
+          echo "Original entry count: $ORIGINAL_COUNT"
+          
+          # Extract removed entries before filtering (entries that match target URLs)
+          REMOVED_ENTRIES_FILE=$(mktemp)
+          TMP_FILE=$(mktemp)
+          TMP_PARTITION=$(mktemp)
+          
+          # Build jq filter to remove matching URLs
+          # Read target URLs and create a jq array
+          TARGET_URLS_ARRAY=$(cat "$TARGET_URLS_FILE" | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          
+          # Single pass: partition entries into removed and kept
+          # Convert URL array to object for O(1) lookup performance
+          jq --argjson urls "$TARGET_URLS_ARRAY" '
+            ($urls | map({key: ., value: true}) | from_entries) as $url_set |
+            reduce .[] as $item (
+              {removed: [], kept: []};
+              if $url_set[$item.url] then
+                .removed += [$item]
+              else
+                .kept += [$item]
+              end
+            )
+          ' "$JSON_FILE" > "$TMP_PARTITION"
+          
+          # Extract removed and kept entries
+          jq '.removed' "$TMP_PARTITION" > "$REMOVED_ENTRIES_FILE"
+          jq '.kept' "$TMP_PARTITION" > "$TMP_FILE"
+          rm "$TMP_PARTITION"
+          
+          # Count remaining entries
+          NEW_COUNT=$(jq 'length' "$TMP_FILE")
+          echo "Remaining entry count: $NEW_COUNT"
+          
+          # Calculate removed count
+          REMOVED_COUNT=$((ORIGINAL_COUNT - NEW_COUNT))
+          echo "Entries removed: $REMOVED_COUNT"
+          
+          # Set outputs
+          echo "removed_count=$REMOVED_COUNT" >> $GITHUB_OUTPUT
+          echo "original_count=$ORIGINAL_COUNT" >> $GITHUB_OUTPUT
+          echo "new_count=$NEW_COUNT" >> $GITHUB_OUTPUT
+          echo "removed_entries_file=$REMOVED_ENTRIES_FILE" >> $GITHUB_OUTPUT
+          
+          # Only update file if entries were removed
+          if [ "$REMOVED_COUNT" -gt 0 ]; then
+            mv "$TMP_FILE" "$JSON_FILE"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "✅ Removed $REMOVED_COUNT entries that match responses/bookmarks"
+          else
+            rm "$TMP_FILE"
+            rm "$REMOVED_ENTRIES_FILE"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "✅ No matching entries to remove"
+          fi
+
+      - name: Create Pull Request
+        id: create-pr
+        if: steps.cleanup.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Clean up read later entries matching responses/bookmarks"
+          title: "🧹 Clean up read later entries (matched responses/bookmarks)"
+          body: |
+            ## Automatic Read Later Cleanup
+            
+            This PR removes read later entries that have been shared as responses or saved as bookmarks.
+            
+            ### Summary
+            - 📊 Original entries: ${{ steps.cleanup.outputs.original_count }}
+            - 🗑️ Entries removed: ${{ steps.cleanup.outputs.removed_count }}
+            - ✅ Remaining entries: ${{ steps.cleanup.outputs.new_count }}
+            
+            ### Details
+            - ⏰ Cleanup triggered: Automatic daily cleanup
+            - 🎯 Matching: Entries with URLs found in responses/bookmarks
+            - 📁 File updated: `Data/read-later.json`
+            - 📝 Target URLs checked: ${{ steps.extract-urls.outputs.url_count }}
+            
+            **Entries are automatically removed when their URL appears in responses or bookmarks to avoid duplicate tracking.**
+            
+            🤖 _This PR will be automatically merged if there are no conflicts._
+          branch: automation/cleanup-read-later-responses-bookmarks
+          delete-branch: true
+
+      - name: Auto-merge Pull Request
+        if: steps.create-pr.outputs.pull-request-number != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              const prNumber = ${{ steps.create-pr.outputs.pull-request-number }};
+              
+              console.log(`Attempting to merge PR #${prNumber}`);
+              
+              // Wait a moment for GitHub to process the PR
+              await new Promise(resolve => setTimeout(resolve, 2000));
+              
+              // Get the PR details to check mergeable state
+              const { data: pr } = await github.rest.pulls.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: prNumber
+              });
+              
+              console.log(`PR mergeable state: ${pr.mergeable_state}`);
+              console.log(`PR mergeable: ${pr.mergeable}`);
+              
+              // Check if PR is mergeable
+              if (pr.mergeable === false) {
+                console.log('⚠️ PR has conflicts and cannot be automatically merged.');
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: prNumber,
+                  body: '⚠️ This PR has conflicts and cannot be automatically merged. Please resolve conflicts manually.'
+                });
+                return;
+              }
+              
+              // Merge the PR using squash merge
+              await github.rest.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: prNumber,
+                merge_method: 'squash',
+                commit_title: `Clean up read later entries matching responses/bookmarks (#${prNumber})`,
+                commit_message: `Automated cleanup of read later entries that match responses/bookmarks\n\nRemoved: ${{ steps.cleanup.outputs.removed_count }} entries\nRemaining: ${{ steps.cleanup.outputs.new_count }} entries`
+              });
+              
+              console.log('✅ PR merged successfully');
+              
+              // Delete the branch after successful merge
+              try {
+                await github.rest.git.deleteRef({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  ref: `heads/${pr.head.ref}`
+                });
+                console.log(`✅ Branch ${pr.head.ref} deleted successfully`);
+              } catch (deleteError) {
+                console.log(`⚠️ Could not delete branch: ${deleteError.message}`);
+              }
+              
+            } catch (error) {
+              console.error('Error merging PR:', error);
+              // Don't fail the workflow if merge fails
+              console.log('⚠️ Could not automatically merge PR. Manual merge may be required.');
+              
+              // Add a comment explaining the issue
+              try {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: ${{ steps.create-pr.outputs.pull-request-number }},
+                  body: '⚠️ Automatic merge failed. The PR was created successfully but requires manual merge.'
+                });
+              } catch (commentError) {
+                console.error('Could not add comment:', commentError);
+              }
+            }
+
+      - name: Log cleanup summary
+        if: always()
+        run: |
+          echo "## 🧹 Read Later Cleanup Summary (Responses/Bookmarks)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Original entries:** ${{ steps.cleanup.outputs.original_count }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Entries removed:** ${{ steps.cleanup.outputs.removed_count }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Remaining entries:** ${{ steps.cleanup.outputs.new_count }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Target URLs checked:** ${{ steps.extract-urls.outputs.url_count }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.cleanup.outputs.has_changes }}" = "true" ]; then
+            echo "✅ Matching entries were removed and a PR was created." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 🗑️ Removed Entries" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
+            # Read and display removed entries
+            REMOVED_ENTRIES_FILE="${{ steps.cleanup.outputs.removed_entries_file }}"
+            if [ -f "$REMOVED_ENTRIES_FILE" ]; then
+              # Process each removed entry and format as markdown list
+              # Use URL as link text if title is empty or null
+              jq -r '.[] | if (.title == "" or .title == null) then "- [\(.url)](\(.url))" else "- [\(.title)](\(.url))" end' "$REMOVED_ENTRIES_FILE" >> $GITHUB_STEP_SUMMARY
+              
+              # Clean up the temp file
+              rm "$REMOVED_ENTRIES_FILE"
+            fi
+          else
+            echo "✅ No matching entries found - no cleanup needed!" >> $GITHUB_STEP_SUMMARY
+          fi

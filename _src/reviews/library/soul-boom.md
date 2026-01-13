@@ -1,8 +1,8 @@
 ---
-title: "Soul Boom: Why We Need a Spiritual Revolution"
-author: "Rainn Wilson"
-isbn: "9780306828287"
-date_published: "11/18/2024 16:59 -05:00"
+title: "Soul Boom: Why We Need a Spiritual Revolution Review"
+post_type: "review"
+published_date: "11/18/2024 16:59 -05:00"
+tags: []
 ---
 
 # Soul Boom: Why We Need a Spiritual Revolution Review
@@ -10,16 +10,15 @@ date_published: "11/18/2024 16:59 -05:00"
 :::review
 item: "Soul Boom: Why We Need a Spiritual Revolution"
 itemType: "book"
+author: "Rainn Wilson"
+isbn: "9780306828287"
+datePublished: "11/18/2024 16:59 -05:00"
 rating: 4.6
 scale: 5.0
 summary: "In this book, Rainn explores the impact of society's distancing from the spiritual and religion."
 itemUrl: "https://www.hachettebookgroup.com/titles/rainn-wilson/soul-boom/9780306828270/?lens=hachette-go"
 imageUrl: "https://www.hachettebookgroup.com/wp-content/uploads/2023/10/9780306828270.jpg?resize=683,1024"
-additionalFields:
-  author: "Rainn Wilson"
-  isbn: "9780306828287"
 :::
-
 ## Description
 
 > In this New York Times and Los Angeles Times bestseller, comedic actor, producer, and writer Rainn Wilson explores the problem-solving benefits that spirituality gives us to create solutions for an increasingly challenging world.  

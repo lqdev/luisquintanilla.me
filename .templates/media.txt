@@ -1,0 +1,16 @@
+---
+post_type: "media"
+title: "%^{Title}"
+published_date: %<%Y-%m-%d %H:%M -05:00>
+tags: [%^{Tags (comma-separated)}]
+---
+
+:::media
+- url: "%^{Media URL}"
+  alt: "%^{Alt Text/Description}"
+  mediaType: "%^{Media Type|image|video|audio}"
+  aspectRatio: "%^{Aspect Ratio|landscape|portrait|square|cinematic}"
+  caption: "%^{Caption}"
+:::media
+
+%?

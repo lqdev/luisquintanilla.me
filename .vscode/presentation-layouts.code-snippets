@@ -1,0 +1,300 @@
+{
+  "Two Column Layout": {
+    "prefix": "layout-2col",
+    "description": "Two equal-width columns with 2rem gap",
+    "body": [
+      "<div class=\"layout-two-column\">",
+      "<div>",
+      "",
+      "${1:Left column content}",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "${2:Right column content}",
+      "",
+      "</div>",
+      "</div>"
+    ]
+  },
+  "Three Column Layout": {
+    "prefix": "layout-3col",
+    "description": "Three equal-width columns with 1.5rem gap",
+    "body": [
+      "<div class=\"layout-three-column\">",
+      "<div>",
+      "",
+      "${1:First column content}",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "${2:Second column content}",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "${3:Third column content}",
+      "",
+      "</div>",
+      "</div>"
+    ]
+  },
+  "Split 70/30 Layout": {
+    "prefix": "layout-split-70-30",
+    "description": "Main content (70%) with sidebar (30%)",
+    "body": [
+      "<div class=\"layout-split-70-30\">",
+      "<div>",
+      "",
+      "${1:Main content area (70%)}",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "${2:Sidebar content (30%)}",
+      "",
+      "</div>",
+      "</div>"
+    ]
+  },
+  "Split 30/70 Layout": {
+    "prefix": "layout-split-30-70",
+    "description": "Sidebar (30%) with main content (70%)",
+    "body": [
+      "<div class=\"layout-split-30-70\">",
+      "<div>",
+      "",
+      "${1:Sidebar content (30%)}",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "${2:Main content area (70%)}",
+      "",
+      "</div>",
+      "</div>"
+    ]
+  },
+  "Image Left Layout": {
+    "prefix": "layout-image-left",
+    "description": "Image (40%) on left with content (60%) on right",
+    "body": [
+      "<div class=\"layout-image-left\">",
+      "<div>",
+      "",
+      "![${1:Alt text}](${2:image-url})",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "${3:Content text}",
+      "",
+      "</div>",
+      "</div>"
+    ]
+  },
+  "Image Right Layout": {
+    "prefix": "layout-image-right",
+    "description": "Content (60%) on left with image (40%) on right",
+    "body": [
+      "<div class=\"layout-image-right\">",
+      "<div>",
+      "",
+      "${1:Content text}",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "![${2:Alt text}](${3:image-url})",
+      "",
+      "</div>",
+      "</div>"
+    ]
+  },
+  "Centered Layout": {
+    "prefix": "layout-centered",
+    "description": "Vertically and horizontally centered content",
+    "body": [
+      "<div class=\"layout-centered\">",
+      "",
+      "${1:Centered content}",
+      "",
+      "</div>"
+    ]
+  },
+  "Big Text Layout": {
+    "prefix": "layout-big-text",
+    "description": "Large centered text for impact (h1/h2: 4rem)",
+    "body": [
+      "<div class=\"layout-big-text\">",
+      "",
+      "# ${1:Big Impact Text}",
+      "",
+      "</div>"
+    ]
+  },
+  "Code Demo Layout": {
+    "prefix": "layout-code-demo",
+    "description": "Side-by-side code and result (70vh height)",
+    "body": [
+      "<div class=\"layout-code-demo\">",
+      "<div>",
+      "",
+      "### Code",
+      "",
+      "```${1:language}",
+      "${2:code here}",
+      "```",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "### Result",
+      "",
+      "${3:Output or explanation}",
+      "",
+      "</div>",
+      "</div>"
+    ]
+  },
+  "Full Width Layout": {
+    "prefix": "layout-full-width",
+    "description": "Full width content overriding default margins",
+    "body": [
+      "<div class=\"layout-full-width\">",
+      "",
+      "${1:Full width content}",
+      "",
+      "</div>"
+    ]
+  },
+  "Title Content Layout": {
+    "prefix": "layout-title-content",
+    "description": "Auto-sized title row with flexible content area",
+    "body": [
+      "<div class=\"layout-title-content\">",
+      "<div>",
+      "",
+      "### ${1:Title}",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "${2:Content area}",
+      "",
+      "</div>",
+      "</div>"
+    ]
+  },
+  "Grid 4 Layout": {
+    "prefix": "layout-grid-4",
+    "description": "2x2 grid layout with centered items",
+    "body": [
+      "<div class=\"layout-grid-4\">",
+      "<div>",
+      "",
+      "${1:Item 1}",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "${2:Item 2}",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "${3:Item 3}",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "${4:Item 4}",
+      "",
+      "</div>",
+      "</div>"
+    ]
+  },
+  "Grid 6 Layout": {
+    "prefix": "layout-grid-6",
+    "description": "3x2 grid layout with centered items",
+    "body": [
+      "<div class=\"layout-grid-6\">",
+      "<div>",
+      "",
+      "${1:Item 1}",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "${2:Item 2}",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "${3:Item 3}",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "${4:Item 4}",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "${5:Item 5}",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "${6:Item 6}",
+      "",
+      "</div>",
+      "</div>"
+    ]
+  },
+  "Comparison Layout": {
+    "prefix": "layout-comparison",
+    "description": "Three columns for before/after comparison with divider",
+    "body": [
+      "<div class=\"layout-comparison\">",
+      "<div>",
+      "",
+      "### Before",
+      "",
+      "${1:Before content}",
+      "",
+      "</div>",
+      "<div class=\"divider\">",
+      "",
+      "→",
+      "",
+      "</div>",
+      "<div>",
+      "",
+      "### After",
+      "",
+      "${2:After content}",
+      "",
+      "</div>",
+      "</div>"
+    ]
+  },
+  "Quote Layout": {
+    "prefix": "layout-quote",
+    "description": "Styled blockquote with attribution",
+    "body": [
+      "<div class=\"layout-quote\">",
+      "",
+      "<blockquote>",
+      "${1:Quote text}",
+      "</blockquote>",
+      "",
+      "<div class=\"attribution\">",
+      "— ${2:Author name}",
+      "</div>",
+      "",
+      "</div>"
+    ]
+  }
+}

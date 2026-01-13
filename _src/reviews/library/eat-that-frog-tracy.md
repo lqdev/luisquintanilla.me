@@ -1,8 +1,8 @@
 ---
-title: "Eat That Frog!"
-author: "Brian Tracy"
-isbn: "9781626569416"
-date_published: "07/09/2024 21:05 -05:00"
+title: "Eat That Frog! Review"
+post_type: "review"
+published_date: "07/09/2024 21:05 -05:00"
+tags: []
 ---
 
 # Eat That Frog! Review
@@ -10,16 +10,15 @@ date_published: "07/09/2024 21:05 -05:00"
 :::review
 item: "Eat That Frog!"
 itemType: "book"
+author: "Brian Tracy"
+isbn: "9781626569416"
+datePublished: "07/09/2024 21:05 -05:00"
 rating: 3.2
 scale: 5.0
 summary: "Quick read."
 itemUrl: "https://www.penguinrandomhouse.com/books/575739/eat-that-frog-by-brian-tracy/"
 imageUrl: "https://images2.penguinrandomhouse.com/cover/9781626569416"
-additionalFields:
-  author: "Brian Tracy"
-  isbn: "9781626569416"
 :::
-
 ## Description
 
 > Achieve work-life balance by conquering procrastination and get your most important work done, now with new chapters on technology and maintaining focus  
@@ -135,4 +134,3 @@ Quick read. I got through it in about two hours. Most of the advice are things t
   - NOTE: I'd add making things to this. You can take all the courses and read all the books, but if you don't put things to practice, mastery is limited. 
 
 ## Bookmarks
-

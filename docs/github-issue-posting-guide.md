@@ -2,7 +2,7 @@
 
 ## Overview
 
-You can now create note posts for the website directly through GitHub Issues using a simple form interface. This replaces the need for Discord-based publishing while providing better version control and review workflows.
+You can now create content for the website directly through GitHub Issues using a simple form interface. This provides better version control and review workflows for multiple content types including notes, bookmarks, responses, media, playlists, and reviews.
 
 ## How to Create a Note Post
 
@@ -119,13 +119,96 @@ If there's an issue with your submission:
 - You must be a repository collaborator to create posts
 - Issues from external contributors will need manual processing
 
+## How to Create a Playlist Post
+
+### Overview
+
+The playlist workflow automates the process of creating music playlist posts by fetching track information from Spotify and generating YouTube links for each track.
+
+### Step 1: Create a New Issue
+
+1. Go to the [Issues tab](https://github.com/lqdev/luisquintanilla.me/issues) of this repository
+2. Click "New issue"
+3. Select "🎵 Post a Playlist" from the issue templates
+
+### Step 2: Fill Out the Form
+
+**Required Fields:**
+- **Playlist Title**: The title of your playlist post (e.g., "Crate Finds - November 2025")
+- **Spotify Playlist URL**: The full Spotify playlist URL (e.g., `https://open.spotify.com/playlist/5CTCAnbYOoWS1sdYolrZAG`)
+
+**Optional Fields:**
+- **Commentary**: Your thoughts, context, or highlights about the playlist (supports Markdown)
+- **Slug**: Custom URL slug (defaults to auto-generated from title)
+- **Additional Tags**: Extra tags beyond the defaults (playlist, music, spotify, youtube, cratefinds)
+
+### Step 3: Submit and Process
+
+Once you submit:
+
+1. 🤖 **GitHub Action Triggers**: Dedicated playlist workflow starts
+2. 🎵 **Spotify Integration**: playlist-creator tool fetches track information
+3. 🔍 **YouTube Links**: Automatically finds YouTube links for each track
+4. 📄 **Markdown Generation**: Creates formatted file in `_src/playlists/`
+5. 🔀 **Pull Request**: Creates PR for review (no auto-merge)
+6. ✅ **Issue Closure**: Original issue is closed automatically
+
+### Generated Content Format
+
+```yaml
+---
+title: "Crate Finds - November 2025"
+date: "2025-11-07 20:22 -05:00"
+tags: ["cratefinds","electronic","music","playlist","spotify","youtube"]
+---
+
+Your optional commentary here...
+
+## Tracks
+
+1. **Track Name** by Artist
+   - Album: *Album Name*
+   - Duration: 4:15
+   - [Listen on YouTube](https://www.youtube.com/watch?v=...)
+   - [Backup: Listen on Spotify](https://open.spotify.com/track/...)
+
+---
+
+**Original Spotify Playlist:** [Listen on Spotify](https://open.spotify.com/playlist/...).
+```
+
+### Requirements
+
+**Repository Secrets Required:**
+- `SPOTIFY_CLIENT_ID`: Your Spotify API client ID
+- `SPOTIFY_CLIENT_SECRET`: Your Spotify API client secret
+
+These must be configured in the repository settings for the workflow to access the Spotify API.
+
+### Troubleshooting Playlists
+
+**Issue Not Processing:**
+- Verify the Spotify URL is in the correct format: `https://open.spotify.com/playlist/[playlist-id]`
+- Check that repository secrets are properly configured
+- Ensure you used the official issue template
+
+**Track Information Issues:**
+- The playlist must be publicly accessible on Spotify
+- YouTube links are best-effort; some tracks may not have YouTube matches
+- Spotify backup links are always included
+
+**Processing Errors:**
+- Check the Actions tab for detailed error logs
+- Verify the Spotify playlist ID is valid
+- Ensure the playlist is not empty
+
 ## Future Enhancements
 
 Planned improvements include:
-- Support for other post types (full posts, responses)
 - Content scheduling capabilities
 - Auto-merge for trusted contributors
 - Enhanced content preview in PRs
+- Additional music service integrations
 
 ## Questions?
 

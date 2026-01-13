@@ -1,0 +1,9 @@
+:::project
+title: %^{Project Name}
+url: %^{Project URL (GitHub/etc)}
+tech: %^{Technology Stack (comma-separated)}
+---
+%^{Project description with markdown support}
+
+%?
+:::

@@ -16,10 +16,14 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Setup .NET 9
+      - name: Setup .NET 10
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '10.0.x'
+          cache: false
+
+      - name: Restore dependencies
+        run: dotnet restore
           
       - name: Parse issue and extract form data
         id: extract-data
@@ -32,7 +36,7 @@ jobs:
                 // GitHub issue forms format: ### Label\n\nValue
                 const regex = new RegExp(`### ${label}\\s*\\n\\s*\\n([\\s\\S]*?)(?=\\n\\n###|\\n\\n---|\$)`, 'i');
                 const match = body.match(regex);
-                const value = match ? match[1].trim() : '';
+                const value = (match && match[1]) ? match[1].trim() : '';
                 
                 // Remove common artifacts from GitHub issue forms
                 return value.replace(/^_No response_$/i, '').trim();
@@ -61,7 +65,7 @@ jobs:
             }
           
       - name: Build F# project
-        run: dotnet build
+        run: dotnet build --no-restore
         
       - name: Process issue with F# script
         id: process-issue
@@ -166,10 +170,14 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Setup .NET 9
+      - name: Setup .NET 10
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '10.0.x'
+          cache: false
+
+      - name: Restore dependencies
+        run: dotnet restore
           
       - name: Parse issue and extract form data
         id: extract-data
@@ -182,7 +190,7 @@ jobs:
                 // GitHub issue forms format: ### Label\n\nValue
                 const regex = new RegExp(`### ${label}\\s*\\n\\s*\\n([\\s\\S]*?)(?=\\n\\n###|\\n\\n---|\$)`, 'i');
                 const match = body.match(regex);
-                const value = match ? match[1].trim() : '';
+                const value = (match && match[1]) ? match[1].trim() : '';
                 
                 // Remove common artifacts from GitHub issue forms
                 return value.replace(/^_No response_$/i, '').trim();
@@ -217,7 +225,7 @@ jobs:
             }
           
       - name: Build F# project
-        run: dotnet build
+        run: dotnet build --no-restore
         
       - name: Process issue with F# script
         id: process-issue
@@ -328,10 +336,14 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Setup .NET 9
+      - name: Setup .NET 10
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '10.0.x'
+          cache: false
+
+      - name: Restore dependencies
+        run: dotnet restore
           
       - name: Parse issue and extract form data
         id: extract-data
@@ -344,7 +356,7 @@ jobs:
                 // GitHub issue forms format: ### Label\n\nValue
                 const regex = new RegExp(`### ${label}\\s*\\n\\s*\\n([\\s\\S]*?)(?=\\n\\n###|\\n\\n---|\$)`, 'i');
                 const match = body.match(regex);
-                const value = match ? match[1].trim() : '';
+                const value = (match && match[1]) ? match[1].trim() : '';
                 
                 // Remove common artifacts from GitHub issue forms
                 return value.replace(/^_No response_$/i, '').trim();
@@ -376,7 +388,7 @@ jobs:
             }
           
       - name: Build F# project
-        run: dotnet build
+        run: dotnet build --no-restore
         
       - name: Process issue with F# script
         id: process-issue
@@ -484,10 +496,14 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Setup .NET 9
+      - name: Setup .NET 10
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '10.0.x'
+          cache: false
+
+      - name: Restore dependencies
+        run: dotnet restore
           
       - name: Parse issue and extract form data
         id: extract-data
@@ -500,7 +516,7 @@ jobs:
                 // GitHub issue forms format: ### Label\n\nValue
                 const regex = new RegExp(`### ${label}\\s*\\n\\s*\\n([\\s\\S]*?)(?=\\n\\n###|\\n\\n---|\$)`, 'i');
                 const match = body.match(regex);
-                const value = match ? match[1].trim() : '';
+                const value = (match && match[1]) ? match[1].trim() : '';
                 
                 // Remove common artifacts from GitHub issue forms
                 return value.replace(/^_No response_$/i, '').trim();
@@ -533,33 +549,63 @@ jobs:
             }
           
       - name: Build F# project
-        run: dotnet build
+        run: dotnet build --no-restore
+        
+      - name: Install uv (Python package manager)
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: "latest"
+          
+      - name: Setup Python environment
+        run: uv venv
+        
+      - name: Install Python dependencies
+        run: uv pip install boto3==1.34.0 botocore==1.34.0 requests
+        
+      - name: Upload media to Linode S3
+        id: upload-media
+        env:
+          LINODE_STORAGE_ACCESS_KEY_ID: ${{ secrets.LINODE_STORAGE_ACCESS_KEY_ID }}
+          LINODE_STORAGE_SECRET_ACCESS_KEY: ${{ secrets.LINODE_STORAGE_SECRET_ACCESS_KEY }}
+          LINODE_STORAGE_ENDPOINT_URL: ${{ secrets.LINODE_STORAGE_ENDPOINT_URL }}
+          LINODE_STORAGE_BUCKET_NAME: ${{ secrets.LINODE_STORAGE_BUCKET_NAME }}
+          LINODE_STORAGE_CUSTOM_DOMAIN: ${{ secrets.LINODE_STORAGE_CUSTOM_DOMAIN }}
+        run: |
+          # Save content to temporary file using printf to preserve special characters
+          printf '%s' "${{ steps.extract-data.outputs.content }}" > /tmp/media_content.txt
+          
+          # Run upload script using uv (transforms content in place)
+          # The script modifies /tmp/media_content.txt directly
+          uv run python .github/scripts/upload_media.py /tmp/media_content.txt
+          
+          # No need to read and pass through GitHub Actions output
+          # The F# script will read directly from /tmp/media_content.txt
+          # to avoid issues with secret masking in multi-line content
         
       - name: Process issue with F# script
         id: process-issue
         env:
           ISSUE_MEDIA_TYPE: ${{ steps.extract-data.outputs.media_type }}
           ISSUE_TITLE: ${{ steps.extract-data.outputs.title }}
-          ISSUE_CONTENT: ${{ steps.extract-data.outputs.content }}
           ISSUE_ORIENTATION: ${{ steps.extract-data.outputs.orientation }}
           ISSUE_SLUG: ${{ steps.extract-data.outputs.slug }}
           ISSUE_TAGS: ${{ steps.extract-data.outputs.tags }}
         run: |
-          # Use environment variables to avoid shell escaping issues
           # Create temporary files for safe parameter passing
+          # Content is already in /tmp/media_content.txt from the upload step
           echo "$ISSUE_MEDIA_TYPE" > /tmp/media_type.txt
           echo "$ISSUE_TITLE" > /tmp/title.txt
-          echo "$ISSUE_CONTENT" > /tmp/content.txt
           echo "$ISSUE_ORIENTATION" > /tmp/orientation.txt
           echo "$ISSUE_SLUG" > /tmp/slug.txt
           echo "$ISSUE_TAGS" > /tmp/tags.txt
           
           # Run F# script with file-based parameters
-          OUTPUT=$(dotnet fsi Scripts/process-media-issue.fsx -- "$(cat /tmp/media_type.txt)" "$(cat /tmp/title.txt)" "$(cat /tmp/content.txt)" "$(cat /tmp/orientation.txt)" "$(cat /tmp/slug.txt)" "$(cat /tmp/tags.txt)" 2>&1)
+          # Read content directly from /tmp/media_content.txt to avoid secret masking issues
+          OUTPUT=$(dotnet fsi Scripts/process-media-issue.fsx -- "$(cat /tmp/media_type.txt)" "$(cat /tmp/title.txt)" "$(cat /tmp/media_content.txt)" "$(cat /tmp/orientation.txt)" "$(cat /tmp/slug.txt)" "$(cat /tmp/tags.txt)" 2>&1)
           EXIT_CODE=$?
           
-          # Clean up temporary files
-          rm -f /tmp/media_type.txt /tmp/title.txt /tmp/content.txt /tmp/orientation.txt /tmp/slug.txt /tmp/tags.txt
+          # Clean up temporary files (keep media_content.txt for debugging if needed)
+          rm -f /tmp/media_type.txt /tmp/title.txt /tmp/orientation.txt /tmp/slug.txt /tmp/tags.txt
           
           echo "Script output:"
           echo "$OUTPUT"
@@ -586,21 +632,21 @@ jobs:
             ## New Media Post
             
             **Title:** ${{ steps.extract-data.outputs.title }}
-            **Type:** auto-detected
-            **Content:** ${{ steps.extract-data.outputs.content }}
+            **Type:** media
             **Orientation:** ${{ steps.extract-data.outputs.orientation }}
             **File:** `_src/media/${{ steps.process-issue.outputs.filename }}`
             
-            ### Frontmatter Validation
+            ### Processing Details
             - ✅ Title: ${{ steps.extract-data.outputs.title }}
-            - ✅ Media Type: auto-detected from attachments
-            - ✅ Content with Attachments: ${{ steps.extract-data.outputs.content }}
+            - ✅ Media files uploaded to Linode S3 storage
+            - ✅ Content transformed to use permanent CDN URLs
+            - ✅ Media blocks created with proper metadata
             - ✅ Orientation: ${{ steps.extract-data.outputs.orientation }}
             - ✅ Custom Slug: ${{ steps.extract-data.outputs.slug }}
             - ✅ Tags: ${{ steps.extract-data.outputs.tags }}
             
             **Created via GitHub Issue Template #${{ github.event.issue.number }}**
-            **Processed by F# script using .NET 9**
+            **Processed by Python upload script + F# markdown generator**
           branch: content/issue-${{ github.event.issue.number }}/media/fsharp-processed
           delete-branch: true
           
@@ -620,7 +666,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.issue.number,
-              body: '🎉 Your media post has been processed using F# and .NET 9! A pull request has been created with your content. Media types have been automatically detected from your attachments. You can track the progress in the pull requests tab.'
+              body: '🎉 Your media post has been processed successfully!\n\n**What happened:**\n- ✅ Media files downloaded from GitHub\n- ✅ Files uploaded to Linode S3 storage with permanent URLs\n- ✅ Markdown file created with proper :::media blocks\n- ✅ Pull request created for review\n\nYou can track the progress in the pull requests tab.'
             });
             
       - name: Handle processing errors
@@ -633,4 +679,306 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.payload.issue.number,
               body: `❌ **Error processing media request with F# script**\n\n${steps.process-issue.outputs.error}\n\nPlease check your issue format and try again. The issue will remain open for you to edit and resubmit.`
+            });
+  process-review:
+    # Only run if issue has "review" label AND issue author is @lqdev
+    if: contains(github.event.issue.labels.*.name, 'review') && github.event.issue.user.login == 'lqdev'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          cache: false
+
+      - name: Restore dependencies
+        run: dotnet restore
+          
+      - name: Determine review type
+        id: determine-type
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = context.payload.issue.labels.map(label => label.name);
+            let reviewType = '';
+            
+            if (labels.includes('book')) reviewType = 'book';
+            else if (labels.includes('movie')) reviewType = 'movie';
+            else if (labels.includes('music')) reviewType = 'music';
+            else if (labels.includes('business')) reviewType = 'business';
+            else if (labels.includes('product')) reviewType = 'product';
+            else reviewType = 'unknown';
+            
+            console.log('Detected review type:', reviewType);
+            core.setOutput('review_type', reviewType);
+          
+      - name: Validate review type
+        if: steps.determine-type.outputs.review_type == 'unknown'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const validTypes = ['book', 'movie', 'music', 'business', 'product'];
+            const errorMessage = `❌ **Missing Required Label**
+            
+            Your review issue needs a specific review type label in addition to the "review" label.
+            
+            **Please add ONE of these labels to your issue:**
+            - \`book\` - For book reviews
+            - \`movie\` - For movie reviews  
+            - \`music\` - For music (album/song) reviews
+            - \`business\` - For business/restaurant reviews
+            - \`product\` - For product reviews
+            
+            **Current labels:** ${context.payload.issue.labels.map(l => l.name).join(', ')}
+            
+            Once you add the appropriate label, the workflow will automatically process your review.`;
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: errorMessage
+            });
+            
+            core.setFailed('Review type label is required. Please add one of: book, movie, music, business, or product');
+          
+      - name: Parse issue and extract form data
+        id: extract-data
+        if: steps.determine-type.outputs.review_type != 'unknown'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              function extractFormValue(body, label) {
+                const regex = new RegExp(`### ${label}\\s*\\n\\s*\\n([\\s\\S]*?)(?=\\n\\n###|\\n\\n---|\$)`, 'i');
+                const match = body.match(regex);
+                const value = (match && match[1]) ? match[1].trim() : '';
+                return value.replace(/^_No response_$/i, '').trim();
+              }
+              
+              const issueBody = context.payload.issue.body;
+              const reviewType = '${{ steps.determine-type.outputs.review_type }}';
+              
+              // Common fields
+              const rating = extractFormValue(issueBody, 'Rating');
+              const summary = extractFormValue(issueBody, 'Review Summary \\(Optional\\)');
+              const content = extractFormValue(issueBody, 'Detailed Review Content \\(Optional\\)|Detailed Review \\(Optional\\)');
+              const pros = extractFormValue(issueBody, 'Pros \\(Optional\\)|What Worked Well');
+              const cons = extractFormValue(issueBody, 'Cons \\(Optional\\)|Areas for Improvement|What Could Be Better');
+              const tags = extractFormValue(issueBody, 'Tags \\(Optional\\)');
+              const slug = extractFormValue(issueBody, 'Custom Slug \\(Optional\\)');
+              
+              // Type-specific fields
+              let itemName = '';
+              let itemUrl = '';
+              let imageUrl = '';
+              let additionalFields = {};
+              
+              switch(reviewType) {
+                case 'book':
+                  itemName = extractFormValue(issueBody, 'Book Title');
+                  itemUrl = extractFormValue(issueBody, 'Book URL \\(Optional\\)');
+                  imageUrl = extractFormValue(issueBody, 'Cover Image URL \\(Optional\\)');
+                  additionalFields = {
+                    author: extractFormValue(issueBody, 'Author \\(Optional\\)'),
+                    isbn: extractFormValue(issueBody, 'ISBN \\(Optional\\)'),
+                    genre: extractFormValue(issueBody, 'Genre \\(Optional\\)')
+                  };
+                  break;
+                case 'movie':
+                  itemName = extractFormValue(issueBody, 'Movie Title');
+                  itemUrl = extractFormValue(issueBody, 'Movie URL \\(Optional\\)');
+                  imageUrl = extractFormValue(issueBody, 'Movie Poster URL \\(Optional\\)');
+                  additionalFields = {
+                    director: extractFormValue(issueBody, 'Director \\(Optional\\)'),
+                    year: extractFormValue(issueBody, 'Release Year \\(Optional\\)'),
+                    genre: extractFormValue(issueBody, 'Genre \\(Optional\\)')
+                  };
+                  break;
+                case 'music':
+                  itemName = extractFormValue(issueBody, 'Album/Song Title');
+                  itemUrl = extractFormValue(issueBody, 'Music URL \\(Optional\\)');
+                  additionalFields = {
+                    artist: extractFormValue(issueBody, 'Artist/Band \\(Optional\\)'),
+                    music_type: extractFormValue(issueBody, 'Music Type'),
+                    release_year: extractFormValue(issueBody, 'Release Year \\(Optional\\)'),
+                    genre: extractFormValue(issueBody, 'Genre \\(Optional\\)'),
+                    label: extractFormValue(issueBody, 'Record Label \\(Optional\\)')
+                  };
+                  break;
+                case 'business':
+                  itemName = extractFormValue(issueBody, 'Business Name');
+                  itemUrl = extractFormValue(issueBody, 'Business Website \\(Optional\\)');
+                  additionalFields = {
+                    business_type: extractFormValue(issueBody, 'Business Type'),
+                    location: extractFormValue(issueBody, 'Location \\(Optional\\)'),
+                    price_range: extractFormValue(issueBody, 'Price Range \\(Optional\\)')
+                  };
+                  break;
+                case 'product':
+                  itemName = extractFormValue(issueBody, 'Product Name');
+                  itemUrl = extractFormValue(issueBody, 'Product URL \\(Optional\\)');
+                  additionalFields = {
+                    manufacturer: extractFormValue(issueBody, 'Manufacturer/Brand \\(Optional\\)'),
+                    product_category: extractFormValue(issueBody, 'Product Category'),
+                    model_version: extractFormValue(issueBody, 'Model/Version \\(Optional\\)'),
+                    price: extractFormValue(issueBody, 'Price \\(Optional\\)')
+                  };
+                  break;
+              }
+              
+              console.log('Extracted data:', { reviewType, itemName, rating, summary });
+              
+              // Set outputs for F# script
+              core.setOutput('review_type', reviewType);
+              core.setOutput('item_name', itemName);
+              core.setOutput('rating', rating);
+              core.setOutput('summary', summary);
+              core.setOutput('content', content);
+              core.setOutput('pros', pros);
+              core.setOutput('cons', cons);
+              core.setOutput('item_url', itemUrl);
+              core.setOutput('image_url', imageUrl);
+              core.setOutput('additional_fields', JSON.stringify(additionalFields));
+              core.setOutput('tags', tags);
+              core.setOutput('slug', slug);
+              
+            } catch (error) {
+              console.error('Error extracting issue data:', error);
+              throw error;
+            }
+          
+      - name: Build F# project
+        if: steps.determine-type.outputs.review_type != 'unknown'
+        run: dotnet build --no-restore
+        
+      - name: Process issue with F# script
+        id: process-issue
+        if: steps.determine-type.outputs.review_type != 'unknown'
+        env:
+          ISSUE_REVIEW_TYPE: ${{ steps.extract-data.outputs.review_type }}
+          ISSUE_ITEM_NAME: ${{ steps.extract-data.outputs.item_name }}
+          ISSUE_RATING: ${{ steps.extract-data.outputs.rating }}
+          ISSUE_SUMMARY: ${{ steps.extract-data.outputs.summary }}
+          ISSUE_CONTENT: ${{ steps.extract-data.outputs.content }}
+          ISSUE_PROS: ${{ steps.extract-data.outputs.pros }}
+          ISSUE_CONS: ${{ steps.extract-data.outputs.cons }}
+          ISSUE_ITEM_URL: ${{ steps.extract-data.outputs.item_url }}
+          ISSUE_IMAGE_URL: ${{ steps.extract-data.outputs.image_url }}
+          ISSUE_ADDITIONAL_FIELDS: ${{ steps.extract-data.outputs.additional_fields }}
+          ISSUE_TAGS: ${{ steps.extract-data.outputs.tags }}
+          ISSUE_SLUG: ${{ steps.extract-data.outputs.slug }}
+        run: |
+          # Create temporary files for safe parameter passing
+          echo "$ISSUE_REVIEW_TYPE" > /tmp/review_type.txt
+          echo "$ISSUE_ITEM_NAME" > /tmp/item_name.txt
+          echo "$ISSUE_RATING" > /tmp/rating.txt
+          echo "$ISSUE_SUMMARY" > /tmp/summary.txt
+          echo "$ISSUE_CONTENT" > /tmp/content.txt
+          echo "$ISSUE_PROS" > /tmp/pros.txt
+          echo "$ISSUE_CONS" > /tmp/cons.txt
+          echo "$ISSUE_ITEM_URL" > /tmp/item_url.txt
+          echo "$ISSUE_IMAGE_URL" > /tmp/image_url.txt
+          echo "$ISSUE_ADDITIONAL_FIELDS" > /tmp/additional_fields.txt
+          echo "$ISSUE_TAGS" > /tmp/tags.txt
+          echo "$ISSUE_SLUG" > /tmp/slug.txt
+          
+          # Run F# script with file-based parameters
+          OUTPUT=$(dotnet fsi Scripts/process-review-issue.fsx -- \
+            "$(cat /tmp/review_type.txt)" \
+            "$(cat /tmp/item_name.txt)" \
+            "$(cat /tmp/rating.txt)" \
+            "$(cat /tmp/summary.txt)" \
+            "$(cat /tmp/content.txt)" \
+            "$(cat /tmp/pros.txt)" \
+            "$(cat /tmp/cons.txt)" \
+            "$(cat /tmp/item_url.txt)" \
+            "$(cat /tmp/image_url.txt)" \
+            "$(cat /tmp/additional_fields.txt)" \
+            "$(cat /tmp/tags.txt)" \
+            "$(cat /tmp/slug.txt)" 2>&1)
+          EXIT_CODE=$?
+          
+          # Clean up temporary files
+          rm -f /tmp/review_type.txt /tmp/item_name.txt /tmp/rating.txt /tmp/summary.txt /tmp/content.txt /tmp/pros.txt /tmp/cons.txt /tmp/item_url.txt /tmp/image_url.txt /tmp/additional_fields.txt /tmp/tags.txt /tmp/slug.txt
+          
+          echo "Script output:"
+          echo "$OUTPUT"
+          
+          if [ $EXIT_CODE -eq 0 ]; then
+            echo "success=true" >> $GITHUB_OUTPUT
+            # Extract filename from output
+            FILENAME=$(echo "$OUTPUT" | grep "📁 File:" | sed 's/.*📁 File: _src\/reviews\///' | sed 's/ .*//')
+            echo "filename=$FILENAME" >> $GITHUB_OUTPUT
+          else
+            echo "success=false" >> $GITHUB_OUTPUT
+            echo "error=$OUTPUT" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          
+      - name: Create Pull Request
+        if: steps.process-issue.outputs.success == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Add ${{ steps.extract-data.outputs.review_type }} review: ${{ steps.extract-data.outputs.item_name }}"
+          title: "Add ${{ steps.extract-data.outputs.review_type }} review: ${{ steps.extract-data.outputs.item_name }}"
+          body: |
+            ## New ${{ steps.extract-data.outputs.review_type }} Review
+            
+            **Item:** ${{ steps.extract-data.outputs.item_name }}
+            **Type:** ${{ steps.extract-data.outputs.review_type }}
+            **Rating:** ${{ steps.extract-data.outputs.rating }}/5.0
+            **File:** `_src/reviews/${{ steps.process-issue.outputs.filename }}`
+            
+            ### Review Summary
+            ${{ steps.extract-data.outputs.summary }}
+            
+            ### Frontmatter Validation
+            - ✅ Item Name: ${{ steps.extract-data.outputs.item_name }}
+            - ✅ Review Type: ${{ steps.extract-data.outputs.review_type }}
+            - ✅ Rating: ${{ steps.extract-data.outputs.rating }}
+            - ✅ Tags: ${{ steps.extract-data.outputs.tags }}
+            - ✅ Custom Slug: ${{ steps.extract-data.outputs.slug }}
+            
+            **Created via GitHub Issue Template #${{ github.event.issue.number }}**
+            **Processed by F# script using .NET 9**
+          branch: content/issue-${{ github.event.issue.number }}/review/${{ steps.extract-data.outputs.review_type }}-processed
+          delete-branch: true
+          
+      - name: Close issue on success
+        if: steps.process-issue.outputs.success == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              state: 'closed'
+            });
+            
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: '🎉 Your ${{ steps.extract-data.outputs.review_type }} review has been processed using F# and .NET 9! A pull request has been created with your content. You can track the progress in the pull requests tab.'
+            });
+            
+      - name: Handle processing errors
+        if: steps.process-issue.outputs.success == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: `❌ **Error processing review request with F# script**\n\n${steps.process-issue.outputs.error}\n\nPlease check your issue format and try again. The issue will remain open for you to edit and resubmit.`
             });

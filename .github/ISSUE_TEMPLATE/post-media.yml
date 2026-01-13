@@ -15,7 +15,7 @@ body:
         **Media Type Detection**: The system will automatically detect media types (image, video, audio) based on file extensions and content patterns. You can mix different media types in the same post.
 
   - type: input
-    id: title
+    id: post_title
     attributes:
       label: Title
       description: The title of your media post
@@ -85,9 +85,11 @@ body:
         **What happens next?**
         
         1. 🤖 A GitHub Action will process this issue
-        2. 📄 Generate a properly formatted markdown file in `_src/media/`
-        3. 🔀 Create a pull request with your content
-        4. ✅ The issue will be closed automatically
-        5. 🚀 After PR review and merge, your media will be live on the website
+        2. 📦 Download your media files from GitHub's temporary storage
+        3. 📤 Upload files to permanent Linode S3 storage with custom CDN URLs
+        4. 📄 Generate a properly formatted markdown file in `_src/media/` with permanent URLs
+        5. 🔀 Create a pull request with your content
+        6. ✅ The issue will be closed automatically
+        7. 🚀 After PR review and merge, your media will be live on the website
         
-        The generated content will include proper frontmatter with media type, publication date, and a custom :::media::: block for your attachment.
+        The generated content will include proper frontmatter with media type, publication date, and custom :::media::: blocks with permanent CDN URLs for your attachments.

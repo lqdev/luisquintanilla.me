@@ -53,7 +53,6 @@
   color: var(--text-color);
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: 25px;
-  cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 500;
   font-size: 0.9rem;
@@ -136,10 +135,13 @@
   border: 1px solid var(--border-color);
   border-radius: 12px;
   margin-bottom: var(--spacing-lg);
+  margin-top: 2rem; /* Space for absolutely positioned badges */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   opacity: 1;
   transform: translateY(0);
+  overflow: visible; /* Allow badges to extend above card */
+  position: relative; /* Positioning context for absolutely positioned badges */
 }
 
 .content-card:hover {
@@ -165,18 +167,12 @@
 .content-type-info {
   display: flex;
   align-items: center;
+  min-width: 0;
+  flex-shrink: 0;
+  position: static; /* Don't contain the badge, let it position relative to card */
 }
 
-/* Content Type Badges with Desert Color Coding */
-.content-type-badge {
-  padding: 0.25rem 0.75rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
+/* Content Type Badge Colors - inherit positioning from components.css */
 
 .content-type-badge[data-type="posts"] {
   background: #FF4500; /* Sunset Orange */
@@ -490,6 +486,14 @@
   font-weight: 600;
 }
 
+.post-meta .reading-time {
+  margin-left: 10px;
+}
+
+.post-meta .reading-time .bi-clock {
+  margin-right: 5px;
+}
+
 /* Post Content */
 .post-content {
   color: var(--text-color);
@@ -655,6 +659,21 @@ body[data-theme="light"] .card-content blockquote {
   text-decoration: underline;
 }
 
+/* Post tags section */
+.post-tags-section {
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--background-subtle);
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.post-tags-section .tag-link {
+  display: inline-block;
+  margin-right: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
 /* Responsive adjustments for individual posts */
 @media (max-width: 768px) {
   .individual-post {
@@ -696,7 +715,6 @@ body[data-theme="light"] .card-content blockquote {
   background: var(--accent-color);
   border: none;
   border-radius: 50%;
-  cursor: pointer;
   display: none;
   align-items: center;
   justify-content: center;
@@ -788,4 +806,45 @@ body[data-theme="light"] .card-content blockquote {
       transform: translateX(-50%);
     }
   }
+}
+
+/* Pinned Posts Styles */
+.pinned-post {
+  border-left: 4px solid var(--accent-color);
+  background-color: var(--card-bg-pinned, rgba(139, 69, 19, 0.05));
+}
+
+[data-theme="dark"] .pinned-post {
+  background-color: rgba(139, 69, 19, 0.1);
+}
+
+.pin-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--accent-color);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+[data-theme="dark"] .pin-indicator {
+  background-color: rgba(139, 69, 19, 0.3);
+}
+
+.pin-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.pin-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .pin-label {
+  color: var(--accent-color);
 }

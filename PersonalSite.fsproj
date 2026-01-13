@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,8 +15,10 @@
     <Compile Include="OutputComparison.fs" />
     <Compile Include="Services\Markdown.fs" />
     <Compile Include="Services\Tag.fs" />
+    <Compile Include="Services\ReadingTime.fs" />
     <Compile Include="Services\Opml.fs" />    
-    <Compile Include="Services\Webmention.fs" /> 
+    <Compile Include="Services\Webmention.fs" />
+    <Compile Include="Services\RelatedContent.fs" /> 
     <Compile Include="GenericBuilder.fs" />
     <Compile Include="Views\ComponentViews.fs" />
     <Compile Include="Views\TagViews.fs" />

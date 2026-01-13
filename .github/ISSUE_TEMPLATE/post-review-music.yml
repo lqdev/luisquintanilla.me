@@ -1,0 +1,165 @@
+name: 🎵 Post a Music Review
+description: Create a new music review post for the website
+title: "[Music Review] "
+labels: ["review", "music"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Create a New Music Review
+        
+        Review albums, singles, or musical works with structured metadata and detailed analysis.
+
+  - type: dropdown
+    id: music_type
+    attributes:
+      label: Music Type
+      description: What type of music are you reviewing?
+      options:
+        - "Album"
+        - "Single"
+        - "EP"
+        - "Live Performance"
+        - "Compilation"
+    validations:
+      required: true
+
+  - type: input
+    id: title
+    attributes:
+      label: Album/Song Title
+      description: The name of the music you're reviewing
+      placeholder: "e.g., OK Computer"
+    validations:
+      required: true
+
+  - type: input
+    id: artist
+    attributes:
+      label: Artist/Band (Optional)
+      description: The performing artist or band
+      placeholder: "e.g., Radiohead"
+    validations:
+      required: false
+
+  - type: input
+    id: release_year
+    attributes:
+      label: Release Year (Optional)
+      description: Year of release
+      placeholder: "e.g., 1997"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: rating
+    attributes:
+      label: Rating
+      description: Your overall rating
+      options:
+        - "5.0"
+        - "4.75"
+        - "4.5"
+        - "4.25"
+        - "4.0"
+        - "3.75"
+        - "3.5"
+        - "3.25"
+        - "3.0"
+        - "2.75"
+        - "2.5"
+        - "2.25"
+        - "2.0"
+        - "1.75"
+        - "1.5"
+        - "1.25"
+        - "1.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Review Summary (Optional)
+      description: Brief summary of your review
+      placeholder: "Your concise thoughts on this music..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: content
+    attributes:
+      label: Detailed Review (Optional)
+      description: Full review content. Can be added later if you just want to capture the rating quickly.
+      placeholder: |
+        ## Musical Style & Genre
+        Description of the musical approach...
+        
+        ## Standout Tracks
+        Highlight notable songs...
+        
+        ## Production & Sound
+        Thoughts on production quality...
+        
+        ## Overall Impact
+        Your final assessment...
+    validations:
+      required: false
+
+  - type: input
+    id: genre
+    attributes:
+      label: Genre (Optional)
+      description: Musical genre(s)
+      placeholder: "e.g., Alternative Rock, Electronic"
+    validations:
+      required: false
+
+  - type: input
+    id: label
+    attributes:
+      label: Record Label (Optional)
+      description: The record label
+      placeholder: "e.g., Parlophone"
+    validations:
+      required: false
+
+  - type: input
+    id: music_url
+    attributes:
+      label: Music URL (Optional)
+      description: Link to listen (Spotify, Apple Music, etc.)
+      placeholder: "https://open.spotify.com/album/..."
+    validations:
+      required: false
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags (Optional)
+      description: Comma-separated tags
+      placeholder: "e.g., experimental, ambient, guitar"
+    validations:
+      required: false
+
+  - type: input
+    id: slug
+    attributes:
+      label: Custom Slug (Optional)
+      description: Custom URL slug
+      placeholder: "e.g., ok-computer-review"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        **What happens next?**
+        
+        1. 🤖 A GitHub Action will process this issue
+        2. 📄 Generate a properly formatted markdown file in `_src/reviews/`
+        3. 🔀 Create a pull request with your review content
+        4. ✅ The issue will be closed automatically
+        5. 🚀 After PR review and merge, your music review will be live on the website

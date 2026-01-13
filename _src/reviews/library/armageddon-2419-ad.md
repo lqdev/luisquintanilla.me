@@ -1,8 +1,8 @@
 ---
-title: "Armageddon 2419 A.D."
-author: "Philip Francis Nowlan"
-isbn: "N/A"
-date_published: "01/22/2023 13:45 -05:00"
+title: "Armageddon 2419 A.D. Review"
+post_type: "review"
+published_date: "01/22/2023 13:45 -05:00"
+tags: []
 ---
 
 # Armageddon 2419 A.D. Review
@@ -10,16 +10,15 @@ date_published: "01/22/2023 13:45 -05:00"
 :::review
 item: "Armageddon 2419 A.D."
 itemType: "book"
+author: "Philip Francis Nowlan"
+isbn: "N/A"
+datePublished: "01/22/2023 13:45 -05:00"
 rating: 3.2
 scale: 5.0
 summary: "Personal review of Armageddon 2419 A."
 itemUrl: "https://openlibrary.org/books/OL37044570M/Armageddon_2419_A.D."
 imageUrl: "https://covers.openlibrary.org/b/id/12621838-L.jpg"
-additionalFields:
-  author: "Philip Francis Nowlan"
-  isbn: "N/A"
 :::
-
 ## Description
 
 > Nowlan's novella tells about the United States in the 25th century, conquered by Hans in 2109 AD and only now beginning to rebel. Sometime after World War I, nearly all the European powers joined forces against the United States. Although the U.S. won the war, both sides were devastated by the conflict. Taking advantage of the chaos that followed, the "Russian Soviets" (Soviet Union) joined forces with the "Mongolians" to take over Europe. The U.S. collapsed economically and stagnated while the Hans turned against the Russians and defeated them as part of their campaign of world conquest.  
@@ -31,4 +30,3 @@ additionalFields:
 ## Notes
 
 An  introduction to the Buck Rogers universe. 
-

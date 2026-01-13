@@ -1,0 +1,37 @@
+/* Web Share API - Share Button Styles
+ * Share buttons are now only in footers (via F# templates)
+ * Bootstrap provides base button styling (.btn, .btn-sm, .btn-outline-secondary)
+ * This file only adds success/error state styling
+ */
+
+/* Shared success state for web share buttons */
+.web-share-btn.shared {
+  background-color: #28a745 !important; /* Success green */
+  border-color: #28a745 !important;
+  color: white !important;
+}
+
+.web-share-btn.shared:hover {
+  background-color: #218838 !important;
+  border-color: #218838 !important;
+}
+
+/* Error state for web share buttons */
+.web-share-btn.share-error {
+  background-color: #dc3545 !important; /* Error red */
+  border-color: #dc3545 !important;
+  color: white !important;
+}
+
+/* Dark theme adjustments for success/error states */
+[data-theme="dark"] .web-share-btn.shared {
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+  color: white !important;
+}
+
+[data-theme="dark"] .web-share-btn.share-error {
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+  color: white !important;
+}

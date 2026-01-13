@@ -1,0 +1,152 @@
+name: 🏢 Post a Business Review
+description: Create a new business/establishment review post for the website
+title: "[Business Review] "
+labels: ["review", "business"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Create a New Business Review
+        
+        Review restaurants, coffee shops, stores, services, and other local businesses.
+
+  - type: input
+    id: business_name
+    attributes:
+      label: Business Name
+      description: Name of the business you're reviewing
+      placeholder: "e.g., Blue Bottle Coffee"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: business_type
+    attributes:
+      label: Business Type
+      description: What type of business is this?
+      options:
+        - "Restaurant"
+        - "Coffee Shop"
+        - "Retail Store"
+        - "Service Provider"
+        - "Entertainment Venue"
+        - "Hotel/Accommodation"
+        - "Other"
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Location (Optional)
+      description: City, state/region where the business is located
+      placeholder: "e.g., San Francisco, CA"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: rating
+    attributes:
+      label: Rating
+      description: Your overall rating
+      options:
+        - "5.0"
+        - "4.75"
+        - "4.5"
+        - "4.25"
+        - "4.0"
+        - "3.75"
+        - "3.5"
+        - "3.25"
+        - "3.0"
+        - "2.75"
+        - "2.5"
+        - "2.25"
+        - "2.0"
+        - "1.75"
+        - "1.5"
+        - "1.25"
+        - "1.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Review Summary (Optional)
+      description: Brief summary of your experience
+      placeholder: "Quick summary of your visit and overall impression..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: content
+    attributes:
+      label: Detailed Review (Optional)
+      description: Full review content. Can be added later if you just want to capture the rating quickly.
+      placeholder: |
+        ## The Experience
+        Describe your visit...
+        
+        ## Service & Staff
+        Quality of service...
+        
+        ## Atmosphere & Environment
+        The setting and ambiance...
+        
+        ## Value & Pricing
+        Cost vs. quality assessment...
+        
+        ## Would I Return?
+        Final thoughts and recommendation...
+    validations:
+      required: false
+
+  - type: input
+    id: website_url
+    attributes:
+      label: Business Website (Optional)
+      description: Link to the business website
+      placeholder: "https://bluebottlecoffee.com"
+    validations:
+      required: false
+
+  - type: input
+    id: price_range
+    attributes:
+      label: Price Range (Optional)
+      description: Approximate pricing level
+      placeholder: "e.g., $$$ (Expensive)"
+    validations:
+      required: false
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags (Optional)
+      description: Comma-separated tags
+      placeholder: "e.g., coffee, local-favorite, wifi-friendly"
+    validations:
+      required: false
+
+  - type: input
+    id: slug
+    attributes:
+      label: Custom Slug (Optional)
+      description: Custom URL slug
+      placeholder: "e.g., blue-bottle-coffee-review"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        **What happens next?**
+        
+        1. 🤖 A GitHub Action will process this issue
+        2. 📄 Generate a properly formatted markdown file in `_src/reviews/`
+        3. 🔀 Create a pull request with your review content
+        4. ✅ The issue will be closed automatically
+        5. 🚀 After PR review and merge, your business review will be live on the website

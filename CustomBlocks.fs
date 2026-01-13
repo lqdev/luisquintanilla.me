@@ -26,13 +26,14 @@ type MediaItem = {
     aspect: string
 }
 
+// Base review data with common fields across all review types
 [<CLIMutable>]
-type ReviewData = {
+type BaseReviewData = {
     // Core review fields
     [<YamlDotNet.Serialization.YamlMember(Alias="item")>]
-    item: string  // Name of the item being reviewed (e.g., "The Four Agreements", "Blade Runner 2049")
+    item: string  // Name of the item being reviewed
     [<YamlDotNet.Serialization.YamlMember(Alias="itemType")>]
-    item_type: string option  // Type of review: "book", "movie", "music", "business", "product"
+    item_type: string  // Type of review: "book", "movie", "music", "business", "product"
     [<YamlDotNet.Serialization.YamlMember(Alias="rating")>]
     rating: float
     [<YamlDotNet.Serialization.YamlMember(Alias="scale")>]
@@ -51,17 +52,118 @@ type ReviewData = {
     item_url: string option  // Link to the item's website or URL for reference
     [<YamlDotNet.Serialization.YamlMember(Alias="imageUrl")>]
     image_url: string option  // Thumbnail/cover image URL for display
-    [<YamlDotNet.Serialization.YamlMember(Alias="additionalFields")>]
-    additional_fields: System.Collections.Generic.Dictionary<string, obj> option  // Type-specific metadata
 }
 with
-    // Helper methods for clean API
-    member this.GetItemType() = 
-        this.item_type |> Option.defaultValue "unknown"
     member this.GetScale() = 
         this.scale |> Option.defaultValue 5.0
     member this.GetSummary() = 
         this.summary |> Option.defaultValue ""
+    member this.GetImageUrl() =
+        this.image_url |> Option.defaultValue ""
+
+// Book-specific review data
+[<CLIMutable>]
+type BookReviewData = {
+    // Inherit base fields
+    [<YamlDotNet.Serialization.YamlMember(Alias="item")>]
+    item: string
+    [<YamlDotNet.Serialization.YamlMember(Alias="itemType")>]
+    item_type: string
+    [<YamlDotNet.Serialization.YamlMember(Alias="rating")>]
+    rating: float
+    [<YamlDotNet.Serialization.YamlMember(Alias="scale")>]
+    scale: float option
+    [<YamlDotNet.Serialization.YamlMember(Alias="summary")>]
+    summary: string option
+    [<YamlDotNet.Serialization.YamlMember(Alias="pros")>]
+    pros: string array option
+    [<YamlDotNet.Serialization.YamlMember(Alias="cons")>]
+    cons: string array option
+    [<YamlDotNet.Serialization.YamlMember(Alias="itemUrl")>]
+    item_url: string option
+    [<YamlDotNet.Serialization.YamlMember(Alias="imageUrl")>]
+    image_url: string option
+    
+    // Book-specific fields
+    [<YamlDotNet.Serialization.YamlMember(Alias="author")>]
+    author: string
+    [<YamlDotNet.Serialization.YamlMember(Alias="isbn")>]
+    isbn: string option
+    [<YamlDotNet.Serialization.YamlMember(Alias="cover")>]
+    cover: string option
+    [<YamlDotNet.Serialization.YamlMember(Alias="datePublished")>]
+    date_published: string option
+}
+with
+    member this.GetScale() = this.scale |> Option.defaultValue 5.0
+    member this.GetSummary() = this.summary |> Option.defaultValue ""
+    member this.GetIsbn() = this.isbn |> Option.defaultValue ""
+    member this.GetCover() = 
+        match this.cover with
+        | Some c -> c
+        | None -> this.image_url |> Option.defaultValue ""
+    member this.GetDatePublished() = this.date_published |> Option.defaultValue ""
+
+// Union type for different review data types
+type ReviewData =
+    | BookReview of BookReviewData
+    | GenericReview of BaseReviewData
+with
+    // Common accessor methods
+    member this.Item = 
+        match this with
+        | BookReview b -> b.item
+        | GenericReview g -> g.item
+    member this.ItemType =
+        match this with
+        | BookReview b -> b.item_type
+        | GenericReview g -> g.item_type
+    member this.Rating =
+        match this with
+        | BookReview b -> b.rating
+        | GenericReview g -> g.rating
+    member this.Scale =
+        match this with
+        | BookReview b -> b.GetScale()
+        | GenericReview g -> g.GetScale()
+    member this.Summary =
+        match this with
+        | BookReview b -> b.GetSummary()
+        | GenericReview g -> g.GetSummary()
+    member this.Pros =
+        match this with
+        | BookReview b -> b.pros
+        | GenericReview g -> g.pros
+    member this.Cons =
+        match this with
+        | BookReview b -> b.cons
+        | GenericReview g -> g.cons
+    member this.ItemUrl =
+        match this with
+        | BookReview b -> b.item_url
+        | GenericReview g -> g.item_url
+    member this.ImageUrl =
+        match this with
+        | BookReview b -> b.image_url
+        | GenericReview g -> g.image_url
+    
+    // Book-specific accessors
+    member this.GetAuthor() =
+        match this with
+        | BookReview b -> b.author
+        | GenericReview _ -> "Unknown"
+    member this.GetIsbn() =
+        match this with
+        | BookReview b -> b.GetIsbn()
+        | GenericReview _ -> ""
+    member this.GetCover() =
+        match this with
+        | BookReview b -> b.GetCover()
+        | GenericReview g -> g.GetImageUrl()
+    member this.GetDatePublished() =
+        match this with
+        | BookReview b -> b.GetDatePublished()
+        | GenericReview _ -> ""
 
 [<CLIMutable>]
 type VenueData = {
@@ -222,7 +324,19 @@ type CustomBlockParser(blockType: string, createBlock: BlockParser -> ContainerB
                         )
                     
                     let cleanContent = String.concat "\n" fixedLines
-                    let reviewData = deserializer.Deserialize<ReviewData>(cleanContent)
+                    
+                    // Polymorphic deserialization: first deserialize to get itemType
+                    let baseData = deserializer.Deserialize<BaseReviewData>(cleanContent)
+                    
+                    // Then deserialize to specific type based on itemType
+                    let reviewData =
+                        match baseData.item_type.ToLowerInvariant() with
+                        | "book" ->
+                            let bookData = deserializer.Deserialize<BookReviewData>(cleanContent)
+                            BookReview bookData
+                        | _ ->
+                            GenericReview baseData
+                    
                     reviewBlock.ReviewData <- Some reviewData
             | :? VenueBlock as venueBlock ->
                 if not (String.IsNullOrWhiteSpace(venueBlock.RawContent)) then
@@ -338,37 +452,35 @@ type ReviewBlockHtmlRenderer() =
         match block.ReviewData with
         | Some reviewData ->
             // Enhanced HTML rendering with proper structure
-            let itemType = reviewData.GetItemType()
-            let scale = reviewData.GetScale()
-            let summary = reviewData.GetSummary()
+            let itemType = reviewData.ItemType
+            let scale = reviewData.Scale
+            let summary = reviewData.Summary
             
             // Start review block container
             renderer.Write("<div class=\"custom-review-block h-review\">") |> ignore
             
-            // Item title with type badge
+            // Item title
             renderer.Write($"<div class=\"review-header\">") |> ignore
-            renderer.Write($"<h3 class=\"review-title p-name\">{HtmlHelpers.escapeHtml reviewData.item}</h3>") |> ignore
-            if itemType <> "unknown" then
-                renderer.Write($"<span class=\"item-type-badge badge bg-secondary\">{HtmlHelpers.escapeHtml (itemType.ToUpperInvariant())}</span>") |> ignore
+            renderer.Write($"<h3 class=\"review-title p-name\">{HtmlHelpers.escapeHtml reviewData.Item}</h3>") |> ignore
             renderer.Write("</div>") |> ignore
             
             // Image if available
-            match reviewData.image_url with
+            match reviewData.ImageUrl with
             | Some imageUrl when not (String.IsNullOrWhiteSpace(imageUrl)) ->
-                renderer.Write($"<div class=\"review-image\"><img src=\"{HtmlHelpers.escapeHtml imageUrl}\" alt=\"{HtmlHelpers.escapeHtml reviewData.item}\" class=\"review-thumbnail img-fluid\" /></div>") |> ignore
+                renderer.Write($"<div class=\"review-image\"><img src=\"{HtmlHelpers.escapeHtml imageUrl}\" alt=\"{HtmlHelpers.escapeHtml reviewData.Item}\" class=\"review-thumbnail img-fluid\" /></div>") |> ignore
             | _ -> ()
             
             // Rating display
-            if reviewData.rating > 0.0 then
-                let stars = String.replicate (int reviewData.rating) "★" + String.replicate (int (scale - reviewData.rating)) "☆"
-                renderer.Write($"<div class=\"review-rating p-rating\"><strong>Rating:</strong> {stars} ({reviewData.rating:F1}/{scale:F1})</div>") |> ignore
+            if reviewData.Rating > 0.0 then
+                let stars = String.replicate (int reviewData.Rating) "★" + String.replicate (int (scale - reviewData.Rating)) "☆"
+                renderer.Write($"<div class=\"review-rating p-rating\"><strong>Rating:</strong> {stars} ({reviewData.Rating:F1}/{scale:F1})</div>") |> ignore
             
             // Summary
             if not (String.IsNullOrWhiteSpace(summary)) then
                 renderer.Write($"<div class=\"review-summary p-summary\">{HtmlHelpers.escapeHtml summary}</div>") |> ignore
             
             // Pros and cons
-            match reviewData.pros with
+            match reviewData.Pros with
             | Some prosArray when prosArray.Length > 0 ->
                 renderer.Write("<div class=\"review-pros\"><h4>Pros:</h4><ul>") |> ignore
                 for pro in prosArray do
@@ -376,7 +488,7 @@ type ReviewBlockHtmlRenderer() =
                 renderer.Write("</ul></div>") |> ignore
             | _ -> ()
             
-            match reviewData.cons with
+            match reviewData.Cons with
             | Some consArray when consArray.Length > 0 ->
                 renderer.Write("<div class=\"review-cons\"><h4>Cons:</h4><ul>") |> ignore
                 for con in consArray do
@@ -384,17 +496,8 @@ type ReviewBlockHtmlRenderer() =
                 renderer.Write("</ul></div>") |> ignore
             | _ -> ()
             
-            // Additional fields
-            match reviewData.additional_fields with
-            | Some fields when fields.Count > 0 ->
-                renderer.Write("<div class=\"review-additional-fields\"><h4>Additional Information:</h4>") |> ignore
-                for kvp in fields do
-                    renderer.Write($"<div class=\"additional-field\"><strong>{HtmlHelpers.escapeHtml kvp.Key}:</strong> {HtmlHelpers.escapeHtml (kvp.Value.ToString())}</div>") |> ignore
-                renderer.Write("</div>") |> ignore
-            | _ -> ()
-            
             // Item URL
-            match reviewData.item_url with
+            match reviewData.ItemUrl with
             | Some url when not (String.IsNullOrWhiteSpace(url)) ->
                 renderer.Write($"<div class=\"review-url\"><a href=\"{HtmlHelpers.escapeHtml url}\" class=\"u-url\" target=\"_blank\">View Item</a></div>") |> ignore
             | _ -> ()
@@ -554,7 +657,7 @@ let extractReviewImageUrl (content: string) : string option =
         match customBlocks.TryGetValue("review") with
         | true, reviewList when reviewList.Length > 0 ->
             match reviewList.[0] with
-            | :? ReviewData as reviewData -> reviewData.image_url
+            | :? ReviewData as reviewData -> reviewData.ImageUrl
             | _ -> None
         | _ -> None
     with
@@ -611,3 +714,201 @@ let parseCustomBlocks (blockParsers: Map<string, string -> obj list>) (doc: Mark
         | _ -> ()
     
     results |> Seq.map (fun kvp -> kvp.Key, kvp.Value) |> Map.ofSeq
+
+// =====================================================================
+// Resume Custom Blocks
+// =====================================================================
+
+/// Block for :::experience syntax
+type ExperienceBlock(parser: BlockParser) =
+    inherit ContainerBlock(parser)
+    member val Role = "" with get, set
+    member val Company = "" with get, set
+    member val Start = "" with get, set
+    member val End : string option = None with get, set
+    member val Content = "" with get, set
+    interface ICustomBlock with
+        member _.BlockType = "experience"
+        member this.RawContent = this.Content
+
+/// Block for :::project syntax
+type ProjectBlock(parser: BlockParser) =
+    inherit ContainerBlock(parser)
+    member val Title = "" with get, set
+    member val Url : string option = None with get, set
+    member val Tech : string option = None with get, set
+    member val Content = "" with get, set
+    interface ICustomBlock with
+        member _.BlockType = "project"
+        member this.RawContent = this.Content
+
+/// Block for :::skills syntax
+type SkillsBlock(parser: BlockParser) =
+    inherit ContainerBlock(parser)
+    member val Category = "" with get, set
+    member val Content = "" with get, set
+    interface ICustomBlock with
+        member _.BlockType = "skills"
+        member this.RawContent = this.Content
+
+/// Block for :::testimonial syntax
+type TestimonialBlock(parser: BlockParser) =
+    inherit ContainerBlock(parser)
+    member val Author = "" with get, set
+    member val Content = "" with get, set
+    interface ICustomBlock with
+        member _.BlockType = "testimonial"
+        member this.RawContent = this.Content
+
+/// Block for :::education syntax
+type EducationBlock(parser: BlockParser) =
+    inherit ContainerBlock(parser)
+    member val Degree = "" with get, set
+    member val Institution = "" with get, set
+    member val Year : string option = None with get, set
+    member val Content = "" with get, set
+    interface ICustomBlock with
+        member _.BlockType = "education"
+        member this.RawContent = this.Content
+
+/// Parser for resume blocks with field: value and markdown content pattern
+type ResumeBlockParser<'T when 'T :> ContainerBlock and 'T :> ICustomBlock>(blockType: string, createBlock: BlockParser -> 'T, setField: 'T -> string -> string -> unit, setContent: 'T -> string -> unit) =
+    inherit BlockParser()
+    
+    let startMarker = $":::{blockType}"
+    let endMarker = ":::"
+    let contentSeparator = "---"
+    
+    override this.TryOpen(processor) =
+        let line = processor.Line.ToString().TrimStart()
+        if line.StartsWith(startMarker) then
+            let block = createBlock this
+            processor.NewBlocks.Push(block)
+            BlockState.ContinueDiscard
+        else
+            BlockState.None
+    
+    override _.TryContinue(processor, block) =
+        let line = processor.Line
+        let lineText = line.ToString().TrimStart()
+        
+        if lineText = endMarker then
+            processor.Close(block)
+            BlockState.BreakDiscard
+        else
+            let block' = block :?> 'T
+            
+            // Check if this is the content separator
+            if lineText = contentSeparator then
+                // Mark that we're now in content mode (we'll track this via Content being non-empty initially)
+                if block'.RawContent = "" then
+                    setContent block' " "  // Use space as marker that we're in content mode
+                BlockState.Continue
+            // If we have content marker and this isn't separator, it's content
+            elif block'.RawContent <> "" then
+                let currentContent = block'.RawContent
+                // Preserve original indentation by accessing the full slice
+                let originalLineText = 
+                    let slice = processor.Line
+                    if slice.Text <> null then
+                        slice.Text.Substring(slice.Start, slice.Length)
+                    else
+                        slice.ToString()
+                let newContent = if currentContent = " " then originalLineText else currentContent + "\n" + originalLineText
+                setContent block' newContent
+                BlockState.Continue
+            // Otherwise, it's a field definition
+            elif lineText.Contains(":") then
+                let parts = lineText.Split([|':'|], 2)
+                if parts.Length = 2 then
+                    let fieldName = parts.[0].Trim()
+                    let fieldValue = parts.[1].Trim()
+                    setField block' fieldName fieldValue
+                BlockState.Continue
+            else
+                BlockState.Continue
+    
+    override _.Close(processor, block) = true
+
+/// Specific parsers for each resume block type
+
+type ExperienceBlockParser() =
+    inherit ResumeBlockParser<ExperienceBlock>(
+        "experience",
+        (fun parser -> ExperienceBlock(parser)),
+        (fun block field value ->
+            match field.ToLower() with
+            | "role" -> block.Role <- value
+            | "company" -> block.Company <- value
+            | "start" -> block.Start <- value
+            | "end" -> block.End <- Some value
+            | _ -> ()),
+        (fun block content -> block.Content <- content)
+    )
+
+type ProjectBlockParser() =
+    inherit ResumeBlockParser<ProjectBlock>(
+        "project",
+        (fun parser -> ProjectBlock(parser)),
+        (fun block field value ->
+            match field.ToLower() with
+            | "title" -> block.Title <- value
+            | "url" -> block.Url <- Some value
+            | "tech" -> block.Tech <- Some value
+            | _ -> ()),
+        (fun block content -> block.Content <- content)
+    )
+
+type SkillsBlockParser() =
+    inherit ResumeBlockParser<SkillsBlock>(
+        "skills",
+        (fun parser -> SkillsBlock(parser)),
+        (fun block field value ->
+            match field.ToLower() with
+            | "category" -> block.Category <- value
+            | _ -> ()),
+        (fun block content -> block.Content <- content)
+    )
+
+type TestimonialBlockParser() =
+    inherit ResumeBlockParser<TestimonialBlock>(
+        "testimonial",
+        (fun parser -> TestimonialBlock(parser)),
+        (fun block field value ->
+            match field.ToLower() with
+            | "author" -> block.Author <- value
+            | _ -> ()),
+        (fun block content -> block.Content <- content)
+    )
+
+type EducationBlockParser() =
+    inherit ResumeBlockParser<EducationBlock>(
+        "education",
+        (fun parser -> EducationBlock(parser)),
+        (fun block field value ->
+            match field.ToLower() with
+            | "degree" -> block.Degree <- value
+            | "institution" -> block.Institution <- value
+            | "year" -> block.Year <- Some value
+            | _ -> ()),
+        (fun block content -> block.Content <- content)
+    )
+
+// Extension for Markdig pipeline
+type ResumeBlockExtension() =
+    interface IMarkdownExtension with
+        member _.Setup(pipeline: MarkdownPipelineBuilder) =
+            // Insert parsers at index 0 for proper priority (same pattern as other custom blocks)
+            // Note: Inserting at index 0 means later insertions appear first in the parser list,
+            // so we insert in reverse order of desired evaluation priority
+            if not (pipeline.BlockParsers.Contains<EducationBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, EducationBlockParser())
+            if not (pipeline.BlockParsers.Contains<TestimonialBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, TestimonialBlockParser())
+            if not (pipeline.BlockParsers.Contains<SkillsBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, SkillsBlockParser())
+            if not (pipeline.BlockParsers.Contains<ProjectBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, ProjectBlockParser())
+            if not (pipeline.BlockParsers.Contains<ExperienceBlockParser>()) then
+                pipeline.BlockParsers.Insert(0, ExperienceBlockParser())
+        member _.Setup(_pipeline, _renderer) = ()

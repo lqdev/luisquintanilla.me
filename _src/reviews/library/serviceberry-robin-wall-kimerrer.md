@@ -1,8 +1,8 @@
 ---
-title: "The Serviceberry"
-author: "Robin Wall Kimerrer"
-isbn: "9781668072240"
-date_published: "09/13/2025 14:03 -05:00"
+title: "The Serviceberry Review"
+post_type: "review"
+published_date: "09/13/2025 14:03 -05:00"
+tags: []
 ---
 
 # The Serviceberry Review
@@ -10,16 +10,15 @@ date_published: "09/13/2025 14:03 -05:00"
 :::review
 item: "The Serviceberry"
 itemType: "book"
+author: "Robin Wall Kimerrer"
+isbn: "9781668072240"
+datePublished: "09/13/2025 14:03 -05:00"
 rating: 4.8
 scale: 5.0
 summary: "I'm happy my name is not Darren."
 itemUrl: "https://www.simonandschuster.com/books/The-Serviceberry/Robin-Wall-Kimmerer/9781668072240"
 imageUrl: "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781668072240/the-serviceberry-9781668072240_lg.jpg"
-additionalFields:
-  author: "Robin Wall Kimerrer"
-  isbn: "9781668072240"
 :::
-
 ## Description
 
 > As Indigenous scientist and author of Braiding Sweetgrass Robin Wall Kimmerer harvests serviceberries alongside the birds, she considers the ethic of reciprocity that lies at the heart of the gift economy. How, she asks, can we learn from Indigenous wisdom and the plant world to reimagine what we value most? Our economy is rooted in scarcity, competition, and the hoarding of resources, and we have surrendered our values to a system that actively harms what we love. Meanwhile, the serviceberry’s relationship with the natural world is an embodiment of reciprocity, interconnectedness, and gratitude. The tree distributes its wealth—its abundance of sweet, juicy berries—to meet the needs of its natural community. And this distribution ensures its own survival. As Kimmerer explains, “Serviceberries show us another model, one based upon reciprocity, where wealth comes from the quality of your relationships, not from the illusion of self-sufficiency.”  

@@ -83,14 +83,14 @@ module MediaRenderer =
 module ReviewRenderer =
     let render (review: ReviewData) =
         let ratingElement =
-            if review.rating > 0.0 then
+            if review.Rating > 0.0 then
                 Html.element "div" 
                     (Html.attribute "class" ("review-rating " + Microformats.pRating))
-                    (sprintf "Rating: %.1f/%.1f" review.rating (review.GetScale()))
+                    (sprintf "Rating: %.1f/%.1f" review.Rating review.Scale)
             else ""
         
         let summaryElement =
-            let summary = review.GetSummary()
+            let summary = review.Summary
             if not (String.IsNullOrWhiteSpace(summary)) then
                 Html.element "div"
                     (Html.attribute "class" ("review-summary " + Microformats.pSummary))
@@ -100,32 +100,22 @@ module ReviewRenderer =
         let titleElement =
             Html.element "h3"
                 (Html.attribute "class" ("review-title " + Microformats.pName))
-                (Html.escapeHtml review.item)
+                (Html.escapeHtml review.Item)
         
         let imageElement =
-            match review.image_url with
+            match review.ImageUrl with
             | Some imageUrl when not (String.IsNullOrWhiteSpace(imageUrl)) ->
                 Html.element "div" (Html.attribute "class" "review-image")
                     (Html.element "img" 
                         (Html.attribute "src" imageUrl + 
-                         Html.attribute "alt" review.item + 
+                         Html.attribute "alt" review.Item + 
                          Html.attribute "class" "review-thumbnail")
                         "")
             | _ -> ""
         
-        let itemTypeElement =
-            let itemType = review.GetItemType()
-            if itemType <> "unknown" then
-                Html.element "div"
-                    (Html.attribute "class" "review-item-type")
-                    (Html.element "span" 
-                        (Html.attribute "class" "item-type-badge")
-                        (Html.escapeHtml (itemType.ToUpperInvariant())))
-            else ""
-        
         let prosElement =
-            match review.pros with
-            | Some prosArray when prosArray.Length > 0 ->
+            match review.Pros with
+            | Some (prosArray: string array) when prosArray.Length > 0 ->
                 let prosItems = 
                     prosArray 
                     |> Array.map (fun pro -> 
@@ -137,8 +127,8 @@ module ReviewRenderer =
             | _ -> ""
         
         let consElement =
-            match review.cons with
-            | Some consArray when consArray.Length > 0 ->
+            match review.Cons with
+            | Some (consArray: string array) when consArray.Length > 0 ->
                 let consItems = 
                     consArray 
                     |> Array.map (fun con -> 
@@ -149,23 +139,8 @@ module ReviewRenderer =
                      Html.element "ul" "" consItems)
             | _ -> ""
         
-        let additionalFieldsElement =
-            match review.additional_fields with
-            | Some fields when fields.Count > 0 ->
-                let fieldItems = 
-                    fields 
-                    |> Seq.map (fun kvp -> 
-                        Html.element "div" (Html.attribute "class" "additional-field")
-                            (Html.element "strong" "" (Html.escapeHtml kvp.Key + ": ") +
-                             Html.escapeHtml (kvp.Value.ToString())))
-                    |> String.concat ""
-                Html.element "div" (Html.attribute "class" "review-additional-fields")
-                    (Html.element "h4" "" "Additional Information:" + 
-                     Html.element "div" (Html.attribute "class" "field-list") fieldItems)
-            | _ -> ""
-        
         let urlElement =
-            match review.item_url with
+            match review.ItemUrl with
             | Some url when not (String.IsNullOrWhiteSpace(url)) ->
                 Html.element "div" (Html.attribute "class" "review-url")
                     (Html.element "a" 
@@ -175,7 +150,7 @@ module ReviewRenderer =
         
         Html.element "div" 
             (Html.attribute "class" ("custom-review-block " + Microformats.hEntry))
-            (titleElement + imageElement + itemTypeElement + ratingElement + summaryElement + prosElement + consElement + additionalFieldsElement + urlElement)
+            (titleElement + imageElement + ratingElement + summaryElement + prosElement + consElement + urlElement)
 
 /// Renderer for VenueData
 module VenueRenderer =
@@ -276,3 +251,141 @@ module BlockRenderer =
         else
             let content = renderCustomBlocks blocks
             Html.element "div" (Html.attribute "class" "custom-blocks") content
+
+// =====================================================================
+// Resume Block Renderers
+// =====================================================================
+
+/// Renderer for ExperienceBlock
+module ExperienceRenderer =
+    let render (block: CustomBlocks.ExperienceBlock) =
+        let endDateStr = 
+            match block.End with
+            | Some "current" -> "Present"
+            | Some date -> 
+                try
+                    let dt = DateTime.Parse(date)
+                    dt.ToString("MMM yyyy")
+                with
+                | _ -> date
+            | None -> "Present"
+        
+        let startDateStr = 
+            try
+                let dt = DateTime.Parse(block.Start)
+                dt.ToString("MMM yyyy")
+            with
+            | _ -> block.Start
+        
+        let companyHtml = Markdig.Markdown.ToHtml(block.Company)
+        
+        let highlightsHtml = 
+            if not (String.IsNullOrWhiteSpace(block.Content)) then
+                // Process the entire content as markdown to preserve list structure
+                Markdig.Markdown.ToHtml(block.Content.Trim())
+            else ""
+        
+        Html.element "div" (Html.attribute "class" "experience-item")
+            (Html.element "div" (Html.attribute "class" "experience-header")
+                (Html.element "h3" "" (Html.escapeHtml block.Role) +
+                 Html.element "span" (Html.attribute "class" "duration") (Html.escapeHtml (startDateStr + " - " + endDateStr))) +
+             Html.element "div" (Html.attribute "class" "company") companyHtml +
+             highlightsHtml)
+
+/// Renderer for ProjectBlock
+module ProjectRenderer =
+    let render (block: CustomBlocks.ProjectBlock) =
+        let titleHtml = 
+            match block.Url with
+            | Some url when not (String.IsNullOrWhiteSpace url) ->
+                Html.element "h3" ""
+                    (Html.element "a" 
+                        (Html.attribute "href" url + Html.attribute "target" "_blank")
+                        (Html.escapeHtml block.Title))
+            | _ ->
+                Html.element "h3" "" (Html.escapeHtml block.Title)
+        
+        let techHtml = 
+            match block.Tech with
+            | Some tech when not (String.IsNullOrWhiteSpace tech) ->
+                Html.element "div" (Html.attribute "class" "tech-stack") (Html.escapeHtml tech)
+            | _ -> ""
+        
+        let descriptionHtml = 
+            if not (String.IsNullOrWhiteSpace(block.Content)) then
+                Html.element "div" (Html.attribute "class" "project-description") 
+                    (Markdig.Markdown.ToHtml(block.Content))
+            else ""
+        
+        Html.element "div" (Html.attribute "class" "project-item")
+            (Html.element "div" (Html.attribute "class" "project-header") titleHtml +
+             techHtml +
+             descriptionHtml)
+
+/// Renderer for SkillsBlock
+module SkillsRenderer =
+    let render (block: CustomBlocks.SkillsBlock) =
+        let skillsHtml = 
+            if not (String.IsNullOrWhiteSpace(block.Content)) then
+                // Check if content is comma-separated or bullet list
+                if block.Content.Contains(",") && not (block.Content.Contains("\n-") || block.Content.Contains("\n*")) then
+                    // Comma-separated format
+                    let skills = block.Content.Split(',') |> Array.map (fun s -> s.Trim())
+                    let listItems = 
+                        skills 
+                        |> Array.map (fun skill -> Html.element "li" "" (Markdig.Markdown.ToHtml(skill)))
+                        |> String.concat ""
+                    Html.element "ul" "" listItems
+                else
+                    // Bullet list format
+                    let lines = block.Content.Split('\n') |> Array.filter (fun s -> not (String.IsNullOrWhiteSpace s))
+                    let listItems = 
+                        lines 
+                        |> Array.map (fun line -> 
+                            let cleanLine = line.Trim().TrimStart('-', '*').Trim()
+                            Html.element "li" "" (Markdig.Markdown.ToHtml(cleanLine)))
+                        |> String.concat ""
+                    Html.element "ul" "" listItems
+            else ""
+        
+        Html.element "div" (Html.attribute "class" "skill-category")
+            (Html.element "h3" "" (Html.escapeHtml block.Category) +
+             skillsHtml)
+
+/// Renderer for TestimonialBlock
+module TestimonialRenderer =
+    let render (block: CustomBlocks.TestimonialBlock) =
+        let quoteHtml = 
+            if not (String.IsNullOrWhiteSpace(block.Content)) then
+                Html.element "p" (Html.attribute "class" "quote") (Html.escapeHtml block.Content)
+            else ""
+        
+        let authorHtml = 
+            Html.element "p" (Html.attribute "class" "testimonial-author")
+                ("— " + (Markdig.Markdown.ToHtml(block.Author)))
+        
+        Html.element "div" (Html.attribute "class" "testimonial")
+            (quoteHtml + authorHtml)
+
+/// Renderer for EducationBlock
+module EducationRenderer =
+    let render (block: CustomBlocks.EducationBlock) =
+        let institutionHtml = Markdig.Markdown.ToHtml(block.Institution)
+        
+        let yearHtml = 
+            match block.Year with
+            | Some year when not (String.IsNullOrWhiteSpace year) ->
+                Html.element "div" (Html.attribute "class" "year") (Html.escapeHtml year)
+            | _ -> ""
+        
+        let detailsHtml = 
+            if not (String.IsNullOrWhiteSpace(block.Content)) then
+                Html.element "div" (Html.attribute "class" "details") 
+                    (Markdig.Markdown.ToHtml(block.Content))
+            else ""
+        
+        Html.element "div" (Html.attribute "class" "education-item")
+            (Html.element "h3" "" (Html.escapeHtml block.Degree) +
+             Html.element "div" (Html.attribute "class" "institution") institutionHtml +
+             yearHtml +
+             detailsHtml)

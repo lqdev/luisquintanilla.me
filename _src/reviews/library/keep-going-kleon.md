@@ -1,8 +1,8 @@
 ---
-title: "Keep Going: 10 Ways to Stay Creative in Good Times and Bad"
-author: "Austin Kleon"
-isbn: "9781523506644"
-date_published: "2025-03-24 19:45 -05:00"
+title: "Keep Going: 10 Ways to Stay Creative in Good Times and Bad Review"
+post_type: "review"
+published_date: "2025-03-24 19:45 -05:00"
+tags: []
 ---
 
 # Keep Going: 10 Ways to Stay Creative in Good Times and Bad Review
@@ -10,16 +10,15 @@ date_published: "2025-03-24 19:45 -05:00"
 :::review
 item: "Keep Going: 10 Ways to Stay Creative in Good Times and Bad"
 itemType: "book"
+author: "Austin Kleon"
+isbn: "9781523506644"
+datePublished: "2025-03-24 19:45 -05:00"
 rating: 4.0
 scale: 5.0
 summary: "Solid listicle book."
 itemUrl: "https://austinkleon.com/keepgoing/"
 imageUrl: "https://images-us.bookshop.org/ingram/9781523506644.jpg?v=enc-v1"
-additionalFields:
-  author: "Austin Kleon"
-  isbn: "9781523506644"
 :::
-
 ## Description
 
 > The world is crazy. Creative work is hard. How do you keep going?  

@@ -1,8 +1,8 @@
 ---
-title: "Unfuck Your Writing: Write Better, Reach Readers, & Share Your Inner World"
-author: "Joe Biel, Faith Harper"
-isbn: "9781648410147"
-date_published: "10/21/2022 20:57 -05:00"
+title: "Unfuck Your Writing: Write Better, Reach Readers, & Share Your Inner World Review"
+post_type: "review"
+published_date: "10/21/2022 20:57 -05:00"
+tags: []
 ---
 
 # Unfuck Your Writing: Write Better, Reach Readers, & Share Your Inner World Review
@@ -10,16 +10,15 @@ date_published: "10/21/2022 20:57 -05:00"
 :::review
 item: "Unfuck Your Writing: Write Better, Reach Readers, & Share Your Inner World"
 itemType: "book"
+author: "Joe Biel, Faith Harper"
+isbn: "9781648410147"
+datePublished: "10/21/2022 20:57 -05:00"
 rating: 3.0
 scale: 5.0
 summary: "Short and easy read."
 itemUrl: "https://microcosmpublishing.com/catalog/books/9262"
 imageUrl: "https://microcosmpublishing.com/previews/unfuck-your-writing_lg.jpg"
-additionalFields:
-  author: "Joe Biel, Faith Harper"
-  isbn: "9781648410147"
 :::
-
 ## Description
 
 > Want to be a writer, but the words won't come? Do you have a lot to say but don't know how to write it so people will read it? Do you struggle with anxiety, procrastination, or feeling like an imposter around your writing? Microcosm's two most prolific authors teach you their tricks of the trade in this no-nonsense, practical guide to the craft of writing longform work. Learn skills like setting and sticking to goals, communicating effectively with your writing, having fun while writing, working with an editor, and creating reader-oriented work. This is not a book about crafting beautiful sentences with perfect grammar; instead Harper and Biel will teach you to write so that your words have the greatest possible impact on the world.

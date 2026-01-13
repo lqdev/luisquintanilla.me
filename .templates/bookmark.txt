@@ -1,0 +1,10 @@
+---
+title: "%^{Title}"
+targeturl: "%^{Target URL}"
+response_type: "bookmark"
+dt_published: %<%Y-%m-%d %H:%M -05:00>
+dt_updated: %<%Y-%m-%d %H:%M -05:00>
+tags: [%^{Tags (comma-separated)}]
+---
+
+%?

@@ -838,9 +838,8 @@ function initializeTimeline() {
     console.log('🔧 DOMContentLoaded event fired or DOM ready');
     
     try {
-        console.log('🔧 Initializing theme manager...');
-        TimelineThemeManager.init();
-        console.log('✅ Theme manager initialized');
+        // NOTE: Theme, mobile nav, and dropdown nav are initialized by main.js
+        // We only initialize timeline-specific functionality here to avoid conflicts
         
         const timelineElement = document.querySelector('.unified-timeline');
         console.log('🔧 Timeline element found:', !!timelineElement);
@@ -850,14 +849,6 @@ function initializeTimeline() {
             TimelineProgressiveLoader.init();
             console.log('🌵 Timeline filtering and progressive loading initialized');
         }
-        
-        console.log('🔧 Initializing mobile nav...');
-        TimelineMobileNav.init();
-        console.log('✅ Mobile nav initialized');
-        
-        console.log('🔧 Initializing dropdown nav...');
-        TimelineDropdownNav.init();
-        console.log('✅ Dropdown nav initialized');
         
         console.log('🔧 Initializing back to top button...');
         BackToTopManager.init();

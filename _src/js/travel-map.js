@@ -121,17 +121,18 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (info.price) details.push(`💰 ${escapeHtml(info.price)}`);
             if (info.hours) details.push(`🕒 ${escapeHtml(info.hours)}`);
-            if (info.phone) details.push(`📞 ${escapeHtml(info.phone)}`);
+            if (info.phone) details.push(`📞 <a href="tel:${escapeHtml(info.phone)}">${escapeHtml(info.phone)}</a>`);
+            if (info.website) details.push(`🌐 <a href="${escapeHtml(info.website)}" target="_blank">Website</a>`);
             
             if (details.length > 0) {
-                content += `<div class="mt-2">${details.map(d => `<span class="badge bg-secondary me-1">${d}</span>`).join('')}</div>`;
+                content += `<div class="mt-2">${details.map(d => `<span class="badge bg-secondary me-2">${d}</span>`).join('')}</div>`;
             }
         }
         
         // Add coordinate links
         content += `
             <div class="mt-2">
-                <a href="geo:${place.lat},${place.lon}" class="btn btn-sm btn-primary me-1">📱 Open in App</a>
+                <a href="geo:${place.lat},${place.lon}" class="btn btn-sm btn-primary me-1 d-none-desktop">📱 Open in App</a>
                 <a href="https://www.openstreetmap.org/?mlat=${place.lat}&mlon=${place.lon}&zoom=18" target="_blank" class="btn btn-sm btn-outline-secondary">🗺️ Map</a>
             </div>
         `;

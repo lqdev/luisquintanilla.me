@@ -1,0 +1,17 @@
+---
+title: "Your Album Title"
+description: "A brief description of this album collection"
+date: "2024-10-15 14:30 -05:00"
+tags: ["photography", "events"]
+location:
+  lat: 41.8781
+  lon: -87.6298
+---
+
+:::media
+- url: "http://cdn.lqdev.tech/files/images/your-image.jpg"
+  alt: "Descriptive alt text for accessibility"
+  mediaType: "image"
+  aspectRatio: "landscape"
+  caption: "Optional caption for the image"
+:::media

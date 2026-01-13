@@ -300,5 +300,78 @@
             "imageUrl: \"${8:Image URL}\"",
             ":::"
         ]
+    },
+    "Resume - Experience Block": {
+        "scope": "markdown",
+        "prefix": "resume-experience",
+        "description": "Add resume experience block",
+        "body": [
+            ":::experience",
+            "role: ${1:Job Title}",
+            "company: [${2:Company Name}](${3:https://company.com})",
+            "start: ${4:$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE}",
+            "end: ${5|current,2024-01-01|}",
+            "---",
+            "- ${6:Key achievement or responsibility}",
+            "- ${7:Another accomplishment}",
+            "- ${8:Use bullet points for highlights}",
+            ":::"
+        ]
+    },
+    "Resume - Skills Block": {
+        "scope": "markdown",
+        "prefix": "resume-skills",
+        "description": "Add resume skills block",
+        "body": [
+            ":::skills",
+            "category: ${1:Skill Category}",
+            "---",
+            "${2:Skill 1, Skill 2, Skill 3}",
+            ":::"
+        ]
+    },
+    "Resume - Project Block": {
+        "scope": "markdown",
+        "prefix": "resume-project",
+        "description": "Add resume project block",
+        "body": [
+            ":::project",
+            "title: ${1:Project Name}",
+            "url: ${2:https://github.com/username/project}",
+            "tech: ${3:F#, Technology 1, Technology 2}",
+            "---",
+            "${4:Detailed project description with markdown support.}",
+            "",
+            "${5:Can include multiple paragraphs and **rich formatting**.}",
+            ":::"
+        ]
+    },
+    "Resume - Education Block": {
+        "scope": "markdown",
+        "prefix": "resume-education",
+        "description": "Add resume education block",
+        "body": [
+            ":::education",
+            "degree: ${1:Degree Name}",
+            "institution: [${2:Institution Name}](${3:https://university.edu})",
+            "year: ${4:$CURRENT_YEAR}",
+            "---",
+            "${5:Additional details (honors, focus areas, achievements)}",
+            ":::"
+        ]
+    },
+    "Resume - Testimonial Block": {
+        "scope": "markdown",
+        "prefix": "resume-testimonial",
+        "description": "Add resume testimonial block",
+        "body": [
+            ":::testimonial",
+            "author: ${1:Name, Title} at [${2:Company}](${3:https://company.com})",
+            "---",
+            "${4:Quote text with the person's recommendation or feedback.}",
+            "",
+            "${5:Can include multiple paragraphs and **markdown formatting**.}",
+            ":::"
+        ]
     }    
 }

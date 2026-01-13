@@ -6,6 +6,7 @@ open CustomBlocks
 open BlockRenderers
 open TagService
 open MarkdownService
+open ReadingTimeService
 open System.Xml.Linq
 open System
 open System.IO
@@ -42,6 +43,17 @@ let normalizeUrlsForRss (content: string) (baseUrl: string) =
             sprintf "href=%s%s%s%s" quote baseUrl path quote)
     
     normalizedLinks
+
+/// Generate source:markdown element for RSS feeds
+let generateSourceMarkdown (markdownSource: string option) : XElement option =
+    match markdownSource with
+    | Some md when not (String.IsNullOrWhiteSpace md) ->
+        // Escape any ]]> that might break CDATA
+        let escaped = md.Replace("]]>", "]]]]><![CDATA[>")
+        // Create XElement with source namespace
+        let sourceNs = XNamespace.Get("http://source.scripting.com/")
+        Some (XElement(sourceNs + "markdown", XCData(escaped)))
+    | _ -> None
 
 /// Generic content processor pattern for consistent content handling
 type ContentProcessor<'T> = {
@@ -94,10 +106,13 @@ module PostProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
+                    let contentWithoutFrontmatter = extractContentWithoutFrontMatter parsedDoc.RawMarkdown
+                    let readingTime = ReadingTimeService.calculateReadingTime contentWithoutFrontmatter
                     Some {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
-                        Metadata = metadata
-                        Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown  // Use raw markdown without frontmatter
+                        Metadata = { metadata with ReadingTimeMinutes = readingTime }
+                        Content = contentWithoutFrontmatter  // Use raw markdown without frontmatter
+                        MarkdownSource = Some contentWithoutFrontmatter
                     }
                 | None -> None
             | Error _ -> None
@@ -146,6 +161,11 @@ module PostProcessor =
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
             
+            // Add source:markdown if available
+            match generateSourceMarkdown post.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
+            
             Some item
     }
 
@@ -157,10 +177,12 @@ module NoteProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
+                    let readingTime = ReadingTimeService.calculateReadingTime parsedDoc.TextContent
                     Some {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
-                        Metadata = metadata
+                        Metadata = { metadata with ReadingTimeMinutes = readingTime }
                         Content = parsedDoc.TextContent  // Raw markdown content
+                        MarkdownSource = Some parsedDoc.RawMarkdown
                     }
                 | None -> None
             | Error _ -> None
@@ -221,6 +243,11 @@ module NoteProcessor =
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
             
+            // Add source:markdown if available
+            match generateSourceMarkdown note.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
+            
             Some item
     }
 
@@ -236,6 +263,7 @@ module SnippetProcessor =
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = parsedDoc.TextContent
+                        MarkdownSource = Some parsedDoc.RawMarkdown
                     }
                 | None -> None
             | Error _ -> None
@@ -282,6 +310,11 @@ module SnippetProcessor =
             // Add categories if they exist
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown snippet.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
                 
             Some item
     }
@@ -298,6 +331,7 @@ module WikiProcessor =
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = parsedDoc.TextContent
+                        MarkdownSource = Some parsedDoc.RawMarkdown
                     }
                 | None -> None
             | Error _ -> None
@@ -344,6 +378,11 @@ module WikiProcessor =
             // Add categories if they exist
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown wiki.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
                 
             Some item
     }
@@ -377,6 +416,7 @@ module PresentationProcessor =
                         FileName = System.IO.Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = markdownContent  // Store raw markdown for reveal.js
+                        MarkdownSource = Some markdownContent
                     }
                 | None -> None
             | Error _ -> None
@@ -435,6 +475,11 @@ module PresentationProcessor =
             // Add categories if they exist
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown presentation.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
                 
             Some item
     }
@@ -455,8 +500,8 @@ module ReviewDataExtractor =
                 match customBlocks.TryGetValue("review") with
                 | true, reviewList when reviewList.Length > 0 ->
                     match reviewList.[0] with
-                    | :? ReviewData as reviewData -> 
-                        (reviewData.image_url, reviewData.rating, reviewData.GetScale(), reviewData.item_type)
+                    | :? CustomBlocks.ReviewData as reviewData -> 
+                        (reviewData.ImageUrl, reviewData.Rating, reviewData.Scale, Some reviewData.ItemType)
                     | _ -> (None, 0.0, 5.0, None)
                 | _ -> (None, 0.0, 5.0, None)
             with
@@ -499,26 +544,51 @@ module BookProcessor =
                 | Some metadata -> 
                     let fileName = Path.GetFileNameWithoutExtension(filePath)
                     
-                    // Extract all review data from raw markdown during parsing
-                    let (reviewImageUrl, reviewRating, reviewScale, reviewItemType) = ReviewDataExtractor.extractReviewData parsedDoc.RawMarkdown
+                    // Try to extract review data from parsed custom blocks (new approach)
+                    let reviewDataOpt = 
+                        match parsedDoc.CustomBlocks.TryGetValue("review") with
+                        | true, reviewList when reviewList.Length > 0 ->
+                            match reviewList.[0] with
+                            | :? CustomBlocks.ReviewData as reviewData -> Some reviewData
+                            | _ -> None
+                        | _ -> None
+                    
+                    // Populate metadata from review block if available, otherwise use frontmatter
+                    let finalMetadata = 
+                        match reviewDataOpt with
+                        | Some reviewData ->
+                            // Use review block as source of truth
+                            // Note: Keep existing title from frontmatter to maintain consistency with views
+                            // that expect "Book Title Review" format rather than just "Book Title"
+                            { metadata with
+                                Author = reviewData.GetAuthor()
+                                Isbn = reviewData.GetIsbn()
+                                Cover = reviewData.GetCover()
+                                Rating = reviewData.Rating
+                                DatePublished = reviewData.GetDatePublished()
+                            }
+                        | None ->
+                            // Fallback to frontmatter (backward compatibility)
+                            metadata
                     
                     // Store review data in cache for later use in rendering
-                    reviewDataCache.[fileName] <- (reviewImageUrl, reviewRating, reviewScale, reviewItemType)
-                    
-                    // Extract rating from custom review blocks if available in raw markdown
-                    let rating = 
-                        match extractRatingFromContent parsedDoc.RawMarkdown with
-                        | Some customRating -> customRating
-                        | None -> 
-                            if reviewRating > 0.0 then reviewRating else metadata.Rating
-                    
-                    // Update metadata with extracted rating
-                    let updatedMetadata = { metadata with Rating = rating }
+                    match reviewDataOpt with
+                    | Some reviewData ->
+                        let reviewImageUrl = reviewData.ImageUrl
+                        let reviewRating = reviewData.Rating
+                        let reviewScale = reviewData.Scale
+                        let reviewItemType = Some reviewData.ItemType
+                        reviewDataCache.[fileName] <- (reviewImageUrl, reviewRating, reviewScale, reviewItemType)
+                    | None ->
+                        // Use old extraction method for backward compatibility
+                        let (reviewImageUrl, reviewRating, reviewScale, reviewItemType) = ReviewDataExtractor.extractReviewData parsedDoc.RawMarkdown
+                        reviewDataCache.[fileName] <- (reviewImageUrl, reviewRating, reviewScale, reviewItemType)
                     
                     Some {
                         FileName = fileName
-                        Metadata = updatedMetadata
+                        Metadata = finalMetadata
                         Content = parsedDoc.TextContent
+                        MarkdownSource = Some parsedDoc.RawMarkdown
                     }
                 | None -> None
             | Error _ -> None
@@ -594,6 +664,11 @@ module BookProcessor =
             // Add pubDate if date exists
             if not (String.IsNullOrEmpty(book.Metadata.DatePublished)) then
                 item.Add(XElement(XName.Get "pubDate", book.Metadata.DatePublished))
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown book.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
                 
             Some item
     }
@@ -606,10 +681,12 @@ module ResponseProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
+                    let readingTime = ReadingTimeService.calculateReadingTime parsedDoc.TextContent
                     Some {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
-                        Metadata = metadata
+                        Metadata = { metadata with ReadingTimeMinutes = readingTime }
                         Content = parsedDoc.TextContent
+                        MarkdownSource = Some parsedDoc.RawMarkdown
                     }
                 | None -> None
             | Error _ -> None
@@ -684,6 +761,11 @@ module ResponseProcessor =
             // Add categories if they exist
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown response.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
                 
             Some item
     }
@@ -785,6 +867,7 @@ module AlbumProcessor =
                         FileName = fileName
                         Metadata = metadata
                         Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown  // Use raw markdown without frontmatter
+                        MarkdownSource = Some (extractContentWithoutFrontMatter parsedDoc.RawMarkdown)
                     }
                 | None -> None
             | Error _ -> None
@@ -852,6 +935,234 @@ module AlbumProcessor =
             // Add categories if they exist
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown album.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
+                
+            Some item
+    }
+
+/// Album Collection content processor - Curated media groupings
+module AlbumCollectionProcessor =
+    // Cache for media data extracted during parsing
+    let private mediaDataCache = System.Collections.Concurrent.ConcurrentDictionary<string, AlbumMediaData>()
+    
+    /// Helper to extract markdown content without frontmatter
+    let private extractContentWithoutFrontMatter (rawMarkdown: string) : string =
+        let lines = rawMarkdown.Split([|'\n'|], StringSplitOptions.None)
+        if lines.Length > 0 && lines.[0].Trim() = "---" then
+            // Find the closing ---
+            let closingIndex = 
+                lines 
+                |> Array.skip 1
+                |> Array.findIndex (fun line -> line.Trim() = "---")
+            // Return everything after the second ---
+            lines 
+            |> Array.skip (closingIndex + 2)
+            |> String.concat "\n"
+        else
+            rawMarkdown
+    
+    let create() : ContentProcessor<AlbumCollection> = {
+        Parse = fun filePath ->
+            match parseAlbumCollectionFromFile filePath with
+            | Ok parsedDoc -> 
+                match parsedDoc.Metadata with
+                | Some metadata -> 
+                    let fileName = Path.GetFileNameWithoutExtension(filePath)
+                    
+                    // Extract media data from raw markdown during parsing
+                    let mediaData = MediaDataExtractor.extractAlbumMediaData parsedDoc.RawMarkdown
+                    
+                    // Store media data in cache for later use in rendering
+                    mediaDataCache.[fileName] <- mediaData
+                    
+                    Some {
+                        FileName = fileName
+                        Metadata = metadata
+                        Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown
+                        MarkdownSource = Some (extractContentWithoutFrontMatter parsedDoc.RawMarkdown)
+                    }
+                | None -> None
+            | Error _ -> None
+        
+        Render = fun albumCollection ->
+            // Return raw markdown content to be processed by Builder.fs through MarkdownService
+            // This allows :::media blocks to be converted to proper HTML by custom block processors
+            albumCollection.Content
+        
+        OutputPath = fun albumCollection ->
+            sprintf "collections/albums/%s/index.html" albumCollection.FileName
+        
+        RenderCard = fun albumCollection ->
+            let title = albumCollection.Metadata.Title
+            let description = albumCollection.Metadata.Description
+            let url = sprintf "/collections/albums/%s/" albumCollection.FileName
+            let date = albumCollection.Metadata.Date
+            
+            // Get media data from cache (extracted during parsing)
+            let mediaData = 
+                match mediaDataCache.TryGetValue(albumCollection.FileName) with
+                | (true, data) -> data
+                | _ -> { FirstImageUrl = None; FirstImageAlt = None; MediaCount = 0 }
+            
+            // Generate content preview using cached data
+            let contentPreview = 
+                match mediaData.FirstImageUrl with
+                | Some imageUrl ->
+                    let altText = mediaData.FirstImageAlt |> Option.defaultValue "Album preview"
+                    sprintf """<div class="album-preview"><img src="%s" alt="%s" class="img-fluid" /><p class="mt-2">%s</p></div>""" imageUrl altText description
+                | None -> sprintf "<p>%s</p>" description
+            
+            let viewNode = 
+                article [ _class "album-collection-card h-entry" ] [
+                    h2 [] [ a [ _href url ] [ Text title ] ]
+                    div [ _class "content-preview" ] [ rawText contentPreview ]
+                    if mediaData.MediaCount > 0 then
+                        p [ _class "text-muted" ] [ Text (sprintf "%d items" mediaData.MediaCount) ]
+                    div [ _class "mt-2" ] [
+                        a [ _href url; _class "btn btn-outline-primary btn-sm" ] [ Text "View Album →" ]
+                    ]
+                ]
+            RenderView.AsString.xmlNode viewNode
+        
+        RenderRss = fun albumCollection ->
+            // Create RSS item for album collection
+            let url = sprintf "https://www.lqdev.me/collections/albums/%s/" albumCollection.FileName
+            let description = albumCollection.Metadata.Description
+            
+            // Get media count from cache
+            let mediaData = 
+                match mediaDataCache.TryGetValue(albumCollection.FileName) with
+                | (true, data) -> data
+                | _ -> { FirstImageUrl = None; FirstImageAlt = None; MediaCount = 0 }
+            
+            let enhancedDescription = 
+                if mediaData.MediaCount > 0 then
+                    sprintf "%s (%d items)" description mediaData.MediaCount
+                else
+                    description
+            
+            // Normalize URLs in description for RSS compatibility
+            let normalizedDescription = normalizeUrlsForRss enhancedDescription "https://www.lqdev.me"
+            
+            // Create RSS category elements for tags
+            let categories = 
+                albumCollection.Metadata.Tags
+                |> Array.map (fun tag -> XElement(XName.Get "category", tag))
+                |> Array.toList
+            
+            let item = 
+                XElement(XName.Get "item",
+                    XElement(XName.Get "title", albumCollection.Metadata.Title),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedDescription),
+                    XElement(XName.Get "link", url),
+                    XElement(XName.Get "guid", url),
+                    XElement(XName.Get "pubDate", albumCollection.Metadata.Date))
+            
+            // Add categories if they exist
+            if not (List.isEmpty categories) then
+                item.Add(categories |> List.toArray)
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown albumCollection.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
+                
+            Some item
+    }
+
+/// Playlist Collection content processor for curated music playlists
+module PlaylistCollectionProcessor =
+    /// Helper to extract markdown content without frontmatter
+    let private extractContentWithoutFrontMatter (rawMarkdown: string) : string =
+        let lines = rawMarkdown.Split([|'\n'|], StringSplitOptions.None)
+        if lines.Length > 0 && lines.[0].Trim() = "---" then
+            // Find the closing ---
+            let closingIndex = 
+                lines 
+                |> Array.skip 1
+                |> Array.findIndex (fun line -> line.Trim() = "---")
+            // Return everything after the second ---
+            lines 
+            |> Array.skip (closingIndex + 2)
+            |> String.concat "\n"
+        else
+            rawMarkdown
+    
+    let create() : ContentProcessor<PlaylistCollection> = {
+        Parse = fun filePath ->
+            match parsePlaylistCollectionFromFile filePath with
+            | Ok parsedDoc -> 
+                match parsedDoc.Metadata with
+                | Some metadata -> 
+                    let fileName = Path.GetFileNameWithoutExtension(filePath)
+                    
+                    Some {
+                        FileName = fileName
+                        Metadata = metadata
+                        Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown
+                        MarkdownSource = Some (extractContentWithoutFrontMatter parsedDoc.RawMarkdown)
+                    }
+                | None -> None
+            | Error _ -> None
+        
+        Render = fun playlistCollection ->
+            // Return raw markdown content to be processed by Builder.fs through MarkdownService
+            playlistCollection.Content
+        
+        OutputPath = fun playlistCollection ->
+            sprintf "collections/playlists/%s/index.html" playlistCollection.FileName
+        
+        RenderCard = fun playlistCollection ->
+            let title = playlistCollection.Metadata.Title
+            let description = playlistCollection.Metadata.Description |> Option.defaultValue ""
+            let url = sprintf "/collections/playlists/%s/" playlistCollection.FileName
+            let date = playlistCollection.Metadata.Date
+            
+            let viewNode = 
+                article [ _class "playlist-collection-card h-entry" ] [
+                    h2 [] [ a [ _href url ] [ Text title ] ]
+                    if not (String.IsNullOrEmpty(description)) then
+                        p [ _class "content-preview" ] [ Text description ]
+                    div [ _class "mt-2" ] [
+                        a [ _href url; _class "btn btn-outline-primary btn-sm" ] [ Text "View Playlist →" ]
+                    ]
+                ]
+            RenderView.AsString.xmlNode viewNode
+        
+        RenderRss = fun playlistCollection ->
+            // Create RSS item for playlist collection
+            let url = sprintf "https://www.lqdev.me/collections/playlists/%s/" playlistCollection.FileName
+            let description = playlistCollection.Metadata.Description |> Option.defaultValue ""
+            
+            // Normalize URLs in description for RSS compatibility
+            let normalizedDescription = normalizeUrlsForRss description "https://www.lqdev.me"
+            
+            // Create RSS category elements for tags
+            let categories = 
+                playlistCollection.Metadata.Tags
+                |> Array.map (fun tag -> XElement(XName.Get "category", tag))
+                |> Array.toList
+            
+            let item = 
+                XElement(XName.Get "item",
+                    XElement(XName.Get "title", playlistCollection.Metadata.Title),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedDescription),
+                    XElement(XName.Get "link", url),
+                    XElement(XName.Get "guid", url),
+                    XElement(XName.Get "pubDate", playlistCollection.Metadata.Date))
+            
+            // Add categories if they exist
+            if not (List.isEmpty categories) then
+                item.Add(categories |> List.toArray)
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown playlistCollection.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
                 
             Some item
     }
@@ -868,6 +1179,7 @@ module BookmarkProcessor =
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = parsedDoc.TextContent
+                        MarkdownSource = Some parsedDoc.RawMarkdown
                     }
                 | None -> None
             | Error _ -> None
@@ -912,6 +1224,12 @@ module BookmarkProcessor =
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url),
                     XElement(XName.Get "pubDate", bookmark.Metadata.DatePublished))
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown bookmark.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
+            
             Some item
     }
 
@@ -1015,6 +1333,7 @@ module UnifiedFeeds =
         let channel = 
             XElement(XName.Get "rss",
                 XAttribute(XName.Get "version", "2.0"),
+                XAttribute(XName.Get("{http://www.w3.org/2000/xmlns/}source"), "http://source.scripting.com/"),
                 XElement(XName.Get "channel",
                     XElement(XName.Get "title", config.Title),
                     XElement(XName.Get "link", config.Link),
@@ -1032,10 +1351,18 @@ module UnifiedFeeds =
     /// Build unified feeds from all content types with proper type conversion
     let buildAllFeeds (feedDataSets: (string * (UnifiedFeedItem list)) list) (outputDirectory: string) =
         // Flatten all feed items and sort chronologically
+        // Handle null/empty dates gracefully by using a very old date for items with missing dates
         let allUnifiedItems = 
             feedDataSets
             |> List.collect snd
-            |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
+            |> List.sortByDescending (fun item -> 
+                if String.IsNullOrWhiteSpace(item.Date) then
+                    DateTimeOffset.MinValue
+                else
+                    try
+                        DateTimeOffset.Parse(item.Date)
+                    with
+                    | _ -> DateTimeOffset.MinValue)
         
         // Fire-hose feed configuration (all content types)
         let fireHoseConfig = {
@@ -1119,6 +1446,20 @@ module UnifiedFeeds =
                 Description = "Photo albums and media by Luis Quintanilla"
                 OutputPath = "media/feed.xml"
                 ContentType = Some "media"
+            })
+            ("album-collection", {
+                Title = "Luis Quintanilla - Albums"
+                Link = "https://www.lqdev.me/collections/albums"
+                Description = "Photo album collections by Luis Quintanilla"
+                OutputPath = "collections/albums/feed.xml"
+                ContentType = Some "album-collection"
+            })
+            ("playlist-collection", {
+                Title = "Luis Quintanilla - Playlists"
+                Link = "https://www.lqdev.me/collections/playlists"
+                Description = "Music playlist collections by Luis Quintanilla"
+                OutputPath = "collections/playlists/feed.xml"
+                ContentType = Some "playlist-collection"
             })
         ]
         
@@ -1338,6 +1679,30 @@ module UnifiedFeeds =
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "media"; Tags = tags; RssXml = rssXml }
+            | None -> None)
+    
+    let convertAlbumCollectionsToUnified (feedDataList: FeedData<AlbumCollection> list) : UnifiedFeedItem list =
+        feedDataList |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let title = feedData.Content.Metadata.Title
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = feedData.Content.Content  // Use full content
+                let date = feedData.Content.Metadata.Date
+                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "album-collection"; Tags = tags; RssXml = rssXml }
+            | None -> None)
+    
+    let convertPlaylistCollectionsToUnified (feedDataList: FeedData<PlaylistCollection> list) : UnifiedFeedItem list =
+        feedDataList |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let title = feedData.Content.Metadata.Title
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = feedData.Content.Content  // Use full content
+                let date = feedData.Content.Metadata.Date
+                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "playlist-collection"; Tags = tags; RssXml = rssXml }
             | None -> None)
     
     let convertBookmarksToUnified (feedDataList: FeedData<Bookmark> list) : UnifiedFeedItem list =

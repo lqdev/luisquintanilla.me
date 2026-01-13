@@ -1,0 +1,492 @@
+/* Resume Page Styles - Desert Theme Integration */
+
+.resume-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Header Section */
+.resume-header {
+    background: var(--card-background);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 30px;
+    border: 1px solid var(--card-border);
+}
+
+.header-content {
+    margin-bottom: 24px;
+}
+
+.header-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 12px;
+    color: var(--text-color);
+}
+
+.current-role {
+    font-size: 1.3em;
+    color: var(--saguaro-green-dark);
+    margin-bottom: 16px;
+}
+
+/* Status Badge - Enhanced visibility */
+.status-badge {
+    display: inline-block;
+    padding: 10px 24px;
+    background: var(--saguaro-green);
+    color: var(--desert-sand);
+    border-radius: 24px;
+    font-size: 1em;
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+    border: 2px solid transparent;
+    transition: var(--transition-normal);
+}
+
+.status-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.status-badge.not-looking {
+    background: var(--saguaro-green-dark);
+    border-color: var(--saguaro-green-dark);
+}
+
+.status-badge.open {
+    background: var(--saguaro-green);
+    border-color: var(--saguaro-green);
+    animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+    0%, 100% {
+        box-shadow: 0 2px 6px rgba(75, 111, 68, 0.3); /* rgba of --saguaro-green (#4B6F44) */
+    }
+    50% {
+        box-shadow: 0 2px 12px rgba(75, 111, 68, 0.6); /* rgba of --saguaro-green (#4B6F44) */
+    }
+}
+
+/* Contact Links - Enhanced separation and styling */
+.contact-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--card-border);
+}
+
+.contact-links a {
+    color: var(--sky-blue);
+    text-decoration: none;
+    font-size: 1em;
+    padding: 8px 16px;
+    border-radius: 6px;
+    background: var(--card-background);
+    border: 1px solid var(--card-border);
+    transition: var(--transition-fast);
+    font-weight: 500;
+}
+
+.contact-links a:hover {
+    text-decoration: none;
+    background: var(--hover-color);
+    color: var(--desert-sand);
+    border-color: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Sections */
+.resume-section {
+    background: var(--card-background);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 30px;
+    border: 1px solid var(--card-border);
+}
+
+.resume-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 24px;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--card-border);
+    padding-bottom: 12px;
+}
+
+/* Summary */
+.summary {
+    font-size: 1.05em;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+
+/* Experience */
+.experience-list,
+.projects-list,
+.education-list,
+.testimonials-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.experience-item {
+    border-left: 3px solid var(--sunset-orange);
+    padding-left: 20px;
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.experience-header h3 {
+    font-size: 1.3em;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.experience-header .duration {
+    color: var(--saguaro-green-dark);
+    font-size: 0.95em;
+    white-space: nowrap;
+}
+
+.company,
+.institution {
+    color: var(--saguaro-green-dark);
+    font-size: 1.05em;
+    margin-bottom: 12px;
+}
+
+.company a,
+.institution a {
+    color: var(--sky-blue);
+    text-decoration: none;
+}
+
+.company a:hover,
+.institution a:hover {
+    text-decoration: underline;
+}
+
+.experience-item ul,
+.project-item ul {
+    margin-left: 20px;
+    margin-top: 12px;
+}
+
+.experience-item li,
+.project-item li {
+    margin-bottom: 8px;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Skills */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.skill-category h3 {
+    font-size: 1.15em;
+    margin-bottom: 12px;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 8px;
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.skill-category li {
+    padding: 6px 0;
+    color: var(--text-color);
+}
+
+.skill-category li a {
+    color: var(--sky-blue);
+    text-decoration: none;
+}
+
+.skill-category li a:hover {
+    text-decoration: underline;
+}
+
+/* Projects */
+.project-item {
+    padding-bottom: 32px;
+}
+
+.project-item:not(:last-child) {
+    border-bottom: 1px solid var(--card-border);
+}
+
+.project-header h3 {
+    font-size: 1.25em;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+.project-header a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.project-header a:hover {
+    color: var(--sunset-orange);
+    text-decoration: underline;
+}
+
+.tech-stack {
+    color: var(--saguaro-green-dark);
+    font-size: 0.95em;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+
+.project-description {
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Education */
+.education-item h3 {
+    font-size: 1.2em;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+.year {
+    color: var(--saguaro-green-dark);
+    font-size: 0.95em;
+    margin-bottom: 8px;
+}
+
+.details {
+    color: var(--text-color);
+    margin-top: 8px;
+    line-height: 1.6;
+}
+
+/* Testimonials */
+.testimonial {
+    border-left: 4px solid var(--sunset-orange);
+    padding: 20px 24px;
+    background: var(--card-background);
+    border-radius: 4px;
+}
+
+.testimonial .quote {
+    font-style: italic;
+    color: var(--text-color);
+    line-height: 1.7;
+    margin-bottom: 12px;
+    font-size: 1.05em;
+}
+
+.testimonial-author {
+    font-style: normal;
+    color: var(--saguaro-green-dark);
+    font-size: 0.95em;
+}
+
+.testimonial-author a {
+    color: var(--sky-blue);
+    text-decoration: none;
+}
+
+.testimonial-author a:hover {
+    text-decoration: underline;
+}
+
+/* Interests */
+.interests {
+    color: var(--text-color);
+    line-height: 1.7;
+}
+
+/* Footer */
+.resume-footer {
+    text-align: center;
+    color: var(--saguaro-green-dark);
+    font-size: 0.9em;
+    margin-top: 40px;
+    padding: 24px;
+}
+
+.resume-footer p {
+    margin: 8px 0;
+}
+
+.resume-footer a {
+    color: var(--sky-blue);
+    text-decoration: none;
+}
+
+.resume-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .resume-container {
+        padding: 20px 16px;
+    }
+
+    .resume-header,
+    .resume-section {
+        padding: 24px;
+    }
+
+    .header-content h1 {
+        font-size: 2em;
+    }
+
+    .resume-section h2 {
+        font-size: 1.5em;
+    }
+
+    .experience-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-links {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* Dark Theme Support */
+@media (prefers-color-scheme: dark) {
+    .resume-header,
+    .resume-section {
+        background: var(--card-background);
+        border-color: var(--card-border);
+    }
+
+    .header-content h1,
+    .resume-section h2,
+    .experience-header h3,
+    .project-header h3,
+    .skill-category h3,
+    .education-item h3 {
+        color: var(--text-color);
+    }
+
+    .current-role,
+    .company,
+    .institution,
+    .year,
+    .tech-stack,
+    .testimonial-author {
+        color: var(--desert-moonlight);
+    }
+
+    .summary,
+    .experience-item li,
+    .project-description,
+    .details,
+    .testimonial .quote,
+    .interests {
+        color: var(--text-color);
+    }
+
+    .testimonial {
+        background: var(--card-background);
+    }
+
+    /* Dark theme contact links */
+    .contact-links a {
+        background: var(--card-background);
+        border-color: var(--card-border);
+        color: var(--sky-blue);
+    }
+
+    .contact-links a:hover {
+        background: var(--hover-color);
+        color: var(--midnight-indigo);
+        border-color: var(--hover-color);
+    }
+
+    /* Dark theme status badge */
+    .status-badge.not-looking {
+        background: var(--saguaro-green-dark);
+        border-color: var(--saguaro-green-dark);
+    }
+}
+
+/* Explicit dark theme support via data-theme attribute */
+[data-theme="dark"] .resume-header,
+[data-theme="dark"] .resume-section {
+    background: var(--card-background);
+    border-color: var(--card-border);
+}
+
+[data-theme="dark"] .header-content h1,
+[data-theme="dark"] .resume-section h2,
+[data-theme="dark"] .experience-header h3,
+[data-theme="dark"] .project-header h3,
+[data-theme="dark"] .skill-category h3,
+[data-theme="dark"] .education-item h3 {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .current-role,
+[data-theme="dark"] .company,
+[data-theme="dark"] .institution,
+[data-theme="dark"] .year,
+[data-theme="dark"] .tech-stack,
+[data-theme="dark"] .testimonial-author {
+    color: var(--desert-moonlight);
+}
+
+[data-theme="dark"] .summary,
+[data-theme="dark"] .experience-item li,
+[data-theme="dark"] .project-description,
+[data-theme="dark"] .details,
+[data-theme="dark"] .testimonial .quote,
+[data-theme="dark"] .interests {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .testimonial {
+    background: var(--card-background);
+}
+
+[data-theme="dark"] .contact-links a {
+    background: var(--card-background);
+    border-color: var(--card-border);
+    color: var(--sky-blue);
+}
+
+[data-theme="dark"] .contact-links a:hover {
+    background: var(--hover-color);
+    color: var(--midnight-indigo);
+    border-color: var(--hover-color);
+}
+
+[data-theme="dark"] .status-badge.not-looking {
+    background: var(--saguaro-green-dark);
+    border-color: var(--saguaro-green-dark);
+}

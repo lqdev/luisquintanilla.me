@@ -1,0 +1,51 @@
+name: 📖 Add to Read Later
+description: Save a link to your Read Later list
+title: "[Read Later] "
+labels: ["read-later"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Add Link to Read Later
+        
+        Use this form to save a link to your Read Later list. If you don't provide a title, it will be automatically fetched from the webpage.
+        
+        **Note**: This will add the link to your Read Later page at `/resources/read-later` via a pull request.
+
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: The URL you want to save for later reading
+      placeholder: "https://example.com/interesting-article"
+    validations:
+      required: true
+
+  - type: input
+    id: url_title
+    attributes:
+      label: URL Title (Optional)
+      description: Custom title for the link. If not provided, the title will be fetched from the webpage.
+      placeholder: "e.g., Interesting Article About Web Development"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        **What happens next?**
+        
+        1. 🤖 A GitHub Action will process this issue
+        2. 📄 If you didn't provide a title, it will be fetched from the webpage's `<title>` tag
+        3. 🔍 The URL will be checked for duplicates in the existing list
+        4. ➕ If it's not a duplicate, it will be added to `Data/read-later.json` with the current timestamp
+        5. 🔀 A pull request will be created with auto-merge enabled
+        6. ✅ This issue will be closed automatically
+        7. 🤖 The PR will be automatically merged when there are no conflicts
+        8. 🚀 Your link will appear on the Read Later page after the auto-merge completes
+        
+        Links are displayed chronologically (oldest first) on the Read Later page.
+        
+        **📅 Note**: Entries are automatically removed after 14 days to keep the list fresh.

@@ -92,6 +92,8 @@ body[data-theme="dark"] {
   --button-text: #FFFFFF;
   --button-hover: var(--cactus-green);
   
+
+  
   /* Sidebar Colors - Dark Mode */
   --sidebar-background: var(--midnight-indigo);
   --sidebar-text: var(--desert-moonlight);
