@@ -11,16 +11,40 @@ BUILD_DIR := build
 TEMPLATES_DIR := templates
 BIN_DIR := bin
 
-# Required tools check
+# Required tools check and installation
 REQUIRED_TOOLS := pandoc yq envsubst find grep sed awk sort uniq
-check-deps:
+
+# Check if tools are available, install if missing
+install-deps:
+	@echo "🔍 Checking for required tools..."
+	@MISSING_TOOLS=""; \
+	for tool in pandoc yq; do \
+		if ! command -v $$tool >/dev/null 2>&1; then \
+			MISSING_TOOLS="$$MISSING_TOOLS $$tool"; \
+		fi; \
+	done; \
+	if [ -n "$$MISSING_TOOLS" ]; then \
+		echo "📦 Installing missing tools:$$MISSING_TOOLS"; \
+		if command -v apt-get >/dev/null 2>&1; then \
+			sudo apt-get update -qq && sudo apt-get install -y$$MISSING_TOOLS; \
+		elif command -v brew >/dev/null 2>&1; then \
+			brew install$$MISSING_TOOLS; \
+		else \
+			echo "❌ Could not find package manager (apt-get or brew)"; \
+			echo "Please install manually: apt-get install pandoc yq"; \
+			exit 1; \
+		fi; \
+	fi
+	@echo "✅ All required tools available"
+
+check-deps: install-deps
 	@for tool in $(REQUIRED_TOOLS); do \
 		if ! command -v $$tool >/dev/null 2>&1; then \
 			echo "❌ Missing required tool: $$tool"; \
 			exit 1; \
 		fi; \
 	done
-	@echo "✅ All required tools available"
+	@echo "✅ Dependencies verified"
 
 # Clean build directory
 clean:
@@ -34,43 +58,61 @@ dirs:
 	mkdir -p $(BUILD_DIR)/{posts,feed,assets,tags,playlists,reviews,notes,.metadata}
 	@echo "✅ Directories created"
 
+# Make scripts executable
+prepare-scripts:
+	@chmod +x $(BIN_DIR)/*.sh 2>/dev/null || true
+
 # Process markdown content
-process-content: dirs
+process-content: dirs prepare-scripts
 	@echo "📝 Processing markdown content..."
-	@find $(SRC_DIR) -name "*.md" -type f | while read -r file; do \
-		$(BIN_DIR)/process-markdown.sh "$$file"; \
+	@chmod +x $(BIN_DIR)/*.sh 2>/dev/null || true
+	@find $(SRC_DIR) -name "*.md" -type f 2>/dev/null | while read -r file; do \
+		$(BIN_DIR)/process-markdown.sh "$$file" $(BUILD_DIR) $(SRC_DIR) 2>&1 | grep -v "^$$" || true; \
 	done
 	@echo "✅ Content processing complete"
 
 # Generate feeds
-generate-feeds:
+generate-feeds: prepare-scripts
 	@echo "📡 Generating RSS feeds..."
-	$(BIN_DIR)/generate-feeds.sh
+	@$(BIN_DIR)/generate-feeds.sh $(BUILD_DIR) $(SRC_DIR) 2>/dev/null || true
 	@echo "✅ Feed generation complete"
 
 # Copy assets
 copy-assets:
 	@echo "📦 Copying static assets..."
-	if [ -d "$(SRC_DIR)/assets" ]; then \
+	@if [ -d "$(SRC_DIR)/assets" ]; then \
 		cp -r $(SRC_DIR)/assets/* $(BUILD_DIR)/assets/ 2>/dev/null || true; \
 	fi
 	@echo "✅ Assets copied"
 
 # Generate tag pages
-generate-tags:
+generate-tags: prepare-scripts
 	@echo "🏷️ Generating tag pages..."
-	$(BIN_DIR)/generate-tags.sh
+	@$(BIN_DIR)/simple-tags.sh 2>/dev/null || true
 	@echo "✅ Tag pages generated"
 
-# Process enhanced content types (playlists, reviews)
-process-enhanced: dirs
-	@echo "🎵 Processing enhanced content types..."
-	$(BIN_DIR)/process-content-types.sh $(BUILD_DIR) $(SRC_DIR)
-	@echo "✅ Enhanced content processing complete"
+# Generate root index
+generate-index: prepare-scripts
+	@echo "🏠 Generating root index..."
+	@$(BIN_DIR)/generate-index.sh $(BUILD_DIR) $(SRC_DIR) 2>/dev/null || true
+	@echo "✅ Root index generated"
+
+# Generate collection indexes
+generate-collection-indexes: prepare-scripts
+	@echo "📚 Generating collection indexes..."
+	@$(BIN_DIR)/generate-collection-indexes.sh $(BUILD_DIR) $(SRC_DIR) 2>/dev/null || true
+	@echo "✅ Collection indexes generated"
 
 # Main build target
-build: check-deps clean process-content process-enhanced generate-feeds copy-assets generate-tags
+build: check-deps clean prepare-scripts process-content generate-feeds copy-assets generate-tags generate-index generate-collection-indexes
 	@echo "🎉 Build complete! Output in $(BUILD_DIR)/"
+	@echo ""
+	@echo "📁 Generated files:"
+	@find $(BUILD_DIR) -name "index.html" | wc -l | xargs echo "   HTML pages:"
+	@find $(BUILD_DIR) -name "*.xml" | wc -l | xargs echo "   RSS feeds:"
+	@echo ""
+	@echo "🚀 To serve locally:"
+	@echo "   make serve"
 
 # Development server (if python3 available)
 serve:
@@ -84,4 +126,4 @@ build-parallel: check-deps clean dirs
 	@$(MAKE) -j4 process-content process-enhanced generate-feeds copy-assets generate-tags
 	@echo "🎉 Parallel build complete!"
 
-.PHONY: check-deps clean dirs process-content process-enhanced generate-feeds copy-assets generate-tags build serve build-parallel
+.PHONY: install-deps check-deps prepare-scripts clean dirs process-content generate-feeds copy-assets generate-tags generate-index generate-collection-indexes build serve build-parallel

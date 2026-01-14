@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>First note in the Unix SSG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal blog post">
     <style>
         body {
             font-family: system-ui, -apple-system, sans-serif;
@@ -13,42 +14,43 @@
             padding: 2rem;
             color: #333;
         }
-        .h-entry {
+        article {
             margin-bottom: 2rem;
         }
-        .p-name {
+        h1 {
             color: #2c3e50;
             border-bottom: 2px solid #3498db;
             padding-bottom: 0.5rem;
         }
-        .dt-published {
+        time {
             color: #7f8c8d;
             font-style: italic;
         }
-        .e-content {
+        .content {
             margin-top: 2rem;
         }
-        .custom-media-block {
-            margin: 1rem 0;
-            text-align: center;
+        .content h2 {
+            color: #34495e;
+            margin-top: 2rem;
         }
-        .custom-review-block {
+        .content code {
+            background: #f8f9fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        .content pre {
             background: #f8f9fa;
             padding: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid #007bff;
-            margin: 1rem 0;
+            border-radius: 5px;
+            overflow-x: auto;
         }
-        .custom-venue-block {
-            background: #f1f3f4;
-            padding: 1rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-        }
-        .review-rating {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #ff6b35;
+        .content blockquote {
+            border-left: 4px solid #3498db;
+            padding-left: 1rem;
+            margin-left: 0;
+            font-style: italic;
+            color: #555;
         }
         nav {
             margin-bottom: 2rem;
@@ -72,23 +74,17 @@
         <a href="/feed/">Feeds</a>
     </nav>
     
-    <article class="h-entry">
+    <article>
         <header>
-            <h1 class="p-name">First note in the Unix SSG</h1>
-            <time class="dt-published" datetime="January 13, 2025">January 13, 2025</time>
+            <h1>First note in the Unix SSG</h1>
+            <time datetime="2025-01-13 11:30 -05:00">January 13, 2025</time>
         </header>
         
-        <div class="e-content">
+        <div class="content">
             <p>Just testing out the Unix-based static site generator. This is a
 note-type post to demonstrate different content types.</p>
 <p>Pretty cool how <code>pandoc</code> + <code>yq</code> +
 <code>make</code> can replace a complex F# application! 🚀</p>
-        </div>
-        
-        <!-- IndieWeb microformat author info -->
-        <div class="u-author h-card" style="display: none;">
-            <a class="p-name u-url" href="https://www.luisquintanilla.me">Luis Quintanilla</a>
-            <img class="u-photo" src="https://www.luisquintanilla.me/avatar.png" alt="Luis Quintanilla" />
         </div>
     </article>
 </body>

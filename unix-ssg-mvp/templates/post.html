@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>$TITLE</title>
+    <title>${TITLE}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Personal blog post">
     <style>
@@ -76,12 +76,12 @@
     
     <article>
         <header>
-            <h1>$TITLE</h1>
-            <time datetime="$DATE">$DATE</time>
+            <h1>${TITLE}</h1>
+            <time datetime="${DATE}">${FORMATTED_DATE}</time>
         </header>
         
         <div class="content">
-            $CONTENT
+            ${CONTENT}
         </div>
     </article>
 </body>
