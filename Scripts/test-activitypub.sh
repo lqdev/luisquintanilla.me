@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e  # Exit immediately if a command exits with a non-zero status
 
 # ActivityPub Endpoint Testing Script
 # Tests the local API endpoints for proper ActivityPub compliance
