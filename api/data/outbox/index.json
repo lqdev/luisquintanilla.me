@@ -1,15 +1,15 @@
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://www.lqdev.me/outbox",
+  "id": "https://lqdev.me/api/outbox",
   "type": "OrderedCollection",
-  "summary": "All content updates from Luis Quintanilla\u0027s website",
+  "summary": "All content updates from Luis Quintanilla's website",
   "totalItems": 20,
   "orderedItems": [
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/7ce73519e4e240f36a5ff4dae35aa6ac",
+      "id": "https://lqdev.me/api/outbox/activities/7ce73519e4e240f36a5ff4dae35aa6ac",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-09-11T15:48:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -17,11 +17,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/7ce73519e4e240f36a5ff4dae35aa6ac",
+        "id": "https://lqdev.me/api/notes/7ce73519e4e240f36a5ff4dae35aa6ac",
         "type": "Note",
-        "content": "The mistake music teachers make\n\n#music #language\n\n\uD83D\uDD17 https://www.lqdev.me/responses/mistake-music-teachers-make-ted-talk",
-        "url": "https://www.lqdev.me/responses/mistake-music-teachers-make-ted-talk",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "The mistake music teachers make\n\n#music #language\n\n🔗 https://lqdev.me/responses/mistake-music-teachers-make-ted-talk",
+        "url": "https://lqdev.me/responses/mistake-music-teachers-make-ted-talk",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -30,17 +30,17 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/music",
+            "href": "https://lqdev.me/tags/music",
             "name": "#music"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/language",
+            "href": "https://lqdev.me/tags/language",
             "name": "#language"
           }
         ],
@@ -49,9 +49,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/01ee93e755f32320f60d483f0c37b688",
+      "id": "https://lqdev.me/api/outbox/activities/01ee93e755f32320f60d483f0c37b688",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-09-07T18:59:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -59,11 +59,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/01ee93e755f32320f60d483f0c37b688",
+        "id": "https://lqdev.me/api/notes/01ee93e755f32320f60d483f0c37b688",
         "type": "Note",
-        "content": "Crate Finds - August 2025\n\n#cratefinds #music #playlist #spotify\n\n\uD83D\uDD17 https://www.lqdev.me/notes/crate-finds-august-2025",
-        "url": "https://www.lqdev.me/notes/crate-finds-august-2025",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "Crate Finds - August 2025\n\n#cratefinds #music #playlist #spotify\n\n🔗 https://lqdev.me/notes/crate-finds-august-2025",
+        "url": "https://lqdev.me/notes/crate-finds-august-2025",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -72,27 +72,27 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/cratefinds",
+            "href": "https://lqdev.me/tags/cratefinds",
             "name": "#cratefinds"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/music",
+            "href": "https://lqdev.me/tags/music",
             "name": "#music"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/playlist",
+            "href": "https://lqdev.me/tags/playlist",
             "name": "#playlist"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/spotify",
+            "href": "https://lqdev.me/tags/spotify",
             "name": "#spotify"
           }
         ],
@@ -101,9 +101,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/5c9f0df5f941de4bdb923ca9be7c02ba",
+      "id": "https://lqdev.me/api/outbox/activities/5c9f0df5f941de4bdb923ca9be7c02ba",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-09-06T22:07:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -111,11 +111,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/5c9f0df5f941de4bdb923ca9be7c02ba",
+        "id": "https://lqdev.me/api/notes/5c9f0df5f941de4bdb923ca9be7c02ba",
         "type": "Note",
-        "content": "Arizona State vs Mississippi State (2025)\n\n#ncaaf #football #asu #msu\n\n\uD83D\uDD17 https://www.lqdev.me/notes/arizona-state-vs-mississippi-state-2025",
-        "url": "https://www.lqdev.me/notes/arizona-state-vs-mississippi-state-2025",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "Arizona State vs Mississippi State (2025)\n\n#ncaaf #football #asu #msu\n\n🔗 https://lqdev.me/notes/arizona-state-vs-mississippi-state-2025",
+        "url": "https://lqdev.me/notes/arizona-state-vs-mississippi-state-2025",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -124,27 +124,27 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/ncaaf",
+            "href": "https://lqdev.me/tags/ncaaf",
             "name": "#ncaaf"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/football",
+            "href": "https://lqdev.me/tags/football",
             "name": "#football"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/asu",
+            "href": "https://lqdev.me/tags/asu",
             "name": "#asu"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/msu",
+            "href": "https://lqdev.me/tags/msu",
             "name": "#msu"
           }
         ],
@@ -153,9 +153,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/3bf7ed95c13eb1142a8785c32d955bee",
+      "id": "https://lqdev.me/api/outbox/activities/3bf7ed95c13eb1142a8785c32d955bee",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-31T22:18:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -163,11 +163,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/3bf7ed95c13eb1142a8785c32d955bee",
+        "id": "https://lqdev.me/api/notes/3bf7ed95c13eb1142a8785c32d955bee",
         "type": "Note",
-        "content": "Miami vs. Notre Dame (2025)\n\n#ncaaf #miami #notredame\n\n\uD83D\uDD17 https://www.lqdev.me/notes/miami-vs-notre-dame-2025",
-        "url": "https://www.lqdev.me/notes/miami-vs-notre-dame-2025",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "Miami vs. Notre Dame (2025)\n\n#ncaaf #miami #notredame\n\n🔗 https://lqdev.me/notes/miami-vs-notre-dame-2025",
+        "url": "https://lqdev.me/notes/miami-vs-notre-dame-2025",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -176,22 +176,22 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/ncaaf",
+            "href": "https://lqdev.me/tags/ncaaf",
             "name": "#ncaaf"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/miami",
+            "href": "https://lqdev.me/tags/miami",
             "name": "#miami"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/notredame",
+            "href": "https://lqdev.me/tags/notredame",
             "name": "#notredame"
           }
         ],
@@ -200,9 +200,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/3c314dfd36141b1f4569b29e48d23bef",
+      "id": "https://lqdev.me/api/outbox/activities/3c314dfd36141b1f4569b29e48d23bef",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-30T19:08:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -210,11 +210,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/3c314dfd36141b1f4569b29e48d23bef",
+        "id": "https://lqdev.me/api/notes/3c314dfd36141b1f4569b29e48d23bef",
         "type": "Note",
-        "content": "The Four Agreements by Don Miguel Ruiz\n\n\n\n\uD83D\uDD17 https://www.lqdev.me/reviews/four-agreements-ruiz",
-        "url": "https://www.lqdev.me/reviews/four-agreements-ruiz",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "The Four Agreements by Don Miguel Ruiz\n\n\n\n🔗 https://lqdev.me/reviews/four-agreements-ruiz",
+        "url": "https://lqdev.me/reviews/four-agreements-ruiz",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -223,8 +223,8 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           }
         ],
         "hash": "3c314dfd36141b1f4569b29e48d23bef"
@@ -232,9 +232,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/8be7af3fc96bbe4097a21af8709543e2",
+      "id": "https://lqdev.me/api/outbox/activities/8be7af3fc96bbe4097a21af8709543e2",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-26T19:40:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -242,11 +242,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/8be7af3fc96bbe4097a21af8709543e2",
+        "id": "https://lqdev.me/api/notes/8be7af3fc96bbe4097a21af8709543e2",
         "type": "Note",
-        "content": "Crescent library brings privacy to digital identity systems\n\n#research #privacy #microsoft\n\n\uD83D\uDD17 https://www.lqdev.me/responses/crescent-msr-privacy-digital-identity",
-        "url": "https://www.lqdev.me/responses/crescent-msr-privacy-digital-identity",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "Crescent library brings privacy to digital identity systems\n\n#research #privacy #microsoft\n\n🔗 https://lqdev.me/responses/crescent-msr-privacy-digital-identity",
+        "url": "https://lqdev.me/responses/crescent-msr-privacy-digital-identity",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -255,22 +255,22 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/research",
+            "href": "https://lqdev.me/tags/research",
             "name": "#research"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/privacy",
+            "href": "https://lqdev.me/tags/privacy",
             "name": "#privacy"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/microsoft",
+            "href": "https://lqdev.me/tags/microsoft",
             "name": "#microsoft"
           }
         ],
@@ -279,9 +279,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/0039e1b5971468bc630233622e467db6",
+      "id": "https://lqdev.me/api/outbox/activities/0039e1b5971468bc630233622e467db6",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-23T20:11:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -289,11 +289,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/0039e1b5971468bc630233622e467db6",
+        "id": "https://lqdev.me/api/notes/0039e1b5971468bc630233622e467db6",
         "type": "Note",
-        "content": "Windows 11 upgrade?\n\n#windows #windows10\n\n\uD83D\uDD17 https://www.lqdev.me/media/windows-11-upgrade",
-        "url": "https://www.lqdev.me/media/windows-11-upgrade",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "Windows 11 upgrade?\n\n#windows #windows10\n\n🔗 https://lqdev.me/media/windows-11-upgrade",
+        "url": "https://lqdev.me/media/windows-11-upgrade",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -302,17 +302,17 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/windows",
+            "href": "https://lqdev.me/tags/windows",
             "name": "#windows"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/windows10",
+            "href": "https://lqdev.me/tags/windows10",
             "name": "#windows10"
           }
         ],
@@ -321,9 +321,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/11f6c95b53b09107d4ec09cf71fb4626",
+      "id": "https://lqdev.me/api/outbox/activities/11f6c95b53b09107d4ec09cf71fb4626",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-21T19:15:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -331,11 +331,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/11f6c95b53b09107d4ec09cf71fb4626",
+        "id": "https://lqdev.me/api/notes/11f6c95b53b09107d4ec09cf71fb4626",
         "type": "Note",
-        "content": "Webmentions are back\n\n#indieweb #webmention #socialweb\n\n\uD83D\uDD17 https://www.lqdev.me/notes/webmentions-are-back",
-        "url": "https://www.lqdev.me/notes/webmentions-are-back",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "Webmentions are back\n\n#indieweb #webmention #socialweb\n\n🔗 https://lqdev.me/notes/webmentions-are-back",
+        "url": "https://lqdev.me/notes/webmentions-are-back",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -344,22 +344,22 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/indieweb",
+            "href": "https://lqdev.me/tags/indieweb",
             "name": "#indieweb"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/webmention",
+            "href": "https://lqdev.me/tags/webmention",
             "name": "#webmention"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/socialweb",
+            "href": "https://lqdev.me/tags/socialweb",
             "name": "#socialweb"
           }
         ],
@@ -368,9 +368,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/fdcca2160611dde38eccb5dd920c1ef3",
+      "id": "https://lqdev.me/api/outbox/activities/fdcca2160611dde38eccb5dd920c1ef3",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-21T19:13:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -378,11 +378,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/fdcca2160611dde38eccb5dd920c1ef3",
+        "id": "https://lqdev.me/api/notes/fdcca2160611dde38eccb5dd920c1ef3",
         "type": "Note",
-        "content": "Small (web) is beautiful\n\n#smallweb #indieweb #blogging\n\n\uD83D\uDD17 https://www.lqdev.me/responses/small-web-is-beautiful",
-        "url": "https://www.lqdev.me/responses/small-web-is-beautiful",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "Small (web) is beautiful\n\n#smallweb #indieweb #blogging\n\n🔗 https://lqdev.me/responses/small-web-is-beautiful",
+        "url": "https://lqdev.me/responses/small-web-is-beautiful",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -391,22 +391,22 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/smallweb",
+            "href": "https://lqdev.me/tags/smallweb",
             "name": "#smallweb"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/indieweb",
+            "href": "https://lqdev.me/tags/indieweb",
             "name": "#indieweb"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/blogging",
+            "href": "https://lqdev.me/tags/blogging",
             "name": "#blogging"
           }
         ],
@@ -415,9 +415,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/262613863e2954ab765b50f56478e379",
+      "id": "https://lqdev.me/api/outbox/activities/262613863e2954ab765b50f56478e379",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-21T18:47:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -425,11 +425,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/262613863e2954ab765b50f56478e379",
+        "id": "https://lqdev.me/api/notes/262613863e2954ab765b50f56478e379",
         "type": "Note",
-        "content": "We\u0027re getting married!\n\n\n\n\uD83D\uDD17 https://www.lqdev.me/responses/were-getting-married-reillys",
-        "url": "https://www.lqdev.me/responses/were-getting-married-reillys",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "We're getting married!\n\n\n\n🔗 https://lqdev.me/responses/were-getting-married-reillys",
+        "url": "https://lqdev.me/responses/were-getting-married-reillys",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -438,8 +438,8 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           }
         ],
         "hash": "262613863e2954ab765b50f56478e379"
@@ -447,9 +447,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/c4193215e445fd5f91e221b16d550829",
+      "id": "https://lqdev.me/api/outbox/activities/c4193215e445fd5f91e221b16d550829",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-20T23:59:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -457,11 +457,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/c4193215e445fd5f91e221b16d550829",
+        "id": "https://lqdev.me/api/notes/c4193215e445fd5f91e221b16d550829",
         "type": "Note",
-        "content": "Omnineural 4B\n\n#ai #npu #multimodal\n\n\uD83D\uDD17 https://www.lqdev.me/responses/omnineural-4b",
-        "url": "https://www.lqdev.me/responses/omnineural-4b",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "Omnineural 4B\n\n#ai #npu #multimodal\n\n🔗 https://lqdev.me/responses/omnineural-4b",
+        "url": "https://lqdev.me/responses/omnineural-4b",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -470,22 +470,22 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/ai",
+            "href": "https://lqdev.me/tags/ai",
             "name": "#ai"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/npu",
+            "href": "https://lqdev.me/tags/npu",
             "name": "#npu"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/multimodal",
+            "href": "https://lqdev.me/tags/multimodal",
             "name": "#multimodal"
           }
         ],
@@ -494,9 +494,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/91b5fd31da6eee1baa9b2a7a9f90dc6c",
+      "id": "https://lqdev.me/api/outbox/activities/91b5fd31da6eee1baa9b2a7a9f90dc6c",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-20T22:53:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -504,11 +504,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/91b5fd31da6eee1baa9b2a7a9f90dc6c",
+        "id": "https://lqdev.me/api/notes/91b5fd31da6eee1baa9b2a7a9f90dc6c",
         "type": "Note",
-        "content": "Agents.md\n\n#ai #agents #openai\n\n\uD83D\uDD17 https://www.lqdev.me/responses/agentsmd",
-        "url": "https://www.lqdev.me/responses/agentsmd",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "Agents.md\n\n#ai #agents #openai\n\n🔗 https://lqdev.me/responses/agentsmd",
+        "url": "https://lqdev.me/responses/agentsmd",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -517,22 +517,22 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/ai",
+            "href": "https://lqdev.me/tags/ai",
             "name": "#ai"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/agents",
+            "href": "https://lqdev.me/tags/agents",
             "name": "#agents"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/openai",
+            "href": "https://lqdev.me/tags/openai",
             "name": "#openai"
           }
         ],
@@ -541,9 +541,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/dca6746c00c2f17f6350a43a415b5c5d",
+      "id": "https://lqdev.me/api/outbox/activities/dca6746c00c2f17f6350a43a415b5c5d",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-20T21:54:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -551,11 +551,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/dca6746c00c2f17f6350a43a415b5c5d",
+        "id": "https://lqdev.me/api/notes/dca6746c00c2f17f6350a43a415b5c5d",
         "type": "Note",
-        "content": "College football is back (2025)\n\n#football #ncaaf #psu #pennstate\n\n\uD83D\uDD17 https://www.lqdev.me/notes/college-football-is-back-2025",
-        "url": "https://www.lqdev.me/notes/college-football-is-back-2025",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "College football is back (2025)\n\n#football #ncaaf #psu #pennstate\n\n🔗 https://lqdev.me/notes/college-football-is-back-2025",
+        "url": "https://lqdev.me/notes/college-football-is-back-2025",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -564,27 +564,27 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/football",
+            "href": "https://lqdev.me/tags/football",
             "name": "#football"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/ncaaf",
+            "href": "https://lqdev.me/tags/ncaaf",
             "name": "#ncaaf"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/psu",
+            "href": "https://lqdev.me/tags/psu",
             "name": "#psu"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/pennstate",
+            "href": "https://lqdev.me/tags/pennstate",
             "name": "#pennstate"
           }
         ],
@@ -593,9 +593,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/431fade59300d212932d8d1aabcf7a63",
+      "id": "https://lqdev.me/api/outbox/activities/431fade59300d212932d8d1aabcf7a63",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-20T19:46:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -603,11 +603,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/431fade59300d212932d8d1aabcf7a63",
+        "id": "https://lqdev.me/api/notes/431fade59300d212932d8d1aabcf7a63",
         "type": "Note",
-        "content": "Seemingly Conscious AI\n\n#ai #consciousness #humanism\n\n\uD83D\uDD17 https://www.lqdev.me/responses/seemingly-conscious-ai",
-        "url": "https://www.lqdev.me/responses/seemingly-conscious-ai",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "Seemingly Conscious AI\n\n#ai #consciousness #humanism\n\n🔗 https://lqdev.me/responses/seemingly-conscious-ai",
+        "url": "https://lqdev.me/responses/seemingly-conscious-ai",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -616,22 +616,22 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/ai",
+            "href": "https://lqdev.me/tags/ai",
             "name": "#ai"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/consciousness",
+            "href": "https://lqdev.me/tags/consciousness",
             "name": "#consciousness"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/humanism",
+            "href": "https://lqdev.me/tags/humanism",
             "name": "#humanism"
           }
         ],
@@ -640,9 +640,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/b878ce4d651ad2e52b659f39acc83699",
+      "id": "https://lqdev.me/api/outbox/activities/b878ce4d651ad2e52b659f39acc83699",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-19T21:41:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -650,11 +650,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/b878ce4d651ad2e52b659f39acc83699",
+        "id": "https://lqdev.me/api/notes/b878ce4d651ad2e52b659f39acc83699",
         "type": "Note",
-        "content": "Reclaim Control\n\n#digitalsovereignty #reclaimcontrol\n\n\uD83D\uDD17 https://www.lqdev.me/responses/reclaim-control",
-        "url": "https://www.lqdev.me/responses/reclaim-control",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "Reclaim Control\n\n#digitalsovereignty #reclaimcontrol\n\n🔗 https://lqdev.me/responses/reclaim-control",
+        "url": "https://lqdev.me/responses/reclaim-control",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -663,17 +663,17 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/digitalsovereignty",
+            "href": "https://lqdev.me/tags/digitalsovereignty",
             "name": "#digitalsovereignty"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/reclaimcontrol",
+            "href": "https://lqdev.me/tags/reclaimcontrol",
             "name": "#reclaimcontrol"
           }
         ],
@@ -682,9 +682,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/447eb65520e3b047ca220e1a481a1f5e",
+      "id": "https://lqdev.me/api/outbox/activities/447eb65520e3b047ca220e1a481a1f5e",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-19T20:51:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -692,11 +692,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/447eb65520e3b047ca220e1a481a1f5e",
+        "id": "https://lqdev.me/api/notes/447eb65520e3b047ca220e1a481a1f5e",
         "type": "Note",
-        "content": "The Opt Out Project\n\n#optout #alternative #tech\n\n\uD83D\uDD17 https://www.lqdev.me/responses/out-out-project",
-        "url": "https://www.lqdev.me/responses/out-out-project",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "The Opt Out Project\n\n#optout #alternative #tech\n\n🔗 https://lqdev.me/responses/out-out-project",
+        "url": "https://lqdev.me/responses/out-out-project",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -705,22 +705,22 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/optout",
+            "href": "https://lqdev.me/tags/optout",
             "name": "#optout"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/alternative",
+            "href": "https://lqdev.me/tags/alternative",
             "name": "#alternative"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/tech",
+            "href": "https://lqdev.me/tags/tech",
             "name": "#tech"
           }
         ],
@@ -729,9 +729,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/428ba3a6b2ef060b4c030106259fcfc6",
+      "id": "https://lqdev.me/api/outbox/activities/428ba3a6b2ef060b4c030106259fcfc6",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-18T19:31:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -739,11 +739,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/428ba3a6b2ef060b4c030106259fcfc6",
+        "id": "https://lqdev.me/api/notes/428ba3a6b2ef060b4c030106259fcfc6",
         "type": "Note",
-        "content": "Reflections on the social web\n\n#ghost #socialweb #indieweb\n\n\uD83D\uDD17 https://www.lqdev.me/responses/reflections-on-social-web",
-        "url": "https://www.lqdev.me/responses/reflections-on-social-web",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "Reflections on the social web\n\n#ghost #socialweb #indieweb\n\n🔗 https://lqdev.me/responses/reflections-on-social-web",
+        "url": "https://lqdev.me/responses/reflections-on-social-web",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -752,22 +752,22 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/ghost",
+            "href": "https://lqdev.me/tags/ghost",
             "name": "#ghost"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/socialweb",
+            "href": "https://lqdev.me/tags/socialweb",
             "name": "#socialweb"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/indieweb",
+            "href": "https://lqdev.me/tags/indieweb",
             "name": "#indieweb"
           }
         ],
@@ -776,9 +776,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/68386a0b0c0bde82706f546cbac9ecdf",
+      "id": "https://lqdev.me/api/outbox/activities/68386a0b0c0bde82706f546cbac9ecdf",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-18T19:24:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -786,11 +786,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/68386a0b0c0bde82706f546cbac9ecdf",
+        "id": "https://lqdev.me/api/notes/68386a0b0c0bde82706f546cbac9ecdf",
         "type": "Note",
-        "content": "Ghost 6.0\n\n#ghost #fediverse #socialweb #publishing\n\n\uD83D\uDD17 https://www.lqdev.me/responses/ghost-6-changelog",
-        "url": "https://www.lqdev.me/responses/ghost-6-changelog",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "Ghost 6.0\n\n#ghost #fediverse #socialweb #publishing\n\n🔗 https://lqdev.me/responses/ghost-6-changelog",
+        "url": "https://lqdev.me/responses/ghost-6-changelog",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -799,27 +799,27 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/ghost",
+            "href": "https://lqdev.me/tags/ghost",
             "name": "#ghost"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/fediverse",
+            "href": "https://lqdev.me/tags/fediverse",
             "name": "#fediverse"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/socialweb",
+            "href": "https://lqdev.me/tags/socialweb",
             "name": "#socialweb"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/publishing",
+            "href": "https://lqdev.me/tags/publishing",
             "name": "#publishing"
           }
         ],
@@ -828,9 +828,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/dd6248b0c86c239c913c5730a8b38d6d",
+      "id": "https://lqdev.me/api/outbox/activities/dd6248b0c86c239c913c5730a8b38d6d",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-18T19:21:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -838,11 +838,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/dd6248b0c86c239c913c5730a8b38d6d",
+        "id": "https://lqdev.me/api/notes/dd6248b0c86c239c913c5730a8b38d6d",
         "type": "Note",
-        "content": "The newly redesigned Blogroll Club\n\n#blogrollclub #blogroll #indieweb #socialweb\n\n\uD83D\uDD17 https://www.lqdev.me/responses/newly-redesigned-blogroll",
-        "url": "https://www.lqdev.me/responses/newly-redesigned-blogroll",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "The newly redesigned Blogroll Club\n\n#blogrollclub #blogroll #indieweb #socialweb\n\n🔗 https://lqdev.me/responses/newly-redesigned-blogroll",
+        "url": "https://lqdev.me/responses/newly-redesigned-blogroll",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -851,27 +851,27 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/blogrollclub",
+            "href": "https://lqdev.me/tags/blogrollclub",
             "name": "#blogrollclub"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/blogroll",
+            "href": "https://lqdev.me/tags/blogroll",
             "name": "#blogroll"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/indieweb",
+            "href": "https://lqdev.me/tags/indieweb",
             "name": "#indieweb"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/socialweb",
+            "href": "https://lqdev.me/tags/socialweb",
             "name": "#socialweb"
           }
         ],
@@ -880,9 +880,9 @@
     },
     {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://www.lqdev.me/outbox/activities/0dd060c1510d59a16c88b94bda5744ab",
+      "id": "https://lqdev.me/api/outbox/activities/0dd060c1510d59a16c88b94bda5744ab",
       "type": "Create",
-      "actor": "https://www.lqdev.me/@lqdev",
+      "actor": "https://lqdev.me/api/actor",
       "published": "2025-08-18T18:53:00-05:00",
       "to": [
         "https://www.w3.org/ns/activitystreams#Public"
@@ -890,11 +890,11 @@
       "cc": [],
       "object": {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": "https://www.lqdev.me/api/activitypub/notes/0dd060c1510d59a16c88b94bda5744ab",
+        "id": "https://lqdev.me/api/notes/0dd060c1510d59a16c88b94bda5744ab",
         "type": "Note",
-        "content": "FediCon 2025 Videos\n\n#fediverse #fedicon2025 #conference\n\n\uD83D\uDD17 https://www.lqdev.me/responses/fedicon-2025-videos",
-        "url": "https://www.lqdev.me/responses/fedicon-2025-videos",
-        "attributedTo": "https://www.lqdev.me/@lqdev",
+        "content": "FediCon 2025 Videos\n\n#fediverse #fedicon2025 #conference\n\n🔗 https://lqdev.me/responses/fedicon-2025-videos",
+        "url": "https://lqdev.me/responses/fedicon-2025-videos",
+        "attributedTo": "https://lqdev.me/api/actor",
         "to": [
           "https://www.w3.org/ns/activitystreams#Public"
         ],
@@ -903,22 +903,22 @@
         "tag": [
           {
             "type": "Mention",
-            "href": "https://www.lqdev.me/users/lqdev",
-            "name": "@lqdev@www.lqdev.me"
+            "href": "https://lqdev.me/users/lqdev",
+            "name": "@lqdev@lqdev.me"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/fediverse",
+            "href": "https://lqdev.me/tags/fediverse",
             "name": "#fediverse"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/fedicon2025",
+            "href": "https://lqdev.me/tags/fedicon2025",
             "name": "#fedicon2025"
           },
           {
             "type": "Hashtag",
-            "href": "https://www.lqdev.me/tags/conference",
+            "href": "https://lqdev.me/tags/conference",
             "name": "#conference"
           }
         ],

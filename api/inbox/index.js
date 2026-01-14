@@ -7,7 +7,7 @@ module.exports = async function (context, req) {
             // Return inbox as empty collection for now
             const emptyInbox = {
                 "@context": "https://www.w3.org/ns/activitystreams",
-                "id": "https://www.lqdev.me/activitypub/inbox",
+                "id": "https://lqdev.me/api/inbox",
                 "type": "OrderedCollection",
                 "totalItems": 0,
                 "orderedItems": []
