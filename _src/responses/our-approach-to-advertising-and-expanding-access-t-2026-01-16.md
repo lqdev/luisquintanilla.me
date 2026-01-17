@@ -1,5 +1,5 @@
 ---
-title: "Our approach to advertising and expanding access to ChatGPT | OpenAI"
+title: "Our approach to advertising and expanding access to ChatGPT"
 targeturl: https://openai.com/index/our-approach-to-advertising-and-expanding-access/
 response_type: reshare
 dt_published: "2026-01-16 22:29 -05:00"
