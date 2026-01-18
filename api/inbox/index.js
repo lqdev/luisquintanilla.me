@@ -2,12 +2,14 @@ const fs = require('fs').promises;
 const path = require('path');
 const https = require('https');
 const { verifyHttpSignature } = require('../utils/signatures');
-const { addFollower, removeFollower, isFollower } = require('../utils/followers');
+const tableStorage = require('../utils/tableStorage');
+const { queueAcceptDelivery } = require('../utils/queueStorage');
 
 /**
- * Send Accept activity in response to Follow
+ * Queue Accept activity for asynchronous delivery
+ * Phase 4A: Using queue-based delivery instead of immediate sending
  */
-async function sendAcceptActivity(followActivity, context) {
+async function queueAcceptActivity(followActivity, context) {
     const acceptActivity = {
         "@context": "https://www.w3.org/ns/activitystreams",
         "id": `https://lqdev.me/api/activitypub/activities/accept/${Date.now()}`,
@@ -29,12 +31,12 @@ async function sendAcceptActivity(followActivity, context) {
             return false;
         }
         
-        // Send Accept activity to follower's inbox
-        await sendActivityToInbox(inboxUrl, acceptActivity, context);
-        context.log(`Sent Accept activity to ${inboxUrl}`);
+        // Queue Accept activity for asynchronous delivery
+        await queueAcceptDelivery(acceptActivity, inboxUrl, followerActor);
+        context.log(`Queued Accept activity for delivery to ${inboxUrl}`);
         return true;
     } catch (error) {
-        context.log.error(`Failed to send Accept activity: ${error.message}`);
+        context.log.error(`Failed to queue Accept activity: ${error.message}`);
         return false;
     }
 }
@@ -185,25 +187,52 @@ module.exports = async function (context, req) {
             if (activityType === 'Follow') {
                 // Handle Follow activity
                 const followerActor = activityData.actor;
+                const followActivityId = activityData.id;
                 
-                // Add to followers list
-                await addFollower(followerActor);
-                context.log(`Added follower: ${followerActor}`);
+                // Check for duplicate Follow (idempotency)
+                const isAlreadyFollower = await tableStorage.isFollower(followerActor);
                 
-                // Send Accept activity
-                const acceptSent = await sendAcceptActivity(activityData, context);
-                
-                if (acceptSent) {
+                if (isAlreadyFollower) {
+                    context.log(`Already following: ${followerActor} - idempotent request`);
+                    // Still return success for idempotency
                     context.res = {
                         status: 202,
                         headers: { 'Content-Type': 'application/json' },
-                        body: { message: 'Follow accepted' }
+                        body: { message: 'Already following' }
+                    };
+                    return;
+                }
+                
+                // Fetch follower profile to get inbox and display name
+                let inbox = null;
+                let displayName = null;
+                try {
+                    const actorProfile = await fetchActorProfile(followerActor);
+                    inbox = actorProfile.inbox;
+                    displayName = actorProfile.name || actorProfile.preferredUsername;
+                } catch (error) {
+                    context.log.error(`Failed to fetch actor profile: ${error.message}`);
+                    // Continue anyway, we'll try to get inbox later during Accept delivery
+                }
+                
+                // Add to Table Storage
+                await tableStorage.addFollower(followerActor, inbox, followActivityId, displayName);
+                context.log(`Added follower to Table Storage: ${followerActor}`);
+                
+                // Queue Accept activity for asynchronous delivery
+                const acceptQueued = await queueAcceptActivity(activityData, context);
+                
+                if (acceptQueued) {
+                    context.res = {
+                        status: 202,
+                        headers: { 'Content-Type': 'application/json' },
+                        body: { message: 'Follow accepted, Accept queued for delivery' }
                     };
                 } else {
                     context.res = {
                         status: 202,
                         headers: { 'Content-Type': 'application/json' },
-                        body: { message: 'Follow accepted but failed to send Accept activity' }
+                        body: { message: 'Follow accepted but failed to queue Accept activity' }
                     };
                 }
                 return;
@@ -216,9 +245,14 @@ module.exports = async function (context, req) {
                 if (object && object.type === 'Follow') {
                     const followerActor = activityData.actor;
                     
-                    // Remove from followers list
-                    await removeFollower(followerActor);
-                    context.log(`Removed follower: ${followerActor}`);
+                    // Remove from Table Storage
+                    const removed = await tableStorage.removeFollower(followerActor);
+                    
+                    if (removed) {
+                        context.log(`Removed follower from Table Storage: ${followerActor}`);
+                    } else {
+                        context.log(`Follower not found in Table Storage: ${followerActor}`);
+                    }
                     
                     context.res = {
                         status: 202,
