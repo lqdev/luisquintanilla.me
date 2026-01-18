@@ -99,7 +99,8 @@ Search for: @lqdev@lqdev.me
 
 ## Phase 2: Follow/Accept Workflow & Security ✅
 
-**Completion Date**: January 18, 2026
+**Completion Date**: January 18, 2026  
+**Infrastructure Status**: ✅ **VERIFIED** (AZURE_CREDENTIALS secret confirmed in GitHub)
 
 ### What Was Implemented
 
@@ -108,6 +109,8 @@ Search for: @lqdev@lqdev.me
    - `api/utils/keyvault.js` - Key Vault + crypto wrapper
    - Supports production (Key Vault + managed identity) and development (env vars)
    - Secure signing key management with RBAC access control
+   - Service principal configured with Key Vault Crypto User role
+   - GitHub Actions authentication verified (AZURE_CREDENTIALS secret set)
 
 2. **HTTP Signature Verification**
    - `api/utils/signatures.js` - Complete HTTP Signatures implementation
@@ -161,11 +164,14 @@ curl -H "Accept: application/activity+json" "https://lqdev.me/api/followers"
 ## Phase 3: Outbox Automation 📋
 
 **Status**: PLANNED (Not Yet Implemented)  
-**Estimated Effort**: 1-2 weeks
+**Estimated Effort**: 1-2 weeks  
+**Infrastructure Ready**: ✅ Key Vault setup complete (signing not needed for this phase)
 
 ### Goal
 
 Automatically generate ActivityPub objects from website content during build process.
+
+**Important**: This phase generates **unsigned** static JSON files. ActivityPub signing happens in Phase 4 (delivery), not during file generation.
 
 ### What Will Be Implemented
 
@@ -176,7 +182,7 @@ Automatically generate ActivityPub objects from website content during build pro
    - Leverage `GenericBuilder.fs` pattern for consistency
 
 2. **Build-Time Generation**
-   - Generate `api/data/outbox/index.json` during site build
+   - Generate **unsigned** `api/data/outbox/index.json` during site build (correct approach)
    - Create individual note JSON files for content discovery
    - Use actual content dates (not placeholder future dates)
    - Maintain JSON format for Azure Functions to serve
@@ -225,19 +231,23 @@ module ActivityPubGenerator =
 ## Phase 4: Activity Delivery 📋
 
 **Status**: FUTURE (Post-Phase 3)  
-**Estimated Effort**: 1-2 weeks
+**Estimated Effort**: 1-2 weeks  
+**Infrastructure Ready**: ✅ Key Vault setup complete and verified
 
 ### Goal
 
 Deliver new content activities to follower inboxes when published.
+
+**This is where ActivityPub signing is implemented.** HTTP Signatures are computed per-request at delivery time.
 
 ### What Will Be Implemented
 
 1. **Activity Delivery System**
    - Load follower list from `api/data/followers.json`
    - Generate `Create` activities for new posts
-   - Sign requests with private key from Azure Key Vault
-   - POST to each follower's inbox URL
+   - **Sign each HTTP request** with Azure Key Vault (fresh signature per POST)
+   - Include `Signature` HTTP header with request metadata (date, host, digest)
+   - POST to each follower's inbox URL with signed request
    - Handle delivery failures and retries
 
 2. **CI/CD Integration**

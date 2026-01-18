@@ -1,6 +1,13 @@
 # ActivityPub Azure Key Vault Setup Guide
 
-This guide provides instructions for setting up Azure Key Vault to securely manage ActivityPub signing keys for GitHub Actions workflows.
+**Setup Status**: ✅ **COMPLETE** (January 18, 2026)  
+**AZURE_CREDENTIALS Secret**: ✅ Verified in GitHub repository  
+**Next Phase**: Phase 3 (Outbox Automation) - No signing required  
+**Signing Implementation**: Phase 4 (Activity Delivery)
+
+---
+
+This guide documents the completed Azure Key Vault setup for ActivityPub signing keys.
 
 ## Overview
 
@@ -922,32 +929,39 @@ You have successfully configured:
 
 ## Next Steps
 
-### Immediate Tasks
+### ✅ Setup Complete
 
-1. **Update actor.json** (if not already done):
-   ```powershell
-   .\Scripts\jwk-to-pem.ps1
-   # Copy output to api/data/actor.json publicKeyPem field
-   ```
+All infrastructure is configured and verified:
+- ✅ Azure Key Vault created with RSA-2048 signing key
+- ✅ Service principal configured with Key Vault Crypto User role
+- ✅ AZURE_CREDENTIALS secret verified in GitHub repository (updated 18 minutes ago)
+- ✅ Public key extracted and ready for actor.json
+- ✅ Conversion scripts available for future key rotation
 
-2. **Configure GitHub Secrets**:
-   ```powershell
-   # Option A: Automated with GitHub CLI
-   gh secret set AZURE_CREDENTIALS --repo lqdev/luisquintanilla.me
-   
-   # Option B: Manual via GitHub UI
-   # Settings → Secrets and variables → Actions → New secret
-   ```
+### 📋 Phase 3: Outbox Automation (Next)
 
-3. **Test signing in GitHub Actions**:
-   - Add signing step to your publish workflow
-   - Verify signatures are created correctly
-   - Monitor Azure Key Vault audit logs
+**No signing implementation needed for Phase 3.**
 
-### Future Enhancements
+Phase 3 focuses on improving outbox generation from your F# build:
+- Continue generating **unsigned** outbox JSON files (current approach is correct)
+- Refine content quality and metadata
+- Consider F# module integration
+- Plan URL migration to `/api/activitypub/*`
 
-1. **Implement signing in GitHub Actions workflow**
-   - Add signature generation step before deployment
+**Why no signing?** ActivityPub signatures are HTTP request-level, not file-level. Static outbox files don't need signatures.
+
+### 🚀 Phase 4: Activity Delivery (Future - Signing Happens Here)
+
+When you implement Phase 4 delivery system, you'll use Key Vault to sign HTTP requests:
+
+1. **Delivery System Implementation**
+   - Load followers from `api/data/followers.json`
+   - Generate Create activities for new posts
+   - Sign each HTTP POST request with Key Vault (fresh signature per request)
+   - Deliver to follower inboxes with Signature header
+   - Handle delivery failures and retries
+
+2. **GitHub Actions Signing Workflow** (Phase 4)
    - Store signatures with content metadata
    - Include signature headers in ActivityPub delivery
 
