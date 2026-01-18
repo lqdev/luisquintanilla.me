@@ -198,16 +198,16 @@ Services/
 
 ### Phase 4A-4: F# Static File Generation (Day 2-3)
 
-**Status**: 🟡 IN PROGRESS (Compilation errors - fixing F# try-with block syntax)
+**Status**: ✅ COMPLETE
 
 - [x] Create `Services/FollowersSync.fs` module
 - [x] Add Table Storage SDK reference to PersonalSite.fsproj
 - [x] Implement `getFollowersFromTableStorage()` function
 - [x] Implement `buildFollowersCollection()` function
 - [x] Integrate with Program.fs build pipeline
-- [ ] Fix F# compilation errors (FS0588, FS0010 in try-with block)
-- [ ] Test build-time followers.json generation
-- [ ] Validate followers endpoint returns correct data
+- [x] Fix F# compilation errors (resolved by restructuring JSON generation)
+- [x] Test build-time followers.json generation
+- [x] Validate followers endpoint returns correct data
 
 ### Phase 4A-5: Testing & Validation (Day 3)
 
@@ -220,11 +220,11 @@ Services/
 - [ ] Load testing with multiple simultaneous Follow requests
 - [ ] Document Phase 4A completion and lessons learned
 
-## 🎯 Current Focus: Phase 4A-4 - F# Static File Generation
+## 🎯 Current Focus: Phase 4A-5 - Testing & Validation
 
 ### Implementation Status Summary
 
-**✅ COMPLETE: Phases 4A-1, 4A-2, 4A-3**
+**✅ COMPLETE: Phases 4A-1, 4A-2, 4A-3, 4A-4**
 - ✅ Azure resources: Storage Account, Table Storage, Queue Storage, App Insights
 - ✅ GitHub secrets and Azure Static Web App settings configured
 - ✅ Table Storage utility module (`api/utils/tableStorage.js`) with full CRUD operations
@@ -233,20 +233,26 @@ Services/
 - ✅ ProcessAccept queue-triggered function for async delivery
 - ✅ Updated followers endpoint to read from Table Storage
 - ✅ Table Storage connectivity validated (7/7 tests passed)
-- ✅ Git commit: "feat(activitypub): Phase 4A implementation - Table Storage integration"
+- ✅ Created `Services/FollowersSync.fs` module for build-time static file generation
+- ✅ Integrated with Program.fs build pipeline
+- ✅ F# compilation successful (resolved JSON generation issues)
+- ✅ Build process generates api/data/followers.json correctly
+- ✅ Git commits: 
+  - "feat(activitypub): Phase 4A implementation - Table Storage integration"
+  - "wip(activitypub): Phase 4A-4 F# static file generation (in progress)"
 
-**🟡 IN PROGRESS: Phase 4A-4**
-- Created `Services/FollowersSync.fs` module for build-time static file generation
-- Integrated with Program.fs build pipeline
-- **Current Blocker**: F# compilation errors in try-with block (FS0588, FS0010)
-- **Issue**: Multi-line sprintf causing parser issues at lines 76 and 83
-- **Solution in Progress**: Restructuring JSON generation using string list concatenation
+**🟢 READY FOR: Phase 4A-5**
+- All technical components implemented and validated
+- Build process tested and working correctly
+- followers.json generation confirmed
+- Ready for end-to-end testing with real Mastodon account
 
 ### Next Immediate Steps
 
-1. **Fix F# compilation errors** in Services/FollowersSync.fs
-2. **Test build process** generates api/data/followers.json correctly
-3. **Proceed to Phase 4A-5** end-to-end testing with Mastodon
+1. **Phase 4A-5**: End-to-end testing with real Mastodon account
+2. **Verify complete workflow**: Follow → Accept → followers.json
+3. **Test Undo workflow**: Unfollow removes from Table Storage
+4. **Document completion**: Phase 4A lessons learned
 
 ## 📚 References
 
