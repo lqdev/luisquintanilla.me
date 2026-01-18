@@ -10,7 +10,7 @@
 
 All ActivityPub documentation has been reconciled with the current implementation state. A comprehensive documentation structure has been established with clear hierarchy, cross-references, and navigation guides.
 
-**Key Achievement**: Created single source of truth through [`docs/activitypub-implementation-status.md`](activitypub-implementation-status.md) while maintaining all existing documentation as valuable context.
+**Key Achievement**: Created single source of truth through [`activitypub/implementation-status.md`](activitypub-implementation-status.md) while maintaining all existing documentation as valuable context.
 
 ---
 
@@ -23,12 +23,12 @@ All ActivityPub documentation has been reconciled with the current implementatio
 | Document | Status | Role |
 |----------|--------|------|
 | `/api/ACTIVITYPUB.md` | ✅ Updated | **Primary API Reference** - Current & most accurate |
-| `/docs/activitypub-implementation-status.md` | ✅ Created | **Master Status Document** - Single source of truth |
-| `/docs/activitypub-implementation-plan.md` | ✅ Updated | Historical context - Original technical plan |
-| `/docs/activitypub-az-fn-implementation-plan.md` | ✅ Updated | Historical context - Azure-specific strategy |
-| `/docs/activitypub-fix-summary.md` | ✅ Updated | Phase 1-2 completion documentation |
-| `/docs/activitypub-deployment-guide.md` | ✅ Updated | Operational guide - Azure setup |
-| `/docs/activitypub-keyvault-setup.md` | ✅ Validated | Operational guide - Key Vault config |
+| `/docs/activitypub/implementation-status.md` | ✅ Created | **Master Status Document** - Single source of truth |
+| `/docs/activitypub/implementation-plan.md` | ✅ Updated | Historical context - Original technical plan |
+| `/docs/activitypub/az-fn-implementation-plan.md` | ✅ Updated | Historical context - Azure-specific strategy |
+| `/docs/activitypub/fix-summary.md` | ✅ Updated | Phase 1-2 completion documentation |
+| `/docs/activitypub/deployment-guide.md` | ✅ Updated | Operational guide - Azure setup |
+| `/docs/activitypub/keyvault-setup.md` | ✅ Validated | Operational guide - Key Vault config |
 | `/Scripts/rss-to-activitypub.fsx` | ✅ Updated | Prototype for Phase 3 integration |
 | `/Scripts/test-activitypub.sh` | ✅ Validated | Production-ready test suite |
 
@@ -46,10 +46,10 @@ All ActivityPub documentation has been reconciled with the current implementatio
 | **Actor Profile** | ✅ Operational | `/api/ACTIVITYPUB.md` |
 | **Inbox (Follow/Accept)** | ✅ Operational | `/api/ACTIVITYPUB.md` |
 | **Followers Collection** | ✅ Operational | `/api/ACTIVITYPUB.md` |
-| **HTTP Signature Verification** | ✅ Operational | `/docs/activitypub-fix-summary.md` |
-| **Azure Key Vault Integration** | ✅ Operational | `/docs/activitypub-keyvault-setup.md` |
-| **Outbox (Manual Entries)** | ⚠️ Needs Phase 3 | `/docs/activitypub-implementation-status.md` |
-| **Activity Delivery** | 📋 Phase 4 Planned | `/docs/activitypub-implementation-status.md` |
+| **HTTP Signature Verification** | ✅ Operational | `/docs/activitypub/fix-summary.md` |
+| **Azure Key Vault Integration** | ✅ Operational | `/docs/activitypub/keyvault-setup.md` |
+| **Outbox (Manual Entries)** | ⚠️ Needs Phase 3 | `/docs/activitypub/implementation-status.md` |
+| **Activity Delivery** | 📋 Phase 4 Planned | `/docs/activitypub/implementation-status.md` |
 
 **Routing Configuration**: `staticwebapp.config.json` validated - Uses `/api/*` pattern with CORS headers properly configured.
 
@@ -63,25 +63,25 @@ All ActivityPub documentation has been reconciled with the current implementatio
 
 1. **Is this script production-ready or experimental?**
    - **Answer**: Prototype for future F# integration (Phase 3)
-   - **Documentation**: [`Scripts/ACTIVITYPUB-SCRIPTS.md`](../Scripts/ACTIVITYPUB-SCRIPTS.md) - Section "rss-to-activitypub.fsx"
+   - **Documentation**: [`Scripts/ACTIVITYPUB-SCRIPTS.md`](../../Scripts/ACTIVITYPUB-SCRIPTS.md) - Section "rss-to-activitypub.fsx"
 
 2. **URL Pattern Conflict**
    - **Script generates**: `/api/activitypub/inbox`, `/api/activitypub/outbox`
    - **Live implementation**: `/api/inbox`, `/api/outbox`
    - **Decision**: Move to `/api/activitypub/` top-level path (future migration)
    - **Rationale**: Enables other `/api/*` functionality while keeping ActivityPub grouped
-   - **Documentation**: [`docs/activitypub-implementation-status.md`](activitypub-implementation-status.md) - Section "URL Structure (Planned Migration)"
+   - **Documentation**: [`activitypub/implementation-status.md`](activitypub-implementation-status.md) - Section "URL Structure (Planned Migration)"
 
 3. **Build Integration**
    - **Decision**: Remain standalone script for now
    - **Timeline**: Contributes to Phase 3 (Outbox Automation) implementation
-   - **Documentation**: [`docs/activitypub-implementation-status.md`](activitypub-implementation-status.md) - Section "RSS Script Analysis"
+   - **Documentation**: [`activitypub/implementation-status.md`](activitypub-implementation-status.md) - Section "RSS Script Analysis"
 
 4. **Data Generation Strategy**
    - **Build Time**: ✅ Confirmed
    - **File-Based Storage**: ✅ Confirmed
    - **RSS as Source of Truth**: ✅ Confirmed (open to recommendations)
-   - **Documentation**: [`docs/activitypub-implementation-status.md`](activitypub-implementation-status.md) - Section "Key Decisions Log"
+   - **Documentation**: [`activitypub/implementation-status.md`](activitypub-implementation-status.md) - Section "Key Decisions Log"
 
 **Script Purpose Clarified**: Prototype demonstrating RSS → ActivityPub conversion patterns for Phase 3. Not integrated with build process. Will inform final F# module design.
 
@@ -137,7 +137,7 @@ Primary Reference (Most Current)
     └── Complete endpoint documentation, current implementation
 
 Master Status Document
-└── /docs/activitypub-implementation-status.md
+└── /docs/activitypub/implementation-status.md
     ├── Phase breakdown (1-4 with status)
     ├── Current vs. planned URL patterns
     ├── RSS script role and Phase 3 integration
@@ -150,16 +150,16 @@ Navigation Guide
     └── Quick navigation to all ActivityPub docs
 
 Historical Context (Technical Details)
-├── /docs/activitypub-implementation-plan.md
-└── /docs/activitypub-az-fn-implementation-plan.md
+├── /docs/activitypub/implementation-plan.md
+└── /docs/activitypub/az-fn-implementation-plan.md
 
 Status Summaries
-└── /docs/activitypub-fix-summary.md
+└── /docs/activitypub/fix-summary.md
     └── Phase 1-2 completion details
 
 Operational Guides
-├── /docs/activitypub-deployment-guide.md
-└── /docs/activitypub-keyvault-setup.md
+├── /docs/activitypub/deployment-guide.md
+└── /docs/activitypub/keyvault-setup.md
 
 Testing & Scripts
 ├── /Scripts/ACTIVITYPUB-SCRIPTS.md
@@ -184,7 +184,7 @@ From original issue:
 - [x] **Confirmed all ambiguities with @lqdev** → Awaiting final approval
 - [x] **Cross-references added** → All docs interlinked
 - [x] **Deprecated guidance marked** → Implementation plans marked as historical
-- [x] **Testing documentation consolidated** → [`Scripts/ACTIVITYPUB-SCRIPTS.md`](../Scripts/ACTIVITYPUB-SCRIPTS.md)
+- [x] **Testing documentation consolidated** → [`Scripts/ACTIVITYPUB-SCRIPTS.md`](../../Scripts/ACTIVITYPUB-SCRIPTS.md)
 
 ---
 
@@ -211,7 +211,7 @@ From original issue:
 
 ### Decision 4: Documentation Hierarchy
 **Primary Reference**: `/api/ACTIVITYPUB.md`  
-**Status Document**: `/docs/activitypub-implementation-status.md`  
+**Status Document**: `/docs/activitypub/implementation-status.md`  
 **Context Documents**: Implementation plans (marked as historical)  
 **Rationale**: Clear separation of current state vs. planning context
 
@@ -221,7 +221,7 @@ From original issue:
 
 ### Created Documents
 
-1. **`docs/activitypub-implementation-status.md`** (19KB)
+1. **`activitypub/implementation-status.md`** (19KB)
    - Master status document
    - Complete phase breakdown
    - Current vs. planned state
@@ -248,22 +248,22 @@ From original issue:
    - Enhanced Phase 3 section with RSS script context
    - Updated related documentation links
 
-2. **`docs/activitypub-implementation-plan.md`**
+2. **`activitypub/implementation-plan.md`**
    - Marked as historical reference
    - Added status note at top
    - Updated phase status indicators
 
-3. **`docs/activitypub-az-fn-implementation-plan.md`**
+3. **`activitypub/az-fn-implementation-plan.md`**
    - Added current implementation status
    - Marked as Azure-specific reference
    - Added navigation links
 
-4. **`docs/activitypub-fix-summary.md`**
+4. **`activitypub/fix-summary.md`**
    - Enhanced Phase 3 documentation
    - Added script references
    - Updated cross-references
 
-5. **`docs/activitypub-deployment-guide.md`**
+5. **`activitypub/deployment-guide.md`**
    - Added status document reference
    - Updated resource links
    - Enhanced navigation
@@ -292,15 +292,15 @@ From original issue:
 ### For Phase 3 Implementation
 
 When Phase 3 (Outbox Automation) begins:
-1. Reference [`docs/activitypub-implementation-status.md`](activitypub-implementation-status.md) for requirements
-2. Use [`Scripts/rss-to-activitypub.fsx`](../Scripts/rss-to-activitypub.fsx) as conversion pattern reference
-3. Follow [`docs/activitypub-implementation-plan.md`](activitypub-implementation-plan.md) Phase 3 technical details
+1. Reference [`activitypub/implementation-status.md`](activitypub-implementation-status.md) for requirements
+2. Use [`Scripts/rss-to-activitypub.fsx`](../../Scripts/rss-to-activitypub.fsx) as conversion pattern reference
+3. Follow [`activitypub/implementation-plan.md`](activitypub-implementation-plan.md) Phase 3 technical details
 4. Update status document with progress and learnings
 
 ### For URL Migration
 
 When migrating from `/api/*` to `/api/activitypub/*`:
-1. Review migration requirements in [`docs/activitypub-implementation-status.md`](activitypub-implementation-status.md)
+1. Review migration requirements in [`activitypub/implementation-status.md`](activitypub-implementation-status.md)
 2. Update all data files atomically
 3. Test thoroughly with existing followers
 4. Update documentation with new patterns
@@ -339,7 +339,7 @@ When migrating from `/api/*` to `/api/activitypub/*`:
 
 ## Conclusion
 
-**Reconciliation Complete**: All ActivityPub documentation has been systematically reviewed, updated, and organized into a coherent structure with [`docs/activitypub-implementation-status.md`](activitypub-implementation-status.md) as the single source of truth for current state.
+**Reconciliation Complete**: All ActivityPub documentation has been systematically reviewed, updated, and organized into a coherent structure with [`activitypub/implementation-status.md`](activitypub-implementation-status.md) as the single source of truth for current state.
 
 **Key Achievements**:
 1. ✅ Complete documentation inventory with clear categorization

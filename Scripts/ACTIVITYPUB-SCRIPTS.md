@@ -191,17 +191,17 @@ When the URL migration happens, this script will already use the correct pattern
 ## Related Documentation
 
 ### Implementation Status
-- **Current Phase Breakdown**: `/docs/activitypub-implementation-status.md`
-- **Phase 3 Planning**: `/docs/activitypub-implementation-plan.md` (Phase 3 section)
-- **Completion Summary**: `/docs/activitypub-fix-summary.md`
+- **Current Phase Breakdown**: `/docs/activitypub/implementation-status.md`
+- **Phase 3 Planning**: `/docs/activitypub/implementation-plan.md` (Phase 3 section)
+- **Completion Summary**: `/docs/activitypub/fix-summary.md`
 
 ### API Documentation
 - **Endpoint Reference**: `/api/ACTIVITYPUB.md`
 - **Azure Functions Code**: `/api/` directory
 
 ### Deployment & Operations
-- **Deployment Guide**: `/docs/activitypub-deployment-guide.md`
-- **Key Vault Setup**: `/docs/activitypub-keyvault-setup.md`
+- **Deployment Guide**: `/docs/activitypub/deployment-guide.md`
+- **Key Vault Setup**: `/docs/activitypub/keyvault-setup.md`
 
 ---
 

@@ -2,7 +2,7 @@
 
 > **📋 NOTE**: This is an **Azure-specific implementation guide** for historical reference.  
 > **For current implementation status**, see [`activitypub-implementation-status.md`](activitypub-implementation-status.md)  
-> **For API reference**, see [`/api/ACTIVITYPUB.md`](../api/ACTIVITYPUB.md)
+> **For API reference**, see [`/api/ACTIVITYPUB.md`](../../api/ACTIVITYPUB.md)
 
 ## Overview
 

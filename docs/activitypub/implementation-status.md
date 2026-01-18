@@ -215,7 +215,7 @@ module ActivityPubGenerator =
 
 ### Implementation Resources
 
-- **Reference Plan**: `docs/activitypub-implementation-plan.md` (Sections Phase 1-3)
+- **Reference Plan**: `activitypub/implementation-plan.md` (Sections Phase 1-3)
 - **Prototype Script**: `Scripts/rss-to-activitypub.fsx`
 - **Current Outbox**: `api/data/outbox/index.json` (manual entries for reference)
 - **Build Integration**: Will modify `Program.fs` main build pipeline
@@ -422,18 +422,18 @@ When migrating from `/api/*` to `/api/activitypub/*`:
 
 ### Implementation Plans (Historical Context + Future Roadmap)
 
-**`/docs/activitypub-implementation-plan.md`** - Original 8-week phased plan with technical details  
-**`/docs/activitypub-az-fn-implementation-plan.md`** - Azure Functions-specific implementation strategy
+**`/docs/activitypub/implementation-plan.md`** - Original 8-week phased plan with technical details  
+**`/docs/activitypub/az-fn-implementation-plan.md`** - Azure Functions-specific implementation strategy
 
 ### Status & Completion Summary
 
-**`/docs/activitypub-fix-summary.md`** - Phase 1 & 2 completion details, learnings, validation  
-**`/docs/activitypub-implementation-status.md`** (this file) - Current state, phase breakdown, next steps
+**`/docs/activitypub/fix-summary.md`** - Phase 1 & 2 completion details, learnings, validation  
+**`/docs/activitypub/implementation-status.md`** (this file) - Current state, phase breakdown, next steps
 
 ### Deployment & Operations
 
-**`/docs/activitypub-deployment-guide.md`** - Post-merge Azure setup, Key Vault configuration, testing  
-**`/docs/activitypub-keyvault-setup.md`** - Detailed Azure Key Vault setup instructions
+**`/docs/activitypub/deployment-guide.md`** - Post-merge Azure setup, Key Vault configuration, testing  
+**`/docs/activitypub/keyvault-setup.md`** - Detailed Azure Key Vault setup instructions
 
 ### Testing
 
@@ -465,11 +465,11 @@ When migrating from `/api/*` to `/api/activitypub/*`:
 5. Check logs in `api/data/activities/` for debugging
 
 **Implement Phase 3 (Outbox Automation)**
-1. Read: `/docs/activitypub-implementation-plan.md` (Phase 3 section)
+1. Read: `/docs/activitypub/implementation-plan.md` (Phase 3 section)
 2. Reference: `Scripts/rss-to-activitypub.fsx` for conversion patterns
 3. Create F# module for ActivityPub generation
 4. Integrate with `Program.fs` build pipeline
-5. Update `/docs/activitypub-fix-summary.md` when complete
+5. Update `/docs/activitypub/fix-summary.md` when complete
 
 **Update ActivityPub documentation**
 1. Primary updates go in `/api/ACTIVITYPUB.md`

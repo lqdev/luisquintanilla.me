@@ -1,7 +1,7 @@
 # ActivityPub Deployment Guide
 
 > **📋 Implementation Status**: For complete phase breakdown and current state, see [`activitypub-implementation-status.md`](activitypub-implementation-status.md)  
-> **API Reference**: See [`/api/ACTIVITYPUB.md`](../api/ACTIVITYPUB.md)
+> **API Reference**: See [`/api/ACTIVITYPUB.md`](../../api/ACTIVITYPUB.md)
 
 ## Overview
 
@@ -335,7 +335,7 @@ The current implementation handles **discovery and following**. Future phases wi
 - **WebFinger Specification (RFC 7033):** https://tools.ietf.org/html/rfc7033
 - **HTTP Signatures:** https://datatracker.ietf.org/doc/html/draft-cavage-http-signatures
 - **Mastodon ActivityPub Guide:** https://docs.joinmastodon.org/spec/activitypub/
-- **Key Vault Setup Details:** See `docs/activitypub-keyvault-setup.md`
+- **Key Vault Setup Details:** See `activitypub/keyvault-setup.md`
 - **API Documentation:** See `api/ACTIVITYPUB.md`
 - **Testing Scripts:** See `Scripts/ACTIVITYPUB-SCRIPTS.md`
 
@@ -350,4 +350,4 @@ If you encounter issues during deployment:
 3. Verify all configuration settings match this guide
 4. Test endpoints individually to isolate the problem
 
-For questions about future phases (Outbox Automation, Activity Delivery), refer to `docs/activitypub-fix-summary.md` for detailed implementation plans.
+For questions about future phases (Outbox Automation, Activity Delivery), refer to `activitypub/fix-summary.md` for detailed implementation plans.

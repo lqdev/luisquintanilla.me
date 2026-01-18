@@ -8,9 +8,9 @@ This document provides a quick reference to all ActivityPub-related documentatio
 
 **New to ActivityPub implementation?** Read these in order:
 
-1. **[API Documentation](../api/ACTIVITYPUB.md)** - Understanding the endpoints and architecture
+1. **[API Documentation](../../api/ACTIVITYPUB.md)** - Understanding the endpoints and architecture
 2. **[Implementation Status](activitypub-implementation-status.md)** - Current state, phases, and roadmap
-3. **[Testing Guide](../Scripts/ACTIVITYPUB-SCRIPTS.md)** - How to test and validate functionality
+3. **[Testing Guide](../../Scripts/ACTIVITYPUB-SCRIPTS.md)** - How to test and validate functionality
 
 ---
 
@@ -21,7 +21,7 @@ This document provides a quick reference to all ActivityPub-related documentatio
 | Document | Purpose | Audience |
 |----------|---------|----------|
 | **[Implementation Status](activitypub-implementation-status.md)** | **Complete current state overview** | Everyone |
-| [API Documentation](../api/ACTIVITYPUB.md) | Endpoint reference and usage | Developers, Contributors |
+| [API Documentation](../../api/ACTIVITYPUB.md) | Endpoint reference and usage | Developers, Contributors |
 | [Fix Summary](activitypub-fix-summary.md) | Phase 1-2 completion details | Reviewers, Historical reference |
 
 ### Implementation & Planning
@@ -30,7 +30,7 @@ This document provides a quick reference to all ActivityPub-related documentatio
 |----------|---------|----------|
 | [Implementation Plan](activitypub-implementation-plan.md) | Original 8-week phased plan | Architects, Historical reference |
 | [Azure Functions Plan](activitypub-az-fn-implementation-plan.md) | Azure-specific strategy | Azure developers |
-| [Script Documentation](../Scripts/ACTIVITYPUB-SCRIPTS.md) | RSS conversion and testing scripts | Phase 3 implementers |
+| [Script Documentation](../../Scripts/ACTIVITYPUB-SCRIPTS.md) | RSS conversion and testing scripts | Phase 3 implementers |
 
 ### Deployment & Operations
 
@@ -49,8 +49,8 @@ This document provides a quick reference to all ActivityPub-related documentatio
 
 ### "How do I test ActivityPub endpoints?"
 
-➡️ **[API Documentation](../api/ACTIVITYPUB.md)** - See "Testing" section  
-➡️ **[Script Documentation](../Scripts/ACTIVITYPUB-SCRIPTS.md)** - See "test-activitypub.sh" section
+➡️ **[API Documentation](../../api/ACTIVITYPUB.md)** - See "Testing" section  
+➡️ **[Script Documentation](../../Scripts/ACTIVITYPUB-SCRIPTS.md)** - See "test-activitypub.sh" section
 
 ### "How do I deploy ActivityPub to production?"
 
@@ -59,7 +59,7 @@ This document provides a quick reference to all ActivityPub-related documentatio
 ### "What's the RSS script for?"
 
 ➡️ **[Implementation Status](activitypub-implementation-status.md)** - See "RSS Script Analysis" section  
-➡️ **[Script Documentation](../Scripts/ACTIVITYPUB-SCRIPTS.md)** - See "rss-to-activitypub.fsx" section
+➡️ **[Script Documentation](../../Scripts/ACTIVITYPUB-SCRIPTS.md)** - See "rss-to-activitypub.fsx" section
 
 ### "What's planned for Phase 3?"
 
@@ -68,17 +68,17 @@ This document provides a quick reference to all ActivityPub-related documentatio
 
 ### "How do I add a new ActivityPub endpoint?"
 
-➡️ **[API Documentation](../api/ACTIVITYPUB.md)** - See "Contributing" section  
+➡️ **[API Documentation](../../api/ACTIVITYPUB.md)** - See "Contributing" section  
 ➡️ **[Implementation Status](activitypub-implementation-status.md)** - See "Quick Reference for Contributors"
 
 ### "What are the URL patterns?"
 
 ➡️ **[Implementation Status](activitypub-implementation-status.md)** - See "URL Structure (Current)" and "URL Structure (Planned Migration)"  
-➡️ **[API Documentation](../api/ACTIVITYPUB.md)** - See "URL Structure" section
+➡️ **[API Documentation](../../api/ACTIVITYPUB.md)** - See "URL Structure" section
 
 ### "How do I debug federation issues?"
 
-➡️ **[API Documentation](../api/ACTIVITYPUB.md)** - See "Troubleshooting" section  
+➡️ **[API Documentation](../../api/ACTIVITYPUB.md)** - See "Troubleshooting" section  
 ➡️ **[Deployment Guide](activitypub-deployment-guide.md)** - See "Common Issues" section
 
 ---
@@ -91,23 +91,23 @@ Primary Reference (Most Current & Complete)
 │   └── Complete endpoint reference, current implementation, testing
 │
 Current State & Roadmap
-├── /docs/activitypub-implementation-status.md
+├── /docs/activitypub/implementation-status.md
 │   └── Phase breakdown, decisions log, next steps
 │
 Implementation Plans (Historical Context + Technical Details)
-├── /docs/activitypub-implementation-plan.md
+├── /docs/activitypub/implementation-plan.md
 │   └── Original 8-week phased plan with F# integration details
-├── /docs/activitypub-az-fn-implementation-plan.md
+├── /docs/activitypub/az-fn-implementation-plan.md
 │   └── Azure Functions-specific implementation strategy
 │
 Status & Completion Summaries
-├── /docs/activitypub-fix-summary.md
+├── /docs/activitypub/fix-summary.md
 │   └── Phase 1-2 completion details, learnings, validation
 │
 Deployment & Operations
-├── /docs/activitypub-deployment-guide.md
+├── /docs/activitypub/deployment-guide.md
 │   └── Post-merge Azure setup, testing procedures
-├── /docs/activitypub-keyvault-setup.md
+├── /docs/activitypub/keyvault-setup.md
 │   └── Azure Key Vault configuration details
 │
 Testing & Scripts

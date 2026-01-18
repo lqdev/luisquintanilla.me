@@ -161,7 +161,7 @@ The ActivityPub implementation had several critical issues preventing proper fed
 - Generate during build phase like RSS feeds
 - Maintain JSON format for Azure Functions to serve
 
-**Prototype Reference**: [`Scripts/rss-to-activitypub.fsx`](../Scripts/rss-to-activitypub.fsx) demonstrates conversion patterns. See [`Scripts/ACTIVITYPUB-SCRIPTS.md`](../Scripts/ACTIVITYPUB-SCRIPTS.md) for documentation.
+**Prototype Reference**: [`Scripts/rss-to-activitypub.fsx`](../../Scripts/rss-to-activitypub.fsx) demonstrates conversion patterns. See [`Scripts/ACTIVITYPUB-SCRIPTS.md`](../../Scripts/ACTIVITYPUB-SCRIPTS.md) for documentation.
 
 #### Phase 4: Activity Delivery (Future)
 
@@ -318,10 +318,10 @@ After deployment to production:
 
 ### Repository Documentation
 - `api/ACTIVITYPUB.md` - Complete ActivityPub documentation
-- `docs/activitypub-implementation-status.md` - **Current implementation status and roadmap**
-- `docs/activitypub-keyvault-setup.md` - Azure Key Vault setup guide
-- `docs/activitypub-deployment-guide.md` - Post-merge deployment instructions
-- `docs/activitypub-implementation-plan.md` - Original implementation plan
+- `activitypub/implementation-status.md` - **Current implementation status and roadmap**
+- `activitypub/keyvault-setup.md` - Azure Key Vault setup guide
+- `activitypub/deployment-guide.md` - Post-merge deployment instructions
+- `activitypub/implementation-plan.md` - Original implementation plan
 - `Scripts/test-activitypub.sh` - Automated test suite
 - `Scripts/rss-to-activitypub.fsx` - Phase 3 prototype script
 - `Scripts/ACTIVITYPUB-SCRIPTS.md` - Script documentation
@@ -341,8 +341,8 @@ Full federation functionality is operational. However, to enable automatic conte
 
 **Recommended Next Steps**:
 1. ✅ Deploy Phases 1-2 changes to production (DONE)
-2. ✅ Follow deployment guide in `docs/activitypub-deployment-guide.md`
-3. ✅ Configure Azure Key Vault per `docs/activitypub-keyvault-setup.md`
+2. ✅ Follow deployment guide in `activitypub/deployment-guide.md`
+3. ✅ Configure Azure Key Vault per `activitypub/keyvault-setup.md`
 4. ✅ Test from real Mastodon instance - Follow workflow should work end-to-end
 5. 📋 **Next:** Proceed with Phase 3 implementation (Outbox Automation)
 

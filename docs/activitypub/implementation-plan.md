@@ -2,7 +2,7 @@
 
 > **📋 NOTE**: This is the **original implementation plan** for historical reference and technical details.  
 > **For current implementation status**, see [`activitypub-implementation-status.md`](activitypub-implementation-status.md)  
-> **For API reference**, see [`/api/ACTIVITYPUB.md`](../api/ACTIVITYPUB.md)
+> **For API reference**, see [`/api/ACTIVITYPUB.md`](../../api/ACTIVITYPUB.md)
 
 **Document Version**: 1.0  
 **Date**: August 31, 2025  

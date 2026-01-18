@@ -6,6 +6,7 @@ This directory contains Azure Functions for:
 
 ## ActivityPub Federation
 
+**📋 Documentation Home**: [`/docs/activitypub/`](../docs/activitypub/)  
 **Current Status**: Phase 2 Complete (Discovery + Follow/Accept Workflow + Key Vault Security)
 
 See the dedicated [ActivityPub README](ACTIVITYPUB.md) for complete documentation on:
@@ -18,7 +19,7 @@ See the dedicated [ActivityPub README](ACTIVITYPUB.md) for complete documentatio
 - Testing and troubleshooting
 - Future enhancements (Phase 3-4)
 
-For implementation status and roadmap, see [`/docs/activitypub-implementation-status.md`](../docs/activitypub-implementation-status.md).
+For implementation status and roadmap, see [`/docs/activitypub/implementation-status.md`](../docs/activitypub/implementation-status.md).
 
 Quick test:
 ```bash
