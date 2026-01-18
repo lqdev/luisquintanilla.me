@@ -25,7 +25,7 @@
     "@type": "Key",
     "id": "https://lqdev.me/api/actor#main-key",
     "owner": "https://lqdev.me/api/actor",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtUQDL71nPaOotaeEP7GH\nB20+/HuoG1Yb5hSz0S9DcpGW/v/NDYbU5EYoNjxXyHxu292ntmZuEbPhJttsC2T7\npeRa2Kkd6tY+zN7gocZmotx8gdy0W0dNhDlW5nZhDL3RpSwG+zUD24lZ9pEyYmtk\n20d5AyRUKQEq4AyGRdbMBK5pVDs0Dv9jufxfbob2QkHeRfud3W6kx5vlZPsA/x44\nyjy3m4NSxEE4Ksi6YDVWW8pF9Ms5/ZIh8W9GMlOU71LERnlxjRQ5e6y/uUXk4wag\nW70X9NUIsbLcsrST4zLAC7GHIly/Hxu9MCvxR0MCZpRy9g4RiI5Zg9xw/6+8lNem\nSQIDAQAB\n-----END PUBLIC KEY-----"
+    "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv3tqkIX9FECRyvdTmpa3\nCGAJrmup3X9w0cWJPNbK92sE89EV7FsBoQLPKs4ap1+ObBvmU2udtrk4Uk2PE2Bw\n8PyxMtIPFUq+qmUB1Bemett3gBXtLK8ravDsH4nB8wDk3O9GD6SozPPZzJSuV7MP\n8L2zwBkBScRsiqjalkOfmMikO473Ts2IaDDcJv5gWv+04pA8E+RbSIl+SryforUU\nU3yzGS2afRt+lCDePMHNkF2FBqPpjKxmtlk6Ivo6GBKT9ye5UP1bvheXN03kez2j\ngK0Nm9juHsER23gfReQdMC7n25GnnL2GCzP3uiiBKFMPGe5lZUHObPjP5y9+LYma\nxQIDAQAB\n-----END PUBLIC KEY-----"
   },
   "attachment": [
     {
