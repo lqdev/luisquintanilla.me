@@ -1,4 +1,28 @@
 /// RSS to ActivityPub Outbox Generator
+/// 
+/// **Role**: PROTOTYPE for Phase 3 (Outbox Automation) implementation
+/// **Status**: Standalone script, not integrated with main F# build pipeline
+/// **Purpose**: Demonstrates RSS → ActivityPub conversion patterns for future integration
+///
+/// This script serves as a reference implementation showing how to:
+/// - Parse RSS feed XML and extract content items
+/// - Convert RSS items to ActivityPub Note objects
+/// - Wrap Notes in Create activities for the outbox
+/// - Generate complete outbox collection JSON
+/// - Output individual note files and collections
+///
+/// **Current Usage**: Manual execution for testing and development
+/// **Future Integration**: Concepts will inform F# module for build-time generation in Phase 3
+/// 
+/// **URL Pattern Note**: This script generates URLs matching the PLANNED pattern
+/// (/api/activitypub/*) rather than current implementation (/api/*). This aligns with
+/// future migration plans discussed in docs/activitypub-implementation-status.md.
+///
+/// For more information:
+/// - Current implementation status: /docs/activitypub-implementation-status.md
+/// - API documentation: /api/ACTIVITYPUB.md
+/// - Phase 3 planning: /docs/activitypub-implementation-plan.md (Phase 3 section)
+///
 /// Based on the ActivityPub implementation guide by Maho Pacheco
 /// Converts RSS feeds to ActivityPub outbox and notes for static site integration
 
