@@ -1,13 +1,13 @@
 # ActivityPub Azure Key Vault Setup Guide
 
-This guide provides instructions for setting up Azure Key Vault to securely manage ActivityPub signing keys for both GitHub Actions workflows and Azure Functions.
+This guide provides instructions for setting up Azure Key Vault to securely manage ActivityPub signing keys for both GitHub Actions workflows and Azure Static Web Apps managed Functions.
 
 ## Overview
 
 **Architecture:**
 ```
 GitHub Actions → Azure Key Vault → Sign content → Publish
-Azure Functions → Azure Key Vault → Verify signatures → Process activities
+Azure Static Web Apps (Managed Functions) → Azure Key Vault → Verify signatures → Process activities
 ```
 
 **Benefits:**
@@ -24,7 +24,32 @@ Azure Functions → Azure Key Vault → Verify signatures → Process activities
 - Azure CLI installed (`az` command)
 - Azure subscription: **Pay-As-You-Go**
 - Resource group: **luisquintanillameblog-rg**
+- Azure Static Web App: **luisquintanillame-static**
 - Appropriate permissions to create Key Vault and assign roles
+
+---
+
+## ⚠️ Security Considerations
+
+**What's Safe to Document:**
+- ✅ Resource group names
+- ✅ Key Vault names (globally unique but not sensitive)
+- ✅ Static Web App names (already public via your domain)
+- ✅ Azure region names
+
+**What Should NEVER Be Committed:**
+- ❌ Subscription IDs
+- ❌ Tenant IDs  
+- ❌ Service principal credentials (clientId, clientSecret, etc.)
+- ❌ Key Vault key IDs (full URLs)
+- ❌ Any authentication tokens or secrets
+
+**Best Practices:**
+1. Use placeholders (`<subscription-id>`, `<key-id>`) in documentation
+2. Store sensitive values only in GitHub Secrets or Azure Key Vault
+3. Clear terminal history after copying credentials: `Clear-History`
+4. Never screenshot or log sensitive outputs
+5. Rotate credentials immediately if accidentally exposed
 
 ---
 
@@ -76,52 +101,55 @@ echo "Save this Key ID for the next steps."
 
 ---
 
-### 2. Configure Azure Functions Access
+### 2. Configure Azure Static Web Apps Access
 
-Grant your Azure Functions app access to sign and verify with the key:
+Grant your Azure Static Web App access to sign and verify with the key:
 
-```bash
-#!/bin/bash
-RESOURCE_GROUP="luisquintanillameblog-rg"
-VAULT_NAME="lqdev-activitypub-kv"
-FUNCTION_APP_NAME="<your-function-app-name>"  # Replace with your actual Function App name
+```powershell
+# PowerShell script for Azure Static Web Apps
+$RESOURCE_GROUP = "luisquintanillameblog-rg"
+$VAULT_NAME = "lqdev-activitypub-kv"
+$STATIC_WEB_APP_NAME = "luisquintanillame-static"
 
-# Get the subscription ID
-SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+# Get the subscription ID (kept private, never commit to repository)
+$SUBSCRIPTION_ID = (az account show --query id -o tsv)
+Write-Host "Using Subscription ID: $($SUBSCRIPTION_ID.Substring(0,8))..." # Show only first 8 chars for verification
 
-# Enable system-assigned managed identity for the Function App (if not already enabled)
-echo "Enabling managed identity for Function App..."
-az functionapp identity assign \
-  --name $FUNCTION_APP_NAME \
+# Enable system-assigned managed identity for the Static Web App
+Write-Host "Enabling managed identity for Static Web App..."
+az staticwebapp identity assign `
+  --name $STATIC_WEB_APP_NAME `
   --resource-group $RESOURCE_GROUP
 
 # Get the managed identity principal ID
-PRINCIPAL_ID=$(az functionapp identity show \
-  --name $FUNCTION_APP_NAME \
-  --resource-group $RESOURCE_GROUP \
+$PRINCIPAL_ID = (az staticwebapp identity show `
+  --name $STATIC_WEB_APP_NAME `
+  --resource-group $RESOURCE_GROUP `
   --query principalId -o tsv)
 
-echo "Managed Identity Principal ID: $PRINCIPAL_ID"
+Write-Host "Managed Identity Principal ID: $PRINCIPAL_ID"
 
-# Grant the Function App "Key Vault Crypto User" role
-echo "Granting Key Vault Crypto User role..."
-az role assignment create \
-  --role "Key Vault Crypto User" \
-  --assignee $PRINCIPAL_ID \
+# Grant the Static Web App "Key Vault Crypto User" role
+Write-Host "Granting Key Vault Crypto User role..."
+az role assignment create `
+  --role "Key Vault Crypto User" `
+  --assignee $PRINCIPAL_ID `
   --scope "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.KeyVault/vaults/$VAULT_NAME"
 
-echo ""
-echo "✅ Azure Functions access configured!"
+Write-Host ""
+Write-Host "✅ Azure Static Web Apps access configured!"
 ```
 
-**Add Key ID to Function App Settings:**
+**Add Key ID to Static Web App Settings:**
 
-```bash
-# Replace KEY_ID with the value from step 1
-az functionapp config appsettings set \
-  --name $FUNCTION_APP_NAME \
-  --resource-group $RESOURCE_GROUP \
-  --settings KEY_VAULT_KEY_ID="<your-key-id>"
+```powershell
+# Replace <your-key-id> with the actual Key ID from step 1
+# IMPORTANT: Do NOT commit the actual Key ID to public repositories
+# Store it securely (e.g., password manager, Azure DevOps variable groups)
+az staticwebapp appsettings set `
+  --name $STATIC_WEB_APP_NAME `
+  --resource-group $RESOURCE_GROUP `
+  --setting-names KEY_VAULT_KEY_ID="<your-key-id>"
 ```
 
 ---
@@ -130,30 +158,41 @@ az functionapp config appsettings set \
 
 Create a service principal for GitHub Actions to sign content during build/publish workflows:
 
-```bash
-#!/bin/bash
-RESOURCE_GROUP="luisquintanillameblog-rg"
-VAULT_NAME="lqdev-activitypub-kv"
+```powershell
+# PowerShell script for GitHub Actions service principal
+$RESOURCE_GROUP = "luisquintanillameblog-rg"
+$VAULT_NAME = "lqdev-activitypub-kv"
 
-# Get the subscription ID
-SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+# Get the subscription ID (kept private)
+$SUBSCRIPTION_ID = (az account show --query id -o tsv)
 
 # Create service principal with Key Vault Crypto User role
-echo "Creating service principal for GitHub Actions..."
-az ad sp create-for-rbac \
-  --name "github-activitypub-signer" \
-  --role "Key Vault Crypto User" \
-  --scopes "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.KeyVault/vaults/$VAULT_NAME" \
+Write-Host "Creating service principal for GitHub Actions..."
+az ad sp create-for-rbac `
+  --name "github-activitypub-signer" `
+  --role "Key Vault Crypto User" `
+  --scopes "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.KeyVault/vaults/$VAULT_NAME" `
   --sdk-auth
 
-echo ""
-echo "✅ Service principal created!"
-echo ""
-echo "IMPORTANT: Copy the entire JSON output above and add it as a GitHub repository secret named 'AZURE_CREDENTIALS'"
+Write-Host ""
+Write-Host "✅ Service principal created!"
+Write-Host ""
+Write-Host "SECURITY WARNING: The JSON output above contains SENSITIVE credentials!"
+Write-Host "IMPORTANT: "
+Write-Host "  1. Copy the entire JSON output"
+Write-Host "  2. Add it as a GitHub repository secret named 'AZURE_CREDENTIALS'"
+Write-Host "  3. NEVER commit these credentials to your repository"
+Write-Host "  4. Clear your terminal history after copying"
 ```
 
 **Add to GitHub Repository Secrets:**
-1. Go to your GitHub repository
+1. Go to your GitHub 
+
+**⚠️ CRITICAL SECURITY NOTE:**
+- The service principal JSON contains sensitive authentication credentials
+- Store this ONLY in GitHub Secrets, never commit to repository
+- Clear your terminal history after setup: `Clear-History` (PowerShell) or `history -c` (Bash)
+- Rotate credentials immediately if accidentally exposedrepository
 2. Navigate to Settings → Secrets and variables → Actions
 3. Click "New repository secret"
 4. Name: `AZURE_CREDENTIALS`
@@ -162,11 +201,24 @@ echo "IMPORTANT: Copy the entire JSON output above and add it as a GitHub reposi
 
 ---
 
-## Implementation in Azure Functions
+## Implementation in Azure Static Web Apps Managed Functions
 
 ### Install Dependencies
 
-```bash
+The required dependencies should already be in your `api/package.json`:
+
+```json
+{
+  "dependencies": {
+    "@azure/identity": "^4.0.0",
+    "@azure/keyvault-keys": "^4.8.0"
+  }
+}
+```
+
+If not present, install them:
+
+```powershell
 cd api
 npm install @azure/identity @azure/keyvault-keys
 ```
@@ -366,31 +418,31 @@ To rotate keys:
 # Create new key version
 az keyvault key create \
   --vault-name lqdev-activitypub-kv \
-  --name activitypub-signing-key \
-  --kty RSA \
-  --size 2048 \
-  --ops sign verify
-
-# Old key versions remain accessible for verification
-# Update actor.json publicKey when ready to switch
-```
-
----
-
-## Troubleshooting
-
-### "Authentication failed" in Azure Functions
+  --name activitypub-signing-key \Static Web Apps
 
 **Solution**: Ensure managed identity is enabled and has proper role assignment:
 
-```bash
+```powershell
 # Check if managed identity is enabled
-az functionapp identity show \
-  --name <function-app-name> \
+az staticwebapp identity show `
+  --name luisquintanillame-static `
   --resource-group luisquintanillameblog-rg
 
 # Check role assignments
-az role assignment list \
+az role assignment list `
+  --assignee <principal-id> `
+  --scope /subscriptions/<subscription-id>/resourceGroups/luisquintanillameblog-rg/providers/Microsoft.KeyVault/vaults/lqdev-activitypub-kv
+```
+
+### "Key not found" Error
+
+**Solution**: Verify KEY_VAULT_KEY_ID environment variable:
+
+```powershell
+az staticwebapp appsettings list `
+  --name luisquintanillame-static `
+  --resource-group luisquintanillameblog-rg `
+  --query "properties.KEY_VAULT_KEY_ID
   --assignee <principal-id> \
   --scope /subscriptions/<subscription-id>/resourceGroups/luisquintanillameblog-rg/providers/Microsoft.KeyVault/vaults/lqdev-activitypub-kv
 ```
@@ -416,7 +468,8 @@ az functionapp config appsettings list \
 
 ---
 
-## Cost Considerations
+## Cost CStatic Web Apps Managed Identity](https://learn.microsoft.com/en-us/azure/static-web-apps/authentication-authorization)
+- [Azure Static Web Apps API Configuration](https://learn.microsoft.com/en-us/azure/static-web-apps/apis-functions
 
 Azure Key Vault pricing (as of 2025):
 
@@ -424,15 +477,16 @@ Azure Key Vault pricing (as of 2025):
 - **Key storage**: First 5 keys free
 - **Estimated monthly cost**: < $1 for typical single-user ActivityPub usage
 
----
+---Static Web App managed identity and settings
+3. Add GitHub Actions service principal credentials
+4. Create KeyVaultSigner utility in `api/utils/keyvault.js`
+5. Update inbox function to use KeyVaultSigner for signature verification
+6. Test signature verification with incoming ActivityPub activities
+7. Update GitHub Actions workflow to sign content on publish
 
-## References
-
-- [Azure Key Vault Documentation](https://learn.microsoft.com/en-us/azure/key-vault/)
-- [Azure Functions Managed Identity](https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity)
-- [GitHub Actions Azure Login](https://github.com/Azure/login)
-- [ActivityPub HTTP Signatures](https://docs.joinmastodon.org/spec/security/#http)
-
+For ActivityPub implementation details, see:
+- `api/ACTIVITYPUB.md` - Complete endpoint documentation
+- `docs/
 ---
 
 ## Next Steps
