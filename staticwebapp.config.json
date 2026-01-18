@@ -14,7 +14,7 @@
       }
     },
     {
-      "route": "/api/outbox",
+      "route": "/api/activitypub/outbox",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
@@ -22,7 +22,7 @@
       }
     },
     {
-      "route": "/api/inbox",
+      "route": "/api/activitypub/inbox",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
@@ -30,7 +30,7 @@
       }
     },
     {
-      "route": "/api/followers",
+      "route": "/api/activitypub/followers",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
@@ -38,7 +38,7 @@
       }
     },
     {
-      "route": "/api/following",
+      "route": "/api/activitypub/following",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
@@ -46,7 +46,7 @@
       }
     },
     {
-      "route": "/api/actor",
+      "route": "/api/activitypub/actor",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",

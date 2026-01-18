@@ -89,7 +89,7 @@ curl "https://lqdev.me/.well-known/webfinger?resource=acct:lqdev@lqdev.me"
 curl "https://lqdev.me/.well-known/webfinger?resource=acct:lqdev@www.lqdev.me"
 
 # Actor profile
-curl -H "Accept: application/activity+json" "https://lqdev.me/api/actor"
+curl -H "Accept: application/activity+json" "https://lqdev.me/api/activitypub/actor"
 
 # Mastodon search
 Search for: @lqdev@lqdev.me
@@ -242,7 +242,7 @@ ActivityPubBuilder.buildOutbox allUnifiedContent "_public"
 
 ### Current Outbox Status
 
-- ✅ Endpoint functional: `https://lqdev.me/api/outbox`
+- ✅ Endpoint functional: `https://lqdev.me/api/activitypub/outbox`
 - ✅ Contains 1,547 automatically generated entries (all website content)
 - ✅ Automatically updated on every content publish
 - ✅ Full F# build integration complete
@@ -272,45 +272,104 @@ ActivityPubBuilder.buildOutbox allUnifiedContent "_public"
 
 ---
 
-## Phase 4: Activity Delivery 📋
+## Phase 4: Activity Delivery �
 
-**Status**: FUTURE (Post-Phase 3)  
-**Estimated Effort**: 1-2 weeks  
+**Status**: 🟡 IN PROGRESS  
+**Completion Date**: TBD (January 2026)  
+**Estimated Effort**: 4-6 days (Phased: 4A → 4B → 4C)  
 **Infrastructure Ready**: ✅ Key Vault setup complete and verified
 
 ### Goal
 
-Deliver new content activities to follower inboxes when published.
+Deliver new content activities to follower inboxes when published, with production-ready reliability.
 
 **This is where ActivityPub signing is implemented.** HTTP Signatures are computed per-request at delivery time.
 
-### What Will Be Implemented
+### Architecture Decisions
 
-1. **Activity Delivery System**
-   - Load follower list from `api/data/followers.json`
-   - Generate `Create` activities for new posts
+**Decision 1**: **Production-Ready Architecture**  
+- Rationale: Ensures reliable delivery at scale, comprehensive error tracking, professional production quality
+- Components: Azure Functions, Queue Storage, Table Storage, Application Insights monitoring
+
+**Decision 2**: **Static followers.json + Azure Table Storage (Option A)**  
+- Rationale: Table Storage handles Follow POST requests (source of truth), static file regenerated during builds for public discoverability
+- Implementation: Inbox handler stores followers in Table Storage → GitHub Actions regenerates followers.json on next build
+
+**Decision 3**: **Phased Implementation Approach**  
+- Rationale: Systematic rollout enables testing at each stage, reduces risk of compound issues
+- Phases: 4A (Inbox handler + follower management, 1-2 days), 4B (Delivery infrastructure, 1-2 days), 4C (Full integration + monitoring, 1-2 days)
+
+**Decision 4**: **URL Pattern - /api/activitypub/***  
+- Rationale: Maintains consistency with existing architectural decisions (see line 37-45)
+- All endpoints follow: `/api/activitypub/inbox`, `/api/activitypub/outbox`, `/api/activitypub/actor`, etc.
+
+### Implementation Plan
+
+📄 **Complete Documentation**: [Phase 4 Implementation Plan](./phase4-implementation-plan.md)
+
+**Azure Resources Required**:
+- Storage Account: `lqdevactivitypub`
+  - Table Storage: `followers` (follower state), `deliverystatus` (delivery tracking)
+  - Queue Storage: `accept-delivery` (Accept activities), `activitypub-delivery` (post delivery)
+- Application Insights: `lqdev-activitypub-insights` (monitoring, logging, performance)
+- Estimated Cost: ~$0.02/month for typical usage (100-1000 followers)
+
+**Phase 4A - Inbox Handler + Follower Management** (1-2 days):
+- [x] Phase 4 comprehensive research (HTTP signatures, Mastodon validation, delivery patterns)
+- [x] Follower management architecture documentation
+- [x] Phase 4 implementation plan (production-ready, Option A, phased approach)
+- [x] Azure resource provisioning script (`scripts/setup-activitypub-azure-resources.ps1`)
+- [ ] Execute Azure resource creation (Storage Account, Tables, Queues, App Insights)
+- [ ] Create F# service modules (HttpSignature.fs, FollowerStore.fs, ActivityQueue.fs)
+- [ ] Implement InboxHandler Azure Function (POST /api/activitypub/inbox)
+- [ ] Implement ProcessAccept Azure Function (Queue trigger for accept-delivery)
+- [ ] Test Follow/Accept workflow with real Mastodon instance
+
+**Phase 4B - Delivery Infrastructure** (1-2 days):
+- [ ] Implement QueueDeliveryTasks Azure Function (HTTP trigger to queue all deliveries)
+- [ ] Implement ProcessDelivery Azure Function (Queue trigger for activitypub-delivery)
+- [ ] Implement delivery status tracking in Table Storage
+- [ ] Test delivery to follower inboxes with real ActivityPub servers
+- [ ] Validate HTTP signature generation and Mastodon compatibility
+
+**Phase 4C - Full Integration + Monitoring** (1-2 days):
+- [ ] Update GitHub Actions workflow for followers.json regeneration
+- [ ] Add delivery trigger step to publish workflow
+- [ ] Create Application Insights dashboard queries
+- [ ] Document monitoring and troubleshooting procedures
+- [ ] End-to-end testing of complete federation workflow
+
+### Technical Components
+
+1. **Inbox Handler** (`/api/activitypub/inbox`)
+   - Receive Follow/Unfollow activities via HTTP POST
+   - Validate HTTP signatures (RFC 9421/cavage-12)
+   - Store followers in Azure Table Storage
+   - Queue Accept activities for async delivery
+
+2. **Activity Delivery System**
+   - Load followers from Azure Table Storage
+   - Generate `Create` activities for new posts from existing outbox
    - **Sign each HTTP request** with Azure Key Vault (fresh signature per POST)
    - Include `Signature` HTTP header with request metadata (date, host, digest)
-   - POST to each follower's inbox URL with signed request
-   - Handle delivery failures and retries
+   - POST to each follower's inbox URL (or shared inbox for optimization)
+   - Handle delivery failures with exponential backoff retry (2s → 4s → 8s...up to 1 hour)
+   - Track delivery status in Table Storage (pending → delivered → failed)
 
-2. **CI/CD Integration**
+3. **CI/CD Integration**
+   - Regenerate `api/data/followers.json` from Table Storage on each build
    - Trigger delivery on successful deployment
    - Integrate with GitHub Actions publish workflow
-   - Delivery logs for monitoring and debugging
-
-3. **Advanced Features**
-   - Like/Boost activity processing
-   - Reply/Mention handling
-   - Webmention bridge integration
-   - Collections pagination for large follower counts
+   - Delivery logs sent to Application Insights for monitoring
 
 ### Impact
 
 When Phase 4 is complete:
 - ✅ New blog posts automatically appear in follower timelines
 - ✅ Followers receive notifications when new content is published
-- ✅ Full ActivityPub federation experience
+- ✅ Full ActivityPub federation experience with production-ready reliability
+- ✅ Comprehensive monitoring and error tracking
+- ✅ Automatic retry logic for failed deliveries
 
 ---
 

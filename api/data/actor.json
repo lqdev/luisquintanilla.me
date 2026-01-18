@@ -3,7 +3,7 @@
     "https://www.w3.org/ns/activitystreams",
     "https://w3id.org/security/v1"
   ],
-  "id": "https://lqdev.me/api/actor",
+  "id": "https://lqdev.me/api/activitypub/actor",
   "type": "Person",
   "preferredUsername": "lqdev",
   "name": "Luis Quintanilla",
@@ -23,8 +23,8 @@
   },
   "publicKey": {
     "@type": "Key",
-    "id": "https://lqdev.me/api/actor#main-key",
-    "owner": "https://lqdev.me/api/actor",
+    "id": "https://lqdev.me/api/activitypub/actor#main-key",
+    "owner": "https://lqdev.me/api/activitypub/actor",
     "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv3tqkIX9FECRyvdTmpa3\nCGAJrmup3X9w0cWJPNbK92sE89EV7FsBoQLPKs4ap1+ObBvmU2udtrk4Uk2PE2Bw\n8PyxMtIPFUq+qmUB1Bemett3gBXtLK8ravDsH4nB8wDk3O9GD6SozPPZzJSuV7MP\n8L2zwBkBScRsiqjalkOfmMikO473Ts2IaDDcJv5gWv+04pA8E+RbSIl+SryforUU\nU3yzGS2afRt+lCDePMHNkF2FBqPpjKxmtlk6Ivo6GBKT9ye5UP1bvheXN03kez2j\ngK0Nm9juHsER23gfReQdMC7n25GnnL2GCzP3uiiBKFMPGe5lZUHObPjP5y9+LYma\nxQIDAQAB\n-----END PUBLIC KEY-----"
   },
   "attachment": [
@@ -39,8 +39,8 @@
       "value": "<a href=\"https://github.com/lqdev\" target=\"_blank\" rel=\"nofollow noopener noreferrer me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">github.com/lqdev</span><span class=\"invisible\"></span></a>"
     }
   ],
-  "inbox": "https://lqdev.me/api/inbox",
-  "outbox": "https://lqdev.me/api/outbox",
-  "followers": "https://lqdev.me/api/followers",
-  "following": "https://lqdev.me/api/following"
+  "inbox": "https://lqdev.me/api/activitypub/inbox",
+  "outbox": "https://lqdev.me/api/activitypub/outbox",
+  "followers": "https://lqdev.me/api/activitypub/followers",
+  "following": "https://lqdev.me/api/activitypub/following"
 }

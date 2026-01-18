@@ -5,37 +5,53 @@ This directory contains the Azure Functions implementation for ActivityPub feder
 > **📋 Documentation Home**: [`/docs/activitypub/`](../docs/activitypub/) - Complete ActivityPub documentation
 >
 > **Implementation Status**: See [`implementation-status.md`](../docs/activitypub/implementation-status.md) for current state  
-> **Current State**: Phase 2 Complete (Discovery + Follow/Accept Workflow + Key Vault Security)  
-> **Next Phase**: Phase 3 (Outbox Automation from F# Build) - Planned
+> **Current State**: Phase 4 In Progress (Activity Delivery + Production Infrastructure)  
+> **Completed**: Phase 1 (Discovery), Phase 2 (Follow/Accept + Key Vault), Phase 3 (Outbox Automation with 1,547 items)
 
 ## Architecture
 
 ### Hybrid Static + Dynamic Approach
 
 - **Static Files**: Actor profile, webfinger configuration, outbox collection (stored in `/api/data/`)
-- **Dynamic Endpoints**: Azure Functions that serve these static files with proper headers
-- **Inbox Processing**: Dynamic endpoint that receives and logs federation activities
+- **Dynamic Endpoints**: Azure Functions that serve static files + process inbox activities
+- **Inbox Processing**: Dynamic endpoint that receives Follow/Unfollow activities, stores followers in Table Storage
+- **Activity Delivery**: Queue-based async delivery system with HTTP signature authentication
+
+### Phase 4 Architecture (In Progress)
+
+**Production-Ready Approach**:
+- **Azure Table Storage**: Source of truth for follower state (`followers` table) and delivery tracking (`deliverystatus` table)
+- **Azure Queue Storage**: Async processing queues (`accept-delivery`, `activitypub-delivery`)
+- **Azure Functions**: Serverless compute for inbox handler, Accept delivery, and post delivery
+- **Application Insights**: Monitoring, logging, and performance tracking
+- **Static followers.json**: Regenerated from Table Storage during builds for public discoverability
+
+**Data Flow**:
+1. Remote server POSTs Follow activity to `/api/activitypub/inbox`
+2. InboxHandler validates signature → stores follower in Table Storage → queues Accept activity
+3. ProcessAccept function delivers Accept activity with HTTP signature to follower's inbox
+4. On new post publish: QueueDeliveryTasks queries Table Storage → queues delivery tasks
+5. ProcessDelivery function delivers Create activity to each follower inbox with retry logic
+6. GitHub Actions regenerates `followers.json` from Table Storage on next build
+
+**Cost**: ~$0.02/month for typical usage (100-1000 followers, mostly covered by Azure free tiers)
 
 ### URL Structure
 
-**Current Implementation**: All ActivityPub endpoints follow the `/api/*` pattern:
+**Current Pattern**: All ActivityPub endpoints follow the `/api/activitypub/*` pattern (decided January 2026):
 
-- **WebFinger Discovery**: `/.well-known/webfinger` → `/api/webfinger`
-- **Actor Profile**: `/api/actor`
-- **Outbox**: `/api/outbox`
-- **Inbox**: `/api/inbox`
-- **Followers**: `/api/followers`
-- **Following**: `/api/following`
+- **WebFinger Discovery**: `/.well-known/webfinger` → `/api/webfinger` (legacy path for compatibility)
+- **Actor Profile**: `/api/activitypub/actor`
+- **Outbox**: `/api/activitypub/outbox`
+- **Inbox**: `/api/activitypub/inbox` (Phase 4 - receives Follow/Unfollow activities)
+- **Followers**: `/api/activitypub/followers`
+- **Following**: `/api/activitypub/following`
 
-**Future Migration** (Planned): Move to `/api/activitypub/*` top-level structure to enable other `/api/*` functionality:
+**Rationale**: The `/api/activitypub/*` structure enables other `/api/*` functionality for non-ActivityPub features while keeping ActivityPub endpoints logically grouped. See [`/docs/activitypub/implementation-status.md`](../docs/activitypub/implementation-status.md) lines 37-45 for full architectural decision documentation.
 
-- `/api/activitypub/actor`
-- `/api/activitypub/inbox`
-- `/api/activitypub/outbox`
-- `/api/activitypub/followers`
-- `/api/activitypub/following`
-
-This migration will require coordinated updates to data files, Azure Functions, and routing configuration. See [`/docs/activitypub/implementation-status.md`](../docs/activitypub/implementation-status.md) for migration details.
+**Phase 4 Additional Endpoints** (In Development):
+- **Delivery Trigger**: `/api/activitypub/trigger-delivery` (HTTP POST to queue delivery tasks)
+- **Health Check**: `/api/activitypub/health` (monitoring endpoint for Application Insights)
 
 ## Endpoints
 

@@ -10,9 +10,9 @@ const { addFollower, removeFollower, isFollower } = require('../utils/followers'
 async function sendAcceptActivity(followActivity, context) {
     const acceptActivity = {
         "@context": "https://www.w3.org/ns/activitystreams",
-        "id": `https://lqdev.me/api/activities/accept/${Date.now()}`,
+        "id": `https://lqdev.me/api/activitypub/activities/accept/${Date.now()}`,
         "type": "Accept",
-        "actor": "https://lqdev.me/api/actor",
+        "actor": "https://lqdev.me/api/activitypub/actor",
         "object": followActivity
     };
     
@@ -129,7 +129,7 @@ module.exports = async function (context, req) {
             // Return inbox as empty collection (inbox contents are not publicly visible)
             const emptyInbox = {
                 "@context": "https://www.w3.org/ns/activitystreams",
-                "id": "https://lqdev.me/api/inbox",
+                "id": "https://lqdev.me/api/activitypub/inbox",
                 "type": "OrderedCollection",
                 "totalItems": 0,
                 "orderedItems": []

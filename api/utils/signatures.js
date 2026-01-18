@@ -176,7 +176,7 @@ async function generateHttpSignature(method, url, headers, body = null) {
   const signatureB64 = signature.toString('base64');
   
   // Build signature header
-  const keyId = 'https://lqdev.me/api/actor#main-key';
+  const keyId = 'https://lqdev.me/api/activitypub/actor#main-key';
   return `keyId="${keyId}",headers="${headersToSign.join(' ')}",signature="${signatureB64}",algorithm="rsa-sha256"`;
 }
 

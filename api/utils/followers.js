@@ -20,7 +20,7 @@ async function getFollowers() {
     // Return empty collection if file doesn't exist
     return {
       "@context": "https://www.w3.org/ns/activitystreams",
-      "id": "https://lqdev.me/api/followers",
+      "id": "https://lqdev.me/api/activitypub/followers",
       "type": "OrderedCollection",
       "totalItems": 0,
       "orderedItems": []
