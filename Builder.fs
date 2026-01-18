@@ -128,9 +128,6 @@ module Builder
         // Copy contact cards
         File.Copy(Path.Join(srcDir,"vcard.vcf"),Path.Join(outputDir,"vcard.vcf"),true)
         File.Copy(Path.Join(srcDir,"mecard.txt"),Path.Join(outputDir,"mecard.txt"),true)
-
-        // Copy ActivityPub actor file
-        File.Copy(Path.Join(srcDir,"lqdev.activitypub"),Path.Join(outputDir,"lqdev.activitypub"),true)
         
         // Copy PWA files
         File.Copy(Path.Join(srcDir,"service-worker.js"),Path.Join(outputDir,"service-worker.js"),true)
