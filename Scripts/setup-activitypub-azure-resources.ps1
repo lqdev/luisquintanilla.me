@@ -1,6 +1,73 @@
-# Azure ActivityPub Resources Setup Script
-# Prerequisites: Azure CLI installed and authenticated (az login)
-# Purpose: Create Azure resources for ActivityPub implementation
+<#
+.SYNOPSIS
+    Creates Azure resources required for ActivityPub implementation on a static website.
+
+.DESCRIPTION
+    This script automates the creation of Azure resources needed for ActivityPub federation:
+    - Storage Account (Table Storage + Queue Storage)
+    - Table Storage tables (followers, deliverystatus)
+    - Queue Storage queues (accept-delivery, activitypub-delivery)
+    - Application Insights (monitoring and logging)
+    
+    All resources are designed to stay within Azure's free tier for personal blogs:
+    - Storage: 5GB free + 20K table operations/month
+    - Queues: 1GB free + 2M operations/month
+    - App Insights: 5GB data ingestion/month
+    
+    Expected cost: ~$0.01-0.02/month for typical personal blog usage.
+
+.PARAMETER ResourceGroup
+    Azure resource group name. Must already exist.
+    Default: "luisquintanillameblog-rg"
+
+.PARAMETER Location
+    Azure region for resource creation.
+    Default: "eastus"
+
+.PARAMETER StorageAccountName
+    Storage account name (must be globally unique, 3-24 lowercase alphanumeric).
+    Default: "lqdevactivitypub"
+
+.PARAMETER AppInsightsName
+    Application Insights resource name.
+    Default: "lqdev-activitypub-insights"
+
+.PARAMETER DryRun
+    If specified, shows what would be created without actually creating resources.
+
+.EXAMPLE
+    .\setup-activitypub-azure-resources.ps1
+    Creates resources with default parameters.
+
+.EXAMPLE
+    .\setup-activitypub-azure-resources.ps1 -DryRun
+    Shows what would be created without making changes.
+
+.EXAMPLE
+    .\setup-activitypub-azure-resources.ps1 -ResourceGroup "my-rg" -StorageAccountName "myactivitypub"
+    Creates resources with custom names.
+
+.NOTES
+    Prerequisites:
+    - Azure CLI installed (https://aka.ms/installazurecli)
+    - Authenticated to Azure (run: az login)
+    - Resource group must already exist
+    
+    After running:
+    1. Copy the connection strings from output
+    2. Add to GitHub Secrets:
+       - ACTIVITYPUB_STORAGE_CONNECTION
+       - APPINSIGHTS_CONNECTION_STRING
+       - APPINSIGHTS_INSTRUMENTATION_KEY
+    3. Add to Azure Function App settings (Configuration → Application settings)
+    
+    For troubleshooting:
+    - If Application Insights fails, manually retrieve connection strings:
+      az monitor app-insights component show --app <name> --resource-group <rg> --query connectionString --output tsv
+    
+    Repository: https://github.com/lqdev/luisquintanilla.me
+    Phase: ActivityPub Phase 4 - Activity Delivery Infrastructure
+#>
 
 param(
     [string]$ResourceGroup = "luisquintanillameblog-rg",
@@ -233,43 +300,58 @@ $appInsightsKey = $null
 
 if (-not $DryRun) {
     try {
-        # Check if Application Insights already exists
-        $existingAppInsights = az monitor app-insights component show `
+        # Check if Application Insights already exists (using simple query to avoid JSON parsing issues)
+        $existingAppInsightsCheck = az monitor app-insights component show `
             --app $AppInsightsName `
             --resource-group $ResourceGroup `
-            --output json 2>$null | ConvertFrom-Json
+            --query "name" `
+            --output tsv 2>$null
         
-        if ($existingAppInsights) {
+        if ($existingAppInsightsCheck) {
             Write-Host "✓ Application Insights already exists" -ForegroundColor Yellow
         } else {
             Write-Host "Creating Application Insights..." -ForegroundColor White
-            az monitor app-insights component create `
+            
+            # Create with detailed output to capture connection string immediately
+            $appInsightsResult = az monitor app-insights component create `
                 --app $AppInsightsName `
                 --location $Location `
                 --resource-group $ResourceGroup `
                 --application-type web `
-                --output none
+                --query "{connectionString:connectionString, instrumentationKey:instrumentationKey}" `
+                --output json | ConvertFrom-Json
             
-            Write-Host "✓ Application Insights created" -ForegroundColor Green
+            if ($appInsightsResult) {
+                $appInsightsConnectionString = $appInsightsResult.connectionString
+                $appInsightsKey = $appInsightsResult.instrumentationKey
+                Write-Host "✓ Application Insights created" -ForegroundColor Green
+            } else {
+                throw "Failed to parse Application Insights creation result"
+            }
         }
         
-        # Get Application Insights connection string and key
-        Write-Host "Retrieving Application Insights connection string..." -ForegroundColor White
-        $appInsightsConnectionString = az monitor app-insights component show `
-            --app $AppInsightsName `
-            --resource-group $ResourceGroup `
-            --query connectionString `
-            --output tsv
-        
-        $appInsightsKey = az monitor app-insights component show `
-            --app $AppInsightsName `
-            --resource-group $ResourceGroup `
-            --query instrumentationKey `
-            --output tsv
+        # If already existed, retrieve connection string and key separately
+        if ($existingAppInsightsCheck) {
+            Write-Host "Retrieving Application Insights connection string..." -ForegroundColor White
+            $appInsightsConnectionString = az monitor app-insights component show `
+                --app $AppInsightsName `
+                --resource-group $ResourceGroup `
+                --query connectionString `
+                --output tsv
+            
+            $appInsightsKey = az monitor app-insights component show `
+                --app $AppInsightsName `
+                --resource-group $ResourceGroup `
+                --query instrumentationKey `
+                --output tsv
+        }
         
         Write-Host "✓ Application Insights configured" -ForegroundColor Green
     } catch {
         Write-Host "✗ Failed to create Application Insights: $_" -ForegroundColor Red
+        Write-Host "  Tip: Application Insights may have been created. Check Azure Portal." -ForegroundColor Yellow
+        Write-Host "  You can retrieve connection strings manually with:" -ForegroundColor Yellow
+        Write-Host "    az monitor app-insights component show --app $AppInsightsName --resource-group $ResourceGroup --query connectionString --output tsv" -ForegroundColor Gray
         exit 1
     }
 } else {
