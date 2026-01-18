@@ -20,6 +20,7 @@
     <Compile Include="Services\Webmention.fs" />
     <Compile Include="Services\RelatedContent.fs" /> 
     <Compile Include="GenericBuilder.fs" />
+    <Compile Include="ActivityPubBuilder.fs" />
     <Compile Include="Views\ComponentViews.fs" />
     <Compile Include="Views\TagViews.fs" />
     <Compile Include="Views\FeedViews.fs" />
