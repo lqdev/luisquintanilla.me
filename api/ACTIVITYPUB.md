@@ -2,6 +2,12 @@
 
 This directory contains the Azure Functions implementation for ActivityPub federation support, enabling the static website to participate in the Fediverse (Mastodon, Pleroma, etc.).
 
+> **📋 Documentation Home**: [`/docs/activitypub/`](../docs/activitypub/) - Complete ActivityPub documentation
+>
+> **Implementation Status**: See [`implementation-status.md`](../docs/activitypub/implementation-status.md) for current state  
+> **Current State**: Phase 2 Complete (Discovery + Follow/Accept Workflow + Key Vault Security)  
+> **Next Phase**: Phase 3 (Outbox Automation from F# Build) - Planned
+
 ## Architecture
 
 ### Hybrid Static + Dynamic Approach
@@ -12,7 +18,7 @@ This directory contains the Azure Functions implementation for ActivityPub feder
 
 ### URL Structure
 
-All ActivityPub endpoints follow the `/api/*` pattern for consistency:
+**Current Implementation**: All ActivityPub endpoints follow the `/api/*` pattern:
 
 - **WebFinger Discovery**: `/.well-known/webfinger` → `/api/webfinger`
 - **Actor Profile**: `/api/actor`
@@ -20,6 +26,16 @@ All ActivityPub endpoints follow the `/api/*` pattern for consistency:
 - **Inbox**: `/api/inbox`
 - **Followers**: `/api/followers`
 - **Following**: `/api/following`
+
+**Future Migration** (Planned): Move to `/api/activitypub/*` top-level structure to enable other `/api/*` functionality:
+
+- `/api/activitypub/actor`
+- `/api/activitypub/inbox`
+- `/api/activitypub/outbox`
+- `/api/activitypub/followers`
+- `/api/activitypub/following`
+
+This migration will require coordinated updates to data files, Azure Functions, and routing configuration. See [`/docs/activitypub/implementation-status.md`](../docs/activitypub/implementation-status.md) for migration details.
 
 ## Endpoints
 
@@ -192,10 +208,28 @@ curl -H "Accept: application/activity+json" "https://lqdev.me/api/inbox"
 ## Future Enhancements
 
 ### Phase 3: Outbox Automation
-- Generate ActivityPub objects from website's UnifiedFeedItems
-- Auto-update outbox during build process
+
+**Goal**: Generate ActivityPub objects from website's UnifiedFeedItems  
+**Status**: Planned (not yet implemented)  
+**Estimated Effort**: 1-2 weeks
+
+**Planned Approach**:
+- Generate ActivityPub objects from website's UnifiedFeedItems during F# build
+- Auto-update outbox during build process with actual content
 - Create individual Note JSON files for recent content
-- Fix date issues (currently has placeholder future dates)
+- Use build-time generation (file-based storage)
+- RSS feed as primary content source
+
+**RSS Conversion Script**: The F# script [`Scripts/rss-to-activitypub.fsx`](../Scripts/rss-to-activitypub.fsx) serves as a **prototype** for Phase 3 implementation:
+- Demonstrates RSS → ActivityPub conversion patterns
+- Generates Note objects and Create activities from RSS items
+- Outputs to `api/data/` structure
+- Currently standalone, not integrated with main build
+- Will inform final F# module design for build pipeline integration
+
+For detailed Phase 3 planning and script documentation, see [`/docs/activitypub/implementation-status.md`](../docs/activitypub/implementation-status.md).
+
+**Current Outbox Status**: Contains 20 manually created entries with placeholder dates. Will be replaced with auto-generated content in Phase 3.
 
 ### Phase 4: Activity Delivery
 - Activity delivery to follower inboxes when new content is published
@@ -260,8 +294,13 @@ curl -H "Accept: application/activity+json" "https://lqdev.me/api/inbox"
 - [Mastodon Documentation: WebFinger](https://docs.joinmastodon.org/spec/webfinger/)
 
 ### Related Documentation
-- [ActivityPub Implementation Plan](../docs/activitypub-implementation-plan.md)
-- [ActivityPub Azure Functions Plan](../docs/activitypub-az-fn-implementation-plan.md)
+- [ActivityPub Implementation Status](../docs/activitypub/implementation-status.md) - **Current phase breakdown, roadmap, and decisions**
+- [ActivityPub Implementation Plan](../docs/activitypub/implementation-plan.md) - Original 8-week phased plan with technical details
+- [ActivityPub Azure Functions Plan](../docs/activitypub/az-fn-implementation-plan.md) - Azure-specific implementation strategy
+- [ActivityPub Fix Summary](../docs/activitypub/fix-summary.md) - Phase 1 & 2 completion summary
+- [ActivityPub Deployment Guide](../docs/activitypub/deployment-guide.md) - Post-merge Azure setup and testing
+- [ActivityPub Key Vault Setup](../docs/activitypub/keyvault-setup.md) - Detailed Key Vault configuration
+- [RSS to ActivityPub Script](../Scripts/rss-to-activitypub.fsx) - Prototype conversion script for Phase 3 reference
 
 ## Contributing
 

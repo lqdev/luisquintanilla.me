@@ -1,8 +1,12 @@
 # ActivityPub Implementation Plan for F# Website
 
+> **📋 NOTE**: This is the **original implementation plan** for historical reference and technical details.  
+> **For current implementation status**, see [`activitypub-implementation-status.md`](activitypub-implementation-status.md)  
+> **For API reference**, see [`/api/ACTIVITYPUB.md`](../../api/ACTIVITYPUB.md)
+
 **Document Version**: 1.0  
 **Date**: August 31, 2025  
-**Status**: Planning Phase  
+**Status**: **Phases 1-2 Complete**, Phase 3-4 Planned  
 
 ## Overview
 

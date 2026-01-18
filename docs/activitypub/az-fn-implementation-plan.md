@@ -1,6 +1,13 @@
 # ActivityPub Implementation Plan for Azure Static Web Apps
 
+> **📋 NOTE**: This is an **Azure-specific implementation guide** for historical reference.  
+> **For current implementation status**, see [`activitypub-implementation-status.md`](activitypub-implementation-status.md)  
+> **For API reference**, see [`/api/ACTIVITYPUB.md`](../../api/ACTIVITYPUB.md)
+
 ## Overview
+
+**Status**: **Phases 1-2 Complete** - Discovery, Follow/Accept workflow, and Key Vault integration operational
+
 Implement a complete ActivityPub federation system for a static blog using Azure Static Web Apps with Azure Functions for dynamic endpoints. The system will automatically convert RSS feed content to ActivityPub posts during deployment and handle federation activities like follows/unfollows.
 
 ## Current State

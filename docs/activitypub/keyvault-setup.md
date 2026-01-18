@@ -446,4 +446,4 @@ Azure Key Vault pricing (as of 2025):
 
 For ActivityPub implementation details, see:
 - `api/ACTIVITYPUB.md` - Complete endpoint documentation
-- `docs/activitypub-fix-summary.md` - Architecture and implementation notes
+- `activitypub/fix-summary.md` - Architecture and implementation notes
