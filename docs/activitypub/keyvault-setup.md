@@ -22,10 +22,12 @@ Azure Static Web Apps (Managed Functions) → Azure Key Vault → Verify signatu
 ## Prerequisites
 
 - Azure CLI installed (`az` command)
+- GitHub CLI installed (`gh` command) - [Install from cli.github.com](https://cli.github.com/)
 - Azure subscription: **Pay-As-You-Go**
 - Resource group: **luisquintanillameblog-rg**
 - Azure Static Web App: **luisquintanillame-static**
 - Appropriate permissions to create Key Vault and assign roles
+- GitHub authentication: Run `gh auth login` before setup
 
 ---
 
@@ -186,18 +188,43 @@ Write-Host "  4. Clear your terminal history after copying"
 ```
 
 **Add to GitHub Repository Secrets:**
-1. Go to your GitHub 
 
-**⚠️ CRITICAL SECURITY NOTE:**
-- The service principal JSON contains sensitive authentication credentials
-- Store this ONLY in GitHub Secrets, never commit to repository
-- Clear your terminal history after setup: `Clear-History` (PowerShell) or `history -c` (Bash)
-- Rotate credentials immediately if accidentally exposedrepository
+**Option 1: Automated with GitHub CLI (Recommended)**
+
+```powershell
+# Prerequisite: Install GitHub CLI from https://cli.github.com/
+# Authenticate first: gh auth login
+
+# Create service principal and pipe directly to GitHub Secrets
+$spOutput = az ad sp create-for-rbac `
+  --name "github-activitypub-signer" `
+  --role "Key Vault Crypto User" `
+  --scopes "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.KeyVault/vaults/$VAULT_NAME" `
+  --sdk-auth
+
+# Set the secret (credentials never touch clipboard or files)
+$spOutput | gh secret set AZURE_CREDENTIALS --repo lqdev/luisquintanilla.me
+
+Write-Host "✅ AZURE_CREDENTIALS secret set in GitHub repository"
+Write-Host "Clearing sensitive data from terminal..."
+Clear-History
+```
+
+**Option 2: Manual through GitHub UI**
+
+1. Go to your GitHub repository
 2. Navigate to Settings → Secrets and variables → Actions
 3. Click "New repository secret"
 4. Name: `AZURE_CREDENTIALS`
 5. Value: Paste the entire JSON output from the command above
 6. Click "Add secret"
+
+**⚠️ CRITICAL SECURITY NOTE:**
+- The service principal JSON contains sensitive authentication credentials
+- Store this ONLY in GitHub Secrets, never commit to repository
+- Use Option 1 (GitHub CLI) to avoid exposing credentials in terminal/clipboard
+- Clear your terminal history after setup: `Clear-History` (PowerShell) or `history -c` (Bash)
+- Rotate credentials immediately if accidentally exposed
 
 ---
 
@@ -468,14 +495,42 @@ az functionapp config appsettings list \
 
 ---
 
-## Cost CStatic Web Apps Managed Identity](https://learn.microsoft.com/en-us/azure/static-web-apps/authentication-authorization)
-- [Azure Static Web Apps API Configuration](https://learn.microsoft.com/en-us/azure/static-web-apps/apis-functions
+## Cost Considerations
 
 Azure Key Vault pricing (as of 2025):
 
 - **Operations**: $0.03 per 10,000 operations
 - **Key storage**: First 5 keys free
 - **Estimated monthly cost**: < $1 for typical single-user ActivityPub usage
+
+---
+
+## References
+
+- [Azure Key Vault Documentation](https://learn.microsoft.com/en-us/azure/key-vault/)
+- [Azure Static Web Apps Managed Identity](https://learn.microsoft.com/en-us/azure/static-web-apps/authentication-authorization)
+- [Azure Static Web Apps API Configuration](https://learn.microsoft.com/en-us/azure/static-web-apps/apis-functions)
+- [GitHub Actions Azure Login](https://github.com/Azure/login)
+- [GitHub CLI Secrets](https://cli.github.com/manual/gh_secret_set)
+- [ActivityPub HTTP Signatures](https://docs.joinmastodon.org/spec/security/#http)
+
+---
+
+## Next Steps
+
+1. Install GitHub CLI if not already installed: `winget install GitHub.cli`
+2. Authenticate with GitHub: `gh auth login`
+3. Run the setup scripts to create Key Vault and keys
+4. Configure Azure Static Web App managed identity and settings
+5. Add GitHub Actions service principal credentials using GitHub CLI (automated)
+6. Create KeyVaultSigner utility in `api/utils/keyvault.js`
+7. Update inbox function to use KeyVaultSigner for signature verification
+8. Test signature verification with incoming ActivityPub activities
+9. Update GitHub Actions workflow to sign content on publish
+
+For ActivityPub implementation details, see:
+- `api/ACTIVITYPUB.md` - Complete endpoint documentation
+- `docs/activitypub/fix-summary.md` - Architecture and implementation notes
 
 ---Static Web App managed identity and settings
 3. Add GitHub Actions service principal credentials
