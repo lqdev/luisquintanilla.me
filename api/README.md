@@ -1,4 +1,26 @@
-# Azure Functions API Setup for Wildcard File Redirects
+# Azure Functions API
+
+This directory contains Azure Functions for:
+1. **ActivityPub Federation**: Endpoints for Fediverse integration (webfinger, actor, inbox, outbox, followers, following)
+2. **File Redirects**: Wildcard redirect handling for blob storage files
+
+## ActivityPub Federation
+
+See the dedicated [ActivityPub README](ACTIVITYPUB.md) for complete documentation on:
+- Endpoint structure and usage
+- WebFinger discovery
+- Actor profiles and collections
+- Testing and troubleshooting
+- Future enhancements
+
+Quick test:
+```bash
+./Scripts/test-activitypub.sh
+```
+
+---
+
+## File Redirects
 
 ## Installation
 

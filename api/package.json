@@ -11,7 +11,9 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "rss-parser": "^3.13.0"
+    "rss-parser": "^3.13.0",
+    "@azure/identity": "^4.0.0",
+    "@azure/keyvault-keys": "^4.8.0"
   },
   "keywords": [
     "azure-functions",

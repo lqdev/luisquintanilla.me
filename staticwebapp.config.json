@@ -14,8 +14,7 @@
       }
     },
     {
-      "route": "/@lqdev",
-      "rewrite": "/api/actor",
+      "route": "/api/outbox",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
@@ -23,8 +22,7 @@
       }
     },
     {
-      "route": "/activitypub/outbox",
-      "rewrite": "/api/outbox",
+      "route": "/api/inbox",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
@@ -32,8 +30,7 @@
       }
     },
     {
-      "route": "/activitypub/inbox",
-      "rewrite": "/api/inbox",
+      "route": "/api/followers",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
@@ -41,8 +38,7 @@
       }
     },
     {
-      "route": "/activitypub/followers",
-      "rewrite": "/api/followers",
+      "route": "/api/following",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
@@ -50,8 +46,7 @@
       }
     },
     {
-      "route": "/activitypub/following",
-      "rewrite": "/api/following",
+      "route": "/api/actor",
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",

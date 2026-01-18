@@ -1,33 +1,18 @@
-const fs = require('fs').promises;
-const path = require('path');
+const { getFollowers } = require('../utils/followers');
 
 module.exports = async function (context, req) {
     try {
-        const followersPath = path.join(__dirname, '../data/followers.json');
-        let followersData;
-        
-        try {
-            followersData = await fs.readFile(followersPath, 'utf8');
-        } catch (fileError) {
-            // Return empty collection if file doesn't exist
-            const emptyCollection = {
-                "@context": "https://www.w3.org/ns/activitystreams",
-                "id": "https://www.lqdev.me/activitypub/followers",
-                "type": "OrderedCollection",
-                "totalItems": 0,
-                "orderedItems": []
-            };
-            followersData = JSON.stringify(emptyCollection, null, 2);
-        }
+        // Get current followers from file
+        const followers = await getFollowers();
         
         context.res = {
             status: 200,
             headers: {
                 'Content-Type': 'application/activity+json',
                 'Access-Control-Allow-Origin': '*',
-                'Cache-Control': 'public, max-age=300'
+                'Cache-Control': 'public, max-age=60' // Cache for 1 minute
             },
-            body: followersData
+            body: followers
         };
     } catch (error) {
         context.log.error(`Followers error: ${error.message}`);

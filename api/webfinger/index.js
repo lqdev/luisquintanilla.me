@@ -6,7 +6,13 @@ module.exports = async function (context, req) {
         // Get resource parameter
         const resource = req.query.resource;
         
-        if (!resource || resource !== 'acct:lqdev@www.lqdev.me') {
+        // Accept both lqdev@lqdev.me (standard) and lqdev@www.lqdev.me (backward compatibility)
+        const validResources = [
+            'acct:lqdev@lqdev.me',
+            'acct:lqdev@www.lqdev.me'  // Backward compatibility
+        ];
+        
+        if (!resource || !validResources.includes(resource)) {
             context.res = {
                 status: 404,
                 headers: {
