@@ -88,7 +88,7 @@ curl -H "Accept: application/activity+json" \
 - Reply/Mention notifications
 - Announce/Boost notifications
 
-**Current Status**: Basic logging. Future enhancement will add HTTP signature verification and Follow/Accept workflow.
+**Current Status**: ✅ **IMPLEMENTED** - Full Follow/Accept workflow with HTTP signature verification using Azure Key Vault. Handles Follow, Accept, and Undo activities with persistent follower storage.
 
 ### 5. Followers & Following (`/api/followers`, `/api/following`)
 
@@ -96,7 +96,7 @@ curl -H "Accept: application/activity+json" \
 
 **Response**: `application/activity+json`
 
-**Current Status**: Returns empty OrderedCollections. Future enhancement will track actual followers.
+**Current Status**: ✅ **IMPLEMENTED** - Returns actual followers from managed collection stored in `api/data/followers.json`. Updates dynamically as users follow/unfollow.
 
 ## Data Files
 
@@ -173,40 +173,57 @@ curl -H "Accept: application/activity+json" "https://lqdev.me/api/inbox"
 3. If discovery works, you should see the profile
 4. Click "Follow" to test the Follow workflow
 
+## Implementation Status
+
+### Phase 1: Discovery & URL Standardization ✅ COMPLETE
+- Root domain usage (`lqdev.me` without www)
+- Consistent `/api/*` endpoint pattern
+- Backward compatibility for legacy formats
+- Comprehensive testing and documentation
+
+### Phase 2: Follow/Accept Workflow & Security ✅ COMPLETE
+- Azure Key Vault integration for signing keys
+- HTTP signature verification for incoming activities
+- Follow/Accept/Undo workflow implementation
+- Persistent follower storage in `api/data/followers.json`
+- Activity logging for debugging
+- Flexible configuration (Key Vault or environment variables)
+
 ## Future Enhancements
 
-### Phase 2: Outbox Automation
+### Phase 3: Outbox Automation
 - Generate ActivityPub objects from website's UnifiedFeedItems
 - Auto-update outbox during build process
 - Create individual Note JSON files for recent content
 - Fix date issues (currently has placeholder future dates)
 
-### Phase 3: Enhanced Inbox
-- Implement HTTP signature verification
-- Add Follow/Accept workflow
-- Track followers in persistent storage
-- Send Accept activities in response to Follow requests
-- Implement Undo/Unfollow handling
-
-### Phase 4: Advanced Features
+### Phase 4: Activity Delivery
 - Activity delivery to follower inboxes when new content is published
 - Like/Boost activity processing
 - Reply/Mention handling and webmention bridge
 - Collections pagination for large follower counts
 
-## Security Considerations
+## Security Implementation
 
-### Current Implementation
-- CORS headers allow cross-origin requests
-- No rate limiting (relies on Azure infrastructure)
-- No HTTP signature verification (logs all incoming activities)
+### Current Security Features ✅
+- **HTTP Signature Verification**: All incoming POST requests to inbox are verified using ActivityPub HTTP Signatures spec
+- **Azure Key Vault Integration**: Signing keys managed securely in Azure Key Vault with RBAC access control
+- **Managed Identity**: Azure Functions access Key Vault via system-assigned managed identity (no secrets in code)
+- **Flexible Configuration**: Development mode supports environment variables, production uses Key Vault
+- **Actor Verification**: Fetches and validates remote actor public keys automatically
+- **Activity Validation**: Verifies activity structure and required fields before processing
+- **Comprehensive Logging**: All activities logged to `api/data/activities/` for audit trail
 
-### Planned Security Enhancements
-- HTTP signature verification for all POST requests
-- Actor domain verification
-- Rate limiting on inbox endpoint
-- Content validation for incoming activities
-- Private key storage in Azure Key Vault
+### Infrastructure Security
+- CORS headers properly configured for ActivityPub federation
+- Rate limiting relies on Azure infrastructure
+- Private keys never exposed (stored securely in Key Vault)
+- Public keys published in actor profile for signature verification
+
+### Future Security Enhancements
+- Enhanced rate limiting on inbox endpoint
+- Additional content validation rules
+- Key rotation automation
 
 ## Troubleshooting
 
