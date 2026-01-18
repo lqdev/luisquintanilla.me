@@ -6,12 +6,19 @@ This directory contains Azure Functions for:
 
 ## ActivityPub Federation
 
+**Current Status**: Phase 2 Complete (Discovery + Follow/Accept Workflow + Key Vault Security)
+
 See the dedicated [ActivityPub README](ACTIVITYPUB.md) for complete documentation on:
 - Endpoint structure and usage
 - WebFinger discovery
 - Actor profiles and collections
+- Follow/Accept workflow
+- HTTP signature verification
+- Azure Key Vault integration
 - Testing and troubleshooting
-- Future enhancements
+- Future enhancements (Phase 3-4)
+
+For implementation status and roadmap, see [`/docs/activitypub-implementation-status.md`](../docs/activitypub-implementation-status.md).
 
 Quick test:
 ```bash

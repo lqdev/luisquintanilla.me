@@ -1,5 +1,7 @@
 # ActivityPub Implementation Fix Summary
 
+> **📋 Current Implementation Status**: For complete phase breakdown and roadmap, see [`activitypub-implementation-status.md`](activitypub-implementation-status.md)
+
 **Date**: January 18, 2026  
 **Issue**: #[issue-number] - Fix ActivityPub implementation  
 **Status**: ✅ Phase 1 & Phase 2 Complete - Discovery, Follow/Accept Workflow, and Key Vault Integration
@@ -142,16 +144,7 @@ The ActivityPub implementation had several critical issues preventing proper fed
 
 ### Phase 3: Outbox Automation (Future PR)
 
-1. **WebFinger Discovery**: Now uses standard root domain pattern
-2. **URL Consistency**: All endpoints follow `/api/*` pattern
-3. **Actor Profile**: Proper ID matching webfinger references
-4. **Backward Compatibility**: Old `@www.lqdev.me` format still works
-5. **Documentation**: Complete reference for contributors and troubleshooting
-6. **Testing**: Automated validation suite
-
-## Results & Validation
-
-### Phase 1: What's Fixed ✅
+**Status**: PLANNED - See [`activitypub-implementation-status.md`](activitypub-implementation-status.md) for detailed roadmap
 
 **Current Issue**: Outbox contains 20 manually created entries with future dates (Aug/Sept 2025).
 
@@ -168,6 +161,8 @@ The ActivityPub implementation had several critical issues preventing proper fed
 - Generate during build phase like RSS feeds
 - Maintain JSON format for Azure Functions to serve
 
+**Prototype Reference**: [`Scripts/rss-to-activitypub.fsx`](../Scripts/rss-to-activitypub.fsx) demonstrates conversion patterns. See [`Scripts/ACTIVITYPUB-SCRIPTS.md`](../Scripts/ACTIVITYPUB-SCRIPTS.md) for documentation.
+
 #### Phase 4: Activity Delivery (Future)
 
 **Goal**: Deliver new content to follower inboxes when published.
@@ -178,6 +173,17 @@ The ActivityPub implementation had several critical issues preventing proper fed
 3. Sign requests with private key
 4. POST to each follower's inbox
 5. Handle delivery failures and retries
+
+## Results & Validation
+
+### Phase 1: What's Fixed ✅
+
+1. **WebFinger Discovery**: Now uses standard root domain pattern
+2. **URL Consistency**: All endpoints follow `/api/*` pattern
+3. **Actor Profile**: Proper ID matching webfinger references
+4. **Backward Compatibility**: Old `@www.lqdev.me` format still works
+5. **Documentation**: Complete reference for contributors and troubleshooting
+6. **Testing**: Automated validation suite
 
 ## Testing Instructions
 
@@ -312,10 +318,13 @@ After deployment to production:
 
 ### Repository Documentation
 - `api/ACTIVITYPUB.md` - Complete ActivityPub documentation
+- `docs/activitypub-implementation-status.md` - **Current implementation status and roadmap**
 - `docs/activitypub-keyvault-setup.md` - Azure Key Vault setup guide
 - `docs/activitypub-deployment-guide.md` - Post-merge deployment instructions
 - `docs/activitypub-implementation-plan.md` - Original implementation plan
 - `Scripts/test-activitypub.sh` - Automated test suite
+- `Scripts/rss-to-activitypub.fsx` - Phase 3 prototype script
+- `Scripts/ACTIVITYPUB-SCRIPTS.md` - Script documentation
 
 ## Conclusion
 

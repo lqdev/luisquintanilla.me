@@ -1,8 +1,13 @@
 # ActivityPub Deployment Guide
 
+> **📋 Implementation Status**: For complete phase breakdown and current state, see [`activitypub-implementation-status.md`](activitypub-implementation-status.md)  
+> **API Reference**: See [`/api/ACTIVITYPUB.md`](../api/ACTIVITYPUB.md)
+
 ## Overview
 
 This guide covers the post-merge steps to deploy and configure the ActivityPub federation implementation for your static site on Azure Static Web Apps.
+
+**Current State**: Phases 1-2 Complete (Discovery + Follow/Accept Workflow + Key Vault Security)
 
 ## Prerequisites
 
@@ -325,12 +330,14 @@ The current implementation handles **discovery and following**. Future phases wi
 
 ## Additional Resources
 
+- **Implementation Status:** [`activitypub-implementation-status.md`](activitypub-implementation-status.md) - Current phase breakdown and roadmap
 - **ActivityPub Specification:** https://www.w3.org/TR/activitypub/
 - **WebFinger Specification (RFC 7033):** https://tools.ietf.org/html/rfc7033
 - **HTTP Signatures:** https://datatracker.ietf.org/doc/html/draft-cavage-http-signatures
 - **Mastodon ActivityPub Guide:** https://docs.joinmastodon.org/spec/activitypub/
 - **Key Vault Setup Details:** See `docs/activitypub-keyvault-setup.md`
 - **API Documentation:** See `api/ACTIVITYPUB.md`
+- **Testing Scripts:** See `Scripts/ACTIVITYPUB-SCRIPTS.md`
 
 ---
 
