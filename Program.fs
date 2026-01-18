@@ -143,6 +143,13 @@ let main argv =
     printfn "🎭 Building ActivityPub outbox..."
     ActivityPubBuilder.buildOutbox allUnifiedContent "_public"
     
+    // =============================================================================
+    // ActivityPub Followers Collection - Phase 4A Implementation
+    // =============================================================================
+    
+    printfn "🎭 Building ActivityPub followers collection..."
+    FollowersSync.buildFollowersCollection "_public"
+    
     // Build Timeline Homepage (Feed-as-Homepage Phase 3) - Use timeline-specific content
     buildTimelineHomePage timelineFeedItems
     
