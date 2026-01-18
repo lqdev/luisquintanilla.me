@@ -12,9 +12,13 @@ The ActivityPub implementation uses Azure's free tier services to enable social 
 
 ## Scripts
 
-### `setup-activitypub-azure-resources.ps1`
+### 1. `setup-activitypub-azure-resources.ps1`
 
 Automated setup script that creates all required Azure resources.
+
+### 2. `configure-activitypub-secrets.ps1`
+
+Automated configuration script that sets up GitHub Secrets and Azure Static Web App settings using CLI tools.
 
 **Prerequisites:**
 - Azure CLI installed ([Download](https://aka.ms/installazurecli))
@@ -59,35 +63,113 @@ Automated setup script that creates all required Azure resources.
    - Connection string for Azure Functions
    - Instrumentation key for telemetry
 
+---
+
+### 2. `configure-activitypub-secrets.ps1`
+
+**Prerequisites:**
+- Azure CLI installed and authenticated (`az login`)
+- GitHub CLI installed and authenticated (`gh auth login`)
+- Resources already created (run `setup-activitypub-azure-resources.ps1` first)
+
+**Usage:**
+
+```powershell
+# Configure both GitHub secrets and Azure Static Web App settings
+.\configure-activitypub-secrets.ps1
+
+# Only configure GitHub secrets (skip Azure)
+.\configure-activitypub-secrets.ps1 -SkipAzure
+
+# Only configure Azure Static Web App (skip GitHub)
+.\configure-activitypub-secrets.ps1 -SkipGitHub
+
+# Custom parameters
+.\configure-activitypub-secrets.ps1 `
+    -StaticWebAppName "my-static-web-app" `
+    -GitHubRepo "myuser/myrepo"
+```
+
+**Parameters:**
+
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `ResourceGroup` | Azure resource group | `luisquintanillameblog-rg` |
+| `StorageAccountName` | Storage account name | `lqdevactivitypub` |
+| `AppInsightsName` | Application Insights name | `lqdev-activitypub-insights` |
+| `StaticWebAppName` | Azure Static Web App name | `luisquintanillame-static` |
+| `GitHubRepo` | GitHub repository (`owner/repo`) | `lqdev/luisquintanilla.me` |
+| `SkipGitHub` | Skip GitHub secrets configuration | `$false` |
+| `SkipAzure` | Skip Azure Static Web App configuration | `$false` |
+
+**What It Configures:**
+
+1. **GitHub Repository Secrets** (via `gh secret set`):
+   - `ACTIVITYPUB_STORAGE_CONNECTION`
+   - `APPINSIGHTS_CONNECTION_STRING`
+   - `APPINSIGHTS_INSTRUMENTATION_KEY`
+
+2. **Azure Static Web App Settings** (via `az staticwebapp appsettings set`):
+   - `ACTIVITYPUB_STORAGE_CONNECTION`
+   - `APPINSIGHTS_CONNECTION_STRING`
+   - `APPINSIGHTS_INSTRUMENTATION_KEY`
+
 **Output:**
 
-The script displays three connection strings needed for GitHub Secrets and Azure Function configuration:
-
-```
-ACTIVITYPUB_STORAGE_CONNECTION: DefaultEndpointsProtocol=https;...
-APPINSIGHTS_CONNECTION_STRING: InstrumentationKey=...;IngestionEndpoint=...
-APPINSIGHTS_INSTRUMENTATION_KEY: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-```
+The script automatically:
+- Retrieves connection strings from Azure resources
+- Sets GitHub repository secrets using GitHub CLI
+- Configures Azure Static Web App application settings
+- Provides verification URLs for both platforms
 
 ## Post-Setup Configuration
 
-### 1. GitHub Secrets
+### Automated Configuration (Recommended)
+
+Use the automated script to configure both GitHub secrets and Azure Static Web App settings:
+
+```powershell
+.\configure-activitypub-secrets.ps1
+```
+
+This will:
+1. ✅ Retrieve connection strings from Azure resources
+2. ✅ Set GitHub repository secrets automatically
+3. ✅ Configure Azure Static Web App application settings
+
+### Manual Configuration (Alternative)
+
+If you prefer manual setup or the automated script fails:
+
+#### 1. GitHub Secrets
 
 Add the connection strings to your repository secrets:
 
 1. Go to: `https://github.com/<owner>/<repo>/settings/secrets/actions`
 2. Click "New repository secret"
-3. Add each of the three secrets:
+3. Add each of the three secrets from the `setup-activitypub-azure-resources.ps1` output:
    - `ACTIVITYPUB_STORAGE_CONNECTION`
    - `APPINSIGHTS_CONNECTION_STRING`
    - `APPINSIGHTS_INSTRUMENTATION_KEY`
 
-### 2. Azure Function App Settings
+#### 2. Azure Static Web App Settings
 
-Add connection strings to your Function App configuration:
+Add connection strings to your Static Web App configuration:
 
-1. Azure Portal → Function App → Configuration → Application settings
+**Via Azure Portal:**
+1. Azure Portal → Static Web Apps → Your App → Configuration → Application settings
 2. Add each connection string as a new application setting
+
+**Via Azure CLI:**
+```powershell
+az staticwebapp appsettings set `
+    --name <your-static-web-app> `
+    --resource-group <your-resource-group> `
+    --setting-names `
+        "ACTIVITYPUB_STORAGE_CONNECTION=<connection-string>" `
+        "APPINSIGHTS_CONNECTION_STRING=<connection-string>" `
+        "APPINSIGHTS_INSTRUMENTATION_KEY=<key>"
+```
 
 ## Cost Management
 
@@ -158,16 +240,18 @@ az monitor app-insights component delete `
 
 ## Next Steps
 
-After running this script successfully:
+After running these scripts successfully:
 
-1. ✅ Copy connection strings to GitHub Secrets
-2. ✅ Add connection strings to Azure Function App settings
-3. 🔄 Proceed to Phase 4A: Implement Inbox Handler
-   - Create F# service modules (HttpSignature, FollowerStore, ActivityQueue)
-   - Implement Azure Functions (InboxHandler, ProcessAccept)
-4. 🔄 Phase 4B: Implement Post Delivery
+1. ✅ Azure resources created (`setup-activitypub-azure-resources.ps1`)
+2. ✅ Secrets configured (`configure-activitypub-secrets.ps1`)
+3. 🔄 **Proceed to Phase 4A: Implement Inbox Handler**
+   - Create F# service modules (`Services/HttpSignature.fs`, `Services/FollowerStore.fs`, `Services/ActivityQueue.fs`)
+   - Implement Azure Functions (`api/InboxHandler/index.js` or F# equivalent)
+   - Set up HTTP signature validation
+4. 🔄 **Phase 4B: Implement Post Delivery**
    - Queue-based async delivery to all followers
-5. 🔄 Phase 4C: Integration Testing
+   - Implement delivery status tracking
+5. 🔄 **Phase 4C: Integration Testing**
    - Test Follow workflow with real Mastodon instance
    - Validate delivery and monitoring
 

@@ -379,3 +379,6 @@ output/
 **/*client-secret*
 **/.env.local
 **/.env.production.local
+
+# ActivityPub - Never commit connection strings
+Scripts/GITHUB_SECRETS_SETUP.md
