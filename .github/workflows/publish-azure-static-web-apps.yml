@@ -36,14 +36,6 @@ jobs:
       - name: Generate website
         run: dotnet run
 
-      - name: Generate ActivityPub files
-        run: |
-          dotnet fsi ./Scripts/rss-to-activitypub.fsx -- \
-          --rss-path "./_public/feed/feed.xml" \
-          --static-path "./_public" \
-          --notes-path "social/notes" \
-          --outbox-path "social/outbox"
-
       - name: Check website sizes
         run: |
           echo "🚀 TOTAL SITE SIZE: $(du -sh ./_public | cut -f1)"
