@@ -46,6 +46,7 @@ This directory contains the Azure Functions implementation for ActivityPub feder
 - **Inbox**: `/api/activitypub/inbox` (Phase 4 - receives Follow/Unfollow activities)
 - **Followers**: `/api/activitypub/followers`
 - **Following**: `/api/activitypub/following`
+- **Individual Notes**: `/activitypub/notes/{hash}` (served statically, not from Azure Functions)
 
 **Rationale**: The `/api/activitypub/*` structure enables other `/api/*` functionality for non-ActivityPub features while keeping ActivityPub endpoints logically grouped. See [`/docs/activitypub/implementation-status.md`](../docs/activitypub/implementation-status.md) lines 37-45 for full architectural decision documentation.
 
