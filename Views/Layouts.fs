@@ -334,7 +334,7 @@ module Layouts
                 meta [_property "og:site_name"; _content "Luis Quintanilla Personal Website"]
                 meta [_property "og:locale"; _content "en_US"]
                 meta [_property "twitter:image"; _content "https://www.lqdev.me/avatar.png"]
-                meta [_property "fediverse:creator"; _content "@lqdev@toot.lqdev.tech"]
+                meta [_property "fediverse:creator"; _content "@lqdev@lqdev.me"]
             
         ]
 
