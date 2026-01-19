@@ -36,6 +36,17 @@ jobs:
       - name: Generate website
         run: dotnet run
 
+      - name: Sync ActivityPub data for Azure Functions
+        run: |
+          echo "📦 Syncing generated ActivityPub data to Azure Functions directory..."
+          echo "Syncing outbox data..."
+          cp -v _public/api/data/outbox/index.json api/data/outbox/index.json
+          echo "Syncing followers data..."
+          cp -v _public/api/data/followers.json api/data/followers.json
+          echo "✅ ActivityPub data synced successfully"
+          echo "Outbox size: $(du -h api/data/outbox/index.json | cut -f1)"
+          echo "Followers size: $(du -h api/data/followers.json | cut -f1)"
+
       - name: Check website sizes
         run: |
           echo "🚀 TOTAL SITE SIZE: $(du -sh ./_public | cut -f1)"

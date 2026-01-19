@@ -19,3 +19,8 @@ obj/
 .idea/
 *.swp
 *.swo
+
+# Generated data files (copied from _public during deployment)
+# These are generated at build time and should not be tracked
+data/outbox/
+data/notes/
