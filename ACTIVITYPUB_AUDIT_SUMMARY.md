@@ -2,7 +2,7 @@
 
 **Date**: January 19, 2026  
 **Status**: ✅ **COMPLETE** - All issues resolved  
-**Issue**: [Audit and Fix ActivityPub Files](https://github.com/lqdev/luisquintanilla.me/issues/XXX)
+**Issue**: [Audit and Fix ActivityPub Files](https://github.com/lqdev/luisquintanilla.me/issues/1824)
 
 ---
 
