@@ -46,9 +46,11 @@ This directory contains the Azure Functions implementation for ActivityPub feder
 - **Inbox**: `/api/activitypub/inbox` (Phase 4 - receives Follow/Unfollow activities)
 - **Followers**: `/api/activitypub/followers`
 - **Following**: `/api/activitypub/following`
-- **Individual Notes**: `/activitypub/notes/{hash}` (served statically, not from Azure Functions)
+- **Individual Notes**: `/api/activitypub/notes/{hash}` (Azure Function proxy serving static files with correct Content-Type)
 
 **Rationale**: The `/api/activitypub/*` structure enables other `/api/*` functionality for non-ActivityPub features while keeping ActivityPub endpoints logically grouped. See [`/docs/activitypub/implementation-status.md`](../docs/activitypub/implementation-status.md) lines 37-45 for full architectural decision documentation.
+
+**Individual Notes**: Notes are served through an Azure Function proxy (see [`/docs/activitypub/notes-function-proxy.md`](../docs/activitypub/notes-function-proxy.md)) to ensure proper `application/activity+json` Content-Type headers. Static files are generated at build time and cached by CDN for performance.
 
 **Phase 4 Additional Endpoints** (In Development):
 - **Delivery Trigger**: `/api/activitypub/trigger-delivery` (HTTP POST to queue delivery tasks)
@@ -105,9 +107,45 @@ curl -H "Accept: application/activity+json" \
 
 **Structure**: OrderedCollection with Create activities wrapping Note objects.
 
-**Current Status**: Contains manually created entries. Future enhancement will auto-generate from website content.
+**Current Status**: Contains 1,551 automatically generated entries from website content (posts, notes, responses, etc.).
 
-### 4. Inbox (`/api/activitypub/inbox`)
+**Note References**: Each activity's `object.id` points to an individual note at `/api/activitypub/notes/{hash}`.
+
+### 4. Individual Notes (`/api/activitypub/notes/{hash}`)
+
+**Purpose**: Dereferenceable URIs for individual ActivityPub Note objects. Each note represents a piece of content (post, note, response, etc.) from the website.
+
+**Response**: `application/activity+json; charset=utf-8`
+
+**Implementation**: Azure Function proxy serving static JSON files with correct Content-Type headers (see [`/docs/activitypub/notes-function-proxy.md`](../docs/activitypub/notes-function-proxy.md) for details).
+
+```bash
+# Example: Fetch a specific note
+curl -H "Accept: application/activity+json" \
+  "https://lqdev.me/api/activitypub/notes/00029d200a98327f59a82821a27b959d"
+```
+
+**Structure**: ActivityPub Note object with:
+- `id`: Note URI (e.g., `https://lqdev.me/api/activitypub/notes/{hash}`)
+- `type`: "Note" or "Article" (based on content type)
+- `attributedTo`: Actor URI
+- `published`: RFC 3339 timestamp
+- `content`: HTML content
+- `url`: Link to original webpage
+- `to`, `cc`: Addressing (Public collection and followers)
+
+**Key Features**:
+- **Stable IDs**: Content hash-based for consistency across rebuilds
+- **CDN Cached**: 24-hour cache for performance
+- **CORS Enabled**: Full federation support
+- **Error Handling**: Returns 404 for non-existent notes, 400 for invalid IDs
+
+**Note Generation**: 
+- Static files generated during site build at `_public/activitypub/notes/{hash}.json`
+- Function reads and serves with proper ActivityPub headers
+- Total notes: 1,551 (as of build)
+
+### 5. Inbox (`/api/activitypub/inbox`)
 
 **Purpose**: Receives federation activities from other Fediverse servers.
 
@@ -123,7 +161,7 @@ curl -H "Accept: application/activity+json" \
 
 **Current Status**: ✅ **IMPLEMENTED** - Full Follow/Accept workflow with HTTP signature verification using Azure Key Vault. Handles Follow, Accept, and Undo activities with persistent follower storage.
 
-### 5. Followers & Following (`/api/activitypub/followers`, `/api/activitypub/following`)
+### 6. Followers & Following (`/api/activitypub/followers`, `/api/activitypub/following`)
 
 **Purpose**: Collections of followers and accounts being followed.
 
