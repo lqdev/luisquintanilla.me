@@ -147,6 +147,7 @@ module Config =
     let publicCollection = "https://www.w3.org/ns/activitystreams#Public"
     let activityStreamsContext = "https://www.w3.org/ns/activitystreams"
     let outboxUri = "https://lqdev.me/api/outbox"
+    let notesPath = "/activitypub/notes/"  // Static path for individual notes
 
 /// Generate MD5 hash for stable Note IDs
 /// Research: IDs must be stable across rebuilds, dereferenceable, globally unique
@@ -159,7 +160,7 @@ let generateHash (content: string) : string =
 /// Research: Using content hash ensures stability and uniqueness
 let generateNoteId (url: string) (content: string) : string =
     let hash = generateHash (url + content)
-    sprintf "%s/api/notes/%s" Config.baseUrl hash
+    sprintf "%s%s%s" Config.baseUrl Config.notesPath hash
 
 /// Generate Create activity ID from Note ID
 /// Research: Fragment identifier pattern (#create) is acceptable
@@ -263,15 +264,39 @@ let generateOutbox (activities: ActivityPubCreate list) : ActivityPubOutbox =
         OrderedItems = activities |> List.toArray
     }
 
+/// Build individual ActivityPub note files for static serving
+/// Generates activitypub/notes/{hash}.json files
+let buildNotes (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) (outputDir: string) : unit =
+    printfn "  🎭 Generating individual ActivityPub note files..."
+    
+    let notesDir = Path.Combine(outputDir, "activitypub", "notes")
+    Directory.CreateDirectory(notesDir) |> ignore
+    
+    let notes = 
+        unifiedItems
+        |> List.map convertToNote
+    
+    for note in notes do
+        // Extract hash from note ID (last segment of URL)
+        let noteId = note.Id.Split('/') |> Array.last
+        let notePath = Path.Combine(notesDir, sprintf "%s.json" noteId)
+        let json = JsonSerializer.Serialize(note, jsonOptions)
+        File.WriteAllText(notePath, json)
+    
+    printfn "  ✅ Generated %d ActivityPub note files" notes.Length
+
 /// Build ActivityPub outbox from unified feed items
 /// Generates api/data/outbox/index.json for static serving
 let buildOutbox (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) (outputDir: string) : unit =
     printfn "  🎭 Converting %d items to ActivityPub format..." unifiedItems.Length
     
     // Convert all items to Create activities (reverse chronological)
+    // Fix: Parse dates to DateTimeOffset for proper chronological sorting
     let activities = 
         unifiedItems
-        |> List.sortByDescending (fun item -> item.Date)
+        |> List.sortByDescending (fun item -> 
+            try DateTimeOffset.Parse(item.Date)
+            with | _ -> DateTimeOffset.MinValue)  // Fallback for parse errors
         |> List.map (convertToNote >> convertToCreateActivity)
     
     printfn "  🎭 Generated %d Create activities" activities.Length

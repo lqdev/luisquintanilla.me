@@ -137,10 +137,11 @@ let main argv =
     GenericBuilder.UnifiedFeeds.buildTagFeeds allUnifiedItems "_public"
     
     // =============================================================================
-    // ActivityPub Outbox Generation - Phase 3 Implementation
+    // ActivityPub Content Generation - Phase 3+ Implementation
     // =============================================================================
     
-    printfn "🎭 Building ActivityPub outbox..."
+    printfn "🎭 Building ActivityPub content..."
+    ActivityPubBuilder.buildNotes allUnifiedContent "_public"
     ActivityPubBuilder.buildOutbox allUnifiedContent "_public"
     
     // =============================================================================
