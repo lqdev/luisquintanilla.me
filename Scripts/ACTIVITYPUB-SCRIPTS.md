@@ -161,8 +161,10 @@ Failed tests include troubleshooting guidance pointing to:
 ## rss-to-activitypub.fsx
 
 **Purpose**: Prototype for Phase 3 (Outbox Automation) implementation  
-**Status**: Standalone script, not integrated with build  
-**Role**: Reference implementation for future F# module
+**Status**: ⚠️ **DEPRECATED** - No longer used in deployment workflow (removed January 2026)  
+**Role**: Historical reference implementation, superseded by ActivityPubBuilder.fs
+
+> **Note**: As of January 2026, ActivityPub outbox generation is handled by `ActivityPubBuilder.buildOutbox` in the main F# build process (Program.fs). This script served as a prototype during Phase 3 development but is no longer part of the deployment workflow.
 
 ### What It Does
 
@@ -228,20 +230,25 @@ dotnet fsi Scripts/rss-to-activitypub.fsx --help
 
 The script output matches the production endpoint structure documented in `/api/ACTIVITYPUB.md`.
 
-### Integration with Phase 3
+### Phase 3 Integration Status
 
-**Current State**: Standalone prototype, not part of build pipeline  
-**Phase 3 Goals**: 
-- Integrate RSS → ActivityPub conversion into F# build process
-- Generate outbox automatically during site build
-- Replace manual outbox entries with actual content
-- Create individual note files for content discovery
+**✅ COMPLETE**: Phase 3 goals achieved through `ActivityPubBuilder.fs` module integration
 
-**How This Script Helps Phase 3**:
-1. **Proven Conversion Logic**: RSS parsing and ActivityPub object generation patterns
-2. **Output Format Reference**: Shows expected JSON structure and file organization
-3. **Content Template System**: Demonstrates customizable content formatting
-4. **Hash-Based IDs**: Provides stable, unique identifiers for activities
+**Replaced By**: `ActivityPubBuilder.buildOutbox` in main F# build process  
+**Location**: Called from `Program.fs` (line 144)  
+**Output**: `_public/api/data/outbox/index.json` with complete unified feed content
+
+**What Was Implemented** (January 2026):
+- ✅ ActivityPub conversion integrated into F# build process (`ActivityPubBuilder.fs`)
+- ✅ Outbox generated automatically during site build from unified feed
+- ✅ 1,548 Create activities generated from actual content (posts, notes, responses, etc.)
+- ✅ Production-ready OrderedCollection structure with proper ActivityPub spec compliance
+
+**This Script's Legacy**:
+1. **Proven Conversion Logic**: Patterns informed `ActivityPubBuilder.fs` implementation
+2. **Output Format Reference**: Validated JSON structure and file organization
+3. **Content Template System**: Demonstrated conversion approaches
+4. **Hash-Based IDs**: Pattern adopted for stable activity identifiers
 
 ### Key Conversion Patterns
 

@@ -1,22 +1,35 @@
 /// RSS to ActivityPub Outbox Generator
 /// 
+/// **⚠️ DEPRECATED - January 2026**
+/// This script is no longer used in the deployment workflow.
+/// ActivityPub outbox generation is now handled by ActivityPubBuilder.buildOutbox
+/// in the main F# build process (called from Program.fs).
+/// 
 /// **Role**: PROTOTYPE for Phase 3 (Outbox Automation) implementation
-/// **Status**: Standalone script, not integrated with main F# build pipeline
-/// **Purpose**: Demonstrates RSS → ActivityPub conversion patterns for future integration
+/// **Status**: Historical reference, superseded by ActivityPubBuilder.fs
+/// **Purpose**: Demonstrates RSS → ActivityPub conversion patterns
 ///
-/// This script serves as a reference implementation showing how to:
+/// This script served as a reference implementation showing how to:
 /// - Parse RSS feed XML and extract content items
 /// - Convert RSS items to ActivityPub Note objects
 /// - Wrap Notes in Create activities for the outbox
 /// - Generate complete outbox collection JSON
 /// - Output individual note files and collections
 ///
-/// **Current Usage**: Manual execution for testing and development
-/// **Future Integration**: Concepts will inform F# module for build-time generation in Phase 3
+/// **Current Production Implementation**: See ActivityPubBuilder.fs for the
+/// production-ready version integrated into the F# build pipeline.
 /// 
-/// **URL Pattern Note**: This script generates URLs matching the PLANNED pattern
-/// (/api/activitypub/*) rather than current implementation (/api/*). This aligns with
-/// future migration plans discussed in docs/activitypub-implementation-status.md.
+/// **Deprecation Details**:
+/// - Removed from deployment workflow: January 19, 2026
+/// - Reason: Replaced by integrated ActivityPubBuilder.buildOutbox
+/// - Output conflicts: Generated to different location than main build
+/// - Single source of truth: Main build now sole outbox generator
+///
+/// **Historical Usage**: Manual execution for testing and development
+/// **Future**: Concepts inform F# module for build-time generation
+/// 
+/// **URL Pattern Note**: This script generates URLs matching the production pattern
+/// (/api/activitypub/*) consistent with current implementation.
 ///
 /// For more information:
 /// - Current implementation status: /docs/activitypub-implementation-status.md
