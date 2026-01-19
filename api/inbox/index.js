@@ -1,15 +1,15 @@
 const fs = require('fs').promises;
 const path = require('path');
 const https = require('https');
-const { verifyHttpSignature } = require('../utils/signatures');
+const crypto = require('crypto');
+const { verifyHttpSignature, signRequest } = require('../utils/signatures');
 const tableStorage = require('../utils/tableStorage');
-const { queueAcceptDelivery } = require('../utils/queueStorage');
 
 /**
- * Queue Accept activity for asynchronous delivery
- * Phase 4A: Using queue-based delivery instead of immediate sending
+ * Deliver Accept activity directly to follower inbox
+ * Note: Delivery is done synchronously in this version to avoid Azure Static Web Apps queue trigger limitations
  */
-async function queueAcceptActivity(followActivity, context) {
+async function deliverAcceptActivity(followActivity, context) {
     const acceptActivity = {
         "@context": "https://www.w3.org/ns/activitystreams",
         "id": `https://lqdev.me/api/activitypub/activities/accept/${Date.now()}`,
@@ -31,12 +31,72 @@ async function queueAcceptActivity(followActivity, context) {
             return false;
         }
         
-        // Queue Accept activity for asynchronous delivery
-        await queueAcceptDelivery(acceptActivity, inboxUrl, followerActor);
-        context.log(`Queued Accept activity for delivery to ${inboxUrl}`);
+        // Deliver Accept activity with HTTP signature
+        const { URL } = require('url');
+        const url = new URL(inboxUrl);
+        
+        const body = JSON.stringify(acceptActivity);
+        const bodyDigest = `SHA-256=${crypto.createHash('sha256').update(body).digest('base64')}`;
+        
+        // Build request object for signing
+        const requestToSign = {
+            method: 'POST',
+            url: inboxUrl,
+            headers: {
+                'Host': url.hostname,
+                'Date': new Date().toUTCString(),
+                'Digest': bodyDigest,
+                'Content-Type': 'application/activity+json',
+                'Content-Length': Buffer.byteLength(body),
+                'User-Agent': 'lqdev.me ActivityPub/1.0'
+            }
+        };
+        
+        // Sign the request using Key Vault
+        try {
+            await signRequest(requestToSign, context);
+        } catch (signError) {
+            context.log.error(`Failed to sign request: ${signError.message}`);
+            return false;
+        }
+        
+        // Send the signed request
+        await new Promise((resolve, reject) => {
+            const options = {
+                hostname: url.hostname,
+                port: url.port || 443,
+                path: url.pathname + url.search,
+                method: 'POST',
+                headers: requestToSign.headers
+            };
+            
+            const req = https.request(options, (res) => {
+                let data = '';
+                res.on('data', (chunk) => { data += chunk; });
+                res.on('end', () => {
+                    if (res.statusCode >= 200 && res.statusCode < 300) {
+                        context.log(`Accept delivered successfully: ${res.statusCode}`);
+                        resolve({ success: true, statusCode: res.statusCode, body: data });
+                    } else {
+                        context.log.warn(`Accept delivery returned ${res.statusCode}: ${data}`);
+                        reject(new Error(`HTTP ${res.statusCode}: ${data}`));
+                    }
+                });
+            });
+            
+            req.on('error', reject);
+            req.setTimeout(10000, () => {
+                req.destroy();
+                reject(new Error('Timeout delivering Accept activity'));
+            });
+            req.write(body);
+            req.end();
+        });
+        
+        context.log(`Accept activity delivered successfully to ${followerActor}`);
         return true;
     } catch (error) {
-        context.log.error(`Failed to queue Accept activity: ${error.message}`);
+        context.log.error(`Failed to deliver Accept activity: ${error.message}`);
         return false;
     }
 }
@@ -219,20 +279,20 @@ module.exports = async function (context, req) {
                 await tableStorage.addFollower(followerActor, inbox, followActivityId, displayName);
                 context.log(`Added follower to Table Storage: ${followerActor}`);
                 
-                // Queue Accept activity for asynchronous delivery
-                const acceptQueued = await queueAcceptActivity(activityData, context);
+                // Deliver Accept activity with HTTP signature
+                const acceptDelivered = await deliverAcceptActivity(activityData, context);
                 
-                if (acceptQueued) {
+                if (acceptDelivered) {
                     context.res = {
                         status: 202,
                         headers: { 'Content-Type': 'application/json' },
-                        body: { message: 'Follow accepted, Accept queued for delivery' }
+                        body: { message: 'Follow accepted and Accept delivered' }
                     };
                 } else {
                     context.res = {
                         status: 202,
                         headers: { 'Content-Type': 'application/json' },
-                        body: { message: 'Follow accepted but failed to queue Accept activity' }
+                        body: { message: 'Follow accepted but failed to deliver Accept activity' }
                     };
                 }
                 return;
