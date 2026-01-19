@@ -133,7 +133,7 @@ Testing & Scripts
 2. Click Follow
 3. Verify in followers collection:
 ```bash
-curl -H "Accept: application/activity+json" https://lqdev.me/api/followers
+curl -H "Accept: application/activity+json" https://lqdev.me/api/activitypub/followers
 ```
 
 ### Check Current Implementation Status
