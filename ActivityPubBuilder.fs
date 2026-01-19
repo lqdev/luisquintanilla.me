@@ -295,8 +295,9 @@ let buildOutbox (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list)
     let activities = 
         unifiedItems
         |> List.sortByDescending (fun item -> 
-            try DateTimeOffset.Parse(item.Date)
-            with | _ -> DateTimeOffset.MinValue)  // Fallback for parse errors
+            let mutable parsed = DateTimeOffset.MinValue
+            if DateTimeOffset.TryParse(item.Date, &parsed) then parsed
+            else DateTimeOffset.MinValue)  // Fallback for parse errors
         |> List.map (convertToNote >> convertToCreateActivity)
     
     printfn "  🎭 Generated %d Create activities" activities.Length
