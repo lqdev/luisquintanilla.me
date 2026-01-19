@@ -147,7 +147,9 @@ module Config =
     let publicCollection = "https://www.w3.org/ns/activitystreams#Public"
     let activityStreamsContext = "https://www.w3.org/ns/activitystreams"
     let outboxUri = "https://lqdev.me/api/outbox"
-    let notesPath = "/activitypub/notes/"  // Static path for individual notes
+    // Azure Function API endpoint for note dereferencing (ensures correct Content-Type headers)
+    // Static files still generated at /activitypub/notes/ for CDN caching
+    let notesPath = "/api/activitypub/notes/"
 
 /// Generate MD5 hash for stable Note IDs
 /// Research: IDs must be stable across rebuilds, dereferenceable, globally unique
