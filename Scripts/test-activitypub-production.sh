@@ -1,17 +1,17 @@
 #!/bin/bash
-set -e
 
 # ActivityPub Production Deployment Testing Script
 # Tests all deployed ActivityPub endpoints on production domain
 # Based on phase4a-testing-guide.md and implementation-status.md
+# Note: Not using 'set -e' to allow test suite to run all tests even if some fail
 
 echo "=========================================="
 echo "ActivityPub Production Deployment Tests"
-echo "Testing Domain: https://lqdev.me"
+echo "Testing Domain: ${1:-https://lqdev.me}"
 echo "=========================================="
 echo ""
 
-PRODUCTION_URL="https://lqdev.me"
+PRODUCTION_URL="${1:-https://lqdev.me}"
 SUCCESS=0
 FAILED=0
 WARNINGS=0
@@ -70,15 +70,15 @@ test_endpoint() {
     log_test "$name"
     echo -n "Testing $name... "
     
-    # Make request with timeout
-    response=$(curl -s -w "\n%{http_code}" -H "Accept: $accept_header" --max-time 10 "$url" 2>&1)
+    # Make request with timeout (redirect stderr to /dev/null to avoid mixing with response)
+    response=$(curl -s -w "\n%{http_code}" -H "Accept: $accept_header" --max-time 10 "$url" 2>/dev/null)
     curl_exit_code=$?
     
     # Check if curl succeeded
     if [ $curl_exit_code -ne 0 ]; then
         echo ""
         log_fail "$name" "Connection failed (curl exit code: $curl_exit_code). Endpoint may not be deployed."
-        return 1
+        return 0  # Return 0 to continue running other tests
     fi
     
     http_code=$(echo "$response" | tail -n1)
@@ -124,17 +124,17 @@ test_webfinger() {
     log_test "WebFinger: $display_name"
     echo -n "Testing WebFinger for $resource... "
     
-    # URL encode the resource parameter
-    encoded_resource=$(echo "$resource" | sed 's/@/%40/g' | sed 's/:/%3A/g')
+    # URL encode the resource parameter using jq for comprehensive encoding
+    encoded_resource=$(printf '%s' "$resource" | jq -sRr @uri)
     url="$PRODUCTION_URL/.well-known/webfinger?resource=$encoded_resource"
     
-    response=$(curl -s -w "\n%{http_code}" -H "Accept: application/jrd+json" --max-time 10 "$url" 2>&1)
+    response=$(curl -s -w "\n%{http_code}" -H "Accept: application/jrd+json" --max-time 10 "$url" 2>/dev/null)
     curl_exit_code=$?
     
     if [ $curl_exit_code -ne 0 ]; then
         echo ""
         log_fail "WebFinger: $display_name" "Connection failed"
-        return 1
+        return 0  # Return 0 to continue running other tests
     fi
     
     http_code=$(echo "$response" | tail -n1)
@@ -167,13 +167,13 @@ test_static_file() {
     echo -n "Testing static file: $name... "
     
     url="$PRODUCTION_URL$path"
-    response=$(curl -s -w "\n%{http_code}" --max-time 10 "$url" 2>&1)
+    response=$(curl -s -w "\n%{http_code}" --max-time 10 "$url" 2>/dev/null)
     curl_exit_code=$?
     
     if [ $curl_exit_code -ne 0 ]; then
         echo ""
         log_warn "Static File: $name" "Connection failed - file may not be deployed yet"
-        return 1
+        return 0  # Return 0 to continue running other tests
     fi
     
     http_code=$(echo "$response" | tail -n1)
@@ -248,17 +248,21 @@ echo ""
 log_test "URL Pattern Consistency"
 echo "Checking actor.json URLs for pattern consistency..."
 
-actor_json=$(curl -s "$PRODUCTION_URL/api/data/actor.json")
-actor_id=$(echo "$actor_json" | jq -r '.id // "missing"')
-inbox_url=$(echo "$actor_json" | jq -r '.inbox // "missing"')
-outbox_url=$(echo "$actor_json" | jq -r '.outbox // "missing"')
-
-if [[ "$actor_id" == *"/api/activitypub/"* ]] && \
-   [[ "$inbox_url" == *"/api/activitypub/"* ]] && \
-   [[ "$outbox_url" == *"/api/activitypub/"* ]]; then
-    log_pass "URL Pattern Consistency" "All URLs use /api/activitypub/* pattern"
+# Fetch actor.json with error handling
+if ! actor_json=$(curl -sS "$PRODUCTION_URL/api/data/actor.json" 2>/dev/null); then
+    log_fail "URL Pattern Consistency" "Failed to fetch actor.json from $PRODUCTION_URL"
 else
-    log_warn "URL Pattern Consistency" "Some URLs may not follow /api/activitypub/* pattern"
+    actor_id=$(echo "$actor_json" | jq -r '.id // "missing"')
+    inbox_url=$(echo "$actor_json" | jq -r '.inbox // "missing"')
+    outbox_url=$(echo "$actor_json" | jq -r '.outbox // "missing"')
+
+    if [[ "$actor_id" == *"/api/activitypub/"* ]] && \
+       [[ "$inbox_url" == *"/api/activitypub/"* ]] && \
+       [[ "$outbox_url" == *"/api/activitypub/"* ]]; then
+        log_pass "URL Pattern Consistency" "All URLs use /api/activitypub/* pattern"
+    else
+        log_warn "URL Pattern Consistency" "Some URLs may not follow /api/activitypub/* pattern"
+    fi
 fi
 
 echo ""

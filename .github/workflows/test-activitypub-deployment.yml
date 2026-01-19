@@ -34,10 +34,11 @@ jobs:
       - name: Run ActivityPub production tests
         id: test
         run: |
-          echo "Testing domain: ${{ inputs.test_domain || 'https://lqdev.me' }}"
+          TEST_DOMAIN="${{ inputs.test_domain || 'https://lqdev.me' }}"
+          echo "Testing domain: $TEST_DOMAIN"
           
-          # Run the test script
-          if ./Scripts/test-activitypub-production.sh; then
+          # Run the test script with domain parameter
+          if ./Scripts/test-activitypub-production.sh "$TEST_DOMAIN"; then
             echo "status=success" >> $GITHUB_OUTPUT
             echo "All ActivityPub tests passed!"
           else
@@ -71,7 +72,7 @@ jobs:
               
               **Workflow Run**: [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
               **Test Domain**: https://lqdev.me
-              **Timestamp**: ${{ github.event.repository.updated_at }}
+              **Run Date**: ${{ github.event.head_commit.timestamp || github.run_id }}
               
               ### Required Actions
               
