@@ -1,27 +1,34 @@
-const fs = require('fs').promises;
-const path = require('path');
-
 /**
- * Azure Function proxy for ActivityPub notes
+ * Azure Function HTTP proxy for ActivityPub notes
  * 
- * Purpose: Serve static note JSON files with correct Content-Type header
+ * Purpose: Fetch static note JSON from CDN and serve with correct Content-Type header
  * 
- * Context: Azure Static Web Apps cannot reliably override Content-Type for
- * .json files via staticwebapp.config.json. ActivityPub spec requires
- * 'application/activity+json' Content-Type for proper federation.
+ * Architecture: HTTP Proxy Pattern
+ * - Static files remain in _public/activitypub/notes/ (deployed to Azure CDN)
+ * - Function fetches from CDN URLs and rewrites headers
+ * - In-memory caching (1 hour) for frequently accessed notes
+ * - CDN caching (24 hours) for global distribution
  * 
- * Solution: This function proxies static files from _public/activitypub/notes/
- * and serves them with the correct headers for ActivityPub compliance.
+ * Why HTTP Proxy vs File System?
+ * Azure Static Web Apps architecture separates static content (CDN) from Functions
+ * (separate runtime). File system access to _public/ does not work in production.
  * 
  * Benefits:
  * - Ensures ActivityPub spec compliance
- * - Maintains CDN caching for performance (24-hour cache)
- * - Minimal compute costs (function only invoked on cache misses)
- * - Static files remain for easy development/testing
+ * - Leverages Azure CDN for global performance
+ * - Smaller API bundle (no file duplication)
+ * - Simpler deployment (no file sync step)
+ * - In-memory caching provides near-instant responses for popular notes
  * 
  * @param {Object} context - Azure Functions context
  * @param {Object} req - HTTP request object
  */
+
+// In-memory cache for frequently accessed notes
+// Cache survives across function invocations within same instance
+const noteCache = new Map();
+const CACHE_TTL = 3600000; // 1 hour in milliseconds
+
 module.exports = async function (context, req) {
     // Handle CORS preflight requests
     if (req.method === 'OPTIONS') {
@@ -58,22 +65,65 @@ module.exports = async function (context, req) {
         return;
     }
 
-    // Construct path to static note file
-    // Use environment variable for flexibility, fallback to default structure
-    // In production: /home/site/wwwroot/_public/activitypub/notes/{noteId}.json
-    // In local dev: ../../_public/activitypub/notes/{noteId}.json
-    const notesBasePath = process.env.NOTES_BASE_PATH || path.join(__dirname, '../../_public/activitypub/notes');
-    const notePath = path.join(notesBasePath, `${noteId}.json`);
+    // Check in-memory cache first
+    const cached = noteCache.get(noteId);
+    if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+        context.log(`Cache HIT for note: ${noteId}`);
+        context.res = {
+            status: 200,
+            headers: {
+                'Content-Type': 'application/activity+json; charset=utf-8',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, OPTIONS',
+                'Access-Control-Allow-Headers': 'Accept, Content-Type',
+                'Cache-Control': 'public, max-age=86400',
+                'X-Cache': 'HIT',
+                'X-Content-Source': 'http-proxy'
+            },
+            body: cached.content
+        };
+        return;
+    }
+
+    // Cache MISS - fetch from CDN
+    // Use environment variable for base URL (allows local dev override)
+    const baseUrl = process.env.STATIC_BASE_URL || 'https://lqdev.me';
+    const staticUrl = `${baseUrl}/activitypub/notes/${noteId}.json`;
     
     try {
-        context.log(`Reading note file: ${notePath}`);
-        const noteContent = await fs.readFile(notePath, 'utf8');
+        context.log(`Cache MISS - Fetching note from CDN: ${staticUrl}`);
         
-        // Validate JSON before returning
+        // Fetch from static CDN URL
+        const response = await fetch(staticUrl);
+        
+        if (!response.ok) {
+            if (response.status === 404) {
+                context.log.warn(`Note not found: ${noteId}`);
+                context.res = {
+                    status: 404,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    body: JSON.stringify({
+                        error: 'Not Found',
+                        message: `Note with ID '${noteId}' does not exist`
+                    })
+                };
+                return;
+            }
+            
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        // Get note content
+        const noteContent = await response.text();
+        
+        // Validate JSON before caching and returning
         try {
             JSON.parse(noteContent);
         } catch (parseError) {
-            context.log.error(`Invalid JSON in note file ${noteId}: ${parseError.message}`);
+            context.log.error(`Invalid JSON in note ${noteId}: ${parseError.message}`);
             context.res = {
                 status: 500,
                 headers: {
@@ -82,12 +132,18 @@ module.exports = async function (context, req) {
                 },
                 body: JSON.stringify({
                     error: 'Internal Server Error',
-                    message: 'Note file contains invalid JSON'
+                    message: 'Note contains invalid JSON'
                 })
             };
             return;
         }
-
+        
+        // Cache the note content
+        noteCache.set(noteId, {
+            content: noteContent,
+            timestamp: Date.now()
+        });
+        
         // Return note with proper ActivityPub headers
         context.res = {
             status: 200,
@@ -100,43 +156,28 @@ module.exports = async function (context, req) {
                 'Access-Control-Allow-Headers': 'Accept, Content-Type',
                 // Aggressive caching for CDN efficiency (24 hours)
                 'Cache-Control': 'public, max-age=86400',
-                // Diagnostic header to identify proxy vs static serving
-                'X-Content-Source': 'static-proxy'
+                // Diagnostic headers
+                'X-Cache': 'MISS',
+                'X-Content-Source': 'http-proxy'
             },
             body: noteContent
         };
         
-        context.log(`Successfully served note: ${noteId}`);
+        context.log(`Successfully proxied note: ${noteId}`);
         
     } catch (err) {
-        // Handle file not found
-        if (err.code === 'ENOENT') {
-            context.log.warn(`Note not found: ${noteId}`);
-            context.res = {
-                status: 404,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                body: JSON.stringify({
-                    error: 'Not Found',
-                    message: `Note with ID '${noteId}' does not exist`
-                })
-            };
-        } else {
-            // Handle other errors
-            context.log.error(`Error reading note ${noteId}: ${err.message}`);
-            context.res = {
-                status: 500,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                body: JSON.stringify({
-                    error: 'Internal Server Error',
-                    message: 'Failed to read note file'
-                })
-            };
-        }
+        // Handle HTTP fetch errors
+        context.log.error(`Error fetching note ${noteId}: ${err.message}`);
+        context.res = {
+            status: 500,
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify({
+                error: 'Internal Server Error',
+                message: 'Failed to fetch note from CDN'
+            })
+        };
     }
 };
