@@ -141,12 +141,12 @@ type ActivityPubOutbox = {
 
 /// Configuration constants for ActivityPub generation
 module Config =
-    let actorUri = "https://lqdev.me/api/actor"
+    let actorUri = "https://lqdev.me/api/activitypub/actor"
     let baseUrl = "https://lqdev.me"
-    let followersCollection = "https://lqdev.me/api/followers"
+    let followersCollection = "https://lqdev.me/api/activitypub/followers"
     let publicCollection = "https://www.w3.org/ns/activitystreams#Public"
     let activityStreamsContext = "https://www.w3.org/ns/activitystreams"
-    let outboxUri = "https://lqdev.me/api/outbox"
+    let outboxUri = "https://lqdev.me/api/activitypub/outbox"
     // Azure Function API endpoint for note dereferencing (ensures correct Content-Type headers)
     // Static files still generated at /activitypub/notes/ for CDN caching
     let notesPath = "/api/activitypub/notes/"
