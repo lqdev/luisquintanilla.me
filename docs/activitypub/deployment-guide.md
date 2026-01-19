@@ -164,10 +164,10 @@ Once deployed, test the ActivityPub endpoints:
 curl "https://lqdev.me/.well-known/webfinger?resource=acct:lqdev@lqdev.me"
 
 # Test Actor endpoint
-curl -H "Accept: application/activity+json" "https://lqdev.me/api/actor"
+curl -H "Accept: application/activity+json" "https://lqdev.me/api/activitypub/actor"
 
 # Test Followers collection
-curl -H "Accept: application/activity+json" "https://lqdev.me/api/followers"
+curl -H "Accept: application/activity+json" "https://lqdev.me/api/activitypub/followers"
 ```
 
 Expected responses:
@@ -197,7 +197,7 @@ Expected responses:
 Check if the follower was added to your collection:
 
 ```bash
-curl -H "Accept: application/activity+json" "https://lqdev.me/api/followers"
+curl -H "Accept: application/activity+json" "https://lqdev.me/api/activitypub/followers"
 ```
 
 You should see the Mastodon user in the `orderedItems` array.

@@ -143,7 +143,7 @@ Search for: @lqdev@lqdev.me
 2. Click Follow
 3. Verify follow appears in followers collection:
 
-curl -H "Accept: application/activity+json" "https://lqdev.me/api/followers"
+curl -H "Accept: application/activity+json" "https://lqdev.me/api/activitypub/followers"
 ```
 
 ---
@@ -580,7 +580,7 @@ When migrating from `/api/*` to `/api/activitypub/*`:
 **Test ActivityPub functionality**
 1. Run automated suite: `./Scripts/test-activitypub.sh`
 2. Test from Mastodon: Search and Follow `@lqdev@lqdev.me`
-3. Check follower collection: `curl https://lqdev.me/api/followers`
+3. Check follower collection: `curl https://lqdev.me/api/activitypub/followers`
 4. Review activity logs: `api/data/activities/`
 
 ---
