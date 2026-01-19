@@ -104,7 +104,7 @@ Read: [`implementation-status.md`](implementation-status.md)
 ### Test from Mastodon
 1. Search for: `@lqdev@lqdev.me`
 2. Click Follow
-3. Verify: `curl -H "Accept: application/activity+json" https://lqdev.me/api/followers`
+3. Verify: `curl -H "Accept: application/activity+json" https://lqdev.me/api/activitypub/followers`
 
 ### Deploy to Production
 Follow: [`deployment-guide.md`](deployment-guide.md)
@@ -116,11 +116,11 @@ Follow: [`deployment-guide.md`](deployment-guide.md)
 ### Current URL Pattern (Production)
 ```
 https://lqdev.me/.well-known/webfinger → /api/webfinger
-https://lqdev.me/api/actor
-https://lqdev.me/api/inbox
-https://lqdev.me/api/outbox
-https://lqdev.me/api/followers
-https://lqdev.me/api/following
+https://lqdev.me/api/activitypub/actor
+https://lqdev.me/api/activitypub/inbox
+https://lqdev.me/api/activitypub/outbox
+https://lqdev.me/api/activitypub/followers
+https://lqdev.me/api/activitypub/following
 ```
 
 ### Planned URL Migration

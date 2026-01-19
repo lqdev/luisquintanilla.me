@@ -367,3 +367,18 @@ backups/
 
 # Playlist creator output directory
 output/
+
+# Azure sensitive configuration files
+# NEVER commit these files containing credentials, subscription IDs, or secrets
+**/azure-credentials.json
+**/service-principal.json
+**/.azure-credentials
+**/keyvault-config.json
+**/*subscription-id*
+**/*tenant-id*
+**/*client-secret*
+**/.env.local
+**/.env.production.local
+
+# ActivityPub - Never commit connection strings
+Scripts/GITHUB_SECRETS_SETUP.md

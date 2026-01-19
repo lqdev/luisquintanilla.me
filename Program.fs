@@ -136,6 +136,20 @@ let main argv =
     // Generate tag RSS feeds using unified feed data
     GenericBuilder.UnifiedFeeds.buildTagFeeds allUnifiedItems "_public"
     
+    // =============================================================================
+    // ActivityPub Outbox Generation - Phase 3 Implementation
+    // =============================================================================
+    
+    printfn "🎭 Building ActivityPub outbox..."
+    ActivityPubBuilder.buildOutbox allUnifiedContent "_public"
+    
+    // =============================================================================
+    // ActivityPub Followers Collection - Phase 4A Implementation
+    // =============================================================================
+    
+    printfn "🎭 Building ActivityPub followers collection..."
+    FollowersSync.buildFollowersCollection "_public"
+    
     // Build Timeline Homepage (Feed-as-Homepage Phase 3) - Use timeline-specific content
     buildTimelineHomePage timelineFeedItems
     

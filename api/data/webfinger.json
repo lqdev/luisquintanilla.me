@@ -1,11 +1,11 @@
 {
   "subject": "acct:lqdev@lqdev.me",
-  "aliases": ["https://lqdev.me/api/actor"],
+  "aliases": ["https://lqdev.me/api/activitypub/actor"],
   "links": [
     {
       "rel": "self",
       "type": "application/activity+json", 
-      "href": "https://lqdev.me/api/actor"
+      "href": "https://lqdev.me/api/activitypub/actor"
     },
     {
       "rel": "http://webfinger.net/rel/profile-page",

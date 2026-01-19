@@ -12,7 +12,7 @@ module.exports = async function (context, req) {
             // Return empty collection if file doesn't exist
             const emptyCollection = {
                 "@context": "https://www.w3.org/ns/activitystreams",
-                "id": "https://lqdev.me/api/following",
+                "id": "https://lqdev.me/api/activitypub/following",
                 "type": "OrderedCollection", 
                 "totalItems": 0,
                 "orderedItems": []
