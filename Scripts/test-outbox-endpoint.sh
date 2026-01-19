@@ -4,6 +4,10 @@
 
 set -e
 
+# Check for required dependencies
+command -v curl >/dev/null 2>&1 || { echo "Error: curl is required but not installed. Aborting." >&2; exit 1; }
+command -v jq >/dev/null 2>&1 || { echo "Error: jq is required but not installed. Aborting." >&2; exit 1; }
+
 TARGET="${1:-production}"
 
 if [ "$TARGET" = "production" ]; then

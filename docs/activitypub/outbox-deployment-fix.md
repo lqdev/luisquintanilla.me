@@ -6,10 +6,10 @@
 
 ## Problem Statement
 
-The `/api/activitypub/outbox` endpoint was returning only 20 old items (dating back to Sept 2025), despite Phase 3 implementation that generates outbox content from unified feeds. Static files like `actor.json` worked correctly, but the outbox data was stale.
+The `/api/activitypub/outbox` endpoint was returning only 20 old items (dating back to Sept 2024), despite Phase 3 implementation that generates outbox content from unified feeds. Static files like `actor.json` worked correctly, but the outbox data was stale.
 
 ### Symptoms
-- Production endpoint showed `"totalItems": 20` with dates from Sept 2025
+- Production endpoint showed `"totalItems": 20` with dates from Sept 2024
 - Local build correctly generated 1548 items
 - Static actor.json worked fine, suggesting deployment issue, not code issue
 - No new activities appeared despite fresh content being published
@@ -130,7 +130,7 @@ md5sum api/data/outbox/index.json _public/api/data/outbox/index.json
 After deployment to production:
 1. Visit: `https://lqdev.me/api/activitypub/outbox`
 2. Verify `"totalItems"` shows 1548+ (not 20)
-3. Check activity dates are current (not Sept 2025)
+3. Check activity dates are current (not Sept 2024)
 4. Verify most recent content appears in outbox
 
 ## Architecture Impact

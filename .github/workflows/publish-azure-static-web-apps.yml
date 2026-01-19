@@ -40,6 +40,7 @@ jobs:
         run: |
           echo "📦 Syncing generated ActivityPub data to Azure Functions directory..."
           echo "Syncing outbox data..."
+          mkdir -p api/data/outbox
           cp -v _public/api/data/outbox/index.json api/data/outbox/index.json
           echo "Syncing followers data..."
           cp -v _public/api/data/followers.json api/data/followers.json
