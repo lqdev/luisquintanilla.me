@@ -154,6 +154,14 @@ Outbox collection containing recent activities:
 - Each activity wraps a Note object
 - Includes content, hashtags, mentions, publication dates
 
+**⚠️ Important - Deployment Synchronization**:
+- This file is **generated** during the build process (via `ActivityPubBuilder.buildOutbox`)
+- Generated to: `_public/api/data/outbox/index.json` (contains all 1548+ items)
+- **Must be synced** to `api/data/outbox/index.json` before Azure Functions deployment
+- The GitHub Actions workflow (`.github/workflows/publish-azure-static-web-apps.yml`) includes a "Sync ActivityPub data" step that copies the generated file to the API directory
+- This file should **not** be tracked in Git (excluded via `api/.gitignore`)
+- Static files like `actor.json` and `webfinger.json` remain tracked as they are configuration files
+
 ## URL Consistency & Domain Strategy
 
 ### Decision: Use `lqdev.me` without `www`
@@ -223,29 +231,34 @@ curl -H "Accept: application/activity+json" "https://lqdev.me/api/activitypub/in
 
 ## Future Enhancements
 
-### Phase 3: Outbox Automation
+### Phase 3: Outbox Automation ✅ COMPLETE
 
 **Goal**: Generate ActivityPub objects from website's UnifiedFeedItems  
-**Status**: Planned (not yet implemented)  
-**Estimated Effort**: 1-2 weeks
+**Status**: ✅ **IMPLEMENTED** - Outbox auto-generates from unified feed during build  
+**Completion Date**: January 2026
 
-**Planned Approach**:
-- Generate ActivityPub objects from website's UnifiedFeedItems during F# build
-- Auto-update outbox during build process with actual content
-- Create individual Note JSON files for recent content
-- Use build-time generation (file-based storage)
-- RSS feed as primary content source
+**Implemented Approach**:
+- ActivityPub objects generated from UnifiedFeedItems during F# build process
+- Auto-updates outbox during build with all 1548+ content items
+- Creates comprehensive outbox collection at build time
+- Build-time generation integrated into `Program.fs` workflow
+- Deployment synchronization handled via GitHub Actions workflow
 
-**RSS Conversion Script**: The F# script [`Scripts/rss-to-activitypub.fsx`](../Scripts/rss-to-activitypub.fsx) serves as a **prototype** for Phase 3 implementation:
-- Demonstrates RSS → ActivityPub conversion patterns
-- Generates Note objects and Create activities from RSS items
-- Outputs to `api/data/` structure
-- Currently standalone, not integrated with main build
-- Will inform final F# module design for build pipeline integration
+**Deployment Architecture**:
+- F# build generates: `_public/api/data/outbox/index.json`
+- GitHub Actions syncs to: `api/data/outbox/index.json` (for Azure Functions)
+- Azure Functions serve the synced file via `/api/activitypub/outbox` endpoint
+- File is excluded from Git tracking (generated fresh on each deployment)
 
-For detailed Phase 3 planning and script documentation, see [`/docs/activitypub/implementation-status.md`](../docs/activitypub/implementation-status.md).
+**Known Issue Fixed** (January 2026):
+- **Problem**: Outbox endpoint returned only 20 stale items despite Phase 3 implementation
+- **Root Cause**: Generated outbox not being synced to Azure Functions directory during deployment
+- **Solution**: Added workflow step to copy generated data from `_public` to `api` directory
+- **Result**: Endpoint now returns all 1548+ fresh items correctly
 
-**Current Outbox Status**: Contains 20 manually created entries with placeholder dates. Will be replaced with auto-generated content in Phase 3.
+For detailed Phase 3 implementation, see [`/docs/activitypub/phase3-implementation-complete.md`](../docs/activitypub/phase3-implementation-complete.md).
+
+**Current Outbox Status**: Contains all website content (1548+ items) auto-generated from unified feed system.
 
 ### Phase 4: Activity Delivery
 - Activity delivery to follower inboxes when new content is published
