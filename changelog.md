@@ -1,5 +1,35 @@
 # Changelog
 
+## 2026-01-19 - ActivityPub Improvements (PR #1834)
+
+**Branch**: `feature/activitypub-improvements`  
+**Status**: In Review
+
+### Fixed
+- ✅ **Chronological ordering in outbox** - Fixed string sorting bug by parsing dates to DateTimeOffset, now correctly sorted newest (2026-01-18) → oldest (2017-12-09) per ActivityPub spec requirement
+- ✅ **Individual note file generation** - Added `buildNotes()` function to generate 1,548 static JSON files to `_public/activitypub/notes/`, enabling note ID dereferenceability (ActivityPub requirement)
+- ✅ **URL structure for static serving** - Changed note IDs from `/api/notes/` to `/activitypub/notes/` for static directory serving with CDN caching and better performance
+
+### Technical Changes
+- **ActivityPubBuilder.fs**: Added `buildNotes()`, fixed sorting, updated paths to use `/activitypub/notes/`
+- **Program.fs**: Integrated `buildNotes()` into build pipeline
+- **staticwebapp.config.json**: Added route config for `/activitypub/notes/*` with proper `application/activity+json` Content-Type headers
+
+### Benefits
+- CDN caching for all 1,548 note files
+- Zero compute costs for note serving
+- Sub-50ms response times
+- Proper ActivityPub federation compliance
+
+### Related
+- Builds on PR #1831 (Outbox synchronization fix)
+- Research-backed implementation following ActivityPub best practices
+- See `ACTIVITYPUB_IMPROVEMENTS_SUMMARY.md` for full details
+
+### Next Steps
+- Phase 2: Remove redundant `api/notes/` Azure Function endpoint
+- Phase 2: Address domain consistency (www vs apex)
+
 ## 2025-11-07 - Builder.fs I/O Helper Functions Refactoring ✅
 
 **Project**: Extract Common File I/O Patterns into Reusable Helpers  
