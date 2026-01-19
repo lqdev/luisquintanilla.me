@@ -2,7 +2,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const https = require('https');
 const crypto = require('crypto');
-const { verifyHttpSignature, signRequest } = require('../utils/signatures');
+const { verifyHttpSignature, generateHttpSignature } = require('../utils/signatures');
 const tableStorage = require('../utils/tableStorage');
 
 /**
@@ -36,27 +36,23 @@ async function deliverAcceptActivity(followActivity, context) {
         const url = new URL(inboxUrl);
         
         const body = JSON.stringify(acceptActivity);
-        const bodyDigest = `SHA-256=${crypto.createHash('sha256').update(body).digest('base64')}`;
         
-        // Build request object for signing
-        const requestToSign = {
-            method: 'POST',
-            url: inboxUrl,
-            headers: {
-                'Host': url.hostname,
-                'Date': new Date().toUTCString(),
-                'Digest': bodyDigest,
-                'Content-Type': 'application/activity+json',
-                'Content-Length': Buffer.byteLength(body),
-                'User-Agent': 'lqdev.me ActivityPub/1.0'
-            }
+        // Build request headers
+        const headers = {
+            'Host': url.hostname,
+            'Date': new Date().toUTCString(),
+            'Content-Type': 'application/activity+json',
+            'Content-Length': Buffer.byteLength(body),
+            'User-Agent': 'lqdev.me ActivityPub/1.0'
         };
         
-        // Sign the request using Key Vault
+        // Generate HTTP signature using Key Vault (also sets Digest header)
+        let signatureHeader;
         try {
-            await signRequest(requestToSign, context);
+            signatureHeader = await generateHttpSignature('POST', inboxUrl, headers, body);
+            headers['Signature'] = signatureHeader;
         } catch (signError) {
-            context.log.error(`Failed to sign request: ${signError.message}`);
+            context.log.error(`Failed to generate signature: ${signError.message}`);
             return false;
         }
         
@@ -67,7 +63,7 @@ async function deliverAcceptActivity(followActivity, context) {
                 port: url.port || 443,
                 path: url.pathname + url.search,
                 method: 'POST',
-                headers: requestToSign.headers
+                headers: headers
             };
             
             const req = https.request(options, (res) => {
@@ -78,16 +74,22 @@ async function deliverAcceptActivity(followActivity, context) {
                         context.log(`Accept delivered successfully: ${res.statusCode}`);
                         resolve({ success: true, statusCode: res.statusCode, body: data });
                     } else {
-                        context.log.warn(`Accept delivery returned ${res.statusCode}: ${data}`);
-                        reject(new Error(`HTTP ${res.statusCode}: ${data}`));
+                        const errorMsg = `HTTP ${res.statusCode}: ${data}`;
+                        context.log.error(`Accept delivery failed - ${errorMsg}`);
+                        reject(new Error(errorMsg));
                     }
                 });
             });
             
-            req.on('error', reject);
+            req.on('error', (err) => {
+                context.log.error(`Network error delivering Accept: ${err.message}`);
+                reject(err);
+            });
             req.setTimeout(10000, () => {
                 req.destroy();
-                reject(new Error('Timeout delivering Accept activity'));
+                const timeoutError = new Error('Timeout delivering Accept activity');
+                context.log.error(timeoutError.message);
+                reject(timeoutError);
             });
             req.write(body);
             req.end();
