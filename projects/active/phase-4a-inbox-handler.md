@@ -10,15 +10,26 @@
 
 Implement production-ready ActivityPub inbox handler accepting Follow/Unfollow requests with persistent follower state management in Azure Table Storage. This enables the static site to accept followers from Mastodon and other Fediverse servers while maintaining static followers.json for public accessibility.
 
+**Note**: Original plan included queue-based async delivery using ProcessAccept function, but this was simplified due to Azure Static Web Apps deployment constraints (only HTTP triggers supported). Accept delivery now happens synchronously within inbox handler.
+
 ### Success Criteria (Phase 4A Specific)
 - ✅ Accept Follow requests via `/api/activitypub/inbox` POST endpoint
 - ✅ HTTP signature verification using existing Key Vault integration
 - ✅ Store follower state in Azure Table Storage (`followers` table)
-- ✅ Queue Accept activities for asynchronous delivery (`accept-delivery` queue)
-- ✅ Process Accept delivery with HTTP signatures to follower inboxes
+- ✅ Deliver Accept activities with HTTP signatures to follower inboxes (synchronous)
 - ✅ Handle Undo (unfollow) activities and remove from Table Storage
 - ✅ Maintain static `api/data/followers.json` regenerated from Table Storage during builds
 - ✅ Idempotent activity processing with de-duplication
+
+### Deployment Constraints
+
+**Azure Static Web Apps Limitation**: Only HTTP-triggered functions are supported in the `/api` folder. Queue-triggered, timer-triggered, and other trigger types require a standalone Azure Function App.
+
+**Impact on Design**:
+- Accept activities are delivered synchronously (not queued)
+- No automatic retry for failed deliveries
+- Suitable for current scale (personal site with limited followers)
+- Future migration to standalone Function App may be needed for high-volume scenarios
 
 ### Architectural Alignment
 
@@ -89,15 +100,12 @@ Implement production-ready ActivityPub inbox handler accepting Follow/Unfollow r
 api/
   ├── inbox/
   │   ├── function.json          # ✅ Existing HTTP trigger
-  │   └── index.js               # ✅ Enhanced with Table Storage
+  │   └── index.js               # ✅ Enhanced with Table Storage + synchronous Accept delivery
   ├── utils/
   │   ├── signatures.js          # ✅ Existing HTTP signature verification
   │   ├── keyvault.js            # ✅ Existing Key Vault integration
   │   ├── followers.js           # 🔄 Enhanced for Table Storage
   │   └── tableStorage.js        # ➕ NEW: Table Storage operations
-  ├── ProcessAccept/
-  │   ├── function.json          # ➕ NEW: Queue trigger
-  │   └── index.js               # ➕ NEW: Accept delivery handler
   └── data/
       └── followers.json         # 🔄 Generated from Table Storage
 
@@ -106,6 +114,8 @@ Services/
       └── FollowersSync.fs       # ➕ NEW: Build-time Table Storage → static file
 ```
 
+**Note**: Originally planned to use ProcessAccept queue-triggered function for async delivery, but removed due to Azure Static Web Apps constraint (only HTTP triggers supported). Accept delivery now happens synchronously in inbox handler.
+
 ### Data Flow (Phase 4A)
 
 **Follow Request Flow**:
@@ -113,19 +123,12 @@ Services/
 2. **Signature Verification** → Existing `signatures.js` validates HTTP signature
 3. **Activity Validation** → Validate Follow activity structure and actor
 4. **Table Storage** → Store follower in `followers` table
-5. **Queue Accept** → Write Accept activity to `accept-delivery` queue
-6. **Immediate Response** → Return 200 OK (follower accepted)
-
-**Accept Delivery Flow** (Async):
-7. **ProcessAccept Function** → Queue-triggered, fetches Accept from queue
-8. **Actor Lookup** → Fetch remote actor profile for inbox URL
-9. **Sign Activity** → Generate HTTP signature using Key Vault
-10. **Deliver Accept** → POST Accept activity to follower's inbox
-11. **Retry Logic** → Automatic retry via Azure Queue (5 attempts with exponential backoff)
+5. **Sign & Deliver Accept** → Generate HTTP signature using Key Vault and deliver to follower inbox
+6. **Immediate Response** → Return 202 Accepted (follower accepted, delivery attempted)
 
 **Build-Time Sync** (F#):
-12. **F# Build** → `FollowersSync.fs` queries Table Storage during site build
-13. **Generate Static** → Write `api/data/followers.json` for public accessibility
+7. **F# Build** → `FollowersSync.fs` queries Table Storage during site build
+8. **Generate Static** → Write `api/data/followers.json` for public accessibility
 
 ### Azure Table Storage Schema
 
