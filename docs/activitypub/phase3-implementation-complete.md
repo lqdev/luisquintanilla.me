@@ -43,7 +43,7 @@
 ```json
 {
   "@context": "https://www.w3.org/ns/activitystreams",
-  "id": "https://lqdev.me/api/notes/d97d66cdd6d8caad5219756036458d70#create",
+  "id": "https://lqdev.me/activitypub/notes/d97d66cdd6d8caad5219756036458d70#create",
   "type": "Create",
   "actor": "https://lqdev.me/api/actor",
   "published": "2025-09-27T18:36:00-05:00",
@@ -51,7 +51,7 @@
   "cc": ["https://lqdev.me/api/followers"],
   "object": {
     "@context": "https://www.w3.org/ns/activitystreams",
-    "id": "https://lqdev.me/api/notes/d97d66cdd6d8caad5219756036458d70",
+    "id": "https://lqdev.me/activitypub/notes/d97d66cdd6d8caad5219756036458d70",
     "type": "Note",
     "attributedTo": "https://lqdev.me/api/actor",
     "published": "2025-09-27T18:36:00-05:00",
@@ -143,7 +143,7 @@ ActivityPubOutbox → serialize → api/data/outbox/index.json
 ```fsharp
 let generateNoteId (url: string) (content: string) : string =
     let hash = generateHash (url + content)  // MD5
-    sprintf "https://lqdev.me/api/notes/%s" hash
+    sprintf "https://lqdev.me/activitypub/notes/%s" hash
 
 let generateActivityId (noteId: string) : string =
     sprintf "%s#create" noteId  // Fragment identifier pattern

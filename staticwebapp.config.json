@@ -1,9 +1,20 @@
 {
   "trailingSlash": "auto",
   "mimeTypes": {
-    ".activitypub": "application/activity+json"
+    ".activitypub": "application/activity+json",
+    ".json": "application/json"
   },
   "routes": [
+    {
+      "route": "/activitypub/notes/*",
+      "headers": {
+        "Content-Type": "application/activity+json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, OPTIONS",
+        "Access-Control-Allow-Headers": "Accept, Content-Type",
+        "Cache-Control": "public, max-age=3600"
+      }
+    },
     {
       "route": "/.well-known/webfinger",
       "rewrite": "/api/webfinger",

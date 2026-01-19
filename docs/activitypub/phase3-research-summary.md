@@ -82,12 +82,12 @@
 // Option 1: Content-based hash (from prototype)
 let generateNoteId (url: string) (content: string) =
     let hash = generateHash content  // MD5 or SHA256
-    sprintf "https://lqdev.me/api/notes/%s" hash
+    sprintf "https://lqdev.me/activitypub/notes/%s" hash
 
 // Option 2: URL-based (simpler, more readable)
 let generateNoteId (contentUrl: string) =
     let slug = extractSlugFromUrl contentUrl
-    sprintf "https://lqdev.me/api/notes/%s" slug
+    sprintf "https://lqdev.me/activitypub/notes/%s" slug
 ```
 
 ### 6. Content Formatting Rules
