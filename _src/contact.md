@@ -5,7 +5,7 @@ Say hi on any of these platforms.
 - **Email** <- contact **@** lqdev.me
 - **Gravatar** <- [Profile](/gravatar)
 - **LinkedIn** <- [lquintanilla01](/linkedin) |> [QR Code](/assets/images/contact/qr-linkedin.png)
-- **Mastodon** <-  [@lqdev@toot.lqdev.tech](/mastodon) |> [QR Code](/assets/images/contact/qr-mastodon.png)
+- **Mastodon** <-  [@lqdev@lqdev.me](/mastodon) |> [QR Code](/assets/images/contact/qr-mastodon.png)
 - **GitHub** <- [lqdev](/github) |> [QR Code](/assets/images/contact/qr-github.png)
 - **X (formerly Twitter)** <- [ljquintanilla](/twitter) |> [QR Code](/assets/images/contact/qr-twitter.png)
 - **Bluesky** <- [@lqdev.me](/bluesky) |> [QR Code](/assets/images/contact/qr-bluesky.png)

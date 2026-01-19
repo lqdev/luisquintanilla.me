@@ -60,7 +60,7 @@
     },
     {
       "route": "/mastodon",
-      "redirect": "https://toot.lqdev.tech/@lqdev",
+      "redirect": "https://lqdev.me/api/activitypub/actor",
       "statusCode": 301
     },
     {
@@ -135,7 +135,7 @@
     },
     {
       "route": "/mastodon.rss",
-      "redirect": "https://toot.lqdev.tech/@lqdev.rss",
+      "redirect": "https://lqdev.me/api/activitypub/outbox",
       "statusCode": 301
     },
     {

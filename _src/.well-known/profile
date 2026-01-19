@@ -8,7 +8,7 @@
             "vcard": "https://www.lqdev.me/vcard.vcf"
         },
         {
-            "acct": "toot.lqdev.tech/@lqdev",
+            "acct": "lqdev.me/@lqdev",
             "description": "Mastodon account"
         }
     ],
