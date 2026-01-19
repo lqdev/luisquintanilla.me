@@ -19,40 +19,27 @@
 
 ## Current Implementation Details
 
-### URL Structure (Current)
+### URL Structure (Current - Migrated January 2026)
 
-All ActivityPub endpoints currently follow the `/api/*` pattern:
-
-```
-https://lqdev.me/.well-known/webfinger  → /api/webfinger
-https://lqdev.me/api/actor               → Actor profile
-https://lqdev.me/api/inbox               → Receive activities
-https://lqdev.me/api/outbox              → Public activities
-https://lqdev.me/api/followers           → Followers collection
-https://lqdev.me/api/following           → Following collection
-```
-
-### URL Structure (Planned Migration)
-
-**Decision by @lqdev**: Move to `/api/activitypub/` top-level structure:
+All ActivityPub endpoints now follow the `/api/activitypub/*` pattern:
 
 ```
-https://lqdev.me/.well-known/webfinger      → /api/webfinger (unchanged)
-https://lqdev.me/api/activitypub/actor      → Actor profile
-https://lqdev.me/api/activitypub/inbox      → Receive activities
-https://lqdev.me/api/activitypub/outbox     → Public activities
-https://lqdev.me/api/activitypub/followers  → Followers collection
-https://lqdev.me/api/activitypub/following  → Following collection
+https://lqdev.me/.well-known/webfinger          → /api/webfinger
+https://lqdev.me/api/activitypub/actor          → Actor profile
+https://lqdev.me/api/activitypub/inbox          → Receive activities
+https://lqdev.me/api/activitypub/outbox         → Public activities
+https://lqdev.me/api/activitypub/followers      → Followers collection
+https://lqdev.me/api/activitypub/following      → Following collection
 ```
 
 **Rationale**: Enables other `/api/*` functionality for non-ActivityPub features while keeping ActivityPub endpoints logically grouped.
 
-**Implementation Status**: Not yet implemented. Will require:
-- Azure Functions endpoint path updates
-- `api/data/actor.json` URL updates
-- `api/data/webfinger.json` link updates
-- `staticwebapp.config.json` CORS header updates
-- Testing and validation
+**Implementation Status**: ✅ **COMPLETE** - Migration completed with:
+- Azure Functions endpoint routes updated in all `function.json` files
+- `api/data/actor.json` URLs updated to use `/api/activitypub/*` pattern
+- `api/data/webfinger.json` links updated to point to `/api/activitypub/actor`
+- `staticwebapp.config.json` CORS headers configured for all `/api/activitypub/*` endpoints
+- All code references updated to use new endpoint structure
 
 ---
 
@@ -65,10 +52,10 @@ https://lqdev.me/api/activitypub/following  → Following collection
 1. **Domain Standardization**
    - All URLs use `lqdev.me` (without www)
    - WebFinger accepts both `@lqdev.me` and `@www.lqdev.me` for backward compatibility
-   - Actor ID: `https://lqdev.me/api/actor`
+   - Actor ID: `https://lqdev.me/api/activitypub/actor`
 
 2. **URL Pattern Consistency**
-   - Standardized all endpoints to `/api/*` pattern
+   - Migrated all endpoints to `/api/activitypub/*` pattern
    - Removed `/@lqdev` routing indirection
    - Updated `staticwebapp.config.json` with proper CORS headers
 

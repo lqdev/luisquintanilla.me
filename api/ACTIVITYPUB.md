@@ -73,7 +73,7 @@ curl -H "Accept: application/jrd+json" \
   "https://lqdev.me/.well-known/webfinger?resource=acct:lqdev@lqdev.me"
 ```
 
-### 2. Actor Profile (`/api/actor`)
+### 2. Actor Profile (`/api/activitypub/actor`)
 
 **Purpose**: Returns the ActivityPub actor document with profile information, public keys, and endpoint URLs.
 
@@ -81,17 +81,17 @@ curl -H "Accept: application/jrd+json" \
 
 ```bash
 curl -H "Accept: application/activity+json" \
-  "https://lqdev.me/api/actor"
+  "https://lqdev.me/api/activitypub/actor"
 ```
 
 **Key Fields**:
-- `id`: Actor ID (`https://lqdev.me/api/actor`)
+- `id`: Actor ID (`https://lqdev.me/api/activitypub/actor`)
 - `type`: "Person"
 - `preferredUsername`: "lqdev"
 - `inbox`, `outbox`, `followers`, `following`: Collection endpoints
 - `publicKey`: RSA public key for HTTP signature verification
 
-### 3. Outbox (`/api/outbox`)
+### 3. Outbox (`/api/activitypub/outbox`)
 
 **Purpose**: Public collection of activities (posts) from this actor.
 
@@ -99,14 +99,14 @@ curl -H "Accept: application/activity+json" \
 
 ```bash
 curl -H "Accept: application/activity+json" \
-  "https://lqdev.me/api/outbox"
+  "https://lqdev.me/api/activitypub/outbox"
 ```
 
 **Structure**: OrderedCollection with Create activities wrapping Note objects.
 
 **Current Status**: Contains manually created entries. Future enhancement will auto-generate from website content.
 
-### 4. Inbox (`/api/inbox`)
+### 4. Inbox (`/api/activitypub/inbox`)
 
 **Purpose**: Receives federation activities from other Fediverse servers.
 
@@ -122,7 +122,7 @@ curl -H "Accept: application/activity+json" \
 
 **Current Status**: ✅ **IMPLEMENTED** - Full Follow/Accept workflow with HTTP signature verification using Azure Key Vault. Handles Follow, Accept, and Undo activities with persistent follower storage.
 
-### 5. Followers & Following (`/api/followers`, `/api/following`)
+### 5. Followers & Following (`/api/activitypub/followers`, `/api/activitypub/following`)
 
 **Purpose**: Collections of followers and accounts being followed.
 
@@ -189,13 +189,13 @@ cd /home/runner/work/luisquintanilla.me/luisquintanilla.me
 curl "https://lqdev.me/.well-known/webfinger?resource=acct:lqdev@lqdev.me"
 
 # Test Actor endpoint
-curl -H "Accept: application/activity+json" "https://lqdev.me/api/actor"
+curl -H "Accept: application/activity+json" "https://lqdev.me/api/activitypub/actor"
 
 # Test Outbox
-curl -H "Accept: application/activity+json" "https://lqdev.me/api/outbox"
+curl -H "Accept: application/activity+json" "https://lqdev.me/api/activitypub/outbox"
 
 # Test Inbox (GET)
-curl -H "Accept: application/activity+json" "https://lqdev.me/api/inbox"
+curl -H "Accept: application/activity+json" "https://lqdev.me/api/activitypub/inbox"
 ```
 
 ### Testing from Mastodon

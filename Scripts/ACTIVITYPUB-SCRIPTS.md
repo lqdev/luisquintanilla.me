@@ -217,19 +217,16 @@ dotnet fsi Scripts/rss-to-activitypub.fsx --help
 
 ### URL Pattern Note
 
-⚠️ **Important**: This script generates URLs using the **planned future pattern** (`/api/activitypub/*`), which differs from the current implementation (`/api/*`).
+✅ **Current Implementation**: This script now generates URLs using the **current production pattern** (`/api/activitypub/*`), which matches the deployed implementation.
 
-**Current Implementation**:
-- `https://lqdev.me/api/actor`
-- `https://lqdev.me/api/inbox`
-- `https://lqdev.me/api/outbox`
-
-**Script Output** (Planned Pattern):
+**Current URLs**:
 - `https://lqdev.me/api/activitypub/actor`
 - `https://lqdev.me/api/activitypub/inbox`
 - `https://lqdev.me/api/activitypub/outbox`
+- `https://lqdev.me/api/activitypub/followers`
+- `https://lqdev.me/api/activitypub/following`
 
-When the URL migration happens, this script will already use the correct pattern. Until then, be aware of this discrepancy when reviewing generated files.
+The script output matches the production endpoint structure documented in `/api/ACTIVITYPUB.md`.
 
 ### Integration with Phase 3
 
