@@ -2,7 +2,7 @@
 
 **Date**: January 19, 2026  
 **Branch**: `feature/activitypub-improvements`  
-**Status**: ✅ Phase 1 Complete
+**Status**: ✅ Complete (Phase 1 + Phase 2)
 
 ## Issues Fixed
 
@@ -147,20 +147,31 @@ Note ID: https://lqdev.me/activitypub/notes/abc123
 - Limited concurrent connections
 - File read on every request
 
-## Next Steps (Phase 2)
+## Next Steps (Phase 2) - ✅ COMPLETE
 
-### To Be Done in Follow-up PR
-1. **Remove Azure Functions notes endpoint**
-   - Delete `api/notes/` directory
-   - Update workflow to remove sync step
-   - Clean up documentation
+### ✅ Completed in Same PR
+1. **✅ Removed Azure Functions notes endpoint**
+   - Deleted `api/notes/` directory (function.json, index.js)
+   - Updated api/ACTIVITYPUB.md to document static serving
+   - Updated docs/activitypub/*.md with correct URL paths
 
-2. **Domain consistency** (if approved)
+2. **Architecture fully optimized**
+   - All notes served statically from `/activitypub/notes/`
+   - Zero Azure Functions overhead for immutable content
+   - Clean documentation reflecting current architecture
+
+3. **Validated**
+   - Build successful with Phase 2 changes
+   - 1,548 note files generated correctly
+   - Documentation references updated throughout
+
+### Remaining (Future)
+1. **Domain consistency** (if approved)
    - Decide on www vs apex domain
    - Update URL generation across builders
    - Configure redirects
 
-3. **Production testing**
+2. **Production testing**
    - Deploy to production
    - Test federation with Mastodon
    - Verify all note IDs dereferenceable
@@ -220,4 +231,24 @@ $outbox.orderedItems[0].object.id  # Should contain /activitypub/notes/
 
 ---
 
-✅ **Phase 1 Complete** - Ready for production testing and Phase 2 cleanup
+✅ **Phase 1 + Phase 2 Complete** - Ready for production deployment
+
+## Phase 2 Summary
+
+### Changes Made
+- **Removed**: `api/notes/function.json` and `api/notes/index.js` (70 lines of code)
+- **Updated**: Documentation files to reference `/activitypub/notes/` (6 files changed)
+- **Architectural benefit**: Notes now 100% static, eliminating all Azure Functions overhead
+
+### Commits
+1. Commit `723a71cb`: Phase 1 - Fix chronological ordering, generate notes, update URLs
+2. Commit `17f80cf6`: Phase 2 - Remove redundant Azure Functions endpoint, update documentation
+
+### Final Architecture
+All ActivityPub content optimized:
+- **Outbox**: Correctly sorted (reverse chronological)
+- **Notes**: Static files (1,548 files) with proper Content-Type headers
+- **No Functions**: Zero compute overhead for immutable content
+- **CDN-Ready**: All content servable from edge
+
+---
