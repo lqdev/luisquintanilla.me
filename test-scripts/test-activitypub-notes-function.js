@@ -6,9 +6,6 @@
  * Tests the function logic directly without needing Azure Functions Core Tools
  */
 
-const fs = require('fs').promises;
-const path = require('path');
-
 // Mock context object for testing
 const createMockContext = () => {
     const log = (...args) => console.log('[LOG]', ...args);
@@ -165,8 +162,8 @@ async function runTests() {
     }
     console.log('');
 
-    // Test 5: Overly long note ID (DoS prevention)
-    console.log('Test 5: Overly long note ID (DoS prevention)');
+    // Test 5: Overly long note ID (validates length constraint for DoS prevention)
+    console.log('Test 5: Overly long note ID (validates length constraint for DoS prevention)');
     try {
         const context = createMockContext();
         const noteId = 'a'.repeat(100); // 100 character hex string

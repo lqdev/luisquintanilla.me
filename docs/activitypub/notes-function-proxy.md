@@ -158,7 +158,7 @@ const content = await response.text();
 - **In-Memory Caching**: 1-hour cache for frequently accessed notes (reduces CDN hits)
 - **Header Control**: Sets proper ActivityPub Content-Type
 - **Validation**: 
-  - Validates noteId format (MD5 hash = 32 hex characters)
+  - Validates noteId format (must be 32-character MD5 hex string)
   - Validates HTTP response before serving
 - **Error Handling**:
   - 400 for invalid noteId format
@@ -263,6 +263,8 @@ module Config =
 2. ✅ Non-existent note returns 404
 3. ✅ Invalid note ID format returns 400
 4. ✅ OPTIONS request returns proper CORS headers
+5. ✅ Overly long note ID returns 400 (DoS prevention)
+6. ✅ Too short note ID returns 400
 
 **Running Tests**:
 ```bash
@@ -423,5 +425,5 @@ const baseUrl = process.env.STATIC_BASE_URL || 'https://lqdev.me';
 ---
 
 **Last Updated**: January 19, 2026  
-**Implementation PR**: [PR #XXXX](https://github.com/lqdev/luisquintanilla.me/pull/XXXX)  
+**Implementation PR**: [PR #1845](https://github.com/lqdev/luisquintanilla.me/pull/1845)  
 **Status**: ✅ Implemented and Tested

@@ -47,8 +47,7 @@ module.exports = async function (context, req) {
 
     const noteId = req.params.noteId;
     
-    // Validate noteId format (MD5 hash = 32 hex characters)
-    // Length constraint prevents DoS from extremely long IDs
+    // Format validation (32-character MD5 hex) prevents both path traversal and DoS from malformed/long IDs
     if (!noteId || !/^[a-f0-9]{32}$/i.test(noteId)) {
         context.log.warn(`Invalid noteId format: ${noteId}`);
         context.res = {
