@@ -1,0 +1,252 @@
+name: Test ActivityPub Deployment
+
+# Manual trigger for testing ActivityPub endpoints after deployment
+# Can also be scheduled to run periodically for health monitoring
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_domain:
+        description: 'Domain to test (default: https://lqdev.me)'
+        required: false
+        default: 'https://lqdev.me'
+  schedule:
+    # Run weekly on Mondays at 9 AM UTC (health check)
+    - cron: '0 9 * * 1'
+
+jobs:
+  test-activitypub-endpoints:
+    name: Test ActivityPub Endpoints
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl jq
+      
+      - name: Make test script executable
+        run: chmod +x ./Scripts/test-activitypub-production.sh
+      
+      - name: Run ActivityPub production tests
+        id: test
+        run: |
+          echo "Testing domain: ${{ inputs.test_domain || 'https://lqdev.me' }}"
+          
+          # Run the test script
+          if ./Scripts/test-activitypub-production.sh; then
+            echo "status=success" >> $GITHUB_OUTPUT
+            echo "All ActivityPub tests passed!"
+          else
+            echo "status=failure" >> $GITHUB_OUTPUT
+            echo "Some ActivityPub tests failed."
+            exit 1
+          fi
+      
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: activitypub-test-results-${{ github.run_number }}
+          path: |
+            Scripts/test-activitypub-production.sh
+            docs/activitypub/POST-DEPLOYMENT-TEST-RESULTS.md
+          retention-days: 30
+      
+      - name: Create issue on failure
+        if: failure() && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🚨 ActivityPub Health Check Failed',
+              body: `## ActivityPub Deployment Health Check Failed
+              
+              The scheduled ActivityPub endpoint health check has detected issues.
+              
+              **Workflow Run**: [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+              **Test Domain**: https://lqdev.me
+              **Timestamp**: ${{ github.event.repository.updated_at }}
+              
+              ### Required Actions
+              
+              1. Review the [workflow logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+              2. Run manual tests: \`./Scripts/test-activitypub-production.sh\`
+              3. Check Azure Functions deployment status
+              4. Review Application Insights for errors
+              5. Consult \`/docs/activitypub/POST-DEPLOYMENT-TEST-RESULTS.md\` troubleshooting guide
+              
+              ### Test Coverage
+              
+              - WebFinger discovery endpoints
+              - Actor profile endpoint
+              - Collection endpoints (outbox, followers, following)
+              - Inbox endpoint
+              - Static data files
+              - URL pattern consistency
+              
+              See \`/docs/activitypub/\` for complete documentation.`,
+              labels: ['activitypub', 'bug', 'deployment']
+            });
+      
+      - name: Comment on success
+        if: success() && github.event_name == 'workflow_dispatch'
+        run: |
+          echo "✅ All ActivityPub tests passed successfully!"
+          echo "The deployment is fully functional and ready for production use."
+
+  test-static-files:
+    name: Validate Static ActivityPub Files
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+      
+      - name: Validate actor.json structure
+        run: |
+          echo "Validating actor.json..."
+          jq -e '.id and .type and .inbox and .outbox and .publicKey' api/data/actor.json
+          echo "✓ actor.json is valid"
+      
+      - name: Validate webfinger.json structure
+        run: |
+          echo "Validating webfinger.json..."
+          jq -e '.subject and .links' api/data/webfinger.json
+          echo "✓ webfinger.json is valid"
+      
+      - name: Validate followers.json structure
+        run: |
+          echo "Validating followers.json..."
+          jq -e '.type and .totalItems and .orderedItems' api/data/followers.json
+          echo "✓ followers.json is valid"
+      
+      - name: Validate outbox structure
+        run: |
+          echo "Validating outbox/index.json..."
+          jq -e '.type and .totalItems and .orderedItems' api/data/outbox/index.json
+          echo "✓ outbox/index.json is valid"
+      
+      - name: Check URL pattern consistency
+        run: |
+          echo "Checking URL pattern consistency..."
+          
+          # Check that all URLs use /api/activitypub/ pattern
+          actor_id=$(jq -r '.id' api/data/actor.json)
+          inbox=$(jq -r '.inbox' api/data/actor.json)
+          outbox=$(jq -r '.outbox' api/data/actor.json)
+          
+          if [[ "$actor_id" != *"/api/activitypub/"* ]]; then
+            echo "❌ actor.id doesn't use /api/activitypub/ pattern: $actor_id"
+            exit 1
+          fi
+          
+          if [[ "$inbox" != *"/api/activitypub/"* ]]; then
+            echo "❌ inbox doesn't use /api/activitypub/ pattern: $inbox"
+            exit 1
+          fi
+          
+          if [[ "$outbox" != *"/api/activitypub/"* ]]; then
+            echo "❌ outbox doesn't use /api/activitypub/ pattern: $outbox"
+            exit 1
+          fi
+          
+          echo "✓ All URLs use /api/activitypub/ pattern"
+      
+      - name: Validate ActivityPub compliance
+        run: |
+          echo "Checking ActivityPub specification compliance..."
+          
+          # Check required ActivityStreams context
+          context=$(jq -r '."@context" | if type == "array" then .[0] else . end' api/data/actor.json)
+          if [[ "$context" != "https://www.w3.org/ns/activitystreams"* ]]; then
+            echo "❌ Missing required @context: $context"
+            exit 1
+          fi
+          
+          # Check Person type
+          actor_type=$(jq -r '.type' api/data/actor.json)
+          if [[ "$actor_type" != "Person" ]]; then
+            echo "❌ Actor type should be Person, got: $actor_type"
+            exit 1
+          fi
+          
+          # Check required endpoints
+          required_fields=("inbox" "outbox" "followers" "following" "publicKey")
+          for field in "${required_fields[@]}"; do
+            value=$(jq -r ".$field" api/data/actor.json)
+            if [[ "$value" == "null" ]] || [[ -z "$value" ]]; then
+              echo "❌ Missing required field: $field"
+              exit 1
+            fi
+          done
+          
+          echo "✓ ActivityPub specification compliance verified"
+
+  documentation-check:
+    name: Verify Documentation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Check documentation files exist
+        run: |
+          echo "Checking ActivityPub documentation..."
+          
+          required_docs=(
+            "docs/activitypub/README.md"
+            "docs/activitypub/implementation-status.md"
+            "docs/activitypub/phase4a-testing-guide.md"
+            "docs/activitypub/deployment-guide.md"
+            "docs/activitypub/POST-DEPLOYMENT-TEST-RESULTS.md"
+            "api/ACTIVITYPUB.md"
+            "Scripts/ACTIVITYPUB-SCRIPTS.md"
+          )
+          
+          missing=0
+          for doc in "${required_docs[@]}"; do
+            if [[ ! -f "$doc" ]]; then
+              echo "❌ Missing documentation: $doc"
+              missing=$((missing + 1))
+            else
+              echo "✓ Found: $doc"
+            fi
+          done
+          
+          if [[ $missing -gt 0 ]]; then
+            echo "❌ $missing documentation file(s) missing"
+            exit 1
+          fi
+          
+          echo "✅ All required documentation files present"
+      
+      - name: Verify test scripts exist
+        run: |
+          echo "Checking test scripts..."
+          
+          test_scripts=(
+            "Scripts/test-activitypub.sh"
+            "Scripts/test-activitypub-production.sh"
+            "api/test-table-storage.js"
+          )
+          
+          for script in "${test_scripts[@]}"; do
+            if [[ ! -f "$script" ]]; then
+              echo "❌ Missing test script: $script"
+              exit 1
+            else
+              echo "✓ Found: $script"
+            fi
+          done
+          
+          echo "✅ All test scripts present"
