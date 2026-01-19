@@ -40,8 +40,9 @@ module.exports = async function (context, req) {
 
     const noteId = req.params.noteId;
     
-    // Validate noteId format (should be hex string)
-    if (!noteId || !/^[a-f0-9]+$/i.test(noteId)) {
+    // Validate noteId format (MD5 hash = 32 hex characters)
+    // Length constraint prevents DoS from extremely long IDs
+    if (!noteId || !/^[a-f0-9]{32}$/i.test(noteId)) {
         context.log.warn(`Invalid noteId format: ${noteId}`);
         context.res = {
             status: 400,
@@ -51,16 +52,18 @@ module.exports = async function (context, req) {
             },
             body: JSON.stringify({
                 error: 'Bad Request',
-                message: 'Invalid note ID format'
+                message: 'Invalid note ID format (expected 32-character hex hash)'
             })
         };
         return;
     }
 
     // Construct path to static note file
-    // In production, this resolves to: /home/site/wwwroot/_public/activitypub/notes/{noteId}.json
-    // In local dev, this resolves to: ../../../_public/activitypub/notes/{noteId}.json
-    const notePath = path.join(__dirname, '../../_public/activitypub/notes', `${noteId}.json`);
+    // Use environment variable for flexibility, fallback to default structure
+    // In production: /home/site/wwwroot/_public/activitypub/notes/{noteId}.json
+    // In local dev: ../../_public/activitypub/notes/{noteId}.json
+    const notesBasePath = process.env.NOTES_BASE_PATH || path.join(__dirname, '../../_public/activitypub/notes');
+    const notePath = path.join(notesBasePath, `${noteId}.json`);
     
     try {
         context.log(`Reading note file: ${notePath}`);

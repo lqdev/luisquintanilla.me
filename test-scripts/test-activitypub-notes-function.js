@@ -165,6 +165,54 @@ async function runTests() {
     }
     console.log('');
 
+    // Test 5: Overly long note ID (DoS prevention)
+    console.log('Test 5: Overly long note ID (DoS prevention)');
+    try {
+        const context = createMockContext();
+        const noteId = 'a'.repeat(100); // 100 character hex string
+        const req = createMockRequest(noteId);
+        
+        await functionHandler(context, req);
+        
+        if (context.res && context.res.status === 400) {
+            console.log('✅ PASS: Returns 400 for overly long note ID');
+            const body = JSON.parse(context.res.body);
+            console.log(`   Error: ${body.error}`);
+            passed++;
+        } else {
+            console.log(`❌ FAIL: Expected 400 but got ${context.res ? context.res.status : 'undefined'}`);
+            failed++;
+        }
+    } catch (err) {
+        console.log(`❌ FAIL: ${err.message}`);
+        failed++;
+    }
+    console.log('');
+
+    // Test 6: Too short note ID
+    console.log('Test 6: Too short note ID');
+    try {
+        const context = createMockContext();
+        const noteId = 'abc123'; // Only 6 characters, should be 32
+        const req = createMockRequest(noteId);
+        
+        await functionHandler(context, req);
+        
+        if (context.res && context.res.status === 400) {
+            console.log('✅ PASS: Returns 400 for too short note ID');
+            const body = JSON.parse(context.res.body);
+            console.log(`   Error: ${body.error}`);
+            passed++;
+        } else {
+            console.log(`❌ FAIL: Expected 400 but got ${context.res ? context.res.status : 'undefined'}`);
+            failed++;
+        }
+    } catch (err) {
+        console.log(`❌ FAIL: ${err.message}`);
+        failed++;
+    }
+    console.log('');
+
     // Summary
     console.log('========================================');
     console.log('Test Summary');
