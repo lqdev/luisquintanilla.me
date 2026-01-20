@@ -38,7 +38,7 @@ jobs:
       - name: Deliver Pending Accept Activities
         env:
           ACTIVITYPUB_STORAGE_CONNECTION: ${{ secrets.ACTIVITYPUB_STORAGE_CONNECTION }}
-          KEY_VAULT_KEY_ID: https://lqdev-activitypub-kv.vault.azure.net/keys/activitypub-signing-key
+          KEY_VAULT_KEY_ID: ${{ secrets.KEY_VAULT_KEY_ID }}
         run: |
           cd api
           node scripts/deliver-accepts.js

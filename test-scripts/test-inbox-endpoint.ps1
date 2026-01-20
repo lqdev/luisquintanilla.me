@@ -1,5 +1,10 @@
 # Test script to manually send a Follow activity to the inbox endpoint
 # This helps diagnose if the endpoint is receiving and processing Follow requests
+#
+# WARNING: This test script sends unsigned Follow activities for testing purposes.
+# Real ActivityPub implementations will reject unsigned requests. This script will
+# only work if signature verification is disabled or bypassed for testing.
+# Real Mastodon Follow requests will include HTTP signatures.
 
 $inboxUrl = "https://lqdev.me/api/activitypub/inbox"
 $actorUrl = "https://lqdev.me/api/activitypub/actor"

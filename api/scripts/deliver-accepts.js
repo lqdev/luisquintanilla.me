@@ -49,7 +49,6 @@ async function generateHttpSignature(method, targetUrl, headers, body) {
 
     // Sign with Key Vault
     const signatureBuffer = Buffer.from(signatureString, 'utf-8');
-    const hashAlgorithm = 'SHA-256';
     const hash = crypto.createHash('sha256').update(signatureBuffer).digest();
     
     const signResult = await cryptoClient.sign('RS256', hash);
@@ -63,12 +62,55 @@ async function generateHttpSignature(method, targetUrl, headers, body) {
 }
 
 /**
+ * Validate inbox URL to prevent SSRF attacks
+ */
+function isValidInboxUrl(urlString) {
+    try {
+        const url = new URL(urlString);
+        
+        // Only allow HTTPS for ActivityPub
+        if (url.protocol !== 'https:') {
+            return false;
+        }
+        
+        // Block private IP ranges and localhost
+        const hostname = url.hostname.toLowerCase();
+        
+        // Block localhost and loopback
+        if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1') {
+            return false;
+        }
+        
+        // Block private IP ranges (10.x.x.x, 172.16-31.x.x, 192.168.x.x)
+        if (hostname.match(/^10\./) || 
+            hostname.match(/^172\.(1[6-9]|2[0-9]|3[0-1])\./) ||
+            hostname.match(/^192\.168\./)) {
+            return false;
+        }
+        
+        // Block link-local addresses
+        if (hostname.match(/^169\.254\./) || hostname.match(/^fe80:/)) {
+            return false;
+        }
+        
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+/**
  * Deliver Accept activity to remote inbox
  */
 async function deliverAccept(pendingAccept) {
     const { acceptId, inbox, acceptActivity } = pendingAccept;
     
     console.log(`Delivering Accept ${acceptId} to ${inbox}`);
+
+    // Validate inbox URL to prevent SSRF
+    if (!isValidInboxUrl(inbox)) {
+        throw new Error('Invalid or unsafe inbox URL');
+    }
 
     const url = new URL(inbox);
     const body = JSON.stringify(acceptActivity);
@@ -102,7 +144,18 @@ async function deliverAccept(pendingAccept) {
 
         const req = https.request(options, (res) => {
             let data = '';
-            res.on('data', (chunk) => { data += chunk; });
+            const maxResponseSize = 1024 * 1024; // 1MB limit
+            let dataSize = 0;
+            
+            res.on('data', (chunk) => {
+                dataSize += chunk.length;
+                if (dataSize > maxResponseSize) {
+                    req.destroy();
+                    reject(new Error('Response size exceeds limit'));
+                    return;
+                }
+                data += chunk;
+            });
             res.on('end', () => {
                 if (res.statusCode >= 200 && res.statusCode < 300) {
                     console.log(`✓ Accept delivered successfully: HTTP ${res.statusCode}`);
