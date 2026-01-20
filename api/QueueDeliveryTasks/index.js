@@ -62,7 +62,12 @@ function isValidInboxUrl(inboxUrl) {
             return false;
         }
         
-        const hostname = url.hostname.toLowerCase();
+        const hostname = url.hostname ? url.hostname.toLowerCase() : '';
+        
+        // Check if hostname is empty or undefined
+        if (!hostname) {
+            return false;
+        }
         
         // Block localhost and loopback
         if (

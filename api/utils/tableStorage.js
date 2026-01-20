@@ -459,8 +459,7 @@ async function updateDeliveryStatus(activityId, targetInbox, status, attemptCoun
         
         // Use optimistic concurrency control with ETag to prevent race conditions
         await deliveryStatusClient.updateEntity(entity, 'Merge', {
-            etag: entity.etag,
-            ifMatch: entity.etag
+            etag: entity.etag
         });
     } catch (error) {
         throw new Error(`Failed to update delivery status: ${error.message}`);
