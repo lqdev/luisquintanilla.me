@@ -1,0 +1,7 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "id": "https://toot.lqdev.tech/users/luis#follows/test-20260119212544",
+  "type": "Follow",
+  "actor": "https://toot.lqdev.tech/users/luis",
+  "object": "https://lqdev.me/api/activitypub/actor"
+}
