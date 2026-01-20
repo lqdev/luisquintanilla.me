@@ -7,7 +7,6 @@ on:
   workflow_dispatch: # Allow manual triggering for testing
 
 permissions:
-  id-token: write # Required for Azure OIDC authentication
   contents: read
 
 jobs:
@@ -31,21 +30,15 @@ jobs:
           cd api
           npm ci
 
-      - name: Azure Login (OIDC)
+      - name: Azure Login
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deliver Pending Accept Activities
         env:
           ACTIVITYPUB_STORAGE_CONNECTION: ${{ secrets.ACTIVITYPUB_STORAGE_CONNECTION }}
-          KEY_VAULT_NAME: lqdev-activitypub-kv
-          KEY_VAULT_KEY_ID: ${{ secrets.KEY_VAULT_KEY_ID }}
-          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-          AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          KEY_VAULT_KEY_ID: https://lqdev-activitypub-kv.vault.azure.net/keys/activitypub-signing-key
         run: |
           cd api
           node scripts/deliver-accepts.js
