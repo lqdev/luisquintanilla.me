@@ -8,6 +8,7 @@ const crypto = require('crypto');
  * Tables:
  * - followers: Stores follower actor information
  * - pendingaccepts: Stores Accept activities waiting for GitHub Actions delivery
+ * - deliverystatus: Stores delivery status for post distribution
  * 
  * Configuration via environment variables:
  * - ACTIVITYPUB_STORAGE_CONNECTION: Connection string for Table Storage
@@ -16,6 +17,20 @@ const crypto = require('crypto');
 
 let followersClient = null;
 let pendingAcceptsClient = null;
+
+/**
+ * Convert string to URL-safe base64 encoding for use as Table Storage RowKey
+ * Implements RFC 4648 base64url encoding
+ * @param {string} str - String to encode
+ * @returns {string} URL-safe base64 encoded string
+ */
+function toUrlSafeBase64(str) {
+    return Buffer.from(str)
+        .toString('base64')
+        .replace(/\+/g, '-')  // Replace + with -
+        .replace(/\//g, '_')  // Replace / with _
+        .replace(/=/g, '');   // Remove padding =
+}
 
 /**
  * Initialize Table Storage clients
@@ -74,7 +89,7 @@ async function addFollower(actorUrl, inbox, followActivityId, displayName = null
 
     const entity = {
         partitionKey: 'follower',
-        rowKey: Buffer.from(actorUrl).toString('base64').replace(/[\/\+\=]/g, '_'), // URL-safe encoding
+        rowKey: toUrlSafeBase64(actorUrl),
         actorUrl: actorUrl,
         inbox: inbox || '',
         followedAt: new Date().toISOString(),
@@ -98,7 +113,7 @@ async function addFollower(actorUrl, inbox, followActivityId, displayName = null
 async function removeFollower(actorUrl) {
     initializeClients();
 
-    const rowKey = Buffer.from(actorUrl).toString('base64').replace(/[\/\+\=]/g, '_');
+    const rowKey = toUrlSafeBase64(actorUrl);
     
     try {
         await followersClient.deleteEntity('follower', rowKey);
@@ -119,7 +134,7 @@ async function removeFollower(actorUrl) {
 async function isFollower(actorUrl) {
     initializeClients();
 
-    const rowKey = Buffer.from(actorUrl).toString('base64').replace(/[\/\+\=]/g, '_');
+    const rowKey = toUrlSafeBase64(actorUrl);
     
     try {
         await followersClient.getEntity('follower', rowKey);
@@ -140,7 +155,7 @@ async function isFollower(actorUrl) {
 async function getFollower(actorUrl) {
     initializeClients();
 
-    const rowKey = Buffer.from(actorUrl).toString('base64').replace(/[\/\+\=]/g, '_');
+    const rowKey = toUrlSafeBase64(actorUrl);
     
     try {
         const entity = await followersClient.getEntity('follower', rowKey);
@@ -357,7 +372,7 @@ async function addDeliveryStatus(activityId, targetInbox, followerActor, status,
     await ensureTableExists(deliveryStatusClient);
 
     // Use URL-safe encoding for rowKey
-    const rowKey = Buffer.from(targetInbox).toString('base64').replace(/[\/\+\=]/g, '_');
+    const rowKey = toUrlSafeBase64(targetInbox);
 
     const entity = {
         partitionKey: activityId,
@@ -389,7 +404,7 @@ async function addDeliveryStatus(activityId, targetInbox, followerActor, status,
 async function getDeliveryStatus(activityId, targetInbox) {
     initializeDeliveryStatusClient();
 
-    const rowKey = Buffer.from(targetInbox).toString('base64').replace(/[\/\+\=]/g, '_');
+    const rowKey = toUrlSafeBase64(targetInbox);
 
     try {
         const entity = await deliveryStatusClient.getEntity(activityId, rowKey);
@@ -425,7 +440,7 @@ async function getDeliveryStatus(activityId, targetInbox) {
 async function updateDeliveryStatus(activityId, targetInbox, status, attemptCount, httpStatusCode = null, errorMessage = null) {
     initializeDeliveryStatusClient();
 
-    const rowKey = Buffer.from(targetInbox).toString('base64').replace(/[\/\+\=]/g, '_');
+    const rowKey = toUrlSafeBase64(targetInbox);
 
     try {
         const entity = await deliveryStatusClient.getEntity(activityId, rowKey);

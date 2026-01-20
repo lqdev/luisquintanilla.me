@@ -199,11 +199,22 @@ module.exports = async function (context, queueItem) {
                     // Temporary failure - retry (5xx, 429, etc.)
                     context.log.warn(`⚠️ Temporary failure for ${followerActor}: ${errorMsg}`);
                     
+                    // Try to get existing status to update attempt count
+                    let currentAttemptCount = attemptCount;
+                    try {
+                        const existingStatus = await tableStorage.getDeliveryStatus(activityId, targetInbox);
+                        if (existingStatus) {
+                            currentAttemptCount = existingStatus.attemptCount;
+                        }
+                    } catch (error) {
+                        // If we can't get existing status, just use the attempt count from queue
+                    }
+                    
                     await tableStorage.updateDeliveryStatus(
                         activityId,
                         targetInbox,
                         'pending',
-                        attemptCount + 1,
+                        currentAttemptCount + 1,
                         result.statusCode,
                         errorMsg
                     );
@@ -216,11 +227,22 @@ module.exports = async function (context, queueItem) {
             // Network error or timeout - retry
             context.log.error(`❌ Error delivering to ${followerActor}: ${error.message}`);
             
+            // Try to get existing status to update attempt count
+            let currentAttemptCount = attemptCount;
+            try {
+                const existingStatus = await tableStorage.getDeliveryStatus(activityId, targetInbox);
+                if (existingStatus) {
+                    currentAttemptCount = existingStatus.attemptCount;
+                }
+            } catch (statusError) {
+                // If we can't get existing status, just use the attempt count from queue
+            }
+            
             await tableStorage.updateDeliveryStatus(
                 activityId,
                 targetInbox,
                 'pending',
-                attemptCount + 1,
+                currentAttemptCount + 1,
                 0,
                 error.message
             );

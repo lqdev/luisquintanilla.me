@@ -69,15 +69,18 @@ function isValidInboxUrl(inboxUrl) {
             hostname === '127.0.0.1' ||
             hostname.startsWith('192.168.') ||
             hostname.startsWith('10.') ||
-            hostname.startsWith('172.16.') ||
-            hostname.startsWith('172.17.') ||
-            hostname.startsWith('172.18.') ||
-            hostname.startsWith('172.19.') ||
-            hostname.startsWith('172.2') ||
-            hostname.startsWith('172.3') ||
             hostname === '::1'
         ) {
             return false;
+        }
+        
+        // Block 172.16.0.0/12 range (172.16.0.0 through 172.31.255.255)
+        const ipv4Match = hostname.match(/^172\.(\d+)\./);
+        if (ipv4Match) {
+            const secondOctet = parseInt(ipv4Match[1], 10);
+            if (secondOctet >= 16 && secondOctet <= 31) {
+                return false;
+            }
         }
         
         return true;
