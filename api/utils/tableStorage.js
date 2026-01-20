@@ -322,10 +322,4 @@ module.exports = {
     getPendingAccepts,
     markAcceptDelivered,
     markAcceptFailed
-    removeFollower,
-    isFollower,
-    getFollower,
-    getAllFollowers,
-    getFollowerCount,
-    buildFollowersCollection
 };

@@ -29,6 +29,7 @@ jobs:
         run: |
           cd api
           npm install
+          echo "✅ Dependencies installed for Accept delivery"
 
       - name: Azure Login
         uses: azure/login@v2
