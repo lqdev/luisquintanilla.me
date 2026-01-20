@@ -1,11 +1,13 @@
 const { TableClient, AzureNamedKeyCredential } = require('@azure/data-tables');
 const { DefaultAzureCredential } = require('@azure/identity');
+const crypto = require('crypto');
 
 /**
  * Table Storage utility for ActivityPub follower management
  * 
  * Tables:
  * - followers: Stores follower actor information
+ * - pendingaccepts: Stores Accept activities waiting for GitHub Actions delivery
  * 
  * Configuration via environment variables:
  * - ACTIVITYPUB_STORAGE_CONNECTION: Connection string for Table Storage
@@ -13,6 +15,7 @@ const { DefaultAzureCredential } = require('@azure/identity');
  */
 
 let followersClient = null;
+let pendingAcceptsClient = null;
 
 /**
  * Initialize Table Storage clients
@@ -33,6 +36,12 @@ function initializeClients() {
     followersClient = TableClient.fromConnectionString(
         connectionString,
         'followers'
+    );
+
+    // Initialize pending accepts table client
+    pendingAcceptsClient = TableClient.fromConnectionString(
+        connectionString,
+        'pendingaccepts'
     );
 }
 
@@ -195,14 +204,124 @@ async function buildFollowersCollection() {
     return {
         "@context": "https://www.w3.org/ns/activitystreams",
         "id": "https://lqdev.me/api/activitypub/followers",
-        "type": "OrderedCollection",
-        "totalItems": followers.length,
-        "orderedItems": followers.map(f => f.actorUrl)
+/**
+ * Queue an Accept activity for delivery by GitHub Actions
+ * @param {Object} followActivity - Original Follow activity
+ * @param {string} actorUrl - Follower's actor URL
+ * @param {string} inbox - Follower's inbox URL
+ * @returns {Promise<string>} Accept activity ID
+ */
+async function queueAcceptActivity(followActivity, actorUrl, inbox) {
+    initializeClients();
+    await ensureTableExists(pendingAcceptsClient);
+
+    const acceptId = `accept-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`;
+    const acceptActivity = {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "id": `https://lqdev.me/api/activitypub/activities/${acceptId}`,
+        "type": "Accept",
+        "actor": "https://lqdev.me/api/activitypub/actor",
+        "object": followActivity
     };
+
+    const entity = {
+        partitionKey: 'pending',
+        rowKey: acceptId,
+        actorUrl: actorUrl,
+        inbox: inbox,
+        followActivityId: followActivity.id || '',
+        acceptActivity: JSON.stringify(acceptActivity),
+        queuedAt: new Date().toISOString(),
+        status: 'pending', // pending, delivered, failed
+        retryCount: 0
+    };
+
+    try {
+        await pendingAcceptsClient.createEntity(entity);
+        return acceptId;
+    } catch (error) {
+        throw new Error(`Failed to queue Accept activity: ${error.message}`);
+    }
+}
+
+/**
+ * Get all pending Accept activities
+ * @returns {Promise<Array>} Array of pending Accept entities
+ */
+async function getPendingAccepts() {
+    initializeClients();
+
+    const pending = [];
+    const entities = pendingAcceptsClient.listEntities({
+        queryOptions: { filter: "PartitionKey eq 'pending' and status eq 'pending'" }
+    });
+
+    for await (const entity of entities) {
+        pending.push({
+            acceptId: entity.rowKey,
+            actorUrl: entity.actorUrl,
+            inbox: entity.inbox,
+            followActivityId: entity.followActivityId,
+            acceptActivity: JSON.parse(entity.acceptActivity),
+            queuedAt: entity.queuedAt,
+            retryCount: entity.retryCount || 0
+        });
+    }
+
+    return pending;
+}
+
+/**
+ * Mark Accept activity as delivered
+ * @param {string} acceptId - Accept activity ID
+ * @returns {Promise<void>}
+ */
+async function markAcceptDelivered(acceptId) {
+    initializeClients();
+
+    try {
+        const entity = await pendingAcceptsClient.getEntity('pending', acceptId);
+        entity.status = 'delivered';
+        entity.deliveredAt = new Date().toISOString();
+        await pendingAcceptsClient.updateEntity(entity, 'Replace');
+    } catch (error) {
+        throw new Error(`Failed to mark Accept as delivered: ${error.message}`);
+    }
+}
+
+/**
+ * Mark Accept activity as failed
+ * @param {string} acceptId - Accept activity ID
+ * @param {string} errorMessage - Error message
+ * @returns {Promise<void>}
+ */
+async function markAcceptFailed(acceptId, errorMessage) {
+    initializeClients();
+
+    try {
+        const entity = await pendingAcceptsClient.getEntity('pending', acceptId);
+        entity.status = 'failed';
+        entity.errorMessage = errorMessage;
+        entity.failedAt = new Date().toISOString();
+        entity.retryCount = (entity.retryCount || 0) + 1;
+        await pendingAcceptsClient.updateEntity(entity, 'Replace');
+    } catch (error) {
+        throw new Error(`Failed to mark Accept as failed: ${error.message}`);
+    }
 }
 
 module.exports = {
     addFollower,
+    removeFollower,
+    isFollower,
+    getFollower,
+    getAllFollowers,
+    getFollowerCount,
+    buildFollowersCollection,
+    queueAcceptActivity,
+    getPendingAccepts,
+    markAcceptDelivered,
+    markAcceptFailed
     removeFollower,
     isFollower,
     getFollower,

@@ -281,20 +281,27 @@ module.exports = async function (context, req) {
                 await tableStorage.addFollower(followerActor, inbox, followActivityId, displayName);
                 context.log(`Added follower to Table Storage: ${followerActor}`);
                 
-                // Deliver Accept activity with HTTP signature
-                const acceptDelivered = await deliverAcceptActivity(activityData, context);
-                
-                if (acceptDelivered) {
+                // Queue Accept activity for GitHub Actions delivery (Free tier architecture)
+                // Note: Free tier doesn't support managed identities for Key Vault signing
+                // Accept activities are signed and delivered by GitHub Actions workflow
+                try {
+                    const acceptId = await tableStorage.queueAcceptActivity(activityData, followerActor, inbox);
+                    context.log(`Queued Accept activity for delivery: ${acceptId}`);
+                    
                     context.res = {
                         status: 202,
                         headers: { 'Content-Type': 'application/json' },
-                        body: { message: 'Follow accepted and Accept delivered' }
+                        body: { 
+                            message: 'Follow accepted, Accept queued for delivery',
+                            acceptId: acceptId
+                        }
                     };
-                } else {
+                } catch (queueError) {
+                    context.log.error(`Failed to queue Accept activity: ${queueError.message}`);
                     context.res = {
                         status: 202,
                         headers: { 'Content-Type': 'application/json' },
-                        body: { message: 'Follow accepted but failed to deliver Accept activity' }
+                        body: { message: 'Follow accepted but failed to queue Accept activity' }
                     };
                 }
                 return;

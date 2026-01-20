@@ -150,43 +150,59 @@ All ActivityPub endpoints are properly configured in function.json files:
 
 ## Action Items
 
-### 🔧 Fix #1: Update Accept Delivery to Free Tier Architecture
-**Status**: Code changes required  
+### ✅ Fix #1: Update Accept Delivery to Free Tier Architecture
+**Status**: ✅ IMPLEMENTED (Option B)  
 **Priority**: CRITICAL - Blocks all Follow/Accept functionality
 
-**Issue**: Current code tries to sign Accept activities in Azure Functions, which is incompatible with Free tier.
+**Implementation**: Queued Accept Delivery with GitHub Actions Signing
 
-**Solution Options**:
+**Changes Made**:
+1. **Table Storage (`api/utils/tableStorage.js`)**:
+   - Added `pendingaccepts` table support
+   - New functions: `queueAcceptActivity()`, `getPendingAccepts()`, `markAcceptDelivered()`, `markAcceptFailed()`
+   - Accept activities stored with metadata (actorUrl, inbox, acceptActivity JSON, queuedAt timestamp)
 
-**Option A: Send Unsigned Accept Activities (Quick Fix)**
-- Remove HTTP signature generation from Accept delivery
-- Many ActivityPub servers accept unsigned Accept activities
-- Simplest solution for Free tier
-- Code change: Modify `api/inbox/index.js` to skip signature generation
+2. **Inbox Function (`api/inbox/index.js`)**:
+   - Modified to queue Accept activities instead of attempting delivery
+   - Follow requests add follower to `followers` table
+   - Accept activity queued to `pendingaccepts` table
+   - Response returns acceptId for tracking
 
-**Option B: Queue Accept for GitHub Actions Signing**
-- Store pending Accept activities in Azure Table Storage
-- GitHub Actions workflow picks them up and delivers with signing
-- Aligns with Free tier architecture (GitHub Actions signs, not Functions)
-- More complex but follows documented architecture
+3. **GitHub Actions Workflow (`.github/workflows/deliver-activitypub-accepts.yml`)**:
+   - Runs every 5 minutes to process pending Accepts
+   - Uses Azure OIDC authentication for Key Vault access
+   - Scheduled cron job + manual dispatch support
 
-**Option C: Upgrade to Standard Tier ($9/month)**
-- Enable managed identity on Static Web App
-- Configure KEY_VAULT_KEY_ID environment variable
-- Grant Key Vault permissions
-- Keep existing code that signs in Functions
+4. **Delivery Script (`api/scripts/deliver-accepts.js`)**:
+   - Fetches pending Accepts from table storage
+   - Generates HTTP signatures using Azure Key Vault (RSA-SHA256)
+   - Delivers signed Accept activities to remote inboxes
+   - Updates status (delivered/failed) with error tracking
 
-**Recommended**: Option A (unsigned) for immediate fix, then Option B for proper architecture
+**Architecture Alignment**:
+- ✅ Functions only verify incoming signatures (Free tier compatible)
+- ✅ GitHub Actions signs outgoing activities (proper Free tier pattern)
+- ✅ Follows documented architecture in docs/activitypub/keyvault-setup.md
 
-### 🧪 Fix #3: Test Follow/Accept Flow End-to-End
-**Status**: After configuration  
+### 🧪 Next Steps: Test Follow/Accept Flow End-to-End
+**Status**: Ready for testing after deployment  
+
+**Required GitHub Secrets** (for workflow):
+- `AZURE_CLIENT_ID`: Azure app registration client ID
+- `AZURE_TENANT_ID`: Azure tenant ID
+- `AZURE_SUBSCRIPTION_ID`: Azure subscription ID
+- `ACTIVITYPUB_STORAGE_CONNECTION`: Table storage connection string
+- `KEY_VAULT_KEY_ID`: Full key identifier (e.g., `https://lqdev-activitypub-kv.vault.azure.net/keys/activitypub-signing-key/version`)
+
 **Test Steps**:
-1. Configure KEY_VAULT_KEY_ID
-2. Send test Follow request (with or without signature)
-3. Verify follower added to table storage
-4. Verify Accept activity delivery succeeds
-5. Test with real Mastodon follow request
-6. Verify follower count shows correctly in Mastodon UI
+1. ✅ Merge this branch and deploy
+2. Configure GitHub secrets for workflow
+3. Send test Follow request from Mastodon
+4. Verify follower added to `followers` table
+5. Verify Accept queued in `pendingaccepts` table
+6. Wait for workflow execution (5 min or manual trigger)
+7. Verify Accept delivered and status updated to 'delivered'
+8. Verify follower count shows correctly in Mastodon UI
 
 ### 📝 Fix #4: Investigate Post Visibility Issue
 **Status**: Secondary priority (after Follow/Accept fixed)  

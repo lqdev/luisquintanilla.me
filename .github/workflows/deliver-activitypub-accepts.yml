@@ -1,0 +1,57 @@
+name: Deliver ActivityPub Accept Activities
+
+on:
+  schedule:
+    # Run every 5 minutes to check for pending Accept activities
+    - cron: '*/5 * * * *'
+  workflow_dispatch: # Allow manual triggering for testing
+
+permissions:
+  id-token: write # Required for Azure OIDC authentication
+  contents: read
+
+jobs:
+  deliver-accepts:
+    runs-on: ubuntu-latest
+    name: Process and Deliver Pending Accepts
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: api/package.json
+
+      - name: Install dependencies
+        run: |
+          cd api
+          npm ci
+
+      - name: Azure Login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deliver Pending Accept Activities
+        env:
+          ACTIVITYPUB_STORAGE_CONNECTION: ${{ secrets.ACTIVITYPUB_STORAGE_CONNECTION }}
+          KEY_VAULT_NAME: lqdev-activitypub-kv
+          KEY_VAULT_KEY_ID: ${{ secrets.KEY_VAULT_KEY_ID }}
+          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        run: |
+          cd api
+          node scripts/deliver-accepts.js
+
+      - name: Report Results
+        if: always()
+        run: |
+          echo "Accept delivery workflow completed"
+          echo "Check logs above for delivery results"
