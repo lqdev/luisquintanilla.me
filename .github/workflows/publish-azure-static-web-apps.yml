@@ -48,6 +48,12 @@ jobs:
           echo "Outbox size: $(du -h api/data/outbox/index.json | cut -f1)"
           echo "Followers size: $(du -h api/data/followers.json | cut -f1)"
 
+      - name: Install API dependencies
+        run: |
+          cd api
+          npm install
+          echo "✅ API dependencies installed"
+
       - name: Check website sizes
         run: |
           echo "🚀 TOTAL SITE SIZE: $(du -sh ./_public | cut -f1)"

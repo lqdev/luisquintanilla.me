@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd api
-          npm ci
+          npm install
 
       - name: Azure Login
         uses: azure/login@v2
