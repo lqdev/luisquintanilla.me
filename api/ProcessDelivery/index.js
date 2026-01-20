@@ -27,79 +27,76 @@ const tableStorage = require('../utils/tableStorage');
  * @returns {Promise<Object>} Result with success status and HTTP status code
  */
 async function deliverActivityToInbox(inboxUrl, activity, context) {
-    return new Promise(async (resolve, reject) => {
-        try {
-            const { URL } = require('url');
-            const url = new URL(inboxUrl);
-            
-            const body = JSON.stringify(activity);
-            
-            // Build request headers
-            const headers = {
-                'Host': url.hostname,
-                'Date': new Date().toUTCString(),
-                'Content-Type': 'application/activity+json',
-                'Content-Length': Buffer.byteLength(body),
-                'User-Agent': 'lqdev.me ActivityPub/1.0'
-            };
-            
-            // Generate HTTP signature using Key Vault (also sets Digest header)
-            let signatureHeader;
-            try {
-                signatureHeader = await generateHttpSignature('POST', inboxUrl, headers, body);
-                headers['Signature'] = signatureHeader;
-            } catch (signError) {
-                context.log.error(`Failed to generate signature: ${signError.message}`);
-                reject(new Error(`Signature generation failed: ${signError.message}`));
-                return;
-            }
-            
-            // Send the signed request
-            const options = {
-                hostname: url.hostname,
-                port: url.port || 443,
-                path: url.pathname + url.search,
-                method: 'POST',
-                headers: headers
-            };
-            
-            const req = https.request(options, (res) => {
-                let data = '';
-                res.on('data', (chunk) => { data += chunk; });
-                res.on('end', () => {
-                    const result = {
-                        success: res.statusCode >= 200 && res.statusCode < 300,
-                        statusCode: res.statusCode,
-                        responseBody: data
-                    };
-                    
-                    if (result.success) {
-                        context.log(`✅ Delivery successful: ${res.statusCode}`);
-                    } else {
-                        context.log.warn(`⚠️ Delivery returned ${res.statusCode}: ${data}`);
-                    }
-                    
-                    resolve(result);
-                });
-            });
-            
-            req.on('error', (err) => {
-                context.log.error(`❌ Network error delivering activity: ${err.message}`);
-                reject(err);
-            });
-            
-            req.setTimeout(30000, () => {
-                req.destroy();
-                const timeoutError = new Error('Timeout delivering activity (30s)');
-                context.log.error(timeoutError.message);
-                reject(timeoutError);
-            });
-            
-            req.write(body);
-            req.end();
-        } catch (error) {
-            reject(error);
+    const { URL } = require('url');
+    const url = new URL(inboxUrl);
+    
+    const body = JSON.stringify(activity);
+    
+    // Build request headers (keys must be lowercase for generateHttpSignature)
+    const headers = {
+        'host': url.hostname,
+        'date': new Date().toUTCString(),
+        'content-type': 'application/activity+json',
+        'content-length': Buffer.byteLength(body),
+        'user-agent': 'lqdev.me ActivityPub/1.0'
+    };
+    
+    // Generate HTTP signature using Key Vault (also sets digest header)
+    const signatureHeader = await generateHttpSignature('POST', inboxUrl, headers, body);
+    headers['signature'] = signatureHeader;
+    
+    // Send the signed request (HTTP header names are case-insensitive in the request)
+    const options = {
+        hostname: url.hostname,
+        port: url.port || 443,
+        path: url.pathname + url.search,
+        method: 'POST',
+        headers: {
+            'Host': url.hostname,
+            'Date': headers['date'],
+            'Content-Type': headers['content-type'],
+            'Content-Length': headers['content-length'],
+            'User-Agent': headers['user-agent'],
+            'Digest': headers['digest'],
+            'Signature': headers['signature']
         }
+    };
+    
+    return new Promise((resolve, reject) => {
+        const req = https.request(options, (res) => {
+            let data = '';
+            res.on('data', (chunk) => { data += chunk; });
+            res.on('end', () => {
+                const result = {
+                    success: res.statusCode >= 200 && res.statusCode < 300,
+                    statusCode: res.statusCode,
+                    responseBody: data
+                };
+                
+                if (result.success) {
+                    context.log(`✅ Delivery successful: ${res.statusCode}`);
+                } else {
+                    context.log.warn(`⚠️ Delivery returned ${res.statusCode}: ${data}`);
+                }
+                
+                resolve(result);
+            });
+        });
+        
+        req.on('error', (err) => {
+            context.log.error(`❌ Network error delivering activity: ${err.message}`);
+            reject(err);
+        });
+        
+        req.setTimeout(30000, () => {
+            req.destroy();
+            const timeoutError = new Error('Timeout delivering activity (30s)');
+            context.log.error(timeoutError.message);
+            reject(timeoutError);
+        });
+        
+        req.write(body);
+        req.end();
     });
 }
 
@@ -200,24 +197,34 @@ module.exports = async function (context, queueItem) {
                     context.log.warn(`⚠️ Temporary failure for ${followerActor}: ${errorMsg}`);
                     
                     // Try to get existing status to update attempt count
-                    let currentAttemptCount = attemptCount;
+                    let existingStatus = null;
                     try {
-                        const existingStatus = await tableStorage.getDeliveryStatus(activityId, targetInbox);
-                        if (existingStatus) {
-                            currentAttemptCount = existingStatus.attemptCount;
-                        }
+                        existingStatus = await tableStorage.getDeliveryStatus(activityId, targetInbox);
                     } catch (error) {
-                        // If we can't get existing status, just use the attempt count from queue
+                        // Status doesn't exist yet, will create a new one
                     }
                     
-                    await tableStorage.updateDeliveryStatus(
-                        activityId,
-                        targetInbox,
-                        'pending',
-                        currentAttemptCount + 1,
-                        result.statusCode,
-                        errorMsg
-                    );
+                    if (existingStatus) {
+                        // Update existing status
+                        await tableStorage.updateDeliveryStatus(
+                            activityId,
+                            targetInbox,
+                            'pending',
+                            existingStatus.attemptCount + 1,
+                            result.statusCode,
+                            errorMsg
+                        );
+                    } else {
+                        // Create new status entry (first attempt)
+                        await tableStorage.addDeliveryStatus(
+                            activityId,
+                            targetInbox,
+                            followerActor,
+                            'pending',
+                            result.statusCode,
+                            errorMsg
+                        );
+                    }
                     
                     // Throw error to trigger automatic retry
                     throw new Error(`Temporary failure: ${errorMsg}`);
@@ -228,24 +235,34 @@ module.exports = async function (context, queueItem) {
             context.log.error(`❌ Error delivering to ${followerActor}: ${error.message}`);
             
             // Try to get existing status to update attempt count
-            let currentAttemptCount = attemptCount;
+            let existingStatus = null;
             try {
-                const existingStatus = await tableStorage.getDeliveryStatus(activityId, targetInbox);
-                if (existingStatus) {
-                    currentAttemptCount = existingStatus.attemptCount;
-                }
+                existingStatus = await tableStorage.getDeliveryStatus(activityId, targetInbox);
             } catch (statusError) {
-                // If we can't get existing status, just use the attempt count from queue
+                // Status doesn't exist yet, will create a new one
             }
             
-            await tableStorage.updateDeliveryStatus(
-                activityId,
-                targetInbox,
-                'pending',
-                currentAttemptCount + 1,
-                0,
-                error.message
-            );
+            if (existingStatus) {
+                // Update existing status
+                await tableStorage.updateDeliveryStatus(
+                    activityId,
+                    targetInbox,
+                    'pending',
+                    existingStatus.attemptCount + 1,
+                    0,
+                    error.message
+                );
+            } else {
+                // Create new status entry (first attempt)
+                await tableStorage.addDeliveryStatus(
+                    activityId,
+                    targetInbox,
+                    followerActor,
+                    'pending',
+                    0,
+                    error.message
+                );
+            }
             
             // Throw error to trigger automatic retry
             throw error;

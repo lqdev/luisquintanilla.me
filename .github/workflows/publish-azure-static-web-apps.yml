@@ -107,10 +107,10 @@ jobs:
           fi
           
           # Trigger delivery
-          RESPONSE=$(curl -s -X POST "https://luisquintanillame-static.azurestaticapps.net/api/activitypub/trigger-delivery" \
+          RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" \
+            -X POST "https://luisquintanillame-static.azurestaticapps.net/api/activitypub/trigger-delivery" \
             -H "Content-Type: application/json" \
-            -d "{\"activityIds\": $ACTIVITY_IDS}" \
-            -w "\nHTTP_STATUS:%{http_code}")
+            -d "{\"activityIds\": $ACTIVITY_IDS}")
           
           HTTP_STATUS=$(echo "$RESPONSE" | grep "HTTP_STATUS" | cut -d: -f2)
           RESPONSE_BODY=$(echo "$RESPONSE" | sed '/HTTP_STATUS/d')

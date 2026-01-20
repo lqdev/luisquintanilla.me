@@ -90,8 +90,8 @@ async function testQueueDeliveryEndpoint() {
             let data = '';
             res.on('data', (chunk) => { data += chunk; });
             res.on('end', () => {
-                if (res.statusCode === 200 || res.statusCode === 400) {
-                    console.log(`✅ Endpoint reachable (HTTP ${res.statusCode})`);
+                if (res.statusCode === 200) {
+                    console.log(`✅ Endpoint reachable and working (HTTP 200)`);
                     try {
                         const response = JSON.parse(data);
                         console.log(`   Response:`, JSON.stringify(response, null, 2));
@@ -99,8 +99,17 @@ async function testQueueDeliveryEndpoint() {
                         console.log(`   Response: ${data}`);
                     }
                     resolve(true);
+                } else if (res.statusCode === 400) {
+                    console.log(`⚠️ Endpoint returned 400 Bad Request (expected with empty array)`);
+                    try {
+                        const response = JSON.parse(data);
+                        console.log(`   Response:`, JSON.stringify(response, null, 2));
+                    } catch (e) {
+                        console.log(`   Response: ${data}`);
+                    }
+                    resolve(true); // Still consider this a pass since endpoint is reachable
                 } else {
-                    console.error(`⚠️ Unexpected status code: ${res.statusCode}`);
+                    console.error(`❌ Unexpected status code: ${res.statusCode}`);
                     console.log(`   Response: ${data}`);
                     resolve(false);
                 }

@@ -62,14 +62,22 @@ function isValidInboxUrl(inboxUrl) {
             return false;
         }
         
-        // Block private IP ranges
-        const hostname = url.hostname;
+        const hostname = url.hostname.toLowerCase();
+        
+        // Block localhost and loopback
         if (
             hostname === 'localhost' ||
             hostname === '127.0.0.1' ||
+            hostname === '::1' ||
+            hostname === '[::1]'
+        ) {
+            return false;
+        }
+        
+        // Block private IP ranges (standard dotted decimal notation)
+        if (
             hostname.startsWith('192.168.') ||
-            hostname.startsWith('10.') ||
-            hostname === '::1'
+            hostname.startsWith('10.')
         ) {
             return false;
         }
@@ -81,6 +89,17 @@ function isValidInboxUrl(inboxUrl) {
             if (secondOctet >= 16 && secondOctet <= 31) {
                 return false;
             }
+        }
+        
+        // Block numeric IP addresses (decimal/hex notation) by checking if hostname is all digits
+        // This prevents bypasses like http://2130706433 (127.0.0.1 in decimal)
+        if (/^\d+$/.test(hostname)) {
+            return false;
+        }
+        
+        // Block hexadecimal IP representations (0x7f000001 = 127.0.0.1)
+        if (/^0x[0-9a-f]+$/i.test(hostname)) {
+            return false;
         }
         
         return true;
@@ -168,10 +187,16 @@ module.exports = async function (context, req) {
             }
 
             // Queue all tasks for this activity
-            const queued = await queueStorage.queueDeliveryTasks(tasks);
-            totalTasksQueued += queued;
+            const queueResult = await queueStorage.queueDeliveryTasks(tasks);
+            totalTasksQueued += queueResult.successCount;
             
-            context.log(`Queued ${queued} delivery tasks for activity ${activityId}`);
+            context.log(`Queued ${queueResult.successCount} delivery tasks for activity ${activityId}`);
+            if (queueResult.failedTasks.length > 0) {
+                context.log.warn(`Failed to queue ${queueResult.failedTasks.length} tasks:`);
+                queueResult.failedTasks.forEach(failure => {
+                    context.log.warn(`  - ${failure.followerActor}: ${failure.error}`);
+                });
+            }
         }
 
         // Return success response

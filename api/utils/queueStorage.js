@@ -83,13 +83,14 @@ async function queueDeliveryTask(activityId, activityJson, targetInbox, follower
 /**
  * Queue multiple delivery tasks (bulk operation)
  * @param {Array<Object>} tasks - Array of task objects with activityId, activityJson, targetInbox, followerActor
- * @returns {Promise<number>} Number of tasks queued successfully
+ * @returns {Promise<Object>} Object with successCount and failedTasks array
  */
 async function queueDeliveryTasks(tasks) {
     const client = getQueueClient('activitypub-delivery');
     await ensureQueueExists(client);
 
     let successCount = 0;
+    const failedTasks = [];
     
     for (const task of tasks) {
         try {
@@ -102,10 +103,18 @@ async function queueDeliveryTasks(tasks) {
             successCount++;
         } catch (error) {
             console.error(`Failed to queue task for ${task.followerActor}: ${error.message}`);
+            failedTasks.push({
+                followerActor: task.followerActor,
+                targetInbox: task.targetInbox,
+                error: error.message
+            });
         }
     }
 
-    return successCount;
+    return {
+        successCount,
+        failedTasks
+    };
 }
 
 /**
