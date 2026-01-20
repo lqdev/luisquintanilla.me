@@ -204,6 +204,12 @@ async function buildFollowersCollection() {
     return {
         "@context": "https://www.w3.org/ns/activitystreams",
         "id": "https://lqdev.me/api/activitypub/followers",
+        "type": "OrderedCollection",
+        "totalItems": followers.length,
+        "orderedItems": followers.map(f => f.actorUrl)
+    };
+}
+
 /**
  * Queue an Accept activity for delivery by GitHub Actions
  * @param {Object} followActivity - Original Follow activity
