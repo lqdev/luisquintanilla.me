@@ -316,6 +316,168 @@ async function markAcceptFailed(acceptId, errorMessage) {
     }
 }
 
+/**
+ * Delivery status tracking
+ */
+
+let deliveryStatusClient = null;
+
+/**
+ * Initialize delivery status table client
+ */
+function initializeDeliveryStatusClient() {
+    if (deliveryStatusClient) {
+        return;
+    }
+
+    const connectionString = process.env.ACTIVITYPUB_STORAGE_CONNECTION;
+    
+    if (!connectionString) {
+        throw new Error('ACTIVITYPUB_STORAGE_CONNECTION environment variable not set');
+    }
+
+    deliveryStatusClient = TableClient.fromConnectionString(
+        connectionString,
+        'deliverystatus'
+    );
+}
+
+/**
+ * Add delivery status entry
+ * @param {string} activityId - Activity ID
+ * @param {string} targetInbox - Target inbox URL
+ * @param {string} followerActor - Follower actor URL
+ * @param {string} status - Status (pending/delivered/failed)
+ * @param {number} httpStatusCode - HTTP status code (optional)
+ * @param {string} errorMessage - Error message (optional)
+ * @returns {Promise<void>}
+ */
+async function addDeliveryStatus(activityId, targetInbox, followerActor, status, httpStatusCode = null, errorMessage = null) {
+    initializeDeliveryStatusClient();
+    await ensureTableExists(deliveryStatusClient);
+
+    // Use URL-safe encoding for rowKey
+    const rowKey = Buffer.from(targetInbox).toString('base64').replace(/[\/\+\=]/g, '_');
+
+    const entity = {
+        partitionKey: activityId,
+        rowKey: rowKey,
+        activityId: activityId,
+        targetInbox: targetInbox,
+        followerActor: followerActor,
+        status: status,
+        attemptCount: 1,
+        lastAttempt: new Date().toISOString(),
+        httpStatusCode: httpStatusCode || 0,
+        errorMessage: errorMessage || '',
+        deliveredAt: status === 'delivered' ? new Date().toISOString() : ''
+    };
+
+    try {
+        await deliveryStatusClient.upsertEntity(entity, 'Merge');
+    } catch (error) {
+        throw new Error(`Failed to add delivery status: ${error.message}`);
+    }
+}
+
+/**
+ * Get delivery status
+ * @param {string} activityId - Activity ID
+ * @param {string} targetInbox - Target inbox URL
+ * @returns {Promise<Object|null>} Delivery status entity or null
+ */
+async function getDeliveryStatus(activityId, targetInbox) {
+    initializeDeliveryStatusClient();
+
+    const rowKey = Buffer.from(targetInbox).toString('base64').replace(/[\/\+\=]/g, '_');
+
+    try {
+        const entity = await deliveryStatusClient.getEntity(activityId, rowKey);
+        return {
+            activityId: entity.activityId,
+            targetInbox: entity.targetInbox,
+            followerActor: entity.followerActor,
+            status: entity.status,
+            attemptCount: entity.attemptCount || 0,
+            lastAttempt: entity.lastAttempt,
+            httpStatusCode: entity.httpStatusCode || 0,
+            errorMessage: entity.errorMessage || '',
+            deliveredAt: entity.deliveredAt || null
+        };
+    } catch (error) {
+        if (error.statusCode === 404) {
+            return null;
+        }
+        throw new Error(`Failed to get delivery status: ${error.message}`);
+    }
+}
+
+/**
+ * Update delivery status
+ * @param {string} activityId - Activity ID
+ * @param {string} targetInbox - Target inbox URL
+ * @param {string} status - Status (pending/delivered/failed)
+ * @param {number} attemptCount - Attempt count
+ * @param {number} httpStatusCode - HTTP status code (optional)
+ * @param {string} errorMessage - Error message (optional)
+ * @returns {Promise<void>}
+ */
+async function updateDeliveryStatus(activityId, targetInbox, status, attemptCount, httpStatusCode = null, errorMessage = null) {
+    initializeDeliveryStatusClient();
+
+    const rowKey = Buffer.from(targetInbox).toString('base64').replace(/[\/\+\=]/g, '_');
+
+    try {
+        const entity = await deliveryStatusClient.getEntity(activityId, rowKey);
+        entity.status = status;
+        entity.attemptCount = attemptCount;
+        entity.lastAttempt = new Date().toISOString();
+        if (httpStatusCode !== null) {
+            entity.httpStatusCode = httpStatusCode;
+        }
+        if (errorMessage !== null) {
+            entity.errorMessage = errorMessage;
+        }
+        if (status === 'delivered') {
+            entity.deliveredAt = new Date().toISOString();
+        }
+        
+        await deliveryStatusClient.updateEntity(entity, 'Replace');
+    } catch (error) {
+        throw new Error(`Failed to update delivery status: ${error.message}`);
+    }
+}
+
+/**
+ * Get all delivery statuses for an activity
+ * @param {string} activityId - Activity ID
+ * @returns {Promise<Array>} Array of delivery status entities
+ */
+async function getDeliveryStatusesForActivity(activityId) {
+    initializeDeliveryStatusClient();
+
+    const statuses = [];
+    const entities = deliveryStatusClient.listEntities({
+        queryOptions: { filter: `PartitionKey eq '${activityId}'` }
+    });
+
+    for await (const entity of entities) {
+        statuses.push({
+            activityId: entity.activityId,
+            targetInbox: entity.targetInbox,
+            followerActor: entity.followerActor,
+            status: entity.status,
+            attemptCount: entity.attemptCount || 0,
+            lastAttempt: entity.lastAttempt,
+            httpStatusCode: entity.httpStatusCode || 0,
+            errorMessage: entity.errorMessage || '',
+            deliveredAt: entity.deliveredAt || null
+        });
+    }
+
+    return statuses;
+}
+
 module.exports = {
     addFollower,
     removeFollower,
@@ -327,5 +489,9 @@ module.exports = {
     queueAcceptActivity,
     getPendingAccepts,
     markAcceptDelivered,
-    markAcceptFailed
+    markAcceptFailed,
+    addDeliveryStatus,
+    getDeliveryStatus,
+    updateDeliveryStatus,
+    getDeliveryStatusesForActivity
 };

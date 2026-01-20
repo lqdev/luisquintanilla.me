@@ -1,0 +1,11 @@
+{
+  "bindings": [
+    {
+      "name": "queueItem",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "activitypub-delivery",
+      "connection": "ACTIVITYPUB_STORAGE_CONNECTION"
+    }
+  ]
+}

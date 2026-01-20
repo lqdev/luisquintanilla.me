@@ -74,6 +74,57 @@ jobs:
       - name: Send Webmentions
         run: dotnet fsi Scripts/send-webmentions.fsx
 
+      - name: Trigger ActivityPub Post Delivery
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          echo "📢 Triggering post delivery to followers..."
+          
+          # Get recent activity IDs from outbox (last 5 posts)
+          ACTIVITY_IDS=$(node -e "
+            try {
+              const outbox = require('./_public/api/data/outbox/index.json');
+              if (!outbox || !outbox.orderedItems || outbox.orderedItems.length === 0) {
+                console.log('[]');
+                process.exit(0);
+              }
+              const recentIds = outbox.orderedItems
+                .slice(0, 5)
+                .map(item => item.id || (item.object && item.object.id))
+                .filter(id => id);
+              console.log(JSON.stringify(recentIds));
+            } catch (error) {
+              console.error('Error loading outbox:', error.message);
+              console.log('[]');
+            }
+          ")
+          
+          echo "Activity IDs: $ACTIVITY_IDS"
+          
+          # Check if we have any activity IDs
+          if [ "$ACTIVITY_IDS" = "[]" ] || [ -z "$ACTIVITY_IDS" ]; then
+            echo "⚠️ No activity IDs found in outbox - skipping delivery"
+            exit 0
+          fi
+          
+          # Trigger delivery
+          RESPONSE=$(curl -s -X POST "https://luisquintanillame-static.azurestaticapps.net/api/activitypub/trigger-delivery" \
+            -H "Content-Type: application/json" \
+            -d "{\"activityIds\": $ACTIVITY_IDS}" \
+            -w "\nHTTP_STATUS:%{http_code}")
+          
+          HTTP_STATUS=$(echo "$RESPONSE" | grep "HTTP_STATUS" | cut -d: -f2)
+          RESPONSE_BODY=$(echo "$RESPONSE" | sed '/HTTP_STATUS/d')
+          
+          echo "Response: $RESPONSE_BODY"
+          echo "HTTP Status: $HTTP_STATUS"
+          
+          if [ "$HTTP_STATUS" = "200" ]; then
+            echo "✅ Delivery triggered successfully"
+          else
+            echo "⚠️ Delivery trigger returned status $HTTP_STATUS"
+            echo "This is not critical - build will continue"
+          fi
+
   # close_pull_request_job:
   #   if: github.event_name == 'pull_request' && github.event.action == 'closed'
   #   runs-on: ubuntu-latest
