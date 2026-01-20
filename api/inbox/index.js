@@ -3,7 +3,17 @@ const path = require('path');
 const https = require('https');
 const crypto = require('crypto');
 const { verifyHttpSignature, generateHttpSignature } = require('../utils/signatures');
-const tableStorage = require('../utils/tableStorage');
+
+// Enhanced error handling for module loading
+let tableStorage;
+try {
+    tableStorage = require('../utils/tableStorage');
+    console.log('✅ tableStorage module loaded successfully');
+} catch (error) {
+    console.error('❌ CRITICAL: Failed to load tableStorage module:', error.message);
+    console.error('Stack:', error.stack);
+    throw error; // Re-throw to prevent function from loading with broken dependency
+}
 
 /**
  * Deliver Accept activity directly to follower inbox
