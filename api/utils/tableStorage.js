@@ -8,6 +8,7 @@ const crypto = require('crypto');
  * Tables:
  * - followers: Stores follower actor information
  * - pendingaccepts: Stores Accept activities waiting for GitHub Actions delivery
+ * - deliverystatus: Stores delivery status for post distribution
  * 
  * Configuration via environment variables:
  * - ACTIVITYPUB_STORAGE_CONNECTION: Connection string for Table Storage
@@ -16,6 +17,20 @@ const crypto = require('crypto');
 
 let followersClient = null;
 let pendingAcceptsClient = null;
+
+/**
+ * Convert string to URL-safe base64 encoding for use as Table Storage RowKey
+ * Implements RFC 4648 base64url encoding
+ * @param {string} str - String to encode
+ * @returns {string} URL-safe base64 encoded string
+ */
+function toUrlSafeBase64(str) {
+    return Buffer.from(str)
+        .toString('base64')
+        .replace(/\+/g, '-')  // Replace + with -
+        .replace(/\//g, '_')  // Replace / with _
+        .replace(/=/g, '');   // Remove padding =
+}
 
 /**
  * Initialize Table Storage clients
@@ -74,7 +89,7 @@ async function addFollower(actorUrl, inbox, followActivityId, displayName = null
 
     const entity = {
         partitionKey: 'follower',
-        rowKey: Buffer.from(actorUrl).toString('base64').replace(/[\/\+\=]/g, '_'), // URL-safe encoding
+        rowKey: toUrlSafeBase64(actorUrl),
         actorUrl: actorUrl,
         inbox: inbox || '',
         followedAt: new Date().toISOString(),
@@ -98,7 +113,7 @@ async function addFollower(actorUrl, inbox, followActivityId, displayName = null
 async function removeFollower(actorUrl) {
     initializeClients();
 
-    const rowKey = Buffer.from(actorUrl).toString('base64').replace(/[\/\+\=]/g, '_');
+    const rowKey = toUrlSafeBase64(actorUrl);
     
     try {
         await followersClient.deleteEntity('follower', rowKey);
@@ -119,7 +134,7 @@ async function removeFollower(actorUrl) {
 async function isFollower(actorUrl) {
     initializeClients();
 
-    const rowKey = Buffer.from(actorUrl).toString('base64').replace(/[\/\+\=]/g, '_');
+    const rowKey = toUrlSafeBase64(actorUrl);
     
     try {
         await followersClient.getEntity('follower', rowKey);
@@ -140,7 +155,7 @@ async function isFollower(actorUrl) {
 async function getFollower(actorUrl) {
     initializeClients();
 
-    const rowKey = Buffer.from(actorUrl).toString('base64').replace(/[\/\+\=]/g, '_');
+    const rowKey = toUrlSafeBase64(actorUrl);
     
     try {
         const entity = await followersClient.getEntity('follower', rowKey);
@@ -316,6 +331,171 @@ async function markAcceptFailed(acceptId, errorMessage) {
     }
 }
 
+/**
+ * Delivery status tracking
+ */
+
+let deliveryStatusClient = null;
+
+/**
+ * Initialize delivery status table client
+ */
+function initializeDeliveryStatusClient() {
+    if (deliveryStatusClient) {
+        return;
+    }
+
+    const connectionString = process.env.ACTIVITYPUB_STORAGE_CONNECTION;
+    
+    if (!connectionString) {
+        throw new Error('ACTIVITYPUB_STORAGE_CONNECTION environment variable not set');
+    }
+
+    deliveryStatusClient = TableClient.fromConnectionString(
+        connectionString,
+        'deliverystatus'
+    );
+}
+
+/**
+ * Add delivery status entry
+ * @param {string} activityId - Activity ID
+ * @param {string} targetInbox - Target inbox URL
+ * @param {string} followerActor - Follower actor URL
+ * @param {string} status - Status (pending/delivered/failed)
+ * @param {number} httpStatusCode - HTTP status code (optional)
+ * @param {string} errorMessage - Error message (optional)
+ * @returns {Promise<void>}
+ */
+async function addDeliveryStatus(activityId, targetInbox, followerActor, status, httpStatusCode = null, errorMessage = null) {
+    initializeDeliveryStatusClient();
+    await ensureTableExists(deliveryStatusClient);
+
+    // Use URL-safe encoding for rowKey
+    const rowKey = toUrlSafeBase64(targetInbox);
+
+    const entity = {
+        partitionKey: activityId,
+        rowKey: rowKey,
+        activityId: activityId,
+        targetInbox: targetInbox,
+        followerActor: followerActor,
+        status: status,
+        attemptCount: 1,
+        lastAttempt: new Date().toISOString(),
+        httpStatusCode: httpStatusCode || 0,
+        errorMessage: errorMessage || '',
+        deliveredAt: status === 'delivered' ? new Date().toISOString() : ''
+    };
+
+    try {
+        await deliveryStatusClient.upsertEntity(entity, 'Merge');
+    } catch (error) {
+        throw new Error(`Failed to add delivery status: ${error.message}`);
+    }
+}
+
+/**
+ * Get delivery status
+ * @param {string} activityId - Activity ID
+ * @param {string} targetInbox - Target inbox URL
+ * @returns {Promise<Object|null>} Delivery status entity or null
+ */
+async function getDeliveryStatus(activityId, targetInbox) {
+    initializeDeliveryStatusClient();
+
+    const rowKey = toUrlSafeBase64(targetInbox);
+
+    try {
+        const entity = await deliveryStatusClient.getEntity(activityId, rowKey);
+        return {
+            activityId: entity.activityId,
+            targetInbox: entity.targetInbox,
+            followerActor: entity.followerActor,
+            status: entity.status,
+            attemptCount: entity.attemptCount || 0,
+            lastAttempt: entity.lastAttempt,
+            httpStatusCode: entity.httpStatusCode || 0,
+            errorMessage: entity.errorMessage || '',
+            deliveredAt: entity.deliveredAt || null
+        };
+    } catch (error) {
+        if (error.statusCode === 404) {
+            return null;
+        }
+        throw new Error(`Failed to get delivery status: ${error.message}`);
+    }
+}
+
+/**
+ * Update delivery status
+ * @param {string} activityId - Activity ID
+ * @param {string} targetInbox - Target inbox URL
+ * @param {string} status - Status (pending/delivered/failed)
+ * @param {number} attemptCount - Attempt count
+ * @param {number} httpStatusCode - HTTP status code (optional)
+ * @param {string} errorMessage - Error message (optional)
+ * @returns {Promise<void>}
+ */
+async function updateDeliveryStatus(activityId, targetInbox, status, attemptCount, httpStatusCode = null, errorMessage = null) {
+    initializeDeliveryStatusClient();
+
+    const rowKey = toUrlSafeBase64(targetInbox);
+
+    try {
+        const entity = await deliveryStatusClient.getEntity(activityId, rowKey);
+        entity.status = status;
+        entity.attemptCount = attemptCount;
+        entity.lastAttempt = new Date().toISOString();
+        if (httpStatusCode !== null) {
+            entity.httpStatusCode = httpStatusCode;
+        }
+        if (errorMessage !== null) {
+            entity.errorMessage = errorMessage;
+        }
+        if (status === 'delivered') {
+            entity.deliveredAt = new Date().toISOString();
+        }
+        
+        // Use optimistic concurrency control with ETag to prevent race conditions
+        await deliveryStatusClient.updateEntity(entity, 'Merge', {
+            etag: entity.etag
+        });
+    } catch (error) {
+        throw new Error(`Failed to update delivery status: ${error.message}`);
+    }
+}
+
+/**
+ * Get all delivery statuses for an activity
+ * @param {string} activityId - Activity ID
+ * @returns {Promise<Array>} Array of delivery status entities
+ */
+async function getDeliveryStatusesForActivity(activityId) {
+    initializeDeliveryStatusClient();
+
+    const statuses = [];
+    const entities = deliveryStatusClient.listEntities({
+        queryOptions: { filter: `PartitionKey eq '${activityId}'` }
+    });
+
+    for await (const entity of entities) {
+        statuses.push({
+            activityId: entity.activityId,
+            targetInbox: entity.targetInbox,
+            followerActor: entity.followerActor,
+            status: entity.status,
+            attemptCount: entity.attemptCount || 0,
+            lastAttempt: entity.lastAttempt,
+            httpStatusCode: entity.httpStatusCode || 0,
+            errorMessage: entity.errorMessage || '',
+            deliveredAt: entity.deliveredAt || null
+        });
+    }
+
+    return statuses;
+}
+
 module.exports = {
     addFollower,
     removeFollower,
@@ -327,5 +507,9 @@ module.exports = {
     queueAcceptActivity,
     getPendingAccepts,
     markAcceptDelivered,
-    markAcceptFailed
+    markAcceptFailed,
+    addDeliveryStatus,
+    getDeliveryStatus,
+    updateDeliveryStatus,
+    getDeliveryStatusesForActivity
 };
