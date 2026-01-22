@@ -1,5 +1,111 @@
 # Changelog
 
+## 2026-01-21 - Azure Static Web Apps Queue Trigger Compatibility Fix (PR #1867) ✅
+
+**Project**: ActivityPub Phase 4B/4C - Queue-Based Delivery System  
+**Duration**: 2026-01-21 (1 intensive session)  
+**Status**: ✅ COMPLETE - GitHub Actions worker pattern with Copilot enhancements  
+**Type**: Critical Production Bug Fix + Architecture Enhancement  
+**Issue**: Deployment failure from PR #1858 due to queue trigger incompatibility
+
+### Problem Fixed
+**Discovery**: Azure Static Web Apps free tier only supports HTTP-triggered functions, not queue-triggered functions. PR #1858 deployment failed with error: "the file 'ProcessDelivery/function.json' has specified an invalid trigger of type 'queueTrigger'".
+
+### Solution Implemented - GitHub Actions Worker Pattern
+**Architecture Change ✅**
+- ✅ **Removed**: Incompatible `api/ProcessDelivery/` queue-triggered Azure Function (279 lines)
+- ✅ **Created**: `api/scripts/process-delivery.js` GitHub Actions worker script (403 lines)
+- ✅ **Added**: `.github/workflows/process-activitypub-deliveries.yml` scheduled workflow (52 lines)
+- ✅ **Enhanced**: `api/utils/queueStorage.js` with receiveMessages/deleteMessage functions
+
+**Workflow Pattern (Matching Phase 4A) ✅**
+- Cron schedule: Every 5 minutes (`*/5 * * * *`)
+- Manual trigger: `workflow_dispatch` for testing
+- Processes up to 32 messages per run
+- HTTP signatures via Azure Key Vault integration
+- Delivery status tracking in Azure Table Storage
+
+### Copilot Code Review Enhancements Applied
+**Security & Reliability Improvements (8 fixes) ✅**
+1. ✅ **Concurrency Control**: Added workflow-level concurrency group to prevent overlapping runs
+2. ✅ **Enhanced SSRF Protection**: Added numeric IP (2130706433) and hexadecimal IP (0x7f000001) encoding blocks
+3. ✅ **Response Stream Cleanup**: Added `res.destroy()` for proper cleanup when size limit exceeded
+4. ✅ **Log Truncation**: Limited error bodies to 500 chars in console logs to prevent bloat
+5. ✅ **Storage Truncation**: Limited error messages to 1000 chars before Azure Table Storage (1MB entity limit)
+6. ✅ **Delete Error Handling**: Separated try-catch for `deleteMessage` to avoid counting deletion failures as delivery failures
+7. ✅ **Documentation Accuracy**: Fixed line count references in QUEUE_TRIGGER_FIX.md
+8. ✅ **Build Validation**: Verified all changes compile successfully
+
+### Technical Benefits
+- **Azure Compatibility**: Uses only HTTP functions, no queue/timer triggers required
+- **Cost Effective**: Zero Azure Functions consumption costs, free GitHub Actions
+- **Proven Architecture**: Matches working Phase 4A pattern (deliver-accepts.yml)
+- **Enhanced Security**: Protection against SSRF attacks with numeric/hex IP encoding
+- **Better Reliability**: Proper error handling and concurrency control
+- **Observable**: Full logging in GitHub Actions runs with truncated error messages
+- **Scalable**: Processes 288 messages per hour (32 messages × 12 runs)
+
+### Integration Flow
+```
+New Post Published → Build & Deploy → QueueDeliveryTasks HTTP Endpoint
+→ Messages added to 'activitypub-delivery' queue
+→ GitHub Actions cron (every 5 minutes)
+→ process-delivery.js polls queue → Process batch of 32 messages
+→ Deliver to follower inboxes with HTTP signatures
+→ Update delivery status in Azure Table Storage
+→ Delete successful/permanent-fail messages from queue
+```
+
+### Testing & Validation
+**Deployment Testing ✅**
+- ✅ PR merged successfully to main
+- ✅ Azure Static Web Apps deployment succeeded without queue trigger errors
+- ✅ Workflow registered and active with correct cron schedule
+
+**Integration Testing ✅**
+- ✅ Table Storage connection verified (follower data)
+- ✅ Queue Storage connection verified (delivery queue)
+- ✅ Outbox data loaded (1,558 activities)
+- ✅ Manual workflow trigger successful
+
+**Production Validation ✅**
+- ✅ Worker script executed successfully (41s runtime)
+- ✅ No overlapping runs (concurrency control working)
+- ✅ All Copilot security enhancements active
+
+### Files Changed
+**Created**:
+- `.github/workflows/process-activitypub-deliveries.yml` (52 lines)
+- `api/scripts/process-delivery.js` (403 lines with Copilot fixes)
+- `QUEUE_TRIGGER_FIX.md` (comprehensive documentation)
+
+**Modified**:
+- `api/utils/queueStorage.js` (+49 lines: receiveMessages, deleteMessage functions)
+- `.github/workflows/publish-azure-static-web-apps.yml` (updated comments)
+
+**Deleted**:
+- `api/ProcessDelivery/index.js` (279 lines - incompatible queue trigger)
+- `api/ProcessDerivery/function.json` (14 lines - queue trigger config)
+
+### Success Metrics
+- ✅ Deployment succeeds without queue trigger errors
+- ✅ Scheduled workflow runs every 5 minutes automatically
+- ✅ Messages successfully polled from queue
+- ✅ Activities delivered to follower inboxes with HTTP signatures
+- ✅ Delivery status tracked in Table Storage
+- ✅ Zero Azure Functions consumption charges
+- ✅ Enhanced security with SSRF protection and proper error handling
+
+### Architecture Documentation
+- See `projects/archive/queue-trigger-fix.md` for complete technical details
+- Pattern proven: GitHub Actions worker for queue processing on free tier
+- Future-proof: Can migrate to standalone Azure Function App if needed for scale
+
+### Related
+- Original PR: #1858 (ActivityPub Phase 4B/4C)
+- Working Pattern: `.github/workflows/deliver-activitypub-accepts.yml` (Phase 4A)
+- Copilot Review: PR #1867 code review with 10 suggestions (8 applied, 2 intentionally skipped)
+
 ## 2026-01-19 - ActivityPub Improvements (PR #1834)
 
 **Branch**: `feature/activitypub-improvements`  
