@@ -27,6 +27,18 @@ jobs:
           dotnet-version: '10.0.x'
           cache: false
       
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+          cache-dependency-path: api/package-lock.json
+      
+      - name: Install API Dependencies
+        run: |
+          cd api
+          npm ci
+      
       - name: Install Dependencies
         run: dotnet restore
       
