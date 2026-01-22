@@ -34,6 +34,8 @@ jobs:
         run: dotnet build --no-restore
       
       - name: Generate website
+        env:
+          ACTIVITYPUB_STORAGE_CONNECTION: ${{ secrets.ACTIVITYPUB_STORAGE_CONNECTION }}
         run: dotnet run
 
       - name: Sync ActivityPub data for Azure Functions
