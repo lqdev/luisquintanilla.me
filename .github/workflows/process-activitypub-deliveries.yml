@@ -3,6 +3,7 @@ name: Process ActivityPub Post Deliveries
 on:
   schedule:
     # Run every 5 minutes to process delivery queue
+    # Last updated: 2026-01-22 to ensure cron remains active
     - cron: '*/5 * * * *'
   workflow_dispatch: # Allow manual triggering for testing
 
