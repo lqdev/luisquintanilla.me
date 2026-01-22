@@ -273,8 +273,15 @@ let extractMediaAttachments (content: string) : (string * ActivityPubImage array
                         elif altMatch.Success then Some altMatch.Groups.[1].Value
                         else None
                     
+                    // Determine ActivityPub Type based on media type
+                    let activityPubType = 
+                        if mediaType.StartsWith("image/") then "Image"
+                        elif mediaType.StartsWith("video/") then "Video"
+                        elif mediaType.StartsWith("audio/") then "Audio"
+                        else "Document"
+                    
                     {
-                        Type = "Image"
+                        Type = activityPubType
                         MediaType = mediaType
                         Url = url
                         Name = caption
@@ -285,7 +292,8 @@ let extractMediaAttachments (content: string) : (string * ActivityPubImage array
         let cleanedContent = System.Text.RegularExpressions.Regex.Replace(content, mediaPattern, "")
         
         let attachments = if images.Length > 0 then Some images else None
-        (cleanedContent.Trim(), attachments)
+        // Preserve intentional line breaks by trimming only trailing spaces/tabs
+        (cleanedContent.TrimEnd([| ' '; '\t' |]), attachments)
 
 /// Convert UnifiedFeedItem to ActivityPub Note
 /// Research: HTML content required by Mastodon, name field improves display

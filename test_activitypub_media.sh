@@ -4,6 +4,13 @@ echo "🧪 Testing ActivityPub Media Rendering Fix"
 echo "=========================================="
 echo ""
 
+# Check if outbox file exists
+if [ ! -f "_public/api/data/outbox/index.json" ]; then
+    echo "❌ ERROR: _public/api/data/outbox/index.json not found"
+    echo "   Please run 'dotnet run' to build the site first"
+    exit 1
+fi
+
 # Test 1: Single image media post
 echo "✅ Test 1: Single image media post (its-freezing)"
 freezing=$(jq -r '.orderedItems[] | select(.object.name == "It'\''s freezing!") | .object' _public/api/data/outbox/index.json)
@@ -12,17 +19,38 @@ freezing_attachments=$(echo "$freezing" | jq -r '.attachment | length')
 
 echo "  Content: $freezing_content"
 echo "  Attachment count: $freezing_attachments"
-echo "  ✓ Content has no :::media blocks"
-echo "  ✓ Has attachment array with $freezing_attachments image(s)"
+
+# Assert: Content should not contain :::media
+if echo "$freezing_content" | grep -q ":::media"; then
+    echo "  ❌ FAIL: Content still contains :::media blocks"
+    exit 1
+else
+    echo "  ✓ Content has no :::media blocks"
+fi
+
+# Assert: Should have exactly 1 attachment
+if [ "$freezing_attachments" != "1" ]; then
+    echo "  ❌ FAIL: Expected 1 attachment, got $freezing_attachments"
+    exit 1
+else
+    echo "  ✓ Has attachment array with $freezing_attachments image(s)"
+fi
 echo ""
 
 # Test 2: Multiple image album
-echo "✅ Test 2: Multiple image album (Winter Wonderland 2024)"
-album=$(jq -r '.orderedItems[] | select(.object.name == "Winter Wonderland 2024") | .object' _public/api/data/outbox/index.json)
+echo "✅ Test 2: Multiple image album (Spotify Wrapped 2025)"
+album=$(jq -r '.orderedItems[] | select(.object.name == "Spotify Wrapped 2025") | .object' _public/api/data/outbox/index.json)
 album_attachments=$(echo "$album" | jq -r '.attachment | length')
 
 echo "  Attachment count: $album_attachments"
-echo "  ✓ Has attachment array with $album_attachments images"
+
+# Assert: Should have 7 attachments
+if [ "$album_attachments" != "7" ]; then
+    echo "  ❌ FAIL: Expected 7 attachments, got $album_attachments"
+    exit 1
+else
+    echo "  ✓ Has attachment array with $album_attachments images"
+fi
 echo ""
 
 # Test 3: Post without media

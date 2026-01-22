@@ -109,10 +109,12 @@ Modified `convertToNote` to:
 ## Technical Details
 
 ### Media Type Detection
-Automatically detects proper MIME types from file extensions:
-- Images: jpg, png, gif, webp
-- Videos: mp4, webm
-- Audio: mp3, wav, ogg
+Automatically detects proper MIME types from file extensions and sets correct ActivityPub types:
+- **Images** (`Type: "Image"`): jpg, png, gif, webp
+- **Videos** (`Type: "Video"`): mp4, webm
+- **Audio** (`Type: "Audio"`): mp3, wav, ogg
+
+The implementation correctly determines the ActivityPub `type` field based on the detected MIME type, ensuring proper rendering in federated clients.
 
 ### Regex Pattern
 ```fsharp
