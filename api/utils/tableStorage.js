@@ -567,6 +567,7 @@ async function queuePostDelivery(noteId, createActivity) {
  */
 async function getPendingDeliveries() {
     initializeDeliveryQueueClient();
+    await ensureTableExists(deliveryQueueClient);
 
     const pending = [];
     const entities = deliveryQueueClient.listEntities({
@@ -593,6 +594,7 @@ async function getPendingDeliveries() {
  */
 async function markDeliveryCompleted(queueId) {
     initializeDeliveryQueueClient();
+    await ensureTableExists(deliveryQueueClient);
 
     try {
         const entity = await deliveryQueueClient.getEntity(DELIVERY_STATUS.PENDING, queueId);
@@ -612,6 +614,7 @@ async function markDeliveryCompleted(queueId) {
  */
 async function markDeliveryFailed(queueId, errorMessage) {
     initializeDeliveryQueueClient();
+    await ensureTableExists(deliveryQueueClient);
 
     try {
         const entity = await deliveryQueueClient.getEntity(DELIVERY_STATUS.PENDING, queueId);
