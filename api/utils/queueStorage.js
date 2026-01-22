@@ -133,10 +133,59 @@ async function getQueueLength(queueName) {
     }
 }
 
+/**
+ * Receive messages from queue for processing (GitHub Actions worker pattern)
+ * @param {string} queueName - Name of the queue
+ * @param {number} maxMessages - Maximum number of messages to receive (1-32)
+ * @param {number} visibilityTimeout - How long messages are hidden after retrieval (in seconds, default 300)
+ * @returns {Promise<Array>} Array of message objects with messageId, messageText, popReceipt
+ */
+async function receiveMessages(queueName, maxMessages = 32, visibilityTimeout = 300) {
+    const client = getQueueClient(queueName);
+    
+    try {
+        const response = await client.receiveMessages({
+            numberOfMessages: Math.min(Math.max(1, maxMessages), 32),
+            visibilityTimeout: visibilityTimeout
+        });
+        
+        return response.receivedMessageItems.map(msg => ({
+            messageId: msg.messageId,
+            messageText: Buffer.from(msg.messageText, 'base64').toString('utf8'),
+            popReceipt: msg.popReceipt,
+            dequeueCount: msg.dequeueCount,
+            insertedOn: msg.insertedOn,
+            expiresOn: msg.expiresOn,
+            nextVisibleOn: msg.nextVisibleOn
+        }));
+    } catch (error) {
+        throw new Error(`Failed to receive messages: ${error.message}`);
+    }
+}
+
+/**
+ * Delete a message from the queue after successful processing
+ * @param {string} queueName - Name of the queue
+ * @param {string} messageId - Message ID
+ * @param {string} popReceipt - Pop receipt from receiveMessages
+ * @returns {Promise<void>}
+ */
+async function deleteMessage(queueName, messageId, popReceipt) {
+    const client = getQueueClient(queueName);
+    
+    try {
+        await client.deleteMessage(messageId, popReceipt);
+    } catch (error) {
+        throw new Error(`Failed to delete message: ${error.message}`);
+    }
+}
+
 module.exports = {
     queueDeliveryTask,
     queueDeliveryTasks,
     getQueueLength,
+    receiveMessages,
+    deleteMessage,
     getQueueClient,
     ensureQueueExists
 };

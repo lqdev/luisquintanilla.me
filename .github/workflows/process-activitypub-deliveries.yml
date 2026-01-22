@@ -1,0 +1,55 @@
+name: Process ActivityPub Post Deliveries
+
+on:
+  schedule:
+    # Run every 5 minutes to process delivery queue
+    - cron: '*/5 * * * *'
+  workflow_dispatch: # Allow manual triggering for testing
+
+concurrency:
+  group: process-activitypub-deliveries
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  process-deliveries:
+    runs-on: ubuntu-latest
+    name: Process Post Delivery Queue
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: api/package.json
+
+      - name: Install dependencies
+        run: |
+          cd api
+          npm install
+          echo "✅ Dependencies installed for post delivery"
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Process Delivery Queue
+        env:
+          ACTIVITYPUB_STORAGE_CONNECTION: ${{ secrets.ACTIVITYPUB_STORAGE_CONNECTION }}
+          KEY_VAULT_KEY_ID: ${{ secrets.KEY_VAULT_KEY_ID }}
+        run: |
+          cd api
+          node scripts/process-delivery.js
+
+      - name: Report Results
+        if: always()
+        run: |
+          echo "Post delivery processing completed"
+          echo "Check logs above for delivery results"

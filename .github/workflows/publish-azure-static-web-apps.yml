@@ -77,7 +77,8 @@ jobs:
       - name: Trigger ActivityPub Post Delivery
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          echo "📢 Triggering post delivery to followers..."
+          echo "📢 Queueing post delivery to followers..."
+          echo "Note: Delivery is processed by GitHub Actions workflow 'process-activitypub-deliveries.yml'"
           
           # Get recent activity IDs from outbox (last 5 posts)
           ACTIVITY_IDS=$(node -e "
@@ -119,9 +120,10 @@ jobs:
           echo "HTTP Status: $HTTP_STATUS"
           
           if [ "$HTTP_STATUS" = "200" ]; then
-            echo "✅ Delivery triggered successfully"
+            echo "✅ Delivery tasks queued successfully"
+            echo "📦 Tasks will be processed by scheduled GitHub Actions worker"
           else
-            echo "⚠️ Delivery trigger returned status $HTTP_STATUS"
+            echo "⚠️ Delivery queue returned status $HTTP_STATUS"
             echo "This is not critical - build will continue"
           fi
 
