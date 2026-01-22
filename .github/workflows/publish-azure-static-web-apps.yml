@@ -118,9 +118,10 @@ jobs:
             URL="https://${ACCOUNT_NAME}.table.core.windows.net/deliveryqueue"
             DATE=$(TZ=UTC date '+%a, %d %b %Y %H:%M:%S GMT')
             
-            # Simplified auth for table operations
-            AUTH_STRING="${DATE}\n/deliveryqueue"
-            SIGNATURE=$(printf "$AUTH_STRING" | openssl dgst -sha256 -hmac "$(echo $ACCOUNT_KEY | base64 -d)" -binary | base64)
+            # Build canonicalized resource for SharedKeyLite
+            CANONICALIZED_RESOURCE="/${ACCOUNT_NAME}/deliveryqueue"
+            STRING_TO_SIGN="${DATE}\n${CANONICALIZED_RESOURCE}"
+            SIGNATURE=$(printf "$STRING_TO_SIGN" | openssl dgst -sha256 -hmac "$(echo $ACCOUNT_KEY | base64 -d)" -binary | base64)
             
             HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$URL" \
               -H "x-ms-date: $DATE" \
