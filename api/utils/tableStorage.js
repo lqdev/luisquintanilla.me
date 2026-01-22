@@ -31,12 +31,14 @@ let pendingAcceptsClient = null;
  * @param {string} str - String to encode
  * @returns {string} URL-safe base64 encoded string
  */
+/**
+ * Convert string to URL-safe hash for use as table storage key
+ * Azure Table Storage RowKey restrictions: no /, \, #, or ? characters
+ * Using SHA-256 hash ensures consistent, valid keys
+ */
 function toUrlSafeBase64(str) {
-    return Buffer.from(str)
-        .toString('base64')
-        .replace(/\+/g, '-')  // Replace + with -
-        .replace(/\//g, '_')  // Replace / with _
-        .replace(/=/g, '');   // Remove padding =
+    const hash = crypto.createHash('sha256').update(str).digest('hex');
+    return hash; // Hex is always safe for Azure Table Storage
 }
 
 /**
@@ -578,12 +580,20 @@ async function getPendingDeliveries() {
     initializeDeliveryQueueClient();
     await ensureTableExists(deliveryQueueClient);
 
+    console.log(`🔍 Querying for: PartitionKey eq '${DELIVERY_STATUS.PENDING}' and status eq '${DELIVERY_STATUS.PENDING}'`);
+    
     const pending = [];
     const entities = deliveryQueueClient.listEntities({
         queryOptions: { filter: `PartitionKey eq '${DELIVERY_STATUS.PENDING}' and status eq '${DELIVERY_STATUS.PENDING}'` }
     });
 
     for await (const entity of entities) {
+        console.log('📦 Found entity:', { 
+            partitionKey: entity.partitionKey, 
+            rowKey: entity.rowKey, 
+            noteId: entity.noteId,
+            status: entity.status 
+        });
         pending.push({
             queueId: entity.rowKey,
             noteId: entity.noteId,
@@ -592,6 +602,8 @@ async function getPendingDeliveries() {
             retryCount: entity.retryCount || 0
         });
     }
+    
+    console.log(`📊 Total pending deliveries found: ${pending.length}`);
 
     return pending;
 }
