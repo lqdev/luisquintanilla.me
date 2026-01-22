@@ -3,8 +3,19 @@ name: Process ActivityPub Post Deliveries
 on:
   schedule:
     # Run every 5 minutes to process delivery queue
-    # Last updated: 2026-01-22 to ensure cron remains active
+    # GitHub Actions Note: Scheduled workflows require a push to the default branch
+    # AFTER the workflow file exists to activate the scheduler. This file was updated
+    # on 2026-01-22 to trigger scheduler activation.
     - cron: '*/5 * * * *'
+  
+  # Backup trigger: Run after successful deployment when posts are queued
+  workflow_run:
+    workflows: ["Azure Static Web Apps CI/CD"]
+    types:
+      - completed
+    branches:
+      - main
+  
   workflow_dispatch: # Allow manual triggering for testing
 
 concurrency:
@@ -18,6 +29,11 @@ jobs:
   process-deliveries:
     runs-on: ubuntu-latest
     name: Process Post Delivery Queue
+    # Only run on schedule, manual trigger, or successful deployment
+    if: |
+      github.event_name == 'schedule' || 
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     
     steps:
       - name: Checkout repository

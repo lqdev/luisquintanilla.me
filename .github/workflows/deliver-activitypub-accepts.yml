@@ -3,7 +3,11 @@ name: Deliver ActivityPub Accept Activities
 on:
   schedule:
     # Run every 5 minutes to check for pending Accept activities
+    # GitHub Actions Note: Scheduled workflows require a push to the default branch
+    # AFTER the workflow file exists to activate the scheduler. This file was updated
+    # on 2026-01-22 to trigger scheduler activation.
     - cron: '*/5 * * * *'
+  
   workflow_dispatch: # Allow manual triggering for testing
 
 permissions:
