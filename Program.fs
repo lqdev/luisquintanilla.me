@@ -143,6 +143,7 @@ let main argv =
     printfn "🎭 Building ActivityPub content..."
     ActivityPubBuilder.buildNotes allUnifiedContent "_public"
     ActivityPubBuilder.buildOutbox allUnifiedContent "_public"
+    ActivityPubBuilder.queueRecentPostsForDelivery allUnifiedContent "_public"
     
     // =============================================================================
     // ActivityPub Followers Collection - Phase 4A Implementation
