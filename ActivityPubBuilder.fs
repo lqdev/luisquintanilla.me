@@ -36,6 +36,23 @@ type ActivityPubSource = {
     MediaType: string
 }
 
+/// ActivityPub Image attachment for media rendering
+/// Research: Mastodon strips inline <img> tags and only renders from attachment array
+[<CLIMutable>]
+type ActivityPubImage = {
+    [<JsonPropertyName("type")>]
+    Type: string  // Always "Image"
+    
+    [<JsonPropertyName("mediaType")>]
+    MediaType: string  // "image/jpeg", "image/png", etc.
+    
+    [<JsonPropertyName("url")>]
+    Url: string
+    
+    [<JsonPropertyName("name")>]
+    Name: string option  // Alt text/caption
+}
+
 /// ActivityPub Note object representing a blog post or status
 /// Research: Required fields for Mastodon federation validated
 [<CLIMutable>]
@@ -86,6 +103,9 @@ type ActivityPubNote = {
     
     [<JsonPropertyName("sensitive")>]
     Sensitive: bool option
+    
+    [<JsonPropertyName("attachment")>]
+    Attachment: ActivityPubImage array option
 }
 
 /// ActivityPub Create activity wrapping a Note
@@ -194,6 +214,87 @@ let private jsonOptions =
     options.DefaultIgnoreCondition <- JsonIgnoreCondition.WhenWritingNull
     options
 
+/// Detect media type from URL extension
+/// Research: Proper MIME types required for ActivityPub image rendering
+let detectMediaTypeFromUrl (url: string) : string =
+    let extension = Path.GetExtension(url).ToLower()
+    match extension with
+    | ".jpg" | ".jpeg" -> "image/jpeg"
+    | ".png" -> "image/png"
+    | ".gif" -> "image/gif"
+    | ".webp" -> "image/webp"
+    | ".mp4" -> "video/mp4"
+    | ".webm" -> "video/webm"
+    | ".mp3" -> "audio/mpeg"
+    | ".wav" -> "audio/wav"
+    | ".ogg" -> "audio/ogg"
+    | _ -> "image/jpeg"  // Default fallback
+
+/// Extract media items from content with :::media blocks
+/// Returns (cleaned content, media attachments array)
+/// Research: Mastodon only renders images from attachment array, not inline HTML
+let extractMediaAttachments (content: string) : (string * ActivityPubImage array option) =
+    let mediaPattern = @":::media\s*([\s\S]*?):::(?:media)?"
+    let matches = System.Text.RegularExpressions.Regex.Matches(content, mediaPattern)
+    
+    if matches.Count = 0 then
+        (content, None)
+    else
+        // Extract ALL image data from each media block
+        let images = 
+            matches
+            |> Seq.cast<System.Text.RegularExpressions.Match>
+            |> Seq.collect (fun m ->
+                let yamlContent = m.Groups.[1].Value
+                
+                // Find all URL matches in this media block (handles multiple images in albums)
+                let urlMatches = System.Text.RegularExpressions.Regex.Matches(yamlContent, @"url:\s*[""']([^""']+)[""']")
+                
+                urlMatches
+                |> Seq.cast<System.Text.RegularExpressions.Match>
+                |> Seq.map (fun urlMatch ->
+                    let url = urlMatch.Groups.[1].Value
+                    
+                    // Determine media type from file extension
+                    let mediaType = detectMediaTypeFromUrl url
+                    
+                    // Try to find caption near this URL (within 200 characters after URL)
+                    let urlPosition = urlMatch.Index
+                    let searchStart = urlPosition
+                    let searchEnd = min (searchStart + 200) yamlContent.Length
+                    let contextAfterUrl = yamlContent.Substring(searchStart, searchEnd - searchStart)
+                    
+                    let captionMatch = System.Text.RegularExpressions.Regex.Match(contextAfterUrl, @"caption:\s*[""']([^""']+)[""']")
+                    let altMatch = System.Text.RegularExpressions.Regex.Match(contextAfterUrl, @"alt:\s*[""']([^""']+)[""']")
+                    
+                    // Prefer caption, fall back to alt text
+                    let caption = 
+                        if captionMatch.Success then Some captionMatch.Groups.[1].Value
+                        elif altMatch.Success then Some altMatch.Groups.[1].Value
+                        else None
+                    
+                    // Determine ActivityPub Type based on media type
+                    let activityPubType = 
+                        if mediaType.StartsWith("image/") then "Image"
+                        elif mediaType.StartsWith("video/") then "Video"
+                        elif mediaType.StartsWith("audio/") then "Audio"
+                        else "Document"
+                    
+                    {
+                        Type = activityPubType
+                        MediaType = mediaType
+                        Url = url
+                        Name = caption
+                    }))
+            |> Seq.toArray
+        
+        // Remove :::media blocks from content
+        let cleanedContent = System.Text.RegularExpressions.Regex.Replace(content, mediaPattern, "")
+        
+        let attachments = if images.Length > 0 then Some images else None
+        // Preserve intentional line breaks by trimming only trailing spaces/tabs
+        (cleanedContent.TrimEnd([| ' '; '\t' |]), attachments)
+
 /// Convert UnifiedFeedItem to ActivityPub Note
 /// Research: HTML content required by Mastodon, name field improves display
 let convertToNote (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : ActivityPubNote =
@@ -222,13 +323,17 @@ let convertToNote (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : Activity
     let toArray = [| Config.publicCollection |]
     let ccArray = Some [| Config.followersCollection |]
     
+    // Extract media attachments and clean content
+    // Research: Mastodon strips inline <img> tags, only renders from attachment array
+    let (cleanedContent, mediaAttachments) = extractMediaAttachments item.Content
+    
     {
         Context = Config.activityStreamsContext
         Id = noteId
         Type = noteType
         AttributedTo = Config.actorUri
         Published = publishedDate
-        Content = item.Content  // Already HTML from processing
+        Content = cleanedContent  // Use cleaned content without :::media blocks
         Name = name
         Url = Some item.Url
         Summary = None  // Can add excerpt extraction later
@@ -238,6 +343,7 @@ let convertToNote (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : Activity
         Source = None  // Can add markdown source preservation later
         InReplyTo = None
         Sensitive = None
+        Attachment = mediaAttachments  // Add extracted media attachments
     }
 
 /// Convert Note to Create activity
