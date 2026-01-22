@@ -169,10 +169,12 @@ async function generateHttpSignature(method, url, headers, body = null) {
   }
   
   const signingString = signingParts.join('\n');
-  const dataBuffer = Buffer.from(signingString, 'utf8');
   
-  // Sign
-  const signature = await signer.sign(dataBuffer);
+  // Hash the signing string first (Key Vault requires digest input for RS256)
+  const hash = crypto.createHash('sha256').update(signingString, 'utf8').digest();
+  
+  // Sign the hash
+  const signature = await signer.sign(hash);
   const signatureB64 = signature.toString('base64');
   
   // Build signature header

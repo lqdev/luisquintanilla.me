@@ -380,6 +380,15 @@ async function addDeliveryStatus(activityId, targetInbox, followerActor, status,
 
     // Use URL-safe encoding for rowKey
     const rowKey = toUrlSafeBase64(targetInbox);
+    
+    // Sanitize error message - Azure Table Storage doesn't like certain characters
+    let sanitizedError = errorMessage || '';
+    if (sanitizedError) {
+        // Remove control characters and limit length
+        sanitizedError = sanitizedError
+            .replace(/[\x00-\x1F\x7F]/g, ' ') // Remove control chars
+            .substring(0, 1000); // Limit length
+    }
 
     const entity = {
         partitionKey: activityId,
@@ -391,7 +400,7 @@ async function addDeliveryStatus(activityId, targetInbox, followerActor, status,
         attemptCount: 1,
         lastAttempt: new Date().toISOString(),
         httpStatusCode: httpStatusCode || 0,
-        errorMessage: errorMessage || '',
+        errorMessage: sanitizedError,
         deliveredAt: status === 'delivered' ? new Date().toISOString() : ''
     };
 
