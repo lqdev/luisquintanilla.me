@@ -99,6 +99,7 @@ async function deliverActivityToInbox(inboxUrl, activity) {
                 dataSize += chunk.length;
                 if (dataSize > maxResponseSize) {
                     req.destroy();
+                    res.destroy();
                     reject(new Error('Response size exceeds limit'));
                     return;
                 }
@@ -114,7 +115,11 @@ async function deliverActivityToInbox(inboxUrl, activity) {
                 if (result.success) {
                     console.log(`✓ Delivery successful: ${res.statusCode}`);
                 } else {
-                    console.warn(`⚠ Delivery returned ${res.statusCode}: ${data}`);
+                    const maxLogChars = 500;
+                    const truncatedData = typeof data === 'string'
+                        ? (data.length > maxLogChars ? data.slice(0, maxLogChars) + '...[truncated]' : data)
+                        : data;
+                    console.warn(`⚠ Delivery returned ${res.statusCode}: ${truncatedData}`);
                 }
                 
                 resolve(result);
@@ -216,13 +221,19 @@ async function processDeliveryTask(task) {
                 // Permanent failure - don't retry
                 console.error(`✗ Permanent failure for ${followerActor}: ${errorMsg}`);
                 
+                // Truncate error message to prevent Azure Table Storage entity size limits (1MB)
+                const maxErrorChars = 1000;
+                const truncatedError = errorMsg.length > maxErrorChars 
+                    ? errorMsg.slice(0, maxErrorChars) + '...[truncated]' 
+                    : errorMsg;
+                
                 await tableStorage.addDeliveryStatus(
                     activityId,
                     targetInbox,
                     followerActor,
                     'failed',
                     result.statusCode,
-                    errorMsg
+                    truncatedError
                 );
                 
                 return { success: false, permanent: true };
@@ -347,11 +358,19 @@ async function main() {
                 if (result.success) {
                     successCount++;
                     // Delete message from queue on success
-                    await queueStorage.deleteMessage('activitypub-delivery', message.messageId, message.popReceipt);
+                    try {
+                        await queueStorage.deleteMessage('activitypub-delivery', message.messageId, message.popReceipt);
+                    } catch (deleteError) {
+                        console.warn(`⚠ Failed to delete successfully processed message from queue (id=${message.messageId}): ${deleteError.message}`);
+                    }
                 } else if (result.permanent) {
                     permanentFailCount++;
                     // Delete message from queue on permanent failure
-                    await queueStorage.deleteMessage('activitypub-delivery', message.messageId, message.popReceipt);
+                    try {
+                        await queueStorage.deleteMessage('activitypub-delivery', message.messageId, message.popReceipt);
+                    } catch (deleteError) {
+                        console.warn(`⚠ Failed to delete permanently failed message from queue (id=${message.messageId}): ${deleteError.message}`);
+                    }
                 } else {
                     temporaryFailCount++;
                     // Leave message in queue for retry (visibility timeout will reset)

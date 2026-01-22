@@ -122,7 +122,7 @@ Delete successful/permanent-fail messages from queue
 
 **Created**:
 - `api/scripts/process-delivery.js` (428 lines)
-- `.github/workflows/process-activitypub-deliveries.yml` (44 lines)
+- `.github/workflows/process-activitypub-deliveries.yml` (52 lines)
 
 **Modified**:
 - `api/utils/queueStorage.js` - Added receiveMessages, deleteMessage functions

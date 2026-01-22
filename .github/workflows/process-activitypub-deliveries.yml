@@ -6,6 +6,10 @@ on:
     - cron: '*/5 * * * *'
   workflow_dispatch: # Allow manual triggering for testing
 
+concurrency:
+  group: process-activitypub-deliveries
+  cancel-in-progress: false
+
 permissions:
   contents: read
 
