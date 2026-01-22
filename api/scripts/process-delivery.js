@@ -12,7 +12,6 @@
 const https = require('https');
 const { generateHttpSignature } = require('../utils/signatures');
 const tableStorage = require('../utils/tableStorage');
-const queueStorage = require('../utils/queueStorage');
 
 /**
  * Validate inbox URL to prevent SSRF attacks
@@ -326,68 +325,89 @@ async function main() {
     }
     
     try {
-        // Check queue length
-        const queueLength = await queueStorage.getQueueLength('activitypub-delivery');
-        console.log(`Found ${queueLength} messages in delivery queue`);
+        // Get pending deliveries from table storage
+        const pendingDeliveries = await tableStorage.getPendingDeliveries();
+        console.log(`Found ${pendingDeliveries.length} pending deliveries in queue`);
         
-        if (queueLength === 0) {
+        if (pendingDeliveries.length === 0) {
             console.log('✓ No pending deliveries to process');
             return;
         }
         
-        // Process messages (batch of 32 max per run to avoid timeout)
-        const maxMessages = Math.min(queueLength, 32);
-        console.log(`Processing up to ${maxMessages} messages\n`);
+        // Get all followers to deliver to
+        const followers = await tableStorage.getAllFollowers();
+        console.log(`Found ${followers.length} followers to deliver to\n`);
         
-        const messages = await queueStorage.receiveMessages('activitypub-delivery', maxMessages);
-        console.log(`Retrieved ${messages.length} messages from queue`);
+        if (followers.length === 0) {
+            console.log('⚠ No followers to deliver to - marking deliveries as completed');
+            for (const delivery of pendingDeliveries) {
+                await tableStorage.markDeliveryCompleted(delivery.queueId);
+            }
+            return;
+        }
         
         let successCount = 0;
         let permanentFailCount = 0;
         let temporaryFailCount = 0;
         
-        // Process each message
-        for (const message of messages) {
-            try {
-                // Parse message
-                const task = JSON.parse(message.messageText);
-                
-                // Process delivery
-                const result = await processDeliveryTask(task);
-                
-                if (result.success) {
-                    successCount++;
-                    // Delete message from queue on success
-                    try {
-                        await queueStorage.deleteMessage('activitypub-delivery', message.messageId, message.popReceipt);
-                    } catch (deleteError) {
-                        console.warn(`⚠ Failed to delete successfully processed message from queue (id=${message.messageId}): ${deleteError.message}`);
-                    }
-                } else if (result.permanent) {
-                    permanentFailCount++;
-                    // Delete message from queue on permanent failure
-                    try {
-                        await queueStorage.deleteMessage('activitypub-delivery', message.messageId, message.popReceipt);
-                    } catch (deleteError) {
-                        console.warn(`⚠ Failed to delete permanently failed message from queue (id=${message.messageId}): ${deleteError.message}`);
-                    }
-                } else {
-                    temporaryFailCount++;
-                    // Leave message in queue for retry (visibility timeout will reset)
+        // Process each pending delivery
+        for (const delivery of pendingDeliveries) {
+            console.log(`\n📨 Processing delivery: ${delivery.noteId}`);
+            
+            let deliverySuccessCount = 0;
+            let deliveryFailCount = 0;
+            
+            // Deliver to each follower
+            for (const follower of followers) {
+                if (!follower.inbox) {
+                    console.warn(`⚠ Skipping follower ${follower.actorUrl} - no inbox URL`);
+                    continue;
                 }
-            } catch (error) {
-                console.error(`✗ Error processing message: ${error.message}`);
-                temporaryFailCount++;
-                // Leave message in queue for retry
+                
+                const task = {
+                    activityId: delivery.createActivity.id,
+                    activityJson: JSON.stringify(delivery.createActivity),
+                    targetInbox: follower.inbox,
+                    followerActor: follower.actorUrl,
+                    attemptCount: delivery.retryCount || 0
+                };
+                
+                try {
+                    const result = await processDeliveryTask(task);
+                    
+                    if (result.success) {
+                        deliverySuccessCount++;
+                    } else {
+                        deliveryFailCount++;
+                        if (result.permanent) {
+                            console.warn(`⚠ Permanent failure for ${follower.actorUrl}`);
+                        }
+                    }
+                } catch (error) {
+                    console.error(`✗ Error delivering to ${follower.actorUrl}: ${error.message}`);
+                    deliveryFailCount++;
+                }
+            }
+            
+            // Mark delivery as completed if all or most succeeded
+            if (deliverySuccessCount > 0 || deliveryFailCount === followers.length) {
+                await tableStorage.markDeliveryCompleted(delivery.queueId);
+                successCount++;
+                console.log(`✓ Delivery ${delivery.noteId} completed (${deliverySuccessCount}/${followers.length} successful)`);
+            } else {
+                // Mark as failed if all failed
+                await tableStorage.markDeliveryFailed(
+                    delivery.queueId,
+                    `All deliveries failed (0/${followers.length} successful)`
+                );
+                permanentFailCount++;
             }
         }
         
         console.log('\n📊 Delivery Summary:');
         console.log(`   ✓ Successful: ${successCount}`);
-        console.log(`   ✗ Permanent Failures: ${permanentFailCount}`);
-        console.log(`   ⚠ Temporary Failures (will retry): ${temporaryFailCount}`);
-        console.log(`   📋 Total Processed: ${messages.length}`);
-        console.log(`   📦 Remaining in Queue: ~${Math.max(0, queueLength - successCount - permanentFailCount)}`);
+        console.log(`   ✗ Failed: ${permanentFailCount}`);
+        console.log(`   📋 Total Deliveries Processed: ${pendingDeliveries.length}`);
         
     } catch (error) {
         console.error('❌ Fatal error:', error);
