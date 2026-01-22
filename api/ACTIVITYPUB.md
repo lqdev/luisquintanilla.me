@@ -362,10 +362,11 @@ For detailed Phase 3 implementation, see [`/docs/activitypub/phase3-implementati
 - [Mastodon Documentation: WebFinger](https://docs.joinmastodon.org/spec/webfinger/)
 
 ### Related Documentation
+- [ActivityPub Architecture Overview](../docs/activitypub/ARCHITECTURE-OVERVIEW.md) - **Comprehensive architecture and implementation guide**
 - [ActivityPub Implementation Status](../docs/activitypub/implementation-status.md) - **Current phase breakdown, roadmap, and decisions**
-- [ActivityPub Implementation Plan](../docs/activitypub/implementation-plan.md) - Original 8-week phased plan with technical details
-- [ActivityPub Azure Functions Plan](../docs/activitypub/az-fn-implementation-plan.md) - Azure-specific implementation strategy
-- [ActivityPub Fix Summary](../docs/activitypub/fix-summary.md) - Phase 1 & 2 completion summary
+- [ActivityPub Implementation Plan](../docs/activitypub/historical/implementation-plan.md) - Original 8-week phased plan (historical reference)
+- [ActivityPub Azure Functions Plan](../docs/activitypub/historical/az-fn-implementation-plan.md) - Azure-specific implementation strategy (historical reference)
+- [ActivityPub Fix Summary](../docs/activitypub/historical/fix-summary.md) - Phase 1 & 2 completion summary (historical reference)
 - [ActivityPub Deployment Guide](../docs/activitypub/deployment-guide.md) - Post-merge Azure setup and testing
 - [ActivityPub Key Vault Setup](../docs/activitypub/keyvault-setup.md) - Detailed Key Vault configuration
 - [RSS to ActivityPub Script](../Scripts/rss-to-activitypub.fsx) - Prototype conversion script for Phase 3 reference

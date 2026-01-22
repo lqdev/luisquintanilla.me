@@ -518,17 +518,23 @@ When migrating from `/api/*` to `/api/activitypub/*`:
 
 ### Primary Reference (Most Current)
 
+**`/docs/activitypub/ARCHITECTURE-OVERVIEW.md`** - **START HERE** - Comprehensive architecture and implementation guide
+
+**`/docs/activitypub/implementation-status.md`** (this file) - Complete phase breakdown, decisions log, roadmap
+
 **`/api/ACTIVITYPUB.md`** - Complete endpoint reference, current implementation status, testing guide
 
-### Implementation Plans (Historical Context + Future Roadmap)
+### Implementation Plans (Detailed Context)
 
-**`/docs/activitypub/implementation-plan.md`** - Original 8-week phased plan with technical details  
-**`/docs/activitypub/az-fn-implementation-plan.md`** - Azure Functions-specific implementation strategy
+**`/docs/activitypub/follower-management-architecture.md`** - Why static sites need dynamic backends  
+**`/docs/activitypub/phase4-implementation-plan.md`** - Phase 4 detailed implementation guide  
+**`/docs/activitypub/phase4-kickoff-summary.md`** - Phase 4 preparation and decisions
 
 ### Status & Completion Summary
 
-**`/docs/activitypub/fix-summary.md`** - Phase 1 & 2 completion details, learnings, validation  
-**`/docs/activitypub/implementation-status.md`** (this file) - Current state, phase breakdown, next steps
+**`/docs/activitypub/phase3-implementation-complete.md`** - Phase 3 outbox automation completion  
+**`/docs/activitypub/phase4a-complete-summary.md`** - Phase 4A inbox handler completion  
+**`/docs/activitypub/phase4b-4c-complete-summary.md`** - Phase 4B/C delivery infrastructure completion
 
 ### Deployment & Operations
 
@@ -543,6 +549,10 @@ When migrating from `/api/*` to `/api/activitypub/*`:
 
 **`api/`** - All Azure Functions implementation  
 **`Scripts/rss-to-activitypub.fsx`** - Prototype RSS → ActivityPub conversion (Phase 3 reference)
+
+### Historical Documentation (Archived)
+
+**`/docs/activitypub/historical/`** - Archived planning documents and early summaries for historical reference
 
 ---
 
