@@ -2,11 +2,11 @@
 
 This directory contains the Azure Functions implementation for ActivityPub federation support, enabling the static website to participate in the Fediverse (Mastodon, Pleroma, etc.).
 
-> **📋 Documentation Home**: [`/docs/activitypub/`](../docs/activitypub/) - Complete ActivityPub documentation
->
-> **Implementation Status**: See [`implementation-status.md`](../docs/activitypub/implementation-status.md) for current state  
-> **Current State**: Phase 4 In Progress (Activity Delivery + Production Infrastructure)  
-> **Completed**: Phase 1 (Discovery), Phase 2 (Follow/Accept + Key Vault), Phase 3 (Outbox Automation with 1,547 items)
+> **📋 Complete Documentation**: [`/docs/activitypub/`](../docs/activitypub/) - All ActivityPub documentation  
+> **🏗️ Architecture Overview**: [`ARCHITECTURE-OVERVIEW.md`](../docs/activitypub/ARCHITECTURE-OVERVIEW.md) - **START HERE** for comprehensive guide  
+> **📊 Implementation Status**: [`implementation-status.md`](../docs/activitypub/implementation-status.md) - Current phase status  
+> **Current State**: Production - Phases 1-4 Complete  
+> **Completed**: Phase 1 (Discovery), Phase 2 (Follow/Accept + Key Vault), Phase 3 (Outbox Automation with 1,547+ items), Phase 4 (Delivery Infrastructure)
 
 ## Architecture
 

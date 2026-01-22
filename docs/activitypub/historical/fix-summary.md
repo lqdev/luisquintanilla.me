@@ -1,6 +1,10 @@
 # ActivityPub Implementation Fix Summary
 
-> **📋 Current Implementation Status**: For complete phase breakdown and roadmap, see [`activitypub-implementation-status.md`](activitypub-implementation-status.md)
+> ⚠️ **ARCHIVED DOCUMENT**  
+> This document is maintained for historical reference only.  
+> For current implementation details, see: [ARCHITECTURE-OVERVIEW.md](../ARCHITECTURE-OVERVIEW.md)
+
+> **📋 Current Implementation Status**: For complete phase breakdown and roadmap, see [`implementation-status.md`](../implementation-status.md)
 
 **Date**: January 18, 2026  
 **Issue**: #[issue-number] - Fix ActivityPub implementation  

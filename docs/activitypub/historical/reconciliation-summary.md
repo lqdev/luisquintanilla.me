@@ -1,5 +1,9 @@
 # ActivityPub Documentation Reconciliation Summary
 
+> ⚠️ **ARCHIVED DOCUMENT**  
+> This document is maintained for historical reference only.  
+> For current implementation details, see: [ARCHITECTURE-OVERVIEW.md](../ARCHITECTURE-OVERVIEW.md)
+
 **Date**: January 18, 2026  
 **Issue**: Reconcile ActivityPub Implementation Plans & Documentation with Current State  
 **Status**: ✅ COMPLETE
