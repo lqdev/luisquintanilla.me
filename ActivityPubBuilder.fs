@@ -341,13 +341,17 @@ let queueRecentPostsForDelivery (unifiedItems: GenericBuilder.UnifiedFeeds.Unifi
     if recentItems.IsEmpty then
         printfn "  ✓ No recent posts to queue for delivery"
     else
-        printfn "  📮 Queueing %d recent posts for delivery..." recentItems.Length
+        printfn "  📮 Found %d recent posts for delivery (will be queued post-deployment)" recentItems.Length
+        printfn "  ℹ️  Post queueing handled by GitHub Actions workflow after deployment"
         
+        // NOTE: Build-time queueing disabled - handled by workflow trigger instead
+        (*
         // Check if ACTIVITYPUB_STORAGE_CONNECTION is set
         let connectionString = Environment.GetEnvironmentVariable("ACTIVITYPUB_STORAGE_CONNECTION")
         if String.IsNullOrWhiteSpace(connectionString) then
             printfn "  ⚠ ACTIVITYPUB_STORAGE_CONNECTION not set - skipping delivery queueing"
             printfn "  ℹ️  Set this environment variable to enable automatic post delivery"
+        (*
         else
             // Convert to Create activities and queue each one
             for item in recentItems do
@@ -391,3 +395,4 @@ let queueRecentPostsForDelivery (unifiedItems: GenericBuilder.UnifiedFeeds.Unifi
                     printfn "  ✗ Error queueing post: %s" ex.Message
             
             printfn "  ✅ Delivery queueing completed"
+        *)
