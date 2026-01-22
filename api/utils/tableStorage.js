@@ -2,6 +2,13 @@ const { TableClient, AzureNamedKeyCredential } = require('@azure/data-tables');
 const { DefaultAzureCredential } = require('@azure/identity');
 const crypto = require('crypto');
 
+// Constants for delivery queue status tracking
+const DELIVERY_STATUS = {
+    PENDING: 'pending',
+    COMPLETED: 'completed',
+    FAILED: 'failed'
+};
+
 /**
  * Table Storage utility for ActivityPub follower management
  * 
