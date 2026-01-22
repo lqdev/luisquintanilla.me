@@ -2,11 +2,11 @@
 
 This directory contains the Azure Functions implementation for ActivityPub federation support, enabling the static website to participate in the Fediverse (Mastodon, Pleroma, etc.).
 
-> **📋 Documentation Home**: [`/docs/activitypub/`](../docs/activitypub/) - Complete ActivityPub documentation
->
-> **Implementation Status**: See [`implementation-status.md`](../docs/activitypub/implementation-status.md) for current state  
-> **Current State**: Phase 4 In Progress (Activity Delivery + Production Infrastructure)  
-> **Completed**: Phase 1 (Discovery), Phase 2 (Follow/Accept + Key Vault), Phase 3 (Outbox Automation with 1,547 items)
+> **📋 Complete Documentation**: [`/docs/activitypub/`](../docs/activitypub/) - All ActivityPub documentation  
+> **🏗️ Architecture Overview**: [`ARCHITECTURE-OVERVIEW.md`](../docs/activitypub/ARCHITECTURE-OVERVIEW.md) - **START HERE** for comprehensive guide  
+> **📊 Implementation Status**: [`implementation-status.md`](../docs/activitypub/implementation-status.md) - Current phase status  
+> **Current State**: Production - Phases 1-4 Complete  
+> **Completed**: Phase 1 (Discovery), Phase 2 (Follow/Accept + Key Vault), Phase 3 (Outbox Automation with 1,547+ items), Phase 4 (Delivery Infrastructure)
 
 ## Architecture
 
@@ -362,10 +362,11 @@ For detailed Phase 3 implementation, see [`/docs/activitypub/phase3-implementati
 - [Mastodon Documentation: WebFinger](https://docs.joinmastodon.org/spec/webfinger/)
 
 ### Related Documentation
+- [ActivityPub Architecture Overview](../docs/activitypub/ARCHITECTURE-OVERVIEW.md) - **Comprehensive architecture and implementation guide**
 - [ActivityPub Implementation Status](../docs/activitypub/implementation-status.md) - **Current phase breakdown, roadmap, and decisions**
-- [ActivityPub Implementation Plan](../docs/activitypub/implementation-plan.md) - Original 8-week phased plan with technical details
-- [ActivityPub Azure Functions Plan](../docs/activitypub/az-fn-implementation-plan.md) - Azure-specific implementation strategy
-- [ActivityPub Fix Summary](../docs/activitypub/fix-summary.md) - Phase 1 & 2 completion summary
+- [ActivityPub Implementation Plan](../docs/activitypub/historical/implementation-plan.md) - Original 8-week phased plan (historical reference)
+- [ActivityPub Azure Functions Plan](../docs/activitypub/historical/az-fn-implementation-plan.md) - Azure-specific implementation strategy (historical reference)
+- [ActivityPub Fix Summary](../docs/activitypub/historical/fix-summary.md) - Phase 1 & 2 completion summary (historical reference)
 - [ActivityPub Deployment Guide](../docs/activitypub/deployment-guide.md) - Post-merge Azure setup and testing
 - [ActivityPub Key Vault Setup](../docs/activitypub/keyvault-setup.md) - Detailed Key Vault configuration
 - [RSS to ActivityPub Script](../Scripts/rss-to-activitypub.fsx) - Prototype conversion script for Phase 3 reference

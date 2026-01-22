@@ -301,9 +301,11 @@ The script output matches the production endpoint structure documented in `/api/
 ## Related Documentation
 
 ### Implementation Status
+- **Architecture Overview**: `/docs/activitypub/ARCHITECTURE-OVERVIEW.md` - Comprehensive guide
 - **Current Phase Breakdown**: `/docs/activitypub/implementation-status.md`
-- **Phase 3 Planning**: `/docs/activitypub/implementation-plan.md` (Phase 3 section)
-- **Completion Summary**: `/docs/activitypub/fix-summary.md`
+- **Phase 3 Completion**: `/docs/activitypub/phase3-implementation-complete.md`
+- **Historical Planning**: `/docs/activitypub/historical/implementation-plan.md` (Phase 3 section - archived)
+- **Historical Summaries**: `/docs/activitypub/historical/fix-summary.md` (archived)
 
 ### API Documentation
 - **Endpoint Reference**: `/api/ACTIVITYPUB.md`

@@ -1,7 +1,11 @@
 # ActivityPub Implementation Plan for F# Website
 
+> ⚠️ **ARCHIVED DOCUMENT**  
+> This document is maintained for historical reference only.  
+> For current implementation details, see: [ARCHITECTURE-OVERVIEW.md](../ARCHITECTURE-OVERVIEW.md)
+
 > **📋 NOTE**: This is the **original implementation plan** for historical reference and technical details.  
-> **For current implementation status**, see [`activitypub-implementation-status.md`](activitypub-implementation-status.md)  
+> **For current implementation status**, see [`implementation-status.md`](../implementation-status.md)  
 > **For API reference**, see [`/api/ACTIVITYPUB.md`](../../api/ACTIVITYPUB.md)
 
 **Document Version**: 1.0  

@@ -350,4 +350,4 @@ If you encounter issues during deployment:
 3. Verify all configuration settings match this guide
 4. Test endpoints individually to isolate the problem
 
-For questions about future phases (Outbox Automation, Activity Delivery), refer to `activitypub/fix-summary.md` for detailed implementation plans.
+For questions about all implementation phases, refer to `ARCHITECTURE-OVERVIEW.md` for comprehensive architecture details, or `phase3-implementation-complete.md` and `phase4b-4c-complete-summary.md` for phase completion summaries.

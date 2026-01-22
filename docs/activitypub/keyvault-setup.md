@@ -746,7 +746,8 @@ az keyvault key restore `
 
 For ActivityPub implementation details, see:
 - `api/ACTIVITYPUB.md` - Complete endpoint documentation
-- `docs/activitypub/fix-summary.md` - Architecture and implementation notes
+- `ARCHITECTURE-OVERVIEW.md` - Comprehensive architecture guide
+- `docs/activitypub/historical/fix-summary.md` - Phase 1-2 completion notes (historical reference)
 To rotate keys and update actor.json:
 
 ```powershell

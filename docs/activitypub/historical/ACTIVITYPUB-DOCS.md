@@ -1,5 +1,9 @@
 # ActivityPub Documentation Navigation
 
+> ⚠️ **ARCHIVED DOCUMENT**  
+> This document is maintained for historical reference only.  
+> For current documentation structure, see: [ARCHITECTURE-OVERVIEW.md](../ARCHITECTURE-OVERVIEW.md) and [README.md](../README.md)
+
 This document provides a quick reference to all ActivityPub-related documentation in this repository.
 
 ---
