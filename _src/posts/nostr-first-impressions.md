@@ -3,7 +3,7 @@ post_type: "article"
 title: "Nostr - First Impressions"
 description: "Some initial thoughts after connecting to the Nostr network using the Amethyst Android client"
 published_date: "2026-01-22 16:31 -05:00"
-tags: ["nostr","socialweb","activitypub","indieweb","fdroid","amethyst","openweb,"social","fediverse","protocol"]
+tags: ["nostr","socialweb","activitypub","indieweb","fdroid","amethyst","openweb","social","fediverse","protocol"]
 ---
 
 I just wrapped up the MVP to [connect my website to the Fediverse by implementing a small subset of ActivityPub](/notes/website-now-natively-posts-to-the-fediverse-2026-01-22/). [Nostr](https://nostr.com/) is a protocol I've heard about but hadn't dipped my toes into, until today. I downloaded the [Amethyst client from F-Droid](https://amethyst.social/). 
