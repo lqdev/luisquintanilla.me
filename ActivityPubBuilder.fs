@@ -6,6 +6,7 @@ open System.Text.Json
 open System.Text.Json.Serialization
 open System.Security.Cryptography
 open System.Text
+open System.Diagnostics
 open GenericBuilder
 
 /// ActivityPub domain types following W3C ActivityStreams vocabulary
@@ -321,3 +322,70 @@ let buildOutbox (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list)
     
     printfn "  ✅ ActivityPub outbox: %s" outboxPath
     printfn "  ✅ Total items: %d, Total Create activities: %d" outbox.TotalItems activities.Length
+
+/// Queue new posts for delivery to followers
+/// Called during build to queue recent posts for ActivityPub delivery
+let queueRecentPostsForDelivery (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) (outputDir: string) : unit =
+    // Only queue items from the last 24 hours to avoid re-delivering old content
+    let cutoffDate = DateTimeOffset.UtcNow.AddDays(-1.0)
+    
+    let recentItems = 
+        unifiedItems
+        |> List.filter (fun item ->
+            let mutable parsed = DateTimeOffset.MinValue
+            if DateTimeOffset.TryParse(item.Date, &parsed) then
+                parsed >= cutoffDate
+            else
+                false)
+    
+    if recentItems.IsEmpty then
+        printfn "  ✓ No recent posts to queue for delivery"
+    else
+        printfn "  📮 Queueing %d recent posts for delivery..." recentItems.Length
+        
+        // Check if ACTIVITYPUB_STORAGE_CONNECTION is set
+        let connectionString = Environment.GetEnvironmentVariable("ACTIVITYPUB_STORAGE_CONNECTION")
+        if String.IsNullOrWhiteSpace(connectionString) then
+            printfn "  ⚠ ACTIVITYPUB_STORAGE_CONNECTION not set - skipping delivery queueing"
+            printfn "  ℹ️  Set this environment variable to enable automatic post delivery"
+        else
+            // Convert to Create activities and queue each one
+            for item in recentItems do
+                try
+                    let note = convertToNote item
+                    let createActivity = convertToCreateActivity note
+                    let noteId = note.Id.Split('/') |> Array.last
+                    
+                    // Write Create activity to temporary file
+                    let tempDir = Path.Combine(outputDir, "activitypub", "temp")
+                    Directory.CreateDirectory(tempDir) |> ignore
+                    let tempFile = Path.Combine(tempDir, sprintf "%s-create.json" noteId)
+                    let json = JsonSerializer.Serialize(createActivity, jsonOptions)
+                    File.WriteAllText(tempFile, json)
+                    
+                    // Call Node.js script to queue the post
+                    let queueScript = Path.Combine("api", "scripts", "queue-post-delivery.js")
+                    let startInfo = ProcessStartInfo()
+                    startInfo.FileName <- "node"
+                    startInfo.Arguments <- sprintf "%s %s %s" queueScript noteId tempFile
+                    startInfo.UseShellExecute <- false
+                    startInfo.RedirectStandardOutput <- true
+                    startInfo.RedirectStandardError <- true
+                    startInfo.WorkingDirectory <- Directory.GetCurrentDirectory()
+                    
+                    use proc = Process.Start(startInfo)
+                    let output = proc.StandardOutput.ReadToEnd()
+                    let errors = proc.StandardError.ReadToEnd()
+                    proc.WaitForExit()
+                    
+                    if proc.ExitCode = 0 then
+                        printfn "  ✅ Queued: %s" noteId
+                    else
+                        printfn "  ⚠ Failed to queue %s: %s" noteId errors
+                    
+                    // Clean up temp file
+                    try File.Delete(tempFile) with _ -> ()
+                with ex ->
+                    printfn "  ✗ Error queueing post: %s" ex.Message
+            
+            printfn "  ✅ Delivery queueing completed"

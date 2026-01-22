@@ -496,6 +496,127 @@ async function getDeliveryStatusesForActivity(activityId) {
     return statuses;
 }
 
+/**
+ * Post delivery queue management
+ */
+
+let deliveryQueueClient = null;
+
+/**
+ * Initialize delivery queue table client
+ */
+function initializeDeliveryQueueClient() {
+    if (deliveryQueueClient) {
+        return;
+    }
+
+    const connectionString = process.env.ACTIVITYPUB_STORAGE_CONNECTION;
+    
+    if (!connectionString) {
+        throw new Error('ACTIVITYPUB_STORAGE_CONNECTION environment variable not set');
+    }
+
+    deliveryQueueClient = TableClient.fromConnectionString(
+        connectionString,
+        'deliveryqueue'
+    );
+}
+
+/**
+ * Queue a post (Create activity) for delivery to followers
+ * @param {string} noteId - Note/post ID
+ * @param {Object} createActivity - Create activity object
+ * @returns {Promise<string>} Queue entry ID
+ */
+async function queuePostDelivery(noteId, createActivity) {
+    initializeDeliveryQueueClient();
+    await ensureTableExists(deliveryQueueClient);
+
+    // Generate unique queue entry ID
+    const queueId = `post-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`;
+
+    const entity = {
+        partitionKey: 'pending',
+        rowKey: queueId,
+        noteId: noteId,
+        createActivity: JSON.stringify(createActivity),
+        queuedAt: new Date().toISOString(),
+        status: 'pending', // pending, processing, completed, failed
+        retryCount: 0
+    };
+
+    try {
+        await deliveryQueueClient.createEntity(entity);
+        return queueId;
+    } catch (error) {
+        throw new Error(`Failed to queue post delivery: ${error.message}`);
+    }
+}
+
+/**
+ * Get all pending post deliveries
+ * @returns {Promise<Array>} Array of pending delivery entities
+ */
+async function getPendingDeliveries() {
+    initializeDeliveryQueueClient();
+
+    const pending = [];
+    const entities = deliveryQueueClient.listEntities({
+        queryOptions: { filter: "PartitionKey eq 'pending' and status eq 'pending'" }
+    });
+
+    for await (const entity of entities) {
+        pending.push({
+            queueId: entity.rowKey,
+            noteId: entity.noteId,
+            createActivity: JSON.parse(entity.createActivity),
+            queuedAt: entity.queuedAt,
+            retryCount: entity.retryCount || 0
+        });
+    }
+
+    return pending;
+}
+
+/**
+ * Mark delivery as completed
+ * @param {string} queueId - Queue entry ID
+ * @returns {Promise<void>}
+ */
+async function markDeliveryCompleted(queueId) {
+    initializeDeliveryQueueClient();
+
+    try {
+        const entity = await deliveryQueueClient.getEntity('pending', queueId);
+        entity.status = 'completed';
+        entity.completedAt = new Date().toISOString();
+        await deliveryQueueClient.updateEntity(entity, 'Replace');
+    } catch (error) {
+        throw new Error(`Failed to mark delivery completed: ${error.message}`);
+    }
+}
+
+/**
+ * Mark delivery as failed
+ * @param {string} queueId - Queue entry ID
+ * @param {string} errorMessage - Error message
+ * @returns {Promise<void>}
+ */
+async function markDeliveryFailed(queueId, errorMessage) {
+    initializeDeliveryQueueClient();
+
+    try {
+        const entity = await deliveryQueueClient.getEntity('pending', queueId);
+        entity.status = 'failed';
+        entity.errorMessage = errorMessage;
+        entity.failedAt = new Date().toISOString();
+        entity.retryCount = (entity.retryCount || 0) + 1;
+        await deliveryQueueClient.updateEntity(entity, 'Replace');
+    } catch (error) {
+        throw new Error(`Failed to mark delivery failed: ${error.message}`);
+    }
+}
+
 module.exports = {
     addFollower,
     removeFollower,
@@ -511,5 +632,9 @@ module.exports = {
     addDeliveryStatus,
     getDeliveryStatus,
     updateDeliveryStatus,
-    getDeliveryStatusesForActivity
+    getDeliveryStatusesForActivity,
+    queuePostDelivery,
+    getPendingDeliveries,
+    markDeliveryCompleted,
+    markDeliveryFailed
 };
