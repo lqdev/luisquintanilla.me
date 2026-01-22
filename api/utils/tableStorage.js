@@ -536,12 +536,12 @@ async function queuePostDelivery(noteId, createActivity) {
     const queueId = `post-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`;
 
     const entity = {
-        partitionKey: 'pending',
+        partitionKey: DELIVERY_STATUS.PENDING,
         rowKey: queueId,
         noteId: noteId,
         createActivity: JSON.stringify(createActivity),
         queuedAt: new Date().toISOString(),
-        status: 'pending', // pending, processing, completed, failed
+        status: DELIVERY_STATUS.PENDING, // pending, processing, completed, failed
         retryCount: 0
     };
 
@@ -549,7 +549,8 @@ async function queuePostDelivery(noteId, createActivity) {
         await deliveryQueueClient.createEntity(entity);
         return queueId;
     } catch (error) {
-        throw new Error(`Failed to queue post delivery: ${error.message}`);
+        console.error('Failed to queue post delivery', { error, entity });
+        throw error;
     }
 }
 
@@ -562,7 +563,7 @@ async function getPendingDeliveries() {
 
     const pending = [];
     const entities = deliveryQueueClient.listEntities({
-        queryOptions: { filter: "PartitionKey eq 'pending' and status eq 'pending'" }
+        queryOptions: { filter: `PartitionKey eq '${DELIVERY_STATUS.PENDING}' and status eq '${DELIVERY_STATUS.PENDING}'` }
     });
 
     for await (const entity of entities) {
@@ -587,8 +588,8 @@ async function markDeliveryCompleted(queueId) {
     initializeDeliveryQueueClient();
 
     try {
-        const entity = await deliveryQueueClient.getEntity('pending', queueId);
-        entity.status = 'completed';
+        const entity = await deliveryQueueClient.getEntity(DELIVERY_STATUS.PENDING, queueId);
+        entity.status = DELIVERY_STATUS.COMPLETED;
         entity.completedAt = new Date().toISOString();
         await deliveryQueueClient.updateEntity(entity, 'Replace');
     } catch (error) {
@@ -606,8 +607,8 @@ async function markDeliveryFailed(queueId, errorMessage) {
     initializeDeliveryQueueClient();
 
     try {
-        const entity = await deliveryQueueClient.getEntity('pending', queueId);
-        entity.status = 'failed';
+        const entity = await deliveryQueueClient.getEntity(DELIVERY_STATUS.PENDING, queueId);
+        entity.status = DELIVERY_STATUS.FAILED;
         entity.errorMessage = errorMessage;
         entity.failedAt = new Date().toISOString();
         entity.retryCount = (entity.retryCount || 0) + 1;

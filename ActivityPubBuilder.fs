@@ -380,6 +380,8 @@ let queueRecentPostsForDelivery (unifiedItems: GenericBuilder.UnifiedFeeds.Unifi
                     
                     if proc.ExitCode = 0 then
                         printfn "  ✅ Queued: %s" noteId
+                        if not (String.IsNullOrWhiteSpace output) then
+                            printfn "     Output: %s" output
                     else
                         printfn "  ⚠ Failed to queue %s: %s" noteId errors
                     

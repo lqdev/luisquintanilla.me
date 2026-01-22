@@ -167,7 +167,7 @@ async function fixFollowersTable() {
     let finalCount = 0;
     const verifyEntities = followersClient.listEntities();
     
-    for await (const entity of verifyEntities) {
+    for await (const _ of verifyEntities) {
         finalCount++;
     }
     

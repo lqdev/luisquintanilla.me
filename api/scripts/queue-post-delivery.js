@@ -10,7 +10,6 @@
  */
 
 const fs = require('fs');
-const path = require('path');
 const tableStorage = require('../utils/tableStorage');
 
 async function main() {
