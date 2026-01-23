@@ -227,11 +227,66 @@ module.exports = async function (context, req) {
             
             context.log(`Received activity: ${activityType} from ${activityData.actor}`);
             
+            // ====================================================================
+            // PHASE 1: HTTP SIGNATURE DIAGNOSTIC LOGGING
+            // ====================================================================
+            // Capture exact request values to diagnose signature verification
+            // Related: feature/http-signature-verification
+            context.log('=== HTTP Signature Debug Info ===');
+            context.log(`req.url: ${req.url}`);
+            context.log(`req.method: ${req.method}`);
+            context.log(`x-ms-original-url: ${req.headers['x-ms-original-url'] || 'NOT PRESENT'}`);
+            context.log(`Host header: ${req.headers['host']}`);
+            context.log(`Date header: ${req.headers['date']}`);
+            context.log(`Digest header: ${req.headers['digest']}`);
+            context.log(`Signature header: ${req.headers['signature'] ? req.headers['signature'].substring(0, 100) + '...' : 'NOT PRESENT'}`);
+            
+            // Parse and log request body details with digest verification
+            // Wrapped in try-catch to prevent diagnostic code from breaking production
+            try {
+                // Prefer rawBody to avoid JSON re-serialization differences
+                // Azure Functions may parse JSON, causing byte-level differences
+                let bodyForDigest;
+                if (req.rawBody && (typeof req.rawBody === 'string' || Buffer.isBuffer(req.rawBody))) {
+                    bodyForDigest = req.rawBody;
+                    context.log('Using req.rawBody for digest verification');
+                } else if (typeof req.body === 'string') {
+                    bodyForDigest = req.body;
+                    context.log('Using string req.body for digest verification');
+                } else {
+                    bodyForDigest = JSON.stringify(req.body);
+                    context.log('Using JSON.stringify(req.body) for digest verification (rawBody not available)');
+                }
+                
+                const bodyLength = Buffer.isBuffer(bodyForDigest)
+                    ? bodyForDigest.length
+                    : String(bodyForDigest || '').length;
+                context.log(`Request body length: ${bodyLength} bytes`);
+                
+                // If Digest header present, verify it matches body
+                if (req.headers['digest']) {
+                    const bodyBuffer = Buffer.isBuffer(bodyForDigest)
+                        ? bodyForDigest
+                        : Buffer.from(String(bodyForDigest || ''), 'utf8');
+                    const computedDigest = crypto.createHash('sha256').update(bodyBuffer).digest('base64');
+                    const expectedDigest = `SHA-256=${computedDigest}`;
+                    const digestMatch = req.headers['digest'] === expectedDigest;
+                    context.log(`Digest verification: ${digestMatch ? 'MATCH ✅' : 'MISMATCH ❌'}`);
+                    if (!digestMatch) {
+                        context.log(`  Expected: ${expectedDigest}`);
+                        context.log(`  Received: ${req.headers['digest']}`);
+                    }
+                }
+            } catch (error) {
+                context.log.warn(`⚠️  Error during diagnostic digest computation: ${error.message}`);
+            }
+            context.log('=== End Debug Info ===');
+            
             // Verify HTTP signature (TEMPORARILY DISABLED for testing)
-            // TODO: Re-enable after debugging signature verification issues
+            // TODO: Re-enable after Phase 2 implementation
             const hasSignature = req.headers['signature'];
             if (hasSignature) {
-                context.log.warn('Signature present but verification DISABLED for testing');
+                context.log.warn('⚠️  Signature present but verification DISABLED for testing');
                 // Uncomment to enable verification:
                 // const isValidSignature = await verifyHttpSignature(req, context);
                 // if (!isValidSignature) {
@@ -245,7 +300,7 @@ module.exports = async function (context, req) {
                 // }
                 // context.log('Signature verified successfully');
             } else {
-                context.log.warn('No signature present - accepting anyway (development mode)');
+                context.log.warn('⚠️  No signature present - accepting anyway (development mode)');
             }
             
             // Log activity to file for debugging
