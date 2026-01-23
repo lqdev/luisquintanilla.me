@@ -225,7 +225,10 @@ module.exports = async function (context, req) {
             const activityType = activityData.type;
             const timestamp = new Date().toISOString();
             
-            context.log(`Received activity: ${activityType} from ${activityData.actor}`);
+            logBoth(`=== Received Activity ===`);
+            logBoth(`[Activity] Type: ${activityType}`);
+            logBoth(`[Activity] From: ${activityData.actor}`);
+            logBoth(`[Activity] ID: ${activityData.id || 'NO ID'}`);
             
             // ====================================================================
             // PHASE 1: HTTP SIGNATURE DIAGNOSTIC LOGGING
@@ -383,18 +386,22 @@ module.exports = async function (context, req) {
             
             if (activityType === 'Undo') {
                 // Handle Undo activity (typically Undo Follow = Unfollow)
+                logBoth(`[Undo Debug] Processing Undo activity from ${activityData.actor}`);
                 const object = activityData.object;
+                logBoth(`[Undo Debug] Object type: ${object ? object.type : 'null'}`);
+                logBoth(`[Undo Debug] Object actor: ${object && object.actor ? object.actor : 'null'}`);
                 
                 if (object && object.type === 'Follow') {
                     const followerActor = activityData.actor;
+                    logBoth(`[Undo Debug] Attempting to remove follower: ${followerActor}`);
                     
                     // Remove from Table Storage
                     const removed = await tableStorage.removeFollower(followerActor);
                     
                     if (removed) {
-                        context.log(`Removed follower from Table Storage: ${followerActor}`);
+                        logBoth(`[Undo Debug] ✅ Successfully removed follower from Table Storage: ${followerActor}`);
                     } else {
-                        context.log(`Follower not found in Table Storage: ${followerActor}`);
+                        logBoth(`[Undo Debug] ⚠️  Follower not found in Table Storage: ${followerActor}`);
                     }
                     
                     context.res = {
@@ -403,6 +410,8 @@ module.exports = async function (context, req) {
                         body: { message: 'Unfollow processed' }
                     };
                     return;
+                } else {
+                    logBoth(`[Undo Debug] ⚠️  Undo activity received but object type is not Follow (${object ? object.type : 'null'})`);
                 }
             }
             
