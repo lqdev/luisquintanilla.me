@@ -75,6 +75,73 @@ async function fetchActorPublicKey(actorUrl) {
 }
 
 /**
+ * Verify Digest header matches request body
+ * @param {Object} req - Azure Function request object
+ * @param {Object} context - Azure Function context for logging (optional)
+ * @returns {boolean} True if digest matches or no digest present
+ */
+function verifyDigest(req, context = null) {
+  const digestHeader = req.headers['digest'];
+  
+  // If no Digest header, verification passes (digest is optional per spec)
+  if (!digestHeader) {
+    if (context) {
+      context.log('[Phase 3] No Digest header present - skipping digest verification');
+    }
+    return true;
+  }
+  
+  try {
+    // Get request body - prefer rawBody for byte-accurate verification
+    let bodyForDigest;
+    if (req.rawBody && (typeof req.rawBody === 'string' || Buffer.isBuffer(req.rawBody))) {
+      bodyForDigest = req.rawBody;
+      if (context) {
+        context.log('[Phase 3] Using req.rawBody for digest verification');
+      }
+    } else if (typeof req.body === 'string') {
+      bodyForDigest = req.body;
+      if (context) {
+        context.log('[Phase 3] Using string req.body for digest verification');
+      }
+    } else {
+      bodyForDigest = JSON.stringify(req.body);
+      if (context) {
+        context.log('[Phase 3] Using JSON.stringify(req.body) for digest verification');
+      }
+    }
+    
+    // Convert to buffer if needed
+    const bodyBuffer = Buffer.isBuffer(bodyForDigest)
+      ? bodyForDigest
+      : Buffer.from(String(bodyForDigest || ''), 'utf8');
+    
+    // Compute SHA-256 digest
+    const computedDigest = crypto.createHash('sha256').update(bodyBuffer).digest('base64');
+    const expectedDigest = `SHA-256=${computedDigest}`;
+    
+    const digestMatch = digestHeader === expectedDigest;
+    
+    if (context) {
+      if (digestMatch) {
+        context.log('[Phase 3] ✅ Digest verification PASSED');
+      } else {
+        context.log('[Phase 3] ❌ Digest verification FAILED');
+        context.log(`[Phase 3]   Expected: ${expectedDigest}`);
+        context.log(`[Phase 3]   Received: ${digestHeader}`);
+      }
+    }
+    
+    return digestMatch;
+  } catch (error) {
+    if (context) {
+      context.log.error(`[Phase 3] Digest verification error: ${error.message}`);
+    }
+    return false;
+  }
+}
+
+/**
  * Verify HTTP signature on incoming ActivityPub request
  * @param {Object} req - Azure Function request object
  * @param {Object} context - Azure Function context for logging
@@ -82,6 +149,13 @@ async function fetchActorPublicKey(actorUrl) {
  */
 async function verifyHttpSignature(req, context) {
   try {
+    // PHASE 3: Verify Digest header first (if present)
+    const digestValid = verifyDigest(req, context);
+    if (!digestValid) {
+      context.log.warn('[Phase 3] Digest verification failed - rejecting request');
+      return false;
+    }
+    
     const signatureHeader = req.headers['signature'];
     if (!signatureHeader) {
       context.log.warn('No Signature header present');
@@ -210,6 +284,7 @@ async function generateHttpSignature(method, url, headers, body = null) {
 
 module.exports = {
   verifyHttpSignature,
+  verifyDigest,
   generateHttpSignature,
   parseSignatureHeader,
   fetchActorPublicKey
