@@ -232,14 +232,20 @@ module.exports = async function (context, req) {
             // ====================================================================
             // Capture exact request values to diagnose signature verification
             // Related: feature/http-signature-verification
-            context.log('=== HTTP Signature Debug Info ===');
-            context.log(`req.url: ${req.url}`);
-            context.log(`req.method: ${req.method}`);
-            context.log(`x-ms-original-url: ${req.headers['x-ms-original-url'] || 'NOT PRESENT'}`);
-            context.log(`Host header: ${req.headers['host']}`);
-            context.log(`Date header: ${req.headers['date']}`);
-            context.log(`Digest header: ${req.headers['digest']}`);
-            context.log(`Signature header: ${req.headers['signature'] ? req.headers['signature'].substring(0, 100) + '...' : 'NOT PRESENT'}`);
+            // Using both console.log and context.log for Azure Static Web Apps compatibility
+            const logBoth = (message) => {
+                console.log(message);
+                context.log(message);
+            };
+            
+            logBoth('=== HTTP Signature Debug Info ===');
+            logBoth(`[HTTP Sig Debug] req.url: ${req.url}`);
+            logBoth(`[HTTP Sig Debug] req.method: ${req.method}`);
+            logBoth(`[HTTP Sig Debug] x-ms-original-url: ${req.headers['x-ms-original-url'] || 'NOT PRESENT'}`);
+            logBoth(`[HTTP Sig Debug] Host header: ${req.headers['host']}`);
+            logBoth(`[HTTP Sig Debug] Date header: ${req.headers['date']}`);
+            logBoth(`[HTTP Sig Debug] Digest header: ${req.headers['digest']}`);
+            logBoth(`[HTTP Sig Debug] Signature header: ${req.headers['signature'] ? req.headers['signature'].substring(0, 100) + '...' : 'NOT PRESENT'}`);
             
             // Parse and log request body details with digest verification
             // Wrapped in try-catch to prevent diagnostic code from breaking production
@@ -249,19 +255,19 @@ module.exports = async function (context, req) {
                 let bodyForDigest;
                 if (req.rawBody && (typeof req.rawBody === 'string' || Buffer.isBuffer(req.rawBody))) {
                     bodyForDigest = req.rawBody;
-                    context.log('Using req.rawBody for digest verification');
+                    logBoth('[HTTP Sig Debug] Using req.rawBody for digest verification');
                 } else if (typeof req.body === 'string') {
                     bodyForDigest = req.body;
-                    context.log('Using string req.body for digest verification');
+                    logBoth('[HTTP Sig Debug] Using string req.body for digest verification');
                 } else {
                     bodyForDigest = JSON.stringify(req.body);
-                    context.log('Using JSON.stringify(req.body) for digest verification (rawBody not available)');
+                    logBoth('[HTTP Sig Debug] Using JSON.stringify(req.body) for digest verification (rawBody not available)');
                 }
                 
                 const bodyLength = Buffer.isBuffer(bodyForDigest)
                     ? bodyForDigest.length
                     : String(bodyForDigest || '').length;
-                context.log(`Request body length: ${bodyLength} bytes`);
+                logBoth(`[HTTP Sig Debug] Request body length: ${bodyLength} bytes`);
                 
                 // If Digest header present, verify it matches body
                 if (req.headers['digest']) {
@@ -271,16 +277,16 @@ module.exports = async function (context, req) {
                     const computedDigest = crypto.createHash('sha256').update(bodyBuffer).digest('base64');
                     const expectedDigest = `SHA-256=${computedDigest}`;
                     const digestMatch = req.headers['digest'] === expectedDigest;
-                    context.log(`Digest verification: ${digestMatch ? 'MATCH ✅' : 'MISMATCH ❌'}`);
+                    logBoth(`[HTTP Sig Debug] Digest verification: ${digestMatch ? 'MATCH ✅' : 'MISMATCH ❌'}`);
                     if (!digestMatch) {
-                        context.log(`  Expected: ${expectedDigest}`);
-                        context.log(`  Received: ${req.headers['digest']}`);
+                        logBoth(`[HTTP Sig Debug]   Expected: ${expectedDigest}`);
+                        logBoth(`[HTTP Sig Debug]   Received: ${req.headers['digest']}`);
                     }
                 }
             } catch (error) {
-                context.log.warn(`⚠️  Error during diagnostic digest computation: ${error.message}`);
+                logBoth(`[HTTP Sig Debug] ⚠️  Error during diagnostic digest computation: ${error.message}`);
             }
-            context.log('=== End Debug Info ===');
+            logBoth('=== End HTTP Signature Debug Info ===');
             
             // Verify HTTP signature (TEMPORARILY DISABLED for testing)
             // TODO: Re-enable after Phase 2 implementation
