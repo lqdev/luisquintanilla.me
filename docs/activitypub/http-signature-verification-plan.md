@@ -1,7 +1,7 @@
 # HTTP Signature Verification Implementation Plan
 
 **Created**: January 23, 2026  
-**Status**: Planning  
+**Status**: Phase 1 - Diagnostic Logging (In Progress)  
 **Branch**: `feature/http-signature-verification`  
 **Related PRs**: #1855 (disabled verification), #1918 (migration prep)  
 **Author**: GitHub Copilot + lqdev
@@ -272,7 +272,8 @@ This can be parsed to extract the correct path for signature verification.
 
 ### Phase 1: Diagnostic Logging
 **Duration**: 1-2 hours  
-**Risk**: ✅ None (logging only)
+**Risk**: ✅ None (logging only)  
+**Status**: ✅ IMPLEMENTED
 
 Add comprehensive logging to capture exact request values:
 
@@ -291,7 +292,7 @@ context.log(`Signature: ${req.headers['signature']}`);
 **Goal**: Capture one live Follow request to confirm path values.
 
 **Deliverables**:
-- [ ] Add logging to inbox handler
+- [x] Add logging to inbox handler
 - [ ] Deploy to production
 - [ ] Trigger Follow from test Mastodon account
 - [ ] Analyze logs to confirm `req.url` vs `x-ms-original-url`

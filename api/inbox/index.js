@@ -227,11 +227,43 @@ module.exports = async function (context, req) {
             
             context.log(`Received activity: ${activityType} from ${activityData.actor}`);
             
+            // ====================================================================
+            // PHASE 1: HTTP SIGNATURE DIAGNOSTIC LOGGING
+            // ====================================================================
+            // Capture exact request values to diagnose signature verification
+            // Related: feature/http-signature-verification
+            context.log('=== HTTP Signature Debug Info ===');
+            context.log(`req.url: ${req.url}`);
+            context.log(`req.method: ${req.method}`);
+            context.log(`x-ms-original-url: ${req.headers['x-ms-original-url'] || 'NOT PRESENT'}`);
+            context.log(`Host header: ${req.headers['host']}`);
+            context.log(`Date header: ${req.headers['date']}`);
+            context.log(`Digest header: ${req.headers['digest']}`);
+            context.log(`Signature header: ${req.headers['signature'] ? req.headers['signature'].substring(0, 100) + '...' : 'NOT PRESENT'}`);
+            
+            // Parse and log request body details
+            const bodyString = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
+            context.log(`Request body length: ${bodyString.length} bytes`);
+            
+            // If Digest header present, verify it matches body
+            if (req.headers['digest']) {
+                const crypto = require('crypto');
+                const computedDigest = crypto.createHash('sha256').update(bodyString).digest('base64');
+                const expectedDigest = `SHA-256=${computedDigest}`;
+                const digestMatch = req.headers['digest'] === expectedDigest;
+                context.log(`Digest verification: ${digestMatch ? 'MATCH ✅' : 'MISMATCH ❌'}`);
+                if (!digestMatch) {
+                    context.log(`  Expected: ${expectedDigest}`);
+                    context.log(`  Received: ${req.headers['digest']}`);
+                }
+            }
+            context.log('=== End Debug Info ===');
+            
             // Verify HTTP signature (TEMPORARILY DISABLED for testing)
-            // TODO: Re-enable after debugging signature verification issues
+            // TODO: Re-enable after Phase 2 implementation
             const hasSignature = req.headers['signature'];
             if (hasSignature) {
-                context.log.warn('Signature present but verification DISABLED for testing');
+                context.log.warn('⚠️  Signature present but verification DISABLED for testing');
                 // Uncomment to enable verification:
                 // const isValidSignature = await verifyHttpSignature(req, context);
                 // if (!isValidSignature) {
@@ -245,7 +277,7 @@ module.exports = async function (context, req) {
                 // }
                 // context.log('Signature verified successfully');
             } else {
-                context.log.warn('No signature present - accepting anyway (development mode)');
+                context.log.warn('⚠️  No signature present - accepting anyway (development mode)');
             }
             
             // Log activity to file for debugging
