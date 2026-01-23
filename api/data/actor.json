@@ -1,10 +1,26 @@
 {
   "@context": [
     "https://www.w3.org/ns/activitystreams",
-    "https://w3id.org/security/v1"
+    "https://w3id.org/security/v1",
+    {
+      "toot": "http://joinmastodon.org/ns#",
+      "discoverable": "toot:discoverable",
+      "memorial": "toot:memorial",
+      "alsoKnownAs": {
+        "@id": "as:alsoKnownAs",
+        "@type": "@id"
+      },
+      "movedTo": {
+        "@id": "as:movedTo",
+        "@type": "@id"
+      }
+    }
   ],
   "id": "https://lqdev.me/api/activitypub/actor",
   "type": "Person",
+  "alsoKnownAs": [
+    "https://toot.lqdev.tech/users/lqdev"
+  ],
   "preferredUsername": "lqdev",
   "name": "Luis Quintanilla",
   "summary": "AI whisperer wandering the shifting sands of the desert of the real . Semi-fluent in the language of machines, with an affinity for the F# dialect.",
