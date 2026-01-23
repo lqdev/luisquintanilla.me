@@ -91,9 +91,6 @@ Migrate the Mastodon account `@lqdev@toot.lqdev.tech` to the self-hosted Activit
 | Requirement | Gap | Priority | Complexity |
 |-------------|-----|----------|------------|
 | **`alsoKnownAs` property** | Not present in actor.json | 🔴 Critical | Low |
-| **Move activity handler** | Inbox doesn't process Move | 🟡 Medium | Medium |
-| **Mastodon namespace in context** | Only has AS and security | 🟡 Medium | Low |
-| **Migration collection support** | For future FEP-7628 | 🟢 Nice-to-have | Medium |
 
 ### ⚠️ Needs Verification/Enhancement
 
@@ -153,78 +150,27 @@ Actor ID: https://toot.lqdev.tech/users/lqdev
 
 This is the exact URI that must go in `alsoKnownAs`.
 
-### Phase 2: Move Activity Handler (Recommended)
-**Estimated Effort**: 2-3 hours  
-**Risk Level**: Medium
+### Phase 2: Move Activity Handler ❌ SKIPPED
+**Reason**: Not needed for single-user instance
 
-While not strictly required for the migration to work (Mastodon sends Move to YOUR followers, not to you), implementing Move handling enables:
-- Future migrations TO your account from other sources
-- Proper logging of migration events
-- Fediverse best practices compliance
+The Move handler would only be useful if:
+- Other accounts migrated TO this instance (won't happen - single-user)
+- Managing following via ActivityPub (using RSS instead)
 
-#### 2.1 Add Move Activity Processing to Inbox
+For this migration: toot.lqdev.tech sends Move to YOUR followers, not to you.
+Your inbox will receive new Follow activities (already handled ✅).
 
-```javascript
-// In api/inbox/index.js
+**Implementation not required** - skipping this phase entirely.
 
-if (activityType === 'Move') {
-    // Log Move activity for audit
-    const originActor = activityData.actor;
-    const targetActor = activityData.target;
-    
-    context.log(`Move activity received: ${originActor} → ${targetActor}`);
-    
-    // Validate: actor and object should be the same (account moving itself)
-    if (activityData.actor !== activityData.object) {
-        context.log.warn('Invalid Move: actor !== object');
-        context.res = {
-            status: 400,
-            body: { error: 'Invalid Move activity' }
-        };
-        return;
-    }
-    
-    // Verify alsoKnownAs relationship (optional but recommended)
-    // This would involve fetching target actor and checking alsoKnownAs
-    
-    // For now, log and accept
-    context.res = {
-        status: 202,
-        headers: { 'Content-Type': 'application/json' },
-        body: { message: 'Move activity received' }
-    };
-    return;
-}
-```
+### Phase 3: Enhanced Context ✅ INCLUDED IN PHASE 1
+**Completed**: January 23, 2026
 
-### Phase 3: Enhanced Context (Optional but Recommended)
-**Estimated Effort**: 30 minutes  
-**Risk Level**: Low
+The enhanced Mastodon namespace context was already added as part of Phase 1, including:
+- `toot` namespace for Mastodon extensions
+- `discoverable` and `memorial` properties
+- `alsoKnownAs` and `movedTo` definitions
 
-Add Mastodon-specific extensions for better federation compatibility:
-
-```json
-{
-  "@context": [
-    "https://www.w3.org/ns/activitystreams",
-    "https://w3id.org/security/v1",
-    {
-      "toot": "http://joinmastodon.org/ns#",
-      "discoverable": "toot:discoverable",
-      "memorial": "toot:memorial",
-      "indexable": "toot:indexable",
-      "alsoKnownAs": {
-        "@id": "as:alsoKnownAs",
-        "@type": "@id"
-      },
-      "movedTo": {
-        "@id": "as:movedTo",
-        "@type": "@id"
-      }
-    }
-  ]
-}
-```
+No separate work needed - this was bundled with the Phase 1 actor.json update.
 
 ---
 
