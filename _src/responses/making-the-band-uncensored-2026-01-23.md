@@ -11,4 +11,4 @@ I was recently reminded of this skit.
 
 "Dylan, Dylan, Dylan, Dylan, and Dylan" 😂😂😂
 
-[!["Making the Band" - Uncensored](http://img.youtube.com/vi/7JjLd3MufCE/0.jpg)](https://www.youtube.com/watch?v=7JjLd3MufCE ""Making the Band" - Uncensored")
+[![Making the Band - Uncensored](http://img.youtube.com/vi/7JjLd3MufCE/0.jpg)](https://www.youtube.com/watch?v=7JjLd3MufCE "Making the Band - Uncensored")
