@@ -133,5 +133,10 @@
     "url": "https://blog.exe.dev/ssh-host-header",
     "title": "SSH has no Host header",
     "dateAdded": "2026-01-23T08:56:02Z"
+  },
+  {
+    "url": "https://hugodaniel.com/posts/claude-code-banned-me/",
+    "title": "I was banned from Claude for scaffolding a CLAUDE.md file",
+    "dateAdded": "2026-01-23T10:58:45Z"
   }
 ]
