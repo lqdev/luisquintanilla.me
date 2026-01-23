@@ -241,21 +241,44 @@ module.exports = async function (context, req) {
             context.log(`Digest header: ${req.headers['digest']}`);
             context.log(`Signature header: ${req.headers['signature'] ? req.headers['signature'].substring(0, 100) + '...' : 'NOT PRESENT'}`);
             
-            // Parse and log request body details
-            const bodyString = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
-            context.log(`Request body length: ${bodyString.length} bytes`);
-            
-            // If Digest header present, verify it matches body
-            if (req.headers['digest']) {
-                const crypto = require('crypto');
-                const computedDigest = crypto.createHash('sha256').update(bodyString).digest('base64');
-                const expectedDigest = `SHA-256=${computedDigest}`;
-                const digestMatch = req.headers['digest'] === expectedDigest;
-                context.log(`Digest verification: ${digestMatch ? 'MATCH ✅' : 'MISMATCH ❌'}`);
-                if (!digestMatch) {
-                    context.log(`  Expected: ${expectedDigest}`);
-                    context.log(`  Received: ${req.headers['digest']}`);
+            // Parse and log request body details with digest verification
+            // Wrapped in try-catch to prevent diagnostic code from breaking production
+            try {
+                // Prefer rawBody to avoid JSON re-serialization differences
+                // Azure Functions may parse JSON, causing byte-level differences
+                let bodyForDigest;
+                if (req.rawBody && (typeof req.rawBody === 'string' || Buffer.isBuffer(req.rawBody))) {
+                    bodyForDigest = req.rawBody;
+                    context.log('Using req.rawBody for digest verification');
+                } else if (typeof req.body === 'string') {
+                    bodyForDigest = req.body;
+                    context.log('Using string req.body for digest verification');
+                } else {
+                    bodyForDigest = JSON.stringify(req.body);
+                    context.log('Using JSON.stringify(req.body) for digest verification (rawBody not available)');
                 }
+                
+                const bodyLength = Buffer.isBuffer(bodyForDigest)
+                    ? bodyForDigest.length
+                    : String(bodyForDigest || '').length;
+                context.log(`Request body length: ${bodyLength} bytes`);
+                
+                // If Digest header present, verify it matches body
+                if (req.headers['digest']) {
+                    const bodyBuffer = Buffer.isBuffer(bodyForDigest)
+                        ? bodyForDigest
+                        : Buffer.from(String(bodyForDigest || ''), 'utf8');
+                    const computedDigest = crypto.createHash('sha256').update(bodyBuffer).digest('base64');
+                    const expectedDigest = `SHA-256=${computedDigest}`;
+                    const digestMatch = req.headers['digest'] === expectedDigest;
+                    context.log(`Digest verification: ${digestMatch ? 'MATCH ✅' : 'MISMATCH ❌'}`);
+                    if (!digestMatch) {
+                        context.log(`  Expected: ${expectedDigest}`);
+                        context.log(`  Received: ${req.headers['digest']}`);
+                    }
+                }
+            } catch (error) {
+                context.log.warn(`⚠️  Error during diagnostic digest computation: ${error.message}`);
             }
             context.log('=== End Debug Info ===');
             
