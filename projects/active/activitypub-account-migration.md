@@ -108,9 +108,10 @@ Migrate the Mastodon account `@lqdev@toot.lqdev.tech` to the self-hosted Activit
 
 ## 📋 Implementation Plan
 
-### Phase 1: Actor Enhancement (Critical Path)
+### Phase 1: Actor Enhancement (Critical Path) ⏳ IN PROGRESS
 **Estimated Effort**: 1-2 hours  
-**Risk Level**: Low
+**Risk Level**: Low  
+**Started**: January 23, 2026
 
 #### 1.1 Add `alsoKnownAs` Property to Actor
 Update `api/data/actor.json` to include the old Mastodon account:
