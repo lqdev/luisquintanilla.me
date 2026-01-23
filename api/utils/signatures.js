@@ -106,7 +106,33 @@ async function verifyHttpSignature(req, context) {
     const signingString = headersToSign.map(headerName => {
       if (headerName === '(request-target)') {
         const method = req.method.toLowerCase();
-        const path = req.url || '/';
+        
+        // PHASE 2 FIX: Use x-ms-original-url header for Azure Static Web Apps
+        // Azure SWA routing modifies req.url, but preserves original URL in this header
+        // This ensures we reconstruct the same path that Mastodon signed
+        let path = req.url || '/';
+        if (req.headers['x-ms-original-url']) {
+          try {
+            const { URL } = require('url');
+            const originalUrl = new URL(req.headers['x-ms-original-url']);
+            path = originalUrl.pathname + originalUrl.search;
+            if (context) {
+              context.log(`[Phase 2] Using x-ms-original-url path: ${path} (req.url was: ${req.url})`);
+            }
+          } catch (parseError) {
+            if (context) {
+              context.log.warn(`[Phase 2] Failed to parse x-ms-original-url: ${parseError.message}, falling back to req.url`);
+            }
+          }
+        } else if (req.url === '/inbox') {
+          // Fallback: If no x-ms-original-url and path is just /inbox, 
+          // construct full path (may be needed for local testing)
+          path = '/api/inbox';
+          if (context) {
+            context.log(`[Phase 2] No x-ms-original-url, using known path: ${path}`);
+          }
+        }
+        
         return `(request-target): ${method} ${path}`;
       } else {
         const headerValue = req.headers[headerName.toLowerCase()];
