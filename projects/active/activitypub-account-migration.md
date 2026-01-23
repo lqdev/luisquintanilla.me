@@ -1,7 +1,7 @@
 # ActivityPub Account Migration: toot.lqdev.tech → lqdev.me
 
 **Created**: January 23, 2026  
-**Status**: 📋 Planning Phase  
+**Status**: ✅ Phase 1 Complete - Ready for Merge  
 **Branch**: `project/activitypub-account-migration`  
 **Priority**: High
 
@@ -183,6 +183,7 @@ No separate work needed - this was bundled with the Phase 1 actor.json update.
 - [ ] **Verify deployment**: `curl -H "Accept: application/activity+json" https://lqdev.me/api/activitypub/actor`
 - [ ] **Test WebFinger**: Verify `@lqdev@lqdev.me` resolves correctly
 - [ ] **Note current follower count** on toot.lqdev.tech for comparison
+- [ ] **⚠️ Wait for actor cache expiry**: The actor endpoint has 1-hour cache (`max-age=3600`). Wait at least 1 hour after deployment before migration, or temporarily reduce cache TTL in `api/actor/index.js` for testing.
 
 ### Migration Steps (On Mastodon)
 
