@@ -124,6 +124,9 @@ jobs:
           name: webmention-artifacts
           path: .
       
+      - name: Restore NuGet dependencies
+        run: dotnet restore
+      
       - name: Send Webmentions
         run: dotnet fsi Scripts/send-webmentions.fsx
 
