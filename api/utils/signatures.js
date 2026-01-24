@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const { URL } = require('url');
 const { KeyVaultSigner } = require('./keyvault');
 
 /**
@@ -77,17 +78,15 @@ async function fetchActorPublicKey(actorUrl) {
 /**
  * Verify Digest header matches request body
  * @param {Object} req - Azure Function request object
- * @param {Object} context - Azure Function context for logging (optional)
+ * @param {Object} context - Azure Function context for logging
  * @returns {boolean} True if digest matches or no digest present
  */
-function verifyDigest(req, context = null) {
+function verifyDigest(req, context) {
   const digestHeader = req.headers['digest'];
   
   // If no Digest header, verification passes (digest is optional per spec)
   if (!digestHeader) {
-    if (context) {
-      context.log('[Phase 3] No Digest header present - skipping digest verification');
-    }
+    context.log('[Phase 3] No Digest header present - skipping digest verification');
     return true;
   }
   
@@ -96,19 +95,14 @@ function verifyDigest(req, context = null) {
     let bodyForDigest;
     if (req.rawBody && (typeof req.rawBody === 'string' || Buffer.isBuffer(req.rawBody))) {
       bodyForDigest = req.rawBody;
-      if (context) {
-        context.log('[Phase 3] Using req.rawBody for digest verification');
-      }
+      context.log('[Phase 3] Using req.rawBody for digest verification');
     } else if (typeof req.body === 'string') {
       bodyForDigest = req.body;
-      if (context) {
-        context.log('[Phase 3] Using string req.body for digest verification');
-      }
+      context.log('[Phase 3] Using string req.body for digest verification');
     } else {
+      // JSON.stringify fallback may not match sender's representation
       bodyForDigest = JSON.stringify(req.body);
-      if (context) {
-        context.log('[Phase 3] Using JSON.stringify(req.body) for digest verification');
-      }
+      context.log.warn('[Phase 3] ⚠️  Using JSON.stringify(req.body) - may not match sender representation');
     }
     
     // Convert to buffer if needed
@@ -116,20 +110,46 @@ function verifyDigest(req, context = null) {
       ? bodyForDigest
       : Buffer.from(String(bodyForDigest || ''), 'utf8');
     
-    // Compute SHA-256 digest
-    const computedDigest = crypto.createHash('sha256').update(bodyBuffer).digest('base64');
-    const expectedDigest = `SHA-256=${computedDigest}`;
+    // Parse algorithm from Digest header (e.g., "SHA-256=..." or "SHA-512=...")
+    const digestParts = typeof digestHeader === 'string' ? digestHeader.split('=', 2) : [];
+    const digestAlgorithm = digestParts[0];
+    const digestValue = digestParts[1];
+    
+    if (!digestAlgorithm || !digestValue) {
+      context.log('[Phase 3] ❌ Digest verification FAILED - malformed Digest header');
+      context.log(`[Phase 3]   Received: ${digestHeader}`);
+      return false;
+    }
+    
+    // Map HTTP Digest algorithm names to Node.js crypto algorithms
+    const algoLower = digestAlgorithm.toLowerCase();
+    const hashAlgorithmMap = {
+      'sha-256': 'sha256',
+      'sha256': 'sha256',
+      'sha-512': 'sha512',
+      'sha512': 'sha512'
+    };
+    const hashAlgorithm = hashAlgorithmMap[algoLower];
+    
+    if (!hashAlgorithm) {
+      context.log('[Phase 3] ❌ Digest verification FAILED - unsupported digest algorithm');
+      context.log(`[Phase 3]   Algorithm: ${digestAlgorithm}`);
+      context.log(`[Phase 3]   Received: ${digestHeader}`);
+      return false;
+    }
+    
+    // Compute digest using the algorithm from the header
+    const computedDigest = crypto.createHash(hashAlgorithm).update(bodyBuffer).digest('base64');
+    const expectedDigest = `${digestAlgorithm}=${computedDigest}`;
     
     const digestMatch = digestHeader === expectedDigest;
     
-    if (context) {
-      if (digestMatch) {
-        context.log('[Phase 3] ✅ Digest verification PASSED');
-      } else {
-        context.log('[Phase 3] ❌ Digest verification FAILED');
-        context.log(`[Phase 3]   Expected: ${expectedDigest}`);
-        context.log(`[Phase 3]   Received: ${digestHeader}`);
-      }
+    if (digestMatch) {
+      context.log(`[Phase 3] ✅ Digest verification PASSED (${digestAlgorithm})`);
+    } else {
+      context.log('[Phase 3] ❌ Digest verification FAILED');
+      context.log(`[Phase 3]   Expected: ${expectedDigest}`);
+      context.log(`[Phase 3]   Received: ${digestHeader}`);
     }
     
     return digestMatch;
@@ -187,24 +207,24 @@ async function verifyHttpSignature(req, context) {
         let path = req.url || '/';
         if (req.headers['x-ms-original-url']) {
           try {
-            const { URL } = require('url');
             const originalUrl = new URL(req.headers['x-ms-original-url']);
-            path = originalUrl.pathname + originalUrl.search;
+            // Only append search if not empty to avoid trailing '?'
+            path = originalUrl.pathname + (originalUrl.search || '');
             if (context) {
               context.log(`[Phase 2] Using x-ms-original-url path: ${path} (req.url was: ${req.url})`);
             }
           } catch (parseError) {
-            if (context) {
-              context.log.warn(`[Phase 2] Failed to parse x-ms-original-url: ${parseError.message}, falling back to req.url`);
-            }
+            // If x-ms-original-url is present but malformed, fail verification
+            // to avoid accidentally verifying against an incorrect req.url path
+            context.log.error(`[Phase 2] Failed to parse x-ms-original-url: ${parseError.message}`);
+            context.log.error('[Phase 2] Signature verification FAILED due to malformed x-ms-original-url');
+            throw parseError;
           }
         } else if (req.url === '/inbox') {
           // Fallback: If no x-ms-original-url and path is just /inbox, 
-          // construct full path (may be needed for local testing)
-          path = '/api/inbox';
-          if (context) {
-            context.log(`[Phase 2] No x-ms-original-url, using known path: ${path}`);
-          }
+          // construct full path (matches actual route: /api/activitypub/inbox)
+          path = '/api/activitypub/inbox';
+          context.log.warn(`[Phase 2] No x-ms-original-url, using fallback path: ${path}`);
         }
         
         return `(request-target): ${method} ${path}`;
