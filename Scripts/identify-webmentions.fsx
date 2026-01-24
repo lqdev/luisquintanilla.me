@@ -28,18 +28,20 @@ let responses =
     let feedData = GenericBuilder.buildContentWithFeeds processor responseFiles
     feedData |> List.map (fun item -> item.Content) |> List.toArray
 
+// Get current time in EST/EDT (-05:00/-04:00) to match the timezone used in post metadata
+let estTimeZone =
+    try
+        TimeZoneInfo.FindSystemTimeZoneById("America/New_York") // Linux/Mac (handles DST)
+    with
+    | _ -> TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time") // Windows fallback
+
+let currentDateTime = TimeZoneInfo.ConvertTime(DateTimeOffset.Now, estTimeZone)
+
 // Filter for recent responses (updated within last hour)
 let recentResponses =
     responses
     |> Array.filter(fun x -> 
         try
-            // Get current time in EST/EDT (-05:00/-04:00) to match the timezone used in post metadata
-            let estTimeZone = 
-                try
-                    TimeZoneInfo.FindSystemTimeZoneById("America/New_York") // Linux/Mac (handles DST)
-                with
-                | _ -> TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time") // Windows fallback
-            let currentDateTime = TimeZoneInfo.ConvertTime(DateTimeOffset.Now, estTimeZone)
             let updatedDateTime = DateTimeOffset.Parse(x.Metadata.DateUpdated)
             // Send webmentions for responses updated within the last hour
             currentDateTime.Subtract(updatedDateTime).TotalHours < 1.0

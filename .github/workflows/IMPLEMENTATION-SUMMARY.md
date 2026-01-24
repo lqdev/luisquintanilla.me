@@ -113,7 +113,7 @@ Note: Webmention identification uses PersonalSite.dll during build.
 | Parallel Jobs | 0 | 2 | **Concurrent execution** |
 | Artifact Storage | N/A | ~10KB | **Minimal overhead** |
 
-**Note:** Further optimized (Jan 2026) - Removed webmention artifacts (110KB savings), simplified workflow
+**Note:** Further optimized (Jan 2026) – Reduced webmention artifact payload (e.g., ~110KB → ~1KB JSON), simplifying the workflow
 
 ### Execution Timeline
 

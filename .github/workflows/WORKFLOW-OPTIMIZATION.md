@@ -37,7 +37,7 @@ build_and_deploy_job
 
 **Artifacts Uploaded:**
 - `webmention-artifacts`: Contains JSON list of webmentions to send
-  - `_public/api/data/webmentions.json` - Identified during build using PersonalSite.dll
+  - `_tmp/webmentions.json` - Generated during build using PersonalSite.dll, uploaded as a single-file artifact and later downloaded into the repository root as `webmentions.json` for `Scripts/send-webmentions.fsx`
 
 - `activitypub-artifacts`: Contains generated data for ActivityPub delivery
   - `_public/api/data/outbox/index.json` - Outbox feed with recent posts
