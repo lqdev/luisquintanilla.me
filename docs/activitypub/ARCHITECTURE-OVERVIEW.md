@@ -1,7 +1,7 @@
 # ActivityPub Implementation: Architecture & Implementation Overview
 
-**Last Updated**: January 22, 2026  
-**Status**: Production - Phases 1-4 Complete  
+**Last Updated**: January 23, 2026  
+**Status**: Production - Phases 1-4 Complete (Phase 4: HTTP Signature Verification LIVE 🔒)  
 **Primary Maintainer**: See commit history
 
 ---
@@ -238,38 +238,48 @@ This repository implements ActivityPub federation for a static website built wit
 
 ---
 
-### Phase 4: Activity Delivery ✅ COMPLETE
+### Phase 4: HTTP Signature Verification ✅ COMPLETE 🔒
 
-**Completion Date**: January 20, 2026
+**Completion Date**: January 23, 2026  
+**Duration**: 7.5 hours (including production rollout with 4 hotfixes)  
+**Production Status**: LIVE and ENFORCED
 
-**Phases**:
+**What Was Implemented**:
 
-**Phase 4A: Inbox Handler & Follower Management**
-- Azure Table Storage integration (`followers` table)
-- Inbox handler with HTTP signature validation
-- Asynchronous Accept delivery via Azure Queue
-- Idempotent activity processing
-- Static `followers.json` regeneration from Table Storage
+**Sub-Phases 1-5: Development** (PR #1924)
+- Phase 1: Comprehensive diagnostic logging for signature debugging
+- Phase 2: Path reconstruction using `x-ms-original-url` for Azure Static Web Apps
+- Phase 3: Multi-algorithm digest verification (SHA-256, SHA-512)
+- Phase 4: Timestamp validation with 5-minute window (replay attack prevention)
+- Phase 5: Feature flag implementation for safe production rollout
 
-**Phase 4B: Delivery Infrastructure**
-- Azure Queue Storage (`activitypub-delivery` queue)
-- QueueDeliveryTasks function (HTTP trigger)
-- ProcessDelivery function (Queue trigger)
-- Delivery status tracking (`deliverystatus` table)
-- Exponential backoff retry logic
+**Phase 6: Production Rollout** (January 23, 2026)
+- PR #1924 merged (Phases 2-5)
+- HOTFIX 1 (763a7981): Added missing function export
+- HOTFIX 2 (889e017f): Added missing function definition
+- HOTFIX 3 (e5ed53cd): Fixed `logBoth()` declaration order
+- Final Fix (84f58c88): Enforced signature requirement when enabled
+- Feature flag enabled: `ACTIVITYPUB_VERIFY_SIGNATURES=true`
 
-**Phase 4C: Full Integration & Monitoring**
-- GitHub Actions workflow integration
-- Automatic delivery trigger on deployment
-- Application Insights dashboards
-- End-to-end testing validation
-- Monitoring and troubleshooting procedures
+**Production Behavior**:
+- ✅ Valid signatures → Accepted
+- ❌ Missing signatures → 401 "HTTP signature required"
+- ❌ Invalid signatures → 401 "Invalid HTTP signature"
 
-**Key Decisions**:
-1. Production-ready architecture from the start (not minimal prototype)
-2. Queue-based async delivery for reliability
-3. Table Storage as source of truth for follower state
-4. Phased implementation for risk mitigation
+**Security Enhancements**:
+1. Cryptographic request authentication using RSA public keys
+2. Replay attack prevention via timestamp validation
+3. Body integrity verification with multi-algorithm digest support
+4. Correct path reconstruction for Azure Static Web Apps routing
+5. Safe rollout with instant rollback capability via feature flag
+
+**Key Learnings**:
+- Multi-hotfix debugging required without Application Insights (Azure SWA Free tier)
+- JavaScript function hoisting issues with const/let expressions
+- Feature flag security logic must ENFORCE requirements, not just verify when present
+- Azure Static Web Apps `x-ms-original-url` header critical for path reconstruction
+
+**Documentation**: See `docs/activitypub/phase4-http-signature-verification-complete.md` for complete implementation details, production testing results, and technical specifications.
 
 ---
 
