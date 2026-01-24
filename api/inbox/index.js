@@ -2,7 +2,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const https = require('https');
 const crypto = require('crypto');
-const { verifyHttpSignature, generateHttpSignature } = require('../utils/signatures');
+const { verifyHttpSignatureWithFeatureFlag, generateHttpSignature } = require('../utils/signatures');
 
 // Enhanced error handling for module loading
 let tableStorage;
@@ -291,25 +291,23 @@ module.exports = async function (context, req) {
             }
             logBoth('=== End HTTP Signature Debug Info ===');
             
-            // Verify HTTP signature (TEMPORARILY DISABLED for testing)
-            // TODO: Re-enable after Phase 2 implementation
+            // PHASE 5: Verify HTTP signature with feature flag
             const hasSignature = req.headers['signature'];
             if (hasSignature) {
-                context.log.warn('⚠️  Signature present but verification DISABLED for testing');
-                // Uncomment to enable verification:
-                // const isValidSignature = await verifyHttpSignature(req, context);
-                // if (!isValidSignature) {
-                //     context.log.warn('Invalid signature - rejecting activity');
-                //     context.res = {
-                //         status: 401,
-                //         headers: { 'Content-Type': 'application/json' },
-                //         body: { error: 'Invalid signature' }
-                //     };
-                //     return;
-                // }
-                // context.log('Signature verified successfully');
+                logBoth('[Phase 5] Signature header present - calling verifyHttpSignatureWithFeatureFlag...');
+                const isValidSignature = await verifyHttpSignatureWithFeatureFlag(req, context);
+                if (!isValidSignature) {
+                    logBoth('[Phase 5] ❌ Signature verification FAILED - rejecting activity');
+                    context.res = {
+                        status: 401,
+                        headers: { 'Content-Type': 'application/json' },
+                        body: { error: 'Invalid HTTP signature' }
+                    };
+                    return;
+                }
+                logBoth('[Phase 5] ✅ Signature verification PASSED');
             } else {
-                context.log.warn('⚠️  No signature present - accepting anyway (development mode)');
+                logBoth('[Phase 5] ⚠️  No Signature header present - accepting unsigned request (for backward compatibility)');
             }
             
             // Log activity to file for debugging
