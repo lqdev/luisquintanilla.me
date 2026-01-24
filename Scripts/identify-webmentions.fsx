@@ -54,14 +54,19 @@ printfn $"Found {recentResponses.Length} responses updated within the last hour"
 let webmentions =
     recentResponses
     |> Array.map(fun x -> 
-        { Source = $"http://lqdev.me/feed/{x.FileName}"
+        // Determine correct path based on response type
+        let pathPrefix = 
+            match x.Metadata.ResponseType with
+            | "bookmark" -> "bookmarks"
+            | _ -> "responses"
+        { Source = $"https://lqdev.me/{pathPrefix}/{x.FileName}/"
           Target = x.Metadata.TargetUrl })
 
 // Serialize to JSON
 let json = JsonSerializer.Serialize(webmentions, JsonSerializerOptions(WriteIndented = true))
 
-// Write to output directory
-let outputDir = "_public/api/data"
+// Write to temporary output directory (will be uploaded as artifact)
+let outputDir = "_tmp"
 Directory.CreateDirectory(outputDir) |> ignore
 let outputPath = Path.Combine(outputDir, "webmentions.json")
 File.WriteAllText(outputPath, json)

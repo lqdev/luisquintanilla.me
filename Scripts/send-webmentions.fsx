@@ -20,7 +20,7 @@ type WebmentionData = {
 }
 
 // Read webmentions from JSON file
-let webmentionsPath = Path.Combine("_public", "api", "data", "webmentions.json")
+let webmentionsPath = "webmentions.json"
 
 if not (File.Exists(webmentionsPath)) then
     printfn "No webmentions file found. Nothing to send."

@@ -85,7 +85,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: webmention-artifacts
-          path: _public/api/data/webmentions.json
+          path: _tmp/webmentions.json
           retention-days: 1
       
       - name: Upload ActivityPub data for delivery queue
@@ -121,7 +121,7 @@ jobs:
         uses: actions/download-artifact@v4.1.8
         with:
           name: webmention-artifacts
-          path: _public/api/data/
+          path: .
       
       # The F# script uses inline NuGet references (#r "nuget:...") 
       # and reads webmentions from the JSON file generated during build
