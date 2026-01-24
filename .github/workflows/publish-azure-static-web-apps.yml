@@ -119,7 +119,7 @@ jobs:
           cache: false
       
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           name: webmention-artifacts
       
@@ -142,7 +142,7 @@ jobs:
       ACTIVITYPUB_STORAGE_CONNECTION: ${{ secrets.ACTIVITYPUB_STORAGE_CONNECTION }}
     steps:
       - name: Download ActivityPub artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           name: activitypub-artifacts
           path: _public/api/data/outbox/
