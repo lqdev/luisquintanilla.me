@@ -78,17 +78,6 @@ jobs:
       
       # Upload artifacts for downstream notification jobs
       # These jobs run independently and need access to build outputs
-      - name: Upload build artifacts for webmentions
-        uses: actions/upload-artifact@v4
-        with:
-          name: webmention-artifacts
-          path: |
-            _src/responses/
-            bin/Debug/net10.0/PersonalSite.dll
-            bin/Debug/net10.0/*.deps.json
-            bin/Debug/net10.0/*.runtimeconfig.json
-          retention-days: 1
-      
       - name: Upload ActivityPub data for delivery queue
         uses: actions/upload-artifact@v4
         with:
@@ -99,7 +88,7 @@ jobs:
   # ============================================================================
   # Webmention Notification Job (Independent)
   # Sends webmentions to notify other sites of new response content
-  # Depends only on: build_and_deploy_job
+  # Depends only on: build_and_deploy_job (for sequencing, not for artifacts)
   # Runs in parallel with: queue_activitypub_job
   # ============================================================================
   send_webmentions_job:
@@ -118,18 +107,8 @@ jobs:
           dotnet-version: '10.0.x'
           cache: false
       
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4.1.8
-        with:
-          name: webmention-artifacts
-          path: .
-      
-      # Restore NuGet dependencies (including WebmentionFs) to NuGet cache
-      # The F# script loads PersonalSite.dll which depends on WebmentionFs.dll
-      # Without this restore, dotnet fsi fails with FileNotFoundException
-      - name: Restore NuGet dependencies
-        run: dotnet restore
-      
+      # The F# script uses inline NuGet references (#r "nuget:...") 
+      # which are automatically restored by dotnet fsi when the script runs
       - name: Send Webmentions
         run: dotnet fsi Scripts/send-webmentions.fsx
 
