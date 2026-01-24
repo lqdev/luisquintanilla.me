@@ -36,24 +36,19 @@ build_and_deploy_job
 - **Upload artifacts** for downstream jobs
 
 **Artifacts Uploaded:**
-- `webmention-artifacts`: Contains source files and compiled binaries needed for webmention processing
-  - `_src/responses/` - Response markdown files
-  - `bin/Debug/net10.0/PersonalSite.dll` - Compiled assembly
-  - `bin/Debug/net10.0/*.deps.json` - Dependency manifests
-  - `bin/Debug/net10.0/*.runtimeconfig.json` - Runtime configuration
-
 - `activitypub-artifacts`: Contains generated data for ActivityPub delivery
   - `_public/api/data/outbox/index.json` - Outbox feed with recent posts
 
+**Note:** As of January 2026, `webmention-artifacts` are no longer needed. The `send_webmentions_job` now uses a self-contained F# script with inline NuGet package references.
+
 #### 2. `send_webmentions_job` (Independent)
 **Responsibilities:**
-- Checkout repository (for Scripts/)
+- Checkout repository (for Scripts/ and _src/responses/)
 - Setup .NET SDK 10.x
-- Download `webmention-artifacts`
-- Execute `Scripts/send-webmentions.fsx`
+- Execute `Scripts/send-webmentions.fsx` (self-contained with inline NuGet references)
 
 **Dependencies:**
-- **Needs:** `build_and_deploy_job` (must complete successfully)
+- **Needs:** `build_and_deploy_job` (for sequencing only, no artifacts needed)
 - **Independent of:** `queue_activitypub_job` (runs in parallel)
 
 **Conditions:**
@@ -61,10 +56,15 @@ build_and_deploy_job
 - No branch restrictions
 
 **What it does:**
-- Loads response content from `_src/responses/`
-- Uses compiled `PersonalSite.dll` to process responses
+- Parses response content directly from `_src/responses/` markdown files
+- Uses inline NuGet package references (`#r "nuget:..."`) for dependencies
 - Sends webmentions to sites referenced in responses
 - Notifies other IndieWeb sites of new content
+
+**Technical Notes:**
+- F# Interactive automatically restores NuGet packages when script runs
+- No longer depends on compiled PersonalSite.dll or build artifacts
+- Self-contained script simplifies maintenance and debugging
 
 #### 3. `queue_activitypub_job` (Independent)
 **Responsibilities:**

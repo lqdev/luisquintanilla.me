@@ -66,16 +66,15 @@ queue_activitypub_job:        # ✅ Independent
 **1. build_and_deploy_job**
 - **Purpose:** Build F# site, deploy to Azure, upload artifacts
 - **Artifacts:** 
-  - `webmention-artifacts` (110KB): source + binaries
   - `activitypub-artifacts` (10KB): outbox JSON
 - **Retention:** 1 day (ephemeral notification data)
+- **Note:** Webmention artifacts no longer needed (script is self-contained)
 
 **2. send_webmentions_job**
 - **Purpose:** Notify other sites of new response content
-- **Depends on:** build_and_deploy_job
+- **Depends on:** build_and_deploy_job (for sequencing only, no artifacts)
 - **Runs:** All trigger types (push, workflow_dispatch)
-- **Downloads:** webmention-artifacts
-- **Tech:** F# script + PersonalSite.dll
+- **Tech:** Self-contained F# script with inline NuGet references
 
 **3. queue_activitypub_job**
 - **Purpose:** Queue posts for federated delivery
@@ -89,16 +88,13 @@ queue_activitypub_job:        # ✅ Independent
 ```
 build_and_deploy_job
     │
-    ├─ Uploads webmention-artifacts
-    │  ├─ _src/responses/*.md
-    │  └─ bin/Debug/net10.0/PersonalSite.dll (+ deps)
-    │      │
-    │      └─> Downloaded by send_webmentions_job
-    │
     └─ Uploads activitypub-artifacts
        └─ _public/api/data/outbox/index.json
            │
            └─> Downloaded by queue_activitypub_job
+
+Note: send_webmentions_job no longer needs artifacts.
+      It uses inline NuGet references in the F# script.
 ```
 
 ---
@@ -110,7 +106,9 @@ build_and_deploy_job
 | Total Time | ~215s | ~200s | **⚡ 7% faster** |
 | Job Isolation | ❌ None | ✅ 100% | **Fault tolerant** |
 | Parallel Jobs | 0 | 2 | **Concurrent execution** |
-| Artifact Storage | N/A | ~110KB | **Minimal overhead** |
+| Artifact Storage | N/A | ~10KB | **Minimal overhead** |
+
+**Note:** Further optimized (Jan 2026) - Removed webmention artifacts (110KB savings), simplified workflow
 
 ### Execution Timeline
 
