@@ -33,7 +33,7 @@ let recentResponses =
     responses
     |> Array.filter(fun x -> 
         try
-            // Get current time in EST (-05:00) to match the timezone used in post metadata
+            // Get current time in EST/EDT (-05:00/-04:00) to match the timezone used in post metadata
             let estTimeZone = 
                 try
                     TimeZoneInfo.FindSystemTimeZoneById("America/New_York") // Linux/Mac (handles DST)
