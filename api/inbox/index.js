@@ -294,9 +294,22 @@ module.exports = async function (context, req) {
             logBoth('=== End HTTP Signature Debug Info ===');
             
             // PHASE 5: Verify HTTP signature with feature flag
+            const verificationEnabled = process.env.ACTIVITYPUB_VERIFY_SIGNATURES === 'true';
             const hasSignature = req.headers['signature'];
-            if (hasSignature) {
-                logBoth('[Phase 5] Signature header present - calling verifyHttpSignatureWithFeatureFlag...');
+            
+            if (verificationEnabled) {
+                // When verification is enabled, signatures are REQUIRED
+                if (!hasSignature) {
+                    logBoth('[Phase 5] ❌ Signature verification ENABLED but no Signature header present - rejecting activity');
+                    context.res = {
+                        status: 401,
+                        headers: { 'Content-Type': 'application/json' },
+                        body: { error: 'HTTP signature required' }
+                    };
+                    return;
+                }
+                
+                logBoth('[Phase 5] Signature header present - verifying signature...');
                 const isValidSignature = await verifyHttpSignatureWithFeatureFlag(req, context);
                 if (!isValidSignature) {
                     logBoth('[Phase 5] ❌ Signature verification FAILED - rejecting activity');
@@ -309,7 +322,12 @@ module.exports = async function (context, req) {
                 }
                 logBoth('[Phase 5] ✅ Signature verification PASSED');
             } else {
-                logBoth('[Phase 5] ⚠️  No Signature header present - accepting unsigned request (for backward compatibility)');
+                // When verification is disabled, accept all requests (backward compatibility)
+                if (hasSignature) {
+                    logBoth('[Phase 5] ⚠️  Signature verification DISABLED - accepting request with signature (not verified)');
+                } else {
+                    logBoth('[Phase 5] ⚠️  Signature verification DISABLED - accepting unsigned request');
+                }
             }
             
             // Log activity to file for debugging
