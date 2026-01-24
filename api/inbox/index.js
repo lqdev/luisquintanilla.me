@@ -221,6 +221,12 @@ module.exports = async function (context, req) {
         }
 
         if (req.method === 'POST') {
+            // Define logging helper first (before any usage)
+            const logBoth = (message) => {
+                console.log(message);
+                context.log(message);
+            };
+            
             const activityData = req.body;
             const activityType = activityData.type;
             const timestamp = new Date().toISOString();
@@ -236,10 +242,6 @@ module.exports = async function (context, req) {
             // Capture exact request values to diagnose signature verification
             // Related: feature/http-signature-verification
             // Using both console.log and context.log for Azure Static Web Apps compatibility
-            const logBoth = (message) => {
-                console.log(message);
-                context.log(message);
-            };
             
             logBoth('=== HTTP Signature Debug Info ===');
             logBoth(`[HTTP Sig Debug] req.url: ${req.url}`);
