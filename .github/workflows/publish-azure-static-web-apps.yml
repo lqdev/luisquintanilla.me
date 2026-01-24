@@ -124,6 +124,12 @@ jobs:
           name: webmention-artifacts
           path: .
       
+      # Restore NuGet dependencies (including WebmentionFs) to NuGet cache
+      # The F# script loads PersonalSite.dll which depends on WebmentionFs.dll
+      # Without this restore, dotnet fsi fails with FileNotFoundException
+      - name: Restore NuGet dependencies
+        run: dotnet restore
+      
       - name: Send Webmentions
         run: dotnet fsi Scripts/send-webmentions.fsx
 
