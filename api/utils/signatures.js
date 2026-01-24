@@ -162,6 +162,43 @@ function verifyDigest(req, context) {
 }
 
 /**
+ * Validate Date header timestamp to prevent replay attacks
+ * @param {Object} req - Azure Function request object
+ * @param {Object} context - Azure Function context for logging
+ * @param {number} maxAgeSeconds - Maximum age of request in seconds (default: 300 = 5 minutes)
+ * @returns {boolean} True if timestamp is within acceptable window
+ */
+function validateTimestamp(req, context, maxAgeSeconds = 300) {
+  const dateHeader = req.headers['date'];
+  
+  // If no Date header, fail validation
+  if (!dateHeader) {
+    context.log('[Phase 4] ❌ Timestamp validation FAILED - no Date header present');
+    return false;
+  }
+  
+  try {
+    const requestDate = new Date(dateHeader);
+    const now = new Date();
+    const ageSeconds = Math.abs((now - requestDate) / 1000);
+    
+    if (ageSeconds > maxAgeSeconds) {
+      context.log('[Phase 4] ❌ Timestamp validation FAILED - request too old');
+      context.log(`[Phase 4]   Request date: ${requestDate.toISOString()}`);
+      context.log(`[Phase 4]   Current time: ${now.toISOString()}`);
+      context.log(`[Phase 4]   Age: ${Math.round(ageSeconds)} seconds (max: ${maxAgeSeconds})`);
+      return false;
+    }
+    
+    context.log(`[Phase 4] ✅ Timestamp validation PASSED (age: ${Math.round(ageSeconds)}s)`);
+    return true;
+  } catch (error) {
+    context.log.error(`[Phase 4] Timestamp validation error: ${error.message}`);
+    return false;
+  }
+}
+
+/**
  * Verify HTTP signature on incoming ActivityPub request
  * @param {Object} req - Azure Function request object
  * @param {Object} context - Azure Function context for logging
@@ -173,6 +210,13 @@ async function verifyHttpSignature(req, context) {
     const digestValid = verifyDigest(req, context);
     if (!digestValid) {
       context.log.warn('[Phase 3] Digest verification failed - rejecting request');
+      return false;
+    }
+    
+    // PHASE 4: Validate timestamp to prevent replay attacks
+    const timestampValid = validateTimestamp(req, context);
+    if (!timestampValid) {
+      context.log.warn('[Phase 4] Timestamp validation failed - rejecting request');
       return false;
     }
     
