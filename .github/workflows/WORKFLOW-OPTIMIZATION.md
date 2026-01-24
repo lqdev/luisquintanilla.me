@@ -36,11 +36,8 @@ build_and_deploy_job
 - **Upload artifacts** for downstream jobs
 
 **Artifacts Uploaded:**
-- `webmention-artifacts`: Contains source files and compiled binaries needed for webmention processing
-  - `_src/responses/` - Response markdown files
-  - `bin/Debug/net10.0/PersonalSite.dll` - Compiled assembly
-  - `bin/Debug/net10.0/*.deps.json` - Dependency manifests
-  - `bin/Debug/net10.0/*.runtimeconfig.json` - Runtime configuration
+- `webmention-artifacts`: Contains JSON list of webmentions to send
+  - `_tmp/webmentions.json` - Generated during build using PersonalSite.dll, uploaded as a single-file artifact and later downloaded into the repository root as `webmentions.json` for `Scripts/send-webmentions.fsx`
 
 - `activitypub-artifacts`: Contains generated data for ActivityPub delivery
   - `_public/api/data/outbox/index.json` - Outbox feed with recent posts
@@ -53,7 +50,7 @@ build_and_deploy_job
 - Execute `Scripts/send-webmentions.fsx`
 
 **Dependencies:**
-- **Needs:** `build_and_deploy_job` (must complete successfully)
+- **Needs:** `build_and_deploy_job` (for webmentions.json artifact)
 - **Independent of:** `queue_activitypub_job` (runs in parallel)
 
 **Conditions:**
@@ -61,10 +58,15 @@ build_and_deploy_job
 - No branch restrictions
 
 **What it does:**
-- Loads response content from `_src/responses/`
-- Uses compiled `PersonalSite.dll` to process responses
+- Reads webmention data from `webmentions.json` (generated during build)
+- Uses inline NuGet package reference for WebmentionFs
 - Sends webmentions to sites referenced in responses
 - Notifies other IndieWeb sites of new content
+
+**Technical Notes:**
+- Build step identifies webmentions using PersonalSite.dll
+- Send step only needs WebmentionFs package (no PersonalSite.dll dependency)
+- Separation of concerns: identification vs. sending
 
 #### 3. `queue_activitypub_job` (Independent)
 **Responsibilities:**

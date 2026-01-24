@@ -41,6 +41,9 @@ jobs:
       - name: Generate website
         run: dotnet run
 
+      - name: Identify webmentions to send
+        run: dotnet fsi Scripts/identify-webmentions.fsx
+
       - name: Sync ActivityPub data for Azure Functions
         run: |
           echo "📦 Syncing generated ActivityPub data to Azure Functions directory..."
@@ -78,15 +81,11 @@ jobs:
       
       # Upload artifacts for downstream notification jobs
       # These jobs run independently and need access to build outputs
-      - name: Upload build artifacts for webmentions
+      - name: Upload webmention data for notification job
         uses: actions/upload-artifact@v4
         with:
           name: webmention-artifacts
-          path: |
-            _src/responses/
-            bin/Debug/net10.0/PersonalSite.dll
-            bin/Debug/net10.0/*.deps.json
-            bin/Debug/net10.0/*.runtimeconfig.json
+          path: _tmp/webmentions.json
           retention-days: 1
       
       - name: Upload ActivityPub data for delivery queue
@@ -99,7 +98,7 @@ jobs:
   # ============================================================================
   # Webmention Notification Job (Independent)
   # Sends webmentions to notify other sites of new response content
-  # Depends only on: build_and_deploy_job
+  # Depends on: build_and_deploy_job (for webmentions.json artifact)
   # Runs in parallel with: queue_activitypub_job
   # ============================================================================
   send_webmentions_job:
@@ -118,18 +117,14 @@ jobs:
           dotnet-version: '10.0.x'
           cache: false
       
-      - name: Download build artifacts
+      - name: Download webmention data
         uses: actions/download-artifact@v4.1.8
         with:
           name: webmention-artifacts
           path: .
       
-      # Restore NuGet dependencies (including WebmentionFs) to NuGet cache
-      # The F# script loads PersonalSite.dll which depends on WebmentionFs.dll
-      # Without this restore, dotnet fsi fails with FileNotFoundException
-      - name: Restore NuGet dependencies
-        run: dotnet restore
-      
+      # The F# script uses inline NuGet references (#r "nuget:...") 
+      # and reads webmentions from the JSON file generated during build
       - name: Send Webmentions
         run: dotnet fsi Scripts/send-webmentions.fsx
 
