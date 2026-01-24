@@ -11,6 +11,11 @@ on:
   #     - main
 
 jobs:
+  # ============================================================================
+  # Main build and deployment job
+  # Builds the F# static site generator, generates content, and deploys to Azure
+  # Uploads artifacts for downstream notification jobs
+  # ============================================================================
   build_and_deploy_job:
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
@@ -71,13 +76,79 @@ jobs:
           skip_api_build: false # Let Azure build the Node.js API
           ###### End of Repository/Build Configurations ######
       
+      # Upload artifacts for downstream notification jobs
+      # These jobs run independently and need access to build outputs
+      - name: Upload build artifacts for webmentions
+        uses: actions/upload-artifact@v4
+        with:
+          name: webmention-artifacts
+          path: |
+            _src/responses/
+            bin/Debug/net10.0/PersonalSite.dll
+            bin/Debug/net10.0/*.deps.json
+            bin/Debug/net10.0/*.runtimeconfig.json
+          retention-days: 1
+      
+      - name: Upload ActivityPub data for delivery queue
+        uses: actions/upload-artifact@v4
+        with:
+          name: activitypub-artifacts
+          path: _public/api/data/outbox/index.json
+          retention-days: 1
+
+  # ============================================================================
+  # Webmention Notification Job (Independent)
+  # Sends webmentions to notify other sites of new response content
+  # Depends only on: build_and_deploy_job
+  # Runs in parallel with: queue_activitypub_job
+  # ============================================================================
+  send_webmentions_job:
+    needs: build_and_deploy_job
+    runs-on: ubuntu-latest
+    name: Send Webmentions
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          lfs: false
+      
+      - name: Setup .NET SDK 10.x
+        uses: actions/setup-dotnet@v4
+        with: 
+          dotnet-version: '10.0.x'
+          cache: false
+      
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: webmention-artifacts
+          path: .
+      
       - name: Send Webmentions
         run: dotnet fsi Scripts/send-webmentions.fsx
 
+  # ============================================================================
+  # ActivityPub Delivery Queue Job (Independent)
+  # Queues recent posts for federated delivery to ActivityPub followers
+  # Depends only on: build_and_deploy_job
+  # Runs in parallel with: send_webmentions_job
+  # Only executes on main branch pushes (not PRs or manual triggers)
+  # ============================================================================
+  queue_activitypub_job:
+    needs: build_and_deploy_job
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    name: Queue ActivityPub Posts
+    env:
+      ACTIVITYPUB_STORAGE_CONNECTION: ${{ secrets.ACTIVITYPUB_STORAGE_CONNECTION }}
+    steps:
+      - name: Download ActivityPub artifacts
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: activitypub-artifacts
+          path: _public/api/data/outbox/
+      
       - name: Queue Recent Posts for Delivery
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        env:
-          ACTIVITYPUB_STORAGE_CONNECTION: ${{ secrets.ACTIVITYPUB_STORAGE_CONNECTION }}
         run: |
           echo "📢 Queueing recent posts for delivery..."
           
