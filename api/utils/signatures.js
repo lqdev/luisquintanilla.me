@@ -140,9 +140,13 @@ function verifyDigest(req, context) {
     
     // Compute digest using the algorithm from the header
     const computedDigest = crypto.createHash(hashAlgorithm).update(bodyBuffer).digest('base64');
-    const expectedDigest = `${digestAlgorithm}=${computedDigest}`;
     
-    const digestMatch = digestHeader === expectedDigest;
+    // Compare using normalized algorithm name to handle case variations (SHA-256, sha-256, Sha-256)
+    const normalizedAlgorithm = digestAlgorithm.toUpperCase().replace('SHA', 'SHA-');
+    const expectedDigest = `${normalizedAlgorithm}=${computedDigest}`;
+    const normalizedHeader = digestHeader.split('=')[0].toUpperCase().replace('SHA', 'SHA-') + '=' + digestHeader.split('=')[1];
+    
+    const digestMatch = normalizedHeader === expectedDigest;
     
     if (digestMatch) {
       context.log(`[Phase 3] ✅ Digest verification PASSED (${digestAlgorithm})`);
@@ -179,6 +183,13 @@ function validateTimestamp(req, context, maxAgeSeconds = 300) {
   
   try {
     const requestDate = new Date(dateHeader);
+    
+    // Validate that the date string parsed successfully
+    if (isNaN(requestDate.getTime())) {
+      context.log('[Phase 4] ❌ Timestamp validation FAILED - invalid Date header');
+      return false;
+    }
+    
     const now = new Date();
     const ageSeconds = Math.abs((now - requestDate) / 1000);
     

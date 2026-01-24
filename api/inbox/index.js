@@ -308,8 +308,6 @@ module.exports = async function (context, req) {
                 logBoth('[Phase 5] ✅ Signature verification PASSED');
             } else {
                 logBoth('[Phase 5] ⚠️  No Signature header present - accepting unsigned request (for backward compatibility)');
-            } else {
-                context.log.warn('⚠️  No signature present - accepting anyway (development mode)');
             }
             
             // Log activity to file for debugging
