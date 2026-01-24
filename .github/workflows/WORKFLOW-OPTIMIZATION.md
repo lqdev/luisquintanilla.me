@@ -168,7 +168,7 @@ Jobs run in separate runner instances with fresh filesystems. Artifacts enable s
 - **Storage Impact:** Minimal (~100KB for webmention artifacts, ~10KB for ActivityPub data)
 
 ### Artifact Download Paths
-- **Webmentions:** Downloads to workspace root (matching build layout)
+- **Webmentions:** Downloads to workspace root (`.`) to match build layout expectations (`_src/responses/`, `bin/Debug/net10.0/`)
 - **ActivityPub:** Downloads to `_public/api/data/outbox/` (matching script expectations)
 
 ## Testing the Workflow

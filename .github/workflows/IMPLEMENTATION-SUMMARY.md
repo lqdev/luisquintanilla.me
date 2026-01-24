@@ -92,11 +92,12 @@ build_and_deploy_job
     ├─ Uploads webmention-artifacts
     │  ├─ _src/responses/*.md
     │  └─ bin/Debug/net10.0/PersonalSite.dll (+ deps)
+    │      │
+    │      └─> Downloaded by send_webmentions_job
     │
     └─ Uploads activitypub-artifacts
        └─ _public/api/data/outbox/index.json
            │
-           ├─> Downloaded by send_webmentions_job
            └─> Downloaded by queue_activitypub_job
 ```
 
