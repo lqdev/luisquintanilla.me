@@ -357,6 +357,25 @@ async function generateHttpSignature(method, url, headers, body = null) {
   return `keyId="${keyId}",headers="${headersToSign.join(' ')}",signature="${signatureB64}",algorithm="rsa-sha256"`;
 }
 
+/**
+ * Wrapper for verifyHttpSignature with feature flag support (Phase 5)
+ * @param {Object} req - Azure Function request object
+ * @param {Object} context - Azure Function context for logging
+ * @returns {Promise<boolean>} True if signature is valid or verification is disabled
+ */
+async function verifyHttpSignatureWithFeatureFlag(req, context) {
+  const verificationEnabled = process.env.ACTIVITYPUB_VERIFY_SIGNATURES === 'true';
+  
+  if (!verificationEnabled) {
+    context.log('[Phase 5] 🔓 HTTP signature verification is DISABLED (feature flag off)');
+    context.log('[Phase 5]    Set ACTIVITYPUB_VERIFY_SIGNATURES=true to enable');
+    return true; // Allow request through when verification is disabled
+  }
+  
+  context.log('[Phase 5] 🔒 HTTP signature verification is ENABLED (feature flag on)');
+  return await verifyHttpSignature(req, context);
+}
+
 module.exports = {
   verifyHttpSignature,
   verifyHttpSignatureWithFeatureFlag,
