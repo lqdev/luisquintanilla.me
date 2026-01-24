@@ -2,6 +2,8 @@
 
 **🎯 Start Here** - This is the **entrypoint and source of truth** for all ActivityPub implementation documentation.
 
+**🔒 Production Status**: HTTP Signature Verification **LIVE** as of January 23, 2026
+
 ---
 
 ## 📖 Primary Documentation
@@ -11,7 +13,7 @@
 **[ARCHITECTURE-OVERVIEW.md](ARCHITECTURE-OVERVIEW.md)** ⭐ **START HERE**
 - Complete architectural overview and implementation guide
 - High-level architecture (static+dynamic hybrid, Azure Functions, URL scheme, security, storage)
-- Implementation phases and current status (Phases 1-4 complete)
+- Implementation phases and current status (**Phases 1-4 COMPLETE** 🎉)
 - Azure infrastructure details (Table Storage, Queue Storage, Key Vault, Application Insights)
 - Cost considerations and analysis
 - Data flow and processing diagrams
@@ -21,7 +23,7 @@
 ### For AI Coding Assistants
 
 **Quick Reference**: [`implementation-status.md`](implementation-status.md)
-- Current phase status and completion details
+- Current phase status and completion details (**Phase 4 COMPLETE** 🔒)
 - URL patterns and architectural decisions
 - Build strategy and integration points
 - Quick reference for contributors
@@ -30,6 +32,12 @@
 - Endpoint reference and usage
 - Testing procedures
 - Troubleshooting guide
+
+**HTTP Signature Verification**: [`phase4-http-signature-verification-complete.md`](phase4-http-signature-verification-complete.md) 🔒
+- Complete Phase 4 implementation summary
+- Production rollout timeline with hotfixes
+- Security enhancements and testing results
+- Key learnings from deployment
 
 ---
 
