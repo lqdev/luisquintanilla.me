@@ -36,19 +36,21 @@ build_and_deploy_job
 - **Upload artifacts** for downstream jobs
 
 **Artifacts Uploaded:**
+- `webmention-artifacts`: Contains JSON list of webmentions to send
+  - `_public/api/data/webmentions.json` - Identified during build using PersonalSite.dll
+
 - `activitypub-artifacts`: Contains generated data for ActivityPub delivery
   - `_public/api/data/outbox/index.json` - Outbox feed with recent posts
 
-**Note:** As of January 2026, `webmention-artifacts` are no longer needed. The `send_webmentions_job` now uses a self-contained F# script with inline NuGet package references.
-
 #### 2. `send_webmentions_job` (Independent)
 **Responsibilities:**
-- Checkout repository (for Scripts/ and _src/responses/)
+- Checkout repository (for Scripts/)
 - Setup .NET SDK 10.x
-- Execute `Scripts/send-webmentions.fsx` (self-contained with inline NuGet references)
+- Download `webmention-artifacts`
+- Execute `Scripts/send-webmentions.fsx`
 
 **Dependencies:**
-- **Needs:** `build_and_deploy_job` (for sequencing only, no artifacts needed)
+- **Needs:** `build_and_deploy_job` (for webmentions.json artifact)
 - **Independent of:** `queue_activitypub_job` (runs in parallel)
 
 **Conditions:**
@@ -56,15 +58,15 @@ build_and_deploy_job
 - No branch restrictions
 
 **What it does:**
-- Parses response content directly from `_src/responses/` markdown files
-- Uses inline NuGet package references (`#r "nuget:..."`) for dependencies
+- Reads webmention data from `webmentions.json` (generated during build)
+- Uses inline NuGet package reference for WebmentionFs
 - Sends webmentions to sites referenced in responses
 - Notifies other IndieWeb sites of new content
 
 **Technical Notes:**
-- F# Interactive automatically restores NuGet packages when script runs
-- No longer depends on compiled PersonalSite.dll or build artifacts
-- Self-contained script simplifies maintenance and debugging
+- Build step identifies webmentions using PersonalSite.dll
+- Send step only needs WebmentionFs package (no PersonalSite.dll dependency)
+- Separation of concerns: identification vs. sending
 
 #### 3. `queue_activitypub_job` (Independent)
 **Responsibilities:**

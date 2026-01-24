@@ -66,15 +66,16 @@ queue_activitypub_job:        # ✅ Independent
 **1. build_and_deploy_job**
 - **Purpose:** Build F# site, deploy to Azure, upload artifacts
 - **Artifacts:** 
+  - `webmention-artifacts` (~1KB): JSON with webmentions to send
   - `activitypub-artifacts` (10KB): outbox JSON
 - **Retention:** 1 day (ephemeral notification data)
-- **Note:** Webmention artifacts no longer needed (script is self-contained)
 
 **2. send_webmentions_job**
 - **Purpose:** Notify other sites of new response content
-- **Depends on:** build_and_deploy_job (for sequencing only, no artifacts)
+- **Depends on:** build_and_deploy_job (for webmentions.json artifact)
 - **Runs:** All trigger types (push, workflow_dispatch)
-- **Tech:** Self-contained F# script with inline NuGet references
+- **Downloads:** webmention-artifacts
+- **Tech:** F# script with inline NuGet reference (WebmentionFs only)
 
 **3. queue_activitypub_job**
 - **Purpose:** Queue posts for federated delivery
@@ -88,13 +89,17 @@ queue_activitypub_job:        # ✅ Independent
 ```
 build_and_deploy_job
     │
+    ├─ Identifies webmentions → webmentions.json
+    │      │
+    │      └─> Downloaded by send_webmentions_job
+    │
     └─ Uploads activitypub-artifacts
        └─ _public/api/data/outbox/index.json
            │
            └─> Downloaded by queue_activitypub_job
 
-Note: send_webmentions_job no longer needs artifacts.
-      It uses inline NuGet references in the F# script.
+Note: Webmention identification uses PersonalSite.dll during build.
+      Webmention sending uses only WebmentionFs package.
 ```
 
 ---

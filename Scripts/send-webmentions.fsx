@@ -1,131 +1,72 @@
 // Send Webmentions Script
 // 
-// This script loads response content and sends webmentions for recently updated responses.
-// Uses inline NuGet references to avoid dependency issues in CI/CD environments.
+// This script reads webmention data from a JSON file (generated during build)
+// and sends webmentions using WebmentionFs.
 // 
 // Usage: dotnet fsi Scripts/send-webmentions.fsx
 
 #r "nuget: lqdev.WebmentionFs, 0.0.7"
-#r "nuget: YamlDotNet, 16.3.0"
 
 open System
 open System.IO
-open System.Text.RegularExpressions
+open System.Text.Json
 open WebmentionFs
 open WebmentionFs.Services
-open YamlDotNet.Serialization
 
-// Response metadata structure matching Domain.fs
-[<CLIMutable>]
-type ResponseDetails = {
-    title: string
-    targeturl: string
-    response_type: string
-    dt_published: string
-    dt_updated: string
-    tags: string array
+// Webmention data structure matching JSON format
+type WebmentionData = {
+    Source: string
+    Target: string
 }
 
-// Response with filename
-type Response = {
-    FileName: string
-    Metadata: ResponseDetails
-}
+// Read webmentions from JSON file
+let webmentionsPath = Path.Combine("_public", "api", "data", "webmentions.json")
 
-// Parse a response markdown file to extract metadata
-let parseResponseFile (filePath: string) : Response option =
-    try
-        let content = File.ReadAllText(filePath)
-        let fileName = Path.GetFileNameWithoutExtension(filePath)
-        
-        // Extract YAML frontmatter using regex
-        let yamlPattern = @"^---\s*\n(.*?)\n---"
-        let yamlMatch = Regex.Match(content, yamlPattern, RegexOptions.Singleline)
-        
-        if yamlMatch.Success then
-            let yamlContent = yamlMatch.Groups.[1].Value
-            let deserializer = DeserializerBuilder().Build()
-            let metadata = deserializer.Deserialize<ResponseDetails>(yamlContent)
-            Some { FileName = fileName; Metadata = metadata }
-        else
-            None
-    with
-    | ex -> 
-        printfn $"Error parsing {filePath}: {ex.Message}"
-        None
+if not (File.Exists(webmentionsPath)) then
+    printfn "No webmentions file found. Nothing to send."
+    exit 0
 
-// Load all responses from the _src/responses directory
-let loadResponses () =
-    let responsesDir = Path.Combine("_src", "responses")
-    if Directory.Exists(responsesDir) then
-        Directory.GetFiles(responsesDir, "*.md")
-        |> Array.choose parseResponseFile
-    else
-        printfn "Warning: _src/responses directory not found"
-        [||]
+let json = File.ReadAllText(webmentionsPath)
+let webmentions = JsonSerializer.Deserialize<WebmentionData array>(json)
 
-// Send webmentions for recently updated responses
-let sendWebmentions (responses: Response array) =
-    // Filter responses updated within the last hour
-    let recentResponses =
-        responses
-        |> Array.filter (fun x ->
-            try
-                // Get current time in EST/EDT (-05:00/-04:00) to match the timezone used in post metadata
-                // Use America/New_York which handles DST automatically, with Windows fallback
-                let estTimeZone = 
-                    try
-                        TimeZoneInfo.FindSystemTimeZoneById("America/New_York") // Linux/Mac (handles DST)
-                    with
-                    | _ -> TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time") // Windows fallback
-                let currentDateTime = TimeZoneInfo.ConvertTime(DateTimeOffset.Now, estTimeZone)
-                let updatedDateTime = DateTimeOffset.Parse(x.Metadata.dt_updated)
-                // Send webmentions for responses updated within the last hour
-                currentDateTime.Subtract(updatedDateTime).TotalHours < 1.0
-            with
-            | ex ->
-                printfn $"Error parsing date for response: {ex.Message}"
-                false)
+printfn $"Loaded {webmentions.Length} webmentions to send"
+
+if webmentions.Length = 0 then
+    printfn "No webmentions to send. Exiting."
+else
+    // Convert to WebmentionFs UrlData format
+    let mentions : UrlData array =
+        webmentions
+        |> Array.map(fun w -> 
+            { Source = Uri(w.Source)
+              Target = Uri(w.Target) })
     
-    printfn $"Found {recentResponses.Length} recent responses to send webmentions for"
+    // Send each webmention
+    let tasks =
+        mentions
+        |> Array.map (fun mention ->
+            async {
+                let ds = new UrlDiscoveryService()
+                let ws = new WebmentionSenderService(ds)
+                
+                let sourceUri = mention.Source.AbsoluteUri
+                let targetUri = mention.Target.AbsoluteUri
+                printfn $"Sending: Source={sourceUri}, Target={targetUri}"
+                
+                try
+                    let! result = ws.SendAsync(mention) |> Async.AwaitTask
+                    match result with
+                    | ValidationSuccess s -> 
+                        printfn $"{s.RequestBody.Target} sent successfully to {s.Endpoint.OriginalString}"
+                    | ValidationError e -> 
+                        printfn $"Error: {e}"
+                with
+                | ex -> printfn $"Exception sending webmention: {ex.Message}"
+            })
     
-    if recentResponses.Length = 0 then
-        printfn "No recent responses found. Exiting."
-    else
-        // Send webmentions for each response
-        let mentions =
-            recentResponses
-            |> Array.map (fun x ->
-                { Source = new Uri($"http://lqdev.me/feed/{x.FileName}")
-                  Target = new Uri(x.Metadata.targeturl) })
-        
-        // Process each mention
-        let tasks =
-            mentions
-            |> Array.map (fun mention ->
-                async {
-                    let ds = new UrlDiscoveryService()
-                    let ws = new WebmentionSenderService(ds)
-                    
-                    printfn $"Sending: {mention}"
-                    
-                    try
-                        let! result = ws.SendAsync(mention) |> Async.AwaitTask
-                        match result with
-                        | ValidationSuccess s -> 
-                            printfn $"{s.RequestBody.Target} sent successfully to {s.Endpoint.OriginalString}"
-                        | ValidationError e -> 
-                            printfn $"Error: {e}"
-                    with
-                    | ex -> printfn $"Exception sending webmention: {ex.Message}"
-                })
-        
-        tasks
-        |> Async.Parallel
-        |> Async.RunSynchronously
-        |> ignore
-
-// Main execution
-let responses = loadResponses()
-printfn $"Loaded {responses.Length} total responses"
-sendWebmentions responses
+    tasks
+    |> Async.Parallel
+    |> Async.RunSynchronously
+    |> ignore
+    
+    printfn $"Completed sending {webmentions.Length} webmentions"
