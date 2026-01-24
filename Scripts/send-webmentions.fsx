@@ -72,7 +72,12 @@ let sendWebmentions (responses: Response array) =
         |> Array.filter (fun x ->
             try
                 // Get current time in EST (-05:00) to match the timezone used in post metadata
-                let estTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time")
+                // Use cross-platform timezone ID for Linux/Mac compatibility
+                let estTimeZone = 
+                    try
+                        TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time") // Windows
+                    with
+                    | _ -> TimeZoneInfo.FindSystemTimeZoneById("America/New_York") // Linux/Mac
                 let currentDateTime = TimeZoneInfo.ConvertTime(DateTimeOffset.Now, estTimeZone)
                 let updatedDateTime = DateTimeOffset.Parse(x.Metadata.dt_updated)
                 // Send webmentions for responses updated within the last hour
