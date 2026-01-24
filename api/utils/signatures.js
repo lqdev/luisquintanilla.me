@@ -359,6 +359,7 @@ async function generateHttpSignature(method, url, headers, body = null) {
 
 module.exports = {
   verifyHttpSignature,
+  verifyHttpSignatureWithFeatureFlag,
   verifyDigest,
   generateHttpSignature,
   parseSignatureHeader,
