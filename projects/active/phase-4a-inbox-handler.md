@@ -54,6 +54,27 @@ Implement production-ready ActivityPub inbox handler accepting Follow/Unfollow r
 
 ## 🔬 Research Insights
 
+### Recent HTTP Signature Verification Fixes (January 2026)
+
+**Status**: ✅ Phases 1-5 Complete (PR #1924 ready to merge)
+
+HTTP signature verification was temporarily disabled in PR #1855 due to path mismatch issues. This has been comprehensively fixed with research-backed implementation:
+
+**Completed Enhancements**:
+1. **Path Reconstruction Fix** - Uses `x-ms-original-url` to handle Azure SWA routing
+2. **Multi-Algorithm Digest** - SHA-256 and SHA-512 support with validation
+3. **Timestamp Validation** - 5-minute window prevents replay attacks
+4. **Feature Flag Control** - Safe rollout with `ACTIVITYPUB_VERIFY_SIGNATURES` env var
+5. **Security Hardening** - Invalid date detection, malformed URL rejection, case-insensitive algorithm matching
+
+**Documentation**: `docs/activitypub/http-signature-verification-plan.md`  
+**Branch**: `feature/http-signature-verification`  
+**Next**: Merge PR #1924 and enable feature flag for production testing
+
+This ensures Phase 4A has robust, production-ready signature verification for incoming Follow activities.
+
+---
+
 ### Critical Implementation Requirements
 
 **1. HTTP Signature Verification (RFC 9421)**
