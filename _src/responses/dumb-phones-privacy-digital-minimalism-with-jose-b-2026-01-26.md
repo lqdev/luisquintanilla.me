@@ -1,5 +1,5 @@
 ---
-title: "Dumb Phones & Privacy: Digital Minimalism with Jose Briones - Techlore.TV - Digital Rights For All"
+title: "Dumb Phones & Privacy: Digital Minimalism with Jose Briones"
 targeturl: https://techlore.tv/w/wFnAJWgpyxEhctWjTY12Wb
 response_type: reshare
 dt_published: "2026-01-26 21:15 -05:00"
