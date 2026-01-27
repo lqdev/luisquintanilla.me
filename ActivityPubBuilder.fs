@@ -295,6 +295,25 @@ let extractMediaAttachments (content: string) : (string * ActivityPubImage array
         // Preserve intentional line breaks by trimming only trailing spaces/tabs
         (cleanedContent.TrimEnd([| ' '; '\t' |]), attachments)
 
+/// Extract content from RSS XML description field (for content types with simplified timeline cards)
+/// Returns the full content from CDATA section of description element
+let extractRssDescriptionContent (rssXml: System.Xml.Linq.XElement) : string option =
+    try
+        let descElement = rssXml.Element(System.Xml.Linq.XName.Get "description")
+        if isNull descElement then None
+        else
+            // Extract content from CDATA section
+            let content = descElement.Value
+            // Remove CDATA markers if present
+            let cleanContent = 
+                if content.StartsWith("<![CDATA[") && content.EndsWith("]]>") then
+                    content.Substring(9, content.Length - 12)
+                else
+                    content
+            Some cleanContent
+    with
+    | _ -> None
+
 /// Convert UnifiedFeedItem to ActivityPub Note
 /// Research: HTML content required by Mastodon, name field improves display
 let convertToNote (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : ActivityPubNote =
@@ -323,9 +342,19 @@ let convertToNote (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : Activity
     let toArray = [| Config.publicCollection |]
     let ccArray = Some [| Config.followersCollection |]
     
+    // For content types with simplified timeline cards (e.g., reviews), 
+    // extract full content from RSS description instead of using CardHtml
+    let fullContent = 
+        if item.ContentType = "reviews" then
+            match extractRssDescriptionContent item.RssXml with
+            | Some rssContent -> rssContent
+            | None -> item.Content  // Fallback to timeline card if RSS not available
+        else
+            item.Content
+    
     // Extract media attachments and clean content
     // Research: Mastodon strips inline <img> tags, only renders from attachment array
-    let (cleanedContent, mediaAttachments) = extractMediaAttachments item.Content
+    let (cleanedContent, mediaAttachments) = extractMediaAttachments fullContent
     
     {
         Context = Config.activityStreamsContext
