@@ -296,15 +296,16 @@ let extractMediaAttachments (content: string) : (string * ActivityPubImage array
         (cleanedContent.TrimEnd([| ' '; '\t' |]), attachments)
 
 /// Extract content from RSS XML description field (for content types with simplified timeline cards)
-/// Returns the full content from CDATA section of description element
+/// Returns the full HTML content from description element
+/// Note: RSS feeds store HTML in escaped CDATA (e.g., &lt;![CDATA[...]]&gt;), so XElement.Value returns the literal
+/// CDATA markers as text. We need to manually strip them to get the actual HTML content.
 let extractRssDescriptionContent (rssXml: System.Xml.Linq.XElement) : string option =
     try
         let descElement = rssXml.Element(System.Xml.Linq.XName.Get "description")
         if isNull descElement then None
         else
-            // Extract content from CDATA section
             let content = descElement.Value
-            // Remove CDATA markers if present
+            // Strip CDATA markers if present (they appear as literal text due to XML escaping)
             let cleanContent = 
                 if content.StartsWith("<![CDATA[") && content.EndsWith("]]>") then
                     content.Substring(9, content.Length - 12)
