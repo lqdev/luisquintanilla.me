@@ -1,40 +1,5 @@
 [
   {
-    "url": "https://archaeologist.dev/artifacts/anthropic",
-    "title": "Anthropic made a big mistake",
-    "dateAdded": "2026-01-13T02:45:01Z"
-  },
-  {
-    "url": "https://anildash.com/2026/01/12/will-that-job-crush-your-soul/",
-    "title": "How to know if that job will crush your soul",
-    "dateAdded": "2026-01-13T03:55:39Z"
-  },
-  {
-    "url": "https://blog.dougbelshaw.com/getting-off-us-tech/",
-    "title": "The uncomfortable truth about getting people off US tech",
-    "dateAdded": "2026-01-13T06:01:03Z"
-  },
-  {
-    "url": "https://josebriones.substack.com/p/the-privilege-of-being-forgotten",
-    "title": "The Privilege of Being Forgotten",
-    "dateAdded": "2026-01-13T06:27:41Z"
-  },
-  {
-    "url": "https://idiallo.com/blog/boredom-is-the-gatekeeper",
-    "title": "Boredom is the Gatekeeper",
-    "dateAdded": "2026-01-13T06:32:26Z"
-  },
-  {
-    "url": "https://ma.tt/2026/01/matt-4-2/",
-    "title": "Matt 4.2",
-    "dateAdded": "2026-01-13T07:35:30Z"
-  },
-  {
-    "url": "https://maho.dev/2026/01/the-forkiverse-experiment-and-why-instance-choice-matters/",
-    "title": "The Forkiverse Experiment and Why Instance Choice Matters",
-    "dateAdded": "2026-01-13T07:40:04Z"
-  },
-  {
     "url": "https://jakobemmerling.de/posts/fuse-is-all-you-need/",
     "title": "FUSE is All You Need - Giving agents access to anything via filesystems",
     "dateAdded": "2026-01-15T03:37:48Z"
