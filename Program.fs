@@ -138,10 +138,11 @@ let main argv =
     
     // =============================================================================
     // ActivityPub Content Generation - Phase 3+ Implementation
+    // Phase 5A: Now generates mixed activity types (Create, Like, Announce)
     // =============================================================================
     
     printfn "🎭 Building ActivityPub content..."
-    ActivityPubBuilder.buildNotes allUnifiedContent "_public"
+    ActivityPubBuilder.buildActivities allUnifiedContent "_public"
     ActivityPubBuilder.buildOutbox allUnifiedContent "_public"
     ActivityPubBuilder.queueRecentPostsForDelivery allUnifiedContent "_public"
     
