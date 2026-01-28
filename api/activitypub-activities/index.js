@@ -1,12 +1,13 @@
 /**
- * Azure Function HTTP proxy for ActivityPub notes
+ * Azure Function HTTP proxy for ActivityPub activities
+ * Phase 5A: Updated to support mixed activity types (Create, Like, Announce)
  * 
- * Purpose: Fetch static note JSON from CDN and serve with correct Content-Type header
+ * Purpose: Fetch static activity JSON from CDN and serve with correct Content-Type header
  * 
  * Architecture: HTTP Proxy Pattern
- * - Static files remain in _public/activitypub/notes/ (deployed to Azure CDN)
+ * - Static files remain in _public/activitypub/activities/ (deployed to Azure CDN)
  * - Function fetches from CDN URLs and rewrites headers
- * - In-memory caching (1 hour) for frequently accessed notes
+ * - In-memory caching (1 hour) for frequently accessed activities
  * - CDN caching (24 hours) for global distribution
  * 
  * Why HTTP Proxy vs File System?
@@ -18,15 +19,15 @@
  * - Leverages Azure CDN for global performance
  * - Smaller API bundle (no file duplication)
  * - Simpler deployment (no file sync step)
- * - In-memory caching provides near-instant responses for popular notes
+ * - In-memory caching provides near-instant responses for popular activities
  * 
  * @param {Object} context - Azure Functions context
  * @param {Object} req - HTTP request object
  */
 
-// In-memory cache for frequently accessed notes
+// In-memory cache for frequently accessed activities
 // Cache survives across function invocations within same instance
-const noteCache = new Map();
+const activityCache = new Map();
 const CACHE_TTL = 3600000; // 1 hour in milliseconds
 
 module.exports = async function (context, req) {
@@ -45,11 +46,11 @@ module.exports = async function (context, req) {
         return;
     }
 
-    const noteId = req.params.noteId;
+    const activityId = req.params.activityId;
     
     // Format validation (32-character MD5 hex) prevents both path traversal and DoS from malformed/long IDs
-    if (!noteId || !/^[a-f0-9]{32}$/i.test(noteId)) {
-        context.log.warn(`Invalid noteId format: ${noteId}`);
+    if (!activityId || !/^[a-f0-9]{32}$/i.test(activityId)) {
+        context.log.warn(`Invalid activityId format: ${activityId}`);
         context.res = {
             status: 400,
             headers: {
@@ -58,16 +59,16 @@ module.exports = async function (context, req) {
             },
             body: JSON.stringify({
                 error: 'Bad Request',
-                message: 'Invalid note ID format (expected 32-character hex hash)'
+                message: 'Invalid activity ID format (expected 32-character hex hash)'
             })
         };
         return;
     }
 
     // Check in-memory cache first
-    const cached = noteCache.get(noteId);
+    const cached = activityCache.get(activityId);
     if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
-        context.log(`Cache HIT for note: ${noteId}`);
+        context.log(`Cache HIT for activity: ${activityId}`);
         context.res = {
             status: 200,
             headers: {
@@ -87,17 +88,17 @@ module.exports = async function (context, req) {
     // Cache MISS - fetch from CDN
     // Use environment variable for base URL (allows local dev override)
     const baseUrl = process.env.STATIC_BASE_URL || 'https://lqdev.me';
-    const staticUrl = `${baseUrl}/activitypub/notes/${noteId}.json`;
+    const staticUrl = `${baseUrl}/activitypub/activities/${activityId}.json`;
     
     try {
-        context.log(`Cache MISS - Fetching note from CDN: ${staticUrl}`);
+        context.log(`Cache MISS - Fetching activity from CDN: ${staticUrl}`);
         
         // Fetch from static CDN URL
         const response = await fetch(staticUrl);
         
         if (!response.ok) {
             if (response.status === 404) {
-                context.log.warn(`Note not found: ${noteId}`);
+                context.log.warn(`Activity not found: ${activityId}`);
                 context.res = {
                     status: 404,
                     headers: {
@@ -106,7 +107,7 @@ module.exports = async function (context, req) {
                     },
                     body: JSON.stringify({
                         error: 'Not Found',
-                        message: `Note with ID '${noteId}' does not exist`
+                        message: `Activity with ID '${activityId}' does not exist`
                     })
                 };
                 return;
@@ -115,14 +116,14 @@ module.exports = async function (context, req) {
             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
         
-        // Get note content
-        const noteContent = await response.text();
+        // Get activity content
+        const activityContent = await response.text();
         
         // Validate JSON before caching and returning
         try {
-            JSON.parse(noteContent);
+            JSON.parse(activityContent);
         } catch (parseError) {
-            context.log.error(`Invalid JSON in note ${noteId}: ${parseError.message}`);
+            context.log.error(`Invalid JSON in activity ${activityId}: ${parseError.message}`);
             context.res = {
                 status: 500,
                 headers: {
@@ -131,19 +132,19 @@ module.exports = async function (context, req) {
                 },
                 body: JSON.stringify({
                     error: 'Internal Server Error',
-                    message: 'Note contains invalid JSON'
+                    message: 'Activity contains invalid JSON'
                 })
             };
             return;
         }
         
-        // Cache the note content
-        noteCache.set(noteId, {
-            content: noteContent,
+        // Cache the activity content
+        activityCache.set(activityId, {
+            content: activityContent,
             timestamp: Date.now()
         });
         
-        // Return note with proper ActivityPub headers
+        // Return activity with proper ActivityPub headers
         context.res = {
             status: 200,
             headers: {
@@ -159,14 +160,14 @@ module.exports = async function (context, req) {
                 'X-Cache': 'MISS',
                 'X-Content-Source': 'http-proxy'
             },
-            body: noteContent
+            body: activityContent
         };
         
-        context.log(`Successfully proxied note: ${noteId}`);
+        context.log(`Successfully proxied activity: ${activityId}`);
         
     } catch (err) {
         // Handle HTTP fetch errors
-        context.log.error(`Error fetching note ${noteId}: ${err.message}`);
+        context.log.error(`Error fetching activity ${activityId}: ${err.message}`);
         context.res = {
             status: 500,
             headers: {
@@ -175,7 +176,7 @@ module.exports = async function (context, req) {
             },
             body: JSON.stringify({
                 error: 'Internal Server Error',
-                message: 'Failed to fetch note from CDN'
+                message: 'Failed to fetch activity from CDN'
             })
         };
     }
