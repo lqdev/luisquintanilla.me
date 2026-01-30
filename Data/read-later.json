@@ -1,60 +1,5 @@
 [
   {
-    "url": "https://www.theverge.com/tech/858910/linux-diary-gaming-desktop",
-    "title": "I replaced Windows with Linux and everything’s going great",
-    "dateAdded": "2026-01-11T03:49:22Z"
-  },
-  {
-    "url": "https://karl-voit.at/2017/09/23/orgmode-as-markup-only/",
-    "title": "Org Mode Syntax Is One of the Most Reasonable Markup Languages to Use for Text",
-    "dateAdded": "2026-01-11T03:50:16Z"
-  },
-  {
-    "url": "https://archaeologist.dev/artifacts/anthropic",
-    "title": "Anthropic made a big mistake",
-    "dateAdded": "2026-01-13T02:45:01Z"
-  },
-  {
-    "url": "https://anildash.com/2026/01/12/will-that-job-crush-your-soul/",
-    "title": "How to know if that job will crush your soul",
-    "dateAdded": "2026-01-13T03:55:39Z"
-  },
-  {
-    "url": "https://blog.dougbelshaw.com/getting-off-us-tech/",
-    "title": "The uncomfortable truth about getting people off US tech",
-    "dateAdded": "2026-01-13T06:01:03Z"
-  },
-  {
-    "url": "https://josebriones.substack.com/p/the-privilege-of-being-forgotten",
-    "title": "The Privilege of Being Forgotten",
-    "dateAdded": "2026-01-13T06:27:41Z"
-  },
-  {
-    "url": "https://idiallo.com/blog/boredom-is-the-gatekeeper",
-    "title": "Boredom is the Gatekeeper",
-    "dateAdded": "2026-01-13T06:32:26Z"
-  },
-  {
-    "url": "https://ma.tt/2026/01/matt-4-2/",
-    "title": "Matt 4.2",
-    "dateAdded": "2026-01-13T07:35:30Z"
-  },
-  {
-    "url": "https://maho.dev/2026/01/the-forkiverse-experiment-and-why-instance-choice-matters/",
-    "title": "The Forkiverse Experiment and Why Instance Choice Matters",
-    "dateAdded": "2026-01-13T07:40:04Z"
-  },
-  {
-    "url": "https://jakobemmerling.de/posts/fuse-is-all-you-need/",
-    "title": "FUSE is All You Need - Giving agents access to anything via filesystems",
-    "dateAdded": "2026-01-15T03:37:48Z"
-  },
-  {
-    "url": "https://passo.uno/letter-those-who-fired-tech-writers-ai/",
-    "title": "To those who fired or didn't hire tech writers because of AI",
-    "dateAdded": "2026-01-15T20:08:27Z"
-  },
-  {
     "url": "https://cursor.com/blog/scaling-agents",
     "title": "Scaling long-running autonomous coding",
     "dateAdded": "2026-01-16T02:22:55Z"
@@ -163,5 +108,50 @@
     "url": "https://indieweb.org/why_bridge",
     "title": "why bridge",
     "dateAdded": "2026-01-24T16:47:04Z"
+  },
+  {
+    "url": "https://mov.im/community/pubsub.movim.eu/Movim/the-difference-between-xmpp-and-activitypub-explained-through-the-blog-feature-Hdx4FR",
+    "title": "The difference between XMPP and ActivityPub, explained through the Blog feature 🗒️✨",
+    "dateAdded": "2026-01-26T13:12:15Z"
+  },
+  {
+    "url": "https://thoughts.jatan.space/posts/your-social-web-on-your-blog",
+    "title": "Your social web on your blog",
+    "dateAdded": "2026-01-29T02:10:47Z"
+  },
+  {
+    "url": "https://www.terrygodier.com/phantom-obligation",
+    "title": "Phantom Obligation",
+    "dateAdded": "2026-01-29T02:14:34Z"
+  },
+  {
+    "url": "https://herbertlui.net/manage-your-energy-not-just-your-time/",
+    "title": "Manage your energy, not just your time",
+    "dateAdded": "2026-01-29T02:47:10Z"
+  },
+  {
+    "url": "https://shellsharks.com/pesos",
+    "title": "Canonicalize Your Web Identity and Achieve Data Sovereignty with PESOS",
+    "dateAdded": "2026-01-29T02:53:14Z"
+  },
+  {
+    "url": "https://nazhamid.com/journal/the-items-we-carry-now/",
+    "title": "The Items We Carry Now",
+    "dateAdded": "2026-01-29T02:55:52Z"
+  },
+  {
+    "url": "https://shellsharks.com/link-dumps",
+    "title": "Link Dumps",
+    "dateAdded": "2026-01-29T22:41:30Z"
+  },
+  {
+    "url": "https://herbertlui.net/craft-your-little-empire/",
+    "title": "Craft your little empire",
+    "dateAdded": "2026-01-29T22:50:40Z"
+  },
+  {
+    "url": "https://www.coryd.dev/posts/2026/the-conditionally-open-web",
+    "title": "The conditionally open web",
+    "dateAdded": "2026-01-30T04:55:51Z"
   }
 ]
