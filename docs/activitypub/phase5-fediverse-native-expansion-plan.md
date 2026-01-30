@@ -442,7 +442,7 @@ Open `staticwebapp.config.json` and add this redirect rule in the `routes` array
 ```json
 {
   "route": "/api/activitypub/notes/*",
-  "redirect": "/api/activitypub/activities/*",
+  "redirect": "/api/activitypub/activities/:splat",
   "statusCode": 301
 }
 ```
@@ -451,7 +451,7 @@ Also add a rule for the static file path (non-API):
 ```json
 {
   "route": "/activitypub/notes/*",
-  "redirect": "/activitypub/activities/*",
+  "redirect": "/activitypub/activities/:splat",
   "statusCode": 301
 }
 ```

@@ -1605,8 +1605,12 @@ module UnifiedFeeds =
                 // Use specific response type instead of generic "responses"
                 let contentType = feedData.Content.Metadata.ResponseType
                 // Phase 5A: Extract response semantics for ActivityPub
-                let responseType = Some feedData.Content.Metadata.ResponseType
-                let targetUrl = Some feedData.Content.Metadata.TargetUrl
+                let responseType = 
+                    if String.IsNullOrWhiteSpace(feedData.Content.Metadata.ResponseType) then None
+                    else Some feedData.Content.Metadata.ResponseType
+                let targetUrl = 
+                    if String.IsNullOrWhiteSpace(feedData.Content.Metadata.TargetUrl) then None
+                    else Some feedData.Content.Metadata.TargetUrl
                 let updatedDate = if String.IsNullOrWhiteSpace(feedData.Content.Metadata.DateUpdated) then None else Some feedData.Content.Metadata.DateUpdated
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = contentType; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate }
             | None -> None)
@@ -1730,7 +1734,10 @@ module UnifiedFeeds =
                 let content = feedData.Content.Content  // Use full content instead of CardHtml
                 let date = feedData.Content.Metadata.DatePublished
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = Some feedData.Content.Metadata.BookmarkOf; UpdatedDate = None }
+                let targetUrl = 
+                    if String.IsNullOrWhiteSpace(feedData.Content.Metadata.BookmarkOf) then None
+                    else Some feedData.Content.Metadata.BookmarkOf
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = targetUrl; UpdatedDate = None }
             | None -> None)
 
     // Convert bookmark responses (Response objects with bookmark type) to unified feed
