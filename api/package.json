@@ -2,7 +2,6 @@
   "name": "azure-static-web-apps-api",
   "version": "1.0.0",
   "description": "Azure Functions API for file redirects and ActivityPub federation in Azure Static Web Apps",
-  "main": "files/index.js",
   "scripts": {
     "start": "func start",
     "test": "echo \"Error: no test specified\" && exit 1"
