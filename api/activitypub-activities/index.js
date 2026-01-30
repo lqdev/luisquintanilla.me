@@ -46,7 +46,13 @@ module.exports = async function (context, req) {
         return;
     }
 
-    const activityId = req.params.activityId;
+    let activityId = req.params.activityId;
+    
+    // Strip fragment identifier if present (e.g., "hash#create" -> "hash")
+    // ActivityPub Create activities use fragment pattern for wrapper IDs
+    if (activityId && activityId.includes('#')) {
+        activityId = activityId.split('#')[0];
+    }
     
     // Format validation (32-character MD5 hex) prevents both path traversal and DoS from malformed/long IDs
     if (!activityId || !/^[a-f0-9]{32}$/i.test(activityId)) {
