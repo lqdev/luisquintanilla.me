@@ -5,7 +5,7 @@ published_date: "1/30/2026 5:07 PM -05:00"
 tags: ["fosdem2026","fosdem","opensource","conference","ai","socialweb","decentralization","contentmanagement"]
 ---
 
-I almost forgot tomorrow is the start of FOSDEM. 
+I almost forgot tomorrow is the start of [FOSDEM](https://fosdem.org/2026/). 
 
 There's so many good sessions. I already added talks from the following tracks to my calendar:
 
