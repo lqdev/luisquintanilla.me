@@ -137,8 +137,67 @@ type ActivityPubCreate = {
     Object: ActivityPubNote
 }
 
+/// ActivityPub Like activity for stars/favorites
+/// Phase 5A: Research - Like is an activity, not wrapped in Create
+[<CLIMutable>]
+type ActivityPubLike = {
+    [<JsonPropertyName("@context")>]
+    Context: string
+    
+    [<JsonPropertyName("id")>]
+    Id: string
+    
+    [<JsonPropertyName("type")>]
+    Type: string  // Always "Like"
+    
+    [<JsonPropertyName("actor")>]
+    Actor: string
+    
+    [<JsonPropertyName("published")>]
+    Published: string
+    
+    [<JsonPropertyName("to")>]
+    To: string array
+    
+    [<JsonPropertyName("cc")>]
+    Cc: string array option
+    
+    [<JsonPropertyName("object")>]
+    Object: string  // URL of the thing being liked (can be any URL)
+}
+
+/// ActivityPub Announce activity for reshares/boosts
+/// Phase 5A: Research - Announce is an activity, not wrapped in Create
+[<CLIMutable>]
+type ActivityPubAnnounce = {
+    [<JsonPropertyName("@context")>]
+    Context: string
+    
+    [<JsonPropertyName("id")>]
+    Id: string
+    
+    [<JsonPropertyName("type")>]
+    Type: string  // Always "Announce"
+    
+    [<JsonPropertyName("actor")>]
+    Actor: string
+    
+    [<JsonPropertyName("published")>]
+    Published: string
+    
+    [<JsonPropertyName("to")>]
+    To: string array
+    
+    [<JsonPropertyName("cc")>]
+    Cc: string array option
+    
+    [<JsonPropertyName("object")>]
+    Object: string  // URL of the thing being announced (can be any URL)
+}
+
 /// ActivityPub OrderedCollection for outbox
 /// Research: MUST be OrderedCollection (not Collection) per spec
+/// Phase 5A: Updated to support mixed activity types (Create, Like, Announce)
 [<CLIMutable>]
 type ActivityPubOutbox = {
     [<JsonPropertyName("@context")>]
@@ -157,7 +216,7 @@ type ActivityPubOutbox = {
     TotalItems: int
     
     [<JsonPropertyName("orderedItems")>]
-    OrderedItems: ActivityPubCreate array
+    OrderedItems: obj array  // Mixed types: ActivityPubCreate, ActivityPubLike, ActivityPubAnnounce
 }
 
 /// Configuration constants for ActivityPub generation
@@ -169,9 +228,10 @@ module Config =
     let outboxUri = sprintf "%s/outbox" activityPubBase
     let publicCollection = "https://www.w3.org/ns/activitystreams#Public"
     let activityStreamsContext = "https://www.w3.org/ns/activitystreams"
-    // Azure Function API endpoint for note dereferencing (ensures correct Content-Type headers)
-    // Static files still generated at /activitypub/notes/ for CDN caching
-    let notesPath = "/api/activitypub/notes/"
+    // Phase 5A: Migrating from /notes/ to /activities/ for mixed activity types
+    // Azure Function API endpoint for activity dereferencing (ensures correct Content-Type headers)
+    // Static files still generated at /activitypub/activities/ for CDN caching
+    let activitiesPath = "/api/activitypub/activities/"
 
 /// Generate MD5 hash for stable Note IDs
 /// Research: IDs must be stable across rebuilds, dereferenceable, globally unique
@@ -180,15 +240,16 @@ let generateHash (content: string) : string =
     let hash = md5.ComputeHash(Encoding.UTF8.GetBytes(content))
     Convert.ToHexString(hash).ToLowerInvariant()
 
-/// Generate stable ActivityPub Note ID from content
+/// Generate stable ActivityPub Activity ID from content
+/// Phase 5A: Updated to use /activities/ path for all activity types
 /// Research: Using content hash ensures stability and uniqueness
-let generateNoteId (url: string) (content: string) : string =
+let generateActivityId (url: string) (content: string) : string =
     let hash = generateHash (url + content)
-    sprintf "%s%s%s" Config.baseUrl Config.notesPath hash
+    sprintf "%s%s%s" Config.baseUrl Config.activitiesPath hash
 
-/// Generate Create activity ID from Note ID
+/// Generate Create activity wrapper ID from Note ID
 /// Research: Fragment identifier pattern (#create) is acceptable
-let generateActivityId (noteId: string) : string =
+let generateCreateActivityId (noteId: string) : string =
     sprintf "%s#create" noteId
 
 /// Convert tags to ActivityPub hashtags
@@ -296,9 +357,10 @@ let extractMediaAttachments (content: string) : (string * ActivityPubImage array
         (cleanedContent.TrimEnd([| ' '; '\t' |]), attachments)
 
 /// Convert UnifiedFeedItem to ActivityPub Note
+/// Phase 5A: For replies, includes inReplyTo field
 /// Research: HTML content required by Mastodon, name field improves display
 let convertToNote (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : ActivityPubNote =
-    let noteId = generateNoteId item.Url item.Content
+    let noteId = generateActivityId item.Url item.Content
     
     // Research: Use Article type for posts, Note for everything else
     let noteType = 
@@ -327,6 +389,12 @@ let convertToNote (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : Activity
     // Research: Mastodon strips inline <img> tags, only renders from attachment array
     let (cleanedContent, mediaAttachments) = extractMediaAttachments item.Content
     
+    // Phase 5A: Handle inReplyTo for replies
+    let inReplyTo = 
+        match item.ResponseType, item.TargetUrl with
+        | Some "reply", Some targetUrl -> Some targetUrl
+        | _ -> None
+    
     {
         Context = Config.activityStreamsContext
         Id = noteId
@@ -341,7 +409,7 @@ let convertToNote (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : Activity
         Cc = ccArray
         Tag = convertTagsToHashtags (Array.toList item.Tags)
         Source = None  // Can add markdown source preservation later
-        InReplyTo = None
+        InReplyTo = inReplyTo  // Phase 5A: Set for replies
         Sensitive = None
         Attachment = mediaAttachments  // Add extracted media attachments
     }
@@ -349,7 +417,7 @@ let convertToNote (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : Activity
 /// Convert Note to Create activity
 /// Research: Actor must match attributedTo, addressing should match Note
 let convertToCreateActivity (note: ActivityPubNote) : ActivityPubCreate =
-    let activityId = generateActivityId note.Id
+    let activityId = generateCreateActivityId note.Id
     
     {
         Context = Config.activityStreamsContext
@@ -362,9 +430,60 @@ let convertToCreateActivity (note: ActivityPubNote) : ActivityPubCreate =
         Object = note
     }
 
-/// Generate OrderedCollection outbox from Create activities
+/// Convert UnifiedFeedItem to Like activity
+/// Phase 5A: Stars become Like activities (not wrapped in Create)
+/// Research: Like is an activity itself, object references the target URL
+let convertToLikeActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : ActivityPubLike =
+    let activityId = generateActivityId item.Url item.Content
+    let targetUrl = item.TargetUrl |> Option.defaultValue item.Url  // Fallback to item URL if no target
+    
+    let publishedDate =
+        try
+            let dt = DateTimeOffset.Parse(item.Date)
+            dt.ToString("yyyy-MM-dd'T'HH:mm:sszzz")
+        with
+        | _ -> item.Date
+    
+    {
+        Context = Config.activityStreamsContext
+        Id = activityId
+        Type = "Like"
+        Actor = Config.actorUri
+        Published = publishedDate
+        To = [| Config.publicCollection |]
+        Cc = Some [| Config.followersCollection |]
+        Object = targetUrl  // URL being liked (can be any web URL)
+    }
+
+/// Convert UnifiedFeedItem to Announce activity
+/// Phase 5A: Reshares become Announce activities (not wrapped in Create)
+/// Research: Announce is an activity itself, object references the target URL
+let convertToAnnounceActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : ActivityPubAnnounce =
+    let activityId = generateActivityId item.Url item.Content
+    let targetUrl = item.TargetUrl |> Option.defaultValue item.Url  // Fallback to item URL if no target
+    
+    let publishedDate =
+        try
+            let dt = DateTimeOffset.Parse(item.Date)
+            dt.ToString("yyyy-MM-dd'T'HH:mm:sszzz")
+        with
+        | _ -> item.Date
+    
+    {
+        Context = Config.activityStreamsContext
+        Id = activityId
+        Type = "Announce"
+        Actor = Config.actorUri
+        Published = publishedDate
+        To = [| Config.publicCollection |]
+        Cc = Some [| Config.followersCollection |]
+        Object = targetUrl  // URL being announced (can be any web URL)
+    }
+
+/// Generate OrderedCollection outbox from mixed activity types
+/// Phase 5A: Updated to support Create, Like, and Announce activities
 /// Research: MUST be OrderedCollection per spec, reverse chronological order
-let generateOutbox (activities: ActivityPubCreate list) : ActivityPubOutbox =
+let generateOutbox (activities: obj list) : ActivityPubOutbox =
     {
         Context = Config.activityStreamsContext
         Id = Config.outboxUri
@@ -374,33 +493,61 @@ let generateOutbox (activities: ActivityPubCreate list) : ActivityPubOutbox =
         OrderedItems = activities |> List.toArray
     }
 
-/// Build individual ActivityPub note files for static serving
-/// Generates activitypub/notes/{hash}.json files
-let buildNotes (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) (outputDir: string) : unit =
-    printfn "  🎭 Generating individual ActivityPub note files..."
+/// Phase 5A: Feature flag for enabling native activity types
+/// Set to true to use Like/Announce, false to use Create+Note for all (legacy behavior)
+let useNativeActivityTypes = true
+
+/// Phase 5A: Convert UnifiedFeedItem to appropriate ActivityPub activity
+/// Routes stars → Like, reshares → Announce, replies → Create+Note with inReplyTo, everything else → Create+Note
+let convertToActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : obj =
+    if not useNativeActivityTypes then
+        // Legacy behavior: Everything as Create+Note
+        convertToNote item |> convertToCreateActivity |> box
+    else
+        // Phase 5A: Route by response type
+        match item.ResponseType with
+        | Some "star" -> 
+            convertToLikeActivity item |> box
+        | Some "reshare" | Some "share" -> 
+            convertToAnnounceActivity item |> box
+        | Some "reply" ->
+            // Replies are Create+Note with inReplyTo field
+            convertToNote item |> convertToCreateActivity |> box
+        | _ ->
+            // Everything else (posts, notes, bookmarks, etc.) is Create+Note
+            convertToNote item |> convertToCreateActivity |> box
+
+/// Build individual ActivityPub activity files for static serving
+/// Phase 5A: Renamed from buildNotes, now generates to activitypub/activities/
+/// Handles mixed activity types (Create, Like, Announce)
+let buildActivities (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) (outputDir: string) : unit =
+    printfn "  🎭 Generating individual ActivityPub activity files..."
     
-    let notesDir = Path.Combine(outputDir, "activitypub", "notes")
-    Directory.CreateDirectory(notesDir) |> ignore
+    let activitiesDir = Path.Combine(outputDir, "activitypub", "activities")
+    Directory.CreateDirectory(activitiesDir) |> ignore
     
-    let notes = 
+    let activities = 
         unifiedItems
-        |> List.map convertToNote
+        |> List.map convertToActivity
     
-    for note in notes do
-        // Extract hash from note ID (last segment of URL)
-        let noteId = note.Id.Split('/') |> Array.last
-        let notePath = Path.Combine(notesDir, sprintf "%s.json" noteId)
-        let json = JsonSerializer.Serialize(note, jsonOptions)
-        File.WriteAllText(notePath, json)
+    for activity in activities do
+        // Extract ID from activity (works for all activity types)
+        let json = JsonSerializer.Serialize(activity, jsonOptions)
+        let doc = System.Text.Json.JsonDocument.Parse(json)
+        let id = doc.RootElement.GetProperty("id").GetString()
+        let hash = id.Split('/') |> Array.last
+        let activityPath = Path.Combine(activitiesDir, sprintf "%s.json" hash)
+        File.WriteAllText(activityPath, json)
     
-    printfn "  ✅ Generated %d ActivityPub note files" notes.Length
+    printfn "  ✅ Generated %d ActivityPub activity files" activities.Length
 
 /// Build ActivityPub outbox from unified feed items
+/// Phase 5A: Updated to generate mixed activity types
 /// Generates api/data/outbox/index.json for static serving
 let buildOutbox (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) (outputDir: string) : unit =
     printfn "  🎭 Converting %d items to ActivityPub format..." unifiedItems.Length
     
-    // Convert all items to Create activities (reverse chronological)
+    // Convert all items to appropriate activities (reverse chronological)
     // Fix: Parse dates to DateTimeOffset for proper chronological sorting
     let activities = 
         unifiedItems
@@ -408,7 +555,7 @@ let buildOutbox (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list)
             let mutable parsed = DateTimeOffset.MinValue
             if DateTimeOffset.TryParse(item.Date, &parsed) then parsed
             else DateTimeOffset.MinValue)  // Fallback for parse errors
-        |> List.map (convertToNote >> convertToCreateActivity)
+        |> List.map convertToActivity
     
     printfn "  🎭 Generated %d Create activities" activities.Length
     
@@ -427,7 +574,7 @@ let buildOutbox (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list)
     File.WriteAllText(outboxPath, json)
     
     printfn "  ✅ ActivityPub outbox: %s" outboxPath
-    printfn "  ✅ Total items: %d, Total Create activities: %d" outbox.TotalItems activities.Length
+    printfn "  ✅ Total items: %d, Total activities: %d" outbox.TotalItems activities.Length
 
 /// Queue new posts for delivery to followers
 /// Called during build to queue recent posts for ActivityPub delivery

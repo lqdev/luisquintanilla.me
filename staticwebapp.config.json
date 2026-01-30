@@ -9,6 +9,16 @@
   },
   "routes": [
     {
+      "route": "/api/activitypub/notes/*",
+      "redirect": "/api/activitypub/activities/:splat",
+      "statusCode": 301
+    },
+    {
+      "route": "/activitypub/notes/*",
+      "redirect": "/activitypub/activities/:splat",
+      "statusCode": 301
+    },
+    {
       "route": "/.well-known/webfinger",
       "rewrite": "/api/webfinger",
       "headers": {
