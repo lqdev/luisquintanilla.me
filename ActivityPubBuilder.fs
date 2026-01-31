@@ -775,8 +775,10 @@ let generateOutboxPage (pageNum: int) (totalPages: int) (items: obj array) : Act
 let useNativeActivityTypes = true
 
 /// Phase 5D: Feature flag for enabling native media objects
-/// Set to true to use Image/Video/Audio, false to use Note+attachment for media
-let useNativeMediaObjects = true
+/// Set to false: Use Note+attachment (Mastodon/Pixelfed compatible) as primary
+/// Set to true: Use standalone Image/Video/Audio objects (breaks rendering in Mastodon)
+/// Research: Mastodon only renders attachments on Note objects, not standalone media objects
+let useNativeMediaObjects = false
 
 /// Phase 5A: Convert UnifiedFeedItem to appropriate ActivityPub activity
 /// Routes stars → Like, reshares → Announce, replies → Create+Note with inReplyTo
