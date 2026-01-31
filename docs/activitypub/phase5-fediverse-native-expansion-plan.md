@@ -215,6 +215,55 @@ Each page includes:
 
 ---
 
+## Critical Fixes Applied
+
+### Activity ID Fragment Pattern Fix (January 30, 2026)
+
+**Problem**: Activities were not discoverable via Mastodon search. Pasting activity URLs in Mastodon returned no results.
+
+**Root Cause**: Create activity IDs used fragment identifiers (`#create`) that violate ActivityPub dereferenceability requirements.
+
+```
+❌ Before:
+- Create activity ID: https://lqdev.me/api/activitypub/activities/{hash}#create
+- Note ID: https://lqdev.me/api/activitypub/activities/{hash}
+- Mastodon fetches: https://lqdev.me/api/activitypub/activities/{hash}
+- JSON returns: id with #create fragment
+- RESULT: ID mismatch → activity not found
+```
+
+**Technical Details**:
+- Per RFC 3986, fragment identifiers (`#...`) are **never sent to servers** in HTTP requests
+- When Mastodon fetches a URL, it validates that the returned JSON's `id` field **exactly matches** the fetched URL
+- The `#create` fragment caused a mismatch: fetched URL didn't include the fragment, but the JSON `id` did
+- This is spec-compliant behavior by Mastodon—the W3C ActivityPub Primer recommends avoiding fragments in object identifiers
+
+**Solution**: Inverted the fragment pattern so Create activity IDs match fetchable URLs:
+
+```
+✅ After:
+- Create activity ID: https://lqdev.me/api/activitypub/activities/{hash}  (fetchable URL)
+- Note object ID: https://lqdev.me/api/activitypub/activities/{hash}#object  (uses fragment)
+- Mastodon fetches: https://lqdev.me/api/activitypub/activities/{hash}
+- JSON returns: id matches exactly
+- RESULT: Activity found ✅
+```
+
+**Implementation**:
+- `generateObjectId`: Creates Note ID with `#object` fragment
+- `generateCreateActivityId`: Strips fragments to get base fetchable URL
+- `convertToNote`: Uses `generateObjectId` for Note, Create wrapper uses base URL
+
+**Spec Compliance**:
+- ✅ W3C ActivityPub: Objects must have "publicly dereferenceable URIs"
+- ✅ W3C ActivityPub Primer: "Publishers should avoid using fragments in object identifiers"
+- ✅ RFC 3986: Fragment handling aligned with URI specification
+- ✅ Mastodon validation: IDs match fetchable URLs
+
+**Files Modified**: `ActivityPubBuilder.fs`
+
+---
+
 ## Architecture Design
 
 ### Core Principle: Preserve UnifiedFeedItem Pipeline
