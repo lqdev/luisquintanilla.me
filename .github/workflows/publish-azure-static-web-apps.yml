@@ -156,11 +156,11 @@ jobs:
         run: |
           echo "📢 Queueing recent posts for delivery..."
           
-          # Get the 2 most recent items from outbox using jq
-          RECENT_ITEMS=$(jq -r '.orderedItems[:2] | .[] | @json' _public/api/data/outbox/page-1.json)
+          # Get the 2 most recent Create activities from outbox (skip Like/Announce which have string objects)
+          RECENT_ITEMS=$(jq -r '[.orderedItems[] | select(.type == "Create")][:2] | .[] | @json' _public/api/data/outbox/page-1.json)
           
           if [ -z "$RECENT_ITEMS" ]; then
-            echo "⚠️ No recent items found in outbox"
+            echo "⚠️ No recent Create activities found in outbox"
             exit 0
           fi
           
@@ -170,10 +170,11 @@ jobs:
           
           # Queue each item
           echo "$RECENT_ITEMS" | while IFS= read -r create_activity; do
-            # Extract note ID from the create activity
-            NOTE_ID=$(echo "$create_activity" | jq -r '.object.id' | grep -oP '[^/]+$')
+            # Extract note ID from the create activity (object is always an object for Create activities)
+            NOTE_ID=$(echo "$create_activity" | jq -r '.object.id // empty' | grep -oP '[^/]+$' || true)
             
             if [ -z "$NOTE_ID" ]; then
+              echo "⚠️ Skipping activity without valid object.id"
               continue
             fi
             
