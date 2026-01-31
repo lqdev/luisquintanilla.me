@@ -206,10 +206,10 @@ Based on W3C ActivityStreams 2.0 specification, Mastodon/Pixelfed/BookWyrm imple
 | **Star (response)** | u-like-of | `Create` + `Note` | `Like` | Favorite (inbox only) |
 | **Bookmark** | u-bookmark-of | `Create` + `Note` | `Create` + `Note` w/ `Link` attachment | Note with link card |
 | **Review** | p-rating, p-item | `Create` + `Note` | `Create` + `Article` w/ schema:Review context | Article with rating metadata |
-| **Media (single)** | - | `Create` + `Note` + attachment | `Create` + `Note` + `Document` attachment¹ | Native media rendering |
+| **Media (single)** | - | `Create` + `Note` + attachment | `Create` + `Note` + `Image`/`Video`/`Audio` attachment¹ | Native media rendering |
 | **Album** | - | `Create` + `Note` | `Create` + `Collection` + `Place` | Gallery (Pixelfed-style) |
 
-¹ **Media Compatibility Note (Phase 5D Revision)**: Research revealed that standalone `Image/Video/Audio` objects are NOT rendered as media players by Mastodon or Pixelfed—they only show a link. The revised approach uses `Note` with `Document` attachments as the primary representation (Mastodon-compatible), with semantic `Video/Image/Audio` objects available at alternate URLs for PeerTube and other media-native platforms. See [phase5d-media-research.md](phase5d-media-research.md) for details.
+¹ **Media Compatibility Note (Phase 5D Revision)**: Research revealed that standalone `Image/Video/Audio` objects are NOT rendered as media players by Mastodon or Pixelfed—they only show a link. The implemented approach uses `Note` with typed attachments (`Image`, `Video`, or `Audio` matching the media content) as per Mastodon's MediaAttachment entity types. See [phase5d-media-research.md](phase5d-media-research.md) for details.
 
 
 ### Key Research Findings
@@ -1039,12 +1039,11 @@ The initial Phase 5D implementation created standalone `Video`, `Image`, and `Au
 
 **Root Cause**: Mastodon's source code (`fetch_resource_service.rb`) explicitly treats only `Note` and `Question` as "first-class" types. All others are "converted as best as possible."
 
-#### Revised Approach: Dual-Object Pattern
+#### Implemented Approach: Note+Attachment Pattern
 
-Inspired by Castopod's solution, we will generate **both**:
+After research revealed that **no Fediverse platform consumes external semantic media objects** (PeerTube expects its own Video format with platform-specific extensions, Funkwhale uses custom schemas, Castopod is a podcast host not aggregator), we implemented the simpler Note+attachment pattern only.
 
-1. **Primary**: Note object with Document attachment (Mastodon/Pixelfed compatible)
-2. **Secondary**: Semantic Video/Image/Audio object at alternate URL (PeerTube compatible)
+**Dual-object generation was identified as premature optimization and deferred.**
 
 #### Task Status
 
@@ -1092,25 +1091,20 @@ Inspired by Castopod's solution, we will generate **both**:
     "id": "https://lqdev.me/api/activitypub/activities/{hash}#object",
     "content": "<p>My Rome Travel Video</p>",
     "attachment": [{
-      "type": "Document",
+      "type": "Video",
       "mediaType": "video/mp4",
-      "url": "https://cdn.lqdev.tech/files/videos/rome.mp4",
-      "blurhash": "UBL_:rOpGG-oBUNG...",
-      "width": 1920,
-      "height": 1080
-    }],
-    "tag": [{
-      "type": "Link",
-      "href": "https://lqdev.me/api/activitypub/objects/video-{hash}",
-      "rel": "alternate",
-      "mediaType": "application/activity+json"
+      "url": "https://cdn.lqdev.tech/files/videos/rome.mp4"
     }]
   }
 }
 ```
 
-**Secondary Object (PeerTube-compatible)**:
+**DEFERRED - Secondary Object (PeerTube-compatible)**:
+
+The following dual-object pattern was researched but deferred as premature optimization. No evidence exists that any platform follows `rel:alternate` links to fetch semantic media objects.
+
 ```json
+// DEFERRED - Not currently implemented
 {
   "type": "Video",
   "id": "https://lqdev.me/api/activitypub/objects/video-{hash}",

@@ -17,11 +17,11 @@ This document captures comprehensive research into how major Fediverse platforms
 
 This is not a bug—it's an architectural decision by Mastodon that treats Note and Question as "first-class" object types, with all other types "converted as best as possible" (often to just a link).
 
-### Recommended Solution: Dual-Object Pattern
+### Implemented Solution: Note+Attachment Pattern
 
-Generate **both**:
-1. **Semantic objects** (Video/Image/Audio) for platforms that understand them (PeerTube, Funkwhale)
-2. **Compatible Note objects** with media attachments for platforms that don't (Mastodon, Pixelfed)
+After research revealed that **no Fediverse platform consumes external semantic media objects** (PeerTube expects its own Video format, Funkwhale expects platform-specific extensions), we implemented the simpler Note+attachment pattern only.
+
+**Dual-object generation was identified as premature optimization and deferred** to a potential future phase when there's evidence of platforms that would consume external semantic media objects.
 
 ---
 
@@ -78,19 +78,19 @@ Mastodon **does** render media when included as attachments to Note objects:
   "type": "Note",
   "content": "Check out this video!",
   "attachment": [{
-    "type": "Document",
+    "type": "Video",
     "mediaType": "video/mp4",
-    "url": "https://example.com/video.mp4",
-    "blurhash": "UBL_:rOpGG-oBUNG..."
+    "url": "https://example.com/video.mp4"
   }]
 }
 ```
 
 Key requirements for proper rendering:
-- Use `Document` type (not `Video` or `Image`) for attachments
-- Include `blurhash` for preview placeholders (Mastodon extension)
-- Include `width` and `height` for aspect ratio
-- Maximum 4 attachments per post (more are silently discarded)
+- Use type matching the media: `Image`, `Video`, or `Audio` (per Mastodon's MediaAttachment entity)
+- Include `mediaType` with proper MIME type
+- Include `blurhash` for preview placeholders (Mastodon extension, optional)
+- Include `width` and `height` for aspect ratio (optional enhancement)
+- Note: Mastodon's **posting UI** limits to 4 images or 1 video/audio, but federated content may display more
 
 #### Mastodon-Specific Extensions
 
