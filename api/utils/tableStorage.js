@@ -90,9 +90,10 @@ async function ensureTableExists(client) {
  * @param {string} inbox - Follower's inbox URL
  * @param {string} followActivityId - Original Follow activity ID
  * @param {string} displayName - Optional display name
+ * @param {string} sharedInbox - Optional shared inbox URL (for delivery optimization)
  * @returns {Promise<void>}
  */
-async function addFollower(actorUrl, inbox, followActivityId, displayName = null) {
+async function addFollower(actorUrl, inbox, followActivityId, displayName = null, sharedInbox = null) {
     initializeClients();
     await ensureTableExists(followersClient);
 
@@ -101,6 +102,7 @@ async function addFollower(actorUrl, inbox, followActivityId, displayName = null
         rowKey: toUrlSafeBase64(actorUrl),
         actorUrl: actorUrl,
         inbox: inbox || '',
+        sharedInbox: sharedInbox || '',  // Phase 4D: Shared inbox for delivery optimization
         followedAt: new Date().toISOString(),
         displayName: displayName || '',
         followActivityId: followActivityId
@@ -171,6 +173,7 @@ async function getFollower(actorUrl) {
         return {
             actorUrl: entity.actorUrl,
             inbox: entity.inbox,
+            sharedInbox: entity.sharedInbox || null,  // Phase 4D: Shared inbox for delivery optimization
             followedAt: entity.followedAt,
             displayName: entity.displayName,
             followActivityId: entity.followActivityId
@@ -180,6 +183,38 @@ async function getFollower(actorUrl) {
             return null;
         }
         throw new Error(`Failed to get follower: ${error.message}`);
+    }
+}
+
+/**
+ * Update a follower's details in Table Storage
+ * Used for migration scripts to backfill sharedInbox and other fields
+ * @param {string} actorUrl - Follower's actor URL
+ * @param {Object} updates - Object containing fields to update
+ * @returns {Promise<boolean>} True if follower was updated, false if not found
+ */
+async function updateFollower(actorUrl, updates) {
+    initializeClients();
+
+    const rowKey = toUrlSafeBase64(actorUrl);
+    
+    try {
+        // Get existing entity
+        const entity = await followersClient.getEntity('follower', rowKey);
+        
+        // Merge updates into entity
+        if (updates.inbox !== undefined) entity.inbox = updates.inbox;
+        if (updates.sharedInbox !== undefined) entity.sharedInbox = updates.sharedInbox || '';
+        if (updates.displayName !== undefined) entity.displayName = updates.displayName || '';
+        
+        // Use merge update to preserve other fields
+        await followersClient.updateEntity(entity, 'Merge');
+        return true;
+    } catch (error) {
+        if (error.statusCode === 404) {
+            return false; // Follower not found
+        }
+        throw new Error(`Failed to update follower: ${error.message}`);
     }
 }
 
@@ -199,6 +234,7 @@ async function getAllFollowers() {
         followers.push({
             actorUrl: entity.actorUrl,
             inbox: entity.inbox,
+            sharedInbox: entity.sharedInbox || null,  // Phase 4D: Shared inbox for delivery optimization
             followedAt: entity.followedAt,
             displayName: entity.displayName,
             followActivityId: entity.followActivityId
@@ -654,6 +690,7 @@ module.exports = {
     removeFollower,
     isFollower,
     getFollower,
+    updateFollower,  // Phase 4D: For migration script to backfill sharedInbox
     getAllFollowers,
     getFollowerCount,
     buildFollowersCollection,
