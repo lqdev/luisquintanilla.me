@@ -157,7 +157,7 @@ jobs:
           echo "📢 Queueing recent posts for delivery..."
           
           # Get the 2 most recent items from outbox using jq
-          RECENT_ITEMS=$(jq -r '.orderedItems[:2] | .[] | @json' _public/api/data/outbox/index.json)
+          RECENT_ITEMS=$(jq -r '.orderedItems[:2] | .[] | @json' _public/api/data/outbox/page-1.json)
           
           if [ -z "$RECENT_ITEMS" ]; then
             echo "⚠️ No recent items found in outbox"
