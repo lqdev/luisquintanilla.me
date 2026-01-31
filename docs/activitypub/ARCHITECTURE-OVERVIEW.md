@@ -1,6 +1,6 @@
 # ActivityPub Implementation: Architecture & Implementation Overview
 
-**Last Updated**: January 23, 2026  
+**Last Updated**: January 30, 2026  
 **Status**: Production - Phases 1-4 Complete (Phase 4: HTTP Signature Verification LIVE 🔒)  
 **Primary Maintainer**: See commit history
 
@@ -47,6 +47,7 @@ This repository implements ActivityPub federation for a static website built wit
 3. **Queue-Based Delivery**: Async processing with exponential backoff retry for reliability
 4. **Table Storage as Truth**: Persistent follower state with static `followers.json` regenerated during builds
 5. **Cost-Optimized**: ~$0.02/month operational cost using Azure free tiers
+6. **Object Unwrapping Pattern**: Azure Function dynamically unwraps Create activities to return embedded Note/Article objects for Mastodon URL search compatibility (see [Phase 5 docs](phase5-fediverse-native-expansion-plan.md#azure-function-object-unwrapping-pattern))
 
 ---
 

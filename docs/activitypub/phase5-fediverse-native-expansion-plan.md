@@ -262,6 +262,69 @@ Each page includes:
 
 **Files Modified**: `ActivityPubBuilder.fs`
 
+### Azure Function Object Unwrapping Pattern (January 30, 2026)
+
+**Problem**: Even after fixing the fragment pattern, activities were still not discoverable via Mastodon search. Pasting activity URLs in Mastodon returned no results.
+
+**Root Cause Discovery**: Through analysis of Mastodon's `fetch_resource_service.rb` and `resolve_url_service.rb`, we discovered that Mastodon's URL search only accepts **object types** (Note, Article, Image, etc.), not **activity types** (Create, Like, Announce).
+
+```ruby
+# From Mastodon's fetch_resource_service.rb
+SUPPORTED_TYPES = %w(Note Question).freeze
+CONVERTED_TYPES = %w(Image Audio Video Article Page Event).freeze
+
+# Mastodon rejects Create/Like/Announce when searching URLs!
+def expected_type?(json)
+  equals_or_includes_any?(json['type'], SUPPORTED_TYPES + CONVERTED_TYPES)
+end
+```
+
+**Key Insight**: The distinction between objects and activities:
+
+| Category | Types | Searchable? | Purpose |
+|----------|-------|-------------|--------|
+| **Objects** | Note, Article, Image, Video, etc. | ✅ Yes | Content people create and search for |
+| **Activities** | Create, Like, Announce | ❌ No | Verbs that wrap or reference objects |
+
+**Architectural Decision**: Rather than maintaining separate endpoints for notes vs activities (Option A), we chose to make the existing activities endpoint **dynamically unwrap Create activities** (Option B).
+
+**Solution**: Modified `api/activitypub-activities/index.js` to:
+1. Fetch the activity JSON from CDN
+2. If `type === 'Create'`, extract and return the embedded `object` (Note/Article)
+3. Update the object's `id` to match the fetchable URL
+4. If Like/Announce, return as-is (these live in outbox, not meant to be searched)
+
+```javascript
+// CRITICAL FIX: For Create activities, return the embedded object
+if (activity.type === 'Create' && activity.object) {
+    const obj = activity.object;
+    obj['@context'] = 'https://www.w3.org/ns/activitystreams';
+    obj.id = `https://lqdev.me/api/activitypub/activities/${activityId}`;
+    responseContent = JSON.stringify(obj);
+} else {
+    responseContent = activityContent;  // Like/Announce unchanged
+}
+```
+
+**Why This Works**:
+- Mastodon fetches URL → gets `type: "Note"` → **accepts it!**
+- The Note's `id` matches the fetched URL (no mismatch)
+- Like/Announce activities pass through unchanged (for outbox discovery)
+- Single endpoint handles all activity types
+
+**Benefits of Option B over Option A (separate notes endpoint)**:
+- Simpler architecture: one endpoint, not two
+- No path migration needed
+- Works for all object types (Note, Article, Image, etc.)
+- Preserves existing `/activitypub/activities/` path structure
+
+**Spec Compliance**:
+- ✅ W3C ActivityPub: Objects dereferenceable at their ID URLs
+- ✅ Mastodon compatibility: Returns searchable object types
+- ✅ Outbox integrity: Like/Announce activities unchanged for federation
+
+**Files Modified**: `api/activitypub-activities/index.js`
+
 ---
 
 ## Architecture Design

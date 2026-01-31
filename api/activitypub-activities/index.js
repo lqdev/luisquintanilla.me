@@ -125,9 +125,10 @@ module.exports = async function (context, req) {
         // Get activity content
         const activityContent = await response.text();
         
-        // Validate JSON before caching and returning
+        // Parse and validate JSON
+        let activity;
         try {
-            JSON.parse(activityContent);
+            activity = JSON.parse(activityContent);
         } catch (parseError) {
             context.log.error(`Invalid JSON in activity ${activityId}: ${parseError.message}`);
             context.res = {
@@ -144,13 +145,33 @@ module.exports = async function (context, req) {
             return;
         }
         
-        // Cache the activity content
+        // CRITICAL FIX: For Create activities, return the embedded object (Note/Article)
+        // Mastodon's URL search only accepts object types (Note, Article, etc.), not activity types (Create)
+        // Like/Announce activities are returned as-is (they reference external objects)
+        let responseContent;
+        if (activity.type === 'Create' && activity.object) {
+            // Extract the Note/Article object and ensure it has proper context
+            const obj = activity.object;
+            if (!obj['@context']) {
+                obj['@context'] = 'https://www.w3.org/ns/activitystreams';
+            }
+            // Update the object's ID to match the fetchable URL (no fragment)
+            // This ensures Mastodon's ID validation passes
+            obj.id = `https://lqdev.me/api/activitypub/activities/${activityId}`;
+            responseContent = JSON.stringify(obj);
+            context.log(`Unwrapped Create activity to ${obj.type}: ${activityId}`);
+        } else {
+            // Like, Announce, or other activities returned as-is
+            responseContent = activityContent;
+        }
+        
+        // Cache the response content
         activityCache.set(activityId, {
-            content: activityContent,
+            content: responseContent,
             timestamp: Date.now()
         });
         
-        // Return activity with proper ActivityPub headers
+        // Return with proper ActivityPub headers
         context.res = {
             status: 200,
             headers: {
@@ -166,7 +187,7 @@ module.exports = async function (context, req) {
                 'X-Cache': 'MISS',
                 'X-Content-Source': 'http-proxy'
             },
-            body: activityContent
+            body: responseContent
         };
         
         context.log(`Successfully proxied activity: ${activityId}`);
