@@ -363,17 +363,25 @@ module.exports = async function (context, req) {
                 // Fetch follower profile to get inbox and display name
                 let inbox = null;
                 let displayName = null;
+                let sharedInbox = null;  // Phase 4D: Shared inbox for delivery optimization
                 try {
                     const actorProfile = await fetchActorProfile(followerActor);
                     inbox = actorProfile.inbox;
                     displayName = actorProfile.name || actorProfile.preferredUsername;
+                    // Phase 4D: Extract shared inbox from endpoints object (ActivityPub spec)
+                    sharedInbox = actorProfile.endpoints?.sharedInbox || null;
+                    if (sharedInbox) {
+                        context.log(`[Phase 4D] Extracted sharedInbox for ${followerActor}: ${sharedInbox}`);
+                    } else {
+                        context.log(`[Phase 4D] No sharedInbox found for ${followerActor}, will use personal inbox`);
+                    }
                 } catch (error) {
                     context.log.error(`Failed to fetch actor profile: ${error.message}`);
                     // Continue anyway, we'll try to get inbox later during Accept delivery
                 }
                 
-                // Add to Table Storage
-                await tableStorage.addFollower(followerActor, inbox, followActivityId, displayName);
+                // Add to Table Storage (including sharedInbox for Phase 4D optimization)
+                await tableStorage.addFollower(followerActor, inbox, followActivityId, displayName, sharedInbox);
                 context.log(`Added follower to Table Storage: ${followerActor}`);
                 
                 // Queue Accept activity for GitHub Actions delivery (Free tier architecture)
