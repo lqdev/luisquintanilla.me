@@ -2,7 +2,7 @@
 
 **Date**: January 28, 2026  
 **Updated**: January 31, 2026  
-**Status**: Phase 5A ✅ | Phase 5B ✅ | Phase 5C ✅ | Phase 5D 🔄 Dual-Object (Step 1 ✅) | Phase 5F ✅ | Phase 5E In Progress  
+**Status**: Phase 5A ✅ | Phase 5B ✅ | Phase 5C ✅ | Phase 5D ✅ (Note+Attachment) | Phase 5F ✅ | Phase 5E In Progress  
 **Author**: AI Development Partner (based on PR #1990 analysis)  
 **Scope**: Expand ActivityPub to express rich content types natively in the Fediverse
 
@@ -1015,9 +1015,11 @@ let convertBookmarkToNote (item: UnifiedFeedItem) : ActivityPubNote =
 
 ---
 
-### Phase 5D: Media-First Objects 🔄 REVISION IN PROGRESS (January 31, 2026)
+### Phase 5D: Media-First Objects ✅ COMPLETE (January 31, 2026)
 
-**Initial Implementation Complete → Discovered Compatibility Issue → Architectural Revision**
+**Final Approach**: Note+Attachment Pattern (Mastodon/Pixelfed Compatible)
+
+**Decision**: After research revealed that no Fediverse platform consumes external semantic media objects, we implemented the simpler Note+attachment pattern only. Dual-object generation was identified as premature optimization and deferred.
 
 #### Background
 
@@ -1050,13 +1052,13 @@ Inspired by Castopod's solution, we will generate **both**:
 |------|--------|--------|
 | 5D.1: MediaAPData Type | ✅ | Created with MediaUrl, MediaType, ObjectType, AltText, Caption fields |
 | 5D.2: MediaExtractor Module | ✅ | Extracts media data from :::media blocks with MIME detection |
-| 5D.3: ActivityPubMediaObject Type | ✅ | Native Image/Video/Audio object type (now secondary) |
-| 5D.4: Conversion Router (v1) | ✅ | Routes to native objects (revised in 5D.6) |
-| 5D.5: Feature Flag | ✅ | `useNativeMediaObjects` now controls dual-object generation |
-| 5D.6: Note+Attachment Primary | ✅ | `useNativeMediaObjects = false` restores Note+attachment pattern |
-| 5D.7: Dual Object Generation | 🔄 | Generate semantic objects at alternate URLs alongside Note |
-| 5D.8: Mastodon Extensions | 🔲 | Add width, height (blurhash deferred to future) |
-| 5D.9: Alternate Link Tag | 🔲 | Link semantic object via `tag` array with `rel: alternate` |
+| 5D.3: ActivityPubMediaObject Type | ✅ | Available for future use if semantic objects needed |
+| 5D.4: Conversion Router (v1) | ✅ | Tested standalone objects; revealed compatibility issues |
+| 5D.5: Feature Flag | ✅ | `useNativeMediaObjects = false` (Note+attachment is primary) |
+| 5D.6: Note+Attachment Primary | ✅ | Restores working media rendering in Mastodon/Pixelfed |
+| 5D.7: Dual Object Generation | ⏸️ DEFERRED | Premature optimization - no platform consumes external media objects |
+| 5D.8: Mastodon Extensions | ⏸️ DEFERRED | blurhash/width/height can be added later if needed |
+| 5D.9: Alternate Link Tag | ⏸️ DEFERRED | No value without dual objects; no evidence platforms follow rel:alternate |
 
 **Branch**: `feature/phase5d-dual-media-objects`
 
@@ -1134,12 +1136,169 @@ Inspired by Castopod's solution, we will generate **both**:
 3. **Pixelfed Docs**: "Currently only accepts Create.Note objects" - [pixelfed.github.io/docs-next/spec/ActivityPub.html](https://pixelfed.github.io/docs-next/spec/ActivityPub.html)
 4. **Castopod Pattern**: Dual PodcastEpisode + Note approach - [github.com/Podcastindex-org/podcast-namespace/discussions/623](https://github.com/Podcastindex-org/podcast-namespace/discussions/623)
 
-**Files Modified** (Initial):
-- `GenericBuilder.fs` - MediaAPData type, MediaExtractor module, UnifiedFeedItem extension
-- `ActivityPubBuilder.fs` - ActivityPubMediaObject type, conversion functions, router update
+**Files Modified**:
+- `ActivityPubBuilder.fs` - `useNativeMediaObjects = false` to route media to Note+attachment
 
-**Files To Modify** (Revision):
-- `ActivityPubBuilder.fs` - Dual object generation, Mastodon extensions, Note+attachment primary pattern
+---
+
+#### Phase 5D Resolution: Note+Attachment Pattern ✅ COMPLETE
+
+**Decision**: Implement Note+attachment only. Do NOT implement dual-object pattern (semantic objects at `/objects/` path).
+
+**Rationale**: After comprehensive research, the dual-object pattern provides no practical benefit with current Fediverse platforms. It would be **premature optimization** adding complexity without measurable value.
+
+#### Why Note+Attachment Is Sufficient
+
+| Platform | Note+Attachment | Standalone Video/Image/Audio | Would Consume Our Semantic Objects? |
+|----------|-----------------|------------------------------|-------------------------------------|
+| **Mastodon** | ✅ Renders media player | ❌ Shows link only | ❌ No |
+| **Pixelfed** | ✅ Renders image/gallery | ❌ Not displayed | ❌ No |
+| **PeerTube** | N/A | ✅ Native support | ⚠️ Unlikely (expects PeerTube-specific format) |
+| **Funkwhale** | ⚠️ Partial | ⚠️ Custom format | ❌ No (expects Funkwhale-specific format) |
+| **Castopod** | ✅ Note fallback | ⚠️ PodcastEpisode | ❌ No (it's a host, not aggregator) |
+
+**Key Insight**: These platforms are **content generators with platform-specific formats**, not **generic media consumers**. They federate *their own* content format, but don't consume generic ActivityStreams Video/Image/Audio objects from external sources.
+
+#### Evidence: Platform-Specific Formats
+
+**PeerTube Video Objects** (from [docs.joinpeertube.org/api/activitypub](https://docs.joinpeertube.org/api/activitypub)):
+```json
+{
+  "type": "Video",
+  "mediaType": "text/html",  // PeerTube-specific: points to watch page, not raw video
+  "url": [
+    {"mediaType": "text/html", "href": "https://peertube.example/w/xyz"},
+    {"mediaType": "video/mp4", "height": 1080, "href": "..."},
+    {"mediaType": "video/mp4", "height": 720, "href": "..."},
+    {"mediaType": "application/x-mpegURL", "href": "..."}  // HLS playlist
+  ],
+  "subtitleLanguage": [...],
+  "peertube:category": {...}  // Platform-specific extensions
+}
+```
+
+A simple `Video` object with one MP4 URL would not integrate into PeerTube's multi-resolution player infrastructure.
+
+**Funkwhale Audio Objects** (from [docs.funkwhale.audio/specs/ActivityPub](https://docs.funkwhale.audio/specs/)):
+```json
+{
+  "type": "Audio",
+  "funkwhale:Track": {...},    // Platform-specific
+  "funkwhale:Artist": {...},   // Platform-specific
+  "funkwhale:Album": {...}     // Platform-specific
+}
+```
+
+Funkwhale expects rich music metadata (artist, album, track) that a generic Audio object wouldn't provide.
+
+**Castopod** (from [github.com/Podcastindex-org/podcast-namespace/discussions/623](https://github.com/Podcastindex-org/podcast-namespace/discussions/623)):
+- Castopod is a podcast **host**, not an aggregator
+- It generates PodcastEpisode + Note for *its own* content
+- It doesn't consume external Audio objects as podcast episodes
+
+#### Why Dual-Object Pattern Was Considered
+
+The original idea (inspired by Castopod's approach):
+1. **Primary**: Note + Document attachment → Mastodon/Pixelfed render properly ✅
+2. **Secondary**: Semantic Video/Image/Audio at `/api/activitypub/objects/{type}-{hash}` → PeerTube could consume
+3. **Link**: Primary Note includes `tag` with `rel: alternate` pointing to secondary object
+
+**Problems Identified**:
+1. **No evidence PeerTube follows `rel: alternate` links** to consume external Video objects
+2. **Format mismatch**: Our simple Video object wouldn't match PeerTube's expected structure
+3. **Added complexity**: Two objects per media item, new URL path, Azure Function updates
+4. **Zero practical benefit**: No platform would render our semantic objects better than Note+attachment
+
+#### Final Implementation
+
+**What We Did**:
+```fsharp
+/// Phase 5D: Feature flag for enabling native media objects
+/// Set to false: Use Note+attachment (Mastodon/Pixelfed compatible) as primary
+/// Set to true: Use standalone Image/Video/Audio objects (breaks rendering in Mastodon)
+/// Research: Mastodon only renders attachments on Note objects, not standalone media objects
+let useNativeMediaObjects = false
+```
+
+**Output** (verified working):
+```json
+{
+  "type": "Create",
+  "object": {
+    "type": "Note",
+    "content": "This is a video recording I made",
+    "attachment": [{
+      "type": "Video",
+      "mediaType": "video/mp4",
+      "url": "https://cdn.lqdev.tech/files/videos/example.mp4",
+      "name": "media"
+    }]
+  }
+}
+```
+
+- ✅ Mastodon: Renders video player
+- ✅ Pixelfed: Renders video (if supported)
+- ✅ Simple: One object per content item
+- ✅ Spec-compliant: Valid ActivityStreams
+
+#### Future Improvement: Semantic Media Objects
+
+**Status**: Deferred (premature optimization)
+
+**When to Reconsider**:
+1. A Fediverse platform emerges that **consumes** generic Video/Image/Audio objects from external sources
+2. PeerTube adds support for importing external Video objects via `rel: alternate` links
+3. A media-aggregation platform (like a Fediverse-native video aggregator) becomes popular
+
+**Implementation Path** (if needed later):
+1. Add `objectsPath` to Config: `/api/activitypub/objects/`
+2. Create `generateMediaObjectId` function for semantic object URLs
+3. Create `buildMediaObjects` to generate semantic objects as separate files
+4. Modify `convertToNote` to add `tag` with `rel: alternate` link
+5. Create Azure Function at `/api/activitypub/objects/` to serve objects
+6. Match target platform's expected format (e.g., PeerTube's multi-resolution URL array)
+
+**Effort**: Medium (2-3 days)
+**Value**: Currently zero; depends on future platform support
+
+#### Key Research Citations
+
+1. **Mastodon ActivityPub Documentation**
+   - URL: [docs.joinmastodon.org/spec/activitypub](https://docs.joinmastodon.org/spec/activitypub/)
+   - Quote: "Other Object types—including Article, Page, Image, Audio, Video, and Event—are 'converted as best as possible.'"
+   - Implication: Standalone media objects don't render as media players
+
+2. **Mastodon GitHub Issue #19357**
+   - URL: [github.com/mastodon/mastodon/issues/19357](https://github.com/mastodon/mastodon/issues/19357)
+   - Title: "Federated Create->Image activities do not render the image inline"
+   - Status: Open (as of January 2026)
+   - Implication: Known limitation, not a bug they intend to fix
+
+3. **Mastodon Source Code - fetch_resource_service.rb**
+   - URL: [github.com/mastodon/mastodon/blob/main/app/services/fetch_resource_service.rb](https://github.com/mastodon/mastodon/blob/main/app/services/fetch_resource_service.rb)
+   - Code: `SUPPORTED_TYPES = %w(Note Question).freeze`
+   - Implication: Only Note and Question are first-class content types for search/display
+
+4. **Pixelfed ActivityPub Documentation**
+   - URL: [pixelfed.github.io/docs-next/spec/ActivityPub.html](https://pixelfed.github.io/docs-next/spec/ActivityPub.html)
+   - Quote: "Pixelfed currently only accepts Create.Note objects"
+   - Implication: Image objects must be attachments on Notes
+
+5. **PeerTube ActivityPub Documentation**
+   - URL: [docs.joinpeertube.org/api/activitypub](https://docs.joinpeertube.org/api/activitypub)
+   - Note: Documents Video object structure for PeerTube-originated content
+   - No documentation on consuming external Video objects
+
+6. **Funkwhale ActivityPub Specification**
+   - URL: [docs.funkwhale.audio/specs/](https://docs.funkwhale.audio/specs/)
+   - Note: Uses platform-specific extensions (funkwhale:Track, funkwhale:Artist)
+   - Implication: Not compatible with generic Audio objects
+
+7. **Castopod Podcast Namespace Discussion**
+   - URL: [github.com/Podcastindex-org/podcast-namespace/discussions/623](https://github.com/Podcastindex-org/podcast-namespace/discussions/623)
+   - Pattern: Dual PodcastEpisode + Note approach
+   - Note: Castopod is a host, not an aggregator; doesn't consume external audio
 
 ---
 
