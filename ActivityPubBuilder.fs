@@ -536,7 +536,9 @@ let buildActivities (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem l
         let doc = System.Text.Json.JsonDocument.Parse(json)
         let id = doc.RootElement.GetProperty("id").GetString()
         let hash = id.Split('/') |> Array.last
-        let activityPath = Path.Combine(activitiesDir, sprintf "%s.json" hash)
+        // Strip fragment from hash for filename (e.g., #create)
+        let hashWithoutFragment = hash.Split('#') |> Array.head
+        let activityPath = Path.Combine(activitiesDir, sprintf "%s.json" hashWithoutFragment)
         File.WriteAllText(activityPath, json)
     
     printfn "  ✅ Generated %d ActivityPub activity files" activities.Length
