@@ -523,6 +523,80 @@ type ReviewMetadata = {
     Isbn: string option       // For books: ISBN
 }
 
+/// Phase 5D: Media metadata for ActivityPub Image/Video/Audio objects
+/// Defined at module level so it can be used by both media processing and UnifiedFeeds
+type MediaAPData = {
+    MediaUrl: string          // URL of the media file
+    MediaType: string         // MIME type (e.g., "image/jpeg", "video/mp4")
+    ObjectType: string        // ActivityPub type: "Image", "Video", "Audio"
+    AltText: string option    // Alt text for accessibility
+    Caption: string option    // Caption/description
+}
+
+/// Phase 5D: Media extractor for detecting and extracting media from content
+module MediaExtractor =
+    open System.Text.RegularExpressions
+    
+    /// Detect MIME type from URL file extension
+    let detectMimeType (url: string) : string =
+        let ext = Path.GetExtension(url).ToLowerInvariant()
+        match ext with
+        | ".jpg" | ".jpeg" -> "image/jpeg"
+        | ".png" -> "image/png"
+        | ".gif" -> "image/gif"
+        | ".webp" -> "image/webp"
+        | ".mp4" -> "video/mp4"
+        | ".webm" -> "video/webm"
+        | ".mov" -> "video/quicktime"
+        | ".mp3" -> "audio/mpeg"
+        | ".wav" -> "audio/wav"
+        | ".ogg" -> "audio/ogg"
+        | ".m4a" -> "audio/mp4"
+        | _ -> "application/octet-stream"
+    
+    /// Determine ActivityPub object type from MIME type
+    let detectObjectType (mimeType: string) : string =
+        if mimeType.StartsWith("image/") then "Image"
+        elif mimeType.StartsWith("video/") then "Video"
+        elif mimeType.StartsWith("audio/") then "Audio"
+        else "Document"
+    
+    /// Extract first media item from :::media block for media-primary content
+    /// Returns Some MediaAPData if content has a media block, None otherwise
+    let extractPrimaryMedia (content: string) : MediaAPData option =
+        // Defensive null check to prevent NullReferenceException
+        if String.IsNullOrWhiteSpace(content) then None
+        else
+            let mediaPattern = @":::media\s*([\s\S]*?):::(?:media)?"
+            let matches = Regex.Matches(content, mediaPattern)
+            
+            if matches.Count = 0 then None
+            else
+                let firstMediaContent = matches.[0].Groups.[1].Value
+                
+                // Extract URL
+                let urlMatch = Regex.Match(firstMediaContent, @"url:\s*[""']([^""']+)[""']")
+                if not urlMatch.Success then None
+                else
+                    let url = urlMatch.Groups.[1].Value
+                    let mimeType = detectMimeType url
+                    let objectType = detectObjectType mimeType
+                    
+                    // Extract caption and alt text
+                    let captionMatch = Regex.Match(firstMediaContent, @"caption:\s*[""']([^""']+)[""']")
+                    let altMatch = Regex.Match(firstMediaContent, @"alt:\s*[""']([^""']+)[""']")
+                    
+                    let caption = if captionMatch.Success then Some captionMatch.Groups.[1].Value else None
+                    let altText = if altMatch.Success then Some altMatch.Groups.[1].Value else None
+                    
+                    Some {
+                        MediaUrl = url
+                        MediaType = mimeType
+                        ObjectType = objectType
+                        AltText = altText
+                        Caption = caption
+                    }
+
 /// Book content processor
 module BookProcessor =
     // Cache for review data extracted during parsing
@@ -1326,6 +1400,8 @@ module UnifiedFeeds =
         UpdatedDate: string option   // For edit tracking
         // Phase 5C: Review metadata for Schema.org Review vocabulary
         ReviewData: ReviewMetadata option
+        // Phase 5D: Media metadata for native Image/Video/Audio objects
+        MediaData: MediaAPData option
     }
 
     /// Feed configuration for different feed types
@@ -1382,6 +1458,8 @@ module UnifiedFeeds =
                 UpdatedDate = None
                 // Phase 5C: Default to None for non-review content
                 ReviewData = None
+                // Phase 5D: Default to None for non-media-primary content
+                MediaData = None
             }
         | None -> None
     
@@ -1629,7 +1707,7 @@ module UnifiedFeeds =
                 let content = feedData.Content.Content  // Full raw content - will be processed by timeline view
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "posts"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "posts"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertNotesToUnified (feedDataList: FeedData<Post> list) : UnifiedFeedItem list =
@@ -1642,7 +1720,7 @@ module UnifiedFeeds =
                 let content = feedData.Content.Content  // Full raw content - will be processed by timeline view
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "notes"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "notes"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertResponsesToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =
@@ -1667,7 +1745,7 @@ module UnifiedFeeds =
                     if String.IsNullOrWhiteSpace(feedData.Content.Metadata.TargetUrl) then None
                     else Some feedData.Content.Metadata.TargetUrl
                 let updatedDate = if String.IsNullOrWhiteSpace(feedData.Content.Metadata.DateUpdated) then None else Some feedData.Content.Metadata.DateUpdated
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = contentType; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate; ReviewData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = contentType; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertResponseBookmarksToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =
@@ -1685,7 +1763,7 @@ module UnifiedFeeds =
                 let responseType = Some "bookmark"
                 let targetUrl = Some feedData.Content.Metadata.TargetUrl
                 let updatedDate = if String.IsNullOrWhiteSpace(feedData.Content.Metadata.DateUpdated) then None else Some feedData.Content.Metadata.DateUpdated
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate; ReviewData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertSnippetsToUnified (feedDataList: FeedData<Snippet> list) : UnifiedFeedItem list =
@@ -1699,7 +1777,7 @@ module UnifiedFeeds =
                 let tags = 
                     if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
                     else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "snippets"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "snippets"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertWikisToUnified (feedDataList: FeedData<Wiki> list) : UnifiedFeedItem list =
@@ -1713,7 +1791,7 @@ module UnifiedFeeds =
                 let tags = 
                     if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
                     else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "wiki"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "wiki"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertPresentationsToUnified (feedDataList: FeedData<Presentation> list) : UnifiedFeedItem list =
@@ -1727,7 +1805,7 @@ module UnifiedFeeds =
                 let tags = 
                     if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
                     else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "presentations"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "presentations"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertBooksToUnified (feedDataList: FeedData<Book> list) : UnifiedFeedItem list =
@@ -1743,7 +1821,7 @@ module UnifiedFeeds =
                 let tags = [||]  // Books don't have explicit tags
                 // Phase 5C: Get review metadata from cache for Schema.org integration in ActivityPub
                 let reviewData = BookProcessor.getReviewMetadata feedData.Content.FileName
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "reviews"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = reviewData }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "reviews"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = reviewData; MediaData = None }
             | None -> None)
     
     let convertAlbumsToUnified (feedDataList: FeedData<Album> list) : UnifiedFeedItem list =
@@ -1755,7 +1833,9 @@ module UnifiedFeeds =
                 let content = feedData.Content.Content  // Use full content instead of CardHtml
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "media"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None }
+                // Phase 5D: Extract media data for media-primary content
+                let mediaData = MediaExtractor.extractPrimaryMedia content
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "media"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None; MediaData = mediaData }
             | None -> None)
     
     let convertAlbumCollectionsToUnified (feedDataList: FeedData<AlbumCollection> list) : UnifiedFeedItem list =
@@ -1767,7 +1847,7 @@ module UnifiedFeeds =
                 let content = feedData.Content.Content  // Use full content
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "album-collection"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "album-collection"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertPlaylistCollectionsToUnified (feedDataList: FeedData<PlaylistCollection> list) : UnifiedFeedItem list =
@@ -1779,7 +1859,7 @@ module UnifiedFeeds =
                 let content = feedData.Content.Content  // Use full content
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "playlist-collection"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "playlist-collection"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertBookmarksToUnified (feedDataList: FeedData<Bookmark> list) : UnifiedFeedItem list =
@@ -1794,7 +1874,7 @@ module UnifiedFeeds =
                 let targetUrl = 
                     if String.IsNullOrWhiteSpace(feedData.Content.Metadata.BookmarkOf) then None
                     else Some feedData.Content.Metadata.BookmarkOf
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = targetUrl; UpdatedDate = None; ReviewData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = targetUrl; UpdatedDate = None; ReviewData = None; MediaData = None }
             | None -> None)
 
     // Convert bookmark responses (Response objects with bookmark type) to unified feed
@@ -1809,5 +1889,5 @@ module UnifiedFeeds =
                 let content = feedData.CardHtml  // Use CardHtml to include target URL display
                 let date = feedData.Content.Metadata.DatePublished
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = Some "bookmark"; TargetUrl = Some feedData.Content.Metadata.TargetUrl; UpdatedDate = None; ReviewData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = Some "bookmark"; TargetUrl = Some feedData.Content.Metadata.TargetUrl; UpdatedDate = None; ReviewData = None; MediaData = None }
             | None -> None)

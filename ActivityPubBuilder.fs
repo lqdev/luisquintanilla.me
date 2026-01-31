@@ -108,6 +108,45 @@ type SchemaItemReviewed = {
     Image: string option
 }
 
+/// Phase 5D: ActivityPub Media Object for native Image/Video/Audio
+/// Research: Media-primary content uses Image/Video/Audio as top-level object type
+/// instead of Note with attachment. This enables native rendering in Pixelfed-style clients.
+[<CLIMutable>]
+type ActivityPubMediaObject = {
+    [<JsonPropertyName("@context")>]
+    Context: string
+    
+    [<JsonPropertyName("id")>]
+    Id: string
+    
+    [<JsonPropertyName("type")>]
+    Type: string  // "Image", "Video", or "Audio"
+    
+    [<JsonPropertyName("attributedTo")>]
+    AttributedTo: string
+    
+    [<JsonPropertyName("published")>]
+    Published: string
+    
+    [<JsonPropertyName("url")>]
+    Url: string  // Media file URL
+    
+    [<JsonPropertyName("mediaType")>]
+    MediaType: string  // MIME type (e.g., "image/jpeg", "video/mp4")
+    
+    [<JsonPropertyName("name")>]
+    Name: string option  // Caption
+    
+    [<JsonPropertyName("summary")>]
+    Summary: string option  // Alt text for accessibility
+    
+    [<JsonPropertyName("to")>]
+    To: string array
+    
+    [<JsonPropertyName("cc")>]
+    Cc: string array option
+}
+
 /// ActivityPub Note object representing a blog post or status
 /// Research: Required fields for Mastodon federation validated
 [<CLIMutable>]
@@ -649,6 +688,58 @@ let convertToAnnounceActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem
         Object = targetUrl  // URL being announced (can be any web URL)
     }
 
+/// Phase 5D: Convert UnifiedFeedItem to native media object
+/// Media-primary content (from media directory) uses Image/Video/Audio as top-level type
+/// Research: Native media objects render properly in Pixelfed and media-focused clients
+let convertToMediaObject (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : ActivityPubMediaObject option =
+    match item.MediaData with
+    | None -> None
+    | Some mediaData ->
+        let activityBaseId = generateActivityId item.Url item.Content
+        let mediaId = generateObjectId activityBaseId  // Media gets #object fragment
+        
+        let publishedDate =
+            try
+                let dt = DateTimeOffset.Parse(item.Date)
+                dt.ToString("yyyy-MM-dd'T'HH:mm:sszzz")
+            with
+            | _ -> item.Date
+        
+        Some {
+            Context = Config.activityStreamsContext
+            Id = mediaId
+            Type = mediaData.ObjectType  // "Image", "Video", or "Audio"
+            AttributedTo = Config.actorUri
+            Published = publishedDate
+            Url = mediaData.MediaUrl
+            MediaType = mediaData.MediaType
+            Name = mediaData.Caption  // Caption as name
+            Summary = mediaData.AltText  // Alt text as summary for accessibility
+            To = [| Config.publicCollection |]
+            Cc = Some [| Config.followersCollection |]
+        }
+
+/// Phase 5D: Convert UnifiedFeedItem with MediaData to Create activity wrapping media object
+let convertToCreateMediaActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : obj option =
+    match convertToMediaObject item with
+    | None -> None
+    | Some mediaObj ->
+        // Create wrapper activity
+        let activityBaseId = generateActivityId item.Url item.Content
+        let createId = generateCreateActivityId activityBaseId  // Create uses base URL (fetchable)
+        
+        // Build Create activity as anonymous record to match existing pattern
+        Some (box {|
+            ``@context`` = Config.activityStreamsContext
+            id = createId
+            ``type`` = "Create"
+            actor = Config.actorUri
+            published = mediaObj.Published
+            ``to`` = mediaObj.To
+            cc = mediaObj.Cc
+            ``object`` = mediaObj
+        |})
+
 /// Phase 5F: Items per page for outbox pagination
 /// Research: Mastodon uses 20-50 items per page, 50 is a good balance
 let itemsPerPage = 50
@@ -683,8 +774,13 @@ let generateOutboxPage (pageNum: int) (totalPages: int) (items: obj array) : Act
 /// Set to true to use Like/Announce, false to use Create+Note for all (legacy behavior)
 let useNativeActivityTypes = true
 
+/// Phase 5D: Feature flag for enabling native media objects
+/// Set to true to use Image/Video/Audio, false to use Note+attachment for media
+let useNativeMediaObjects = true
+
 /// Phase 5A: Convert UnifiedFeedItem to appropriate ActivityPub activity
-/// Routes stars → Like, reshares → Announce, replies → Create+Note with inReplyTo, everything else → Create+Note
+/// Routes stars → Like, reshares → Announce, replies → Create+Note with inReplyTo
+/// Phase 5D: Routes media-primary content → Create+Image/Video/Audio
 let convertToActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : obj =
     if not useNativeActivityTypes then
         // Legacy behavior: Everything as Create+Note
@@ -700,8 +796,16 @@ let convertToActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : obj 
             // Replies are Create+Note with inReplyTo field
             convertToNote item |> convertToCreateActivity |> box
         | _ ->
-            // Everything else (posts, notes, bookmarks, etc.) is Create+Note
-            convertToNote item |> convertToCreateActivity |> box
+            // Phase 5D: Check for media-primary content
+            if useNativeMediaObjects && item.MediaData.IsSome then
+                match convertToCreateMediaActivity item with
+                | Some mediaActivity -> mediaActivity
+                | None -> 
+                    // Fallback to Note+attachment if media conversion fails
+                    convertToNote item |> convertToCreateActivity |> box
+            else
+                // Everything else (posts, notes, bookmarks, etc.) is Create+Note
+                convertToNote item |> convertToCreateActivity |> box
 
 /// Build individual ActivityPub activity files for static serving
 /// Phase 5A: Renamed from buildNotes, now generates to activitypub/activities/
