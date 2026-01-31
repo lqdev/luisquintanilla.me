@@ -564,35 +564,38 @@ module MediaExtractor =
     /// Extract first media item from :::media block for media-primary content
     /// Returns Some MediaAPData if content has a media block, None otherwise
     let extractPrimaryMedia (content: string) : MediaAPData option =
-        let mediaPattern = @":::media\s*([\s\S]*?):::(?:media)?"
-        let matches = Regex.Matches(content, mediaPattern)
-        
-        if matches.Count = 0 then None
+        // Defensive null check to prevent NullReferenceException
+        if String.IsNullOrWhiteSpace(content) then None
         else
-            let firstMediaContent = matches.[0].Groups.[1].Value
+            let mediaPattern = @":::media\s*([\s\S]*?):::(?:media)?"
+            let matches = Regex.Matches(content, mediaPattern)
             
-            // Extract URL
-            let urlMatch = Regex.Match(firstMediaContent, @"url:\s*[""']([^""']+)[""']")
-            if not urlMatch.Success then None
+            if matches.Count = 0 then None
             else
-                let url = urlMatch.Groups.[1].Value
-                let mimeType = detectMimeType url
-                let objectType = detectObjectType mimeType
+                let firstMediaContent = matches.[0].Groups.[1].Value
                 
-                // Extract caption and alt text
-                let captionMatch = Regex.Match(firstMediaContent, @"caption:\s*[""']([^""']+)[""']")
-                let altMatch = Regex.Match(firstMediaContent, @"alt:\s*[""']([^""']+)[""']")
-                
-                let caption = if captionMatch.Success then Some captionMatch.Groups.[1].Value else None
-                let altText = if altMatch.Success then Some altMatch.Groups.[1].Value else None
-                
-                Some {
-                    MediaUrl = url
-                    MediaType = mimeType
-                    ObjectType = objectType
-                    AltText = altText
-                    Caption = caption
-                }
+                // Extract URL
+                let urlMatch = Regex.Match(firstMediaContent, @"url:\s*[""']([^""']+)[""']")
+                if not urlMatch.Success then None
+                else
+                    let url = urlMatch.Groups.[1].Value
+                    let mimeType = detectMimeType url
+                    let objectType = detectObjectType mimeType
+                    
+                    // Extract caption and alt text
+                    let captionMatch = Regex.Match(firstMediaContent, @"caption:\s*[""']([^""']+)[""']")
+                    let altMatch = Regex.Match(firstMediaContent, @"alt:\s*[""']([^""']+)[""']")
+                    
+                    let caption = if captionMatch.Success then Some captionMatch.Groups.[1].Value else None
+                    let altText = if altMatch.Success then Some altMatch.Groups.[1].Value else None
+                    
+                    Some {
+                        MediaUrl = url
+                        MediaType = mimeType
+                        ObjectType = objectType
+                        AltText = altText
+                        Caption = caption
+                    }
 
 /// Book content processor
 module BookProcessor =
