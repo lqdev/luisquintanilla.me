@@ -47,13 +47,15 @@ jobs:
       - name: Sync ActivityPub data for Azure Functions
         run: |
           echo "📦 Syncing generated ActivityPub data to Azure Functions directory..."
-          echo "Syncing outbox data..."
+          echo "Syncing outbox data (paginated)..."
           mkdir -p api/data/outbox
-          cp -v _public/api/data/outbox/index.json api/data/outbox/index.json
+          # Phase 5F: Copy all outbox files including pagination pages
+          cp -v _public/api/data/outbox/*.json api/data/outbox/
           echo "Syncing followers data..."
           cp -v _public/api/data/followers.json api/data/followers.json
           echo "✅ ActivityPub data synced successfully"
-          echo "Outbox size: $(du -h api/data/outbox/index.json | cut -f1)"
+          echo "Outbox files: $(ls api/data/outbox/ | wc -l) files"
+          echo "Total outbox size: $(du -sh api/data/outbox/ | cut -f1)"
           echo "Followers size: $(du -h api/data/followers.json | cut -f1)"
 
       - name: Check website sizes
@@ -92,7 +94,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: activitypub-artifacts
-          path: _public/api/data/outbox/index.json
+          # Phase 5F: Upload all outbox files including pagination pages
+          path: _public/api/data/outbox/
           retention-days: 1
 
   # ============================================================================

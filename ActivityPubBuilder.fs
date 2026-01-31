@@ -53,6 +53,21 @@ type ActivityPubImage = {
     Name: string option  // Alt text/caption
 }
 
+/// ActivityPub Link attachment for bookmark URLs
+/// Phase 5B: Research - FEP-8967 standardizes Link attachments for preview generation
+/// Mastodon 4.5+ uses Link attachments to signal which URLs should get preview cards
+[<CLIMutable>]
+type ActivityPubLink = {
+    [<JsonPropertyName("type")>]
+    Type: string  // Always "Link"
+    
+    [<JsonPropertyName("href")>]
+    Href: string  // The bookmarked URL
+    
+    [<JsonPropertyName("name")>]
+    Name: string option  // Title of the bookmarked resource
+}
+
 /// ActivityPub Note object representing a blog post or status
 /// Research: Required fields for Mastodon federation validated
 [<CLIMutable>]
@@ -105,7 +120,7 @@ type ActivityPubNote = {
     Sensitive: bool option
     
     [<JsonPropertyName("attachment")>]
-    Attachment: ActivityPubImage array option
+    Attachment: obj array option  // Phase 5B: Supports both ActivityPubImage and ActivityPubLink
 }
 
 /// ActivityPub Create activity wrapping a Note
@@ -195,9 +210,9 @@ type ActivityPubAnnounce = {
     Object: string  // URL of the thing being announced (can be any URL)
 }
 
-/// ActivityPub OrderedCollection for outbox
-/// Research: MUST be OrderedCollection (not Collection) per spec
-/// Phase 5A: Updated to support mixed activity types (Create, Like, Announce)
+/// ActivityPub OrderedCollection for outbox (root collection - no items, only pagination links)
+/// Research: Per spec, root OrderedCollection should NOT contain orderedItems inline
+/// Phase 5F: Updated to use proper pagination with first/last links
 [<CLIMutable>]
 type ActivityPubOutbox = {
     [<JsonPropertyName("@context")>]
@@ -214,6 +229,36 @@ type ActivityPubOutbox = {
     
     [<JsonPropertyName("totalItems")>]
     TotalItems: int
+    
+    [<JsonPropertyName("first")>]
+    First: string  // URL to first page
+    
+    [<JsonPropertyName("last")>]
+    Last: string  // URL to last page
+}
+
+/// ActivityPub OrderedCollectionPage for paginated outbox
+/// Research: Each page contains orderedItems + navigation (partOf, next, prev)
+/// Phase 5F: Standard pagination with 50 items per page
+[<CLIMutable>]
+type ActivityPubOutboxPage = {
+    [<JsonPropertyName("@context")>]
+    Context: string
+    
+    [<JsonPropertyName("id")>]
+    Id: string
+    
+    [<JsonPropertyName("type")>]
+    Type: string
+    
+    [<JsonPropertyName("partOf")>]
+    PartOf: string  // URL to root collection
+    
+    [<JsonPropertyName("next")>]
+    Next: string option  // URL to next page (null for last page)
+    
+    [<JsonPropertyName("prev")>]
+    Prev: string option  // URL to previous page (null for first page)
     
     [<JsonPropertyName("orderedItems")>]
     OrderedItems: obj array  // Mixed types: ActivityPubCreate, ActivityPubLike, ActivityPubAnnounce
@@ -271,11 +316,12 @@ let convertTagsToHashtags (tags: string list) : ActivityPubHashtag array option 
         tags
         |> List.map (fun tag ->
             let cleanTag = TagService.processTagName tag
-            {
+            let hashtag : ActivityPubHashtag = {
                 Type = "Hashtag"
                 Href = sprintf "%s/tags/%s" Config.baseUrl cleanTag
                 Name = sprintf "#%s" cleanTag
-            })
+            }
+            hashtag)
         |> List.toArray
         |> Some
 
@@ -305,7 +351,8 @@ let detectMediaTypeFromUrl (url: string) : string =
 /// Extract media items from content with :::media blocks
 /// Returns (cleaned content, media attachments array)
 /// Research: Mastodon only renders images from attachment array, not inline HTML
-let extractMediaAttachments (content: string) : (string * ActivityPubImage array option) =
+/// Phase 5B: Returns obj array to support both Image and Link attachments
+let extractMediaAttachments (content: string) : (string * obj array option) =
     let mediaPattern = @":::media\s*([\s\S]*?):::(?:media)?"
     let matches = System.Text.RegularExpressions.Regex.Matches(content, mediaPattern)
     
@@ -352,12 +399,13 @@ let extractMediaAttachments (content: string) : (string * ActivityPubImage array
                         elif mediaType.StartsWith("audio/") then "Audio"
                         else "Document"
                     
-                    {
+                    let image : ActivityPubImage = {
                         Type = activityPubType
                         MediaType = mediaType
                         Url = url
                         Name = caption
-                    }))
+                    }
+                    box image))
             |> Seq.toArray
         
         // Remove :::media blocks from content
@@ -408,6 +456,27 @@ let convertToNote (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : Activity
         | Some "reply", Some targetUrl -> Some targetUrl
         | _ -> None
     
+    // Phase 5B: Add Link attachment for bookmarks
+    // Research: FEP-8967 - Link attachments signal URLs for preview card generation
+    let linkAttachment : obj option = 
+        match item.ResponseType, item.TargetUrl with
+        | Some "bookmark", Some targetUrl -> 
+            let link : ActivityPubLink = {
+                Type = "Link"
+                Href = targetUrl
+                Name = if String.IsNullOrWhiteSpace(item.Title) then None else Some item.Title
+            }
+            Some (box link)
+        | _ -> None
+    
+    // Combine media attachments with link attachment if present
+    let allAttachments = 
+        match mediaAttachments, linkAttachment with
+        | Some media, Some link -> Some (Array.append media [| link |])
+        | Some media, None -> Some media
+        | None, Some link -> Some [| link |]
+        | None, None -> None
+    
     {
         Context = Config.activityStreamsContext
         Id = noteId
@@ -424,7 +493,7 @@ let convertToNote (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : Activity
         Source = None  // Can add markdown source preservation later
         InReplyTo = inReplyTo  // Phase 5A: Set for replies
         Sensitive = None
-        Attachment = mediaAttachments  // Add extracted media attachments
+        Attachment = allAttachments  // Phase 5B: Combined media + link attachments
     }
 
 /// Convert Note to Create activity
@@ -493,17 +562,34 @@ let convertToAnnounceActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem
         Object = targetUrl  // URL being announced (can be any web URL)
     }
 
-/// Generate OrderedCollection outbox from mixed activity types
-/// Phase 5A: Updated to support Create, Like, and Announce activities
-/// Research: MUST be OrderedCollection per spec, reverse chronological order
-let generateOutbox (activities: obj list) : ActivityPubOutbox =
+/// Phase 5F: Items per page for outbox pagination
+/// Research: Mastodon uses 20-50 items per page, 50 is a good balance
+let itemsPerPage = 50
+
+/// Phase 5F: Generate root OrderedCollection for outbox (no items, only pagination links)
+/// Research: Root collection should only contain metadata + first/last links
+let generateOutboxRoot (totalItems: int) (totalPages: int) : ActivityPubOutbox =
     {
         Context = Config.activityStreamsContext
         Id = Config.outboxUri
         Type = "OrderedCollection"
         Summary = "All content updates from Luis Quintanilla's website"
-        TotalItems = activities.Length
-        OrderedItems = activities |> List.toArray
+        TotalItems = totalItems
+        First = sprintf "%s?page=1" Config.outboxUri
+        Last = sprintf "%s?page=%d" Config.outboxUri totalPages
+    }
+
+/// Phase 5F: Generate OrderedCollectionPage for a specific page
+/// Research: Each page contains orderedItems + navigation links
+let generateOutboxPage (pageNum: int) (totalPages: int) (items: obj array) : ActivityPubOutboxPage =
+    {
+        Context = Config.activityStreamsContext
+        Id = sprintf "%s?page=%d" Config.outboxUri pageNum
+        Type = "OrderedCollectionPage"
+        PartOf = Config.outboxUri
+        Next = if pageNum < totalPages then Some (sprintf "%s?page=%d" Config.outboxUri (pageNum + 1)) else None
+        Prev = if pageNum > 1 then Some (sprintf "%s?page=%d" Config.outboxUri (pageNum - 1)) else None
+        OrderedItems = items
     }
 
 /// Phase 5A: Feature flag for enabling native activity types
@@ -557,8 +643,10 @@ let buildActivities (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem l
     printfn "  ✅ Generated %d ActivityPub activity files" activities.Length
 
 /// Build ActivityPub outbox from unified feed items
-/// Phase 5A: Updated to generate mixed activity types
-/// Generates api/data/outbox/index.json for static serving
+/// Phase 5F: Updated to generate paginated outbox structure
+/// Generates:
+///   - api/data/outbox/index.json (root OrderedCollection with first/last links)
+///   - api/data/outbox/page-1.json, page-2.json, etc. (OrderedCollectionPage with items)
 let buildOutbox (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) (outputDir: string) : unit =
     printfn "  🎭 Converting %d items to ActivityPub format..." unifiedItems.Length
     
@@ -572,24 +660,48 @@ let buildOutbox (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list)
             else DateTimeOffset.MinValue)  // Fallback for parse errors
         |> List.map convertToActivity
     
-    printfn "  🎭 Generated %d Create activities" activities.Length
-    
-    // Generate outbox collection
-    let outbox = generateOutbox activities
-    
-    // Serialize to JSON
-    let json = JsonSerializer.Serialize(outbox, jsonOptions)
+    // Count activity types for logging
+    let activityCounts = 
+        activities 
+        |> List.groupBy (fun a -> 
+            let json = JsonSerializer.Serialize(a, jsonOptions)
+            let doc = System.Text.Json.JsonDocument.Parse(json)
+            doc.RootElement.GetProperty("type").GetString())
+        |> List.map (fun (t, items) -> (t, items.Length))
+        |> List.sortByDescending snd
+    let countStr = activityCounts |> List.map (fun (t, c) -> sprintf "%d %s" c t) |> String.concat ", "
+    printfn "  🎭 Generated activities: %s" countStr
     
     // Ensure directory exists
     let outboxDir = Path.Combine(outputDir, "api", "data", "outbox")
     Directory.CreateDirectory(outboxDir) |> ignore
     
-    // Write outbox file
+    // Phase 5F: Generate paginated structure
+    let activitiesArray = activities |> List.toArray
+    let totalItems = activitiesArray.Length
+    let totalPages = max 1 ((totalItems + itemsPerPage - 1) / itemsPerPage)  // Ceiling division
+    
+    printfn "  📄 Generating %d pages (%d items per page)..." totalPages itemsPerPage
+    
+    // Generate each page
+    for pageNum in 1 .. totalPages do
+        let startIdx = (pageNum - 1) * itemsPerPage
+        let endIdx = min (startIdx + itemsPerPage) totalItems
+        let pageItems = activitiesArray.[startIdx .. endIdx - 1]
+        
+        let page = generateOutboxPage pageNum totalPages pageItems
+        let pageJson = JsonSerializer.Serialize(page, jsonOptions)
+        let pagePath = Path.Combine(outboxDir, sprintf "page-%d.json" pageNum)
+        File.WriteAllText(pagePath, pageJson)
+    
+    // Generate root collection (no items, just pagination links)
+    let outbox = generateOutboxRoot totalItems totalPages
+    let json = JsonSerializer.Serialize(outbox, jsonOptions)
     let outboxPath = Path.Combine(outboxDir, "index.json")
     File.WriteAllText(outboxPath, json)
     
-    printfn "  ✅ ActivityPub outbox: %s" outboxPath
-    printfn "  ✅ Total items: %d, Total activities: %d" outbox.TotalItems activities.Length
+    printfn "  ✅ ActivityPub outbox: %s (%d pages)" outboxPath totalPages
+    printfn "  ✅ Total items: %d across %d pages" totalItems totalPages
 
 /// Queue new posts for delivery to followers
 /// Called during build to queue recent posts for ActivityPub delivery

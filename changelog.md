@@ -1,5 +1,114 @@
 # Changelog
 
+## 2026-01-31 - ActivityPub Phase 5B & 5F: Link Attachments & Pagination ✅
+
+**Project**: ActivityPub Phase 5 - Fediverse-Native Content Expansion  
+**Duration**: 2026-01-31 (1 day)  
+**Status**: ✅ COMPLETE - Both phases implemented and verified  
+**Type**: Feature Enhancement  
+**Plan**: [docs/activitypub/phase5-fediverse-native-expansion-plan.md](docs/activitypub/phase5-fediverse-native-expansion-plan.md)
+
+### Phase 5B: Bookmark Link Attachments ✅
+
+Bookmarks now include FEP-8967 compliant Link attachments, providing semantic metadata for bookmarked URLs.
+
+**Implementation**:
+- Created `ActivityPubLink` type: `{ Type: "Link"; Href: string; Name: string option }`
+- Changed `Attachment` field to polymorphic `obj array option` to support mixed Image/Link types
+- Bookmarks now render with Link attachment containing target URL and title
+- Fixed F# record type inference with explicit type annotations
+
+**Verified Output**:
+```json
+"attachment": [{
+  "type": "Link",
+  "href": "https://example.com/bookmarked-page",
+  "name": "Bookmark Title"
+}]
+```
+
+### Phase 5F: Outbox Pagination ✅
+
+Implemented proper ActivityPub pagination for large outbox (1,594+ activities).
+
+**Implementation**:
+- Root `OrderedCollection` now contains only metadata + `first`/`last` links (no inline items)
+- Generated 32 `OrderedCollectionPage` files with 50 items each
+- Each page includes `partOf`, `next`, `prev` navigation links
+- Updated Azure Function to handle `?page=N` query parameter
+- Updated GitHub workflow to sync all page files
+
+**Verified Structure**:
+- Root: `totalItems: 1594`, `first: ?page=1`, `last: ?page=32`
+- Page 1: 50 items, `next: ?page=2`, `prev: null`
+- Page 32: 44 items, `next: null`, `prev: ?page=31`
+
+### Files Modified
+| File | Changes |
+|------|---------|
+| `ActivityPubBuilder.fs` | ActivityPubLink type, polymorphic attachments, pagination types and generation |
+| `api/outbox/index.js` | Query parameter handling for page requests |
+| `.github/workflows/publish-azure-static-web-apps.yml` | Copy all outbox page files to API |
+
+---
+
+## 2026-01-30 - ActivityPub Phase 5A: Response Semantics ✅
+
+**Project**: ActivityPub Phase 5 - Fediverse-Native Content Expansion  
+**Duration**: 2026-01-28 to 2026-01-30 (3 days)  
+**Status**: ✅ COMPLETE - Deployed and validated in production  
+**Type**: Major Feature Enhancement  
+**Plan**: [docs/activitypub/phase5-fediverse-native-expansion-plan.md](docs/activitypub/phase5-fediverse-native-expansion-plan.md)
+
+### Summary
+Expanded ActivityPub implementation to express response types natively in the Fediverse. Stars now appear as Likes, reshares as Announces (boosts), and replies thread correctly with `inReplyTo`.
+
+### Implementation Completed
+**Activity Type Routing ✅**
+- Stars → `Like` activities (146 items)
+- Reshares → `Announce` activities (502 items)  
+- Replies → `Create` + `Note` with `inReplyTo` property
+- Everything else → `Create` + `Note/Article` (946 items)
+
+**UnifiedFeedItem Extension ✅**
+- Added `ResponseType: string option` field
+- Added `TargetUrl: string option` field
+- Added `UpdatedDate: string option` field
+- Updated all conversion functions to populate new fields
+
+**Path Migration ✅**
+- Migrated from `/activitypub/notes/` to `/activitypub/activities/`
+- Added 301 redirects in `staticwebapp.config.json` for backward compatibility
+- Updated Azure Function to new path
+
+### Critical Fixes Applied
+**Fragment Pattern Fix**
+- **Problem**: Activities not discoverable via Mastodon search due to `#create` fragment in IDs
+- **Root Cause**: Fragment identifiers never sent to servers per RFC 3986, causing ID mismatch
+- **Solution**: Inverted pattern - Create uses base URL (fetchable), Note uses `#object` fragment
+
+**Object Unwrapping Fix**
+- **Problem**: Even after fragment fix, Mastodon URL search rejected activities
+- **Root Cause**: Mastodon's `fetch_resource_service.rb` only accepts object types, not activity types
+- **Solution**: Azure Function dynamically unwraps Create activities to return embedded Note/Article
+
+### Files Modified
+| File | Changes |
+|------|---------|
+| `GenericBuilder.fs` | UnifiedFeedItem type, response conversion functions |
+| `ActivityPubBuilder.fs` | Activity types, conversion router, path updates |
+| `staticwebapp.config.json` | 301 redirect rules |
+| `api/activitypub-activities/index.js` | Renamed, object unwrapping logic |
+
+### Production Validation
+- ✅ Like activities display as favorites in Mastodon
+- ✅ Announce activities display as boosts in Mastodon
+- ✅ Replies thread correctly under original posts
+- ✅ Old `/notes/` URLs redirect to new `/activities/` path
+- ✅ All 1,594 activities federate successfully
+
+---
+
 ## 2026-01-21 - Azure Static Web Apps Queue Trigger Compatibility Fix (PR #1867) ✅
 
 **Project**: ActivityPub Phase 4B/4C - Queue-Based Delivery System  

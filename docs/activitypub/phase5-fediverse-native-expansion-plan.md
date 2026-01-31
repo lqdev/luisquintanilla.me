@@ -1,9 +1,119 @@
 # Phase 5: Fediverse-Native Content Expansion Plan
 
 **Date**: January 28, 2026  
-**Status**: Research Complete - Ready for Implementation  
+**Status**: Phase 5A ✅ | Phase 5B ✅ | Phase 5F ✅ | Phases 5C-5E In Progress  
 **Author**: AI Development Partner (based on PR #1990 analysis)  
 **Scope**: Expand ActivityPub to express rich content types natively in the Fediverse
+
+---
+
+## Implementation Progress
+
+### Phase 5A: Response Semantics ✅ COMPLETE (January 30, 2026)
+
+**Deployed & Validated** - Federation confirmed working in production.
+
+| Task | Status | Details |
+|------|--------|---------|
+| 5A.1: Extend UnifiedFeedItem | ✅ | Added `ResponseType`, `TargetUrl`, `UpdatedDate` fields |
+| 5A.2: Response Conversion | ✅ | `convertResponsesToUnified` populates response semantics |
+| 5A.3: Activity Types | ✅ | `ActivityPubLike`, `ActivityPubAnnounce` types created |
+| 5A.4: Conversion Router | ✅ | `convertToActivity` routes by response type |
+| 5A.5: Outbox Generation | ✅ | Mixed activity types in outbox |
+| 5A.6: Path Migration | ✅ | `/activitypub/activities/` with 301 redirects |
+| 5A.7: Azure Function | ✅ | Updated with object unwrapping for Mastodon compatibility |
+
+**Production Metrics (January 30, 2026)**:
+- 502 Announce activities (reshares)
+- 946 Create activities (posts, notes, replies, bookmarks)
+- 146 Like activities (stars)
+- Total: 1,594 activities
+
+**Critical Fixes Applied During 5A**:
+1. **Fragment Pattern Fix**: Create activity IDs use base URL (fetchable), Notes use `#object` fragment
+2. **Object Unwrapping**: Azure Function returns Note/Article objects for Mastodon URL search compatibility
+
+**Files Modified**:
+- `GenericBuilder.fs` - UnifiedFeedItem type extension, response conversion
+- `ActivityPubBuilder.fs` - Activity types, conversion router, build functions
+- `staticwebapp.config.json` - 301 redirects for path migration
+- `api/activitypub-activities/index.js` - Object unwrapping logic
+
+---
+
+### Phase 5B: Bookmark Link Attachments ✅ COMPLETE (January 31, 2026)
+
+**Implemented & Verified** - Bookmarks now include FEP-8967 compliant Link attachments.
+
+| Task | Status | Details |
+|------|--------|---------|
+| 5B.1: ActivityPubLink Type | ✅ | `{ Type: "Link"; Href: string; Name: string option }` |
+| 5B.2: Polymorphic Attachments | ✅ | Changed `Attachment` field to `obj array option` |
+| 5B.3: Link Attachment Logic | ✅ | Bookmarks include Link attachment with target URL |
+| 5B.4: Type Annotation Fixes | ✅ | Explicit F# record type annotations for ActivityPubHashtag, ActivityPubImage, ActivityPubLink |
+
+**Verified Output**:
+```json
+{
+  "type": "Create",
+  "object": {
+    "type": "Note",
+    "attachment": [
+      {
+        "type": "Link",
+        "href": "https://example.com/bookmarked-page",
+        "name": "Bookmark Title"
+      }
+    ]
+  }
+}
+```
+
+**Research Basis**: FEP-8967 standardizes Link attachments in Mastodon 4.5+. Mastodon generates its own link previews but preserves the semantic reference.
+
+**Files Modified**:
+- `ActivityPubBuilder.fs` - ActivityPubLink type, polymorphic attachment handling, convertToNote Link logic
+
+---
+
+### Phase 5F: Outbox Pagination ✅ COMPLETE (January 31, 2026)
+
+**Implemented & Verified** - Outbox now uses proper OrderedCollection/OrderedCollectionPage pattern.
+
+| Task | Status | Details |
+|------|--------|---------|
+| 5F.1: Root Collection Type | ✅ | `ActivityPubOutbox` with `first`/`last` links, no `orderedItems` |
+| 5F.2: Page Collection Type | ✅ | `ActivityPubOutboxPage` with `orderedItems`, `partOf`, `next`, `prev` |
+| 5F.3: Paginated Generation | ✅ | 50 items per page, generates separate page files |
+| 5F.4: Azure Function Update | ✅ | Handles `?page=N` query parameter |
+| 5F.5: Workflow Sync | ✅ | Copies all page files to API directory |
+
+**Verified Output**:
+```json
+// Root collection: /api/activitypub/outbox
+{
+  "type": "OrderedCollection",
+  "totalItems": 1594,
+  "first": "https://lqdev.me/api/activitypub/outbox?page=1",
+  "last": "https://lqdev.me/api/activitypub/outbox?page=32"
+}
+
+// Page 1: /api/activitypub/outbox?page=1
+{
+  "type": "OrderedCollectionPage",
+  "partOf": "https://lqdev.me/api/activitypub/outbox",
+  "next": "https://lqdev.me/api/activitypub/outbox?page=2",
+  "prev": null,
+  "orderedItems": [/* 50 activities */]
+}
+```
+
+**Research Basis**: Per ActivityStreams spec, root OrderedCollection should NOT contain inline items for large collections. 50 items per page is the Mastodon standard.
+
+**Files Modified**:
+- `ActivityPubBuilder.fs` - Root/page types, paginated generation logic
+- `api/outbox/index.js` - Query parameter handling for page requests
+- `.github/workflows/publish-azure-static-web-apps.yml` - Copy all page files to API
 
 ---
 
