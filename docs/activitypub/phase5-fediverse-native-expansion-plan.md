@@ -1,7 +1,7 @@
 # Phase 5: Fediverse-Native Content Expansion Plan
 
 **Date**: January 28, 2026  
-**Status**: Phase 5A ✅ | Phase 5B ✅ | Phase 5C ✅ | Phase 5D ✅ | Phase 5F ✅ | Phase 5E In Progress  
+**Status**: Phase 5A ✅ | Phase 5B ✅ | Phase 5C ✅ | Phase 5D 🔄 Revision | Phase 5F ✅ | Phase 5E In Progress  
 **Author**: AI Development Partner (based on PR #1990 analysis)  
 **Scope**: Expand ActivityPub to express rich content types natively in the Fediverse
 
@@ -205,8 +205,10 @@ Based on W3C ActivityStreams 2.0 specification, Mastodon/Pixelfed/BookWyrm imple
 | **Star (response)** | u-like-of | `Create` + `Note` | `Like` | Favorite (inbox only) |
 | **Bookmark** | u-bookmark-of | `Create` + `Note` | `Create` + `Note` w/ `Link` attachment | Note with link card |
 | **Review** | p-rating, p-item | `Create` + `Note` | `Create` + `Article` w/ schema:Review context | Article with rating metadata |
-| **Media (single)** | - | `Create` + `Note` + attachment | `Create` + `Image/Video/Audio` | Native media rendering |
+| **Media (single)** | - | `Create` + `Note` + attachment | `Create` + `Note` + `Document` attachment¹ | Native media rendering |
 | **Album** | - | `Create` + `Note` | `Create` + `Collection` + `Place` | Gallery (Pixelfed-style) |
+
+¹ **Media Compatibility Note (Phase 5D Revision)**: Research revealed that standalone `Image/Video/Audio` objects are NOT rendered as media players by Mastodon or Pixelfed—they only show a link. The revised approach uses `Note` with `Document` attachments as the primary representation (Mastodon-compatible), with semantic `Video/Image/Audio` objects available at alternate URLs for PeerTube and other media-native platforms. See [phase5d-media-research.md](phase5d-media-research.md) for details.
 
 
 ### Key Research Findings
@@ -1012,43 +1014,119 @@ let convertBookmarkToNote (item: UnifiedFeedItem) : ActivityPubNote =
 
 ---
 
-### Phase 5D: Media-First Objects ✅ COMPLETE (January 31, 2026)
+### Phase 5D: Media-First Objects 🔄 REVISION IN PROGRESS (January 31, 2026)
 
-**Implemented & Verified** - Media posts now use native Image/Video/Audio object types.
+**Initial Implementation Complete → Discovered Compatibility Issue → Architectural Revision**
+
+#### Background
+
+The initial Phase 5D implementation created standalone `Video`, `Image`, and `Audio` object types per the ActivityStreams specification. While spec-compliant, testing revealed that **Mastodon and Pixelfed do not render these objects as media players**—they only display a link.
+
+**Detailed Research**: See [phase5d-media-research.md](phase5d-media-research.md) for comprehensive platform analysis.
+
+#### Discovery Summary
+
+| Platform | Standalone Video/Image/Audio | Note + Attachment |
+|----------|------------------------------|-------------------|
+| **Mastodon** | ❌ Shows link only | ✅ Renders player |
+| **Pixelfed** | ❌ Not displayed | ✅ Renders image |
+| **PeerTube** | ✅ Native support (Video) | N/A |
+| **Funkwhale** | ⚠️ Custom format | ⚠️ Partial |
+| **Castopod** | ⚠️ Uses dual pattern | ✅ Note fallback |
+
+**Root Cause**: Mastodon's source code (`fetch_resource_service.rb`) explicitly treats only `Note` and `Question` as "first-class" types. All others are "converted as best as possible."
+
+#### Revised Approach: Dual-Object Pattern
+
+Inspired by Castopod's solution, we will generate **both**:
+
+1. **Primary**: Note object with Document attachment (Mastodon/Pixelfed compatible)
+2. **Secondary**: Semantic Video/Image/Audio object at alternate URL (PeerTube compatible)
+
+#### Task Status
 
 | Task | Status | Details |
 |------|--------|--------|
 | 5D.1: MediaAPData Type | ✅ | Created with MediaUrl, MediaType, ObjectType, AltText, Caption fields |
 | 5D.2: MediaExtractor Module | ✅ | Extracts media data from :::media blocks with MIME detection |
-| 5D.3: ActivityPubMediaObject Type | ✅ | Native Image/Video/Audio object type with full AP properties |
-| 5D.4: Conversion Router | ✅ | `convertToActivity` routes media-primary content to native objects |
+| 5D.3: ActivityPubMediaObject Type | ✅ | Native Image/Video/Audio object type (now secondary) |
+| 5D.4: Conversion Router (v1) | ✅ | Routes to native objects (needs revision) |
 | 5D.5: Feature Flag | ✅ | `useNativeMediaObjects` for safe rollout |
+| 5D.6: Note+Attachment Primary | 🆕 | Generate Note with Document attachment as primary |
+| 5D.7: Dual Object Generation | 🆕 | Both Note and semantic object at separate URLs |
+| 5D.8: Mastodon Extensions | 🆕 | Add blurhash, focalPoint, width, height |
+| 5D.9: Alternate Link Tag | 🆕 | Link semantic object via `tag` array |
 
-**Production Metrics (January 31, 2026)**:
+**Initial Production Metrics (January 31, 2026)** - Before revision:
 - 13 Image activities generated
 - 1 Video activity generated
 - 0 Audio activities (no audio content yet)
 - Total: 14 native media activities
 
-**Verified Output**:
+**Issue Discovered**: Video activity accessible but Mastodon displays as text+link, not video player.
+
+#### Revised Output Structure
+
+**Primary Activity (Mastodon-compatible)**:
 ```json
 {
   "type": "Create",
+  "id": "https://lqdev.me/api/activitypub/activities/{hash}",
   "object": {
-    "type": "Image",
-    "url": "https://cdn.lqdev.tech/files/images/...",
-    "mediaType": "image/png",
-    "name": "Caption text",
-    "attributedTo": "https://lqdev.me/api/activitypub/actor"
+    "type": "Note",
+    "id": "https://lqdev.me/api/activitypub/activities/{hash}#object",
+    "content": "<p>My Rome Travel Video</p>",
+    "attachment": [{
+      "type": "Document",
+      "mediaType": "video/mp4",
+      "url": "https://cdn.lqdev.tech/files/videos/rome.mp4",
+      "blurhash": "UBL_:rOpGG-oBUNG...",
+      "width": 1920,
+      "height": 1080
+    }],
+    "tag": [{
+      "type": "Link",
+      "href": "https://lqdev.me/api/activitypub/objects/video-{hash}",
+      "rel": "alternate",
+      "mediaType": "application/activity+json"
+    }]
   }
 }
 ```
 
-**Research Basis**: Per ActivityStreams spec, Image/Video/Audio are valid object types that render natively in media-focused clients like Pixelfed.
+**Secondary Object (PeerTube-compatible)**:
+```json
+{
+  "type": "Video",
+  "id": "https://lqdev.me/api/activitypub/objects/video-{hash}",
+  "name": "My Rome Travel Video",
+  "url": [{
+    "type": "Link",
+    "mediaType": "video/mp4",
+    "href": "https://cdn.lqdev.tech/files/videos/rome.mp4"
+  }],
+  "icon": [{
+    "type": "Image",
+    "url": "https://cdn.lqdev.tech/files/images/rome-thumbnail.jpg"
+  }],
+  "duration": "PT2M30S",
+  "attributedTo": "https://lqdev.me/api/activitypub/actor"
+}
+```
 
-**Files Modified**:
+#### Key Research Citations
+
+1. **Mastodon Docs**: "Other Object types are converted as best as possible" - [docs.joinmastodon.org/spec/activitypub](https://docs.joinmastodon.org/spec/activitypub/)
+2. **GitHub #19357**: "Federated Create->Image activities do not render the image inline" - [github.com/mastodon/mastodon/issues/19357](https://github.com/mastodon/mastodon/issues/19357)
+3. **Pixelfed Docs**: "Currently only accepts Create.Note objects" - [pixelfed.github.io/docs-next/spec/ActivityPub.html](https://pixelfed.github.io/docs-next/spec/ActivityPub.html)
+4. **Castopod Pattern**: Dual PodcastEpisode + Note approach - [github.com/Podcastindex-org/podcast-namespace/discussions/623](https://github.com/Podcastindex-org/podcast-namespace/discussions/623)
+
+**Files Modified** (Initial):
 - `GenericBuilder.fs` - MediaAPData type, MediaExtractor module, UnifiedFeedItem extension
 - `ActivityPubBuilder.fs` - ActivityPubMediaObject type, conversion functions, router update
+
+**Files To Modify** (Revision):
+- `ActivityPubBuilder.fs` - Dual object generation, Mastodon extensions, Note+attachment primary pattern
 
 ---
 
