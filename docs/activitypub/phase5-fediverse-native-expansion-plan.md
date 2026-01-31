@@ -1,7 +1,8 @@
 # Phase 5: Fediverse-Native Content Expansion Plan
 
 **Date**: January 28, 2026  
-**Status**: Phase 5A ✅ | Phase 5B ✅ | Phase 5C ✅ | Phase 5D 🔄 Revision | Phase 5F ✅ | Phase 5E In Progress  
+**Updated**: January 31, 2026  
+**Status**: Phase 5A ✅ | Phase 5B ✅ | Phase 5C ✅ | Phase 5D 🔄 Dual-Object (Step 1 ✅) | Phase 5F ✅ | Phase 5E In Progress  
 **Author**: AI Development Partner (based on PR #1990 analysis)  
 **Scope**: Expand ActivityPub to express rich content types natively in the Fediverse
 
@@ -1050,20 +1051,32 @@ Inspired by Castopod's solution, we will generate **both**:
 | 5D.1: MediaAPData Type | ✅ | Created with MediaUrl, MediaType, ObjectType, AltText, Caption fields |
 | 5D.2: MediaExtractor Module | ✅ | Extracts media data from :::media blocks with MIME detection |
 | 5D.3: ActivityPubMediaObject Type | ✅ | Native Image/Video/Audio object type (now secondary) |
-| 5D.4: Conversion Router (v1) | ✅ | Routes to native objects (needs revision) |
-| 5D.5: Feature Flag | ✅ | `useNativeMediaObjects` for safe rollout |
-| 5D.6: Note+Attachment Primary | 🆕 | Generate Note with Document attachment as primary |
-| 5D.7: Dual Object Generation | 🆕 | Both Note and semantic object at separate URLs |
-| 5D.8: Mastodon Extensions | 🆕 | Add blurhash, focalPoint, width, height |
-| 5D.9: Alternate Link Tag | 🆕 | Link semantic object via `tag` array |
+| 5D.4: Conversion Router (v1) | ✅ | Routes to native objects (revised in 5D.6) |
+| 5D.5: Feature Flag | ✅ | `useNativeMediaObjects` now controls dual-object generation |
+| 5D.6: Note+Attachment Primary | ✅ | `useNativeMediaObjects = false` restores Note+attachment pattern |
+| 5D.7: Dual Object Generation | 🔄 | Generate semantic objects at alternate URLs alongside Note |
+| 5D.8: Mastodon Extensions | 🔲 | Add width, height (blurhash deferred to future) |
+| 5D.9: Alternate Link Tag | 🔲 | Link semantic object via `tag` array with `rel: alternate` |
+
+**Branch**: `feature/phase5d-dual-media-objects`
+
+**Implementation Log**: [projects/active/phase5d-dual-media-implementation.md](../../projects/active/phase5d-dual-media-implementation.md)
+
+**Commit History**:
+- `f716bc59` - fix(activitypub): disable native media objects, restore Note+attachment pattern
 
 **Initial Production Metrics (January 31, 2026)** - Before revision:
-- 13 Image activities generated
-- 1 Video activity generated
+- 13 Image activities generated (as standalone objects - broke rendering)
+- 1 Video activity generated (as standalone object - broke rendering)
 - 0 Audio activities (no audio content yet)
 - Total: 14 native media activities
 
 **Issue Discovered**: Video activity accessible but Mastodon displays as text+link, not video player.
+
+**Step 1 Fix Applied (January 31, 2026)**:
+- Set `useNativeMediaObjects = false` to restore working Note+attachment pattern
+- Verified: Video activities now render correctly as `Note` with `Video` attachment
+- Verified: Image activities now render correctly as `Note` with `Image` attachments
 
 #### Revised Output Structure
 
