@@ -172,22 +172,47 @@ module.exports = async function (context, req) {
             const activityJson = JSON.stringify(activity);
             activitiesProcessed++;
 
-            // Queue delivery task for each follower
-            const tasks = [];
+            // Phase 4D: Group followers by target inbox (sharedInbox or personal inbox)
+            // This dramatically reduces HTTP POSTs - one per server instead of one per follower
+            const inboxGroups = new Map();  // targetInbox -> Array of follower actors
+            let skippedInvalid = 0;
+
             for (const follower of followers) {
-                const inbox = follower.inbox;
+                // Use sharedInbox if available, otherwise fall back to personal inbox
+                const targetInbox = follower.sharedInbox || follower.inbox;
                 
                 // Validate inbox URL (SSRF protection)
-                if (!isValidInboxUrl(inbox)) {
-                    context.log.warn(`Invalid inbox URL for ${follower.actorUrl}: ${inbox}`);
+                if (!isValidInboxUrl(targetInbox)) {
+                    context.log.warn(`Invalid inbox URL for ${follower.actorUrl}: ${targetInbox}`);
+                    skippedInvalid++;
                     continue;
                 }
 
+                // Group by target inbox
+                if (!inboxGroups.has(targetInbox)) {
+                    inboxGroups.set(targetInbox, []);
+                }
+                inboxGroups.get(targetInbox).push(follower.actorUrl);
+            }
+
+            // Log Phase 4D optimization metrics
+            context.log(`[Phase 4D] Grouped ${followers.length} followers into ${inboxGroups.size} unique inboxes`);
+            context.log(`[Phase 4D] Delivery reduction: ${followers.length} → ${inboxGroups.size} HTTP requests (${((1 - inboxGroups.size / followers.length) * 100).toFixed(1)}% reduction)`);
+            if (skippedInvalid > 0) {
+                context.log.warn(`[Phase 4D] Skipped ${skippedInvalid} followers with invalid inbox URLs`);
+            }
+
+            // Queue one task per unique inbox, including all covered actors
+            const tasks = [];
+            for (const [targetInbox, coveredActors] of inboxGroups.entries()) {
                 tasks.push({
                     activityId: activityId,
                     activityJson: activityJson,
-                    targetInbox: inbox,
-                    followerActor: follower.actorUrl
+                    targetInbox: targetInbox,
+                    // Phase 4D: Track all actors covered by this delivery for status tracking
+                    coveredActors: coveredActors,
+                    // Keep single followerActor for backward compatibility (first in group)
+                    followerActor: coveredActors[0]
                 });
             }
 
@@ -213,6 +238,11 @@ module.exports = async function (context, req) {
                 totalFollowers: followers.length,
                 tasksQueued: totalTasksQueued,
                 activitiesProcessed: activitiesProcessed,
+                // Phase 4D: Shared inbox optimization enabled
+                phase4d: {
+                    enabled: true,
+                    description: 'Shared inbox optimization active - grouping followers by server'
+                },
                 message: `Successfully queued ${totalTasksQueued} delivery tasks for ${activitiesProcessed} activities`
             }
         };
