@@ -68,6 +68,46 @@ type ActivityPubLink = {
     Name: string option  // Title of the bookmarked resource
 }
 
+/// Phase 5C: Schema.org Rating object for reviewRating
+/// Research: schema:Rating with ratingValue, bestRating, worstRating
+[<CLIMutable>]
+type SchemaRating = {
+    [<JsonPropertyName("@type")>]
+    Type: string  // Always "schema:Rating"
+    
+    [<JsonPropertyName("schema:ratingValue")>]
+    RatingValue: float
+    
+    [<JsonPropertyName("schema:bestRating")>]
+    BestRating: float
+    
+    [<JsonPropertyName("schema:worstRating")>]
+    WorstRating: float
+}
+
+/// Phase 5C: Schema.org itemReviewed object
+/// Research: Represents the item being reviewed (Book, Movie, Product, etc.)
+[<CLIMutable>]
+type SchemaItemReviewed = {
+    [<JsonPropertyName("@type")>]
+    Type: string  // "schema:Book", "schema:Movie", "schema:Product", etc.
+    
+    [<JsonPropertyName("schema:name")>]
+    Name: string
+    
+    [<JsonPropertyName("schema:author")>]
+    Author: string option
+    
+    [<JsonPropertyName("schema:isbn")>]
+    Isbn: string option
+    
+    [<JsonPropertyName("schema:url")>]
+    Url: string option
+    
+    [<JsonPropertyName("schema:image")>]
+    Image: string option
+}
+
 /// ActivityPub Note object representing a blog post or status
 /// Research: Required fields for Mastodon federation validated
 [<CLIMutable>]
@@ -121,6 +161,14 @@ type ActivityPubNote = {
     
     [<JsonPropertyName("attachment")>]
     Attachment: obj array option  // Phase 5B: Supports both ActivityPubImage and ActivityPubLink
+    
+    // Phase 5C: Schema.org Review vocabulary extension
+    // These properties are only set for review content types
+    [<JsonPropertyName("schema:reviewRating")>]
+    ReviewRating: SchemaRating option
+    
+    [<JsonPropertyName("schema:itemReviewed")>]
+    ItemReviewed: SchemaItemReviewed option
 }
 
 /// ActivityPub Create activity wrapping a Note
@@ -273,6 +321,8 @@ module Config =
     let outboxUri = sprintf "%s/outbox" activityPubBase
     let publicCollection = "https://www.w3.org/ns/activitystreams#Public"
     let activityStreamsContext = "https://www.w3.org/ns/activitystreams"
+    // Phase 5C: Schema.org context for review metadata
+    let schemaOrgContext = "https://schema.org/"
     // Phase 5A: Migrating from /notes/ to /activities/ for mixed activity types
     // Azure Function API endpoint for activity dereferencing (ensures correct Content-Type headers)
     // Static files still generated at /activitypub/activities/ for CDN caching
@@ -477,6 +527,40 @@ let convertToNote (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : Activity
         | None, Some link -> Some [| link |]
         | None, None -> None
     
+    // Phase 5C: Create Schema.org review properties for review content
+    let (reviewRating, itemReviewed) =
+        match item.ReviewData with
+        | Some reviewData ->
+            // Map item type to Schema.org type
+            let schemaItemType = 
+                match reviewData.ItemType.ToLowerInvariant() with
+                | "book" -> "schema:Book"
+                | "movie" | "film" -> "schema:Movie"
+                | "music" | "album" -> "schema:MusicAlbum"
+                | "product" -> "schema:Product"
+                | "business" | "restaurant" | "place" -> "schema:LocalBusiness"
+                | _ -> "schema:Thing"  // Generic fallback
+            
+            let rating : SchemaRating = {
+                Type = "schema:Rating"
+                RatingValue = reviewData.Rating
+                BestRating = reviewData.Scale
+                WorstRating = 1.0
+            }
+            
+            let reviewed : SchemaItemReviewed = {
+                Type = schemaItemType
+                Name = reviewData.ItemName
+                Author = reviewData.Author
+                Isbn = reviewData.Isbn
+                Url = reviewData.ItemUrl
+                Image = reviewData.ImageUrl
+            }
+            
+            (Some rating, Some reviewed)
+        | None ->
+            (None, None)
+    
     {
         Context = Config.activityStreamsContext
         Id = noteId
@@ -494,6 +578,9 @@ let convertToNote (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : Activity
         InReplyTo = inReplyTo  // Phase 5A: Set for replies
         Sensitive = None
         Attachment = allAttachments  // Phase 5B: Combined media + link attachments
+        // Phase 5C: Schema.org review properties
+        ReviewRating = reviewRating
+        ItemReviewed = itemReviewed
     }
 
 /// Convert Note to Create activity

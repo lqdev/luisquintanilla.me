@@ -509,10 +509,25 @@ module ReviewDataExtractor =
         else
             (None, 0.0, 5.0, None)
 
+/// Phase 5C: Review metadata for Schema.org Review vocabulary in ActivityPub
+/// Defined at module level so it can be used by both BookProcessor and UnifiedFeeds
+type ReviewMetadata = {
+    ItemName: string          // Name of the reviewed item (book title, movie name, etc.)
+    ItemType: string          // Type of item: "book", "movie", "music", "product", "business"
+    Rating: float             // Rating value (e.g., 4.5)
+    Scale: float              // Rating scale max (e.g., 5.0)
+    Summary: string option    // Brief review summary
+    ItemUrl: string option    // URL of the reviewed item
+    ImageUrl: string option   // Cover/thumbnail image URL
+    Author: string option     // For books: author name
+    Isbn: string option       // For books: ISBN
+}
+
 /// Book content processor
 module BookProcessor =
-    // Cache for review data extracted during parsing - now includes item type
-    let private reviewDataCache = System.Collections.Concurrent.ConcurrentDictionary<string, (string option * float * float * string option)>()
+    // Cache for review data extracted during parsing
+    // Phase 5C: Enhanced to store full ReviewMetadata for ActivityPub Schema.org integration
+    let private reviewDataCache = System.Collections.Concurrent.ConcurrentDictionary<string, ReviewMetadata option>()
     
     // Helper function to extract rating from custom review blocks using regex (for backward compatibility)
     let private extractRatingFromContent (content: string) : float option =
@@ -571,18 +586,39 @@ module BookProcessor =
                             // Fallback to frontmatter (backward compatibility)
                             metadata
                     
-                    // Store review data in cache for later use in rendering
-                    match reviewDataOpt with
-                    | Some reviewData ->
-                        let reviewImageUrl = reviewData.ImageUrl
-                        let reviewRating = reviewData.Rating
-                        let reviewScale = reviewData.Scale
-                        let reviewItemType = Some reviewData.ItemType
-                        reviewDataCache.[fileName] <- (reviewImageUrl, reviewRating, reviewScale, reviewItemType)
-                    | None ->
-                        // Use old extraction method for backward compatibility
-                        let (reviewImageUrl, reviewRating, reviewScale, reviewItemType) = ReviewDataExtractor.extractReviewData parsedDoc.RawMarkdown
-                        reviewDataCache.[fileName] <- (reviewImageUrl, reviewRating, reviewScale, reviewItemType)
+                    // Phase 5C: Store full review metadata in cache for ActivityPub Schema.org integration
+                    let reviewMetadata : ReviewMetadata option =
+                        match reviewDataOpt with
+                        | Some reviewData ->
+                            Some {
+                                ItemName = reviewData.Item  // The actual item name (book title)
+                                ItemType = reviewData.ItemType  // "book", "movie", etc.
+                                Rating = reviewData.Rating
+                                Scale = reviewData.Scale
+                                Summary = if String.IsNullOrWhiteSpace(reviewData.Summary) then None else Some reviewData.Summary
+                                ItemUrl = reviewData.ItemUrl
+                                ImageUrl = reviewData.ImageUrl
+                                Author = Some (reviewData.GetAuthor())  // For books
+                                Isbn = let isbn = reviewData.GetIsbn() in if String.IsNullOrWhiteSpace(isbn) then None else Some isbn
+                            }
+                        | None ->
+                            // Fallback to frontmatter data (backward compatibility)
+                            let (reviewImageUrl, reviewRating, reviewScale, reviewItemType) = ReviewDataExtractor.extractReviewData parsedDoc.RawMarkdown
+                            if reviewRating > 0.0 then
+                                Some {
+                                    ItemName = metadata.Title  // Use frontmatter title as fallback
+                                    ItemType = reviewItemType |> Option.defaultValue "book"
+                                    Rating = reviewRating
+                                    Scale = reviewScale
+                                    Summary = None
+                                    ItemUrl = None
+                                    ImageUrl = reviewImageUrl
+                                    Author = if String.IsNullOrWhiteSpace(metadata.Author) then None else Some metadata.Author
+                                    Isbn = if String.IsNullOrWhiteSpace(metadata.Isbn) then None else Some metadata.Isbn
+                                }
+                            else None
+                    
+                    reviewDataCache.[fileName] <- reviewMetadata
                     
                     Some {
                         FileName = fileName
@@ -606,10 +642,17 @@ module BookProcessor =
             let url = sprintf "/reviews/%s/" book.FileName
             
             // Get review data from cache (extracted during parsing)
-            let (reviewImageUrlOpt, reviewRating, reviewScale, reviewItemType) = 
+            // Phase 5C: Cache now stores full ReviewMetadata
+            let reviewMetadataOpt = 
                 match reviewDataCache.TryGetValue(book.FileName) with
                 | (true, data) -> data
-                | _ -> (None, book.Metadata.Rating, 5.0, None)
+                | _ -> None
+            
+            // Extract values from ReviewMetadata with fallbacks
+            let (reviewImageUrlOpt, reviewRating, reviewScale, reviewItemType) =
+                match reviewMetadataOpt with
+                | Some rm -> (rm.ImageUrl, rm.Rating, rm.Scale, Some rm.ItemType)
+                | None -> (None, book.Metadata.Rating, 5.0, None)
             
             // Determine image URL with proper fallbacks
             let imageUrl = 
@@ -672,6 +715,12 @@ module BookProcessor =
                 
             Some item
     }
+    
+    /// Phase 5C: Public accessor for review metadata cache (used by UnifiedFeeds.convertBooksToUnified)
+    let getReviewMetadata (fileName: string) : ReviewMetadata option =
+        match reviewDataCache.TryGetValue(fileName) with
+        | (true, data) -> data
+        | _ -> None
 
 /// Response content processor
 module ResponseProcessor =
@@ -1260,6 +1309,8 @@ module ContentPipeline =
 /// Unified feed system for consistent feed generation across all content types  
 module UnifiedFeeds =
     
+    // Phase 5C: ReviewMetadata is now defined at GenericBuilder module level for use by BookProcessor
+    
     /// Unified feed item representation
     type UnifiedFeedItem = {
         Title: string
@@ -1273,6 +1324,8 @@ module UnifiedFeeds =
         ResponseType: string option  // "star", "reply", "reshare", "bookmark"
         TargetUrl: string option     // URL being responded to
         UpdatedDate: string option   // For edit tracking
+        // Phase 5C: Review metadata for Schema.org Review vocabulary
+        ReviewData: ReviewMetadata option
     }
 
     /// Feed configuration for different feed types
@@ -1327,6 +1380,8 @@ module UnifiedFeeds =
                 ResponseType = None
                 TargetUrl = None
                 UpdatedDate = None
+                // Phase 5C: Default to None for non-review content
+                ReviewData = None
             }
         | None -> None
     
@@ -1574,7 +1629,7 @@ module UnifiedFeeds =
                 let content = feedData.Content.Content  // Full raw content - will be processed by timeline view
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "posts"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "posts"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None }
             | None -> None)
     
     let convertNotesToUnified (feedDataList: FeedData<Post> list) : UnifiedFeedItem list =
@@ -1587,7 +1642,7 @@ module UnifiedFeeds =
                 let content = feedData.Content.Content  // Full raw content - will be processed by timeline view
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "notes"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "notes"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None }
             | None -> None)
     
     let convertResponsesToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =
@@ -1612,7 +1667,7 @@ module UnifiedFeeds =
                     if String.IsNullOrWhiteSpace(feedData.Content.Metadata.TargetUrl) then None
                     else Some feedData.Content.Metadata.TargetUrl
                 let updatedDate = if String.IsNullOrWhiteSpace(feedData.Content.Metadata.DateUpdated) then None else Some feedData.Content.Metadata.DateUpdated
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = contentType; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = contentType; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate; ReviewData = None }
             | None -> None)
     
     let convertResponseBookmarksToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =
@@ -1630,7 +1685,7 @@ module UnifiedFeeds =
                 let responseType = Some "bookmark"
                 let targetUrl = Some feedData.Content.Metadata.TargetUrl
                 let updatedDate = if String.IsNullOrWhiteSpace(feedData.Content.Metadata.DateUpdated) then None else Some feedData.Content.Metadata.DateUpdated
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate; ReviewData = None }
             | None -> None)
     
     let convertSnippetsToUnified (feedDataList: FeedData<Snippet> list) : UnifiedFeedItem list =
@@ -1644,7 +1699,7 @@ module UnifiedFeeds =
                 let tags = 
                     if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
                     else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "snippets"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "snippets"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None }
             | None -> None)
     
     let convertWikisToUnified (feedDataList: FeedData<Wiki> list) : UnifiedFeedItem list =
@@ -1658,7 +1713,7 @@ module UnifiedFeeds =
                 let tags = 
                     if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
                     else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "wiki"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "wiki"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None }
             | None -> None)
     
     let convertPresentationsToUnified (feedDataList: FeedData<Presentation> list) : UnifiedFeedItem list =
@@ -1672,7 +1727,7 @@ module UnifiedFeeds =
                 let tags = 
                     if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
                     else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "presentations"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "presentations"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None }
             | None -> None)
     
     let convertBooksToUnified (feedDataList: FeedData<Book> list) : UnifiedFeedItem list =
@@ -1686,7 +1741,9 @@ module UnifiedFeeds =
                 let content = feedData.CardHtml
                 let date = feedData.Content.Metadata.DatePublished
                 let tags = [||]  // Books don't have explicit tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "reviews"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None }
+                // Phase 5C: Get review metadata from cache for Schema.org integration in ActivityPub
+                let reviewData = BookProcessor.getReviewMetadata feedData.Content.FileName
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "reviews"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = reviewData }
             | None -> None)
     
     let convertAlbumsToUnified (feedDataList: FeedData<Album> list) : UnifiedFeedItem list =
@@ -1698,7 +1755,7 @@ module UnifiedFeeds =
                 let content = feedData.Content.Content  // Use full content instead of CardHtml
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "media"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "media"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None }
             | None -> None)
     
     let convertAlbumCollectionsToUnified (feedDataList: FeedData<AlbumCollection> list) : UnifiedFeedItem list =
@@ -1710,7 +1767,7 @@ module UnifiedFeeds =
                 let content = feedData.Content.Content  // Use full content
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "album-collection"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "album-collection"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None }
             | None -> None)
     
     let convertPlaylistCollectionsToUnified (feedDataList: FeedData<PlaylistCollection> list) : UnifiedFeedItem list =
@@ -1722,7 +1779,7 @@ module UnifiedFeeds =
                 let content = feedData.Content.Content  // Use full content
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "playlist-collection"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "playlist-collection"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; ReviewData = None }
             | None -> None)
     
     let convertBookmarksToUnified (feedDataList: FeedData<Bookmark> list) : UnifiedFeedItem list =
@@ -1737,7 +1794,7 @@ module UnifiedFeeds =
                 let targetUrl = 
                     if String.IsNullOrWhiteSpace(feedData.Content.Metadata.BookmarkOf) then None
                     else Some feedData.Content.Metadata.BookmarkOf
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = targetUrl; UpdatedDate = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = targetUrl; UpdatedDate = None; ReviewData = None }
             | None -> None)
 
     // Convert bookmark responses (Response objects with bookmark type) to unified feed
@@ -1752,5 +1809,5 @@ module UnifiedFeeds =
                 let content = feedData.CardHtml  // Use CardHtml to include target URL display
                 let date = feedData.Content.Metadata.DatePublished
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = Some "bookmark"; TargetUrl = Some feedData.Content.Metadata.TargetUrl; UpdatedDate = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = Some "bookmark"; TargetUrl = Some feedData.Content.Metadata.TargetUrl; UpdatedDate = None; ReviewData = None }
             | None -> None)
