@@ -247,10 +247,21 @@ let generateActivityId (url: string) (content: string) : string =
     let hash = generateHash (url + content)
     sprintf "%s%s%s" Config.baseUrl Config.activitiesPath hash
 
-/// Generate Create activity wrapper ID from Note ID
-/// Research: Fragment identifier pattern (#create) is acceptable
+/// Generate Note object ID (uses #object fragment to differentiate from Create activity)
+/// Research: Fragment pattern allows both Create and Note to share same base URL
+/// The Create activity ID matches the fetchable URL, Note uses fragment
+let generateObjectId (activityId: string) : string =
+    sprintf "%s#object" activityId
+
+/// Generate Create activity ID (same as Note ID base, no fragment)
+/// Research: Activity ID must match the fetchable URL for Mastodon discoverability
+/// Fix: Mastodon validates that fetched URL matches the 'id' field exactly
 let generateCreateActivityId (noteId: string) : string =
-    sprintf "%s#create" noteId
+    // Strip any fragment from Note ID to get the base fetchable URL
+    if noteId.Contains("#") then
+        noteId.Split('#').[0]
+    else
+        noteId  // Already a base URL
 
 /// Convert tags to ActivityPub hashtags
 /// Research: Hashtags should include # symbol in name, href points to tag page
@@ -359,8 +370,10 @@ let extractMediaAttachments (content: string) : (string * ActivityPubImage array
 /// Convert UnifiedFeedItem to ActivityPub Note
 /// Phase 5A: For replies, includes inReplyTo field
 /// Research: HTML content required by Mastodon, name field improves display
+/// Fix: Note ID uses #object fragment so Create activity ID matches fetchable URL
 let convertToNote (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : ActivityPubNote =
-    let noteId = generateActivityId item.Url item.Content
+    let activityBaseId = generateActivityId item.Url item.Content
+    let noteId = generateObjectId activityBaseId  // Note gets #object fragment
     
     // Research: Use Article type for posts, Note for everything else
     let noteType = 
