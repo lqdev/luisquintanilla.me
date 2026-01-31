@@ -155,13 +155,19 @@ function isPermanentFailure(statusCode) {
 
 /**
  * Process a single delivery task
+ * Phase 4D: Now supports coveredActors for shared inbox optimization
  */
 async function processDeliveryTask(task) {
-    const { activityId, activityJson, targetInbox, followerActor, attemptCount } = task;
+    const { activityId, activityJson, targetInbox, followerActor, attemptCount, coveredActors } = task;
     
-    console.log(`\nDelivering activity ${activityId} to ${followerActor}`);
-    console.log(`Target inbox: ${targetInbox}`);
-    console.log(`Attempt: ${attemptCount + 1}`);
+    // Phase 4D: Determine all actors covered by this delivery
+    const allCoveredActors = coveredActors && coveredActors.length > 0 
+        ? coveredActors 
+        : [followerActor];  // Fallback for backward compatibility
+    
+    console.log(`\nDelivering activity ${activityId} to inbox: ${targetInbox}`);
+    console.log(`Covers ${allCoveredActors.length} follower(s)${allCoveredActors.length > 1 ? ' (shared inbox)' : ''}`);
+    console.log(`Attempt: ${(attemptCount || 0) + 1}`);
     
     // Validate inbox URL to prevent SSRF
     if (!isValidInboxUrl(targetInbox)) {
@@ -200,25 +206,32 @@ async function processDeliveryTask(task) {
         
         if (result.success) {
             // Delivery successful (2xx response)
-            console.log(`✓ Successfully delivered to ${followerActor}`);
+            console.log(`✓ Successfully delivered to inbox: ${targetInbox}`);
             
-            await tableStorage.addDeliveryStatus(
-                activityId,
-                targetInbox,
-                followerActor,
-                'delivered',
-                result.statusCode,
-                null
-            );
+            // Phase 4D: Track delivery status for ALL covered actors
+            for (const actor of allCoveredActors) {
+                await tableStorage.addDeliveryStatus(
+                    activityId,
+                    targetInbox,
+                    actor,
+                    'delivered',
+                    result.statusCode,
+                    null
+                );
+            }
             
-            return { success: true, permanent: false };
+            if (allCoveredActors.length > 1) {
+                console.log(`✓ Marked delivery complete for ${allCoveredActors.length} followers via shared inbox`);
+            }
+            
+            return { success: true, permanent: false, coveredCount: allCoveredActors.length };
         } else {
             // Non-2xx response
             const errorMsg = `HTTP ${result.statusCode}: ${result.responseBody}`;
             
             if (isPermanentFailure(result.statusCode)) {
                 // Permanent failure - don't retry
-                console.error(`✗ Permanent failure for ${followerActor}: ${errorMsg}`);
+                console.error(`✗ Permanent failure for inbox ${targetInbox}: ${errorMsg}`);
                 
                 // Truncate error message to prevent Azure Table Storage entity size limits (1MB)
                 const maxErrorChars = 1000;
@@ -226,54 +239,69 @@ async function processDeliveryTask(task) {
                     ? errorMsg.slice(0, maxErrorChars) + '...[truncated]' 
                     : errorMsg;
                 
-                await tableStorage.addDeliveryStatus(
-                    activityId,
-                    targetInbox,
-                    followerActor,
-                    'failed',
-                    result.statusCode,
-                    truncatedError
-                );
-                
-                return { success: false, permanent: true };
-            } else {
-                // Temporary failure - will be retried
-                console.warn(`⚠ Temporary failure for ${followerActor}: ${errorMsg}`);
-                
-                // Try to get existing status to update attempt count
-                let existingStatus = null;
-                try {
-                    existingStatus = await tableStorage.getDeliveryStatus(activityId, targetInbox);
-                } catch (error) {
-                    // Status doesn't exist yet
-                }
-                
-                if (existingStatus) {
-                    await tableStorage.updateDeliveryStatus(
-                        activityId,
-                        targetInbox,
-                        'pending',
-                        existingStatus.attemptCount + 1,
-                        result.statusCode,
-                        errorMsg
-                    );
-                } else {
+                // Phase 4D: Track failure for ALL covered actors
+                for (const actor of allCoveredActors) {
                     await tableStorage.addDeliveryStatus(
                         activityId,
                         targetInbox,
-                        followerActor,
-                        'pending',
+                        actor,
+                        'failed',
                         result.statusCode,
-                        errorMsg
+                        truncatedError
                     );
                 }
                 
-                return { success: false, permanent: false };
+                if (allCoveredActors.length > 1) {
+                    console.error(`✗ Marked delivery failed for ${allCoveredActors.length} followers via shared inbox`);
+                }
+                
+                return { success: false, permanent: true, coveredCount: allCoveredActors.length };
+            } else {
+                // Temporary failure - will be retried
+                console.warn(`⚠ Temporary failure for inbox ${targetInbox}: ${errorMsg}`);
+                
+                // Phase 4D: Track pending status for ALL covered actors
+                // For shared inboxes, we track all actors as pending for retry
+                for (const actor of allCoveredActors) {
+                    // Try to get existing status to update attempt count
+                    let existingStatus = null;
+                    try {
+                        existingStatus = await tableStorage.getDeliveryStatus(activityId, targetInbox);
+                    } catch (error) {
+                        // Status doesn't exist yet
+                    }
+                    
+                    if (existingStatus) {
+                        await tableStorage.updateDeliveryStatus(
+                            activityId,
+                            targetInbox,
+                            'pending',
+                            existingStatus.attemptCount + 1,
+                            result.statusCode,
+                            errorMsg
+                        );
+                        break;  // Only need to update once for shared inbox
+                    } else {
+                        await tableStorage.addDeliveryStatus(
+                            activityId,
+                            targetInbox,
+                            actor,
+                            'pending',
+                            result.statusCode,
+                            errorMsg
+                        );
+                    }
+                }
+                
+                return { success: false, permanent: false, coveredCount: allCoveredActors.length };
             }
         }
     } catch (error) {
         // Network error or timeout - will be retried
-        console.error(`✗ Error delivering to ${followerActor}: ${error.message}`);
+        console.error(`✗ Network error for inbox ${targetInbox}: ${error.message}`);
+        
+        // Phase 4D: Track error for first actor (shared inbox delivery is atomic)
+        const primaryActor = allCoveredActors[0];
         
         // Try to get existing status to update attempt count
         let existingStatus = null;
@@ -296,14 +324,14 @@ async function processDeliveryTask(task) {
             await tableStorage.addDeliveryStatus(
                 activityId,
                 targetInbox,
-                followerActor,
+                primaryActor,
                 'pending',
                 0,
                 error.message
             );
         }
         
-        return { success: false, permanent: false };
+        return { success: false, permanent: false, coveredCount: allCoveredActors.length };
     }
 }
 
