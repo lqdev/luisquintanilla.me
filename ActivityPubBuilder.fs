@@ -108,6 +108,45 @@ type SchemaItemReviewed = {
     Image: string option
 }
 
+/// Phase 5D: ActivityPub Media Object for native Image/Video/Audio
+/// Research: Media-primary content uses Image/Video/Audio as top-level object type
+/// instead of Note with attachment. This enables native rendering in Pixelfed-style clients.
+[<CLIMutable>]
+type ActivityPubMediaObject = {
+    [<JsonPropertyName("@context")>]
+    Context: string
+    
+    [<JsonPropertyName("id")>]
+    Id: string
+    
+    [<JsonPropertyName("type")>]
+    Type: string  // "Image", "Video", or "Audio"
+    
+    [<JsonPropertyName("attributedTo")>]
+    AttributedTo: string
+    
+    [<JsonPropertyName("published")>]
+    Published: string
+    
+    [<JsonPropertyName("url")>]
+    Url: string  // Media file URL
+    
+    [<JsonPropertyName("mediaType")>]
+    MediaType: string  // MIME type (e.g., "image/jpeg", "video/mp4")
+    
+    [<JsonPropertyName("name")>]
+    Name: string option  // Caption
+    
+    [<JsonPropertyName("summary")>]
+    Summary: string option  // Alt text for accessibility
+    
+    [<JsonPropertyName("to")>]
+    To: string array
+    
+    [<JsonPropertyName("cc")>]
+    Cc: string array option
+}
+
 /// ActivityPub Note object representing a blog post or status
 /// Research: Required fields for Mastodon federation validated
 [<CLIMutable>]
