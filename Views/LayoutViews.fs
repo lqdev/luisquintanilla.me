@@ -969,8 +969,27 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
         ]
     ]
 
-let responsePostView (title:string) (content:string) (date:string) (fileName:string) (targetUrl:string) (tags: string array) (readingTimeMinutes: int option) = 
+let responsePostView (title:string) (content:string) (date:string) (fileName:string) (targetUrl:string) (tags: string array) (readingTimeMinutes: int option) (responseType: string) (rsvpStatus: string option) = 
     let publishDate = DateTimeOffset.Parse(date)
+    
+    // Phase 6A: Choose appropriate icon and microformat class based on response type
+    let (iconClass, iconColor, targetClass) =
+        match responseType with
+        | "rsvp" ->
+            let (icon, color) =
+                match rsvpStatus with
+                | Some "yes" -> ("bi bi-check-circle-fill", "#28a745")
+                | Some "no" -> ("bi bi-x-circle-fill", "#dc3545")
+                | Some "maybe" -> ("bi bi-question-circle-fill", "#ffc107")
+                | Some "interested" -> ("bi bi-calendar-check-fill", "#6c757d")
+                | _ -> ("bi bi-calendar-event-fill", "#4a60b6")
+            (icon, color, "u-in-reply-to")
+        | "reply" -> ("bi bi-reply-fill", "#3F5576", "u-in-reply-to")
+        | "reshare" | "share" -> ("bi bi-share-fill", "#C0587E", "u-repost-of")
+        | "star" -> ("bi bi-star-fill", "#ff7518", "u-like-of")
+        | "bookmark" -> ("bi bi-journal-bookmark-fill", "#4a60b6", "u-bookmark-of")
+        | _ -> ("bi bi-link-45deg", "#6c757d", "u-bookmark-of")
+    
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post" ] [
             header [ _class "post-header" ] [
@@ -994,12 +1013,18 @@ let responsePostView (title:string) (content:string) (date:string) (fileName:str
                 ]
             ]
             
-            // Target URL display for responses
+            // Target URL display for responses with type-specific microformats
             div [ _class "response-target mb-3" ] [
                 p [] [
-                    span [ _class "bi bi-link-45deg"; _style "margin-right:5px;color:#6c757d;" ] []
-                    Text "→ "
-                    a [ _class "u-bookmark-of"; _href targetUrl; _target "_blank" ] [ 
+                    span [ _class iconClass; _style $"margin-right:5px;color:{iconColor};" ] []
+                    // Phase 6A: Include p-rsvp microformat for RSVP responses
+                    match responseType, rsvpStatus with
+                    | "rsvp", Some status ->
+                        span [ _class "p-rsvp" ] [ Text status ]
+                        Text " to "
+                    | _ ->
+                        Text "→ "
+                    a [ _class targetClass; _href targetUrl; _target "_blank" ] [ 
                         Text targetUrl 
                     ]
                 ]
