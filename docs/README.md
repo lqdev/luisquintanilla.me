@@ -4,6 +4,10 @@ This directory contains comprehensive guides and documentation for the website's
 
 ## 📚 Documentation Index
 
+### 📊 Repository Audit & Governance
+
+- **[Repository Audit Report](REPOSITORY_AUDIT_REPORT.md)** - Comprehensive analysis of all files, scripts, and code
+
 ### 📋 Architectural Decision Records
 
 The **[ADR Index](adr/README.md)** contains documented architectural decisions:
