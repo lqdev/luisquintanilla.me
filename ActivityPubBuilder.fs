@@ -297,6 +297,41 @@ type ActivityPubAnnounce = {
     Object: string  // URL of the thing being announced (can be any URL)
 }
 
+/// ActivityPub RSVP activity for event responses
+/// Phase 6A: Research - Accept/TentativeAccept/Reject for RSVP to events
+/// - "yes" → Accept
+/// - "maybe"/"interested" → TentativeAccept
+/// - "no" → Reject
+[<CLIMutable>]
+type ActivityPubRsvp = {
+    [<JsonPropertyName("@context")>]
+    Context: string
+    
+    [<JsonPropertyName("id")>]
+    Id: string
+    
+    [<JsonPropertyName("type")>]
+    Type: string  // "Accept", "TentativeAccept", or "Reject"
+    
+    [<JsonPropertyName("actor")>]
+    Actor: string
+    
+    [<JsonPropertyName("published")>]
+    Published: string
+    
+    [<JsonPropertyName("to")>]
+    To: string array
+    
+    [<JsonPropertyName("cc")>]
+    Cc: string array option
+    
+    [<JsonPropertyName("object")>]
+    Object: string  // URL of the event being RSVP'd to
+    
+    [<JsonPropertyName("inReplyTo")>]
+    InReplyTo: string option  // Optional: reply-threading context, usually same as Object
+}
+
 /// ActivityPub OrderedCollection for outbox (root collection - no items, only pagination links)
 /// Research: Per spec, root OrderedCollection should NOT contain orderedItems inline
 /// Phase 5F: Updated to use proper pagination with first/last links
@@ -688,6 +723,43 @@ let convertToAnnounceActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem
         Object = targetUrl  // URL being announced (can be any web URL)
     }
 
+/// Convert UnifiedFeedItem to RSVP activity (Accept, TentativeAccept, or Reject)
+/// Phase 6A: RSVPs become Accept/TentativeAccept/Reject activities
+/// Research per W3C ActivityStreams 2.0:
+/// - "yes" → Accept: Indicates positive response to event
+/// - "maybe"/"interested" → TentativeAccept: Indicates tentative acceptance
+/// - "no" → Reject: Indicates declining the event
+let convertToRsvpActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : ActivityPubRsvp =
+    let activityId = generateActivityId item.Url item.Content
+    let targetUrl = item.TargetUrl |> Option.defaultValue item.Url  // Fallback to item URL if no target
+    
+    let publishedDate =
+        try
+            let dt = DateTimeOffset.Parse(item.Date)
+            dt.ToString("yyyy-MM-dd'T'HH:mm:sszzz")
+        with
+        | _ -> item.Date
+    
+    // Map RSVP status to ActivityPub activity type
+    let activityType =
+        match item.RsvpStatus with
+        | Some "yes" -> "Accept"
+        | Some "no" -> "Reject"
+        | Some "maybe" | Some "interested" -> "TentativeAccept"
+        | _ -> "TentativeAccept"  // Default to tentative if status unclear
+    
+    {
+        Context = Config.activityStreamsContext
+        Id = activityId
+        Type = activityType
+        Actor = Config.actorUri
+        Published = publishedDate
+        To = [| Config.publicCollection |]
+        Cc = Some [| Config.followersCollection |]
+        Object = targetUrl  // URL of the event being RSVP'd to
+        InReplyTo = Some targetUrl  // Same as Object for threading context
+    }
+
 /// Phase 5D: Convert UnifiedFeedItem to native media object
 /// Media-primary content (from media directory) uses Image/Video/Audio as top-level type
 /// Research: Native media objects render properly in Pixelfed and media-focused clients
@@ -783,6 +855,7 @@ let useNativeMediaObjects = false
 /// Phase 5A: Convert UnifiedFeedItem to appropriate ActivityPub activity
 /// Routes stars → Like, reshares → Announce, replies → Create+Note with inReplyTo
 /// Phase 5D: Routes media-primary content → Create+Image/Video/Audio
+/// Phase 6A: Routes rsvp → Accept/TentativeAccept/Reject based on rsvp_status
 let convertToActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : obj =
     if not useNativeActivityTypes then
         // Legacy behavior: Everything as Create+Note
@@ -797,6 +870,9 @@ let convertToActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : obj 
         | Some "reply" ->
             // Replies are Create+Note with inReplyTo field
             convertToNote item |> convertToCreateActivity |> box
+        | Some "rsvp" ->
+            // Phase 6A: RSVPs become Accept/TentativeAccept/Reject based on rsvp_status
+            convertToRsvpActivity item |> box
         | _ ->
             // Phase 5D: Check for media-primary content
             if useNativeMediaObjects && item.MediaData.IsSome then

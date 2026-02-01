@@ -1112,7 +1112,7 @@ module Builder
             let response = item.Content
             let saveDir = Path.Join(outputDir, "responses", response.FileName)
             
-            let html = LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName response.Metadata.TargetUrl response.Metadata.Tags response.Metadata.ReadingTimeMinutes
+            let html = LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName response.Metadata.TargetUrl response.Metadata.Tags response.Metadata.ReadingTimeMinutes response.Metadata.ResponseType response.Metadata.RsvpStatus
             let page = generate html "defaultindex" response.Metadata.Title
             // Use helper to write file
             writePageToDir saveDir "index.html" page)
@@ -1312,7 +1312,7 @@ module Builder
             let response = item.Content
             let saveDir = Path.Join(outputDir, "bookmarks", response.FileName)
             
-            let html = LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName response.Metadata.TargetUrl response.Metadata.Tags response.Metadata.ReadingTimeMinutes
+            let html = LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName response.Metadata.TargetUrl response.Metadata.Tags response.Metadata.ReadingTimeMinutes response.Metadata.ResponseType response.Metadata.RsvpStatus
             let page = generate html "defaultindex" response.Metadata.Title
             // Use helper to write file
             writePageToDir saveDir "index.html" page)

@@ -17,8 +17,9 @@ let args = fsi.CommandLineArgs |> Array.skip 1
 // Validate arguments
 if args.Length < 3 then
     printfn "❌ Error: Missing required arguments"
-    printfn "Usage: dotnet fsi process-response-issue.fsx -- \"response_type\" \"target_url\" \"title\" \"content\" \"optional-slug\" \"optional,tags\""
-    printfn "Example: dotnet fsi process-response-issue.fsx -- \"reply\" \"https://example.com\" \"My Response\" \"This is my response\" \"custom-slug\" \"indieweb,reply\""
+    printfn "Usage: dotnet fsi process-response-issue.fsx -- \"response_type\" \"target_url\" \"title\" \"content\" \"optional-slug\" \"optional,tags\" \"optional-rsvp-status\""
+    printfn "Example: dotnet fsi process-response-issue.fsx -- \"reply\" \"https://example.com\" \"My Response\" \"This is my response\" \"custom-slug\" \"indieweb,reply\" \"\""
+    printfn "Example RSVP: dotnet fsi process-response-issue.fsx -- \"rsvp\" \"https://meetup.com/event\" \"RSVP to Event\" \"Looking forward to it!\" \"\" \"events\" \"yes\""
     exit 1
 
 let responseType = args.[0]
@@ -27,13 +28,14 @@ let title = args.[2]
 let content = if args.Length > 3 then args.[3].Trim() else ""
 let customSlug = if args.Length > 4 && not (String.IsNullOrWhiteSpace(args.[4])) then Some(args.[4]) else None
 let tagsInput = if args.Length > 5 && not (String.IsNullOrWhiteSpace(args.[5])) then Some(args.[5]) else None
+let rsvpStatusInput = if args.Length > 6 && not (String.IsNullOrWhiteSpace(args.[6])) && args.[6] <> "not applicable" then Some(args.[6]) else None
 
 // Validate required fields
 if String.IsNullOrWhiteSpace(responseType) then
     printfn "❌ Error: Response type is required"
     exit 1
 
-let validResponseTypes = ["reply"; "reshare"; "star"]
+let validResponseTypes = ["reply"; "reshare"; "star"; "rsvp"]
 if not (List.contains responseType validResponseTypes) then
     printfn "❌ Error: Response type must be one of: %s" (String.concat ", " validResponseTypes)
     exit 1
@@ -52,9 +54,19 @@ if String.IsNullOrWhiteSpace(title) then
     printfn "❌ Error: Title is required and cannot be empty"
     exit 1
 
-// Content validation - allow empty content for star responses
-if responseType <> "star" && String.IsNullOrWhiteSpace(content) then
+// Content validation - allow empty content for star and rsvp responses
+if responseType <> "star" && responseType <> "rsvp" && String.IsNullOrWhiteSpace(content) then
     printfn "❌ Error: Content is required for %s responses" responseType
+    exit 1
+
+// RSVP status validation - required for RSVP responses
+if responseType = "rsvp" && rsvpStatusInput.IsNone then
+    printfn "❌ Error: RSVP status is required for RSVP responses (yes, no, maybe, or interested)"
+    exit 1
+
+let validRsvpStatuses = ["yes"; "no"; "maybe"; "interested"]
+if rsvpStatusInput.IsSome && not (List.contains rsvpStatusInput.Value validRsvpStatuses) then
+    printfn "❌ Error: RSVP status must be one of: %s" (String.concat ", " validRsvpStatuses)
     exit 1
 
 // Slug generation and sanitization functions
@@ -138,14 +150,20 @@ let tagsString =
     if tags.Length = 0 then ""
     else sprintf "\ntags: [%s]" (tags |> Array.map (sprintf "\"%s\"") |> String.concat ",")
 
+// Phase 6A: Include rsvp_status in frontmatter for RSVP responses
+let rsvpStatusString =
+    match rsvpStatusInput with
+    | Some status -> sprintf "\nrsvp_status: %s" status
+    | None -> ""
+
 let frontmatter = 
     sprintf """---
 title: "%s"
 targeturl: %s
 response_type: %s
 dt_published: "%s"
-dt_updated: "%s"%s
----""" (title.Replace("\"", "\\\"")) targetUrl responseType timestamp timestamp tagsString
+dt_updated: "%s"%s%s
+---""" (title.Replace("\"", "\\\"")) targetUrl responseType timestamp timestamp rsvpStatusString tagsString
 
 // Generate filename - only append date when no custom slug provided
 let filename = 

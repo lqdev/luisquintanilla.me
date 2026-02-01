@@ -376,12 +376,14 @@ module Domain
         | Star // Like / Favorite
         | Share // Repost / Retweet
         | Bookmark
+        | Rsvp // RSVP to an event (yes, no, maybe, interested)
 
     [<CLIMutable>]
     type ResponseDetails = {
         [<YamlMember(Alias="title")>] Title: string
         [<YamlMember(Alias="targeturl")>] TargetUrl: string
         [<YamlMember(Alias="response_type")>] ResponseType: string
+        [<YamlMember(Alias="rsvp_status")>] RsvpStatus: string option
         [<YamlMember(Alias="dt_published")>] DatePublished: string        
         [<YamlMember(Alias="dt_updated")>] DateUpdated: string
         [<YamlMember(Alias="tags")>] Tags: string array
