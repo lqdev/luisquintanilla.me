@@ -101,6 +101,46 @@ let bookmarkBodyView (post:Response) =
         ]
     ]
 
+/// Phase 6A: RSVP response body view with IndieWeb p-rsvp microformat
+let rsvpBodyView (post:Response) = 
+    let cleanContent = 
+        post.Content
+            .Replace("No description available", "")
+            .Replace("<p></p>", "")
+    
+    // Remove timestamp patterns like "2025-06-29 17:26"
+    let timestampPattern = System.Text.RegularExpressions.Regex(@"^\s*\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}\s*$", System.Text.RegularExpressions.RegexOptions.Multiline)
+    let cleanedContent = timestampPattern.Replace(cleanContent, "").Trim()
+    
+    // Get RSVP status for display and microformat
+    let rsvpStatus = 
+        match post.Metadata.RsvpStatus with
+        | Some status -> status.ToLowerInvariant()
+        | None -> "interested"  // Default to interested if not specified
+    
+    // Choose icon and color based on RSVP status
+    let (iconClass, iconColor) =
+        match rsvpStatus with
+        | "yes" -> ("bi bi-check-circle-fill", "#28a745")  // Green for yes
+        | "no" -> ("bi bi-x-circle-fill", "#dc3545")       // Red for no
+        | "maybe" -> ("bi bi-question-circle-fill", "#ffc107")  // Yellow for maybe
+        | "interested" -> ("bi bi-calendar-check-fill", "#6c757d")  // Gray for interested
+        | _ -> ("bi bi-calendar-event-fill", "#4a60b6")    // Default blue
+    
+    div [ _class "card-body" ] [
+        p [] [
+            span [_class iconClass; _style $"margin-right:5px;margin-left:5px;color:{iconColor};"] []
+            span [_class "p-rsvp"] [Text rsvpStatus]
+            Text " to "
+            a [_class "u-in-reply-to"; _href $"{post.Metadata.TargetUrl}"; _target "_blank"] [
+                Text post.Metadata.TargetUrl
+            ]
+        ]
+        div [_class "e-content"] [
+            rawText cleanedContent
+        ]
+    ]
+
 // Individual content type views
 let feedPostView (post:Post) = 
     let header = cardHeader post.Metadata.Date
@@ -164,6 +204,7 @@ let responsePostView (post: Response) =
         | "reshare" -> reshareBodyView post
         | "star" -> starBodyView post
         | "bookmark" -> bookmarkBodyView post
+        | "rsvp" -> rsvpBodyView post
         | _ -> div [_class "card-body"] [p [] [Text "No content"]]
     
     div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
