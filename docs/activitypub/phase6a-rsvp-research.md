@@ -295,11 +295,40 @@ Gathio works around Mastodon's limitations:
 
 1. **`object` field**: Contains the event URL directly (string), not a nested Event object. This is simpler and compatible with non-ActivityPub event sources.
 
-2. **`inReplyTo` field**: Included for compatibility with platforms that use reply threading for RSVPs.
+2. **`inReplyTo` field**: Included for compatibility with platforms that use reply threading for RSVPs. See [PR Review Validation](#pr-review-validation-inreplyto-field) below.
 
 3. **Addressing**: Public (`to: Public`, `cc: followers`) to ensure visibility in outbox and follower feeds.
 
 4. **No `content` field**: Unlike our `Like` and `Announce` activities, RSVP activities don't require content. The activity type itself conveys the meaning.
+
+### PR Review Validation: inReplyTo Field
+
+**Date**: 2026-01-31  
+**PR**: [#2041](https://github.com/lqdev/luisquintanilla.me/pull/2041)  
+**Reviewer**: Copilot
+
+**Review Comment**: Copilot suggested adding an optional `inReplyTo` field to the `ActivityPubRsvp` type for compatibility with platforms that use reply-threading for RSVPs.
+
+**Research Validation** (Perplexity + W3C ActivityStreams 2.0):
+
+| Finding | Details |
+|---------|---------|
+| **W3C Spec Status** | `inReplyTo` is **OPTIONAL** for Accept activities - spec is silent on it |
+| **Spec Examples** | W3C examples for Accept/TentativeAccept **omit** inReplyTo entirely |
+| **Semantic Role** | `object` = definitive ("what is accepted"), `inReplyTo` = supplementary threading |
+| **Mobilizon** | Relies on `object` alone for RSVP, docs don't mention inReplyTo |
+| **Gathio** | Checks `inReplyTo` for poll-based RSVPs specifically |
+| **Mastodon** | Limited event support, doesn't implement specialized RSVP |
+
+**Decision**: Applied the change following "be liberal in what you send" principle.
+
+**Rationale**:
+- Research docs (this document) already included `inReplyTo` in example JSON
+- Provides extra threading context that costs nothing
+- Made it `string option` so platforms that don't use it are unaffected
+- Set value to same as `Object` (event URL) per established pattern
+
+**Commit**: `1e35c0a6` - fix(activitypub): Add optional InReplyTo field to ActivityPubRsvp
 
 ---
 

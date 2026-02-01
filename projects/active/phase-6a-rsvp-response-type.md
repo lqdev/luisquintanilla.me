@@ -3,8 +3,9 @@
 ## Project Metadata
 - **Issue**: [#2039 - Phase 6A: Robust RSVP & RSVP Responses](https://github.com/lqdev/luisquintanilla.me/issues/2039)
 - **Branch**: `feature/rsvp-response-type`
+- **PR**: [#2041](https://github.com/lqdev/luisquintanilla.me/pull/2041)
 - **Started**: 2026-01-31
-- **Status**: ✅ Implementation Complete - Ready for Review
+- **Status**: ✅ Implementation Complete - Copilot Review Addressed - Ready to Merge
 - **Research**: [docs/activitypub/phase6a-rsvp-research.md](../../docs/activitypub/phase6a-rsvp-research.md)
 
 ---
@@ -239,6 +240,26 @@ match item.ResponseType, item.RsvpStatus with
 **Consequence**: Users see `rsvp_status` dropdown for all response types. Description clearly explains to leave as "not applicable" for non-RSVP responses. Processing script ignores the field unless response_type is "rsvp".
 
 **Documentation**: See [docs/activitypub/phase6a-rsvp-research.md](../../docs/activitypub/phase6a-rsvp-research.md#implementation-constraints) for full details.
+
+### AD-2: ActivityPub inReplyTo Field for RSVP Activities
+
+**Decision**: Include optional `inReplyTo` field in `ActivityPubRsvp` type, set to same value as `object`.
+
+**Context**: During PR review, Copilot suggested adding `inReplyTo` for platforms that use reply-threading for RSVPs.
+
+**Research Validation** (Perplexity + W3C specs):
+- W3C ActivityPub spec is **silent** on `inReplyTo` for Accept activities
+- W3C spec examples for Accept/TentativeAccept **omit** inReplyTo entirely
+- `object` property provides the definitive semantic relationship
+- `inReplyTo` provides supplementary threading context
+- Platform behavior varies:
+  - **Mobilizon**: Relies on `object` alone, docs don't mention inReplyTo for RSVP
+  - **Gathio**: Checks `inReplyTo` for poll-based RSVPs
+  - **Mastodon**: Limited event support, doesn't implement specialized RSVP
+
+**Consequence**: Applied the change following "be liberal in what you send" principle. The field is optional (`string option`) and set to the same value as `Object` (the event URL). Platforms that don't use it are unaffected.
+
+**Commit**: `1e35c0a6` - fix(activitypub): Add optional InReplyTo field to ActivityPubRsvp
 
 ---
 

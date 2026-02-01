@@ -1,5 +1,80 @@
 # Changelog
 
+## 2026-01-31 - Phase 6A: RSVP Response Type Implementation ✅
+
+**Project**: ActivityPub Phase 6A - RSVP Response Type  
+**Duration**: 2026-01-31 (1 day)  
+**Status**: ✅ COMPLETE - PR Ready to Merge  
+**Type**: Feature Enhancement  
+**Issue**: [#2039](https://github.com/lqdev/luisquintanilla.me/issues/2039)  
+**PR**: [#2041](https://github.com/lqdev/luisquintanilla.me/pull/2041)  
+**Plan**: [projects/active/phase-6a-rsvp-response-type.md](projects/active/phase-6a-rsvp-response-type.md)  
+**Research**: [docs/activitypub/phase6a-rsvp-research.md](docs/activitypub/phase6a-rsvp-research.md)
+
+### Overview
+
+Implemented RSVP as a new response type with full IndieWeb microformats and ActivityPub federation support. RSVPs enable responding to external events (Mobilizon, Meetup, IndieWeb events, etc.) with proper semantic markup and Fediverse visibility.
+
+### Implementation Summary
+
+**Domain Model**:
+- Added `Rsvp` to `ResponseType` discriminated union
+- Added `RsvpStatus: string option` to `ResponseDetails` (values: yes/no/maybe/interested)
+
+**ActivityPub Integration**:
+- Added `ActivityPubRsvp` type with Accept/TentativeAccept/Reject activity types
+- Added `convertToRsvpActivity` function with status-to-activity-type mapping
+- RSVP status mapping: `yes` → Accept, `no` → Reject, `maybe`/`interested` → TentativeAccept
+- Added optional `inReplyTo` field per PR review (see AD-2)
+
+**IndieWeb Microformats**:
+- `p-rsvp` for RSVP status value
+- `u-in-reply-to` for event URL reference
+- Full `h-entry` compliance
+
+**Views**:
+- Added `rsvpBodyView` with status-based icons (✅ green check, ❌ red X, ❓ yellow ?, 📅 gray calendar)
+- Enhanced `responsePostView` with type-specific microformats for individual pages
+
+**GitHub Integration**:
+- Added `rsvp` option to response type dropdown in `post-response.yml`
+- Added `rsvp_status` dropdown (always visible due to GitHub form limitations - see AD-1)
+- Updated `process-response-issue.fsx` with RSVP validation and frontmatter generation
+- Updated `process-content-issue.yml` workflow to extract and pass rsvp_status
+
+### Architectural Decisions
+
+**AD-1: GitHub Form Limitation** - GitHub issue template forms don't support conditional fields. Workaround: always-visible `rsvp_status` dropdown with "not applicable" default.
+
+**AD-2: inReplyTo Field** - Added per PR review feedback. Research validation confirmed it's optional per W3C spec but improves interoperability with platforms like Gathio that use reply-threading.
+
+### Commits (10 total)
+1. `c1682aad` - docs: Add Phase 6A RSVP implementation plan
+2. `5a043830` - docs: Add ActivityPub RSVP research documentation
+3. `6951cfe7` - feat(domain): Add Rsvp response type and RsvpStatus field
+4. `f9688d71` - feat(builder): Add RsvpStatus to UnifiedFeedItem
+5. `a1044dd5` - feat(activitypub): Add RSVP activity types
+6. `4e963420` - feat(views): Add rsvpBodyView with IndieWeb microformats
+7. `c1bd62c3` - feat(github): Add RSVP support to issue template and workflow
+8. `c08980ef` - feat(views): Enhance responsePostView with type-specific microformats
+9. `9d547df2` - docs: Mark Phase 6A implementation complete
+10. `1e35c0a6` - fix(activitypub): Add optional InReplyTo field to ActivityPubRsvp
+
+### Files Modified
+| File | Changes |
+|------|---------|
+| `Domain.fs` | Added `Rsvp` to ResponseType, `RsvpStatus` to ResponseDetails |
+| `GenericBuilder.fs` | Added `RsvpStatus` to UnifiedFeedItem, updated 13+ conversion functions |
+| `ActivityPubBuilder.fs` | Added ActivityPubRsvp type, convertToRsvpActivity, updated routing |
+| `Views/ContentViews.fs` | Added rsvpBodyView function |
+| `Views/LayoutViews.fs` | Enhanced responsePostView with RSVP-specific rendering |
+| `Builder.fs` | Updated responsePostView callers |
+| `.github/ISSUE_TEMPLATE/post-response.yml` | Added rsvp option and rsvp_status dropdown |
+| `Scripts/process-response-issue.fsx` | Added RSVP handling and validation |
+| `.github/workflows/process-content-issue.yml` | Added rsvp_status extraction |
+
+---
+
 ## 2026-01-31 - ActivityPub Phase 5B & 5F: Link Attachments & Pagination ✅
 
 **Project**: ActivityPub Phase 5 - Fediverse-Native Content Expansion  
