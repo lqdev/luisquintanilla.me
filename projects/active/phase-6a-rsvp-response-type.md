@@ -224,6 +224,24 @@ match item.ResponseType, item.RsvpStatus with
 
 ---
 
+## Architectural Decisions
+
+### AD-1: GitHub Issue Template Form Limitation
+
+**Decision**: Use always-visible `rsvp_status` dropdown with "not applicable" default.
+
+**Context**: GitHub issue template forms do not support conditional fields. We cannot show/hide the `rsvp_status` field based on `response_type` selection.
+
+**Alternatives Considered**:
+1. **Separate `post-rsvp.yml` template** - Rejected due to maintenance overhead of multiple templates
+2. **Encode status in content field** - Rejected as hacky and error-prone
+
+**Consequence**: Users see `rsvp_status` dropdown for all response types. Description clearly explains to leave as "not applicable" for non-RSVP responses. Processing script ignores the field unless response_type is "rsvp".
+
+**Documentation**: See [docs/activitypub/phase6a-rsvp-research.md](../../docs/activitypub/phase6a-rsvp-research.md#implementation-constraints) for full details.
+
+---
+
 ## Success Criteria
 
 1. ✅ RSVP responses can be created via GitHub issue template

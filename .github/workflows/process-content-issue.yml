@@ -198,6 +198,7 @@ jobs:
               
               const issueBody = context.payload.issue.body;
               const responseType = extractFormValue(issueBody, 'Response Type');
+              const rsvpStatus = extractFormValue(issueBody, 'RSVP Status');
               const targetUrl = extractFormValue(issueBody, 'Target URL');
               const title = extractFormValue(issueBody, 'Title');
               const content = extractFormValue(issueBody, 'Content \\(Optional\\)');
@@ -205,6 +206,7 @@ jobs:
               const tagsInput = extractFormValue(issueBody, 'Tags \\(Optional\\)');
               
               console.log('Extracted response type:', responseType);
+              console.log('Extracted RSVP status:', rsvpStatus);
               console.log('Extracted target URL:', targetUrl);
               console.log('Extracted title:', title);
               console.log('Extracted content:', content);
@@ -213,6 +215,7 @@ jobs:
               
               // Set outputs for F# script
               core.setOutput('response_type', responseType);
+              core.setOutput('rsvp_status', rsvpStatus || '');
               core.setOutput('target_url', targetUrl);
               core.setOutput('title', title);
               core.setOutput('content', content);
@@ -231,6 +234,7 @@ jobs:
         id: process-issue
         env:
           ISSUE_RESPONSE_TYPE: ${{ steps.extract-data.outputs.response_type }}
+          ISSUE_RSVP_STATUS: ${{ steps.extract-data.outputs.rsvp_status }}
           ISSUE_TARGET_URL: ${{ steps.extract-data.outputs.target_url }}
           ISSUE_TITLE: ${{ steps.extract-data.outputs.title }}
           ISSUE_CONTENT: ${{ steps.extract-data.outputs.content }}
@@ -245,13 +249,14 @@ jobs:
           echo "$ISSUE_CONTENT" > /tmp/content.txt
           echo "$ISSUE_SLUG" > /tmp/slug.txt
           echo "$ISSUE_TAGS" > /tmp/tags.txt
+          echo "$ISSUE_RSVP_STATUS" > /tmp/rsvp_status.txt
           
-          # Run F# script with file-based parameters
-          OUTPUT=$(dotnet fsi Scripts/process-response-issue.fsx -- "$(cat /tmp/response_type.txt)" "$(cat /tmp/target_url.txt)" "$(cat /tmp/title.txt)" "$(cat /tmp/content.txt)" "$(cat /tmp/slug.txt)" "$(cat /tmp/tags.txt)" 2>&1)
+          # Run F# script with file-based parameters (including rsvp_status)
+          OUTPUT=$(dotnet fsi Scripts/process-response-issue.fsx -- "$(cat /tmp/response_type.txt)" "$(cat /tmp/target_url.txt)" "$(cat /tmp/title.txt)" "$(cat /tmp/content.txt)" "$(cat /tmp/slug.txt)" "$(cat /tmp/tags.txt)" "$(cat /tmp/rsvp_status.txt)" 2>&1)
           EXIT_CODE=$?
           
           # Clean up temporary files
-          rm -f /tmp/response_type.txt /tmp/target_url.txt /tmp/title.txt /tmp/content.txt /tmp/slug.txt /tmp/tags.txt
+          rm -f /tmp/response_type.txt /tmp/target_url.txt /tmp/title.txt /tmp/content.txt /tmp/slug.txt /tmp/tags.txt /tmp/rsvp_status.txt
           
           echo "Script output:"
           echo "$OUTPUT"

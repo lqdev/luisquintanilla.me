@@ -389,6 +389,30 @@ The Event Federation project (NGI0 funded) is working on:
 
 ---
 
+## Implementation Constraints
+
+### GitHub Issue Template Forms Limitation
+
+**Constraint**: GitHub issue template forms do **not support conditional fields**. There is no way to show/hide fields based on other field values.
+
+**Impact**: The `rsvp_status` dropdown cannot be conditionally shown only when `response_type` is "rsvp".
+
+**Workaround Implemented**: The template always shows the `rsvp_status` dropdown with a "not applicable" default option. The description clearly explains it should only be changed for RSVP responses.
+
+**Alternative Approaches Considered**:
+1. **Separate RSVP template** (`post-rsvp.yml`) - Cleaner UX but adds maintenance overhead with multiple templates
+2. **Encode status in content field** - Hacky, error-prone
+
+**Processing Logic**: The F# processing script (`Scripts/process-response-issue.fsx`) only includes `rsvp_status` in the frontmatter when:
+- `response_type` is "rsvp"
+- `rsvp_status` is not "not applicable"
+
+This ensures non-RSVP responses are not polluted with irrelevant fields.
+
+**Reference**: GitHub Issue Template Forms documentation does not mention conditional field support as of 2026-01-31.
+
+---
+
 ## Conclusion
 
 The research validates the approach proposed in Issue #2039:

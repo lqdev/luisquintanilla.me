@@ -1,5 +1,5 @@
 name: 💬 Post a Response
-description: Create a new response post (reply, reshare, or star) for the website
+description: Create a new response post (reply, reshare, star, or RSVP) for the website
 title: "[Response] "
 labels: ["response"]
 body:
@@ -8,7 +8,7 @@ body:
       value: |
         ## Create a New Response Post
         
-        Use this form to create a response post (reply, reshare, or star) that will automatically generate a pull request with a properly formatted markdown file.
+        Use this form to create a response post (reply, reshare, star, or RSVP) that will automatically generate a pull request with a properly formatted markdown file.
         
         **Note**: This will create a new response post in the `_src/responses/` directory and generate a PR for review.
 
@@ -21,15 +21,31 @@ body:
         - reply
         - reshare
         - star
+        - rsvp
       default: 0
     validations:
       required: true
+
+  - type: dropdown
+    id: rsvp_status
+    attributes:
+      label: RSVP Status
+      description: If this is an RSVP response, select your attendance status. Leave as "not applicable" for other response types.
+      options:
+        - "not applicable"
+        - "yes"
+        - "no"
+        - "maybe"
+        - "interested"
+      default: 0
+    validations:
+      required: false
 
   - type: input
     id: target_url
     attributes:
       label: Target URL
-      description: The URL you are responding to
+      description: The URL you are responding to (for RSVPs, this is the event URL)
       placeholder: "https://example.com/some-post"
     validations:
       required: true
@@ -56,7 +72,7 @@ body:
         - [Links](https://example.com)
         - Code blocks and other Markdown features
         
-        Note: For "star" responses, you can leave this blank if you just want to favorite/like without commentary.
+        Note: For "star" or "rsvp" responses, you can leave this blank if you just want to favorite/RSVP without additional commentary.
     validations:
       required: false
 
