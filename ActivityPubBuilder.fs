@@ -327,6 +327,9 @@ type ActivityPubRsvp = {
     
     [<JsonPropertyName("object")>]
     Object: string  // URL of the event being RSVP'd to
+    
+    [<JsonPropertyName("inReplyTo")>]
+    InReplyTo: string option  // Optional: reply-threading context, usually same as Object
 }
 
 /// ActivityPub OrderedCollection for outbox (root collection - no items, only pagination links)
@@ -754,6 +757,7 @@ let convertToRsvpActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : 
         To = [| Config.publicCollection |]
         Cc = Some [| Config.followersCollection |]
         Object = targetUrl  // URL of the event being RSVP'd to
+        InReplyTo = Some targetUrl  // Same as Object for threading context
     }
 
 /// Phase 5D: Convert UnifiedFeedItem to native media object
