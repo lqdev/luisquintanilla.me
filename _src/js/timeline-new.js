@@ -42,7 +42,7 @@ const TimelineFilter = {
                 shouldShow = true;
             } else if (contentType === 'responses') {
                 // Show all response subtypes for "responses" filter
-                shouldShow = ['star', 'reply', 'reshare', 'responses'].includes(cardType);
+                shouldShow = ['star', 'reply', 'reshare', 'rsvp', 'responses'].includes(cardType);
             } else {
                 // Exact match for other content types
                 shouldShow = (contentType === cardType);
@@ -527,7 +527,7 @@ const TimelineProgressiveLoader = {
                 shouldShow = true;
             } else if (filterType === 'responses') {
                 // Show all response subtypes for "responses" filter
-                shouldShow = ['star', 'reply', 'reshare', 'responses'].includes(cardType);
+                shouldShow = ['star', 'reply', 'reshare', 'rsvp', 'responses'].includes(cardType);
             } else {
                 // Exact match for other content types
                 shouldShow = (filterType === cardType);
