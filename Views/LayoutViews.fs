@@ -160,7 +160,7 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                         | "streams" -> $"/streams/{fileName}/"
                         | "media" -> $"/media/{fileName}/"
                         // Specific response types also route to /responses/
-                        | "star" | "reply" | "reshare" -> $"/responses/{fileName}/"
+                        | "star" | "reply" | "reshare" | "rsvp" -> $"/responses/{fileName}/"
                         | "bookmark" -> $"/bookmarks/{fileName}/"
                         | _ -> $"/{contentType}/{fileName}/"
                     
@@ -204,6 +204,7 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                                           | "star" -> "Star"
                                           | "reply" -> "Reply"
                                           | "reshare" -> "Reshare"
+                                          | "rsvp" -> "RSVP"
                                           | "bookmark" -> "Bookmark"
                                           | _ -> item.ContentType)
                                 ]
@@ -397,7 +398,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                         | "streams" -> $"/streams/{fileName}/"
                         | "media" -> $"/media/{fileName}/"
                         // Specific response types also route to /responses/
-                        | "star" | "reply" | "reshare" -> $"/responses/{fileName}/"
+                        | "star" | "reply" | "reshare" | "rsvp" -> $"/responses/{fileName}/"
                         | "bookmark" -> $"/bookmarks/{fileName}/"
                         | _ -> $"/{contentType}/{fileName}/"
                     
@@ -431,6 +432,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                                           | "star" -> "Star"
                                           | "reply" -> "Reply"
                                           | "reshare" -> "Reshare"
+                                          | "rsvp" -> "RSVP"
                                           | "bookmark" -> "Bookmark"
                                           | _ -> item.ContentType)
                                 ]
