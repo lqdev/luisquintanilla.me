@@ -404,20 +404,30 @@ function initializeDeliveryStatusClient() {
 
 /**
  * Add delivery status entry
+ * Phase 4D: Now supports coveredActors for shared inbox tracking
+ * 
+ * IMPORTANT: Delivery status is tracked PER INBOX, not per follower.
+ * This aligns with ActivityPub semantics where the sending server can only
+ * verify that the remote shared inbox accepted the POST - it cannot know
+ * if the receiving server distributed to all individual followers.
+ * 
  * @param {string} activityId - Activity ID
  * @param {string} targetInbox - Target inbox URL
- * @param {string} followerActor - Follower actor URL
+ * @param {string|string[]} coveredActors - Single actor URL or array of actor URLs covered by this delivery
  * @param {string} status - Status (pending/delivered/failed)
  * @param {number} httpStatusCode - HTTP status code (optional)
  * @param {string} errorMessage - Error message (optional)
  * @returns {Promise<void>}
  */
-async function addDeliveryStatus(activityId, targetInbox, followerActor, status, httpStatusCode = null, errorMessage = null) {
+async function addDeliveryStatus(activityId, targetInbox, coveredActors, status, httpStatusCode = null, errorMessage = null) {
     initializeDeliveryStatusClient();
     await ensureTableExists(deliveryStatusClient);
 
     // Use URL-safe encoding for rowKey
     const rowKey = toUrlSafeBase64(targetInbox);
+    
+    // Normalize coveredActors to array
+    const actorsArray = Array.isArray(coveredActors) ? coveredActors : [coveredActors];
     
     // Sanitize error message - Azure Table Storage doesn't like certain characters
     let sanitizedError = errorMessage || '';
@@ -433,7 +443,11 @@ async function addDeliveryStatus(activityId, targetInbox, followerActor, status,
         rowKey: rowKey,
         activityId: activityId,
         targetInbox: targetInbox,
-        followerActor: followerActor,
+        // Store all covered actors as JSON array for reference/debugging
+        coveredActors: JSON.stringify(actorsArray),
+        coveredCount: actorsArray.length,
+        // Keep followerActor for backward compatibility (first actor in list)
+        followerActor: actorsArray[0] || '',
         status: status,
         attemptCount: 1,
         lastAttempt: new Date().toISOString(),
@@ -451,6 +465,7 @@ async function addDeliveryStatus(activityId, targetInbox, followerActor, status,
 
 /**
  * Get delivery status
+ * Phase 4D: Now returns coveredActors and coveredCount
  * @param {string} activityId - Activity ID
  * @param {string} targetInbox - Target inbox URL
  * @returns {Promise<Object|null>} Delivery status entity or null
@@ -462,10 +477,27 @@ async function getDeliveryStatus(activityId, targetInbox) {
 
     try {
         const entity = await deliveryStatusClient.getEntity(activityId, rowKey);
+        
+        // Parse coveredActors if present (Phase 4D)
+        let coveredActors = [];
+        if (entity.coveredActors) {
+            try {
+                coveredActors = JSON.parse(entity.coveredActors);
+            } catch {
+                // Fallback to single actor for backward compatibility
+                coveredActors = entity.followerActor ? [entity.followerActor] : [];
+            }
+        } else if (entity.followerActor) {
+            // Backward compatibility
+            coveredActors = [entity.followerActor];
+        }
+        
         return {
             activityId: entity.activityId,
             targetInbox: entity.targetInbox,
-            followerActor: entity.followerActor,
+            coveredActors: coveredActors,
+            coveredCount: entity.coveredCount || coveredActors.length,
+            followerActor: entity.followerActor,  // Backward compatibility
             status: entity.status,
             attemptCount: entity.attemptCount || 0,
             lastAttempt: entity.lastAttempt,

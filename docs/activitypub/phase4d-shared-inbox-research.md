@@ -80,12 +80,22 @@ const targetInbox = sharedInbox || actorProfile.inbox;
 
 ### 4. Delivery Status Tracking
 
-**Recommendation**: Track delivery status **per inbox URL** (not per follower).
+**Decision**: Track delivery status **per inbox URL** (not per follower).
 
 **Rationale:**
 - One POST to shared inbox delivers to all followers on that instance
-- If POST succeeds, all followers on that instance should be marked as delivered
-- If POST fails, all followers on that instance are affected equally
+- The sending server can only verify the shared inbox accepted the POST
+- The sending server **cannot know** if the receiving server distributed to all followers
+- Per-inbox tracking aligns with ActivityPub protocol semantics and what we can actually verify
+
+**Trade-offs Considered:**
+- **Per-inbox (chosen)**: Lower database overhead (one row per server, not per follower), simpler queries, matches protocol reality
+- **Per-follower (rejected)**: Would require 50x-1000x more rows, implies precision we don't actually have
+
+**Implementation Notes:**
+- Store `coveredActors` array in each delivery status row for reference and debugging
+- `coveredCount` field tracks how many followers were covered by each delivery
+- Single status row per activity+inbox combination (not per follower)
 
 **Implementation:**
 ```javascript
