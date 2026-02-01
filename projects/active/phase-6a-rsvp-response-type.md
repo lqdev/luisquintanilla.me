@@ -5,8 +5,13 @@
 - **Branch**: `feature/rsvp-response-type`
 - **Started**: 2026-01-31
 - **Status**: Planning & Research Complete
+- **Research**: [docs/activitypub/phase6a-rsvp-research.md](../../docs/activitypub/phase6a-rsvp-research.md)
 
 ---
+
+## Research Summary
+
+> **Full research documentation with citations**: See [docs/activitypub/phase6a-rsvp-research.md](../../docs/activitypub/phase6a-rsvp-research.md)
 
 ## Research Findings
 
