@@ -284,6 +284,66 @@ This repository implements ActivityPub federation for a static website built wit
 
 ---
 
+### Phase 4D: Shared Inbox Optimization 🚀 IN PROGRESS
+
+**Status**: Implementation Complete, Pending Deployment  
+**Issue**: [#2038](https://github.com/lqdev/luisquintanilla.me/issues/2038)
+
+**Problem Solved**:
+- Previous architecture delivered activities individually to each follower's inbox
+- With 100 followers across 20 servers, this meant 100 HTTP POST requests
+- ActivityPub spec supports "shared inbox" for per-server batching
+
+**What Was Implemented**:
+
+1. **Table Storage Schema Update**
+   - Added `sharedInbox` field to follower entities
+   - Updated `addFollower`, `getFollower`, `getAllFollowers` functions
+   - Added `updateFollower` for migration scripts
+
+2. **Inbox Handler Enhancement**
+   - Extracts `endpoints.sharedInbox` from actor profiles during Follow processing
+   - Stores sharedInbox alongside personal inbox for each follower
+
+3. **Migration Script** (`api/scripts/backfill-shared-inbox.js`)
+   - Backfills sharedInbox for existing followers
+   - Idempotent, rate-limited, with dry-run mode
+   - Safe to rerun any time
+
+4. **QueueDeliveryTasks Optimization**
+   - Groups followers by `sharedInbox || inbox` (target inbox)
+   - Queues ONE task per unique inbox, not per follower
+   - Logs optimization metrics (e.g., "100 followers → 20 tasks = 80% reduction")
+
+5. **ProcessDelivery Enhancement**
+   - Handles `coveredActors` array for shared inbox tasks
+   - Tracks delivery status for ALL actors covered by a shared inbox
+   - Backward compatible with single-follower tasks
+
+**Expected Impact**:
+```
+Before: 100 followers = 100 HTTP POSTs per activity
+After:  100 followers across 20 servers = 20 HTTP POSTs per activity
+Reduction: 80% fewer outbound requests
+```
+
+**Key Technical Decisions**:
+- Use `sharedInbox` from `endpoints` object (ActivityPub spec compliant)
+- Fall back to personal `inbox` when `sharedInbox` not available
+- Track delivery status per-actor even with shared inbox (for accurate reporting)
+- One POST to shared inbox covers all followers on that server
+
+**Files Modified**:
+- `api/utils/tableStorage.js` - Schema update
+- `api/inbox/index.js` - Extract sharedInbox on Follow
+- `api/QueueDeliveryTasks/index.js` - Group by shared inbox
+- `api/scripts/process-delivery.js` - Handle coveredActors
+- `api/scripts/backfill-shared-inbox.js` - Migration script (new)
+
+**Documentation**: See `docs/activitypub/phase4d-shared-inbox-research.md` for research notes and best practices.
+
+---
+
 ## Azure Infrastructure
 
 ### Resource Group: `rg-activitypub` (or integrated with existing)
@@ -291,7 +351,7 @@ This repository implements ActivityPub federation for a static website built wit
 #### 1. Azure Storage Account: `lqdevactivitypub`
 
 **Tables**:
-- `followers` - Follower state management
+- `followers` - Follower state management (includes `sharedInbox` field for Phase 4D optimization)
 - `deliverystatus` - Activity delivery tracking
 
 **Queues**:
