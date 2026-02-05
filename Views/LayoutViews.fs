@@ -28,8 +28,10 @@ let private extractReviewItemType (content: string) =
                 let endIndex = content.IndexOf("\"", startIndex)
                 if endIndex > startIndex then
                     let itemType = content.Substring(startIndex, endIndex - startIndex).Trim()
-                    // Convert to proper case for display
-                    Some (itemType.Substring(0, 1).ToUpper() + itemType.Substring(1).ToLower())
+                    // Guard against empty string before Substring call
+                    if itemType.Length > 0 then
+                        Some (itemType.Substring(0, 1).ToUpper() + itemType.Substring(1).ToLower())
+                    else None
                 else None
             else None
         // Fallback: try old pattern with visible badge (for backwards compatibility)
@@ -42,7 +44,10 @@ let private extractReviewItemType (content: string) =
                 let endIndex = content.IndexOf(endTag, startIndex)
                 if endIndex > startIndex then
                     let itemType = content.Substring(startIndex, endIndex - startIndex).Trim()
-                    Some (itemType.Substring(0, 1).ToUpper() + itemType.Substring(1).ToLower())
+                    // Guard against empty string before Substring call
+                    if itemType.Length > 0 then
+                        Some (itemType.Substring(0, 1).ToUpper() + itemType.Substring(1).ToLower())
+                    else None
                 else None
             else None
         else None

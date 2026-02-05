@@ -450,6 +450,9 @@ type MediaBlockHtmlRenderer() =
 
 /// SVG Star Rating Helper for review blocks
 module SvgStarRating =
+    /// Counter for generating unique gradient IDs
+    let mutable private gradientCounter = 0
+    
     /// Render a single SVG star (full, half, or empty)
     let private svgStar (fillType: string) =
         let fillColor = 
@@ -462,15 +465,18 @@ module SvgStarRating =
         let starPath = "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
         
         if fillType = "half" then
+            // Use unique ID to avoid SVG gradient conflicts when multiple ratings on same page
+            gradientCounter <- gradientCounter + 1
+            let gradientId = sprintf "halfGrad%d" gradientCounter
             sprintf """<svg class="star-icon star-%s" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
                 <defs>
-                    <linearGradient id="halfGrad">
+                    <linearGradient id="%s">
                         <stop offset="50%%" stop-color="%s"/>
                         <stop offset="50%%" stop-color="transparent"/>
                     </linearGradient>
                 </defs>
-                <path d="%s" fill="url(#halfGrad)" stroke="%s" stroke-width="1.5"/>
-            </svg>""" fillType fillColor starPath strokeColor
+                <path d="%s" fill="url(#%s)" stroke="%s" stroke-width="1.5"/>
+            </svg>""" fillType gradientId fillColor starPath gradientId strokeColor
         else
             sprintf """<svg class="star-icon star-%s" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
                 <path d="%s" fill="%s" stroke="%s" stroke-width="1.5"/>
@@ -478,9 +484,11 @@ module SvgStarRating =
     
     /// Render a star rating with SVG icons
     let render (rating: float) (scale: float) =
-        if rating <= 0.0 then ""
+        if rating <= 0.0 || scale <= 0.0 then ""
         else
-            let normalizedRating = (rating / scale) * 5.0
+            // Clamp rating to scale to prevent negative empty stars
+            let clampedRating = min rating scale
+            let normalizedRating = (clampedRating / scale) * 5.0
             let fullStars = int (floor normalizedRating)
             let hasHalfStar = normalizedRating - float fullStars >= 0.25 && normalizedRating - float fullStars < 0.75
             let extraFullStar = normalizedRating - float fullStars >= 0.75
