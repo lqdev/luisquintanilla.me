@@ -19,9 +19,21 @@ let private sanitizeTagForUrl (tag: string) =
 /// Extract item type from review content for badge display
 let private extractReviewItemType (content: string) =
     try
-        // The content is already HTML, so parse the rendered custom-review-block
-        if content.Contains("item-type-badge") then
-            // Extract the item type from the rendered HTML badge
+        // First try: extract from data-item-type attribute in hidden span (new pattern)
+        if content.Contains("data-item-type=") then
+            let startTag = "data-item-type=\""
+            let startIndex = content.IndexOf(startTag)
+            if startIndex >= 0 then
+                let startIndex = startIndex + startTag.Length
+                let endIndex = content.IndexOf("\"", startIndex)
+                if endIndex > startIndex then
+                    let itemType = content.Substring(startIndex, endIndex - startIndex).Trim()
+                    // Convert to proper case for display
+                    Some (itemType.Substring(0, 1).ToUpper() + itemType.Substring(1).ToLower())
+                else None
+            else None
+        // Fallback: try old pattern with visible badge (for backwards compatibility)
+        elif content.Contains("item-type-badge") then
             let startTag = "item-type-badge badge bg-secondary\">"
             let endTag = "</span>"
             let startIndex = content.IndexOf(startTag)
@@ -30,7 +42,6 @@ let private extractReviewItemType (content: string) =
                 let endIndex = content.IndexOf(endTag, startIndex)
                 if endIndex > startIndex then
                     let itemType = content.Substring(startIndex, endIndex - startIndex).Trim()
-                    // Convert from uppercase back to proper case
                     Some (itemType.Substring(0, 1).ToUpper() + itemType.Substring(1).ToLower())
                 else None
             else None
