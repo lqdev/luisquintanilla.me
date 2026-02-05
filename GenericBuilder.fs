@@ -743,10 +743,10 @@ module BookProcessor =
                 if reviewRating > 0.0 then (reviewRating, reviewScale)
                 else (book.Metadata.Rating, 5.0)
             
-            // Display rating with scale if available
+            // Display rating with SVG stars + numeric value using shared helper
             let ratingHtml = 
                 if ratingValue > 0.0 then
-                    sprintf "<div class=\"rating\">Rating: %.1f/%.1f</div>" ratingValue ratingScaleValue
+                    sprintf "<div class=\"rating\">%s</div>" (BlockRenderers.StarRating.render ratingValue ratingScaleValue)
                 else ""
             
             // Note: Item type badge is shown in the timeline card header (not duplicated here)

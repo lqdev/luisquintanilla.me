@@ -79,6 +79,69 @@ module MediaRenderer =
         
         Html.element "div" (Html.attribute "class" "custom-media-block") renderedItems
 
+/// SVG Star Rating Helper - renders accessible star ratings with proper ARIA labels
+module StarRating =
+    /// Render a single SVG star (full, half, or empty)
+    let private svgStar (fillType: string) =
+        let fillColor = 
+            match fillType with
+            | "full" -> "#FFB400"  // Gold for full stars
+            | "half" -> "#FFB400"  // Gold for half star fill
+            | _ -> "none"         // Empty star (just outline)
+        
+        let strokeColor = "#FFB400"  // Gold outline for all stars
+        
+        // SVG star path - a 5-pointed star
+        let starPath = "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+        
+        if fillType = "half" then
+            // Half star: use linear gradient for partial fill
+            sprintf """<svg class="star-icon star-%s" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <defs>
+                    <linearGradient id="halfGrad">
+                        <stop offset="50%%" stop-color="%s"/>
+                        <stop offset="50%%" stop-color="transparent"/>
+                    </linearGradient>
+                </defs>
+                <path d="%s" fill="url(#halfGrad)" stroke="%s" stroke-width="1.5"/>
+            </svg>""" fillType fillColor starPath strokeColor
+        else
+            sprintf """<svg class="star-icon star-%s" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path d="%s" fill="%s" stroke="%s" stroke-width="1.5"/>
+            </svg>""" fillType starPath fillColor strokeColor
+    
+    /// Render a star rating with SVG icons
+    /// rating: the actual rating value (e.g., 4.25)
+    /// scale: the maximum scale (e.g., 5.0)
+    /// Returns HTML string with SVG stars and numeric rating
+    let render (rating: float) (scale: float) =
+        if rating <= 0.0 then ""
+        else
+            // Normalize rating to 5-star scale for display
+            let normalizedRating = (rating / scale) * 5.0
+            let fullStars = int (floor normalizedRating)
+            let hasHalfStar = normalizedRating - float fullStars >= 0.25 && normalizedRating - float fullStars < 0.75
+            let extraFullStar = normalizedRating - float fullStars >= 0.75
+            let actualFullStars = if extraFullStar then fullStars + 1 else fullStars
+            let emptyStars = 5 - actualFullStars - (if hasHalfStar && not extraFullStar then 1 else 0)
+            
+            // Build stars HTML
+            let starsHtml = 
+                String.concat "" [
+                    for _ in 1 .. actualFullStars do yield svgStar "full"
+                    if hasHalfStar && not extraFullStar then yield svgStar "half"
+                    for _ in 1 .. emptyStars do yield svgStar "empty"
+                ]
+            
+            // ARIA label for accessibility
+            let ariaLabel = sprintf "Rating: %.1f out of %.1f" rating scale
+            
+            // Combine stars with numeric rating
+            sprintf """<div class="svg-star-rating" role="img" aria-label="%s">
+                <span class="stars">%s</span>
+                <span class="rating-text">%.1f/%.1f</span>
+            </div>""" ariaLabel starsHtml rating scale
+
 /// Renderer for ReviewData
 module ReviewRenderer =
     let render (review: ReviewData) =
@@ -86,7 +149,7 @@ module ReviewRenderer =
             if review.Rating > 0.0 then
                 Html.element "div" 
                     (Html.attribute "class" ("review-rating " + Microformats.pRating))
-                    (sprintf "Rating: %.1f/%.1f" review.Rating review.Scale)
+                    (StarRating.render review.Rating review.Scale)
             else ""
         
         let summaryElement =
