@@ -763,7 +763,7 @@ let wikiPageView (title:string) (content:string) (date:string) (fileName:string)
         ]
     ]
 
-let reviewPageView (title:string) (content:string) (date:string) (fileName:string) = 
+let reviewPageView (title:string) (content:string) (date:string) (fileName:string) (imageUrl:string option) = 
     // Handle null/empty dates gracefully - use current date as fallback
     let (publishDate, dateTimeStr) = 
         if String.IsNullOrWhiteSpace(date) then
@@ -780,8 +780,20 @@ let reviewPageView (title:string) (content:string) (date:string) (fileName:strin
                 (now, now.ToString("yyyy-MM-dd HH:mm zzz"))
     
     div [ _class "mr-auto" ] [
-        article [ _class "h-entry individual-post" ] [
+        article [ _class "h-entry individual-post review-page" ] [
             header [ _class "post-header" ] [
+                // Display review image if available (e.g., book cover, movie poster)
+                match imageUrl with
+                | Some url when not (String.IsNullOrWhiteSpace(url)) ->
+                    div [ _class "review-header-image" ] [
+                        img [ 
+                            _src url
+                            _alt (sprintf "%s cover" title)
+                            _class "review-cover-image img-fluid"
+                        ]
+                    ]
+                | _ -> ()  // No image - skip the image section
+                
                 h1 [ _class "p-name post-title" ] [ Text title ]
                 div [ _class "post-meta" ] [
                     time [ _class "dt-published"; attr "datetime" dateTimeStr ] [

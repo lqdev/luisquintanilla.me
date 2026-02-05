@@ -1005,7 +1005,17 @@ module Builder
             let book = item.Content
             let saveDir = Path.Join(outputDir, "reviews", book.FileName)
             
-            let html = reviewPageView book.Metadata.Title (book.Content |> convertMdToHtml) book.Metadata.DatePublished book.FileName
+            // Get review metadata for the image URL
+            let reviewMetadata = GenericBuilder.BookProcessor.getReviewMetadata book.FileName
+            let imageUrl = 
+                match reviewMetadata with
+                | Some rm -> rm.ImageUrl
+                | None -> 
+                    // Fallback to cover from book metadata
+                    if String.IsNullOrWhiteSpace(book.Metadata.Cover) then None
+                    else Some book.Metadata.Cover
+            
+            let html = reviewPageView book.Metadata.Title (book.Content |> convertMdToHtml) book.Metadata.DatePublished book.FileName imageUrl
             let page = generate html "defaultindex" $"{book.Metadata.Title} | Reviews | Luis Quintanilla"
             // Use helper to write file
             writePageToDir saveDir "index.html" page)
