@@ -656,3 +656,123 @@ textarea.form-control {
     gap: var(--spacing-md);
   }
 }
+
+/* =====================================================
+   SVG Star Rating Component
+   Accessible star rating display with visual + numeric
+   ===================================================== */
+
+.svg-star-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.svg-star-rating .stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.svg-star-rating .star-icon {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.svg-star-rating .star-full path {
+  fill: #FFB400;
+  stroke: #FFB400;
+}
+
+.svg-star-rating .star-half path {
+  stroke: #FFB400;
+}
+
+.svg-star-rating .star-empty path {
+  fill: none;
+  stroke: #FFB400;
+}
+
+.svg-star-rating .rating-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Review rating in timeline cards */
+.review-timeline-card .svg-star-rating {
+  margin-top: var(--spacing-xs);
+  justify-content: center;
+}
+
+.review-timeline-card .rating {
+  text-align: center;
+}
+
+/* Review rating in review blocks */
+.custom-review-block .svg-star-rating {
+  margin: var(--spacing-sm) 0;
+}
+
+/* Dark theme adjustments for star ratings */
+[data-theme="dark"] .svg-star-rating .star-empty path {
+  stroke: #FFB400;
+  stroke-opacity: 0.6;
+}
+
+[data-theme="dark"] .svg-star-rating .rating-text {
+  color: var(--text-muted);
+}
+
+/* Responsive star sizing */
+@media (max-width: 480px) {
+  .svg-star-rating .star-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .svg-star-rating .rating-text {
+    font-size: 0.85rem;
+  }
+}
+
+/* =====================================================
+   Review Page Header Image
+   Display cover image on individual review pages
+   ===================================================== */
+
+.review-page .review-header-image {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.review-page .review-cover-image {
+  max-width: 300px;
+  max-height: 400px;
+  width: auto;
+  height: auto;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  object-fit: contain;
+}
+
+/* Responsive adjustments for review cover image */
+@media (max-width: 768px) {
+  .review-page .review-cover-image {
+    max-width: 200px;
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .review-page .review-cover-image {
+    max-width: 150px;
+    max-height: 225px;
+  }
+  
+  .review-page .review-header-image {
+    margin-bottom: var(--spacing-md);
+  }
+}

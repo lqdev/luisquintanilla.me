@@ -743,29 +743,31 @@ module BookProcessor =
                 if reviewRating > 0.0 then (reviewRating, reviewScale)
                 else (book.Metadata.Rating, 5.0)
             
-            // Display rating with scale if available
+            // Display rating with SVG stars + numeric value using shared helper
             let ratingHtml = 
                 if ratingValue > 0.0 then
-                    sprintf "<div class=\"rating\">Rating: %.1f/%.1f</div>" ratingValue ratingScaleValue
+                    sprintf "<div class=\"rating\">%s</div>" (BlockRenderers.StarRating.render ratingValue ratingScaleValue)
                 else ""
             
-            // Create item type badge for timeline if available
-            let itemTypeBadgeHtml = 
-                match reviewItemType with
-                | Some itemType when not (String.IsNullOrWhiteSpace(itemType)) ->
-                    let capitalizedType = itemType.ToUpper()
-                    sprintf "<span class=\"item-type-badge badge bg-secondary\">%s</span>" capitalizedType
-                | _ -> ""
+            // Note: Item type badge is shown in the timeline card header (not duplicated here)
+            // The header badge is extracted from reviewItemType by timelineHomeView/timelineHomeViewStratified
             
-            // Create simplified timeline card with only: image, rating, item type badge (no duplicate title, no status, no author)
+            // Create simplified timeline card with only: image and rating (no duplicate badge, title, or author)
             let coverHtml = 
                 if not (String.IsNullOrEmpty(imageUrl)) then
                     sprintf "<img src=\"%s\" alt=\"%s cover\" class=\"review-image img-fluid\">" 
                         (Html.escapeHtml imageUrl) (Html.escapeHtml book.Metadata.Title)
                 else ""
             
-            // Simple content div without duplicate title links or extra metadata
-            sprintf "<div class=\"review-timeline-card\">%s%s%s</div>" itemTypeBadgeHtml coverHtml ratingHtml
+            // Hidden span to carry review item type for header badge extraction (not displayed)
+            let hiddenItemTypeHtml = 
+                match reviewItemType with
+                | Some itemType when not (String.IsNullOrWhiteSpace(itemType)) ->
+                    sprintf "<span class=\"review-item-type\" style=\"display:none\" data-item-type=\"%s\"></span>" (Html.escapeHtml itemType)
+                | _ -> ""
+            
+            // Simple content div without duplicate badge or title
+            sprintf "<div class=\"review-timeline-card\">%s%s%s</div>" hiddenItemTypeHtml coverHtml ratingHtml
         
         RenderRss = fun book ->
             // Create RSS item for book
