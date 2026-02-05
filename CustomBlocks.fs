@@ -448,6 +448,58 @@ type MediaBlockHtmlRenderer() =
         let html = HtmlHelpers.element "div" (HtmlHelpers.attribute "class" "custom-media-block") renderedItems
         renderer.Write(html: string) |> ignore
 
+/// SVG Star Rating Helper for review blocks
+module SvgStarRating =
+    /// Render a single SVG star (full, half, or empty)
+    let private svgStar (fillType: string) =
+        let fillColor = 
+            match fillType with
+            | "full" -> "#FFB400"  // Gold for full stars
+            | "half" -> "#FFB400"  // Gold for half star fill
+            | _ -> "none"         // Empty star (just outline)
+        
+        let strokeColor = "#FFB400"  // Gold outline for all stars
+        let starPath = "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+        
+        if fillType = "half" then
+            sprintf """<svg class="star-icon star-%s" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <defs>
+                    <linearGradient id="halfGrad">
+                        <stop offset="50%%" stop-color="%s"/>
+                        <stop offset="50%%" stop-color="transparent"/>
+                    </linearGradient>
+                </defs>
+                <path d="%s" fill="url(#halfGrad)" stroke="%s" stroke-width="1.5"/>
+            </svg>""" fillType fillColor starPath strokeColor
+        else
+            sprintf """<svg class="star-icon star-%s" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path d="%s" fill="%s" stroke="%s" stroke-width="1.5"/>
+            </svg>""" fillType starPath fillColor strokeColor
+    
+    /// Render a star rating with SVG icons
+    let render (rating: float) (scale: float) =
+        if rating <= 0.0 then ""
+        else
+            let normalizedRating = (rating / scale) * 5.0
+            let fullStars = int (floor normalizedRating)
+            let hasHalfStar = normalizedRating - float fullStars >= 0.25 && normalizedRating - float fullStars < 0.75
+            let extraFullStar = normalizedRating - float fullStars >= 0.75
+            let actualFullStars = if extraFullStar then fullStars + 1 else fullStars
+            let emptyStars = 5 - actualFullStars - (if hasHalfStar && not extraFullStar then 1 else 0)
+            
+            let starsHtml = 
+                String.concat "" [
+                    for _ in 1 .. actualFullStars do yield svgStar "full"
+                    if hasHalfStar && not extraFullStar then yield svgStar "half"
+                    for _ in 1 .. emptyStars do yield svgStar "empty"
+                ]
+            
+            let ariaLabel = sprintf "Rating: %.1f out of %.1f" rating scale
+            sprintf """<div class="svg-star-rating" role="img" aria-label="%s">
+                <span class="stars">%s</span>
+                <span class="rating-text">%.1f/%.1f</span>
+            </div>""" ariaLabel starsHtml rating scale
+
 /// HTML renderer for ReviewBlock
 type ReviewBlockHtmlRenderer() =
     inherit HtmlObjectRenderer<ReviewBlock>()
@@ -474,10 +526,10 @@ type ReviewBlockHtmlRenderer() =
                 renderer.Write($"<div class=\"review-image\"><img src=\"{HtmlHelpers.escapeHtml imageUrl}\" alt=\"{HtmlHelpers.escapeHtml reviewData.Item}\" class=\"review-thumbnail img-fluid\" /></div>") |> ignore
             | _ -> ()
             
-            // Rating display
+            // Rating display with SVG stars
             if reviewData.Rating > 0.0 then
-                let stars = String.replicate (int reviewData.Rating) "★" + String.replicate (int (scale - reviewData.Rating)) "☆"
-                renderer.Write($"<div class=\"review-rating p-rating\"><strong>Rating:</strong> {stars} ({reviewData.Rating:F1}/{scale:F1})</div>") |> ignore
+                let svgStars = SvgStarRating.render reviewData.Rating scale
+                renderer.Write($"<div class=\"review-rating p-rating\">{svgStars}</div>") |> ignore
             
             // Summary
             if not (String.IsNullOrWhiteSpace(summary)) then
