@@ -1,5 +1,65 @@
 # Changelog
 
+## 2026-02-04 - Review Rendering Improvements ✅
+
+**Project**: Review Rendering Enhancements  
+**Duration**: 2026-02-04 (1 day)  
+**Status**: ✅ COMPLETE - PR Ready to Merge  
+**Type**: UI Enhancement & Bug Fix  
+**Issue**: [#2083](https://github.com/lqdev/luisquintanilla.me/issues/2083)  
+**PR**: [#2084](https://github.com/lqdev/luisquintanilla.me/pull/2084)
+
+### Overview
+
+Enhanced review content rendering with SVG star ratings, fixed duplicate badge display, and addressed SVG gradient ID collision bug discovered during implementation.
+
+### Implementation Summary
+
+**Task 1: Remove Duplicate Item Type Badge**
+- Changed visible badge span to hidden `data-item-type` attribute
+- Timeline cards now extract item type from data attribute for display
+- Prevents duplicate "Book" badges on homepage timeline
+
+**Task 2: SVG Star Ratings with Numeric Display**
+- Implemented `StarRating` module in `BlockRenderers.fs` with SVG star rendering
+- Gold (#FFB400) stars with linearGradient support for half-stars
+- Displays both visual stars and numeric rating (e.g., "4.5/5.0")
+- Full ARIA accessibility with `role="img"` and descriptive labels
+
+**Task 3: Consistent Star Colors** (discovered during implementation)
+- Found Unicode stars (★☆) on individual review pages vs SVG on homepage
+- Added `SvgStarRating` module to `CustomBlocks.fs` (compilation order constraint)
+- All review pages now show consistent gold SVG stars
+
+### Bug Fixes from Copilot Review
+
+**SVG Gradient ID Collision** (Critical)
+- **Discovery**: 20 identical `halfGrad` IDs on homepage caused rendering issues
+- **Root Cause**: All half-star SVGs referenced same gradient definition
+- **Fix**: Counter-based unique ID generation (`halfGrad1`, `halfGrad2`, etc.)
+
+**Defensive Guards Added**:
+- Empty string check before `Substring` operations in `extractReviewItemType`
+- Division by zero protection (`scale <= 0.0` check)
+- Rating clamping (`min rating scale`) to prevent negative empty star calculations
+
+### Architectural Decisions
+
+**AD-1: Duplicate SvgStarRating Module** - F# compilation order places `CustomBlocks.fs` before `BlockRenderers.fs`, preventing direct reference. Created duplicate `SvgStarRating` module in `CustomBlocks.fs` for review block rendering. Both modules share identical logic.
+
+**AD-2: Data Attribute Pattern** - Item type stored in hidden `data-item-type` attribute rather than visible badge. Enables timeline card extraction while preventing duplicate display on homepage where badge is rendered separately.
+
+**AD-3: Counter-Based Unique IDs** - Mutable counter generates unique SVG gradient IDs at render time. Trade-off: mutable state vs. guaranteed uniqueness across multiple reviews on same page.
+
+### Files Modified
+
+- `BlockRenderers.fs` - StarRating module with unique gradient IDs
+- `CustomBlocks.fs` - SvgStarRating module, ReviewBlockHtmlRenderer updates
+- `GenericBuilder.fs` - Hidden data-item-type span generation
+- `Views/LayoutViews.fs` - extractReviewItemType with defensive guards
+
+---
+
 ## 2026-01-31 - Phase 6A: RSVP Response Type Implementation ✅
 
 **Project**: ActivityPub Phase 6A - RSVP Response Type  
