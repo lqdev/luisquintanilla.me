@@ -144,7 +144,11 @@ with
         | GenericReview g -> g.item_url
     member this.ImageUrl =
         match this with
-        | BookReview b -> b.image_url
+        | BookReview b -> 
+            // For books, prefer 'cover' field, fall back to 'image_url'
+            match b.cover with
+            | Some c when not (String.IsNullOrWhiteSpace(c)) -> Some c
+            | _ -> b.image_url
         | GenericReview g -> g.image_url
     
     // Book-specific accessors
