@@ -88,8 +88,11 @@ post_type: media
 published_date: "%s"%s
 ---""" (title.Replace("\"", "\\\"")) timestamp tagsString
 
-// Generate filename
-let filename = sprintf "%s.md" finalSlug
+// Generate filename - only append date when no custom slug provided
+let filename = 
+    match customSlug with
+    | Some _ -> sprintf "%s.md" finalSlug  // Use slug as-is when custom slug provided
+    | None -> sprintf "%s-%s.md" finalSlug (now.ToString("yyyy-MM-dd"))  // Append date when no custom slug
 
 // Combine frontmatter and content (content already has media blocks from Python script)
 let fullContent = sprintf "%s\n\n%s" frontmatter contentWithMediaBlocks

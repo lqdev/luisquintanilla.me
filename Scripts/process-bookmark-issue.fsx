@@ -98,7 +98,7 @@ dt_updated: "%s"%s
 let filename = 
     match customSlug with
     | Some _ -> sprintf "%s.md" finalSlug  // Use slug as-is when custom slug provided
-    | None -> sprintf "%s.md" finalSlug  // For bookmarks, don't append date to match existing pattern
+    | None -> sprintf "%s-%s.md" finalSlug (now.ToString("yyyy-MM-dd"))  // Append date when no custom slug
 
 // Combine frontmatter and content
 let fullContent = 
