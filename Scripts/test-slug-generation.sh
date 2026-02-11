@@ -31,8 +31,13 @@ test_slug_generation() {
     fi
     
     # Check if the script contains the standard pattern
-    if grep -q "match customSlug with" "$script" && \
-       grep -q "sprintf.*finalSlug.*now.ToString.*yyyy-MM-dd" "$script"; then
+    # Look for the specific filename generation block with hasValidCustomSlug or match customSlug
+    if grep -A 5 "let filename" "$script" | grep -q "hasValidCustomSlug" && \
+       grep -A 5 "let filename" "$script" | grep -q "sprintf.*finalSlug.*now.ToString.*yyyy-MM-dd"; then
+        echo -e "  ${GREEN}✓${NC} Standard pattern found in $script"
+        ((TESTS_PASSED++))
+    elif grep -A 5 "let filename" "$script" | grep -q "match customSlug with" && \
+         grep -A 5 "let filename" "$script" | grep -q "sprintf.*finalSlug.*now.ToString.*yyyy-MM-dd"; then
         echo -e "  ${GREEN}✓${NC} Standard pattern found in $script"
         ((TESTS_PASSED++))
     elif [[ "$script" == *"review"* ]] && grep -q "generateSlug" "$script" && \

@@ -114,7 +114,7 @@ coding-focus-music-2024-01-15.md
 ### Date Format
 - Format: `yyyy-MM-dd` (ISO 8601)
 - Example: `2024-01-15`
-- Timezone: Based on system time (EST in production)
+- Timezone: Fixed offset UTC-05:00 (EST-equivalent; daylight saving time is not applied)
 
 ### Slug Sanitization
 All slugs (custom or auto-generated) are sanitized:

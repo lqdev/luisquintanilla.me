@@ -10,7 +10,7 @@ A **slug** is the URL-friendly identifier used in the filename and URL for a pos
 - Title: "My Awesome Post"
 - Slug: "my-awesome-post"
 - Filename: "my-awesome-post-2024-01-15.md"
-- URL: "https://luisquintanilla.me/posts/my-awesome-post-2024-01-15"
+- URL: "https://luisquintanilla.me/{content-type}/my-awesome-post-2024-01-15" (where `{content-type}` is `notes`, `bookmarks`, `responses`, etc.)
 
 ## Slug Generation Rules
 
