@@ -57,14 +57,16 @@ let generateSlugFromTitle (title: string) =
     elif slug.Length > 50 then slug.Substring(0, 50).TrimEnd('-')
     else slug
 
-// Determine final slug
-let finalSlug = 
+// Determine final slug and track if we have a valid custom slug
+let finalSlug, hasValidCustomSlug = 
     match customSlug with
     | Some slug -> 
         let sanitized = sanitizeSlug slug
-        if String.IsNullOrWhiteSpace(sanitized) then generateSlugFromTitle title
-        else sanitized
-    | None -> generateSlugFromTitle title
+        if String.IsNullOrWhiteSpace(sanitized) then 
+            (generateSlugFromTitle title, false)  // Custom slug was invalid, treat as auto-generated
+        else 
+            (sanitized, true)  // Valid custom slug
+    | None -> (generateSlugFromTitle title, false)  // No custom slug provided
 
 // Process tags
 let tags = 
@@ -94,11 +96,12 @@ dt_published: "%s"
 dt_updated: "%s"%s
 ---""" (title.Replace("\"", "\\\"")) targetUrl timestamp timestamp tagsString
 
-// Generate filename - only append date when no custom slug provided
+// Generate filename - only append date when no valid custom slug provided
 let filename = 
-    match customSlug with
-    | Some _ -> sprintf "%s.md" finalSlug  // Use slug as-is when custom slug provided
-    | None -> sprintf "%s.md" finalSlug  // For bookmarks, don't append date to match existing pattern
+    if hasValidCustomSlug then
+        sprintf "%s.md" finalSlug  // Use slug as-is when valid custom slug provided
+    else
+        sprintf "%s-%s.md" finalSlug (now.ToString("yyyy-MM-dd"))  // Append date when no valid custom slug
 
 // Combine frontmatter and content
 let fullContent = 
