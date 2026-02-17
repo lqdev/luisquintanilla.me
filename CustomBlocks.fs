@@ -571,6 +571,55 @@ type ReviewBlockHtmlRenderer() =
         | None ->
             renderer.Write("<div class=\"review-block-empty\"></div>") |> ignore
 
+/// HTML renderer for RsvpBlock
+type RsvpBlockHtmlRenderer() =
+    inherit HtmlObjectRenderer<RsvpBlock>()
+    
+    override _.Write(renderer: HtmlRenderer, block: RsvpBlock) : unit =
+        match block.RsvpData with
+        | Some rsvpData ->
+            // Start RSVP block container with microformats
+            renderer.Write("<div class=\"custom-rsvp-block h-entry\">") |> ignore
+            
+            // Event name
+            renderer.Write($"<h3 class=\"rsvp-event p-name\">{HtmlHelpers.escapeHtml rsvpData.event_name}</h3>") |> ignore
+            
+            // RSVP status with emoji
+            let responseText =
+                match rsvpData.rsvp_status.ToLower() with
+                | "yes" -> "✅ Attending"
+                | "no" -> "❌ Not Attending"
+                | "maybe" -> "❓ Maybe Attending"
+                | "interested" -> "⭐ Interested"
+                | _ -> $"Response: {rsvpData.rsvp_status}"
+            
+            renderer.Write($"<div class=\"rsvp-response\">{HtmlHelpers.escapeHtml responseText}</div>") |> ignore
+            
+            // Event date if provided
+            if not (String.IsNullOrWhiteSpace(rsvpData.event_date)) then
+                renderer.Write($"<div class=\"rsvp-date dt-start\">{HtmlHelpers.escapeHtml rsvpData.event_date}</div>") |> ignore
+            
+            // Event location if provided
+            match rsvpData.event_location with
+            | Some location when not (String.IsNullOrWhiteSpace(location)) ->
+                renderer.Write($"<div class=\"rsvp-location\">{HtmlHelpers.escapeHtml location}</div>") |> ignore
+            | _ -> ()
+            
+            // Event URL
+            if not (String.IsNullOrWhiteSpace(rsvpData.event_url)) then
+                renderer.Write($"<div class=\"rsvp-url\"><a href=\"{HtmlHelpers.escapeHtml rsvpData.event_url}\" class=\"u-url\" target=\"_blank\">{HtmlHelpers.escapeHtml rsvpData.event_url}</a></div>") |> ignore
+            
+            // Notes if provided
+            match rsvpData.notes with
+            | Some notes when not (String.IsNullOrWhiteSpace(notes)) ->
+                renderer.Write($"<div class=\"rsvp-notes\">{HtmlHelpers.escapeHtml notes}</div>") |> ignore
+            | _ -> ()
+            
+            // Close RSVP block container
+            renderer.Write("</div>") |> ignore
+        | None ->
+            renderer.Write("<div class=\"rsvp-block-empty\"></div>") |> ignore
+
 // Extension utilities
 
 /// Union type for all custom blocks
@@ -697,9 +746,9 @@ type CustomBlockExtension() =
             | :? HtmlRenderer as htmlRenderer ->
                 htmlRenderer.ObjectRenderers.Add(MediaBlockHtmlRenderer())
                 htmlRenderer.ObjectRenderers.Add(ReviewBlockHtmlRenderer())
+                htmlRenderer.ObjectRenderers.Add(RsvpBlockHtmlRenderer())
                 // Add other renderers when implemented
                 // htmlRenderer.ObjectRenderers.Add(VenueBlockHtmlRenderer())
-                // htmlRenderer.ObjectRenderers.Add(RsvpBlockHtmlRenderer())
             | _ -> 
                 // Other renderers (like text, normalize) don't need custom renderers
                 ()

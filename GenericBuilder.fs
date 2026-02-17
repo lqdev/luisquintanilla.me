@@ -1358,6 +1358,60 @@ module BookmarkProcessor =
             Some item
     }
 
+/// RSVP content processor for IndieWeb event responses
+module RsvpProcessor =
+    let create() : ContentProcessor<Rsvp> = {
+        Parse = fun filePath ->
+            match parseRsvpFromFile filePath with
+            | Ok parsedDoc -> 
+                match parsedDoc.Metadata with
+                | Some metadata -> 
+                    Some {
+                        FileName = Path.GetFileNameWithoutExtension(filePath)
+                        Metadata = metadata
+                        Content = parsedDoc.TextContent
+                    }
+                | None -> None
+            | Error _ -> None
+        
+        Render = fun rsvp ->
+            // RSVP rendering with IndieWeb microformat support
+            let viewNode = article [ _class "h-entry rsvp" ] [
+                h1 [ _class "p-name" ] [ str rsvp.Metadata.Title ]
+                rawText rsvp.Content
+            ]
+            RenderView.AsString.xmlNode viewNode
+        
+        OutputPath = fun rsvp ->
+            sprintf "rsvps/%s.html" rsvp.FileName
+        
+        RenderCard = fun rsvp ->
+            let title = Html.escapeHtml rsvp.Metadata.Title
+            let url = sprintf "/rsvps/%s/" rsvp.FileName
+            let date = rsvp.Metadata.DatePublished
+            
+            // IndieWeb microformat card for RSVPs
+            Html.element "article" (Html.attribute "class" "rsvp-card h-entry")
+                (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url + Html.attribute "class" "p-name") title) +
+                 Html.element "time" (Html.attribute "class" "dt-published" + Html.attribute "datetime" date) date)
+        
+        RenderRss = fun rsvp ->
+            // Create RSS item for RSVP
+            let url = sprintf "https://www.lqdev.me/rsvps/%s" rsvp.FileName
+            
+            // Normalize URLs in content for RSS compatibility
+            let normalizedContent = normalizeUrlsForRss rsvp.Content "https://www.lqdev.me"
+            
+            let item = 
+                XElement(XName.Get "item",
+                    XElement(XName.Get "title", rsvp.Metadata.Title),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedContent),
+                    XElement(XName.Get "link", url),
+                    XElement(XName.Get "guid", url),
+                    XElement(XName.Get "pubDate", rsvp.Metadata.DatePublished))
+            Some item
+    }
+
 /// Generic content processing pipeline
 module ContentPipeline =
     
@@ -1558,6 +1612,13 @@ module UnifiedFeeds =
                 Description = "IndieWeb bookmarks by Luis Quintanilla"
                 OutputPath = "bookmarks/feed.xml"
                 ContentType = Some "bookmarks"
+            })
+            ("rsvps", {
+                Title = "Luis Quintanilla - RSVPs"
+                Link = "https://www.lqdev.me/rsvps"
+                Description = "IndieWeb RSVP event responses by Luis Quintanilla"
+                OutputPath = "rsvps/feed.xml"
+                ContentType = Some "rsvps"
             })
             ("snippets", {
                 Title = "Luis Quintanilla - Snippets"
@@ -1899,3 +1960,18 @@ module UnifiedFeeds =
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = Some "bookmark"; TargetUrl = Some feedData.Content.Metadata.TargetUrl; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
             | None -> None)
+
+    // Convert RSVP posts to unified feed
+    let convertRsvpsToUnified (feedDataList: FeedData<Rsvp> list) : UnifiedFeedItem list =
+        feedDataList 
+        |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let title = feedData.Content.Metadata.Title
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = feedData.CardHtml
+                let date = feedData.Content.Metadata.DatePublished
+                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "rsvps"; Tags = tags; RssXml = rssXml }
+            | None -> None)
+

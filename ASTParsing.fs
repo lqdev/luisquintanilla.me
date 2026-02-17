@@ -77,6 +77,7 @@ let private extractTextContentFromAst (doc: MarkdownDocument) : string =
     // Add custom block renderers to ensure proper rendering
     renderer.ObjectRenderers.Add(MediaBlockHtmlRenderer())
     renderer.ObjectRenderers.Add(ReviewBlockHtmlRenderer())
+    renderer.ObjectRenderers.Add(RsvpBlockHtmlRenderer())
     
     // Render all blocks including custom blocks
     for block in doc do
@@ -228,3 +229,7 @@ let parseResponseFromFile (filePath: string) : Result<ParsedDocument<ResponseDet
 
 let parseBookmarkFromFile (filePath: string) : Result<ParsedDocument<BookmarkDetails>, ParseError> =
     parseDocumentFromFile<BookmarkDetails> filePath
+
+let parseRsvpFromFile (filePath: string) : Result<ParsedDocument<RsvpDetails>, ParseError> =
+    parseDocumentFromFile<RsvpDetails> filePath
+

@@ -106,3 +106,8 @@ module MarkdownService
 
         { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = albumCollectionDetails.Yaml; Content = albumCollectionDetails.Content; MarkdownSource = Some albumCollectionDetails.Content }
 
+    let parseRsvp (filePath:string) : Rsvp = 
+        let rsvpDetails = getContentAndMetadata<RsvpDetails>(filePath);
+
+        { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = rsvpDetails.Yaml; Content = rsvpDetails.Content }
+

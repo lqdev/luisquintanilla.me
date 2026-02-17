@@ -1319,3 +1319,31 @@ module Builder
         
         // Return feed data for unified RSS generation (converted to Response feed data format)
         feedData
+
+    // RSVP processing
+    let buildRsvps() = 
+        let rsvpFiles = 
+            Directory.GetFiles(Path.Join(srcDir, "rsvps"))
+            |> Array.filter (fun f -> f.EndsWith(".md"))
+            |> Array.toList
+        
+        // Use RSVP processor
+        let processor = GenericBuilder.RsvpProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor rsvpFiles
+        
+        // Generate individual RSVP pages at /rsvps/[slug]/
+        feedData
+        |> List.iter (fun item ->
+            let rsvp = item.Content
+            let saveDir = Path.Join(outputDir, "rsvps", rsvp.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            
+            let processedContent = convertMdToHtml rsvp.Content
+            let html = LayoutViews.notePostView rsvp.Metadata.Title processedContent rsvp.Metadata.DatePublished rsvp.FileName rsvp.Metadata.Tags None [||]
+            let rsvpView = generate html "defaultindex" rsvp.Metadata.Title
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, rsvpView))
+        
+        // Return feed data for unified RSS generation
+        feedData
+
