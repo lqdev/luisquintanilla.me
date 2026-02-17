@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:webmention="http://webmention.org/" xmlns:indie="http://indieweb.org/rss">
+<channel>
+<title>Personal Website - All Content</title>
+<link>https://example.com</link>
+<description>Personal blog with IndieWeb support</description>
+<atom:link href="https://example.com/feed/index.xml" rel="self" type="application/rss+xml" />
+<lastBuildDate>Wed, 14 Jan 2026 02:07:34 +0000</lastBuildDate>
+<webmention:hub>https://webmention.io/hub</webmention:hub>
+<indie:microformats>true</indie:microformats>
+<item>
+<title>Neuromancer by William Gibson - Review</title>
+<link>https://example.com/review/neuromancer-review/</link>
+<guid>https://example.com/review/neuromancer-review/</guid>
+<pubDate>Wed, 14 Jan 2026 02:07:34 +0000</pubDate>
+<description>&lt;h1 id="neuromancer-by-william-gibson"&gt;Neuromancer by William
+Gibson&lt;/h1&gt;
+&lt;h2 id="a-defining-work-of-cyberpunk"&gt;A Defining Work of Cyberpunk&lt;/h2&gt;
+&lt;p&gt;William Gibson’s &lt;em&gt;Neuromancer&lt;/em&gt; isn’t just a science fiction
+novel—it’s the foundational text of cyberpunk. Published in 1984, it
+imagined a future of networked computers, artificial intelligence, and
+human augmentation that has become remarkably prescient. The prose is
+dense and evocative, painting a neon-soaked world where the line between
+human and machine blurs. Case, our protagonist, is a damaged console
+cowboy navigating the digital frontier of cyberspace while entangled in
+corporate intrigue. ## Why It Still Matters Nearly 40 years later,
+Gibson’s vision of cyberspace—a term he coined—continues to influence
+how we think about the internet, virtual reality, and human-computer
+interaction. The novel’s exploration of AI consciousness remains
+relevant as we grapple with modern machine learning systems.
+&lt;strong&gt;Highly recommended&lt;/strong&gt; for anyone interested in the origins
+of cyberpunk or speculative fiction that tackles technology’s impact on
+humanity.&lt;/p&gt;</description>
+</item>
+<item>
+<title>Welcome to Unix SSG</title>
+<link>https://example.com//welcome/</link>
+<guid>https://example.com//welcome/</guid>
+<pubDate>Mon, 13 Jan 2025 15:00:00 +0000</pubDate>
+<description>&lt;h1 id="welcome-to-the-unix-static-site-generator"&gt;Welcome to the Unix
+Static Site Generator&lt;/h1&gt;
+&lt;p&gt;This is a demonstration of a &lt;strong&gt;minimal static site
+generator&lt;/strong&gt; built with standard Unix tools. ## Features - ✅
+Markdown processing with Pandoc - ✅ YAML frontmatter parsing with
+yq&lt;br /&gt;
+- ✅ HTML templating with envsubst - ✅ RSS feed generation - ✅
+Tag-based organization - ✅ Parallel processing with Make - ✅ Minimal
+dependencies ## Philosophy The Unix philosophy of &lt;strong&gt;“do one thing
+well”&lt;/strong&gt; applied to static site generation: &amp;gt; Write programs
+that do one thing and do it well. Write programs to work together. Each
+component has a single responsibility: - &lt;code&gt;pandoc&lt;/code&gt; converts
+markdown to HTML - &lt;code&gt;yq&lt;/code&gt; processes YAML metadata&lt;br /&gt;
+- &lt;code&gt;envsubst&lt;/code&gt; handles template substitution -
+&lt;code&gt;make&lt;/code&gt; orchestrates the build process ## Code Example&lt;/p&gt;
+&lt;div class="sourceCode" id="cb1"&gt;&lt;pre
+class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span id="cb1-1"&gt;&lt;a href="#cb1-1" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;&lt;span class="co"&gt;# Process all markdown files in parallel&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb1-2"&gt;&lt;a href="#cb1-2" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;&lt;span class="fu"&gt;find&lt;/span&gt; src &lt;span class="at"&gt;-name&lt;/span&gt; &lt;span class="st"&gt;&amp;quot;*.md&amp;quot;&lt;/span&gt; &lt;span class="at"&gt;-type&lt;/span&gt; f &lt;span class="kw"&gt;|&lt;/span&gt; &lt;span class="dt"&gt;\&lt;/span&gt;&lt;/span&gt;
+&lt;span id="cb1-3"&gt;&lt;a href="#cb1-3" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;    &lt;span class="fu"&gt;xargs&lt;/span&gt; &lt;span class="at"&gt;-P&lt;/span&gt; &lt;span class="va"&gt;$(&lt;/span&gt;&lt;span class="fu"&gt;nproc&lt;/span&gt;&lt;span class="va"&gt;)&lt;/span&gt; &lt;span class="at"&gt;-I&lt;/span&gt; {} bin/process-markdown.sh {}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This approach minimizes dependencies while maintaining full
+functionality.&lt;/p&gt;</description>
+</item>
+<item>
+<title>The Four Agreements</title>
+<link>https://example.com/posts/test-review/</link>
+<guid>https://example.com/posts/test-review/</guid>
+<pubDate>Wed, 14 Jan 2026 02:07:34 +0000</pubDate>
+<description>&lt;h1 id="the-four-agreements-review"&gt;The Four Agreements Review&lt;/h1&gt;
+&lt;h2 id="description"&gt;Description&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In The Four Agreements, don Miguel Ruiz reveals the source of
+self-limiting beliefs that rob us of joy and create needless suffering.
+Based on ancient Toltec wisdom, The Four Agreements offer a powerful
+code of conduct that can rapidly transform our lives to a new experience
+of freedom, true happiness, and love. ## Review I purchased the
+paperback version but ended up listening to the audiobook version while
+doing chores over the weekend (~2.5 hours). This book gets straight to
+the point. That point being, throughout our lives we enter into
+agreements with society that enforce beliefs and influence our behavior,
+happiness, and inner peace. By speaking with truth and love, not
+suffering from main character syndrome (not everything is about you),
+seeking to understand rather than make assumptions, and not striving for
+perfection but constant improvement, you can slowly create new
+agreements that are more in line with your higher self.&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+</item>
+<item>
+<title>Lossless audio coming to Spotify</title>
+<link>https://example.com//test-media/</link>
+<guid>https://example.com//test-media/</guid>
+<pubDate>Sat, 13 Sep 2025 14:16:00 +0000</pubDate>
+<description>&lt;p&gt;I guess people complained enough they’re finally adding it&lt;/p&gt;</description>
+</item>
+<item>
+<title>Hello World</title>
+<link>https://example.com//hello-world/</link>
+<guid>https://example.com//hello-world/</guid>
+<pubDate>Sat, 09 Dec 2017 17:00:00 +0000</pubDate>
+<description>&lt;p&gt;Welcome to my personal blog. This will be a blog post for documenting
+my learning process as well as sharing projects and ideas I come across.
+I often find myself doing things, researching how to do them and
+completing a task. A few weeks/months later I might have to do something
+similar and have to go through the process again. Using this blog will
+help me keep me reference that knowledge.&lt;/p&gt;</description>
+</item>
+<item>
+<title>Crate Finds - January 2026</title>
+<link>https://example.com/playlist/crate-finds-example/</link>
+<guid>https://example.com/playlist/crate-finds-example/</guid>
+<pubDate>Wed, 14 Jan 2026 02:07:34 +0000</pubDate>
+<description>&lt;h1 id="crate-finds---january-2026"&gt;Crate Finds - January 2026&lt;/h1&gt;
+&lt;p&gt;My latest vinyl finds and digital discoveries for this month. A mix
+of jazz, funk, and soul that’s been on repeat. ## Tracks A solid month
+of funk and jazz exploration!&lt;/p&gt;</description>
+</item>
+<item>
+<title>First note in the Unix SSG</title>
+<link>https://example.com//first-note/</link>
+<guid>https://example.com//first-note/</guid>
+<pubDate>Mon, 13 Jan 2025 16:30:00 +0000</pubDate>
+<description>&lt;p&gt;Just testing out the Unix-based static site generator. This is a
+note-type post to demonstrate different content types. Pretty cool how
+&lt;code&gt;pandoc&lt;/code&gt; + &lt;code&gt;yq&lt;/code&gt; + &lt;code&gt;make&lt;/code&gt; can replace a
+complex F# application! 🚀&lt;/p&gt;</description>
+</item>
+<item>
+<title>Unix Philosophy Explained</title>
+<link>https://example.com//unix-philosophy-video/</link>
+<guid>https://example.com//unix-philosophy-video/</guid>
+<pubDate>Mon, 13 Jan 2025 14:15:00 +0000</pubDate>
+<description>&lt;p&gt;Great video explaining the Unix philosophy and how it applies to
+modern development. &lt;a href="https://example.com/video"
+title="Unix Philosophy Explained"&gt;&lt;img
+src="https://example.com/thumb.jpg" alt="Unix Philosophy" /&gt;&lt;/a&gt; The key
+principles: 1. Do one thing well 2. Work together 3. Handle text
+streams&lt;/p&gt;</description>
+</item>
+</channel>
+</rss>
