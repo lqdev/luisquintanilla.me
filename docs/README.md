@@ -4,6 +4,20 @@ This directory contains comprehensive guides and documentation for the website's
 
 ## 📚 Documentation Index
 
+### 📊 Repository Audit & Governance
+
+- **[Repository Audit Report](REPOSITORY_AUDIT_REPORT.md)** - Comprehensive analysis of all files, scripts, and code
+
+### 📋 Architectural Decision Records
+
+The **[ADR Index](adr/README.md)** contains documented architectural decisions:
+
+- **[ADR-0001](adr/0001-unified-content-processing.md)** - Unified Content Processing with GenericBuilder
+- **[ADR-0002](adr/0002-indieweb-microformats.md)** - IndieWeb Microformats Integration
+- **[ADR-0003](adr/0003-static-site-architecture.md)** - F# Static Site Generator Architecture
+- **[ADR-0004](adr/0004-progressive-loading.md)** - Progressive Loading for Large Content Volumes
+- **[ADR-0005](adr/0005-file-organization.md)** - Repository File Organization
+
 ### 🚀 Getting Started & Publishing
 
 - **[GitHub Issue Posting Guide](github-issue-posting-guide.md)** - Create content directly through GitHub Issues
