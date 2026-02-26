@@ -55,77 +55,6 @@ let private extractReviewItemType (content: string) =
     | ex -> 
         None
 
-/// Extract simplified review content for timeline cards
-/// Shows only: title, image, rating, scale, and summary extracted from already-rendered HTML
-let private createSimplifiedReviewContent (content: string) =
-    try
-        // The content is already HTML with rendered custom-review-block
-        if content.Contains("custom-review-block") then
-            // Extract key information from the rendered HTML
-            let extractFromHtml (startPattern: string) (endPattern: string) =
-                let startIndex = content.IndexOf(startPattern)
-                if startIndex >= 0 then
-                    let startIndex = startIndex + startPattern.Length
-                    let endIndex = content.IndexOf(endPattern, startIndex)
-                    if endIndex > startIndex then
-                        Some (content.Substring(startIndex, endIndex - startIndex).Trim())
-                    else None
-                else None
-            
-            // Extract title
-            let title = extractFromHtml "review-title p-name\">" "</h3>"
-            
-            // Extract image
-            let imageHtml = 
-                if content.Contains("review-image") then
-                    extractFromHtml "review-image\"><img src=\"" "\" alt="
-                    |> Option.map (fun imgUrl -> 
-                        let altText = title |> Option.defaultValue "Review Item"
-                        $"""<div class="simplified-review-image">
-                <img src="{imgUrl}" alt="{altText}" class="review-cover" style="max-width: 150px; height: auto;" />
-            </div>""")
-                    |> Option.defaultValue ""
-                else ""
-            
-            // Extract rating
-            let ratingHtml = 
-                if content.Contains("review-rating") then
-                    extractFromHtml "review-rating p-rating\"><strong>Rating:</strong> " "</div>"
-                    |> Option.map (fun rating -> 
-                        $"""<div class="simplified-review-rating">
-                <strong>Rating:</strong> {rating}
-            </div>""")
-                    |> Option.defaultValue ""
-                else ""
-            
-            // Extract summary
-            let summaryHtml = 
-                if content.Contains("review-summary") then
-                    extractFromHtml "review-summary p-summary\">" "</div>"
-                    |> Option.map (fun summary -> 
-                        $"""<div class="simplified-review-summary">
-                {summary}
-            </div>""")
-                    |> Option.defaultValue ""
-                else ""
-            
-            let titleText = title |> Option.defaultValue "Review"
-            
-            // Construct the simplified review card
-            $"""<div class="simplified-review-card">
-            <h3 class="simplified-review-title">{titleText}</h3>
-            {imageHtml}
-            {ratingHtml}
-            {summaryHtml}
-        </div>"""
-        else
-            // No custom review block found, return empty
-            ""
-    with
-    | ex -> 
-        // On any error, return empty content to avoid breaking the page
-        ""
-
 // New stratified timeline homepage view - takes 5 items from each content type initially
 // Progressive loading is content-type aware for better filtering experience
 let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) (remainingItemsByType: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) (pinnedUrls: Set<string>) =
@@ -232,26 +161,21 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                                 a [ _class "u-url title-link"; _href properPermalink ] [ Text item.Title ]
                             ]
                             div [ _class "e-content card-content" ] [
-                                // Special handling for reviews - they already use simplified CardHtml from GenericBuilder
-                                if item.ContentType = "reviews" then
-                                    // Reviews are already simplified in the unified feed processing, display as-is
-                                    rawText item.Content
-                                else
-                                    // Convert markdown content to HTML and clean it for other content types
-                                    let cleanedContent = 
-                                        let content = convertMdToHtml item.Content  // Convert markdown to HTML first
-                                        // Remove all article opening tags with any class
-                                        let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
-                                        // Remove all article closing tags
-                                        let removeArticleEnd = removeArticleStart.Replace("</article>", "")
-                                        // Remove duplicate h1/h2 titles (common source of duplication)
-                                        let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                                        // Remove h2 title links from CardHtml (fixes duplicate headings while preserving content h2s)
-                                        let removeTitleLinks = System.Text.RegularExpressions.Regex.Replace(removeTitles, @"<h2[^>]*><a[^>]*>.*?</a></h2>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                                        // Additional cleaning to prevent HTML parsing issues
-                                        let safeCleaned = removeTitleLinks.Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
-                                        safeCleaned
-                                    rawText cleanedContent
+                                // Convert markdown content to HTML and clean it for all content types
+                                let cleanedContent = 
+                                    let content = convertMdToHtml item.Content  // Convert markdown to HTML first
+                                    // Remove all article opening tags with any class
+                                    let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
+                                    // Remove all article closing tags
+                                    let removeArticleEnd = removeArticleStart.Replace("</article>", "")
+                                    // Remove duplicate h1/h2 titles (common source of duplication)
+                                    let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+                                    // Remove h2 title links from CardHtml (fixes duplicate headings while preserving content h2s)
+                                    let removeTitleLinks = System.Text.RegularExpressions.Regex.Replace(removeTitles, @"<h2[^>]*><a[^>]*>.*?</a></h2>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+                                    // Additional cleaning to prevent HTML parsing issues
+                                    let safeCleaned = removeTitleLinks.Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
+                                    safeCleaned
+                                rawText cleanedContent
                             ]
                         ]
                         
@@ -460,25 +384,21 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                                 a [ _class "u-url title-link"; _href properPermalink ] [ Text item.Title ]
                             ]
                             div [ _class "e-content card-content" ] [
-                                // Special handling for reviews - they already use simplified CardHtml from GenericBuilder
-                                if item.ContentType = "reviews" then
-                                    // Reviews are already simplified in the unified feed processing, display as-is
-                                    rawText item.Content
-                                    // Convert markdown content to HTML and clean it for other content types
-                                    let cleanedContent = 
-                                        let content = convertMdToHtml item.Content  // Convert markdown to HTML first
-                                        // Remove all article opening tags with any class
-                                        let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
-                                        // Remove all article closing tags
-                                        let removeArticleEnd = removeArticleStart.Replace("</article>", "")
-                                        // Remove duplicate h1/h2 titles (common source of duplication)
-                                        let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                                        // Remove h2 title links from CardHtml (fixes duplicate headings while preserving content h2s)
-                                        let removeTitleLinks = System.Text.RegularExpressions.Regex.Replace(removeTitles, @"<h2[^>]*><a[^>]*>.*?</a></h2>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                                        // Additional cleaning to prevent HTML parsing issues
-                                        let safeCleaned = removeTitleLinks.Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
-                                        safeCleaned
-                                    rawText cleanedContent
+                                // Convert markdown content to HTML and clean it for all content types
+                                let cleanedContent = 
+                                    let content = convertMdToHtml item.Content  // Convert markdown to HTML first
+                                    // Remove all article opening tags with any class
+                                    let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
+                                    // Remove all article closing tags
+                                    let removeArticleEnd = removeArticleStart.Replace("</article>", "")
+                                    // Remove duplicate h1/h2 titles (common source of duplication)
+                                    let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+                                    // Remove h2 title links from CardHtml (fixes duplicate headings while preserving content h2s)
+                                    let removeTitleLinks = System.Text.RegularExpressions.Regex.Replace(removeTitles, @"<h2[^>]*><a[^>]*>.*?</a></h2>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+                                    // Additional cleaning to prevent HTML parsing issues
+                                    let safeCleaned = removeTitleLinks.Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
+                                    safeCleaned
+                                rawText cleanedContent
                             ]
                         ]
                         
@@ -537,13 +457,8 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                         
                         // Clean content safely for JSON without truncation - full content display
                         let safeContent = 
-                            let content = 
-                                if item.ContentType = "reviews" then
-                                    // For reviews, use simplified content just like the initial timeline
-                                    createSimplifiedReviewContent item.Content
-                                else
-                                    // For other content types, use the standard processing
-                                    convertMdToHtml item.Content  // Convert markdown to HTML first
+                            // Use standard processing for all content types
+                            let content = convertMdToHtml item.Content  // Convert markdown to HTML first
                             
                             // Clean content similar to initial loading to ensure consistency
                             let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
