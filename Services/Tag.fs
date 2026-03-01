@@ -7,6 +7,18 @@ module TagService
         else
             let processed = 
                 tag.ToLower().Trim()
+                // High-impact duplicate consolidation (order matters!)
+                |> fun s -> s.Replace("websites", "website")
+                |> fun s -> s.Replace("webmentions", "webmention") 
+                |> fun s -> s.Replace("transformers", "transformer")
+                |> fun s -> s.Replace("agents", "agent")
+                |> fun s -> s.Replace("tokenizers", "tokenizer")
+                |> fun s -> s.Replace("videos", "video")
+                // Issue-specific examples consolidation
+                |> fun s -> s.Replace("selfhosting", "selfhost")
+                |> fun s -> s.Replace("nationalparks", "nationalpark")
+                // Common plural consolidations  
+                |> fun s -> if s = "tools" then "tool" else s
                 // Technology-specific replacements (order matters!)
                 |> fun s -> s.Replace(".net core", "dotnet")
                 |> fun s -> s.Replace(".net framework", "dotnet-framework") 
