@@ -73,6 +73,14 @@ This directory contains comprehensive guides and documentation for the website's
 - **[Content Processor Optimization](content-processor-optimization-summary.md)** - Performance improvements
 - **[Content Volume HTML Parsing](content-volume-html-parsing-discovery.md)** - Large content handling
 
+### 📚 Wiki Curation & Knowledge Base
+
+- **[Wiki Overview](wiki/README.md)** - Wiki curation system documentation hub
+- **[Audit Report](wiki/audit-report.md)** - Analysis of /docs content suitable for wiki
+- **[Information Architecture](wiki/information-architecture.md)** - Wiki category structure and tagging
+- **[Contribution Guidelines](wiki/contribution-guidelines.md)** - Standards for wiki entries
+- **[Workflow Guide](wiki/workflow-guide.md)** - Process for creating and maintaining wiki content
+
 ## 📋 Documentation Standards
 
 All documentation follows these principles:
