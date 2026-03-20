@@ -292,6 +292,8 @@ All agents are defined in `.github/agents/` with YAML frontmatter following GitH
 ## 🔗 Links
 
 - **Live Site**: [https://www.lqdev.me](https://www.lqdev.me)
-- **Architecture Docs**: `docs/core-infrastructure-architecture.md`
-- **Development Logs**: `projects/archive/` and `changelog.md`
+- **Contributing**: [CONTRIBUTING.md](CONTRIBUTING.md) - Guidelines for contributors and AI assistants
+- **Architecture Docs**: [docs/core-infrastructure-architecture.md](docs/core-infrastructure-architecture.md)
+- **Architectural Decision Records**: [docs/adr/](docs/adr/) - Key design decisions documented
+- **Development Logs**: [projects/archive/](projects/archive/) and [changelog.md](changelog.md)
 - **Migration History**: Complete 8-phase migration documented in project archives
