@@ -17,6 +17,11 @@
   --desert-sage: #9CAF88;           /* Muted green for wiki */
   --sunrise-pink: #FFB6C1;          /* Soft pink for presentations */
   
+  /* AI Memex - Desert Twilight */
+  --desert-twilight: #8B5FBF;
+  --desert-twilight-light: #A67FD4;
+  --desert-twilight-bg: rgba(139, 95, 191, 0.08);
+  
   /* Semantic Color Mapping */
   --background-color: var(--desert-sand);
   --text-color: var(--saguaro-green);
@@ -84,6 +89,11 @@ body[data-theme="dark"] {
   --accent-color: var(--ocotillo-bloom);
   --hover-color: var(--cactus-green);
   --link-color: var(--desert-moonlight);
+  
+  /* AI Memex - Desert Twilight (Dark Mode) */
+  --desert-twilight: #A67FD4;
+  --desert-twilight-light: #C09FE4;
+  --desert-twilight-bg: rgba(166, 127, 212, 0.12);
   
   /* Component Colors - Dark Mode */
   --card-background: var(--saguaro-shadow);

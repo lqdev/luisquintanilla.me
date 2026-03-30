@@ -210,6 +210,15 @@
   background: #8FBC8F; /* Palo Verde */
 }
 
+.content-type-badge[data-type="ai-memex"] {
+  background: #8B5FBF; /* Desert Twilight */
+}
+
+/* AI Memex badge */
+[data-type="ai-memex"] .timeline-badge {
+  background-color: #8B5FBF;
+}
+
 /* Card Body */
 .card-body {
   padding: var(--spacing-lg);

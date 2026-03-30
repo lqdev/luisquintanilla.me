@@ -1,0 +1,125 @@
+/* AI Memex Content Type Styles */
+
+/* Entry type badge in page header */
+.ai-memex-type-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    background-color: var(--desert-twilight-bg);
+    color: var(--desert-twilight);
+    border-radius: 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+/* Description/summary callout */
+.ai-memex-description {
+    font-style: italic;
+    color: var(--text-muted, #6c757d);
+    border-left: 3px solid var(--desert-twilight-light);
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Updated date indicator */
+.ai-memex-updated {
+    color: var(--text-muted, #6c757d);
+    font-size: 0.9em;
+}
+
+/* AI author card - visible, not hidden */
+.ai-memex-author {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-left: 4px solid var(--desert-twilight);
+    background-color: var(--desert-twilight-bg);
+    border-radius: 0 0.25rem 0.25rem 0;
+    font-size: 0.9rem;
+}
+
+.ai-memex-author a {
+    color: var(--desert-twilight);
+    font-weight: 500;
+}
+
+/* Landing page filter buttons */
+.ai-memex-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.ai-memex-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--desert-twilight-light);
+    background: transparent;
+    color: var(--text-color, #333);
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.ai-memex-filter-btn:hover {
+    background-color: var(--desert-twilight-bg);
+}
+
+.ai-memex-filter-btn.active {
+    background-color: var(--desert-twilight);
+    color: white;
+    border-color: var(--desert-twilight);
+}
+
+/* Landing page list */
+.ai-memex-list {
+    list-style: none;
+    padding: 0;
+}
+
+.ai-memex-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color, #eee);
+}
+
+.ai-memex-list li:last-child {
+    border-bottom: none;
+}
+
+.ai-memex-list a {
+    font-weight: 500;
+}
+
+/* Entry type-specific accent colors for variety */
+.ai-memex-entry[data-entry-type="project-report"] .ai-memex-type-badge {
+    background-color: rgba(123, 79, 175, 0.1);
+    color: #7B4FAF;
+}
+
+.ai-memex-entry[data-entry-type="research"] .ai-memex-type-badge {
+    background-color: rgba(155, 111, 207, 0.1);
+    color: #9B6FCF;
+}
+
+.ai-memex-entry[data-entry-type="reference"] .ai-memex-type-badge {
+    background-color: rgba(107, 79, 159, 0.1);
+    color: #6B4F9F;
+}
+
+.ai-memex-entry[data-entry-type="pattern"] .ai-memex-type-badge {
+    background-color: rgba(171, 127, 223, 0.1);
+    color: #AB7FDF;
+}
+
+.ai-memex-entry[data-entry-type="blog-post"] .ai-memex-type-badge {
+    background-color: rgba(139, 95, 191, 0.1);
+    color: #8B5FBF;
+}
