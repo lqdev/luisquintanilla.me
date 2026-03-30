@@ -35,7 +35,7 @@ Build a custom static site generator in F# (.NET 10.0) that compiles markdown co
 
 **Content source structure**: Markdown files in `_src/` subdirectories (`_src/feed/`, `_src/responses/`, etc.) with YAML frontmatter parsed by YamlDotNet into domain types defined in `Domain.fs`.
 
-**Module compilation order** (from `.fsproj`): Domain → CustomBlocks → MediaTypes → ASTParsing → BlockRenderers → Services → GenericBuilder → ActivityPubBuilder → Views → Collections → SearchIndex → Loaders → TextOnlyBuilder → Builder → Program.
+**Module compilation order**: The exact compilation order is defined in `PersonalSite.fsproj` (the `<Compile>` items). Conceptually: Domain types → custom Markdig extensions → AST parsing → services (markdown, tags, reading time, OPML, webmention, related content) → GenericBuilder → ActivityPub → Views → Collections → SearchIndex → Loaders → TextOnlyBuilder → Builder → Program entry point.
 
 ## Consequences
 

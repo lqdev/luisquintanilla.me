@@ -21,7 +21,7 @@ Source content lives in `_src/` and the build outputs to `_public/`.
 | Post | `_src/posts/` | `/posts/{slug}/` | `post_type`, `title`, `description`, `published_date`, `tags` | Yes |
 | Note | `_src/notes/` | `/notes/{slug}/` | `post_type`, `title`, `published_date`, `tags` | Yes |
 | Response | `_src/responses/` | `/responses/{slug}/` | `title`, `targeturl`, `response_type`, `dt_published`, `dt_updated`, `tags` | Yes |
-| Bookmark | `_src/bookmarks/` | `/bookmarks/{slug}/` | `title`, `bookmark_of`, `description`, `dt_published`, `dt_updated`, `tags` | Yes |
+| Bookmark | `_src/bookmarks/` | `/bookmarks/{slug}/` | `title`, `targeturl`, `response_type` (`"bookmark"`), `dt_published`, `dt_updated`, `tags` | Yes |
 | Wiki | `_src/resources/wiki/` | `/resources/wiki/{slug}/` | `post_type`, `title`, `last_updated_date`, `tags` | No |
 | Snippet | `_src/resources/snippets/` | `/resources/snippets/{slug}/` | `title`, `language`, `tags`, `created_date` | No |
 | Presentation | `_src/resources/presentations/` | `/resources/presentations/{slug}/` | `title`, `resources`, `tags`, `date` | No |
@@ -82,19 +82,23 @@ tags: ["tag1", "tag2"]
 ---
 ```
 
-Valid `response_type` values: `reply`, `star`, `share`, `bookmark`, `rsvp`.
+Valid `response_type` values: `reply`, `star`, `reshare`, `bookmark`, `rsvp` (with `share` supported as a legacy alias for `reshare`).
 
 ### Bookmark (`_src/bookmarks/`)
+
+Bookmarks are processed as responses via `ResponseProcessor`. They use the same frontmatter schema:
 
 ```yaml
 ---
 title: "Bookmark Title"
-bookmark_of: https://example.com/resource
-description: "Why this is worth bookmarking"
+targeturl: https://example.com/resource
+response_type: bookmark
 dt_published: "2025-01-15 12:00 -05:00"
 dt_updated: "2025-01-15 12:00 -05:00"
 tags: ["tag1", "tag2"]
 ---
+
+Optional commentary about why this is worth bookmarking.
 ```
 
 ## RSS Feeds
