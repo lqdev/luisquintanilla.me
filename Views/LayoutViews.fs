@@ -178,6 +178,7 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                         // Specific response types also route to /responses/
                         | "star" | "reply" | "reshare" | "rsvp" -> $"/responses/{fileName}/"
                         | "bookmark" -> $"/bookmarks/{fileName}/"
+                        | "ai-memex" -> $"/resources/ai-memex/{fileName}/"
                         | _ -> $"/{contentType}/{fileName}/"
                     
                     let properPermalink = getProperPermalink item.ContentType fileName
@@ -222,6 +223,7 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                                           | "reshare" -> "Reshare"
                                           | "rsvp" -> "RSVP"
                                           | "bookmark" -> "Bookmark"
+                                          | "ai-memex" -> "AI Memex"
                                           | _ -> item.ContentType)
                                 ]
                             ]
@@ -304,6 +306,7 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                                     | "reviews" -> $"/reviews/{fileName}/"
                                     | "streams" -> $"/streams/{fileName}/"
                                     | "media" -> $"/media/{fileName}/"
+                                    | "ai-memex" -> $"/resources/ai-memex/{fileName}/"
                                     | _ -> $"/{contentType}/{fileName}/"
                                 let properPermalink = getProperPermalink item.ContentType fileName
                                 
@@ -416,6 +419,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                         // Specific response types also route to /responses/
                         | "star" | "reply" | "reshare" | "rsvp" -> $"/responses/{fileName}/"
                         | "bookmark" -> $"/bookmarks/{fileName}/"
+                        | "ai-memex" -> $"/resources/ai-memex/{fileName}/"
                         | _ -> $"/{contentType}/{fileName}/"
                     
                     let properPermalink = getProperPermalink item.ContentType fileName
@@ -450,6 +454,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                                           | "reshare" -> "Reshare"
                                           | "rsvp" -> "RSVP"
                                           | "bookmark" -> "Bookmark"
+                                          | "ai-memex" -> "AI Memex"
                                           | _ -> item.ContentType)
                                 ]
                             ]
@@ -532,6 +537,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                             | "reviews" -> $"/reviews/{fileName}/"
                             | "streams" -> $"/streams/{fileName}/"
                             | "media" -> $"/media/{fileName}/"
+                            | "ai-memex" -> $"/resources/ai-memex/{fileName}/"
                             | _ -> $"/{contentType}/{fileName}/"
                         let properPermalink = getProperPermalink item.ContentType fileName
                         
