@@ -1,20 +1,8 @@
-# Archive Directory
+# Archive
 
-This directory contains historical files from development, migration, and project work that have been cleaned up from the root directory but may have reference value.
+Historical project artifacts organized by type. These files have been moved from the repository root to maintain a clean project structure.
 
-## Contents
+## Directories
 
-### Migration Logs and Artifacts
-Files from content migration projects, including logs of files moved and migration scripts.
-
-### Project Summaries
-Completed project summaries and reports from major refactoring and cleanup efforts.
-
-### Changelog Entries
-Draft changelog entries that were incorporated into the main changelog.md file.
-
-### Analysis Reports
-Results from link analysis, content auditing, and other site analysis activities.
-
-## Cleanup Date
-Created: 2025-09-14
+- **summaries/** — Implementation documentation and fix summaries from development work
+- **demos/** — Prototype files and demo content created during feature development

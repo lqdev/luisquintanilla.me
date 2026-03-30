@@ -35,6 +35,7 @@ This directory contains comprehensive guides and documentation for the website's
 
 ### 🏗️ Architecture & Technical
 
+- **[Architecture Decision Records](adr/)** - Key technical decisions and their rationale (ADRs)
 - **[Core Infrastructure Architecture](core-infrastructure-architecture.md)** - System architecture overview
 - **[Feed Architecture](feed-architecture.md)** - RSS feed generation and organization
 - **[Feature Flag Pattern](feature-flag-pattern.md)** - Safe feature deployment strategy
@@ -129,6 +130,8 @@ When adding new features or content types, please:
 ## 🔗 Quick Links
 
 - **[Main README](../README.md)** - Repository overview and getting started
+- **[Contributing Guide](../CONTRIBUTING.md)** - Project guide for contributors and AI assistants
+- **[Architecture Decision Records](adr/)** - Key technical decisions (ADRs)
 - **[Changelog](../changelog.md)** - Project history and completed features
 - **[Projects Archive](../projects/archive/)** - Detailed project implementation logs
 - **[VS Code Snippets](../.vscode/)** - Content creation shortcuts
