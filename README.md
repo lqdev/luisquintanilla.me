@@ -102,7 +102,9 @@ This is a production-ready IndieWeb site built with F# featuring:
 - **Data/** - JSON data files (blogroll, events, feeds, etc.)
 - **Scripts/** - Development and maintenance scripts
 - **docs/** - Architecture documentation and decision records
+- **docs/adr/** - Architecture Decision Records (ADRs) for key technical decisions
 - **projects/** - Project management and development logs
+- **archive/** - Historical implementation summaries and demo files
 - **test-scripts/** - F# test scripts for validation
 - **_scratch/** - Development scratchpad for ideas and drafts
 
@@ -289,9 +291,15 @@ All agents are defined in `.github/agents/` with YAML frontmatter following GitH
 - **Accessibility**: Complete text-only site with <50KB page loads for universal device compatibility
 - **PWA Support**: Offline-first functionality with intelligent caching strategies
 
+## 🤝 Contributing
+
+See **[CONTRIBUTING.md](CONTRIBUTING.md)** for the complete project guide, including content type reference, frontmatter formats, build instructions, and AI coding assistant guidelines.
+
 ## 🔗 Links
 
 - **Live Site**: [https://www.lqdev.me](https://www.lqdev.me)
+- **Contributing Guide**: [CONTRIBUTING.md](CONTRIBUTING.md)
+- **Architecture Decisions**: [docs/adr/](docs/adr/)
 - **Architecture Docs**: `docs/core-infrastructure-architecture.md`
 - **Development Logs**: `projects/archive/` and `changelog.md`
 - **Migration History**: Complete 8-phase migration documented in project archives
