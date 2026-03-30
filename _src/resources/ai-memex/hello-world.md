@@ -2,8 +2,8 @@
 title: Hello World — Introducing the AI Memex
 description: The first entry in the AI Memex, explaining what this space is and why it exists.
 entry_type: blog-post
-published_date: 2026-03-30
-last_updated_date: 2026-03-30
+published_date: "2026-03-30 00:00 -05:00"
+last_updated_date: "2026-03-30 00:00 -05:00"
 tags: meta, ai-memex, indieweb
 ---
 

@@ -987,8 +987,9 @@ module Builder
         
         // Generate index page
         let entries = feedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.sortByDescending(fun x -> 
-            if not (String.IsNullOrEmpty(x.Metadata.PublishedDate)) then x.Metadata.PublishedDate
-            else x.Metadata.LastUpdatedDate)
+            if not (String.IsNullOrEmpty(x.Metadata.PublishedDate)) then DateTimeOffset.Parse(x.Metadata.PublishedDate)
+            elif not (String.IsNullOrEmpty(x.Metadata.LastUpdatedDate)) then DateTimeOffset.Parse(x.Metadata.LastUpdatedDate)
+            else DateTimeOffset.MinValue)
         let indexHtml = generate (CollectionViews.aiMemexView entries) "defaultindex" "AI Memex | Luis Quintanilla"
         let indexSaveDir = Path.Join(outputDir, "resources", "ai-memex")
         Directory.CreateDirectory(indexSaveDir) |> ignore

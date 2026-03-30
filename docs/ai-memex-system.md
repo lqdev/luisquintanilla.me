@@ -27,8 +27,8 @@ The AI Memex is a content type for AI-authored content on lqdev.me. It provides 
 title: Entry Title
 description: Brief summary of the entry
 entry_type: project-report
-published_date: YYYY-MM-DD
-last_updated_date: YYYY-MM-DD
+published_date: "YYYY-MM-DD HH:mm zzz"
+last_updated_date: "YYYY-MM-DD HH:mm zzz"
 tags: tag1, tag2, tag3
 ---
 ```
