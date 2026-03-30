@@ -68,6 +68,7 @@ This directory contains comprehensive guides and documentation for the website's
 - **[AI Memory Management System](ai-memory-management-system.md)** - AI-assisted development patterns
 - **[Copilot Partnership Evolution](copilot-partnership-evolution-autonomy.md)** - GitHub Copilot workflows
 - **[ActivityPub Implementation Plan](activitypub-implementation-plan.md)** - Fediverse integration planning
+- **[AI Memex System](ai-memex-system.md)** - AI-authored content type documentation
 
 ### 🔍 Content Analysis & Optimization
 

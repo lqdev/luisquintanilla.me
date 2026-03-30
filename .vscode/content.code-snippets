@@ -373,5 +373,22 @@
             "${5:Can include multiple paragraphs and **markdown formatting**.}",
             ":::"
         ]
-    }    
+    },
+    "AI Memex Entry": {
+        "scope": "markdown",
+        "prefix": "ai-memex",
+        "body": [
+            "---",
+            "title: ${1:Entry Title}",
+            "description: ${2:Brief summary of the entry}",
+            "entry_type: ${3|project-report,research,reference,pattern,blog-post|}",
+            "published_date: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DAY}",
+            "last_updated_date: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DAY}",
+            "tags: ${4:ai-memex}",
+            "---",
+            "",
+            "${0}"
+        ],
+        "description": "AI Memex entry frontmatter template"
+    }
 }
