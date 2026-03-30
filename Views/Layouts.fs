@@ -114,6 +114,8 @@ module Layouts
                         a [_class "dropdown-item"; _href "/resources/wiki"] [Text "Wiki"]
                         a [_class "dropdown-item"; _href "/resources/presentations"] [Text "Presentations"]
                         a [_class "dropdown-item"; _href "/resources/read-later"] [Text "Read Later"]
+                        div [_class "dropdown-divider"] []
+                        a [_class "dropdown-item"; _href "/resources/ai-memex/"] [Text "AI Memex"]
                     ]
                 ]
                 
@@ -252,6 +254,8 @@ module Layouts
                                 a [_class "dropdown-item"; _href "/resources/wiki"] [ Text "Wiki" ]
                                 a [_class "dropdown-item"; _href "/resources/presentations"] [ Text "Presentations" ]
                                 a [_class "dropdown-item"; _href "/resources/read-later"] [ Text "Read Later" ]
+                                div [_class "dropdown-divider"] []
+                                a [_class "dropdown-item"; _href "/resources/ai-memex/"] [ Text "AI Memex" ]
                         ]
                     ]
 

@@ -148,6 +148,11 @@
       "statusCode": 301
     },
     {
+      "route": "/ai-memex.rss",
+      "redirect": "/resources/ai-memex/feed.xml",
+      "statusCode": 301
+    },
+    {
       "route": "/mastodon.rss",
       "redirect": "https://toot.lqdev.tech/@lqdev.rss",
       "statusCode": 301

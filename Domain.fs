@@ -173,6 +173,35 @@ module Domain
             member this.FileName = this.FileName
             member this.ContentType = "wiki"
 
+    [<CLIMutable>]
+    type AiMemexDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="description")>] Description: string
+        [<YamlMember(Alias="entry_type")>] EntryType: string
+        [<YamlMember(Alias="published_date")>] PublishedDate: string
+        [<YamlMember(Alias="last_updated_date")>] LastUpdatedDate: string
+        [<YamlMember(Alias="tags")>] Tags: string
+    }
+
+    type AiMemex = {
+        FileName: string
+        Metadata: AiMemexDetails
+        Content: string
+        MarkdownSource: string option
+    }
+    with
+        interface ITaggable with
+            member this.Tags = 
+                if String.IsNullOrEmpty(this.Metadata.Tags) then [||]
+                else this.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+            member this.Title = this.Metadata.Title
+            member this.Date = 
+                if not (String.IsNullOrEmpty(this.Metadata.PublishedDate)) then this.Metadata.PublishedDate
+                elif not (String.IsNullOrEmpty(this.Metadata.LastUpdatedDate)) then this.Metadata.LastUpdatedDate
+                else ""
+            member this.FileName = this.FileName
+            member this.ContentType = "ai-memex"
+
     type OpmlMetadata = 
         {
             Title: string

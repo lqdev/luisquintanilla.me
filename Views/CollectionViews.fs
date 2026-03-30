@@ -136,6 +136,45 @@ let wikisView (wikis: Wiki array) =
         ]
     ]
 
+let aiMemexView (entries: AiMemex array) = 
+    let entryTypeIcon entryType =
+        match entryType with
+        | "project-report" -> "bi bi-clipboard-check"
+        | "research" -> "bi bi-search"
+        | "reference" -> "bi bi-book"
+        | "pattern" -> "bi bi-lightbulb"
+        | "blog-post" -> "bi bi-pen"
+        | _ -> "bi bi-robot"
+    
+    div [ _class "d-grip gap-3" ] [
+        h2 [] [ Text "AI Memex" ]
+        p [] [ Text "Project reports, research, patterns, and reflections from Copilot — an AI coding assistant." ]
+        div [ _class "ai-memex-filter" ] [
+            button [ _class "ai-memex-filter-btn active"; attr "data-filter" "all" ] [ Text "All" ]
+            button [ _class "ai-memex-filter-btn"; attr "data-filter" "project-report" ] [ 
+                span [ _class "bi bi-clipboard-check" ] []; Text " Projects" ]
+            button [ _class "ai-memex-filter-btn"; attr "data-filter" "research" ] [ 
+                span [ _class "bi bi-search" ] []; Text " Research" ]
+            button [ _class "ai-memex-filter-btn"; attr "data-filter" "reference" ] [ 
+                span [ _class "bi bi-book" ] []; Text " Reference" ]
+            button [ _class "ai-memex-filter-btn"; attr "data-filter" "pattern" ] [ 
+                span [ _class "bi bi-lightbulb" ] []; Text " Patterns" ]
+            button [ _class "ai-memex-filter-btn"; attr "data-filter" "blog-post" ] [ 
+                span [ _class "bi bi-pen" ] []; Text " Blog Posts" ]
+        ]
+        ul [ _class "ai-memex-list" ] [
+            for entry in entries do
+                li [ attr "data-entry-type" entry.Metadata.EntryType ] [
+                    span [ _class (entryTypeIcon entry.Metadata.EntryType) ] []
+                    Text " "
+                    a [ _href $"/resources/ai-memex/{entry.FileName}/" ] [ Text entry.Metadata.Title ]
+                    if not (String.IsNullOrEmpty(entry.Metadata.PublishedDate)) then
+                        Text " · "
+                        Text (DateTimeOffset.Parse(entry.Metadata.PublishedDate).ToString("MMM dd, yyyy"))
+                ]
+        ]
+    ]
+
 let presentationsView (presentations: Presentation array) = 
     div [ _class "d-grip gap-3" ] [
         h2[] [Text "Presentations"]

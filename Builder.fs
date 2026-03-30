@@ -955,6 +955,48 @@ module Builder
         // Return feed data for potential RSS generation
         feedData
 
+    // AST-based AI Memex processing using GenericBuilder infrastructure
+    let buildAiMemex() = 
+        let aiMemexFiles = 
+            let dir = Path.Join(srcDir, "resources", "ai-memex")
+            if Directory.Exists(dir) then
+                Directory.GetFiles(dir)
+                |> Array.filter (fun f -> f.EndsWith(".md"))
+                |> Array.toList
+            else
+                []
+        
+        let processor = GenericBuilder.AiMemexProcessor.create()
+        let feedData = GenericBuilder.buildContentWithFeeds processor aiMemexFiles
+        
+        // Generate individual pages
+        feedData
+        |> List.iter (fun item ->
+            let entry = item.Content
+            let saveDir = Path.Join(outputDir, "resources", "ai-memex", entry.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            
+            let entryTags = 
+                if String.IsNullOrEmpty(entry.Metadata.Tags) then [||]
+                else entry.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+            
+            let html = LayoutViews.aiMemexPageView entry.Metadata.Title (entry.Content |> convertMdToHtml) entry.Metadata.PublishedDate entry.Metadata.LastUpdatedDate entry.FileName entryTags entry.Metadata.EntryType entry.Metadata.Description
+            let page = generate html "defaultindex" $"{entry.Metadata.Title} | AI Memex | Luis Quintanilla"
+            let saveFileName = Path.Join(saveDir, "index.html")
+            File.WriteAllText(saveFileName, page))
+        
+        // Generate index page
+        let entries = feedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.sortByDescending(fun x -> 
+            if not (String.IsNullOrEmpty(x.Metadata.PublishedDate)) then DateTimeOffset.Parse(x.Metadata.PublishedDate)
+            elif not (String.IsNullOrEmpty(x.Metadata.LastUpdatedDate)) then DateTimeOffset.Parse(x.Metadata.LastUpdatedDate)
+            else DateTimeOffset.MinValue)
+        let indexHtml = generate (CollectionViews.aiMemexView entries) "defaultindex" "AI Memex | Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "resources", "ai-memex")
+        Directory.CreateDirectory(indexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), indexHtml)
+        
+        feedData
+
     // AST-based presentation processing using GenericBuilder infrastructure
     let buildPresentations() = 
         // Use helper to get files
