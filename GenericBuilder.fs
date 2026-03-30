@@ -387,6 +387,73 @@ module WikiProcessor =
             Some item
     }
 
+/// AI Memex content processor
+module AiMemexProcessor =
+    let create() : ContentProcessor<AiMemex> = {
+        Parse = fun filePath ->
+            match parseAiMemexFromFile filePath with
+            | Ok parsedDoc -> 
+                match parsedDoc.Metadata with
+                | Some metadata -> 
+                    Some {
+                        FileName = Path.GetFileNameWithoutExtension(filePath)
+                        Metadata = metadata
+                        Content = parsedDoc.TextContent
+                        MarkdownSource = Some parsedDoc.RawMarkdown
+                    }
+                | None -> None
+            | Error _ -> None
+        
+        Render = fun aiMemex ->
+            let viewNode = article [] [ rawText aiMemex.Content ]
+            RenderView.AsString.xmlNode viewNode
+        
+        OutputPath = fun aiMemex ->
+            sprintf "resources/ai-memex/%s.html" aiMemex.FileName
+        
+        RenderCard = fun aiMemex ->
+            let title = Html.escapeHtml aiMemex.Metadata.Title
+            let excerpt = Html.escapeHtml (aiMemex.Content.Substring(0, min 150 aiMemex.Content.Length) + "...")
+            let url = sprintf "/resources/ai-memex/%s/" aiMemex.FileName
+            
+            Html.element "article" (Html.attribute "class" "ai-memex-card")
+                (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
+                 Html.element "p" "" excerpt)
+        
+        RenderRss = fun aiMemex ->
+            let url = sprintf "https://www.lqdev.me/resources/ai-memex/%s" aiMemex.FileName
+            let categories = 
+                if String.IsNullOrEmpty(aiMemex.Metadata.Tags) then []
+                else aiMemex.Metadata.Tags.Split(',') 
+                     |> Array.map (fun tag -> XElement(XName.Get "category", tag.Trim())) 
+                     |> Array.toList
+            
+            // Normalize URLs in content for RSS compatibility
+            let normalizedContent = normalizeUrlsForRss aiMemex.Content "https://www.lqdev.me"
+            
+            let item = 
+                XElement(XName.Get "item",
+                    XElement(XName.Get "title", aiMemex.Metadata.Title),
+                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedContent),
+                    XElement(XName.Get "link", url),
+                    XElement(XName.Get "guid", url))
+            
+            // Add pubDate if published_date exists
+            if not (String.IsNullOrEmpty(aiMemex.Metadata.PublishedDate)) then
+                item.Add(XElement(XName.Get "pubDate", aiMemex.Metadata.PublishedDate))
+            
+            // Add categories if they exist
+            if not (List.isEmpty categories) then
+                item.Add(categories |> List.toArray)
+            
+            // Add source:markdown if available
+            match generateSourceMarkdown aiMemex.MarkdownSource with
+            | Some sourceElement -> item.Add(sourceElement)
+            | None -> ()
+                
+            Some item
+    }
+
 /// Presentation content processor
 module PresentationProcessor =
     let create() : ContentProcessor<Presentation> = {
@@ -1608,6 +1675,13 @@ module UnifiedFeeds =
                 OutputPath = "collections/playlists/feed.xml"
                 ContentType = Some "playlist-collection"
             })
+            ("ai-memex", {
+                Title = "Luis Quintanilla - AI Memex"
+                Link = "https://www.lqdev.me/resources/ai-memex"
+                Description = "AI-authored content: project reports, research, patterns, and blog posts"
+                OutputPath = "resources/ai-memex/feed.xml"
+                ContentType = Some "ai-memex"
+            })
         ]
         
         // Generate type-specific feeds
@@ -1800,6 +1874,20 @@ module UnifiedFeeds =
                     if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
                     else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = "wiki"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
+            | None -> None)
+    
+    let convertAiMemexToUnified (feedDataList: FeedData<AiMemex> list) : UnifiedFeedItem list =
+        feedDataList |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let title = feedData.Content.Metadata.Title
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = feedData.Content.Content
+                let date = feedData.Content.Metadata.PublishedDate
+                let tags = 
+                    if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
+                    else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "ai-memex"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertPresentationsToUnified (feedDataList: FeedData<Presentation> list) : UnifiedFeedItem list =

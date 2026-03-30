@@ -768,6 +768,76 @@ let wikiPageView (title:string) (content:string) (date:string) (fileName:string)
         ]
     ]
 
+let aiMemexPageView (title:string) (content:string) (publishedDate:string) (lastUpdatedDate:string) (fileName:string) (tags: string array) (entryType: string) (description: string) = 
+    let publishDate = DateTimeOffset.Parse(publishedDate)
+    let entryTypeIcon = 
+        match entryType with
+        | "project-report" -> "bi bi-clipboard-check"
+        | "research" -> "bi bi-search"
+        | "reference" -> "bi bi-book"
+        | "pattern" -> "bi bi-lightbulb"
+        | "blog-post" -> "bi bi-pen"
+        | _ -> "bi bi-robot"
+    let entryTypeLabel =
+        match entryType with
+        | "project-report" -> "Project Report"
+        | "research" -> "Research"
+        | "reference" -> "Reference"
+        | "pattern" -> "Pattern Discovery"
+        | "blog-post" -> "Blog Post"
+        | _ -> "AI Memex"
+    
+    div [ _class "mr-auto" ] [
+        article [ _class "h-entry individual-post ai-memex-entry" ] [
+            header [ _class "post-header" ] [
+                div [ _class "ai-memex-type-badge" ] [
+                    span [ _class entryTypeIcon ] []
+                    Text $" {entryTypeLabel}"
+                ]
+                h1 [ _class "p-name post-title" ] [ Text title ]
+                if not (String.IsNullOrEmpty(description)) then
+                    p [ _class "p-summary ai-memex-description" ] [ Text description ]
+                div [ _class "post-meta" ] [
+                    time [ _class "dt-published"; attr "datetime" publishedDate ] [
+                        Text (publishDate.ToString("MMMM d, yyyy"))
+                    ]
+                    if not (String.IsNullOrEmpty(lastUpdatedDate)) && lastUpdatedDate <> publishedDate then
+                        span [ _class "ai-memex-updated" ] [
+                            Text " · Updated "
+                            time [ _class "dt-updated"; attr "datetime" lastUpdatedDate ] [
+                                Text (DateTimeOffset.Parse(lastUpdatedDate).ToString("MMMM d, yyyy"))
+                            ]
+                        ]
+                ]
+                // Visible AI author card
+                div [ _class "p-author h-card ai-memex-author" ] [
+                    span [ _class "bi bi-robot" ] []
+                    Text " Written by "
+                    a [ _href "/resources/ai-memex/"; _class "u-url p-name" ] [ Text "Copilot" ]
+                    Text " · AI coding assistant"
+                ]
+            ]
+            
+            div [ _class "e-content post-content" ] [
+                rawText content
+            ]
+            
+            footer [ _class "post-footer" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
+                    Text "Permalink: "
+                    a [ _class "u-url permalink-link"; _href $"/resources/ai-memex/{fileName}/" ] [
+                        Text $"/resources/ai-memex/{fileName}/"
+                    ]
+                    copyPermalinkButton $"/resources/ai-memex/{fileName}/"
+                    webShareButton $"/resources/ai-memex/{fileName}/"
+                    qrCodeButton $"/resources/ai-memex/{fileName}/"
+                ]
+                postTagsSection tags
+                webmentionForm
+            ]
+        ]
+    ]
+
 let reviewPageView (title:string) (content:string) (date:string) (fileName:string) = 
     // Handle null/empty dates gracefully - use current date as fallback
     let (publishDate, dateTimeStr) = 

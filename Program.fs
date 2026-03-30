@@ -92,6 +92,7 @@ let main argv =
     
     let snippetsFeedData = buildSnippets()
     let wikisFeedData = buildWikis()
+    let aiMemexFeedData = buildAiMemex()
     let presentationsFeedData = buildPresentations()
     let booksFeedData = buildBooks()
     let mediaFeedData = buildMedia()
@@ -117,6 +118,7 @@ let main argv =
         ("bookmarks", GenericBuilder.UnifiedFeeds.convertBookmarkResponsesToUnified bookmarksFeedData)
         ("snippets", GenericBuilder.UnifiedFeeds.convertSnippetsToUnified snippetsFeedData)
         ("wiki", GenericBuilder.UnifiedFeeds.convertWikisToUnified wikisFeedData)
+        ("ai-memex", GenericBuilder.UnifiedFeeds.convertAiMemexToUnified aiMemexFeedData)
         ("presentations", GenericBuilder.UnifiedFeeds.convertPresentationsToUnified presentationsFeedData)
         ("reviews", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
         ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
@@ -194,6 +196,10 @@ let main argv =
     let _ = buildWikis()
     ()
 
+    // Build AI Memex Pages
+    let _ = buildAiMemex()
+    ()
+
     // Build Read Later Page
     let readLaterLinks = loadReadLaterLinks()
     buildReadLaterPage readLaterLinks
@@ -224,6 +230,7 @@ let main argv =
             ("responses", allResponses |> Array.map (fun r -> r :> ITaggable))
             ("snippets", snippetsFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun s -> s :> ITaggable))
             ("wikis", wikisFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun w -> w :> ITaggable))
+            ("ai-memex", aiMemexFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun a -> a :> ITaggable))
             ("presentations", presentationsFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun p -> p :> ITaggable))
             ("media", mediaFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun a -> a :> ITaggable))
         ]
