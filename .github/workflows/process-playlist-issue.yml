@@ -23,7 +23,7 @@ jobs:
           cache: false
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore --force-evaluate
           
       - name: Parse issue and extract form data
         id: extract-data
