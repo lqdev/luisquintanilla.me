@@ -1735,28 +1735,26 @@ module UnifiedFeeds =
             |> List.collect snd
             |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
         
-        // Extract all unique tags
+        // Extract all canonical tags (processTagName consolidates plurals, gerunds, etc.)
         let allTags = 
             allUnifiedItems
             |> List.collect (fun item -> 
                 if isNull item.Tags then [] 
-                else item.Tags |> Array.toList)
+                else item.Tags |> Array.map TagService.processTagName |> Array.toList)
             |> List.distinct
             |> List.sort
         
         printfn "Generating RSS feeds for %d tags..." allTags.Length
         
-        // Generate RSS feed for each tag
+        // Generate RSS feed for each canonical tag
         allTags
         |> List.iter (fun tag ->
+            let matchesTag (item: UnifiedFeedItem) =
+                not (isNull item.Tags) && item.Tags |> Array.exists (fun t -> TagService.processTagName t = tag)
             let tagItems = 
                 allUnifiedItems
-                |> List.filter (fun item -> 
-                    if isNull item.Tags then false 
-                    else item.Tags |> Array.contains tag)
-                |> List.take (min 20 (allUnifiedItems |> List.filter (fun item -> 
-                    if isNull item.Tags then false 
-                    else item.Tags |> Array.contains tag) |> List.length))
+                |> List.filter matchesTag
+                |> List.take (min 20 (allUnifiedItems |> List.filter matchesTag |> List.length))
             
             if not (List.isEmpty tagItems) then
                 let sanitizedTag = sanitizeTagForPath tag

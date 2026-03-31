@@ -127,10 +127,14 @@ let main argv =
     ]
     
     // Prepare unified content for text-only site and search indexes
+    // Normalize tags through canonical map so all consumers see consolidated tag names
     let allUnifiedContent = 
         allUnifiedItems
         |> List.collect snd
         |> List.sortByDescending (fun item -> item.Date)
+        |> List.map (fun item ->
+            if isNull item.Tags then item
+            else { item with Tags = item.Tags |> Array.map TagService.processTagName |> Array.distinct })
     
     // Generate unified feeds (fire-hose + type-specific)
     GenericBuilder.UnifiedFeeds.buildAllFeeds allUnifiedItems "_public"

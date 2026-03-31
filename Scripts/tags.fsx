@@ -1,31 +1,27 @@
-#r "../bin/Debug/net7.0/PersonalSite.dll"
+#r "../bin/Debug/net10.0/PersonalSite.dll"
 
 open Domain
+open TagService
 
-let (posts:Post array) = Builder.loadPosts()
+// Load all posts
+let posts = Loaders.loadPosts "_src"
 
-let processTagName (tag:string) = 
-    tag
-      .Replace(".net","dotnet")
-      .Replace(".","")
-      .Replace(' ', '-')
-      .ToLower()
-
-let tags = 
-    posts 
-    |> Array.collect(fun post -> 
-        try
-            post.Metadata.Tags 
-            |> Array.map(fun x -> 
-                processTagName x, post)
-        with 
-            | _ -> [|"untagged",post|]
-    )
+// Process all tags and group them
+let allTags =
+    posts
+    |> Array.collect (fun post ->
+        try post.Metadata.Tags |> Array.map (fun x -> processTagName x, post)
+        with _ -> [| "untagged", post |])
     |> Set.ofArray
     |> Set.toArray
-    |> Array.groupBy(fst)
-    |> Array.map(fun x -> 
-        let tag = fst x
-        let file = snd x |> Array.map(snd)
-        tag,file
-    )
+    |> Array.groupBy fst
+    |> Array.map (fun (tag, items) -> tag, items |> Array.map snd)
+    |> Array.sortByDescending (fun (_, items) -> items.Length)
+
+printfn "=== Tag Summary ==="
+printfn "Unique tags: %d" allTags.Length
+printfn ""
+printfn "=== Top 50 Tags by Use ==="
+allTags
+|> Array.take (min 50 allTags.Length)
+|> Array.iter (fun (tag, items) -> printfn "%4d  %s" items.Length tag)
