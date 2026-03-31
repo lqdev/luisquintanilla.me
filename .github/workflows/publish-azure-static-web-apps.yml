@@ -33,7 +33,7 @@ jobs:
           cache: false
       
       - name: Install Dependencies
-        run: dotnet restore
+        run: dotnet restore --force-evaluate
       
       - name: Build project
         run: dotnet build --no-restore
