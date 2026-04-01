@@ -256,6 +256,19 @@ Before completing any coordinated workflow:
 - [ ] Build succeeds and performance is acceptable
 - [ ] Documentation is updated as needed
 
+## AI Memex Awareness
+
+The AI Memex is a distributed knowledge capture system. When routing tasks, be aware of Memex triggers:
+
+- **Feature shipped** → Route to content-creator for a `project-report` entry
+- **Pattern discovered** → Route to content-creator for a `pattern` entry
+- **Research completed** → Route to content-creator for a `research` entry
+
+The `.ai-memex/` convention is used in projects outside lqdev.me for per-project staging.
+Universal skills (`write-ai-memex`, `query-ai-memex`, `import-ai-memex`) are in `~/.agents/skills/`.
+
+See `AGENTS.md` at repo root for the complete trigger discipline and entry type reference.
+
 ---
 
 **Remember**: Your role is to route and coordinate, not to implement directly. Analyze the request, determine the appropriate specialist(s), provide clear context, and ensure successful integration of all specialist work.

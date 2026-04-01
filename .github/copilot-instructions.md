@@ -11,27 +11,7 @@ I am your autonomous development partner focused on **systematic architectural i
 - **Document comprehens**Benefits**: Enhanced navigation capability, improved mobile usability, full accessibility compliance, and seamless integration with existing design systems.
 
 ### Response Type Badge Specificity Pattern (Proven)
-**Discovery**: Timeline displays can show specific response type badges (Star, Reply, Reshare) instead of generic "Response" badges while maintaining RSS feed aggregation and JavaScript filtering functionality.
-
-**Implementation Pattern**:
-- **UnifiedFeedItem ContentType Preservation**: Modify `convertResponsesToUnified` to preserve specific response types (`feedData.Content.Metadata.ResponseType`) instead of using generic "responses"
-- **View Badge Rendering**: Update timeline view functions with specific type mappings ("star" → "Star", "reply" → "Reply", "reshare" → "Reshare") for proper badge display
-- **RSS Feed Aggregation**: Enhance feed generation logic to collect all response subtypes (`["star"; "reply"; "reshare"; "responses"]`) for unified responses feed
-- **JavaScript Filter Integration**: Update client-side filtering with array inclusion logic (`['star', 'reply', 'reshare', 'responses'].includes(cardType)`) for proper filter button functionality
-- **Backward Compatibility**: Maintain existing RSS feed structure and URLs while enhancing content specificity
-
-**Technical Components**:
-- **GenericBuilder.fs**: Enhanced `convertResponsesToUnified` and `buildAllFeeds` with response subtype handling
-- **LayoutViews.fs**: Updated `timelineHomeViewStratified` and `timelineHomeView` with specific badge mappings
-- **timeline.js/timeline-new.js**: Enhanced filtering logic for response subtypes in progressive loading system
-
-**Success Metrics**:
-- **UI Enhancement**: Timeline shows specific response badges ("Reshare", "Star", "Reply") instead of generic "Response"
-- **Feed Compatibility**: RSS feeds maintain proper aggregation with all response types included in responses feed
-- **Filter Functionality**: "Responses" filter button works correctly with all response subtypes
-- **Zero Regression**: Existing functionality preserved while adding enhanced specificity
-
-**Benefits**: Improved content discoverability, enhanced user experience, maintained RSS feed compatibility, preserved IndieWeb standards compliance, and consistent filtering functionality across all response types.
+See AI Memex: `_src/resources/ai-memex/pattern-response-type-badge-specificity.md` for full details. Key rule: Preserve specific response types in UnifiedFeedItem instead of generic "responses".
 
 ### Professional Build Output Pattern (Proven)ly** for institutional knowledge and future reference
 - **Maintain clean project state** with proper archival and organization
@@ -172,6 +152,12 @@ I am your autonomous development partner focused on **systematic architectural i
 
 ## 🔧 Technical Standards & Proven Patterns
 
+> **AI Memex Knowledge Base**: Many proven patterns below have been expanded into full AI Memex entries
+> at `_src/resources/ai-memex/pattern-*.md`. For detailed context, code examples, and implementation
+> history, query the AI Memex. Trigger discipline and entry authoring are in `AGENTS.md` (repo root)
+> and `~/.copilot/copilot-instructions.md` (global). Skills: `write-ai-memex`, `query-ai-memex`,
+> `import-ai-memex` (in `~/.agents/skills/`).
+
 ### F# Development Best Practices
 - **Type-First Design**: Define types before functions, use them to drive API design
 - **Module Responsibility**: Each module handles one concern (parsing, rendering, generation)
@@ -183,28 +169,10 @@ I am your autonomous development partner focused on **systematic architectural i
 - **Type Annotations**: Use explicit type annotations in test scripts to prevent inference issues
 
 ### ViewEngine Integration Pattern (Proven)
-- **Type-Safe HTML Generation**: Use Giraffe ViewEngine instead of sprintf string concatenation
-- **Render Function Pattern**: Convert `sprintf "<article>%s</article>" content` to `article [ _class "content" ] [ rawText content ]`
-- **HTML String Output**: Use `RenderView.AsString.xmlNode viewNode` to convert ViewEngine nodes to HTML strings
-- **Maintainability Benefits**: ViewEngine provides compile-time safety, cleaner code, and better refactoring support
-- **Architecture Consistency**: Apply ViewEngine pattern across all Render functions for uniform approach
+See AI Memex: `_src/resources/ai-memex/pattern-viewengine-integration.md` for full details. Key rule: Use Giraffe ViewEngine instead of sprintf for HTML generation.
 
-### Content Volume HTML Parsing Pattern (Critical Discovery)
-**Discovery**: High content volumes (1000+ items) with `rawText` rendering can generate malformed HTML that breaks browser DOM parsing so severely that **no JavaScript loads at all**.
-
-**Symptoms**:
-- Script tags present in HTML source but absent from browser Network tab
-- Zero JavaScript execution (not syntax errors - complete loading failure)  
-- Full interface failure despite correct JavaScript code
-- Content processing succeeds but browser parsing fails
-
-**Root Cause**: Large content arrays with `rawText` rendering can produce malformed HTML that exceeds browser parser limits, causing complete DOM parsing failure before script loading.
-
-**Implementation Pattern**:
-- **Content Limiting Test**: Use `Array.take (min 10 items.Length)` to test if volume is the issue
-- **Progressive Loading Strategy**: Implement virtual scrolling or pagination instead of artificial limits
-- **HTML Validation**: Validate generated HTML structure with large content volumes
-- **Performance Strategy**: Load content in chunks rather than restricting total content
+### Content Volume HTML Parsing Pattern (Critical)
+See AI Memex: `_src/resources/ai-memex/pattern-content-volume-html-parsing.md` for full details. Key rule: Large content volumes can break browser DOM parsing — use progressive loading.
 
 ### External Library Integration Pattern (Proven)
 **Discovery**: External JavaScript libraries integrate excellently with content architecture when using container-relative sizing and conditional loading.
@@ -217,104 +185,22 @@ I am your autonomous development partner focused on **systematic architectural i
 5. **Layout Pattern Consistency**: External libraries work seamlessly with individual post patterns
 
 ### Custom Block Infrastructure Pattern (Proven)
-- **Pipeline Ordering Critical**: Never use `UseAdvancedExtensions()` with custom block parsers - it includes built-in `CustomContainers` that consume custom syntax before our parsers
-- **Individual Extensions**: Use specific extensions (`UsePipeTables()`, `UseGenericAttributes()`, etc.) to avoid conflicts
-- **YAML Content Processing**: Post-process extracted YAML content to fix indentation and filter empty lines
-- **Semantic HTML Output**: Custom blocks should render semantic HTML (`<figure>`, `<figcaption>`) with CSS classes for styling
-- **Testing Approach**: Validate both YAML parsing (no exceptions) and HTML output (proper rendering vs raw text)
+See AI Memex: `_src/resources/ai-memex/pattern-custom-block-infrastructure.md` for full details. Key rule: Never use UseAdvancedExtensions() with custom block parsers.
 
 ### Hidden IndieWeb Microformats Pattern (Proven)
-**Discovery**: IndieWeb microformat compliance can be maintained while achieving clean visual design through strategic CSS hiding.
-
-**Implementation Pattern**:
-- **Microformat Structure**: Include complete `u-author h-card` with required properties (`u-photo`, `u-url`, `p-name`)
-- **CSS Hiding Strategy**: Use `microformat-hidden` class with `display: none !important; visibility: hidden !important;`
-- **Parser Compatibility**: Webmention parsers, feed readers, and IndieWeb tools can access author information
-- **Visual Design**: Clean, minimal presentation without redundant author attribution
-
-**Benefits**: Optimal user experience with clean design while maintaining full IndieWeb ecosystem compatibility.
+See AI Memex: `_src/resources/ai-memex/pattern-hidden-indieweb-microformats.md` for full details. Key rule: Use microformat-hidden CSS class for clean design with full IndieWeb compliance.
 
 ### Progressive Loading Pattern (Proven)
-**Discovery**: Successfully implemented static site progressive loading handling 1000+ content items without HTML parser failures.
-
-**Implementation Pattern**:
-- **Server-Side JSON Generation**: F# backend generates remaining content as properly escaped JSON
-- **Client-Side Progressive Loading**: JavaScript consumes JSON for chunked content rendering
-- **Safe Initial Load**: 50 items initially to prevent HTML parser overload
-- **Progressive Chunks**: 25-item chunks loaded via intersection observer + manual button
-- **Comprehensive JSON Escaping**: Handle all special characters (`\"`, `\n`, `\r`, `\t`, `\\`, etc.)
-- **Filter Integration**: Progressive content automatically respects current filter state
-
-**Benefits**: Handles any content volume while maintaining excellent performance and user experience on static sites.
+See AI Memex: `_src/resources/ai-memex/pattern-progressive-loading.md` for full details. Key rule: Server-side JSON + client-side chunked loading for 1000+ items on static sites.
 
 ### Content Type Landing Page Pattern (Proven)
-**Discovery**: Proper landing pages for all content types significantly improve content discoverability and user experience, following consistent structural patterns.
-
-**Implementation Pattern**:
-- **Response-Based Filtering**: Use existing content with type metadata (`response_type: bookmark`) rather than creating separate file structures
-- **CollectionViews.fs Updates**: Modify view functions for proper landing page structure (h2 header, descriptive paragraph, chronological list)
-- **Builder Function Creation**: Create dedicated filtering and page generation functions (`buildBookmarksLandingPage`)
-- **Build Integration**: Add function calls to main Program.fs orchestration after data collection
-- **View Function Reuse**: Leverage existing view functions (`responseView`) for consistent UI across content types
-- **Directory Management**: Automatic directory creation and index.html generation following `/content-type/index.html` pattern
-
-**Success Criteria**: Landing page parity across content types, proper content filtering, chronological ordering, and seamless build process integration.
+See AI Memex: `_src/resources/ai-memex/pattern-content-type-landing-page.md` for full details. Key rule: Filter existing content by type metadata, add Builder function, wire into Program.fs.
 
 ### Feed Architecture Consistency Pattern (Proven)
-**Discovery**: Unified feed pattern consistency with prominent subscription hub placement dramatically improves user experience and maintains architectural coherence.
-
-**Implementation Pattern**:
-- **Consistent URL Structure**: All feeds follow `/[type]/feed.xml → /[alias].rss` pattern including unified feed
-- **Subscription Hub Integration**: Feature important feeds prominently with clear descriptions and user-friendly URLs
-- **User-Friendly Aliases**: Memorable URLs like `/all.rss` for easy sharing and subscription
-- **OPML Integration**: Include featured feeds as first entries in subscription management systems
-- **Backward Compatibility**: Maintain existing URLs during pattern transitions through dual file generation
-- **Pattern Documentation**: Clear documentation of URL structures and alias relationships
-
-**Benefits**: Improved feed discoverability, consistent architecture patterns, better user experience, and simplified maintenance.
+See AI Memex: `_src/resources/ai-memex/pattern-feed-architecture-consistency.md` for full details. Key rule: All feeds follow /[type]/feed.xml → /[alias].rss pattern with user-friendly URLs.
 
 ### Text-Only Accessibility Site Pattern (Proven)
-**Discovery**: Complete accessibility-first website implementation using F# ViewEngine + semantic HTML + minimal CSS provides universal access while maintaining performance excellence and content parity.
-
-**Implementation Pattern**:
-- **Foundation Architecture**: F# ViewEngine templates with dedicated `textOnlyLayout` and semantic HTML structure
-- **Minimal CSS Strategy**: <5KB stylesheet with WCAG 2.1 AA compliance targeting universal device support
-- **URL Structure**: `/text/` subdirectory with clean hierarchy preserving all content type organization
-- **Enhanced Content Processing**: HTML-to-text conversion preserving semantic structure (headings, lists, code blocks, emphasis)
-- **True Text-Only Content**: Images converted to descriptive text with links to original files
-- **Comprehensive Browsing**: Tag system with sanitized paths, chronological archives, and search functionality
-- **Performance Targets**: <50KB pages optimized for 2G networks, flip phones, and low-end devices
-- **Build Integration**: Seamless addition to existing architecture with zero performance impact
-
-**Text-Only Content Processing Pattern**:
-- **Image Descriptions**: Convert `<img>` tags to `[Image: alt-text] (View image: URL)` format
-- **Alt Text Preservation**: Use alt attributes for meaningful descriptions, fallback to "[Image]" when missing
-- **Link Preservation**: Maintain all external links with URLs shown in parentheses
-- **Semantic Structure**: Convert headings to markdown format, preserve emphasis and lists
-- **HTML Cleanup**: Remove all remaining HTML tags for pure text output
-
-**Technical Components**:
-- **TextOnlyViews.fs**: Complete view module with 14+ functions covering all browsing patterns including `TextOnlyContentProcessor` module
-- **TextOnlyBuilder.fs**: Site generation orchestration with enhanced content processing
-- **Sanitized Path Handling**: `sanitizeTagForPath` function handling special characters in user-generated content
-- **Progressive Enhancement**: Form-based functionality with optional JavaScript enhancement
-- **Accessibility Excellence**: Skip links, ARIA labels, semantic landmarks, keyboard navigation
-
-**Content Architecture Features**:
-- **Tag Browsing System**: Complete tag-based navigation with occurrence counts and clean URLs
-- **Archive Navigation**: Year/month chronological browsing with content organization
-- **Search Functionality**: Form-based search with accessibility compliance and helpful instructions
-- **Enhanced Text Conversion**: Markdown-style formatting preservation in plain text output
-- **Cross-Site Navigation**: Easy transitions between text-only and full site versions
-
-**Success Metrics**:
-- **Content Parity**: 1,130+ content pages with zero information loss
-- **Performance Excellence**: 7.6KB homepage, all pages under 50KB target
-- **Universal Compatibility**: 2G networks, flip phones, screen readers, assistive technology
-- **Build Efficiency**: Zero impact on existing build process with comprehensive feature addition
-- **True Text-Only**: Complete image-to-text conversion maintaining accessibility and file access
-
-**Benefits**: Complete universal access solution maintaining content parity, performance excellence, and user experience while providing comprehensive browsing functionality for accessibility-first scenarios with true text-only content that's compatible with any device or assistive technology.
+See AI Memex: `_src/resources/ai-memex/pattern-text-only-accessibility.md` for full details. Key rule: F# ViewEngine + semantic HTML + minimal CSS for universal access at <50KB per page.
 
 ### Clickable Image Descriptions Pattern (Proven)
 **Discovery**: True text-only accessibility requires converting images to clickable descriptive links rather than preserving HTML img tags, enabling universal access while maintaining visual content availability.
@@ -447,40 +333,7 @@ if presentation.Metadata.Resources.Length > 0 then
 **Benefits**: Enhanced accessibility compliance, complete content parity for specialized content types, maintained performance excellence, universal device compatibility, and scalable pattern for future content type enhancements.
 
 ### Response Type Badge Specificity Pattern (Proven)
-**Discovery**: Content type systems with generic labels reduce user experience quality, but converting to specific types requires coordinated updates across data processing, UI rendering, and feed generation systems.
-
-**Implementation Pattern**:
-- **Backend Data Preservation**: Modify unified feed conversion functions to preserve specific types instead of generic categories (`ContentType = feedData.Content.Metadata.ResponseType` vs `ContentType = "responses"`)
-- **UI Template Enhancement**: Update view functions with specific type mappings in badge rendering logic ("star" → "Star", "reply" → "Reply", "reshare" → "Reshare")
-- **JavaScript Filter Logic**: Enhance client-side filtering with array inclusion patterns (`['star', 'reply', 'reshare', 'responses'].includes(cardType)`) for backward compatibility
-- **Feed System Aggregation**: Modify RSS feed generation to collect multiple specific types for aggregate feeds while maintaining individual type specificity
-- **Cascading Update Approach**: Systematic updates through entire data pipeline from parsing → processing → display → feeds ensuring consistency
-
-**Technical Components**:
-```fsharp
-// Backend data preservation in GenericBuilder.fs
-let contentType = feedData.Content.Metadata.ResponseType // Instead of "responses"
-
-// Feed aggregation logic for responses feed
-if contentType = "responses" then
-    ["star"; "reply"; "reshare"; "responses"] |> List.contains item.ContentType
-else
-    item.ContentType = contentType
-```
-
-**JavaScript Enhancement**:
-```javascript
-// Enhanced filtering with specific type support
-const includeItem = ['star', 'reply', 'reshare', 'responses'].includes(cardType);
-```
-
-**Success Metrics**:
-- **User Experience**: Specific badges enhance content type recognition and navigation clarity
-- **Data Consistency**: Preserved throughout entire pipeline from source to display
-- **Feed Compatibility**: RSS feeds maintain structure while supporting enhanced type granularity
-- **Zero Breaking Changes**: All existing functionality preserved during enhancement
-
-**Benefits**: Enhanced user experience through specific content type identification, improved navigation clarity, maintained RSS feed compatibility, systematic enhancement pattern applicable to other content type systems, and zero disruption to existing workflows.
+See AI Memex: `_src/resources/ai-memex/pattern-response-type-badge-specificity.md` for full details. Key rule: Preserve specific response types in UnifiedFeedItem instead of generic "responses".
 
 ### Enhanced Content Discovery Pattern (Proven)
 **Discovery**: Complete client-side search implementation for F# static sites with accessibility compliance, fuzzy search capabilities, and seamless theme integration provides powerful content discovery without server dependencies.

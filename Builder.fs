@@ -980,7 +980,7 @@ module Builder
                 if String.IsNullOrEmpty(entry.Metadata.Tags) then [||]
                 else entry.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
             
-            let html = LayoutViews.aiMemexPageView entry.Metadata.Title (entry.Content |> convertMdToHtml) entry.Metadata.PublishedDate entry.Metadata.LastUpdatedDate entry.FileName entryTags entry.Metadata.EntryType entry.Metadata.Description
+            let html = LayoutViews.aiMemexPageView entry.Metadata.Title (entry.Content |> convertMdToHtml) entry.Metadata.PublishedDate entry.Metadata.LastUpdatedDate entry.FileName entryTags entry.Metadata.EntryType entry.Metadata.Description entry.Metadata.RelatedSkill entry.Metadata.SourceProject
             let page = generate html "defaultindex" $"{entry.Metadata.Title} | AI Memex | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, page))

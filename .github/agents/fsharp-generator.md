@@ -680,6 +680,16 @@ When implementing new content type:
 - **Custom Blocks**: CustomBlocks.fs + BlockRenderers.fs
 - **Test Scripts**: test-scripts/ directory (validation examples)
 
+## AI Memex Schema Knowledge
+
+The AI Memex content type is defined in the F# codebase:
+
+- **Type**: `AiMemexDetails` in `Domain.fs` — 8 string fields with `[<YamlMember>]` attributes including `RelatedSkill` and `SourceProject`
+- **Processor**: `AiMemexProcessor.create()` in `GenericBuilder.fs` — standard ContentProcessor pattern
+- **View**: `aiMemexPageView` in `Views/LayoutViews.fs` — 10 parameters including relatedSkill and sourceProject
+- **Builder**: `buildAiMemex()` in `Builder.fs` — orchestrates page generation
+- **Parsing**: `ASTParsing.fs` uses `.IgnoreUnmatchedProperties()` — new optional fields need no parser changes
+
 ---
 
 **Remember**: Your expertise is F# implementation, type systems, AST processing, RSS generation, and ViewEngine rendering. When content structure questions arise, coordinate with @content-creator. For build automation, coordinate with @build-automation.

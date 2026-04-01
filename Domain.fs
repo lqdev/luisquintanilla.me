@@ -181,6 +181,8 @@ module Domain
         [<YamlMember(Alias="published_date")>] PublishedDate: string
         [<YamlMember(Alias="last_updated_date")>] LastUpdatedDate: string
         [<YamlMember(Alias="tags")>] Tags: string
+        [<YamlMember(Alias="related_skill")>] RelatedSkill: string
+        [<YamlMember(Alias="source_project")>] SourceProject: string
     }
 
     type AiMemex = {
