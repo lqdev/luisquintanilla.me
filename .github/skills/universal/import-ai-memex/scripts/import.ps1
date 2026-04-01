@@ -69,7 +69,7 @@ foreach ($source in $config.sources) {
 
             # Add source_project if not already present
             if ($content -notmatch 'source_project:') {
-                $content = $content -replace '(---\s*\n)', "`$1source_project: `"$projectName`"`n"
+                $content = $content -replace '(---\s*\r?\n)', "`$1source_project: `"$projectName`"`n"
             }
 
             Set-Content -Path $targetFile -Value $content -NoNewline

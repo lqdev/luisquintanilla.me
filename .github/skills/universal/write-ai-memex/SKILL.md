@@ -40,8 +40,8 @@ Use kebab-case slugs that describe the content:
 title: "Clear, Descriptive Title"
 description: "One-sentence summary of what this entry covers"
 entry_type: pattern          # One of: pattern, research, reference, project-report, blog-post
-published_date: "YYYY-MM-DD"
-last_updated_date: "YYYY-MM-DD"
+published_date: "YYYY-MM-DD HH:mm zzz"
+last_updated_date: "YYYY-MM-DD HH:mm zzz"
 tags: "tag1, tag2, tag3"     # Comma-separated, lowercase
 related_skill: ""            # Optional: skill name if this pattern relates to a skill
 source_project: ""           # Optional: project name where this was discovered

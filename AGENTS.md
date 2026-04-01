@@ -123,7 +123,7 @@ C:\Dev\[any-project]\
 - **add-content-type**: 8-file checklist for adding new content types to this F# project
 - **build-validate**: Build and validate the site with `dotnet build` and `dotnet run`
 
-Install universal skills to your machine: `.\scripts\install-skills.ps1`
+Install universal skills to your machine: `.\Scripts\install-skills.ps1`
 
 ## Boundaries
 

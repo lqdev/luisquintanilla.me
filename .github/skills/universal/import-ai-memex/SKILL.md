@@ -16,8 +16,11 @@ the central store at `_src/resources/ai-memex/` in the lqdev.me repo.
 ## Import Process
 
 ### Option A: Use the import script
+
+Run from the lqdev.me repo root (so `_src/resources/ai-memex/` resolves correctly):
+
 ```powershell
-.\scripts\import.ps1
+& "$HOME/.agents/skills/import-ai-memex/scripts/import.ps1"
 ```
 
 ### Option B: Manual import

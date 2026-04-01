@@ -111,7 +111,7 @@ Skills provide procedural "how-to" instructions loaded on-demand:
 | `add-content-type` | Repo (`.github/skills/`) | Add new content types |
 | `build-validate` | Repo (`.github/skills/`) | Build and validate site |
 
-Install universal skills: `.\scripts\install-skills.ps1`
+Install universal skills: `.\Scripts\install-skills.ps1`
 
 ## Import Flow
 

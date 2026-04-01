@@ -77,7 +77,7 @@ Extracted 10 proven patterns from `copilot-instructions.md` into full AI Memex e
 
 1. Universal skills + global instructions
 2. Repo-specific skills
-3. Install script (`scripts/install-skills.ps1`)
+3. Install script (`Scripts/install-skills.ps1`)
 4. Codebase-context reference entry
 5. Living reference drafts
 6. 10 backfilled pattern entries

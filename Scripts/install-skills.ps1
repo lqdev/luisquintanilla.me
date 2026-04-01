@@ -1,7 +1,7 @@
 # Install AI Memex Skills & Global Instructions
 # Copies universal skills to ~/.agents/skills/ and global instructions to ~/.copilot/
 #
-# Usage: .\scripts\install-skills.ps1
+# Usage: .\Scripts\install-skills.ps1
 # Run from the lqdev.me repo root.
 
 param(
@@ -27,6 +27,10 @@ Write-Host "=========================" -ForegroundColor Cyan
 Write-Host ""
 
 # --- Install Universal Skills ---
+if (-not (Test-Path $skillTarget)) {
+    New-Item -ItemType Directory -Path $skillTarget -Force | Out-Null
+}
+
 Write-Host "Installing universal skills to: $skillTarget" -ForegroundColor Yellow
 
 $skills = Get-ChildItem -Path $skillSource -Directory
