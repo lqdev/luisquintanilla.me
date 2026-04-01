@@ -1,0 +1,14 @@
+{
+  "description": "AI Memex import sources. Copy this file to ~/.agents/skills/import-ai-memex/import-sources.json and customize paths.",
+  "target": "C:\\Dev\\website\\_src\\resources\\ai-memex",
+  "sources": [
+    {
+      "path": "C:\\Dev\\myapi\\.ai-memex",
+      "project": "myapi"
+    },
+    {
+      "path": "C:\\Dev\\my-app\\.ai-memex",
+      "project": "my-app"
+    }
+  ]
+}
