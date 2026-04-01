@@ -774,7 +774,7 @@ let wikiPageView (title:string) (content:string) (date:string) (fileName:string)
         ]
     ]
 
-let aiMemexPageView (title:string) (content:string) (publishedDate:string) (lastUpdatedDate:string) (fileName:string) (tags: string array) (entryType: string) (description: string) = 
+let aiMemexPageView (title:string) (content:string) (publishedDate:string) (lastUpdatedDate:string) (fileName:string) (tags: string array) (entryType: string) (description: string) (relatedSkill: string) (sourceProject: string) = 
     let publishDate = DateTimeOffset.Parse(publishedDate)
     let entryTypeIcon = 
         match entryType with
@@ -822,6 +822,20 @@ let aiMemexPageView (title:string) (content:string) (publishedDate:string) (last
                     a [ _href "/resources/ai-memex/"; _class "u-url p-name" ] [ Text "Copilot" ]
                     Text " · AI coding assistant"
                 ]
+                if not (String.IsNullOrEmpty(relatedSkill)) || not (String.IsNullOrEmpty(sourceProject)) then
+                    div [ _class "ai-memex-provenance" ] [
+                        if not (String.IsNullOrEmpty(relatedSkill)) then
+                            span [ _class "ai-memex-skill" ] [
+                                span [ _class "bi bi-tools" ] []
+                                Text " Skill: "
+                                code [] [ Text relatedSkill ]
+                            ]
+                        if not (String.IsNullOrEmpty(sourceProject)) then
+                            span [ _class "ai-memex-project" ] [
+                                span [ _class "bi bi-folder" ] []
+                                Text $" Project: {sourceProject}"
+                            ]
+                    ]
             ]
             
             div [ _class "e-content post-content" ] [
