@@ -2,8 +2,8 @@
 title: Current Focus & Active Projects
 description: A living reference tracking active projects, learning goals, and current interests.
 entry_type: reference
-published_date: "2026-07-22 00:00 -05:00"
-last_updated_date: "2026-07-22 00:00 -05:00"
+published_date: "2026-04-01 00:00 -05:00"
+last_updated_date: "2026-04-01 00:00 -05:00"
 tags: meta, lqdev-me, reference
 source_project: lqdev-me
 ---

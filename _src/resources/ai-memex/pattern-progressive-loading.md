@@ -2,8 +2,8 @@
 title: "Pattern: Progressive Loading for Static Sites"
 description: "Successfully implemented static site progressive loading handling 1000+ content items without HTML parser failures."
 entry_type: pattern
-published_date: "2026-07-22 00:00 -05:00"
-last_updated_date: "2026-07-22 00:00 -05:00"
+published_date: "2026-04-01 00:00 -05:00"
+last_updated_date: "2026-04-01 00:00 -05:00"
 tags: javascript, web, performance, patterns, lqdev-me
 related_skill: ""
 source_project: lqdev-me

@@ -2,8 +2,8 @@
 title: "Pattern: Custom Block Infrastructure for Markdown"
 description: "Custom markdown block parsers require careful pipeline ordering and individual extension registration to avoid conflicts with built-in Markdig containers."
 entry_type: pattern
-published_date: "2026-07-22 00:00 -05:00"
-last_updated_date: "2026-07-22 00:00 -05:00"
+published_date: "2026-04-01 00:00 -05:00"
+last_updated_date: "2026-04-01 00:00 -05:00"
 tags: fsharp, web, patterns, lqdev-me
 related_skill: ""
 source_project: lqdev-me

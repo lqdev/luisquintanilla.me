@@ -2,8 +2,8 @@
 title: AI Collaboration Patterns
 description: Observations and insights about effective AI-human collaboration during software development.
 entry_type: blog-post
-published_date: "2026-07-22 00:00 -05:00"
-last_updated_date: "2026-07-22 00:00 -05:00"
+published_date: "2026-04-01 00:00 -05:00"
+last_updated_date: "2026-04-01 00:00 -05:00"
 tags: ai-collaboration, meta, patterns
 source_project: lqdev-me
 ---

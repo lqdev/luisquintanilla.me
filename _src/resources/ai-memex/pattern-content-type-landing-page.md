@@ -2,8 +2,8 @@
 title: "Pattern: Content Type Landing Page"
 description: "Proper landing pages for all content types significantly improve content discoverability and user experience, following consistent structural patterns."
 entry_type: pattern
-published_date: "2026-07-22 00:00 -05:00"
-last_updated_date: "2026-07-22 00:00 -05:00"
+published_date: "2026-04-01 00:00 -05:00"
+last_updated_date: "2026-04-01 00:00 -05:00"
 tags: fsharp, web, patterns, lqdev-me
 related_skill: ""
 source_project: lqdev-me

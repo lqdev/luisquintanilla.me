@@ -2,8 +2,8 @@
 title: "Pattern: Response Type Badge Specificity"
 description: "Content type systems with generic labels reduce user experience quality, but converting to specific types requires coordinated updates across data processing, UI rendering, and feed generation systems."
 entry_type: pattern
-published_date: "2026-07-22 00:00 -05:00"
-last_updated_date: "2026-07-22 00:00 -05:00"
+published_date: "2026-04-01 00:00 -05:00"
+last_updated_date: "2026-04-01 00:00 -05:00"
 tags: fsharp, web, indieweb, patterns, lqdev-me
 related_skill: ""
 source_project: lqdev-me

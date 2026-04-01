@@ -2,8 +2,8 @@
 title: "Pattern: Feed Architecture Consistency"
 description: "Unified feed pattern consistency with prominent subscription hub placement dramatically improves user experience and maintains architectural coherence."
 entry_type: pattern
-published_date: "2026-07-22 00:00 -05:00"
-last_updated_date: "2026-07-22 00:00 -05:00"
+published_date: "2026-04-01 00:00 -05:00"
+last_updated_date: "2026-04-01 00:00 -05:00"
 tags: fsharp, web, indieweb, patterns, lqdev-me
 related_skill: ""
 source_project: lqdev-me

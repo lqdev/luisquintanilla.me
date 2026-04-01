@@ -2,8 +2,8 @@
 title: "Pattern: Content Volume HTML Parsing"
 description: "High content volumes with rawText rendering can generate malformed HTML that breaks browser DOM parsing so severely that no JavaScript loads at all."
 entry_type: pattern
-published_date: "2026-07-22 00:00 -05:00"
-last_updated_date: "2026-07-22 00:00 -05:00"
+published_date: "2026-04-01 00:00 -05:00"
+last_updated_date: "2026-04-01 00:00 -05:00"
 tags: fsharp, web, performance, patterns, lqdev-me
 related_skill: ""
 source_project: lqdev-me

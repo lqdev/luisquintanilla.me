@@ -2,8 +2,8 @@
 title: "Pattern: GenericBuilder ContentProcessor"
 description: "A generic record type providing a consistent interface for parsing, rendering, and feed generation across all content types in the F# static site generator."
 entry_type: pattern
-published_date: "2026-07-22 00:00 -05:00"
-last_updated_date: "2026-07-22 00:00 -05:00"
+published_date: "2026-04-01 00:00 -05:00"
+last_updated_date: "2026-04-01 00:00 -05:00"
 tags: fsharp, architecture, patterns, lqdev-me
 related_skill: ""
 source_project: lqdev-me

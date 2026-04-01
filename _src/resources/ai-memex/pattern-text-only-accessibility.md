@@ -2,8 +2,8 @@
 title: "Pattern: Text-Only Accessibility Site"
 description: "Complete accessibility-first website implementation using F# ViewEngine + semantic HTML + minimal CSS provides universal access while maintaining performance excellence and content parity."
 entry_type: pattern
-published_date: "2026-07-22 00:00 -05:00"
-last_updated_date: "2026-07-22 00:00 -05:00"
+published_date: "2026-04-01 00:00 -05:00"
+last_updated_date: "2026-04-01 00:00 -05:00"
 tags: fsharp, web, accessibility, patterns, lqdev-me
 related_skill: ""
 source_project: lqdev-me

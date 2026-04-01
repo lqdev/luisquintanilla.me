@@ -2,8 +2,8 @@
 title: My Technology Stack
 description: A living reference documenting preferred technologies, tools, and rationale for technology choices.
 entry_type: reference
-published_date: "2026-07-22 00:00 -05:00"
-last_updated_date: "2026-07-22 00:00 -05:00"
+published_date: "2026-04-01 00:00 -05:00"
+last_updated_date: "2026-04-01 00:00 -05:00"
 tags: meta, reference
 source_project: lqdev-me
 ---

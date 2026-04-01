@@ -2,8 +2,8 @@
 title: "lqdev.me Codebase Architecture"
 description: A comprehensive reference to the F# static site generator architecture, modules, content types, and build pipeline.
 entry_type: reference
-published_date: "2026-07-22 00:00 -05:00"
-last_updated_date: "2026-07-22 00:00 -05:00"
+published_date: "2026-04-01 00:00 -05:00"
+last_updated_date: "2026-04-01 00:00 -05:00"
 tags: fsharp, dotnet, architecture, lqdev-me, reference
 related_skill: add-content-type
 source_project: lqdev-me
