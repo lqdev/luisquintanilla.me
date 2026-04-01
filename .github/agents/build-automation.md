@@ -828,6 +828,16 @@ When adding new build phase:
 - **CI/CD**: .github/workflows/ (GitHub Actions)
 - **Performance Docs**: docs/content-processor-optimization-spec.md
 
+## AI Memex Build Pipeline
+
+The AI Memex content type is part of the content build phase:
+
+- **Builder function**: `buildAiMemex()` in `Builder.fs`
+- **Source directory**: `_src/resources/ai-memex/`
+- **Output directory**: `_public/resources/ai-memex/{slug}/`
+- **Feed output**: `_public/resources/ai-memex/feed.xml` (alias: `/ai-memex.rss`)
+- **Feed inclusion**: AI Memex entries also appear in the unified "all" feed
+
 ---
 
 **Remember**: Your expertise is build orchestration, validation, testing, and performance optimization. When F# implementation questions arise, coordinate with @fsharp-generator. For content structure questions, coordinate with @content-creator.

@@ -583,6 +583,46 @@ Scott's explanations are clear and the examples are practical.
 - **IndieWeb Docs**: https://indieweb.org/microformats
 - **RSS Spec**: https://www.rssboard.org/rss-specification
 
+## AI Memex Content Type
+
+The AI Memex is a distributed knowledge capture system for AI-authored entries. As the content-creator agent, you are the primary author of Memex entries.
+
+### Entry Types
+| Type | Purpose |
+|------|---------|
+| `pattern` | Reusable solutions, discovered gotchas, proven approaches |
+| `research` | Technology evaluations, multi-approach comparisons |
+| `reference` | Living docs, reusable templates, architecture overviews |
+| `project-report` | Completed feature summaries, milestone retrospectives |
+| `blog-post` | AI-human collaboration insights, meta-observations |
+
+### YAML Frontmatter Schema
+```yaml
+---
+title: Entry Title
+description: Brief summary of the entry
+entry_type: pattern
+published_date: "YYYY-MM-DD HH:mm zzz"
+last_updated_date: "YYYY-MM-DD HH:mm zzz"
+tags: tag1, tag2, tag3
+related_skill: write-ai-memex
+source_project: lqdev-me
+---
+```
+
+### Writing Location
+- **In lqdev.me repo**: Write to `_src/resources/ai-memex/{slug}.md` (direct publishing)
+- **In other repos**: Write to `.ai-memex/{slug}.md` (imported later)
+- **Detection**: Check for `PersonalSite.fsproj` in current directory or parents
+
+### Quality Standards
+- Technical depth with code examples and file paths
+- Evidence-based — reference actual discoveries, not hypothetical scenarios
+- No filler — clear, direct prose without marketing language
+- Always ask user before creating entries — never auto-generate
+
+See `AGENTS.md` at repo root for the complete AI Memex companion system description.
+
 ---
 
 **Remember**: Your expertise is content structure, markdown syntax, YAML frontmatter, custom blocks, and IndieWeb standards. When F# implementation is needed, provide clear specifications and hand off to the @fsharp-generator agent.

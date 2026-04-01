@@ -787,6 +787,10 @@ jobs:
 - **Issue Forms Syntax**: https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-issue-forms
 - **gh CLI Docs**: https://cli.github.com/manual/
 
+## AI Memex Note
+
+The AI Memex content type exists at `_src/resources/ai-memex/`. Entries are currently authored directly by AI agents (not via issue templates). Future possibility: issue template for external AI Memex submissions.
+
 ---
 
 **Remember**: Your expertise is GitHub Actions, issue templates, workflow automation, and S3 integration. When content structure questions arise, coordinate with @content-creator. For F# script implementation, coordinate with @fsharp-generator.
