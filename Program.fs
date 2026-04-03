@@ -148,9 +148,10 @@ let main argv =
     // =============================================================================
     
     printfn "🎭 Building ActivityPub content..."
-    ActivityPubBuilder.buildActivities allUnifiedContent "_public"
-    ActivityPubBuilder.buildOutbox allUnifiedContent "_public"
-    ActivityPubBuilder.queueRecentPostsForDelivery allUnifiedContent "_public"
+    let activityPubContent = allUnifiedContent |> List.filter (fun item -> item.ContentType <> "ai-memex")
+    ActivityPubBuilder.buildActivities activityPubContent "_public"
+    ActivityPubBuilder.buildOutbox activityPubContent "_public"
+    ActivityPubBuilder.queueRecentPostsForDelivery activityPubContent "_public"
     
     // =============================================================================
     // ActivityPub Followers Collection - Phase 4A Implementation

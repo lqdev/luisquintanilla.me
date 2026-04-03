@@ -1587,8 +1587,9 @@ module UnifiedFeeds =
             ContentType = None
         }
         
-        // Generate fire-hose feed
-        let fireHoseFeed = generateRssFeed (allUnifiedItems |> List.take (min 20 allUnifiedItems.Length)) fireHoseConfig
+        // Generate fire-hose feed (exclude AI Memex from public syndication)
+        let publicItems = allUnifiedItems |> List.filter (fun item -> item.ContentType <> "ai-memex")
+        let fireHoseFeed = generateRssFeed (publicItems |> List.take (min 20 publicItems.Length)) fireHoseConfig
         let fireHoseDir = Path.Combine(outputDirectory, "feed")
         Directory.CreateDirectory(fireHoseDir) |> ignore
         File.WriteAllText(Path.Combine(fireHoseDir, "feed.xml"), fireHoseFeed)
@@ -1729,10 +1730,11 @@ module UnifiedFeeds =
 
     /// Generate RSS feeds for individual tags
     let buildTagFeeds (feedDataSets: (string * (UnifiedFeedItem list)) list) (outputDirectory: string) =
-        // Flatten all feed items
+        // Flatten all feed items (exclude AI Memex from tag syndication feeds)
         let allUnifiedItems = 
             feedDataSets
             |> List.collect snd
+            |> List.filter (fun item -> item.ContentType <> "ai-memex")
             |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
         
         // Extract all canonical tags (processTagName consolidates plurals, gerunds, etc.)
