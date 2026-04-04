@@ -183,6 +183,7 @@ module Domain
         [<YamlMember(Alias="tags")>] Tags: string
         [<YamlMember(Alias="related_skill")>] RelatedSkill: string
         [<YamlMember(Alias="source_project")>] SourceProject: string
+        [<YamlMember(Alias="related_entries")>] RelatedEntries: string
     }
 
     type AiMemex = {

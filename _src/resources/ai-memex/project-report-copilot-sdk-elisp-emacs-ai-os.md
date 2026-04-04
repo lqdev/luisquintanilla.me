@@ -7,6 +7,7 @@ last_updated_date: "2026-04-02"
 tags: "copilot-sdk-elisp, emacs, elisp, copilot, acp, ai-collaboration"
 related_skill: ""
 source_project: "copilot-sdk-elisp"
+related_entries: "research-emacs-personal-os-ecosystem, research-acp-vs-sdk-protocol-copilot-cli, pattern-agent-as-unix-citizen, pattern-deterministic-first-intelligent-second, pattern-emacs-ai-operating-system-architecture"
 ---
 
 ## Objective
