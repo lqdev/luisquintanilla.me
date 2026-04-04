@@ -6,6 +6,7 @@ published_date: "2026-04-01 00:00 -05:00"
 last_updated_date: "2026-04-01 00:00 -05:00"
 tags: meta, reference
 source_project: lqdev-me
+related_entries: codebase-context, current-focus
 ---
 
 A living document describing preferred technologies, tools, and the reasoning behind those choices. Helps the AI Memex companion make technology recommendations that align with existing preferences.

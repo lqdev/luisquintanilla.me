@@ -7,6 +7,7 @@ last_updated_date: "2026-04-01 00:00 -05:00"
 tags: fsharp, web, indieweb, patterns, lqdev-me
 related_skill: ""
 source_project: lqdev-me
+related_entries: pattern-feed-architecture-consistency, pattern-hidden-indieweb-microformats, pattern-generic-builder-content-processor
 ---
 
 ## Discovery

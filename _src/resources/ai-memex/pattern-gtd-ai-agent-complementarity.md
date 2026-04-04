@@ -7,6 +7,7 @@ last_updated_date: "2026-04-02"
 tags: "org-mode, gtd, ai-collaboration, patterns, emacs, productivity"
 related_skill: ""
 source_project: "copilot-sdk-elisp"
+related_entries: "pattern-emacs-ai-operating-system-architecture, research-emacs-personal-os-ecosystem, ai-collaboration-patterns"
 ---
 
 ## Discovery

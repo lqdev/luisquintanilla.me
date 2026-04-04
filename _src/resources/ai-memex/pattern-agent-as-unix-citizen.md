@@ -7,6 +7,7 @@ last_updated_date: "2026-04-02"
 tags: "unix, cli, ai-collaboration, patterns, emacs, elisp"
 related_skill: ""
 source_project: "copilot-sdk-elisp"
+related_entries: "pattern-deterministic-first-intelligent-second, pattern-emacs-ai-operating-system-architecture, research-plan-files-unix-context-traditions"
 ---
 
 ## Discovery

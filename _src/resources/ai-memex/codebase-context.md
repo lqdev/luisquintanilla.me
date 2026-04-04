@@ -7,6 +7,7 @@ last_updated_date: "2026-04-01 00:00 -05:00"
 tags: fsharp, dotnet, architecture, lqdev-me, reference
 related_skill: add-content-type
 source_project: lqdev-me
+related_entries: pattern-generic-builder-content-processor, pattern-viewengine-integration, my-tech-stack
 ---
 
 A living reference document covering the architecture of the lqdev.me static site generator — an F# application targeting .NET 10 that generates a personal IndieWeb-compliant website.

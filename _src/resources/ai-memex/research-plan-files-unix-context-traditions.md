@@ -7,6 +7,7 @@ last_updated_date: "2026-04-02"
 tags: "unix, dotfiles, architecture, research, ai-collaboration"
 related_skill: ""
 source_project: "copilot-sdk-elisp"
+related_entries: "pattern-agent-as-unix-citizen, pattern-deterministic-first-intelligent-second, research-emacs-personal-os-ecosystem"
 ---
 
 ## Context
