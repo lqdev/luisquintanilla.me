@@ -955,8 +955,8 @@ module Builder
         // Return feed data for potential RSS generation
         feedData
 
-    // AST-based AI Memex processing using GenericBuilder infrastructure
-    let buildAiMemex(crossContentItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list option) = 
+    // AST-based AI Memex processing — load feed data only (no page generation)
+    let loadAiMemexFeedData() = 
         let aiMemexFiles = 
             let dir = Path.Join(srcDir, "resources", "ai-memex")
             if Directory.Exists(dir) then
@@ -967,7 +967,10 @@ module Builder
                 []
         
         let processor = GenericBuilder.AiMemexProcessor.create()
-        let feedData = GenericBuilder.buildContentWithFeeds processor aiMemexFiles
+        GenericBuilder.buildContentWithFeeds processor aiMemexFiles
+
+    // AST-based AI Memex page generation from pre-loaded feed data
+    let buildAiMemexPages (feedData: GenericBuilder.FeedData<AiMemex> list) (crossContentItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) = 
         
         // Build knowledge graph from all entries
         let allEntries = feedData |> List.map (fun item -> item.Content) |> List.toArray
@@ -1007,9 +1010,7 @@ module Builder
             
             // Find cross-content-type related items
             let crossContent =
-                match crossContentItems with
-                | Some items -> KnowledgeGraph.findCrossContentRelated entryTags entry.FileName items
-                | None -> [||]
+                KnowledgeGraph.findCrossContentRelated entryTags entry.FileName crossContentItems
             
             let html = LayoutViews.aiMemexPageView entry.Metadata.Title (contentToRender |> convertMdToHtml) entry.Metadata.PublishedDate entry.Metadata.LastUpdatedDate entry.FileName entryTags entry.Metadata.EntryType entry.Metadata.Description entry.Metadata.RelatedSkill entry.Metadata.SourceProject backlinks relatedEntries jsonLd crossContent
             let page = generate html "defaultindex" $"{entry.Metadata.Title} | AI Memex | Luis Quintanilla"
@@ -1026,8 +1027,6 @@ module Builder
         let indexSaveDir = Path.Join(outputDir, "resources", "ai-memex")
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), indexHtml)
-        
-        feedData
 
     // AST-based presentation processing using GenericBuilder infrastructure
     let buildPresentations() = 
