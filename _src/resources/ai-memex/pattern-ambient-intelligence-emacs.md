@@ -2,8 +2,8 @@
 title: "Ambient Intelligence in Emacs: From Reactive to Proactive AI"
 description: "Pattern for building non-intrusive ambient AI features using idle timers, state persistence, and trust-graduated autonomy in Emacs"
 entry_type: pattern
-published_date: "2025-07-25"
-last_updated_date: "2025-07-25"
+published_date: "2025-07-25 00:00 +00:00"
+last_updated_date: "2025-07-25 00:00 +00:00"
 tags: "emacs, ai-collaboration, patterns, architecture, elisp"
 related_skill: ""
 source_project: "copilot-sdk-elisp"

@@ -2,8 +2,8 @@
 title: "Pattern: GitHub Models Endpoint Migration (Azure → github.ai)"
 description: "The GitHub Models API migrated from models.inference.ai.azure.com to models.github.ai/inference in 2025 — old endpoint is dead and model naming changed to publisher/model format"
 entry_type: pattern
-published_date: "2026-04-04"
-last_updated_date: "2026-04-04"
+published_date: "2026-04-04 00:00 +00:00"
+last_updated_date: "2026-04-04 00:00 +00:00"
 tags: "github, ai, api, patterns"
 related_skill: ""
 source_project: "markdown-ld-kb"

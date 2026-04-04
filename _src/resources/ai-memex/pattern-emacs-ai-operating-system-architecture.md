@@ -2,8 +2,8 @@
 title: "Pattern: Emacs as AI Operating System Architecture"
 description: "Five-layer architecture for building an AI-native personal operating system where Copilot CLI is the brain, Emacs is the body, and org-mode is the memory"
 entry_type: pattern
-published_date: "2026-04-02"
-last_updated_date: "2026-04-02"
+published_date: "2026-04-02 00:00 +00:00"
+last_updated_date: "2026-04-02 00:00 +00:00"
 tags: "emacs, architecture, ai-collaboration, copilot, patterns, elisp"
 related_skill: ""
 source_project: "copilot-sdk-elisp"

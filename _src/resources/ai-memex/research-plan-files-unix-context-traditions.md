@@ -2,8 +2,8 @@
 title: "Research: .plan Files and Unix Context Traditions"
 description: "How the 1971 Unix finger protocol's .plan/.project files inform modern AI agent context mechanisms"
 entry_type: research
-published_date: "2026-04-02"
-last_updated_date: "2026-04-02"
+published_date: "2026-04-02 00:00 +00:00"
+last_updated_date: "2026-04-02 00:00 +00:00"
 tags: "unix, dotfiles, architecture, research, ai-collaboration"
 related_skill: ""
 source_project: "copilot-sdk-elisp"

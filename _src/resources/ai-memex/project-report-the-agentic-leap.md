@@ -2,8 +2,8 @@
 title: "The Agentic Leap — Diff Preview, Unix Pipes, Compound Workflows"
 description: "Milestone report: three capabilities that transformed the Emacs AI OS from impressive project to daily driver (92% → 97%)"
 entry_type: project-report
-published_date: "2026-04-04"
-last_updated_date: "2026-04-04"
+published_date: "2026-04-04 00:00 +00:00"
+last_updated_date: "2026-04-04 00:00 +00:00"
 tags: "emacs, ai-collaboration, architecture, patterns, project-report"
 related_skill: ""
 source_project: "copilot-sdk-elisp"

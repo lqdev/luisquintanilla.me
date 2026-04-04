@@ -2,8 +2,8 @@
 title: "Three-Tier Tool Nursery: Ephemeral → Staged → Permanent Lifecycle"
 description: "Pattern for managing runtime-defined tools through a staging lifecycle with persistence, promotion, and file-based discovery"
 entry_type: pattern
-published_date: "2026-04-03"
-last_updated_date: "2026-04-03"
+published_date: "2026-04-03 00:00 +00:00"
+last_updated_date: "2026-04-03 00:00 +00:00"
 tags: "emacs, elisp, patterns, architecture, ai-collaboration, metaprogramming"
 related_skill: ""
 source_project: "copilot-sdk-elisp"

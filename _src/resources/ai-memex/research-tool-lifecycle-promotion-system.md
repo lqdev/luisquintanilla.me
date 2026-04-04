@@ -2,8 +2,8 @@
 title: "Tool Lifecycle & Promotion System — A Memory Model for Executable Code"
 description: "Design exploration for a three-tier tool lifecycle (ephemeral → nursery → custom) with usage-based promotion, inspired by spaced repetition and cognitive memory models"
 entry_type: research
-published_date: "2026-04-03"
-last_updated_date: "2026-04-03"
+published_date: "2026-04-03 00:00 +00:00"
+last_updated_date: "2026-04-03 00:00 +00:00"
 tags: "emacs, copilot, architecture, patterns, ai-collaboration, metaprogramming"
 related_skill: ""
 source_project: "copilot-sdk-elisp"

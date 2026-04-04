@@ -2,8 +2,8 @@
 title: "Research: Emacs Personal OS Ecosystem"
 description: "Comprehensive mapping of Emacs packages that enable using Emacs as a complete personal information management system beyond coding"
 entry_type: research
-published_date: "2026-04-02"
-last_updated_date: "2026-04-02"
+published_date: "2026-04-02 00:00 +00:00"
+last_updated_date: "2026-04-02 00:00 +00:00"
 tags: "emacs, org-mode, productivity, research, elisp"
 related_skill: ""
 source_project: "copilot-sdk-elisp"

@@ -2,8 +2,8 @@
 title: "Phase 8: The Living System — From Chat Box to AI Operating System"
 description: "Shipped the largest phase yet: PARA+GTD org layer, 48 tools, buffer memory, agent coordination, autonomous behaviors — Emacs becomes a living AI OS"
 entry_type: project-report
-published_date: "2026-04-04"
-last_updated_date: "2026-04-04"
+published_date: "2026-04-04 00:00 +00:00"
+last_updated_date: "2026-04-04 00:00 +00:00"
 tags: "emacs, architecture, ai-collaboration, patterns"
 related_skill: ""
 source_project: "copilot-sdk-elisp"

@@ -2,11 +2,11 @@
 title: "Diff Preview as Trust Mechanism for Agent Edits"
 description: "How showing diffs before applying transforms agent code edits from scary to collaborative — the pattern that made AI coding assistants viable"
 entry_type: pattern
-published_date: "2026-04-04"
-last_updated_date: "2026-04-04"
+published_date: "2026-04-04 00:00 +00:00"
+last_updated_date: "2026-04-04 00:00 +00:00"
 tags: "patterns, emacs, ai-collaboration, architecture, ux"
 related_skill: ""
-source_project: "copilot-emacs"
+source_project: "copilot-sdk-elisp"
 related_entries: "project-report-the-agentic-leap, pattern-agent-as-unix-citizen, ai-collaboration-patterns"
 ---
 

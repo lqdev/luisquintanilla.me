@@ -39,6 +39,7 @@ foreach ($f in $hubFiles) {
     $hubEntries[$slug] = @{
         File = $f.Name
         Title = Get-FrontMatterField $content "title"
+        Description = Get-FrontMatterField $content "description"
         EntryType = Get-FrontMatterField $content "entry_type"
         Published = Get-FrontMatterField $content "published_date"
         LastUpdated = Get-FrontMatterField $content "last_updated_date"
@@ -129,13 +130,17 @@ if (Test-Path $ConfigPath) {
             $hubDate = $hubEntry.LastUpdated
 
             if ($spokeDate -and $hubDate) {
+                # Normalize date-only to full format for fair comparison
+                $normSpoke = if ($spokeDate -match '^\d{4}-\d{2}-\d{2}$') { "$spokeDate 00:00 +00:00" } else { $spokeDate -replace ' UTC$', ' +00:00' }
+                $normHub = if ($hubDate -match '^\d{4}-\d{2}-\d{2}$') { "$hubDate 00:00 +00:00" } else { $hubDate -replace ' UTC$', ' +00:00' }
+
                 try {
-                    if ([DateTime]::Parse($spokeDate) -gt [DateTime]::Parse($hubDate)) {
+                    if ([DateTimeOffset]::Parse($normSpoke) -gt [DateTimeOffset]::Parse($normHub)) {
                         Write-Host "   [DRIFT] $slug — spoke: $spokeDate > hub: $hubDate ($($source.project))" -ForegroundColor Yellow
                         $driftCount++
                     }
                 } catch {
-                    if ($spokeDate -gt $hubDate) {
+                    if ($normSpoke -gt $normHub) {
                         Write-Host "   [DRIFT] $slug — spoke: $spokeDate > hub: $hubDate ($($source.project))" -ForegroundColor Yellow
                         $driftCount++
                     }
@@ -176,8 +181,64 @@ if ($brokenCount -eq 0) {
 }
 Write-Host ""
 
-# --- 4. Graph Analysis (orphans + hubs) ---
-Write-Host "4. GRAPH ANALYSIS" -ForegroundColor Yellow
+# --- 4. Schema Consistency ---
+Write-Host "4. SCHEMA CONSISTENCY" -ForegroundColor Yellow
+Write-Host "   -------------------"
+
+$dateOnlyCount = 0
+$srcIssues = 0
+$missingFields = 0
+
+# Load import-sources config for source_project validation
+$validProjects = @("lqdev-me")
+if (Test-Path $ConfigPath) {
+    $srcConfig = Get-Content $ConfigPath -Raw | ConvertFrom-Json
+    foreach ($s in $srcConfig.sources) { $validProjects += $s.project }
+}
+
+foreach ($slug in ($hubEntries.Keys | Sort-Object)) {
+    $entry = $hubEntries[$slug]
+
+    # Date format: flag date-only (YYYY-MM-DD without time)
+    if ($entry.Published -match '^\d{4}-\d{2}-\d{2}$') {
+        Write-Host "   [DATE-ONLY] $slug published_date: $($entry.Published)" -ForegroundColor DarkYellow
+        $dateOnlyCount++
+    }
+    if ($entry.LastUpdated -match '^\d{4}-\d{2}-\d{2}$') {
+        Write-Host "   [DATE-ONLY] $slug last_updated_date: $($entry.LastUpdated)" -ForegroundColor DarkYellow
+        $dateOnlyCount++
+    }
+
+    # source_project: validate against known projects
+    $src = $entry.SourceProject
+    if (-not $src -or $src -eq '""') {
+        Write-Host "   [NO SOURCE] $slug — missing source_project" -ForegroundColor DarkYellow
+        $srcIssues++
+    } elseif ($validProjects -notcontains $src) {
+        Write-Host "   [BAD SOURCE] $slug — '$src' not in registered projects" -ForegroundColor DarkYellow
+        $srcIssues++
+    }
+
+    # Required fields
+    foreach ($field in @("Title", "Description", "EntryType", "Published", "LastUpdated")) {
+        if (-not $entry[$field]) {
+            Write-Host "   [MISSING] $slug — $field" -ForegroundColor Red
+            $missingFields++
+        }
+    }
+}
+
+if ($dateOnlyCount -eq 0 -and $srcIssues -eq 0 -and $missingFields -eq 0) {
+    Write-Host "   All entries have consistent schema" -ForegroundColor Green
+} else {
+    if ($dateOnlyCount -gt 0) { Write-Host "   Date-only fields: $dateOnlyCount (should use 'YYYY-MM-DD HH:mm zzz')" -ForegroundColor DarkYellow }
+    if ($srcIssues -gt 0) { Write-Host "   Source project issues: $srcIssues" -ForegroundColor DarkYellow }
+    if ($missingFields -gt 0) { Write-Host "   Missing required fields: $missingFields" -ForegroundColor Red }
+}
+Write-Host ""
+
+# --- 5. Graph Analysis (orphans + hubs) ---
+Write-Host "5. GRAPH ANALYSIS" -ForegroundColor Yellow
 Write-Host "   ---------------"
 
 if (Test-Path $graphPath) {
@@ -229,5 +290,6 @@ $staleCount = $staleEntries.Count
 $orphanCount = if (Test-Path $graphPath) { ($orphans | Measure-Object).Count } else { 0 }
 Write-Host "SUMMARY" -ForegroundColor Cyan
 Write-Host "-------"
-Write-Host "Memex Health: $totalEntries entries | $staleCount stale | $driftCount drifted | $brokenCount broken refs | $orphanCount orphans"
+$schemaIssueTotal = $dateOnlyCount + $srcIssues + $missingFields
+Write-Host "Memex Health: $totalEntries entries | $staleCount stale | $driftCount drifted | $brokenCount broken refs | $orphanCount orphans | $schemaIssueTotal schema issues"
 Write-Host ""

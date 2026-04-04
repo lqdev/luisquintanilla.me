@@ -2,8 +2,8 @@
 title: "Emacs Primitives → AI OS: The Complete Isomorphism Map"
 description: "25 Emacs primitives mapped 1:1 to AI operating system concepts, proving Emacs IS already an AI OS — it just needs wiring"
 entry_type: reference
-published_date: "2026-04-04"
-last_updated_date: "2026-04-04"
+published_date: "2026-04-04 00:00 +00:00"
+last_updated_date: "2026-04-04 00:00 +00:00"
 tags: "emacs, architecture, ai-collaboration, patterns"
 related_skill: ""
 source_project: "copilot-sdk-elisp"

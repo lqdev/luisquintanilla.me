@@ -2,11 +2,11 @@
 title: "The Conscious Emacs: Life OS + Daily Driver Shipped"
 description: "Milestone report covering Life OS tool wrappers, morning briefing, @-mentions, cancel fix, and 76 tests across two repos"
 entry_type: project-report
-published_date: "2026-04-04"
-last_updated_date: "2026-04-04"
+published_date: "2026-04-04 00:00 +00:00"
+last_updated_date: "2026-04-04 00:00 +00:00"
 tags: "emacs, elisp, ai-collaboration, architecture, patterns"
 related_skill: ""
-source_project: "copilot-sdk-elisp / copilot-emacs"
+source_project: "copilot-sdk-elisp"
 related_entries: "pattern-async-cancel-race-elisp, pattern-at-mention-inline-context-expansion, project-report-the-agentic-leap"
 ---
 

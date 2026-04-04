@@ -2,8 +2,8 @@
 title: "Pattern: Agent as Unix Citizen"
 description: "Design pattern where an AI agent joins the Unix ecosystem by wrapping CLI tools as callable functions rather than replacing them"
 entry_type: pattern
-published_date: "2026-04-02"
-last_updated_date: "2026-04-02"
+published_date: "2026-04-02 00:00 +00:00"
+last_updated_date: "2026-04-02 00:00 +00:00"
 tags: "unix, cli, ai-collaboration, patterns, emacs, elisp"
 related_skill: ""
 source_project: "copilot-sdk-elisp"

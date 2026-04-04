@@ -2,8 +2,8 @@
 title: "Project Report: The Ambient Intelligence Phase"
 description: "Milestone report for implementing model intelligence, minibuffer-first flow, AI authorship tagging, and ambient autonomy in the Emacs AI OS"
 entry_type: project-report
-published_date: "2025-07-25"
-last_updated_date: "2025-07-25"
+published_date: "2025-07-25 00:00 +00:00"
+last_updated_date: "2025-07-25 00:00 +00:00"
 tags: "emacs, ai-collaboration, elisp, architecture, project-report"
 related_skill: ""
 source_project: "copilot-sdk-elisp"
