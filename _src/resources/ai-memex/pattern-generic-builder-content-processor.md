@@ -7,6 +7,7 @@ last_updated_date: "2026-04-01 00:00 -05:00"
 tags: fsharp, architecture, patterns, lqdev-me
 related_skill: ""
 source_project: lqdev-me
+related_entries: pattern-viewengine-integration, pattern-content-type-landing-page, pattern-feed-architecture-consistency, codebase-context
 ---
 
 ## Discovery

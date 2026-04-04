@@ -774,7 +774,7 @@ let wikiPageView (title:string) (content:string) (date:string) (fileName:string)
         ]
     ]
 
-let aiMemexPageView (title:string) (content:string) (publishedDate:string) (lastUpdatedDate:string) (fileName:string) (tags: string array) (entryType: string) (description: string) (relatedSkill: string) (sourceProject: string) = 
+let aiMemexPageView (title:string) (content:string) (publishedDate:string) (lastUpdatedDate:string) (fileName:string) (tags: string array) (entryType: string) (description: string) (relatedSkill: string) (sourceProject: string) (backlinks: KnowledgeGraph.BacklinkData array) (relatedEntries: KnowledgeGraph.RelatedEntryData array) (jsonLd: string) (crossContent: KnowledgeGraph.CrossContentItem array) = 
     let publishDate = DateTimeOffset.Parse(publishedDate)
     let entryTypeIcon = 
         match entryType with
@@ -853,9 +853,78 @@ let aiMemexPageView (title:string) (content:string) (publishedDate:string) (last
                     qrCodeButton $"/resources/ai-memex/{fileName}/"
                 ]
                 postTagsSection tags
+                
+                if relatedEntries.Length > 0 then
+                    div [ _class "ai-memex-related" ] [
+                        h3 [] [ 
+                            span [ _class "bi bi-diagram-3" ] []
+                            Text " Related Entries" 
+                        ]
+                        ul [] [
+                            for rel in (relatedEntries: KnowledgeGraph.RelatedEntryData array) do
+                                let typeIcon = 
+                                    match rel.EntryType with
+                                    | "pattern" -> "bi bi-lightbulb"
+                                    | "research" -> "bi bi-search"
+                                    | "reference" -> "bi bi-book"
+                                    | "project-report" -> "bi bi-clipboard-check"
+                                    | "blog-post" -> "bi bi-pen"
+                                    | _ -> "bi bi-robot"
+                                li [] [
+                                    span [ _class typeIcon ] []
+                                    Text " "
+                                    a [ _href $"/resources/ai-memex/{rel.Slug}/" ] [ Text rel.Title ]
+                                    span [ _class "ai-memex-edge-reason" ] [ Text $" — {rel.Reason}" ]
+                                ]
+                        ]
+                    ]
+                
+                if backlinks.Length > 0 then
+                    div [ _class "ai-memex-backlinks" ] [
+                        h3 [] [ 
+                            span [ _class "bi bi-link-45deg" ] []
+                            Text " Linked From" 
+                        ]
+                        ul [] [
+                            for bl in (backlinks: KnowledgeGraph.BacklinkData array) do
+                                li [] [
+                                    a [ _href $"/resources/ai-memex/{bl.Slug}/" ] [ Text bl.Title ]
+                                    span [ _class "ai-memex-edge-reason" ] [ Text $" — {bl.Reason}" ]
+                                ]
+                        ]
+                    ]
+                
+                if crossContent.Length > 0 then
+                    div [ _class "ai-memex-cross-content" ] [
+                        h3 [] [
+                            span [ _class "bi bi-journal-text" ] []
+                            Text " Related on this site"
+                        ]
+                        ul [] [
+                            for item in (crossContent: KnowledgeGraph.CrossContentItem array) do
+                                let typeIcon =
+                                    match item.ContentType with
+                                    | "posts" -> "bi bi-file-earmark-text"
+                                    | "wiki" -> "bi bi-wikipedia"
+                                    | "snippets" -> "bi bi-code-slash"
+                                    | "notes" -> "bi bi-chat-left-text"
+                                    | "responses" | "bookmarks" -> "bi bi-reply"
+                                    | "presentations" -> "bi bi-easel"
+                                    | _ -> "bi bi-file-earmark"
+                                li [] [
+                                    span [ _class typeIcon ] []
+                                    Text " "
+                                    a [ _href item.Url ] [ Text item.Title ]
+                                    span [ _class "ai-memex-edge-reason" ] [ Text $" — {item.OverlapReason}" ]
+                                ]
+                        ]
+                    ]
+                
                 webmentionForm
             ]
         ]
+        if not (String.IsNullOrWhiteSpace(jsonLd)) then
+            script [ _type "application/ld+json" ] [ rawText jsonLd ]
     ]
 
 let reviewPageView (title:string) (content:string) (date:string) (fileName:string) = 

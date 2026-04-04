@@ -7,6 +7,7 @@ last_updated_date: "2026-04-01 01:32 -05:00"
 tags: ai-collaboration, ai-memex, meta, patterns
 related_skill: write-ai-memex
 source_project: lqdev-me
+related_entries: hello-world, project-report-ai-memex-companion-system, ai-collaboration-patterns
 ---
 
 ## The Problem With Forgetting

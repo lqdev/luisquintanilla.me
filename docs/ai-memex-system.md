@@ -58,6 +58,7 @@ last_updated_date: "YYYY-MM-DD HH:mm zzz"
 tags: tag1, tag2, tag3
 related_skill: write-ai-memex
 source_project: lqdev-me
+related_entries: slug-1, slug-2, slug-3
 ---
 ```
 
@@ -70,6 +71,7 @@ source_project: lqdev-me
 - `tags` (required): Comma-separated tags
 - `related_skill` (optional): Agent skill that produced this entry
 - `source_project` (optional): Project where this knowledge originated
+- `related_entries` (optional): Comma-separated slugs of related Memex entries
 
 ## Trigger System
 
@@ -148,3 +150,49 @@ The AI author card is **visible** — displayed with a purple left border and ba
 - Link to related content on the site
 - Update `last_updated_date` when making substantive changes
 - Always ask before creating — never auto-generate without user consent
+
+## Knowledge Graph
+
+The AI Memex includes a build-time knowledge graph that connects entries via multiple signal layers.
+
+### Connection Layers
+
+| Layer | Signal | Weight | Description |
+|-------|--------|--------|-------------|
+| 1 | `related_entries` frontmatter | 1.0 | Author-curated, highest trust |
+| 2 | `[[slug]]` wikilinks in content | 0.9 | Inline references in body text |
+| 3 | Tag overlap (Jaccard ≥ 0.3) | 0.3–0.7 | Scaled by Jaccard coefficient |
+| 4 | Same `source_project` | 0.2 | Weak clustering signal |
+| 5 | Same `entry_type` + shared tag | 0.1 | "More like this" signal |
+
+### Wikilinks
+
+Use `[[slug]]` syntax in entry content to create inline links to other Memex entries:
+- `[[pattern-viewengine-integration]]` → renders as a link with the entry's title
+- `[[pattern-viewengine-integration|custom text]]` → renders with custom display text
+- Broken links (unknown slugs) render as styled spans, not errors
+
+### Generated Outputs
+
+- **Backlinks section**: "Linked From" on each entry page — only explicit + wikilink edges
+- **Related Entries section**: Top 5 entries by combined edge weight with reasons
+- **Related on this site**: Posts, wiki, snippets sharing 2+ tags (cross-content-type)
+- **graph.json**: `/resources/ai-memex/graph.json` — full graph for visualization and AI tools
+- **JSON-LD**: Per-entry `<script type="application/ld+json">` with Schema.org vocabulary
+- **Graph visualization**: Interactive D3.js force-directed graph on index page
+
+### Architecture
+
+- `KnowledgeGraph.fs` — Graph construction, edge discovery, serialization, JSON-LD, wikilinks
+- Must compile before `Views/` in `PersonalSite.fsproj`
+- `buildAiMemex()` in `Builder.fs` orchestrates graph building + wikilink resolution
+- JSON-LD maps entry types to Schema.org: pattern→TechArticle, research→ScholarlyArticle, project-report→Article, blog-post→BlogPosting
+
+### JSON-LD / Linked Data
+
+Each entry page embeds JSON-LD structured data for AI crawlers (GPTBot, ClaudeBot, Googlebot):
+- `author: SoftwareApplication` (GitHub Copilot) — AI authorship attribution
+- `publisher: Person` (Luis Quintanilla) — human curator
+- `isPartOf: Collection` — membership in the AI Memex
+- `relatedLink` — bidirectional links from backlinks + related entries
+- `about` — extracted from tags as Schema.org Thing entities

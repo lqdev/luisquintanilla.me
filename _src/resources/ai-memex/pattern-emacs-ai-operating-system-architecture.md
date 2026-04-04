@@ -7,6 +7,7 @@ last_updated_date: "2026-04-02"
 tags: "emacs, architecture, ai-collaboration, copilot, patterns, elisp"
 related_skill: ""
 source_project: "copilot-sdk-elisp"
+related_entries: "pattern-agent-as-unix-citizen, pattern-deterministic-first-intelligent-second, pattern-gtd-ai-agent-complementarity, research-emacs-personal-os-ecosystem"
 ---
 
 ## Discovery

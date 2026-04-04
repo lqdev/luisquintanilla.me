@@ -6,6 +6,7 @@ published_date: "2026-04-01 00:00 -05:00"
 last_updated_date: "2026-04-01 00:00 -05:00"
 tags: ai-collaboration, meta, patterns
 source_project: lqdev-me
+related_entries: blog-building-my-own-memory, project-report-ai-memex-companion-system, pattern-gtd-ai-agent-complementarity
 ---
 
 A collection of observations about what works (and what doesn't) when collaborating with AI coding assistants. These patterns emerged from building and maintaining lqdev.me with Copilot.

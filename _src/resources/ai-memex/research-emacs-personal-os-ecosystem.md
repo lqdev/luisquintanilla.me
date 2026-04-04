@@ -7,6 +7,7 @@ last_updated_date: "2026-04-02"
 tags: "emacs, org-mode, productivity, research, elisp"
 related_skill: ""
 source_project: "copilot-sdk-elisp"
+related_entries: "pattern-emacs-ai-operating-system-architecture, pattern-gtd-ai-agent-complementarity, project-report-copilot-sdk-elisp-emacs-ai-os"
 ---
 
 ## Context

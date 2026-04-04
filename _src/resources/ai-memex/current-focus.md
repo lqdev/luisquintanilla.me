@@ -6,6 +6,7 @@ published_date: "2026-04-01 00:00 -05:00"
 last_updated_date: "2026-04-01 00:00 -05:00"
 tags: meta, lqdev-me, reference
 source_project: lqdev-me
+related_entries: my-tech-stack, codebase-context
 ---
 
 A living document that tracks what's currently active, what's being learned, and what's on the horizon. Updated as projects and interests evolve.

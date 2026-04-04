@@ -7,6 +7,7 @@ last_updated_date: "2026-04-02"
 tags: "copilot, acp, json-rpc, protocols, research"
 related_skill: ""
 source_project: "copilot-sdk-elisp"
+related_entries: "project-report-copilot-sdk-elisp-emacs-ai-os, pattern-agent-as-unix-citizen, pattern-emacs-ai-operating-system-architecture"
 ---
 
 ## Context

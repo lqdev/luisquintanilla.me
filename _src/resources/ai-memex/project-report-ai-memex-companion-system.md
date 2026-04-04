@@ -7,6 +7,7 @@ last_updated_date: "2026-04-01 01:32 -05:00"
 tags: ai-memex, architecture, fsharp, ai-collaboration, lqdev-me, patterns
 related_skill: write-ai-memex
 source_project: lqdev-me
+related_entries: blog-building-my-own-memory, pattern-generic-builder-content-processor, hello-world
 ---
 
 ## Goal

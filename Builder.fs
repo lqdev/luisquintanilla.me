@@ -956,7 +956,7 @@ module Builder
         feedData
 
     // AST-based AI Memex processing using GenericBuilder infrastructure
-    let buildAiMemex() = 
+    let buildAiMemex(crossContentItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list option) = 
         let aiMemexFiles = 
             let dir = Path.Join(srcDir, "resources", "ai-memex")
             if Directory.Exists(dir) then
@@ -969,6 +969,14 @@ module Builder
         let processor = GenericBuilder.AiMemexProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor aiMemexFiles
         
+        // Build knowledge graph from all entries
+        let allEntries = feedData |> List.map (fun item -> item.Content) |> List.toArray
+        let slugToTitle = allEntries |> Array.map (fun e -> e.FileName, e.Metadata.Title) |> Map.ofArray
+        let graph = KnowledgeGraph.buildGraph allEntries
+        
+        // Save graph.json
+        KnowledgeGraph.saveGraphJson outputDir graph |> ignore
+        
         // Generate individual pages
         feedData
         |> List.iter (fun item ->
@@ -980,7 +988,30 @@ module Builder
                 if String.IsNullOrEmpty(entry.Metadata.Tags) then [||]
                 else entry.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
             
-            let html = LayoutViews.aiMemexPageView entry.Metadata.Title (entry.Content |> convertMdToHtml) entry.Metadata.PublishedDate entry.Metadata.LastUpdatedDate entry.FileName entryTags entry.Metadata.EntryType entry.Metadata.Description entry.Metadata.RelatedSkill entry.Metadata.SourceProject
+            // Resolve wikilinks in markdown source before rendering
+            let contentToRender =
+                match entry.MarkdownSource with
+                | Some md ->
+                    let (resolved, _) = KnowledgeGraph.resolveWikilinks slugToTitle md
+                    resolved
+                | None -> entry.Content
+            
+            // Get graph data for this entry
+            let backlinks = 
+                Map.tryFind entry.FileName graph.Backlinks 
+                |> Option.defaultValue [||]
+            let relatedEntries = 
+                Map.tryFind entry.FileName graph.RelatedEntries 
+                |> Option.defaultValue [||]
+            let jsonLd = KnowledgeGraph.generateEntryJsonLd entry graph
+            
+            // Find cross-content-type related items
+            let crossContent =
+                match crossContentItems with
+                | Some items -> KnowledgeGraph.findCrossContentRelated entryTags entry.FileName items
+                | None -> [||]
+            
+            let html = LayoutViews.aiMemexPageView entry.Metadata.Title (contentToRender |> convertMdToHtml) entry.Metadata.PublishedDate entry.Metadata.LastUpdatedDate entry.FileName entryTags entry.Metadata.EntryType entry.Metadata.Description entry.Metadata.RelatedSkill entry.Metadata.SourceProject backlinks relatedEntries jsonLd crossContent
             let page = generate html "defaultindex" $"{entry.Metadata.Title} | AI Memex | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, page))
@@ -990,7 +1021,8 @@ module Builder
             if not (String.IsNullOrEmpty(x.Metadata.PublishedDate)) then DateTimeOffset.Parse(x.Metadata.PublishedDate)
             elif not (String.IsNullOrEmpty(x.Metadata.LastUpdatedDate)) then DateTimeOffset.Parse(x.Metadata.LastUpdatedDate)
             else DateTimeOffset.MinValue)
-        let indexHtml = generate (CollectionViews.aiMemexView entries) "defaultindex" "AI Memex | Luis Quintanilla"
+        let collectionJsonLd = KnowledgeGraph.generateCollectionJsonLd entries
+        let indexHtml = generate (CollectionViews.aiMemexView entries collectionJsonLd) "defaultindex" "AI Memex | Luis Quintanilla"
         let indexSaveDir = Path.Join(outputDir, "resources", "ai-memex")
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), indexHtml)

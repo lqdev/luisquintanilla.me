@@ -82,12 +82,21 @@ last_updated_date: "YYYY-MM-DD HH:mm zzz"
 tags: tag1, tag2, tag3
 related_skill: write-ai-memex
 source_project: lqdev-me
+related_entries: slug-1, slug-2, slug-3
 ---
 ```
 
 - `title`, `description`, `entry_type`, `published_date`, `last_updated_date`, `tags` — **required**
 - `related_skill` — optional, the agent skill that produced this entry
 - `source_project` — optional, project where this knowledge originated
+- `related_entries` — optional, comma-separated slugs of related Memex entries
+
+### Wikilinks & Knowledge Graph
+
+- Use `[[slug]]` in content to link between Memex entries (resolved at build time)
+- Use `[[slug|display text]]` for custom link text
+- Build-time graph: `KnowledgeGraph.fs` computes edges, backlinks, JSON-LD, and `graph.json`
+- See `docs/ai-memex-system.md` for full Knowledge Graph documentation
 
 ### Quality Standards
 
