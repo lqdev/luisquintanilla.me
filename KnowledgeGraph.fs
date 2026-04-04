@@ -165,7 +165,7 @@ let private extractTagOverlapEdges (entries: AiMemex array) : GraphEdge array =
                         Source = idA
                         Target = idB
                         EdgeType = TagOverlap
-                        Weight = jaccard
+                        Weight = min jaccard 0.7
                         Reason = reason
                     }
     |]

@@ -182,6 +182,7 @@ let aiMemexView (entries: AiMemex array) (collectionJsonLd: string) =
         ]
         if not (String.IsNullOrWhiteSpace(collectionJsonLd)) then
             script [ _type "application/ld+json" ] [ rawText collectionJsonLd ]
+        script [ _src "/assets/js/memex-graph.js" ] []
     ]
 
 let presentationsView (presentations: Presentation array) = 
