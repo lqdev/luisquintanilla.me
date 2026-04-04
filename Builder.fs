@@ -956,7 +956,7 @@ module Builder
         feedData
 
     // AST-based AI Memex processing using GenericBuilder infrastructure
-    let buildAiMemex() = 
+    let buildAiMemex(crossContentItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list option) = 
         let aiMemexFiles = 
             let dir = Path.Join(srcDir, "resources", "ai-memex")
             if Directory.Exists(dir) then
@@ -1005,7 +1005,13 @@ module Builder
                 |> Option.defaultValue [||]
             let jsonLd = KnowledgeGraph.generateEntryJsonLd entry graph
             
-            let html = LayoutViews.aiMemexPageView entry.Metadata.Title (contentToRender |> convertMdToHtml) entry.Metadata.PublishedDate entry.Metadata.LastUpdatedDate entry.FileName entryTags entry.Metadata.EntryType entry.Metadata.Description entry.Metadata.RelatedSkill entry.Metadata.SourceProject backlinks relatedEntries jsonLd
+            // Find cross-content-type related items
+            let crossContent =
+                match crossContentItems with
+                | Some items -> KnowledgeGraph.findCrossContentRelated entryTags entry.FileName items
+                | None -> [||]
+            
+            let html = LayoutViews.aiMemexPageView entry.Metadata.Title (contentToRender |> convertMdToHtml) entry.Metadata.PublishedDate entry.Metadata.LastUpdatedDate entry.FileName entryTags entry.Metadata.EntryType entry.Metadata.Description entry.Metadata.RelatedSkill entry.Metadata.SourceProject backlinks relatedEntries jsonLd crossContent
             let page = generate html "defaultindex" $"{entry.Metadata.Title} | AI Memex | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, page))

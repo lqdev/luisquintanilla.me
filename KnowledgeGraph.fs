@@ -47,6 +47,14 @@ type RelatedEntryData = {
     Score: float
 }
 
+type CrossContentItem = {
+    Title: string
+    Url: string
+    ContentType: string
+    Tags: string array
+    OverlapReason: string
+}
+
 type KnowledgeGraph = {
     Nodes: GraphNode array
     Edges: GraphEdge array
@@ -468,6 +476,39 @@ let saveGraphJson (outputDir: string) (graph: KnowledgeGraph) =
     let json = serializeGraphJson graph
     File.WriteAllText(graphPath, json)
     {| EdgeCount = graph.Edges.Length; NodeCount = graph.Nodes.Length |}
+
+// --- Cross-content-type connections ---
+
+/// Find related content from across the site (posts, wiki, snippets, etc.)
+/// using tag overlap with a given Memex entry. Returns top 5 matches.
+let findCrossContentRelated (entryTags: string array) (entrySlug: string) (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) : CrossContentItem array =
+    if entryTags.Length = 0 then [||]
+    else
+        let entryTagSet = entryTags |> Array.map (fun t -> t.ToLowerInvariant().Trim()) |> Set.ofArray
+        unifiedItems
+        |> List.filter (fun item ->
+            item.ContentType <> "ai-memex" &&
+            not (String.IsNullOrWhiteSpace(item.Title)) &&
+            not (isNull item.Tags) &&
+            item.Tags.Length > 0)
+        |> List.choose (fun item ->
+            let itemTagSet = item.Tags |> Array.map (fun t -> t.ToLowerInvariant().Trim()) |> Set.ofArray
+            let shared = Set.intersect entryTagSet itemTagSet
+            if shared.Count >= 2 then
+                let reason = sprintf "shared tags: %s" (shared |> Set.toArray |> Array.sort |> fun a -> String.Join(", ", a))
+                Some (item, shared.Count, reason)
+            else None)
+        |> List.sortByDescending (fun (_, count, _) -> count)
+        |> List.truncate 5
+        |> List.map (fun (item, _, reason) ->
+            {
+                Title = item.Title
+                Url = item.Url
+                ContentType = item.ContentType
+                Tags = item.Tags
+                OverlapReason = reason
+            })
+        |> List.toArray
 
 // --- Wikilink resolution ---
 

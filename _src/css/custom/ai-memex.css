@@ -195,6 +195,31 @@
     padding: 0.25rem 0;
 }
 
+/* Cross-content related items */
+.ai-memex-cross-content {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--code-bg, rgba(0,0,0,0.03));
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color, #eee);
+}
+
+.ai-memex-cross-content h3 {
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.ai-memex-cross-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ai-memex-cross-content li {
+    padding: 0.25rem 0;
+}
+
 /* Wikilink styles */
 .memex-wikilink {
     color: var(--desert-twilight, #8B5FBF);

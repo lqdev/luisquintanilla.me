@@ -92,7 +92,7 @@ let main argv =
     
     let snippetsFeedData = buildSnippets()
     let wikisFeedData = buildWikis()
-    let aiMemexFeedData = buildAiMemex()
+    let aiMemexFeedData = buildAiMemex(None)
     let presentationsFeedData = buildPresentations()
     let booksFeedData = buildBooks()
     let mediaFeedData = buildMedia()
@@ -201,8 +201,8 @@ let main argv =
     let _ = buildWikis()
     ()
 
-    // Build AI Memex Pages
-    let _ = buildAiMemex()
+    // Build AI Memex Pages (with cross-content connections)
+    let _ = buildAiMemex(Some allUnifiedContent)
     ()
 
     // Build Read Later Page

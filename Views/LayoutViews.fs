@@ -774,7 +774,7 @@ let wikiPageView (title:string) (content:string) (date:string) (fileName:string)
         ]
     ]
 
-let aiMemexPageView (title:string) (content:string) (publishedDate:string) (lastUpdatedDate:string) (fileName:string) (tags: string array) (entryType: string) (description: string) (relatedSkill: string) (sourceProject: string) (backlinks: KnowledgeGraph.BacklinkData array) (relatedEntries: KnowledgeGraph.RelatedEntryData array) (jsonLd: string) = 
+let aiMemexPageView (title:string) (content:string) (publishedDate:string) (lastUpdatedDate:string) (fileName:string) (tags: string array) (entryType: string) (description: string) (relatedSkill: string) (sourceProject: string) (backlinks: KnowledgeGraph.BacklinkData array) (relatedEntries: KnowledgeGraph.RelatedEntryData array) (jsonLd: string) (crossContent: KnowledgeGraph.CrossContentItem array) = 
     let publishDate = DateTimeOffset.Parse(publishedDate)
     let entryTypeIcon = 
         match entryType with
@@ -890,6 +890,32 @@ let aiMemexPageView (title:string) (content:string) (publishedDate:string) (last
                                 li [] [
                                     a [ _href $"/resources/ai-memex/{bl.Slug}/" ] [ Text bl.Title ]
                                     span [ _class "ai-memex-edge-reason" ] [ Text $" — {bl.Reason}" ]
+                                ]
+                        ]
+                    ]
+                
+                if crossContent.Length > 0 then
+                    div [ _class "ai-memex-cross-content" ] [
+                        h3 [] [
+                            span [ _class "bi bi-journal-text" ] []
+                            Text " Related on this site"
+                        ]
+                        ul [] [
+                            for item in (crossContent: KnowledgeGraph.CrossContentItem array) do
+                                let typeIcon =
+                                    match item.ContentType with
+                                    | "posts" -> "bi bi-file-earmark-text"
+                                    | "wiki" -> "bi bi-wikipedia"
+                                    | "snippets" -> "bi bi-code-slash"
+                                    | "notes" -> "bi bi-chat-left-text"
+                                    | "responses" | "bookmarks" -> "bi bi-reply"
+                                    | "presentations" -> "bi bi-easel"
+                                    | _ -> "bi bi-file-earmark"
+                                li [] [
+                                    span [ _class typeIcon ] []
+                                    Text " "
+                                    a [ _href item.Url ] [ Text item.Title ]
+                                    span [ _class "ai-memex-edge-reason" ] [ Text $" — {item.OverlapReason}" ]
                                 ]
                         ]
                     ]
