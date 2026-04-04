@@ -389,6 +389,19 @@ module WikiProcessor =
 
 /// AI Memex content processor
 module AiMemexProcessor =
+    let private extractContentWithoutFrontMatter (rawMarkdown: string) : string =
+        let lines = rawMarkdown.Split([|'\n'|], StringSplitOptions.None)
+        if lines.Length > 0 && lines.[0].Trim() = "---" then
+            let closingIndex = 
+                lines 
+                |> Array.skip 1
+                |> Array.findIndex (fun line -> line.Trim() = "---")
+            lines 
+            |> Array.skip (closingIndex + 2)
+            |> String.concat "\n"
+        else
+            rawMarkdown
+
     let create() : ContentProcessor<AiMemex> = {
         Parse = fun filePath ->
             match parseAiMemexFromFile filePath with
@@ -399,7 +412,7 @@ module AiMemexProcessor =
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = parsedDoc.TextContent
-                        MarkdownSource = Some parsedDoc.RawMarkdown
+                        MarkdownSource = Some (extractContentWithoutFrontMatter parsedDoc.RawMarkdown)
                     }
                 | None -> None
             | Error _ -> None
