@@ -3,6 +3,7 @@ module KnowledgeGraph
 open System
 open System.IO
 open System.Text.Json
+open System.Net
 open System.Text.RegularExpressions
 open Domain
 
@@ -63,6 +64,16 @@ type KnowledgeGraph = {
 }
 
 // --- Helpers ---
+
+/// Escape a string for safe embedding in JSON values
+let private jsonEscape (s: string) =
+    if isNull s then ""
+    else
+        s.Replace("\\", "\\\\")
+         .Replace("\"", "\\\"")
+         .Replace("\n", "\\n")
+         .Replace("\r", "\\r")
+         .Replace("\t", "\\t")
 
 let private splitCsv (s: string) =
     if String.IsNullOrWhiteSpace(s) then [||]
@@ -239,7 +250,7 @@ let private computeBacklinks (nodes: GraphNode array) (edges: GraphEdge array) :
         |> List.distinctBy (fun b -> b.Slug)
         |> List.toArray)
 
-/// Compute ranked related entries for each node (top 5 by combined weight)
+/// Compute ranked related entries for each node (top 5 by highest edge weight)
 let private computeRelatedEntries (nodes: GraphNode array) (edges: GraphEdge array) : Map<string, RelatedEntryData array> =
     let nodeMap = nodes |> Array.map (fun n -> n.Id, n) |> Map.ofArray
     let mutable scores: Map<string, Map<string, (float * string)>> = Map.empty
@@ -322,7 +333,7 @@ let generateEntryJsonLd (entry: AiMemex) (graph: KnowledgeGraph) : string =
     let tags = splitCsv entry.Metadata.Tags
     let aboutItems = 
         tags 
-        |> Array.map (fun tag -> sprintf """{"@type":"Thing","name":"%s"}""" (tag.Replace("\"", "\\\"")))
+        |> Array.map (fun tag -> sprintf """{"@type":"Thing","name":"%s"}""" (jsonEscape tag))
     
     let publishedDate = 
         try DateTimeOffset.Parse(entry.Metadata.PublishedDate).ToString("yyyy-MM-dd")
@@ -360,8 +371,8 @@ let generateEntryJsonLd (entry: AiMemex) (graph: KnowledgeGraph) : string =
   "mainEntityOfPage":{"@type":"WebPage","@id":"https://www.lqdev.me/resources/ai-memex/%s/"}
 }"""     (schemaOrgType entry.Metadata.EntryType)
          entry.FileName
-         (entry.Metadata.Title.Replace("\"", "\\\""))
-         ((if isNull entry.Metadata.Description then "" else entry.Metadata.Description).Replace("\"", "\\\""))
+         (jsonEscape entry.Metadata.Title)
+         (jsonEscape (if isNull entry.Metadata.Description then "" else entry.Metadata.Description))
          publishedDate
          modifiedDate
          keywords
@@ -385,7 +396,7 @@ let generateCollectionJsonLd (entries: AiMemex array) : string =
                 items 
                 |> Array.mapi (fun i item ->
                     sprintf """{"@type":"ListItem","position":%d,"url":"https://www.lqdev.me/resources/ai-memex/%s/","name":"%s"}"""
-                        (i + 1) item.FileName (item.Metadata.Title.Replace("\"", "\\\"")))
+                        (i + 1) item.FileName (jsonEscape item.Metadata.Title))
             sprintf """{"@type":"ItemList","name":"%s","numberOfItems":%d,"itemListElement":[%s]}"""
                 label items.Length (String.Join(",", listItems)))
 
@@ -419,53 +430,40 @@ let serializeGraphJson (graph: KnowledgeGraph) : string =
             counts <- Map.add edge.Target (1 + (Map.tryFind edge.Target counts |> Option.defaultValue 0)) counts
         counts
     
-    let nodeJsons =
+    let nodes =
         graph.Nodes
         |> Array.map (fun n ->
             let cc = Map.tryFind n.Id connectionCounts |> Option.defaultValue 0
-            let tagsJson = n.Tags |> Array.map (fun t -> sprintf "\"%s\"" (t.Replace("\"", "\\\""))) |> fun a -> String.Join(",", a)
-            sprintf """{"id":"%s","title":"%s","entryType":"%s","tags":[%s],"url":"%s","sourceProject":"%s","description":"%s","connectionCount":%d}"""
-                n.Id
-                (n.Title.Replace("\"", "\\\""))
-                n.EntryType
-                tagsJson
-                n.Url
-                (n.SourceProject.Replace("\"", "\\\""))
-                (n.Description.Replace("\"", "\\\""))
-                cc)
+            {| id = n.Id; title = n.Title; entryType = n.EntryType
+               tags = n.Tags; url = n.Url; sourceProject = n.SourceProject
+               description = n.Description; connectionCount = cc |})
     
-    let edgeJsons =
+    let edges =
         graph.Edges
         |> Array.map (fun e ->
-            sprintf """{"source":"%s","target":"%s","type":"%s","weight":%.2f,"reason":"%s"}"""
-                e.Source e.Target (edgeTypeString e.EdgeType) e.Weight (e.Reason.Replace("\"", "\\\"")))
+            {| source = e.Source; target = e.Target
+               ``type`` = edgeTypeString e.EdgeType
+               weight = Math.Round(e.Weight, 2); reason = e.Reason |})
     
-    // Build clusters by source project
-    let clusters =
-        graph.Nodes
-        |> Array.filter (fun n -> not (String.IsNullOrWhiteSpace(n.SourceProject)))
-        |> Array.groupBy (fun n -> n.SourceProject)
-        |> Array.map (fun (project, nodes) ->
-            let ids = nodes |> Array.map (fun n -> sprintf "\"%s\"" n.Id) |> fun a -> String.Join(",", a)
-            sprintf "\"%s\":[%s]" project ids)
+    let clusters = Collections.Generic.Dictionary<string, string array>()
+    graph.Nodes
+    |> Array.filter (fun n -> not (String.IsNullOrWhiteSpace(n.SourceProject)))
+    |> Array.groupBy (fun n -> n.SourceProject)
+    |> Array.iter (fun (project, projectNodes) ->
+        clusters.[project] <- projectNodes |> Array.map (fun n -> n.Id))
     
     let now = DateTimeOffset.UtcNow.ToString("o")
     let avgConn = 
         if graph.Nodes.Length = 0 then 0.0
         else (graph.Edges.Length |> float) * 2.0 / (graph.Nodes.Length |> float)
     
-    sprintf """{
-  "nodes":[%s],
-  "edges":[%s],
-  "clusters":{%s},
-  "stats":{"nodeCount":%d,"edgeCount":%d,"avgConnections":%.1f,"generatedAt":"%s"}
-}"""     (String.Join(",", nodeJsons))
-         (String.Join(",", edgeJsons))
-         (String.Join(",", clusters))
-         graph.Nodes.Length
-         graph.Edges.Length
-         avgConn
-         now
+    let graphDto =
+        {| nodes = nodes; edges = edges; clusters = clusters
+           stats = {| nodeCount = graph.Nodes.Length; edgeCount = graph.Edges.Length
+                      avgConnections = Math.Round(avgConn, 1); generatedAt = now |} |}
+    
+    let options = JsonSerializerOptions(WriteIndented = false)
+    JsonSerializer.Serialize(graphDto, options)
 
 /// Save graph.json to the output directory
 let saveGraphJson (outputDir: string) (graph: KnowledgeGraph) =
@@ -481,7 +479,7 @@ let saveGraphJson (outputDir: string) (graph: KnowledgeGraph) =
 
 /// Find related content from across the site (posts, wiki, snippets, etc.)
 /// using tag overlap with a given Memex entry. Returns top 5 matches.
-let findCrossContentRelated (entryTags: string array) (entrySlug: string) (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) : CrossContentItem array =
+let findCrossContentRelated (entryTags: string array) (_entrySlug: string) (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) : CrossContentItem array =
     if entryTags.Length = 0 then [||]
     else
         let entryTagSet = entryTags |> Array.map (fun t -> t.ToLowerInvariant().Trim()) |> Set.ofArray
@@ -528,7 +526,7 @@ let resolveWikilinks (slugToTitle: Map<string, string>) (content: string) : stri
                 referencedSlugs <- slug :: referencedSlugs
                 let text = if displayText = "" then title else displayText
                 sprintf """<a href="/resources/ai-memex/%s/" class="memex-wikilink" title="%s">%s</a>""" 
-                    slug (title.Replace("\"", "&quot;")) text
+                    slug (WebUtility.HtmlEncode(title)) (WebUtility.HtmlEncode(text))
             | None ->
-                sprintf """<span class="memex-wikilink-broken" title="Entry not found">%s</span>""" slug)
+                sprintf """<span class="memex-wikilink-broken" title="Entry not found">%s</span>""" (WebUtility.HtmlEncode(slug)))
     (result, referencedSlugs |> List.distinct |> List.rev)

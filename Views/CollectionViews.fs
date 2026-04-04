@@ -173,10 +173,10 @@ let aiMemexView (entries: AiMemex array) (collectionJsonLd: string) =
                         Text (DateTimeOffset.Parse(entry.Metadata.PublishedDate).ToString("MMM dd, yyyy"))
                 ]
         ]
-        div [ _id "memex-graph"; _class "ai-memex-graph-container"; attr "style" "display:none;" ] [
+        div [ _id "memex-graph"; _class "ai-memex-graph-container"; attr "style" "display:none;"; attr "aria-hidden" "true" ] [
             p [] [ Text "Loading knowledge graph..." ]
         ]
-        button [ _class "ai-memex-filter-btn"; attr "onclick" "toggleMemexGraph()" ] [ 
+        button [ _class "ai-memex-filter-btn"; _type "button"; attr "aria-controls" "memex-graph"; attr "aria-expanded" "false"; attr "onclick" "toggleMemexGraph(); var g=document.getElementById('memex-graph'); var exp=g&&g.style.display!=='none'; this.setAttribute('aria-expanded',exp); g.setAttribute('aria-hidden',!exp);" ] [ 
             span [ _class "bi bi-diagram-3" ] []
             Text " Knowledge Graph" 
         ]

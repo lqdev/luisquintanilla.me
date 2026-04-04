@@ -137,11 +137,18 @@ function renderGraph(container, data) {
   
   // Interactions
   node.on('mouseover', function(event, d) {
-    tooltip
-      .style('display', 'block')
-      .html('<strong>' + d.title + '</strong><br>' + 
-            '<em>' + d.entryType + '</em> · ' + d.connectionCount + ' connections' +
-            (d.description ? '<br>' + d.description.substring(0, 100) + '…' : ''));
+    tooltip.style('display', 'block');
+    tooltip.selectAll('*').remove();
+    tooltip.text('');
+    tooltip.append('strong').text(d.title);
+    tooltip.append('br');
+    var meta = tooltip.append('span');
+    meta.append('em').text(d.entryType);
+    meta.append('span').text(' · ' + d.connectionCount + ' connections');
+    if (d.description) {
+      tooltip.append('br');
+      tooltip.append('span').text(d.description.substring(0, 100) + '…');
+    }
     var rect = container.getBoundingClientRect();
     tooltip
       .style('left', (event.clientX - rect.left + 15) + 'px')
