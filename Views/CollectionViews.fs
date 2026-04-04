@@ -136,7 +136,7 @@ let wikisView (wikis: Wiki array) =
         ]
     ]
 
-let aiMemexView (entries: AiMemex array) = 
+let aiMemexView (entries: AiMemex array) (collectionJsonLd: string) = 
     let entryTypeIcon entryType =
         match entryType with
         | "project-report" -> "bi bi-clipboard-check"
@@ -173,6 +173,15 @@ let aiMemexView (entries: AiMemex array) =
                         Text (DateTimeOffset.Parse(entry.Metadata.PublishedDate).ToString("MMM dd, yyyy"))
                 ]
         ]
+        div [ _id "memex-graph"; _class "ai-memex-graph-container"; attr "style" "display:none;" ] [
+            p [] [ Text "Loading knowledge graph..." ]
+        ]
+        button [ _class "ai-memex-filter-btn"; attr "onclick" "toggleMemexGraph()" ] [ 
+            span [ _class "bi bi-diagram-3" ] []
+            Text " Knowledge Graph" 
+        ]
+        if not (String.IsNullOrWhiteSpace(collectionJsonLd)) then
+            script [ _type "application/ld+json" ] [ rawText collectionJsonLd ]
     ]
 
 let presentationsView (presentations: Presentation array) = 

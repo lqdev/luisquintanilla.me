@@ -22,6 +22,7 @@
     <Compile Include="Services\FollowersSync.fs" /> 
     <Compile Include="GenericBuilder.fs" />
     <Compile Include="ActivityPubBuilder.fs" />
+    <Compile Include="KnowledgeGraph.fs" />
     <Compile Include="Views\ComponentViews.fs" />
     <Compile Include="Views\TagViews.fs" />
     <Compile Include="Views\FeedViews.fs" />
