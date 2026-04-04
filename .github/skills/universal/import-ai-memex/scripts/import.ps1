@@ -117,7 +117,7 @@ foreach ($source in $config.sources) {
                         if ($mergedContent -notmatch 'source_project:') {
                             $mergedContent = $mergedContent -replace '(---\s*\r?\n)', "`$1source_project: `"$projectName`"`n"
                         }
-                        Set-Content -Path $targetFile -Value $mergedContent -NoNewline
+                        Set-Content -Path $targetFile -Value $mergedContent -Encoding utf8 -NoNewline
                         Write-Host "  [UPDATED] $($entry.Name) (spoke: $spokeDate > hub: $hubDate)" -ForegroundColor Yellow
                     } catch {
                         Write-Warning "  Failed to update $($entry.Name): $_"
@@ -145,7 +145,7 @@ foreach ($source in $config.sources) {
             if ($content -notmatch 'source_project:') {
                 $content = $content -replace '(---\s*\r?\n)', "`$1source_project: `"$projectName`"`n"
             }
-            Set-Content -Path $targetFile -Value $content -NoNewline
+            Set-Content -Path $targetFile -Value $content -Encoding utf8 -NoNewline
             Write-Host "  [IMPORTED] $($entry.Name)" -ForegroundColor Green
             $imported++
         }

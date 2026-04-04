@@ -8,7 +8,7 @@
 # Must be run from the lqdev.me repo root.
 
 param(
-    [string]$ConfigPath = "$HOME\.agents\skills\import-ai-memex\import-sources.json",
+    [string]$ConfigPath = (Join-Path $HOME ".agents/skills/import-ai-memex/import-sources.json"),
     [int]$StaleDays = 90
 )
 
@@ -19,8 +19,8 @@ if (-not (Test-Path "PersonalSite.fsproj")) {
     exit 1
 }
 
-$hubDir = "_src\resources\ai-memex"
-$graphPath = "_public\resources\ai-memex\graph.json"
+$hubDir = "_src/resources/ai-memex"
+$graphPath = "_public/resources/ai-memex/graph.json"
 
 function Get-FrontMatterField {
     param([string]$Content, [string]$Field)
