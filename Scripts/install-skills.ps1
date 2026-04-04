@@ -41,9 +41,33 @@ foreach ($skill in $skills) {
         Write-Host "  [EXISTS] $($skill.Name) (use -Force to overwrite)" -ForegroundColor DarkGray
     } else {
         if (Test-Path $targetSkillDir) {
+            # Preserve user-local config files (e.g. import-sources.json) that
+            # exist only at the installed location and would be lost on delete
+            $userConfigs = Get-ChildItem -Path $targetSkillDir -Filter "*.json" -File -ErrorAction SilentlyContinue |
+                Where-Object { -not (Test-Path (Join-Path $skill.FullName $_.Name)) }
+            $tempDir = $null
+            if ($userConfigs) {
+                $tempDir = Join-Path ([System.IO.Path]::GetTempPath()) "skill-backup-$($skill.Name)"
+                New-Item -ItemType Directory -Path $tempDir -Force | Out-Null
+                foreach ($cfg in $userConfigs) {
+                    Copy-Item -Path $cfg.FullName -Destination $tempDir
+                    Write-Host "  [BACKUP] $($cfg.Name)" -ForegroundColor DarkYellow
+                }
+            }
+
             Remove-Item -Path $targetSkillDir -Recurse -Force
         }
         Copy-Item -Path $skill.FullName -Destination $targetSkillDir -Recurse
+
+        # Restore preserved config files
+        if ($tempDir -and (Test-Path $tempDir)) {
+            foreach ($cfg in (Get-ChildItem -Path $tempDir -File)) {
+                Copy-Item -Path $cfg.FullName -Destination $targetSkillDir
+                Write-Host "  [RESTORED] $($cfg.Name)" -ForegroundColor DarkYellow
+            }
+            Remove-Item -Path $tempDir -Recurse -Force
+        }
+
         Write-Host "  [INSTALLED] $($skill.Name)" -ForegroundColor Green
     }
 }
