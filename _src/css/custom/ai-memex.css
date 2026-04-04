@@ -100,28 +100,28 @@
 
 /* Entry type-specific accent colors for variety */
 .ai-memex-entry[data-entry-type="project-report"] .ai-memex-type-badge {
-    background-color: rgba(123, 79, 175, 0.1);
-    color: #7B4FAF;
-}
-
-.ai-memex-entry[data-entry-type="research"] .ai-memex-type-badge {
     background-color: rgba(155, 111, 207, 0.1);
     color: #9B6FCF;
 }
 
+.ai-memex-entry[data-entry-type="research"] .ai-memex-type-badge {
+    background-color: rgba(91, 168, 200, 0.1);
+    color: #5BA8C8;
+}
+
 .ai-memex-entry[data-entry-type="reference"] .ai-memex-type-badge {
-    background-color: rgba(107, 79, 159, 0.1);
-    color: #6B4F9F;
+    background-color: rgba(95, 138, 88, 0.1);
+    color: #5F8A58;
 }
 
 .ai-memex-entry[data-entry-type="pattern"] .ai-memex-type-badge {
-    background-color: rgba(171, 127, 223, 0.1);
-    color: #AB7FDF;
+    background-color: rgba(224, 122, 58, 0.1);
+    color: #E07A3A;
 }
 
 .ai-memex-entry[data-entry-type="blog-post"] .ai-memex-type-badge {
-    background-color: rgba(139, 95, 191, 0.1);
-    color: #8B5FBF;
+    background-color: rgba(212, 132, 154, 0.1);
+    color: #D4849A;
 }
 
 /* Provenance metadata */
@@ -309,6 +309,39 @@
 .ai-memex-graph-link:hover {
     background-color: var(--desert-twilight-bg);
     text-decoration: none;
+}
+
+/* Zoom controls */
+.memex-graph-controls {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    z-index: 5;
+}
+
+.memex-graph-zoom-btn {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color, #ccc);
+    border-radius: 0.25rem;
+    background: var(--card-background, #fff);
+    color: var(--text-color, #333);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    padding: 0;
+    line-height: 1;
+}
+
+.memex-graph-zoom-btn:hover {
+    background-color: var(--desert-twilight-bg);
+    border-color: var(--desert-twilight);
 }
 
 .memex-graph-tooltip {

@@ -190,27 +190,27 @@ let aiMemexGraphView (entryCount: int) =
         h2 [] [ Text "Knowledge Graph" ]
         p [] [ Text "Interactive visualization of connections between AI Memex entries." ]
         div [ _class "ai-memex-graph-stats" ] [
-            Text $"{entryCount} entries · Click a node to visit its page · Drag to rearrange"
+            Text $"{entryCount} entries · Click a node to visit · Drag nodes to rearrange · Scroll to zoom · Drag background to pan"
         ]
         div [ _class "ai-memex-graph-legend" ] [
             span [ _class "ai-memex-graph-legend-item" ] [
-                span [ _class "ai-memex-graph-legend-swatch"; attr "style" "background-color: #AB7FDF;" ] []
+                span [ _class "ai-memex-graph-legend-swatch"; attr "style" "background-color: #E07A3A;" ] []
                 Text "Pattern"
             ]
             span [ _class "ai-memex-graph-legend-item" ] [
-                span [ _class "ai-memex-graph-legend-swatch"; attr "style" "background-color: #9B6FCF;" ] []
+                span [ _class "ai-memex-graph-legend-swatch"; attr "style" "background-color: #5BA8C8;" ] []
                 Text "Research"
             ]
             span [ _class "ai-memex-graph-legend-item" ] [
-                span [ _class "ai-memex-graph-legend-swatch"; attr "style" "background-color: #6B4F9F;" ] []
+                span [ _class "ai-memex-graph-legend-swatch"; attr "style" "background-color: #5F8A58;" ] []
                 Text "Reference"
             ]
             span [ _class "ai-memex-graph-legend-item" ] [
-                span [ _class "ai-memex-graph-legend-swatch"; attr "style" "background-color: #7B4FAF;" ] []
+                span [ _class "ai-memex-graph-legend-swatch"; attr "style" "background-color: #9B6FCF;" ] []
                 Text "Project Report"
             ]
             span [ _class "ai-memex-graph-legend-item" ] [
-                span [ _class "ai-memex-graph-legend-swatch"; attr "style" "background-color: #8B5FBF;" ] []
+                span [ _class "ai-memex-graph-legend-swatch"; attr "style" "background-color: #D4849A;" ] []
                 Text "Blog Post"
             ]
         ]

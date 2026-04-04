@@ -58,13 +58,13 @@ function renderGraph(container, data) {
   var width = container.clientWidth || 800;
   var height = container.clientHeight || 600;
   
-  // Entry type colors (matching Desert Twilight palette)
+  // Entry type colors (distinct desert palette colors)
   var typeColors = {
-    'pattern': '#AB7FDF',
-    'research': '#9B6FCF',
-    'reference': '#6B4F9F',
-    'project-report': '#7B4FAF',
-    'blog-post': '#8B5FBF'
+    'pattern': '#E07A3A',
+    'research': '#5BA8C8',
+    'reference': '#5F8A58',
+    'project-report': '#9B6FCF',
+    'blog-post': '#D4849A'
   };
   
   var svg = d3.select(container)
@@ -73,7 +73,39 @@ function renderGraph(container, data) {
     .attr('height', height)
     .attr('viewBox', [0, 0, width, height]);
   
-  // Tooltip
+  // Zoom behavior
+  var g = svg.append('g');
+  var zoom = d3.zoom()
+    .scaleExtent([0.3, 5])
+    .on('zoom', function(event) {
+      g.attr('transform', event.transform);
+    });
+  svg.call(zoom);
+  
+  // Zoom controls
+  var controls = d3.select(container)
+    .append('div')
+    .attr('class', 'memex-graph-controls');
+  controls.append('button')
+    .attr('class', 'memex-graph-zoom-btn')
+    .attr('title', 'Zoom in')
+    .attr('aria-label', 'Zoom in')
+    .text('+')
+    .on('click', function() { svg.transition().duration(300).call(zoom.scaleBy, 1.4); });
+  controls.append('button')
+    .attr('class', 'memex-graph-zoom-btn')
+    .attr('title', 'Zoom out')
+    .attr('aria-label', 'Zoom out')
+    .text('−')
+    .on('click', function() { svg.transition().duration(300).call(zoom.scaleBy, 0.7); });
+  controls.append('button')
+    .attr('class', 'memex-graph-zoom-btn')
+    .attr('title', 'Reset zoom')
+    .attr('aria-label', 'Reset zoom')
+    .text('⟲')
+    .on('click', function() { svg.transition().duration(300).call(zoom.transform, d3.zoomIdentity); });
+  
+  // Tooltip (outside SVG, in container)
   var tooltip = d3.select(container)
     .append('div')
     .attr('class', 'memex-graph-tooltip')
@@ -114,16 +146,16 @@ function renderGraph(container, data) {
     .force('center', d3.forceCenter(width / 2, height / 2))
     .force('collision', d3.forceCollide().radius(function(d) { return d.radius + 5; }));
   
-  // Edges
-  var link = svg.append('g')
+  // Edges (in g group for zoom)
+  var link = g.append('g')
     .selectAll('line')
     .data(links)
     .join('line')
     .attr('class', 'memex-graph-edge')
     .attr('stroke-width', function(d) { return Math.max(1, d.weight * 2); });
   
-  // Node groups
-  var node = svg.append('g')
+  // Node groups (in g group for zoom)
+  var node = g.append('g')
     .selectAll('g')
     .data(nodes)
     .join('g')
