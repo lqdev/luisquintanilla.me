@@ -384,6 +384,7 @@ module Layouts
         script [_src "/assets/js/qrcode.js"] []       // QR code generation
         script [_src "/assets/js/lazy-images.js"] []  // Image lazy loading
         script [_src "/assets/js/page-visibility.js"] []  // Resource optimization when tab hidden
+        script [_src "/assets/js/memex-graph.js"] []     // Knowledge graph visualization
         
         // PWA Service Worker registration (offline support, caching)
         script [_src "/assets/js/sw-registration.js"] []
