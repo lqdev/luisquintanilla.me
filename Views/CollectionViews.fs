@@ -173,15 +173,50 @@ let aiMemexView (entries: AiMemex array) (collectionJsonLd: string) =
                         Text (DateTimeOffset.Parse(entry.Metadata.PublishedDate).ToString("MMM dd, yyyy"))
                 ]
         ]
-        div [ _id "memex-graph"; _class "ai-memex-graph-container"; attr "style" "display:none;"; attr "aria-hidden" "true" ] [
-            p [] [ Text "Loading knowledge graph..." ]
-        ]
-        button [ _class "ai-memex-filter-btn"; _type "button"; attr "aria-controls" "memex-graph"; attr "aria-expanded" "false"; attr "onclick" "toggleMemexGraph(); var g=document.getElementById('memex-graph'); var exp=g&&g.style.display!=='none'; this.setAttribute('aria-expanded',exp); g.setAttribute('aria-hidden',!exp);" ] [ 
+        a [ _href "/resources/ai-memex/graph/"; _class "ai-memex-graph-link" ] [
             span [ _class "bi bi-diagram-3" ] []
-            Text " Knowledge Graph" 
+            Text " Explore Knowledge Graph"
         ]
         if not (String.IsNullOrWhiteSpace(collectionJsonLd)) then
             script [ _type "application/ld+json" ] [ rawText collectionJsonLd ]
+        script [ _src "/assets/js/memex-graph.js" ] []
+    ]
+
+let aiMemexGraphView (entryCount: int) =
+    div [ _class "d-grip gap-3 ai-memex-graph-page" ] [
+        nav [ attr "aria-label" "breadcrumb" ] [
+            a [ _href "/resources/ai-memex/" ] [ Text "← AI Memex" ]
+        ]
+        h2 [] [ Text "Knowledge Graph" ]
+        p [] [ Text "Interactive visualization of connections between AI Memex entries." ]
+        div [ _class "ai-memex-graph-stats" ] [
+            Text $"{entryCount} entries · Click a node to visit its page · Drag to rearrange"
+        ]
+        div [ _class "ai-memex-graph-legend" ] [
+            span [ _class "ai-memex-graph-legend-item" ] [
+                span [ _class "ai-memex-graph-legend-swatch"; attr "style" "background-color: #AB7FDF;" ] []
+                Text "Pattern"
+            ]
+            span [ _class "ai-memex-graph-legend-item" ] [
+                span [ _class "ai-memex-graph-legend-swatch"; attr "style" "background-color: #9B6FCF;" ] []
+                Text "Research"
+            ]
+            span [ _class "ai-memex-graph-legend-item" ] [
+                span [ _class "ai-memex-graph-legend-swatch"; attr "style" "background-color: #6B4F9F;" ] []
+                Text "Reference"
+            ]
+            span [ _class "ai-memex-graph-legend-item" ] [
+                span [ _class "ai-memex-graph-legend-swatch"; attr "style" "background-color: #7B4FAF;" ] []
+                Text "Project Report"
+            ]
+            span [ _class "ai-memex-graph-legend-item" ] [
+                span [ _class "ai-memex-graph-legend-swatch"; attr "style" "background-color: #8B5FBF;" ] []
+                Text "Blog Post"
+            ]
+        ]
+        div [ _id "memex-graph"; _class "ai-memex-graph-container" ] [
+            p [] [ Text "Loading knowledge graph..." ]
+        ]
         script [ _src "/assets/js/memex-graph.js" ] []
     ]
 

@@ -251,6 +251,66 @@
     height: 400px;
 }
 
+/* Dedicated graph page */
+.ai-memex-graph-page .ai-memex-graph-container {
+    min-height: 600px;
+    margin-top: 1rem;
+}
+
+.ai-memex-graph-page .ai-memex-graph-container svg {
+    height: 600px;
+}
+
+.ai-memex-graph-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--code-bg, rgba(0,0,0,0.02));
+    border: 1px solid var(--border-color, #eee);
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.ai-memex-graph-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.ai-memex-graph-legend-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.ai-memex-graph-stats {
+    font-size: 0.9rem;
+    color: var(--text-muted, #6c757d);
+    margin-bottom: 1rem;
+}
+
+.ai-memex-graph-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--desert-twilight-light);
+    border-radius: 0.5rem;
+    color: var(--desert-twilight, #8B5FBF);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.ai-memex-graph-link:hover {
+    background-color: var(--desert-twilight-bg);
+    text-decoration: none;
+}
+
 .memex-graph-tooltip {
     position: absolute;
     padding: 0.5rem 0.75rem;

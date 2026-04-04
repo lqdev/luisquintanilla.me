@@ -1,19 +1,34 @@
-// AI Memex Knowledge Graph Visualization
-// Uses D3.js force-directed layout loaded from CDN
+// AI Memex - Filter + Knowledge Graph Visualization
+// Filter: wires up .ai-memex-filter-btn buttons to show/hide list items
+// Graph: D3.js force-directed layout loaded from CDN
 
-function toggleMemexGraph() {
-  var container = document.getElementById('memex-graph');
-  if (!container) return;
-  
-  if (container.style.display === 'none') {
-    container.style.display = 'block';
-    if (!container.dataset.loaded) {
-      loadMemexGraph(container);
-    }
-  } else {
-    container.style.display = 'none';
-  }
+// --- Filter Logic ---
+function initMemexFilters() {
+  var buttons = document.querySelectorAll('.ai-memex-filter-btn[data-filter]');
+  if (!buttons.length) return;
+
+  buttons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var filter = btn.getAttribute('data-filter');
+      
+      // Toggle active class
+      buttons.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      
+      // Filter list items
+      var items = document.querySelectorAll('.ai-memex-list li');
+      items.forEach(function(item) {
+        if (filter === 'all' || item.getAttribute('data-entry-type') === filter) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
 }
+
+// --- Graph Logic ---
 
 function loadMemexGraph(container) {
   // Load D3.js from CDN if not already loaded
@@ -41,7 +56,7 @@ function initGraph(container) {
 
 function renderGraph(container, data) {
   var width = container.clientWidth || 800;
-  var height = 400;
+  var height = container.clientHeight || 600;
   
   // Entry type colors (matching Desert Twilight palette)
   var typeColors = {
@@ -193,3 +208,15 @@ function renderGraph(container, data) {
     event.subject.fy = null;
   }
 }
+
+// --- Initialization ---
+document.addEventListener('DOMContentLoaded', function() {
+  // Always init filters (landing page)
+  initMemexFilters();
+  
+  // Auto-load graph on dedicated graph page (container is visible)
+  var graphContainer = document.getElementById('memex-graph');
+  if (graphContainer && graphContainer.style.display !== 'none' && !graphContainer.dataset.loaded) {
+    loadMemexGraph(graphContainer);
+  }
+});

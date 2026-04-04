@@ -1027,6 +1027,12 @@ module Builder
         let indexSaveDir = Path.Join(outputDir, "resources", "ai-memex")
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), indexHtml)
+        
+        // Generate dedicated knowledge graph page
+        let graphHtml = generate (CollectionViews.aiMemexGraphView entries.Length) "defaultindex" "Knowledge Graph | AI Memex | Luis Quintanilla"
+        let graphSaveDir = Path.Join(outputDir, "resources", "ai-memex", "graph")
+        Directory.CreateDirectory(graphSaveDir) |> ignore
+        File.WriteAllText(Path.Join(graphSaveDir, "index.html"), graphHtml)
 
     // AST-based presentation processing using GenericBuilder infrastructure
     let buildPresentations() = 
