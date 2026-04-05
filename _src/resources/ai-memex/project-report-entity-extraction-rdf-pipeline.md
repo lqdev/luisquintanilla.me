@@ -3,11 +3,11 @@ title: "Project Report: Entity Extraction & RDF Pipeline"
 description: "Added LLM-powered entity extraction using Microsoft.Extensions.AI and RDF serialization via dotNetRDF, augmenting the AI Memex knowledge graph with typed entities, Wikidata links, and W3C-standard Turtle + JSON-LD output."
 entry_type: project-report
 published_date: "2026-04-04 20:10 -05:00"
-last_updated_date: "2026-04-04 20:10 -05:00"
+last_updated_date: "2026-04-04 20:39 -05:00"
 tags: ai-memex, knowledge-graph, fsharp, semantic-web, rdf, entity-extraction, microsoft-extensions-ai, dotnetrdf, lqdev-me, llm
 related_skill: write-ai-memex
 source_project: lqdev-me
-related_entries: project-report-memex-knowledge-graph, codebase-context, my-tech-stack, pattern-custom-block-infrastructure
+related_entries: project-report-memex-knowledge-graph, codebase-context, my-tech-stack, pattern-custom-block-infrastructure, pattern-nl-to-sparql-schema-injected-few-shot, blog-post-zero-cost-knowledge-graph-from-markdown
 ---
 
 ## Objective
@@ -125,7 +125,7 @@ Several non-obvious issues emerged during implementation:
 | Metric | Before | After |
 |---|---|---|
 | Edge discovery layers | 5 (structural) | 6 (+ entity mentions) |
-| RDF triples output | 0 | **1,125** |
+| RDF triples output | 0 | **1,159** |
 | Output formats | graph.json only | graph.json + graph.ttl + graph.jsonld |
 | Entity types tracked | 0 | schema.org typed entities with Wikidata links |
 | LLM provider coupling | N/A | Zero — `IChatClient` abstraction |
@@ -151,6 +151,22 @@ Several non-obvious issues emerged during implementation:
 
 4. **dotNetRDF needs F# ergonomics work**: The library is excellent but designed for C#. Every `Assert()` call, every store wrapper, every type cast needs F# adaptation. The `inline` helper pattern should be reused in any future RDF work.
 
-5. **RDF from a static site is powerful**: 1,125 triples from 45 markdown files — with proper namespaces, typed resources, and Wikidata links — is a legitimate linked data endpoint. No SPARQL server needed; the Turtle file is directly consumable by any RDF tool.
+5. **RDF from a static site is powerful**: 1,159 triples from 45 markdown files — with proper namespaces, typed resources, and Wikidata links — is a legitimate linked data endpoint. No SPARQL server needed; the Turtle file is directly consumable by any RDF tool.
 
 6. **F# beats Python for integrated pipelines**: The original markdown-ld-kb needed a separate Python environment, virtual env management, and CI coordination. The F# version runs inside the same `dotnet run` that builds the entire site. One process, one language, one build system.
+
+## PR Review & Hardening
+
+After the initial implementation, automated code review (Copilot on PR #2300) identified 8 issues — all accepted, resolved in 5 fixes:
+
+1. **Null-safe cache deserialization**: `JsonSerializer.Deserialize<T>()` can return `null` in .NET. The original code used `Some(result)`, which creates `Some null` — a time bomb that crashes downstream pattern matches. Fix: `Option.ofObj` converts null to `None`.
+
+2. **Entity type normalization** (root cause of 4 comments): The LLM prompt specified types like `schema:Person` but downstream code (icon mapping, RDF serialization, JSON-LD) matched against unprefixed `Person`. When the LLM included the prefix, entities got `Unknown` icons and wrong RDF types. Fix: `normalizeEntityType` strips the `schema:` prefix at extraction time — applied at both LLM-response and cache-load paths. Prompt also updated to request unprefixed types.
+
+3. **Entity edge ID consistency**: `extractEntityMentionEdges` constructed edge target IDs as `entity:{slug}` but `EntityNode.Id` uses full URLs like `https://www.lqdev.me/entity/dotnetrdf`. Fix: use `a.Object` directly from the assertion, which already contains the correct full URL.
+
+4. **Entity edges crowding related entries**: `EntityMention` edges (weight ~0.8) dominated the top-5 related entries, pushing out more meaningful entry-to-entry connections. Fix: filter `EntityMention` edges from `computeRelatedEntries` — they serve entity discovery, not entry recommendation.
+
+5. **URI double-wrapping**: `RdfSerializer` constructed entity URIs with `Uri(baseUri, entity.Id)`, but `entity.Id` is already an absolute URL. This created malformed URIs like `https://www.lqdev.me/entity/https://www.lqdev.me/entity/dotnetrdf`. Fix: `Uri.TryCreate` with `UriKind.Absolute` check — use the ID directly when it's already absolute.
+
+**Meta-lesson**: Automated code review found real bugs that manual testing missed because the pipeline degrades gracefully — wrong entity types still render, just with generic icons. The normalization bug would have been invisible until someone checked the RDF output carefully.
