@@ -30,6 +30,13 @@ function Get-FrontMatterField {
     return $null
 }
 
+function Normalize-DateString {
+    param([string]$DateValue)
+    if ($DateValue -match '^\d{4}-\d{2}-\d{2}$') { return "$DateValue 00:00 +00:00" }
+    if ($DateValue -match ' UTC$') { return $DateValue -replace ' UTC$', ' +00:00' }
+    return $DateValue
+}
+
 # --- Collect hub entries ---
 $hubEntries = @{}
 $hubFiles = Get-ChildItem -Path $hubDir -Filter "*.md" -File
@@ -130,9 +137,8 @@ if (Test-Path $ConfigPath) {
             $hubDate = $hubEntry.LastUpdated
 
             if ($spokeDate -and $hubDate) {
-                # Normalize date-only to full format for fair comparison
-                $normSpoke = if ($spokeDate -match '^\d{4}-\d{2}-\d{2}$') { "$spokeDate 00:00 +00:00" } else { $spokeDate -replace ' UTC$', ' +00:00' }
-                $normHub = if ($hubDate -match '^\d{4}-\d{2}-\d{2}$') { "$hubDate 00:00 +00:00" } else { $hubDate -replace ' UTC$', ' +00:00' }
+                $normSpoke = Normalize-DateString $spokeDate
+                $normHub = Normalize-DateString $hubDate
 
                 try {
                     if ([DateTimeOffset]::Parse($normSpoke) -gt [DateTimeOffset]::Parse($normHub)) {
@@ -191,7 +197,8 @@ $missingFields = 0
 
 # Load import-sources config for source_project validation
 $validProjects = @("lqdev-me")
-if (Test-Path $ConfigPath) {
+$hasSourceConfig = Test-Path $ConfigPath
+if ($hasSourceConfig) {
     $srcConfig = Get-Content $ConfigPath -Raw | ConvertFrom-Json
     foreach ($s in $srcConfig.sources) { $validProjects += $s.project }
 }
@@ -209,12 +216,12 @@ foreach ($slug in ($hubEntries.Keys | Sort-Object)) {
         $dateOnlyCount++
     }
 
-    # source_project: validate against known projects
+    # source_project: always check for missing, only validate against projects when config exists
     $src = $entry.SourceProject
     if (-not $src -or $src -eq '""') {
         Write-Host "   [NO SOURCE] $slug — missing source_project" -ForegroundColor DarkYellow
         $srcIssues++
-    } elseif ($validProjects -notcontains $src) {
+    } elseif ($hasSourceConfig -and $validProjects -notcontains $src) {
         Write-Host "   [BAD SOURCE] $slug — '$src' not in registered projects" -ForegroundColor DarkYellow
         $srcIssues++
     }

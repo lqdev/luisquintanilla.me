@@ -60,16 +60,20 @@ function Merge-RelatedEntries {
     return $SpokeContent -replace '(?m)^related_entries:.*$', "related_entries: `"$mergedStr`""
 }
 
+function Normalize-DateString {
+    param([string]$DateValue)
+    if ($DateValue -match '^\d{4}-\d{2}-\d{2}$') { return "$DateValue 00:00 +00:00" }
+    if ($DateValue -match ' UTC$') { return $DateValue -replace ' UTC$', ' +00:00' }
+    return $DateValue
+}
+
 function Normalize-DateField {
     param([string]$Content, [string]$Field)
-    # Fix date-only format (YYYY-MM-DD) → "YYYY-MM-DD 00:00 +00:00"
-    if ($Content -match "(?m)^${Field}:\s*`"(\d{4}-\d{2}-\d{2})`"\s*$") {
-        $dateVal = $Matches[1]
-        $Content = $Content -replace "(?m)^${Field}:\s*`"$dateVal`"\s*$", "${Field}: `"$dateVal 00:00 +00:00`""
-    }
-    # Fix UTC abbreviation → +00:00 offset (DateTimeOffset.Parse compatible)
-    if ($Content -match "(?m)^${Field}:\s*`"([^`"]+) UTC`"\s*$") {
-        $Content = $Content -replace "(?m)^${Field}:\s*`"([^`"]+) UTC`"", "${Field}: `"`$1 +00:00`""
+    $val = Get-FrontMatterField $Content $Field
+    if (-not $val) { return $Content }
+    $normalized = Normalize-DateString $val
+    if ($normalized -ne $val) {
+        $Content = $Content -replace "(?m)^${Field}:\s*`"[^`"]*`"", "${Field}: `"$normalized`""
     }
     return $Content
 }
@@ -149,9 +153,8 @@ foreach ($source in $config.sources) {
 
             $shouldUpdate = $Force
             if (-not $Force -and $spokeDate -and $hubDate) {
-                # Normalize date formats for fair comparison
-                $normSpoke = if ($spokeDate -match '^\d{4}-\d{2}-\d{2}$') { "$spokeDate 00:00 +00:00" } else { $spokeDate -replace ' UTC$', ' +00:00' }
-                $normHub = if ($hubDate -match '^\d{4}-\d{2}-\d{2}$') { "$hubDate 00:00 +00:00" } else { $hubDate -replace ' UTC$', ' +00:00' }
+                $normSpoke = Normalize-DateString $spokeDate
+                $normHub = Normalize-DateString $hubDate
                 try {
                     $shouldUpdate = [DateTimeOffset]::Parse($normSpoke) -gt [DateTimeOffset]::Parse($normHub)
                 } catch {
