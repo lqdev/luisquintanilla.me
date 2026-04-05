@@ -774,7 +774,7 @@ let wikiPageView (title:string) (content:string) (date:string) (fileName:string)
         ]
     ]
 
-let aiMemexPageView (title:string) (content:string) (publishedDate:string) (lastUpdatedDate:string) (fileName:string) (tags: string array) (entryType: string) (description: string) (relatedSkill: string) (sourceProject: string) (backlinks: KnowledgeGraph.BacklinkData array) (relatedEntries: KnowledgeGraph.RelatedEntryData array) (jsonLd: string) (crossContent: KnowledgeGraph.CrossContentItem array) = 
+let aiMemexPageView (title:string) (content:string) (publishedDate:string) (lastUpdatedDate:string) (fileName:string) (tags: string array) (entryType: string) (description: string) (relatedSkill: string) (sourceProject: string) (backlinks: KnowledgeGraph.BacklinkData array) (relatedEntries: KnowledgeGraph.RelatedEntryData array) (jsonLd: string) (crossContent: KnowledgeGraph.CrossContentItem array) (entityNodes: KnowledgeGraph.EntityNode array) = 
     let publishDate = DateTimeOffset.Parse(publishedDate)
     let entryTypeIcon = 
         match entryType with
@@ -917,6 +917,36 @@ let aiMemexPageView (title:string) (content:string) (publishedDate:string) (last
                                     a [ _href item.Url ] [ Text item.Title ]
                                     span [ _class "ai-memex-edge-reason" ] [ Text $" — {item.OverlapReason}" ]
                                 ]
+                        ]
+                    ]
+                
+                if entityNodes.Length > 0 then
+                    div [ _class "ai-memex-entities" ] [
+                        h3 [] [
+                            span [ _class "bi bi-diagram-2" ] []
+                            Text " Entities Mentioned"
+                        ]
+                        div [ _class "entity-chips" ] [
+                            for entity in entityNodes do
+                                let iconClass =
+                                    match entity.EntityType with
+                                    | "SoftwareApplication" | "SoftwareSourceCode" -> "bi bi-code-slash"
+                                    | "Person" -> "bi bi-person"
+                                    | "Organization" | "Corporation" -> "bi bi-building"
+                                    | "WebAPI" | "WebApplication" -> "bi bi-globe"
+                                    | "ProgrammingLanguage" | "ComputerLanguage" -> "bi bi-braces"
+                                    | "CreativeWork" | "Article" | "ScholarlyArticle" -> "bi bi-journal-text"
+                                    | _ -> "bi bi-tag"
+                                if entity.SameAs.Length > 0 then
+                                    a [ _href entity.SameAs.[0]; _class "entity-chip"; _target "_blank"; attr "rel" "noopener"; _title entity.EntityType ] [
+                                        span [ _class iconClass ] []
+                                        Text $" {entity.Label}"
+                                    ]
+                                else
+                                    span [ _class "entity-chip"; _title entity.EntityType ] [
+                                        span [ _class iconClass ] []
+                                        Text $" {entity.Label}"
+                                    ]
                         ]
                     ]
                 

@@ -15,6 +15,7 @@ type EdgeType =
     | TagOverlap
     | SameProject
     | SameEntryTypeTag
+    | EntityMention
 
 type GraphNode = {
     Id: string
@@ -56,11 +57,20 @@ type CrossContentItem = {
     OverlapReason: string
 }
 
+type EntityNode = {
+    Id: string
+    Label: string
+    EntityType: string
+    SameAs: string array
+    MentionedIn: string array
+}
+
 type KnowledgeGraph = {
     Nodes: GraphNode array
     Edges: GraphEdge array
     Backlinks: Map<string, BacklinkData array>
     RelatedEntries: Map<string, RelatedEntryData array>
+    EntityNodes: EntityNode array
 }
 
 // --- Helpers ---
@@ -255,7 +265,10 @@ let private computeRelatedEntries (nodes: GraphNode array) (edges: GraphEdge arr
     let nodeMap = nodes |> Array.map (fun n -> n.Id, n) |> Map.ofArray
     let mutable scores: Map<string, Map<string, (float * string)>> = Map.empty
     
-    for edge in edges do
+    // Exclude entity-mention edges — their targets aren't entry nodes
+    let entryEdges = edges |> Array.filter (fun e -> e.EdgeType <> EntityMention)
+    
+    for edge in entryEdges do
         // Accumulate score from source's perspective toward target
         let updateScore (fromId: string) (toId: string) =
             let current = 
@@ -289,11 +302,47 @@ let private computeRelatedEntries (nodes: GraphNode array) (edges: GraphEdge arr
                 }
             | None -> None))
 
-/// Build the complete knowledge graph from AI Memex entries
-let buildGraph (entries: AiMemex array) : KnowledgeGraph =
+/// Layer 6: Entity mentions from LLM extraction (weight ~0.8)
+let private extractEntityMentionEdges (extractions: Map<string, EntityExtraction.ExtractionResult>) : GraphEdge array =
+    extractions
+    |> Map.toArray
+    |> Array.collect (fun (entrySlug, result) ->
+        result.Assertions
+        |> Array.choose (fun a ->
+            if a.Predicate = "schema:mentions" && a.Confidence >= 0.5 then
+                Some {
+                    Source = entrySlug
+                    Target = a.Object
+                    EdgeType = EntityMention
+                    Weight = min (a.Confidence * 0.9) 0.85
+                    Reason = sprintf "mentions entity"
+                }
+            else None))
+
+/// Build entity nodes from extraction results
+let private buildEntityNodes (extractions: Map<string, EntityExtraction.ExtractionResult>) : EntityNode array =
+    let mutable entityMap: Map<string, EntityNode> = Map.empty
+    for KeyValue(entrySlug, result) in extractions do
+        for entity in result.Entities do
+            let normalId = entity.Id.ToLowerInvariant()
+            match Map.tryFind normalId entityMap with
+            | Some existing ->
+                let updated = { existing with MentionedIn = Array.append existing.MentionedIn [| entrySlug |] |> Array.distinct }
+                entityMap <- Map.add normalId updated entityMap
+            | None ->
+                entityMap <- Map.add normalId {
+                    Id = entity.Id
+                    Label = entity.Label
+                    EntityType = entity.EntityType
+                    SameAs = if isNull entity.SameAs then [||] else entity.SameAs
+                    MentionedIn = [| entrySlug |]
+                } entityMap
+    entityMap |> Map.values |> Seq.toArray
+
+/// Build the complete knowledge graph from AI Memex entries and optional entity extractions
+let buildGraph (entries: AiMemex array) (extractions: Map<string, EntityExtraction.ExtractionResult>) : KnowledgeGraph =
     let nodes = entries |> Array.map toGraphNode
     
-    // Collect edges from all layers
     let allEdges =
         [|
             yield! extractExplicitEdges entries
@@ -301,13 +350,15 @@ let buildGraph (entries: AiMemex array) : KnowledgeGraph =
             yield! extractTagOverlapEdges entries
             yield! extractSameProjectEdges entries
             yield! extractSameTypeTagEdges entries
+            yield! extractEntityMentionEdges extractions
         |]
     
     let edges = deduplicateEdges allEdges
     let backlinks = computeBacklinks nodes edges
     let relatedEntries = computeRelatedEntries nodes edges
+    let entityNodes = buildEntityNodes extractions
     
-    { Nodes = nodes; Edges = edges; Backlinks = backlinks; RelatedEntries = relatedEntries }
+    { Nodes = nodes; Edges = edges; Backlinks = backlinks; RelatedEntries = relatedEntries; EntityNodes = entityNodes }
 
 // --- JSON-LD Generation ---
 
@@ -322,7 +373,7 @@ let private schemaOrgType (entryType: string) =
     | _ -> "Article"
 
 /// Generate JSON-LD for a single AI Memex entry page
-let generateEntryJsonLd (entry: AiMemex) (graph: KnowledgeGraph) : string =
+let generateEntryJsonLd (entry: AiMemex) (graph: KnowledgeGraph) (extractions: Map<string, EntityExtraction.ExtractionResult>) : string =
     let relatedLinks =
         match Map.tryFind entry.FileName graph.RelatedEntries with
         | Some related -> 
@@ -354,6 +405,25 @@ let generateEntryJsonLd (entry: AiMemex) (graph: KnowledgeGraph) : string =
             sprintf ""","about":[%s]""" (String.Join(",", aboutItems))
         else ""
     
+    // Generate schema:mentions from extracted entities
+    let mentionsJson =
+        match Map.tryFind entry.FileName extractions with
+        | Some result when result.Entities.Length > 0 ->
+            let mentionItems =
+                result.Entities
+                |> Array.map (fun entity ->
+                    let sameAsJson =
+                        if isNull entity.SameAs || entity.SameAs.Length = 0 then ""
+                        else
+                            let links = entity.SameAs |> Array.map (fun s -> sprintf "\"%s\"" (jsonEscape s))
+                            sprintf ""","sameAs":[%s]""" (String.Join(",", links))
+                    sprintf """{"@type":"%s","name":"%s"%s}""" 
+                        (jsonEscape entity.EntityType)
+                        (jsonEscape entity.Label) 
+                        sameAsJson)
+            sprintf ""","mentions":[%s]""" (String.Join(",", mentionItems))
+        | _ -> ""
+
     let keywords = String.Join(",", tags)
     
     sprintf """{
@@ -367,7 +437,7 @@ let generateEntryJsonLd (entry: AiMemex) (graph: KnowledgeGraph) : string =
   "datePublished":"%s",
   "dateModified":"%s",
   "keywords":"%s",
-  "isPartOf":{"@type":"Collection","@id":"https://www.lqdev.me/resources/ai-memex/","name":"AI Memex"}%s%s,
+  "isPartOf":{"@type":"Collection","@id":"https://www.lqdev.me/resources/ai-memex/","name":"AI Memex"}%s%s%s,
   "mainEntityOfPage":{"@type":"WebPage","@id":"https://www.lqdev.me/resources/ai-memex/%s/"}
 }"""     (schemaOrgType entry.Metadata.EntryType)
          entry.FileName
@@ -378,6 +448,7 @@ let generateEntryJsonLd (entry: AiMemex) (graph: KnowledgeGraph) : string =
          keywords
          relatedLinkJson
          aboutJson
+         mentionsJson
          entry.FileName
 
 /// Generate CollectionPage JSON-LD for the AI Memex index page
@@ -422,6 +493,7 @@ let serializeGraphJson (graph: KnowledgeGraph) : string =
         | TagOverlap -> "tag-overlap"
         | SameProject -> "same-project"
         | SameEntryTypeTag -> "same-type-tag"
+        | EntityMention -> "entity-mention"
     
     let connectionCounts =
         let mutable counts: Map<string, int> = Map.empty
@@ -457,9 +529,17 @@ let serializeGraphJson (graph: KnowledgeGraph) : string =
         if graph.Nodes.Length = 0 then 0.0
         else (graph.Edges.Length |> float) * 2.0 / (graph.Nodes.Length |> float)
     
+    let entityNodes =
+        graph.EntityNodes
+        |> Array.map (fun en ->
+            {| id = en.Id; label = en.Label; entityType = en.EntityType
+               sameAs = en.SameAs; mentionedIn = en.MentionedIn |})
+    
     let graphDto =
         {| nodes = nodes; edges = edges; clusters = clusters
+           entities = entityNodes
            stats = {| nodeCount = graph.Nodes.Length; edgeCount = graph.Edges.Length
+                      entityCount = graph.EntityNodes.Length
                       avgConnections = Math.Round(avgConn, 1); generatedAt = now |} |}
     
     let options = JsonSerializerOptions(WriteIndented = false)

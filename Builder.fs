@@ -975,10 +975,20 @@ module Builder
         // Build knowledge graph from all entries
         let allEntries = feedData |> List.map (fun item -> item.Content) |> List.toArray
         let slugToTitle = allEntries |> Array.map (fun e -> e.FileName, e.Metadata.Title) |> Map.ofArray
-        let graph = KnowledgeGraph.buildGraph allEntries
+        
+        // Entity extraction (uses cache; no-op without GITHUB_TOKEN)
+        let chatClient = EntityExtraction.createChatClient ()
+        let entryPairs = allEntries |> Array.map (fun e -> (e.FileName, e.Content))
+        let extractions =
+            EntityExtraction.extractAll chatClient entryPairs "https://www.lqdev.me"
+        
+        let graph = KnowledgeGraph.buildGraph allEntries extractions
         
         // Save graph.json
         KnowledgeGraph.saveGraphJson outputDir graph |> ignore
+        
+        // Serialize RDF (Turtle + JSON-LD)
+        RdfSerializer.serializeGraph graph outputDir |> ignore
         
         // Generate individual pages
         feedData
@@ -1006,13 +1016,18 @@ module Builder
             let relatedEntries = 
                 Map.tryFind entry.FileName graph.RelatedEntries 
                 |> Option.defaultValue [||]
-            let jsonLd = KnowledgeGraph.generateEntryJsonLd entry graph
+            let jsonLd = KnowledgeGraph.generateEntryJsonLd entry graph extractions
             
             // Find cross-content-type related items
             let crossContent =
                 KnowledgeGraph.findCrossContentRelated entryTags entry.FileName crossContentItems
             
-            let html = LayoutViews.aiMemexPageView entry.Metadata.Title (contentToRender |> convertMdToHtml) entry.Metadata.PublishedDate entry.Metadata.LastUpdatedDate entry.FileName entryTags entry.Metadata.EntryType entry.Metadata.Description entry.Metadata.RelatedSkill entry.Metadata.SourceProject backlinks relatedEntries jsonLd crossContent
+            // Get entity nodes for this entry
+            let entryEntityNodes =
+                graph.EntityNodes
+                |> Array.filter (fun en -> en.MentionedIn |> Array.contains entry.FileName)
+            
+            let html = LayoutViews.aiMemexPageView entry.Metadata.Title (contentToRender |> convertMdToHtml) entry.Metadata.PublishedDate entry.Metadata.LastUpdatedDate entry.FileName entryTags entry.Metadata.EntryType entry.Metadata.Description entry.Metadata.RelatedSkill entry.Metadata.SourceProject backlinks relatedEntries jsonLd crossContent entryEntityNodes
             let page = generate html "defaultindex" $"{entry.Metadata.Title} | AI Memex | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, page))

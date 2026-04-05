@@ -1,0 +1,38 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "kb": "https://www.lqdev.me/vocab/kb#",
+
+    "id": "@id",
+    "type": "@type",
+
+    "confidence": {
+      "@id": "kb:confidence",
+      "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    "source": {
+      "@id": "prov:wasDerivedFrom",
+      "@type": "@id"
+    },
+    "chunk": {
+      "@id": "kb:chunk",
+      "@type": "@id"
+    },
+    "docPath": "kb:docPath",
+    "charStart": {
+      "@id": "kb:charStart",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "charEnd": {
+      "@id": "kb:charEnd",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "relatedTo": {
+      "@id": "kb:relatedTo",
+      "@type": "@id"
+    },
+    "entryType": "kb:entryType",
+    "sourceProject": "kb:sourceProject"
+  }
+}

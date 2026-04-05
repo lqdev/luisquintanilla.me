@@ -1,0 +1,44 @@
+@prefix kb: <https://www.lqdev.me/vocab/kb#> .
+@prefix schema: <https://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+kb:confidence a rdf:Property ;
+  rdfs:label "confidence" ;
+  rdfs:comment "Extractor confidence in [0,1]." ;
+  rdfs:range xsd:decimal .
+
+kb:relatedTo a rdf:Property ;
+  rdfs:label "related to" ;
+  rdfs:comment "Fallback relation when schema.org lacks an appropriate property." ;
+  rdfs:domain schema:Thing ;
+  rdfs:range schema:Thing .
+
+kb:chunk a rdf:Property ;
+  rdfs:comment "Chunk that produced this assertion." .
+
+kb:docPath a rdf:Property ;
+  rdfs:label "document path" ;
+  rdfs:comment "Relative file path of the source Markdown document." .
+
+kb:charStart a rdf:Property ;
+  rdfs:label "character start" ;
+  rdfs:comment "Start character offset of the chunk in the source document." ;
+  rdfs:range xsd:integer .
+
+kb:charEnd a rdf:Property ;
+  rdfs:label "character end" ;
+  rdfs:comment "End character offset of the chunk in the source document." ;
+  rdfs:range xsd:integer .
+
+kb:entryType a rdf:Property ;
+  rdfs:label "entry type" ;
+  rdfs:comment "AI Memex entry type: pattern, research, reference, project-report, blog-post." ;
+  rdfs:range xsd:string .
+
+kb:sourceProject a rdf:Property ;
+  rdfs:label "source project" ;
+  rdfs:comment "Project that originated this knowledge entry." ;
+  rdfs:range xsd:string .

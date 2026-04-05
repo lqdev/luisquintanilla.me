@@ -3,11 +3,11 @@ title: "Pattern: Azure SWA Managed Functions Cannot Access Static Content Files"
 description: "Azure Static Web Apps deploys API functions in an isolated sandbox — they cannot read files from app_location or sibling directories, only their own api_location tree"
 entry_type: pattern
 published_date: "2026-04-04 18:36 +00:00"
-last_updated_date: "2026-04-04 18:36 +00:00"
+last_updated_date: "2026-04-05 00:55 +00:00"
 tags: "azure, architecture, devops, patterns"
 related_skill: ""
 source_project: "markdown-ld-kb"
-related_entries: "pattern-github-models-zero-cost-ci-llm"
+related_entries: "pattern-github-models-zero-cost-ci-llm, pattern-nl-to-sparql-schema-injected-few-shot"
 ---
 
 # Pattern: Azure SWA Managed Functions Cannot Access Static Content Files
@@ -65,3 +65,19 @@ When designing Azure SWA architectures with managed functions:
 - **If a function needs data files, put them inside `api/`** — either checked in or copied during CI
 - **Test with `swa start` locally** — the SWA CLI emulator reproduces this isolation, unlike raw `func start`
 - **Watch for "silent empty"** — the function won't crash if the directory doesn't exist; it just loads zero data, which surfaces as empty query results rather than errors
+
+## Related: Relative Imports Also Fail
+
+A second gotcha in the same environment: **relative Python imports don't work** in Azure SWA managed functions.
+
+```python
+# This crashes the function app at startup (silent 404 on all endpoints):
+from .nl_to_sparql import translate
+
+# This works — Azure Functions puts the api/ root on sys.path:
+from nl_to_sparql import translate
+```
+
+The `api/` directory is NOT treated as a Python package (no `__init__.py`). The function runtime loads `function_app.py` directly and adds its parent directory to `sys.path`. Relative imports require package context, so they fail with `ImportError` — but because this happens at startup, the symptom is **every endpoint returning 404**, not a clear error message.
+
+**Fix:** Always use absolute imports in Azure Functions v2 managed function apps.
