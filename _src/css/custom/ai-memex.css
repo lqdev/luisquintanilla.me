@@ -374,3 +374,35 @@
     fill: var(--text-color, #333);
     pointer-events: none;
 }
+
+/* Entity chips on AI Memex entry pages */
+.ai-memex-entities {
+    margin-top: 1.5rem;
+}
+.ai-memex-entities h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+.entity-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.entity-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 1rem;
+    background-color: var(--desert-twilight-bg, #f0f0f5);
+    color: var(--text-color, #333);
+    font-size: 0.85rem;
+    text-decoration: none;
+    border: 1px solid var(--border-color, #ddd);
+    transition: background-color 0.15s;
+}
+a.entity-chip:hover {
+    background-color: var(--desert-twilight, #8b7ec8);
+    color: #fff;
+    text-decoration: none;
+}

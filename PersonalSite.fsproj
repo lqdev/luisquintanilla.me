@@ -22,7 +22,9 @@
     <Compile Include="Services\FollowersSync.fs" /> 
     <Compile Include="GenericBuilder.fs" />
     <Compile Include="ActivityPubBuilder.fs" />
+    <Compile Include="EntityExtraction.fs" />
     <Compile Include="KnowledgeGraph.fs" />
+    <Compile Include="RdfSerializer.fs" />
     <Compile Include="Views\ComponentViews.fs" />
     <Compile Include="Views\TagViews.fs" />
     <Compile Include="Views\FeedViews.fs" />
@@ -43,10 +45,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="dotNetRdf" Version="3.*" />
     <PackageReference Include="FSharp.Data" Version="5.0.2" />
     <PackageReference Include="Giraffe.ViewEngine" Version="1.4.0" />
     <PackageReference Include="lqdev.WebmentionFs" Version="0.0.7" />
     <PackageReference Include="Markdig" Version="0.38.0" />
+    <PackageReference Include="Microsoft.Extensions.AI" Version="10.4.*" />
+    <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="10.4.*" />
     <PackageReference Include="YamlDotNet" Version="16.3.0" />
   </ItemGroup>
 
