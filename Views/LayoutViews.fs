@@ -934,7 +934,7 @@ let aiMemexPageView (title:string) (content:string) (publishedDate:string) (last
                                     | "Person" -> "bi bi-person"
                                     | "Organization" | "Corporation" -> "bi bi-building"
                                     | "WebAPI" | "WebApplication" -> "bi bi-globe"
-                                    | "ProgrammingLanguage" -> "bi bi-braces"
+                                    | "ProgrammingLanguage" | "ComputerLanguage" -> "bi bi-braces"
                                     | "CreativeWork" | "Article" | "ScholarlyArticle" -> "bi bi-journal-text"
                                     | _ -> "bi bi-tag"
                                 if entity.SameAs.Length > 0 then

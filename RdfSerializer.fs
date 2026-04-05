@@ -85,7 +85,7 @@ let serializeGraph (graph: KnowledgeGraph) (outputDir: string) =
             | "Organization" -> "schema:Organization"
             | "WebAPI" -> "schema:WebAPI"
             | "WebApplication" -> "schema:WebApplication"
-            | "ProgrammingLanguage" -> "schema:ComputerLanguage"
+            | "ProgrammingLanguage" | "ComputerLanguage" -> "schema:ComputerLanguage"
             | "CreativeWork" -> "schema:CreativeWork"
             | "Article" -> "schema:Article"
             | _ -> "schema:Thing"
