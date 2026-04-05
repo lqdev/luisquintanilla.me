@@ -2,11 +2,11 @@
 title: "@-Mention Inline Context Expansion for AI Chat"
 description: "Pattern for expanding @file:, @buffer:, @git-diff references into XML context blocks before sending to an AI agent"
 entry_type: pattern
-published_date: "2026-04-04"
-last_updated_date: "2026-04-04"
+published_date: "2026-04-04 00:00 +00:00"
+last_updated_date: "2026-04-04 00:00 +00:00"
 tags: "emacs, elisp, ai-collaboration, patterns, architecture"
 related_skill: ""
-source_project: "copilot-emacs"
+source_project: "copilot-sdk-elisp"
 related_entries: "pattern-async-cancel-race-elisp, project-report-conscious-emacs-life-os-daily-driver, pattern-emacs-ai-operating-system-architecture"
 ---
 

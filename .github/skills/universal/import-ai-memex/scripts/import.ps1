@@ -6,7 +6,8 @@
 #   - Imports new entries from spoke repos
 #   - Updates hub entries when spoke version has a newer last_updated_date
 #   - Preserves hub-only fields (related_entries seeded by knowledge graph)
-#   - Adds source_project field if missing
+#   - Normalizes schemas on ingest (dates, source_project)
+#   - Validates required frontmatter fields
 
 param(
     [string]$ConfigPath = "$HOME\.agents\skills\import-ai-memex\import-sources.json",
@@ -59,6 +60,57 @@ function Merge-RelatedEntries {
     return $SpokeContent -replace '(?m)^related_entries:.*$', "related_entries: `"$mergedStr`""
 }
 
+function Normalize-DateString {
+    param([string]$DateValue)
+    if ($DateValue -match '^\d{4}-\d{2}-\d{2}$') { return "$DateValue 00:00 +00:00" }
+    if ($DateValue -match ' UTC$') { return $DateValue -replace ' UTC$', ' +00:00' }
+    return $DateValue
+}
+
+function Normalize-DateField {
+    param([string]$Content, [string]$Field)
+    $val = Get-FrontMatterField $Content $Field
+    if (-not $val) { return $Content }
+    $normalized = Normalize-DateString $val
+    if ($normalized -ne $val) {
+        $Content = $Content -replace "(?m)^${Field}:\s*`"[^`"]*`"", "${Field}: `"$normalized`""
+    }
+    return $Content
+}
+
+function Set-AuthoritativeSourceProject {
+    param([string]$Content, [string]$ProjectName)
+    # Always use the config's project name as source of truth
+    if ($Content -match '(?m)^source_project:') {
+        $Content = $Content -replace '(?m)^source_project:.*$', "source_project: `"$ProjectName`""
+    } else {
+        $Content = $Content -replace '(---\s*\r?\n)', "`$1source_project: `"$ProjectName`"`n"
+    }
+    return $Content
+}
+
+function Test-RequiredFields {
+    param([string]$Content, [string]$FileName)
+    $warnings = @()
+    @("title", "description", "entry_type", "published_date", "last_updated_date") | ForEach-Object {
+        $val = Get-FrontMatterField $Content $_
+        if (-not $val) { $warnings += "    [WARN] Missing required field: $_" }
+    }
+    if ($warnings) {
+        Write-Host "  [SCHEMA] $FileName" -ForegroundColor DarkYellow
+        $warnings | ForEach-Object { Write-Host $_ -ForegroundColor DarkYellow }
+    }
+    return $warnings.Count -eq 0
+}
+
+function Normalize-Entry {
+    param([string]$Content, [string]$ProjectName)
+    $Content = Normalize-DateField $Content "published_date"
+    $Content = Normalize-DateField $Content "last_updated_date"
+    $Content = Set-AuthoritativeSourceProject $Content $ProjectName
+    return $Content
+}
+
 $config = Get-Content $ConfigPath -Raw | ConvertFrom-Json
 $targetDir = $config.target
 
@@ -101,10 +153,12 @@ foreach ($source in $config.sources) {
 
             $shouldUpdate = $Force
             if (-not $Force -and $spokeDate -and $hubDate) {
+                $normSpoke = Normalize-DateString $spokeDate
+                $normHub = Normalize-DateString $hubDate
                 try {
-                    $shouldUpdate = [DateTime]::Parse($spokeDate) -gt [DateTime]::Parse($hubDate)
+                    $shouldUpdate = [DateTimeOffset]::Parse($normSpoke) -gt [DateTimeOffset]::Parse($normHub)
                 } catch {
-                    $shouldUpdate = $spokeDate -gt $hubDate
+                    $shouldUpdate = $normSpoke -gt $normHub
                 }
             }
 
@@ -114,9 +168,8 @@ foreach ($source in $config.sources) {
                 } else {
                     try {
                         $mergedContent = Merge-RelatedEntries $spokeContent $hubContent
-                        if ($mergedContent -notmatch 'source_project:') {
-                            $mergedContent = $mergedContent -replace '(---\s*\r?\n)', "`$1source_project: `"$projectName`"`n"
-                        }
+                        $mergedContent = Normalize-Entry $mergedContent $projectName
+                        Test-RequiredFields $mergedContent $entry.Name | Out-Null
                         Set-Content -Path $targetFile -Value $mergedContent -Encoding utf8 -NoNewline
                         Write-Host "  [UPDATED] $($entry.Name) (spoke: $spokeDate > hub: $hubDate)" -ForegroundColor Yellow
                     } catch {
@@ -142,9 +195,8 @@ foreach ($source in $config.sources) {
 
         try {
             $content = Get-Content $entry.FullName -Raw
-            if ($content -notmatch 'source_project:') {
-                $content = $content -replace '(---\s*\r?\n)', "`$1source_project: `"$projectName`"`n"
-            }
+            $content = Normalize-Entry $content $projectName
+            Test-RequiredFields $content $entry.Name | Out-Null
             Set-Content -Path $targetFile -Value $content -Encoding utf8 -NoNewline
             Write-Host "  [IMPORTED] $($entry.Name)" -ForegroundColor Green
             $imported++

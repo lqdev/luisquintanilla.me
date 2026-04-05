@@ -2,8 +2,8 @@
 title: "Pattern: Deterministic First, Intelligent Second"
 description: "Design principle for AI+CLI systems: use Unix tools for exact work, LLMs for orchestration and interpretation"
 entry_type: pattern
-published_date: "2026-04-02"
-last_updated_date: "2026-04-02"
+published_date: "2026-04-02 00:00 +00:00"
+last_updated_date: "2026-04-02 00:00 +00:00"
 tags: "architecture, ai-collaboration, patterns, unix, cli"
 related_skill: ""
 source_project: "copilot-sdk-elisp"

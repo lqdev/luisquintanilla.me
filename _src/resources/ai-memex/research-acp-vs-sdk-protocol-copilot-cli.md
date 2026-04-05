@@ -2,8 +2,8 @@
 title: "Research: ACP vs SDK Protocol for Copilot CLI"
 description: "Comparison of the two JSON-RPC protocols supported by GitHub Copilot CLI: hidden SDK headless protocol vs public ACP"
 entry_type: research
-published_date: "2026-04-02"
-last_updated_date: "2026-04-02"
+published_date: "2026-04-02 00:00 +00:00"
+last_updated_date: "2026-04-02 00:00 +00:00"
 tags: "copilot, acp, json-rpc, protocols, research"
 related_skill: ""
 source_project: "copilot-sdk-elisp"

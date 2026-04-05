@@ -2,11 +2,11 @@
 title: "Cancel Race Condition in Async Elisp Event Handlers"
 description: "Pattern for safely cancelling async operations when process filter events can arrive after cancellation"
 entry_type: pattern
-published_date: "2026-04-04"
-last_updated_date: "2026-04-04"
+published_date: "2026-04-04 00:00 +00:00"
+last_updated_date: "2026-04-04 00:00 +00:00"
 tags: "emacs, elisp, patterns, architecture"
 related_skill: ""
-source_project: "copilot-emacs"
+source_project: "copilot-sdk-elisp"
 related_entries: "pattern-at-mention-inline-context-expansion, project-report-conscious-emacs-life-os-daily-driver, pattern-emacs-ai-operating-system-architecture"
 ---
 

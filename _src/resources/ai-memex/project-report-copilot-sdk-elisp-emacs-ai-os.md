@@ -2,8 +2,8 @@
 title: "Project Report: copilot-sdk-elisp — Building the Emacs AI OS"
 description: "Built an Emacs Lisp SDK for GitHub Copilot via ACP protocol, evolved from chat plugin to AI-native personal operating system vision"
 entry_type: project-report
-published_date: "2026-04-02"
-last_updated_date: "2026-04-02"
+published_date: "2026-04-02 00:00 +00:00"
+last_updated_date: "2026-04-02 00:00 +00:00"
 tags: "copilot-sdk-elisp, emacs, elisp, copilot, acp, ai-collaboration"
 related_skill: ""
 source_project: "copilot-sdk-elisp"

@@ -2,8 +2,8 @@
 title: "Pattern: PyOxigraph API — serialize() not to_json()"
 description: "PyOxigraph SPARQL query results use .serialize(format=QueryResultsFormat.JSON), not the non-existent .to_json() method"
 entry_type: pattern
-published_date: "2026-04-04"
-last_updated_date: "2026-04-04"
+published_date: "2026-04-04 00:00 +00:00"
+last_updated_date: "2026-04-04 00:00 +00:00"
 tags: "python, rdf, sparql, patterns"
 related_skill: ""
 source_project: "markdown-ld-kb"

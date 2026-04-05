@@ -2,8 +2,8 @@
 title: "Pattern: Zero-Cost LLM in CI via GitHub Models + GITHUB_TOKEN"
 description: "Use the built-in GITHUB_TOKEN with permissions: models: read to call GitHub Models from GitHub Actions — no API keys, no secrets, no cost"
 entry_type: pattern
-published_date: "2026-04-04"
-last_updated_date: "2026-04-04"
+published_date: "2026-04-04 00:00 +00:00"
+last_updated_date: "2026-04-04 00:00 +00:00"
 tags: "github, ai, ci-cd, github-actions, patterns"
 related_skill: ""
 source_project: "markdown-ld-kb"

@@ -2,8 +2,8 @@
 title: "Pattern: MCP Bridge for Exposing Client-Side Tools to Copilot Agent"
 description: "How to make the Copilot CLI agent discover and call tools registered in a host application by building a Python MCP stdio bridge and injecting it via --additional-mcp-config"
 entry_type: pattern
-published_date: "2026-04-03"
-last_updated_date: "2026-04-03"
+published_date: "2026-04-03 00:00 +00:00"
+last_updated_date: "2026-04-03 00:00 +00:00"
 tags: "copilot, mcp, acp, emacs, elisp, architecture, patterns, ai-collaboration"
 related_skill: ""
 source_project: "copilot-sdk-elisp"
