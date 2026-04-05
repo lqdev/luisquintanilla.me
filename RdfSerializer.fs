@@ -71,7 +71,12 @@ let serializeGraph (graph: KnowledgeGraph) (outputDir: string) =
 
     // Entity nodes and mentions edges
     for entity in graph.EntityNodes do
-        let entityUri = rdf.CreateUriNode(UriFactory.Create($"https://www.lqdev.me/entity/{entity.Id}"))
+        let isAbsolute, parsedUri = Uri.TryCreate(entity.Id, UriKind.Absolute)
+        let entityUri =
+            if isAbsolute then
+                rdf.CreateUriNode(parsedUri)
+            else
+                rdf.CreateUriNode(UriFactory.Create($"https://www.lqdev.me/entity/{entity.Id}"))
         let entityRdfType =
             match entity.EntityType with
             | "SoftwareApplication" -> "schema:SoftwareApplication"

@@ -27,6 +27,20 @@ type ExtractionResult = {
     [<JsonPropertyName("assertions")>] Assertions: Assertion array
 }
 
+// --- Normalization ---
+
+/// Strip schema: prefix from entity types for consistent downstream matching
+let private normalizeEntityType (t: string) =
+    if String.IsNullOrWhiteSpace(t) then "Thing"
+    elif t.StartsWith("schema:", StringComparison.OrdinalIgnoreCase) then t.Substring(7)
+    else t
+
+let private normalizeResult (result: ExtractionResult) =
+    { result with
+        Entities =
+            result.Entities
+            |> Array.map (fun e -> { e with EntityType = normalizeEntityType e.EntityType }) }
+
 // --- Cache ---
 
 let private cacheDir = Path.Combine("graph", "cache")
@@ -45,7 +59,9 @@ let private loadCache (slug: string) : ExtractionResult option =
     if File.Exists(path) then
         try
             let json = File.ReadAllText(path)
-            Some (JsonSerializer.Deserialize<ExtractionResult>(json, jsonOptions))
+            JsonSerializer.Deserialize<ExtractionResult>(json, jsonOptions)
+            |> Option.ofObj
+            |> Option.map normalizeResult
         with _ -> None
     else None
 
@@ -181,7 +197,7 @@ let extractEntities
                             eprintfn "Warning: extraction failed for %s: %s" slug ex.Message
                             emptyResult)
 
-            let merged = mergeResults results
+            let merged = mergeResults results |> normalizeResult
             if merged.Entities.Length > 0 then
                 saveCache slug merged
             merged

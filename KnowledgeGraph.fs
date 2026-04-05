@@ -265,7 +265,10 @@ let private computeRelatedEntries (nodes: GraphNode array) (edges: GraphEdge arr
     let nodeMap = nodes |> Array.map (fun n -> n.Id, n) |> Map.ofArray
     let mutable scores: Map<string, Map<string, (float * string)>> = Map.empty
     
-    for edge in edges do
+    // Exclude entity-mention edges — their targets aren't entry nodes
+    let entryEdges = edges |> Array.filter (fun e -> e.EdgeType <> EntityMention)
+    
+    for edge in entryEdges do
         // Accumulate score from source's perspective toward target
         let updateScore (fromId: string) (toId: string) =
             let current = 
@@ -307,11 +310,9 @@ let private extractEntityMentionEdges (extractions: Map<string, EntityExtraction
         result.Assertions
         |> Array.choose (fun a ->
             if a.Predicate = "schema:mentions" && a.Confidence >= 0.5 then
-                let entitySlug = 
-                    a.Object.Replace("https://www.lqdev.me/entity/", "entity:")
                 Some {
                     Source = entrySlug
-                    Target = entitySlug
+                    Target = a.Object
                     EdgeType = EntityMention
                     Weight = min (a.Confidence * 0.9) 0.85
                     Reason = sprintf "mentions entity"
