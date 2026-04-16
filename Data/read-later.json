@@ -23,5 +23,10 @@
     "url": "https://cacm.acm.org/federal-funding-of-academic-research/the-origins-of-gpu-computing/",
     "title": "The Origins of GPU Computing",
     "dateAdded": "2026-04-16T03:35:58Z"
+  },
+  {
+    "url": "https://kirancodes.me/posts/log-distributed-llms.html",
+    "title": "Multi-agentic Software Development is a Distributed Systems Problem (AGI can't save you from it)",
+    "dateAdded": "2026-04-16T03:37:03Z"
   }
 ]
