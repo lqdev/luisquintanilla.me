@@ -20,6 +20,8 @@ resources:
     url: "https://maggieappleton.com/gastown"
   - text: "Model Context Protocol"
     url: "https://modelcontextprotocol.io/"
+  - text: "Anthropic Project Deal"
+    url: "https://www.anthropic.com/features/project-deal"
 date: "04/27/2026 11:08 -05:00"
 ---
 
@@ -826,6 +828,31 @@ Ask: "Does the Open Social Web have a model for governing coordination roles the
 
 ---
 
+<div class="layout-centered mycelium-appendix-text">
+
+<h2>Project Deal: agents can negotiate</h2>
+
+<p>Anthropic's Project Deal had AI agents represent employees in a classified marketplace.</p>
+
+<p>The agents negotiated <strong>186 deals</strong> across 500+ listed items, totaling just over <strong>$4,000</strong> in value.</p>
+
+<p>No prebaked negotiation protocol: agents posted items, made offers, countered, and closed deals in natural language.</p>
+
+<p><strong>The warning:</strong> model quality changed outcomes, users often did not notice, and the experiment was not adversarial.</p>
+
+<p style="opacity:0.65; font-size:0.85em;">Friendly coordination is not the same as governable coordination.</p>
+
+</div>
+
+Note:
+Say: "Project Deal is useful here because it is not speculative. Agents represented people, negotiated with each other, and completed real exchanges."
+
+Say: "But the same article shows why coordination is not enough. Better models got better outcomes, participants often could not perceive the gap, and Anthropic explicitly warns that corporate or adversarial settings could introduce prompt injection, jailbreaking, and optimization for agent attention."
+
+Transition: "So the question becomes: if agents coordinate on our behalf, what infrastructure makes that coordination inspectable?"
+
+---
+
 <!-- .slide: id="appendix-proof-chain" -->
 <svg id="mycelium-proof-chain" class="mycelium-diagram" viewBox="0 0 980 540" role="img" aria-label="The seven-record proof chain from task posting to reputation stamp">
   <style>
@@ -901,7 +928,7 @@ Say: "Seven records, seven steps, one auditable chain. Each record links cryptog
 
 Say: "The difference from a score: walk this chain backward and you find the exact work, the exact verification, the exact assignment that produced the reputation stamp."
 
-Ask: "Where in this chain would abuse be easiest to introduce? That's the most important design question."
+Ask: "If agents are negotiating or doing work on our behalf, where in this chain would manipulation, misrepresentation, or prompt injection be easiest to introduce?"
 
 --
 
@@ -947,7 +974,11 @@ Say: "Four sources of trust, configurable weights. The Mayor's opinion carries t
 
 Say: "The contrast: a single-attestor score is a platform score, even if it lives on a relay. Multi-attestor means the decision is inspectable and the weights are a community policy choice."
 
-Ask: "Should the Open Social Web define a standard vocabulary for reputation attestation the way it defines a vocabulary for social objects?"
+Say: "Project Deal also warns us that user satisfaction is not enough as a reputation signal. People with objectively worse outcomes often did not perceive the disadvantage."
+
+Ask: "If users cannot reliably tell when one agent represented them worse than another, what should reputation attest to: capability, outcomes, policy compliance, provenance, or all of the above?"
+
+Ask: "Should the Open Social Web define a shared vocabulary for those attestations before platforms define incompatible private scores?"
 
 ---
 
@@ -1005,7 +1036,9 @@ Say: "Two nodes, one relay. Node A runs the Mayor; Node B runs the agents. Coord
 
 Say: "Local today, but the design points toward cross-network federation: any conforming node, regardless of where it runs."
 
-Ask: "How is this different from or similar to ActivityPub server-to-server federation? What lessons should carry over?"
+Ask: "ActivityPub federates social activity; Mycelium would federate coordination records. What has to travel with an agent across nodes: identity, delegation, proof chains, reputation, or dispute history?"
+
+Ask: "Which ActivityPub lessons about moderation, blocking, and instance governance carry over when the actor is software negotiating on someone's behalf?"
 
 ---
 
@@ -1056,19 +1089,21 @@ Ask: "How is this different from or similar to ActivityPub server-to-server fede
 Note:
 Say: "None of these are competitors. MCP and Mycelium could work together: MCP gives agents tool access, Mycelium gives the coordination layer accountability. Gas Town from Maggie Appleton was a direct inspiration."
 
-Ask: "Are there systems in this space I've missed that the room is aware of?"
+Ask: "Which existing layer should own agent coordination semantics: tool protocols like MCP, social protocols like ActivityPub or AT Protocol, orchestration frameworks like LangGraph, or something new?"
+
+Ask: "What systems am I missing that already answer part of this?"
 
 --
 
 <div class="layout-centered mycelium-appendix-text">
 
-<h2>The cross-protocol question</h2>
+<h2>The minimum vocabulary question</h2>
 
 <p>Mycelium today: AT Protocol primitives — DIDs, signed records, Jetstream relay.</p>
 
 <p>But the coordination semantics — task posting, claiming, proof chains, reputation stamps — are not AT Protocol-specific.</p>
 
-<p><strong>Could the same record vocabulary work over ActivityPub? Matrix? A new protocol?</strong></p>
+<p><strong>What is the smallest shared vocabulary an open agent network needs?</strong></p>
 
 <p style="opacity:0.65; font-size:0.85em;">The answer matters for communities already invested in other stacks.</p>
 
@@ -1077,7 +1112,9 @@ Ask: "Are there systems in this space I've missed that the room is aware of?"
 Note:
 Say: "AT Protocol was chosen for its strong DID semantics, signed records, and open relay. But the core ideas are protocol-agnostic."
 
-Ask: "Should the Open Social Web define a shared record vocabulary for agent coordination? Or is that standardization premature?"
+Ask: "What is the minimum shared vocabulary an open agent network needs: task, claim, assignment, proof, verification, reputation, delegation, dispute?"
+
+Ask: "If we do not standardize any of that, do we just recreate platform-private agent marketplaces with better demos?"
 
 ---
 
@@ -1114,5 +1151,9 @@ Say: "An honest reckoning: right now, most coordination records are public on th
 
 Say: "Some things probably should not be: sensitive task content, direct messages, what model the agent is running."
 
-Ask: "What did ActivityPub get wrong about privacy early on that we should avoid repeating?"
+Say: "But Project Deal complicates this: hidden agent capability can produce invisible disadvantage. So this is not a simple public-versus-private choice; it is a selective disclosure problem."
+
+Ask: "What should be visible enough to govern, but private enough to protect people: model identity, negotiation traces, direct messages, internal reasoning?"
+
+Ask: "What did ActivityPub get wrong about privacy early on that agent networks should not repeat?"
 
