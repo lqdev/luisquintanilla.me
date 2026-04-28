@@ -534,6 +534,7 @@ module Layouts
                 script [_src "/lib/revealjs/dist/reveal.js"] []
                 script [_src "/lib/revealjs/plugin/markdown/markdown.js"] []
                 script [_src "/lib/revealjs/plugin/highlight/highlight.js"] []
+                script [_src "/lib/revealjs/plugin/notes/notes.js"] []
                 script [_type "application/javascript"] [
                     rawText """
                     // Initialize Reveal.js when a presentation container is found on the page
@@ -541,7 +542,7 @@ module Layouts
                         const presentationContainer = document.querySelector('.presentation-container');
                         if (presentationContainer && typeof Reveal !== 'undefined') {
                             Reveal.initialize({
-                                plugins: [RevealMarkdown, RevealHighlight],
+                                plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
                                 embedded: true
                             });
                         }
@@ -674,10 +675,11 @@ module Layouts
                 // Revealjs (As of 10/20/2021)
                 script [_src "/assets/lib/revealjs/dist/reveal.js"] []
                 script [_src "/assets/lib/revealjs/plugin/markdown/markdown.js"] []
+                script [_src "/assets/lib/revealjs/plugin/notes/notes.js"] []
                 script [_type "application/javascript"] [
                     rawText """
                     Reveal.initialize({
-                        plugins: [ RevealMarkdown ],
+                        plugins: [ RevealMarkdown, RevealNotes ],
                         embedded: true,
                         width: 800,
                         height: 600,
