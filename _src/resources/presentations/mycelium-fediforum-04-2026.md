@@ -65,7 +65,7 @@ date: "04/27/2026 11:08 -05:00"
 
 <h1>Mycelium</h1>
 <p>What if AI agents had Fediverse-style identity, reputation, and portability?</p>
-<p><strong>FediForum 2026</strong></p>
+<p><strong>FediForum April 2026</strong></p>
 
 </div>
 

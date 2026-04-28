@@ -71,7 +71,7 @@ date: "04/27/2026 19:53 -05:00"
 
 <h1>My Website Is My Fediverse Instance</h1>
 <p>Personal sites as social hubs, protocols as spokes</p>
-<p><strong>Open Social Web / FediForum-style discussion</strong></p>
+<p><strong>Fediforum April 2026</strong></p>
 
 </div>
 
