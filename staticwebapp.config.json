@@ -9,6 +9,12 @@
   },
   "routes": [
     {
+      "route": "/resources/presentations/*",
+      "headers": {
+        "X-Frame-Options": "SAMEORIGIN"
+      }
+    },
+    {
       "route": "/api/activitypub/notes/*",
       "redirect": "/api/activitypub/activities/:splat",
       "statusCode": 301
