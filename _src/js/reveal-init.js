@@ -2,6 +2,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     const presentationContainer = document.querySelector('.presentation-container');
     if (presentationContainer && typeof Reveal !== 'undefined') {
+        const plugins = [RevealMarkdown, RevealHighlight];
+        if (typeof RevealNotes !== 'undefined') {
+            plugins.push(RevealNotes);
+        }
+
         Reveal.initialize({
             width: 800,
             height: 600,
@@ -13,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
             center: false,
             transition: 'slide',
             embedded: true,
-            plugins: [RevealMarkdown, RevealHighlight]
+            plugins: plugins
         });
     }
 });

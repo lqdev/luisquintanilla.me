@@ -1037,7 +1037,7 @@ let presentationPageView (presentation:Presentation) =
                 div [ _class "presentation-container" ] [
                     div [ _class "reveal" ] [
                         div [ _class "slides" ] [
-                            section [ flag "data-markdown" ] [
+                            section [ flag "data-markdown"; attr "data-separator-vertical" "\\r?\\n--\\r?\\n" ] [
                                 textarea [ flag "data-template" ] [
                                     rawText presentation.Content
                                 ]
