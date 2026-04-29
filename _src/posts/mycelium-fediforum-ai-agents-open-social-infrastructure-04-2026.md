@@ -70,7 +70,7 @@ Which is why I'd like to extend an invitation. Not to adopt Mycelium, but to pre
 
 There are still many open questions, but that is the part I find exciting. 
 
-If this seems remotely interesting, or if you want to poke holes in it, please [reach out](/contact).
+If this seems remotely interesting, or if you want to poke holes in it, please [reach out](/contact). E-mail is preferred.
 
 If you're interested in learning more, here is the [slide deck with resources I prepared for the Fediforum session](/resources/presentations/mycelium-fediforum-04-2026). 
 
