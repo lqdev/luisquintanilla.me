@@ -217,6 +217,19 @@
             "practicalInfo": {
                 "website": "https://moonwalkercafe.com/"
             }
+        },
+        {
+            "id": "jt-genuine-sandwich-shop",
+            "name": "JT's Genuine Sandwich Shop",
+            "lat": 41.9532303,
+            "lon": -87.7187575,
+            "category": "restaurant",
+            "description": "A local favorite for sandwiches and casual dining.",
+            "personalNote": "Big fan of the steak and potato sandwich.",
+            "practicalInfo": {
+                "phone": "+17737547729",
+                "website": "https://jtsgenuine.com/"
+            }
         }
     ],
     "routes": [
