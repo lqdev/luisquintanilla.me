@@ -596,10 +596,12 @@ module Builder
                 let rssContent = Collections.CollectionBuilder.generateCollectionRssContent data
                 File.WriteAllText(Path.Join(outputDir, paths.RssPath), rssContent)
                 
+                // Build a single processor instance; reused by GPX + Garmin GPX blocks below.
+                let processor = Collections.CollectionProcessor.createCollectionProcessor collection
+
                 // Generate and write GPX file (if applicable)
                 match paths.GpxPath with
                 | Some gpxRelativePath ->
-                    let processor = Collections.CollectionProcessor.createCollectionProcessor collection
                     match processor.GenerateGpxFile data with
                     | Some gpxContent ->
                         File.WriteAllText(Path.Join(outputDir, gpxRelativePath), gpxContent)
@@ -608,6 +610,18 @@ module Builder
                         printfn "⚠️  No GPX content generated for %s" collection.Title
                 | None -> 
                     () // No GPX file expected for this collection
+
+                // Generate and write Garmin-compatible waypoint-only GPX file (if applicable)
+                match paths.GarminGpxPath with
+                | Some garminPath ->
+                    match processor.GenerateGarminGpxFile data with
+                    | Some gpxContent ->
+                        File.WriteAllText(Path.Join(outputDir, garminPath), gpxContent)
+                        printfn "✅ Generated Garmin GPX file: %s" garminPath
+                    | None ->
+                        printfn "⚠️  No Garmin GPX content generated for %s" collection.Title
+                | None ->
+                    () // No Garmin GPX file expected for this collection
                 
                 printfn "✅ Built collection: %s (%d items)" collection.Title (data.Items.Length)
                 

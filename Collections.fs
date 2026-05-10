@@ -2,7 +2,9 @@ module Collections
 
 open System
 open System.IO
+open System.Text
 open System.Text.Json
+open System.Xml
 open Domain
 open Giraffe.ViewEngine
 
@@ -16,6 +18,7 @@ module CollectionProcessor =
         GenerateRssFeed: CollectionData -> string
         GenerateOpmlFile: CollectionData -> string
         GenerateGpxFile: CollectionData -> string option
+        GenerateGarminGpxFile: CollectionData -> string option
         GetOutputPaths: Collection -> CollectionPaths
     }
     
@@ -34,11 +37,18 @@ module CollectionProcessor =
             | Travel _ -> Some (Path.Join(baseDir, $"{collection.Id}.gpx"))
             | _ -> None
         
+        let garminGpxPath =
+            // Garmin fenix-compatible waypoint-only GPX, only for travel collections
+            match collection.CollectionType with
+            | Travel _ -> Some (Path.Join(baseDir, $"{collection.Id}-garmin.gpx"))
+            | _ -> None
+        
         {
             HtmlPath = Path.Join(baseDir, "index.html")
             RssPath = Path.Join(baseDir, "index.rss") 
             OpmlPath = Path.Join(baseDir, "index.opml")
             GpxPath = gpxPath
+            GarminGpxPath = garminGpxPath
             DataPath = Path.Join("Data", collection.DataFile)
         }
     
@@ -269,6 +279,89 @@ module CollectionProcessor =
         | _ ->
             None
     
+    // Generate Garmin fenix-compatible waypoint-only GPX 1.1 file.
+    //
+    // Output contract (per spec gist 0d7af14d39a05a8219faa7af86bc5ced):
+    //   - Root: <gpx version="1.1" creator="..." xmlns="http://www.topografix.com/GPX/1/1">
+    //   - Children: <wpt lat="..." lon="..."> with a single <name> child each
+    //   - NO <metadata>, <desc>, <cmt>, <sym>, <type>, <extensions>, <rte>, <rtept>,
+    //     <trk>, <trkseg>, <trkpt>
+    //   - Lat/lon validated to [-90,90] / [-180,180]; invalid points skipped with warning
+    //   - Empty/whitespace names get a "Waypoint NNN" fallback (1-based, zero-padded)
+    //   - Input order preserved
+    //
+    // Output is generated directly via XmlWriter (no string concatenation), so XML
+    // escaping (e.g., "Longman & Eagle" -> "Longman &amp; Eagle") is automatic.
+    let generateCollectionGarminGpx (data: CollectionData) : string option =
+        let collection = data.Metadata
+        let gpxNs = "http://www.topografix.com/GPX/1/1"
+        let creator = "Luis Quintanilla"
+
+        let isValidLatLon (lat: float) (lon: float) =
+            not (Double.IsNaN(lat) || Double.IsNaN(lon) || Double.IsInfinity(lat) || Double.IsInfinity(lon))
+            && lat >= -90.0 && lat <= 90.0
+            && lon >= -180.0 && lon <= 180.0
+
+        match collection.CollectionType with
+        | Travel _ ->
+            try
+                let travelDataPath = Path.Join("Data", collection.DataFile)
+                if not (File.Exists(travelDataPath)) then
+                    None
+                else
+                    let jsonContent = File.ReadAllText(travelDataPath)
+                    let travelData = JsonSerializer.Deserialize<TravelRecommendationData>(jsonContent)
+
+                    let settings = XmlWriterSettings(
+                                        Indent = true,
+                                        IndentChars = "  ",
+                                        Encoding = UTF8Encoding(false), // UTF-8 without BOM
+                                        OmitXmlDeclaration = false)
+
+                    use ms = new MemoryStream()
+                    use writer = XmlWriter.Create(ms, settings)
+                    writer.WriteStartDocument()
+                    writer.WriteStartElement("gpx", gpxNs)
+                    writer.WriteAttributeString("version", "1.1")
+                    writer.WriteAttributeString("creator", creator)
+
+                    let mutable written = 0
+                    let mutable sourceIndex = 0
+                    for place in travelData.Places do
+                        sourceIndex <- sourceIndex + 1
+                        if not (isValidLatLon place.Latitude place.Longitude) then
+                            printfn "⚠️  Garmin GPX (%s): skipping waypoint #%d (%s) — invalid coordinates lat=%f lon=%f"
+                                collection.Id sourceIndex place.Name place.Latitude place.Longitude
+                        else
+                            written <- written + 1
+                            let name =
+                                if String.IsNullOrWhiteSpace(place.Name) then
+                                    let fallback = sprintf "Waypoint %03d" written
+                                    printfn "⚠️  Garmin GPX (%s): waypoint #%d has empty name; using fallback %s"
+                                        collection.Id sourceIndex fallback
+                                    fallback
+                                else
+                                    place.Name.Trim()
+                            writer.WriteStartElement("wpt", gpxNs)
+                            writer.WriteAttributeString("lat", (place.Latitude.ToString("F6", System.Globalization.CultureInfo.InvariantCulture)))
+                            writer.WriteAttributeString("lon", (place.Longitude.ToString("F6", System.Globalization.CultureInfo.InvariantCulture)))
+                            writer.WriteStartElement("name", gpxNs)
+                            writer.WriteString(name)
+                            writer.WriteEndElement() // name
+                            writer.WriteEndElement() // wpt
+
+                    writer.WriteEndElement() // gpx
+                    writer.WriteEndDocument()
+                    writer.Flush()
+                    Some (UTF8Encoding(false).GetString(ms.ToArray()))
+            with
+            | ex ->
+                let travelDataPath = Path.Join("Data", collection.DataFile)
+                printfn "Warning: Failed to generate Garmin GPX for %s (data file: %s): %s"
+                    collection.Title travelDataPath ex.Message
+                None
+        | _ -> None
+
     // Create unified collection processor
     let createCollectionProcessor (collection: Collection) : CollectionProcessor = 
         {
@@ -277,6 +370,7 @@ module CollectionProcessor =
             GenerateRssFeed = generateCollectionRss
             GenerateOpmlFile = generateCollectionOpml
             GenerateGpxFile = generateCollectionGpx
+            GenerateGarminGpxFile = generateCollectionGarminGpx
             GetOutputPaths = getCollectionPaths
         }
 

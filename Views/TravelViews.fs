@@ -12,21 +12,34 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
     let gpxDownloadSection = 
         div [ _class "travel-downloads mb-4" ] [
             h3 [] [ Text "Download for Your Trip" ]
-            p [] [ Text "Get these recommendations on your phone for offline use:" ]
+            p [] [ Text "Get these recommendations on your phone or watch for offline use:" ]
             
             div [ _class "download-options" ] [
-                a [ _href $"{collection.Id}.gpx"; _class "btn btn-primary me-2"; _download $"{collection.Id}.gpx" ] [
-                    i [ _class "bi bi-download me-1" ] []
-                    Text "Download GPX"
+                div [ _class "download-buttons" ] [
+                    a [ _href $"{collection.Id}.gpx"; _class "btn btn-primary"; _download $"{collection.Id}.gpx" ] [
+                        i [ _class "bi bi-download me-1" ] []
+                        Text "Download GPX"
+                    ]
+                    a [ _href $"{collection.Id}-garmin.gpx"; _class "btn btn-primary"; _download $"{collection.Id}-garmin.gpx" ] [
+                        i [ _class "bi bi-smartwatch me-1" ] []
+                        Text "Download for Garmin"
+                    ]
                 ]
                 
                 div [ _class "download-help mt-2" ] [
-                    small [ _class "text-muted" ] [
-                        Text "Import this GPX file into "
-                        a [ _href "https://osmand.net/"; _target "_blank" ] [ Text "OsmAnd" ]
+                    small [ _class "text-muted d-block mb-1" ] [
+                        Text "Import the standard GPX into "
+                        a [ _href "https://osmand.net/"; _target "_blank"; _rel "noopener noreferrer" ] [ Text "OsmAnd" ]
                         Text ", "
-                        a [ _href "https://maps.me/"; _target "_blank" ] [ Text "Maps.me" ]
+                        a [ _href "https://maps.me/"; _target "_blank"; _rel "noopener noreferrer" ] [ Text "Maps.me" ]
                         Text ", or your preferred GPS app for offline navigation."
+                    ]
+                    small [ _class "text-muted d-block" ] [
+                        Text "For Garmin fēnix and compatible watches: copy the Garmin file to "
+                        code [] [ Text "GARMIN/NewFiles/" ]
+                        Text ", eject the watch, then find them under "
+                        strong [] [ Text "START → Navigate → Saved Locations" ]
+                        Text "."
                     ]
                 ]
             ]
@@ -63,10 +76,10 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
                                 a [ _href $"geo:{place.Latitude},{place.Longitude}"; _class "btn btn-sm btn-outline-primary me-1 d-none-desktop" ] [
                                     Text "📱 Open in App"
                                 ]
-                                a [ _href $"https://www.openstreetmap.org/?mlat={place.Latitude}&mlon={place.Longitude}&zoom=18"; _target "_blank"; _class "btn btn-sm btn-outline-secondary me-1" ] [
+                                a [ _href $"https://www.openstreetmap.org/?mlat={place.Latitude}&mlon={place.Longitude}&zoom=18"; _target "_blank"; _rel "noopener noreferrer"; _class "btn btn-sm btn-outline-secondary me-1" ] [
                                     Text "🗺️ OpenStreetMap"
                                 ]
-                                a [ _href $"https://maps.google.com/?q={place.Latitude},{place.Longitude}"; _target "_blank"; _class "btn btn-sm btn-outline-secondary" ] [
+                                a [ _href $"https://maps.google.com/?q={place.Latitude},{place.Longitude}"; _target "_blank"; _rel "noopener noreferrer"; _class "btn btn-sm btn-outline-secondary" ] [
                                     Text "🌍 Google Maps"
                                 ]
                             ]
@@ -120,7 +133,7 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
                                     | Some website ->
                                         span [ _class "info-item me-4 mb-1" ] [
                                             i [ _class "bi bi-globe me-1" ] []
-                                            a [ _href website; _target "_blank" ] [ Text "Website" ]
+                                            a [ _href website; _target "_blank"; _rel "noopener noreferrer" ] [ Text "Website" ]
                                         ]
                                     | None -> ()
                                 ]
