@@ -15,12 +15,12 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
             p [] [ Text "Get these recommendations on your phone or watch for offline use:" ]
             
             div [ _class "download-options" ] [
-                div [ _class "download-buttons mb-2" ] [
-                    a [ _href $"{collection.Id}.gpx"; _class "btn btn-primary me-2 mb-2"; _download $"{collection.Id}.gpx" ] [
+                div [ _class "download-buttons" ] [
+                    a [ _href $"{collection.Id}.gpx"; _class "btn btn-primary"; _download $"{collection.Id}.gpx" ] [
                         i [ _class "bi bi-download me-1" ] []
                         Text "Download GPX"
                     ]
-                    a [ _href $"{collection.Id}-garmin.gpx"; _class "btn btn-primary mb-2"; _download $"{collection.Id}-garmin.gpx" ] [
+                    a [ _href $"{collection.Id}-garmin.gpx"; _class "btn btn-primary"; _download $"{collection.Id}-garmin.gpx" ] [
                         i [ _class "bi bi-smartwatch me-1" ] []
                         Text "Download for Garmin"
                     ]
