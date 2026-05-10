@@ -12,21 +12,34 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
     let gpxDownloadSection = 
         div [ _class "travel-downloads mb-4" ] [
             h3 [] [ Text "Download for Your Trip" ]
-            p [] [ Text "Get these recommendations on your phone for offline use:" ]
+            p [] [ Text "Get these recommendations on your phone or watch for offline use:" ]
             
             div [ _class "download-options" ] [
-                a [ _href $"{collection.Id}.gpx"; _class "btn btn-primary me-2"; _download $"{collection.Id}.gpx" ] [
-                    i [ _class "bi bi-download me-1" ] []
-                    Text "Download GPX"
+                div [ _class "download-buttons mb-2" ] [
+                    a [ _href $"{collection.Id}.gpx"; _class "btn btn-primary me-2 mb-2"; _download $"{collection.Id}.gpx" ] [
+                        i [ _class "bi bi-download me-1" ] []
+                        Text "Download GPX"
+                    ]
+                    a [ _href $"{collection.Id}-garmin.gpx"; _class "btn btn-outline-primary mb-2"; _download $"{collection.Id}-garmin.gpx" ] [
+                        i [ _class "bi bi-smartwatch me-1" ] []
+                        Text "Download for Garmin"
+                    ]
                 ]
                 
                 div [ _class "download-help mt-2" ] [
-                    small [ _class "text-muted" ] [
-                        Text "Import this GPX file into "
+                    small [ _class "text-muted d-block mb-1" ] [
+                        Text "Import the standard GPX into "
                         a [ _href "https://osmand.net/"; _target "_blank" ] [ Text "OsmAnd" ]
                         Text ", "
                         a [ _href "https://maps.me/"; _target "_blank" ] [ Text "Maps.me" ]
                         Text ", or your preferred GPS app for offline navigation."
+                    ]
+                    small [ _class "text-muted d-block" ] [
+                        Text "For Garmin fēnix and compatible watches: copy the Garmin file to "
+                        code [] [ Text "GARMIN/NewFiles/" ]
+                        Text ", eject the watch, then find them under "
+                        strong [] [ Text "START → Navigate → Saved Locations" ]
+                        Text "."
                     ]
                 ]
             ]

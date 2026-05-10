@@ -272,6 +272,7 @@ module Domain
         RssPath: string         // "/collections/blogroll/index.rss"
         OpmlPath: string        // "/collections/blogroll/index.opml"
         GpxPath: string option  // "/collections/travel/rome-favorites/rome-favorites.gpx"
+        GarminGpxPath: string option  // Garmin fenix-compatible waypoint-only GPX (e.g., rome-favorites-garmin.gpx)
         DataPath: string        // "/Data/blogroll.json"
     }
 

@@ -218,11 +218,12 @@ Add your new guide to the main travel guides page in `_src/travel-guides.md`:
 
 The system automatically generates:
 
-1. **GPX File**: Waypoints for offline navigation apps
-2. **Map Links**: geo: URIs, OpenStreetMap, Google Maps
-3. **Category Icons**: Visual indicators for place types
-4. **Responsive Design**: Mobile-optimized layout
-5. **Download Section**: GPX download with app recommendations
+1. **GPX File**: Waypoints for offline navigation apps (rich; includes descriptions and categories)
+2. **Garmin GPX File**: Waypoint-only GPX 1.1 variant compatible with Garmin fēnix and similar watches
+3. **Map Links**: geo: URIs, OpenStreetMap, Google Maps
+4. **Category Icons**: Visual indicators for place types
+5. **Responsive Design**: Mobile-optimized layout
+6. **Download Section**: Both GPX downloads with app and watch instructions
 
 ### Mobile Integration
 
@@ -236,11 +237,33 @@ The system automatically generates:
 - GPX files include place descriptions
 - Practical info embedded in waypoints
 
+### Garmin fēnix / Wearable Integration
+
+The Garmin variant is a **waypoint-only** GPX 1.1 file with the official
+namespace and only `<gpx>` → `<wpt>` → `<name>` elements — the strict shape
+the fēnix 6X (and similar Garmin watches) require for Saved Locations.
+
+To load on a Garmin watch:
+
+1. Connect the watch via USB.
+2. Copy `[guide-id]-garmin.gpx` to the `GARMIN/NewFiles/` folder.
+3. Eject and disconnect.
+4. On the watch: **START → Navigate → Saved Locations**.
+
+Notes:
+- The waypoints appear under *Saved Locations*, not *Courses* (this file is
+  intentionally not a course/route/track).
+- For the current Chicago favorites guide, expect **18 waypoints** to load
+  (regression check — see `test-scripts/test-garmin-gpx.fsx`).
+- The original rich GPX (`[guide-id].gpx`) is unchanged and still preferred for
+  OsmAnd / Maps.me.
+
 ### URL Structure
 
 Travel guides follow a consistent URL pattern:
 - Main page: `/collections/travel/[guide-id]/`
 - GPX file: `/collections/travel/[guide-id]/[guide-id].gpx`
+- Garmin GPX file: `/collections/travel/[guide-id]/[guide-id]-garmin.gpx`
 - Travel index: `/collections/travel-guides/`
 
 ## Advanced Features

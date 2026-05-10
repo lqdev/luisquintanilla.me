@@ -608,6 +608,19 @@ module Builder
                         printfn "⚠️  No GPX content generated for %s" collection.Title
                 | None -> 
                     () // No GPX file expected for this collection
+
+                // Generate and write Garmin-compatible waypoint-only GPX file (if applicable)
+                match paths.GarminGpxPath with
+                | Some garminPath ->
+                    let processor = Collections.CollectionProcessor.createCollectionProcessor collection
+                    match processor.GenerateGarminGpxFile data with
+                    | Some gpxContent ->
+                        File.WriteAllText(Path.Join(outputDir, garminPath), gpxContent)
+                        printfn "✅ Generated Garmin GPX file: %s" garminPath
+                    | None ->
+                        printfn "⚠️  No Garmin GPX content generated for %s" collection.Title
+                | None ->
+                    () // No Garmin GPX file expected for this collection
                 
                 printfn "✅ Built collection: %s (%d items)" collection.Title (data.Items.Length)
                 
