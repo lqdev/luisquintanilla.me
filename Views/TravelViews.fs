@@ -29,9 +29,9 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
                 div [ _class "download-help mt-2" ] [
                     small [ _class "text-muted d-block mb-1" ] [
                         Text "Import the standard GPX into "
-                        a [ _href "https://osmand.net/"; _target "_blank" ] [ Text "OsmAnd" ]
+                        a [ _href "https://osmand.net/"; _target "_blank"; _rel "noopener noreferrer" ] [ Text "OsmAnd" ]
                         Text ", "
-                        a [ _href "https://maps.me/"; _target "_blank" ] [ Text "Maps.me" ]
+                        a [ _href "https://maps.me/"; _target "_blank"; _rel "noopener noreferrer" ] [ Text "Maps.me" ]
                         Text ", or your preferred GPS app for offline navigation."
                     ]
                     small [ _class "text-muted d-block" ] [
@@ -76,10 +76,10 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
                                 a [ _href $"geo:{place.Latitude},{place.Longitude}"; _class "btn btn-sm btn-outline-primary me-1 d-none-desktop" ] [
                                     Text "📱 Open in App"
                                 ]
-                                a [ _href $"https://www.openstreetmap.org/?mlat={place.Latitude}&mlon={place.Longitude}&zoom=18"; _target "_blank"; _class "btn btn-sm btn-outline-secondary me-1" ] [
+                                a [ _href $"https://www.openstreetmap.org/?mlat={place.Latitude}&mlon={place.Longitude}&zoom=18"; _target "_blank"; _rel "noopener noreferrer"; _class "btn btn-sm btn-outline-secondary me-1" ] [
                                     Text "🗺️ OpenStreetMap"
                                 ]
-                                a [ _href $"https://maps.google.com/?q={place.Latitude},{place.Longitude}"; _target "_blank"; _class "btn btn-sm btn-outline-secondary" ] [
+                                a [ _href $"https://maps.google.com/?q={place.Latitude},{place.Longitude}"; _target "_blank"; _rel "noopener noreferrer"; _class "btn btn-sm btn-outline-secondary" ] [
                                     Text "🌍 Google Maps"
                                 ]
                             ]
@@ -133,7 +133,7 @@ let generateTravelCollectionPage (data: CollectionData) (travelData: TravelRecom
                                     | Some website ->
                                         span [ _class "info-item me-4 mb-1" ] [
                                             i [ _class "bi bi-globe me-1" ] []
-                                            a [ _href website; _target "_blank" ] [ Text "Website" ]
+                                            a [ _href website; _target "_blank"; _rel "noopener noreferrer" ] [ Text "Website" ]
                                         ]
                                     | None -> ()
                                 ]

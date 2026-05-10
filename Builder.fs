@@ -596,10 +596,12 @@ module Builder
                 let rssContent = Collections.CollectionBuilder.generateCollectionRssContent data
                 File.WriteAllText(Path.Join(outputDir, paths.RssPath), rssContent)
                 
+                // Build a single processor instance; reused by GPX + Garmin GPX blocks below.
+                let processor = Collections.CollectionProcessor.createCollectionProcessor collection
+
                 // Generate and write GPX file (if applicable)
                 match paths.GpxPath with
                 | Some gpxRelativePath ->
-                    let processor = Collections.CollectionProcessor.createCollectionProcessor collection
                     match processor.GenerateGpxFile data with
                     | Some gpxContent ->
                         File.WriteAllText(Path.Join(outputDir, gpxRelativePath), gpxContent)
@@ -612,7 +614,6 @@ module Builder
                 // Generate and write Garmin-compatible waypoint-only GPX file (if applicable)
                 match paths.GarminGpxPath with
                 | Some garminPath ->
-                    let processor = Collections.CollectionProcessor.createCollectionProcessor collection
                     match processor.GenerateGarminGpxFile data with
                     | Some gpxContent ->
                         File.WriteAllText(Path.Join(outputDir, garminPath), gpxContent)

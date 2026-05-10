@@ -356,7 +356,9 @@ module CollectionProcessor =
                     Some (UTF8Encoding(false).GetString(ms.ToArray()))
             with
             | ex ->
-                printfn "Warning: Failed to generate Garmin GPX for %s: %s" collection.Title ex.Message
+                let travelDataPath = Path.Join("Data", collection.DataFile)
+                printfn "Warning: Failed to generate Garmin GPX for %s (data file: %s): %s"
+                    collection.Title travelDataPath ex.Message
                 None
         | _ -> None
 
