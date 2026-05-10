@@ -27,6 +27,7 @@ Quick links to some of my favorite radio stations:
 | [The Lot Radio](https://www.thelotradio.com/) | N/A |
 | [Nightwave Plaza](https://plaza.one/) | [Stream Link](http://radio.plaza.one/mp3) |
 | [Chicago Independent Radio Project](https://chirpradio.org/) | [Stream Link](https://chirpradio.org/chirpradio.m3u) | 
+| [WDCB Jazz Chicago](https://wdcb.org/) | [Stream Link](https://wdcb-ice.streamguys1.com/mobile-AAC) |
 
 Alternatively, use the [online radio playlist](/radio/OnlineRadioPlaylist.m3u) I've created to get access to all of them on [MPV](https://mpv.io/) or [VLC](https://www.videolan.org/vlc/). 
 
