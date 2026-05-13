@@ -1578,6 +1578,7 @@ module UnifiedFeeds =
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
 
     let private responseFeedTypes = set [ "responses"; "reply"; "reshare"; "star" ]
+    let private jsonFeedItemLimit = 20
 
     let private toJsonFeedContent (item: UnifiedFeedItem) =
         match item.ContentType with
@@ -1667,26 +1668,21 @@ module UnifiedFeeds =
 
         typeConfigs
         |> List.iter (fun (outputPathPrefix, title, homePageUrl, feedUrl, description, filter) ->
-            let typeItems =
-                allUnifiedItems
-                |> List.filter filter
-                |> List.take (min 20 (allUnifiedItems |> List.filter filter |> List.length))
+            let matchingItems = allUnifiedItems |> List.filter filter
+            let typeItems = matchingItems |> List.take (min jsonFeedItemLimit matchingItems.Length)
 
             if not typeItems.IsEmpty then
                 let jsonFeed = generateJsonFeedString title homePageUrl feedUrl description typeItems true
                 writeFeed (Path.Combine(outputPathPrefix, "feed.json")) jsonFeed
         )
 
-        let allStreamItems =
+        let allMatchingStreamItems =
             allUnifiedItems
             |> List.filter (fun item ->
                 item.ContentType = "posts"
                 || item.ContentType = "notes"
                 || responseFeedTypes.Contains(item.ContentType))
-            |> List.take (min 20 (allUnifiedItems |> List.filter (fun item ->
-                item.ContentType = "posts"
-                || item.ContentType = "notes"
-                || responseFeedTypes.Contains(item.ContentType)) |> List.length))
+        let allStreamItems = allMatchingStreamItems |> List.take (min jsonFeedItemLimit allMatchingStreamItems.Length)
 
         if not allStreamItems.IsEmpty then
             let allJsonFeed =

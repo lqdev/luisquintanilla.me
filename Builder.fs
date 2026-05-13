@@ -318,6 +318,13 @@ module Builder
         writePageToDir saveDir "index.html" searchPage
 
     let private responseFeedTypes = set [ "responses"; "reply"; "reshare"; "star" ]
+    let private maxUploadNameCollisions = 10000
+
+    let private isRemoteUrl (value: string) =
+        value.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
+        || value.StartsWith("https://", StringComparison.OrdinalIgnoreCase)
+        || value.StartsWith("data:", StringComparison.OrdinalIgnoreCase)
+        || value.StartsWith("//", StringComparison.OrdinalIgnoreCase)
 
     let private renderArchiveContent (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) =
         match item.ContentType with
@@ -332,13 +339,7 @@ module Builder
             let imgSource = m.Groups.[2].Value
             let imgSuffix = m.Groups.[3].Value
 
-            let isRemote =
-                imgSource.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
-                || imgSource.StartsWith("https://", StringComparison.OrdinalIgnoreCase)
-                || imgSource.StartsWith("data:", StringComparison.OrdinalIgnoreCase)
-                || imgSource.StartsWith("//", StringComparison.OrdinalIgnoreCase)
-
-            if isRemote then m.Value
+            if isRemoteUrl imgSource then m.Value
             else
                 match registerUpload imgSource with
                 | Some archivedPath -> $"{imgPrefix}{archivedPath}{imgSuffix}"
@@ -357,6 +358,12 @@ module Builder
             try DateTimeOffset.Parse(value).ToString("MMM dd, yyyy")
             with _ -> DateTimeOffset.UtcNow.ToString("MMM dd, yyyy")
 
+    let private parseArchiveSortDate (value: string) =
+        if String.IsNullOrWhiteSpace(value) then DateTimeOffset.MinValue
+        else
+            try DateTimeOffset.Parse(value)
+            with _ -> DateTimeOffset.MinValue
+
     let private formatArchiveSize (sizeBytes: int64) =
         let oneKb = 1024.0
         let oneMb = oneKb * 1024.0
@@ -371,7 +378,7 @@ module Builder
                     h2 [] [ Text "Blog Archive Format (.bar)" ]
                     p [] [
                         Text "Download portable blog backups in Blog Archive Format (BAR). "
-                        Text "Each file contains an h-feed/h-entry index, JSON Feed v1.1 metadata, and bundled local uploads when available."
+                        Text "Each file contains an h-feed/h-entry index, JSON Feed v1.1 metadata, and bundled local image/media uploads when available."
                     ]
                     p [] [
                         Text "BAR files can be imported into platforms and tools that support blogarchive.org."
@@ -459,27 +466,33 @@ module Builder
 
         let registerUpload (imgSource: string) =
             let relativePathCandidate =
-                let withoutLeadingSlash = imgSource.Trim().TrimStart('/')
-                let noQuery = withoutLeadingSlash.Split('?').[0]
-                noQuery.Split('#').[0]
+                let normalizedSource = imgSource.Trim().Replace(Path.DirectorySeparatorChar, '/').Replace(Path.AltDirectorySeparatorChar, '/')
+                let canonicalUri = Uri($"https://www.lqdev.me/{normalizedSource.TrimStart('/')}")
+                canonicalUri.AbsolutePath.TrimStart('/')
 
             if String.IsNullOrWhiteSpace(relativePathCandidate) then None
             else
-                let sourcePath = Path.Join(outputDir, relativePathCandidate.Replace('/', Path.DirectorySeparatorChar))
+                let pathSegments =
+                    relativePathCandidate.Split('/', StringSplitOptions.RemoveEmptyEntries)
+                    |> Array.toList
+
+                let sourcePath =
+                    pathSegments
+                    |> List.fold (fun currentPath segment -> Path.Combine(currentPath, segment)) outputDir
                 if File.Exists(sourcePath) then
                     if uploadPathBySource.ContainsKey(sourcePath) then
                         Some uploadPathBySource.[sourcePath]
                     else
                         let extension = Path.GetExtension(relativePathCandidate)
-                        let baseName =
-                            Path.GetFileNameWithoutExtension(relativePathCandidate)
-                                .Replace("/", "-")
-                                .Replace("\\", "-")
+                        let baseName = Path.GetFileNameWithoutExtension(relativePathCandidate)
                         let mutable candidate = $"uploads/images/{baseName}{extension}"
                         let mutable duplicateCount = 1
-                        while usedUploadPaths.Contains(candidate) do
+                        while usedUploadPaths.Contains(candidate) && duplicateCount <= maxUploadNameCollisions do
                             candidate <- $"uploads/images/{baseName}-{duplicateCount}{extension}"
                             duplicateCount <- duplicateCount + 1
+
+                        if duplicateCount > maxUploadNameCollisions then
+                            failwith $"Unable to generate unique upload path for {relativePathCandidate}"
 
                         usedUploadPaths.Add(candidate) |> ignore
                         uploadPathBySource.[sourcePath] <- candidate
@@ -489,7 +502,7 @@ module Builder
 
         let archiveEntries =
             items
-            |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
+            |> List.sortByDescending (fun item -> parseArchiveSortDate item.Date)
             |> List.map (fun item ->
                 let contentHtml = renderArchiveContent item |> fun html -> rewriteLocalImageSources html registerUpload
                 { Item = item; ContentHtml = contentHtml }
@@ -532,7 +545,7 @@ module Builder
         let allItems =
             [ postsItems; notesItems; responseItems ]
             |> List.concat
-            |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
+            |> List.sortByDescending (fun item -> parseArchiveSortDate item.Date)
 
         let downloads = [
             {
