@@ -125,6 +125,13 @@ let main argv =
         ("album-collection", GenericBuilder.UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData)
         ("playlist-collection", GenericBuilder.UnifiedFeeds.convertPlaylistCollectionsToUnified playlistCollectionsFeedData)
     ]
+
+    // Blog Archive / JSON feed scope (posts + notes + responses)
+    let blogArchiveFeedItems = [
+        ("posts", GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData)
+        ("notes", GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData)
+        ("responses", GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData)
+    ]
     
     // Prepare unified content for text-only site and search indexes
     // Normalize tags through canonical map so all consumers see consolidated tag names
@@ -138,9 +145,15 @@ let main argv =
     
     // Generate unified feeds (fire-hose + type-specific)
     GenericBuilder.UnifiedFeeds.buildAllFeeds allUnifiedItems "_public"
+
+    // Generate JSON Feed v1.1 outputs for posts, notes, responses, and combined stream
+    GenericBuilder.UnifiedFeeds.buildJsonFeeds blogArchiveFeedItems "_public"
     
     // Generate tag RSS feeds using unified feed data
     GenericBuilder.UnifiedFeeds.buildTagFeeds allUnifiedItems "_public"
+
+    // Generate Blog Archive Format (.bar) exports and archive landing page
+    buildBlogArchiveExports blogArchiveFeedItems
     
     // =============================================================================
     // ActivityPub Content Generation - Phase 3+ Implementation

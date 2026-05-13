@@ -98,6 +98,13 @@ jobs:
           path: _public/api/data/outbox/
           retention-days: 1
 
+      - name: Upload Blog Archive exports
+        uses: actions/upload-artifact@v4
+        with:
+          name: blog-archive-artifacts
+          path: _public/archive/*.bar
+          retention-days: 7
+
   # ============================================================================
   # Webmention Notification Job (Independent)
   # Sends webmentions to notify other sites of new response content

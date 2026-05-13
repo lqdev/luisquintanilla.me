@@ -10,6 +10,8 @@ open ReadingTimeService
 open System.Xml.Linq
 open System
 open System.IO
+open System.Text.Json
+open System.Text.Json.Nodes
 open Giraffe.ViewEngine
 open Giraffe.ViewEngine.HtmlElements
 open Markdig
@@ -1574,6 +1576,131 @@ module UnifiedFeeds =
         channelElement.Add(rssElements)
         
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
+
+    let private responseFeedTypes = set [ "responses"; "reply"; "reshare"; "star" ]
+
+    let private toJsonFeedContent (item: UnifiedFeedItem) =
+        match item.ContentType with
+        | "posts"
+        | "notes"
+        | "snippets"
+        | "wiki"
+        | "presentations"
+        | "reviews"
+        | "ai-memex" -> MarkdownService.convertMdToHtml item.Content
+        | _ -> item.Content
+
+    let private toIso8601Date (value: string) =
+        if String.IsNullOrWhiteSpace(value) then DateTimeOffset.UtcNow.ToString("o")
+        else
+            try
+                DateTimeOffset.Parse(value).ToString("o")
+            with
+            | _ -> DateTimeOffset.UtcNow.ToString("o")
+
+    let private sortByDateDesc (items: UnifiedFeedItem list) =
+        items
+        |> List.sortByDescending (fun item ->
+            if String.IsNullOrWhiteSpace(item.Date) then DateTimeOffset.MinValue
+            else
+                try DateTimeOffset.Parse(item.Date)
+                with _ -> DateTimeOffset.MinValue)
+
+    let generateJsonFeedString (title: string) (homePageUrl: string) (feedUrl: string) (description: string) (items: UnifiedFeedItem list) (useAbsoluteUrls: bool) =
+        let jsonItems = JsonArray()
+
+        items
+        |> List.iter (fun item ->
+            let contentHtml =
+                let baseContent = toJsonFeedContent item
+                if useAbsoluteUrls then normalizeUrlsForRss baseContent "https://www.lqdev.me"
+                else baseContent
+
+            let jsonItem = JsonObject()
+            jsonItem["id"] <- item.Url
+            jsonItem["url"] <- item.Url
+            jsonItem["title"] <- item.Title
+            jsonItem["content_html"] <- contentHtml
+            jsonItem["date_published"] <- toIso8601Date item.Date
+
+            if not (isNull item.Tags) && item.Tags.Length > 0 then
+                let tags = JsonArray()
+                item.Tags
+                |> Array.iter (fun tag -> tags.Add(tag))
+                jsonItem["tags"] <- tags
+
+            jsonItems.Add(jsonItem)
+        )
+
+        let author = JsonObject()
+        author["name"] <- "Luis Quintanilla"
+        author["url"] <- "https://www.lqdev.me"
+
+        let authors = JsonArray()
+        authors.Add(author)
+
+        let root = JsonObject()
+        root["version"] <- "https://jsonfeed.org/version/1.1"
+        root["title"] <- title
+        root["home_page_url"] <- homePageUrl
+        root["feed_url"] <- feedUrl
+        root["description"] <- description
+        root["authors"] <- authors
+        root["items"] <- jsonItems
+
+        root.ToJsonString(JsonSerializerOptions(WriteIndented = true))
+
+    let buildJsonFeeds (feedDataSets: (string * (UnifiedFeedItem list)) list) (outputDirectory: string) =
+        let allUnifiedItems = feedDataSets |> List.collect snd |> sortByDateDesc
+
+        let writeFeed (outputPath: string) (feedContent: string) =
+            let fullPath = Path.Combine(outputDirectory, outputPath)
+            let fullDir = Path.GetDirectoryName(fullPath)
+            Directory.CreateDirectory(fullDir) |> ignore
+            File.WriteAllText(fullPath, feedContent)
+
+        let typeConfigs = [
+            ("posts", "Luis Quintanilla - Posts", "https://www.lqdev.me/posts", "https://www.lqdev.me/posts/feed.json", "Blog posts by Luis Quintanilla", fun (item: UnifiedFeedItem) -> item.ContentType = "posts")
+            ("notes", "Luis Quintanilla - Notes", "https://www.lqdev.me/notes", "https://www.lqdev.me/notes/feed.json", "Notes and micro-posts by Luis Quintanilla", fun (item: UnifiedFeedItem) -> item.ContentType = "notes")
+            ("responses", "Luis Quintanilla - Responses", "https://www.lqdev.me/responses", "https://www.lqdev.me/responses/feed.json", "IndieWeb responses by Luis Quintanilla", fun (item: UnifiedFeedItem) -> responseFeedTypes.Contains(item.ContentType))
+        ]
+
+        typeConfigs
+        |> List.iter (fun (outputPathPrefix, title, homePageUrl, feedUrl, description, filter) ->
+            let typeItems =
+                allUnifiedItems
+                |> List.filter filter
+                |> List.take (min 20 (allUnifiedItems |> List.filter filter |> List.length))
+
+            if not typeItems.IsEmpty then
+                let jsonFeed = generateJsonFeedString title homePageUrl feedUrl description typeItems true
+                writeFeed (Path.Combine(outputPathPrefix, "feed.json")) jsonFeed
+        )
+
+        let allStreamItems =
+            allUnifiedItems
+            |> List.filter (fun item ->
+                item.ContentType = "posts"
+                || item.ContentType = "notes"
+                || responseFeedTypes.Contains(item.ContentType))
+            |> List.take (min 20 (allUnifiedItems |> List.filter (fun item ->
+                item.ContentType = "posts"
+                || item.ContentType = "notes"
+                || responseFeedTypes.Contains(item.ContentType)) |> List.length))
+
+        if not allStreamItems.IsEmpty then
+            let allJsonFeed =
+                generateJsonFeedString
+                    "Luis Quintanilla - All Updates"
+                    "https://www.lqdev.me/feed"
+                    "https://www.lqdev.me/feed/index.json"
+                    "Posts, notes, and responses by Luis Quintanilla"
+                    allStreamItems
+                    true
+
+            writeFeed (Path.Combine("feed", "index.json")) allJsonFeed
+
+        printfn "✅ JSON feeds generated: posts, notes, responses, and combined feed"
     
     /// Build unified feeds from all content types with proper type conversion
     let buildAllFeeds (feedDataSets: (string * (UnifiedFeedItem list)) list) (outputDirectory: string) =
