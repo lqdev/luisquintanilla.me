@@ -511,22 +511,38 @@ module Builder
         let zipPath = Path.Join(archiveOutputDir, $"{archiveName}.bar")
         if File.Exists(zipPath) then File.Delete(zipPath)
 
+        // ZIP DOS-time minimum is 1980-01-01; clamp to keep ZipArchiveEntry.LastWriteTime happy.
+        let zipEpoch = DateTimeOffset(1980, 1, 1, 0, 0, 0, TimeSpan.Zero)
+        let clampForZip (d: DateTimeOffset) = if d < zipEpoch then zipEpoch else d
+        let mostRecentDate =
+            archiveEntries
+            |> List.tryHead
+            |> Option.map (fun e -> parseArchiveSortDate e.Item.Date)
+            |> Option.defaultValue zipEpoch
+            |> clampForZip
+
         use archiveStream = File.Open(zipPath, FileMode.CreateNew, FileAccess.Write)
         use archive = new ZipArchive(archiveStream, ZipArchiveMode.Create)
 
         let indexEntry = archive.CreateEntry("index.html")
+        indexEntry.LastWriteTime <- mostRecentDate
         do
             use indexWriter = new StreamWriter(indexEntry.Open())
             indexWriter.Write(buildBarIndexHtml title homePageUrl archiveEntries)
 
         let feedEntry = archive.CreateEntry("feed.json")
+        feedEntry.LastWriteTime <- mostRecentDate
         do
             use feedWriter = new StreamWriter(feedEntry.Open())
             feedWriter.Write(generateBarFeedJson title homePageUrl archiveEntries)
 
+        // Sort uploads by in-archive path so iteration order is deterministic
+        // regardless of Dictionary insertion semantics.
         uploadPathBySource
+        |> Seq.sortBy (fun kvp -> kvp.Value)
         |> Seq.iter (fun kvp ->
             let uploadEntry = archive.CreateEntry(kvp.Value)
+            uploadEntry.LastWriteTime <- mostRecentDate
             use uploadEntryStream = uploadEntry.Open()
             use uploadSourceStream = File.OpenRead(kvp.Key)
             uploadSourceStream.CopyTo(uploadEntryStream)
