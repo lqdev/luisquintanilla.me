@@ -136,11 +136,15 @@ let private createSimplifiedReviewContent (content: string) =
 // library that powers QR codes elsewhere on the site, so visual styling stays
 // consistent with the QR modal and other QR surfaces.
 //
-// Accessibility:
-//   - role="button", aria-pressed reflects flipped state
-//   - aria-label describes the action for screen readers
-//   - tabindex="0" makes the card keyboard-focusable
-//   - back face is aria-hidden until the card is flipped
+// Accessibility (progressive enhancement):
+//   - The static markup is a plain image — no role, tabindex, or button
+//     semantics — so users without JavaScript get a normal avatar (not a
+//     dead keyboard focus target labeled "Show QR code").
+//   - On init, `_src/js/avatar-flip.js` upgrades the host element by adding
+//     role="button", tabindex="0", aria-pressed="false", and aria-label.
+//   - Once upgraded: aria-pressed reflects flipped state, the back face is
+//     aria-hidden until flipped, and a visually-hidden span announces the
+//     destination.
 //
 // Behavior (driven by `_src/js/avatar-flip.js`):
 //   - Click / tap / Enter / Space toggle the flip
@@ -151,17 +155,17 @@ let private createSimplifiedReviewContent (content: string) =
 // Parameters:
 //   altText      : alt text for the avatar image (front face)
 //   flipUrl      : URL the QR code points to (e.g., "/" for homepage)
-//   ariaLabel    : short description of the affordance for assistive tech
+//   ariaLabel    : short description of the affordance, applied by JS on init
 //   destinationSr: human-readable destination name announced to screen readers
 //                  when the card is flipped (e.g., "Luis Quintanilla's homepage")
 let avatarFlipCard (altText: string) (flipUrl: string) (ariaLabel: string) (destinationSr: string) =
+    // Note: no role / tabindex / aria-pressed in the static markup — those
+    // are applied by avatar-flip.js after it successfully initializes so
+    // the no-JS experience is just a plain avatar image.
     div [ _class "avatar-flip-card"
           attr "data-avatar-flip" ""
           attr "data-flip-url" flipUrl
-          attr "role" "button"
-          attr "tabindex" "0"
-          attr "aria-pressed" "false"
-          attr "aria-label" ariaLabel ] [
+          attr "data-aria-label" ariaLabel ] [
         div [ _class "avatar-flip-inner" ] [
             // Front face: the avatar image
             div [ _class "avatar-flip-front" ] [

@@ -63,8 +63,20 @@
         this.qrTarget = element.querySelector('[data-qr-target]');
         this.qrBuilt = false;
         this.qrInstance = null;
+        this.upgradeSemantics();
         this.attach();
     }
+
+    // Progressive enhancement: only expose button semantics and the focus
+    // stop after the script runs successfully. Without JS the avatar stays
+    // a plain image rather than a dead button-labeled focus trap.
+    AvatarFlip.prototype.upgradeSemantics = function () {
+        var label = this.el.getAttribute('data-aria-label') || 'Show QR code';
+        this.el.setAttribute('role', 'button');
+        this.el.setAttribute('tabindex', '0');
+        this.el.setAttribute('aria-pressed', 'false');
+        this.el.setAttribute('aria-label', label);
+    };
 
     AvatarFlip.prototype.isFlipped = function () {
         return this.el.classList.contains('is-flipped');
@@ -89,7 +101,10 @@
         this.el.classList.add('is-flipped');
         this.el.setAttribute('aria-pressed', 'true');
         if (this.frontEl) this.frontEl.setAttribute('aria-hidden', 'true');
-        if (this.backEl) this.backEl.setAttribute('aria-hidden', 'false');
+        if (this.backEl) {
+            this.backEl.setAttribute('aria-hidden', 'false');
+            this.setBackFocusable(true);
+        }
 
         // Defer registering the outside listener until after this click bubbles
         // up; otherwise the originating click would immediately flip back.
@@ -102,8 +117,39 @@
         this.el.classList.remove('is-flipped');
         this.el.setAttribute('aria-pressed', 'false');
         if (this.frontEl) this.frontEl.setAttribute('aria-hidden', 'false');
-        if (this.backEl) this.backEl.setAttribute('aria-hidden', 'true');
+        if (this.backEl) {
+            this.backEl.setAttribute('aria-hidden', 'true');
+            this.setBackFocusable(false);
+        }
         this._outsideHandlerActive = false;
+    };
+
+    // Keep focusable descendants of the back face out of the tab order while
+    // the card is showing the avatar (back face is aria-hidden / visually
+    // hidden via rotateY). Without this, keyboard users could tab into the
+    // hidden fallback link, and the card's own Enter/Space handler would
+    // intercept activation.
+    AvatarFlip.prototype.setBackFocusable = function (focusable) {
+        if (!this.backEl) return;
+        var nodes = this.backEl.querySelectorAll('a, button, [tabindex]');
+        for (var i = 0; i < nodes.length; i++) {
+            if (focusable) {
+                // Restore previous tabindex (or remove the override entirely).
+                var prev = nodes[i].getAttribute('data-prev-tabindex');
+                if (prev === null) {
+                    nodes[i].removeAttribute('tabindex');
+                } else {
+                    nodes[i].setAttribute('tabindex', prev);
+                    nodes[i].removeAttribute('data-prev-tabindex');
+                }
+            } else {
+                // Stash the original tabindex so we can restore it on flip.
+                if (nodes[i].hasAttribute('tabindex')) {
+                    nodes[i].setAttribute('data-prev-tabindex', nodes[i].getAttribute('tabindex'));
+                }
+                nodes[i].setAttribute('tabindex', '-1');
+            }
+        }
     };
 
     AvatarFlip.prototype.ensureQR = function () {
@@ -119,6 +165,12 @@
             link.href = this.url;
             link.className = 'avatar-flip-fallback-link';
             link.textContent = 'Visit homepage';
+            // If the card is currently flipped (we're inside ensureQR called
+            // from flipForward), let the link be focusable; otherwise stash
+            // it out of the tab order until the next flip.
+            if (!self.isFlipped()) {
+                link.setAttribute('tabindex', '-1');
+            }
             this.qrTarget.appendChild(link);
             return Promise.resolve();
         }
@@ -147,6 +199,9 @@
 
         // Pointer activation — works for mouse and touch (touch fires click).
         this.el.addEventListener('click', function (e) {
+            // Don't intercept clicks on focusable descendants (e.g. the
+            // fallback link). Let their default behavior run.
+            if (e.target !== self.el && e.target.closest('a, button')) return;
             // Stop propagation so the document-level outside handler doesn't
             // immediately reverse what we just did.
             e.stopPropagation();
@@ -155,6 +210,16 @@
 
         // Keyboard activation. Enter/Space toggle, Escape always flips back.
         this.el.addEventListener('keydown', function (e) {
+            // If focus is on a descendant interactive element, let it handle
+            // its own keyboard activation rather than toggling the card.
+            if (e.target !== self.el && e.target.closest('a, button')) {
+                if (e.key === 'Escape' && self.isFlipped()) {
+                    e.preventDefault();
+                    self.flipBack();
+                    self.el.focus();
+                }
+                return;
+            }
             if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
                 e.preventDefault();
                 self.toggle();

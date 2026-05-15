@@ -127,10 +127,14 @@
   display: block;
 }
 
+/* Fallback link shown when the QR library fails to load. The back face is
+   white, so use a dark text color (not the accent color) to comfortably clear
+   WCAG AA 4.5:1 contrast at this text size. The underline keeps the link
+   recognizable without relying on color alone. */
 .avatar-flip-fallback-link {
-  color: var(--accent-color);
+  color: #1a2332;
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;
   font-size: 0.95rem;
   text-align: center;
   padding: 0.5rem;
@@ -138,6 +142,7 @@
 
 .avatar-flip-fallback-link:hover,
 .avatar-flip-fallback-link:focus {
+  color: #000000;
   text-decoration: underline;
 }
 
