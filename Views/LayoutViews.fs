@@ -126,6 +126,69 @@ let private createSimplifiedReviewContent (content: string) =
         // On any error, return empty content to avoid breaking the page
         ""
 
+// Reusable avatar flip-card component.
+//
+// Renders the avatar as the front face of a 3D card. When clicked, tapped, or
+// activated via the keyboard (Enter / Space), the card flips horizontally to
+// reveal a programmatically generated QR code on the back face, pointing at
+// `flipUrl` (typically the homepage). The QR code is generated lazily on the
+// first flip by `/assets/js/avatar-flip.js` using the same `qr-code-styling`
+// library that powers QR codes elsewhere on the site, so visual styling stays
+// consistent with the QR modal and other QR surfaces.
+//
+// Accessibility (progressive enhancement):
+//   - The static markup is a plain image — no role, tabindex, or button
+//     semantics — so users without JavaScript get a normal avatar (not a
+//     dead keyboard focus target labeled "Show QR code").
+//   - On init, `_src/js/avatar-flip.js` upgrades the host element by adding
+//     role="button", tabindex="0", aria-pressed="false", and aria-label.
+//   - Once upgraded: aria-pressed reflects flipped state, the back face is
+//     aria-hidden until flipped, and a visually-hidden span announces the
+//     destination.
+//
+// Behavior (driven by `_src/js/avatar-flip.js`):
+//   - Click / tap / Enter / Space toggle the flip
+//   - Click outside the card while flipped flips it back
+//   - Escape while flipped flips it back and restores focus
+//   - Falls back gracefully when JS is unavailable (front face stays visible)
+//
+// Parameters:
+//   altText      : alt text for the avatar image (front face)
+//   flipUrl      : URL the QR code points to (e.g., "/" for homepage)
+//   ariaLabel    : short description of the affordance, applied by JS on init
+//   destinationSr: human-readable destination name announced to screen readers
+//                  when the card is flipped (e.g., "Luis Quintanilla's homepage")
+let avatarFlipCard (altText: string) (flipUrl: string) (ariaLabel: string) (destinationSr: string) =
+    // Note: no role / tabindex / aria-pressed in the static markup — those
+    // are applied by avatar-flip.js after it successfully initializes so
+    // the no-JS experience is just a plain avatar image.
+    div [ _class "avatar-flip-card"
+          attr "data-avatar-flip" ""
+          attr "data-flip-url" flipUrl
+          attr "data-aria-label" ariaLabel ] [
+        div [ _class "avatar-flip-inner" ] [
+            // Front face: the avatar image
+            div [ _class "avatar-flip-front" ] [
+                img [ _src "/avatar.png"
+                      _alt altText
+                      _class "rounded-circle avatar-flip-image"
+                      _height "150"
+                      _width "150" ]
+            ]
+            // Back face: QR code target. The actual QR is injected on demand
+            // by avatar-flip.js. The visually-hidden text gives screen-reader
+            // users a meaningful description of the destination.
+            div [ _class "avatar-flip-back"
+                  attr "aria-hidden" "true" ] [
+                div [ _class "avatar-flip-qr"
+                      attr "data-qr-target" "" ] []
+                span [ _class "avatar-flip-sr-only" ] [
+                    Text (sprintf "QR code linking to %s" destinationSr)
+                ]
+            ]
+        ]
+    ]
+
 // New stratified timeline homepage view - takes 5 items from each content type initially
 // Progressive loading is content-type aware for better filtering experience
 let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) (remainingItemsByType: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) (pinnedUrls: Set<string>) =
@@ -134,7 +197,7 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
         // Header with personal intro and content filters
         header [ _class "timeline-header text-center p-4" ] [
             div [ _class "avatar-section mb-3" ] [
-                img [ _src "/avatar.png"; _alt "Luis Quintanilla Avatar Image"; _class "rounded-circle"; _height "150"; _width "150" ]
+                avatarFlipCard "Luis Quintanilla Avatar Image" "/" "Show QR code for homepage" "Luis Quintanilla's homepage"
                 div [ _class "mt-2" ] [
                     h1 [ _class "p-name" ] [
                         str "Hi, I'm "
@@ -375,7 +438,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
         // Header with personal intro and content filters
         header [ _class "timeline-header text-center p-4" ] [
             div [ _class "avatar-section mb-3" ] [
-                img [ _src "/avatar.png"; _alt "Luis Quintanilla Avatar Image"; _class "rounded-circle"; _height "150"; _width "150" ]
+                avatarFlipCard "Luis Quintanilla Avatar Image" "/" "Show QR code for homepage" "Luis Quintanilla's homepage"
                 div [ _class "mt-2" ] [
                     h1 [ _class "p-name" ] [
                         str "Hi, I'm "
