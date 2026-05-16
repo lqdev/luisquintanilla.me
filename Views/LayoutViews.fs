@@ -133,13 +133,18 @@ let private createSimplifiedReviewContent (content: string) =
 // avatar via Enter/Space (native disclosure semantics) flips the card to
 // reveal a pre-rendered QR code on the back face. Clicking the avatar a
 // second time flips back. The flip is driven entirely by CSS via the
-// `details[open]` selector — no JavaScript, no runtime QR generation,
-// no CDN dependency on the homepage hot path.
+// `details[open]` selector — no JavaScript and no runtime QR generation
+// for the avatar flip-card itself. (NOTE: the layout still loads
+// `qr-code-styling` from CDN globally via Layouts.fs to power the
+// per-page `qrCodeButton` modal; eliminating that CDN dep is a separate
+// follow-up, not part of this component.)
 //
 // Architecture:
-//   - The QR SVG is pre-rendered at build time (see Scripts/generate-qr-home.fsx)
-//     and lives at `_src/assets/images/contact/qr-home.svg`, alongside the
-//     existing family of contact QR SVGs.
+//   - The QR SVG is pre-rendered at build time by `Services/QRStyled.fs`,
+//     invoked from `Builder.copyStaticFiles` (see `Builder.fs:144-149`).
+//   - Output lands at `_public/assets/images/contact/qr-home.svg`, served
+//     directly as a static asset (path embedded by `avatarFlipCard` below,
+//     with a `?v=<contentHash>` cache-buster from `QRStyled.HomeCacheKey`).
 //   - 3D-flip + shape-morph styles live in `_src/css/custom/timeline.css`
 //     (selectors prefixed with `details.avatar-flip`).
 //   - The card visually morphs from circle (front, avatar) to rounded-square
