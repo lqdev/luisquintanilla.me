@@ -24,9 +24,9 @@
       },
       "FSharp.Core": {
         "type": "Direct",
-        "requested": "[10.1.203, )",
-        "resolved": "10.1.203",
-        "contentHash": "OF7jtxizT+7LKeuHQBTQF3SxcnxBXN8DEF2QuAeOV2r8UN3toAjUL9hqiTVqkerorrMzb5SJ+ppqWSIXRYsozg=="
+        "requested": "[10.1.204, )",
+        "resolved": "10.1.204",
+        "contentHash": "t+7d8pd2mUWyNIwK52XEprbpSC2pLDkTXEj7PLWWAD5p78ZzMOgUCTsGxSOXgwfXAeiDZSlCyemh6WUWfvnvxg=="
       },
       "FSharp.Data": {
         "type": "Direct",
@@ -85,6 +85,12 @@
           "Microsoft.Extensions.AI.Abstractions": "10.4.1",
           "OpenAI": "2.9.1"
         }
+      },
+      "Net.Codecrete.QrCodeGenerator": {
+        "type": "Direct",
+        "requested": "[2.0.*, )",
+        "resolved": "2.0.7",
+        "contentHash": "DAJnVhzqjvuyxzXO4WDN8nSsOc80BxsIktFcsnN79glVG/oyj/nGudruuaRLDL45NvvTYiu79EFOsiWHL6Q8kw=="
       },
       "YamlDotNet": {
         "type": "Direct",

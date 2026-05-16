@@ -126,64 +126,89 @@ let private createSimplifiedReviewContent (content: string) =
         // On any error, return empty content to avoid breaking the page
         ""
 
-// Reusable avatar flip-card component.
+// Reusable avatar flip-card component (pure CSS, native disclosure).
 //
-// Renders the avatar as the front face of a 3D card. When clicked, tapped, or
-// activated via the keyboard (Enter / Space), the card flips horizontally to
-// reveal a programmatically generated QR code on the back face, pointing at
-// `flipUrl` (typically the homepage). The QR code is generated lazily on the
-// first flip by `/assets/js/avatar-flip.js` using the same `qr-code-styling`
-// library that powers QR codes elsewhere on the site, so visual styling stays
-// consistent with the QR modal and other QR surfaces.
+// Renders the avatar as the front face of a 3D card built on a native
+// `<details>`/`<summary>` element. Clicking, tapping, or activating the
+// avatar via Enter/Space (native disclosure semantics) flips the card to
+// reveal a pre-rendered QR code on the back face. Clicking the avatar a
+// second time flips back. The flip is driven entirely by CSS via the
+// `details[open]` selector — no JavaScript and no runtime QR generation
+// for the avatar flip-card itself. (NOTE: the layout still loads
+// `qr-code-styling` from CDN globally via Layouts.fs to power the
+// per-page `qrCodeButton` modal; eliminating that CDN dep is a separate
+// follow-up, not part of this component.)
 //
-// Accessibility (progressive enhancement):
-//   - The static markup is a plain image — no role, tabindex, or button
-//     semantics — so users without JavaScript get a normal avatar (not a
-//     dead keyboard focus target labeled "Show QR code").
-//   - On init, `_src/js/avatar-flip.js` upgrades the host element by adding
-//     role="button", tabindex="0", aria-pressed="false", and aria-label.
-//   - Once upgraded: aria-pressed reflects flipped state, the back face is
-//     aria-hidden until flipped, and a visually-hidden span announces the
-//     destination.
+// Architecture:
+//   - The QR SVG is pre-rendered at build time by `Services/QRStyled.fs`,
+//     invoked from `Builder.copyStaticFiles` (see `Builder.fs:144-149`).
+//   - Output lands at `_public/assets/images/contact/qr-home.svg`, served
+//     directly as a static asset (path embedded by `avatarFlipCard` below,
+//     with a `?v=<contentHash>` cache-buster from `QRStyled.HomeCacheKey`).
+//   - 3D-flip + shape-morph styles live in `_src/css/custom/timeline.css`
+//     (selectors prefixed with `details.avatar-flip`).
+//   - The card visually morphs from circle (front, avatar) to rounded-square
+//     (back, QR) during the flip, which gives the QR its natural square real
+//     estate and avoids clipping the corner finder patterns.
 //
-// Behavior (driven by `_src/js/avatar-flip.js`):
-//   - Click / tap / Enter / Space toggle the flip
-//   - Click outside the card while flipped flips it back
-//   - Escape while flipped flips it back and restores focus
-//   - Falls back gracefully when JS is unavailable (front face stays visible)
+// Accessibility:
+//   - Native `<details>`/`<summary>` provides `aria-expanded` automatically,
+//     keyboard activation (Enter/Space) for free, and inert closed content
+//     for screen readers — no custom ARIA management required.
+//   - Works fully without JavaScript: the flip, the QR, and the dismiss-by-
+//     second-click all behave as expected.
+//
+// Trade-offs (vs. the previous JS implementation):
+//   - LOST: Escape-key dismissal and click-outside dismissal — pure CSS
+//     cannot read keyboard events, and the only pure-CSS outside-click
+//     workaround intercepts all page clicks (unacceptable).
+//   - PRESERVED: click avatar again to dismiss (standard disclosure pattern).
 //
 // Parameters:
 //   altText      : alt text for the avatar image (front face)
-//   flipUrl      : URL the QR code points to (e.g., "/" for homepage)
-//   ariaLabel    : short description of the affordance, applied by JS on init
-//   destinationSr: human-readable destination name announced to screen readers
-//                  when the card is flipped (e.g., "Luis Quintanilla's homepage")
+//   flipUrl      : kept for API compatibility with existing call sites; the
+//                  QR destination is baked into the pre-rendered SVG, so this
+//                  parameter is currently unused for the home QR. Kept so the
+//                  function signature stays stable if we later support multiple
+//                  pre-rendered destinations.
+//   ariaLabel    : accessible label applied to the <summary> element so screen
+//                  readers announce the affordance (e.g. "Show QR code for homepage").
+//   destinationSr: human-readable destination name used in the QR's alt text
+//                  (e.g., "Luis Quintanilla's homepage").
 let avatarFlipCard (altText: string) (flipUrl: string) (ariaLabel: string) (destinationSr: string) =
-    // Note: no role / tabindex / aria-pressed in the static markup — those
-    // are applied by avatar-flip.js after it successfully initializes so
-    // the no-JS experience is just a plain avatar image.
-    div [ _class "avatar-flip-card"
-          attr "data-avatar-flip" ""
-          attr "data-flip-url" flipUrl
-          attr "data-aria-label" ariaLabel ] [
-        div [ _class "avatar-flip-inner" ] [
-            // Front face: the avatar image
-            div [ _class "avatar-flip-front" ] [
-                img [ _src "/avatar.png"
-                      _alt altText
-                      _class "rounded-circle avatar-flip-image"
-                      _height "150"
-                      _width "150" ]
-            ]
-            // Back face: QR code target. The actual QR is injected on demand
-            // by avatar-flip.js. The visually-hidden text gives screen-reader
-            // users a meaningful description of the destination.
-            div [ _class "avatar-flip-back"
-                  attr "aria-hidden" "true" ] [
-                div [ _class "avatar-flip-qr"
-                      attr "data-qr-target" "" ] []
-                span [ _class "avatar-flip-sr-only" ] [
-                    Text (sprintf "QR code linking to %s" destinationSr)
+    // `flipUrl` is intentionally unused here — the QR SVG is pre-rendered for
+    // the homepage. The parameter is preserved so call sites don't need to
+    // change and so we can extend to multiple destinations later.
+    ignore flipUrl
+    tag "details" [ _class "avatar-flip" ] [
+        tag "summary" [ _class "avatar-flip-summary"; attr "aria-label" ariaLabel ] [
+            div [ _class "avatar-flip-inner" ] [
+                // Front face: the avatar image
+                div [ _class "avatar-flip-front" ] [
+                    img [ _src "/avatar.png"
+                          _alt altText
+                          _class "rounded-circle avatar-flip-image"
+                          _height "150"
+                          _width "150" ]
+                ]
+                // Back face: pre-rendered QR code. Decorative `aria-hidden`
+                // because the QR is described by the summary's aria-label and
+                // by the `<details>` disclosure semantics.
+                //
+                // Cache-buster (`?v=<hash>`): the PWA service worker uses a
+                // `cacheFirstStaleWhileRevalidate` strategy for SVG assets,
+                // which would otherwise serve a stale homepage QR on first
+                // load after a style/URL change. The hash comes from the
+                // generated SVG content, so it only changes when the SVG
+                // actually changes.
+                div [ _class "avatar-flip-back" ] [
+                    let cacheKey =
+                        if System.String.IsNullOrEmpty Services.QRStyled.HomeCacheKey
+                        then ""
+                        else "?v=" + Services.QRStyled.HomeCacheKey
+                    img [ _src ("/assets/images/contact/qr-home.svg" + cacheKey)
+                          _alt (sprintf "QR code linking to %s" destinationSr)
+                          _class "avatar-flip-qr" ]
                 ]
             ]
         ]

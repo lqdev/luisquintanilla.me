@@ -382,7 +382,6 @@ module Layouts
         script [_src "/assets/js/clipboard.js"] []    // Code snippet copy buttons
         script [_src "/assets/js/share.js"] []        // Native content sharing
         script [_src "/assets/js/qrcode.js"] []       // QR code generation
-        script [_src "/assets/js/avatar-flip.js"] [] // Homepage avatar flip-card → QR code
         script [_src "/assets/js/lazy-images.js"] []  // Image lazy loading
         script [_src "/assets/js/page-visibility.js"] []  // Resource optimization when tab hidden
 

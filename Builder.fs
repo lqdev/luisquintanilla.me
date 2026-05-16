@@ -134,6 +134,20 @@ module Builder
         File.Copy(Path.Join(srcDir,"manifest.json"),Path.Join(outputDir,"manifest.json"),true)
         File.Copy(Path.Join(srcDir,"offline.html"),Path.Join(outputDir,"offline.html"),true)
 
+        // Generate the homepage avatar flip-card QR. Emits a fully styled
+        // SVG (slate rounded dots, orange rounded finder corners, embedded
+        // avatar at center) directly into _public/assets/images/contact/ so
+        // the avatarFlipCard view can reference it as a static asset without
+        // pulling in qr-code-styling JS on the homepage hot path. Runs after
+        // copyStaticFiles so it lands on top of (or alongside) any copied
+        // contact-QR family members. See Services/QRStyled.fs.
+        let qrOpts =
+            Services.QRStyled.defaultOptions
+                "https://lqdev.me/"
+                (Some (Path.Join(outputDir, "avatar.png")))
+        let qrOutPath = Path.Join(outputDir, "assets", "images", "contact", "qr-home.svg")
+        Services.QRStyled.renderToFile qrOpts qrOutPath |> ignore
+
     let buildHomePage (blogPosts:Post array) (feedPosts:Post array) (responsePosts:Response array)= 
         let recentBlog = 
             blogPosts 
