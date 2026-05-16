@@ -4,7 +4,7 @@
  * Progressive enhancement with graceful degradation
  */
 
-const CACHE_VERSION = 'v1.0.1';
+const CACHE_VERSION = 'v1.0.2';
 const CACHE_NAME = `luisquintanilla-${CACHE_VERSION}`;
 
 // Cache strategies
@@ -168,6 +168,13 @@ self.addEventListener('fetch', (event) => {
  */
 function determineStrategy(url) {
     const pathname = url.pathname;
+    
+    // Generated QR SVGs must always be network-first so cache-buster updates
+    // are picked up immediately (otherwise cacheFirstStaleWhileRevalidate
+    // serves stale visual styling for one extra page load after a regen).
+    if (/\/qr-[^/]+\.svg$/.test(pathname)) {
+        return CACHE_STRATEGIES.CONTENT;
+    }
     
     // Check static assets
     if (URL_PATTERNS.static.some(pattern => pattern.test(pathname))) {
