@@ -20,6 +20,7 @@
     <Compile Include="Services\Webmention.fs" />
     <Compile Include="Services\RelatedContent.fs" />
     <Compile Include="Services\FollowersSync.fs" /> 
+    <Compile Include="Services\QRStyled.fs" />
     <Compile Include="GenericBuilder.fs" />
     <Compile Include="ActivityPubBuilder.fs" />
     <Compile Include="EntityExtraction.fs" />
@@ -52,6 +53,7 @@
     <PackageReference Include="Markdig" Version="0.38.0" />
     <PackageReference Include="Microsoft.Extensions.AI" Version="10.4.*" />
     <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="10.4.*" />
+    <PackageReference Include="Net.Codecrete.QrCodeGenerator" Version="2.0.*" />
     <PackageReference Include="YamlDotNet" Version="16.3.0" />
   </ItemGroup>
 
