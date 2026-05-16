@@ -122,11 +122,16 @@
     border: 1px solid var(--card-border, #BDC3C7);
 }
 
-/* QR Code Container */
+/* QR Code Container — matches homepage flip-card back-face aesthetic:
+   white rounded card with subtle border + soft shadow so the QR visibly
+   sits *on* a card rather than floating directly against the slate modal
+   backdrop. Mirrors .avatar-flip-back in timeline.css. */
 .qr-code-container {
     background: #ffffff;
     padding: 1.5rem;
-    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
     margin-bottom: 1.5rem;
     display: flex;
     justify-content: center;
