@@ -282,8 +282,26 @@ let render (opts: Options) : string =
     sb.ToString()
 
 /// Render and write to disk, creating the directory if needed.
+// Short content hash of the most-recently-generated QR SVG. Used by the view
+// layer as a cache-buster (`?v=<hash>`) so the PWA service worker (which uses
+// a `cacheFirstStaleWhileRevalidate` strategy for SVGs) serves the fresh
+// version immediately on first load rather than after the next refresh.
+let mutable HomeCacheKey : string = ""
+
+/// Compute a short, URL-safe content hash of arbitrary text. Used to derive
+/// a cache-busting token from the generated SVG bytes.
+let private shortHash (content: string) =
+    use sha = System.Security.Cryptography.SHA1.Create()
+    let bytes = sha.ComputeHash(System.Text.Encoding.UTF8.GetBytes(content))
+    // First 8 hex chars is plenty of entropy for cache invalidation.
+    (System.Convert.ToHexString(bytes)).Substring(0, 8).ToLowerInvariant()
+
 let renderToFile (opts: Options) (outputPath: string) =
     let dir = Path.GetDirectoryName(outputPath)
     if not (String.IsNullOrEmpty dir) && not (Directory.Exists dir) then
         Directory.CreateDirectory(dir) |> ignore
-    File.WriteAllText(outputPath, render opts)
+    let svg = render opts
+    File.WriteAllText(outputPath, svg)
+    let hash = shortHash svg
+    HomeCacheKey <- hash
+    hash

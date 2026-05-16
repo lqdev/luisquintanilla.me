@@ -146,7 +146,7 @@ module Builder
                 "https://www.lqdev.me/"
                 (Some (Path.Join(outputDir, "avatar.png")))
         let qrOutPath = Path.Join(outputDir, "assets", "images", "contact", "qr-home.svg")
-        Services.QRStyled.renderToFile qrOpts qrOutPath
+        Services.QRStyled.renderToFile qrOpts qrOutPath |> ignore
 
     let buildHomePage (blogPosts:Post array) (feedPosts:Post array) (responsePosts:Response array)= 
         let recentBlog = 

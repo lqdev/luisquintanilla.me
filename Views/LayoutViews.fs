@@ -189,8 +189,19 @@ let avatarFlipCard (altText: string) (flipUrl: string) (ariaLabel: string) (dest
                 // Back face: pre-rendered QR code. Decorative `aria-hidden`
                 // because the QR is described by the summary's aria-label and
                 // by the `<details>` disclosure semantics.
+                //
+                // Cache-buster (`?v=<hash>`): the PWA service worker uses a
+                // `cacheFirstStaleWhileRevalidate` strategy for SVG assets,
+                // which would otherwise serve a stale homepage QR on first
+                // load after a style/URL change. The hash comes from the
+                // generated SVG content, so it only changes when the SVG
+                // actually changes.
                 div [ _class "avatar-flip-back" ] [
-                    img [ _src "/assets/images/contact/qr-home.svg"
+                    let cacheKey =
+                        if System.String.IsNullOrEmpty Services.QRStyled.HomeCacheKey
+                        then ""
+                        else "?v=" + Services.QRStyled.HomeCacheKey
+                    img [ _src ("/assets/images/contact/qr-home.svg" + cacheKey)
                           _alt (sprintf "QR code linking to %s" destinationSr)
                           _class "avatar-flip-qr" ]
                 ]

@@ -4,7 +4,7 @@
  * Progressive enhancement with graceful degradation
  */
 
-const CACHE_VERSION = 'v1.0.0';
+const CACHE_VERSION = 'v1.0.1';
 const CACHE_NAME = `luisquintanilla-${CACHE_VERSION}`;
 
 // Cache strategies
