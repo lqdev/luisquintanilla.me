@@ -149,11 +149,32 @@ details.avatar-flip .avatar-flip-image:hover {
   border-radius: 18%;
 }
 
+/* Higher-specificity override: `.avatar-section img` (specificity 0,1,1)
+   beats a plain `.avatar-flip-qr` selector (0,1,0), so we anchor under
+   `.avatar-section` to win the cascade. This is the actual rule that
+   suppresses the legacy orange border on the back face. */
+.avatar-section .avatar-flip-qr {
+  border: none;
+  transition: none;
+}
+
 .avatar-flip-qr {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: contain;
+  /* Override the legacy `.avatar-section img` rule (timeline.css line 15)
+     which adds `border: 3px solid var(--accent-color)` for the round avatar.
+     That rule was bleeding through to the back face and rendering as a thin
+     orange perimeter at the exact card edge — visually indistinguishable
+     from "the QR has an orange border", which kept us chasing SVG/cache
+     ghosts for hours. The pre-rendered QR already carries its own brand
+     color via the orange finder patterns, so any additional border is
+     redundant noise. The actual border-suppressing rule lives in the more
+     specific `.avatar-section .avatar-flip-qr` block above; the values
+     here are for any out-of-`.avatar-section` usage. */
+  border: none;
+  transition: none;
 }
 
 /* Respect users who prefer reduced motion: keep the flip but make it instant
