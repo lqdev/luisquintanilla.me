@@ -143,7 +143,7 @@ module Builder
         // contact-QR family members. See Services/QRStyled.fs.
         let qrOpts =
             Services.QRStyled.defaultOptions
-                "https://www.luisquintanilla.me/"
+                "https://www.lqdev.me/"
                 (Some (Path.Join(outputDir, "avatar.png")))
         let qrOutPath = Path.Join(outputDir, "assets", "images", "contact", "qr-home.svg")
         Services.QRStyled.renderToFile qrOpts qrOutPath
