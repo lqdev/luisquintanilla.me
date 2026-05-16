@@ -133,11 +133,11 @@ let private createSimplifiedReviewContent (content: string) =
 // avatar via Enter/Space (native disclosure semantics) flips the card to
 // reveal a pre-rendered QR code on the back face. Clicking the avatar a
 // second time flips back. The flip is driven entirely by CSS via the
-// `details[open]` selector — no JavaScript and no runtime QR generation
-// for the avatar flip-card itself. (NOTE: the layout still loads
-// `qr-code-styling` from CDN globally via Layouts.fs to power the
-// per-page `qrCodeButton` modal; eliminating that CDN dep is a separate
-// follow-up, not part of this component.)
+// `details[open]` selector — no JavaScript and no runtime QR generation.
+// Phase 3 (post-#2389) extended this pattern to every content page, so the
+// layout no longer loads `qr-code-styling` from a CDN at all — per-page
+// QRs are now pre-rendered SVGs revealed by a `<details>` disclosure (see
+// `ComponentViews.qrCodeButton`).
 //
 // Architecture:
 //   - The QR SVG is pre-rendered at build time by `Services/QRStyled.fs`,

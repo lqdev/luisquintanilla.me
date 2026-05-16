@@ -56,6 +56,14 @@ type Options = {
     /// modules. Modules whose centers fall within (imageBox + margin) are
     /// suppressed so the image sits in a clean rectangular hole.
     CenterImageMargin: float
+    /// When true, render in module-grid coordinates (viewBox = "0 0 N N"
+    /// where N is the QR's module count) and omit width/height attributes
+    /// so the consumer scales via CSS. Slashes path data size by ~5x by
+    /// turning float coords like "64.324" into integers like "8". Use for
+    /// per-page QRs where the SVG is rendered via `<img src>` at any size.
+    /// Leave false for the homepage hero where the existing modal sizes
+    /// the SVG natively at 280 px.
+    IntegerGrid: bool
 }
 
 /// Sensible defaults matching the runtime per-page modal.
@@ -68,6 +76,14 @@ let defaultOptions data centerImage = {
     CenterImagePath = centerImage
     CenterImageRatio = 0.25
     CenterImageMargin = 8.0
+    IntegerGrid = false
+}
+
+/// Defaults for per-page QRs: integer-grid coords for compact path data,
+/// downsized avatar still embedded. Consumer scales via CSS.
+let perPageOptions data centerImage = {
+    defaultOptions data centerImage with
+        IntegerGrid = true
 }
 
 // ----- internal helpers -------------------------------------------------------
@@ -165,7 +181,11 @@ let render (opts: Options) : string =
     // the center image without losing scannability.
     let qr = QrCode.EncodeText(opts.Data, QrCode.Ecc.High)
     let count = qr.Size                       // number of modules per side (square)
-    let cell = opts.Size / float count        // size of one module in user coords
+    // In IntegerGrid mode, work in module units (cell = 1.0, viewBox = count).
+    // Otherwise work in the caller-specified user-coordinate space (cell may
+    // be fractional, viewBox = opts.Size).
+    let canvasSize = if opts.IntegerGrid then float count else opts.Size
+    let cell = canvasSize / float count
 
     // Finder pattern footprints: 7x7 modules in three corners.
     let finderTL = (0, 0)
@@ -176,11 +196,17 @@ let render (opts: Options) : string =
         (x >= count - 7 && y < 7) ||
         (x < 7 && y >= count - 7)
 
-    // Center image hole. Compute it in user coords, then derive which module
+    // Center image hole. Compute it in canvas coords, then derive which module
     // cells to suppress (any cell whose center falls inside the cleared zone).
-    let imagePx = opts.Size * opts.CenterImageRatio
-    let half = imagePx / 2.0 + opts.CenterImageMargin
-    let centerPx = opts.Size / 2.0
+    let imagePx = canvasSize * opts.CenterImageRatio
+    // Margin is specified in user coords (pixels). Scale into canvas units in
+    // IntegerGrid mode so a 8 px gap on a 280 px canvas stays proportional
+    // when the canvas is renormalized to module units.
+    let marginInCanvas =
+        if opts.IntegerGrid then opts.CenterImageMargin * (canvasSize / opts.Size)
+        else opts.CenterImageMargin
+    let half = imagePx / 2.0 + marginInCanvas
+    let centerPx = canvasSize / 2.0
     let imageHoleMinX = centerPx - half
     let imageHoleMaxX = centerPx + half
     let imageHoleMinY = centerPx - half
@@ -202,25 +228,37 @@ let render (opts: Options) : string =
             ""
         else
             sprintf "<rect width=\"%s\" height=\"%s\" fill=\"%s\"/>"
-                (fmt opts.Size) (fmt opts.Size) opts.BackgroundColor
+                (fmt canvasSize) (fmt canvasSize) opts.BackgroundColor
 
     // ----- Data modules (rounded, neighbor-aware) -----
     // For each "on" data module, compute corner radii: a corner is rounded
     // iff neither of its two adjacent sides has an "on" data neighbor.
+    //
+    // IntegerGrid fast path: in module-grid coords each cell is 1 unit. When
+    // this SVG is rendered via `<img>` at typical display sizes (~70-280 px),
+    // sub-pixel corner radii are invisible — so we emit a plain square with
+    // short relative commands (`h1v1h-1z`, ~12 chars vs ~60 for the rounded
+    // arc form). For ~1,500 modules that's ~70 KB → ~18 KB of path data.
     let dotPaths = ResizeArray<string>()
-    let r = cell / 2.0
-    for y in 0 .. count - 1 do
-        for x in 0 .. count - 1 do
-            if isDataModule x y then
-                let nN = isDataModule x (y - 1)
-                let nE = isDataModule (x + 1) y
-                let nS = isDataModule x (y + 1)
-                let nW = isDataModule (x - 1) y
-                let rTL = if not nN && not nW then r else 0.0
-                let rTR = if not nN && not nE then r else 0.0
-                let rBR = if not nS && not nE then r else 0.0
-                let rBL = if not nS && not nW then r else 0.0
-                dotPaths.Add (dotPath (float x * cell) (float y * cell) cell rTL rTR rBR rBL)
+    if opts.IntegerGrid then
+        for y in 0 .. count - 1 do
+            for x in 0 .. count - 1 do
+                if isDataModule x y then
+                    dotPaths.Add (sprintf "M%d,%dh1v1h-1z" x y)
+    else
+        let r = cell / 2.0
+        for y in 0 .. count - 1 do
+            for x in 0 .. count - 1 do
+                if isDataModule x y then
+                    let nN = isDataModule x (y - 1)
+                    let nE = isDataModule (x + 1) y
+                    let nS = isDataModule x (y + 1)
+                    let nW = isDataModule (x - 1) y
+                    let rTL = if not nN && not nW then r else 0.0
+                    let rTR = if not nN && not nE then r else 0.0
+                    let rBR = if not nS && not nE then r else 0.0
+                    let rBL = if not nS && not nW then r else 0.0
+                    dotPaths.Add (dotPath (float x * cell) (float y * cell) cell rTL rTR rBR rBL)
     let dotsEl =
         if dotPaths.Count = 0 then ""
         else
@@ -259,21 +297,36 @@ let render (opts: Options) : string =
         | Some dataUri ->
             let x = centerPx - imagePx / 2.0
             let y = centerPx - imagePx / 2.0
-            // `href` is SVG 2 (modern browsers); `xlink:href` is SVG 1.1 fallback.
-            // Both are emitted so the file works as both an `<img src>` asset
-            // and an inlined SVG in older renderers.
-            sprintf "<image x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" href=\"%s\" xlink:href=\"%s\" preserveAspectRatio=\"xMidYMid meet\"/>"
-                (fmt x) (fmt y) (fmt imagePx) (fmt imagePx) dataUri dataUri
+            // In IntegerGrid (per-page) mode, emit only SVG2 `href` — every
+            // browser that supports `<img src=...svg>` understands it, and
+            // dropping the `xlink:href` duplicate halves the embedded
+            // base64 payload (17 KB → 17 KB, not 34 KB). For the homepage
+            // hero we keep both attributes for maximum compatibility.
+            if opts.IntegerGrid then
+                sprintf "<image x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" href=\"%s\" preserveAspectRatio=\"xMidYMid meet\"/>"
+                    (fmt x) (fmt y) (fmt imagePx) (fmt imagePx) dataUri
+            else
+                sprintf "<image x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" href=\"%s\" xlink:href=\"%s\" preserveAspectRatio=\"xMidYMid meet\"/>"
+                    (fmt x) (fmt y) (fmt imagePx) (fmt imagePx) dataUri dataUri
 
     // ----- Compose -----
     // `xmlns` and `xmlns:xlink` are both required so the file is valid as a
     // standalone SVG document (loaded via `<img src>`); without them browsers
     // refuse to render it.
+    //
+    // In IntegerGrid mode, omit `width`/`height` so the SVG scales to
+    // whatever the consumer's CSS dictates (and the byte savings from
+    // dropping them are non-trivial across 1,700+ files).
     let sb = StringBuilder()
     sb.AppendLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>") |> ignore
-    sb.Append(
-        sprintf "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 %s %s\" width=\"%s\" height=\"%s\">"
-            (fmt opts.Size) (fmt opts.Size) (fmt opts.Size) (fmt opts.Size)) |> ignore
+    if opts.IntegerGrid then
+        sb.Append(
+            sprintf "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 %s %s\">"
+                (fmt canvasSize) (fmt canvasSize)) |> ignore
+    else
+        sb.Append(
+            sprintf "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 %s %s\" width=\"%s\" height=\"%s\">"
+                (fmt canvasSize) (fmt canvasSize) (fmt canvasSize) (fmt canvasSize)) |> ignore
     sb.Append(bgEl) |> ignore
     sb.Append(dotsEl) |> ignore
     sb.Append(cornersEl) |> ignore
@@ -304,4 +357,61 @@ let renderToFile (opts: Options) (outputPath: string) =
     File.WriteAllText(outputPath, svg)
     let hash = shortHash svg
     HomeCacheKey <- hash
+    hash
+
+// =============================================================================
+// Per-page QR support: downsized avatar + per-URL cache-busting keys.
+// =============================================================================
+
+/// Cache-bust keys for per-page QR SVGs, keyed by absolute encoded URL.
+/// Populated by `Builder.buildPerPageQRs`. The view layer reads this to
+/// append `?v=<hash>` to the per-page QR `<img src>`.
+let mutable PageCacheKeys : System.Collections.Generic.IDictionary<string,string> =
+    System.Collections.Generic.Dictionary<string,string>()
+    :> System.Collections.Generic.IDictionary<string,string>
+
+/// Resize `srcPath` (typically the full-res 71 KB site avatar) to a small
+/// PNG sized for the per-page QR center slot (~120 px square covers the
+/// 70 px display target at 2x density). Writes once to `outputPath` and
+/// returns the path so callers can use it as `CenterImagePath` for every
+/// per-page render — disk cache absorbs repeated reads.
+///
+/// Why this exists: the full-res avatar inflates a single QR SVG to ~217 KB
+/// (base64 dominates). Multiplied across ~1,735 content pages that's ~376
+/// MB of deployed static assets. Downsizing to ~120 px brings each SVG
+/// under 20 KB, total ~26 MB.
+let ensureSmallAvatar (srcPath: string) (outputPath: string) =
+    let outDir = Path.GetDirectoryName(outputPath)
+    if not (String.IsNullOrEmpty outDir) && not (Directory.Exists outDir) then
+        Directory.CreateDirectory(outDir) |> ignore
+    use src = SkiaSharp.SKBitmap.Decode(srcPath)
+    if isNull src then
+        failwithf "QRStyled.ensureSmallAvatar: failed to decode '%s'" srcPath
+    let targetSize = 64
+    let info =
+        SkiaSharp.SKImageInfo(
+            targetSize, targetSize,
+            SkiaSharp.SKColorType.Rgba8888,
+            SkiaSharp.SKAlphaType.Premul)
+    use resized = new SkiaSharp.SKBitmap(info)
+    let sampling = SkiaSharp.SKSamplingOptions(SkiaSharp.SKCubicResampler.Mitchell)
+    if not (src.ScalePixels(resized, sampling)) then
+        failwith "QRStyled.ensureSmallAvatar: SKBitmap.ScalePixels failed"
+    use image = SkiaSharp.SKImage.FromBitmap(resized)
+    use data = image.Encode(SkiaSharp.SKEncodedImageFormat.Png, 100)
+    use fs = File.Create(outputPath)
+    data.SaveTo(fs)
+    outputPath
+
+/// Same as `renderToFile` but records the resulting hash into
+/// `PageCacheKeys[urlKey]` instead of `HomeCacheKey`. Designed for the
+/// per-page QR fan-out in `Builder.buildPerPageQRs`.
+let renderPageQR (opts: Options) (outputPath: string) (urlKey: string) =
+    let dir = Path.GetDirectoryName(outputPath)
+    if not (String.IsNullOrEmpty dir) && not (Directory.Exists dir) then
+        Directory.CreateDirectory(dir) |> ignore
+    let svg = render opts
+    File.WriteAllText(outputPath, svg)
+    let hash = shortHash svg
+    PageCacheKeys.[urlKey] <- hash
     hash

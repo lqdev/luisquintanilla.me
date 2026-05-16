@@ -4,7 +4,13 @@
  * Progressive enhancement with graceful degradation
  */
 
-const CACHE_VERSION = 'v1.0.2';
+// v1.0.3: Phase 3 per-page QR migration — `qr-code-styling` CDN script
+// and `/assets/js/qrcode.js` were removed. Bumping the cache version forces
+// clients to evict the stale entries (otherwise they could keep serving a
+// page that still references the deleted script). Per-page QR SVGs live at
+// `/assets/images/qr/<type>/<slug>.svg` and match the existing `images`
+// cache-first pattern below.
+const CACHE_VERSION = 'v1.0.3';
 const CACHE_NAME = `luisquintanilla-${CACHE_VERSION}`;
 
 // Cache strategies

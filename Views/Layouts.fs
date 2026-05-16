@@ -368,9 +368,6 @@ module Layouts
         script [_src "/assets/lib/highlight/highlight.fsharp.min.js"] [] // 11.8.0
         script [_src "/assets/lib/highlight/highlight.nix.min.js"] [] // 11.8.0
 
-        // QR Code generation library
-        script [_src "https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.min.js"] []
-
         // Main JavaScript functionality (theme management, copy-to-clipboard, etc.)
         script [_src "/assets/js/main.js"] []
         // Timeline functionality (filtering, progressive loading, etc.)
@@ -381,7 +378,11 @@ module Layouts
         // Web API enhancements (progressive enhancement pattern)
         script [_src "/assets/js/clipboard.js"] []    // Code snippet copy buttons
         script [_src "/assets/js/share.js"] []        // Native content sharing
-        script [_src "/assets/js/qrcode.js"] []       // QR code generation
+        // QR codes are pre-rendered at build time into
+        // `/assets/images/qr/<type>/<slug>.svg` by `Builder.buildPerPageQRs`
+        // and revealed by a pure-CSS `<details>` disclosure
+        // (see `Views/ComponentViews.qrCodeButton`). No runtime JS or CDN
+        // library required — Phase 3.
         script [_src "/assets/js/lazy-images.js"] []  // Image lazy loading
         script [_src "/assets/js/page-visibility.js"] []  // Resource optimization when tab hidden
 
