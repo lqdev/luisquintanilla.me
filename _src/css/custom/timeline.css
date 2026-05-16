@@ -139,8 +139,11 @@ details.avatar-flip .avatar-flip-image:hover {
      rotates 180deg. */
   transform: rotateY(180deg);
   background: #ffffff;
-  border: 3px solid var(--accent-color);
-  padding: 10px;
+  /* Subtle gray frame — the pre-rendered QR carries its own brand color
+     (orange finder patterns), so an orange border here would clash. */
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  padding: 8px;
   /* Rounded-square back face — gives the square QR full unclipped real estate
      while still feeling like a card (not a hard rectangle). */
   border-radius: 18%;
