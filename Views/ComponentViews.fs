@@ -85,17 +85,42 @@ let webShareButton (relativeUrl: string) =
         tag "span" [_class "button-label"] [str "Share"]
     ]
 
-/// Generate QR code button for generating QR codes
+/// QR-code disclosure for the page permalink. Pure CSS — no JS, no CDN, no
+/// runtime computation. The SVG is pre-rendered at build time by
+/// `Builder.buildPerPageQRs` into `/assets/images/qr/<type>/<slug>.svg` and
+/// matches the styled brand look of the homepage flip-card.
+///
+/// Phase 3 (see `_src/resources/ai-memex/`): the old implementation used
+/// `qr-code-styling` from a CDN and built the SVG client-side every time
+/// the modal opened; this replaces that with a `<details>` element and a
+/// static `<img src>`, which works without JS and removes one network
+/// dependency from every content page.
 let qrCodeButton (relativeUrl: string) =
-    button [
-        _class "qr-code-btn permalink-action-btn"
-        _type "button"
-        _title "Generate QR Code"
-        attr "data-url" relativeUrl
-        attr "aria-label" "Generate QR code for this page"
-    ] [
-        tag "span" [_class "button-icon"; attr "aria-hidden" "true"] [str "📱"]
-        tag "span" [_class "button-label"] [str "QR Code"]
+    // `relativeUrl` is a permalink like "/posts/foo/" — strip the leading
+    // slash + trailing slash to derive the QR asset path, then add .svg.
+    let qrPath =
+        let trimmed = relativeUrl.Trim('/')
+        "/assets/images/qr/" + trimmed + ".svg"
+    tag "details" [ _class "qr-code-disclosure" ] [
+        tag "summary" [
+            _class "qr-code-btn permalink-action-btn"
+            _title "Show QR code for this page"
+            attr "aria-label" "Show QR code for this page"
+        ] [
+            tag "span" [ _class "button-icon"; attr "aria-hidden" "true" ] [ str "📱" ]
+            tag "span" [ _class "button-label" ] [ str "QR Code" ]
+        ]
+        // `loading="lazy"` so the off-screen QR doesn't fetch until the
+        // disclosure is opened (well-supported, no JS needed).
+        div [ _class "qr-code-panel" ] [
+            img [
+                _src qrPath
+                _alt "QR code linking to this page"
+                _class "qr-code-img"
+                attr "loading" "lazy"
+                attr "decoding" "async"
+            ]
+        ]
     ]
 
 let cardFooter (contentType:string) (fileName:string) (tags: string array)= 

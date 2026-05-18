@@ -54,6 +54,9 @@
     <PackageReference Include="Microsoft.Extensions.AI" Version="10.4.*" />
     <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="10.4.*" />
     <PackageReference Include="Net.Codecrete.QrCodeGenerator" Version="2.0.*" />
+    <PackageReference Include="SkiaSharp" Version="3.116.*" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="3.116.*" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Win32" Version="3.116.*" />
     <PackageReference Include="YamlDotNet" Version="16.3.0" />
   </ItemGroup>
 

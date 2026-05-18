@@ -141,6 +141,10 @@ let main argv =
     
     // Generate tag RSS feeds using unified feed data
     GenericBuilder.UnifiedFeeds.buildTagFeeds allUnifiedItems "_public"
+
+    // Phase 3: pre-render styled QR SVGs for every content page so the
+    // per-page modal/disclosure can swap from runtime JS to a static asset.
+    buildPerPageQRs "_public" allUnifiedContent
     
     // =============================================================================
     // ActivityPub Content Generation - Phase 3+ Implementation
