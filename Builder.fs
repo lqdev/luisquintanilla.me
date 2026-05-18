@@ -154,8 +154,8 @@ module Builder
     // `_public/assets/images/qr/<type>/<slug>.svg`. Replaces the runtime
     // `qr-code-styling` JS modal in `_src/js/qrcode.js`.
     //
-    // The avatar is resized once at build start (full-res 71 KB ->
-    // ~120 px / ~10 KB PNG) and re-read from disk by the inner renderer;
+    // The avatar is resized once at build start (full-res ~71 KB ->
+    // 64 px / ~4.6 KB PNG) and re-read from disk by the inner renderer;
     // OS file cache absorbs the repeated reads. See
     // `Services/QRStyled.fs:ensureSmallAvatar`.
     let buildPerPageQRs (outputDir: string) (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) =

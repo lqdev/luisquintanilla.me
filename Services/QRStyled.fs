@@ -300,7 +300,7 @@ let render (opts: Options) : string =
             // In IntegerGrid (per-page) mode, emit only SVG2 `href` — every
             // browser that supports `<img src=...svg>` understands it, and
             // dropping the `xlink:href` duplicate halves the embedded
-            // base64 payload (17 KB → 17 KB, not 34 KB). For the homepage
+            // base64 payload (~34 KB → ~17 KB per file). For the homepage
             // hero we keep both attributes for maximum compatibility.
             if opts.IntegerGrid then
                 sprintf "<image x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" href=\"%s\" preserveAspectRatio=\"xMidYMid meet\"/>"
@@ -320,8 +320,11 @@ let render (opts: Options) : string =
     let sb = StringBuilder()
     sb.AppendLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>") |> ignore
     if opts.IntegerGrid then
+        // No `xmlns:xlink` here: IntegerGrid mode never emits any
+        // `xlink:href` attribute (see imageEl branch above), so the
+        // namespace declaration would be dead bytes on every page.
         sb.Append(
-            sprintf "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 %s %s\">"
+            sprintf "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 %s %s\">"
                 (fmt canvasSize) (fmt canvasSize)) |> ignore
     else
         sb.Append(
@@ -360,26 +363,29 @@ let renderToFile (opts: Options) (outputPath: string) =
     hash
 
 // =============================================================================
-// Per-page QR support: downsized avatar + per-URL cache-busting keys.
+// Per-page QR support: downsized avatar.
 // =============================================================================
+//
+// Per-page QRs intentionally do NOT use a `?v=<hash>` cache-buster like the
+// homepage hero does. Two reasons:
+//   1. Each QR's payload is the page URL itself, so any URL change is also
+//      an SVG-path change — the cache key changes naturally.
+//   2. Global style/layout tweaks that change every QR are flushed by
+//      bumping `_src/service-worker.js`'s `CACHE_VERSION`.
 
-/// Cache-bust keys for per-page QR SVGs, keyed by absolute encoded URL.
-/// Populated by `Builder.buildPerPageQRs`. The view layer reads this to
-/// append `?v=<hash>` to the per-page QR `<img src>`.
-let mutable PageCacheKeys : System.Collections.Generic.IDictionary<string,string> =
-    System.Collections.Generic.Dictionary<string,string>()
-    :> System.Collections.Generic.IDictionary<string,string>
-
-/// Resize `srcPath` (typically the full-res 71 KB site avatar) to a small
-/// PNG sized for the per-page QR center slot (~120 px square covers the
-/// 70 px display target at 2x density). Writes once to `outputPath` and
-/// returns the path so callers can use it as `CenterImagePath` for every
-/// per-page render — disk cache absorbs repeated reads.
+/// Resize `srcPath` (typically the full-res ~71 KB site avatar) to a small
+/// PNG sized for the per-page QR center slot. Writes once to `outputPath`
+/// and returns the path so callers can use it as `CenterImagePath` for
+/// every per-page render — disk cache absorbs repeated reads.
+///
+/// Target is 64 px square (~4.6 KB PNG): the disclosure renders the QR at
+/// ~70 px in the panel, and 64 px embedded covers that comfortably while
+/// staying inside the per-page SVG size budget.
 ///
 /// Why this exists: the full-res avatar inflates a single QR SVG to ~217 KB
 /// (base64 dominates). Multiplied across ~1,735 content pages that's ~376
-/// MB of deployed static assets. Downsizing to ~120 px brings each SVG
-/// under 20 KB, total ~26 MB.
+/// MB of deployed static assets. Downsizing to 64 px brings each SVG under
+/// 20 KB (~18.7 KB avg), total ~32 MB.
 let ensureSmallAvatar (srcPath: string) (outputPath: string) =
     let outDir = Path.GetDirectoryName(outputPath)
     if not (String.IsNullOrEmpty outDir) && not (Directory.Exists outDir) then
@@ -403,15 +409,15 @@ let ensureSmallAvatar (srcPath: string) (outputPath: string) =
     data.SaveTo(fs)
     outputPath
 
-/// Same as `renderToFile` but records the resulting hash into
-/// `PageCacheKeys[urlKey]` instead of `HomeCacheKey`. Designed for the
-/// per-page QR fan-out in `Builder.buildPerPageQRs`.
-let renderPageQR (opts: Options) (outputPath: string) (urlKey: string) =
+/// Render an SVG for one page's QR and write it to disk. Identical to
+/// `renderToFile` except it doesn't touch `HomeCacheKey`; per-page QRs
+/// don't need cache-busting query strings (see module-level comment).
+/// The `_urlKey` parameter is retained for API stability — callers pass
+/// the absolute page URL for future per-URL telemetry if needed.
+let renderPageQR (opts: Options) (outputPath: string) (_urlKey: string) =
     let dir = Path.GetDirectoryName(outputPath)
     if not (String.IsNullOrEmpty dir) && not (Directory.Exists dir) then
         Directory.CreateDirectory(dir) |> ignore
     let svg = render opts
     File.WriteAllText(outputPath, svg)
-    let hash = shortHash svg
-    PageCacheKeys.[urlKey] <- hash
-    hash
+    outputPath
