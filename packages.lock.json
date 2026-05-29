@@ -26,7 +26,7 @@
         "type": "Direct",
         "requested": "[10.1.300, )",
         "resolved": "10.1.300",
-        "contentHash": "PICqprC6MSLTUHE3hZiJTIQcbuopdXYCiuoCg6/M5AN+Yx/c/72Dno6YAE6qEogyudhaEzDYwEwEXccHcCifXA=="
+        "contentHash": "0EIcInVrUNoZ2LmJ4zvXa4/9qXGPy3uUkM7DrrkKyajXw51fR+zpsvSrAGwvuAPudE0jGaTa2pl1TONR1V9UKw=="
       },
       "FSharp.Data": {
         "type": "Direct",
