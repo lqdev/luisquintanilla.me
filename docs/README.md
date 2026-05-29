@@ -1,79 +1,67 @@
 # Documentation
 
-This directory contains comprehensive guides and documentation for the website's features and content creation workflows.
+This directory contains guides and reference documentation for the website's features and content creation workflows.
+
+> **About this index**: This is a *curated* index highlighting evergreen how-to guides, reference material, and current architecture docs. It is not an exhaustive file listing — historical implementation summaries and one-off fix notes live in `docs/` but are intentionally not indexed here. Completed-project artifacts are archived under [`../archive/summaries/`](../archive/summaries/) and the [projects archive](../projects/archive/). Project narratives are recorded in the [changelog](../changelog.md).
 
 ## 📚 Documentation Index
 
-### 🚀 Getting Started & Publishing
+### 🚀 Publishing Workflows
 
 - **[GitHub Issue Posting Guide](github-issue-posting-guide.md)** - Create content directly through GitHub Issues
+- **[GitHub Issue Posting Config](github-issue-posting-config.md)** - Configuration reference for issue-based publishing
 - **[Bookmark Publishing Workflow](bookmark-publishing-workflow.md)** - Publishing bookmark content
 - **[Response Publishing Workflow](response-publishing-workflow.md)** - Publishing responses (likes, replies, reposts)
 - **[Media Publishing Workflow](media-publishing-workflow.md)** - Publishing photos and media
+- **[Process Read-Later Workflow](process-read-later-workflow.md)** - Read-it-later extension → published bookmark pipeline
 
-### 🎯 Core Features (July 2025+)
+### 📖 Content Creation Guides
 
-- **[Resume Feature](resume-feature.md)** - Professional resume with custom Markdig blocks
+- **[Org-capture Templates](org-capture-templates.md)** - Emacs hierarchical authoring (33 templates)
+- **[VS Code Snippets](vs-code-snippets-modernization.md)** - Editor snippets aligned with Domain.fs
+- **[How to Create Starter Packs](how-to-create-starter-packs.md)** - RSS/OPML feed collections
+- **[How to Create Collections](how-to-create-collections.md)** - Blogroll, podroll, and custom collections
+- **[Travel Guide How-To](travel-guide-howto.md)** - Travel guides with GPS and GPX generation
+- **[Resume Feature](resume-feature.md)** - Create and maintain professional resume
 - **[Custom Presentation Layouts](custom-presentation-layouts.md)** - 15 CSS layout classes for Reveal.js presentations
+- **[Tag Standardization Guidelines](tag-standardization-guidelines.md)** - Tag naming and normalization conventions
+
+### 🎯 Feature Reference
+
 - **[PWA Implementation](PWA_IMPLEMENTATION.md)** - Progressive Web App with offline functionality
 - **[Content Sharing Features](content-sharing-features.md)** - QR code generation, Web Share API, and permalink buttons
 - **[Album Collections](ALBUM_COLLECTIONS.md)** - Photo/media collections with location metadata
 - **[Playlist Collections](playlist-collections.md)** - Monthly music discoveries with YouTube/Spotify dual links
-- **[Starter Packs System](how-to-create-starter-packs.md)** - Curated RSS feed collections
 - **[Enhanced Content Discovery](enhanced-content-discovery-implementation.md)** - Site-wide search functionality
 - **[Text-Only Site](text-only-site.md)** - Complete accessibility-first website (<50KB pages)
 - **[Pinned Posts Feature](pinned-posts-feature.md)** - Pin important content to timeline top
-- **[Back to Top Button](back-to-top-button-implementation.md)** - Scroll-based navigation
-
-### 📖 Content Creation Guides
-
-- **[Resume Feature](resume-feature.md)** - Create and maintain professional resume
-- **[How to Create Starter Packs](how-to-create-starter-packs.md)** - RSS/OPML feed collections
-- **[How to Create Collections](how-to-create-collections.md)** - Blogroll, podroll, and custom collections
-- **[Travel Guide How-To](travel-guide-howto.md)** - Travel guides with GPS and GPX generation
-- **[VS Code Snippets Modernization](vs-code-snippets-modernization.md)** - Content creation shortcuts
 
 ### 🏗️ Architecture & Technical
 
 - **[Architecture Decision Records](adr/)** - Key technical decisions and their rationale (ADRs)
 - **[Core Infrastructure Architecture](core-infrastructure-architecture.md)** - System architecture overview
 - **[Feed Architecture](feed-architecture.md)** - RSS feed generation and organization
-- **[Feature Flag Pattern](feature-flag-pattern.md)** - Safe feature deployment strategy
+- **[URL Alignment Architecture](url-alignment-architecture-decisions.md)** - URL structure decisions
+- **[Review System Architecture](review-system-architecture-recommendation.md)** - Review system design
 - **[Web API Implementation](WEB_API_IMPLEMENTATION_REPORT.md)** - API enhancements and endpoints
 - **[Web API Enhancements Summary](WEB_API_ENHANCEMENTS_SUMMARY.md)** - API feature additions
 
-### 🔧 Workflows & Optimization
+### 🌐 ActivityPub / Fediverse
 
-- **[Workflow Caching Optimization](workflow-caching-optimization.md)** - Build performance improvements
-- **[Workflow Caching Before/After](workflow-caching-before-after.md)** - Performance comparison
+- **[ActivityPub Documentation](activitypub/)** - Federation architecture, deployment, and implementation status
+- **[Architecture Overview](activitypub/ARCHITECTURE-OVERVIEW.md)** - High-level federation design
+- **[Implementation Status](activitypub/implementation-status.md)** - Current phase tracking
+- **[Deployment Guide](activitypub/deployment-guide.md)** - Azure deployment instructions
+
+### 🔧 Workflows & Maintenance
+
 - **[Broken Link Checker](broken-link-checker.md)** - Automated link validation
-- **[URL Alignment Architecture](url-alignment-architecture-decisions.md)** - URL structure decisions
-
-### 📱 Accessibility & UX
-
-- **[Explicit Home Navigation](explicit-home-navigation-implementation.md)** - Research-backed navigation
-- **[Target URL Display](target-url-display-implementation.md)** - Response and bookmark URL handling
-- **[Bookmarks Landing Page](bookmarks-landing-page-implementation.md)** - Content type landing pages
-
-### 🔄 Migration & Maintenance
-
-- **[Migration Guide - Posts](migration-guide-posts.md)** - Post migration documentation
-- **[Migration Guide - Snippets](migration-guide-snippets.md)** - Snippet migration
-- **[Migration Guide - Wiki](migration-guide-wiki.md)** - Wiki migration
-- **[Review Migration Summary](review-migration-summary.md)** - Review system migration
-- **[Review System Architecture](review-system-architecture-recommendation.md)** - Review system design
+- **[Workflow Caching Optimization](workflow-caching-optimization.md)** - Build performance improvements
 
 ### 🤖 Development & AI
 
-- **[AI Memory Management System](ai-memory-management-system.md)** - AI-assisted development patterns
-- **[Copilot Partnership Evolution](copilot-partnership-evolution-autonomy.md)** - GitHub Copilot workflows
-- **[ActivityPub Implementation Plan](activitypub-implementation-plan.md)** - Fediverse integration planning
-- **[AI Memex System](ai-memex-system.md)** - AI-authored content type documentation
-
-### 🔍 Content Analysis & Optimization
-
-- **[Content Processor Optimization](content-processor-optimization-summary.md)** - Performance improvements
-- **[Content Volume HTML Parsing](content-volume-html-parsing-discovery.md)** - Large content handling
+- **[AI Memex System](ai-memex-system.md)** - AI-authored content type and Knowledge Graph documentation
+- **[Custom Agents Implementation](custom-agents-implementation.md)** - Multi-agentic Copilot workflow system
 
 ## 📋 Documentation Standards
 
