@@ -16,7 +16,7 @@ The site is a mature, production IndieWeb static site generator (.NET 10, F#, Gi
 - **AI Memex** — AI-authored knowledge content type with build-time Knowledge Graph (`[[wikilinks]]`, backlinks, JSON-LD).
 - **Desert theme** — bespoke design system, Bootstrap-free, light/dark variants.
 
-`projects/active/` is intentionally empty — current multi-PR work is tracked per-session, not as a long-lived active-project file.
+`projects/active/` currently holds three **completed** ActivityPub phase docs (4A inbox handler, 5D dual-media, 6A RSVP) that are pending archival to [`archive/`](archive/); ongoing multi-PR work is otherwise tracked per session rather than as long-lived active-project files.
 
 ## 🚧 In Flight
 
