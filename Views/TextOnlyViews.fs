@@ -71,6 +71,7 @@ module TextOnlyContentProcessor =
             let linkMappings = [
                 ("/uses", "/text/uses/")
                 ("/colophon", "/text/colophon/")
+                ("/tools", "/text/tools/")
                 ("/contact", "/text/contact/")
                 ("/about", "/text/about/")
                 ("/feed", "/text/feeds/")
@@ -1050,3 +1051,27 @@ let textOnlyColophonPage =
         ]
     
     textOnlyLayout "Colophon" (RenderView.AsString.xmlNode contentHtml)
+
+// Tools Page
+let textOnlyToolsPage =
+    let markdownHtml = TextOnlyContentProcessor.loadMarkdownContent "tools.md"
+    let processedHtml = 
+        markdownHtml
+        |> TextOnlyContentProcessor.replaceImagesWithText 
+        |> TextOnlyContentProcessor.convertLinksToTextOnly
+    
+    let contentHtml =
+        div [] [
+            p [] [
+                a [_href "/text/"] [Text "← Back to Home"]
+                Text " | "
+                a [_href "/tools"] [Text "View Full Tools Page"]
+            ]
+            
+            // Rendered markdown content with text-only processing
+            div [_class "content"] [
+                rawText processedHtml
+            ]
+        ]
+    
+    textOnlyLayout "Tools" (RenderView.AsString.xmlNode contentHtml)
