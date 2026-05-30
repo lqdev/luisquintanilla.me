@@ -344,6 +344,12 @@ module Builder
         let saveDir = Path.Join(outputDir,"colophon")
         writePageToDir saveDir "index.html" colophonPage
 
+    let buildToolsPage () = 
+        let toolsContent = Path.Join(srcDir,"tools.md") |> convertFileToHtml |> contentView
+        let toolsPage = generate toolsContent "default" "Tools - Luis Quintanilla"
+        let saveDir = Path.Join(outputDir,"tools")
+        writePageToDir saveDir "index.html" toolsPage
+
     let buildContactPage () = 
         let contactContent = convertFileToHtml (Path.Join(srcDir,"contact.md")) |> contentView
         let contactPage = generate contactContent "default" "Contact - Luis Quintanilla"
