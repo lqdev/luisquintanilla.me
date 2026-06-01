@@ -88,6 +88,17 @@ let buildTextOnlyColophonPage (outputDir: string) =
     
     File.WriteAllText(outputPath, textColophonPage)
 
+let buildTextOnlyToolsPage (outputDir: string) =
+    let textToolsPage = TextOnlyViews.textOnlyToolsPage |> RenderView.AsString.htmlDocument
+    let outputPath = Path.Combine(outputDir, "text", "tools", "index.html")
+    
+    // Ensure directory exists
+    let dirPath = Path.GetDirectoryName(outputPath)
+    if not (Directory.Exists(dirPath)) then
+        Directory.CreateDirectory(dirPath) |> ignore
+    
+    File.WriteAllText(outputPath, textToolsPage)
+
 let buildTextOnlyHelpPage (outputDir: string) =
     let textHelpPage = TextOnlyViews.textOnlyHelpPage |> RenderView.AsString.htmlDocument
     let outputPath = Path.Combine(outputDir, "text", "help", "index.html")
@@ -287,6 +298,7 @@ let buildTextOnlySite (outputDir: string) (unifiedContent: UnifiedFeedItem list)
     buildTextOnlyContactPage outputDir
     buildTextOnlyUsesPage outputDir
     buildTextOnlyColophonPage outputDir
+    buildTextOnlyToolsPage outputDir
     buildTextOnlyHelpPage outputDir
     buildTextOnlyFeedsPage outputDir
     buildTextOnlyStarterPacksPages outputDir

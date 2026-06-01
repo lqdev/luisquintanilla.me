@@ -22,9 +22,12 @@ In a gist, it's static web site built with .NET and hosted on Azure.
 
 I built the generator for this website myself. It's a .NET 10 console application built with [F#](https://dotnet.microsoft.com/languages/fsharp). The application depends on a few libraries:
 
-- [Markdig](https://www.nuget.org/packages/Markdig/) - Parse markdown content.
+- [Markdig](https://www.nuget.org/packages/Markdig/) - Parse markdown content, extended with custom block parsers for IndieWeb-style media, cards, and reviews.
 - [Giraffe.ViewEngine](https://www.nuget.org/packages/Giraffe.ViewEngine/) - Develop statically typed HTML using F#.
 - [YamlDotNet](https://www.nuget.org/packages/YamlDotNet/) - Parse markdown file front-matter formatted in YAML. The front matter provides details such as the publishing date, page title, and post type.
+- [dotNetRdf](https://www.nuget.org/packages/dotNetRdf/) - Build the site's [knowledge graph](/resources/ai-memex/) as RDF triples and emit JSON-LD.
+- [Microsoft.Extensions.AI](https://www.nuget.org/packages/Microsoft.Extensions.AI/) - AI-assisted entity extraction that powers the knowledge graph's connections.
+- [Net.Codecrete.QrCodeGenerator](https://www.nuget.org/packages/Net.Codecrete.QrCodeGenerator/) and [SkiaSharp](https://www.nuget.org/packages/SkiaSharp/) - Render a unique QR code for every page.
 
 ### Tooling
 
@@ -72,3 +75,7 @@ Webmentions are send as part of the site build and publish process. To help with
 #### Accepting Webmentions
 
 To accept Webmentions, I have an [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview) endpoint which accepts POST requests and stores them in an [Azure Tables](https://learn.microsoft.com/azure/storage/tables/table-storage-overview) database. To help with validation and accepting Webmentions, I use the [WebmentionFs](https://www.nuget.org/packages/lqdev.WebmentionFs) library. For more details, see [Accept Webmentions using F#, Azure Functions, and RSS](/posts/receive-webmentions-fsharp-az-functions-fsadvent/).
+
+### Search
+
+The [search](/search) on this site runs entirely in your browser, with no server or third-party service. At build time the generator produces a JSON index of all content, and [Fuse.js](https://www.fusejs.io/) — a lightweight fuzzy-search library — handles matching client-side. Iconography across the site uses [Bootstrap Icons](https://icons.getbootstrap.com/).
