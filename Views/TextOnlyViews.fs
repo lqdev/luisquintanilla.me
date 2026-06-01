@@ -117,7 +117,7 @@ let parseItemDate (dateString: string) =
 let normalizeContentType (contentType: string) =
     if String.IsNullOrWhiteSpace(contentType) then ""
     else
-        match contentType.ToLower() with
+        match contentType.Trim().ToLowerInvariant() with
         | "reply" | "reshare" | "star" | "rsvp" -> "responses"
         | other -> other
 
