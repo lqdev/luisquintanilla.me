@@ -109,6 +109,18 @@ let parseItemDate (dateString: string) =
     | (true, date) -> date
     | (false, _) -> DateTime.MinValue
 
+// Normalize content-type values for text-only routing, filtering, and grouping.
+// The unified feed assigns response items their *subtype* (reply/reshare/star/rsvp)
+// as ContentType. For the text-only site we collapse those into a single "responses"
+// section (matching the main site) so individual pages, landing pages, and nav links
+// all resolve to the same consistent path.
+let normalizeContentType (contentType: string) =
+    if String.IsNullOrWhiteSpace(contentType) then ""
+    else
+        match contentType.Trim().ToLowerInvariant() with
+        | "reply" | "reshare" | "star" | "rsvp" -> "responses"
+        | other -> other
+
 // Text-Only Homepage
 let textOnlyHomepage (recentContent: UnifiedFeedItem list) =
     let recentItems = recentContent |> List.take (min 20 recentContent.Length)
@@ -133,7 +145,7 @@ let textOnlyHomepage (recentContent: UnifiedFeedItem list) =
                         let itemDate = parseItemDate item.Date
                         li [] [
                             h3 [] [
-                                a [_href $"/text/content/{item.ContentType.ToLower()}/{slug}/"] [
+                                a [_href $"/text/content/{normalizeContentType item.ContentType}/{slug}/"] [
                                     Text item.Title
                                 ]
                             ]
@@ -152,13 +164,15 @@ let textOnlyHomepage (recentContent: UnifiedFeedItem list) =
             ul [] [
                 li [] [a [_href "/text/content/posts/"] [Text "Blog Posts"]]
                 li [] [a [_href "/text/content/notes/"] [Text "Notes & Microblog"]]
-                li [] [a [_href "/text/content/responses/"] [Text "Responses & Bookmarks"]]
+                li [] [a [_href "/text/content/responses/"] [Text "Responses"]]
                 li [] [a [_href "/text/content/bookmarks/"] [Text "Bookmarks"]]
                 li [] [a [_href "/text/content/snippets/"] [Text "Code Snippets"]]
                 li [] [a [_href "/text/content/wiki/"] [Text "Wiki & Knowledge Base"]]
                 li [] [a [_href "/text/content/presentations/"] [Text "Presentations"]]
                 li [] [a [_href "/text/content/reviews/"] [Text "Book Reviews"]]
-                li [] [a [_href "/text/content/albums/"] [Text "Photo Albums"]]
+                li [] [a [_href "/text/content/album-collection/"] [Text "Albums"]]
+                li [] [a [_href "/text/content/playlist-collection/"] [Text "Playlists"]]
+                li [] [a [_href "/text/content/ai-memex/"] [Text "AI Memex"]]
                 li [] [a [_href "/text/content/media/"] [Text "Media & Files"]]
             ]
             
@@ -177,21 +191,24 @@ let textOnlyHomepage (recentContent: UnifiedFeedItem list) =
 
 // Content Type Listing Page
 let textOnlyContentTypePage (contentType: string) (content: UnifiedFeedItem list) =
+    let normalizedRequestedType = normalizeContentType contentType
     let filteredContent = 
         content 
-        |> List.filter (fun item -> item.ContentType.ToLower() = contentType.ToLower())
+        |> List.filter (fun item -> normalizeContentType item.ContentType = normalizedRequestedType)
         |> List.sortByDescending (fun item -> parseItemDate item.Date)
     
     let pageTitle = 
-        match contentType.ToLower() with
+        match normalizedRequestedType with
         | "posts" -> "Blog Posts"
         | "notes" -> "Notes & Microblog"
-        | "responses" -> "Responses & Bookmarks"
+        | "responses" -> "Responses"
         | "snippets" -> "Code Snippets"
         | "wiki" -> "Wiki & Knowledge Base"
         | "presentations" -> "Presentations"
         | "reviews" -> "Book Reviews"
-        | "albums" -> "Photo Albums"
+        | "album-collection" -> "Albums"
+        | "playlist-collection" -> "Playlists"
+        | "ai-memex" -> "AI Memex"
         | "bookmarks" -> "Bookmarks"
         | "media" -> "Media & Files"
         | _ -> $"{contentType} Content"
@@ -217,7 +234,7 @@ let textOnlyContentTypePage (contentType: string) (content: UnifiedFeedItem list
                         let itemDate = parseItemDate item.Date
                         li [] [
                             h3 [] [
-                                a [_href $"/text/content/{item.ContentType.ToLower()}/{slug}/"] [
+                                a [_href $"/text/content/{normalizeContentType item.ContentType}/{slug}/"] [
                                     Text item.Title
                                 ]
                             ]
@@ -259,7 +276,7 @@ let textOnlyContentPage (content: UnifiedFeedItem) (htmlContent: string) =
             p [] [
                 a [_href "/text/"] [Text "← Home"]
                 Text " | "
-                a [_href $"/text/content/{content.ContentType.ToLower()}/"] [Text $"← All {content.ContentType}"]
+                a [_href $"/text/content/{normalizeContentType content.ContentType}/"] [Text $"← All {normalizeContentType content.ContentType}"]
                 Text " | "
                 a [_href content.Url] [Text "View Full Version"]
             ]
@@ -326,7 +343,7 @@ let textOnlyPresentationPage (presentation: Presentation) (htmlContent: string) 
 let textOnlyAllContentPage (content: UnifiedFeedItem list) =
     let groupedContent = 
         content
-        |> List.groupBy (fun item -> item.ContentType)
+        |> List.groupBy (fun item -> normalizeContentType item.ContentType)
         |> List.sortBy fst
     
     let contentHtml =
@@ -704,7 +721,7 @@ let textOnlyTagPage (tag: string) (content: UnifiedFeedItem list) =
                         let itemDate = parseItemDate item.Date
                         li [] [
                             h3 [] [
-                                a [_href $"/text/content/{item.ContentType.ToLower()}/{slug}/"] [
+                                a [_href $"/text/content/{normalizeContentType item.ContentType}/{slug}/"] [
                                     Text item.Title
                                 ]
                             ]
@@ -831,7 +848,7 @@ let textOnlyMonthlyArchivePage (year: int) (month: int) (content: UnifiedFeedIte
                         let itemDate = parseItemDate item.Date
                         li [] [
                             h3 [] [
-                                a [_href $"/text/content/{item.ContentType.ToLower()}/{slug}/"] [
+                                a [_href $"/text/content/{normalizeContentType item.ContentType}/{slug}/"] [
                                     Text item.Title
                                 ]
                             ]
