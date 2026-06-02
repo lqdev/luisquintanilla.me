@@ -21,6 +21,176 @@
   transform: scale(1.05);
 }
 
+/* ----------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------- */
+/* Avatar flip-card (pure CSS, native disclosure)                          */
+/*                                                                         */
+/* Renders the avatar as the front face of a 3D card built on a native     */
+/* <details>/<summary> element. Clicking the avatar flips the card to      */
+/* reveal a pre-rendered QR code (`/assets/images/contact/qr-home.svg`).   */
+/* Clicking the avatar again flips back (native disclosure toggle).        */
+/*                                                                         */
+/* The card visually morphs from circle (front, avatar) to rounded-square  */
+/* (back, QR) during the flip — this gives the QR its natural square real  */
+/* estate so the corner finder patterns aren't clipped.                    */
+/*                                                                         */
+/* Markup is produced by `avatarFlipCard` in `Views/LayoutViews.fs`.       */
+/* ----------------------------------------------------------------------- */
+
+details.avatar-flip {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  /* `perspective` gives the rotation real depth; without it the flip looks
+     like a 2D scaleX. */
+  perspective: 1000px;
+  /* Border-radius transitions alongside the flip so the card morphs from
+     circle to rounded-square as it turns. */
+  border-radius: 50%;
+  transition: border-radius 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+details.avatar-flip[open] {
+  border-radius: 18%;
+}
+
+/* The <summary> element is the interactive surface: clicking, tapping, or
+   pressing Enter/Space toggles the disclosure (and therefore the flip). */
+details.avatar-flip > summary {
+  display: block; /* removes the default list-item layout */
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: inherit;
+  /* Suppress mobile-tap highlight so the flip animation reads cleanly. */
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  list-style: none;
+}
+
+/* Hide the native disclosure triangle across browsers. */
+details.avatar-flip > summary::-webkit-details-marker { display: none; }
+details.avatar-flip > summary::marker { display: none; }
+
+details.avatar-flip > summary:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 4px;
+  border-radius: inherit;
+}
+
+.avatar-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transform-style: preserve-3d;
+  border-radius: inherit;
+  will-change: transform;
+}
+
+/* Slight lift cue on hover (when the card is in its resting state). */
+details.avatar-flip:not([open]) > summary:hover .avatar-flip-inner {
+  transform: scale(1.05);
+}
+
+details.avatar-flip[open] .avatar-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.avatar-flip-front,
+.avatar-flip-back {
+  position: absolute;
+  inset: 0;
+  /* `backface-visibility: hidden` keeps the inactive face from peeking through
+     during the flip. The `-webkit-` prefix is needed for older Safari. */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: inherit;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-radius 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.avatar-flip-front {
+  background: transparent;
+  /* Front face stays perfectly round regardless of the parent's morph. */
+  border-radius: 50%;
+}
+
+.avatar-flip-image {
+  width: 100%;
+  height: 100%;
+  border: 3px solid var(--accent-color);
+  border-radius: 50%;
+  /* Cancel the legacy `.avatar-section img:hover` scale — the hover lift now
+     happens at the card level so both faces stay in sync. */
+  transition: none;
+  display: block;
+}
+
+details.avatar-flip .avatar-flip-image:hover {
+  transform: none;
+}
+
+.avatar-flip-back {
+  /* Pre-rotate so the back face is correctly oriented after the parent
+     rotates 180deg. */
+  transform: rotateY(180deg);
+  background: #ffffff;
+  /* Soft shadow only — no border. The pre-rendered QR carries its own
+     brand color (orange finder patterns); a border here adds visual noise
+     and makes the card feel boxed-in rather than floating. */
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  padding: 8px;
+  /* Rounded-square back face — gives the square QR full unclipped real estate
+     while still feeling like a card (not a hard rectangle). */
+  border-radius: 18%;
+}
+
+/* Higher-specificity override: `.avatar-section img` (specificity 0,1,1)
+   beats a plain `.avatar-flip-qr` selector (0,1,0), so we anchor under
+   `.avatar-section` to win the cascade. This is the actual rule that
+   suppresses the legacy orange border on the back face. */
+.avatar-section .avatar-flip-qr {
+  border: none;
+  transition: none;
+}
+
+.avatar-flip-qr {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  /* Override the legacy `.avatar-section img` rule (timeline.css line 15)
+     which adds `border: 3px solid var(--accent-color)` for the round avatar.
+     That rule was bleeding through to the back face and rendering as a thin
+     orange perimeter at the exact card edge — visually indistinguishable
+     from "the QR has an orange border", which kept us chasing SVG/cache
+     ghosts for hours. The pre-rendered QR already carries its own brand
+     color via the orange finder patterns, so any additional border is
+     redundant noise. The actual border-suppressing rule lives in the more
+     specific `.avatar-section .avatar-flip-qr` block above; the values
+     here are for any out-of-`.avatar-section` usage. */
+  border: none;
+  transition: none;
+}
+
+/* Respect users who prefer reduced motion: keep the flip but make it instant
+   so vestibular sensitivity isn't triggered by the spin. */
+@media (prefers-reduced-motion: reduce) {
+  details.avatar-flip,
+  .avatar-flip-inner,
+  .avatar-flip-front,
+  .avatar-flip-back {
+    transition: none;
+  }
+  details.avatar-flip:not([open]) > summary:hover .avatar-flip-inner {
+    transform: none;
+  }
+}
+
 .author-link {
   color: var(--accent-color);
   text-decoration: none;
@@ -348,6 +518,13 @@
   }
   
   .avatar-section img {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* Match the avatar-section img sizing for the flip-card on small screens
+     so the homepage hero stays compact on phones. */
+  details.avatar-flip {
     width: 120px;
     height: 120px;
   }

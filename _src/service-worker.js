@@ -4,7 +4,13 @@
  * Progressive enhancement with graceful degradation
  */
 
-const CACHE_VERSION = 'v1.0.0';
+// v1.0.3: Phase 3 per-page QR migration — `qr-code-styling` CDN script
+// and `/assets/js/qrcode.js` were removed. Bumping the cache version forces
+// clients to evict the stale entries (otherwise they could keep serving a
+// page that still references the deleted script). Per-page QR SVGs live at
+// `/assets/images/qr/<type>/<slug>.svg` and match the existing `images`
+// cache-first pattern below.
+const CACHE_VERSION = 'v1.0.3';
 const CACHE_NAME = `luisquintanilla-${CACHE_VERSION}`;
 
 // Cache strategies
@@ -168,6 +174,13 @@ self.addEventListener('fetch', (event) => {
  */
 function determineStrategy(url) {
     const pathname = url.pathname;
+    
+    // Generated QR SVGs must always be network-first so cache-buster updates
+    // are picked up immediately (otherwise cacheFirstStaleWhileRevalidate
+    // serves stale visual styling for one extra page load after a regen).
+    if (/\/qr-[^/]+\.svg$/.test(pathname)) {
+        return CACHE_STRATEGIES.CONTENT;
+    }
     
     // Check static assets
     if (URL_PATTERNS.static.some(pattern => pattern.test(pathname))) {

@@ -74,6 +74,7 @@ let main argv =
     buildTravelGuidesPage ()
     buildIRLStackPage ()
     buildColophonPage ()
+    buildToolsPage ()
     buildOnlineRadioPage ()
     buildResumePage ()
 
@@ -154,6 +155,10 @@ let main argv =
 
     // Generate Blog Archive Format (.bar) exports and archive landing page
     buildBlogArchiveExports blogArchiveFeedItems
+
+    // Phase 3: pre-render styled QR SVGs for every content page so the
+    // per-page modal/disclosure can swap from runtime JS to a static asset.
+    buildPerPageQRs "_public" allUnifiedContent
     
     // =============================================================================
     // ActivityPub Content Generation - Phase 3+ Implementation

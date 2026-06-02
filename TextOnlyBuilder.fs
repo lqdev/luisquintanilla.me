@@ -88,6 +88,17 @@ let buildTextOnlyColophonPage (outputDir: string) =
     
     File.WriteAllText(outputPath, textColophonPage)
 
+let buildTextOnlyToolsPage (outputDir: string) =
+    let textToolsPage = TextOnlyViews.textOnlyToolsPage |> RenderView.AsString.htmlDocument
+    let outputPath = Path.Combine(outputDir, "text", "tools", "index.html")
+    
+    // Ensure directory exists
+    let dirPath = Path.GetDirectoryName(outputPath)
+    if not (Directory.Exists(dirPath)) then
+        Directory.CreateDirectory(dirPath) |> ignore
+    
+    File.WriteAllText(outputPath, textToolsPage)
+
 let buildTextOnlyHelpPage (outputDir: string) =
     let textHelpPage = TextOnlyViews.textOnlyHelpPage |> RenderView.AsString.htmlDocument
     let outputPath = Path.Combine(outputDir, "text", "help", "index.html")
@@ -124,8 +135,8 @@ let buildTextOnlyAllContentPage (outputDir: string) (unifiedContent: UnifiedFeed
 let buildTextOnlyContentTypePages (outputDir: string) (unifiedContent: UnifiedFeedItem list) =
     let contentTypes = [
         "posts"; "notes"; "responses"; "snippets"; 
-        "wiki"; "presentations"; "reviews"; "albums";
-        "bookmarks"; "media"
+        "wiki"; "presentations"; "reviews"; "bookmarks";
+        "media"; "ai-memex"; "album-collection"; "playlist-collection"
     ]
     
     for contentType in contentTypes do
@@ -158,7 +169,7 @@ let buildTextOnlyIndividualPages (outputDir: string) (unifiedContent: UnifiedFee
                 let htmlContent = MarkdownService.convertMdToHtml presentation.Content
                 let textContentPage = TextOnlyViews.textOnlyPresentationPage presentation htmlContent |> RenderView.AsString.htmlDocument
                 let slug = TextOnlyViews.extractSlugFromUrl content.Url
-                let outputPath = Path.Combine(outputDir, "text", "content", content.ContentType.ToLower(), slug, "index.html")
+                let outputPath = Path.Combine(outputDir, "text", "content", TextOnlyViews.normalizeContentType content.ContentType, slug, "index.html")
                 
                 // Ensure directory exists
                 let dirPath = Path.GetDirectoryName(outputPath)
@@ -171,7 +182,7 @@ let buildTextOnlyIndividualPages (outputDir: string) (unifiedContent: UnifiedFee
                 let htmlContent = MarkdownService.convertMdToHtml content.Content
                 let textContentPage = TextOnlyViews.textOnlyContentPage content htmlContent |> RenderView.AsString.htmlDocument
                 let slug = TextOnlyViews.extractSlugFromUrl content.Url
-                let outputPath = Path.Combine(outputDir, "text", "content", content.ContentType.ToLower(), slug, "index.html")
+                let outputPath = Path.Combine(outputDir, "text", "content", TextOnlyViews.normalizeContentType content.ContentType, slug, "index.html")
                 
                 // Ensure directory exists
                 let dirPath = Path.GetDirectoryName(outputPath)
@@ -180,16 +191,18 @@ let buildTextOnlyIndividualPages (outputDir: string) (unifiedContent: UnifiedFee
                 
                 File.WriteAllText(outputPath, textContentPage)
         else
-            // For responses and bookmarks, content.Content already contains the CardHtml with target URL
-            // For other content types, convert markdown to HTML
+            // Responses, bookmarks, and reviews store pre-rendered CardHtml in content.Content
+            // (already HTML with target URL / review display); use it directly. All other
+            // content types store raw markdown that must be converted to HTML.
+            let normalizedType = TextOnlyViews.normalizeContentType content.ContentType
             let htmlContent = 
-                if content.ContentType = "responses" || content.ContentType = "bookmarks" then
-                    content.Content  // Already HTML with target URL display
+                if normalizedType = "responses" || normalizedType = "bookmarks" || normalizedType = "reviews" then
+                    content.Content  // Already HTML
                 else
                     MarkdownService.convertMdToHtml content.Content  // Convert markdown to HTML
             let textContentPage = TextOnlyViews.textOnlyContentPage content htmlContent |> RenderView.AsString.htmlDocument
             let slug = TextOnlyViews.extractSlugFromUrl content.Url
-            let outputPath = Path.Combine(outputDir, "text", "content", content.ContentType.ToLower(), slug, "index.html")
+            let outputPath = Path.Combine(outputDir, "text", "content", normalizedType, slug, "index.html")
             
             // Ensure directory exists
             let dirPath = Path.GetDirectoryName(outputPath)
@@ -287,6 +300,7 @@ let buildTextOnlySite (outputDir: string) (unifiedContent: UnifiedFeedItem list)
     buildTextOnlyContactPage outputDir
     buildTextOnlyUsesPage outputDir
     buildTextOnlyColophonPage outputDir
+    buildTextOnlyToolsPage outputDir
     buildTextOnlyHelpPage outputDir
     buildTextOnlyFeedsPage outputDir
     buildTextOnlyStarterPacksPages outputDir
