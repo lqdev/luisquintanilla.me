@@ -1577,7 +1577,13 @@ module UnifiedFeeds =
         
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
 
-    let private responseFeedTypes = set [ "responses"; "reply"; "reshare"; "star" ]
+    // Canonical set of unified ContentType values that belong to the response
+    // stream. Response items carry their SUBTYPE as ContentType (reply/reshare/
+    // star/rsvp) rather than a generic "responses", so every subtype must be
+    // listed here or it is silently dropped from JSON feeds and BAR exports.
+    // "bookmark" is intentionally excluded (separate stream). Single source of
+    // truth shared with Builder.fs to prevent drift.
+    let responseStreamContentTypes = set [ "responses"; "reply"; "reshare"; "star"; "rsvp" ]
     let private jsonFeedItemLimit = 20
 
     let private toJsonFeedContent (item: UnifiedFeedItem) =
@@ -1663,7 +1669,7 @@ module UnifiedFeeds =
         let typeConfigs = [
             ("posts", "Luis Quintanilla - Posts", "https://www.lqdev.me/posts", "https://www.lqdev.me/posts/feed.json", "Blog posts by Luis Quintanilla", fun (item: UnifiedFeedItem) -> item.ContentType = "posts")
             ("notes", "Luis Quintanilla - Notes", "https://www.lqdev.me/notes", "https://www.lqdev.me/notes/feed.json", "Notes and micro-posts by Luis Quintanilla", fun (item: UnifiedFeedItem) -> item.ContentType = "notes")
-            ("responses", "Luis Quintanilla - Responses", "https://www.lqdev.me/responses", "https://www.lqdev.me/responses/feed.json", "IndieWeb responses by Luis Quintanilla", fun (item: UnifiedFeedItem) -> responseFeedTypes.Contains(item.ContentType))
+            ("responses", "Luis Quintanilla - Responses", "https://www.lqdev.me/responses", "https://www.lqdev.me/responses/feed.json", "IndieWeb responses by Luis Quintanilla", fun (item: UnifiedFeedItem) -> responseStreamContentTypes.Contains(item.ContentType))
         ]
 
         typeConfigs
@@ -1681,7 +1687,7 @@ module UnifiedFeeds =
             |> List.filter (fun item ->
                 item.ContentType = "posts"
                 || item.ContentType = "notes"
-                || responseFeedTypes.Contains(item.ContentType))
+                || responseStreamContentTypes.Contains(item.ContentType))
         let allStreamItems = allMatchingStreamItems |> List.take (min jsonFeedItemLimit allMatchingStreamItems.Length)
 
         if not allStreamItems.IsEmpty then

@@ -377,7 +377,9 @@ module Builder
         let saveDir = Path.Join(outputDir,"search")
         writePageToDir saveDir "index.html" searchPage
 
-    let private responseFeedTypes = set [ "responses"; "reply"; "reshare"; "star" ]
+    // Single source of truth lives in GenericBuilder.UnifiedFeeds; reuse it here
+    // so BAR exports stay consistent with the JSON feed response stream.
+    let private responseFeedTypes = GenericBuilder.UnifiedFeeds.responseStreamContentTypes
     let private maxUploadNameCollisions = 10000
 
     let private isRemoteUrl (value: string) =
