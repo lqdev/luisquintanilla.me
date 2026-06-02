@@ -5,9 +5,16 @@
   },
   "mimeTypes": {
     ".activitypub": "application/activity+json",
+    ".bar": "application/zip",
     ".json": "application/json"
   },
   "routes": [
+    {
+      "route": "/archive/*.bar",
+      "headers": {
+        "Content-Disposition": "attachment"
+      }
+    },
     {
       "route": "/resources/presentations/*",
       "headers": {
