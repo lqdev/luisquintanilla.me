@@ -99,6 +99,39 @@ let buildTextOnlyToolsPage (outputDir: string) =
     
     File.WriteAllText(outputPath, textToolsPage)
 
+let buildTextOnlyRadioPage (outputDir: string) =
+    let textRadioPage = TextOnlyViews.textOnlyRadioPage |> RenderView.AsString.htmlDocument
+    let outputPath = Path.Combine(outputDir, "text", "radio", "index.html")
+    
+    // Ensure directory exists
+    let dirPath = Path.GetDirectoryName(outputPath)
+    if not (Directory.Exists(dirPath)) then
+        Directory.CreateDirectory(dirPath) |> ignore
+    
+    File.WriteAllText(outputPath, textRadioPage)
+
+let buildTextOnlyCollectionsPage (outputDir: string) =
+    let textCollectionsPage = TextOnlyViews.textOnlyCollectionsPage |> RenderView.AsString.htmlDocument
+    let outputPath = Path.Combine(outputDir, "text", "collections", "index.html")
+    
+    // Ensure directory exists
+    let dirPath = Path.GetDirectoryName(outputPath)
+    if not (Directory.Exists(dirPath)) then
+        Directory.CreateDirectory(dirPath) |> ignore
+    
+    File.WriteAllText(outputPath, textCollectionsPage)
+
+let buildTextOnlyTravelGuidesPage (outputDir: string) =
+    let textTravelGuidesPage = TextOnlyViews.textOnlyTravelGuidesPage |> RenderView.AsString.htmlDocument
+    let outputPath = Path.Combine(outputDir, "text", "collections", "travel-guides", "index.html")
+    
+    // Ensure directory exists
+    let dirPath = Path.GetDirectoryName(outputPath)
+    if not (Directory.Exists(dirPath)) then
+        Directory.CreateDirectory(dirPath) |> ignore
+    
+    File.WriteAllText(outputPath, textTravelGuidesPage)
+
 let buildTextOnlyHelpPage (outputDir: string) =
     let textHelpPage = TextOnlyViews.textOnlyHelpPage |> RenderView.AsString.htmlDocument
     let outputPath = Path.Combine(outputDir, "text", "help", "index.html")
@@ -301,6 +334,9 @@ let buildTextOnlySite (outputDir: string) (unifiedContent: UnifiedFeedItem list)
     buildTextOnlyUsesPage outputDir
     buildTextOnlyColophonPage outputDir
     buildTextOnlyToolsPage outputDir
+    buildTextOnlyRadioPage outputDir
+    buildTextOnlyCollectionsPage outputDir
+    buildTextOnlyTravelGuidesPage outputDir
     buildTextOnlyHelpPage outputDir
     buildTextOnlyFeedsPage outputDir
     buildTextOnlyStarterPacksPages outputDir
