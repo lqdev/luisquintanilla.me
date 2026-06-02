@@ -72,6 +72,10 @@ module TextOnlyContentProcessor =
                 ("/uses", "/text/uses/")
                 ("/colophon", "/text/colophon/")
                 ("/tools", "/text/tools/")
+                ("/radio", "/text/radio/")
+                ("/collections/travel-guides/", "/text/collections/travel-guides/")
+                ("/collections/starter-packs/", "/text/collections/starter-packs/")
+                ("/collections", "/text/collections/")
                 ("/contact", "/text/contact/")
                 ("/about", "/text/about/")
                 ("/feed", "/text/feeds/")
@@ -184,6 +188,17 @@ let textOnlyHomepage (recentContent: UnifiedFeedItem list) =
                 li [] [a [_href "/text/feeds/"] [Text "RSS Feeds"]]
                 li [] [a [_href "/text/help/"] [Text "Help & About"]]
                 li [] [a [_href "/"] [Text "Full Website (with graphics)"]]
+            ]
+            
+            h2 [] [Text "Site Pages"]
+            ul [] [
+                li [] [a [_href "/text/uses/"] [Text "Uses"]]
+                li [] [a [_href "/text/colophon/"] [Text "Colophon"]]
+                li [] [a [_href "/text/tools/"] [Text "Tools"]]
+                li [] [a [_href "/text/collections/starter-packs/"] [Text "Starter Packs"]]
+                li [] [a [_href "/text/radio/"] [Text "Online Radio"]]
+                li [] [a [_href "/text/collections/"] [Text "Collections"]]
+                li [] [a [_href "/text/collections/travel-guides/"] [Text "Travel Guides"]]
             ]
         ]
     
@@ -1092,3 +1107,75 @@ let textOnlyToolsPage =
         ]
     
     textOnlyLayout "Tools" (RenderView.AsString.xmlNode contentHtml)
+
+// Online Radio Page
+let textOnlyRadioPage =
+    let markdownHtml = TextOnlyContentProcessor.loadMarkdownContent "radio.md"
+    let processedHtml = 
+        markdownHtml
+        |> TextOnlyContentProcessor.replaceImagesWithText 
+        |> TextOnlyContentProcessor.convertLinksToTextOnly
+    
+    let contentHtml =
+        div [] [
+            p [] [
+                a [_href "/text/"] [Text "← Back to Home"]
+                Text " | "
+                a [_href "/radio"] [Text "View Full Radio Page"]
+            ]
+            
+            // Rendered markdown content with text-only processing
+            div [_class "content"] [
+                rawText processedHtml
+            ]
+        ]
+    
+    textOnlyLayout "Online Radio" (RenderView.AsString.xmlNode contentHtml)
+
+// Collections Hub Page
+let textOnlyCollectionsPage =
+    let markdownHtml = TextOnlyContentProcessor.loadMarkdownContent "collections.md"
+    let processedHtml = 
+        markdownHtml
+        |> TextOnlyContentProcessor.replaceImagesWithText 
+        |> TextOnlyContentProcessor.convertLinksToTextOnly
+    
+    let contentHtml =
+        div [] [
+            p [] [
+                a [_href "/text/"] [Text "← Back to Home"]
+                Text " | "
+                a [_href "/collections"] [Text "View Full Collections Page"]
+            ]
+            
+            // Rendered markdown content with text-only processing
+            div [_class "content"] [
+                rawText processedHtml
+            ]
+        ]
+    
+    textOnlyLayout "Collections" (RenderView.AsString.xmlNode contentHtml)
+
+// Travel Guides Page
+let textOnlyTravelGuidesPage =
+    let markdownHtml = TextOnlyContentProcessor.loadMarkdownContent "travel-guides.md"
+    let processedHtml = 
+        markdownHtml
+        |> TextOnlyContentProcessor.replaceImagesWithText 
+        |> TextOnlyContentProcessor.convertLinksToTextOnly
+    
+    let contentHtml =
+        div [] [
+            p [] [
+                a [_href "/text/"] [Text "← Back to Home"]
+                Text " | "
+                a [_href "/collections/travel-guides"] [Text "View Full Travel Guides Page"]
+            ]
+            
+            // Rendered markdown content with text-only processing
+            div [_class "content"] [
+                rawText processedHtml
+            ]
+        ]
+    
+    textOnlyLayout "Travel Guides" (RenderView.AsString.xmlNode contentHtml)
