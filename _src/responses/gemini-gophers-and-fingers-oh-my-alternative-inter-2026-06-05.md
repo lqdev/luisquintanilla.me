@@ -1,7 +1,7 @@
 ---
 title: "Gemini, Gophers, and Fingers. Oh My! Alternative Internets Beyond HTTPS"
 targeturl: https://brennan.day/gemini-gophers-and-fingers-oh-my-alternative-internets-beyond-https/
-response_type: reply
+response_type: reshare
 dt_published: "2026-06-05 09:41 -05:00"
 dt_updated: "2026-06-05 09:41 -05:00"
 tags: ["indieweb","protocols","openweb","internet","gopher","gemini","finger"]
