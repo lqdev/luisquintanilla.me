@@ -1,5 +1,42 @@
 # Changelog
 
+## 2026-06-10 - Architecture Refactor 2026: Phase 0 Safety Harness ✅
+
+**Project**: [Architecture Refactor 2026](projects/active/architecture-refactor-2026.md)
+**Duration**: 2026-06-10 (Phase 0 of a phased refactor)
+**Status**: ✅ Phase 0 COMPLETE — Phase 1 ready
+**Type**: Tooling / Safety harness (no production code changes)
+**Source assessment**: [docs/architecture-assessment-2026.md](docs/architecture-assessment-2026.md)
+
+### Overview
+
+Established the rollback rails and byte-identical verification baseline that Phases 1–2 of the
+architecture refactor depend on. No generator behavior changed.
+
+### What was done
+
+- **Lock file drift resolved**: local SDK forces FSharp.Core 10.1.301 (committed 10.1.300);
+  `--locked-mode` restore failed NU1004. Regenerated via `dotnet restore --force-evaluate` and
+  committed so `main` builds reproducibly.
+- **Umbrella branch** `refactor/architecture-2026` created from clean `main`.
+- **Baseline metrics** recorded: `dotnet build -c Release` 14.9s; `dotnet run -c Release` ~110s;
+  **13,486 files** generated in `_public/`.
+- **Nondeterminism audit** (two fresh runs, SHA-256 hash-manifest diff over all 13,486 files):
+  exactly **one** nondeterministic file — `resources/ai-memex/graph.json`, sole varying field
+  `stats.generatedAt` (UTC build timestamp, `KnowledgeGraph.fs:527`). Documented as the single
+  byte-identical-contract exclusion. RSS feeds and all else already deterministic.
+- **Warning inventory**: exactly 1 (`FS1104` at `ActivityPubBuilder.fs:805`), zero `FS0025` —
+  confirming step 1.5 (`WarningsAsErrors=FS0025`) is free today.
+- **`OutputComparison.fs`** confirmed available as an in-repo alternative to the PowerShell harness.
+- `.gitignore` updated to exclude local verification artifacts (`_public_baseline/`, CSVs).
+
+### Next
+
+Phase 1 conservative quick wins (1.1 kill double-builds → 1.2 dead flag → 1.3 ContentTypes
+module → 1.4 skip diagnostics → 1.5 FS0025 as error), each output byte-identical and revertible.
+
+---
+
 ## 2026-02-04 - Review Rendering Improvements ✅
 
 **Project**: Review Rendering Enhancements  

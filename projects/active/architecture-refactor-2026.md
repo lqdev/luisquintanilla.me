@@ -3,7 +3,7 @@
 **Project**: Streamlining the F#/.NET static site generator
 **Priority**: High | **Complexity**: Large (phased into S/M/L independently-shippable units)
 **Source assessment**: [`docs/architecture-assessment-2026.md`](../../docs/architecture-assessment-2026.md) — findings F1–F11, bets B1–B4
-**Status**: `[>]` Active — Phase 0 not yet started
+**Status**: `[>]` Active — Phase 0 complete; Phase 1 ready to start
 **Last updated**: 2026-06-10
 
 > Read the assessment first. This plan is the *how/when*; the assessment is the *what/why*
@@ -61,6 +61,13 @@ Compare-Object (Import-Csv before.csv) (Import-Csv after.csv) -Property Path, Ha
 Note: if any build steps embed timestamps/nondeterminism, identify them in Phase 0 and exclude
 those files from the byte-identical contract explicitly (documented list, reviewed once).
 
+**Documented nondeterminism exclusions (from Phase 0.4 — the complete list):**
+- `resources/ai-memex/graph.json` — only `stats.generatedAt` (UTC build timestamp;
+  `KnowledgeGraph.fs:527`) varies between runs; graph structure is deterministic. Exclude this
+  one file from the byte-identical diff (the harness `Compare-Object` should filter
+  `Path -ne '\resources\ai-memex\graph.json'`), or strip/normalize `generatedAt` before hashing.
+  No other file in the 13,486-file tree is nondeterministic (RSS feeds included).
+
 ---
 
 ## Executor Recipe — how to run any step (read once; applies to every step)
@@ -96,20 +103,34 @@ junior tasks until their go/no-go note is written.
 
 **Goal**: a trustworthy baseline + rollback rails. No production code changes.
 
-- [ ] 0.1 Create umbrella branch `refactor/architecture-2026` from up-to-date `main`.
-- [ ] 0.2 Run `dotnet build` + `dotnet run`; record build wall-clock time (baseline metric).
-- [ ] 0.3 Snapshot `_public/` → `_public_baseline/` (gitignored; local artifact only).
-- [ ] 0.4 Run the hash-manifest comparison against a *second* fresh `dotnet run` to detect
-      nondeterminism (timestamps, GUIDs, ordering). Document any nondeterministic files and
-      exclude them from the contract. (Candidates: RSS `lastBuildDate`, build-date stamps.)
-- [ ] 0.5 Confirm `OutputComparison.fs` utilities work if preferred over the PowerShell harness.
-- [ ] 0.6 Record the compiler-warning inventory: `dotnet build` output saved to the ledger
-      Notes. (Verified 2026-06-10: exactly **1** warning — the documented `FS1104` at
-      `ActivityPubBuilder.fs:805`, zero `FS0025`. This is the precondition proof for step 1.5.)
+**Status: COMPLETE (2026-06-10).** Umbrella branch `refactor/architecture-2026` created from
+clean `main` (after committing an FSharp.Core lock bump 10.1.300→10.1.301 — the local SDK
+forces it; `dotnet restore --locked-mode` failed with NU1004 until regenerated via
+`--force-evaluate`, then committed so `main` builds reproducibly).
+
+- [x] 0.1 Umbrella branch `refactor/architecture-2026` created from up-to-date `main`.
+- [x] 0.2 `dotnet build -c Release`: **succeeded in 14.9s**. `dotnet run -c Release` (full site
+      generation): **~110s**, **13,486 files** in `_public/`. (Baseline metrics for Phase 1.1 delta.)
+- [x] 0.3 Snapshot `_public/` → `_public_baseline/` (gitignored — added `_public_baseline/`,
+      `_public_second/`, `before.csv`, `after.csv` to `.gitignore`).
+- [x] 0.4 Second fresh `dotnet run` + SHA-256 hash-manifest diff over all 13,486 files:
+      **exactly ONE nondeterministic file** — `resources/ai-memex/graph.json`. Sole varying field
+      is `stats.generatedAt` (a UTC build timestamp; source `KnowledgeGraph.fs:527`,
+      `let now = DateTimeOffset.UtcNow.ToString("o")`, emitted at `:543`). The graph structure
+      (nodes/edges/clusters/counts) is byte-identical; only the timestamp differs. RSS feeds and
+      everything else are already deterministic. **Documented contract exclusion (the only one):**
+      `resources/ai-memex/graph.json`. The verification harness must exclude this single file
+      (or normalize/strip `generatedAt`) from the byte-identical comparison in Phases 1–2.
+- [x] 0.5 `OutputComparison.fs` confirmed present and usable (`compareOutputs`/`validateOutputs`,
+      MD5 + line-level diff) as an alternative to the PowerShell harness. The PowerShell hash
+      harness is the primary tool (it found 0.4's exclusion); `OutputComparison.fs` is the
+      in-repo fallback.
+- [x] 0.6 Warning inventory: **exactly 1** warning — `FS1104` at `ActivityPubBuilder.fs:805`
+      (the documented expected one), **zero FS0025**. Precondition proof for step 1.5 holds.
 
 **Done when**: two consecutive builds diff clean (modulo documented exclusions); baseline time
-recorded; umbrella branch pushed.
-**Rollback**: n/a (nothing changed).
+recorded; umbrella branch pushed. ✅ **Met** — clean modulo the single `graph.json` exclusion;
+baseline build 14.9s / generate ~110s / 13,486 files recorded; umbrella branch pushed.
 
 ---
 
@@ -421,7 +442,7 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 
 | Phase | Status | Started | Completed | Notes |
 |---|---|---|---|---|
-| 0 — Safety harness | `[ ]` | — | — | |
+| 0 — Safety harness | `[x]` done | 2026-06-10 | 2026-06-10 | Umbrella branch created off main (after FSharp.Core lock bump 10.1.300→10.1.301 committed). Baseline: build 14.9s / generate ~110s / 13,486 files. Warnings: 1×FS1104, 0×FS0025. **Contract exclusion: `resources/ai-memex/graph.json`** (only `stats.generatedAt` build timestamp varies; `KnowledgeGraph.fs:527`). |
 | 1.1 double-builds | `[ ]` | — | — | |
 | 1.2 dead flag | `[ ]` | — | — | |
 | 1.3 ContentTypes module | `[ ]` | — | — | |

@@ -363,6 +363,11 @@ FodyWeavers.xsd
 
 # Remove _public folder
 _public/
+# Architecture-refactor-2026 verification harness (local artifacts only)
+_public_baseline/
+_public_second/
+before.csv
+after.csv
 backups/
 
 # Playlist creator output directory
