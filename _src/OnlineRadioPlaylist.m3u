@@ -66,7 +66,10 @@ http://stream.radioparadise.com/beyond-128
 http://radio.plaza.one/mp3
 
 #EXTINF: 0, Chicago Public Radio Project (CHIRP)
-https://chirpradio.org/chirpradio.m3u
+https://peridot.streamguys1.com:5185/live.m3u
 
 #EXTINF: 0, WDCB Jazz (Chicago)
 https://wdcb-ice.streamguys1.com/mobile-AAC
+
+#EXTINF: 0, Ibiza Global Radio
+https://listenssl.ibizaglobalradio.com:8024/ibizaglobalradio.mp3
