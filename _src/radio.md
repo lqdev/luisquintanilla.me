@@ -26,8 +26,9 @@ Quick links to some of my favorite radio stations:
 | [Radio Paradise: Beyond...](https://radioparadise.com/listen/channels/beyond) | [Stream Link](http://stream.radioparadise.com/beyond-128) | 
 | [The Lot Radio](https://www.thelotradio.com/) | N/A |
 | [Nightwave Plaza](https://plaza.one/) | [Stream Link](http://radio.plaza.one/mp3) |
-| [Chicago Independent Radio Project](https://chirpradio.org/) | [Stream Link](https://chirpradio.org/chirpradio.m3u) | 
+| [Chicago Independent Radio Project](https://chirpradio.org/) | [Stream Link](https://peridot.streamguys1.com:5185/live.m3u) | 
 | [WDCB Jazz Chicago](https://wdcb.org/) | [Stream Link](https://wdcb-ice.streamguys1.com/mobile-AAC) |
+| [Ibiza Global Radio](https://www.ibizaglobalradio.com/) | [Stream Link](https://listenssl.ibizaglobalradio.com:8024/ibizaglobalradio.mp3) | 
 
 Alternatively, use the [online radio playlist](/radio/OnlineRadioPlaylist.m3u) I've created to get access to all of them on [MPV](https://mpv.io/) or [VLC](https://www.videolan.org/vlc/). 
 
