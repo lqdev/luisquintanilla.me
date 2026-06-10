@@ -3,7 +3,7 @@
 **Project**: Streamlining the F#/.NET static site generator
 **Priority**: High | **Complexity**: Large (phased into S/M/L independently-shippable units)
 **Source assessment**: [`docs/architecture-assessment-2026.md`](../../docs/architecture-assessment-2026.md) — findings F1–F11, bets B1–B4
-**Status**: `[>]` Active — Phase 0 complete; Phase 1 ready to start
+**Status**: `[>]` Active — Phase 0 complete; Phase 1 in progress (1.1 done; 1.2 next)
 **Last updated**: 2026-06-10
 
 > Read the assessment first. This plan is the *how/when*; the assessment is the *what/why*
@@ -138,25 +138,29 @@ baseline build 14.9s / generate ~110s / 13,486 files recorded; umbrella branch p
 
 Independent steps; each is its own squash commit. Order chosen so each speeds up the next.
 
-### 1.1 Kill the double-builds (F3)
-- In `Program.fs`: the five duplicate side-effect calls — `let _ = buildPresentations()` (~206),
-  `buildSnippets()` (~215), `buildWikis()` (~219), `buildBooks()` (~230), `buildMedia()` (~234) —
-  are redundant re-runs of calls whose `FeedData` was already captured at lines 86–101.
-  **Delete the five duplicate calls** (the first calls already perform all page writes).
-- Bind the repeated `convertXToUnified` invocations once:
-  ```fsharp
-  let postsUnified = GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData
-  let notesUnified = ...
-  let responsesUnified = ...
-  ```
-  and reference these in `timelineFeedItems` / `allUnifiedItems` / `blogArchiveFeedItems`
-  (currently each list re-invokes the converters — posts convert 3×).
-- Evaluate `loadPosts`/`feedNotes`/`responses` at the top of `main` (43–65) — `buildPosts`/
-  `buildNotes`/`buildResponses` re-parse the same files. Where the early arrays are only used
-  for tag pages, derive them from the captured `FeedData` instead (`feedData |> List.map
-  (fun i -> i.Content) |> List.toArray`). Keep this sub-step separate; verify independently.
-- **Verify**: byte-identical output; record new build time (expect measurable improvement).
-- **Rollback**: revert one commit.
+### 1.1 Kill the double-builds (F3) — ✅ DONE (2026-06-10)
+
+**Result: byte-identical output verified** (modulo the documented `graph.json` exclusion).
+Implemented in three independently hash-verified sub-steps:
+- **B (converters bound once)**: all 12 `convertXToUnified` results bound to `let` values
+  immediately after the `FeedData` captures; `timelineFeedItems` / `allUnifiedItems` /
+  `blogArchiveFeedItems` now reference the bindings (posts/notes/responses no longer convert 3×).
+- **A (duplicate builder calls)**: deleted **4 of 5** `let _ = buildX()` duplicates
+  (`buildPresentations`, `buildSnippets`, `buildWikis`, `buildMedia`).
+  **`buildBooks()` duplicate RETAINED** — discovered entanglement: `StarRating` SVG gradient IDs
+  come from a **global mutable counter** (`BlockRenderers.fs:85`, also `CustomBlocks.fs:454`), so
+  the shipped review pages' IDs depend on this being the last render pass. Removing it is
+  cosmetic-only (IDs shift `halfGrad16`→`halfGrad5`) but breaks byte-identity. Eliminating this
+  last duplicate requires making the gradient IDs page-local/deterministic first — **logged for
+  the StarRating cleanup (relates to F7/B2)**. An explanatory comment marks the retained call.
+- **C (re-parse dedup)**: removed the top-of-`main` `loadPosts`/`responses` re-parses and the
+  **dead** `feedNotes` binding (referenced only in a commented-out line); `posts`/`responses` for
+  tag pages now derive from `postsFeedData`/`responsesFeedData`. Confirms `loadPosts` and the
+  `PostProcessor` path produce equivalent tag-page output.
+- **Timing**: build ~15s (unchanged — compilation). Generation wall-clock is I/O- and
+  entity-extraction-dominated and noisy across single samples (~110–135s); the F3 win is the
+  removal of redundant work, not a guaranteed wall-clock drop.
+- **Verify**: ✅ byte-identical. **Rollback**: one revert of the 1.1 squash commit.
 
 ### 1.2 Remove the dead tag-system flag (F4)
 - `Program.fs:240–262`: delete `useUnifiedTagSystem`, keep the unified branch unconditionally,
@@ -443,7 +447,7 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 | Phase | Status | Started | Completed | Notes |
 |---|---|---|---|---|
 | 0 — Safety harness | `[x]` done | 2026-06-10 | 2026-06-10 | Umbrella branch created off main (after FSharp.Core lock bump 10.1.300→10.1.301 committed). Baseline: build 14.9s / generate ~110s / 13,486 files. Warnings: 1×FS1104, 0×FS0025. **Contract exclusion: `resources/ai-memex/graph.json`** (only `stats.generatedAt` build timestamp varies; `KnowledgeGraph.fs:527`). |
-| 1.1 double-builds | `[ ]` | — | — | |
+| 1.1 double-builds | `[x]` done | 2026-06-10 | 2026-06-10 | Byte-identical. Converters bound 1×; 4/5 duplicate builder calls removed; posts/responses tag arrays derived from FeedData; dead `feedNotes` removed. **buildBooks() duplicate retained** — StarRating gradient IDs use a global counter (BlockRenderers.fs:85), removal is cosmetic-only but breaks byte-identity; needs deterministic page-local IDs first (→F7/B2). |
 | 1.2 dead flag | `[ ]` | — | — | |
 | 1.3 ContentTypes module | `[ ]` | — | — | |
 | 1.4 skip diagnostics | `[ ]` | — | — | interim; superseded by 2.8 |

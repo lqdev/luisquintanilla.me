@@ -40,29 +40,10 @@ let main argv =
     // copyImages "images" "images"
 
     // Data
-    let posts = loadPosts(srcDir) 
-    let feedNotes = 
-        // Load notes using new AST-based system
-        let noteFiles = 
-            Directory.GetFiles(Path.Join(srcDir, "feed"))
-            |> Array.filter (fun f -> f.EndsWith(".md"))
-            |> Array.toList
-        let processor = GenericBuilder.NoteProcessor.create()
-        let feedData = GenericBuilder.buildContentWithFeeds processor noteFiles
-        feedData |> List.map (fun item -> item.Content) |> List.toArray
     let liveStreams = loadLiveStreams (srcDir)
     let feedLinks = loadFeedLinks (srcDir)
     let books = loadBooks (srcDir)
     let albums = loadAlbums (srcDir)
-    let responses = 
-        // Load responses using AST-based system
-        let responseFiles = 
-            Directory.GetFiles(Path.Join(srcDir, "responses"))
-            |> Array.filter (fun f -> f.EndsWith(".md"))
-            |> Array.toList
-        let processor = GenericBuilder.ResponseProcessor.create()
-        let feedData = GenericBuilder.buildContentWithFeeds processor responseFiles
-        feedData |> List.map (fun item -> item.Content) |> List.toArray
 
     // Build static pages
     // buildHomePage posts feedNotes responses  // Traditional homepage - replaced by timeline
@@ -100,38 +81,53 @@ let main argv =
     let albumCollectionsFeedData = buildAlbumCollections()
     let playlistCollectionsFeedData = buildPlaylistCollections()
     
+    // Convert each content type to unified feed items exactly once (F3: these pure
+    // projections were previously re-run up to 3x across the feed lists below).
+    let postsUnified = GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData
+    let notesUnified = GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData
+    let responsesUnified = GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData
+    let bookmarksUnified = GenericBuilder.UnifiedFeeds.convertBookmarkResponsesToUnified bookmarksFeedData
+    let snippetsUnified = GenericBuilder.UnifiedFeeds.convertSnippetsToUnified snippetsFeedData
+    let wikisUnified = GenericBuilder.UnifiedFeeds.convertWikisToUnified wikisFeedData
+    let aiMemexUnified = GenericBuilder.UnifiedFeeds.convertAiMemexToUnified aiMemexFeedData
+    let presentationsUnified = GenericBuilder.UnifiedFeeds.convertPresentationsToUnified presentationsFeedData
+    let booksUnified = GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData
+    let albumsUnified = GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData
+    let albumCollectionsUnified = GenericBuilder.UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData
+    let playlistCollectionsUnified = GenericBuilder.UnifiedFeeds.convertPlaylistCollectionsToUnified playlistCollectionsFeedData
+    
     // Convert to unified feed items - Timeline feed (main content)
     let timelineFeedItems = [
-        ("posts", GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData)
-        ("notes", GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData)
-        ("responses", GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData)
-        ("bookmarks", GenericBuilder.UnifiedFeeds.convertBookmarkResponsesToUnified bookmarksFeedData)
-        ("reviews", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
-        ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
-        ("album-collection", GenericBuilder.UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData)
+        ("posts", postsUnified)
+        ("notes", notesUnified)
+        ("responses", responsesUnified)
+        ("bookmarks", bookmarksUnified)
+        ("reviews", booksUnified)
+        ("media", albumsUnified)
+        ("album-collection", albumCollectionsUnified)
     ]
     
     // All unified items for RSS feeds and search (includes resources content)
     let allUnifiedItems = [
-        ("posts", GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData)
-        ("notes", GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData)
-        ("responses", GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData)
-        ("bookmarks", GenericBuilder.UnifiedFeeds.convertBookmarkResponsesToUnified bookmarksFeedData)
-        ("snippets", GenericBuilder.UnifiedFeeds.convertSnippetsToUnified snippetsFeedData)
-        ("wiki", GenericBuilder.UnifiedFeeds.convertWikisToUnified wikisFeedData)
-        ("ai-memex", GenericBuilder.UnifiedFeeds.convertAiMemexToUnified aiMemexFeedData)
-        ("presentations", GenericBuilder.UnifiedFeeds.convertPresentationsToUnified presentationsFeedData)
-        ("reviews", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
-        ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
-        ("album-collection", GenericBuilder.UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData)
-        ("playlist-collection", GenericBuilder.UnifiedFeeds.convertPlaylistCollectionsToUnified playlistCollectionsFeedData)
+        ("posts", postsUnified)
+        ("notes", notesUnified)
+        ("responses", responsesUnified)
+        ("bookmarks", bookmarksUnified)
+        ("snippets", snippetsUnified)
+        ("wiki", wikisUnified)
+        ("ai-memex", aiMemexUnified)
+        ("presentations", presentationsUnified)
+        ("reviews", booksUnified)
+        ("media", albumsUnified)
+        ("album-collection", albumCollectionsUnified)
+        ("playlist-collection", playlistCollectionsUnified)
     ]
 
     // Blog Archive / JSON feed scope (posts + notes + responses)
     let blogArchiveFeedItems = [
-        ("posts", GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData)
-        ("notes", GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData)
-        ("responses", GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData)
+        ("posts", postsUnified)
+        ("notes", notesUnified)
+        ("responses", responsesUnified)
     ]
     
     // Prepare unified content for text-only site and search indexes
@@ -202,22 +198,10 @@ let main argv =
     // Build event page
     buildEventPage ()
 
-    // Build presentation pages
-    let _ = buildPresentations()
-    ()
-
     // Build livestream pages
     buildLiveStreamPage ()
     buildLiveStreamsPage liveStreams
     buildLiveStreamPages liveStreams
-
-    // Build Snippet Pages
-    let _ = buildSnippets()
-    ()
-
-    // Build Wiki Pages  
-    let _ = buildWikis()
-    ()
 
     // Build AI Memex Pages (with cross-content connections)
     buildAiMemexPages aiMemexFeedData allUnifiedContent
@@ -226,16 +210,21 @@ let main argv =
     let readLaterLinks = loadReadLaterLinks()
     buildReadLaterPage readLaterLinks
 
-    // Build Books
+    // Build Books — NOTE (F3): this second buildBooks() run is intentionally retained.
+    // The StarRating SVG gradient IDs (BlockRenderers.fs:85) come from a *global* mutable
+    // counter, so the shipped review pages' gradient IDs depend on this being the last render
+    // pass. Removing it is cosmetic-only but breaks byte-identical output. Eliminating this
+    // last duplicate requires making those gradient IDs page-local/deterministic first
+    // (logged for the StarRating cleanup / F7-B2).
     let _ = buildBooks()
-    ()
-
-    // Build Media
-    let _ = buildMedia()
     ()
 
     // Build tags page - Use correct notes data source
     let notesFromFeedData = notesFeedData |> List.map (fun item -> item.Content) |> List.toArray
+    // F3: derive posts/responses for tag pages from already-parsed FeedData instead of
+    // re-parsing the same files (loadPosts / a second ResponseProcessor pass) at the top of main.
+    let posts = postsFeedData |> List.map (fun item -> item.Content) |> List.toArray
+    let responses = responsesFeedData |> List.map (fun item -> item.Content) |> List.toArray
     
     // Feature flag for unified tag system testing
     let useUnifiedTagSystem = true // Change to true to test enhanced unified system

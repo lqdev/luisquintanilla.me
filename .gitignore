@@ -368,6 +368,7 @@ _public_baseline/
 _public_second/
 before.csv
 after.csv
+verify-baseline.ps1
 backups/
 
 # Playlist creator output directory
