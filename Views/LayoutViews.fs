@@ -16,6 +16,24 @@ open HtmlHelpers
 let private sanitizeTagForUrl (tag: string) =
     tag.Replace("#", "sharp").Replace("/", "-").Replace(" ", "-").Replace("\"", "")
 
+/// F7 (cheap slice): single copy of the timeline card-HTML cleanup that was duplicated
+/// across the initial-render and progressive-loading paths (4 copies). Takes already-rendered
+/// HTML and strips the article wrapper and the title h1 / h2-link (already shown by the card
+/// header), then neutralizes <script> tags. Callers convert markdown → HTML first (some use
+/// createSimplifiedReviewContent for reviews). The full structural fix (a RenderedContent
+/// product so consumers compose instead of regex-strip) is deferred to B2.
+let private cleanCardHtml (html: string) =
+    // Remove all article opening tags with any class
+    let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(html, @"<article[^>]*>", "")
+    // Remove all article closing tags
+    let removeArticleEnd = removeArticleStart.Replace("</article>", "")
+    // Remove duplicate h1/h2 titles (common source of duplication)
+    let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+    // Remove h2 title links from CardHtml (fixes duplicate headings while preserving content h2s)
+    let removeTitleLinks = System.Text.RegularExpressions.Regex.Replace(removeTitles, @"<h2[^>]*><a[^>]*>.*?</a></h2>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
+    // Additional cleaning to prevent HTML parsing issues
+    removeTitleLinks.Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
+
 /// Extract item type from review content for badge display
 let private extractReviewItemType (content: string) =
     try
@@ -328,19 +346,7 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                                     rawText item.Content
                                 else
                                     // Convert markdown content to HTML and clean it for other content types
-                                    let cleanedContent = 
-                                        let content = convertMdToHtml item.Content  // Convert markdown to HTML first
-                                        // Remove all article opening tags with any class
-                                        let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
-                                        // Remove all article closing tags
-                                        let removeArticleEnd = removeArticleStart.Replace("</article>", "")
-                                        // Remove duplicate h1/h2 titles (common source of duplication)
-                                        let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                                        // Remove h2 title links from CardHtml (fixes duplicate headings while preserving content h2s)
-                                        let removeTitleLinks = System.Text.RegularExpressions.Regex.Replace(removeTitles, @"<h2[^>]*><a[^>]*>.*?</a></h2>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                                        // Additional cleaning to prevent HTML parsing issues
-                                        let safeCleaned = removeTitleLinks.Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
-                                        safeCleaned
+                                    let cleanedContent = cleanCardHtml (convertMdToHtml item.Content)
                                     rawText cleanedContent
                             ]
                         ]
@@ -387,16 +393,7 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                                 let properPermalink = getProperPermalink item.ContentType fileName
                                 
                                 // Clean content safely for JSON without truncation - full content display
-                                let safeContent = 
-                                    let content = convertMdToHtml item.Content  // Convert markdown to HTML first
-                                    // Clean content similar to initial loading to ensure consistency
-                                    let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
-                                    let removeArticleEnd = removeArticleStart.Replace("</article>", "")
-                                    let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                                    // Remove h2 title links from CardHtml (fixes duplicate headings while preserving content h2s)
-                                    let removeTitleLinks = System.Text.RegularExpressions.Regex.Replace(removeTitles, @"<h2[^>]*><a[^>]*>.*?</a></h2>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                                    let safeCleaned = removeTitleLinks.Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
-                                    escapeJson safeCleaned
+                                let safeContent = escapeJson (cleanCardHtml (convertMdToHtml item.Content))
                                 
                                 sprintf """{"title":"%s","contentType":"%s","date":"%s","url":"%s","content":"%s","tags":[%s]}"""
                                     (escapeJson item.Title)
@@ -546,19 +543,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                                     // Reviews are already simplified in the unified feed processing, display as-is
                                     rawText item.Content
                                     // Convert markdown content to HTML and clean it for other content types
-                                    let cleanedContent = 
-                                        let content = convertMdToHtml item.Content  // Convert markdown to HTML first
-                                        // Remove all article opening tags with any class
-                                        let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
-                                        // Remove all article closing tags
-                                        let removeArticleEnd = removeArticleStart.Replace("</article>", "")
-                                        // Remove duplicate h1/h2 titles (common source of duplication)
-                                        let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                                        // Remove h2 title links from CardHtml (fixes duplicate headings while preserving content h2s)
-                                        let removeTitleLinks = System.Text.RegularExpressions.Regex.Replace(removeTitles, @"<h2[^>]*><a[^>]*>.*?</a></h2>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                                        // Additional cleaning to prevent HTML parsing issues
-                                        let safeCleaned = removeTitleLinks.Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
-                                        safeCleaned
+                                    let cleanedContent = cleanCardHtml (convertMdToHtml item.Content)
                                     rawText cleanedContent
                             ]
                         ]
@@ -614,15 +599,8 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                                 else
                                     // For other content types, use the standard processing
                                     convertMdToHtml item.Content  // Convert markdown to HTML first
-                            
                             // Clean content similar to initial loading to ensure consistency
-                            let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(content, @"<article[^>]*>", "")
-                            let removeArticleEnd = removeArticleStart.Replace("</article>", "")
-                            let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                            // Remove h2 title links from CardHtml (fixes duplicate headings while preserving content h2s)
-                            let removeTitleLinks = System.Text.RegularExpressions.Regex.Replace(removeTitles, @"<h2[^>]*><a[^>]*>.*?</a></h2>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                            let safeCleaned = removeTitleLinks.Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
-                            escapeJson safeCleaned
+                            escapeJson (cleanCardHtml content)
                         
                         sprintf """{"title":"%s","contentType":"%s","date":"%s","url":"%s","content":"%s","tags":[%s]}"""
                             (escapeJson item.Title)

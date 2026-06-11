@@ -3,7 +3,7 @@
 **Project**: Streamlining the F#/.NET static site generator
 **Priority**: High | **Complexity**: Large (phased into S/M/L independently-shippable units)
 **Source assessment**: [`docs/architecture-assessment-2026.md`](../../docs/architecture-assessment-2026.md) — findings F1–F11, bets B1–B4
-**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical; 2.2 generic `toUnified` complete — 8 converters collapsed, byte-identical; 2.3 view dedupe complete — post-cards/response-bodies/layouts consolidated, byte-identical)
+**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical; 2.2 generic `toUnified` complete — 8 converters collapsed, byte-identical; 2.3 view dedupe complete — post-cards/response-bodies/layouts consolidated, byte-identical; 2.4 F7 slice (a) complete — `cleanCardHtml` unifies 4 copies, byte-identical; slice (b) STJ swap deferred to B2)
 **Last updated**: 2026-06-10
 
 > Read the assessment first. This plan is the *how/when*; the assessment is the *what/why*
@@ -331,14 +331,30 @@ in place (nosnippet permits indexing, suppresses snippets) — markup unchanged 
 byte-identity; any actual robots change is a separate content decision, not this refactor.
 
 ### 2.4 F7 cheap slices (full fix is B2)
-- Extract the duplicated regex cleaning block (`LayoutViews.fs:331–343` and `402–411`) into a
-  single named function `cleanCardHtml` with a comment pointing at B2. One copy of the fragility
-  instead of two.
-- Replace the `sprintf`-built progressive-loading JSON + hand `escapeJson`
-  (`LayoutViews.fs:372–415`) with a small record + `System.Text.Json.JsonSerializer.Serialize`.
-  **Watch**: property order/whitespace may differ → if byte-parity breaks but JSON is
-  semantically identical, this single step downgrades to "reviewed diff" (document in commit).
+- Extract the duplicated regex cleaning block into a single named function `cleanCardHtml` with
+  a comment pointing at B2. One copy of the fragility instead of N.
+- ~~Replace the `sprintf`-built progressive-loading JSON + hand `escapeJson` with
+  `System.Text.Json`.~~ **Moved to B2** (decision 2026-06-11) — see below.
 - **Rollback**: per-slice revert.
+
+**STATUS: slice (a) COMPLETE (byte-identical, 0 diffs); slice (b) DEFERRED to B2.**
+Slice (a): `cleanCardHtml (html: string)` (private, `LayoutViews.fs`) now backs **all four**
+timeline cleaning copies — two initial-render paths (one is a reviews-only `then`-branch with
+a latent missing `else`, preserved as-is) and two progressive-loading JSON paths (one with a
+`createSimplifiedReviewContent` branch). Helper takes already-rendered HTML so callers keep
+their own `convertMdToHtml`/`createSimplifiedReviewContent` choice — that's what let it unify
+all four. Byte-identical by construction (same ops, extracted).
+
+Slice (b) — **decision: defer the STJ swap into B2, not a standalone step.** Rationale:
+(1) STJ cannot be byte-identical here (it escapes `<>&`/control chars differently from the
+hand `escapeJson`), so it would be the *only* byte-breaking step in an otherwise spotless
+byte-identical Phase 2 — high contract cost, low marginal value once (a) removed the
+duplication. (2) B2 introduces `RenderedContent` and rewrites this JSON-assembly path anyway;
+the JSON will be serialized from a typed record there, making STJ the natural serializer and
+folding its non-byte-identical diff into B2's single ADR + parity-harness review. (3) The
+current escaper is correct and localized — safe to carry until the structural rewrite subsumes
+it. (Agreement: hand-rolled JSON escaping is a smell; STJ is the right end state, just timed
+with B2.)
 
 ### 2.5 Module splits (F9 — after 2.1/2.2 shrink things)
 - Lift `UnifiedFeeds` out of `GenericBuilder.fs` → `UnifiedFeeds.fs` (insert in `.fsproj` after
@@ -426,6 +442,11 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 - **Risk**: highest in plan — touches every processor + the timeline. Flag-gated
   (`RENDER_V2`), full-site reviewed diff (expect *intentional* diffs where regex was lossy).
   **ADR-0007** regardless of outcome. **Exit**: flag off; old path untouched until cutover.
+- **Folds in 2.4 slice (b)** (deferred 2026-06-11): replace the progressive-loading
+  `sprintf`-JSON + hand `escapeJson` (`LayoutViews.fs`) with `System.Text.Json` serializing the
+  typed `RenderedContent`-derived record. Its non-byte-identical JSON diff (STJ escapes
+  `<>&`/control chars differently) is reviewed inside this step's diff rather than as a lone
+  byte-breaking step in byte-identical Phase 2.
 
 ### B3 — Search-contract generation (Fable compiler pilot: **NO-GO**, decided 2026-06-10)
 - **Decision (author, 2026-06-10): the Fable-the-compiler pilot is NO-GO.** Cons in assessment
@@ -481,7 +502,7 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 | 2.1 build driver | `[x]` | byte-identical (0 diffs) | 11/11 builders migrated | ADR-0006 |
 | 2.2 generic toUnified | `[x]` | 2026-06-10 | 2026-06-10 | Byte-identical (0 diffs vs umbrella tip). Added `UnifiedExtras`/`defaultExtras`/`arrayTags`/`splitTags` + generic `toUnified`; collapsed 8 trivial converters (posts, notes, snippets, wikis, ai-memex, presentations, album/playlist-collections). Kept responses family / books / albums / bookmarks explicit (divergence = documentation). |
 | 2.3 view dedupe | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs). `postCardView (feedKey, withWebmention)` + 4 wrappers; `responseBodyView (style)` + `cleanResponseContent` folds 4 bodies (rsvp kept explicit); `layoutCore (includeReveal)` + `defaultLayout`/`defaultIndexedLayout` wrappers. SEO nosnippet comment corrected, markup unchanged. |
-| 2.4 F7 slices | `[ ]` | — | — | |
+| 2.4 F7 slices | `[x]` slice (a); (b)→B2 | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs). `cleanCardHtml (html)` unifies all 4 timeline cleaning copies. Slice (b) STJ swap deferred into B2 (can't be byte-identical; B2 rewrites the path anyway). |
 | 2.5 module splits | `[ ]` | — | — | |
 | 2.6 nav data | `[ ]` | — | — | |
 | 2.7 ContentType DU | `[ ]` | — | — | after 2.1/2.2 |
