@@ -73,14 +73,24 @@ type ContentProcessor<'T> = {
 
 /// Build content and generate feed data in a single pass
 let buildContentWithFeeds<'T> (processor: ContentProcessor<'T>) (filePaths: string list) : FeedData<'T> list =
-    filePaths
-    |> List.choose (fun filePath ->
-        match processor.Parse filePath with
-        | Some content ->
-            let cardHtml = processor.RenderCard content
-            let rssXml = processor.RenderRss content
-            Some { Content = content; CardHtml = cardHtml; RssXml = rssXml }
-        | None -> None)
+    // F8 interim diagnostics: a parse returning None means the file silently
+    // vanishes from the site. Surface it loudly (stdout only — _public is
+    // unaffected). The skipped path conveys the content type. The full railway
+    // (typed error transport with fix hints) is plan step 2.8.
+    let results =
+        filePaths
+        |> List.map (fun filePath ->
+            match processor.Parse filePath with
+            | Some content ->
+                let cardHtml = processor.RenderCard content
+                let rssXml = processor.RenderRss content
+                filePath, Some { Content = content; CardHtml = cardHtml; RssXml = rssXml }
+            | None -> filePath, None)
+    let skipped = results |> List.choose (fun (filePath, result) -> if Option.isNone result then Some filePath else None)
+    if not (List.isEmpty skipped) then
+        printfn "⚠ %d file(s) skipped (parse returned None — content omitted from the site):" skipped.Length
+        skipped |> List.iter (printfn "    - %s")
+    results |> List.choose snd
 
 /// Content processors for existing domain types
 

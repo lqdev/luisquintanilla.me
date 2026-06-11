@@ -3,7 +3,7 @@
 **Project**: Streamlining the F#/.NET static site generator
 **Priority**: High | **Complexity**: Large (phased into S/M/L independently-shippable units)
 **Source assessment**: [`docs/architecture-assessment-2026.md`](../../docs/architecture-assessment-2026.md) — findings F1–F11, bets B1–B4
-**Status**: `[>]` Active — Phase 0 complete; Phase 1 in progress (1.1, 1.2, 1.3, 1.5 done; 1.4 next)
+**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); Phase 2 next
 **Last updated**: 2026-06-10
 
 > Read the assessment first. This plan is the *how/when*; the assessment is the *what/why*
@@ -194,15 +194,16 @@ Implemented in three independently hash-verified sub-steps:
   closed-DU enforcement upgrade is 2.7; this just collects the scatter so that swap is mechanical.
 - **Verify**: ✅ byte-identical (0 diffs). Build clean (1 expected FS1104). **Rollback**: one revert.
 
-### 1.4 Build summary for skipped files (F8 — interim diagnostics only)
-- In `GenericBuilder.buildContentWithFeeds` (or per-processor `Parse` wrappers): count files
-  whose parse returned `None`; collect `(file, reason)` where the existing `ParseError` is
-  available. At end of each `buildX`, print: `⚠ {n} {type} file(s) skipped:` + lines.
-  Zero change when nothing fails (likely the common case → no output noise).
-- **Interim measure** — the full railway (typed accumulation, fix-hint error blocks, `--strict`)
-  is step 2.8; don't gold-plate here.
-- **Verify**: `_public/` byte-identical (stdout is not part of the contract).
-- **Rollback**: one revert.
+### 1.4 Build summary for skipped files (F8 — interim diagnostics only) — ✅ DONE (2026-06-10)
+- Added skip reporting in `GenericBuilder.buildContentWithFeeds` — the universal choke point all
+  12 content builders (+ Loaders.fs) route through, so one edit covers every type with zero
+  call-site churn (no label param → scripts/tests untouched). Partition parsed vs skipped; if any
+  parse returned `None`, print `⚠ N file(s) skipped (… content omitted …):` + each skipped path
+  (the path conveys the content type). Restructured `List.choose` → `List.map` + `List.choose snd`;
+  the returned `FeedData` list is element- and order-identical.
+- **Verify**: ✅ byte-identical (0 diffs). Full regenerate emitted **zero** skip lines (every `.md`
+  parses today) → no output noise in the common case and no hidden intentional-`None` cases.
+- **Interim only** — typed accumulation + fix-hint blocks + `--strict` is step 2.8. **Rollback**: one revert.
 
 ### 1.5 Compiler strictness: incomplete matches become build errors — ✅ DONE (2026-06-10)
 - `PersonalSite.fsproj`: added `<WarningsAsErrors>FS0025</WarningsAsErrors>`.
@@ -437,7 +438,7 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 | 1.1 double-builds | `[x]` done | 2026-06-10 | 2026-06-10 | Byte-identical. Converters bound 1×; 4/5 duplicate builder calls removed; posts/responses tag arrays derived from FeedData; dead `feedNotes` removed. **buildBooks() duplicate retained** — StarRating gradient IDs use a global counter (BlockRenderers.fs:85), removal is cosmetic-only but breaks byte-identity; needs deterministic page-local IDs first (→F7/B2). |
 | 1.2 dead flag | `[x]` done | 2026-06-10 | 2026-06-10 | Byte-identical. Removed `useUnifiedTagSystem` flag + unreachable `else`; deleted legacy `buildTagsPages` + 5 exclusively-used helpers. Net −150 lines. |
 | 1.3 ContentTypes module | `[x]` done | 2026-06-10 | 2026-06-10 | Byte-identical. New `ContentTypes.fs` literals authority; mechanical swap across GenericBuilder converters/feeds, LayoutViews permalink, Program.fs feed lists. Left `"wikis"` plural key + Builder.fs path literals for 2.7/B1. |
-| 1.4 skip diagnostics | `[ ]` | — | — | interim; superseded by 2.8 |
+| 1.4 skip diagnostics | `[x]` done | 2026-06-10 | 2026-06-10 | Byte-identical. Skip reporter in `buildContentWithFeeds` choke point; stdout-only, 0 skips today. interim; superseded by 2.8 |
 | 1.5 FS0025 → error | `[x]` done | 2026-06-10 | 2026-06-10 | Added `<WarningsAsErrors>FS0025</WarningsAsErrors>`. Build clean, 0 FS0025. Byte-identical by construction (severity-only flag, zero hits). |
 | 2.1 build driver | `[ ]` | — | — | ADR-0006 |
 | 2.2 generic toUnified | `[ ]` | — | — | |
