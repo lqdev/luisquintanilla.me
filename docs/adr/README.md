@@ -15,6 +15,7 @@ An ADR is a short document capturing an important architectural decision along w
 | [0003](0003-static-site-architecture.md) | Static Site Generation Architecture | Accepted |
 | [0004](0004-progressive-loading.md) | Progressive Loading for Large Content Sets | Accepted |
 | [0005](0005-desert-theme-design-system.md) | Desert Theme Design System | Accepted |
+| [0006](0006-generic-build-driver.md) | Generic Build Driver for Content-Type Page Generation | Accepted |
 
 ## Creating a New ADR
 

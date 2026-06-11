@@ -3,7 +3,7 @@
 **Project**: Streamlining the F#/.NET static site generator
 **Priority**: High | **Complexity**: Large (phased into S/M/L independently-shippable units)
 **Source assessment**: [`docs/architecture-assessment-2026.md`](../../docs/architecture-assessment-2026.md) — findings F1–F11, bets B1–B4
-**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); Phase 2 next
+**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical)
 **Last updated**: 2026-06-10
 
 > Read the assessment first. This plan is the *how/when*; the assessment is the *what/why*
@@ -273,6 +273,23 @@ deliberately mechanical.
 - **ADR-0006** written when pilot 2 proves the design (use `docs/adr/template.md`).
 - **Rollback**: per-type revert; driver itself reverts cleanly if pilots fail.
 
+**STATUS: COMPLETE (byte-identical, 0 diffs each step).** Shipped `BuildDriver.fs`
+(`ContentTypeBuild<'T>` + `buildContentType`), inserted after `Views/Generator.fs`
+(not after `GenericBuilder.fs` — the driver calls `ViewGenerator.generate`, so it must
+compile after Generator.fs and before Builder.fs). **All 11/11 builders migrated**
+(exceeded the 9/11 target; STOP rule never triggered). Deviations from the sketch above,
+all deliberate:
+- Index fields grouped into an **optional** `Index: IndexConfig<'T> option` (View/Title/Sort)
+  so `buildBookmarks` can declare `Index = None` (its landing page comes from responses).
+  This absorbed the only "no-index" case without a new top-level field.
+- Driver guards the source dir with `Directory.Exists` → `[]` (preserves albums/playlists safety).
+- `media`/`album`/`playlist` use an AST-rendered `ItemView` by closing over a pre-bound
+  `processor` (`processor.Render content |> convertMdToHtml`).
+- **Return type kept as `GenericBuilder.FeedData<'T> list`** (NOT the `* ParseError list`
+  tuple sketched above). The railway/Result-aware upgrade is deferred to **2.8**, which will
+  change the driver's return shape in one place without re-touching the 11 call sites.
+- ADR-0006 written and indexed.
+
 ### 2.2 Generic `toUnified` (F2)
 - Add `UnifiedExtras` defaults + generic projection (assessment F2 sketch). Collapse the ~10
   trivial converters; keep explicit small projections for responses / bookmarks / books / albums
@@ -440,7 +457,7 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 | 1.3 ContentTypes module | `[x]` done | 2026-06-10 | 2026-06-10 | Byte-identical. New `ContentTypes.fs` literals authority; mechanical swap across GenericBuilder converters/feeds, LayoutViews permalink, Program.fs feed lists. Left `"wikis"` plural key + Builder.fs path literals for 2.7/B1. |
 | 1.4 skip diagnostics | `[x]` done | 2026-06-10 | 2026-06-10 | Byte-identical. Skip reporter in `buildContentWithFeeds` choke point; stdout-only, 0 skips today. interim; superseded by 2.8 |
 | 1.5 FS0025 → error | `[x]` done | 2026-06-10 | 2026-06-10 | Added `<WarningsAsErrors>FS0025</WarningsAsErrors>`. Build clean, 0 FS0025. Byte-identical by construction (severity-only flag, zero hits). |
-| 2.1 build driver | `[ ]` | — | — | ADR-0006 |
+| 2.1 build driver | `[x]` | byte-identical (0 diffs) | 11/11 builders migrated | ADR-0006 |
 | 2.2 generic toUnified | `[ ]` | — | — | |
 | 2.3 view dedupe | `[ ]` | — | — | |
 | 2.4 F7 slices | `[ ]` | — | — | |
