@@ -1929,31 +1929,57 @@ module UnifiedFeeds =
         printfn "✅ Tag RSS feeds generated for %d tags" allTags.Length
     
     /// Convert FeedData to UnifiedFeedItem - helper functions for each content type
+
+    /// Optional extras on a UnifiedFeedItem beyond the common core. Most content
+    /// types carry none (`defaultExtras`); the genuinely divergent types
+    /// (responses, books, albums, bookmarks) supply their own.
+    type private UnifiedExtras = {
+        ResponseType: string option
+        TargetUrl: string option
+        UpdatedDate: string option
+        RsvpStatus: string option
+        ReviewData: ReviewMetadata option
+        MediaData: MediaAPData option
+    }
+
+    let private defaultExtras =
+        { ResponseType = None; TargetUrl = None; UpdatedDate = None
+          RsvpStatus = None; ReviewData = None; MediaData = None }
+
+    let private arrayTags (tags: string array) = if isNull tags then [||] else tags
+
+    let private splitTags (tags: string) =
+        if String.IsNullOrEmpty(tags) then [||]
+        else tags.Split(',') |> Array.map (fun s -> s.Trim())
+
+    /// Generic projection shared by all content types (assessment F2). The skeleton
+    /// — choose over RssXml, extract the `link`, build the record — lives here once;
+    /// callers supply the content-type identity, the core fields, and any extras.
+    let private toUnified
+        (contentType: string)
+        (getCore: FeedData<'T> -> string * string * string * string array) // title, content, date, tags
+        (getExtras: FeedData<'T> -> UnifiedExtras)
+        (feedDataList: FeedData<'T> list) : UnifiedFeedItem list =
+        feedDataList |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let (title, content, date, tags) = getCore feedData
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let extras = getExtras feedData
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = contentType; Tags = tags; RssXml = rssXml; ResponseType = extras.ResponseType; TargetUrl = extras.TargetUrl; UpdatedDate = extras.UpdatedDate; RsvpStatus = extras.RsvpStatus; ReviewData = extras.ReviewData; MediaData = extras.MediaData }
+            | None -> None)
+
     let convertPostsToUnified (feedDataList: FeedData<Post> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                // Use full content instead of CardHtml for complete content display
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Full raw content - will be processed by timeline view
-                let date = feedData.Content.Metadata.Date
-                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Posts; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
-    
+        toUnified ContentTypes.Posts
+            (fun (fd: FeedData<Post>) -> fd.Content.Metadata.Title, fd.Content.Content, fd.Content.Metadata.Date, arrayTags fd.Content.Metadata.Tags)
+            (fun _ -> defaultExtras)
+            feedDataList
+
     let convertNotesToUnified (feedDataList: FeedData<Post> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                // Use full content instead of CardHtml for complete content display
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Full raw content - will be processed by timeline view
-                let date = feedData.Content.Metadata.Date
-                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Notes; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
+        toUnified ContentTypes.Notes
+            (fun (fd: FeedData<Post>) -> fd.Content.Metadata.Title, fd.Content.Content, fd.Content.Metadata.Date, arrayTags fd.Content.Metadata.Tags)
+            (fun _ -> defaultExtras)
+            feedDataList
     
     let convertResponsesToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =
         feedDataList 
@@ -2001,60 +2027,28 @@ module UnifiedFeeds =
             | None -> None)
     
     let convertSnippetsToUnified (feedDataList: FeedData<Snippet> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Use full content instead of CardHtml
-                let date = feedData.Content.Metadata.CreatedDate
-                let tags = 
-                    if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
-                    else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Snippets; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
-    
+        toUnified ContentTypes.Snippets
+            (fun (fd: FeedData<Snippet>) -> fd.Content.Metadata.Title, fd.Content.Content, fd.Content.Metadata.CreatedDate, splitTags fd.Content.Metadata.Tags)
+            (fun _ -> defaultExtras)
+            feedDataList
+
     let convertWikisToUnified (feedDataList: FeedData<Wiki> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Use full content instead of CardHtml
-                let date = feedData.Content.Metadata.LastUpdatedDate
-                let tags = 
-                    if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
-                    else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Wiki; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
-    
+        toUnified ContentTypes.Wiki
+            (fun (fd: FeedData<Wiki>) -> fd.Content.Metadata.Title, fd.Content.Content, fd.Content.Metadata.LastUpdatedDate, splitTags fd.Content.Metadata.Tags)
+            (fun _ -> defaultExtras)
+            feedDataList
+
     let convertAiMemexToUnified (feedDataList: FeedData<AiMemex> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content
-                let date = feedData.Content.Metadata.PublishedDate
-                let tags = 
-                    if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
-                    else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.AiMemex; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
-    
+        toUnified ContentTypes.AiMemex
+            (fun (fd: FeedData<AiMemex>) -> fd.Content.Metadata.Title, fd.Content.Content, fd.Content.Metadata.PublishedDate, splitTags fd.Content.Metadata.Tags)
+            (fun _ -> defaultExtras)
+            feedDataList
+
     let convertPresentationsToUnified (feedDataList: FeedData<Presentation> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Use full content instead of CardHtml
-                let date = feedData.Content.Metadata.Date
-                let tags = 
-                    if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
-                    else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Presentations; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
+        toUnified ContentTypes.Presentations
+            (fun (fd: FeedData<Presentation>) -> fd.Content.Metadata.Title, fd.Content.Content, fd.Content.Metadata.Date, splitTags fd.Content.Metadata.Tags)
+            (fun _ -> defaultExtras)
+            feedDataList
     
     let convertBooksToUnified (feedDataList: FeedData<Book> list) : UnifiedFeedItem list =
         feedDataList |> List.choose (fun feedData ->
@@ -2087,28 +2081,16 @@ module UnifiedFeeds =
             | None -> None)
     
     let convertAlbumCollectionsToUnified (feedDataList: FeedData<AlbumCollection> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Use full content
-                let date = feedData.Content.Metadata.Date
-                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.AlbumCollection; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
-    
+        toUnified ContentTypes.AlbumCollection
+            (fun (fd: FeedData<AlbumCollection>) -> fd.Content.Metadata.Title, fd.Content.Content, fd.Content.Metadata.Date, arrayTags fd.Content.Metadata.Tags)
+            (fun _ -> defaultExtras)
+            feedDataList
+
     let convertPlaylistCollectionsToUnified (feedDataList: FeedData<PlaylistCollection> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Use full content
-                let date = feedData.Content.Metadata.Date
-                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.PlaylistCollection; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
+        toUnified ContentTypes.PlaylistCollection
+            (fun (fd: FeedData<PlaylistCollection>) -> fd.Content.Metadata.Title, fd.Content.Content, fd.Content.Metadata.Date, arrayTags fd.Content.Metadata.Tags)
+            (fun _ -> defaultExtras)
+            feedDataList
     
     let convertBookmarksToUnified (feedDataList: FeedData<Bookmark> list) : UnifiedFeedItem list =
         feedDataList |> List.choose (fun feedData ->

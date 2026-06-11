@@ -3,7 +3,7 @@
 **Project**: Streamlining the F#/.NET static site generator
 **Priority**: High | **Complexity**: Large (phased into S/M/L independently-shippable units)
 **Source assessment**: [`docs/architecture-assessment-2026.md`](../../docs/architecture-assessment-2026.md) — findings F1–F11, bets B1–B4
-**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical)
+**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical; 2.2 generic `toUnified` complete — 8 converters collapsed, byte-identical)
 **Last updated**: 2026-06-10
 
 > Read the assessment first. This plan is the *how/when*; the assessment is the *what/why*
@@ -296,6 +296,16 @@ all deliberate:
   (their divergence is the documentation).
 - Hash-verify per converter swapped. **Rollback**: per-converter revert.
 
+**STATUS: COMPLETE (byte-identical, 0 diffs vs umbrella tip).** Added private
+`UnifiedExtras` record + `defaultExtras`, `arrayTags`/`splitTags` helpers, and a generic
+`toUnified (contentType) (getCore: FeedData<'T> -> string*string*string*string[]) (getExtras: FeedData<'T> -> UnifiedExtras) feedDataList`
+in `GenericBuilder.fs`. Collapsed **8** trivial converters (posts, notes, snippets, wikis,
+ai-memex, presentations, album-collections, playlist-collections). Kept **6** explicit
+(responses, responseBookmarks, bookmarkResponses, books, albums, bookmarks) — genuine
+divergence (dynamic ContentType from response subtype + filters; CardHtml + ReviewData;
+MediaData; TargetUrl from BookmarkOf). F# gotcha: annotate the `getCore` lambda param
+`(fun (fd: FeedData<X>) -> …)` so `'T` pins before the lambda body is checked.
+
 ### 2.3 View dedupe (F6)
 - `postCardView` parameterized by `(feedKey: string, withWebmention: bool)` replaces
   `feedPostView`/`notePostView`/`individualFeedPostView`/`individualNotePostView`
@@ -458,7 +468,7 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 | 1.4 skip diagnostics | `[x]` done | 2026-06-10 | 2026-06-10 | Byte-identical. Skip reporter in `buildContentWithFeeds` choke point; stdout-only, 0 skips today. interim; superseded by 2.8 |
 | 1.5 FS0025 → error | `[x]` done | 2026-06-10 | 2026-06-10 | Added `<WarningsAsErrors>FS0025</WarningsAsErrors>`. Build clean, 0 FS0025. Byte-identical by construction (severity-only flag, zero hits). |
 | 2.1 build driver | `[x]` | byte-identical (0 diffs) | 11/11 builders migrated | ADR-0006 |
-| 2.2 generic toUnified | `[ ]` | — | — | |
+| 2.2 generic toUnified | `[x]` | 2026-06-10 | 2026-06-10 | Byte-identical (0 diffs vs umbrella tip). Added `UnifiedExtras`/`defaultExtras`/`arrayTags`/`splitTags` + generic `toUnified`; collapsed 8 trivial converters (posts, notes, snippets, wikis, ai-memex, presentations, album/playlist-collections). Kept responses family / books / albums / bookmarks explicit (divergence = documentation). |
 | 2.3 view dedupe | `[ ]` | — | — | |
 | 2.4 F7 slices | `[ ]` | — | — | |
 | 2.5 module splits | `[ ]` | — | — | |
