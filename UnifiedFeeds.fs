@@ -140,15 +140,21 @@ module UnifiedFeeds
     let private jsonFeedItemLimit = 20
 
     let private toJsonFeedContent (item: UnifiedFeedItem) =
-        match item.ContentType with
-        | ContentTypes.Posts
-        | ContentTypes.Notes
-        | ContentTypes.Snippets
-        | ContentTypes.Wiki
-        | ContentTypes.Presentations
-        | ContentTypes.Reviews
-        | ContentTypes.AiMemex -> MarkdownService.convertMdToHtml item.Content
-        | _ -> item.Content
+        match ContentTypes.parse item.ContentType with
+        | Some ContentTypes.ContentType.Posts
+        | Some ContentTypes.ContentType.Notes
+        | Some ContentTypes.ContentType.Snippets
+        | Some ContentTypes.ContentType.Wiki
+        | Some ContentTypes.ContentType.Presentations
+        | Some ContentTypes.ContentType.Reviews
+        | Some ContentTypes.ContentType.AiMemex -> MarkdownService.convertMdToHtml item.Content
+        | Some ContentTypes.ContentType.Responses
+        | Some ContentTypes.ContentType.Bookmarks
+        | Some ContentTypes.ContentType.Media
+        | Some ContentTypes.ContentType.Streams
+        | Some ContentTypes.ContentType.AlbumCollection
+        | Some ContentTypes.ContentType.PlaylistCollection
+        | None -> item.Content
 
     let private toIso8601Date (value: string) =
         if String.IsNullOrWhiteSpace(value) then DateTimeOffset.UtcNow.ToString("o")

@@ -3,7 +3,7 @@
 **Project**: Streamlining the F#/.NET static site generator
 **Priority**: High | **Complexity**: Large (phased into S/M/L independently-shippable units)
 **Source assessment**: [`docs/architecture-assessment-2026.md`](../../docs/architecture-assessment-2026.md) — findings F1–F11, bets B1–B4
-**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical; 2.2 generic `toUnified` complete — 8 converters collapsed, byte-identical; 2.3 view dedupe complete — post-cards/response-bodies/layouts consolidated, byte-identical; 2.4 F7 slice (a) complete — `cleanCardHtml` unifies 4 copies, byte-identical; slice (b) STJ swap deferred to B2; 2.5 module splits complete — `UnifiedFeeds.fs` + `Views/TimelineViews.fs` extracted, byte-identical; 2.6 nav data complete — `Views/Navigation.fs` single source for desktop nav + 3 dead orphans removed, byte-identical)
+**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical; 2.2 generic `toUnified` complete — 8 converters collapsed, byte-identical; 2.3 view dedupe complete — post-cards/response-bodies/layouts consolidated, byte-identical; 2.4 F7 slice (a) complete — `cleanCardHtml` unifies 4 copies, byte-identical; slice (b) STJ swap deferred to B2; 2.5 module splits complete — `UnifiedFeeds.fs` + `Views/TimelineViews.fs` extracted, byte-identical; 2.6 nav data complete — `Views/Navigation.fs` single source for desktop nav + 3 dead orphans removed, byte-identical; 2.7 ContentType DU complete — closed `[<RequireQualifiedAccess>] type ContentType` + `parse`/`serialize`, 2 dispatch sites exhaustive/no-wildcard, response subtypes kept on `ResponseType`, byte-identical)
 **Last updated**: 2026-06-10
 
 > Read the assessment first. This plan is the *how/when*; the assessment is the *what/why*
@@ -430,6 +430,29 @@ change): `defaultNavBar` (167 lines of stale Bootstrap navbar in `Layouts.fs`, n
 - Sequenced **after 2.1/2.2** so the DU lands in consolidated code (1 driver + few projections),
   not 25 clones. **Verify**: byte-identical output. **Rollback**: revert to 1.3 literals.
 
+**STATUS: COMPLETE (byte-identical, 0 diffs over 13,510 files) — 2026-06-11.** Added
+`[<RequireQualifiedAccess>] type ContentType` (13 canonical cases) + the boundary pair
+`parse : string -> ContentType option` / `serialize : ContentType -> string` to `ContentTypes.fs`.
+The two *genuine dispatch* sites — the only places that match on content-type identity to make a
+decision — were made exhaustive over the DU with **no wildcard**: `urlPrefix : ContentType -> string`
+(AlbumCollection/PlaylistCollection now explicit, previously fell through the `/{other}/` fallback to
+the same value) and `toJsonFeedContent` (routed through `parse`, exhaustive over `ContentType option`
+incl. `None`). Callers passing a wire string use the new `urlPrefixForKey` shim, which preserves the
+old `| other -> sprintf "/%s/" other` fallback byte-for-byte (this is what keeps response subtypes
+and any unmapped value identical). Adding a `ContentType` case now fails to compile until both
+dispatch sites choose a behaviour — the F5 payoff.
+
+**Taxonomy decision (the choice F5 forces, made explicitly):** response subtypes
+(reply/reshare/star/rsvp/bookmark) are **`Domain.ResponseType` values, not `ContentType` cases** — the
+DU deliberately excludes them. They survive only as strings in the `UnifiedFeedItem.ContentType` wire
+field, where they are the timeline grouping key and are serialized into the timeline JSON (see memex
+`pattern-content-type-taxonomy-mismatch`). **Deliberately did NOT** force the closed DU onto the
+string-typed `UnifiedFeedItem.ContentType` wire field nor onto `ResponseDetails.ResponseType`: those
+are serialization boundaries that carry subtypes and flow to byte-visible output; converting them is a
+behavioural change (Phase 3 / B1 registry), not a byte-identical refactor. The ~90 equality/key sites
+that read or set the wire field stay string-based for the same reason — they are serialization, not
+dispatch, so they gain nothing from the DU. `serialize` is the forward path B1 will key off of.
+
 ### 2.8 Railway parse track — reconnect the severed rail (F8 full fix; §8.2–8.3; **requires 2.1**)
 - Context: `ASTParsing.fs` already returns `Result<ParsedDocument<'T>, ParseError>`
   (`ASTParsing.fs:144+`); the rail is severed at 12 `| Error _ -> None` sites
@@ -546,7 +569,7 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 | 2.4 F7 slices | `[x]` slice (a); (b)→B2 | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs). `cleanCardHtml (html)` unifies all 4 timeline cleaning copies. Slice (b) STJ swap deferred into B2 (can't be byte-identical; B2 rewrites the path anyway). |
 | 2.5 module splits | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs each move). (1) `UnifiedFeeds` lifted from `GenericBuilder.fs` (2123→1476) into top-level `UnifiedFeeds.fs` (.fsproj after GenericBuilder); 6 consumers + 3 `open` statements re-pointed. (2) Timeline cluster lifted from `LayoutViews.fs` (1402→767) into `Views/TimelineViews.fs` (compiled before LayoutViews); callers `Builder.fs`/`Partials.fs` re-pointed. Pure moves, no logic change. |
 | 2.6 nav data | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs). New `Views/Navigation.fs`: typed `NavSection`/`NavLink`/`NavMenuEntry` model + `desertNavigation` rendered from `desktopSections` data (adding a collection = one data row); `renderTextOnlyNav` from its own `textOnlyNav` list (kept independent — curated `/text/` surface, drift-immune via "All Content" aggregation). Deleted 3 dead orphans: `defaultNavBar` (167 lines, Layouts), `getNavigationStructure` (Collections), `NavigationStructure`/`NavigationSection` (Domain). Layouts.fs 660→361. Did NOT force-unify the two navs (false unification). Seam ready for B1. |
-| 2.7 ContentType DU | `[ ]` | — | — | after 2.1/2.2 |
+| 2.7 ContentType DU | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs over 13,510 files). Added `[<RequireQualifiedAccess>] type ContentType` (13 canonical cases) + boundary pair `parse`/`serialize` in `ContentTypes.fs`. The 2 genuine dispatch sites made exhaustive over the DU, no wildcard: `urlPrefix : ContentType -> string` (AlbumCollection/PlaylistCollection now explicit) + `urlPrefixForKey` string shim preserving the `/{other}/` fallback byte-for-byte; `toJsonFeedContent` routed through `parse`, exhaustive over `ContentType option`. **Taxonomy decision:** response subtypes are `Domain.ResponseType`, not `ContentType` — excluded from the DU, survive only as wire strings in `UnifiedFeedItem.ContentType` (timeline grouping key). ~90 equality/key sites stay string-based (serialization boundary, not dispatch). Adding a case now fails to compile until both dispatch sites handle it. |
 | 2.8 railway parse track | `[ ]` | — | — | after 2.1; F8 full fix |
 | B1 registry | `[ ]` go/no-go pending | — | — | |
 | B2 structured render | `[ ]` go/no-go pending | — | — | ADR-0007 |

@@ -389,7 +389,7 @@ let timelineHomeViewStratified (initialItems: UnifiedFeeds.UnifiedFeedItem array
                             |> List.map (fun item ->
                                 let fileName = Path.GetFileNameWithoutExtension(item.Url)
                                 let getProperPermalink (contentType: string) (fileName: string) =
-                                    sprintf "%s%s/" (ContentTypes.urlPrefix contentType) fileName
+                                    sprintf "%s%s/" (ContentTypes.urlPrefixForKey contentType) fileName
                                 let properPermalink = getProperPermalink item.ContentType fileName
                                 
                                 // Clean content safely for JSON without truncation - full content display
@@ -587,7 +587,7 @@ let timelineHomeView (items: UnifiedFeeds.UnifiedFeedItem array) =
                     |> Array.map (fun item ->
                         let fileName = Path.GetFileNameWithoutExtension(item.Url)
                         let getProperPermalink (contentType: string) (fileName: string) =
-                            sprintf "%s%s/" (ContentTypes.urlPrefix contentType) fileName
+                            sprintf "%s%s/" (ContentTypes.urlPrefixForKey contentType) fileName
                         let properPermalink = getProperPermalink item.ContentType fileName
                         
                         // Clean content safely for JSON without truncation - full content display

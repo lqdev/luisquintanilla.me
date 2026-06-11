@@ -1,16 +1,30 @@
 module ContentTypes
 
 // =============================================================================
-// Single authority for content-type identity (F5 — step 1 of 2).
+// Single authority for content-type identity (F5 — closed DU, step 2 of 2).
 //
-// DO NOT scatter bare content-type string literals across the codebase — extend
-// this module instead. Honest scope: these are [<Literal>] strings, so this is
-// DOCUMENTATION, not enforcement. F# literals erase to `string`; the compiler
-// still can't catch a tag passed where a content type belongs. The enforcement
-// upgrade is the closed `ContentType` DU in Phase 2.7; this module's job is to
-// collect the scatter into one place so that swap is mechanical.
+// Two layers live here, on purpose:
+//   1. The `[<Literal>]` strings below — the WIRE form of a content type. They
+//      are carried verbatim in `UnifiedFeedItem.ContentType`, used as feed/tag
+//      keys, emitted into timeline JSON, and matched for URL routing. They MUST
+//      remain byte-for-byte what the converters/feeds/URLs already emit.
+//   2. The closed `ContentType` DU — the IDENTITY form. `parse`/`serialize` are
+//      the single boundary pair between the two. Genuine dispatch (URL routing,
+//      JSON-feed body decision) matches the DU exhaustively, so adding a case
+//      forces the compiler to enumerate every site that must handle it.
 //
-// Values must remain byte-for-byte what the converters/feeds/URLs already emit.
+// Taxonomy decision (the choice F5 forces): response SUBTYPES
+// (reply/reshare/star/rsvp/bookmark) are NOT content types — they belong to
+// `Domain.ResponseType`. The DU deliberately excludes them; they survive only as
+// strings in the `UnifiedFeedItem.ContentType` wire field, where they act as the
+// timeline grouping key (see AI Memex `pattern-content-type-taxonomy-mismatch`).
+// That is why `parse` returns `None` for them and the URL shim keeps a fallback.
+//
+// Why ~90 equality/key sites stay string-based: they read or set the wire field
+// (serialization), not dispatch. The DU's enforcement value lands at the two
+// match sites; converting the per-type setters/keys would be churn with no
+// exhaustiveness gain. `serialize` is the forward path the B1 content-type
+// registry will key off of.
 // =============================================================================
 
 /// Canonical content-type identifiers, as carried in `UnifiedFeedItem.ContentType`,
@@ -63,20 +77,88 @@ let ResponseSubtypes = set [ Reply; Reshare; Star; Rsvp ]
 let normalizeResponseSubtype (contentType: string) =
     if ResponseSubtypes.Contains contentType then Responses else contentType
 
-/// Permalink directory prefix per content type, lifted verbatim from the
-/// hand-maintained match in `Views/LayoutViews.fs`. The fallback mirrors the
-/// previous `| _ -> $"/{contentType}/"` behavior for unmapped types.
-let urlPrefix (contentType: string) =
-    match contentType with
-    | Posts -> "/posts/"
-    | Notes -> "/notes/"
-    | Responses -> "/responses/"
-    | Bookmarks -> "/bookmarks/"
-    | Snippets -> "/resources/snippets/"
-    | Wiki -> "/resources/wiki/"
-    | Presentations -> "/resources/presentations/"
-    | Reviews -> "/reviews/"
-    | Streams -> "/streams/"
-    | Media -> "/media/"
-    | AiMemex -> "/resources/ai-memex/"
-    | other -> sprintf "/%s/" other
+/// Closed set of canonical content-type identities. Response subtypes are
+/// intentionally absent (they are `Domain.ResponseType` values — see header).
+[<RequireQualifiedAccess>]
+type ContentType =
+    | Posts
+    | Notes
+    | Responses
+    | Bookmarks
+    | Snippets
+    | Wiki
+    | Presentations
+    | Reviews
+    | Media
+    | Streams
+    | AiMemex
+    | AlbumCollection
+    | PlaylistCollection
+
+/// Identity -> wire string. Exhaustive over the DU (no wildcard): adding a case
+/// will not compile until its wire string is chosen here. This is the forward
+/// half of the boundary pair the B1 content-type registry keys off of.
+let serialize (ct: ContentType) =
+    match ct with
+    | ContentType.Posts -> Posts
+    | ContentType.Notes -> Notes
+    | ContentType.Responses -> Responses
+    | ContentType.Bookmarks -> Bookmarks
+    | ContentType.Snippets -> Snippets
+    | ContentType.Wiki -> Wiki
+    | ContentType.Presentations -> Presentations
+    | ContentType.Reviews -> Reviews
+    | ContentType.Media -> Media
+    | ContentType.Streams -> Streams
+    | ContentType.AiMemex -> AiMemex
+    | ContentType.AlbumCollection -> AlbumCollection
+    | ContentType.PlaylistCollection -> PlaylistCollection
+
+/// Wire string -> identity. The intake boundary: returns `None` for response
+/// subtypes and any value outside the closed set. Matching on an arbitrary
+/// string, so a final wildcard is correct here (the no-wildcard rule applies to
+/// matches ON the DU, not to string intake).
+let parse (s: string) : ContentType option =
+    match s with
+    | Posts -> Some ContentType.Posts
+    | Notes -> Some ContentType.Notes
+    | Responses -> Some ContentType.Responses
+    | Bookmarks -> Some ContentType.Bookmarks
+    | Snippets -> Some ContentType.Snippets
+    | Wiki -> Some ContentType.Wiki
+    | Presentations -> Some ContentType.Presentations
+    | Reviews -> Some ContentType.Reviews
+    | Media -> Some ContentType.Media
+    | Streams -> Some ContentType.Streams
+    | AiMemex -> Some ContentType.AiMemex
+    | AlbumCollection -> Some ContentType.AlbumCollection
+    | PlaylistCollection -> Some ContentType.PlaylistCollection
+    | _ -> None
+
+/// Permalink directory prefix per canonical content type. Exhaustive over the
+/// closed DU (no wildcard) — adding a `ContentType` case will not compile until
+/// a prefix is chosen here. AlbumCollection/PlaylistCollection are now explicit
+/// (previously they fell through the `/{other}/` fallback to the same value).
+let urlPrefix (ct: ContentType) =
+    match ct with
+    | ContentType.Posts -> "/posts/"
+    | ContentType.Notes -> "/notes/"
+    | ContentType.Responses -> "/responses/"
+    | ContentType.Bookmarks -> "/bookmarks/"
+    | ContentType.Snippets -> "/resources/snippets/"
+    | ContentType.Wiki -> "/resources/wiki/"
+    | ContentType.Presentations -> "/resources/presentations/"
+    | ContentType.Reviews -> "/reviews/"
+    | ContentType.Streams -> "/streams/"
+    | ContentType.Media -> "/media/"
+    | ContentType.AiMemex -> "/resources/ai-memex/"
+    | ContentType.AlbumCollection -> "/album-collection/"
+    | ContentType.PlaylistCollection -> "/playlist-collection/"
+
+/// String-boundary shim for URL prefixing. Parses the wire string; for response
+/// subtypes / unmapped values it preserves the previous
+/// `| other -> sprintf "/%s/" other` behavior byte-for-byte.
+let urlPrefixForKey (contentType: string) =
+    match parse contentType with
+    | Some ct -> urlPrefix ct
+    | None -> sprintf "/%s/" contentType
