@@ -41,6 +41,7 @@
     <Compile Include="Views\TravelViews.fs" />
     <Compile Include="Views\TimelineViews.fs" />
     <Compile Include="Views\LayoutViews.fs" />
+    <Compile Include="Views\Navigation.fs" />
     <Compile Include="Views\Layouts.fs" />
     <Compile Include="Views\TextOnlyViews.fs" />
     <Compile Include="Views\Partials.fs" />

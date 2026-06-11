@@ -470,44 +470,6 @@ module CollectionConfig =
         // For now, use default collections
         // TODO: Implement JSON-based configuration loading
         getDefaultCollections ()
-    
-    // Get navigation structure based on collections
-    let getNavigationStructure (collections: Collection array) : NavigationStructure =
-        let contentTypes = 
-            collections 
-            |> Array.filter (fun c -> match c.CollectionType with MediumFocused _ -> true | _ -> false)
-            |> Array.toList
-        
-        let topicGuides = 
-            collections 
-            |> Array.filter (fun c -> match c.CollectionType with TopicFocused _ -> true | _ -> false)
-            |> Array.toList
-        
-        let otherCollections = 
-            collections 
-            |> Array.filter (fun c -> match c.CollectionType with Other _ | Travel _ -> true | _ -> false)
-            |> Array.toList
-        
-        {
-            ContentTypes = {
-                Title = "Content Types"
-                Description = "Browse content by format - blogs, podcasts, videos, and forums"
-                Collections = contentTypes
-                Icon = Some "grid"
-            }
-            TopicGuides = {
-                Title = "Topic Guides"
-                Description = "Curated resources organized by subject matter"
-                Collections = topicGuides
-                Icon = Some "book"
-            }
-            OtherCollections = {
-                Title = "Other"
-                Description = "Additional browsing and discovery options"
-                Collections = otherCollections
-                Icon = Some "more"
-            }
-        }
 
 // Builder Integration Functions
 module CollectionBuilder =

@@ -3,7 +3,7 @@
 **Project**: Streamlining the F#/.NET static site generator
 **Priority**: High | **Complexity**: Large (phased into S/M/L independently-shippable units)
 **Source assessment**: [`docs/architecture-assessment-2026.md`](../../docs/architecture-assessment-2026.md) — findings F1–F11, bets B1–B4
-**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical; 2.2 generic `toUnified` complete — 8 converters collapsed, byte-identical; 2.3 view dedupe complete — post-cards/response-bodies/layouts consolidated, byte-identical; 2.4 F7 slice (a) complete — `cleanCardHtml` unifies 4 copies, byte-identical; slice (b) STJ swap deferred to B2; 2.5 module splits complete — `UnifiedFeeds.fs` + `Views/TimelineViews.fs` extracted, byte-identical)
+**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical; 2.2 generic `toUnified` complete — 8 converters collapsed, byte-identical; 2.3 view dedupe complete — post-cards/response-bodies/layouts consolidated, byte-identical; 2.4 F7 slice (a) complete — `cleanCardHtml` unifies 4 copies, byte-identical; slice (b) STJ swap deferred to B2; 2.5 module splits complete — `UnifiedFeeds.fs` + `Views/TimelineViews.fs` extracted, byte-identical; 2.6 nav data complete — `Views/Navigation.fs` single source for desktop nav + 3 dead orphans removed, byte-identical)
 **Last updated**: 2026-06-10
 
 > Read the assessment first. This plan is the *how/when*; the assessment is the *what/why*
@@ -387,6 +387,29 @@ same-field record (here `UnifiedFeedItem` → `TravelCollectionItem`) until the 
   navs render from it; markup stays per-renderer.
 - Hash-verify. **Rollback**: one revert.
 
+**STATUS: COMPLETE (byte-identical, 0 diffs) — 2026-06-11.** New `Views/Navigation.fs` is the
+single source of truth for the desktop ("desert") nav: a typed model (`NavSection` = `LinkGroup`
+| `DropdownGroup`; `NavMenuEntry` = `MenuLink` | `MenuDivider`; `NavLink` carries an optional
+icon node) with the link/section data in `desktopSections`, rendered by `desertNavigation` to
+byte-identical markup. Adding a collection to the menu is now a one-line data edit; this value is
+the seam bet B1 (content-type registry) will feed.
+
+**Deliberately did NOT force-unify the two navs** (the assessment's literal "one data value both
+render from"). Deep finding: the text-only nav is a *curated, structurally drift-immune* surface
+over the `/text/` URL space — it routes through an "All Content" aggregation rather than listing
+collections individually, so it does not drift when collections are added. The two are different
+link sets over different URL spaces, not the same links with different markup; coupling them would
+require permanent "show-in-X" flags serving a unification neither surface wants. So the text-only
+nav is modelled as its own `textOnlyNav` list + `renderTextOnlyNav` (co-located in the same module
+for discoverability, but independent). This honours URL permanence and the repo's text-only
+curation doctrine.
+
+The real "multiple sources of truth" hazard was **three dead orphans**, all removed (zero output
+change): `defaultNavBar` (167 lines of stale Bootstrap navbar in `Layouts.fs`, never referenced),
+`getNavigationStructure` (`Collections.fs`, never called), and the `NavigationStructure`/
+`NavigationSection` types in `Domain.fs` (only the dead function used them — the assessment's
+"unused-in-nav type proving the intent existed"). `Layouts.fs` 660 → 361 lines.
+
 ### 2.7 Closed `ContentType` DU (F5 — step 2 of 2; the enforcement upgrade)
 - Replace the 1.3 literals module's *consumers* with a real closed DU
   (`[<RequireQualifiedAccess>] type ContentType = Posts | Notes | …`) + one boundary pair
@@ -522,7 +545,7 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 | 2.3 view dedupe | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs). `postCardView (feedKey, withWebmention)` + 4 wrappers; `responseBodyView (style)` + `cleanResponseContent` folds 4 bodies (rsvp kept explicit); `layoutCore (includeReveal)` + `defaultLayout`/`defaultIndexedLayout` wrappers. SEO nosnippet comment corrected, markup unchanged. |
 | 2.4 F7 slices | `[x]` slice (a); (b)→B2 | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs). `cleanCardHtml (html)` unifies all 4 timeline cleaning copies. Slice (b) STJ swap deferred into B2 (can't be byte-identical; B2 rewrites the path anyway). |
 | 2.5 module splits | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs each move). (1) `UnifiedFeeds` lifted from `GenericBuilder.fs` (2123→1476) into top-level `UnifiedFeeds.fs` (.fsproj after GenericBuilder); 6 consumers + 3 `open` statements re-pointed. (2) Timeline cluster lifted from `LayoutViews.fs` (1402→767) into `Views/TimelineViews.fs` (compiled before LayoutViews); callers `Builder.fs`/`Partials.fs` re-pointed. Pure moves, no logic change. |
-| 2.6 nav data | `[ ]` | — | — | |
+| 2.6 nav data | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs). New `Views/Navigation.fs`: typed `NavSection`/`NavLink`/`NavMenuEntry` model + `desertNavigation` rendered from `desktopSections` data (adding a collection = one data row); `renderTextOnlyNav` from its own `textOnlyNav` list (kept independent — curated `/text/` surface, drift-immune via "All Content" aggregation). Deleted 3 dead orphans: `defaultNavBar` (167 lines, Layouts), `getNavigationStructure` (Collections), `NavigationStructure`/`NavigationSection` (Domain). Layouts.fs 660→361. Did NOT force-unify the two navs (false unification). Seam ready for B1. |
 | 2.7 ContentType DU | `[ ]` | — | — | after 2.1/2.2 |
 | 2.8 railway parse track | `[ ]` | — | — | after 2.1; F8 full fix |
 | B1 registry | `[ ]` go/no-go pending | — | — | |
