@@ -20,97 +20,48 @@ let extractImageFromReviewHtml (content: string) : string option =
     with
     | _ -> None
 
-// Response body views for different IndieWeb response types
-let replyBodyView (post:Response) = 
-    let cleanContent = 
-        post.Content
-            .Replace("No description available", "")
-            .Replace("<p></p>", "")
-    
-    // Remove timestamp patterns like "2025-06-29 17:26"
-    let timestampPattern = System.Text.RegularExpressions.Regex(@"^\s*\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}\s*$", System.Text.RegularExpressions.RegexOptions.Multiline)
-    let cleanedContent = timestampPattern.Replace(cleanContent, "").Trim()
-    
-    div [ _class "card-body" ] [
-        p [] [
-            span [_class "bi bi-reply-fill"; _style "margin-right:5px;margin-left:5px;color:#3F5576;"] []
-            a [_class "u-in-reply-to"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
-        ]
-        div [_class "e-content"] [
-            rawText cleanedContent
-        ]
-    ]        
+// Response body views for different IndieWeb response types.
+// reply/reshare/star/bookmark are data (icon, color, microformat class) over one shape;
+// rsvp diverges (p-rsvp span + " to " + target=_blank) so it stays explicit.
+type ResponseStyle = { Icon: string; Color: string; MfClass: string }
 
-let reshareBodyView (post:Response) = 
-    let cleanContent = 
+// Shared cleanup: strip the "No description available" placeholder, empty paragraphs,
+// and the leading "YYYY-MM-DD HH:mm" timestamp line baked into rendered response content.
+let private cleanResponseContent (post: Response) =
+    let cleanContent =
         post.Content
             .Replace("No description available", "")
             .Replace("<p></p>", "")
-    
-    // Remove timestamp patterns like "2025-06-29 17:26"
     let timestampPattern = System.Text.RegularExpressions.Regex(@"^\s*\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}\s*$", System.Text.RegularExpressions.RegexOptions.Multiline)
-    let cleanedContent = timestampPattern.Replace(cleanContent, "").Trim()
-    
+    timestampPattern.Replace(cleanContent, "").Trim()
+
+let responseBodyView (style: ResponseStyle) (post: Response) =
+    let cleanedContent = cleanResponseContent post
     div [ _class "card-body" ] [
         p [] [
-            span [_class "bi bi-share-fill"; _style "margin-right:5px;margin-left:5px;color:#C0587E;"] []
-            a [_class "u-repost-of"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
+            span [_class style.Icon; _style $"margin-right:5px;margin-left:5px;color:{style.Color};"] []
+            a [_class style.MfClass; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
         ]
         div [_class "e-content"] [
             rawText cleanedContent
         ]
     ]
 
-let starBodyView (post:Response) = 
-    let cleanContent = 
-        post.Content
-            .Replace("No description available", "")
-            .Replace("<p></p>", "")
-    
-    // Remove timestamp patterns like "2025-06-29 17:26"
-    let timestampPattern = System.Text.RegularExpressions.Regex(@"^\s*\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}\s*$", System.Text.RegularExpressions.RegexOptions.Multiline)
-    let cleanedContent = timestampPattern.Replace(cleanContent, "").Trim()
-    
-    div [ _class "card-body" ] [
-        p [] [
-            span [_class "bi bi-star-fill"; _style "margin-right:5px;margin-left:5px;color:#ff7518;"] []
-            a [_class "u-like-of"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
-        ]
-        div [_class "e-content"] [
-            rawText cleanedContent
-        ]
-    ]
+let replyBodyView (post:Response) =
+    responseBodyView { Icon = "bi bi-reply-fill"; Color = "#3F5576"; MfClass = "u-in-reply-to" } post
 
-let bookmarkBodyView (post:Response) = 
-    let cleanContent = 
-        post.Content
-            .Replace("No description available", "")
-            .Replace("<p></p>", "")
-    
-    // Remove timestamp patterns like "2025-06-29 17:26"
-    let timestampPattern = System.Text.RegularExpressions.Regex(@"^\s*\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}\s*$", System.Text.RegularExpressions.RegexOptions.Multiline)
-    let cleanedContent = timestampPattern.Replace(cleanContent, "").Trim()
-    
-    div [ _class "card-body" ] [
-        p [] [
-            span [_class "bi bi-journal-bookmark-fill"; _style "margin-right:5px;margin-left:5px;color:#4a60b6;"] []
-            a [_class "u-bookmark-of"; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
-        ]
-        div [_class "e-content"] [
-            rawText cleanedContent
-        ]
-    ]
+let reshareBodyView (post:Response) =
+    responseBodyView { Icon = "bi bi-share-fill"; Color = "#C0587E"; MfClass = "u-repost-of" } post
+
+let starBodyView (post:Response) =
+    responseBodyView { Icon = "bi bi-star-fill"; Color = "#ff7518"; MfClass = "u-like-of" } post
+
+let bookmarkBodyView (post:Response) =
+    responseBodyView { Icon = "bi bi-journal-bookmark-fill"; Color = "#4a60b6"; MfClass = "u-bookmark-of" } post
 
 /// Phase 6A: RSVP response body view with IndieWeb p-rsvp microformat
 let rsvpBodyView (post:Response) = 
-    let cleanContent = 
-        post.Content
-            .Replace("No description available", "")
-            .Replace("<p></p>", "")
-    
-    // Remove timestamp patterns like "2025-06-29 17:26"
-    let timestampPattern = System.Text.RegularExpressions.Regex(@"^\s*\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}\s*$", System.Text.RegularExpressions.RegexOptions.Multiline)
-    let cleanedContent = timestampPattern.Replace(cleanContent, "").Trim()
+    let cleanedContent = cleanResponseContent post
     
     // Get RSVP status for display and microformat
     let rsvpStatus = 
@@ -141,59 +92,32 @@ let rsvpBodyView (post:Response) =
         ]
     ]
 
-// Individual content type views
-let feedPostView (post:Post) = 
+// Individual content type views.
+// One card shape parameterized by feed key (footer) and whether a standalone page's
+// webmention form is appended; the four named entry points below preserve call sites.
+let postCardView (feedKey: string) (withWebmention: bool) (post: Post) =
     let header = cardHeader post.Metadata.Date
-    let footer = cardFooter "posts" post.FileName post.Metadata.Tags
+    let footer = cardFooter feedKey post.FileName post.Metadata.Tags
 
     div [ _class "card rounded m-2 w-75 mx-auto" ] [
         header
         div [ _class "card-body" ] [
             rawText post.Content
+            if withWebmention then
+                hr []
+                webmentionForm
         ]
         footer
     ]
 
-let notePostView (post:Post) = 
-    let header = cardHeader post.Metadata.Date
-    let footer = cardFooter "notes" post.FileName post.Metadata.Tags
+let feedPostView (post:Post) = postCardView "posts" false post
 
-    div [ _class "card rounded m-2 w-75 mx-auto" ] [
-        header
-        div [ _class "card-body" ] [
-            rawText post.Content
-        ]
-        footer
-    ]
+let notePostView (post:Post) = postCardView "notes" false post
 
 // Individual post views with webmention forms for standalone pages
-let individualFeedPostView (post:Post) = 
-    let header = cardHeader post.Metadata.Date
-    let footer = cardFooter "posts" post.FileName post.Metadata.Tags
+let individualFeedPostView (post:Post) = postCardView "posts" true post
 
-    div [ _class "card rounded m-2 w-75 mx-auto" ] [
-        header
-        div [ _class "card-body" ] [
-            rawText post.Content
-            hr []
-            webmentionForm
-        ]
-        footer
-    ]
-
-let individualNotePostView (post:Post) = 
-    let header = cardHeader post.Metadata.Date
-    let footer = cardFooter "notes" post.FileName post.Metadata.Tags
-
-    div [ _class "card rounded m-2 w-75 mx-auto" ] [
-        header
-        div [ _class "card-body" ] [
-            rawText post.Content
-            hr []
-            webmentionForm
-        ]
-        footer
-    ]
+let individualNotePostView (post:Post) = postCardView "notes" true post
 
 let responsePostView (post: Response) = 
     let header = cardHeader post.Metadata.DatePublished

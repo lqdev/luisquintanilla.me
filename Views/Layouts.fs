@@ -411,69 +411,11 @@ module Layouts
             a [_rel "me"; _href "mailto:lqdev@outlook.com"] []            
         ]
 
-    let defaultLayout (pageTitle:string) (content:string) =
-        html [_lang "en"] [
-            head [] [
-                meta [_charset "UTF-8"]    
-                meta [_name "viewport"; _content "width=device-width, initial-scale=1, shrink-to-fit=no"]
-
-                // Stylesheets
-                for sheet in styleSheets do
-                    sheet
-
-                // Leaflet.js CSS loaded from CDN in travel-map.js
-
-                // Opengraph
-                let ogElements = buildOpenGraphElements pageTitle
-
-                for el in ogElements do
-                    el
-
-                // RSS Feeds
-                for feed in rssFeeds do
-                    feed
-
-                // Webmentions
-                webmentionLink
-
-                // Rolls
-                for roll in rollLinks do
-                    roll
-                
-                // PWA Manifest
-                link [_rel "manifest"; _href "/manifest.json"]
-                meta [_name "theme-color"; _content "#2d4a5c"]
-                meta [_name "apple-mobile-web-app-capable"; _content "yes"]
-                meta [_name "apple-mobile-web-app-status-bar-style"; _content "black-translucent"]
-                meta [_name "apple-mobile-web-app-title"; _content "Luis Quintanilla"]
-
-                // Robots
-                meta [_name "robots"; _content "nosnippet"]
-                title [] [Text pageTitle]
-            ]
-            body [] [
-                // Desert theme navigation
-                for navElement in desertNavigation do
-                    navElement
-
-                main [attr "role" "main"; _class "main-content"; _id "main-content"] [
-                    div [_class "content-wrapper"] [
-                        rawText content
-                    ]
-                ]
-
-                for scr in scripts do
-                    scr
-
-                // Travel map functionality (Leaflet.js loaded from CDN)
-                script [_src "/assets/js/travel-map.js"] []
-
-            ]
-            footerContent
-        ]
-
-    // Similar to default layout but allows indexing by search engines
-    let defaultIndexedLayout (pageTitle:string) (content:string) =
+    // Core site layout. `includeReveal` adds the Reveal.js presentation assets (CSS in head,
+    // scripts + init in body); everything else is shared. Both variants emit the same
+    // `<meta name="robots" content="nosnippet">` — nosnippet permits indexing but suppresses
+    // search-result snippets; the only real difference between the two is the Reveal.js bundle.
+    let private layoutCore (includeReveal: bool) (pageTitle:string) (content:string) =
         html [_lang "en"] [
             head [] [
                 meta [_charset "UTF-8"]    
@@ -484,10 +426,11 @@ module Layouts
                     sheet
 
                 // Reveal.js CSS for presentations
-                link [_rel "stylesheet"; _href "/lib/revealjs/dist/reveal.css"]
-                link [_rel "stylesheet"; _href "/lib/revealjs/dist/theme/black.css"]
-                link [_rel "stylesheet"; _href "/lib/revealjs/plugin/highlight/monokai.css"]
-                link [_rel "stylesheet"; _href "/assets/css/presentation-layouts.css"]
+                if includeReveal then
+                    link [_rel "stylesheet"; _href "/lib/revealjs/dist/reveal.css"]
+                    link [_rel "stylesheet"; _href "/lib/revealjs/dist/theme/black.css"]
+                    link [_rel "stylesheet"; _href "/lib/revealjs/plugin/highlight/monokai.css"]
+                    link [_rel "stylesheet"; _href "/assets/css/presentation-layouts.css"]
                 // Leaflet.js CSS loaded from CDN in travel-map.js
 
                 // Opengraph
@@ -533,12 +476,13 @@ module Layouts
                     scr
 
                 // Conditionally load Reveal.js for presentations
-                script [_src "/lib/revealjs/dist/reveal.js"] []
-                script [_src "/lib/revealjs/plugin/markdown/markdown.js"] []
-                script [_src "/lib/revealjs/plugin/highlight/highlight.js"] []
-                script [_src "/lib/revealjs/plugin/notes/notes.js"] []
-                script [_type "application/javascript"] [
-                    rawText """
+                if includeReveal then
+                    script [_src "/lib/revealjs/dist/reveal.js"] []
+                    script [_src "/lib/revealjs/plugin/markdown/markdown.js"] []
+                    script [_src "/lib/revealjs/plugin/highlight/highlight.js"] []
+                    script [_src "/lib/revealjs/plugin/notes/notes.js"] []
+                    script [_type "application/javascript"] [
+                        rawText """
                     // Initialize Reveal.js when a presentation container is found on the page
                     document.addEventListener('DOMContentLoaded', function() {
                         const presentationContainer = document.querySelector('.presentation-container');
@@ -550,7 +494,7 @@ module Layouts
                         }
                     });
                     """
-                ]
+                    ]
 
                 // Travel map functionality (Leaflet.js loaded from CDN)
                 script [_src "/assets/js/travel-map.js"] []
@@ -558,6 +502,15 @@ module Layouts
             ]
             footerContent
         ]
+
+    let defaultLayout (pageTitle:string) (content:string) =
+        layoutCore false pageTitle content
+
+    // Same as defaultLayout plus the Reveal.js presentation assets (see layoutCore note).
+    let defaultIndexedLayout (pageTitle:string) (content:string) =
+        layoutCore true pageTitle content
+
+
 
 
     // Text-Only Layout - Accessibility-First Universal Design

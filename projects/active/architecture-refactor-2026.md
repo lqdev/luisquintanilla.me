@@ -3,7 +3,7 @@
 **Project**: Streamlining the F#/.NET static site generator
 **Priority**: High | **Complexity**: Large (phased into S/M/L independently-shippable units)
 **Source assessment**: [`docs/architecture-assessment-2026.md`](../../docs/architecture-assessment-2026.md) — findings F1–F11, bets B1–B4
-**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical; 2.2 generic `toUnified` complete — 8 converters collapsed, byte-identical)
+**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical; 2.2 generic `toUnified` complete — 8 converters collapsed, byte-identical; 2.3 view dedupe complete — post-cards/response-bodies/layouts consolidated, byte-identical)
 **Last updated**: 2026-06-10
 
 > Read the assessment first. This plan is the *how/when*; the assessment is the *what/why*
@@ -319,6 +319,17 @@ MediaData; TargetUrl from BookmarkOf). F# gotcha: annotate the `getCore` lambda 
 - Collection-view consolidation only where genuinely identical (resist over-abstracting).
 - Hash-verify per view swapped. **Rollback**: per-view revert.
 
+**STATUS: COMPLETE (byte-identical, 0 diffs).** `postCardView (feedKey) (withWebmention)`
+replaces the four post/note bodies (4 named wrappers retained for call sites). Four
+response bodies (reply/reshare/star/bookmark) fold into `responseBodyView (style: ResponseStyle)`
++ a shared `cleanResponseContent` helper; **`rsvpBodyView` kept explicit** (p-rsvp span +
+" to " + `target=_blank` is genuine divergence — same "divergence is the documentation"
+rule as 2.2). `defaultLayout`/`defaultIndexedLayout` collapse to a private `layoutCore
+(includeReveal: bool)` with two named wrappers. **SEO note resolved**: both layouts always
+emitted `<meta robots=nosnippet>`; the misleading "allows indexing" comment was corrected
+in place (nosnippet permits indexing, suppresses snippets) — markup unchanged to preserve
+byte-identity; any actual robots change is a separate content decision, not this refactor.
+
 ### 2.4 F7 cheap slices (full fix is B2)
 - Extract the duplicated regex cleaning block (`LayoutViews.fs:331–343` and `402–411`) into a
   single named function `cleanCardHtml` with a comment pointing at B2. One copy of the fragility
@@ -469,7 +480,7 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 | 1.5 FS0025 → error | `[x]` done | 2026-06-10 | 2026-06-10 | Added `<WarningsAsErrors>FS0025</WarningsAsErrors>`. Build clean, 0 FS0025. Byte-identical by construction (severity-only flag, zero hits). |
 | 2.1 build driver | `[x]` | byte-identical (0 diffs) | 11/11 builders migrated | ADR-0006 |
 | 2.2 generic toUnified | `[x]` | 2026-06-10 | 2026-06-10 | Byte-identical (0 diffs vs umbrella tip). Added `UnifiedExtras`/`defaultExtras`/`arrayTags`/`splitTags` + generic `toUnified`; collapsed 8 trivial converters (posts, notes, snippets, wikis, ai-memex, presentations, album/playlist-collections). Kept responses family / books / albums / bookmarks explicit (divergence = documentation). |
-| 2.3 view dedupe | `[ ]` | — | — | |
+| 2.3 view dedupe | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs). `postCardView (feedKey, withWebmention)` + 4 wrappers; `responseBodyView (style)` + `cleanResponseContent` folds 4 bodies (rsvp kept explicit); `layoutCore (includeReveal)` + `defaultLayout`/`defaultIndexedLayout` wrappers. SEO nosnippet comment corrected, markup unchanged. |
 | 2.4 F7 slices | `[ ]` | — | — | |
 | 2.5 module splits | `[ ]` | — | — | |
 | 2.6 nav data | `[ ]` | — | — | |
