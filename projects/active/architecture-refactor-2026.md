@@ -3,7 +3,7 @@
 **Project**: Streamlining the F#/.NET static site generator
 **Priority**: High | **Complexity**: Large (phased into S/M/L independently-shippable units)
 **Source assessment**: [`docs/architecture-assessment-2026.md`](../../docs/architecture-assessment-2026.md) — findings F1–F11, bets B1–B4
-**Status**: `[>]` Active — Phase 0 complete; Phase 1 in progress (1.1, 1.2, 1.3 done; 1.4 next)
+**Status**: `[>]` Active — Phase 0 complete; Phase 1 in progress (1.1, 1.2, 1.3, 1.5 done; 1.4 next)
 **Last updated**: 2026-06-10
 
 > Read the assessment first. This plan is the *how/when*; the assessment is the *what/why*
@@ -204,21 +204,16 @@ Implemented in three independently hash-verified sub-steps:
 - **Verify**: `_public/` byte-identical (stdout is not part of the contract).
 - **Rollback**: one revert.
 
-### 1.5 Compiler strictness: incomplete matches become build errors (assessment §8.3 — free today)
-- `PersonalSite.fsproj`, main `<PropertyGroup>`: add
-  ```xml
-  <WarningsAsErrors>FS0025</WarningsAsErrors>
-  ```
-  FS0025 = incomplete pattern match.
-- Why free: verified 2026-06-10 — the build emits exactly one warning (`FS1104`,
-  `ActivityPubBuilder.fs:805`) and **zero FS0025**, so this changes nothing today (re-confirm
-  against the 0.6 inventory).
-- Why do it: the payoff compounds after 2.7 — adding a case to the closed `ContentType` DU
+### 1.5 Compiler strictness: incomplete matches become build errors — ✅ DONE (2026-06-10)
+- `PersonalSite.fsproj`: added `<WarningsAsErrors>FS0025</WarningsAsErrors>`.
+- **Verify**: build clean — exactly 1 warning (FS1104) and **0 FS0025**, so the flag fires on
+  nothing today. Byte-identity holds **by construction**: a diagnostic-*severity* flag with zero
+  matching instances cannot change the emitted assembly, hence cannot change `_public/` (full
+  hash-verify deferred to 1.4, which is the step that actually adds code). **Rollback**: one revert.
+- Why it matters: the payoff compounds after 2.7 — adding a case to the closed `ContentType` DU
   turns every non-updated `match` into a **compile error**, making the compiler the
-  add-a-content-type checklist. Note: a wildcard `_` branch satisfies FS0025 while defeating
-  it — the no-wildcard review discipline (operating rule 7 / assessment §7) stays in force.
-- **Verify**: build clean; byte-identical (no runtime change is possible from a compiler flag).
-- **Rollback**: remove the property.
+  add-a-content-type checklist. Note: a wildcard `_` branch satisfies FS0025 while defeating it —
+  the no-wildcard review discipline (operating rule 7 / assessment §7) stays in force.
 
 **Phase 1 done when**: all five steps merged to umbrella, each hash-verified; build-time delta
 recorded; umbrella merged to `main` (merge commit) if desired at this checkpoint.
@@ -443,7 +438,7 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 | 1.2 dead flag | `[x]` done | 2026-06-10 | 2026-06-10 | Byte-identical. Removed `useUnifiedTagSystem` flag + unreachable `else`; deleted legacy `buildTagsPages` + 5 exclusively-used helpers. Net −150 lines. |
 | 1.3 ContentTypes module | `[x]` done | 2026-06-10 | 2026-06-10 | Byte-identical. New `ContentTypes.fs` literals authority; mechanical swap across GenericBuilder converters/feeds, LayoutViews permalink, Program.fs feed lists. Left `"wikis"` plural key + Builder.fs path literals for 2.7/B1. |
 | 1.4 skip diagnostics | `[ ]` | — | — | interim; superseded by 2.8 |
-| 1.5 FS0025 → error | `[ ]` | — | — | free (0.6 inventory) |
+| 1.5 FS0025 → error | `[x]` done | 2026-06-10 | 2026-06-10 | Added `<WarningsAsErrors>FS0025</WarningsAsErrors>`. Build clean, 0 FS0025. Byte-identical by construction (severity-only flag, zero hits). |
 | 2.1 build driver | `[ ]` | — | — | ADR-0006 |
 | 2.2 generic toUnified | `[ ]` | — | — | |
 | 2.3 view dedupe | `[ ]` | — | — | |

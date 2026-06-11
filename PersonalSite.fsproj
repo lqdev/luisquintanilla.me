@@ -4,6 +4,11 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <!-- F# incomplete pattern matches (FS0025) are build errors. This is the
+         enforcement payoff for the closed ContentType DU (Phase 2.7): adding a
+         case turns every non-exhaustive match into a compile error. Verified
+         free at adoption (2026-06-10): build emitted 0 FS0025. -->
+    <WarningsAsErrors>FS0025</WarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
