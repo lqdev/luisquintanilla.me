@@ -1,5 +1,97 @@
 # Changelog
 
+## 2026-06-11 - Architecture Refactor 2026: Phase 2 Structural Consolidation ✅
+
+**Project**: [Architecture Refactor 2026](projects/active/architecture-refactor-2026.md)
+**Duration**: 2026-06-10 → 2026-06-11 (8 steps, 2.1–2.8)
+**Status**: ✅ Phase 2 COMPLETE — every step byte-identical `_public/`; Phase 3 bets pending go/no-go
+**Type**: Structural refactor (no generator behavior change)
+**Source assessment**: [docs/architecture-assessment-2026.md](docs/architecture-assessment-2026.md) (findings F1, F2, F5, F6, F7, F8, F9, F11)
+**ADR**: [docs/adr/0006-generic-build-driver.md](docs/adr/0006-generic-build-driver.md)
+
+### Overview
+
+Collapsed the generator's duplicated build/convert/view machinery onto generic, data-driven
+seams and tightened the type boundaries — without changing a single byte of generated output.
+Each step was verified via SHA-256 hash-manifest diff of `_public/` (excluding the one
+nondeterministic file, `resources/ai-memex/graph.json`) and squash-merged into the umbrella.
+
+### What was done
+
+- **2.1 Generic build driver (F1)**: migrated all **11/11** content-type builders onto one
+  generic, generators-as-data driver. `Builder.fs` + `GenericBuilder.fs` now total **2,952 lines**
+  (down from the **3,728** baseline).
+- **2.2 Generic `toUnified` projection (F2)**: collapsed **8** near-identical feed converters into
+  one generic projection.
+- **2.3 View dedupe (F6)**: consolidated post-cards, response-bodies, and layout helpers.
+- **2.4 `cleanCardHtml` extraction (F7 slice a)**: unified 4 copies of the card-HTML cleanup;
+  the `System.Text.Json` swap (slice b) deferred to Phase 3 bet B2.
+- **2.5 Module splits (F9)**: extracted `UnifiedFeeds.fs` (672 lines) and `Views/TimelineViews.fs`
+  (648 lines) out of the monoliths.
+- **2.6 Navigation single source of truth (F11)**: `Views/Navigation.fs` now the lone source for
+  desktop nav; removed 3 dead nav orphans.
+- **2.7 Closed `ContentType` DU (F5)**: added `[<RequireQualifiedAccess>] type ContentType` with
+  `parse`/`serialize`; the **2** genuine dispatch sites are exhaustive with no wildcard. Response
+  subtypes deliberately stay on `Domain.ResponseType`, and the `UnifiedFeedItem.ContentType` wire
+  field stays a `string` (it carries subtypes into byte-visible timeline JSON).
+- **2.8 Railway parse track (F8)**: new leaf `Diagnostics.fs` + `ContentError` DU; the **12**
+  severed `| Error _ -> None` sites reconnected via a `Result`-typed `Parse`. Build now reports
+  malformed content loudly (structured, copy-pasteable block) and keeps building (exit 0 default),
+  with an opt-in `--strict` / `STRICT_CONTENT=1` gate for CI.
+
+### Verification
+
+- Every step: `dotnet build -c Release` clean (1 expected `FS1104` warning) + full `dotnet run`,
+  then **0 diffs** across ~13,510 files vs baseline.
+- 2.8 additionally fixture-tested with a deliberately broken note: default mode → block + exit 0;
+  `--strict` → block + exit 1; fixture removed, clean regen exit 0.
+
+### Knowledge captured (AI Memex)
+
+`pattern-generators-as-data-build-driver`, `pattern-false-unification`,
+`pattern-module-extraction-inference-flip`, `pattern-closed-du-identity-vs-wire-boundary`,
+`pattern-reconnecting-severed-result-rail`.
+
+### Next
+
+Phase 3 bets (reviewed-diff, NOT byte-identical) await explicit per-bet go/no-go: **B1** content-type
+registry (recommended GO), **B2** structured render product (highest risk, `RENDER_V2` flag, folds in
+deferred 2.4 slice b), **B4** text-only from shared model. **B3** (Fable-the-compiler) is NO-GO.
+
+---
+
+## 2026-06-10 - Architecture Refactor 2026: Phase 1 Conservative Quick Wins ✅
+
+**Project**: [Architecture Refactor 2026](projects/active/architecture-refactor-2026.md)
+**Duration**: 2026-06-10 (5 steps, 1.1–1.5)
+**Status**: ✅ Phase 1 COMPLETE — every step byte-identical `_public/`
+**Type**: Conservative cleanup (no generator behavior change)
+**Source assessment**: [docs/architecture-assessment-2026.md](docs/architecture-assessment-2026.md) (findings F3, F4, F5, F8)
+
+### Overview
+
+Low-risk, individually-revertible quick wins that paid down obvious debt and set up Phase 2's
+structural work. All byte-identical.
+
+### What was done
+
+- **1.1 Kill double-builds (F3)**: eliminated redundant double-builds and triple conversions in the
+  build pipeline.
+- **1.2 Remove dead flag (F4)**: deleted the unused tag-system feature flag and legacy
+  `buildTagsPages` path.
+- **1.3 `ContentTypes` literals module (F5 step 1)**: introduced `ContentTypes.fs` as the string
+  identity authority (groundwork for the 2.7 closed DU).
+- **1.4 Surface skipped files (F8 interim)**: made `None`-parse (silently dropped) files visible in
+  build output ahead of the full 2.8 railway track.
+- **1.5 `FS0025` as error**: incomplete pattern matches now fail the build (`WarningsAsErrors=FS0025`),
+  confirmed free by the Phase 0 warning inventory.
+
+### Next
+
+Phase 2 structural consolidation (build driver, generic projections, module splits, type tightening).
+
+---
+
 ## 2026-06-10 - Architecture Refactor 2026: Phase 0 Safety Harness ✅
 
 **Project**: [Architecture Refactor 2026](projects/active/architecture-refactor-2026.md)

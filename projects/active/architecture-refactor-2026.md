@@ -4,7 +4,7 @@
 **Priority**: High | **Complexity**: Large (phased into S/M/L independently-shippable units)
 **Source assessment**: [`docs/architecture-assessment-2026.md`](../../docs/architecture-assessment-2026.md) — findings F1–F11, bets B1–B4
 **Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical; 2.2 generic `toUnified` complete — 8 converters collapsed, byte-identical; 2.3 view dedupe complete — post-cards/response-bodies/layouts consolidated, byte-identical; 2.4 F7 slice (a) complete — `cleanCardHtml` unifies 4 copies, byte-identical; slice (b) STJ swap deferred to B2; 2.5 module splits complete — `UnifiedFeeds.fs` + `Views/TimelineViews.fs` extracted, byte-identical; 2.6 nav data complete — `Views/Navigation.fs` single source for desktop nav + 3 dead orphans removed, byte-identical; 2.7 ContentType DU complete — closed `[<RequireQualifiedAccess>] type ContentType` + `parse`/`serialize`, 2 dispatch sites exhaustive/no-wildcard, response subtypes kept on `ResponseType`, byte-identical; 2.8 railway parse track complete — `Diagnostics.fs` + `ContentError` DU, 12 severed `Error _ -> None` sites reconnected via `Result`-typed `Parse`, report-loudly-keep-building + opt-in `--strict`, byte-identical)
-**Last updated**: 2026-06-10
+**Last updated**: 2026-06-11 — **Phase 2 CLOSED OUT** (changelog Phase 1 + Phase 2 entries added; line counts 3728→2952; ADR-0006 present). Awaiting Phase 3 go/no-go.
 
 > Read the assessment first. This plan is the *how/when*; the assessment is the *what/why*
 > (including 5-whys root causes, evidence citations, and the Fable-the-compiler evaluation).
