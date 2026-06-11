@@ -254,4 +254,17 @@ let main argv =
     
     printfn $"✅ Search indexes generated: {searchIndexStats.SearchIndex.ItemCount} content items, {searchIndexStats.TagIndex.TagCount} tags"
 
-    0
+    // F8 railway: report-loudly-keep-building. Individual error blocks were already
+    // printed at parse time; here we summarise and gate the exit code. Default is
+    // exit 0 (a bad file must not block publishing the rest); `--strict` /
+    // STRICT_CONTENT=1 turns any content error into a non-zero exit for CI.
+    let contentErrors = Diagnostics.errorCount ()
+    if contentErrors > 0 then
+        printfn "⚠ %d content error(s) reported above (files omitted from the site)." contentErrors
+        if Diagnostics.isStrict argv then
+            printfn "✗ Strict mode: failing the build (exit 1)."
+            1
+        else
+            0
+    else
+        0

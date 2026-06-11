@@ -59,8 +59,9 @@ let generateSourceMarkdown (markdownSource: string option) : XElement option =
 
 /// Generic content processor pattern for consistent content handling
 type ContentProcessor<'T> = {
-    /// Parse content from file path to domain type
-    Parse: string -> 'T option
+    /// Parse content from file path to domain type, transporting a typed
+    /// `ContentError` on failure (F8 — the rail is no longer severed to Option).
+    Parse: string -> Result<'T, Diagnostics.ContentError>
     /// Render content to final HTML output
     Render: 'T -> string
     /// Generate output file path from content
@@ -73,24 +74,26 @@ type ContentProcessor<'T> = {
 
 /// Build content and generate feed data in a single pass
 let buildContentWithFeeds<'T> (processor: ContentProcessor<'T>) (filePaths: string list) : FeedData<'T> list =
-    // F8 interim diagnostics: a parse returning None means the file silently
-    // vanishes from the site. Surface it loudly (stdout only — _public is
-    // unaffected). The skipped path conveys the content type. The full railway
-    // (typed error transport with fix hints) is plan step 2.8.
-    let results =
+    // F8 full railway (plan 2.8): parse every file, accumulating failures instead
+    // of short-circuiting. Successes render and flow to the feeds; failures are
+    // transported as typed `ContentError`s to the diagnostics reporter (which
+    // prints a self-contained block and records them for strict-mode exit). One
+    // bad file does not block publishing the rest, so `_public/` is byte-identical
+    // whenever nothing fails — a failed parse is dropped here exactly as the old
+    // `| Error _ -> None` dropped it, only now it is reported instead of silent.
+    let parsed =
         filePaths
-        |> List.map (fun filePath ->
-            match processor.Parse filePath with
-            | Some content ->
-                let cardHtml = processor.RenderCard content
-                let rssXml = processor.RenderRss content
-                filePath, Some { Content = content; CardHtml = cardHtml; RssXml = rssXml }
-            | None -> filePath, None)
-    let skipped = results |> List.choose (fun (filePath, result) -> if Option.isNone result then Some filePath else None)
-    if not (List.isEmpty skipped) then
-        printfn "⚠ %d file(s) skipped (parse returned None — content omitted from the site):" skipped.Length
-        skipped |> List.iter (printfn "    - %s")
-    results |> List.choose snd
+        |> List.map (fun filePath -> processor.Parse filePath)
+    parsed
+    |> List.choose (function Error e -> Some e | Ok _ -> None)
+    |> List.iter Diagnostics.report
+    parsed
+    |> List.choose (function
+        | Ok content ->
+            let cardHtml = processor.RenderCard content
+            let rssXml = processor.RenderRss content
+            Some { Content = content; CardHtml = cardHtml; RssXml = rssXml }
+        | Error _ -> None)
 
 /// Content processors for existing domain types
 
@@ -120,14 +123,14 @@ module PostProcessor =
                 | Some metadata -> 
                     let contentWithoutFrontmatter = extractContentWithoutFrontMatter parsedDoc.RawMarkdown
                     let readingTime = ReadingTimeService.calculateReadingTime contentWithoutFrontmatter
-                    Some {
+                    Ok {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = { metadata with ReadingTimeMinutes = readingTime }
                         Content = contentWithoutFrontmatter  // Use raw markdown without frontmatter
                         MarkdownSource = Some contentWithoutFrontmatter
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun post ->
             // Return raw markdown content to be processed by the calling code
@@ -190,14 +193,14 @@ module NoteProcessor =
                 match parsedDoc.Metadata with
                 | Some metadata -> 
                     let readingTime = ReadingTimeService.calculateReadingTime parsedDoc.TextContent
-                    Some {
+                    Ok {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = { metadata with ReadingTimeMinutes = readingTime }
                         Content = parsedDoc.TextContent  // Raw markdown content
                         MarkdownSource = Some parsedDoc.RawMarkdown
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun note ->
             // Return ViewEngine node rendered to HTML string
@@ -271,14 +274,14 @@ module SnippetProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
-                    Some {
+                    Ok {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = parsedDoc.TextContent
                         MarkdownSource = Some parsedDoc.RawMarkdown
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun snippet ->
             let viewNode = article [] [ rawText snippet.Content ]
@@ -339,14 +342,14 @@ module WikiProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
-                    Some {
+                    Ok {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = parsedDoc.TextContent
                         MarkdownSource = Some parsedDoc.RawMarkdown
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun wiki ->
             let viewNode = article [] [ rawText wiki.Content ]
@@ -420,14 +423,14 @@ module AiMemexProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
-                    Some {
+                    Ok {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = parsedDoc.TextContent
                         MarkdownSource = Some (extractContentWithoutFrontMatter parsedDoc.RawMarkdown)
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun aiMemex ->
             let viewNode = article [] [ rawText aiMemex.Content ]
@@ -504,14 +507,14 @@ module PresentationProcessor =
                             | None -> parsedDoc.RawMarkdown
                         else parsedDoc.RawMarkdown
                     
-                    Some {
+                    Ok {
                         FileName = System.IO.Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = markdownContent  // Store raw markdown for reveal.js
                         MarkdownSource = Some markdownContent
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun presentation ->
             // Return raw content for reveal.js processing in presentationPageView
@@ -786,14 +789,14 @@ module BookProcessor =
                     
                     reviewDataCache.[fileName] <- reviewMetadata
                     
-                    Some {
+                    Ok {
                         FileName = fileName
                         Metadata = finalMetadata
                         Content = parsedDoc.TextContent
                         MarkdownSource = Some parsedDoc.RawMarkdown
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun book ->
             // For now, return content as-is. Later integrate with existing Views.Generator
@@ -899,14 +902,14 @@ module ResponseProcessor =
                 match parsedDoc.Metadata with
                 | Some metadata -> 
                     let readingTime = ReadingTimeService.calculateReadingTime parsedDoc.TextContent
-                    Some {
+                    Ok {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = { metadata with ReadingTimeMinutes = readingTime }
                         Content = parsedDoc.TextContent
                         MarkdownSource = Some parsedDoc.RawMarkdown
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun response ->
             // Response rendering with IndieWeb microformat support and target URL
@@ -1080,14 +1083,14 @@ module AlbumProcessor =
                     // Store media data in cache for later use in rendering
                     mediaDataCache.[fileName] <- mediaData
                     
-                    Some {
+                    Ok {
                         FileName = fileName
                         Metadata = metadata
                         Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown  // Use raw markdown without frontmatter
                         MarkdownSource = Some (extractContentWithoutFrontMatter parsedDoc.RawMarkdown)
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun album ->
             // Return raw markdown content to be processed by Builder.fs through MarkdownService
@@ -1196,14 +1199,14 @@ module AlbumCollectionProcessor =
                     // Store media data in cache for later use in rendering
                     mediaDataCache.[fileName] <- mediaData
                     
-                    Some {
+                    Ok {
                         FileName = fileName
                         Metadata = metadata
                         Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown
                         MarkdownSource = Some (extractContentWithoutFrontMatter parsedDoc.RawMarkdown)
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun albumCollection ->
             // Return raw markdown content to be processed by Builder.fs through MarkdownService
@@ -1317,14 +1320,14 @@ module PlaylistCollectionProcessor =
                 | Some metadata -> 
                     let fileName = Path.GetFileNameWithoutExtension(filePath)
                     
-                    Some {
+                    Ok {
                         FileName = fileName
                         Metadata = metadata
                         Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown
                         MarkdownSource = Some (extractContentWithoutFrontMatter parsedDoc.RawMarkdown)
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun playlistCollection ->
             // Return raw markdown content to be processed by Builder.fs through MarkdownService
@@ -1392,14 +1395,14 @@ module BookmarkProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
-                    Some {
+                    Ok {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = parsedDoc.TextContent
                         MarkdownSource = Some parsedDoc.RawMarkdown
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun bookmark ->
             // Bookmark rendering with IndieWeb microformat support

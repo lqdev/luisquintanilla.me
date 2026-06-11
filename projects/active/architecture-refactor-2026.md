@@ -3,7 +3,7 @@
 **Project**: Streamlining the F#/.NET static site generator
 **Priority**: High | **Complexity**: Large (phased into S/M/L independently-shippable units)
 **Source assessment**: [`docs/architecture-assessment-2026.md`](../../docs/architecture-assessment-2026.md) — findings F1–F11, bets B1–B4
-**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical; 2.2 generic `toUnified` complete — 8 converters collapsed, byte-identical; 2.3 view dedupe complete — post-cards/response-bodies/layouts consolidated, byte-identical; 2.4 F7 slice (a) complete — `cleanCardHtml` unifies 4 copies, byte-identical; slice (b) STJ swap deferred to B2; 2.5 module splits complete — `UnifiedFeeds.fs` + `Views/TimelineViews.fs` extracted, byte-identical; 2.6 nav data complete — `Views/Navigation.fs` single source for desktop nav + 3 dead orphans removed, byte-identical; 2.7 ContentType DU complete — closed `[<RequireQualifiedAccess>] type ContentType` + `parse`/`serialize`, 2 dispatch sites exhaustive/no-wildcard, response subtypes kept on `ResponseType`, byte-identical)
+**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical; 2.2 generic `toUnified` complete — 8 converters collapsed, byte-identical; 2.3 view dedupe complete — post-cards/response-bodies/layouts consolidated, byte-identical; 2.4 F7 slice (a) complete — `cleanCardHtml` unifies 4 copies, byte-identical; slice (b) STJ swap deferred to B2; 2.5 module splits complete — `UnifiedFeeds.fs` + `Views/TimelineViews.fs` extracted, byte-identical; 2.6 nav data complete — `Views/Navigation.fs` single source for desktop nav + 3 dead orphans removed, byte-identical; 2.7 ContentType DU complete — closed `[<RequireQualifiedAccess>] type ContentType` + `parse`/`serialize`, 2 dispatch sites exhaustive/no-wildcard, response subtypes kept on `ResponseType`, byte-identical; 2.8 railway parse track complete — `Diagnostics.fs` + `ContentError` DU, 12 severed `Error _ -> None` sites reconnected via `Result`-typed `Parse`, report-loudly-keep-building + opt-in `--strict`, byte-identical)
 **Last updated**: 2026-06-10
 
 > Read the assessment first. This plan is the *how/when*; the assessment is the *what/why*
@@ -479,6 +479,25 @@ dispatch, so they gain nothing from the DU. `serialize` is the forward path B1 w
   (temp, not committed) produces the structured block with exit 0, and exit 1 under strict
   mode. **Rollback**: revert; the 1.4 reporter returns.
 
+**STATUS: COMPLETE (byte-identical, 0 diffs over 13,513 files) — 2026-06-11.** New leaf module
+`Diagnostics.fs` (compiled after `ASTParsing.fs`, before `GenericBuilder.fs`) holds the
+`[<RequireQualifiedAccess>] type ContentError` (§8.3: `ParseFailure | UnknownContentType |
+UnknownResponseType | MissingField`, each carrying file / got / valid-set / fix-pointer),
+`ofParseError` (lifts the parser's typed `ParseError` already in hand), `render` (self-contained
+block), and the accumulation sink (`report` / `errorCount` / `isStrict`). `ContentProcessor.Parse`
+changed from `string -> 'T option` to `string -> Result<'T, ContentError>`; the **12 severed
+`| Error _ -> None` sites** in `GenericBuilder.fs` now transport the error (and the companion
+`| None -> None` missing-frontmatter branch emits a `ParseFailure` too). The single consolidated
+consumer `buildContentWithFeeds` partitions Ok/Error, reports every failure, and returns the
+successes — identical set to before, so output is unchanged when nothing fails. **Policy:**
+report-loudly-keep-building (exit 0 by default); opt-in strict (`--strict` arg / `STRICT_CONTENT=1`
+env) gates the exit code in `Program.fs`. **Functional test passed:** a temp broken-YAML fixture in
+`_src/notes/` produced the structured block with exit 0 (default) and exit 1 (`--strict`); removed,
+output byte-identical again. The other `try/with` blocks (date-parse fallbacks, page-build
+resilience) were left as-is — they are exception-for-exceptional per doctrine §8.2, not the severed
+parse rail; the old `Builder.fs:1635` loader blocks no longer exist (2.1/2.5 moved notes/responses
+into `Loaders.fs`, which routes through the same reconnected `buildContentWithFeeds`).
+
 **Phase 2 done when**: chosen units merged + verified; `Builder.fs`/`GenericBuilder.fs` line
 counts re-measured and recorded vs assessment baseline; ADR-0006 committed; changelog entry per
 house convention.
@@ -535,13 +554,13 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 - [ ] 14 converter clones → 1 generic + ≤4 explicit projections
 - [ ] 0 duplicate build executions in `Program.fs` (5 today); converters run 1× each (3× today)
 - [ ] 0 dead feature flags (1 today)
-- [ ] Content-type identity: single authority module (1.3) → closed DU, exhaustive matches, no wildcards (2.7)
-- [ ] Railway reconnected: 12 `| Error _ -> None` sites → 0; every parse failure surfaces as a
+- [x] Content-type identity: single authority module (1.3) → closed DU, exhaustive matches, no wildcards (2.7)
+- [x] Railway reconnected: 12 `| Error _ -> None` sites → 0; every parse failure surfaces as a
       self-contained block (file → got/expected → fix pointer); FS0025 = compile error (1.5)
 - [ ] Regex-on-generated-HTML sites: 5 clusters today → 1 (Phase 2) → 0 (if B2 lands)
 - [ ] `Builder.fs` + `GenericBuilder.fs` combined: 3,728 lines today → target <2,500 (Ph 2)
 - [ ] Build wall-clock: improved vs baseline (record actual numbers Phase 0 vs Phase 1.1)
-- [ ] Skipped-file visibility: every silently-dropped file now reported (0 reporting today)
+- [x] Skipped-file visibility: every silently-dropped file now reported (0 reporting today)
 - [ ] Adding a content type: ~8 files today → ≤3 meaningful edits (if B1 lands); skill checklist updated
 - [ ] Zero unexplained output diffs at every checkpoint; site soul untouched (no visual/UX change in Phases 0–2)
 
@@ -570,7 +589,7 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 | 2.5 module splits | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs each move). (1) `UnifiedFeeds` lifted from `GenericBuilder.fs` (2123→1476) into top-level `UnifiedFeeds.fs` (.fsproj after GenericBuilder); 6 consumers + 3 `open` statements re-pointed. (2) Timeline cluster lifted from `LayoutViews.fs` (1402→767) into `Views/TimelineViews.fs` (compiled before LayoutViews); callers `Builder.fs`/`Partials.fs` re-pointed. Pure moves, no logic change. |
 | 2.6 nav data | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs). New `Views/Navigation.fs`: typed `NavSection`/`NavLink`/`NavMenuEntry` model + `desertNavigation` rendered from `desktopSections` data (adding a collection = one data row); `renderTextOnlyNav` from its own `textOnlyNav` list (kept independent — curated `/text/` surface, drift-immune via "All Content" aggregation). Deleted 3 dead orphans: `defaultNavBar` (167 lines, Layouts), `getNavigationStructure` (Collections), `NavigationStructure`/`NavigationSection` (Domain). Layouts.fs 660→361. Did NOT force-unify the two navs (false unification). Seam ready for B1. |
 | 2.7 ContentType DU | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs over 13,510 files). Added `[<RequireQualifiedAccess>] type ContentType` (13 canonical cases) + boundary pair `parse`/`serialize` in `ContentTypes.fs`. The 2 genuine dispatch sites made exhaustive over the DU, no wildcard: `urlPrefix : ContentType -> string` (AlbumCollection/PlaylistCollection now explicit) + `urlPrefixForKey` string shim preserving the `/{other}/` fallback byte-for-byte; `toJsonFeedContent` routed through `parse`, exhaustive over `ContentType option`. **Taxonomy decision:** response subtypes are `Domain.ResponseType`, not `ContentType` — excluded from the DU, survive only as wire strings in `UnifiedFeedItem.ContentType` (timeline grouping key). ~90 equality/key sites stay string-based (serialization boundary, not dispatch). Adding a case now fails to compile until both dispatch sites handle it. |
-| 2.8 railway parse track | `[ ]` | — | — | after 2.1; F8 full fix |
+| 2.8 railway parse track | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs over 13,513 files). New leaf `Diagnostics.fs` (after ASTParsing): `[<RequireQualifiedAccess>] type ContentError` (§8.3) + `ofParseError`/`render` + sink (`report`/`errorCount`/`isStrict`). `ContentProcessor.Parse : string -> Result<'T, ContentError>`; 12 severed `\| Error _ -> None` sites reconnected (+ `\| None ->` missing-frontmatter → `ParseFailure`). `buildContentWithFeeds` partitions Ok/Error, reports failures, returns identical success set. Report-loudly-keep-building (exit 0); opt-in `--strict`/`STRICT_CONTENT=1` → exit 1 (Program.fs). Fixture test: broken YAML → structured block, exit 0 default / exit 1 strict. |
 | B1 registry | `[ ]` go/no-go pending | — | — | |
 | B2 structured render | `[ ]` go/no-go pending | — | — | ADR-0007 |
 | B3 Fable pilot | **NO-GO** (2026-06-10) | — | — | contract-gen adopted as optional item |
