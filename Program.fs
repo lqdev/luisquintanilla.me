@@ -219,36 +219,28 @@ let main argv =
     let _ = buildBooks()
     ()
 
-    // Build tags page - Use correct notes data source
+    // Build tags page - unified tag system across all content types
     let notesFromFeedData = notesFeedData |> List.map (fun item -> item.Content) |> List.toArray
     // F3: derive posts/responses for tag pages from already-parsed FeedData instead of
     // re-parsing the same files (loadPosts / a second ResponseProcessor pass) at the top of main.
     let posts = postsFeedData |> List.map (fun item -> item.Content) |> List.toArray
     let responses = responsesFeedData |> List.map (fun item -> item.Content) |> List.toArray
-    
-    // Feature flag for unified tag system testing
-    let useUnifiedTagSystem = true // Change to true to test enhanced unified system
-    
-    if useUnifiedTagSystem then
-        // Enhanced unified tag system supporting all content types
-        // Combine regular responses with bookmark responses for complete tag coverage
-        let bookmarkResponses = bookmarksFeedData |> List.map (fun item -> item.Content) |> List.toArray
-        let allResponses = Array.append responses bookmarkResponses
-        
-        let allTaggableContent = [
-            ("posts", posts |> Array.map (fun p -> p :> ITaggable))
-            ("notes", notesFromFeedData |> Array.map (fun n -> n :> ITaggable))
-            ("responses", allResponses |> Array.map (fun r -> r :> ITaggable))
-            ("snippets", snippetsFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun s -> s :> ITaggable))
-            ("wikis", wikisFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun w -> w :> ITaggable))
-            ("ai-memex", aiMemexFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun a -> a :> ITaggable))
-            ("presentations", presentationsFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun p -> p :> ITaggable))
-            ("media", mediaFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun a -> a :> ITaggable))
-        ]
-        buildUnifiedTagsPages allTaggableContent
-    else
-        // Current production system (posts, notes, responses only)
-        buildTagsPages posts notesFromFeedData responses
+
+    // Combine regular responses with bookmark responses for complete tag coverage
+    let bookmarkResponses = bookmarksFeedData |> List.map (fun item -> item.Content) |> List.toArray
+    let allResponses = Array.append responses bookmarkResponses
+
+    let allTaggableContent = [
+        ("posts", posts |> Array.map (fun p -> p :> ITaggable))
+        ("notes", notesFromFeedData |> Array.map (fun n -> n :> ITaggable))
+        ("responses", allResponses |> Array.map (fun r -> r :> ITaggable))
+        ("snippets", snippetsFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun s -> s :> ITaggable))
+        ("wikis", wikisFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun w -> w :> ITaggable))
+        ("ai-memex", aiMemexFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun a -> a :> ITaggable))
+        ("presentations", presentationsFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun p -> p :> ITaggable))
+        ("media", mediaFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun a -> a :> ITaggable))
+    ]
+    buildUnifiedTagsPages allTaggableContent
 
     // Build legacy RSS feed aliases for backward compatibility (at the very end)
     buildLegacyRssFeedAliases ()

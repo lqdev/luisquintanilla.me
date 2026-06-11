@@ -3,7 +3,7 @@
 **Project**: Streamlining the F#/.NET static site generator
 **Priority**: High | **Complexity**: Large (phased into S/M/L independently-shippable units)
 **Source assessment**: [`docs/architecture-assessment-2026.md`](../../docs/architecture-assessment-2026.md) — findings F1–F11, bets B1–B4
-**Status**: `[>]` Active — Phase 0 complete; Phase 1 in progress (1.1 done; 1.2 next)
+**Status**: `[>]` Active — Phase 0 complete; Phase 1 in progress (1.1, 1.2 done; 1.3 next)
 **Last updated**: 2026-06-10
 
 > Read the assessment first. This plan is the *how/when*; the assessment is the *what/why*
@@ -162,11 +162,16 @@ Implemented in three independently hash-verified sub-steps:
   removal of redundant work, not a guaranteed wall-clock drop.
 - **Verify**: ✅ byte-identical. **Rollback**: one revert of the 1.1 squash commit.
 
-### 1.2 Remove the dead tag-system flag (F4)
-- `Program.fs:240–262`: delete `useUnifiedTagSystem`, keep the unified branch unconditionally,
-  delete the unreachable `else`. Then delete `buildTagsPages` in `Builder.fs` if (grep-verified)
-  no other caller exists, plus any helpers only it used.
-- **Verify**: build clean; byte-identical output. **Rollback**: one revert.
+### 1.2 Remove the dead tag-system flag (F4) — ✅ DONE (2026-06-10)
+- `Program.fs`: deleted `useUnifiedTagSystem` flag + the unreachable `else` branch; the unified
+  tag path now runs unconditionally.
+- `Builder.fs`: deleted the now-orphaned legacy `buildTagsPages` (grep-verified single caller was
+  the deleted `else`). Cascade-removed its exclusively-used helpers: `individualTagView`
+  (`Views/TagViews.fs`) + its `Views/Partials.fs` re-export, and `processTaggedPost`,
+  `processTaggedResponse`, `getTagsFromPost`, `getTagsFromResponse` (`Services/Tag.fs`). Kept
+  `processTagName` (shared) and the `*Unified` views/processing (live path).
+- **Net −150 lines** of dead code. **Verify**: ✅ byte-identical; build clean.
+  **Rollback**: one revert of the 1.2 squash.
 
 ### 1.3 Introduce the ContentType source of truth (F5 — step 1 of 2, zero behavior change)
 - New file `ContentTypes.fs` (compile right after `Domain.fs` in `.fsproj`):
@@ -448,7 +453,7 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 |---|---|---|---|---|
 | 0 — Safety harness | `[x]` done | 2026-06-10 | 2026-06-10 | Umbrella branch created off main (after FSharp.Core lock bump 10.1.300→10.1.301 committed). Baseline: build 14.9s / generate ~110s / 13,486 files. Warnings: 1×FS1104, 0×FS0025. **Contract exclusion: `resources/ai-memex/graph.json`** (only `stats.generatedAt` build timestamp varies; `KnowledgeGraph.fs:527`). |
 | 1.1 double-builds | `[x]` done | 2026-06-10 | 2026-06-10 | Byte-identical. Converters bound 1×; 4/5 duplicate builder calls removed; posts/responses tag arrays derived from FeedData; dead `feedNotes` removed. **buildBooks() duplicate retained** — StarRating gradient IDs use a global counter (BlockRenderers.fs:85), removal is cosmetic-only but breaks byte-identity; needs deterministic page-local IDs first (→F7/B2). |
-| 1.2 dead flag | `[ ]` | — | — | |
+| 1.2 dead flag | `[x]` done | 2026-06-10 | 2026-06-10 | Byte-identical. Removed `useUnifiedTagSystem` flag + unreachable `else`; deleted legacy `buildTagsPages` + 5 exclusively-used helpers. Net −150 lines. |
 | 1.3 ContentTypes module | `[ ]` | — | — | |
 | 1.4 skip diagnostics | `[ ]` | — | — | interim; superseded by 2.8 |
 | 1.5 FS0025 → error | `[ ]` | — | — | free (0.6 inventory) |

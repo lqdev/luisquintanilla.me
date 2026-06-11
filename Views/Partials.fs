@@ -26,7 +26,6 @@ let tagLinkView = TagViews.tagLinkView
 let tagPostLinkView = TagViews.tagPostLinkView
 let tagResponseLinkView = TagViews.tagResponseLinkView
 let allTagsView = TagViews.allTagsView
-let individualTagView = TagViews.individualTagView
 
 // Feeds (from FeedViews)
 let rollLinkView = FeedViews.rollLinkView
