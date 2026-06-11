@@ -3,7 +3,7 @@
 **Project**: Streamlining the F#/.NET static site generator
 **Priority**: High | **Complexity**: Large (phased into S/M/L independently-shippable units)
 **Source assessment**: [`docs/architecture-assessment-2026.md`](../../docs/architecture-assessment-2026.md) — findings F1–F11, bets B1–B4
-**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical; 2.2 generic `toUnified` complete — 8 converters collapsed, byte-identical; 2.3 view dedupe complete — post-cards/response-bodies/layouts consolidated, byte-identical; 2.4 F7 slice (a) complete — `cleanCardHtml` unifies 4 copies, byte-identical; slice (b) STJ swap deferred to B2)
+**Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical; 2.2 generic `toUnified` complete — 8 converters collapsed, byte-identical; 2.3 view dedupe complete — post-cards/response-bodies/layouts consolidated, byte-identical; 2.4 F7 slice (a) complete — `cleanCardHtml` unifies 4 copies, byte-identical; slice (b) STJ swap deferred to B2; 2.5 module splits complete — `UnifiedFeeds.fs` + `Views/TimelineViews.fs` extracted, byte-identical)
 **Last updated**: 2026-06-10
 
 > Read the assessment first. This plan is the *how/when*; the assessment is the *what/why*
@@ -363,6 +363,24 @@ with B2.)
   ~800 lines post-2.3/2.4.
 - Hash-verify after each move (should be trivially identical). **Rollback**: per-move revert.
 
+**STATUS: COMPLETE (byte-identical, 0 diffs each move) — 2026-06-11.** Two pure moves, no
+logic change. (1) `UnifiedFeeds` lifted out of `GenericBuilder.fs` (2123→1476 lines) into a
+top-level `module UnifiedFeeds` in `UnifiedFeeds.fs` (inserted in `.fsproj` right after
+`GenericBuilder.fs`, before `ActivityPubBuilder.fs`). Promotion technique: a top-level `module`
+(no `=`) keeps its 4-space-indented body verbatim (precedent: `Layouts.fs`), so the ~645-line
+body moved without reindenting. 6 consumer files re-pointed `GenericBuilder.UnifiedFeeds.*` →
+`UnifiedFeeds.*`, plus 3 `open GenericBuilder.UnifiedFeeds` → `open UnifiedFeeds` (the latter was
+the one the dotted find/replace missed — caught by the compiler as a record-field inference flip
+in `TextOnlyViews.fs`). (2) Timeline cluster (`sanitizeTagForUrl`, `cleanCardHtml`,
+`extractReviewItemType`, `createSimplifiedReviewContent`, `avatarFlipCard`,
+`timelineHomeViewStratified`, `timelineHomeView`) lifted out of `LayoutViews.fs` (1402→767 lines,
+now under the ~800 budget) into `Views/TimelineViews.fs` (compiled before `LayoutViews.fs`).
+The cluster was fully self-contained (all helpers private-to-cluster; `escapeJson`/
+`getProperPermalink` defined inline). Callers `Builder.fs` + `Views/Partials.fs` re-pointed to
+`TimelineViews.*`. **Lesson (memex candidate):** moving a nested module changes which `open`
+path resolves a type — bare type names that resolved via `open Outer.Inner` silently flip to a
+same-field record (here `UnifiedFeedItem` → `TravelCollectionItem`) until the `open` is fixed.
+
 ### 2.6 Navigation data source of truth (F11)
 - Define nav as data (the existing `NavigationStructure`/`NavigationSection` types in
   `Domain.fs:280–291` are the starting point — finish what was sketched). Both `Layouts.fs`
@@ -503,7 +521,7 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 | 2.2 generic toUnified | `[x]` | 2026-06-10 | 2026-06-10 | Byte-identical (0 diffs vs umbrella tip). Added `UnifiedExtras`/`defaultExtras`/`arrayTags`/`splitTags` + generic `toUnified`; collapsed 8 trivial converters (posts, notes, snippets, wikis, ai-memex, presentations, album/playlist-collections). Kept responses family / books / albums / bookmarks explicit (divergence = documentation). |
 | 2.3 view dedupe | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs). `postCardView (feedKey, withWebmention)` + 4 wrappers; `responseBodyView (style)` + `cleanResponseContent` folds 4 bodies (rsvp kept explicit); `layoutCore (includeReveal)` + `defaultLayout`/`defaultIndexedLayout` wrappers. SEO nosnippet comment corrected, markup unchanged. |
 | 2.4 F7 slices | `[x]` slice (a); (b)→B2 | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs). `cleanCardHtml (html)` unifies all 4 timeline cleaning copies. Slice (b) STJ swap deferred into B2 (can't be byte-identical; B2 rewrites the path anyway). |
-| 2.5 module splits | `[ ]` | — | — | |
+| 2.5 module splits | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs each move). (1) `UnifiedFeeds` lifted from `GenericBuilder.fs` (2123→1476) into top-level `UnifiedFeeds.fs` (.fsproj after GenericBuilder); 6 consumers + 3 `open` statements re-pointed. (2) Timeline cluster lifted from `LayoutViews.fs` (1402→767) into `Views/TimelineViews.fs` (compiled before LayoutViews); callers `Builder.fs`/`Partials.fs` re-pointed. Pure moves, no logic change. |
 | 2.6 nav data | `[ ]` | — | — | |
 | 2.7 ContentType DU | `[ ]` | — | — | after 2.1/2.2 |
 | 2.8 railway parse track | `[ ]` | — | — | after 2.1; F8 full fix |

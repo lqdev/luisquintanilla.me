@@ -375,7 +375,7 @@ let playlistCollectionDetailView (playlistCollection: PlaylistCollection) (proce
     ]
 
 // Enhanced subscription hub with content discovery
-let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
+let enhancedSubscriptionHubView (items: UnifiedFeeds.UnifiedFeedItem array) =
     // Take recent 8-10 items for preview
     let recentItems = items |> Array.take (min 10 items.Length)
     
@@ -595,7 +595,7 @@ let enhancedSubscriptionHubView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedI
     ]
 
 // Unified feed view for aggregated content across all types
-let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
+let unifiedFeedView (items: UnifiedFeeds.UnifiedFeedItem array) =
     let getProperPermalink (contentType: string) (fileName: string) =
         match contentType with
         | "posts" -> $"/posts/{fileName}/"
@@ -609,7 +609,7 @@ let unifiedFeedView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) =
         | "media" -> $"/media/{fileName}/"
         | _ -> $"/{contentType}/{fileName}/"
     
-    let renderUnifiedCard (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) =
+    let renderUnifiedCard (item: UnifiedFeeds.UnifiedFeedItem) =
         let header = cardHeader item.Date
         let fileName = Path.GetFileNameWithoutExtension(item.Url)
         let properPermalink = getProperPermalink item.ContentType fileName

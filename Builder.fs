@@ -63,7 +63,7 @@ module Builder
         |> Array.toList
 
     type private ArchiveFeedItem = {
-        Item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem
+        Item: UnifiedFeeds.UnifiedFeedItem
         ContentHtml: string
     }
 
@@ -173,7 +173,7 @@ module Builder
     // 64 px / ~4.6 KB PNG) and re-read from disk by the inner renderer;
     // OS file cache absorbs the repeated reads. See
     // `Services/QRStyled.fs:ensureSmallAvatar`.
-    let buildPerPageQRs (outputDir: string) (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) =
+    let buildPerPageQRs (outputDir: string) (items: UnifiedFeeds.UnifiedFeedItem list) =
         let avatarSrc = Path.Join(outputDir, "avatar.png")
         let smallAvatarPath = Path.Join(outputDir, "assets", "images", "qr", "_avatar-sm.png")
         Services.QRStyled.ensureSmallAvatar avatarSrc smallAvatarPath |> ignore
@@ -224,7 +224,7 @@ module Builder
         File.WriteAllText(Path.Join(outputDir,"index.html"),homePage)
 
     // New timeline homepage for Phase 3 - Feed-as-Homepage Interface
-    let buildTimelineHomePage (allUnifiedItems: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
+    let buildTimelineHomePage (allUnifiedItems: (string * UnifiedFeeds.UnifiedFeedItem list) list) =
         // Load pinned posts configuration
         let pinnedPostsConfig = loadPinnedPosts()
         
@@ -280,7 +280,7 @@ module Builder
         let pinnedUrls = pinnedItems |> List.map (fun item -> item.Url) |> Set.ofList
         
         // Generate the timeline homepage with pinned posts support
-        let timelineHomePage = generate (LayoutViews.timelineHomeViewStratified (initialItems |> List.toArray) remainingItemsByType pinnedUrls) "default" "Luis Quintanilla - Personal Website"
+        let timelineHomePage = generate (TimelineViews.timelineHomeViewStratified (initialItems |> List.toArray) remainingItemsByType pinnedUrls) "default" "Luis Quintanilla - Personal Website"
         File.WriteAllText(Path.Join(outputDir,"index.html"), timelineHomePage)
         
         let totalItems = allUnifiedItems |> List.sumBy (fun (_, items) -> items.Length)
@@ -379,7 +379,7 @@ module Builder
 
     // Single source of truth lives in GenericBuilder.UnifiedFeeds; reuse it here
     // so BAR exports stay consistent with the JSON feed response stream.
-    let private responseFeedTypes = GenericBuilder.UnifiedFeeds.responseStreamContentTypes
+    let private responseFeedTypes = UnifiedFeeds.responseStreamContentTypes
     let private maxUploadNameCollisions = 10000
 
     let private isRemoteUrl (value: string) =
@@ -388,7 +388,7 @@ module Builder
         || value.StartsWith("data:", StringComparison.OrdinalIgnoreCase)
         || value.StartsWith("//", StringComparison.OrdinalIgnoreCase)
 
-    let private renderArchiveContent (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) =
+    let private renderArchiveContent (item: UnifiedFeeds.UnifiedFeedItem) =
         match item.ContentType with
         | "posts"
         | "notes" -> convertMdToHtml item.Content
@@ -519,7 +519,7 @@ module Builder
 
         RenderView.AsString.htmlDocument content
 
-    let private buildBarArchive (archiveName: string) (title: string) (homePageUrl: string) (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) =
+    let private buildBarArchive (archiveName: string) (title: string) (homePageUrl: string) (items: UnifiedFeeds.UnifiedFeedItem list) =
         let archiveOutputDir = Path.Join(outputDir, "archive")
         Directory.CreateDirectory(archiveOutputDir) |> ignore
 
@@ -612,7 +612,7 @@ module Builder
 
         FileInfo(zipPath).Length
 
-    let buildBlogArchiveExports (feedDataSets: (string * (GenericBuilder.UnifiedFeeds.UnifiedFeedItem list)) list) =
+    let buildBlogArchiveExports (feedDataSets: (string * (UnifiedFeeds.UnifiedFeedItem list)) list) =
         let postsItems = feedDataSets |> List.tryFind (fun (name, _) -> name = "posts") |> Option.map snd |> Option.defaultValue []
         let notesItems = feedDataSets |> List.tryFind (fun (name, _) -> name = "notes") |> Option.map snd |> Option.defaultValue []
         let responseItems =
@@ -1217,7 +1217,7 @@ module Builder
         GenericBuilder.buildContentWithFeeds processor aiMemexFiles
 
     // AST-based AI Memex page generation from pre-loaded feed data
-    let buildAiMemexPages (feedData: GenericBuilder.FeedData<AiMemex> list) (crossContentItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) = 
+    let buildAiMemexPages (feedData: GenericBuilder.FeedData<AiMemex> list) (crossContentItems: UnifiedFeeds.UnifiedFeedItem list) = 
         
         // Build knowledge graph from all entries
         let allEntries = feedData |> List.map (fun item -> item.Content) |> List.toArray
@@ -1436,7 +1436,7 @@ module Builder
         }
 
     // Build unified feed HTML page with all content types
-    let buildUnifiedFeedPage (allUnifiedItems: (string * GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) list) =
+    let buildUnifiedFeedPage (allUnifiedItems: (string * UnifiedFeeds.UnifiedFeedItem list) list) =
         // Flatten all feed items and sort chronologically
         let flattenedItems = 
             allUnifiedItems

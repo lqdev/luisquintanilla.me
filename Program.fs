@@ -83,18 +83,18 @@ let main argv =
     
     // Convert each content type to unified feed items exactly once (F3: these pure
     // projections were previously re-run up to 3x across the feed lists below).
-    let postsUnified = GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData
-    let notesUnified = GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData
-    let responsesUnified = GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData
-    let bookmarksUnified = GenericBuilder.UnifiedFeeds.convertBookmarkResponsesToUnified bookmarksFeedData
-    let snippetsUnified = GenericBuilder.UnifiedFeeds.convertSnippetsToUnified snippetsFeedData
-    let wikisUnified = GenericBuilder.UnifiedFeeds.convertWikisToUnified wikisFeedData
-    let aiMemexUnified = GenericBuilder.UnifiedFeeds.convertAiMemexToUnified aiMemexFeedData
-    let presentationsUnified = GenericBuilder.UnifiedFeeds.convertPresentationsToUnified presentationsFeedData
-    let booksUnified = GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData
-    let albumsUnified = GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData
-    let albumCollectionsUnified = GenericBuilder.UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData
-    let playlistCollectionsUnified = GenericBuilder.UnifiedFeeds.convertPlaylistCollectionsToUnified playlistCollectionsFeedData
+    let postsUnified = UnifiedFeeds.convertPostsToUnified postsFeedData
+    let notesUnified = UnifiedFeeds.convertNotesToUnified notesFeedData
+    let responsesUnified = UnifiedFeeds.convertResponsesToUnified responsesFeedData
+    let bookmarksUnified = UnifiedFeeds.convertBookmarkResponsesToUnified bookmarksFeedData
+    let snippetsUnified = UnifiedFeeds.convertSnippetsToUnified snippetsFeedData
+    let wikisUnified = UnifiedFeeds.convertWikisToUnified wikisFeedData
+    let aiMemexUnified = UnifiedFeeds.convertAiMemexToUnified aiMemexFeedData
+    let presentationsUnified = UnifiedFeeds.convertPresentationsToUnified presentationsFeedData
+    let booksUnified = UnifiedFeeds.convertBooksToUnified booksFeedData
+    let albumsUnified = UnifiedFeeds.convertAlbumsToUnified mediaFeedData
+    let albumCollectionsUnified = UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData
+    let playlistCollectionsUnified = UnifiedFeeds.convertPlaylistCollectionsToUnified playlistCollectionsFeedData
     
     // Convert to unified feed items - Timeline feed (main content)
     let timelineFeedItems = [
@@ -141,13 +141,13 @@ let main argv =
             else { item with Tags = item.Tags |> Array.map TagService.processTagName |> Array.distinct })
     
     // Generate unified feeds (fire-hose + type-specific)
-    GenericBuilder.UnifiedFeeds.buildAllFeeds allUnifiedItems "_public"
+    UnifiedFeeds.buildAllFeeds allUnifiedItems "_public"
 
     // Generate JSON Feed v1.1 outputs for posts, notes, responses, and combined stream
-    GenericBuilder.UnifiedFeeds.buildJsonFeeds blogArchiveFeedItems "_public"
+    UnifiedFeeds.buildJsonFeeds blogArchiveFeedItems "_public"
     
     // Generate tag RSS feeds using unified feed data
-    GenericBuilder.UnifiedFeeds.buildTagFeeds allUnifiedItems "_public"
+    UnifiedFeeds.buildTagFeeds allUnifiedItems "_public"
 
     // Generate Blog Archive Format (.bar) exports and archive landing page
     buildBlogArchiveExports blogArchiveFeedItems

@@ -28,6 +28,7 @@
     <Compile Include="Services\FollowersSync.fs" /> 
     <Compile Include="Services\QRStyled.fs" />
     <Compile Include="GenericBuilder.fs" />
+    <Compile Include="UnifiedFeeds.fs" />
     <Compile Include="ActivityPubBuilder.fs" />
     <Compile Include="EntityExtraction.fs" />
     <Compile Include="KnowledgeGraph.fs" />
@@ -38,6 +39,7 @@
     <Compile Include="Views\ContentViews.fs" />
     <Compile Include="Views\CollectionViews.fs" />
     <Compile Include="Views\TravelViews.fs" />
+    <Compile Include="Views\TimelineViews.fs" />
     <Compile Include="Views\LayoutViews.fs" />
     <Compile Include="Views\Layouts.fs" />
     <Compile Include="Views\TextOnlyViews.fs" />

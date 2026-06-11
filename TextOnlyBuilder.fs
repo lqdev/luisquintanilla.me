@@ -4,7 +4,7 @@ open System.IO
 open Domain
 open TextOnlyViews
 open GenericBuilder
-open GenericBuilder.UnifiedFeeds
+open UnifiedFeeds
 open Giraffe.ViewEngine
 open MarkdownService
 

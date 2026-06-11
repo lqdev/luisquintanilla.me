@@ -3,7 +3,7 @@ module TextOnlyViews
 open Giraffe.ViewEngine
 open Domain
 open Layouts
-open GenericBuilder.UnifiedFeeds
+open UnifiedFeeds
 open System
 open System.IO
 open System.Text.RegularExpressions
