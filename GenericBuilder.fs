@@ -1583,18 +1583,18 @@ module UnifiedFeeds =
     // listed here or it is silently dropped from JSON feeds and BAR exports.
     // "bookmark" is intentionally excluded (separate stream). Single source of
     // truth shared with Builder.fs to prevent drift.
-    let responseStreamContentTypes = set [ "responses"; "reply"; "reshare"; "star"; "rsvp" ]
+    let responseStreamContentTypes = set [ ContentTypes.Responses; ContentTypes.Reply; ContentTypes.Reshare; ContentTypes.Star; ContentTypes.Rsvp ]
     let private jsonFeedItemLimit = 20
 
     let private toJsonFeedContent (item: UnifiedFeedItem) =
         match item.ContentType with
-        | "posts"
-        | "notes"
-        | "snippets"
-        | "wiki"
-        | "presentations"
-        | "reviews"
-        | "ai-memex" -> MarkdownService.convertMdToHtml item.Content
+        | ContentTypes.Posts
+        | ContentTypes.Notes
+        | ContentTypes.Snippets
+        | ContentTypes.Wiki
+        | ContentTypes.Presentations
+        | ContentTypes.Reviews
+        | ContentTypes.AiMemex -> MarkdownService.convertMdToHtml item.Content
         | _ -> item.Content
 
     let private toIso8601Date (value: string) =
@@ -1667,9 +1667,9 @@ module UnifiedFeeds =
             File.WriteAllText(fullPath, feedContent)
 
         let typeConfigs = [
-            ("posts", "Luis Quintanilla - Posts", "https://www.lqdev.me/posts", "https://www.lqdev.me/posts/feed.json", "Blog posts by Luis Quintanilla", fun (item: UnifiedFeedItem) -> item.ContentType = "posts")
-            ("notes", "Luis Quintanilla - Notes", "https://www.lqdev.me/notes", "https://www.lqdev.me/notes/feed.json", "Notes and micro-posts by Luis Quintanilla", fun (item: UnifiedFeedItem) -> item.ContentType = "notes")
-            ("responses", "Luis Quintanilla - Responses", "https://www.lqdev.me/responses", "https://www.lqdev.me/responses/feed.json", "IndieWeb responses by Luis Quintanilla", fun (item: UnifiedFeedItem) -> responseStreamContentTypes.Contains(item.ContentType))
+            (ContentTypes.Posts, "Luis Quintanilla - Posts", "https://www.lqdev.me/posts", "https://www.lqdev.me/posts/feed.json", "Blog posts by Luis Quintanilla", fun (item: UnifiedFeedItem) -> item.ContentType = ContentTypes.Posts)
+            (ContentTypes.Notes, "Luis Quintanilla - Notes", "https://www.lqdev.me/notes", "https://www.lqdev.me/notes/feed.json", "Notes and micro-posts by Luis Quintanilla", fun (item: UnifiedFeedItem) -> item.ContentType = ContentTypes.Notes)
+            (ContentTypes.Responses, "Luis Quintanilla - Responses", "https://www.lqdev.me/responses", "https://www.lqdev.me/responses/feed.json", "IndieWeb responses by Luis Quintanilla", fun (item: UnifiedFeedItem) -> responseStreamContentTypes.Contains(item.ContentType))
         ]
 
         typeConfigs
@@ -1685,8 +1685,8 @@ module UnifiedFeeds =
         let allMatchingStreamItems =
             allUnifiedItems
             |> List.filter (fun item ->
-                item.ContentType = "posts"
-                || item.ContentType = "notes"
+                item.ContentType = ContentTypes.Posts
+                || item.ContentType = ContentTypes.Notes
                 || responseStreamContentTypes.Contains(item.ContentType))
         let allStreamItems = allMatchingStreamItems |> List.take (min jsonFeedItemLimit allMatchingStreamItems.Length)
 
@@ -1730,7 +1730,7 @@ module UnifiedFeeds =
         }
         
         // Generate fire-hose feed (exclude AI Memex from public syndication)
-        let publicItems = allUnifiedItems |> List.filter (fun item -> item.ContentType <> "ai-memex")
+        let publicItems = allUnifiedItems |> List.filter (fun item -> item.ContentType <> ContentTypes.AiMemex)
         let fireHoseFeed = generateRssFeed (publicItems |> List.take (min 20 publicItems.Length)) fireHoseConfig
         let fireHoseDir = Path.Combine(outputDirectory, "feed")
         Directory.CreateDirectory(fireHoseDir) |> ignore
@@ -1741,89 +1741,89 @@ module UnifiedFeeds =
         
         // Type-specific feed configurations
         let typeConfigurations = [
-            ("posts", {
+            (ContentTypes.Posts, {
                 Title = "Luis Quintanilla - Posts"
                 Link = "https://www.lqdev.me/posts"
                 Description = "Blog posts by Luis Quintanilla"
                 OutputPath = "posts/feed.xml"
-                ContentType = Some "posts"
+                ContentType = Some ContentTypes.Posts
             })
-            ("notes", {
+            (ContentTypes.Notes, {
                 Title = "Luis Quintanilla - Notes"
                 Link = "https://www.lqdev.me/notes"
                 Description = "Notes and micro-posts by Luis Quintanilla"
                 OutputPath = "notes/feed.xml"
-                ContentType = Some "notes"
+                ContentType = Some ContentTypes.Notes
             })
-            ("responses", {
+            (ContentTypes.Responses, {
                 Title = "Luis Quintanilla - Responses"
                 Link = "https://www.lqdev.me/responses"
                 Description = "IndieWeb responses by Luis Quintanilla"
                 OutputPath = "responses/feed.xml"
-                ContentType = Some "responses"
+                ContentType = Some ContentTypes.Responses
             })
-            ("bookmarks", {
+            (ContentTypes.Bookmarks, {
                 Title = "Luis Quintanilla - Bookmarks"
                 Link = "https://www.lqdev.me/bookmarks"
                 Description = "IndieWeb bookmarks by Luis Quintanilla"
                 OutputPath = "bookmarks/feed.xml"
-                ContentType = Some "bookmarks"
+                ContentType = Some ContentTypes.Bookmarks
             })
-            ("snippets", {
+            (ContentTypes.Snippets, {
                 Title = "Luis Quintanilla - Snippets"
                 Link = "https://www.lqdev.me/resources/snippets"
                 Description = "Code snippets by Luis Quintanilla"
                 OutputPath = "resources/snippets/feed.xml"
-                ContentType = Some "snippets"
+                ContentType = Some ContentTypes.Snippets
             })
-            ("wiki", {
+            (ContentTypes.Wiki, {
                 Title = "Luis Quintanilla - Wiki"
                 Link = "https://www.lqdev.me/resources/wiki"
                 Description = "Wiki articles by Luis Quintanilla"
                 OutputPath = "resources/wiki/feed.xml"
-                ContentType = Some "wiki"
+                ContentType = Some ContentTypes.Wiki
             })
-            ("presentations", {
+            (ContentTypes.Presentations, {
                 Title = "Luis Quintanilla - Presentations"
                 Link = "https://www.lqdev.me/resources/presentations"
                 Description = "Presentations by Luis Quintanilla"
                 OutputPath = "resources/presentations/feed.xml"
-                ContentType = Some "presentations"
+                ContentType = Some ContentTypes.Presentations
             })
-            ("reviews", {
+            (ContentTypes.Reviews, {
                 Title = "Luis Quintanilla - Reviews"
                 Link = "https://www.lqdev.me/reviews"
                 Description = "Book reviews by Luis Quintanilla"
                 OutputPath = "reviews/feed.xml"
-                ContentType = Some "reviews"
+                ContentType = Some ContentTypes.Reviews
             })
-            ("media", {
+            (ContentTypes.Media, {
                 Title = "Luis Quintanilla - Media"
                 Link = "https://www.lqdev.me/media"
                 Description = "Photo albums and media by Luis Quintanilla"
                 OutputPath = "media/feed.xml"
-                ContentType = Some "media"
+                ContentType = Some ContentTypes.Media
             })
-            ("album-collection", {
+            (ContentTypes.AlbumCollection, {
                 Title = "Luis Quintanilla - Albums"
                 Link = "https://www.lqdev.me/collections/albums"
                 Description = "Photo album collections by Luis Quintanilla"
                 OutputPath = "collections/albums/feed.xml"
-                ContentType = Some "album-collection"
+                ContentType = Some ContentTypes.AlbumCollection
             })
-            ("playlist-collection", {
+            (ContentTypes.PlaylistCollection, {
                 Title = "Luis Quintanilla - Playlists"
                 Link = "https://www.lqdev.me/collections/playlists"
                 Description = "Music playlist collections by Luis Quintanilla"
                 OutputPath = "collections/playlists/feed.xml"
-                ContentType = Some "playlist-collection"
+                ContentType = Some ContentTypes.PlaylistCollection
             })
-            ("ai-memex", {
+            (ContentTypes.AiMemex, {
                 Title = "Luis Quintanilla - AI Memex"
                 Link = "https://www.lqdev.me/resources/ai-memex"
                 Description = "AI-authored content: project reports, research, patterns, and blog posts"
                 OutputPath = "resources/ai-memex/feed.xml"
-                ContentType = Some "ai-memex"
+                ContentType = Some ContentTypes.AiMemex
             })
         ]
         
@@ -1833,14 +1833,14 @@ module UnifiedFeeds =
             let typeItems = 
                 allUnifiedItems 
                 |> List.filter (fun item -> 
-                    if contentType = "responses" then
+                    if contentType = ContentTypes.Responses then
                         // For responses feed, include all response subtypes
-                        ["star"; "reply"; "reshare"; "responses"] |> List.contains item.ContentType
+                        [ ContentTypes.Star; ContentTypes.Reply; ContentTypes.Reshare; ContentTypes.Responses ] |> List.contains item.ContentType
                     else
                         item.ContentType = contentType)
                 |> List.take (min 20 (allUnifiedItems |> List.filter (fun item -> 
-                    if contentType = "responses" then
-                        ["star"; "reply"; "reshare"; "responses"] |> List.contains item.ContentType
+                    if contentType = ContentTypes.Responses then
+                        [ ContentTypes.Star; ContentTypes.Reply; ContentTypes.Reshare; ContentTypes.Responses ] |> List.contains item.ContentType
                     else
                         item.ContentType = contentType) |> List.length))
             
@@ -1876,7 +1876,7 @@ module UnifiedFeeds =
         let allUnifiedItems = 
             feedDataSets
             |> List.collect snd
-            |> List.filter (fun item -> item.ContentType <> "ai-memex")
+            |> List.filter (fun item -> item.ContentType <> ContentTypes.AiMemex)
             |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
         
         // Extract all canonical tags (processTagName consolidates plurals, gerunds, etc.)
@@ -1929,7 +1929,7 @@ module UnifiedFeeds =
                 let content = feedData.Content.Content  // Full raw content - will be processed by timeline view
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "posts"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Posts; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertNotesToUnified (feedDataList: FeedData<Post> list) : UnifiedFeedItem list =
@@ -1942,12 +1942,12 @@ module UnifiedFeeds =
                 let content = feedData.Content.Content  // Full raw content - will be processed by timeline view
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "notes"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Notes; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertResponsesToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =
         feedDataList 
-        |> List.filter (fun feedData -> feedData.Content.Metadata.ResponseType <> "bookmark") // Exclude bookmarks
+        |> List.filter (fun feedData -> feedData.Content.Metadata.ResponseType <> ContentTypes.Bookmark) // Exclude bookmarks
         |> List.choose (fun feedData ->
             match feedData.RssXml with
             | Some rssXml ->
@@ -1974,7 +1974,7 @@ module UnifiedFeeds =
     
     let convertResponseBookmarksToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =
         feedDataList 
-        |> List.filter (fun feedData -> feedData.Content.Metadata.ResponseType = "bookmark") // Only bookmarks
+        |> List.filter (fun feedData -> feedData.Content.Metadata.ResponseType = ContentTypes.Bookmark) // Only bookmarks
         |> List.choose (fun feedData ->
             match feedData.RssXml with
             | Some rssXml ->
@@ -1984,10 +1984,10 @@ module UnifiedFeeds =
                 let date = feedData.Content.Metadata.DatePublished
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 // Phase 5A: Extract response semantics for ActivityPub
-                let responseType = Some "bookmark"
+                let responseType = Some ContentTypes.Bookmark
                 let targetUrl = Some feedData.Content.Metadata.TargetUrl
                 let updatedDate = if String.IsNullOrWhiteSpace(feedData.Content.Metadata.DateUpdated) then None else Some feedData.Content.Metadata.DateUpdated
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate; RsvpStatus = None; ReviewData = None; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Bookmarks; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate; RsvpStatus = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertSnippetsToUnified (feedDataList: FeedData<Snippet> list) : UnifiedFeedItem list =
@@ -2001,7 +2001,7 @@ module UnifiedFeeds =
                 let tags = 
                     if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
                     else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "snippets"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Snippets; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertWikisToUnified (feedDataList: FeedData<Wiki> list) : UnifiedFeedItem list =
@@ -2015,7 +2015,7 @@ module UnifiedFeeds =
                 let tags = 
                     if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
                     else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "wiki"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Wiki; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertAiMemexToUnified (feedDataList: FeedData<AiMemex> list) : UnifiedFeedItem list =
@@ -2029,7 +2029,7 @@ module UnifiedFeeds =
                 let tags = 
                     if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
                     else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "ai-memex"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.AiMemex; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertPresentationsToUnified (feedDataList: FeedData<Presentation> list) : UnifiedFeedItem list =
@@ -2043,7 +2043,7 @@ module UnifiedFeeds =
                 let tags = 
                     if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
                     else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "presentations"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Presentations; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertBooksToUnified (feedDataList: FeedData<Book> list) : UnifiedFeedItem list =
@@ -2059,7 +2059,7 @@ module UnifiedFeeds =
                 let tags = [||]  // Books don't have explicit tags
                 // Phase 5C: Get review metadata from cache for Schema.org integration in ActivityPub
                 let reviewData = BookProcessor.getReviewMetadata feedData.Content.FileName
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "reviews"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = reviewData; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Reviews; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = reviewData; MediaData = None }
             | None -> None)
     
     let convertAlbumsToUnified (feedDataList: FeedData<Album> list) : UnifiedFeedItem list =
@@ -2073,7 +2073,7 @@ module UnifiedFeeds =
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 // Phase 5D: Extract media data for media-primary content
                 let mediaData = MediaExtractor.extractPrimaryMedia content
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "media"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = mediaData }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Media; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = mediaData }
             | None -> None)
     
     let convertAlbumCollectionsToUnified (feedDataList: FeedData<AlbumCollection> list) : UnifiedFeedItem list =
@@ -2085,7 +2085,7 @@ module UnifiedFeeds =
                 let content = feedData.Content.Content  // Use full content
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "album-collection"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.AlbumCollection; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertPlaylistCollectionsToUnified (feedDataList: FeedData<PlaylistCollection> list) : UnifiedFeedItem list =
@@ -2097,7 +2097,7 @@ module UnifiedFeeds =
                 let content = feedData.Content.Content  // Use full content
                 let date = feedData.Content.Metadata.Date
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "playlist-collection"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.PlaylistCollection; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
             | None -> None)
     
     let convertBookmarksToUnified (feedDataList: FeedData<Bookmark> list) : UnifiedFeedItem list =
@@ -2112,13 +2112,13 @@ module UnifiedFeeds =
                 let targetUrl = 
                     if String.IsNullOrWhiteSpace(feedData.Content.Metadata.BookmarkOf) then None
                     else Some feedData.Content.Metadata.BookmarkOf
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = targetUrl; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Bookmarks; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = targetUrl; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
             | None -> None)
 
     // Convert bookmark responses (Response objects with bookmark type) to unified feed
     let convertBookmarkResponsesToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =
         feedDataList 
-        |> List.filter (fun feedData -> feedData.Content.Metadata.ResponseType = "bookmark") // Include only bookmarks
+        |> List.filter (fun feedData -> feedData.Content.Metadata.ResponseType = ContentTypes.Bookmark) // Include only bookmarks
         |> List.choose (fun feedData ->
             match feedData.RssXml with
             | Some rssXml ->
@@ -2127,5 +2127,5 @@ module UnifiedFeeds =
                 let content = feedData.CardHtml  // Use CardHtml to include target URL display
                 let date = feedData.Content.Metadata.DatePublished
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = Some "bookmark"; TargetUrl = Some feedData.Content.Metadata.TargetUrl; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Bookmarks; Tags = tags; RssXml = rssXml; ResponseType = Some ContentTypes.Bookmark; TargetUrl = Some feedData.Content.Metadata.TargetUrl; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
             | None -> None)

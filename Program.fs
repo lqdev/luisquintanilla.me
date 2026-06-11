@@ -98,36 +98,36 @@ let main argv =
     
     // Convert to unified feed items - Timeline feed (main content)
     let timelineFeedItems = [
-        ("posts", postsUnified)
-        ("notes", notesUnified)
-        ("responses", responsesUnified)
-        ("bookmarks", bookmarksUnified)
-        ("reviews", booksUnified)
-        ("media", albumsUnified)
-        ("album-collection", albumCollectionsUnified)
+        (ContentTypes.Posts, postsUnified)
+        (ContentTypes.Notes, notesUnified)
+        (ContentTypes.Responses, responsesUnified)
+        (ContentTypes.Bookmarks, bookmarksUnified)
+        (ContentTypes.Reviews, booksUnified)
+        (ContentTypes.Media, albumsUnified)
+        (ContentTypes.AlbumCollection, albumCollectionsUnified)
     ]
     
     // All unified items for RSS feeds and search (includes resources content)
     let allUnifiedItems = [
-        ("posts", postsUnified)
-        ("notes", notesUnified)
-        ("responses", responsesUnified)
-        ("bookmarks", bookmarksUnified)
-        ("snippets", snippetsUnified)
-        ("wiki", wikisUnified)
-        ("ai-memex", aiMemexUnified)
-        ("presentations", presentationsUnified)
-        ("reviews", booksUnified)
-        ("media", albumsUnified)
-        ("album-collection", albumCollectionsUnified)
-        ("playlist-collection", playlistCollectionsUnified)
+        (ContentTypes.Posts, postsUnified)
+        (ContentTypes.Notes, notesUnified)
+        (ContentTypes.Responses, responsesUnified)
+        (ContentTypes.Bookmarks, bookmarksUnified)
+        (ContentTypes.Snippets, snippetsUnified)
+        (ContentTypes.Wiki, wikisUnified)
+        (ContentTypes.AiMemex, aiMemexUnified)
+        (ContentTypes.Presentations, presentationsUnified)
+        (ContentTypes.Reviews, booksUnified)
+        (ContentTypes.Media, albumsUnified)
+        (ContentTypes.AlbumCollection, albumCollectionsUnified)
+        (ContentTypes.PlaylistCollection, playlistCollectionsUnified)
     ]
 
     // Blog Archive / JSON feed scope (posts + notes + responses)
     let blogArchiveFeedItems = [
-        ("posts", postsUnified)
-        ("notes", notesUnified)
-        ("responses", responsesUnified)
+        (ContentTypes.Posts, postsUnified)
+        (ContentTypes.Notes, notesUnified)
+        (ContentTypes.Responses, responsesUnified)
     ]
     
     // Prepare unified content for text-only site and search indexes
@@ -162,7 +162,7 @@ let main argv =
     // =============================================================================
     
     printfn "🎭 Building ActivityPub content..."
-    let activityPubContent = allUnifiedContent |> List.filter (fun item -> item.ContentType <> "ai-memex")
+    let activityPubContent = allUnifiedContent |> List.filter (fun item -> item.ContentType <> ContentTypes.AiMemex)
     ActivityPubBuilder.buildActivities activityPubContent "_public"
     ActivityPubBuilder.buildOutbox activityPubContent "_public"
     ActivityPubBuilder.queueRecentPostsForDelivery activityPubContent "_public"

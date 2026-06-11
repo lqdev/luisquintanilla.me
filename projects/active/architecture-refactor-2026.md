@@ -3,7 +3,7 @@
 **Project**: Streamlining the F#/.NET static site generator
 **Priority**: High | **Complexity**: Large (phased into S/M/L independently-shippable units)
 **Source assessment**: [`docs/architecture-assessment-2026.md`](../../docs/architecture-assessment-2026.md) — findings F1–F11, bets B1–B4
-**Status**: `[>]` Active — Phase 0 complete; Phase 1 in progress (1.1, 1.2 done; 1.3 next)
+**Status**: `[>]` Active — Phase 0 complete; Phase 1 in progress (1.1, 1.2, 1.3 done; 1.4 next)
 **Last updated**: 2026-06-10
 
 > Read the assessment first. This plan is the *how/when*; the assessment is the *what/why*
@@ -173,39 +173,26 @@ Implemented in three independently hash-verified sub-steps:
 - **Net −150 lines** of dead code. **Verify**: ✅ byte-identical; build clean.
   **Rollback**: one revert of the 1.2 squash.
 
-### 1.3 Introduce the ContentType source of truth (F5 — step 1 of 2, zero behavior change)
-- New file `ContentTypes.fs` (compile right after `Domain.fs` in `.fsproj`):
-  ```fsharp
-  module ContentTypes
-
-  /// Single authority for content-type identity. DO NOT add bare string
-  /// literals elsewhere — extend this module instead.
-  [<Literal>]
-  let Posts = "posts"
-  [<Literal>]
-  let Notes = "notes"
-  // ... responses, bookmarks, snippets, wiki, presentations, reviews,
-  //     media, streams, ai-memex, album-collection, playlist-collection
-  /// Response subtypes carried in UnifiedFeedItem.ContentType (see memex
-  /// pattern-content-type-taxonomy-mismatch):
-  let ResponseSubtypes = set [ "reply"; "reshare"; "star"; "rsvp" ]
-  let normalizeResponseSubtype (ct: string) =
-      if ResponseSubtypes.Contains ct then "responses" else ct
-  /// URL prefix per content type (lifted from LayoutViews.fs:385–398):
-  let urlPrefix = function
-      | "posts" -> "/posts/" | "notes" -> "/notes/" (* ... *)
-      | other -> $"/{other}/"
-  ```
-  (Exact shape final at implementation — but be honest about what this step is: literals are
-  **documentation, not enforcement**. F# type abbreviations and `[<Literal>]`s erase to
-  `string`; the compiler still can't catch a tag passed where a content type belongs. The
-  enforcement upgrade is the closed DU in **2.7**; this step's job is purely to collect the
-  scatter into one file so 2.7 is a mechanical swap. Full registry design deferred to B1.)
-- Mechanically replace literals in `Program.fs`, `GenericBuilder.fs` converters, and the
-  permalink `match` in `LayoutViews.fs:385–398` (the view calls `ContentTypes.urlPrefix`).
-- **Explicitly out of scope here**: changing `ITaggable.ContentType` singular values — that's a
-  behavior decision logged for 2.7/B1.
-- **Verify**: byte-identical. **Rollback**: one revert.
+### 1.3 Introduce the ContentType source of truth (F5 — step 1 of 2) — ✅ DONE (2026-06-10)
+- New `ContentTypes.fs` (compiles right after `Domain.fs`): `[<Literal>]` canonical names
+  (Posts/Notes/Responses/Bookmarks/Snippets/Wiki/Presentations/Reviews/Media/Streams/AiMemex/
+  AlbumCollection/PlaylistCollection), response-subtype literals (Reply/Reshare/Star/Rsvp/Bookmark)
+  + `ResponseSubtypes` set + `normalizeResponseSubtype`, and `urlPrefix` (the permalink table
+  lifted verbatim from `LayoutViews.fs`).
+- Mechanically swapped literals → `ContentTypes.*` in: all `GenericBuilder` `convert*ToUnified`
+  ContentType stamps; the `typeConfigurations` RSS feed cluster (tuple keys + `Some ct`); the
+  `buildJsonFeeds` typeConfigs + `responseStreamContentTypes` set + `toJsonFeedContent` match;
+  the responses-feed subtype filter (`[star;reply;reshare;responses]`, order preserved); the
+  `<> ai-memex` syndication guards; bookmark response-subtype comparisons; the two
+  `LayoutViews` permalink matches (now call `ContentTypes.urlPrefix`); and the three Program.fs
+  feed-item lists (`timeline`/`allUnified`/`blogArchive`) + the ActivityPub `<> ai-memex` guard.
+- **Deliberately NOT touched** (deferred to 2.7/B1 — *behavior* decisions, not mechanical):
+  `allTaggableContent`'s `"wikis"` (plural) key — differs from the feed vocab's `"wiki"`; changing
+  it would alter output. Builder.fs path/dir literals (filesystem-layout concern, not
+  `UnifiedFeedItem.ContentType` identity). `ITaggable.ContentType` singular values.
+- Honest scope: `[<Literal>]`s erase to `string` → **documentation, not enforcement**. The
+  closed-DU enforcement upgrade is 2.7; this just collects the scatter so that swap is mechanical.
+- **Verify**: ✅ byte-identical (0 diffs). Build clean (1 expected FS1104). **Rollback**: one revert.
 
 ### 1.4 Build summary for skipped files (F8 — interim diagnostics only)
 - In `GenericBuilder.buildContentWithFeeds` (or per-processor `Parse` wrappers): count files
@@ -454,7 +441,7 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 | 0 — Safety harness | `[x]` done | 2026-06-10 | 2026-06-10 | Umbrella branch created off main (after FSharp.Core lock bump 10.1.300→10.1.301 committed). Baseline: build 14.9s / generate ~110s / 13,486 files. Warnings: 1×FS1104, 0×FS0025. **Contract exclusion: `resources/ai-memex/graph.json`** (only `stats.generatedAt` build timestamp varies; `KnowledgeGraph.fs:527`). |
 | 1.1 double-builds | `[x]` done | 2026-06-10 | 2026-06-10 | Byte-identical. Converters bound 1×; 4/5 duplicate builder calls removed; posts/responses tag arrays derived from FeedData; dead `feedNotes` removed. **buildBooks() duplicate retained** — StarRating gradient IDs use a global counter (BlockRenderers.fs:85), removal is cosmetic-only but breaks byte-identity; needs deterministic page-local IDs first (→F7/B2). |
 | 1.2 dead flag | `[x]` done | 2026-06-10 | 2026-06-10 | Byte-identical. Removed `useUnifiedTagSystem` flag + unreachable `else`; deleted legacy `buildTagsPages` + 5 exclusively-used helpers. Net −150 lines. |
-| 1.3 ContentTypes module | `[ ]` | — | — | |
+| 1.3 ContentTypes module | `[x]` done | 2026-06-10 | 2026-06-10 | Byte-identical. New `ContentTypes.fs` literals authority; mechanical swap across GenericBuilder converters/feeds, LayoutViews permalink, Program.fs feed lists. Left `"wikis"` plural key + Builder.fs path literals for 2.7/B1. |
 | 1.4 skip diagnostics | `[ ]` | — | — | interim; superseded by 2.8 |
 | 1.5 FS0025 → error | `[ ]` | — | — | free (0.6 inventory) |
 | 2.1 build driver | `[ ]` | — | — | ADR-0006 |

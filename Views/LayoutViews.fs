@@ -383,19 +383,7 @@ let timelineHomeViewStratified (initialItems: GenericBuilder.UnifiedFeeds.Unifie
                             |> List.map (fun item ->
                                 let fileName = Path.GetFileNameWithoutExtension(item.Url)
                                 let getProperPermalink (contentType: string) (fileName: string) =
-                                    match contentType with
-                                    | "posts" -> $"/posts/{fileName}/"
-                                    | "notes" -> $"/notes/{fileName}/"
-                                    | "responses" -> $"/responses/{fileName}/"
-                                    | "bookmarks" -> $"/bookmarks/{fileName}/"
-                                    | "snippets" -> $"/resources/snippets/{fileName}/"
-                                    | "wiki" -> $"/resources/wiki/{fileName}/"
-                                    | "presentations" -> $"/resources/presentations/{fileName}/"
-                                    | "reviews" -> $"/reviews/{fileName}/"
-                                    | "streams" -> $"/streams/{fileName}/"
-                                    | "media" -> $"/media/{fileName}/"
-                                    | "ai-memex" -> $"/resources/ai-memex/{fileName}/"
-                                    | _ -> $"/{contentType}/{fileName}/"
+                                    sprintf "%s%s/" (ContentTypes.urlPrefix contentType) fileName
                                 let properPermalink = getProperPermalink item.ContentType fileName
                                 
                                 // Clean content safely for JSON without truncation - full content display
@@ -614,19 +602,7 @@ let timelineHomeView (items: GenericBuilder.UnifiedFeeds.UnifiedFeedItem array) 
                     |> Array.map (fun item ->
                         let fileName = Path.GetFileNameWithoutExtension(item.Url)
                         let getProperPermalink (contentType: string) (fileName: string) =
-                            match contentType with
-                            | "posts" -> $"/posts/{fileName}/"
-                            | "notes" -> $"/notes/{fileName}/"
-                            | "responses" -> $"/responses/{fileName}/"
-                            | "bookmarks" -> $"/bookmarks/{fileName}/"
-                            | "snippets" -> $"/resources/snippets/{fileName}/"
-                            | "wiki" -> $"/resources/wiki/{fileName}/"
-                            | "presentations" -> $"/resources/presentations/{fileName}/"
-                            | "reviews" -> $"/reviews/{fileName}/"
-                            | "streams" -> $"/streams/{fileName}/"
-                            | "media" -> $"/media/{fileName}/"
-                            | "ai-memex" -> $"/resources/ai-memex/{fileName}/"
-                            | _ -> $"/{contentType}/{fileName}/"
+                            sprintf "%s%s/" (ContentTypes.urlPrefix contentType) fileName
                         let properPermalink = getProperPermalink item.ContentType fileName
                         
                         // Clean content safely for JSON without truncation - full content display
