@@ -76,7 +76,21 @@ This orchestrates: load source files → parse → render → write output.
 
 ### 5. Program.fs — Wire into main pipeline
 
-Add the build function call in the main pipeline, after data collection.
+Add the build function call in the main pipeline, after data collection
+(`let myContentFeedData = buildMyContent()`), then add **one row** to the
+`contentRoster` table (the B1 content-type registry):
+
+```fsharp
+{ Identity = ContentTypes.ContentType.MyContent; Unified = myContentUnified
+  InTimeline = true; InAllFeeds = true; InBlogArchive = false }
+```
+
+The timeline / all-content / blog-archive feed lists DERIVE from this roster, so
+you set participation once via the flags — there are no separate membership lists
+to keep in sync. (Adding the `ContentType.MyContent` DU case in `ContentTypes.fs`
++ its `serialize`/`parse`/`urlPrefix` arms is compiler-enforced.) Tag-page
+participation (`allTaggableContent`) and desktop nav (`Views/Navigation.fs`) remain
+explicit and are edited separately when relevant.
 
 ### 6. Views/LayoutViews.fs — Page view
 

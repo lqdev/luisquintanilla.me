@@ -96,39 +96,36 @@ let main argv =
     let albumCollectionsUnified = UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData
     let playlistCollectionsUnified = UnifiedFeeds.convertPlaylistCollectionsToUnified playlistCollectionsFeedData
     
-    // Convert to unified feed items - Timeline feed (main content)
-    let timelineFeedItems = [
-        (ContentTypes.Posts, postsUnified)
-        (ContentTypes.Notes, notesUnified)
-        (ContentTypes.Responses, responsesUnified)
-        (ContentTypes.Bookmarks, bookmarksUnified)
-        (ContentTypes.Reviews, booksUnified)
-        (ContentTypes.Media, albumsUnified)
-        (ContentTypes.AlbumCollection, albumCollectionsUnified)
-    ]
-    
-    // All unified items for RSS feeds and search (includes resources content)
-    let allUnifiedItems = [
-        (ContentTypes.Posts, postsUnified)
-        (ContentTypes.Notes, notesUnified)
-        (ContentTypes.Responses, responsesUnified)
-        (ContentTypes.Bookmarks, bookmarksUnified)
-        (ContentTypes.Snippets, snippetsUnified)
-        (ContentTypes.Wiki, wikisUnified)
-        (ContentTypes.AiMemex, aiMemexUnified)
-        (ContentTypes.Presentations, presentationsUnified)
-        (ContentTypes.Reviews, booksUnified)
-        (ContentTypes.Media, albumsUnified)
-        (ContentTypes.AlbumCollection, albumCollectionsUnified)
-        (ContentTypes.PlaylistCollection, playlistCollectionsUnified)
+    // Content-type roster (B1): one declarative row per type describing its
+    // unified-feed participation. The three membership lists below derive from
+    // this single table (per-row flags) instead of being hand-maintained — so a
+    // type can no longer be added to one feed list but forgotten in another
+    // (the bug class behind pattern-content-type-taxonomy-mismatch). The roster
+    // holds already-projected results in the existing build order, so output is
+    // byte-identical. Row order = the all-feeds order; the filters preserve it.
+    let contentRoster : ContentRegistry.ContentTypeRoster list = [
+        { Identity = ContentTypes.ContentType.Posts;              Unified = postsUnified;              InTimeline = true;  InAllFeeds = true; InBlogArchive = true }
+        { Identity = ContentTypes.ContentType.Notes;              Unified = notesUnified;              InTimeline = true;  InAllFeeds = true; InBlogArchive = true }
+        { Identity = ContentTypes.ContentType.Responses;          Unified = responsesUnified;          InTimeline = true;  InAllFeeds = true; InBlogArchive = true }
+        { Identity = ContentTypes.ContentType.Bookmarks;          Unified = bookmarksUnified;          InTimeline = true;  InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.Snippets;           Unified = snippetsUnified;           InTimeline = false; InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.Wiki;               Unified = wikisUnified;              InTimeline = false; InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.AiMemex;            Unified = aiMemexUnified;            InTimeline = false; InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.Presentations;      Unified = presentationsUnified;      InTimeline = false; InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.Reviews;            Unified = booksUnified;              InTimeline = true;  InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.Media;              Unified = albumsUnified;             InTimeline = true;  InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.AlbumCollection;    Unified = albumCollectionsUnified;   InTimeline = true;  InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.PlaylistCollection; Unified = playlistCollectionsUnified; InTimeline = false; InAllFeeds = true; InBlogArchive = false }
     ]
 
+    // Convert to unified feed items - Timeline feed (main content)
+    let timelineFeedItems = ContentRegistry.timeline contentRoster
+
+    // All unified items for RSS feeds and search (includes resources content)
+    let allUnifiedItems = ContentRegistry.allFeeds contentRoster
+
     // Blog Archive / JSON feed scope (posts + notes + responses)
-    let blogArchiveFeedItems = [
-        (ContentTypes.Posts, postsUnified)
-        (ContentTypes.Notes, notesUnified)
-        (ContentTypes.Responses, responsesUnified)
-    ]
+    let blogArchiveFeedItems = ContentRegistry.blogArchive contentRoster
     
     // Prepare unified content for text-only site and search indexes
     // Normalize tags through canonical map so all consumers see consolidated tag names

@@ -4,7 +4,7 @@
 **Priority**: High | **Complexity**: Large (phased into S/M/L independently-shippable units)
 **Source assessment**: [`docs/architecture-assessment-2026.md`](../../docs/architecture-assessment-2026.md) — findings F1–F11, bets B1–B4
 **Status**: `[>]` Active — Phase 0 complete; **Phase 1 complete** (1.1–1.5 done, all byte-identical); **Phase 2 in progress** (2.1 build driver complete — all 11/11 builders migrated, byte-identical; 2.2 generic `toUnified` complete — 8 converters collapsed, byte-identical; 2.3 view dedupe complete — post-cards/response-bodies/layouts consolidated, byte-identical; 2.4 F7 slice (a) complete — `cleanCardHtml` unifies 4 copies, byte-identical; slice (b) STJ swap deferred to B2; 2.5 module splits complete — `UnifiedFeeds.fs` + `Views/TimelineViews.fs` extracted, byte-identical; 2.6 nav data complete — `Views/Navigation.fs` single source for desktop nav + 3 dead orphans removed, byte-identical; 2.7 ContentType DU complete — closed `[<RequireQualifiedAccess>] type ContentType` + `parse`/`serialize`, 2 dispatch sites exhaustive/no-wildcard, response subtypes kept on `ResponseType`, byte-identical; 2.8 railway parse track complete — `Diagnostics.fs` + `ContentError` DU, 12 severed `Error _ -> None` sites reconnected via `Result`-typed `Parse`, report-loudly-keep-building + opt-in `--strict`, byte-identical)
-**Last updated**: 2026-06-11 — **Phase 2 CLOSED OUT** (changelog Phase 1 + Phase 2 entries added; line counts 3728→2952; ADR-0006 present). Awaiting Phase 3 go/no-go.
+**Last updated**: 2026-06-11 — Phase 2 closed out; **Phase 3 B1 complete** (content-type roster registry, byte-identical, ADR-0007). B2/B4 pending go/no-go.
 
 > Read the assessment first. This plan is the *how/when*; the assessment is the *what/why*
 > (including 5-whys root causes, evidence citations, and the Fable-the-compiler evaluation).
@@ -518,6 +518,30 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 - **Cost**: M–L (mostly rearranging Phase-2 outputs into one table). **Exit**: registry deleted,
   Phase-2 configs remain free-standing (no worse than Phase 2 end-state).
 
+**GO/NO-GO NOTE (decided 2026-06-11 — GO, right-sized).** Investigation found two constraints that
+reshape the literal "one record incl. processor+views" framing:
+1. **4 typed consumers need concrete `'T`** downstream — `buildBookmarksLandingPage` (`FeedData<Response>`),
+   `buildAiMemexPages` (`FeedData<AiMemex>`), `buildTextOnlySite` (`FeedData<Presentation>`), and the
+   intentional 2nd `buildBooks()` (StarRating global-counter byte-identity hack, Program.fs:213).
+2. A registry that *holds generic processor+views for all types in one table* requires erasing `'T`.
+   Doing so via `{ new IContentType with … }` reintroduces the interface hierarchy the 2.1 driver
+   deliberately rejected — a **doctrine regression** (§8.1 composition-over-inheritance). Even a
+   thunk-record (composition-clean) erasure doesn't pay off: the 4 typed consumers still need typed
+   handles, so the erased registry becomes a redundant *parallel* structure that also **reorders
+   builds** (moves the global counters → byte-identity risk).
+
+   **Decision: right-sized projection registry.** New `ContentRegistry.fs` (after `UnifiedFeeds.fs`)
+   defines `ContentTypeRoster` = `{ Identity; Unified; InTimeline; InAllFeeds; InBlogArchive }` and the
+   derivations `timeline`/`allFeeds`/`blogArchive`. Program.fs builds ONE ordered `roster` value
+   (from the already-typed `convertX(buildX())` results) and the **3 hand-maintained unified-feed
+   membership lists derive from it** via per-row flags. Builds keep their explicit order (registry
+   holds *results*, doesn't drive building) → **byte-identical**. **Out of scope (documented, not
+   forgotten):** *nav* (desktop menu grouping is editorial, mixes non-content-type links — folding it
+   in repeats the 2.6 false-unification anti-pattern) and the *tag-page list* (`allTaggableContent`
+   merges responses+bookmarks and uses a plural `"wikis"` key — not a clean per-type projection).
+   **Benefit:** kills the "added to one feed list but forgot another" bug class
+   (`pattern-content-type-taxonomy-mismatch`); one greppable roster for the feed surface. **ADR-0007.**
+
 ### B2 — Structured render product; delete HTML re-parsing (F7 full fix) — *go/no-go after B1*
 - **What**: `ContentProcessor.Render` returns `RenderedContent` (BodyHtml without
   wrapper/title + metadata); pages/cards/timeline/text-only compose instead of regex-stripping.
@@ -561,7 +585,9 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 - [ ] `Builder.fs` + `GenericBuilder.fs` combined: 3,728 lines today → target <2,500 (Ph 2)
 - [ ] Build wall-clock: improved vs baseline (record actual numbers Phase 0 vs Phase 1.1)
 - [x] Skipped-file visibility: every silently-dropped file now reported (0 reporting today)
-- [ ] Adding a content type: ~8 files today → ≤3 meaningful edits (if B1 lands); skill checklist updated
+- [~] Adding a content type: feed membership now ONE roster row (B1) instead of 3 hand-maintained
+      lists — the taxonomy-mismatch bug class is gone; per-type code (Domain/parse/processor/views)
+      stays irreducible. `add-content-type` skill checklist updated.
 - [ ] Zero unexplained output diffs at every checkpoint; site soul untouched (no visual/UX change in Phases 0–2)
 
 ## Completion Protocol (house rules)
@@ -590,7 +616,7 @@ file, decided *before* code. None is pre-approved. Sequencing below is the recom
 | 2.6 nav data | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs). New `Views/Navigation.fs`: typed `NavSection`/`NavLink`/`NavMenuEntry` model + `desertNavigation` rendered from `desktopSections` data (adding a collection = one data row); `renderTextOnlyNav` from its own `textOnlyNav` list (kept independent — curated `/text/` surface, drift-immune via "All Content" aggregation). Deleted 3 dead orphans: `defaultNavBar` (167 lines, Layouts), `getNavigationStructure` (Collections), `NavigationStructure`/`NavigationSection` (Domain). Layouts.fs 660→361. Did NOT force-unify the two navs (false unification). Seam ready for B1. |
 | 2.7 ContentType DU | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs over 13,510 files). Added `[<RequireQualifiedAccess>] type ContentType` (13 canonical cases) + boundary pair `parse`/`serialize` in `ContentTypes.fs`. The 2 genuine dispatch sites made exhaustive over the DU, no wildcard: `urlPrefix : ContentType -> string` (AlbumCollection/PlaylistCollection now explicit) + `urlPrefixForKey` string shim preserving the `/{other}/` fallback byte-for-byte; `toJsonFeedContent` routed through `parse`, exhaustive over `ContentType option`. **Taxonomy decision:** response subtypes are `Domain.ResponseType`, not `ContentType` — excluded from the DU, survive only as wire strings in `UnifiedFeedItem.ContentType` (timeline grouping key). ~90 equality/key sites stay string-based (serialization boundary, not dispatch). Adding a case now fails to compile until both dispatch sites handle it. |
 | 2.8 railway parse track | `[x]` | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs over 13,513 files). New leaf `Diagnostics.fs` (after ASTParsing): `[<RequireQualifiedAccess>] type ContentError` (§8.3) + `ofParseError`/`render` + sink (`report`/`errorCount`/`isStrict`). `ContentProcessor.Parse : string -> Result<'T, ContentError>`; 12 severed `\| Error _ -> None` sites reconnected (+ `\| None ->` missing-frontmatter → `ParseFailure`). `buildContentWithFeeds` partitions Ok/Error, reports failures, returns identical success set. Report-loudly-keep-building (exit 0); opt-in `--strict`/`STRICT_CONTENT=1` → exit 1 (Program.fs). Fixture test: broken YAML → structured block, exit 0 default / exit 1 strict. |
-| B1 registry | `[ ]` go/no-go pending | — | — | |
+| B1 registry | `[x]` done | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs / 13,518 files). New `ContentRegistry.fs`: `ContentTypeRoster` table (Identity + Unified + InTimeline/InAllFeeds/InBlogArchive); the 3 hand-maintained feed lists in Program.fs now derive from one ordered roster via per-row flags. Right-sized (projection of typed results, not an erased driver — see ADR-0007 + go/no-go note): no `'T` erasure, no interface, builds keep order. Nav + tag-page list deliberately out (editorial/structural divergence = false unification). `add-content-type` skill updated. ADR-0007. |
 | B2 structured render | `[ ]` go/no-go pending | — | — | ADR-0007 |
 | B3 Fable pilot | **NO-GO** (2026-06-10) | — | — | contract-gen adopted as optional item |
 | B4 text-only unification | `[ ]` go/no-go pending | — | — | requires B2 |

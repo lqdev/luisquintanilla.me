@@ -30,6 +30,7 @@
     <Compile Include="Services\QRStyled.fs" />
     <Compile Include="GenericBuilder.fs" />
     <Compile Include="UnifiedFeeds.fs" />
+    <Compile Include="ContentRegistry.fs" />
     <Compile Include="ActivityPubBuilder.fs" />
     <Compile Include="EntityExtraction.fs" />
     <Compile Include="KnowledgeGraph.fs" />
