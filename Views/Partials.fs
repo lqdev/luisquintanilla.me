@@ -72,7 +72,6 @@ let enhancedSubscriptionHubView = CollectionViews.enhancedSubscriptionHubView
 
 // Layout (from LayoutViews)
 let homeView = LayoutViews.homeView
-let timelineHomeView = TimelineViews.timelineHomeView
 let contentView = LayoutViews.contentView
 let contentViewWithTitle = LayoutViews.contentViewWithTitle
 let mediaPageView = LayoutViews.mediaPageView

@@ -2,23 +2,10 @@ module ContentViews
 
 open Giraffe.ViewEngine
 open System
-open System.Text.RegularExpressions
 open Domain
 open MarkdownService
 open ComponentViews
 open CustomBlocks
-
-// Helper function to extract image URL from processed review HTML content
-let extractImageFromReviewHtml (content: string) : string option =
-    try
-        // Look for img tags within custom-review-block divs
-        let pattern = @"<div class=""custom-review-block[^>]*>.*?<img[^>]*src=""([^""]+)""[^>]*>.*?</div>"
-        let match' = Regex.Match(content, pattern, RegexOptions.Singleline)
-        if match'.Success then
-            Some match'.Groups.[1].Value
-        else None
-    with
-    | _ -> None
 
 // Individual content type views.
 // One card shape parameterized by feed key (footer) and whether a standalone page's
@@ -66,15 +53,12 @@ let bookPostView (book: Book) =
     div [_class "card mb-4 mx-auto"] [
         div [_class "row"] [
             div [_class "col-md-4"] [
-                // B2.3: image URL from structured ReviewData.ImageUrl (RENDER_V2) instead of
-                // regex-scraping the rendered review HTML; same metadata.Cover -> placeholder fallback.
+                // B2.3: cover image URL from structured ReviewData.ImageUrl; same
+                // metadata.Cover -> placeholder fallback.
                 let structuredImage =
-                    if Diagnostics.useRenderV2 () then
-                        match book.MarkdownSource with
-                        | Some md -> let (img, _, _, _) = GenericBuilder.ReviewDataExtractor.extractReviewData md in img
-                        | None -> None
-                    else
-                        extractImageFromReviewHtml book.Content
+                    match book.MarkdownSource with
+                    | Some md -> let (img, _, _, _) = GenericBuilder.ReviewDataExtractor.extractReviewData md in img
+                    | None -> None
                 let imageUrl = 
                     match structuredImage with
                     | Some reviewImageUrl -> reviewImageUrl

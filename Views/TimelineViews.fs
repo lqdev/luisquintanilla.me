@@ -33,24 +33,6 @@ type ProgressiveContentItem =
       content: string
       tags: string[] }
 
-/// F7 (cheap slice): single copy of the timeline card-HTML cleanup that was duplicated
-/// across the initial-render and progressive-loading paths (4 copies). Takes already-rendered
-/// HTML and strips the article wrapper and the title h1 / h2-link (already shown by the card
-/// header), then neutralizes <script> tags. Callers convert markdown → HTML first (some use
-/// createSimplifiedReviewContent for reviews). The full structural fix (a RenderedContent
-/// product so consumers compose instead of regex-strip) is deferred to B2.
-let private cleanCardHtml (html: string) =
-    // Remove all article opening tags with any class
-    let removeArticleStart = System.Text.RegularExpressions.Regex.Replace(html, @"<article[^>]*>", "")
-    // Remove all article closing tags
-    let removeArticleEnd = removeArticleStart.Replace("</article>", "")
-    // Remove duplicate h1/h2 titles (common source of duplication)
-    let removeTitles = System.Text.RegularExpressions.Regex.Replace(removeArticleEnd, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-    // Remove h2 title links from CardHtml (fixes duplicate headings while preserving content h2s)
-    let removeTitleLinks = System.Text.RegularExpressions.Regex.Replace(removeTitles, @"<h2[^>]*><a[^>]*>.*?</a></h2>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-    // Additional cleaning to prevent HTML parsing issues
-    removeTitleLinks.Replace("<script", "&lt;script").Replace("</script>", "&lt;/script&gt;")
-
 /// Extract item type from review content for badge display
 let private extractReviewItemType (content: string) =
     try
@@ -89,77 +71,6 @@ let private extractReviewItemType (content: string) =
     with
     | ex -> 
         None
-
-/// Extract simplified review content for timeline cards
-/// Shows only: title, image, rating, scale, and summary extracted from already-rendered HTML
-let private createSimplifiedReviewContent (content: string) =
-    try
-        // The content is already HTML with rendered custom-review-block
-        if content.Contains("custom-review-block") then
-            // Extract key information from the rendered HTML
-            let extractFromHtml (startPattern: string) (endPattern: string) =
-                let startIndex = content.IndexOf(startPattern)
-                if startIndex >= 0 then
-                    let startIndex = startIndex + startPattern.Length
-                    let endIndex = content.IndexOf(endPattern, startIndex)
-                    if endIndex > startIndex then
-                        Some (content.Substring(startIndex, endIndex - startIndex).Trim())
-                    else None
-                else None
-            
-            // Extract title
-            let title = extractFromHtml "review-title p-name\">" "</h3>"
-            
-            // Extract image
-            let imageHtml = 
-                if content.Contains("review-image") then
-                    extractFromHtml "review-image\"><img src=\"" "\" alt="
-                    |> Option.map (fun imgUrl -> 
-                        let altText = title |> Option.defaultValue "Review Item"
-                        $"""<div class="simplified-review-image">
-                <img src="{imgUrl}" alt="{altText}" class="review-cover" style="max-width: 150px; height: auto;" />
-            </div>""")
-                    |> Option.defaultValue ""
-                else ""
-            
-            // Extract rating
-            let ratingHtml = 
-                if content.Contains("review-rating") then
-                    extractFromHtml "review-rating p-rating\"><strong>Rating:</strong> " "</div>"
-                    |> Option.map (fun rating -> 
-                        $"""<div class="simplified-review-rating">
-                <strong>Rating:</strong> {rating}
-            </div>""")
-                    |> Option.defaultValue ""
-                else ""
-            
-            // Extract summary
-            let summaryHtml = 
-                if content.Contains("review-summary") then
-                    extractFromHtml "review-summary p-summary\">" "</div>"
-                    |> Option.map (fun summary -> 
-                        $"""<div class="simplified-review-summary">
-                {summary}
-            </div>""")
-                    |> Option.defaultValue ""
-                else ""
-            
-            let titleText = title |> Option.defaultValue "Review"
-            
-            // Construct the simplified review card
-            $"""<div class="simplified-review-card">
-            <h3 class="simplified-review-title">{titleText}</h3>
-            {imageHtml}
-            {ratingHtml}
-            {summaryHtml}
-        </div>"""
-        else
-            // No custom review block found, return empty
-            ""
-    with
-    | ex -> 
-        // On any error, return empty content to avoid breaking the page
-        ""
 
 // Reusable avatar flip-card component (pure CSS, native disclosure).
 //
@@ -357,17 +268,8 @@ let timelineHomeViewStratified (initialItems: UnifiedFeeds.UnifiedFeedItem array
                                 a [ _class "u-url title-link"; _href properPermalink ] [ Text item.Title ]
                             ]
                             div [ _class "e-content card-content" ] [
-                                // B2 (RENDER_V2): compose the chrome-free structured body directly.
-                                // Off: the historical path — review CardHtml as-is, else regex-strip.
-                                if Diagnostics.useRenderV2 () then
-                                    rawText item.BodyHtml.Value
-                                elif item.ContentType = "reviews" then
-                                    // Reviews are already simplified in the unified feed processing, display as-is
-                                    rawText item.Content
-                                else
-                                    // Convert markdown content to HTML and clean it for other content types
-                                    let cleanedContent = cleanCardHtml (convertMdToHtml item.Content)
-                                    rawText cleanedContent
+                                // Compose the chrome-free structured body directly (B2 / F7).
+                                rawText item.BodyHtml.Value
                             ]
                         ]
                         
@@ -395,49 +297,20 @@ let timelineHomeViewStratified (initialItems: UnifiedFeeds.UnifiedFeedItem array
                 for (contentType, items) in remainingItemsByType do
                     if not items.IsEmpty then
                         let contentTypeItemsJson =
-                            if Diagnostics.useRenderV2 () then
-                                // B2.2: structured serialization via System.Text.Json over a typed
-                                // record. The clean body comes from item.BodyHtml (B2.1 seam).
-                                items
-                                |> List.map (fun item ->
-                                    let fileName = Path.GetFileNameWithoutExtension(item.Url)
-                                    let properPermalink = sprintf "%s%s/" (ContentTypes.urlPrefixForKey item.ContentType) fileName
-                                    { title = item.Title
-                                      contentType = item.ContentType
-                                      date = item.Date
-                                      url = properPermalink
-                                      content = item.BodyHtml.Value
-                                      tags = item.Tags })
-                                |> List.toArray
-                                |> JsonSerializer.Serialize
-                            else
-                                // Flag-off legacy path: hand-rolled JSON (byte-identical to baseline).
-                                let escapeJson (text: string) =
-                                    text.Replace("\\", "\\\\")
-                                        .Replace("\"", "\\\"")
-                                        .Replace("\b", "\\b")
-                                        .Replace("\f", "\\f")
-                                        .Replace("\n", "\\n")
-                                        .Replace("\r", "\\r")
-                                        .Replace("\t", "\\t")
-                                let inner =
-                                    items
-                                    |> List.map (fun item ->
-                                        let fileName = Path.GetFileNameWithoutExtension(item.Url)
-                                        let getProperPermalink (contentType: string) (fileName: string) =
-                                            sprintf "%s%s/" (ContentTypes.urlPrefixForKey contentType) fileName
-                                        let properPermalink = getProperPermalink item.ContentType fileName
-                                        let safeContent = escapeJson (cleanCardHtml (convertMdToHtml item.Content))
-                                        sprintf """{"title":"%s","contentType":"%s","date":"%s","url":"%s","content":"%s","tags":[%s]}"""
-                                            (escapeJson item.Title)
-                                            (escapeJson item.ContentType)
-                                            (escapeJson item.Date)
-                                            (escapeJson properPermalink)
-                                            safeContent
-                                            (item.Tags |> Array.map (fun tag -> sprintf "\"%s\"" (escapeJson tag)) |> String.concat ",")
-                                    )
-                                    |> String.concat ","
-                                $"[{inner}]"
+                            // B2.2: structured serialization via System.Text.Json over a typed
+                            // record. The clean body comes from item.BodyHtml (B2.1 seam).
+                            items
+                            |> List.map (fun item ->
+                                let fileName = Path.GetFileNameWithoutExtension(item.Url)
+                                let properPermalink = sprintf "%s%s/" (ContentTypes.urlPrefixForKey item.ContentType) fileName
+                                { title = item.Title
+                                  contentType = item.ContentType
+                                  date = item.Date
+                                  url = properPermalink
+                                  content = item.BodyHtml.Value
+                                  tags = item.Tags })
+                            |> List.toArray
+                            |> JsonSerializer.Serialize
 
                         script [ _type "application/json"; _id $"remainingContentData-{contentType}" ] [
                             rawText contentTypeItemsJson
@@ -453,213 +326,6 @@ let timelineHomeViewStratified (initialItems: UnifiedFeeds.UnifiedFeedItem array
                         attr "data-chunk-size" "10"
                     ] [
                         Text $"Load More ({totalRemaining} items remaining)"
-                    ]
-                    div [ _class "loading-indicator hidden"; _id "loadingIndicator" ] [
-                        div [ _class "loading-spinner" ] []
-                        Text "Loading more content..."
-                    ]
-                ]
-        ]
-        
-        // Back to top button for long content scrolling (UX best practice)
-        button [ 
-            _class "back-to-top"
-            _id "backToTopBtn"
-            _type "button"
-            _title "Back to top"
-            attr "aria-label" "Scroll back to top of page"
-        ] [
-            // Using simple up arrow for universal recognition
-            span [ _class "icon"; attr "aria-hidden" "true" ] [ Text "↑" ]
-        ]
-    ]
-
-// New timeline homepage view for feed-as-homepage interface - Progressive Loading Implementation
-let timelineHomeView (items: UnifiedFeeds.UnifiedFeedItem array) =
-    // Research-backed progressive loading: Start with safe 50 items, load more on demand
-    
-    div [ _class "h-feed unified-timeline" ] [
-        // Header with personal intro and content filters
-        header [ _class "timeline-header text-center p-4" ] [
-            div [ _class "avatar-section mb-3" ] [
-                avatarFlipCard "Luis Quintanilla Avatar Image" "/" "Show QR code for homepage" "Luis Quintanilla's homepage"
-                div [ _class "mt-2" ] [
-                    h1 [ _class "p-name" ] [
-                        str "Hi, I'm "
-                        a [ _href "/about"; _class "author-link" ] [ Text "Luis" ]
-                        span [] [ Text " &#x1F44B;" ]
-                    ]
-                    p [ _class "tagline" ] [ Text "Latest updates from across the site" ]
-                ]
-            ]
-            
-            // Content type filters (will be styled as buttons in CSS)
-            div [ _class "content-filters mt-3"; _id "contentFilters" ] [
-                button [ _class "filter-btn active"; attr "data-filter" "all"; _type "button" ] [ Text "All" ]
-                button [ _class "filter-btn"; attr "data-filter" "posts"; _type "button" ] [ Text "Blog Posts" ]
-                button [ _class "filter-btn"; attr "data-filter" "notes"; _type "button" ] [ Text "Notes" ]
-                button [ _class "filter-btn"; attr "data-filter" "responses"; _type "button" ] [ Text "Responses" ]
-                button [ _class "filter-btn"; attr "data-filter" "reviews"; _type "button" ] [ Text "Reviews" ]
-                button [ _class "filter-btn"; attr "data-filter" "bookmarks"; _type "button" ] [ Text "Bookmarks" ]
-                button [ _class "filter-btn"; attr "data-filter" "media"; _type "button" ] [ Text "Media" ]
-            ]
-        ]
-        
-        // Timeline content area with progressive loading
-        main [ _class "timeline-content" ] [
-            // Initial content batch (safe loading threshold based on content-volume-html-parsing-discovery.md)
-            div [ _class "initial-content"; _id "initialContent" ] [
-                for item in (items |> Array.take (min 50 items.Length)) do
-                    let fileName = Path.GetFileNameWithoutExtension(item.Url)
-                    let getProperPermalink (contentType: string) (fileName: string) =
-                        match contentType with
-                        | "posts" -> $"/posts/{fileName}/"
-                        | "notes" -> $"/notes/{fileName}/"
-                        | "responses" -> $"/responses/{fileName}/"
-                        | "bookmarks" -> $"/bookmarks/{fileName}/"  // Bookmarks are responses but filtered separately
-                        | "snippets" -> $"/resources/snippets/{fileName}/"
-                        | "wiki" -> $"/resources/wiki/{fileName}/"
-                        | "presentations" -> $"/resources/presentations/{fileName}/"
-                        | "reviews" -> $"/reviews/{fileName}/"
-                        | "streams" -> $"/streams/{fileName}/"
-                        | "media" -> $"/media/{fileName}/"
-                        // Specific response types also route to /responses/
-                        | "star" | "reply" | "reshare" | "rsvp" -> $"/responses/{fileName}/"
-                        | "bookmark" -> $"/bookmarks/{fileName}/"
-                        | "ai-memex" -> $"/resources/ai-memex/{fileName}/"
-                        | _ -> $"/{contentType}/{fileName}/"
-                    
-                    let properPermalink = getProperPermalink item.ContentType fileName
-                    
-                    // Content card with desert theme and filtering attributes
-                    article [ 
-                        _class "h-entry content-card"
-                        attr "data-type" item.ContentType
-                        attr "data-date" item.Date
-                    ] [
-                        header [ _class "card-header" ] [
-                            time [ _class "dt-published publication-date"; attr "datetime" item.Date ] [
-                                Text (DateTimeOffset.Parse(item.Date).ToString("MMM dd, yyyy"))
-                            ]
-                            div [ _class "content-type-info" ] [
-                                span [ _class "content-type-badge"; attr "data-type" item.ContentType ] [
-                                    Text (match item.ContentType with
-                                          | "posts" -> "Blog Post"
-                                          | "notes" -> "Note"
-                                          | "responses" -> "Response"
-                                          | "bookmarks" -> "Bookmark"
-                                          | "reviews" -> 
-                                              // For reviews, try to extract the specific item type (Book, Movie, etc.)
-                                              match extractReviewItemType item.Content with
-                                              | Some itemType -> itemType
-                                              | None -> "Review"  // Fallback to generic "Review"
-                                          | "streams" -> "Stream Recording"
-                                          | "media" -> "Media"
-                                          // Specific response types
-                                          | "star" -> "Star"
-                                          | "reply" -> "Reply"
-                                          | "reshare" -> "Reshare"
-                                          | "rsvp" -> "RSVP"
-                                          | "bookmark" -> "Bookmark"
-                                          | "ai-memex" -> "AI Memex"
-                                          | _ -> item.ContentType)
-                                ]
-                            ]
-                        ]
-                        
-                        div [ _class "card-body" ] [
-                            h2 [ _class "p-name card-title" ] [
-                                a [ _class "u-url title-link"; _href properPermalink ] [ Text item.Title ]
-                            ]
-                            div [ _class "e-content card-content" ] [
-                                // Special handling for reviews - they already use simplified CardHtml from GenericBuilder
-                                if item.ContentType = "reviews" then
-                                    // Reviews are already simplified in the unified feed processing, display as-is
-                                    rawText item.Content
-                                    // Convert markdown content to HTML and clean it for other content types
-                                    let cleanedContent = cleanCardHtml (convertMdToHtml item.Content)
-                                    rawText cleanedContent
-                            ]
-                        ]
-                        
-                        footer [ _class "card-footer" ] [
-                            div [ _class "card-meta" ] [
-                                if item.Tags.Length > 0 then
-                                    div [ _class "p-category tags" ] [
-                                        for tag in item.Tags do
-                                            a [ _class "tag-link"; _href $"/tags/{sanitizeTagForUrl tag}/" ] [ Text $"#{tag}" ]
-                                    ]
-                            ]
-                        ]
-                    ]
-            ]
-            
-            // Progressive loading container for additional content chunks
-            div [ 
-                _class "progressive-content"
-                _id "progressiveContent"
-                attr "data-total-items" (items.Length.ToString())
-            ] []
-            
-            // Progressive loading trigger - JavaScript will load remaining content chunks
-            if items.Length > 50 then
-                // Pass remaining items as JSON for JavaScript progressive loading
-                let remainingItems = items |> Array.skip 50
-                
-                // Proper JSON escaping function
-                let escapeJson (text: string) =
-                    text.Replace("\\", "\\\\")
-                        .Replace("\"", "\\\"")
-                        .Replace("\b", "\\b")
-                        .Replace("\f", "\\f")
-                        .Replace("\n", "\\n")
-                        .Replace("\r", "\\r")
-                        .Replace("\t", "\\t")
-                
-                let remainingItemsJson = 
-                    remainingItems 
-                    |> Array.map (fun item ->
-                        let fileName = Path.GetFileNameWithoutExtension(item.Url)
-                        let getProperPermalink (contentType: string) (fileName: string) =
-                            sprintf "%s%s/" (ContentTypes.urlPrefixForKey contentType) fileName
-                        let properPermalink = getProperPermalink item.ContentType fileName
-                        
-                        // Clean content safely for JSON without truncation - full content display
-                        let safeContent = 
-                            let content = 
-                                if item.ContentType = "reviews" then
-                                    // For reviews, use simplified content just like the initial timeline
-                                    createSimplifiedReviewContent item.Content
-                                else
-                                    // For other content types, use the standard processing
-                                    convertMdToHtml item.Content  // Convert markdown to HTML first
-                            // Clean content similar to initial loading to ensure consistency
-                            escapeJson (cleanCardHtml content)
-                        
-                        sprintf """{"title":"%s","contentType":"%s","date":"%s","url":"%s","content":"%s","tags":[%s]}"""
-                            (escapeJson item.Title)
-                            (escapeJson item.ContentType)
-                            (escapeJson item.Date)
-                            (escapeJson properPermalink)
-                            safeContent
-                            (item.Tags |> Array.map (fun tag -> sprintf "\"%s\"" (escapeJson tag)) |> String.concat ",")
-                    )
-                    |> String.concat ","
-                
-                script [ _type "application/json"; _id "remainingContentData" ] [
-                    rawText $"[{remainingItemsJson}]"
-                ]
-                
-                div [ _class "load-more-section"; _id "loadMoreSection" ] [
-                    button [ 
-                        _class "load-more-btn"
-                        _id "loadMoreBtn"
-                        _type "button"
-                        attr "data-total-items" (items.Length.ToString())
-                        attr "data-loaded-items" "50"
-                        attr "data-chunk-size" "25"
-                    ] [
-                        Text $"Load More ({items.Length - 50} items remaining)"
                     ]
                     div [ _class "loading-indicator hidden"; _id "loadingIndicator" ] [
                         div [ _class "loading-spinner" ] []
