@@ -38,7 +38,6 @@ let aiStarterPackFeedView = FeedViews.aiStarterPackFeedView
 // Content (from ContentViews)
 let feedPostView = ContentViews.feedPostView
 let notePostView = ContentViews.notePostView
-let responsePostView = ContentViews.responsePostView
 let bookmarkPostView = ContentViews.bookmarkPostView
 let bookPostView = ContentViews.bookPostView
 let albumPostView = ContentViews.albumPostView
@@ -46,7 +45,6 @@ let presentationPageView = ContentViews.presentationPageView
 let liveStreamPageView = ContentViews.liveStreamPageView
 let feedPostViewWithBacklink = ContentViews.feedPostViewWithBacklink
 let notePostViewWithBacklink = ContentViews.notePostViewWithBacklink
-let reponsePostViewWithBacklink = ContentViews.reponsePostViewWithBacklink
 let albumPostViewWithBacklink = ContentViews.albumPostViewWithBacklink
 
 // Collections (from CollectionViews)

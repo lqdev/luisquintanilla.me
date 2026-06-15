@@ -20,78 +20,6 @@ let extractImageFromReviewHtml (content: string) : string option =
     with
     | _ -> None
 
-// Response body views for different IndieWeb response types.
-// reply/reshare/star/bookmark are data (icon, color, microformat class) over one shape;
-// rsvp diverges (p-rsvp span + " to " + target=_blank) so it stays explicit.
-type ResponseStyle = { Icon: string; Color: string; MfClass: string }
-
-// Shared cleanup: strip the "No description available" placeholder, empty paragraphs,
-// and the leading "YYYY-MM-DD HH:mm" timestamp line baked into rendered response content.
-let private cleanResponseContent (post: Response) =
-    let cleanContent =
-        post.Content
-            .Replace("No description available", "")
-            .Replace("<p></p>", "")
-    let timestampPattern = System.Text.RegularExpressions.Regex(@"^\s*\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}\s*$", System.Text.RegularExpressions.RegexOptions.Multiline)
-    timestampPattern.Replace(cleanContent, "").Trim()
-
-let responseBodyView (style: ResponseStyle) (post: Response) =
-    let cleanedContent = cleanResponseContent post
-    div [ _class "card-body" ] [
-        p [] [
-            span [_class style.Icon; _style $"margin-right:5px;margin-left:5px;color:{style.Color};"] []
-            a [_class style.MfClass; _href $"{post.Metadata.TargetUrl}"] [Text post.Metadata.TargetUrl]
-        ]
-        div [_class "e-content"] [
-            rawText cleanedContent
-        ]
-    ]
-
-let replyBodyView (post:Response) =
-    responseBodyView { Icon = "bi bi-reply-fill"; Color = "#3F5576"; MfClass = "u-in-reply-to" } post
-
-let reshareBodyView (post:Response) =
-    responseBodyView { Icon = "bi bi-share-fill"; Color = "#C0587E"; MfClass = "u-repost-of" } post
-
-let starBodyView (post:Response) =
-    responseBodyView { Icon = "bi bi-star-fill"; Color = "#ff7518"; MfClass = "u-like-of" } post
-
-let bookmarkBodyView (post:Response) =
-    responseBodyView { Icon = "bi bi-journal-bookmark-fill"; Color = "#4a60b6"; MfClass = "u-bookmark-of" } post
-
-/// Phase 6A: RSVP response body view with IndieWeb p-rsvp microformat
-let rsvpBodyView (post:Response) = 
-    let cleanedContent = cleanResponseContent post
-    
-    // Get RSVP status for display and microformat
-    let rsvpStatus = 
-        match post.Metadata.RsvpStatus with
-        | Some status -> status.ToLowerInvariant()
-        | None -> "interested"  // Default to interested if not specified
-    
-    // Choose icon and color based on RSVP status
-    let (iconClass, iconColor) =
-        match rsvpStatus with
-        | "yes" -> ("bi bi-check-circle-fill", "#28a745")  // Green for yes
-        | "no" -> ("bi bi-x-circle-fill", "#dc3545")       // Red for no
-        | "maybe" -> ("bi bi-question-circle-fill", "#ffc107")  // Yellow for maybe
-        | "interested" -> ("bi bi-calendar-check-fill", "#6c757d")  // Gray for interested
-        | _ -> ("bi bi-calendar-event-fill", "#4a60b6")    // Default blue
-    
-    div [ _class "card-body" ] [
-        p [] [
-            span [_class iconClass; _style $"margin-right:5px;margin-left:5px;color:{iconColor};"] []
-            span [_class "p-rsvp"] [Text rsvpStatus]
-            Text " to "
-            a [_class "u-in-reply-to"; _href $"{post.Metadata.TargetUrl}"; _target "_blank"] [
-                Text post.Metadata.TargetUrl
-            ]
-        ]
-        div [_class "e-content"] [
-            rawText cleanedContent
-        ]
-    ]
-
 // Individual content type views.
 // One card shape parameterized by feed key (footer) and whether a standalone page's
 // webmention form is appended; the four named entry points below preserve call sites.
@@ -119,24 +47,6 @@ let individualFeedPostView (post:Post) = postCardView "posts" true post
 
 let individualNotePostView (post:Post) = postCardView "notes" true post
 
-let responsePostView (post: Response) = 
-    let header = cardHeader post.Metadata.DatePublished
-    let footer = cardFooter "responses" post.FileName post.Metadata.Tags
-    let body = 
-        match post.Metadata.ResponseType with
-        | "reply" -> replyBodyView post
-        | "reshare" -> reshareBodyView post
-        | "star" -> starBodyView post
-        | "bookmark" -> bookmarkBodyView post
-        | "rsvp" -> rsvpBodyView post
-        | _ -> div [_class "card-body"] [p [] [Text "No content"]]
-    
-    div [ _class "card rounded m-2 w-75 mx-auto h-entry" ] [
-        header
-        body    
-        footer
-    ] 
-
 let bookmarkPostView (bookmark: Bookmark) = 
     let header = cardHeader bookmark.Metadata.DatePublished
     let footer = cardFooter "bookmarks" bookmark.FileName bookmark.Metadata.Tags
@@ -156,9 +66,17 @@ let bookPostView (book: Book) =
     div [_class "card mb-4 mx-auto"] [
         div [_class "row"] [
             div [_class "col-md-4"] [
-                // Extract imageUrl from processed HTML review content, fall back to metadata, then to placeholder
+                // B2.3: image URL from structured ReviewData.ImageUrl (RENDER_V2) instead of
+                // regex-scraping the rendered review HTML; same metadata.Cover -> placeholder fallback.
+                let structuredImage =
+                    if Diagnostics.useRenderV2 () then
+                        match book.MarkdownSource with
+                        | Some md -> let (img, _, _, _) = GenericBuilder.ReviewDataExtractor.extractReviewData md in img
+                        | None -> None
+                    else
+                        extractImageFromReviewHtml book.Content
                 let imageUrl = 
-                    match extractImageFromReviewHtml book.Content with
+                    match structuredImage with
                     | Some reviewImageUrl -> reviewImageUrl
                     | None -> 
                         if String.IsNullOrWhiteSpace(book.Metadata.Cover) then
@@ -296,13 +214,6 @@ let notePostViewWithBacklink (notePostView:XmlNode) =
     div [] [
         notePostView        
         notesBacklink
-    ]
-
-let reponsePostViewWithBacklink (responsePostView:XmlNode) = 
-    let responseBacklink = feedBacklink "/responses"
-    div [] [
-        responsePostView
-        responseBacklink
     ]
 
 let albumPostViewWithBacklink (albumPostView:XmlNode) = 
