@@ -606,10 +606,21 @@ exact F7 surface and the *real* root cause:
   consumption in CI. Type-drift protection across the F#/JS boundary with zero new toolchain.
   Schedule whenever convenient; it is independent of all other bets.
 
-### B4 — Text-only derives from the shared model (F10) — *only after/with B2*
-- Re-render text-only from `RenderedContent` + shared nav data + shared subtype normalization,
-  deleting `TextOnlyViews.fs:39–87` regex rewriting. Reviewed diff with explicit text-only
-  parity checklist (<50KB budget re-verified per page type).
+### B4 — Text-only derives from the shared model (F10) — **DROPPED (2026-06-15)**
+- Original plan: re-render text-only from `RenderedContent` + shared nav data + shared subtype
+  normalization, deleting `TextOnlyViews.fs:39–87` regex rewriting.
+- **Outcome: dropped as mis-scoped.** Its two valuable parts already shipped in Phase 2 — shared
+  nav data (`Navigation.renderTextOnlyNav`) and subtype normalization
+  (`TextOnlyViews.normalizeContentType`). The only remaining work, deleting the image regex
+  `replaceImagesWithText`, rests on a false premise: that regex is a *cross-source semantic
+  transform* (img→accessible text) over `<img>` from **3 heterogeneous sources** — markdown
+  `![]()` (231 files), `:::media` MediaBlock `<img class="media-image">` (19 files,
+  `CustomBlocks.fs:413`), and raw HTML `<img>` (11 files, **no AST node**). A structural
+  `LinkInline` renderer covers only the first; wiring it in regresses the other two. Unlike B2's
+  `cleanCardHtml` (render-then-un-render), regex-on-final-HTML is the *correct* convergence point
+  here. Domain confirmed correct as `www.lqdev.me` (no bug). Speculative renderer removed (no dead
+  code). Captured as memex `pattern-regex-on-html-not-always-antipattern`.
+- B4 was additive and `/text/`-scoped — never a prerequisite for umbrella→main.
 
 ---
 
@@ -660,4 +671,4 @@ exact F7 surface and the *real* root cause:
 | B1 registry | `[x]` done | 2026-06-11 | 2026-06-11 | Byte-identical (0 diffs / 13,518 files). New `ContentRegistry.fs`: `ContentTypeRoster` table (Identity + Unified + InTimeline/InAllFeeds/InBlogArchive); the 3 hand-maintained feed lists in Program.fs now derive from one ordered roster via per-row flags. Right-sized (projection of typed results, not an erased driver — see ADR-0007 + go/no-go note): no `'T` erasure, no interface, builds keep order. Nav + tag-page list deliberately out (editorial/structural divergence = false unification). `add-content-type` skill updated. ADR-0007. |
 | B2 structured render | `[x]` done (cutover) | 2026-06-15 | 2026-06-15 | **The one output-changing bet — reviewed diff, not byte-identical.** Three flag-gated slices (`RENDER_V2`), each byte-identical OFF: B2.1 clean-body seam (kills `cleanCardHtml`; `ASTParsing.removeRedundantCardHeadings` + `renderCardHtmlFromMarkdown`); B2.2 `System.Text.Json` over public record `ProgressiveContentItem` (gotcha: a `private` record serializes as `{}`); B2.3 structured review image from `ReviewData.ImageUrl` + byte-identical removal of the dead response-body cluster (`cleanResponseContent`). Cutover flipped default ON, deleted the flag + all four regex helpers (`cleanCardHtml`, `createSimplifiedReviewContent`, `extractImageFromReviewHtml`, `cleanResponseContent`) + dead `timelineHomeView`. Verified: default == pre-cutover flag-ON snapshot byte-for-byte (0 diffs / 13,525) → deletion is a pure refactor. Reviewed diff vs pre-B2 baseline = 2 files: `index.html` (whitespace + intended heading suppression + 1 code-block fix + STJ re-encode) + `reviews/index.html` (1/36 covers — a double-encoding bug fix). No URL changed. ADR-0008. Baseline refreshed (13,526). |
 | B3 Fable pilot | **NO-GO** (2026-06-10) | — | — | contract-gen adopted as optional item |
-| B4 text-only unification | `[ ]` go/no-go pending | — | — | requires B2 |
+| B4 text-only unification | **DROPPED** (2026-06-15) | — | — | Mis-scoped. Valuable parts (shared nav data `renderTextOnlyNav`, subtype normalization `normalizeContentType`) already shipped in Phase 2.6/2.7. Remaining "delete the image regex" rests on a false premise: `replaceImagesWithText` is a cross-source semantic transform over `<img>` from 3 heterogeneous sources (markdown `![]()` 231 files / `:::media` MediaBlock 19 / raw-HTML `<img>` 11, the last with **no AST node**); a structural `LinkInline` renderer covers only the 1st and regresses the rest. Unlike B2's render-then-un-render `cleanCardHtml`, regex-on-final-HTML is the correct convergence point. Domain confirmed `www.lqdev.me` (no bug). Speculative renderer removed. Memex `pattern-regex-on-html-not-always-antipattern`. Additive/`/text/`-scoped — not a prerequisite for umbrella→main. |
