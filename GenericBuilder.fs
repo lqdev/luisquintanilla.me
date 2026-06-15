@@ -895,6 +895,35 @@ module BookProcessor =
 
 /// Response content processor
 module ResponseProcessor =
+    /// Chrome-free card body (B2 / F7): the response-target + response-content divs
+    /// WITHOUT the <article> wrapper or the <h2><a>title</a></h2> heading. The timeline
+    /// composes this directly — its own card-body/title wrapper makes the standalone
+    /// CardHtml chrome redundant (historically regex-stripped by `cleanCardHtml`).
+    /// `RenderCard` wraps this with the standalone-card chrome, so CardHtml is unchanged.
+    let renderResponseCardBody (response: Response) =
+        let targetUrl = Html.escapeHtml response.Metadata.TargetUrl
+        Html.element "div" (Html.attribute "class" "response-target")
+            (sprintf "→ %s" (Html.element "a" (Html.attribute "href" targetUrl) targetUrl)) +
+        Html.element "div" (Html.attribute "class" "response-content") response.Content
+
+    /// B2 (RENDER_V2) clean card-body seam. Like renderResponseCardBody, but renders the
+    /// body from the response's MARKDOWN source via ASTParsing.renderCardHtmlFromMarkdown so
+    /// the AST card renderer can drop headings the card's own title duplicates (level-1 and
+    /// bare-link level-2). renderResponseCardBody embeds already-rendered HTML, where an
+    /// embedded <h2><a> sits inside a single HtmlBlock and cannot be removed structurally.
+    /// renderCardHtmlFromMarkdown reuses the canonical bare renderer (Media + Review object
+    /// renderers, no pipeline.Setup), so the body is byte-identical to response.Content apart
+    /// from the intended heading removal.
+    let renderResponseCardBodyClean (response: Response) =
+        let targetUrl = Html.escapeHtml response.Metadata.TargetUrl
+        let bodyHtml =
+            match response.MarkdownSource with
+            | Some raw -> ASTParsing.renderCardHtmlFromMarkdown (ASTParsing.stripFrontMatter raw)
+            | None -> response.Content
+        Html.element "div" (Html.attribute "class" "response-target")
+            (sprintf "→ %s" (Html.element "a" (Html.attribute "href" targetUrl) targetUrl)) +
+        Html.element "div" (Html.attribute "class" "response-content") bodyHtml
+
     let create() : ContentProcessor<Response> = {
         Parse = fun filePath ->
             match parseResponseFromFile filePath with
@@ -939,7 +968,6 @@ module ResponseProcessor =
         
         RenderCard = fun response ->
             let title = Html.escapeHtml response.Metadata.Title
-            let targetUrl = Html.escapeHtml response.Metadata.TargetUrl
             // Use correct path based on response type 
             let urlPath = 
                 match response.Metadata.ResponseType with
@@ -950,9 +978,7 @@ module ResponseProcessor =
             // Include title, target URL, and content
             Html.element "article" (Html.attribute "class" "response-card h-entry")
                 (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
-                 Html.element "div" (Html.attribute "class" "response-target") 
-                    (sprintf "→ %s" (Html.element "a" (Html.attribute "href" targetUrl) targetUrl)) +
-                 Html.element "div" (Html.attribute "class" "response-content") response.Content)
+                 renderResponseCardBody response)
         
         RenderRss = fun response ->
             // Create RSS item for response with correct path based on response type

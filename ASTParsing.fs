@@ -68,6 +68,19 @@ let private parseFrontMatter<'TMetadata> (content: string) : Result<'TMetadata o
     with
     | ex -> Error (YamlParseError $"Error processing front-matter: {ex.Message}")
 
+/// Return the markdown body with any leading YAML front-matter removed.
+/// Mirrors parseFrontMatter's body-splitting (line-based '---' fences) without
+/// requiring a metadata type, for callers that need only the body markdown
+/// (e.g. the B2 card-body seam, which re-renders a heading-stripped body via
+/// the AST). Returns the input unchanged when no front-matter fence is present.
+let stripFrontMatter (content: string) : string =
+    let lines = content.Split([|'\n'|], StringSplitOptions.None)
+    if lines.Length > 0 && lines.[0].Trim() = "---" then
+        match lines |> Array.skip 1 |> Array.tryFindIndex (fun line -> line.Trim() = "---") with
+        | Some idx -> lines.[(idx + 2)..] |> String.concat "\n"
+        | None -> content
+    else content
+
 /// Extract text content from AST, filtering out custom blocks
 /// This replaces string manipulation with proper AST traversal
 let private extractTextContentFromAst (doc: MarkdownDocument) : string =
@@ -138,6 +151,48 @@ let private createMarkdownPipeline () : MarkdownPipeline =
         .UseFigures()
         |> CustomBlocks.useCustomBlocks
         |> fun builder -> builder.Build()
+
+/// Remove, in place, the headings a timeline/preview card's own title would duplicate:
+/// every level-1 heading and any level-2 heading that is a bare title link
+/// (`## [text](url)`). Operating on the parsed AST (vs. a regex over rendered HTML)
+/// correctly leaves `#`/`<h2><a>` that appear inside code blocks untouched. Shared by
+/// both card renderers (ASTParsing.renderCardHtmlFromMarkdown and the figure-rendering
+/// MarkdownService.convertMdToCardHtml) so their heading policy can never drift apart.
+let removeRedundantCardHeadings (doc: MarkdownDocument) : unit =
+    let isBareLinkH2 (h: HeadingBlock) =
+        h.Level = 2 &&
+        (match h.Inline with
+         | null -> false
+         | inl ->
+            match inl |> Seq.toList with
+            | [ (:? Markdig.Syntax.Inlines.LinkInline) ] -> true
+            | _ -> false)
+    let toRemove =
+        doc
+        |> Seq.choose (fun block ->
+            match block with
+            | :? HeadingBlock as h when h.Level = 1 || isBareLinkH2 h -> Some block
+            | _ -> None)
+        |> Seq.toList
+    for b in toRemove do doc.Remove(b) |> ignore
+
+/// Render markdown to card-body HTML using the SAME bare renderer as the canonical
+/// extractTextContentFromAst (Media + Review object renderers, no pipeline.Setup) so the
+/// output matches a content item's own page rendering exactly — but with the headings a
+/// card's own title duplicates removed at the AST level (see removeRedundantCardHeadings).
+/// This is the structural replacement for the old cleanCardHtml regex (B2 / F7) for content
+/// whose card body must stay byte-identical to its canonical rendering (e.g. responses,
+/// whose pre-rendered HTML cannot be AST-stripped), minus those redundant headings.
+let renderCardHtmlFromMarkdown (content: string) : string =
+    let pipeline = createMarkdownPipeline ()
+    let doc = Markdown.Parse(content, pipeline)
+    removeRedundantCardHeadings doc
+    let writer = new StringWriter()
+    let renderer = new Markdig.Renderers.HtmlRenderer(writer)
+    renderer.ObjectRenderers.Add(MediaBlockHtmlRenderer())
+    renderer.ObjectRenderers.Add(ReviewBlockHtmlRenderer())
+    for block in doc do renderer.Render(block) |> ignore
+    writer.ToString()
 
 /// Central document parsing function - single entry point for all content types
 /// This replaces the various individual parse functions with unified processing

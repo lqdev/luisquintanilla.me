@@ -33,6 +33,21 @@ module MarkdownService
     let convertMdToHtml (content:string) =
         Markdown.ToHtml(content,mdToHtmlPipeline)
 
+    /// Convert markdown to HTML for timeline/preview CARDS. Same pipeline as
+    /// convertMdToHtml, but removes — at the AST level — the headings the card's own
+    /// title would duplicate (see ASTParsing.removeRedundantCardHeadings). This is the
+    /// structural replacement for the old `cleanCardHtml` regex (B2 / F7) for markdown
+    /// content types whose flag-OFF card body was rendered via this same pipeline.
+    let convertMdToCardHtml (content:string) =
+        let doc = Markdown.Parse(content, mdToHtmlPipeline)
+        ASTParsing.removeRedundantCardHeadings doc
+        use writer = new StringWriter()
+        let renderer = Markdig.Renderers.HtmlRenderer(writer)
+        mdToHtmlPipeline.Setup(renderer)
+        renderer.Render(doc) |> ignore
+        writer.Flush()
+        writer.ToString()
+
     let convertFileToHtml (filePath:string) =
         filePath 
         |> File.ReadAllText 

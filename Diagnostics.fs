@@ -76,3 +76,29 @@ let errorCount () = sink.Count
 let isStrict (argv: string array) =
     (argv |> Array.contains "--strict")
     || (System.Environment.GetEnvironmentVariable("STRICT_CONTENT") = "1")
+
+// =============================================================================
+// RENDER_V2 flag (Phase 3 / B2 — structured render product, assessment F7).
+//
+// The timeline historically composed each card by re-parsing already-rendered
+// HTML (`cleanCardHtml` regex-strips the redundant <article>/<h2><a> chrome that
+// the standalone CardHtml baked in). B2 carries a chrome-free `BodyHtml` on each
+// unified item so the timeline composes it structurally instead. The flag gates
+// the new path so the old one stays wired until cutover: flag OFF reproduces the
+// regex path byte-for-byte; flag ON is the reviewed (intentionally non-identical)
+// structured path. Cutover (B2.cutover) flips the default and deletes the old path.
+//
+// View code has no access to argv, so the `--render-v2` answer is latched here at
+// startup; `RENDER_V2=1` works without latching (handy for one-off generations).
+// =============================================================================
+
+let mutable private renderV2Latched = false
+
+/// Latch the `--render-v2` argv answer at startup so argv-less view code can read it.
+let useRenderV2From (argv: string array) =
+    renderV2Latched <- argv |> Array.contains "--render-v2"
+
+/// True when the structured render product (B2) is enabled.
+let useRenderV2 () =
+    renderV2Latched
+    || (System.Environment.GetEnvironmentVariable("RENDER_V2") = "1")

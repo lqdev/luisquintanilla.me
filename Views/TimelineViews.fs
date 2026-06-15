@@ -340,8 +340,11 @@ let timelineHomeViewStratified (initialItems: UnifiedFeeds.UnifiedFeedItem array
                                 a [ _class "u-url title-link"; _href properPermalink ] [ Text item.Title ]
                             ]
                             div [ _class "e-content card-content" ] [
-                                // Special handling for reviews - they already use simplified CardHtml from GenericBuilder
-                                if item.ContentType = "reviews" then
+                                // B2 (RENDER_V2): compose the chrome-free structured body directly.
+                                // Off: the historical path — review CardHtml as-is, else regex-strip.
+                                if Diagnostics.useRenderV2 () then
+                                    rawText item.BodyHtml.Value
+                                elif item.ContentType = "reviews" then
                                     // Reviews are already simplified in the unified feed processing, display as-is
                                     rawText item.Content
                                 else
@@ -393,7 +396,9 @@ let timelineHomeViewStratified (initialItems: UnifiedFeeds.UnifiedFeedItem array
                                 let properPermalink = getProperPermalink item.ContentType fileName
                                 
                                 // Clean content safely for JSON without truncation - full content display
-                                let safeContent = escapeJson (cleanCardHtml (convertMdToHtml item.Content))
+                                let safeContent =
+                                    if Diagnostics.useRenderV2 () then escapeJson item.BodyHtml.Value
+                                    else escapeJson (cleanCardHtml (convertMdToHtml item.Content))
                                 
                                 sprintf """{"title":"%s","contentType":"%s","date":"%s","url":"%s","content":"%s","tags":[%s]}"""
                                     (escapeJson item.Title)

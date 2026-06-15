@@ -41,6 +41,11 @@ module UnifiedFeeds
         ReviewData: ReviewMetadata option
         // Phase 5D: Media metadata for native Image/Video/Audio objects
         MediaData: MediaAPData option
+        // B2 (F7): chrome-free body HTML the timeline composes structurally instead of
+        // regex-stripping CardHtml. LAZY on purpose — forced only by the RENDER_V2 path
+        // for items actually rendered, so flag-off triggers no extra convertMdToHtml
+        // (no global-counter perturbation; output stays byte-identical).
+        BodyHtml: Lazy<string>
     }
 
     /// Feed configuration for different feed types
@@ -101,6 +106,7 @@ module UnifiedFeeds
                 ReviewData = None
                 // Phase 5D: Default to None for non-media-primary content
                 MediaData = None
+                BodyHtml = lazy (MarkdownService.convertMdToCardHtml content)
             }
         | None -> None
     
@@ -515,7 +521,7 @@ module UnifiedFeeds
                 let (title, content, date, tags) = getCore feedData
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
                 let extras = getExtras feedData
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = contentType; Tags = tags; RssXml = rssXml; ResponseType = extras.ResponseType; TargetUrl = extras.TargetUrl; UpdatedDate = extras.UpdatedDate; RsvpStatus = extras.RsvpStatus; ReviewData = extras.ReviewData; MediaData = extras.MediaData }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = contentType; Tags = tags; RssXml = rssXml; ResponseType = extras.ResponseType; TargetUrl = extras.TargetUrl; UpdatedDate = extras.UpdatedDate; RsvpStatus = extras.RsvpStatus; ReviewData = extras.ReviewData; MediaData = extras.MediaData; BodyHtml = lazy (MarkdownService.convertMdToCardHtml content) }
             | None -> None)
 
     let convertPostsToUnified (feedDataList: FeedData<Post> list) : UnifiedFeedItem list =
@@ -554,7 +560,7 @@ module UnifiedFeeds
                 let updatedDate = if String.IsNullOrWhiteSpace(feedData.Content.Metadata.DateUpdated) then None else Some feedData.Content.Metadata.DateUpdated
                 // Phase 6A: Extract RSVP status for event responses
                 let rsvpStatus = feedData.Content.Metadata.RsvpStatus
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = contentType; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate; RsvpStatus = rsvpStatus; ReviewData = None; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = contentType; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate; RsvpStatus = rsvpStatus; ReviewData = None; MediaData = None; BodyHtml = lazy (ResponseProcessor.renderResponseCardBodyClean feedData.Content) }
             | None -> None)
     
     let convertResponseBookmarksToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =
@@ -572,7 +578,7 @@ module UnifiedFeeds
                 let responseType = Some ContentTypes.Bookmark
                 let targetUrl = Some feedData.Content.Metadata.TargetUrl
                 let updatedDate = if String.IsNullOrWhiteSpace(feedData.Content.Metadata.DateUpdated) then None else Some feedData.Content.Metadata.DateUpdated
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Bookmarks; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate; RsvpStatus = None; ReviewData = None; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Bookmarks; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate; RsvpStatus = None; ReviewData = None; MediaData = None; BodyHtml = lazy (ResponseProcessor.renderResponseCardBodyClean feedData.Content) }
             | None -> None)
     
     let convertSnippetsToUnified (feedDataList: FeedData<Snippet> list) : UnifiedFeedItem list =
@@ -612,7 +618,7 @@ module UnifiedFeeds
                 let tags = [||]  // Books don't have explicit tags
                 // Phase 5C: Get review metadata from cache for Schema.org integration in ActivityPub
                 let reviewData = BookProcessor.getReviewMetadata feedData.Content.FileName
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Reviews; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = reviewData; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Reviews; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = reviewData; MediaData = None; BodyHtml = lazy content }
             | None -> None)
     
     let convertAlbumsToUnified (feedDataList: FeedData<Album> list) : UnifiedFeedItem list =
@@ -626,7 +632,7 @@ module UnifiedFeeds
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
                 // Phase 5D: Extract media data for media-primary content
                 let mediaData = MediaExtractor.extractPrimaryMedia content
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Media; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = mediaData }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Media; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = mediaData; BodyHtml = lazy (MarkdownService.convertMdToCardHtml content) }
             | None -> None)
     
     let convertAlbumCollectionsToUnified (feedDataList: FeedData<AlbumCollection> list) : UnifiedFeedItem list =
@@ -653,7 +659,7 @@ module UnifiedFeeds
                 let targetUrl = 
                     if String.IsNullOrWhiteSpace(feedData.Content.Metadata.BookmarkOf) then None
                     else Some feedData.Content.Metadata.BookmarkOf
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Bookmarks; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = targetUrl; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Bookmarks; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = targetUrl; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None; BodyHtml = lazy (MarkdownService.convertMdToCardHtml content) }
             | None -> None)
 
     // Convert bookmark responses (Response objects with bookmark type) to unified feed
@@ -668,5 +674,5 @@ module UnifiedFeeds
                 let content = feedData.CardHtml  // Use CardHtml to include target URL display
                 let date = feedData.Content.Metadata.DatePublished
                 let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Bookmarks; Tags = tags; RssXml = rssXml; ResponseType = Some ContentTypes.Bookmark; TargetUrl = Some feedData.Content.Metadata.TargetUrl; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Bookmarks; Tags = tags; RssXml = rssXml; ResponseType = Some ContentTypes.Bookmark; TargetUrl = Some feedData.Content.Metadata.TargetUrl; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None; BodyHtml = lazy (ResponseProcessor.renderResponseCardBodyClean feedData.Content) }
             | None -> None)

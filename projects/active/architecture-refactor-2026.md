@@ -555,6 +555,47 @@ reshape the literal "one record incl. processor+views" framing:
   `<>&`/control chars differently) is reviewed inside this step's diff rather than as a lone
   byte-breaking step in byte-identical Phase 2.
 
+**GO/NO-GO + DECOMPOSITION NOTE (decided 2026-06-11 — GO, sliced).** Investigation mapped the
+exact F7 surface and the *real* root cause:
+
+  **The actual code (not LayoutViews — that moved to `Views/TimelineViews.fs` in 2.5):**
+  - `cleanCardHtml` (`TimelineViews.fs:25-35`) — 4 chained regex strip article/h1/h2-link + neutralize
+    `<script>`; called at 349 (initial render, `timelineHomeViewStratified`) and 396 (progressive JSON),
+    plus 546/603 in the second view `timelineHomeView` (444).
+  - `sprintf`-JSON + hand `escapeJson` (`TimelineViews.fs:378-410` and dup 576-611) — progressive-load data.
+  - `extractImageFromReviewHtml` (`ContentViews.fs:12-21`) — regex pulls `<img src>` out of rendered review HTML.
+  - `cleanResponseContent` timestamp regex (`ContentViews.fs:30-36`) — strips a baked `YYYY-MM-DD HH:mm` line.
+  - Text-only `<img>`/href rewrite (`TextOnlyViews.fs:39-87`) — **belongs to B4**, not B2.
+
+  **Root cause confirmed:** `UnifiedFeedItem.Content` is ONE string with heterogeneous meaning —
+  raw markdown for posts/notes/media (→ `convertMdToHtml` then strip), but already-rendered `CardHtml`
+  *with* `<article><h2><a>` chrome for responses/bookmarks/reviews (→ regex strips the chrome back off).
+  Structured extras (`ReviewData`/`MediaData`/`TargetUrl`/`ResponseType`/`RsvpStatus`) ALREADY exist on
+  `UnifiedFeedItem`; the regex sins remain only where a *part* of content is needed but only the chrome'd
+  string is carried.
+
+  **Decision: slice B2 into independently-reviewable units, each flag-gated by `RENDER_V2`
+  (env `RENDER_V2=1` / `--render-v2` arg, read via a `Diagnostics`-style helper). Old path stays wired
+  until B2.cutover.** Every slice: build clean → full `dotnet run` under flag-off (must stay byte-identical)
+  AND flag-on (capture the intentional diff) → author reviews the flag-on diff → land. Parity harness =
+  the same SHA-256 manifest, run twice (flag-off vs baseline = 0; flag-on vs baseline = the reviewed set).
+
+  - **B2.1 — clean-body seam (kill `cleanCardHtml`).** Each converter sets `Content` to clean body HTML
+    (no card chrome) for all types; the timeline composes it directly. Under `RENDER_V2`. Reviewed diff
+    (expect tiny whitespace/wrapper deltas where regex was lossy).
+  - **B2.2 — `System.Text.Json` JSON (folds in 2.4(b)).** Replace both `sprintf`-JSON+`escapeJson` blocks
+    with STJ over a typed record. Reviewed diff (STJ escapes `<>&`/control chars differently).
+  - **B2.3 — structured review image + response timestamp.** Carry the review image in `ReviewData`
+    (delete `extractImageFromReviewHtml`); strip the response timestamp at render-time from structure
+    (delete the `cleanResponseContent` regex). Reviewed diff.
+  - **B2.cutover — flip default on, delete old regex paths + the dead second timeline view if unused.**
+    **ADR-0008.**
+
+  **Exit:** at any slice boundary, flag-off path is intact and byte-identical → revertible. B4 (text-only
+  from the shared model) sequences after B2.cutover.
+
+> NOTE: plan §"Documentation/ADR" lists ADR-0007 for B2, but ADR-0007 was taken by B1 (roster). **B2 = ADR-0008.**
+
 ### B3 — Search-contract generation (Fable compiler pilot: **NO-GO**, decided 2026-06-10)
 - **Decision (author, 2026-06-10): the Fable-the-compiler pilot is NO-GO.** Cons in assessment
   §6 accepted: second toolchain (Node/Fable/bundler) in a pure-dotnet pipeline, bundle-weight

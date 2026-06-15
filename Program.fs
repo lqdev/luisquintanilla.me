@@ -16,6 +16,9 @@ let main argv =
     let srcDir = "_src"
     let outputDir = "_public"
 
+    // B2 (Phase 3): latch the --render-v2 flag so argv-less view code can read it.
+    Diagnostics.useRenderV2From argv
+
     // Prep work
     cleanOutputDirectory outputDir
     copyStaticFiles ()
