@@ -3,6 +3,7 @@ module TimelineViews
 open Giraffe.ViewEngine
 open System
 open System.IO
+open System.Text.Json
 open Domain
 open ComponentViews
 open CollectionViews
@@ -15,6 +16,22 @@ open HtmlHelpers
 /// Sanitize tag names for URL usage while preserving display text
 let private sanitizeTagForUrl (tag: string) =
     tag.Replace("#", "sharp").Replace("/", "-").Replace(" ", "-").Replace("\"", "")
+
+/// B2.2: typed shape of a progressive-loading timeline item. Serialized with
+/// System.Text.Json (field names map verbatim to JSON keys) under RENDER_V2,
+/// replacing the hand-rolled sprintf-JSON + escapeJson. STJ's default HTML-safe
+/// encoder escapes &lt;&gt;&amp; (e.g. &lt; → \u003C), which also closes the latent
+/// &lt;/script&gt; break-out the old escapeJson relied on cleanCardHtml to neutralize.
+/// NOTE: must be a public (non-private) record — System.Text.Json's reflection
+/// serializer only reads properties of accessible types; a `private` record
+/// serializes as empty `{}`.
+type ProgressiveContentItem =
+    { title: string
+      contentType: string
+      date: string
+      url: string
+      content: string
+      tags: string[] }
 
 /// F7 (cheap slice): single copy of the timeline card-HTML cleanup that was duplicated
 /// across the initial-render and progressive-loading paths (4 copies). Takes already-rendered
@@ -377,41 +394,53 @@ let timelineHomeViewStratified (initialItems: UnifiedFeeds.UnifiedFeedItem array
                 // Generate JSON data for each content type separately
                 for (contentType, items) in remainingItemsByType do
                     if not items.IsEmpty then
-                        // Proper JSON escaping function
-                        let escapeJson (text: string) =
-                            text.Replace("\\", "\\\\")
-                                .Replace("\"", "\\\"")
-                                .Replace("\b", "\\b")
-                                .Replace("\f", "\\f")
-                                .Replace("\n", "\\n")
-                                .Replace("\r", "\\r")
-                                .Replace("\t", "\\t")
-                        
-                        let contentTypeItemsJson = 
-                            items 
-                            |> List.map (fun item ->
-                                let fileName = Path.GetFileNameWithoutExtension(item.Url)
-                                let getProperPermalink (contentType: string) (fileName: string) =
-                                    sprintf "%s%s/" (ContentTypes.urlPrefixForKey contentType) fileName
-                                let properPermalink = getProperPermalink item.ContentType fileName
-                                
-                                // Clean content safely for JSON without truncation - full content display
-                                let safeContent =
-                                    if Diagnostics.useRenderV2 () then escapeJson item.BodyHtml.Value
-                                    else escapeJson (cleanCardHtml (convertMdToHtml item.Content))
-                                
-                                sprintf """{"title":"%s","contentType":"%s","date":"%s","url":"%s","content":"%s","tags":[%s]}"""
-                                    (escapeJson item.Title)
-                                    (escapeJson item.ContentType)
-                                    (escapeJson item.Date)
-                                    (escapeJson properPermalink)
-                                    safeContent
-                                    (item.Tags |> Array.map (fun tag -> sprintf "\"%s\"" (escapeJson tag)) |> String.concat ",")
-                            )
-                            |> String.concat ","
-                        
+                        let contentTypeItemsJson =
+                            if Diagnostics.useRenderV2 () then
+                                // B2.2: structured serialization via System.Text.Json over a typed
+                                // record. The clean body comes from item.BodyHtml (B2.1 seam).
+                                items
+                                |> List.map (fun item ->
+                                    let fileName = Path.GetFileNameWithoutExtension(item.Url)
+                                    let properPermalink = sprintf "%s%s/" (ContentTypes.urlPrefixForKey item.ContentType) fileName
+                                    { title = item.Title
+                                      contentType = item.ContentType
+                                      date = item.Date
+                                      url = properPermalink
+                                      content = item.BodyHtml.Value
+                                      tags = item.Tags })
+                                |> List.toArray
+                                |> JsonSerializer.Serialize
+                            else
+                                // Flag-off legacy path: hand-rolled JSON (byte-identical to baseline).
+                                let escapeJson (text: string) =
+                                    text.Replace("\\", "\\\\")
+                                        .Replace("\"", "\\\"")
+                                        .Replace("\b", "\\b")
+                                        .Replace("\f", "\\f")
+                                        .Replace("\n", "\\n")
+                                        .Replace("\r", "\\r")
+                                        .Replace("\t", "\\t")
+                                let inner =
+                                    items
+                                    |> List.map (fun item ->
+                                        let fileName = Path.GetFileNameWithoutExtension(item.Url)
+                                        let getProperPermalink (contentType: string) (fileName: string) =
+                                            sprintf "%s%s/" (ContentTypes.urlPrefixForKey contentType) fileName
+                                        let properPermalink = getProperPermalink item.ContentType fileName
+                                        let safeContent = escapeJson (cleanCardHtml (convertMdToHtml item.Content))
+                                        sprintf """{"title":"%s","contentType":"%s","date":"%s","url":"%s","content":"%s","tags":[%s]}"""
+                                            (escapeJson item.Title)
+                                            (escapeJson item.ContentType)
+                                            (escapeJson item.Date)
+                                            (escapeJson properPermalink)
+                                            safeContent
+                                            (item.Tags |> Array.map (fun tag -> sprintf "\"%s\"" (escapeJson tag)) |> String.concat ",")
+                                    )
+                                    |> String.concat ","
+                                $"[{inner}]"
+
                         script [ _type "application/json"; _id $"remainingContentData-{contentType}" ] [
-                            rawText $"[{contentTypeItemsJson}]"
+                            rawText contentTypeItemsJson
                         ]
                 
                 // Progressive loading controls (JavaScript will handle type-specific loading)
