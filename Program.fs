@@ -11,6 +11,7 @@ open CollectionPagesBuilder
 open LegacyFeedsBuilder
 open TagPagesBuilder
 open LivestreamBuilder
+open HomepageBuilder
 open GenericBuilder
 open WebmentionService
 open Domain
