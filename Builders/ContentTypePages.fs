@@ -1,26 +1,12 @@
-module Builder
+module ContentTypePagesBuilder
 
     open System
-    open System.Globalization
     open System.IO
-    open System.IO.Compression
-    open System.Linq
-    open System.Text.Json
-    open System.Text.Json.Nodes
-    open System.Text.RegularExpressions
-    open System.Xml.Linq
     open Domain
     open MarkdownService
-    open TagService
-    open OpmlService
     open RelatedContentService
     open ViewGenerator
     open PartialViews
-    open TagViews
-    open Loaders
-    open Markdig
-    open Markdig.Parsers
-    open Giraffe.ViewEngine
     open BuilderCommon
 
     // AST-based snippet processing using GenericBuilder infrastructure
@@ -61,7 +47,6 @@ module Builder
             Index = Some { View = wikisView; Title = "Wiki | Luis Quintanilla"; Sort = Some (Array.sortBy (fun (x: Wiki) -> x.Metadata.Title)) }
         }
 
-    // AST-based AI Memex processing — load feed data only (no page generation)
     // AST-based presentation processing using GenericBuilder infrastructure
     let buildPresentations() =
         BuildDriver.buildContentType srcDir outputDir {
@@ -217,7 +202,6 @@ module Builder
             Index = Some { View = playlistCollectionsPageView; Title = "Playlists | Luis Quintanilla"; Sort = Some (Array.sortByDescending (fun x -> DateTimeOffset.Parse(x.Metadata.Date))) }
         }
 
-    // Build unified feed HTML page with all content types
     // AST-based bookmark processing using GenericBuilder infrastructure
     // Note: Bookmarks are Response objects with response_type: "bookmark"
     let buildBookmarks() =

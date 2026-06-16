@@ -3,7 +3,7 @@
 open System
 open System.IO
 open Loaders
-open Builder
+open ContentTypePagesBuilder
 open AssetsBuilder
 open AiMemexPagesBuilder
 open ResumePageBuilder

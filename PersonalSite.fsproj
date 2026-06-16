@@ -65,7 +65,7 @@
     <Compile Include="Builders\BlogArchive.fs" />
     <Compile Include="Builders\Rolls.fs" />
     <Compile Include="Builders\StaticPages.fs" />
-    <Compile Include="Builder.fs" />
+    <Compile Include="Builders\ContentTypePages.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
