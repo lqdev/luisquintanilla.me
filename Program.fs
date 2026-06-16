@@ -4,6 +4,7 @@ open System
 open System.IO
 open Loaders
 open Builder
+open AssetsBuilder
 open GenericBuilder
 open WebmentionService
 open Domain
