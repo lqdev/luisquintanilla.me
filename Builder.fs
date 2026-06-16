@@ -1389,6 +1389,22 @@ module Builder
         
         printfn "✅ Bookmarks landing page created with %d bookmark responses" bookmarkResponses.Length
 
+    // Generate /rsvp landing page from rsvp-type responses (temporal facet of responses;
+    // detail pages remain at /responses/{file}/, so no URLs move).
+    let buildRsvpLandingPage (responsesFeedData: GenericBuilder.FeedData<Response> list) =
+        let rsvpResponses =
+            responsesFeedData
+            |> List.map (fun item -> item.Content)
+            |> List.filter (fun response -> response.Metadata.ResponseType = "rsvp")
+            |> List.sortByDescending (fun response -> DateTime.Parse(response.Metadata.DatePublished))
+            |> List.toArray
+
+        let rsvpLandingHtml = generate (rsvpView rsvpResponses) "defaultindex" "RSVPs - Luis Quintanilla"
+        let rsvpIndexDir = Path.Join(outputDir, "rsvp")
+        writePageToDir rsvpIndexDir "index.html" rsvpLandingHtml
+
+        printfn "✅ RSVPs landing page created with %d rsvp responses" rsvpResponses.Length
+
     // AST-based media processing using GenericBuilder infrastructure
     let buildMedia() =
         let processor = GenericBuilder.AlbumProcessor.create()

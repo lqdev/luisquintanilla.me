@@ -334,6 +334,13 @@ module UnifiedFeeds
                 OutputPath = "bookmarks/feed.xml"
                 ContentType = Some ContentTypes.Bookmarks
             })
+            (ContentTypes.Rsvp, {
+                Title = "Luis Quintanilla - RSVPs"
+                Link = "https://www.lqdev.me/rsvp"
+                Description = "Events Luis Quintanilla has responded to (yes/no/maybe/interested)"
+                OutputPath = "rsvp/feed.xml"
+                ContentType = Some ContentTypes.Rsvp
+            })
             (ContentTypes.Snippets, {
                 Title = "Luis Quintanilla - Snippets"
                 Link = "https://www.lqdev.me/resources/snippets"
@@ -399,13 +406,13 @@ module UnifiedFeeds
                 allUnifiedItems 
                 |> List.filter (fun item -> 
                     if contentType = ContentTypes.Responses then
-                        // For responses feed, include all response subtypes
-                        [ ContentTypes.Star; ContentTypes.Reply; ContentTypes.Reshare; ContentTypes.Responses ] |> List.contains item.ContentType
+                        // For responses feed, include all response subtypes (incl. rsvp)
+                        [ ContentTypes.Star; ContentTypes.Reply; ContentTypes.Reshare; ContentTypes.Rsvp; ContentTypes.Responses ] |> List.contains item.ContentType
                     else
                         item.ContentType = contentType)
                 |> List.take (min 20 (allUnifiedItems |> List.filter (fun item -> 
                     if contentType = ContentTypes.Responses then
-                        [ ContentTypes.Star; ContentTypes.Reply; ContentTypes.Reshare; ContentTypes.Responses ] |> List.contains item.ContentType
+                        [ ContentTypes.Star; ContentTypes.Reply; ContentTypes.Reshare; ContentTypes.Rsvp; ContentTypes.Responses ] |> List.contains item.ContentType
                     else
                         item.ContentType = contentType) |> List.length))
             

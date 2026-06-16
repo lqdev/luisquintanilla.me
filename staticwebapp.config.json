@@ -161,6 +161,11 @@
       "statusCode": 301
     },
     {
+      "route": "/rsvp.rss",
+      "redirect": "/rsvp/feed.xml",
+      "statusCode": 301
+    },
+    {
       "route": "/ai-memex.rss",
       "redirect": "/resources/ai-memex/feed.xml",
       "statusCode": 301
