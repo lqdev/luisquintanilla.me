@@ -63,6 +63,7 @@
     <Compile Include="Builders\Livestream.fs" />
     <Compile Include="Builders\Homepage.fs" />
     <Compile Include="Builders\BlogArchive.fs" />
+    <Compile Include="Builders\Rolls.fs" />
     <Compile Include="Builder.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

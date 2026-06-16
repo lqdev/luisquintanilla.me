@@ -13,6 +13,7 @@ open TagPagesBuilder
 open LivestreamBuilder
 open HomepageBuilder
 open BlogArchiveBuilder
+open RollsBuilder
 open GenericBuilder
 open WebmentionService
 open Domain
