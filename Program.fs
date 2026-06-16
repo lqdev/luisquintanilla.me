@@ -14,6 +14,7 @@ open LivestreamBuilder
 open HomepageBuilder
 open BlogArchiveBuilder
 open RollsBuilder
+open StaticPagesBuilder
 open GenericBuilder
 open WebmentionService
 open Domain
