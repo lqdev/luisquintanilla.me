@@ -6,6 +6,11 @@ open Loaders
 open Builder
 open AssetsBuilder
 open AiMemexPagesBuilder
+open ResumePageBuilder
+open CollectionPagesBuilder
+open LegacyFeedsBuilder
+open TagPagesBuilder
+open LivestreamBuilder
 open GenericBuilder
 open WebmentionService
 open Domain

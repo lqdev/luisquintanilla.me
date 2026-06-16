@@ -56,6 +56,11 @@
     <Compile Include="Builders\Common.fs" />
     <Compile Include="Builders\Assets.fs" />
     <Compile Include="Builders\AiMemexPages.fs" />
+    <Compile Include="Builders\ResumePage.fs" />
+    <Compile Include="Builders\CollectionPages.fs" />
+    <Compile Include="Builders\LegacyFeeds.fs" />
+    <Compile Include="Builders\TagPages.fs" />
+    <Compile Include="Builders\Livestream.fs" />
     <Compile Include="Builder.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
