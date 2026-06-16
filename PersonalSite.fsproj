@@ -55,6 +55,7 @@
     <Compile Include="TextOnlyBuilder.fs" />
     <Compile Include="Builders\Common.fs" />
     <Compile Include="Builders\Assets.fs" />
+    <Compile Include="Builders\AiMemexPages.fs" />
     <Compile Include="Builder.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

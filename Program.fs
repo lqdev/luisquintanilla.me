@@ -5,6 +5,7 @@ open System.IO
 open Loaders
 open Builder
 open AssetsBuilder
+open AiMemexPagesBuilder
 open GenericBuilder
 open WebmentionService
 open Domain
