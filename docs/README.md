@@ -38,7 +38,7 @@ This directory contains guides and reference documentation for the website's fea
 
 ### 🏗️ Architecture & Technical
 
-- **[Architecture Assessment 2026](architecture-assessment-2026.md)** - Consultant-style review: findings F1–F11, Fable evaluation, prioritized roadmap (execution plan in [`projects/active/`](../projects/active/architecture-refactor-2026.md))
+- **[Architecture Assessment 2026](architecture-assessment-2026.md)** - Consultant-style review: findings F1–F11, Fable evaluation, prioritized roadmap (execution plan archived at [`projects/archive/`](../projects/archive/2026-06-15-architecture-refactor-2026.md))
 - **[Architecture Decision Records](adr/)** - Key technical decisions and their rationale (ADRs)
 - **[Core Infrastructure Architecture](core-infrastructure-architecture.md)** - System architecture overview
 - **[Feed Architecture](feed-architecture.md)** - RSS feed generation and organization

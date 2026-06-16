@@ -1,8 +1,77 @@
 # Changelog
 
+## 2026-06-15 - Architecture Refactor 2026: Phase 3 Targeted Bets ✅
+
+**Project**: [Architecture Refactor 2026](projects/archive/2026-06-15-architecture-refactor-2026.md)
+**Duration**: 2026-06-11 → 2026-06-15 (bets B1, B2; B4 dropped; B3 NO-GO)
+**Status**: ✅ Phase 3 COMPLETE — refactor program closed
+**Type**: B1 structural (byte-identical) + B2 structured render (one reviewed, intended output change)
+**Source assessment**: [docs/architecture-assessment-2026.md](docs/architecture-assessment-2026.md) (findings F1, F7, F10)
+**ADRs**: [0007-content-type-roster-registry](docs/adr/0007-content-type-roster-registry.md), [0008-structured-render-product](docs/adr/0008-structured-render-product.md)
+
+### Overview
+
+The Phase 3 bets, unlike Phases 1–2, were allowed to change output where the change was a
+*correction*. Each bet got an explicit go/no-go. Net result: the timeline/review render path no
+longer round-trips through regex-on-rendered-HTML, the unified-feed membership lists derive from one
+registry, and the refactor program is closed. **No published URL changed** (W3C "Cool URIs").
+
+### What was done
+
+- **B1 — Content-type roster registry (GO, byte-identical)**: new `ContentRegistry.fs` with one
+  ordered `ContentTypeRoster` table (Identity + Unified + `InTimeline`/`InAllFeeds`/`InBlogArchive`
+  flags); the 3 hand-maintained feed lists in `Program.fs` now derive from it. Right-sized as a
+  projection of typed results (no `'T` erasure, no interface, build order preserved). Nav + tag-page
+  lists deliberately left out (editorial/structural divergence = false unification). ADR-0007.
+  Verified **0 diffs / 13,518 files**.
+- **B2 — Structured render product (GO — the one output-changing bet, reviewed diff)**: three
+  flag-gated slices (`RENDER_V2`), each byte-identical with the flag OFF, then a cutover that flipped
+  the default ON and deleted the flag + four regex helpers (`cleanCardHtml`,
+  `createSimplifiedReviewContent`, `extractImageFromReviewHtml`, `cleanResponseContent`) + the dead
+  `timelineHomeView`. Slices: B2.1 clean-body seam (`ASTParsing.removeRedundantCardHeadings` +
+  `renderCardHtmlFromMarkdown`); B2.2 `System.Text.Json` over the now-public `ProgressiveContentItem`
+  record (gotcha: a `private` record serializes as `{}`); B2.3 structured review cover image from
+  `ReviewData.ImageUrl`. Cutover **verified byte-identical to the pre-cutover flag-ON snapshot**
+  (0 diffs / 13,525) → deletion is a pure refactor. **Reviewed diff vs the pre-B2 baseline = exactly
+  2 files**: `index.html` (whitespace + intended heading suppression + 1 code-block fix + STJ
+  re-encode) and `reviews/index.html` (1 of 36 covers — a double-encoding bug fix). No URL changed.
+  ADR-0008.
+- **B4 — Text-only from shared model (DROPPED as mis-scoped)**: its two valuable parts (shared nav
+  data, response-subtype normalization) had already shipped in Phase 2.6/2.7. The only remaining
+  work — deleting the text-only image regex — rested on a false premise: `replaceImagesWithText` is a
+  legitimate *cross-source* semantic transform (`<img>`→accessible text) over output from 3
+  heterogeneous sources (markdown `![]()`, `:::media` blocks, raw HTML — the last with no AST node),
+  unlike B2's render-then-un-render smell. A structural renderer would regress 2 of the 3 sources or
+  merely relocate the regex. Kept the regex; removed the speculative renderer (no dead code).
+- **B3 — Fable-the-compiler pilot**: NO-GO (decided 2026-06-10); search-contract generation retained
+  as an optional future item.
+- **Branch hygiene**: merged `origin/main` (12 content-automation commits) into the umbrella so the
+  promotion is a clean fast-forward; resolved a `packages.lock.json` hash conflict to main's
+  CI-validated hash (see memex).
+
+### Verification
+
+- B1 + all 3 B2 slices: `dotnet build -c Release` clean (1 expected `FS1104`) + full `dotnet run`,
+  byte-identical to baseline with the flag OFF.
+- B2 cutover: default (flag-deleted) output == pre-cutover flag-ON snapshot, byte-for-byte.
+- Final generate: 1,769 content items, 1,600 tags.
+
+### Knowledge captured (AI Memex)
+
+`pattern-right-sized-projection-registry`, `pattern-stj-private-record-empty-object`,
+`pattern-regex-on-rendered-html-antipattern`, `pattern-regex-on-html-not-always-antipattern`,
+and a merge-conflict variant added to `pattern-nuget-lock-hash-drift`.
+
+### Next
+
+Refactor program complete. Optional future work (not blocking): B3 search-contract generation;
+revisiting B4-full only if a structural text-only render becomes independently warranted.
+
+---
+
 ## 2026-06-11 - Architecture Refactor 2026: Phase 2 Structural Consolidation ✅
 
-**Project**: [Architecture Refactor 2026](projects/active/architecture-refactor-2026.md)
+**Project**: [Architecture Refactor 2026](projects/archive/2026-06-15-architecture-refactor-2026.md)
 **Duration**: 2026-06-10 → 2026-06-11 (8 steps, 2.1–2.8)
 **Status**: ✅ Phase 2 COMPLETE — every step byte-identical `_public/`; Phase 3 bets pending go/no-go
 **Type**: Structural refactor (no generator behavior change)
@@ -62,7 +131,7 @@ deferred 2.4 slice b), **B4** text-only from shared model. **B3** (Fable-the-com
 
 ## 2026-06-10 - Architecture Refactor 2026: Phase 1 Conservative Quick Wins ✅
 
-**Project**: [Architecture Refactor 2026](projects/active/architecture-refactor-2026.md)
+**Project**: [Architecture Refactor 2026](projects/archive/2026-06-15-architecture-refactor-2026.md)
 **Duration**: 2026-06-10 (5 steps, 1.1–1.5)
 **Status**: ✅ Phase 1 COMPLETE — every step byte-identical `_public/`
 **Type**: Conservative cleanup (no generator behavior change)
@@ -94,7 +163,7 @@ Phase 2 structural consolidation (build driver, generic projections, module spli
 
 ## 2026-06-10 - Architecture Refactor 2026: Phase 0 Safety Harness ✅
 
-**Project**: [Architecture Refactor 2026](projects/active/architecture-refactor-2026.md)
+**Project**: [Architecture Refactor 2026](projects/archive/2026-06-15-architecture-refactor-2026.md)
 **Duration**: 2026-06-10 (Phase 0 of a phased refactor)
 **Status**: ✅ Phase 0 COMPLETE — Phase 1 ready
 **Type**: Tooling / Safety harness (no production code changes)

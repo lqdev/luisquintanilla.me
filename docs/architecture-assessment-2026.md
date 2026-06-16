@@ -2,7 +2,7 @@
 
 **Date**: 2026-06-10
 **Engagement**: External-consultant-style review ("Fable consultant") of the lqdev.me generator
-**Companion plan**: [`projects/active/architecture-refactor-2026.md`](../projects/active/architecture-refactor-2026.md)
+**Companion plan**: [`projects/archive/2026-06-15-architecture-refactor-2026.md`](../projects/archive/2026-06-15-architecture-refactor-2026.md)
 **Status**: Findings final; execution tracked in the companion plan
 
 ---
