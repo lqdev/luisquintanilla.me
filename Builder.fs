@@ -206,17 +206,17 @@ module Builder
     let buildHomePage (blogPosts:Post array) (feedPosts:Post array) (responsePosts:Response array)= 
         let recentBlog = 
             blogPosts 
-            |> Array.sortByDescending(fun x-> DateTime.Parse(x.Metadata.Date))
+            |> Array.sortByDescending(fun x-> DateTimeOffset.Parse(x.Metadata.Date))
             |> Array.head
 
         let recentFeedPost = 
             feedPosts
-            |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.Date))
+            |> Array.sortByDescending(fun x -> DateTimeOffset.Parse(x.Metadata.Date))
             |> Array.head
 
         let recentResponsePost = 
             responsePosts
-            |> Array.sortByDescending(fun x -> DateTime.Parse(x.Metadata.DateUpdated))
+            |> Array.sortByDescending(fun x -> DateTimeOffset.Parse(x.Metadata.DateUpdated))
             |> Array.head
 
         // let recentPostsContent = generatePartial (recentPostsView recentPosts)
@@ -1043,7 +1043,7 @@ module Builder
                 item.Tags |> Array.map (fun tag -> (TagService.processTagName tag, item)))
             |> Array.groupBy fst
             |> Array.map (fun (tag, items) -> 
-                let sortedItems = items |> Array.map snd |> Array.sortByDescending (fun x -> DateTime.Parse(x.Date))
+                let sortedItems = items |> Array.map snd |> Array.sortByDescending (fun x -> DateTimeOffset.Parse(x.Date))
                 (tag, contentType, sortedItems))
 
         // Process all content types
@@ -1130,7 +1130,7 @@ module Builder
         let events =  
             File.ReadAllText(Path.Join("Data","events.json"))
             |> JsonSerializer.Deserialize<Event array>
-            |> Array.sortByDescending(fun x -> DateTime.Parse(x.Date))
+            |> Array.sortByDescending(fun x -> DateTimeOffset.Parse(x.Date))
 
         let eventPage = generate (eventView events) "default" "Events - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"events")
@@ -1337,7 +1337,7 @@ module Builder
                 blogPostView post.Metadata.Title (post.Content |> convertMdToHtml) post.Metadata.Date post.FileName post.Metadata.Tags post.Metadata.ReadingTimeMinutes relatedPosts
             ItemTitle = fun post -> $"{post.Metadata.Title} - Luis Quintanilla"
             Layout = "defaultindex"
-            Index = Some { View = feedView; Title = "Posts - Luis Quintanilla"; Sort = Some (Array.sortByDescending (fun (x: Post) -> DateTime.Parse(x.Metadata.Date))) }
+            Index = Some { View = feedView; Title = "Posts - Luis Quintanilla"; Sort = Some (Array.sortByDescending (fun (x: Post) -> DateTimeOffset.Parse(x.Metadata.Date))) }
         }
 
     // AST-based notes processing using GenericBuilder infrastructure
@@ -1353,7 +1353,7 @@ module Builder
                 LayoutViews.notePostView note.Metadata.Title (note.Content |> convertMdToHtml) note.Metadata.Date note.FileName note.Metadata.Tags note.Metadata.ReadingTimeMinutes relatedNotes
             ItemTitle = fun note -> note.Metadata.Title
             Layout = "defaultindex"
-            Index = Some { View = notesView; Title = "Notes - Luis Quintanilla"; Sort = Some (Array.sortByDescending (fun (x: Post) -> DateTime.Parse(x.Metadata.Date))) }
+            Index = Some { View = notesView; Title = "Notes - Luis Quintanilla"; Sort = Some (Array.sortByDescending (fun (x: Post) -> DateTimeOffset.Parse(x.Metadata.Date))) }
         }
 
     // AST-based responses processing using GenericBuilder infrastructure
@@ -1368,7 +1368,7 @@ module Builder
                 LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName response.Metadata.TargetUrl response.Metadata.Tags response.Metadata.ReadingTimeMinutes response.Metadata.ResponseType response.Metadata.RsvpStatus
             ItemTitle = fun response -> response.Metadata.Title
             Layout = "defaultindex"
-            Index = Some { View = responseView; Title = "Responses - Luis Quintanilla"; Sort = Some (Array.sortByDescending (fun (x: Response) -> DateTime.Parse(x.Metadata.DatePublished))) }
+            Index = Some { View = responseView; Title = "Responses - Luis Quintanilla"; Sort = Some (Array.sortByDescending (fun (x: Response) -> DateTimeOffset.Parse(x.Metadata.DatePublished))) }
         }
 
     // Generate bookmarks landing page from bookmark-type responses
@@ -1457,7 +1457,7 @@ module Builder
         let flattenedItems = 
             allUnifiedItems
             |> List.collect snd
-            |> List.sortByDescending (fun item -> DateTime.Parse(item.Date))
+            |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
             |> List.take (min 30 (allUnifiedItems |> List.collect snd |> List.length)) // Limit to 30 items
             |> List.toArray
         
