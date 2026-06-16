@@ -93,6 +93,27 @@ module AssetsBuilder
         let qrOutPath = Path.Join(outputDir, "assets", "images", "contact", "qr-home.svg")
         Services.QRStyled.renderToFile qrOpts qrOutPath |> ignore
 
+    /// Copy the Azure Static Web Apps config and pre-create the fixed output
+    /// subdirectories the typed builders write into. Pure filesystem setup,
+    /// lifted verbatim from Program.main's prep block (composition-root tidy).
+    let prepareDirectories (outputDir: string) =
+        // Copy Azure Static Web Apps configuration
+        let configSourcePath = "staticwebapp.config.json"
+        let configTargetPath = Path.Join(outputDir, "staticwebapp.config.json")
+        if File.Exists(configSourcePath) then
+            File.Copy(configSourcePath, configTargetPath, true)
+            printfn "✅ Azure Static Web Apps configuration copied to output directory"
+
+        // Create the fixed output subdirectories the typed builders write into
+        Path.Join(outputDir,"feed") |> Directory.CreateDirectory |> ignore
+        Path.Join(outputDir,"feed","responses") |> Directory.CreateDirectory |> ignore
+        Path.Join(outputDir,"feed","starter") |> Directory.CreateDirectory |> ignore
+        Path.Join(outputDir,"posts") |> Directory.CreateDirectory |> ignore
+        Path.Join(outputDir,"presentations") |> Directory.CreateDirectory |> ignore
+        Path.Join(outputDir,"snippets") |> Directory.CreateDirectory |> ignore
+        Path.Join(outputDir,"wiki") |> Directory.CreateDirectory |> ignore
+        Path.Join(outputDir,"tags") |> Directory.CreateDirectory |> ignore
+
     // Phase 3: pre-render a per-page styled QR SVG for every content page.
     // Same look as the homepage QR (slate dots #1a2332, orange finders
     // #ff6b35) with a downsized embedded center avatar, written to
