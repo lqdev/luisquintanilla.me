@@ -17,7 +17,7 @@ module AiMemexPagesBuilder
             else
                 []
         
-        let processor = GenericBuilder.AiMemexProcessor.create()
+        let processor = AiMemexProcessor.create()
         GenericBuilder.buildContentWithFeeds processor aiMemexFiles
 
     // AST-based AI Memex page generation from pre-loaded feed data

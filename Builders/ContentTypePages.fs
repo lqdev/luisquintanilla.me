@@ -18,7 +18,7 @@ module ContentTypePagesBuilder
             Name = ContentTypes.Snippets
             SourceDir = [ "resources"; "snippets" ]
             OutputDir = [ "resources"; "snippets" ]
-            Processor = GenericBuilder.SnippetProcessor.create()
+            Processor = SnippetProcessor.create()
             Slug = fun snippet -> snippet.FileName
             ItemView = fun snippet allSnippets ->
                 let relatedSnippets = RelatedContentService.findRelatedContent snippet allSnippets 5
@@ -37,7 +37,7 @@ module ContentTypePagesBuilder
             Name = ContentTypes.Wiki
             SourceDir = [ "resources"; "wiki" ]
             OutputDir = [ "resources"; "wiki" ]
-            Processor = GenericBuilder.WikiProcessor.create()
+            Processor = WikiProcessor.create()
             Slug = fun wiki -> wiki.FileName
             ItemView = fun wiki allWikis ->
                 let relatedWikis = RelatedContentService.findRelatedContent wiki allWikis 5
@@ -53,7 +53,7 @@ module ContentTypePagesBuilder
             Name = ContentTypes.Presentations
             SourceDir = [ "resources"; "presentations" ]
             OutputDir = [ "resources"; "presentations" ]
-            Processor = GenericBuilder.PresentationProcessor.create()
+            Processor = PresentationProcessor.create()
             Slug = fun presentation -> presentation.FileName
             ItemView = fun presentation _ -> LayoutViews.presentationPageView presentation
             ItemTitle = fun presentation -> $"{presentation.Metadata.Title} | Presentation | Luis Quintanilla"
@@ -67,7 +67,7 @@ module ContentTypePagesBuilder
             Name = ContentTypes.Reviews
             SourceDir = [ "reviews"; "library" ]
             OutputDir = [ "reviews" ]
-            Processor = GenericBuilder.BookProcessor.create()
+            Processor = BookProcessor.create()
             Slug = fun book -> book.FileName
             ItemView = fun book _ -> reviewPageView book.Metadata.Title (book.Content |> convertMdToHtml) book.Metadata.DatePublished book.FileName
             ItemTitle = fun book -> $"{book.Metadata.Title} | Reviews | Luis Quintanilla"
@@ -97,7 +97,7 @@ module ContentTypePagesBuilder
             Name = ContentTypes.Notes
             SourceDir = [ "notes" ]
             OutputDir = [ "notes" ]
-            Processor = GenericBuilder.NoteProcessor.create()
+            Processor = NoteProcessor.create()
             Slug = fun note -> note.FileName
             ItemView = fun note allNotes ->
                 let relatedNotes = RelatedContentService.findRelatedContent note allNotes 5
@@ -113,7 +113,7 @@ module ContentTypePagesBuilder
             Name = ContentTypes.Responses
             SourceDir = [ "responses" ]
             OutputDir = [ "responses" ]
-            Processor = GenericBuilder.ResponseProcessor.create()
+            Processor = ResponseProcessor.create()
             Slug = fun response -> response.FileName
             ItemView = fun response _ ->
                 LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName response.Metadata.TargetUrl response.Metadata.Tags response.Metadata.ReadingTimeMinutes response.Metadata.ResponseType response.Metadata.RsvpStatus
@@ -158,7 +158,7 @@ module ContentTypePagesBuilder
 
     // AST-based media processing using GenericBuilder infrastructure
     let buildMedia() =
-        let processor = GenericBuilder.AlbumProcessor.create()
+        let processor = AlbumProcessor.create()
         BuildDriver.buildContentType srcDir outputDir {
             Name = ContentTypes.Media
             SourceDir = [ "media" ]
@@ -173,7 +173,7 @@ module ContentTypePagesBuilder
         }
 
     let buildAlbumCollections() =
-        let processor = GenericBuilder.AlbumCollectionProcessor.create()
+        let processor = AlbumCollectionProcessor.create()
         BuildDriver.buildContentType srcDir outputDir {
             Name = ContentTypes.AlbumCollection
             SourceDir = [ "albums" ]
@@ -188,7 +188,7 @@ module ContentTypePagesBuilder
         }
 
     let buildPlaylistCollections() =
-        let processor = GenericBuilder.PlaylistCollectionProcessor.create()
+        let processor = PlaylistCollectionProcessor.create()
         BuildDriver.buildContentType srcDir outputDir {
             Name = ContentTypes.PlaylistCollection
             SourceDir = [ "playlists" ]
@@ -212,7 +212,7 @@ module ContentTypePagesBuilder
             Name = ContentTypes.Bookmarks
             SourceDir = [ "bookmarks" ]
             OutputDir = [ "bookmarks" ]
-            Processor = GenericBuilder.ResponseProcessor.create()
+            Processor = ResponseProcessor.create()
             Slug = fun response -> response.FileName
             ItemView = fun response _ ->
                 LayoutViews.responsePostView response.Metadata.Title (response.Content |> convertMdToHtml) response.Metadata.DatePublished response.FileName response.Metadata.TargetUrl response.Metadata.Tags response.Metadata.ReadingTimeMinutes response.Metadata.ResponseType response.Metadata.RsvpStatus

@@ -57,7 +57,7 @@ let bookPostView (book: Book) =
                 // metadata.Cover -> placeholder fallback.
                 let structuredImage =
                     match book.MarkdownSource with
-                    | Some md -> let (img, _, _, _) = GenericBuilder.ReviewDataExtractor.extractReviewData md in img
+                    | Some md -> let (img, _, _, _) = ReviewDataExtractor.extractReviewData md in img
                     | None -> None
                 let imageUrl = 
                     match structuredImage with

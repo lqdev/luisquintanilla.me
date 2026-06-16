@@ -120,7 +120,7 @@ module Loaders
             Directory.GetFiles(Path.Join(srcDir, "notes"))
             |> Array.filter (fun f -> f.EndsWith(".md"))
             |> Array.toList
-        let processor = GenericBuilder.NoteProcessor.create()
+        let processor = NoteProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor noteFiles
         feedData |> List.map (fun item -> item.Content) |> List.toArray
 
@@ -130,7 +130,7 @@ module Loaders
             Directory.GetFiles(Path.Join(srcDir, "responses"))
             |> Array.filter (fun f -> f.EndsWith(".md"))
             |> Array.toList
-        let processor = GenericBuilder.ResponseProcessor.create()
+        let processor = ResponseProcessor.create()
         let feedData = GenericBuilder.buildContentWithFeeds processor responseFiles
         feedData |> List.map (fun item -> item.Content) |> List.toArray
 
