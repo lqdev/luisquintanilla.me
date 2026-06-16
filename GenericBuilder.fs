@@ -59,8 +59,9 @@ let generateSourceMarkdown (markdownSource: string option) : XElement option =
 
 /// Generic content processor pattern for consistent content handling
 type ContentProcessor<'T> = {
-    /// Parse content from file path to domain type
-    Parse: string -> 'T option
+    /// Parse content from file path to domain type, transporting a typed
+    /// `ContentError` on failure (F8 — the rail is no longer severed to Option).
+    Parse: string -> Result<'T, Diagnostics.ContentError>
     /// Render content to final HTML output
     Render: 'T -> string
     /// Generate output file path from content
@@ -73,14 +74,26 @@ type ContentProcessor<'T> = {
 
 /// Build content and generate feed data in a single pass
 let buildContentWithFeeds<'T> (processor: ContentProcessor<'T>) (filePaths: string list) : FeedData<'T> list =
-    filePaths
-    |> List.choose (fun filePath ->
-        match processor.Parse filePath with
-        | Some content ->
+    // F8 full railway (plan 2.8): parse every file, accumulating failures instead
+    // of short-circuiting. Successes render and flow to the feeds; failures are
+    // transported as typed `ContentError`s to the diagnostics reporter (which
+    // prints a self-contained block and records them for strict-mode exit). One
+    // bad file does not block publishing the rest, so `_public/` is byte-identical
+    // whenever nothing fails — a failed parse is dropped here exactly as the old
+    // `| Error _ -> None` dropped it, only now it is reported instead of silent.
+    let parsed =
+        filePaths
+        |> List.map (fun filePath -> processor.Parse filePath)
+    parsed
+    |> List.choose (function Error e -> Some e | Ok _ -> None)
+    |> List.iter Diagnostics.report
+    parsed
+    |> List.choose (function
+        | Ok content ->
             let cardHtml = processor.RenderCard content
             let rssXml = processor.RenderRss content
             Some { Content = content; CardHtml = cardHtml; RssXml = rssXml }
-        | None -> None)
+        | Error _ -> None)
 
 /// Content processors for existing domain types
 
@@ -110,14 +123,14 @@ module PostProcessor =
                 | Some metadata -> 
                     let contentWithoutFrontmatter = extractContentWithoutFrontMatter parsedDoc.RawMarkdown
                     let readingTime = ReadingTimeService.calculateReadingTime contentWithoutFrontmatter
-                    Some {
+                    Ok {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = { metadata with ReadingTimeMinutes = readingTime }
                         Content = contentWithoutFrontmatter  // Use raw markdown without frontmatter
                         MarkdownSource = Some contentWithoutFrontmatter
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun post ->
             // Return raw markdown content to be processed by the calling code
@@ -180,14 +193,14 @@ module NoteProcessor =
                 match parsedDoc.Metadata with
                 | Some metadata -> 
                     let readingTime = ReadingTimeService.calculateReadingTime parsedDoc.TextContent
-                    Some {
+                    Ok {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = { metadata with ReadingTimeMinutes = readingTime }
                         Content = parsedDoc.TextContent  // Raw markdown content
                         MarkdownSource = Some parsedDoc.RawMarkdown
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun note ->
             // Return ViewEngine node rendered to HTML string
@@ -261,14 +274,14 @@ module SnippetProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
-                    Some {
+                    Ok {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = parsedDoc.TextContent
                         MarkdownSource = Some parsedDoc.RawMarkdown
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun snippet ->
             let viewNode = article [] [ rawText snippet.Content ]
@@ -329,14 +342,14 @@ module WikiProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
-                    Some {
+                    Ok {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = parsedDoc.TextContent
                         MarkdownSource = Some parsedDoc.RawMarkdown
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun wiki ->
             let viewNode = article [] [ rawText wiki.Content ]
@@ -410,14 +423,14 @@ module AiMemexProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
-                    Some {
+                    Ok {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = parsedDoc.TextContent
                         MarkdownSource = Some (extractContentWithoutFrontMatter parsedDoc.RawMarkdown)
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun aiMemex ->
             let viewNode = article [] [ rawText aiMemex.Content ]
@@ -494,14 +507,14 @@ module PresentationProcessor =
                             | None -> parsedDoc.RawMarkdown
                         else parsedDoc.RawMarkdown
                     
-                    Some {
+                    Ok {
                         FileName = System.IO.Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = markdownContent  // Store raw markdown for reveal.js
                         MarkdownSource = Some markdownContent
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun presentation ->
             // Return raw content for reveal.js processing in presentationPageView
@@ -776,14 +789,14 @@ module BookProcessor =
                     
                     reviewDataCache.[fileName] <- reviewMetadata
                     
-                    Some {
+                    Ok {
                         FileName = fileName
                         Metadata = finalMetadata
                         Content = parsedDoc.TextContent
                         MarkdownSource = Some parsedDoc.RawMarkdown
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun book ->
             // For now, return content as-is. Later integrate with existing Views.Generator
@@ -882,6 +895,35 @@ module BookProcessor =
 
 /// Response content processor
 module ResponseProcessor =
+    /// Chrome-free card body (B2 / F7): the response-target + response-content divs
+    /// WITHOUT the <article> wrapper or the <h2><a>title</a></h2> heading. The timeline
+    /// composes this directly — its own card-body/title wrapper makes the standalone
+    /// CardHtml chrome redundant (historically regex-stripped by `cleanCardHtml`).
+    /// `RenderCard` wraps this with the standalone-card chrome, so CardHtml is unchanged.
+    let renderResponseCardBody (response: Response) =
+        let targetUrl = Html.escapeHtml response.Metadata.TargetUrl
+        Html.element "div" (Html.attribute "class" "response-target")
+            (sprintf "→ %s" (Html.element "a" (Html.attribute "href" targetUrl) targetUrl)) +
+        Html.element "div" (Html.attribute "class" "response-content") response.Content
+
+    /// B2 (RENDER_V2) clean card-body seam. Like renderResponseCardBody, but renders the
+    /// body from the response's MARKDOWN source via ASTParsing.renderCardHtmlFromMarkdown so
+    /// the AST card renderer can drop headings the card's own title duplicates (level-1 and
+    /// bare-link level-2). renderResponseCardBody embeds already-rendered HTML, where an
+    /// embedded <h2><a> sits inside a single HtmlBlock and cannot be removed structurally.
+    /// renderCardHtmlFromMarkdown reuses the canonical bare renderer (Media + Review object
+    /// renderers, no pipeline.Setup), so the body is byte-identical to response.Content apart
+    /// from the intended heading removal.
+    let renderResponseCardBodyClean (response: Response) =
+        let targetUrl = Html.escapeHtml response.Metadata.TargetUrl
+        let bodyHtml =
+            match response.MarkdownSource with
+            | Some raw -> ASTParsing.renderCardHtmlFromMarkdown (ASTParsing.stripFrontMatter raw)
+            | None -> response.Content
+        Html.element "div" (Html.attribute "class" "response-target")
+            (sprintf "→ %s" (Html.element "a" (Html.attribute "href" targetUrl) targetUrl)) +
+        Html.element "div" (Html.attribute "class" "response-content") bodyHtml
+
     let create() : ContentProcessor<Response> = {
         Parse = fun filePath ->
             match parseResponseFromFile filePath with
@@ -889,14 +931,14 @@ module ResponseProcessor =
                 match parsedDoc.Metadata with
                 | Some metadata -> 
                     let readingTime = ReadingTimeService.calculateReadingTime parsedDoc.TextContent
-                    Some {
+                    Ok {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = { metadata with ReadingTimeMinutes = readingTime }
                         Content = parsedDoc.TextContent
                         MarkdownSource = Some parsedDoc.RawMarkdown
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun response ->
             // Response rendering with IndieWeb microformat support and target URL
@@ -926,7 +968,6 @@ module ResponseProcessor =
         
         RenderCard = fun response ->
             let title = Html.escapeHtml response.Metadata.Title
-            let targetUrl = Html.escapeHtml response.Metadata.TargetUrl
             // Use correct path based on response type 
             let urlPath = 
                 match response.Metadata.ResponseType with
@@ -937,9 +978,7 @@ module ResponseProcessor =
             // Include title, target URL, and content
             Html.element "article" (Html.attribute "class" "response-card h-entry")
                 (Html.element "h2" "" (Html.element "a" (Html.attribute "href" url) title) +
-                 Html.element "div" (Html.attribute "class" "response-target") 
-                    (sprintf "→ %s" (Html.element "a" (Html.attribute "href" targetUrl) targetUrl)) +
-                 Html.element "div" (Html.attribute "class" "response-content") response.Content)
+                 renderResponseCardBody response)
         
         RenderRss = fun response ->
             // Create RSS item for response with correct path based on response type
@@ -1070,14 +1109,14 @@ module AlbumProcessor =
                     // Store media data in cache for later use in rendering
                     mediaDataCache.[fileName] <- mediaData
                     
-                    Some {
+                    Ok {
                         FileName = fileName
                         Metadata = metadata
                         Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown  // Use raw markdown without frontmatter
                         MarkdownSource = Some (extractContentWithoutFrontMatter parsedDoc.RawMarkdown)
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun album ->
             // Return raw markdown content to be processed by Builder.fs through MarkdownService
@@ -1186,14 +1225,14 @@ module AlbumCollectionProcessor =
                     // Store media data in cache for later use in rendering
                     mediaDataCache.[fileName] <- mediaData
                     
-                    Some {
+                    Ok {
                         FileName = fileName
                         Metadata = metadata
                         Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown
                         MarkdownSource = Some (extractContentWithoutFrontMatter parsedDoc.RawMarkdown)
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun albumCollection ->
             // Return raw markdown content to be processed by Builder.fs through MarkdownService
@@ -1307,14 +1346,14 @@ module PlaylistCollectionProcessor =
                 | Some metadata -> 
                     let fileName = Path.GetFileNameWithoutExtension(filePath)
                     
-                    Some {
+                    Ok {
                         FileName = fileName
                         Metadata = metadata
                         Content = extractContentWithoutFrontMatter parsedDoc.RawMarkdown
                         MarkdownSource = Some (extractContentWithoutFrontMatter parsedDoc.RawMarkdown)
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun playlistCollection ->
             // Return raw markdown content to be processed by Builder.fs through MarkdownService
@@ -1382,14 +1421,14 @@ module BookmarkProcessor =
             | Ok parsedDoc -> 
                 match parsedDoc.Metadata with
                 | Some metadata -> 
-                    Some {
+                    Ok {
                         FileName = Path.GetFileNameWithoutExtension(filePath)
                         Metadata = metadata
                         Content = parsedDoc.TextContent
                         MarkdownSource = Some parsedDoc.RawMarkdown
                     }
-                | None -> None
-            | Error _ -> None
+                | None -> Error (Diagnostics.ContentError.ParseFailure(filePath, "frontmatter", "no front-matter block found (expected a leading '---' fence)"))
+            | Error e -> Error (Diagnostics.ofParseError filePath e)
         
         Render = fun bookmark ->
             // Bookmark rendering with IndieWeb microformat support
@@ -1464,668 +1503,3 @@ module ContentPipeline =
             feedData
         else
             []
-/// Unified feed system for consistent feed generation across all content types  
-module UnifiedFeeds =
-    
-    // Phase 5C: ReviewMetadata is now defined at GenericBuilder module level for use by BookProcessor
-    
-    /// Unified feed item representation
-    type UnifiedFeedItem = {
-        Title: string
-        Content: string
-        Url: string
-        Date: string
-        ContentType: string
-        Tags: string array
-        RssXml: XElement
-        // Phase 5A: Response semantics for ActivityPub
-        ResponseType: string option  // "star", "reply", "reshare", "bookmark", "rsvp"
-        TargetUrl: string option     // URL being responded to
-        UpdatedDate: string option   // For edit tracking
-        // Phase 6A: RSVP status for event responses
-        RsvpStatus: string option    // "yes", "no", "maybe", "interested"
-        // Phase 5C: Review metadata for Schema.org Review vocabulary
-        ReviewData: ReviewMetadata option
-        // Phase 5D: Media metadata for native Image/Video/Audio objects
-        MediaData: MediaAPData option
-    }
-
-    /// Feed configuration for different feed types
-    type FeedConfiguration = {
-        Title: string
-        Link: string
-        Description: string
-        OutputPath: string
-        ContentType: string option  // None for fire-hose, Some("posts") for type-specific
-    }
-    
-    /// Convert FeedData to UnifiedFeedItem
-    let private convertToUnifiedItem<'T> (contentType: string) (feedData: FeedData<'T>) : UnifiedFeedItem option =
-        match feedData.RssXml with
-        | Some rssXml ->
-            let title = 
-                match rssXml.Element(XName.Get "title") with
-                | null -> "Untitled"
-                | titleElement -> titleElement.Value
-            
-            let url = 
-                match rssXml.Element(XName.Get "link") with
-                | null -> ""
-                | linkElement -> linkElement.Value
-            
-            let content = 
-                match rssXml.Element(XName.Get "description") with
-                | null -> ""
-                | descElement -> descElement.Value
-            
-            let date = 
-                match rssXml.Element(XName.Get "pubDate") with
-                | null -> DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz")
-                | dateElement -> dateElement.Value
-            
-            // Extract tags from RSS categories and apply sanitization
-            let tags = 
-                rssXml.Elements(XName.Get "category")
-                |> Seq.map (fun cat -> TagService.processTagName cat.Value)
-                |> Seq.filter (fun tag -> tag <> "untagged")  // Remove untagged from individual items
-                |> Seq.toArray
-            
-            Some {
-                Title = title
-                Content = content
-                Url = url
-                Date = date
-                ContentType = contentType
-                Tags = tags
-                RssXml = rssXml
-                // Phase 5A: Default to None for non-response content
-                ResponseType = None
-                TargetUrl = None
-                UpdatedDate = None
-                // Phase 6A: Default to None for non-RSVP content
-                RsvpStatus = None
-                // Phase 5C: Default to None for non-review content
-                ReviewData = None
-                // Phase 5D: Default to None for non-media-primary content
-                MediaData = None
-            }
-        | None -> None
-    
-    /// Generate RSS feed for given items and configuration
-    let private generateRssFeed (items: UnifiedFeedItem list) (config: FeedConfiguration) : string =
-        let latestDate = 
-            if items.IsEmpty then 
-                DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz")
-            else 
-                items |> List.head |> fun item -> item.Date
-        
-        let channel = 
-            XElement(XName.Get "rss",
-                XAttribute(XName.Get "version", "2.0"),
-                XAttribute(XName.Get("{http://www.w3.org/2000/xmlns/}source"), "http://source.scripting.com/"),
-                XElement(XName.Get "channel",
-                    XElement(XName.Get "title", config.Title),
-                    XElement(XName.Get "link", config.Link),
-                    XElement(XName.Get "description", config.Description),
-                    XElement(XName.Get "lastBuildDate", latestDate),
-                    XElement(XName.Get "language", "en")))
-        
-        // Add RSS items to channel
-        let channelElement = channel.Descendants(XName.Get "channel") |> Seq.head
-        let rssElements = items |> List.map (fun item -> item.RssXml) |> List.toArray
-        channelElement.Add(rssElements)
-        
-        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + channel.ToString()
-
-    // Canonical set of unified ContentType values that belong to the response
-    // stream. Response items carry their SUBTYPE as ContentType (reply/reshare/
-    // star/rsvp) rather than a generic "responses", so every subtype must be
-    // listed here or it is silently dropped from JSON feeds and BAR exports.
-    // "bookmark" is intentionally excluded (separate stream). Single source of
-    // truth shared with Builder.fs to prevent drift.
-    let responseStreamContentTypes = set [ "responses"; "reply"; "reshare"; "star"; "rsvp" ]
-    let private jsonFeedItemLimit = 20
-
-    let private toJsonFeedContent (item: UnifiedFeedItem) =
-        match item.ContentType with
-        | "posts"
-        | "notes"
-        | "snippets"
-        | "wiki"
-        | "presentations"
-        | "reviews"
-        | "ai-memex" -> MarkdownService.convertMdToHtml item.Content
-        | _ -> item.Content
-
-    let private toIso8601Date (value: string) =
-        if String.IsNullOrWhiteSpace(value) then DateTimeOffset.UtcNow.ToString("o")
-        else
-            try
-                DateTimeOffset.Parse(value).ToString("o")
-            with
-            | _ -> DateTimeOffset.UtcNow.ToString("o")
-
-    let private sortByDateDesc (items: UnifiedFeedItem list) =
-        items
-        |> List.sortByDescending (fun item ->
-            if String.IsNullOrWhiteSpace(item.Date) then DateTimeOffset.MinValue
-            else
-                try DateTimeOffset.Parse(item.Date)
-                with _ -> DateTimeOffset.MinValue)
-
-    let generateJsonFeedString (title: string) (homePageUrl: string) (feedUrl: string) (description: string) (items: UnifiedFeedItem list) (useAbsoluteUrls: bool) =
-        let jsonItems = JsonArray()
-
-        items
-        |> List.iter (fun item ->
-            let contentHtml =
-                let baseContent = toJsonFeedContent item
-                if useAbsoluteUrls then normalizeUrlsForRss baseContent "https://www.lqdev.me"
-                else baseContent
-
-            let jsonItem = JsonObject()
-            jsonItem["id"] <- item.Url
-            jsonItem["url"] <- item.Url
-            jsonItem["title"] <- item.Title
-            jsonItem["content_html"] <- contentHtml
-            jsonItem["date_published"] <- toIso8601Date item.Date
-
-            if not (isNull item.Tags) && item.Tags.Length > 0 then
-                let tags = JsonArray()
-                item.Tags
-                |> Array.iter (fun tag -> tags.Add(tag))
-                jsonItem["tags"] <- tags
-
-            jsonItems.Add(jsonItem)
-        )
-
-        let author = JsonObject()
-        author["name"] <- "Luis Quintanilla"
-        author["url"] <- "https://www.lqdev.me"
-
-        let authors = JsonArray()
-        authors.Add(author)
-
-        let root = JsonObject()
-        root["version"] <- "https://jsonfeed.org/version/1.1"
-        root["title"] <- title
-        root["home_page_url"] <- homePageUrl
-        root["feed_url"] <- feedUrl
-        root["description"] <- description
-        root["authors"] <- authors
-        root["items"] <- jsonItems
-
-        root.ToJsonString(JsonSerializerOptions(WriteIndented = true))
-
-    let buildJsonFeeds (feedDataSets: (string * (UnifiedFeedItem list)) list) (outputDirectory: string) =
-        let allUnifiedItems = feedDataSets |> List.collect snd |> sortByDateDesc
-
-        let writeFeed (outputPath: string) (feedContent: string) =
-            let fullPath = Path.Combine(outputDirectory, outputPath)
-            let fullDir = Path.GetDirectoryName(fullPath)
-            Directory.CreateDirectory(fullDir) |> ignore
-            File.WriteAllText(fullPath, feedContent)
-
-        let typeConfigs = [
-            ("posts", "Luis Quintanilla - Posts", "https://www.lqdev.me/posts", "https://www.lqdev.me/posts/feed.json", "Blog posts by Luis Quintanilla", fun (item: UnifiedFeedItem) -> item.ContentType = "posts")
-            ("notes", "Luis Quintanilla - Notes", "https://www.lqdev.me/notes", "https://www.lqdev.me/notes/feed.json", "Notes and micro-posts by Luis Quintanilla", fun (item: UnifiedFeedItem) -> item.ContentType = "notes")
-            ("responses", "Luis Quintanilla - Responses", "https://www.lqdev.me/responses", "https://www.lqdev.me/responses/feed.json", "IndieWeb responses by Luis Quintanilla", fun (item: UnifiedFeedItem) -> responseStreamContentTypes.Contains(item.ContentType))
-        ]
-
-        typeConfigs
-        |> List.iter (fun (outputPathPrefix, title, homePageUrl, feedUrl, description, filter) ->
-            let matchingItems = allUnifiedItems |> List.filter filter
-            let typeItems = matchingItems |> List.take (min jsonFeedItemLimit matchingItems.Length)
-
-            if not typeItems.IsEmpty then
-                let jsonFeed = generateJsonFeedString title homePageUrl feedUrl description typeItems true
-                writeFeed (Path.Combine(outputPathPrefix, "feed.json")) jsonFeed
-        )
-
-        let allMatchingStreamItems =
-            allUnifiedItems
-            |> List.filter (fun item ->
-                item.ContentType = "posts"
-                || item.ContentType = "notes"
-                || responseStreamContentTypes.Contains(item.ContentType))
-        let allStreamItems = allMatchingStreamItems |> List.take (min jsonFeedItemLimit allMatchingStreamItems.Length)
-
-        if not allStreamItems.IsEmpty then
-            let allJsonFeed =
-                generateJsonFeedString
-                    "Luis Quintanilla - All Updates"
-                    "https://www.lqdev.me/feed"
-                    "https://www.lqdev.me/feed/index.json"
-                    "Posts, notes, and responses by Luis Quintanilla"
-                    allStreamItems
-                    true
-
-            writeFeed (Path.Combine("feed", "index.json")) allJsonFeed
-
-        printfn "✅ JSON feeds generated: posts, notes, responses, and combined feed"
-    
-    /// Build unified feeds from all content types with proper type conversion
-    let buildAllFeeds (feedDataSets: (string * (UnifiedFeedItem list)) list) (outputDirectory: string) =
-        // Flatten all feed items and sort chronologically
-        // Handle null/empty dates gracefully by using a very old date for items with missing dates
-        let allUnifiedItems = 
-            feedDataSets
-            |> List.collect snd
-            |> List.sortByDescending (fun item -> 
-                if String.IsNullOrWhiteSpace(item.Date) then
-                    DateTimeOffset.MinValue
-                else
-                    try
-                        DateTimeOffset.Parse(item.Date)
-                    with
-                    | _ -> DateTimeOffset.MinValue)
-        
-        // Fire-hose feed configuration (all content types)
-        let fireHoseConfig = {
-            Title = "Luis Quintanilla - All Updates"
-            Link = "https://www.lqdev.me/feed"
-            Description = "All content updates from Luis Quintanilla's website"
-            OutputPath = "feed/feed.xml"
-            ContentType = None
-        }
-        
-        // Generate fire-hose feed (exclude AI Memex from public syndication)
-        let publicItems = allUnifiedItems |> List.filter (fun item -> item.ContentType <> "ai-memex")
-        let fireHoseFeed = generateRssFeed (publicItems |> List.take (min 20 publicItems.Length)) fireHoseConfig
-        let fireHoseDir = Path.Combine(outputDirectory, "feed")
-        Directory.CreateDirectory(fireHoseDir) |> ignore
-        File.WriteAllText(Path.Combine(fireHoseDir, "feed.xml"), fireHoseFeed)
-        
-        // Also create backward compatibility copy at old location
-        File.WriteAllText(Path.Combine(fireHoseDir, "index.xml"), fireHoseFeed)
-        
-        // Type-specific feed configurations
-        let typeConfigurations = [
-            ("posts", {
-                Title = "Luis Quintanilla - Posts"
-                Link = "https://www.lqdev.me/posts"
-                Description = "Blog posts by Luis Quintanilla"
-                OutputPath = "posts/feed.xml"
-                ContentType = Some "posts"
-            })
-            ("notes", {
-                Title = "Luis Quintanilla - Notes"
-                Link = "https://www.lqdev.me/notes"
-                Description = "Notes and micro-posts by Luis Quintanilla"
-                OutputPath = "notes/feed.xml"
-                ContentType = Some "notes"
-            })
-            ("responses", {
-                Title = "Luis Quintanilla - Responses"
-                Link = "https://www.lqdev.me/responses"
-                Description = "IndieWeb responses by Luis Quintanilla"
-                OutputPath = "responses/feed.xml"
-                ContentType = Some "responses"
-            })
-            ("bookmarks", {
-                Title = "Luis Quintanilla - Bookmarks"
-                Link = "https://www.lqdev.me/bookmarks"
-                Description = "IndieWeb bookmarks by Luis Quintanilla"
-                OutputPath = "bookmarks/feed.xml"
-                ContentType = Some "bookmarks"
-            })
-            ("snippets", {
-                Title = "Luis Quintanilla - Snippets"
-                Link = "https://www.lqdev.me/resources/snippets"
-                Description = "Code snippets by Luis Quintanilla"
-                OutputPath = "resources/snippets/feed.xml"
-                ContentType = Some "snippets"
-            })
-            ("wiki", {
-                Title = "Luis Quintanilla - Wiki"
-                Link = "https://www.lqdev.me/resources/wiki"
-                Description = "Wiki articles by Luis Quintanilla"
-                OutputPath = "resources/wiki/feed.xml"
-                ContentType = Some "wiki"
-            })
-            ("presentations", {
-                Title = "Luis Quintanilla - Presentations"
-                Link = "https://www.lqdev.me/resources/presentations"
-                Description = "Presentations by Luis Quintanilla"
-                OutputPath = "resources/presentations/feed.xml"
-                ContentType = Some "presentations"
-            })
-            ("reviews", {
-                Title = "Luis Quintanilla - Reviews"
-                Link = "https://www.lqdev.me/reviews"
-                Description = "Book reviews by Luis Quintanilla"
-                OutputPath = "reviews/feed.xml"
-                ContentType = Some "reviews"
-            })
-            ("media", {
-                Title = "Luis Quintanilla - Media"
-                Link = "https://www.lqdev.me/media"
-                Description = "Photo albums and media by Luis Quintanilla"
-                OutputPath = "media/feed.xml"
-                ContentType = Some "media"
-            })
-            ("album-collection", {
-                Title = "Luis Quintanilla - Albums"
-                Link = "https://www.lqdev.me/collections/albums"
-                Description = "Photo album collections by Luis Quintanilla"
-                OutputPath = "collections/albums/feed.xml"
-                ContentType = Some "album-collection"
-            })
-            ("playlist-collection", {
-                Title = "Luis Quintanilla - Playlists"
-                Link = "https://www.lqdev.me/collections/playlists"
-                Description = "Music playlist collections by Luis Quintanilla"
-                OutputPath = "collections/playlists/feed.xml"
-                ContentType = Some "playlist-collection"
-            })
-            ("ai-memex", {
-                Title = "Luis Quintanilla - AI Memex"
-                Link = "https://www.lqdev.me/resources/ai-memex"
-                Description = "AI-authored content: project reports, research, patterns, and blog posts"
-                OutputPath = "resources/ai-memex/feed.xml"
-                ContentType = Some "ai-memex"
-            })
-        ]
-        
-        // Generate type-specific feeds
-        typeConfigurations
-        |> List.iter (fun (contentType, config) ->
-            let typeItems = 
-                allUnifiedItems 
-                |> List.filter (fun item -> 
-                    if contentType = "responses" then
-                        // For responses feed, include all response subtypes
-                        ["star"; "reply"; "reshare"; "responses"] |> List.contains item.ContentType
-                    else
-                        item.ContentType = contentType)
-                |> List.take (min 20 (allUnifiedItems |> List.filter (fun item -> 
-                    if contentType = "responses" then
-                        ["star"; "reply"; "reshare"; "responses"] |> List.contains item.ContentType
-                    else
-                        item.ContentType = contentType) |> List.length))
-            
-            if not (List.isEmpty typeItems) then
-                let typeFeed = generateRssFeed typeItems config
-                let feedDir = Path.Combine(outputDirectory, Path.GetDirectoryName(config.OutputPath))
-                Directory.CreateDirectory(feedDir) |> ignore
-                File.WriteAllText(Path.Combine(outputDirectory, config.OutputPath), typeFeed)
-        )
-        
-        printfn "✅ Unified feeds generated: %d total items across %d content types" allUnifiedItems.Length (feedDataSets |> List.length)
-    
-    /// Sanitize tag names for safe file system paths while preserving readability
-    let private sanitizeTagForPath (tag: string) =
-        tag.Trim()
-            .Replace("\"", "")       // Remove quotes
-            .Replace("#", "sharp")   // Replace # with "sharp" (f# -> fsharp, c# -> csharp)
-            .Replace(" ", "-")       // Replace spaces with hyphens
-            .Replace(".", "dot")     // Replace dots with "dot" (.net -> dotnet)
-            .Replace("/", "-")       // Replace slashes with hyphens
-            .Replace("\\", "-")      // Replace backslashes with hyphens
-            .Replace(":", "-")       // Replace colons with hyphens
-            .Replace("*", "star")    // Replace asterisks
-            .Replace("?", "q")       // Replace question marks
-            .Replace("<", "lt")      // Replace less than
-            .Replace(">", "gt")      // Replace greater than
-            .Replace("|", "pipe")    // Replace pipes
-            .ToLowerInvariant()      // Make lowercase for consistency
-
-    /// Generate RSS feeds for individual tags
-    let buildTagFeeds (feedDataSets: (string * (UnifiedFeedItem list)) list) (outputDirectory: string) =
-        // Flatten all feed items (exclude AI Memex from tag syndication feeds)
-        let allUnifiedItems = 
-            feedDataSets
-            |> List.collect snd
-            |> List.filter (fun item -> item.ContentType <> "ai-memex")
-            |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
-        
-        // Extract all canonical tags (processTagName consolidates plurals, gerunds, etc.)
-        let allTags = 
-            allUnifiedItems
-            |> List.collect (fun item -> 
-                if isNull item.Tags then [] 
-                else item.Tags |> Array.map TagService.processTagName |> Array.toList)
-            |> List.distinct
-            |> List.sort
-        
-        printfn "Generating RSS feeds for %d tags..." allTags.Length
-        
-        // Generate RSS feed for each canonical tag
-        allTags
-        |> List.iter (fun tag ->
-            let matchesTag (item: UnifiedFeedItem) =
-                not (isNull item.Tags) && item.Tags |> Array.exists (fun t -> TagService.processTagName t = tag)
-            let tagItems = 
-                allUnifiedItems
-                |> List.filter matchesTag
-                |> List.take (min 20 (allUnifiedItems |> List.filter matchesTag |> List.length))
-            
-            if not (List.isEmpty tagItems) then
-                let sanitizedTag = sanitizeTagForPath tag
-                let tagConfig = {
-                    Title = sprintf "Luis Quintanilla - %s" tag
-                    Link = sprintf "https://www.lqdev.me/tags/%s" sanitizedTag
-                    Description = sprintf "All content tagged with '%s' by Luis Quintanilla" tag
-                    OutputPath = sprintf "tags/%s/feed.xml" sanitizedTag
-                    ContentType = None  // Tag feeds include all content types
-                }
-                
-                let tagFeed = generateRssFeed tagItems tagConfig
-                let feedDir = Path.Combine(outputDirectory, "tags", sanitizedTag)
-                Directory.CreateDirectory(feedDir) |> ignore
-                File.WriteAllText(Path.Combine(feedDir, "feed.xml"), tagFeed)
-        )
-        
-        printfn "✅ Tag RSS feeds generated for %d tags" allTags.Length
-    
-    /// Convert FeedData to UnifiedFeedItem - helper functions for each content type
-    let convertPostsToUnified (feedDataList: FeedData<Post> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                // Use full content instead of CardHtml for complete content display
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Full raw content - will be processed by timeline view
-                let date = feedData.Content.Metadata.Date
-                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "posts"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
-    
-    let convertNotesToUnified (feedDataList: FeedData<Post> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                // Use full content instead of CardHtml for complete content display
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Full raw content - will be processed by timeline view
-                let date = feedData.Content.Metadata.Date
-                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "notes"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
-    
-    let convertResponsesToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =
-        feedDataList 
-        |> List.filter (fun feedData -> feedData.Content.Metadata.ResponseType <> "bookmark") // Exclude bookmarks
-        |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                // Use CardHtml for responses to include target URL information
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.CardHtml  // Use CardHtml to include target URL display
-                let date = feedData.Content.Metadata.DatePublished
-                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                // Use specific response type instead of generic "responses"
-                let contentType = feedData.Content.Metadata.ResponseType
-                // Phase 5A: Extract response semantics for ActivityPub
-                let responseType = 
-                    if String.IsNullOrWhiteSpace(feedData.Content.Metadata.ResponseType) then None
-                    else Some feedData.Content.Metadata.ResponseType
-                let targetUrl = 
-                    if String.IsNullOrWhiteSpace(feedData.Content.Metadata.TargetUrl) then None
-                    else Some feedData.Content.Metadata.TargetUrl
-                let updatedDate = if String.IsNullOrWhiteSpace(feedData.Content.Metadata.DateUpdated) then None else Some feedData.Content.Metadata.DateUpdated
-                // Phase 6A: Extract RSVP status for event responses
-                let rsvpStatus = feedData.Content.Metadata.RsvpStatus
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = contentType; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate; RsvpStatus = rsvpStatus; ReviewData = None; MediaData = None }
-            | None -> None)
-    
-    let convertResponseBookmarksToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =
-        feedDataList 
-        |> List.filter (fun feedData -> feedData.Content.Metadata.ResponseType = "bookmark") // Only bookmarks
-        |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.CardHtml  // Use CardHtml to include target URL display
-                let date = feedData.Content.Metadata.DatePublished
-                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                // Phase 5A: Extract response semantics for ActivityPub
-                let responseType = Some "bookmark"
-                let targetUrl = Some feedData.Content.Metadata.TargetUrl
-                let updatedDate = if String.IsNullOrWhiteSpace(feedData.Content.Metadata.DateUpdated) then None else Some feedData.Content.Metadata.DateUpdated
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = responseType; TargetUrl = targetUrl; UpdatedDate = updatedDate; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
-    
-    let convertSnippetsToUnified (feedDataList: FeedData<Snippet> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Use full content instead of CardHtml
-                let date = feedData.Content.Metadata.CreatedDate
-                let tags = 
-                    if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
-                    else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "snippets"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
-    
-    let convertWikisToUnified (feedDataList: FeedData<Wiki> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Use full content instead of CardHtml
-                let date = feedData.Content.Metadata.LastUpdatedDate
-                let tags = 
-                    if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
-                    else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "wiki"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
-    
-    let convertAiMemexToUnified (feedDataList: FeedData<AiMemex> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content
-                let date = feedData.Content.Metadata.PublishedDate
-                let tags = 
-                    if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
-                    else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "ai-memex"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
-    
-    let convertPresentationsToUnified (feedDataList: FeedData<Presentation> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Use full content instead of CardHtml
-                let date = feedData.Content.Metadata.Date
-                let tags = 
-                    if String.IsNullOrEmpty(feedData.Content.Metadata.Tags) then [||]
-                    else feedData.Content.Metadata.Tags.Split(',') |> Array.map (fun s -> s.Trim())
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "presentations"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
-    
-    let convertBooksToUnified (feedDataList: FeedData<Book> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                // Use clean CardHtml instead of RSS description
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                // For reviews timeline display, use simplified CardHtml instead of full content
-                let content = feedData.CardHtml
-                let date = feedData.Content.Metadata.DatePublished
-                let tags = [||]  // Books don't have explicit tags
-                // Phase 5C: Get review metadata from cache for Schema.org integration in ActivityPub
-                let reviewData = BookProcessor.getReviewMetadata feedData.Content.FileName
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "reviews"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = reviewData; MediaData = None }
-            | None -> None)
-    
-    let convertAlbumsToUnified (feedDataList: FeedData<Album> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Use full content instead of CardHtml
-                let date = feedData.Content.Metadata.Date
-                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                // Phase 5D: Extract media data for media-primary content
-                let mediaData = MediaExtractor.extractPrimaryMedia content
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "media"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = mediaData }
-            | None -> None)
-    
-    let convertAlbumCollectionsToUnified (feedDataList: FeedData<AlbumCollection> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Use full content
-                let date = feedData.Content.Metadata.Date
-                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "album-collection"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
-    
-    let convertPlaylistCollectionsToUnified (feedDataList: FeedData<PlaylistCollection> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Use full content
-                let date = feedData.Content.Metadata.Date
-                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "playlist-collection"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
-    
-    let convertBookmarksToUnified (feedDataList: FeedData<Bookmark> list) : UnifiedFeedItem list =
-        feedDataList |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.Content.Content  // Use full content instead of CardHtml
-                let date = feedData.Content.Metadata.DatePublished
-                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                let targetUrl = 
-                    if String.IsNullOrWhiteSpace(feedData.Content.Metadata.BookmarkOf) then None
-                    else Some feedData.Content.Metadata.BookmarkOf
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = targetUrl; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)
-
-    // Convert bookmark responses (Response objects with bookmark type) to unified feed
-    let convertBookmarkResponsesToUnified (feedDataList: FeedData<Response> list) : UnifiedFeedItem list =
-        feedDataList 
-        |> List.filter (fun feedData -> feedData.Content.Metadata.ResponseType = "bookmark") // Include only bookmarks
-        |> List.choose (fun feedData ->
-            match feedData.RssXml with
-            | Some rssXml ->
-                let title = feedData.Content.Metadata.Title
-                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
-                let content = feedData.CardHtml  // Use CardHtml to include target URL display
-                let date = feedData.Content.Metadata.DatePublished
-                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
-                Some { Title = title; Content = content; Url = url; Date = date; ContentType = "bookmarks"; Tags = tags; RssXml = rssXml; ResponseType = Some "bookmark"; TargetUrl = Some feedData.Content.Metadata.TargetUrl; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = None }
-            | None -> None)

@@ -3,7 +3,7 @@ title: "Pattern: NuGet Lock File Hash Drift"
 description: "How to diagnose and unblock NU1403 package content hash validation failures when a NuGet lock file no longer matches the package content being restored."
 entry_type: pattern
 published_date: "2026-04-27 11:30 -05:00"
-last_updated_date: "2026-04-27 11:30 -05:00"
+last_updated_date: "2026-06-15 19:37 -05:00"
 tags: "dotnet, devops, patterns"
 related_skill: "write-ai-memex"
 source_project: "website"
@@ -110,3 +110,62 @@ Do not immediately delete or regenerate `packages.lock.json` when NU1403 appears
 
 Avoid bypassing package hash validation. The check is useful: it distinguishes "my local cache is stale" from "the package content available to me no longer matches the dependency lock."
 
+## Variant: Merge Conflict Across Environments (2026-06-15)
+
+The original case above is single-environment (build fails, regenerate the hash). A second, distinct
+form shows up when **merging two branches that both bumped the same package version on different
+machines**. During the 2026 architecture refactor I merged `origin/main` into a long-lived umbrella
+branch and hit a *git merge conflict* on `packages.lock.json`:
+
+```diff
+  "FSharp.Core": {
+    "type": "Direct",
+    "requested": "[10.1.301, )",
+    "resolved": "10.1.301",
+-   "contentHash": "MYegQxogsOgt0SQrH7wUMRJmQb6Yn8Vke12VMGIeU17KLcsQOFVISPsEPY4fDFSb2NEl/CVYztVy92q0RPKp2A=="   # umbrella (local machine)
++   "contentHash": "FwQFuqOA1+qQnFl6Vqg6piS83ZRuKJqXJQxOM52M5tNarT2XQ/pMvw8fOOlnhcOYvdZyje2PJ8rK/J64ZI729Q=="   # origin/main (CI)
+  }
+```
+
+**Same version, two different hashes.** Both are legitimate regenerations — one produced by CI, one by
+the local machine — because the recorded content hash is environment-specific (cache/feed
+recompression), not a real package difference. Neither is "wrong."
+
+### Why the cache-clearing playbook doesn't apply here
+
+- It is not local corruption, so clearing caches changes nothing.
+- `--force-evaluate` on the local machine produces the **local** hash, which (a) may match neither
+  committed value and (b) creates churn: it would flip `main`'s hash on every promotion, and the
+  *next* CI build would just regenerate it back. You'd be fighting the drift forever.
+- Note: `RestorePackagesWithLockFile=true` **without** `RestoreLockedMode` is still enough to make a
+  plain `dotnet build` fail with NU1403 here — the global cache content differed from the recorded
+  hash, so the check fired even outside explicit `--locked-mode`.
+
+### Resolution: keep the deployment lineage's hash, regenerate locally without committing
+
+The lock file can only hold one hash, and under drift it validates for one environment at a time.
+Pick the environment that is the **source of truth for deployment** (CI / `main`) and let local dev
+work around it transiently:
+
+```powershell
+# During the merge, resolve the conflict to main's (CI-validated) hash:
+git checkout --theirs -- packages.lock.json    # 'theirs' = the branch being merged in (origin/main)
+git add packages.lock.json
+git commit                                      # merge commit keeps CI's hash → zero promotion churn
+
+# Build/verify locally without committing the local hash:
+dotnet restore --force-evaluate                 # rewrites the lock to THIS machine's hash
+dotnet build -c Release                         # succeeds (the package version is identical)
+dotnet run  -c Release                          # generate + verify
+git checkout HEAD -- packages.lock.json         # discard the local-hash drift; committed lock stays CI's
+```
+
+The package **version** is identical on both sides, so a force-evaluated local build is a fully valid
+proof that the merged *code* builds — the hash is orthogonal to compilation. Committing CI's hash
+keeps CI green and makes the eventual umbrella→main promotion a churn-free fast-forward; the only cost
+is that local builds on the umbrella need a one-time `--force-evaluate` (same as `main` already does).
+
+**Decision rule:** when a lock hash conflicts across branches, commit the hash of whichever
+environment gates deployment; force-evaluate elsewhere and don't commit it. Only commit a *new* hash
+(the single-environment path above) when the package genuinely changed, not when environments merely
+disagree.

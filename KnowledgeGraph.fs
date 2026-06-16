@@ -559,7 +559,7 @@ let saveGraphJson (outputDir: string) (graph: KnowledgeGraph) =
 
 /// Find related content from across the site (posts, wiki, snippets, etc.)
 /// using tag overlap with a given Memex entry. Returns top 5 matches.
-let findCrossContentRelated (entryTags: string array) (_entrySlug: string) (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) : CrossContentItem array =
+let findCrossContentRelated (entryTags: string array) (_entrySlug: string) (unifiedItems: UnifiedFeeds.UnifiedFeedItem list) : CrossContentItem array =
     if entryTags.Length = 0 then [||]
     else
         let entryTagSet = entryTags |> Array.map (fun t -> t.ToLowerInvariant().Trim()) |> Set.ofArray

@@ -55,25 +55,6 @@ let allTagsView (tags: string array) =
         tagLinks
     ]
 
-let individualTagView (tagName:string) (posts:Post array) (notes:Post array) (responses:Response array) = 
-    let postLinks = tagPostLinkView posts "posts"
-    let noteLinks = tagPostLinkView notes "notes"
-    let responseLinks = tagResponseLinkView responses "responses"
-
-    div [ _class "mr-auto" ] [ 
-        h2 [] [Text $"{tagName}"]
-        p [] [Text $"A list of posts tagged {tagName}"]
-
-        h3 [] [Text "Blogs"]
-        postLinks
-
-        h3 [] [Text "Notes"]
-        noteLinks
-
-        h3 [] [Text "Responses"]
-        responseLinks
-    ]
-
 /// Enhanced unified tag view supporting all content types through ITaggable interface
 let individualTagViewUnified (tagName: string) (allTaggableContent: (ITaggable array * string * string) list) = 
     let contentSections = 

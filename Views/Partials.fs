@@ -26,7 +26,6 @@ let tagLinkView = TagViews.tagLinkView
 let tagPostLinkView = TagViews.tagPostLinkView
 let tagResponseLinkView = TagViews.tagResponseLinkView
 let allTagsView = TagViews.allTagsView
-let individualTagView = TagViews.individualTagView
 
 // Feeds (from FeedViews)
 let rollLinkView = FeedViews.rollLinkView
@@ -39,7 +38,6 @@ let aiStarterPackFeedView = FeedViews.aiStarterPackFeedView
 // Content (from ContentViews)
 let feedPostView = ContentViews.feedPostView
 let notePostView = ContentViews.notePostView
-let responsePostView = ContentViews.responsePostView
 let bookmarkPostView = ContentViews.bookmarkPostView
 let bookPostView = ContentViews.bookPostView
 let albumPostView = ContentViews.albumPostView
@@ -47,7 +45,6 @@ let presentationPageView = ContentViews.presentationPageView
 let liveStreamPageView = ContentViews.liveStreamPageView
 let feedPostViewWithBacklink = ContentViews.feedPostViewWithBacklink
 let notePostViewWithBacklink = ContentViews.notePostViewWithBacklink
-let reponsePostViewWithBacklink = ContentViews.reponsePostViewWithBacklink
 let albumPostViewWithBacklink = ContentViews.albumPostViewWithBacklink
 
 // Collections (from CollectionViews)
@@ -75,7 +72,6 @@ let enhancedSubscriptionHubView = CollectionViews.enhancedSubscriptionHubView
 
 // Layout (from LayoutViews)
 let homeView = LayoutViews.homeView
-let timelineHomeView = LayoutViews.timelineHomeView
 let contentView = LayoutViews.contentView
 let contentViewWithTitle = LayoutViews.contentViewWithTitle
 let mediaPageView = LayoutViews.mediaPageView

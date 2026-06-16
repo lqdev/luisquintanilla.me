@@ -4,13 +4,20 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <!-- F# incomplete pattern matches (FS0025) are build errors. This is the
+         enforcement payoff for the closed ContentType DU (Phase 2.7): adding a
+         case turns every non-exhaustive match into a compile error. Verified
+         free at adoption (2026-06-10): build emitted 0 FS0025. -->
+    <WarningsAsErrors>FS0025</WarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="Domain.fs" />
+    <Compile Include="ContentTypes.fs" />
     <Compile Include="CustomBlocks.fs" />
     <Compile Include="MediaTypes.fs" />
     <Compile Include="ASTParsing.fs" />
+    <Compile Include="Diagnostics.fs" />
     <Compile Include="BlockRenderers.fs" />
     <Compile Include="OutputComparison.fs" />
     <Compile Include="Services\Markdown.fs" />
@@ -22,6 +29,8 @@
     <Compile Include="Services\FollowersSync.fs" /> 
     <Compile Include="Services\QRStyled.fs" />
     <Compile Include="GenericBuilder.fs" />
+    <Compile Include="UnifiedFeeds.fs" />
+    <Compile Include="ContentRegistry.fs" />
     <Compile Include="ActivityPubBuilder.fs" />
     <Compile Include="EntityExtraction.fs" />
     <Compile Include="KnowledgeGraph.fs" />
@@ -32,11 +41,14 @@
     <Compile Include="Views\ContentViews.fs" />
     <Compile Include="Views\CollectionViews.fs" />
     <Compile Include="Views\TravelViews.fs" />
+    <Compile Include="Views\TimelineViews.fs" />
     <Compile Include="Views\LayoutViews.fs" />
+    <Compile Include="Views\Navigation.fs" />
     <Compile Include="Views\Layouts.fs" />
     <Compile Include="Views\TextOnlyViews.fs" />
     <Compile Include="Views\Partials.fs" />
     <Compile Include="Views\Generator.fs" />
+    <Compile Include="BuildDriver.fs" />
     <Compile Include="Collections.fs" />
     <Compile Include="SearchIndex.fs" />
     <Compile Include="Loaders.fs" />

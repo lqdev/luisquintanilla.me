@@ -5,7 +5,7 @@ open System.IO
 open System.Text.Json
 open System.Text.RegularExpressions
 open Domain
-open GenericBuilder.UnifiedFeeds
+open UnifiedFeeds
 
 // Search item type optimized for client-side search
 type SearchItem = {

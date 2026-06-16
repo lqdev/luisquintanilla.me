@@ -40,29 +40,10 @@ let main argv =
     // copyImages "images" "images"
 
     // Data
-    let posts = loadPosts(srcDir) 
-    let feedNotes = 
-        // Load notes using new AST-based system
-        let noteFiles = 
-            Directory.GetFiles(Path.Join(srcDir, "feed"))
-            |> Array.filter (fun f -> f.EndsWith(".md"))
-            |> Array.toList
-        let processor = GenericBuilder.NoteProcessor.create()
-        let feedData = GenericBuilder.buildContentWithFeeds processor noteFiles
-        feedData |> List.map (fun item -> item.Content) |> List.toArray
     let liveStreams = loadLiveStreams (srcDir)
     let feedLinks = loadFeedLinks (srcDir)
     let books = loadBooks (srcDir)
     let albums = loadAlbums (srcDir)
-    let responses = 
-        // Load responses using AST-based system
-        let responseFiles = 
-            Directory.GetFiles(Path.Join(srcDir, "responses"))
-            |> Array.filter (fun f -> f.EndsWith(".md"))
-            |> Array.toList
-        let processor = GenericBuilder.ResponseProcessor.create()
-        let feedData = GenericBuilder.buildContentWithFeeds processor responseFiles
-        feedData |> List.map (fun item -> item.Content) |> List.toArray
 
     // Build static pages
     // buildHomePage posts feedNotes responses  // Traditional homepage - replaced by timeline
@@ -100,39 +81,51 @@ let main argv =
     let albumCollectionsFeedData = buildAlbumCollections()
     let playlistCollectionsFeedData = buildPlaylistCollections()
     
-    // Convert to unified feed items - Timeline feed (main content)
-    let timelineFeedItems = [
-        ("posts", GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData)
-        ("notes", GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData)
-        ("responses", GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData)
-        ("bookmarks", GenericBuilder.UnifiedFeeds.convertBookmarkResponsesToUnified bookmarksFeedData)
-        ("reviews", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
-        ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
-        ("album-collection", GenericBuilder.UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData)
-    ]
+    // Convert each content type to unified feed items exactly once (F3: these pure
+    // projections were previously re-run up to 3x across the feed lists below).
+    let postsUnified = UnifiedFeeds.convertPostsToUnified postsFeedData
+    let notesUnified = UnifiedFeeds.convertNotesToUnified notesFeedData
+    let responsesUnified = UnifiedFeeds.convertResponsesToUnified responsesFeedData
+    let bookmarksUnified = UnifiedFeeds.convertBookmarkResponsesToUnified bookmarksFeedData
+    let snippetsUnified = UnifiedFeeds.convertSnippetsToUnified snippetsFeedData
+    let wikisUnified = UnifiedFeeds.convertWikisToUnified wikisFeedData
+    let aiMemexUnified = UnifiedFeeds.convertAiMemexToUnified aiMemexFeedData
+    let presentationsUnified = UnifiedFeeds.convertPresentationsToUnified presentationsFeedData
+    let booksUnified = UnifiedFeeds.convertBooksToUnified booksFeedData
+    let albumsUnified = UnifiedFeeds.convertAlbumsToUnified mediaFeedData
+    let albumCollectionsUnified = UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData
+    let playlistCollectionsUnified = UnifiedFeeds.convertPlaylistCollectionsToUnified playlistCollectionsFeedData
     
-    // All unified items for RSS feeds and search (includes resources content)
-    let allUnifiedItems = [
-        ("posts", GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData)
-        ("notes", GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData)
-        ("responses", GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData)
-        ("bookmarks", GenericBuilder.UnifiedFeeds.convertBookmarkResponsesToUnified bookmarksFeedData)
-        ("snippets", GenericBuilder.UnifiedFeeds.convertSnippetsToUnified snippetsFeedData)
-        ("wiki", GenericBuilder.UnifiedFeeds.convertWikisToUnified wikisFeedData)
-        ("ai-memex", GenericBuilder.UnifiedFeeds.convertAiMemexToUnified aiMemexFeedData)
-        ("presentations", GenericBuilder.UnifiedFeeds.convertPresentationsToUnified presentationsFeedData)
-        ("reviews", GenericBuilder.UnifiedFeeds.convertBooksToUnified booksFeedData)
-        ("media", GenericBuilder.UnifiedFeeds.convertAlbumsToUnified mediaFeedData)
-        ("album-collection", GenericBuilder.UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData)
-        ("playlist-collection", GenericBuilder.UnifiedFeeds.convertPlaylistCollectionsToUnified playlistCollectionsFeedData)
+    // Content-type roster (B1): one declarative row per type describing its
+    // unified-feed participation. The three membership lists below derive from
+    // this single table (per-row flags) instead of being hand-maintained — so a
+    // type can no longer be added to one feed list but forgotten in another
+    // (the bug class behind pattern-content-type-taxonomy-mismatch). The roster
+    // holds already-projected results in the existing build order, so output is
+    // byte-identical. Row order = the all-feeds order; the filters preserve it.
+    let contentRoster : ContentRegistry.ContentTypeRoster list = [
+        { Identity = ContentTypes.ContentType.Posts;              Unified = postsUnified;              InTimeline = true;  InAllFeeds = true; InBlogArchive = true }
+        { Identity = ContentTypes.ContentType.Notes;              Unified = notesUnified;              InTimeline = true;  InAllFeeds = true; InBlogArchive = true }
+        { Identity = ContentTypes.ContentType.Responses;          Unified = responsesUnified;          InTimeline = true;  InAllFeeds = true; InBlogArchive = true }
+        { Identity = ContentTypes.ContentType.Bookmarks;          Unified = bookmarksUnified;          InTimeline = true;  InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.Snippets;           Unified = snippetsUnified;           InTimeline = false; InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.Wiki;               Unified = wikisUnified;              InTimeline = false; InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.AiMemex;            Unified = aiMemexUnified;            InTimeline = false; InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.Presentations;      Unified = presentationsUnified;      InTimeline = false; InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.Reviews;            Unified = booksUnified;              InTimeline = true;  InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.Media;              Unified = albumsUnified;             InTimeline = true;  InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.AlbumCollection;    Unified = albumCollectionsUnified;   InTimeline = true;  InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.PlaylistCollection; Unified = playlistCollectionsUnified; InTimeline = false; InAllFeeds = true; InBlogArchive = false }
     ]
 
+    // Convert to unified feed items - Timeline feed (main content)
+    let timelineFeedItems = ContentRegistry.timeline contentRoster
+
+    // All unified items for RSS feeds and search (includes resources content)
+    let allUnifiedItems = ContentRegistry.allFeeds contentRoster
+
     // Blog Archive / JSON feed scope (posts + notes + responses)
-    let blogArchiveFeedItems = [
-        ("posts", GenericBuilder.UnifiedFeeds.convertPostsToUnified postsFeedData)
-        ("notes", GenericBuilder.UnifiedFeeds.convertNotesToUnified notesFeedData)
-        ("responses", GenericBuilder.UnifiedFeeds.convertResponsesToUnified responsesFeedData)
-    ]
+    let blogArchiveFeedItems = ContentRegistry.blogArchive contentRoster
     
     // Prepare unified content for text-only site and search indexes
     // Normalize tags through canonical map so all consumers see consolidated tag names
@@ -145,13 +138,13 @@ let main argv =
             else { item with Tags = item.Tags |> Array.map TagService.processTagName |> Array.distinct })
     
     // Generate unified feeds (fire-hose + type-specific)
-    GenericBuilder.UnifiedFeeds.buildAllFeeds allUnifiedItems "_public"
+    UnifiedFeeds.buildAllFeeds allUnifiedItems "_public"
 
     // Generate JSON Feed v1.1 outputs for posts, notes, responses, and combined stream
-    GenericBuilder.UnifiedFeeds.buildJsonFeeds blogArchiveFeedItems "_public"
+    UnifiedFeeds.buildJsonFeeds blogArchiveFeedItems "_public"
     
     // Generate tag RSS feeds using unified feed data
-    GenericBuilder.UnifiedFeeds.buildTagFeeds allUnifiedItems "_public"
+    UnifiedFeeds.buildTagFeeds allUnifiedItems "_public"
 
     // Generate Blog Archive Format (.bar) exports and archive landing page
     buildBlogArchiveExports blogArchiveFeedItems
@@ -166,7 +159,7 @@ let main argv =
     // =============================================================================
     
     printfn "🎭 Building ActivityPub content..."
-    let activityPubContent = allUnifiedContent |> List.filter (fun item -> item.ContentType <> "ai-memex")
+    let activityPubContent = allUnifiedContent |> List.filter (fun item -> item.ContentType <> ContentTypes.AiMemex)
     ActivityPubBuilder.buildActivities activityPubContent "_public"
     ActivityPubBuilder.buildOutbox activityPubContent "_public"
     ActivityPubBuilder.queueRecentPostsForDelivery activityPubContent "_public"
@@ -202,22 +195,10 @@ let main argv =
     // Build event page
     buildEventPage ()
 
-    // Build presentation pages
-    let _ = buildPresentations()
-    ()
-
     // Build livestream pages
     buildLiveStreamPage ()
     buildLiveStreamsPage liveStreams
     buildLiveStreamPages liveStreams
-
-    // Build Snippet Pages
-    let _ = buildSnippets()
-    ()
-
-    // Build Wiki Pages  
-    let _ = buildWikis()
-    ()
 
     // Build AI Memex Pages (with cross-content connections)
     buildAiMemexPages aiMemexFeedData allUnifiedContent
@@ -226,40 +207,37 @@ let main argv =
     let readLaterLinks = loadReadLaterLinks()
     buildReadLaterPage readLaterLinks
 
-    // Build Books
+    // Build Books — NOTE (F3): this second buildBooks() run is intentionally retained.
+    // The StarRating SVG gradient IDs (BlockRenderers.fs:85) come from a *global* mutable
+    // counter, so the shipped review pages' gradient IDs depend on this being the last render
+    // pass. Removing it is cosmetic-only but breaks byte-identical output. Eliminating this
+    // last duplicate requires making those gradient IDs page-local/deterministic first
+    // (logged for the StarRating cleanup / F7-B2).
     let _ = buildBooks()
     ()
 
-    // Build Media
-    let _ = buildMedia()
-    ()
-
-    // Build tags page - Use correct notes data source
+    // Build tags page - unified tag system across all content types
     let notesFromFeedData = notesFeedData |> List.map (fun item -> item.Content) |> List.toArray
-    
-    // Feature flag for unified tag system testing
-    let useUnifiedTagSystem = true // Change to true to test enhanced unified system
-    
-    if useUnifiedTagSystem then
-        // Enhanced unified tag system supporting all content types
-        // Combine regular responses with bookmark responses for complete tag coverage
-        let bookmarkResponses = bookmarksFeedData |> List.map (fun item -> item.Content) |> List.toArray
-        let allResponses = Array.append responses bookmarkResponses
-        
-        let allTaggableContent = [
-            ("posts", posts |> Array.map (fun p -> p :> ITaggable))
-            ("notes", notesFromFeedData |> Array.map (fun n -> n :> ITaggable))
-            ("responses", allResponses |> Array.map (fun r -> r :> ITaggable))
-            ("snippets", snippetsFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun s -> s :> ITaggable))
-            ("wikis", wikisFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun w -> w :> ITaggable))
-            ("ai-memex", aiMemexFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun a -> a :> ITaggable))
-            ("presentations", presentationsFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun p -> p :> ITaggable))
-            ("media", mediaFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun a -> a :> ITaggable))
-        ]
-        buildUnifiedTagsPages allTaggableContent
-    else
-        // Current production system (posts, notes, responses only)
-        buildTagsPages posts notesFromFeedData responses
+    // F3: derive posts/responses for tag pages from already-parsed FeedData instead of
+    // re-parsing the same files (loadPosts / a second ResponseProcessor pass) at the top of main.
+    let posts = postsFeedData |> List.map (fun item -> item.Content) |> List.toArray
+    let responses = responsesFeedData |> List.map (fun item -> item.Content) |> List.toArray
+
+    // Combine regular responses with bookmark responses for complete tag coverage
+    let bookmarkResponses = bookmarksFeedData |> List.map (fun item -> item.Content) |> List.toArray
+    let allResponses = Array.append responses bookmarkResponses
+
+    let allTaggableContent = [
+        ("posts", posts |> Array.map (fun p -> p :> ITaggable))
+        ("notes", notesFromFeedData |> Array.map (fun n -> n :> ITaggable))
+        ("responses", allResponses |> Array.map (fun r -> r :> ITaggable))
+        ("snippets", snippetsFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun s -> s :> ITaggable))
+        ("wikis", wikisFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun w -> w :> ITaggable))
+        ("ai-memex", aiMemexFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun a -> a :> ITaggable))
+        ("presentations", presentationsFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun p -> p :> ITaggable))
+        ("media", mediaFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun a -> a :> ITaggable))
+    ]
+    buildUnifiedTagsPages allTaggableContent
 
     // Build legacy RSS feed aliases for backward compatibility (at the very end)
     buildLegacyRssFeedAliases ()
@@ -273,4 +251,17 @@ let main argv =
     
     printfn $"✅ Search indexes generated: {searchIndexStats.SearchIndex.ItemCount} content items, {searchIndexStats.TagIndex.TagCount} tags"
 
-    0
+    // F8 railway: report-loudly-keep-building. Individual error blocks were already
+    // printed at parse time; here we summarise and gate the exit code. Default is
+    // exit 0 (a bad file must not block publishing the rest); `--strict` /
+    // STRICT_CONTENT=1 turns any content error into a non-zero exit for CI.
+    let contentErrors = Diagnostics.errorCount ()
+    if contentErrors > 0 then
+        printfn "⚠ %d content error(s) reported above (files omitted from the site)." contentErrors
+        if Diagnostics.isStrict argv then
+            printfn "✗ Strict mode: failing the build (exit 1)."
+            1
+        else
+            0
+    else
+        0

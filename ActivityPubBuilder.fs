@@ -543,7 +543,7 @@ let extractMediaAttachments (content: string) : (string * obj array option) =
 /// Phase 5A: For replies, includes inReplyTo field
 /// Research: HTML content required by Mastodon, name field improves display
 /// Fix: Note ID uses #object fragment so Create activity ID matches fetchable URL
-let convertToNote (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : ActivityPubNote =
+let convertToNote (item: UnifiedFeeds.UnifiedFeedItem) : ActivityPubNote =
     let activityBaseId = generateActivityId item.Url item.Content
     let noteId = generateObjectId activityBaseId  // Note gets #object fragment
     
@@ -676,7 +676,7 @@ let convertToCreateActivity (note: ActivityPubNote) : ActivityPubCreate =
 /// Convert UnifiedFeedItem to Like activity
 /// Phase 5A: Stars become Like activities (not wrapped in Create)
 /// Research: Like is an activity itself, object references the target URL
-let convertToLikeActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : ActivityPubLike =
+let convertToLikeActivity (item: UnifiedFeeds.UnifiedFeedItem) : ActivityPubLike =
     let activityId = generateActivityId item.Url item.Content
     let targetUrl = item.TargetUrl |> Option.defaultValue item.Url  // Fallback to item URL if no target
     
@@ -701,7 +701,7 @@ let convertToLikeActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : 
 /// Convert UnifiedFeedItem to Announce activity
 /// Phase 5A: Reshares become Announce activities (not wrapped in Create)
 /// Research: Announce is an activity itself, object references the target URL
-let convertToAnnounceActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : ActivityPubAnnounce =
+let convertToAnnounceActivity (item: UnifiedFeeds.UnifiedFeedItem) : ActivityPubAnnounce =
     let activityId = generateActivityId item.Url item.Content
     let targetUrl = item.TargetUrl |> Option.defaultValue item.Url  // Fallback to item URL if no target
     
@@ -729,7 +729,7 @@ let convertToAnnounceActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem
 /// - "yes" → Accept: Indicates positive response to event
 /// - "maybe"/"interested" → TentativeAccept: Indicates tentative acceptance
 /// - "no" → Reject: Indicates declining the event
-let convertToRsvpActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : ActivityPubRsvp =
+let convertToRsvpActivity (item: UnifiedFeeds.UnifiedFeedItem) : ActivityPubRsvp =
     let activityId = generateActivityId item.Url item.Content
     let targetUrl = item.TargetUrl |> Option.defaultValue item.Url  // Fallback to item URL if no target
     
@@ -763,7 +763,7 @@ let convertToRsvpActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : 
 /// Phase 5D: Convert UnifiedFeedItem to native media object
 /// Media-primary content (from media directory) uses Image/Video/Audio as top-level type
 /// Research: Native media objects render properly in Pixelfed and media-focused clients
-let convertToMediaObject (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : ActivityPubMediaObject option =
+let convertToMediaObject (item: UnifiedFeeds.UnifiedFeedItem) : ActivityPubMediaObject option =
     match item.MediaData with
     | None -> None
     | Some mediaData ->
@@ -792,7 +792,7 @@ let convertToMediaObject (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : A
         }
 
 /// Phase 5D: Convert UnifiedFeedItem with MediaData to Create activity wrapping media object
-let convertToCreateMediaActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : obj option =
+let convertToCreateMediaActivity (item: UnifiedFeeds.UnifiedFeedItem) : obj option =
     match convertToMediaObject item with
     | None -> None
     | Some mediaObj ->
@@ -856,7 +856,7 @@ let useNativeMediaObjects = false
 /// Routes stars → Like, reshares → Announce, replies → Create+Note with inReplyTo
 /// Phase 5D: Routes media-primary content → Create+Image/Video/Audio
 /// Phase 6A: Routes rsvp → Accept/TentativeAccept/Reject based on rsvp_status
-let convertToActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : obj =
+let convertToActivity (item: UnifiedFeeds.UnifiedFeedItem) : obj =
     if not useNativeActivityTypes then
         // Legacy behavior: Everything as Create+Note
         convertToNote item |> convertToCreateActivity |> box
@@ -888,7 +888,7 @@ let convertToActivity (item: GenericBuilder.UnifiedFeeds.UnifiedFeedItem) : obj 
 /// Build individual ActivityPub activity files for static serving
 /// Phase 5A: Renamed from buildNotes, now generates to activitypub/activities/
 /// Handles mixed activity types (Create, Like, Announce)
-let buildActivities (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) (outputDir: string) : unit =
+let buildActivities (unifiedItems: UnifiedFeeds.UnifiedFeedItem list) (outputDir: string) : unit =
     printfn "  🎭 Generating individual ActivityPub activity files..."
     
     let activitiesDir = Path.Combine(outputDir, "activitypub", "activities")
@@ -916,7 +916,7 @@ let buildActivities (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem l
 /// Generates:
 ///   - api/data/outbox/index.json (root OrderedCollection with first/last links)
 ///   - api/data/outbox/page-1.json, page-2.json, etc. (OrderedCollectionPage with items)
-let buildOutbox (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) (outputDir: string) : unit =
+let buildOutbox (unifiedItems: UnifiedFeeds.UnifiedFeedItem list) (outputDir: string) : unit =
     printfn "  🎭 Converting %d items to ActivityPub format..." unifiedItems.Length
     
     // Convert all items to appropriate activities (reverse chronological)
@@ -974,7 +974,7 @@ let buildOutbox (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list)
 
 /// Queue new posts for delivery to followers
 /// Called during build to queue recent posts for ActivityPub delivery
-let queueRecentPostsForDelivery (unifiedItems: GenericBuilder.UnifiedFeeds.UnifiedFeedItem list) (outputDir: string) : unit =
+let queueRecentPostsForDelivery (unifiedItems: UnifiedFeeds.UnifiedFeedItem list) (outputDir: string) : unit =
     // Only queue items from the last 24 hours to avoid re-delivering old content
     let cutoffDate = DateTimeOffset.UtcNow.AddDays(-1.0)
     

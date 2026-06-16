@@ -276,20 +276,6 @@ module Domain
         DataPath: string        // "/Data/blogroll.json"
     }
 
-    // Navigation organization reflecting user mental models
-    type NavigationSection = {
-        Title: string                    // "Content Types", "Topic Guides"
-        Description: string              // Section explanation
-        Collections: Collection list     // Collections in this section
-        Icon: string option             // Navigation icon
-    }
-
-    type NavigationStructure = {
-        ContentTypes: NavigationSection      // Medium-focused collections
-        TopicGuides: NavigationSection       // Topic-focused collections
-        OtherCollections: NavigationSection  // Radio, Reviews, Tags
-    }    
-
     [<CLIMutable>]
     type BookDetails = {
         [<YamlMember(Alias="title")>] Title: string
