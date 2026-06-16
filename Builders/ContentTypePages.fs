@@ -81,7 +81,7 @@ module ContentTypePagesBuilder
             Name = ContentTypes.Posts
             SourceDir = [ "posts" ]
             OutputDir = [ "posts" ]
-            Processor = GenericBuilder.PostProcessor.create()
+            Processor = PostProcessor.create()
             Slug = fun post -> post.FileName
             ItemView = fun post allPosts ->
                 let relatedPosts = RelatedContentService.findRelatedContent post allPosts 5
