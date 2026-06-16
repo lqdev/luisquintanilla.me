@@ -53,6 +53,7 @@
     <Compile Include="SearchIndex.fs" />
     <Compile Include="Loaders.fs" />
     <Compile Include="TextOnlyBuilder.fs" />
+    <Compile Include="Builders\Common.fs" />
     <Compile Include="Builder.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
