@@ -60,7 +60,8 @@
     <Compile Include="Views\LayoutViews.fs" />
     <Compile Include="Views\Navigation.fs" />
     <Compile Include="Views\Layouts.fs" />
-    <Compile Include="Views\TextOnlyViews.fs" />
+    <Compile Include="Views\TextOnly\Content.fs" />
+    <Compile Include="Views\TextOnly\Pages.fs" />
     <Compile Include="Views\Partials.fs" />
     <Compile Include="Views\Generator.fs" />
     <Compile Include="BuildDriver.fs" />
