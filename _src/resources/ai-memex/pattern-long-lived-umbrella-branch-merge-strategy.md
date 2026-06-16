@@ -3,7 +3,7 @@ title: "Pattern: Long-Lived Umbrella Branch with Merge-Commit Boundaries"
 description: "A git workflow for shipping a multi-phase improvement program as small, reviewable PRs while keeping a single long-lived integration branch that survives across phases."
 entry_type: pattern
 published_date: "2026-06-01 15:30 -05:00"
-last_updated_date: "2026-06-01 15:30 -05:00"
+last_updated_date: "2026-06-15 21:58 -05:00"
 tags: "git, devops, workflow, patterns, lqdev-me"
 related_skill: "write-ai-memex"
 source_project: "lqdev-me"
@@ -52,7 +52,21 @@ If you squash at the boundary instead, the umbrella branch and `main` diverge by
    git push
    git rev-list --left-right --count origin/main...feature/site-improvements-2026-05   # expect: 0  0
    ```
-7. **Keep the umbrella branch alive** for the next phase. Do not delete it.
+7. **Keep the umbrella branch alive** for the next phase — *while the program is active*. Do not delete it between phases. (For closing the program out, see **Retiring the umbrella** below.)
+
+**Retiring the umbrella (program close-out):** the "keep alive" rule is load-bearing **only while the program is open**. Once the program's plan is archived (work complete, no next phase scoped), the umbrella has fulfilled its purpose — retire it:
+1. Confirm it's even and fully absorbed: `git rev-list --left-right --count origin/main...<umbrella>` is `0 0`, and `git merge-base --is-ancestor <umbrella-tip> origin/main` returns success. Because the boundary used a **merge commit**, every granular commit is preserved as second-parent ancestry in `main` — deleting the ref loses **zero** history.
+2. Drop an **annotated tag** at the merge commit as the permanent milestone marker (a *branch* implies an active line of development; a *tag* is the right tool for an immovable milestone):
+   ```bash
+   git tag -a architecture-refactor-2026 <merge-sha> -m "Phases 0-3 complete. PR #<n>."
+   git push origin architecture-refactor-2026
+   ```
+3. Delete the branch local + remote:
+   ```bash
+   git push origin --delete <umbrella>
+   git branch -d <umbrella>
+   ```
+4. If the program is ever revived (e.g. a deferred optional phase), start a **fresh scoped branch + plan** — don't resurrect the retired umbrella.
 
 **Handling `main` drift during a phase:** `main` routinely advances with unrelated content commits while a code phase is in flight. As long as those commits don't touch the same files (content vs. code), the boundary merge stays `CLEAN`/`MERGEABLE` and reconciles automatically — no mid-phase rebase needed. Verify before opening the boundary PR:
 ```bash
@@ -68,6 +82,7 @@ git log --oneline feature/site-improvements-2026-05..origin/main   # what main a
 - **Branch every work unit off the umbrella, never off `main`** — otherwise the unit misses in-flight phase context.
 - After each boundary, assert `0 0` divergence as a guardrail; a non-zero count means the fast-forward didn't happen (usually because someone squashed the boundary or `main` got a conflicting commit).
 - This pattern is worth the ceremony when work spans **multiple phases over multiple sessions**. For a single small change, branch off `main` directly — the umbrella adds no value.
+- **"Keep alive" has an expiry: retire on archive.** The keep-alive + fast-forward dance serves the *next* phase of an *active* program. Once the plan is archived with no next phase scoped, a lingering even-with-main branch is a hygiene smell that invites "is there pending work here?" confusion — delete it and tag the merge commit instead (history is fully preserved in `main` via the boundary merge commit).
 
 ### PowerShell + `gh` UTF-8 gotcha (encountered repeatedly in this workflow)
 
