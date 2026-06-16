@@ -895,15 +895,43 @@ module BookProcessor =
 
 /// Response content processor
 module ResponseProcessor =
+    /// RSVP status → (Bootstrap icon class, colour). Mirrors LayoutViews.responsePostView
+    /// so the timeline card matches the individual post page.
+    let private rsvpIconAndColor (status: string) =
+        match status.ToLowerInvariant() with
+        | "yes" -> ("bi bi-check-circle-fill", "#28a745")
+        | "no" -> ("bi bi-x-circle-fill", "#dc3545")
+        | "maybe" -> ("bi bi-question-circle-fill", "#ffc107")
+        | "interested" -> ("bi bi-calendar-check-fill", "#6c757d")
+        | _ -> ("bi bi-calendar-event-fill", "#4a60b6")
+
+    /// The response-target div. For RSVPs it renders a status-aware prefix
+    /// (icon + p-rsvp status + "to" + event link) so the card conveys yes/no/maybe/
+    /// interested. All other response subtypes keep the canonical "→ {url}" form.
+    let private renderResponseTarget (response: Response) =
+        let targetUrl = Html.escapeHtml response.Metadata.TargetUrl
+        match response.Metadata.ResponseType.ToLowerInvariant(), response.Metadata.RsvpStatus with
+        | "rsvp", Some status ->
+            let (iconClass, color) = rsvpIconAndColor status
+            let icon =
+                Html.element "span"
+                    (Html.attribute "class" iconClass + Html.attribute "style" (sprintf "margin-right:5px;color:%s;" color))
+                    ""
+            let statusSpan = Html.element "span" (Html.attribute "class" "p-rsvp") (Html.escapeHtml status)
+            let link = Html.element "a" (Html.attribute "href" targetUrl + Html.attribute "class" "u-in-reply-to") targetUrl
+            Html.element "div" (Html.attribute "class" "response-target")
+                (sprintf "%s%s to %s" icon statusSpan link)
+        | _ ->
+            Html.element "div" (Html.attribute "class" "response-target")
+                (sprintf "→ %s" (Html.element "a" (Html.attribute "href" targetUrl) targetUrl))
+
     /// Chrome-free card body (B2 / F7): the response-target + response-content divs
     /// WITHOUT the <article> wrapper or the <h2><a>title</a></h2> heading. The timeline
     /// composes this directly — its own card-body/title wrapper makes the standalone
     /// CardHtml chrome redundant (historically regex-stripped by `cleanCardHtml`).
     /// `RenderCard` wraps this with the standalone-card chrome, so CardHtml is unchanged.
     let renderResponseCardBody (response: Response) =
-        let targetUrl = Html.escapeHtml response.Metadata.TargetUrl
-        Html.element "div" (Html.attribute "class" "response-target")
-            (sprintf "→ %s" (Html.element "a" (Html.attribute "href" targetUrl) targetUrl)) +
+        renderResponseTarget response +
         Html.element "div" (Html.attribute "class" "response-content") response.Content
 
     /// B2 (RENDER_V2) clean card-body seam. Like renderResponseCardBody, but renders the
@@ -915,13 +943,11 @@ module ResponseProcessor =
     /// renderers, no pipeline.Setup), so the body is byte-identical to response.Content apart
     /// from the intended heading removal.
     let renderResponseCardBodyClean (response: Response) =
-        let targetUrl = Html.escapeHtml response.Metadata.TargetUrl
         let bodyHtml =
             match response.MarkdownSource with
             | Some raw -> ASTParsing.renderCardHtmlFromMarkdown (ASTParsing.stripFrontMatter raw)
             | None -> response.Content
-        Html.element "div" (Html.attribute "class" "response-target")
-            (sprintf "→ %s" (Html.element "a" (Html.attribute "href" targetUrl) targetUrl)) +
+        renderResponseTarget response +
         Html.element "div" (Html.attribute "class" "response-content") bodyHtml
 
     let create() : ContentProcessor<Response> = {

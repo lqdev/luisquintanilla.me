@@ -31,6 +31,7 @@ type ProgressiveContentItem =
       date: string
       url: string
       content: string
+      rsvpStatus: string
       tags: string[] }
 
 /// Extract item type from review content for badge display
@@ -255,7 +256,11 @@ let timelineHomeViewStratified (initialItems: UnifiedFeeds.UnifiedFeedItem array
                                           | "star" -> "Star"
                                           | "reply" -> "Reply"
                                           | "reshare" -> "Reshare"
-                                          | "rsvp" -> "RSVP"
+                                          | "rsvp" ->
+                                              // Surface the attendance status on the badge (e.g. "RSVP · Yes")
+                                              (match item.RsvpStatus with
+                                               | Some s when s.Length > 0 -> sprintf "RSVP · %c%s" (System.Char.ToUpper(s.[0])) (s.Substring(1))
+                                               | _ -> "RSVP")
                                           | "bookmark" -> "Bookmark"
                                           | "ai-memex" -> "AI Memex"
                                           | _ -> item.ContentType)
@@ -308,6 +313,7 @@ let timelineHomeViewStratified (initialItems: UnifiedFeeds.UnifiedFeedItem array
                                   date = item.Date
                                   url = properPermalink
                                   content = item.BodyHtml.Value
+                                  rsvpStatus = (match item.RsvpStatus with Some s -> s | None -> "")
                                   tags = item.Tags })
                             |> List.toArray
                             |> JsonSerializer.Serialize

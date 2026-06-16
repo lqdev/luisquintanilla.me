@@ -432,7 +432,13 @@ const TimelineProgressiveLoader = {
                 const itemType = this.extractReviewItemType(item.content);
                 return itemType || 'Review';  // Fallback to generic "Review"
             }
-            
+
+            if (item.contentType === 'rsvp') {
+                // Surface the attendance status on the badge (e.g. "RSVP · Yes")
+                const s = item.rsvpStatus;
+                return s ? `RSVP · ${s.charAt(0).toUpperCase()}${s.slice(1)}` : 'RSVP';
+            }
+
             // For other content types, use the standard mapping
             return {
                 'posts': 'Blog Post',
@@ -449,6 +455,7 @@ const TimelineProgressiveLoader = {
                 'star': 'Star',
                 'reply': 'Reply',
                 'reshare': 'Reshare',
+                'rsvp': 'RSVP',
                 'bookmark': 'Bookmark'
             }[item.contentType] || item.contentType;
         })();

@@ -155,10 +155,16 @@ let urlPrefix (ct: ContentType) =
     | ContentType.AlbumCollection -> "/album-collection/"
     | ContentType.PlaylistCollection -> "/playlist-collection/"
 
-/// String-boundary shim for URL prefixing. Parses the wire string; for response
-/// subtypes / unmapped values it preserves the previous
-/// `| other -> sprintf "/%s/" other` behavior byte-for-byte.
+/// String-boundary shim for URL prefixing. Parses the wire string; response
+/// subtypes carry their subtype as the key but their detail pages live under the
+/// parent route (replies/reshares/stars/rsvps → /responses/, bookmark → /bookmarks/),
+/// matching TimelineViews' initial-content `getProperPermalink`. Any other unmapped
+/// value preserves the previous `| other -> sprintf "/%s/" other` behavior.
 let urlPrefixForKey (contentType: string) =
     match parse contentType with
     | Some ct -> urlPrefix ct
-    | None -> sprintf "/%s/" contentType
+    | None ->
+        match contentType with
+        | Reply | Reshare | Star | Rsvp -> "/responses/"
+        | Bookmark -> "/bookmarks/"
+        | other -> sprintf "/%s/" other

@@ -57,6 +57,19 @@ let notesView (posts: Post array) =
         ]
     ]
 
+let private responseSubtypeLabel (r: Response) =
+    match r.Metadata.ResponseType.ToLowerInvariant() with
+    | "reply" -> "Reply"
+    | "reshare" | "share" -> "Reshare"
+    | "star" -> "Star"
+    | "bookmark" -> "Bookmark"
+    | "rsvp" ->
+        match r.Metadata.RsvpStatus with
+        | Some s when s.Length > 0 -> sprintf "RSVP: %c%s" (Char.ToUpper s.[0]) (s.Substring(1))
+        | _ -> "RSVP"
+    | other when other.Length > 0 -> sprintf "%c%s" (Char.ToUpper other.[0]) (other.Substring(1))
+    | _ -> "Response"
+
 let responseView (posts: Response array) =
     div [ _class "d-grip gap-3" ] [
         h2[] [Text "Responses"]
@@ -65,6 +78,8 @@ let responseView (posts: Response array) =
             for post in posts do
                 li [] [
                     a [ _href $"/responses/{post.FileName}"] [ Text post.Metadata.Title ]
+                    Text " — "
+                    span [ _class "response-subtype" ] [ Text (responseSubtypeLabel post) ]
                     Text " • "
                     Text (DateTimeOffset.Parse(post.Metadata.DatePublished).ToString("MMM dd, yyyy"))
                 ]
@@ -99,6 +114,24 @@ let bookmarkResponseView (posts: Response array) =
                 ]
         ]
     ]    
+
+// View for RSVP responses (Response objects with rsvp type) — a temporal facet of
+// responses, mirroring the bookmarks landing page. Detail pages stay at /responses/{file}/.
+let rsvpView (posts: Response array) =
+    div [ _class "d-grip gap-3" ] [
+        h2[] [Text "RSVPs"]
+        p [] [Text "Events I've responded to — yes, no, maybe, or interested"]
+        ul [] [
+            for post in posts do
+                li [] [
+                    a [ _href $"/responses/{post.FileName}"] [ Text post.Metadata.Title ]
+                    Text " — "
+                    span [ _class "response-subtype" ] [ Text (responseSubtypeLabel post) ]
+                    Text " • "
+                    Text (DateTimeOffset.Parse(post.Metadata.DatePublished).ToString("MMM dd, yyyy"))
+                ]
+        ]
+    ]
 
 let libraryView (books:Book array) = 
     div [ _class "d-grip gap-3" ] [
@@ -469,6 +502,15 @@ let enhancedSubscriptionHubView (items: UnifiedFeeds.UnifiedFeedItem array) =
                 Text "Feed URL: "
                 a [ _href "/bookmarks.rss" ] [ Text "/bookmarks.rss" ]
                 Text " (filter by bookmark type)"
+            ]
+            
+            // RSVPs Feed
+            h3 [] [ a [ _href "/rsvp/" ] [ Text "RSVPs" ] ]
+            p [] [ Text "Events I've responded to — yes, no, maybe, or interested." ]
+            p [] [
+                Text "Feed URL: "
+                a [ _href "/rsvp.rss" ] [ Text "/rsvp.rss" ]
+                Text " (RSVP responses only)"
             ]
             
             // Media Feed  

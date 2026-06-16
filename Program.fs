@@ -71,6 +71,9 @@ let main argv =
     
     // Create bookmarks landing page using the bookmarks data
     buildBookmarksLandingPage bookmarksFeedData
+
+    // Create RSVPs landing page from rsvp-type responses
+    buildRsvpLandingPage responsesFeedData
     
     let snippetsFeedData = buildSnippets()
     let wikisFeedData = buildWikis()
