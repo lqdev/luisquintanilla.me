@@ -1378,7 +1378,7 @@ module Builder
             responsesFeedData 
             |> List.map (fun item -> item.Content)
             |> List.filter (fun response -> response.Metadata.ResponseType = "bookmark")
-            |> List.sortByDescending (fun response -> DateTime.Parse(response.Metadata.DatePublished))
+            |> List.sortByDescending (fun response -> DateTimeOffset.Parse(response.Metadata.DatePublished))
             |> List.toArray
         
         // Create the bookmarks landing page using bookmarkResponseView (which handles Response arrays but displays as bookmarks)
@@ -1396,7 +1396,7 @@ module Builder
             responsesFeedData
             |> List.map (fun item -> item.Content)
             |> List.filter (fun response -> response.Metadata.ResponseType = "rsvp")
-            |> List.sortByDescending (fun response -> DateTime.Parse(response.Metadata.DatePublished))
+            |> List.sortByDescending (fun response -> DateTimeOffset.Parse(response.Metadata.DatePublished))
             |> List.toArray
 
         let rsvpLandingHtml = generate (rsvpView rsvpResponses) "defaultindex" "RSVPs - Luis Quintanilla"
