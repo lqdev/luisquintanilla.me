@@ -12,6 +12,7 @@ open LegacyFeedsBuilder
 open TagPagesBuilder
 open LivestreamBuilder
 open HomepageBuilder
+open BlogArchiveBuilder
 open GenericBuilder
 open WebmentionService
 open Domain
