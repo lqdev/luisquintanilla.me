@@ -51,28 +51,40 @@ let parseMyContentFromFile (filePath: string) =
     parseDocumentFromFile<MyContentDetails> filePath
 ```
 
-### 3. GenericBuilder.fs — Create processor
+### 3. Processors/MyContentProcessor.fs — Create processor
 
-Add a `ContentProcessor<MyContent>` using the existing pattern:
+Create a new file `Processors/MyContentProcessor.fs` as a top-level module (no `=`) that
+`open`s `GenericBuilder` for the core abstraction, then defines a `ContentProcessor<MyContent>`:
 
 ```fsharp
-module MyContentProcessor =
-    let create () : ContentProcessor<MyContent> = {
-        Parse = fun filePath -> ...
-        Render = fun entry -> ...
-        OutputPath = fun entry -> ...
-        RenderCard = fun entry -> ...
-        RenderRss = fun entry -> ...
-    }
+module MyContentProcessor
+
+open GenericBuilder
+// ...other opens as needed (Domain, ASTParsing, Giraffe.ViewEngine, ...)
+
+let create () : ContentProcessor<MyContent> = {
+    Parse = fun filePath -> ...
+    Render = fun entry -> ...
+    OutputPath = fun entry -> ...
+    RenderCard = fun entry -> ...
+    RenderRss = fun entry -> ...
+}
 ```
 
-Also add to `convertToUnified` and `buildAllFeeds` if the content type should appear
-in the unified feed and/or have its own RSS feed.
+Wire it into `PersonalSite.fsproj` **between `GenericBuilder.fs` and `UnifiedFeeds.fs`** (after the
+other `Processors\*.fs` entries) — `UnifiedFeeds.fs` and the page builders consume processors, so
+they must compile after. The core `ContentProcessor`/`FeedData` types and `buildContentWithFeeds`
+stay in `GenericBuilder.fs`; reference them as `GenericBuilder.FeedData<_>` etc.
 
-### 4. Builder.fs — Add build function
+Also add a `convertMyContentToUnified` function in `UnifiedFeeds.fs` (and a feed in `buildAllFeeds`)
+if the content type should appear in the unified feed and/or have its own RSS feed.
 
-Create `buildMyContent` function following the pattern of existing build functions.
-This orchestrates: load source files → parse → render → write output.
+### 4. Builders/ContentTypePages.fs — Add build function
+
+Add a `buildMyContent` delegate in `Builders/ContentTypePages.fs` (module `ContentTypePagesBuilder`)
+following the existing `BuildDriver`-based pattern. It orchestrates: load source files → parse →
+render → write output, returning the `GenericBuilder.FeedData<MyContent> list` for the unified feed.
+Call the processor as `MyContentProcessor.create()` (unqualified — it's a top-level module).
 
 ### 5. Program.fs — Wire into main pipeline
 
@@ -116,5 +128,7 @@ After all 8 files are updated:
 - Use fully qualified type names (`MediaType.Unknown` not `Unknown`)
 - ASTParsing.fs uses `.IgnoreUnmatchedProperties()` — new optional string fields
   default to null and need no parser changes
-- Add the new `.fs` module to `PersonalSite.fsproj` if creating a new file
+- Add any new `.fs` module to `PersonalSite.fsproj` respecting compile order:
+  `Processors\*.fs` go between `GenericBuilder.fs` and `UnifiedFeeds.fs`; `Builders\*.fs` go
+  after their dependencies (Views, Services, `UnifiedFeeds.fs`, `BuildDriver.fs`) and before `Program.fs`
 - Date field names vary by type: posts use `published_date`, responses use `dt_published`

@@ -507,6 +507,24 @@ in §8.2–8.3 and plan 1.4/2.8):
 
 ### F9 — God modules (MEDIUM)
 
+**STATUS (2026-06-16): ✅ DONE.** All oversized build/view modules decomposed by mechanical,
+hash-verified extraction (byte-identical `_public/` per move, URL permanence preserved):
+- `Builder.fs` (1,489) → **deleted**; 13 cohesive `Builders/*.fs` modules (Common, Assets,
+  StaticPages, ResumePage, Rolls, BlogArchive, Homepage, ContentTypePages, AiMemexPages,
+  CollectionPages, TagPages, LegacyFeeds, Livestream).
+- `GenericBuilder.fs` (1,531) → **152-line core** (the `ContentProcessor`/`FeedData` abstraction +
+  `buildContentWithFeeds` + 3 shared ActivityPub types + `ContentPipeline`); 13 processors + 3
+  extractors lifted to 15 `Processors/*.fs` modules, slotted between `GenericBuilder.fs` and
+  `UnifiedFeeds.fs` in `.fsproj`.
+- `LayoutViews.fs` → `TimelineViews.fs` split (refactor step 2.5, prior pass).
+- `TextOnlyViews.fs` (1,094) → `Views/TextOnly/Content.fs` (`TextOnlyContentProcessor` + 4 helpers) +
+  `Views/TextOnly/Pages.fs` (18 page views).
+- `Program.fs` confirmed already a composition root; only the inline directory-prep block was lifted
+  to `AssetsBuilder.prepareDirectories`. The B1 `contentRoster` value and `allTaggableContent` stay
+  explicit by design (composition wiring, not god-module residue — see ContentRegistry.fs notes).
+
+Original finding follows.
+
 **What.** Four modules exceed 1,000 lines: `GenericBuilder.fs` (2,077 — processors *and*
 unified feeds *and* RSS/JSON feed generation), `Builder.fs` (1,651 — page builders *and* static
 pages *and* archive exports), `LayoutViews.fs` (1,422 — timeline *and* every bespoke page view),
