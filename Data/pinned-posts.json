@@ -1,26 +1,32 @@
 [
     {
-        "fileName": "alternatives-to-discord-2026-02-11",
+        "fileName": "mycelium-fediforum-ai-agents-open-social-infrastructure-04-2026",
         "contentType": "posts",
         "order": 1,
         "note": ""
-    },
+    },    
     {
-        "fileName": "how-i-keep-up-with-ai",
+        "fileName": "alternatives-to-discord-2026-02-11",
         "contentType": "posts",
         "order": 2,
         "note": ""
     },
     {
-        "fileName": "rss-opml-starter-packs",
+        "fileName": "how-i-keep-up-with-ai",
         "contentType": "posts",
         "order": 3,
         "note": ""
     },
     {
+        "fileName": "rss-opml-starter-packs",
+        "contentType": "posts",
+        "order": 4,
+        "note": ""
+    },
+    {
         "fileName": "website-feeds-opml",
         "contentType": "notes",
-        "order": 4,
+        "order": 5,
         "note": ""
     }
 ]
