@@ -16,7 +16,7 @@ let bookmarkResponses =
         System.IO.Directory.GetFiles(System.IO.Path.Join("_src", "bookmarks"))
         |> Array.filter (fun f -> f.EndsWith(".md"))
         |> Array.toList
-    let processor = GenericBuilder.ResponseProcessor.create()
+    let processor = ResponseProcessor.create()
     let feedData = GenericBuilder.buildContentWithFeeds processor bookmarkFiles
     feedData |> List.map (fun item -> item.Content) |> List.toArray
 

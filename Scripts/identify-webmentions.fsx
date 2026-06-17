@@ -24,7 +24,7 @@ let responses =
         Directory.GetFiles(Path.Join("_src", "responses"))
         |> Array.filter (fun f -> f.EndsWith(".md"))
         |> Array.toList
-    let processor = GenericBuilder.ResponseProcessor.create()
+    let processor = ResponseProcessor.create()
     let feedData = GenericBuilder.buildContentWithFeeds processor responseFiles
     feedData |> List.map (fun item -> item.Content) |> List.toArray
 

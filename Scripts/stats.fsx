@@ -18,7 +18,7 @@ let bookmarkResponses =
         System.IO.Directory.GetFiles(System.IO.Path.Join("_src", "bookmarks"))
         |> Array.filter (fun f -> f.EndsWith(".md"))
         |> Array.toList
-    let processor = GenericBuilder.ResponseProcessor.create()
+    let processor = ResponseProcessor.create()
     let feedData = GenericBuilder.buildContentWithFeeds processor bookmarkFiles
     feedData |> List.map (fun item -> item.Content) |> List.toArray
 
@@ -28,7 +28,7 @@ let reviews =
         System.IO.Directory.GetFiles(System.IO.Path.Join("_src", "reviews", "library"))
         |> Array.filter (fun f -> f.EndsWith(".md"))
         |> Array.toList
-    let processor = GenericBuilder.BookProcessor.create()
+    let processor = BookProcessor.create()
     let feedData = GenericBuilder.buildContentWithFeeds processor bookFiles
     feedData |> List.map (fun item -> item.Content) |> List.toArray
 
@@ -38,7 +38,7 @@ let media =
         System.IO.Directory.GetFiles(System.IO.Path.Join("_src", "media"))
         |> Array.filter (fun f -> f.EndsWith(".md"))
         |> Array.toList
-    let processor = GenericBuilder.AlbumProcessor.create()
+    let processor = AlbumProcessor.create()
     let feedData = GenericBuilder.buildContentWithFeeds processor albumFiles
     feedData |> List.map (fun item -> item.Content) |> List.toArray
 
