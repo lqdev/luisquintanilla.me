@@ -10,6 +10,13 @@ on:
   #   branches:
   #     - main
 
+# Serialize deploys to the single Azure SWA production environment. A newer push
+# to main cancels an older in-flight deploy so the latest commit always wins,
+# preventing "Deployment Canceled" races when PRs merge in quick succession.
+concurrency:
+  group: azure-swa-deploy
+  cancel-in-progress: true
+
 jobs:
   # ============================================================================
   # Main build and deployment job
