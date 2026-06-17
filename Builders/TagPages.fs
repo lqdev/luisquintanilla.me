@@ -81,8 +81,9 @@ module TagPagesBuilder
                             match contentType with
                             | "posts" -> ("posts", "Blogs")
                             | "notes" -> ("notes", "Notes") 
-                            | "snippets" -> ("snippets", "Snippets")
-                            | "wikis" -> ("wiki", "Wiki")
+                            | "snippets" -> ("resources/snippets", "Snippets")
+                            | "wikis" -> ("resources/wiki", "Wiki")
+                            | "ai-memex" -> ("resources/ai-memex", "AI Memex")
                             | "presentations" -> ("resources/presentations", "Presentations")
                             | "albums" -> ("media/albums", "Albums")
                             | _ -> (contentType, contentType)
