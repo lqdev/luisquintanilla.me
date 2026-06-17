@@ -168,8 +168,8 @@ let buildTextOnlyIndividualPages (outputDir: string) (unifiedContent: UnifiedFee
                 let presentation = feedData.Content
                 let htmlContent = MarkdownService.convertMdToHtml presentation.Content
                 let textContentPage = TextOnlyViews.textOnlyPresentationPage presentation htmlContent |> RenderView.AsString.htmlDocument
-                let slug = TextOnlyViews.extractSlugFromUrl content.Url
-                let outputPath = Path.Combine(outputDir, "text", "content", TextOnlyViews.normalizeContentType content.ContentType, slug, "index.html")
+                let slug = TextOnlyContent.extractSlugFromUrl content.Url
+                let outputPath = Path.Combine(outputDir, "text", "content", TextOnlyContent.normalizeContentType content.ContentType, slug, "index.html")
                 
                 // Ensure directory exists
                 let dirPath = Path.GetDirectoryName(outputPath)
@@ -181,8 +181,8 @@ let buildTextOnlyIndividualPages (outputDir: string) (unifiedContent: UnifiedFee
                 // Fallback to regular processing if presentation not found
                 let htmlContent = MarkdownService.convertMdToHtml content.Content
                 let textContentPage = TextOnlyViews.textOnlyContentPage content htmlContent |> RenderView.AsString.htmlDocument
-                let slug = TextOnlyViews.extractSlugFromUrl content.Url
-                let outputPath = Path.Combine(outputDir, "text", "content", TextOnlyViews.normalizeContentType content.ContentType, slug, "index.html")
+                let slug = TextOnlyContent.extractSlugFromUrl content.Url
+                let outputPath = Path.Combine(outputDir, "text", "content", TextOnlyContent.normalizeContentType content.ContentType, slug, "index.html")
                 
                 // Ensure directory exists
                 let dirPath = Path.GetDirectoryName(outputPath)
@@ -194,14 +194,14 @@ let buildTextOnlyIndividualPages (outputDir: string) (unifiedContent: UnifiedFee
             // Responses, bookmarks, and reviews store pre-rendered CardHtml in content.Content
             // (already HTML with target URL / review display); use it directly. All other
             // content types store raw markdown that must be converted to HTML.
-            let normalizedType = TextOnlyViews.normalizeContentType content.ContentType
+            let normalizedType = TextOnlyContent.normalizeContentType content.ContentType
             let htmlContent = 
                 if normalizedType = "responses" || normalizedType = "bookmarks" || normalizedType = "reviews" then
                     content.Content  // Already HTML
                 else
                     MarkdownService.convertMdToHtml content.Content  // Convert markdown to HTML
             let textContentPage = TextOnlyViews.textOnlyContentPage content htmlContent |> RenderView.AsString.htmlDocument
-            let slug = TextOnlyViews.extractSlugFromUrl content.Url
+            let slug = TextOnlyContent.extractSlugFromUrl content.Url
             let outputPath = Path.Combine(outputDir, "text", "content", normalizedType, slug, "index.html")
             
             // Ensure directory exists
@@ -272,7 +272,7 @@ let buildTextOnlyArchivePages (outputDir: string) (unifiedContent: UnifiedFeedIt
     // Build monthly archive pages
     let monthlyArchives = 
         unifiedContent
-        |> List.map (fun item -> (item, TextOnlyViews.parseItemDate item.Date))
+        |> List.map (fun item -> (item, TextOnlyContent.parseItemDate item.Date))
         |> List.filter (fun (_, date) -> date <> System.DateTime.MinValue)
         |> List.groupBy (fun (_, date) -> (date.Year, date.Month))
         |> List.map fst

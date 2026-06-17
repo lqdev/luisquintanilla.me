@@ -29,6 +29,21 @@
     <Compile Include="Services\FollowersSync.fs" /> 
     <Compile Include="Services\QRStyled.fs" />
     <Compile Include="GenericBuilder.fs" />
+    <Compile Include="Processors\PostProcessor.fs" />
+    <Compile Include="Processors\NoteProcessor.fs" />
+    <Compile Include="Processors\SnippetProcessor.fs" />
+    <Compile Include="Processors\WikiProcessor.fs" />
+    <Compile Include="Processors\AiMemexProcessor.fs" />
+    <Compile Include="Processors\PresentationProcessor.fs" />
+    <Compile Include="Processors\ReviewDataExtractor.fs" />
+    <Compile Include="Processors\MediaExtractor.fs" />
+    <Compile Include="Processors\BookProcessor.fs" />
+    <Compile Include="Processors\ResponseProcessor.fs" />
+    <Compile Include="Processors\MediaDataExtractor.fs" />
+    <Compile Include="Processors\AlbumProcessor.fs" />
+    <Compile Include="Processors\AlbumCollectionProcessor.fs" />
+    <Compile Include="Processors\PlaylistCollectionProcessor.fs" />
+    <Compile Include="Processors\BookmarkProcessor.fs" />
     <Compile Include="UnifiedFeeds.fs" />
     <Compile Include="ContentRegistry.fs" />
     <Compile Include="ActivityPubBuilder.fs" />
@@ -45,7 +60,8 @@
     <Compile Include="Views\LayoutViews.fs" />
     <Compile Include="Views\Navigation.fs" />
     <Compile Include="Views\Layouts.fs" />
-    <Compile Include="Views\TextOnlyViews.fs" />
+    <Compile Include="Views\TextOnly\Content.fs" />
+    <Compile Include="Views\TextOnly\Pages.fs" />
     <Compile Include="Views\Partials.fs" />
     <Compile Include="Views\Generator.fs" />
     <Compile Include="BuildDriver.fs" />
@@ -53,7 +69,19 @@
     <Compile Include="SearchIndex.fs" />
     <Compile Include="Loaders.fs" />
     <Compile Include="TextOnlyBuilder.fs" />
-    <Compile Include="Builder.fs" />
+    <Compile Include="Builders\Common.fs" />
+    <Compile Include="Builders\Assets.fs" />
+    <Compile Include="Builders\AiMemexPages.fs" />
+    <Compile Include="Builders\ResumePage.fs" />
+    <Compile Include="Builders\CollectionPages.fs" />
+    <Compile Include="Builders\LegacyFeeds.fs" />
+    <Compile Include="Builders\TagPages.fs" />
+    <Compile Include="Builders\Livestream.fs" />
+    <Compile Include="Builders\Homepage.fs" />
+    <Compile Include="Builders\BlogArchive.fs" />
+    <Compile Include="Builders\Rolls.fs" />
+    <Compile Include="Builders\StaticPages.fs" />
+    <Compile Include="Builders\ContentTypePages.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
