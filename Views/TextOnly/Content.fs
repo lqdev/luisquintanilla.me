@@ -103,10 +103,13 @@ let extractSlugFromUrl (url: string) =
     else
         "content"
 
-// Helper function to parse date string
+// Helper function to parse date string.
+// Use DateTimeOffset so an offset timestamp (e.g. "2025-08-11 20:57 -05:00") keeps its
+// as-written calendar date instead of being shifted into the build machine's local zone,
+// which made text-only archive grouping/sorting differ between local and UTC CI builds (#2483).
 let parseItemDate (dateString: string) =
-    match DateTime.TryParse(dateString) with
-    | (true, date) -> date
+    match DateTimeOffset.TryParse(dateString) with
+    | (true, dto) -> dto.DateTime
     | (false, _) -> DateTime.MinValue
 
 // Normalize content-type values for text-only routing, filtering, and grouping.
